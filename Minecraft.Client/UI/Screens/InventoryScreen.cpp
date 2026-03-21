@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "InventoryScreen.h"
 #include "MultiplayerLocalPlayer.h"
 #include "../Font.h"

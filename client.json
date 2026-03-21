@@ -9,6 +9,6 @@
   ],
 
   "moves": [
-    { "from": "Build/**", "to": "Platform/" }
+    { "from": "Build/Common", "to": "Platform/Common" }
   ]
 }

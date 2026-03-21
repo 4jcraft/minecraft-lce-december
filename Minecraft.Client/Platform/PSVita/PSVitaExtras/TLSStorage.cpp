@@ -1,6 +1,6 @@
 
 
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 
 TLSStoragePSVita* TLSStoragePSVita::m_pInstance = NULL;
 

@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "ExperienceOrbRenderer.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.h"
 #include "..\Minecraft.World\net.minecraft.world.level.tile.h"

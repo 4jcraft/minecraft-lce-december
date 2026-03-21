@@ -1,4 +1,4 @@
-#include "Build/stdafx.h"
+#include "Platform/stdafx.h"
 #include "TntMinecartRenderer.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.item.h"
 #include "..\Minecraft.World\net.minecraft.world.level.tile.h"

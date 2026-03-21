@@ -1,7 +1,7 @@
 // Minecraft.cpp : Defines the entry point for the application.
 //
 
-#include "../../Build/stdafx.h"
+#include "../stdafx.h"
 
 #include "Leaderboards\PSVitaLeaderboardManager.h"
 #include "PSVita\PSVitaExtras\ShutdownManager.h"

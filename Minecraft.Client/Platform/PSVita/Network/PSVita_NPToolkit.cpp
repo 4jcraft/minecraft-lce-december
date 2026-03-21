@@ -1,4 +1,4 @@
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 
 #include "PSVita_NPToolkit.h"
 #include "../PSVitaExtras/Conf.h"

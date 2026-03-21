@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "..\Minecraft.World\JavaMath.h"
 #include "..\Minecraft.World\Random.h"
 #include "FlameParticle.h"

@@ -1,4 +1,4 @@
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 #include <libsysmodule.h>
 #include <rudp.h>
 #include <audioin.h>

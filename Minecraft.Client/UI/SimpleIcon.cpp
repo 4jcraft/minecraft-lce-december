@@ -1,4 +1,4 @@
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "SimpleIcon.h"
 
 SimpleIcon::SimpleIcon(const std::wstring& name, const std::wstring& filename,

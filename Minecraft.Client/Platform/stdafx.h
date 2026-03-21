@@ -51,9 +51,9 @@
 #include <unordered_set>
 #include <vector>
 #include <touch.h>
-#include "../Platform/PSVita/PSVitaExtras/PSVitaTypes.h"
-#include "../Platform/PSVita/PSVitaExtras/PSVitaStubs.h"
-#include "../Platform/PSVita/PSVitaExtras/PSVitaMaths.h"
+#include "PSVita/PSVitaExtras/PSVitaTypes.h"
+#include "PSVita/PSVitaExtras/PSVitaStubs.h"
+#include "PSVita/PSVitaExtras/PSVitaMaths.h"
 #else
 #define AUTO_VAR(_var, _val) auto _var = _val
 #include <unordered_map>

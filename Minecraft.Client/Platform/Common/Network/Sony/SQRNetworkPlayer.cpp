@@ -12,7 +12,7 @@
 #else  // __PSVITA__
 #include <rudp.h>
 #include <adhoc_matching.h>
-#include "../../../../Platform/PSVita/Network/SonyVoiceChat_Vita.h"
+#include "../../../PSVita/Network/SonyVoiceChat_Vita.h"
 
 #endif
 

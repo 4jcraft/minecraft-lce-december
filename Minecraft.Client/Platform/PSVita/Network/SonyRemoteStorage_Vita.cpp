@@ -1,4 +1,4 @@
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 
 #include "SonyRemoteStorage_Vita.h"
 #include "SonyHttp_Vita.h"

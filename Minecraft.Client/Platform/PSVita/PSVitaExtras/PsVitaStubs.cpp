@@ -1,4 +1,4 @@
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 #include <rtc.h>
 #include <sce_atomic.h>
 #include <fios2.h>

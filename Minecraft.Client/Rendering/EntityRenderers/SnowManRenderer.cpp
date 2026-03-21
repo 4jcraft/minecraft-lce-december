@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "../Models/SnowManModel.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.animal.h"
 #include "..\Minecraft.World\net.minecraft.world.level.tile.h"
