@@ -124,7 +124,7 @@ void ItemEntity::mergeWithNeighbours() {
     for (AUTO_VAR(it, neighbours->begin()); it != neighbours->end(); ++it) {
         std::shared_ptr<ItemEntity> entity =
             std::dynamic_pointer_cast<ItemEntity>(*it);
-        std::merge(entity);
+        merge(entity);
     }
     delete neighbours;
 }

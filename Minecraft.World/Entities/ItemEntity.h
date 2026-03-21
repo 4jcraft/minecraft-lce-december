@@ -51,7 +51,7 @@ private:
     void mergeWithNeighbours();
 
 public:
-    bool std::merge(std::shared_ptr<ItemEntity> target);
+    bool merge(std::shared_ptr<ItemEntity> target);
     void setShortLifeTime();
     virtual bool updateInWaterState();
 
