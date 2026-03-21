@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "ReceivingLevelScreen.h"
 #include "../../Network/ClientConnection.h"
-#include "..\Minecraft.World\net.minecraft.locale.h"
+#include "../Minecraft.World/net.minecraft.locale.h"
 
 ReceivingLevelScreen::ReceivingLevelScreen(ClientConnection *connection)
 {

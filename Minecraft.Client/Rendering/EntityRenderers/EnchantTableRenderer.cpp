@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "../Models/BookModel.h"
-#include "..\Minecraft.World\net.minecraft.world.level.tile.entity.h"
-#include "..\Minecraft.World\Mth.h"
+#include "../Minecraft.World/net.minecraft.world.level.tile.entity.h"
+#include "../Minecraft.World/Mth.h"
 #include "EnchantTableRenderer.h"
 
 ResourceLocation EnchantTableRenderer::BOOK_LOCATION = ResourceLocation(TN_ITEM_BOOK);

@@ -1,7 +1,7 @@
 #include "../Platform/stdafx.h"
 #include "DerivedServerLevel.h"
-#include "..\Minecraft.World\SavedDataStorage.h"
-#include "..\Minecraft.World\DerivedLevelData.h"
+#include "../Minecraft.World/SavedDataStorage.h"
+#include "../Minecraft.World/DerivedLevelData.h"
 
 DerivedServerLevel::DerivedServerLevel(MinecraftServer *server, shared_ptr<LevelStorage> levelStorage, const std::wstring& levelName, int dimension, LevelSettings *levelSettings, ServerLevel *wrapped)
 	: ServerLevel(server, levelStorage, levelName, dimension, levelSettings)

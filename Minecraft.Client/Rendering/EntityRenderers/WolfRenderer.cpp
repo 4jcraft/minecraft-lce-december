@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "WolfRenderer.h"
 #include "../../Player/MultiPlayerLocalPlayer.h"
-#include "..\Minecraft.World\net.minecraft.world.entity.animal.h"
+#include "../Minecraft.World/net.minecraft.world.entity.animal.h"
 
 ResourceLocation *WolfRenderer::WOLF_LOCATION = new ResourceLocation(TN_MOB_WOLF);
 ResourceLocation *WolfRenderer::WOLF_TAME_LOCATION = new ResourceLocation(TN_MOB_WOLF_TAME);

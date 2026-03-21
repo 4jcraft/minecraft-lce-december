@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "..\Minecraft.World\Icon.h"
+#include "../Minecraft.World/Icon.h"
 class Texture;
 
 class StitchedTexture : public Icon

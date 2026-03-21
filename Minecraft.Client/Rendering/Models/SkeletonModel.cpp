@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "SkeletonModel.h"
-#include "..\Minecraft.World\Mth.h"
-#include "..\Minecraft.World\net.minecraft.world.entity.monster.h"
+#include "../Minecraft.World/Mth.h"
+#include "../Minecraft.World/net.minecraft.world.entity.monster.h"
 #include "ModelPart.h"
 
 void SkeletonModel::_init(float g)

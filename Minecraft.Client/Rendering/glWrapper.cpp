@@ -1,7 +1,7 @@
 #include "../Platform/stdafx.h"
-#include "..\Minecraft.World\FloatBuffer.h"
-#include "..\Minecraft.World\IntBuffer.h"
-#include "..\Minecraft.World\ByteBuffer.h"
+#include "../Minecraft.World/FloatBuffer.h"
+#include "../Minecraft.World/IntBuffer.h"
+#include "../Minecraft.World/ByteBuffer.h"
 
 void glViewport(int x, int y, int w, int h)
 {

@@ -2,7 +2,7 @@
 
 class Minecraft;
 class KeyMapping;
-#include "..\Minecraft.World\File.h"
+#include "../Minecraft.World/File.h"
 
 class Options
 {

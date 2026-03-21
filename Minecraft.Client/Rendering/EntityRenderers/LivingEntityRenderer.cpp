@@ -5,9 +5,9 @@
 #include "../Models/ModelPart.h"
 #include "EntityRenderDispatcher.h"
 #include "../../Player/MultiPlayerLocalPlayer.h"
-#include "..\Minecraft.World\Arrow.h"
-#include "..\Minecraft.World\Mth.h"
-#include "..\Minecraft.World\Player.h"
+#include "../Minecraft.World/Arrow.h"
+#include "../Minecraft.World/Mth.h"
+#include "../Minecraft.World/Player.h"
 
 
 ResourceLocation LivingEntityRenderer::ENCHANT_GLINT_LOCATION = ResourceLocation(TN__BLUR__MISC_GLINT);

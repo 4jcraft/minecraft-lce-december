@@ -8,7 +8,7 @@
 #include "../../Headers/net.minecraft.world.level.h"
 #include "../../Headers/net.minecraft.world.item.h"
 #include "Chicken.h"
-#include "..\Minecraft.Client\Textures.h"
+#include "../Minecraft.Client/Textures.h"
 #include "../../Util/SoundTypes.h"
 #include "../MobCategory.h"
 

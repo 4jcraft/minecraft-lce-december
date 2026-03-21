@@ -4,11 +4,11 @@
 #include "../../Rendering/EntityRenderers/TileEntityRenderDispatcher.h"
 #include "../../Network/ClientConnection.h"
 #include "../../Level/MultiPlayerLevel.h"
-#include "..\Minecraft.World\SignTileEntity.h"
-#include "..\Minecraft.World\SharedConstants.h"
-#include "..\Minecraft.World\net.minecraft.network.packet.h"
-#include "..\Minecraft.World\net.minecraft.world.level.h"
-#include "..\Minecraft.World\net.minecraft.world.level.tile.h"
+#include "../Minecraft.World/SignTileEntity.h"
+#include "../Minecraft.World/SharedConstants.h"
+#include "../Minecraft.World/net.minecraft.network.packet.h"
+#include "../Minecraft.World/net.minecraft.world.level.h"
+#include "../Minecraft.World/net.minecraft.world.level.tile.h"
 
 
 const std::wstring TextEditScreen::allowedChars = SharedConstants::acceptableLetters;;

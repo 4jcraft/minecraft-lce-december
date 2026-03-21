@@ -6,9 +6,9 @@
 #include "../../GameState/GameMode.h"
 #include "../../Input/KeyMapping.h"
 #include "../../GameState/Options.h"
-#include "..\Minecraft.World\net.minecraft.world.inventory.h"
-#include "..\Minecraft.World\net.minecraft.locale.h"
-#include "..\Minecraft.World\net.minecraft.world.item.h"
+#include "../Minecraft.World/net.minecraft.world.inventory.h"
+#include "../Minecraft.World/net.minecraft.locale.h"
+#include "../Minecraft.World/net.minecraft.world.item.h"
 
 ItemRenderer *AbstractContainerScreen::itemRenderer = new ItemRenderer();
 

@@ -1,5 +1,5 @@
 #include "../Platform/stdafx.h"
-#include "..\Minecraft.Client\Minecraft.h"
+#include "../Minecraft.Client/Minecraft.h"
 #include "FoliageColor.h"
 
 // 4J Stu - Don't use this any more

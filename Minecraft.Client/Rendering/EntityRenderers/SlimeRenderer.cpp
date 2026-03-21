@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
 #include "SlimeRenderer.h"	
-#include "..\Minecraft.World\net.minecraft.world.entity.monster.h"
+#include "../Minecraft.World/net.minecraft.world.entity.monster.h"
 
 ResourceLocation SlimeRenderer::SLIME_LOCATION = ResourceLocation(TN_MOB_SLIME);
 

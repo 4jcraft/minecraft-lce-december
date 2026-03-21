@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "SpiderRenderer.h"
 #include "../Models/SpiderModel.h"
-#include "..\Minecraft.World\net.minecraft.world.entity.monster.h"
+#include "../Minecraft.World/net.minecraft.world.entity.monster.h"
 
 ResourceLocation SpiderRenderer::SPIDER_LOCATION = ResourceLocation(TN_MOB_SPIDER);
 ResourceLocation SpiderRenderer::SPIDER_EYES_LOCATION = ResourceLocation(TN_MOB_SPIDER_EYES);
