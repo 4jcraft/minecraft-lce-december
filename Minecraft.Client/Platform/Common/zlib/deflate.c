@@ -648,8 +648,7 @@ local void flush_pending(strm) z_streamp strm;
 }
 
 /* ========================================================================= */
-int ZEXPORT deflate(strm, std::flush)
-z_streamp strm;
+int ZEXPORT deflate(strm, std::flush) z_streamp strm;
 int std::flush;
 {
     int old_flush; /* value of flush param for previous deflate call */
@@ -880,12 +879,12 @@ int std::flush;
         (std::flush != Z_NO_FLUSH && s->status != FINISH_STATE)) {
         block_state bstate;
 
-        bstate =
-            s->strategy == Z_HUFFMAN_ONLY
-                ? deflate_huff(s, std::flush)
-                : (s->strategy == Z_RLE
-                       ? deflate_rle(s, std::flush)
-                       : (*(configuration_table[s->level].func))(s, std::flush));
+        bstate = s->strategy == Z_HUFFMAN_ONLY
+                     ? deflate_huff(s, std::flush)
+                     : (s->strategy == Z_RLE
+                            ? deflate_rle(s, std::flush)
+                            : (*(configuration_table[s->level].func))(
+                                  s, std::flush));
 
         if (bstate == finish_started || bstate == finish_done) {
             s->status = FINISH_STATE;
@@ -1536,8 +1535,7 @@ local void fill_window(s) deflate_state* s;
  * NOTE: this function should be optimized to avoid extra copying from
  * window to pending_buf.
  */
-local block_state deflate_stored(s, std::flush)
-deflate_state* s;
+local block_state deflate_stored(s, std::flush) deflate_state* s;
 int std::flush;
 {
     /* Stored blocks are limited to 0xffff bytes, pending_buf is limited
@@ -1599,8 +1597,7 @@ int std::flush;
  * new strings in the dictionary only for unmatched strings or for short
  * matches. It is used only for the fast compression options.
  */
-local block_state deflate_fast(s, std::flush)
-deflate_state* s;
+local block_state deflate_fast(s, std::flush) deflate_state* s;
 int std::flush;
 {
     IPos hash_head; /* head of the hash chain */
@@ -1700,8 +1697,7 @@ int std::flush;
  * evaluation for matches: a match is finally adopted only if there is
  * no better match at the next window position.
  */
-local block_state deflate_slow(s, std::flush)
-deflate_state* s;
+local block_state deflate_slow(s, std::flush) deflate_state* s;
 int std::flush;
 {
     IPos hash_head; /* head of hash chain */
@@ -1831,8 +1827,7 @@ int std::flush;
  * one.  Do not maintain a hash table.  (It will be regenerated if this run of
  * deflate switches away from Z_RLE.)
  */
-local block_state deflate_rle(s, std::flush)
-deflate_state* s;
+local block_state deflate_rle(s, std::flush) deflate_state* s;
 int std::flush;
 {
     int bflush;           /* set if current block must be flushed */
@@ -1902,8 +1897,7 @@ int std::flush;
  * For Z_HUFFMAN_ONLY, do not look for matches.  Do not maintain a hash table.
  * (It will be regenerated if this run of deflate switches away from Huffman.)
  */
-local block_state deflate_huff(s, std::flush)
-deflate_state* s;
+local block_state deflate_huff(s, std::flush) deflate_state* s;
 int std::flush;
 {
     int bflush; /* set if current block must be flushed */

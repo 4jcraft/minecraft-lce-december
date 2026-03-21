@@ -67,7 +67,7 @@ private:
     bool m_hasStateChanged;
 #ifdef _XBOX
     HXUIOBJ
-        m_hTutorialScene;  // to store the popup scene (splitscreen or normal)
+    m_hTutorialScene;  // to store the popup scene (splitscreen or normal)
 #endif
     bool m_bSceneIsSplitscreen;
 

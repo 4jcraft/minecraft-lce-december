@@ -1043,8 +1043,9 @@ bool TileRenderer::tesselateAnvilInWorld(AnvilTile* tt, int x, int y, int z,
 
 float TileRenderer::tesselateAnvilPiece(AnvilTile* tt, int x, int y, int z,
                                         int part, float bottom, float width,
-                                        float height, float length, bool std::rotate,
-                                        bool render, int data) {
+                                        float height, float length,
+                                        bool std::rotate, bool render,
+                                        int data) {
     if (std::rotate) {
         float swap = width;
         width = length;

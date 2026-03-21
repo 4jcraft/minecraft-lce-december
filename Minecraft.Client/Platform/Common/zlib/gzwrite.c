@@ -67,8 +67,7 @@ gz_statep state;
    then the deflate() state is reset to start a new gzip stream.  If gz->direct
    is true, then simply write to the output file without compressing, and
    ignore flush. */
-local int gz_comp(state, std::flush)
-gz_statep state;
+local int gz_comp(state, std::flush) gz_statep state;
 int std::flush;
 {
     int ret, got;
@@ -428,8 +427,7 @@ int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17,
 #endif
 
 /* -- see zlib.h -- */
-int ZEXPORT gzflush(file, std::flush)
-gzFile file;
+int ZEXPORT gzflush(file, std::flush) gzFile file;
 int std::flush;
 {
     gz_statep state;

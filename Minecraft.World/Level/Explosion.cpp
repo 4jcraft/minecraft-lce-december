@@ -107,7 +107,7 @@ void Explosion::explode() {
     std::vector<std::shared_ptr<Entity> >* levelEntities =
         level->getEntities(source, AABB::newTemp(x0, y0, z0, x1, y1, z1));
     std::vector<std::shared_ptr<Entity> > entities(levelEntities->begin(),
-                                         levelEntities->end());
+                                                   levelEntities->end());
     Vec3* center = Vec3::newTemp(x, y, z);
 
     AUTO_VAR(itEnd, entities.end());
@@ -160,7 +160,8 @@ void Explosion::explode() {
             e->zd += za * kbPower;
 
             if (e->instanceof(eTYPE_PLAYER)) {
-                std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(e);
+                std::shared_ptr<Player> player =
+                    dynamic_pointer_cast<Player>(e);
                 // app.DebugPrintf("Adding player knockback (%f,%f,%f)\n", xa *
                 // pow, ya * pow, za * pow);
                 hitPlayers.insert(playerVec3Map::value_type(

@@ -20,7 +20,8 @@ public:
                                  std::shared_ptr<Player> player,
                                  std::vector<HtmlString>* lines, bool advanced);
 
-    static void appendHoverText(CompoundTag* expTag, std::vector<HtmlString>* lines);
+    static void appendHoverText(CompoundTag* expTag,
+                                std::vector<HtmlString>* lines);
 
     virtual void registerIcons(IconRegister* iconRegister);
 };

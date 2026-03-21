@@ -26,7 +26,8 @@ int FlatGeneratorInfo::getBiome() { return biome; }
 
 void FlatGeneratorInfo::setBiome(int biome) { this->biome = biome; }
 
-std::unordered_map<std::wstring, std::unordered_map<std::wstring, std::wstring> >*
+std::unordered_map<std::wstring,
+                   std::unordered_map<std::wstring, std::wstring> >*
 FlatGeneratorInfo::getStructures() {
     return &structures;
 }

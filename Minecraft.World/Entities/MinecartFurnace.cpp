@@ -55,7 +55,8 @@ void MinecartFurnace::destroy(DamageSource* source) {
 
     if (!source->isExplosion()) {
         spawnAtLocation(
-            std::shared_ptr<ItemInstance>(new ItemInstance(Tile::furnace, 1)), 0);
+            std::shared_ptr<ItemInstance>(new ItemInstance(Tile::furnace, 1)),
+            0);
     }
 }
 

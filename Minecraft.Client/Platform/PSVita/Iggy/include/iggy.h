@@ -1020,11 +1020,9 @@ RADEXPFUNC IggyName RADEXPLINK IggyPlayerCreateFastName(Iggy* f,
 RADEXPFUNC IggyName RADEXPLINK IggyPlayerCreateFastNameUTF8(Iggy* f,
                                                             char const* name,
                                                             S32 len);
-RADEXPFUNC IggyResult RADEXPLINK IggyPlayerCallFunctionRS(Iggy* player,
-                                                          IggyDataValue* result,
-                                                          IggyName std::function,
-                                                          S32 numargs,
-                                                          IggyDataValue* args);
+RADEXPFUNC IggyResult RADEXPLINK IggyPlayerCallFunctionRS(
+    Iggy* player, IggyDataValue* result, IggyName std::function, S32 numargs,
+    IggyDataValue* args);
 RADEXPFUNC IggyResult RADEXPLINK
 IggyPlayerCallMethodRS(Iggy* f, IggyDataValue* result, IggyValuePath* target,
                        IggyName methodname, S32 numargs, IggyDataValue* args);
@@ -1149,7 +1147,8 @@ RADEXPFUNC rrbool RADEXPLINK IggyValuePathMakeNameRef(IggyValuePath* result,
                                                       IggyValuePath* parent,
                                                       char const* text_utf8);
 RADEXPFUNC void RADEXPLINK IggyValuePathFromRef(IggyValuePath* result,
-                                                Iggy* iggy, IggyValueRef std::ref);
+                                                Iggy* iggy,
+                                                IggyValueRef std::ref);
 
 RADEXPFUNC void RADEXPLINK IggyValuePathMakeNameRefFast(IggyValuePath* result,
                                                         IggyValuePath* parent,

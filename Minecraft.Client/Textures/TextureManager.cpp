@@ -68,8 +68,8 @@ Stitcher* TextureManager::createStitcher(const std::wstring& name) {
     return new Stitcher(name, maxTextureSize, maxTextureSize, true);
 }
 
-std::vector<Texture*>* TextureManager::createTextures(const std::wstring& filename,
-                                                 bool mipmap) {
+std::vector<Texture*>* TextureManager::createTextures(
+    const std::wstring& filename, bool mipmap) {
     std::vector<Texture*>* result = new std::vector<Texture*>();
     TexturePack* texturePack = Minecraft::GetInstance()->skins->getSelected();
     // try {
@@ -155,11 +155,11 @@ std::vector<Texture*>* TextureManager::createTextures(const std::wstring& filena
     // return result;
     // } catch (FileNotFoundException e) {
     //	Minecraft.getInstance().getLogger().warning("TextureManager.createTexture
-    //called for file " + filename + ", but that file does not exist.
-    //Ignoring."); } catch (IOException e) {
+    // called for file " + filename + ", but that file does not exist.
+    // Ignoring."); } catch (IOException e) {
     //	Minecraft.getInstance().getLogger().warning("TextureManager.createTexture
-    //encountered an IOException when " + "trying to read file " + filename + ".
-    //Ignoring.");
+    // encountered an IOException when " + "trying to read file " + filename +
+    // ". Ignoring.");
     // }
     return result;
 }

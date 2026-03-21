@@ -96,7 +96,7 @@ protected:
     static const int ANIMATE_TICK_MAX_PARTICLES = 500;
 
 public:
-    void animateTickDoWork();            // 4J added
+    void animateTickDoWork();                 // 4J added
     std::unordered_set<int> chunksToAnimate;  // 4J added
 
 public:

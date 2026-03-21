@@ -19,7 +19,8 @@ private:
 
 public:
     RandomScatteredLargeFeature();
-    RandomScatteredLargeFeature(std::unordered_map<std::wstring, std::wstring> options);
+    RandomScatteredLargeFeature(
+        std::unordered_map<std::wstring, std::wstring> options);
 
     std::wstring getFeatureName();
 

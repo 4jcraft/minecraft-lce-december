@@ -257,8 +257,9 @@ void OldChunkStorage::save(LevelChunk* lc, Level* level,
     ListTag<CompoundTag>* tileEntityTags = new ListTag<CompoundTag>();
 
     AUTO_VAR(itEnd, lc->tileEntities.end());
-    for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
-                       TilePosKeyEq>::iterator it = lc->tileEntities.begin();
+    for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>,
+                            TilePosKeyHash, TilePosKeyEq>::iterator it =
+             lc->tileEntities.begin();
          it != itEnd; it++) {
         std::shared_ptr<TileEntity> te = it->second;
         CompoundTag* teTag = new CompoundTag();
@@ -354,8 +355,9 @@ void OldChunkStorage::save(LevelChunk* lc, Level* level, CompoundTag* tag) {
     ListTag<CompoundTag>* tileEntityTags = new ListTag<CompoundTag>();
 
     AUTO_VAR(itEnd, lc->tileEntities.end());
-    for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
-                       TilePosKeyEq>::iterator it = lc->tileEntities.begin();
+    for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>,
+                            TilePosKeyHash, TilePosKeyEq>::iterator it =
+             lc->tileEntities.begin();
          it != itEnd; it++) {
         std::shared_ptr<TileEntity> te = it->second;
         CompoundTag* teTag = new CompoundTag();

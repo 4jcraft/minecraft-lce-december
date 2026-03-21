@@ -65,8 +65,8 @@ void StitchedTexture::initUVs(float U0, float V0, float U1, float V1) {
     v1 = V1;
 }
 
-void StitchedTexture::init(Texture* source, std::vector<Texture*>* frames, int x,
-                           int y, int width, int height, bool rotated) {
+void StitchedTexture::init(Texture* source, std::vector<Texture*>* frames,
+                           int x, int y, int width, int height, bool rotated) {
     this->source = source;
     this->frames = frames;
     frame = -1;  // Force an update of animated textures
@@ -226,7 +226,7 @@ void StitchedTexture::loadAnimationFrames(BufferedReader* bufferedReader) {
     }
     //} catch (Exception e) {
     //	System.err.println("Failed to read animation info for " + name + ": " +
-    //e.getMessage());
+    // e.getMessage());
     //}
 
     if (!results->empty() &&
@@ -247,7 +247,8 @@ void StitchedTexture::loadAnimationFrames(const std::wstring& std::string) {
 
     intPairVector* results = new intPairVector();
 
-    std::vector<std::wstring> tokens = stringSplit(trimString(std::string), L',');
+    std::vector<std::wstring> tokens =
+        stringSplit(trimString(std::string), L',');
     // for (String token : tokens)
     for (AUTO_VAR(it, tokens.begin()); it != tokens.end(); ++it) {
         std::wstring token = trimString(*it);

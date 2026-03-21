@@ -664,8 +664,8 @@ bool LocalPlayer::openTrading(std::shared_ptr<Merchant> traderTarget,
 }
 
 void LocalPlayer::crit(std::shared_ptr<Entity> e) {
-    std::shared_ptr<CritParticle> critParticle =
-        std::shared_ptr<CritParticle>(new CritParticle((Level*)minecraft->level, e));
+    std::shared_ptr<CritParticle> critParticle = std::shared_ptr<CritParticle>(
+        new CritParticle((Level*)minecraft->level, e));
     critParticle->CritParticlePostConstructor();
     minecraft->particleEngine->add(critParticle);
 }
@@ -1181,8 +1181,8 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
     int pZ = ((int)floor(this->z)) % 16;
     int pX = ((int)floor(this->x)) % 16;
 
-    std::cout << "player in chunk (" << cx << "," << cz << ") at (" << this->x << ","
-         << this->y << "," << this->z << ")\n";
+    std::cout << "player in chunk (" << cx << "," << cz << ") at (" << this->x
+              << "," << this->y << "," << this->z << ")\n";
 
     for (int v = -1; v < 2; v++)
         for (unsigned int z = 0; z < 16; z++) {

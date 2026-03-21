@@ -12,8 +12,8 @@ public:
     std::weak_ptr<MultiEntityMob> parentMob;
     const std::wstring id;
 
-    MultiEntityMobPart(std::shared_ptr<MultiEntityMob> parentMob, const std::wstring& id,
-                       float w, float h);
+    MultiEntityMobPart(std::shared_ptr<MultiEntityMob> parentMob,
+                       const std::wstring& id, float w, float h);
 
 protected:
     virtual void defineSynchedData();

@@ -103,8 +103,9 @@ void TextureMap::stitch() {
 
         // Store frames
         textures.insert(
-            std::unordered_map<TextureHolder*, std::vector<Texture*>*>::value_type(
-                holder, frames));
+            std::unordered_map<TextureHolder*,
+                               std::vector<Texture*>*>::value_type(holder,
+                                                                   frames));
     }
 
     // Stitch!

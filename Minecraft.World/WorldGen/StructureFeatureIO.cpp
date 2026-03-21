@@ -4,11 +4,13 @@
 
 std::unordered_map<std::wstring, structureStartCreateFn>
     StructureFeatureIO::startIdClassMap;
-std::unordered_map<unsigned int, std::wstring> StructureFeatureIO::startClassIdMap;
+std::unordered_map<unsigned int, std::wstring>
+    StructureFeatureIO::startClassIdMap;
 
 std::unordered_map<std::wstring, structurePieceCreateFn>
     StructureFeatureIO::pieceIdClassMap;
-std::unordered_map<unsigned int, std::wstring> StructureFeatureIO::pieceClassIdMap;
+std::unordered_map<unsigned int, std::wstring>
+    StructureFeatureIO::pieceClassIdMap;
 
 void StructureFeatureIO::setStartId(EStructureStart clas,
                                     structureStartCreateFn createFn,

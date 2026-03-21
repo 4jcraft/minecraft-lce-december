@@ -18,7 +18,8 @@ Achievement::Achievement(int id, const std::wstring& name, int x, int y,
                          Item* icon, Achievement* requires)
     : Stat(Achievements::ACHIEVEMENT_OFFSET + id,
            I18n::get(std::wstring(L"achievement.").append(name))),
-      desc(I18n::get(std::wstring(L"achievement.").append(name).append(L".desc"))),
+      desc(I18n::get(
+          std::wstring(L"achievement.").append(name).append(L".desc"))),
       icon(new ItemInstance(icon)),
       x(x),
       y(y),
@@ -28,7 +29,8 @@ Achievement::Achievement(int id, const std::wstring& name, int x, int y,
                                Tile* icon, Achievement* requires)
     : Stat(Achievements::ACHIEVEMENT_OFFSET + id,
            I18n::get(std::wstring(L"achievement.").append(name))),
-      desc(I18n::get(std::wstring(L"achievement.").append(name).append(L".desc"))),
+      desc(I18n::get(
+          std::wstring(L"achievement.").append(name).append(L".desc"))),
       icon(new ItemInstance(icon)),
       x(x),
       y(y),
@@ -39,7 +41,8 @@ Achievement::Achievement(int id, const std::wstring& name, int x, int y,
                                Achievement* requires)
     : Stat(Achievements::ACHIEVEMENT_OFFSET + id,
            I18n::get(std::wstring(L"achievement.").append(name))),
-      desc(I18n::get(std::wstring(L"achievement.").append(name).append(L".desc"))),
+      desc(I18n::get(
+          std::wstring(L"achievement.").append(name).append(L".desc"))),
       icon(icon),
       x(x),
       y(y),

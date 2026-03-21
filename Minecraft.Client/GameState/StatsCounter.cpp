@@ -878,32 +878,32 @@ void StatsCounter::writeStats() {
 
     XUSER_PROPERTY killsEasyProperties[LeaderboardManager::eProperty_Kills_Max];
     XUSER_PROPERTY
-        killsNormalProperties[LeaderboardManager::eProperty_Kills_Max];
+    killsNormalProperties[LeaderboardManager::eProperty_Kills_Max];
     XUSER_PROPERTY killsHardProperties[LeaderboardManager::eProperty_Kills_Max];
     XUSER_PROPERTY miningBlocksPeacefulProperties
         [LeaderboardManager::eProperty_Mining_Max];
     XUSER_PROPERTY
-        miningBlocksEasyProperties[LeaderboardManager::eProperty_Mining_Max];
+    miningBlocksEasyProperties[LeaderboardManager::eProperty_Mining_Max];
     XUSER_PROPERTY
-        miningBlocksNormalProperties[LeaderboardManager::eProperty_Mining_Max];
+    miningBlocksNormalProperties[LeaderboardManager::eProperty_Mining_Max];
     XUSER_PROPERTY
-        miningBlocksHardProperties[LeaderboardManager::eProperty_Mining_Max];
+    miningBlocksHardProperties[LeaderboardManager::eProperty_Mining_Max];
     XUSER_PROPERTY
-        farmingPeacefulProperties[LeaderboardManager::eProperty_Farming_Max];
+    farmingPeacefulProperties[LeaderboardManager::eProperty_Farming_Max];
     XUSER_PROPERTY
-        farmingEasyProperties[LeaderboardManager::eProperty_Farming_Max];
+    farmingEasyProperties[LeaderboardManager::eProperty_Farming_Max];
     XUSER_PROPERTY
-        farmingNormalProperties[LeaderboardManager::eProperty_Farming_Max];
+    farmingNormalProperties[LeaderboardManager::eProperty_Farming_Max];
     XUSER_PROPERTY
-        farmingHardProperties[LeaderboardManager::eProperty_Farming_Max];
+    farmingHardProperties[LeaderboardManager::eProperty_Farming_Max];
     XUSER_PROPERTY travellingPeacefulProperties
         [LeaderboardManager::eProperty_Travelling_Max];
     XUSER_PROPERTY
-        travellingEasyProperties[LeaderboardManager::eProperty_Travelling_Max];
+    travellingEasyProperties[LeaderboardManager::eProperty_Travelling_Max];
     XUSER_PROPERTY travellingNormalProperties
         [LeaderboardManager::eProperty_Travelling_Max];
     XUSER_PROPERTY
-        travellingHardProperties[LeaderboardManager::eProperty_Travelling_Max];
+    travellingHardProperties[LeaderboardManager::eProperty_Travelling_Max];
     XUSER_PROPERTY travellingProperties[1];  // arcade leaderboard
 
     if (modifiedBoards & LEADERBOARD_KILLS_EASY) {
@@ -1785,37 +1785,39 @@ void StatsCounter::setupStatBoards() {
         std::make_pair(Stats::killsSpiderJockey, LEADERBOARD_KILLS_PEACEFUL));
     statBoards.insert(
         std::make_pair(Stats::killsZombiePigman, LEADERBOARD_KILLS_PEACEFUL));
+    statBoards.insert(std::make_pair(Stats::killsNetherZombiePigman,
+                                     LEADERBOARD_KILLS_PEACEFUL));
     statBoards.insert(
-        std::make_pair(Stats::killsNetherZombiePigman, LEADERBOARD_KILLS_PEACEFUL));
-    statBoards.insert(std::make_pair(Stats::killsSlime, LEADERBOARD_KILLS_PEACEFUL));
+        std::make_pair(Stats::killsSlime, LEADERBOARD_KILLS_PEACEFUL));
 
     statBoards.insert(std::make_pair(Stats::blocksMined[Tile::dirt->id],
-                                LEADERBOARD_MININGBLOCKS_PEACEFUL));
+                                     LEADERBOARD_MININGBLOCKS_PEACEFUL));
     statBoards.insert(std::make_pair(Stats::blocksMined[Tile::cobblestone->id],
-                                LEADERBOARD_MININGBLOCKS_PEACEFUL));
+                                     LEADERBOARD_MININGBLOCKS_PEACEFUL));
     statBoards.insert(std::make_pair(Stats::blocksMined[Tile::sand->id],
-                                LEADERBOARD_MININGBLOCKS_PEACEFUL));
+                                     LEADERBOARD_MININGBLOCKS_PEACEFUL));
     statBoards.insert(std::make_pair(Stats::blocksMined[Tile::stone->id],
-                                LEADERBOARD_MININGBLOCKS_PEACEFUL));
+                                     LEADERBOARD_MININGBLOCKS_PEACEFUL));
     statBoards.insert(std::make_pair(Stats::blocksMined[Tile::gravel->id],
-                                LEADERBOARD_MININGBLOCKS_PEACEFUL));
+                                     LEADERBOARD_MININGBLOCKS_PEACEFUL));
     statBoards.insert(std::make_pair(Stats::blocksMined[Tile::clay->id],
-                                LEADERBOARD_MININGBLOCKS_PEACEFUL));
+                                     LEADERBOARD_MININGBLOCKS_PEACEFUL));
     statBoards.insert(std::make_pair(Stats::blocksMined[Tile::obsidian->id],
-                                LEADERBOARD_MININGBLOCKS_PEACEFUL));
+                                     LEADERBOARD_MININGBLOCKS_PEACEFUL));
 
     statBoards.insert(std::make_pair(Stats::itemsCollected[Item::egg->id],
-                                LEADERBOARD_FARMING_PEACEFUL));
+                                     LEADERBOARD_FARMING_PEACEFUL));
     statBoards.insert(std::make_pair(Stats::blocksMined[Tile::wheat_Id],
-                                LEADERBOARD_FARMING_PEACEFUL));
-    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::mushroom_brown_Id],
-                                LEADERBOARD_FARMING_PEACEFUL));
+                                     LEADERBOARD_FARMING_PEACEFUL));
+    statBoards.insert(
+        std::make_pair(Stats::blocksMined[Tile::mushroom_brown_Id],
+                       LEADERBOARD_FARMING_PEACEFUL));
     statBoards.insert(std::make_pair(Stats::blocksMined[Tile::reeds_Id],
-                                LEADERBOARD_FARMING_PEACEFUL));
+                                     LEADERBOARD_FARMING_PEACEFUL));
     statBoards.insert(
         std::make_pair(Stats::cowsMilked, LEADERBOARD_FARMING_PEACEFUL));
     statBoards.insert(std::make_pair(Stats::itemsCollected[Tile::pumpkin->id],
-                                LEADERBOARD_FARMING_PEACEFUL));
+                                     LEADERBOARD_FARMING_PEACEFUL));
 
     statBoards.insert(
         std::make_pair(Stats::walkOneM, LEADERBOARD_TRAVELLING_PEACEFUL));
@@ -1877,12 +1879,12 @@ void StatsCounter::WipeLeaderboards() {
     if (DEBUG_CLEAR_LEADERBOARDS & LEADERBOARD_MININGBLOCKS_HARD)
         XUserResetStatsViewAllUsers(STATS_VIEW_MINING_BLOCKS_HARD, NULL);
     // 	if( DEBUG_CLEAR_LEADERBOARDS & LEADERBOARD_MININGORE_PEACEFUL )
-    // XUserResetStatsViewAllUsers(STATS_VIEW_MINING_ORE_PEACEFUL, NULL); 	if(
-    // DEBUG_CLEAR_LEADERBOARDS & LEADERBOARD_MININGORE_EASY )
+    // XUserResetStatsViewAllUsers(STATS_VIEW_MINING_ORE_PEACEFUL, NULL);
+    // if( DEBUG_CLEAR_LEADERBOARDS & LEADERBOARD_MININGORE_EASY )
     // XUserResetStatsViewAllUsers(STATS_VIEW_MINING_ORE_EASY, NULL); 	if(
     // DEBUG_CLEAR_LEADERBOARDS & LEADERBOARD_MININGORE_NORMAL )
-    // XUserResetStatsViewAllUsers(STATS_VIEW_MINING_ORE_NORMAL, NULL); 	if(
-    // DEBUG_CLEAR_LEADERBOARDS & LEADERBOARD_MININGORE_HARD )
+    // XUserResetStatsViewAllUsers(STATS_VIEW_MINING_ORE_NORMAL, NULL);
+    // if( DEBUG_CLEAR_LEADERBOARDS & LEADERBOARD_MININGORE_HARD )
     // XUserResetStatsViewAllUsers(STATS_VIEW_MINING_ORE_HARD, NULL);
     if (DEBUG_CLEAR_LEADERBOARDS & LEADERBOARD_FARMING_PEACEFUL)
         XUserResetStatsViewAllUsers(STATS_VIEW_FARMING_PEACEFUL, NULL);

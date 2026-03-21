@@ -41,8 +41,8 @@ private:
 public:
     using AbstractContainerMenu::slotsChanged;
 
-    AnvilMenu(std::shared_ptr<Inventory> inventory, Level* level, int xt, int yt,
-              int zt, std::shared_ptr<Player> player);
+    AnvilMenu(std::shared_ptr<Inventory> inventory, Level* level, int xt,
+              int yt, int zt, std::shared_ptr<Player> player);
 
     void slotsChanged(std::shared_ptr<Container> container);
     void createResult();
@@ -52,6 +52,6 @@ public:
     void removed(std::shared_ptr<Player> player);
     bool stillValid(std::shared_ptr<Player> player);
     std::shared_ptr<ItemInstance> quickMoveStack(std::shared_ptr<Player> player,
-                                            int slotIndex);
+                                                 int slotIndex);
     void setItemName(const std::wstring& name);
 };

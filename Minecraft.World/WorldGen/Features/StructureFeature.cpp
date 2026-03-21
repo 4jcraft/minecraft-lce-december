@@ -131,7 +131,8 @@ StructureStart* StructureFeature::getStructureAt(int cellX, int cellY,
                 true;
                 }
                 */
-                std::list<StructurePiece*>* pieces = pStructureStart->getPieces();
+                std::list<StructurePiece*>* pieces =
+                    pStructureStart->getPieces();
 
                 for (AUTO_VAR(it2, pieces->begin()); it2 != pieces->end();
                      it2++) {

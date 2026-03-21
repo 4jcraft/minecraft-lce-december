@@ -286,7 +286,7 @@ void SonyRemoteStorage_Vita::abort() {
 
 bool SonyRemoteStorage_Vita::setDataInternal() {
     //	CompressSaveData();		// check if we need to re-save the file
-    //compressed first
+    // compressed first
 
     snprintf(m_saveFilename, sizeof(m_saveFilename), "%s:%s/GAMEDATA.bin",
              "savedata0", m_setDataSaveInfo->UTF8SaveFilename);

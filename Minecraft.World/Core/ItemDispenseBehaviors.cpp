@@ -247,8 +247,8 @@ std::shared_ptr<ItemInstance> BoatDispenseBehavior::execute(
 
     outcome = ACTIVATED_ITEM;
 
-    std::shared_ptr<Boat> boat =
-        std::shared_ptr<Boat>(new Boat(world, spawnX, spawnY + yOffset, spawnZ));
+    std::shared_ptr<Boat> boat = std::shared_ptr<Boat>(
+        new Boat(world, spawnX, spawnY + yOffset, spawnZ));
     world->addEntity(boat);
 
     dispensed->remove(1);
@@ -318,7 +318,8 @@ std::shared_ptr<ItemInstance> EmptyBucketDispenseBehavior::execute(
                    ->addItem(std::shared_ptr<ItemInstance>(
                        new ItemInstance(targetType))) < 0) {
         DefaultDispenseItemBehavior::dispense(
-            source, std::shared_ptr<ItemInstance>(new ItemInstance(targetType)));
+            source,
+            std::shared_ptr<ItemInstance>(new ItemInstance(targetType)));
     }
 
     outcome = ACTIVATED_ITEM;
@@ -423,8 +424,9 @@ std::shared_ptr<ItemInstance> TntDispenseBehavior::execute(
         int targetY = source->getBlockY() + facing->getStepY();
         int targetZ = source->getBlockZ() + facing->getStepZ();
 
-        std::shared_ptr<PrimedTnt> tnt = std::shared_ptr<PrimedTnt>(new PrimedTnt(
-            world, targetX + 0.5f, targetY + 0.5f, targetZ + 0.5f, nullptr));
+        std::shared_ptr<PrimedTnt> tnt = std::shared_ptr<PrimedTnt>(
+            new PrimedTnt(world, targetX + 0.5f, targetY + 0.5f, targetZ + 0.5f,
+                          nullptr));
         world->addEntity(tnt);
 
         outcome = ACTIVATED_ITEM;

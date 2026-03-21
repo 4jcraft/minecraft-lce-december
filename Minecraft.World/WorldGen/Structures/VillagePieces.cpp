@@ -642,9 +642,9 @@ void VillagePieces::StraightRoad::readAdditonalSaveData(CompoundTag* tag) {
     length = tag->getInt(L"Length");
 }
 
-void VillagePieces::StraightRoad::addChildren(StructurePiece* startPiece,
-                                              std::list<StructurePiece*>* pieces,
-                                              Random* random) {
+void VillagePieces::StraightRoad::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     bool hasHouses = false;
 
     // place left houses

@@ -245,7 +245,8 @@ void SynchedEntityData::packAll(DataOutputStream* output)  // throws IOException
     output->writeByte(EOF_MARKER);
 }
 
-std::vector<std::shared_ptr<SynchedEntityData::DataItem> >* SynchedEntityData::getAll() {
+std::vector<std::shared_ptr<SynchedEntityData::DataItem> >*
+SynchedEntityData::getAll() {
     std::vector<std::shared_ptr<DataItem> >* result = NULL;
 
     for (int i = 0; i <= MAX_ID_VALUE; i++) {
@@ -290,7 +291,8 @@ void SynchedEntityData::writeDataItem(
             break;
         case TYPE_ITEMINSTANCE: {
             std::shared_ptr<ItemInstance> instance =
-                (std::shared_ptr<ItemInstance>)dataItem->getValue_itemInstance();
+                (std::shared_ptr<ItemInstance>)
+                    dataItem->getValue_itemInstance();
             Packet::writeItem(instance, output);
         } break;
 
@@ -300,8 +302,8 @@ void SynchedEntityData::writeDataItem(
     }
 }
 
-std::vector<std::shared_ptr<SynchedEntityData::DataItem> >* SynchedEntityData::unpack(
-    DataInputStream* input)  // throws IOException
+std::vector<std::shared_ptr<SynchedEntityData::DataItem> >*
+SynchedEntityData::unpack(DataInputStream* input)  // throws IOException
 {
     std::vector<std::shared_ptr<DataItem> >* result = NULL;
 
@@ -370,7 +372,8 @@ std::vector<std::shared_ptr<SynchedEntityData::DataItem> >* SynchedEntityData::u
  * @param items
  */
 
-void SynchedEntityData::assignValues(std::vector<std::shared_ptr<DataItem> >* items) {
+void SynchedEntityData::assignValues(
+    std::vector<std::shared_ptr<DataItem> >* items) {
     AUTO_VAR(itEnd, items->end());
     for (AUTO_VAR(it, items->begin()); it != itEnd; it++) {
         std::shared_ptr<DataItem> item = *it;

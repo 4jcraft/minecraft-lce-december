@@ -47,14 +47,16 @@ void CombatTracker::recordDamage(DamageSource* source, float health,
 
 std::shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket() {
     if (entries.size() == 0)
-        return std::shared_ptr<ChatPacket>(new ChatPacket(mob->getNetworkName()));
+        return std::shared_ptr<ChatPacket>(
+            new ChatPacket(mob->getNetworkName()));
 
     CombatEntry* knockOffEntry = getMostSignificantFall();
     CombatEntry* killingBlow = entries[entries.size() - 1];
 
     std::shared_ptr<ChatPacket> result;
 
-    std::shared_ptr<Entity> killingEntity = killingBlow->getSource()->getEntity();
+    std::shared_ptr<Entity> killingEntity =
+        killingBlow->getSource()->getEntity();
 
     if (knockOffEntry != NULL &&
         killingBlow->getSource()->equals(DamageSource::fall)) {

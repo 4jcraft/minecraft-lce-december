@@ -527,7 +527,7 @@ void UIScene_SkinSelectMenu::InputActionOK(unsigned int iPad) {
 #if !(defined(_XBOX) || defined(_WINDOWS64) || \
       defined(_XBOX_ONE))  // 4J Stu - Temp to get the win build running, but so
                            // we check this for other platforms
-                                    // you can't see the store
+                           // you can't see the store
                                     UINT uiIDA[1];
                                     uiIDA[0] = IDS_CONFIRM_OK;
                                     ui.RequestAlertMessage(

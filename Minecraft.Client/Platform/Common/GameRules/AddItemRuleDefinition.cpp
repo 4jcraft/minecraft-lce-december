@@ -31,7 +31,8 @@ void AddItemRuleDefinition::writeAttributes(DataOutputStream* dos,
     dos->writeUTF(_toString(m_slot));
 }
 
-void AddItemRuleDefinition::getChildren(std::vector<GameRuleDefinition*>* children) {
+void AddItemRuleDefinition::getChildren(
+    std::vector<GameRuleDefinition*>* children) {
     GameRuleDefinition::getChildren(children);
     for (AUTO_VAR(it, m_enchantments.begin()); it != m_enchantments.end(); it++)
         children->push_back(*it);
@@ -84,8 +85,8 @@ void AddItemRuleDefinition::addAttribute(const std::wstring& attributeName,
     }
 }
 
-bool AddItemRuleDefinition::addItemToContainer(std::shared_ptr<Container> container,
-                                               int slotId) {
+bool AddItemRuleDefinition::addItemToContainer(
+    std::shared_ptr<Container> container, int slotId) {
     bool added = false;
     if (Item::items[m_itemId] != NULL) {
         int quantity =

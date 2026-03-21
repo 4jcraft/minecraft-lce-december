@@ -58,7 +58,8 @@ void LevelChunk::init(Level* level, int x, int z) {
 #else
     EnterCriticalSection(&m_csEntities);
 #endif
-    entityBlocks = new std::vector<std::shared_ptr<Entity> >*[ENTITY_BLOCKS_LENGTH];
+    entityBlocks =
+        new std::vector<std::shared_ptr<Entity> >*[ENTITY_BLOCKS_LENGTH];
 #ifdef _ENTITIES_RW_SECTION
     LeaveCriticalRWSection(&m_csEntities, true);
 #else
@@ -1317,7 +1318,8 @@ void LevelChunk::removeEntity(std::shared_ptr<Entity> e, int yc) {
 #endif
 
     // 4J - was entityBlocks[yc]->remove(e);
-    AUTO_VAR(it, std::find(entityBlocks[yc]->begin(), entityBlocks[yc]->end(), e));
+    AUTO_VAR(it,
+             std::find(entityBlocks[yc]->begin(), entityBlocks[yc]->end(), e));
     if (it != entityBlocks[yc]->end()) {
         entityBlocks[yc]->erase(it);
         // 4J - we don't want storage creeping up here as thinkgs move round the
@@ -1496,7 +1498,8 @@ void LevelChunk::load() {
             if (entityTags != NULL) {
                 for (int i = 0; i < entityTags->size(); i++) {
                     CompoundTag* teTag = entityTags->get(i);
-                    std::shared_ptr<Entity> ent = EntityIO::loadStatic(teTag, level);
+                    std::shared_ptr<Entity> ent =
+                        EntityIO::loadStatic(teTag, level);
                     if (ent != NULL) {
                         ent->onLoadedFromSave();
                         addEntity(ent);
@@ -1510,7 +1513,8 @@ void LevelChunk::load() {
             if (tileEntityTags != NULL) {
                 for (int i = 0; i < tileEntityTags->size(); i++) {
                     CompoundTag* teTag = tileEntityTags->get(i);
-                    std::shared_ptr<TileEntity> te = TileEntity::loadStatic(teTag);
+                    std::shared_ptr<TileEntity> te =
+                        TileEntity::loadStatic(teTag);
                     if (te != NULL) {
                         addTileEntity(te);
                     }
@@ -1617,8 +1621,8 @@ void LevelChunk::unload(bool unloadTileEntities)  // 4J - added parameter
             ListTag<CompoundTag>* tileEntityTags = new ListTag<CompoundTag>();
 
             AUTO_VAR(itEnd, tileEntities.end());
-            for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
-                               TilePosKeyEq>::iterator it =
+            for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>,
+                                    TilePosKeyHash, TilePosKeyEq>::iterator it =
                      tileEntities.begin();
                  it != itEnd; it++) {
                 std::shared_ptr<TileEntity> te = it->second;
@@ -1691,7 +1695,8 @@ void LevelChunk::getEntities(std::shared_ptr<Entity> except, AABB* bb,
             if (e != except && e->bb->intersects(bb) &&
                 (selector == NULL || selector->matches(e))) {
                 es.push_back(e);
-                std::vector<std::shared_ptr<Entity> >* subs = e->getSubEntities();
+                std::vector<std::shared_ptr<Entity> >* subs =
+                    e->getSubEntities();
                 if (subs != NULL) {
                     for (int j = 0; j < subs->size(); j++) {
                         e = subs->at(j);

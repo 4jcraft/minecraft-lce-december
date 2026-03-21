@@ -127,7 +127,8 @@ private:
     bool hasGapsToCheck;
 
 public:
-    std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash, TilePosKeyEq>
+    std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
+                       TilePosKeyEq>
         tileEntities;
     std::vector<std::shared_ptr<Entity> >** entityBlocks;
 

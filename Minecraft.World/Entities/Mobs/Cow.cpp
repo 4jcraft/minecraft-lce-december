@@ -84,11 +84,12 @@ bool Cow::mobInteract(std::shared_ptr<Player> player) {
         if (item->count-- == 0) {
             player->inventory->setItem(
                 player->inventory->selected,
-                std::shared_ptr<ItemInstance>(new ItemInstance(Item::bucket_milk)));
+                std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::bucket_milk)));
         } else if (!player->inventory->add(std::shared_ptr<ItemInstance>(
                        new ItemInstance(Item::bucket_milk)))) {
-            player->drop(
-                std::shared_ptr<ItemInstance>(new ItemInstance(Item::bucket_milk)));
+            player->drop(std::shared_ptr<ItemInstance>(
+                new ItemInstance(Item::bucket_milk)));
         }
 
         return true;

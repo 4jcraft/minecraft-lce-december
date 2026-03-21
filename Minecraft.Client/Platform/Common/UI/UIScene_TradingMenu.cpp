@@ -257,7 +257,8 @@ void UIScene_TradingMenu::setTradeRedBox(int index, bool show) {
     m_slotListTrades.showSlotRedBox(index, show);
 }
 
-void UIScene_TradingMenu::setOfferDescription(std::vector<HtmlString>* description) {
+void UIScene_TradingMenu::setOfferDescription(
+    std::vector<HtmlString>* description) {
     std::wstring descriptionStr = HtmlString::Compose(description);
 
     IggyDataValue result;

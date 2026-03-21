@@ -224,8 +224,9 @@ void FileHeader::ReadHeader(
         // : Bumped it to 6 for PS3 v1 to update map data mappings to use larger
         // PlayerUID 							: Bumped
         // it to 7 for Durango v1 to update map data mappings to use string
-        // based PlayerUID 							: Bumped it to 8 for Durango v1 when to save the
-        // chunks in a different compressed format
+        // based PlayerUID
+        // : Bumped it to 8 for Durango v1 when to save the chunks in a
+        // different compressed format
         case SAVE_FILE_VERSION_CHUNK_INHABITED_TIME:
         case SAVE_FILE_VERSION_COMPRESSED_CHUNK_STORAGE:
         case SAVE_FILE_VERSION_DURANGO_CHANGE_MAP_DATA_MAPPING_SIZE:
@@ -370,7 +371,8 @@ bool FileHeader::fileExists(const std::wstring& name) {
     return false;
 }
 
-std::vector<FileEntry*>* FileHeader::getFilesWithPrefix(const std::wstring& prefix) {
+std::vector<FileEntry*>* FileHeader::getFilesWithPrefix(
+    const std::wstring& prefix) {
     std::vector<FileEntry*>* files = NULL;
 
     for (unsigned int i = 0; i < fileTable.size(); ++i) {
@@ -501,7 +503,8 @@ std::vector<FileEntry*>* FileHeader::getValidPlayerDatFiles() {
     return files;
 }
 
-std::vector<FileEntry*>* FileHeader::getDatFilesWithOnlineID(const PlayerUID& pUID) {
+std::vector<FileEntry*>* FileHeader::getDatFilesWithOnlineID(
+    const PlayerUID& pUID) {
     if (pUID.isSignedIntoPSN() == false) return NULL;
 
     std::vector<FileEntry*>* datFiles = getValidPlayerDatFiles();

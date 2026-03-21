@@ -124,10 +124,12 @@ void Village::countGolem() {
 }
 
 void Village::countPopulation() {
-    std::vector<std::shared_ptr<Entity> >* villagers = level->getEntitiesOfClass(
-        typeid(Villager),
-        AABB::newTemp(center->x - radius, center->y - 4, center->z - radius,
-                      center->x + radius, center->y + 4, center->z + radius));
+    std::vector<std::shared_ptr<Entity> >* villagers =
+        level->getEntitiesOfClass(
+            typeid(Villager),
+            AABB::newTemp(center->x - radius, center->y - 4, center->z - radius,
+                          center->x + radius, center->y + 4,
+                          center->z + radius));
     populationSize = villagers->size();
     delete villagers;
 
@@ -151,7 +153,9 @@ bool Village::isInside(int xx, int yy, int zz) {
     return center->distSqr(xx, yy, zz) < radius * radius;
 }
 
-std::vector<std::shared_ptr<DoorInfo> >* Village::getDoorInfos() { return &doorInfos; }
+std::vector<std::shared_ptr<DoorInfo> >* Village::getDoorInfos() {
+    return &doorInfos;
+}
 
 std::shared_ptr<DoorInfo> Village::getClosestDoorInfo(int x, int y, int z) {
     std::shared_ptr<DoorInfo> closest = nullptr;
@@ -386,8 +390,8 @@ void Village::readAdditionalSaveData(CompoundTag* tag) {
         (ListTag<CompoundTag>*)tag->getList(L"Players");
     for (int i = 0; i < playerTags->size(); i++) {
         CompoundTag* pTag = playerTags->get(i);
-        playerStanding.insert(
-            std::pair<std::wstring, int>(pTag->getString(L"Name"), pTag->getInt(L"S")));
+        playerStanding.insert(std::pair<std::wstring, int>(
+            pTag->getString(L"Name"), pTag->getInt(L"S")));
     }
 }
 

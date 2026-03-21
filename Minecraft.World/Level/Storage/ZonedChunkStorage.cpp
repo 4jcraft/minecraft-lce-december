@@ -147,7 +147,8 @@ void ZonedChunkStorage::tick() {
         std::vector<__int64> toClose;
 
         AUTO_VAR(itEndZF, zoneFiles.end());
-        for (std::unordered_map<__int64, ZoneFile*>::iterator it = zoneFiles.begin();
+        for (std::unordered_map<__int64, ZoneFile*>::iterator it =
+                 zoneFiles.begin();
              it != itEndZF; it++) {
             ZoneFile* zoneFile = it->second;
             if (tickCount - zoneFile->lastUse > 20 * 60) {
@@ -174,7 +175,8 @@ void ZonedChunkStorage::tick() {
 
 void ZonedChunkStorage::flush() {
     AUTO_VAR(itEnd, zoneFiles.end());
-    for (std::unordered_map<__int64, ZoneFile*>::iterator it = zoneFiles.begin();
+    for (std::unordered_map<__int64, ZoneFile*>::iterator it =
+             zoneFiles.begin();
          it != itEnd; it++) {
         ZoneFile* zoneFile = it->second;
         // 4J - removed try/catch
@@ -235,8 +237,9 @@ void ZonedChunkStorage::saveEntities(Level* level, LevelChunk* lc) {
     LeaveCriticalSection(&lc->m_csEntities);
 #endif
 
-    for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
-                       TilePosKeyEq>::iterator it = lc->tileEntities.begin();
+    for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>,
+                            TilePosKeyHash, TilePosKeyEq>::iterator it =
+             lc->tileEntities.begin();
          it != lc->tileEntities.end(); it++) {
         std::shared_ptr<TileEntity> te = it->second;
         CompoundTag* cp = new CompoundTag();

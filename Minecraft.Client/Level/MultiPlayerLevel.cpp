@@ -499,7 +499,8 @@ std::shared_ptr<Entity> MultiPlayerLevel::removeEntity(int id) {
 // 4J Added to remove the entities from the forced list
 // This gets called when a chunk is unloaded, but we only do half an unload to
 // remove entities slightly differently
-void MultiPlayerLevel::removeEntities(std::vector<std::shared_ptr<Entity> >* list) {
+void MultiPlayerLevel::removeEntities(
+    std::vector<std::shared_ptr<Entity> >* list) {
     for (AUTO_VAR(it, list->begin()); it < list->end(); ++it) {
         std::shared_ptr<Entity> e = *it;
 
@@ -629,7 +630,8 @@ void MultiPlayerLevel::disconnect(bool sendDisconnect /*= true*/) {
     }
 }
 
-Tickable* MultiPlayerLevel::makeSoundUpdater(std::shared_ptr<Minecart> minecart) {
+Tickable* MultiPlayerLevel::makeSoundUpdater(
+    std::shared_ptr<Minecart> minecart) {
     return NULL;  // new MinecartSoundUpdater(minecraft->soundEngine, minecart,
                   // minecraft->player);
 }

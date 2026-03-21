@@ -103,7 +103,7 @@ void ServerConnection::tick() {
 bool ServerConnection::addPendingTextureRequest(
     const std::wstring& textureName) {
     AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
-                      m_pendingTextureRequests.end(), textureName));
+                           m_pendingTextureRequests.end(), textureName));
     if (it == m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.push_back(textureName);
         return true;
@@ -120,7 +120,7 @@ bool ServerConnection::addPendingTextureRequest(
 
 void ServerConnection::handleTextureReceived(const std::wstring& textureName) {
     AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
-                      m_pendingTextureRequests.end(), textureName));
+                           m_pendingTextureRequests.end(), textureName));
     if (it != m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.erase(it);
     }
@@ -135,7 +135,7 @@ void ServerConnection::handleTextureReceived(const std::wstring& textureName) {
 void ServerConnection::handleTextureAndGeometryReceived(
     const std::wstring& textureName) {
     AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
-                      m_pendingTextureRequests.end(), textureName));
+                           m_pendingTextureRequests.end(), textureName));
     if (it != m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.erase(it);
     }
@@ -190,6 +190,7 @@ void ServerConnection::handleServerSettingsChanged(
     // 	}
 }
 
-std::vector<std::shared_ptr<PlayerConnection> >* ServerConnection::getPlayers() {
+std::vector<std::shared_ptr<PlayerConnection> >*
+ServerConnection::getPlayers() {
     return &players;
 }

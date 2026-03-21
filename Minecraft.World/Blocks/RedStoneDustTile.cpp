@@ -70,7 +70,8 @@ bool RedStoneDustTile::mayPlace(Level* level, int x, int y, int z) {
 void RedStoneDustTile::updatePowerStrength(Level* level, int x, int y, int z) {
     updatePowerStrength(level, x, y, z, x, y, z);
 
-    std::vector<TilePos> updates = std::vector<TilePos>(toUpdate.begin(), toUpdate.end());
+    std::vector<TilePos> updates =
+        std::vector<TilePos>(toUpdate.begin(), toUpdate.end());
     toUpdate.clear();
 
     AUTO_VAR(itEnd, updates.end());

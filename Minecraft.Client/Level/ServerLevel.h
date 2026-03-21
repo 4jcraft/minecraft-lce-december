@@ -20,7 +20,7 @@ private:
     std::set<TickNextTickData, TickNextTickDataKeyCompare>
         tickNextTickList;  // 4J Was TreeSet
     std::unordered_set<TickNextTickData, TickNextTickDataKeyHash,
-                  TickNextTickDataKeyEq>
+                       TickNextTickDataKeyEq>
         tickNextTickSet;  // 4J Was HashSet
 
     std::vector<Pos*> m_queuedSendTileUpdates;  // 4J added

@@ -102,17 +102,21 @@ bool BothAreSpaces(wchar_t lhs, wchar_t rhs) {
 void stripWhitespaceForHtml(std::wstring& std::string, bool bRemoveNewline) {
     // Strip newline chars
     if (bRemoveNewline) {
-        std::string.erase(std::remove(std::string.begin(), std::string.end(), '\n'),
-                     std::string.end());
-        std::string.erase(std::remove(std::string.begin(), std::string.end(), '\r'),
-                     std::string.end());
+        std::string.erase(
+            std::remove(std::string.begin(), std::string.end(), '\n'),
+            std::string.end());
+        std::string.erase(
+            std::remove(std::string.begin(), std::string.end(), '\r'),
+            std::string.end());
     }
 
-    std::string.erase(std::remove(std::string.begin(), std::string.end(), '\t'), std::string.end());
+    std::string.erase(std::remove(std::string.begin(), std::string.end(), '\t'),
+                      std::string.end());
 
     // Strip duplicate spaces
-    std::string.erase(std::unique(std::string.begin(), std::string.end(), BothAreSpaces),
-                 std::string.end());
+    std::string.erase(
+        std::unique(std::string.begin(), std::string.end(), BothAreSpaces),
+        std::string.end());
 
     std::string = trimString(std::string);
 }

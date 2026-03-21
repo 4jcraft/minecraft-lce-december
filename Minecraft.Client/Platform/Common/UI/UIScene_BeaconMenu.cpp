@@ -322,20 +322,20 @@ void UIScene_BeaconMenu::customDraw(IggyCustomDrawCallbackRegion* region) {
         int icon = slotId - m_menu->getSize();
         switch (icon) {
             case 0:
-                item =
-                    std::shared_ptr<ItemInstance>(new ItemInstance(Item::emerald));
+                item = std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::emerald));
                 break;
             case 1:
-                item =
-                    std::shared_ptr<ItemInstance>(new ItemInstance(Item::diamond));
+                item = std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::diamond));
                 break;
             case 2:
-                item =
-                    std::shared_ptr<ItemInstance>(new ItemInstance(Item::goldIngot));
+                item = std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::goldIngot));
                 break;
             case 3:
-                item =
-                    std::shared_ptr<ItemInstance>(new ItemInstance(Item::ironIngot));
+                item = std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::ironIngot));
                 break;
             default:
                 assert(false);

@@ -16,7 +16,8 @@ private:
     int selectionHint;
 
 public:
-    MerchantContainer(std::shared_ptr<Player> player, std::shared_ptr<Merchant> villager);
+    MerchantContainer(std::shared_ptr<Player> player,
+                      std::shared_ptr<Merchant> villager);
     ~MerchantContainer();
 
     unsigned int getContainerSize();

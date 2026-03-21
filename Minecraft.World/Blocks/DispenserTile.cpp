@@ -166,8 +166,9 @@ void DispenserTile::setPlacedBy(Level* level, int x, int y, int z,
 
 void DispenserTile::onRemove(Level* level, int x, int y, int z, int id,
                              int data) {
-    std::shared_ptr<Container> container = dynamic_pointer_cast<DispenserTileEntity>(
-        level->getTileEntity(x, y, z));
+    std::shared_ptr<Container> container =
+        dynamic_pointer_cast<DispenserTileEntity>(
+            level->getTileEntity(x, y, z));
     if (container != NULL) {
         for (unsigned int i = 0; i < container->getContainerSize(); i++) {
             std::shared_ptr<ItemInstance> item = container->getItem(i);
@@ -181,11 +182,13 @@ void DispenserTile::onRemove(Level* level, int x, int y, int z, int id,
                     if (count > item->count) count = item->count;
                     item->count -= count;
 
-                    std::shared_ptr<ItemInstance> newItem = std::shared_ptr<ItemInstance>(
-                        new ItemInstance(item->id, count, item->getAuxValue()));
+                    std::shared_ptr<ItemInstance> newItem =
+                        std::shared_ptr<ItemInstance>(new ItemInstance(
+                            item->id, count, item->getAuxValue()));
                     newItem->set4JData(item->get4JData());
-                    std::shared_ptr<ItemEntity> itemEntity = std::shared_ptr<ItemEntity>(
-                        new ItemEntity(level, x + xo, y + yo, z + zo, newItem));
+                    std::shared_ptr<ItemEntity> itemEntity =
+                        std::shared_ptr<ItemEntity>(new ItemEntity(
+                            level, x + xo, y + yo, z + zo, newItem));
                     float pow = 0.05f;
                     itemEntity->xd = (float)random->nextGaussian() * pow;
                     itemEntity->yd = (float)random->nextGaussian() * pow + 0.2f;

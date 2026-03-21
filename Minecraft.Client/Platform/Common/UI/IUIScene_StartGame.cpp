@@ -172,7 +172,7 @@ void IUIScene_StartGame::UpdateTexturePackDescription(int index) {
         // if(dwImageBytes > 0 && pbImageData)
         //{
         //	registerSubstitutionTexture(L"texturePackIcon", pbImageData,
-        //dwImageBytes);
+        // dwImageBytes);
         //	m_bitmapTexturePackIcon.setTextureName(L"texturePackIcon");
         // }
 

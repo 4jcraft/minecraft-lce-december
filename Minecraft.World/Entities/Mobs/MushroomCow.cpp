@@ -24,7 +24,8 @@ bool MushroomCow::mobInteract(std::shared_ptr<Player> player) {
         if (item->count == 1) {
             player->inventory->setItem(
                 player->inventory->selected,
-                std::shared_ptr<ItemInstance>(new ItemInstance(Item::mushroomStew)));
+                std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::mushroomStew)));
             return true;
         }
 

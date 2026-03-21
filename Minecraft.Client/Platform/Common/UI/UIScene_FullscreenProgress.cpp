@@ -142,7 +142,8 @@ void UIScene_FullscreenProgress::tick() {
             m_progressBar.setLabel(m_statusText.c_str());
         }
     } else {
-        std::wstring& wstrText = pMinecraft->progressRenderer->getProgressString();
+        std::wstring& wstrText =
+            pMinecraft->progressRenderer->getProgressString();
         m_progressBar.setLabel(wstrText.c_str());
     }
 

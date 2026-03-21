@@ -400,9 +400,10 @@ void WitherBoss::performRangedAttack(int head, double tx, double ty, double tz,
     double yd = ty - hy;
     double zd = tz - hz;
 
-    std::shared_ptr<WitherSkull> ie = std::shared_ptr<WitherSkull>(new WitherSkull(
-        level, dynamic_pointer_cast<LivingEntity>(shared_from_this()), xd, yd,
-        zd));
+    std::shared_ptr<WitherSkull> ie =
+        std::shared_ptr<WitherSkull>(new WitherSkull(
+            level, dynamic_pointer_cast<LivingEntity>(shared_from_this()), xd,
+            yd, zd));
     if (dangerous) ie->setDangerous(true);
     ie->y = hy;
     ie->x = hx;

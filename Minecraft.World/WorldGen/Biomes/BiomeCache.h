@@ -32,7 +32,7 @@ public:
 
 private:
     std::unordered_map<__int64, Block*, LongKeyHash, LongKeyEq>
-        cached;          // 4J - was LongHashMap
+        cached;               // 4J - was LongHashMap
     std::vector<Block*> all;  // was ArrayList<Block>
 
 public:

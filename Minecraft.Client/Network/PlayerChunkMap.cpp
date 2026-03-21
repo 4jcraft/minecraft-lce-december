@@ -105,7 +105,7 @@ void PlayerChunkMap::PlayerChunk::remove(std::shared_ptr<ServerPlayer> player) {
             LevelChunk* chunk = parent->level->getChunk(pos.x, pos.z);
             updateInhabitedTime(chunk);
             AUTO_VAR(it, std::find(parent->knownChunks.begin(),
-                              parent->knownChunks.end(), this));
+                                   parent->knownChunks.end(), this));
             if (it != parent->knownChunks.end()) parent->knownChunks.erase(it);
         }
         __int64 id = (pos.x + 0x7fffffffLL) | ((pos.z + 0x7fffffffLL) << 32);
@@ -117,7 +117,7 @@ void PlayerChunkMap::PlayerChunk::remove(std::shared_ptr<ServerPlayer> player) {
         }
         if (changes > 0) {
             AUTO_VAR(it, std::find(parent->changedChunks.begin(),
-                              parent->changedChunks.end(), this));
+                                   parent->changedChunks.end(), this));
             parent->changedChunks.erase(it);
         }
         parent->getLevel()->cache->drop(pos.x, pos.z);
@@ -324,8 +324,8 @@ bool PlayerChunkMap::PlayerChunk::broadcastChanges(bool allowRegionUpdate) {
         int x = pos.x * 16 + xChangeMin;
         int y = yChangeMin;
         int z = pos.z * 16 + zChangeMin;
-        broadcast(
-            std::shared_ptr<TileUpdatePacket>(new TileUpdatePacket(x, y, z, level)));
+        broadcast(std::shared_ptr<TileUpdatePacket>(
+            new TileUpdatePacket(x, y, z, level)));
         if (level->isEntityTile(x, y, z)) {
             broadcast(level->getTileEntity(x, y, z));
         }
@@ -354,8 +354,9 @@ bool PlayerChunkMap::PlayerChunk::broadcastChanges(bool allowRegionUpdate) {
 
         broadcast(std::shared_ptr<BlockRegionUpdatePacket>(
             new BlockRegionUpdatePacket(xp, yp, zp, xs, ys, zs, level)));
-        std::vector<std::shared_ptr<TileEntity> >* tes = level->getTileEntitiesInRegion(
-            xp, yp, zp, xp + xs, yp + ys, zp + zs);
+        std::vector<std::shared_ptr<TileEntity> >* tes =
+            level->getTileEntitiesInRegion(xp, yp, zp, xp + xs, yp + ys,
+                                           zp + zs);
         for (unsigned int i = 0; i < tes->size(); i++) {
             broadcast(tes->at(i));
         }
@@ -366,8 +367,9 @@ bool PlayerChunkMap::PlayerChunk::broadcastChanges(bool allowRegionUpdate) {
         // 4J As we only get here if changes is less than
         // MAX_CHANGES_BEFORE_RESEND (10) we only need to send a byte value in
         // the packet
-        broadcast(std::shared_ptr<ChunkTilesUpdatePacket>(new ChunkTilesUpdatePacket(
-            pos.x, pos.z, changedTiles, (byte)changes, level)));
+        broadcast(
+            std::shared_ptr<ChunkTilesUpdatePacket>(new ChunkTilesUpdatePacket(
+                pos.x, pos.z, changedTiles, (byte)changes, level)));
         for (int i = 0; i < changes; i++) {
             int x = pos.x * 16 + ((changedTiles[i] >> 12) & 15);
             int y = ((changedTiles[i]) & 255);
@@ -762,10 +764,10 @@ bool PlayerChunkMap::isPlayerIn(std::shared_ptr<ServerPlayer> player,
     if (chunk == NULL) {
         return false;
     } else {
-        AUTO_VAR(it1,
-                 std::find(chunk->players.begin(), chunk->players.end(), player));
+        AUTO_VAR(it1, std::find(chunk->players.begin(), chunk->players.end(),
+                                player));
         AUTO_VAR(it2, std::find(player->chunksToSend.begin(),
-                           player->chunksToSend.end(), chunk->pos));
+                                player->chunksToSend.end(), chunk->pos));
         return it1 != chunk->players.end() && it2 == player->chunksToSend.end();
     }
 

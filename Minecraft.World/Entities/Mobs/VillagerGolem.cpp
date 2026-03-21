@@ -218,7 +218,8 @@ bool VillagerGolem::hurt(DamageSource* source, float dmg) {
     if (isPlayerCreated()) {
         std::shared_ptr<Entity> entity = source->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+            std::shared_ptr<Player> player =
+                dynamic_pointer_cast<Player>(entity);
             if (!player->isAllowedToAttackPlayers()) return false;
         }
     }

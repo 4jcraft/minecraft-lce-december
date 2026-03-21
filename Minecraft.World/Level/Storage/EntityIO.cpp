@@ -18,17 +18,18 @@
 
 std::unordered_map<std::wstring, entityCreateFn>* EntityIO::idCreateMap =
     new std::unordered_map<std::wstring, entityCreateFn>;
-std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>*
-    EntityIO::classIdMap =
-        new std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
-                          eINSTANCEOFKeyEq>;
+std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
+                   eINSTANCEOFKeyEq>* EntityIO::classIdMap =
+    new std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
+                           eINSTANCEOFKeyEq>;
 std::unordered_map<int, entityCreateFn>* EntityIO::numCreateMap =
     new std::unordered_map<int, entityCreateFn>;
 std::unordered_map<int, eINSTANCEOF>* EntityIO::numClassMap =
     new std::unordered_map<int, eINSTANCEOF>;
-std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
-              eINSTANCEOFKeyEq>* EntityIO::classNumMap =
-    new std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>;
+std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>*
+    EntityIO::classNumMap =
+        new std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
+                               eINSTANCEOFKeyEq>;
 std::unordered_map<std::wstring, int>* EntityIO::idNumMap =
     new std::unordered_map<std::wstring, int>;
 std::unordered_map<int, EntityIO::SpawnableMobInfo*>
@@ -37,17 +38,20 @@ std::unordered_map<int, EntityIO::SpawnableMobInfo*>
 void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas,
                      const std::wstring& id, int idNum) {
     idCreateMap->insert(
-        std::unordered_map<std::wstring, entityCreateFn>::value_type(id, createFn));
-    classIdMap->insert(std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
-                                     eINSTANCEOFKeyEq>::value_type(clas, id));
+        std::unordered_map<std::wstring, entityCreateFn>::value_type(id,
+                                                                     createFn));
+    classIdMap->insert(
+        std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
+                           eINSTANCEOFKeyEq>::value_type(clas, id));
     numCreateMap->insert(
         std::unordered_map<int, entityCreateFn>::value_type(idNum, createFn));
     numClassMap->insert(
         std::unordered_map<int, eINSTANCEOF>::value_type(idNum, clas));
     classNumMap->insert(
         std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
-                      eINSTANCEOFKeyEq>::value_type(clas, idNum));
-    idNumMap->insert(std::unordered_map<std::wstring, int>::value_type(id, idNum));
+                           eINSTANCEOFKeyEq>::value_type(clas, idNum));
+    idNumMap->insert(
+        std::unordered_map<std::wstring, int>::value_type(id, idNum));
 }
 
 void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas,
@@ -307,7 +311,8 @@ std::shared_ptr<Entity> EntityIO::newByEnumType(eINSTANCEOF eType,
     std::shared_ptr<Entity> entity;
 
     std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
-                  eINSTANCEOFKeyEq>::iterator it = classNumMap->find(eType);
+                       eINSTANCEOFKeyEq>::iterator it =
+        classNumMap->find(eType);
     if (it != classNumMap->end()) {
         AUTO_VAR(it2, numCreateMap->find(it->second));
         if (it2 != numCreateMap->end()) {
@@ -325,14 +330,14 @@ std::shared_ptr<Entity> EntityIO::newByEnumType(eINSTANCEOF eType,
 
 int EntityIO::getId(std::shared_ptr<Entity> entity) {
     std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
-                  eINSTANCEOFKeyEq>::iterator it =
+                       eINSTANCEOFKeyEq>::iterator it =
         classNumMap->find(entity->GetType());
     return (*it).second;
 }
 
 std::wstring EntityIO::getEncodeId(std::shared_ptr<Entity> entity) {
     std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
-                  eINSTANCEOFKeyEq>::iterator it =
+                       eINSTANCEOFKeyEq>::iterator it =
         classIdMap->find(entity->GetType());
     if (it != classIdMap->end())
         return (*it).second;
@@ -359,7 +364,7 @@ std::wstring EntityIO::getEncodeId(int entityIoValue) {
     AUTO_VAR(it, numClassMap->find(entityIoValue));
     if (it != numClassMap->end()) {
         std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
-                      eINSTANCEOFKeyEq>::iterator classIdIt =
+                           eINSTANCEOFKeyEq>::iterator classIdIt =
             classIdMap->find(it->second);
         if (classIdIt != classIdMap->end())
             return (*classIdIt).second;
@@ -399,7 +404,8 @@ eINSTANCEOF EntityIO::getClass(int id) {
 
 int EntityIO::eTypeToIoid(eINSTANCEOF eType) {
     std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
-                  eINSTANCEOFKeyEq>::iterator it = classNumMap->find(eType);
+                       eINSTANCEOFKeyEq>::iterator it =
+        classNumMap->find(eType);
     if (it != classNumMap->end()) return it->second;
     return -1;
 }

@@ -546,7 +546,8 @@ void DirectoryLevelStorage::flushSaveFile(bool autosave) {
 void DirectoryLevelStorage::resetNetherPlayerPositions() {
     if (app.GetResetNether()) {
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
-        std::vector<FileEntry*>* playerFiles = m_saveFile->getValidPlayerDatFiles();
+        std::vector<FileEntry*>* playerFiles =
+            m_saveFile->getValidPlayerDatFiles();
 #else
         std::vector<FileEntry*>* playerFiles =
             m_saveFile->getFilesWithPrefix(playerDir.getName());
@@ -637,7 +638,7 @@ int DirectoryLevelStorage::getAuxValueForMap(PlayerUID xuid, int dimension,
 
         if (m_saveFile->doesFileExist(file)) {
             AUTO_VAR(it, std::find(m_mapFilesToDelete.begin(),
-                              m_mapFilesToDelete.end(), mapId));
+                                   m_mapFilesToDelete.end(), mapId));
             if (it != m_mapFilesToDelete.end()) m_mapFilesToDelete.erase(it);
 
             m_saveFile->deleteFile(m_saveFile->createFile(file));

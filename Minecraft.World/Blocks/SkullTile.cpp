@@ -184,8 +184,9 @@ void SkullTile::checkMobSpawn(Level* level, int x, int y, int z,
                     std::shared_ptr<ItemInstance> itemInstance =
                         std::shared_ptr<ItemInstance>(new ItemInstance(
                             Item::skull_Id, 3, SkullTileEntity::TYPE_WITHER));
-                    std::shared_ptr<ItemEntity> itemEntity = std::shared_ptr<ItemEntity>(
-                        new ItemEntity(level, x, y, z + zo + 1, itemInstance));
+                    std::shared_ptr<ItemEntity> itemEntity =
+                        std::shared_ptr<ItemEntity>(new ItemEntity(
+                            level, x, y, z + zo + 1, itemInstance));
                     level->addEntity(itemEntity);
                 }
 
@@ -264,8 +265,9 @@ void SkullTile::checkMobSpawn(Level* level, int x, int y, int z,
                     std::shared_ptr<ItemInstance> itemInstance =
                         std::shared_ptr<ItemInstance>(new ItemInstance(
                             Item::skull_Id, 3, SkullTileEntity::TYPE_WITHER));
-                    std::shared_ptr<ItemEntity> itemEntity = std::shared_ptr<ItemEntity>(
-                        new ItemEntity(level, x + xo + 1, y, z, itemInstance));
+                    std::shared_ptr<ItemEntity> itemEntity =
+                        std::shared_ptr<ItemEntity>(new ItemEntity(
+                            level, x + xo + 1, y, z, itemInstance));
                     level->addEntity(itemEntity);
                 }
 

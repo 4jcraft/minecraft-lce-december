@@ -63,8 +63,8 @@ void CollectItemRuleDefinition::populateGameRule(
     GameRuleDefinition::populateGameRule(type, rule);
 }
 
-bool CollectItemRuleDefinition::onCollectItem(GameRule* rule,
-                                              std::shared_ptr<ItemInstance> item) {
+bool CollectItemRuleDefinition::onCollectItem(
+    GameRule* rule, std::shared_ptr<ItemInstance> item) {
     bool statusChanged = false;
     if (item != NULL && item->id == m_itemId &&
         item->getAuxValue() == m_auxValue &&

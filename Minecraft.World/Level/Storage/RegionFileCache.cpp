@@ -30,11 +30,11 @@ RegionFile* RegionFileCache::_getRegionFile(
     MemSect(31);
     File file;
     if (useSplitSaves(saveFile->getSavePlatform())) {
-        file = File(prefix + std::wstring(L"r.") + _toString(chunkX >> 4) + L"." +
-                    _toString(chunkZ >> 4) + L".mcr");
+        file = File(prefix + std::wstring(L"r.") + _toString(chunkX >> 4) +
+                    L"." + _toString(chunkZ >> 4) + L".mcr");
     } else {
-        file = File(prefix + std::wstring(L"r.") + _toString(chunkX >> 5) + L"." +
-                    _toString(chunkZ >> 5) + L".mcr");
+        file = File(prefix + std::wstring(L"r.") + _toString(chunkX >> 5) +
+                    L"." + _toString(chunkZ >> 5) + L".mcr");
     }
     MemSect(0);
 

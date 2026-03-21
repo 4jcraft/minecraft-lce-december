@@ -574,7 +574,8 @@ bool Inventory::isSame(std::shared_ptr<ItemInstance> a,
 }
 
 std::shared_ptr<Inventory> Inventory::copy() {
-    std::shared_ptr<Inventory> copy = std::shared_ptr<Inventory>(new Inventory(NULL));
+    std::shared_ptr<Inventory> copy =
+        std::shared_ptr<Inventory>(new Inventory(NULL));
     for (unsigned int i = 0; i < items.length; i++) {
         copy->items[i] = items[i] != NULL ? items[i]->copy() : nullptr;
     }

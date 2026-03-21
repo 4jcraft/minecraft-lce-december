@@ -20,9 +20,10 @@ private:
 
 public:
     ExplodePacket();
-    ExplodePacket(double x, double y, double z, float r,
-                  std::unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq>* toBlow,
-                  Vec3* knockback, bool knockBackOnly);
+    ExplodePacket(
+        double x, double y, double z, float r,
+        std::unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq>* toBlow,
+        Vec3* knockback, bool knockBackOnly);
 
     virtual void read(DataInputStream* dis);
     virtual void write(DataOutputStream* dos);

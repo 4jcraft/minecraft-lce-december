@@ -285,7 +285,8 @@ bool TexturePackRepository::canUseWebSkin() {
     return false;
 }
 
-std::vector<std::pair<DWORD, std::wstring> >* TexturePackRepository::getTexturePackIdNames() {
+std::vector<std::pair<DWORD, std::wstring> >*
+TexturePackRepository::getTexturePackIdNames() {
     std::vector<std::pair<DWORD, std::wstring> >* packList =
         new std::vector<std::pair<DWORD, std::wstring> >();
 
@@ -387,8 +388,8 @@ void TexturePackRepository::removeTexturePackById(DWORD id) {
     if (it != cacheById.end()) {
         TexturePack* oldPack = it->second;
 
-        AUTO_VAR(it2,
-                 std::find(texturePacks->begin(), texturePacks->end(), oldPack));
+        AUTO_VAR(it2, std::find(texturePacks->begin(), texturePacks->end(),
+                                oldPack));
         if (it2 != texturePacks->end()) {
             texturePacks->erase(it2);
             if (lastSelected == oldPack) {

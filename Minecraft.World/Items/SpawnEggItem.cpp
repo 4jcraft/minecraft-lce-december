@@ -193,8 +193,8 @@ bool SpawnEggItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
     }
 
     int iResult = 0;
-    std::shared_ptr<Entity> result = spawnMobAt(level, itemInstance->getAuxValue(),
-                                           x + .5, y + yOff, z + .5, &iResult);
+    std::shared_ptr<Entity> result = spawnMobAt(
+        level, itemInstance->getAuxValue(), x + .5, y + yOff, z + .5, &iResult);
 
     if (bTestUseOnOnly) {
         return result != NULL;

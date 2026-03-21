@@ -91,7 +91,8 @@ public:
     bool isSame(std::shared_ptr<Inventory> copy);
 
 private:
-    bool isSame(std::shared_ptr<ItemInstance> a, std::shared_ptr<ItemInstance> b);
+    bool isSame(std::shared_ptr<ItemInstance> a,
+                std::shared_ptr<ItemInstance> b);
 
 public:
     std::shared_ptr<Inventory> copy();

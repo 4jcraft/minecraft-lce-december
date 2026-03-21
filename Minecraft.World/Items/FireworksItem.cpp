@@ -42,7 +42,8 @@ bool FireworksItem::useOn(std::shared_ptr<ItemInstance> instance,
 
 void FireworksItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                                     std::shared_ptr<Player> player,
-                                    std::vector<HtmlString>* lines, bool advanced) {
+                                    std::vector<HtmlString>* lines,
+                                    bool advanced) {
     if (!itemInstance->hasTag()) {
         return;
     }
@@ -51,8 +52,9 @@ void FireworksItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
         return;
     }
     if (fireTag->contains(TAG_FLIGHT)) {
-        lines->push_back(std::wstring(app.GetString(IDS_ITEM_FIREWORKS_FLIGHT)) +
-                         L" " + _toString<int>((fireTag->getByte(TAG_FLIGHT))));
+        lines->push_back(
+            std::wstring(app.GetString(IDS_ITEM_FIREWORKS_FLIGHT)) + L" " +
+            _toString<int>((fireTag->getByte(TAG_FLIGHT))));
     }
 
     ListTag<CompoundTag>* explosions =

@@ -16,7 +16,8 @@ public:
 
     virtual void destroy(DamageSource* source);
     virtual std::shared_ptr<ItemInstance> getItem(unsigned int slot);
-    virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
+    virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot,
+                                                     int count);
     virtual std::shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
     virtual void setItem(unsigned int slot, std::shared_ptr<ItemInstance> item);
     virtual void setChanged();

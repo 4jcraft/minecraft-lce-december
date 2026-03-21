@@ -43,8 +43,9 @@ public:
     Minecart(Level* level);
     virtual ~Minecart();
 
-    static std::shared_ptr<Minecart> createMinecart(Level* level, double x, double y,
-                                               double z, int type);
+    static std::shared_ptr<Minecart> createMinecart(Level* level, double x,
+                                                    double y, double z,
+                                                    int type);
 
 protected:
     virtual bool makeStepSound();

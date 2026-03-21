@@ -1049,7 +1049,8 @@ void ConsoleSaveFileOriginal::ConvertToLocalPlatform() {
         return;
     }
     // convert each of the region files to the local platform
-    std::vector<FileEntry*>* allFilesInSave = getFilesWithPrefix(std::wstring(L""));
+    std::vector<FileEntry*>* allFilesInSave =
+        getFilesWithPrefix(std::wstring(L""));
     for (AUTO_VAR(it, allFilesInSave->begin()); it < allFilesInSave->end();
          ++it) {
         FileEntry* fe = *it;

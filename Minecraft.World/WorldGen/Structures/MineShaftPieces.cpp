@@ -79,8 +79,8 @@ StructurePiece* MineShaftPieces::createRandomShaftPiece(
 }
 
 StructurePiece* MineShaftPieces::generateAndAddPiece(
-    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
-    int footX, int footY, int footZ, int direction, int depth) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random, int footX, int footY, int footZ, int direction, int depth) {
     if (depth > MAX_DEPTH) {
         return NULL;
     }
@@ -119,9 +119,9 @@ MineShaftPieces::MineShaftRoom::~MineShaftRoom() {
     }
 }
 
-void MineShaftPieces::MineShaftRoom::addChildren(StructurePiece* startPiece,
-                                                 std::list<StructurePiece*>* pieces,
-                                                 Random* random) {
+void MineShaftPieces::MineShaftRoom::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     int depth = getGenDepth();
 
     int pos;
@@ -343,7 +343,8 @@ BoundingBox* MineShaftPieces::MineShaftCorridor::findCorridorSize(
 }
 
 void MineShaftPieces::MineShaftCorridor::addChildren(
-    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     int depth = getGenDepth();
     int endSelection = random->nextInt(4);
     switch (orientation) {
@@ -677,7 +678,8 @@ BoundingBox* MineShaftPieces::MineShaftCrossing::findCrossing(
 }
 
 void MineShaftPieces::MineShaftCrossing::addChildren(
-    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     int depth = getGenDepth();
     // crossings are coming from a direction and will generate children
     // in the
@@ -871,7 +873,8 @@ BoundingBox* MineShaftPieces::MineShaftStairs::findStairs(
 }
 
 void MineShaftPieces::MineShaftStairs::addChildren(
-    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     int depth = getGenDepth();
     // crossings are coming from a direction and will generate children
     // in the

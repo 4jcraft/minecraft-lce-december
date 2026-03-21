@@ -531,7 +531,8 @@ void LivingEntity::removeAllEffects() {
 }
 
 std::vector<MobEffectInstance*>* LivingEntity::getActiveEffects() {
-    std::vector<MobEffectInstance*>* active = new std::vector<MobEffectInstance*>();
+    std::vector<MobEffectInstance*>* active =
+        new std::vector<MobEffectInstance*>();
 
     for (AUTO_VAR(it, activeEffects.begin()); it != activeEffects.end(); ++it) {
         active->push_back(it->second);
@@ -570,8 +571,9 @@ void LivingEntity::addEffect(MobEffectInstance* newEffect) {
         effectInst->update(newEffect);
         onEffectUpdated(effectInst, true);
     } else {
-        activeEffects.insert(std::unordered_map<int, MobEffectInstance*>::value_type(
-            newEffect->getId(), newEffect));
+        activeEffects.insert(
+            std::unordered_map<int, MobEffectInstance*>::value_type(
+                newEffect->getId(), newEffect));
         onEffectAdded(newEffect);
     }
 }
@@ -588,8 +590,9 @@ void LivingEntity::addEffectNoUpdate(MobEffectInstance* newEffect) {
             activeEffects.find(newEffect->getId())->second;
         effectInst->update(newEffect);
     } else {
-        activeEffects.insert(std::unordered_map<int, MobEffectInstance*>::value_type(
-            newEffect->getId(), newEffect));
+        activeEffects.insert(
+            std::unordered_map<int, MobEffectInstance*>::value_type(
+                newEffect->getId(), newEffect));
     }
 }
 

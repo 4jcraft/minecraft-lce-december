@@ -59,7 +59,8 @@ public:
     virtual bool onUseTile(GameRule* rule, int tileId, int x, int y, int z) {
         return false;
     }
-    virtual bool onCollectItem(GameRule* rule, std::shared_ptr<ItemInstance> item) {
+    virtual bool onCollectItem(GameRule* rule,
+                               std::shared_ptr<ItemInstance> item) {
         return false;
     }
     virtual void postProcessPlayer(std::shared_ptr<Player> player) {}

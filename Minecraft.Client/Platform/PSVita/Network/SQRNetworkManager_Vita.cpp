@@ -128,7 +128,8 @@ SQRNetworkManager_Vita::SQRNetworkManager_Vita(
 
     // 	int ret = sceKernelCreateEqueue(&m_basicEventQueue,
     // "SQRNetworkManager_Vita EQ"); 	assert(ret == SCE_OK); 	ret =
-    // sceKernelAddUserEvent(m_basicEventQueue, sc_UserEventHandle); 	assert(ret
+    // sceKernelAddUserEvent(m_basicEventQueue, sc_UserEventHandle);
+    // assert(ret
     // == SCE_OK);
     //
     // 	m_basicEventThread = new C4JThread(&BasicEventThreadProc,this,"Basic
@@ -841,8 +842,8 @@ int SQRNetworkManager_Vita::GetFriendsThreadProc(void* lpParameter) {
 
                 // Only include the friend's game if its the same network id (
                 // this also filters out generally Zeroed PresenceSyncInfo,
-                // which we do when we aren't in an active game session) 				if(
-                // presenceDetails.size == sizeof(PresenceSyncInfo) )
+                // which we do when we aren't in an active game session)
+                // if( presenceDetails.size == sizeof(PresenceSyncInfo) )
                 {
                     PresenceSyncInfo* pso =
                         (PresenceSyncInfo*)presenceDetails.inGamePresence.data;
@@ -1438,8 +1439,8 @@ void SQRNetworkManager_Vita::RecvInviteGUI() {
     // SceGameCustomDataDialogDataParam ) ); 		dialogParam.mode =
     // SCE_GAME_CUSTOM_DATA_DIALOG_MODE_RECV; 		dialogParam.dataParam =
     // &dataParam; 		dialogParam.userId =
-    // ProfileManager.getUserID(ProfileManager.GetPrimaryPad()); 		ret =
-    // sceGameCustomDataDialogOpen( &dialogParam );
+    // ProfileManager.getUserID(ProfileManager.GetPrimaryPad());
+    // ret = sceGameCustomDataDialogOpen( &dialogParam );
     //
     // 		if( SCE_OK != ret )
     // 		{
@@ -1467,8 +1468,8 @@ void SQRNetworkManager_Vita::TickInviteGUI() {
     // sizeof(SceGameCustomDataDialogOnlineIdList));
     // 			SceGameCustomDataDialogResult	dialogResult;
     // 			memset( &dialogResult, 0x0,
-    // sizeof(SceGameCustomDataDialogResult) ); 			dialogResult.sentOnlineIds =
-    // &sentOnlineIdList;
+    // sizeof(SceGameCustomDataDialogResult) );
+    // dialogResult.sentOnlineIds = &sentOnlineIdList;
     //
     // 			int32_t	ret = sceGameCustomDataDialogGetResult(
     // &dialogResult );
@@ -1569,8 +1570,8 @@ void SQRNetworkManager_Vita::TickJoinablePresenceData() {
             // (ProfileManager.IsSignedInPSN(ProfileManager.GetPrimaryPad()))
             // 		{
             // 			// Signed in to PSN but not connected (no
-            // internet access) 			UINT uiIDA[1]; 			uiIDA[0] = IDS_OK;
-            // 			ui.RequestMessageBox( IDS_ERROR_NETWORK_TITLE,
+            // internet access) 			UINT uiIDA[1];
+            // uiIDA[0] = IDS_OK; 			ui.RequestMessageBox( IDS_ERROR_NETWORK_TITLE,
             // IDS_ERROR_NETWORK, uiIDA, 1, ProfileManager.GetPrimaryPad(),
             // NULL, NULL, app.GetStringTable());
             // 		}
@@ -2877,7 +2878,8 @@ void SQRNetworkManager_Vita::ContextCallback(
                 // 				if(s_SignInCompleteCallbackFn)
                 // 				{
                 // 					s_SignInCompleteCallbackFn(s_SignInCompleteParam,
-                // true, 0); 					s_SignInCompleteCallbackFn = NULL;
+                // true, 0);
+                // s_SignInCompleteCallbackFn = NULL;
                 // 				}
 
                 // Check to see if we were booted from an invite. Only do this
@@ -2886,8 +2888,9 @@ void SQRNetworkManager_Vita::ContextCallback(
                 if (manager->m_doBootInviteCheck) {
                     //					ORBIS_STUBBED;
                     // 					unsigned int type,
-                    // attributes; 					CellGameContentSize gameSize;` 					char
-                    // dirName[CELL_GAME_DIRNAME_SIZE];
+                    // attributes;
+                    // CellGameContentSize gameSize;`
+                    // char dirName[CELL_GAME_DIRNAME_SIZE];
                     //
                     // 					if( g_bBootedFromInvite
                     // )
@@ -3339,12 +3342,12 @@ void SQRNetworkManager_Vita::RoomEventCallback(SceNpMatching2ContextId id,
             // join, most likely because there wasn't enough space in the server
             // to have us. There's a flag set so we can determine which thing
             // has happened 				assert ( dataSize <=
-            // SCE_NP_MATCHING2_EVENT_DATA_MAX_SIZE_RoomUpdateInfo ); 				int ret =
-            // sceNpMatching2GetEventData( manager->m_matchingContext, eventKey,
-            // manager->cRoomDataUpdateInfo,
+            // SCE_NP_MATCHING2_EVENT_DATA_MAX_SIZE_RoomUpdateInfo );
+            // int ret = sceNpMatching2GetEventData( manager->m_matchingContext,
+            // eventKey, manager->cRoomDataUpdateInfo,
             // SCE_NP_MATCHING2_EVENT_DATA_MAX_SIZE_RoomUpdateInfo);
             //				app.DebugPrintf(CMinecraftApp::USER_RR,"SCE_NP_MATCHING2_ROOM_EVENT_Kickedout,
-            //sceNpMatching2GetEventData returning 0x%x\n",ret);
+            // sceNpMatching2GetEventData returning 0x%x\n",ret);
 
             bool bIsFull = false;
             if ((data) &&
@@ -3421,9 +3424,9 @@ void SQRNetworkManager_Vita::RoomEventCallback(SceNpMatching2ContextId id,
             if (!manager->m_isHosting) {
                 // 				assert ( dataSize <=
                 // SCE_NP_MATCHING2_EVENT_DATA_MAX_SIZE_RoomDataInternalUpdateInfo
-                // ); 				int ret = sceNpMatching2GetEventData(
-                // manager->m_matchingContext, eventKey,
-                // manager->cRoomDataInternal,
+                // ); 				int ret =
+                // sceNpMatching2GetEventData( manager->m_matchingContext,
+                // eventKey, manager->cRoomDataInternal,
                 // SCE_NP_MATCHING2_EVENT_DATA_MAX_SIZE_RoomDataInternalUpdateInfo);
                 if ((data) && !manager->ForceErrorPoint(
                                   SNM_FORCE_ERROR_UPDATED_ROOM_DATA)) {
@@ -3574,8 +3577,8 @@ void SQRNetworkManager_Vita::RoomEventCallback(SceNpMatching2ContextId id,
                     // data back, due to a failed attempt to join a game We're
                     // only interested in scenario (2), when the data that has
                     // been updated is our own, in which case we know to abandon
-                    // creating rudp connections etc. for a new player 					assert(
-                    // dataSize <=
+                    // creating rudp connections etc. for a new player
+                    // assert( dataSize <=
                     // SCE_NP_MATCHING2_EVENT_DATA_MAX_SIZE_RoomMemberDataInternalUpdateInfo
                     // ); 					int ret =
                     // sceNpMatching2GetEventData(manager->m_matchingContext,
@@ -3749,7 +3752,8 @@ void SQRNetworkManager_Vita::SysUtilCallback(uint64_t status, uint64_t param,
     // 	{
     // 		case CELL_SYSUTIL_NET_CTL_NETSTART_FINISHED:
     // 			ret =
-    // cellNetCtlNetStartDialogUnloadAsync(&netstart_result); 			if(ret < 0)
+    // cellNetCtlNetStartDialogUnloadAsync(&netstart_result);
+    // if(ret < 0)
     // 			{
     // 				manager->SetState(SNM_INT_STATE_INITIALISE_FAILED);
     // 				if( s_SignInCompleteCallbackFn )
@@ -3991,8 +3995,9 @@ void SQRNetworkManager_Vita::NetCtlCallback(int eventType, void* arg) {
     // Oddly, the disconnect event comes in with a new state of
     // "CELL_NET_CTL_STATE_Connecting"... looks like the event is more important
     // than the state to determine what has just happened
-    if (eventType == SCE_NET_CTL_EVENT_TYPE_DISCONNECTED)  // CELL_NET_CTL_EVENT_LINK_DISCONNECTED
-                                                           // )
+    if (eventType ==
+        SCE_NET_CTL_EVENT_TYPE_DISCONNECTED)  // CELL_NET_CTL_EVENT_LINK_DISCONNECTED
+                                              // )
     {
         manager->m_bLinkDisconnected = true;
         manager->m_listener->HandleDisconnect(false);

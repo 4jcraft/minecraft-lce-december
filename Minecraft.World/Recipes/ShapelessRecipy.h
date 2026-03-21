@@ -7,7 +7,8 @@ private:
     std::vector<ItemInstance*>* ingredients;
 
 public:
-    ShapelessRecipy(ItemInstance* result, std::vector<ItemInstance*>* ingredients,
+    ShapelessRecipy(ItemInstance* result,
+                    std::vector<ItemInstance*>* ingredients,
                     _eGroupType egroup = Recipy::eGroupType_Decoration);
 
     virtual const ItemInstance* getResultItem();

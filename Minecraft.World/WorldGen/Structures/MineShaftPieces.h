@@ -14,15 +14,13 @@ public:
     static void loadStatic();
 
 private:
-    static StructurePiece* createRandomShaftPiece(std::list<StructurePiece*>* pieces,
-                                                  Random* random, int footX,
-                                                  int footY, int footZ,
-                                                  int direction, int genDepth);
-    static StructurePiece* generateAndAddPiece(StructurePiece* startPiece,
-                                               std::list<StructurePiece*>* pieces,
-                                               Random* random, int footX,
-                                               int footY, int footZ,
-                                               int direction, int depth);
+    static StructurePiece* createRandomShaftPiece(
+        std::list<StructurePiece*>* pieces, Random* random, int footX,
+        int footY, int footZ, int direction, int genDepth);
+    static StructurePiece* generateAndAddPiece(
+        StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+        Random* random, int footX, int footY, int footZ, int direction,
+        int depth);
 
     /**
      *
@@ -45,7 +43,8 @@ public:
         ~MineShaftRoom();
 
         virtual void addChildren(StructurePiece* startPiece,
-                                 std::list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces,
+                                 Random* random);
         virtual bool postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB);
 
@@ -87,7 +86,8 @@ public:
                                              int footY, int footZ,
                                              int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 std::list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces,
+                                 Random* random);
 
     protected:
         virtual bool createChest(Level* level, BoundingBox* chunkBB,
@@ -129,7 +129,8 @@ public:
                                          Random* random, int footX, int footY,
                                          int footZ, int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 std::list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces,
+                                 Random* random);
         virtual bool postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB);
     };
@@ -159,7 +160,8 @@ public:
                                        Random* random, int footX, int footY,
                                        int footZ, int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 std::list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces,
+                                 Random* random);
         virtual bool postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB);
     };

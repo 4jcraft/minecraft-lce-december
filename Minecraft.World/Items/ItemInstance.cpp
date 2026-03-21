@@ -455,8 +455,8 @@ bool ItemInstance::hasCustomHoverName() {
     return tag->getCompound(L"display")->contains(L"Name");
 }
 
-std::vector<HtmlString>* ItemInstance::getHoverText(std::shared_ptr<Player> player,
-                                               bool advanced) {
+std::vector<HtmlString>* ItemInstance::getHoverText(
+    std::shared_ptr<Player> player, bool advanced) {
     std::vector<HtmlString>* lines = new std::vector<HtmlString>();
     Item* item = Item::items[id];
     HtmlString title = HtmlString(getHoverName());

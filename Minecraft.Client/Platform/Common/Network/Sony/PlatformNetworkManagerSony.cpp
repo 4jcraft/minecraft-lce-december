@@ -255,9 +255,9 @@ void CPlatformNetworkManagerSony::HandlePlayerLeaving(
                         break;
                     }
                 }
-                AUTO_VAR(it,
-                         std::find(m_machineSQRPrimaryPlayers.begin(),
-                              m_machineSQRPrimaryPlayers.end(), pSQRPlayer));
+                AUTO_VAR(it, std::find(m_machineSQRPrimaryPlayers.begin(),
+                                       m_machineSQRPrimaryPlayers.end(),
+                                       pSQRPlayer));
                 if (it != m_machineSQRPrimaryPlayers.end()) {
                     m_machineSQRPrimaryPlayers.erase(it);
                 }
@@ -398,7 +398,7 @@ int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS) {
     //  IDS_CONNECTION_LOST				  - "Connection lost"
     //  IDS_CONNECTION_FAILED			  - "Connection failed"
     //	IDS_CONNECTION_LOST_LIVE		  - "Connection to "PSN" was
-    //lost. Exiting to the main menu."
+    // lost. Exiting to the main menu."
     //  IDS_CONNECTION_LOST_LIVE_NO_EXIT  - "Connection to "PSN" was lost."
     //  IDS_CONNECTION_LOST_SERVER		  - "Connection to the server
     //  was lost. Exiting to the main menu."

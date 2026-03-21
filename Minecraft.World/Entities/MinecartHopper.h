@@ -49,13 +49,15 @@ public:
     virtual std::shared_ptr<ItemInstance> getItem(unsigned int slot) {
         return MinecartContainer::getItem(slot);
     }
-    virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot, int count) {
+    virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot,
+                                                     int count) {
         return MinecartContainer::removeItem(slot, count);
     }
     virtual std::shared_ptr<ItemInstance> removeItemNoUpdate(int slot) {
         return MinecartContainer::removeItemNoUpdate(slot);
     }
-    virtual void setItem(unsigned int slot, std::shared_ptr<ItemInstance> item) {
+    virtual void setItem(unsigned int slot,
+                         std::shared_ptr<ItemInstance> item) {
         MinecartContainer::setItem(slot, item);
     }
     virtual std::wstring getName() { return MinecartContainer::getName(); }

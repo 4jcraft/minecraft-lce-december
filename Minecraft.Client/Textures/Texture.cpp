@@ -515,8 +515,9 @@ void Texture::transferFromImage(BufferedImage* image) {
     int imgHeight = image->getHeight();
     if (imgWidth > width || imgHeight > height) {
         // Minecraft::GetInstance().getLogger().warning("transferFromImage
-        // called with a BufferedImage with dimensions (" + 	imgWidth + ", " +
-        //imgHeight + ") larger than the Texture dimensions (" + width +
+        // called with a BufferedImage with dimensions (" + 	imgWidth + ", "
+        // +
+        // imgHeight + ") larger than the Texture dimensions (" + width +
         //	", " + height + "). Ignoring.");
         app.DebugPrintf(
             "transferFromImage called with a BufferedImage with dimensions "
@@ -757,7 +758,7 @@ void Texture::updateOnGPU() {
     // if (height != 1 && depth != 1)
     //{
     //	glTexImage3D(type, 0, format, width, height, depth, 0, format,
-    //GL_UNSIGNED_BYTE, data);
+    // GL_UNSIGNED_BYTE, data);
     //}
     // else if(height != 1)
     //{

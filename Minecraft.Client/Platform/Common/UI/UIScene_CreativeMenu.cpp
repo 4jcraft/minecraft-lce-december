@@ -22,8 +22,9 @@ UIScene_CreativeMenu::UIScene_CreativeMenu(int iPad, void* _initData,
 
     InventoryScreenInput* initData = (InventoryScreenInput*)_initData;
 
-    std::shared_ptr<SimpleContainer> creativeContainer = std::shared_ptr<SimpleContainer>(
-        new SimpleContainer(0, L"", false, TabSpec::MAX_SIZE));
+    std::shared_ptr<SimpleContainer> creativeContainer =
+        std::shared_ptr<SimpleContainer>(
+            new SimpleContainer(0, L"", false, TabSpec::MAX_SIZE));
     itemPickerMenu =
         new ItemPickerMenu(creativeContainer, initData->player->inventory);
 

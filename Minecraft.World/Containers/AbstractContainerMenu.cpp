@@ -293,7 +293,8 @@ std::shared_ptr<ItemInstance> AbstractContainerMenu::clicked(
                 }
                 // 4J Added for dyable armour and combinining damaged items
                 else if (buttonNum == 1 && mayCombine(slot, carried)) {
-                    std::shared_ptr<ItemInstance> combined = slot->combine(carried);
+                    std::shared_ptr<ItemInstance> combined =
+                        slot->combine(carried);
                     if (combined != NULL) {
                         slot->set(combined);
                         if (!player->abilities.instabuild) carried->remove(1);
@@ -364,7 +365,8 @@ std::shared_ptr<ItemInstance> AbstractContainerMenu::clicked(
     } else if (clickType == CLICK_SWAP && buttonNum >= 0 && buttonNum < 9) {
         Slot* slot = slots.at(slotIndex);
         if (slot->mayPickup(player)) {
-            std::shared_ptr<ItemInstance> current = inventory->getItem(buttonNum);
+            std::shared_ptr<ItemInstance> current =
+                inventory->getItem(buttonNum);
             bool canMove = current == NULL || (slot->container == inventory &&
                                                slot->mayPlace(current));
             int freeSlot = -1;

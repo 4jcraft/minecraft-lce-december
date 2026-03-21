@@ -655,7 +655,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
         ////////////////////////////
         if (bDisplayGui) {
             //		glDisable(GL_BLEND);		4J - removed - we want
-            //to be able to fade our gui
+            // to be able to fade our gui
 
             glEnable(GL_RESCALE_NORMAL);
 
@@ -857,7 +857,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
 
         int color = (int)(220.0f * amount) << 24 | (0x101020);
         std::fill(0, 0, screenWidth / fScaleFactorWidth,
-             screenHeight / fScaleFactorHeight, color);
+                  screenHeight / fScaleFactorHeight, color);
         glEnable(GL_ALPHA_TEST);
         glEnable(GL_DEPTH_TEST);
     }
@@ -871,7 +871,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
 
         int color = (int)(220.0f * amount) << 24 | (0x200000);
         std::fill(0, 0, screenWidth / fScaleFactorWidth,
-             screenHeight / fScaleFactorHeight, color);
+                  screenHeight / fScaleFactorHeight, color);
         glEnable(GL_ALPHA_TEST);
         glEnable(GL_DEPTH_TEST);
     }
@@ -919,9 +919,9 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
             for (int i = 0; i < app.m_vTerrainFeatures.size(); i++) {
                 FEATURE_DATA* pFeatureData = app.m_vTerrainFeatures[i];
 
-                std::wstring itemInfo = L"[" + _toString<int>(pFeatureData->x * 16) +
-                                   L", " +
-                                   _toString<int>(pFeatureData->z * 16) + L"] ";
+                std::wstring itemInfo =
+                    L"[" + _toString<int>(pFeatureData->x * 16) + L", " +
+                    _toString<int>(pFeatureData->z * 16) + L"] ";
                 wfeature[pFeatureData->eTerrainFeature] += itemInfo;
             }
 
@@ -1280,7 +1280,8 @@ void Gui::renderTp(float br, int w, int h) {
 }
 
 void Gui::renderSlot(int slot, int x, int y, float a) {
-    std::shared_ptr<ItemInstance> item = minecraft->player->inventory->items[slot];
+    std::shared_ptr<ItemInstance> item =
+        minecraft->player->inventory->items[slot];
     if (item == NULL) return;
 
     float pop = item->popTime - a;
@@ -1335,7 +1336,8 @@ void Gui::clearMessages(int iPad) {
 
 void Gui::addMessage(const std::wstring& _string, int iPad,
                      bool bIsDeathMessage) {
-    std::wstring std::string = _string;  // 4J - Take copy of input as it is const
+    std::wstring std::string =
+        _string;  // 4J - Take copy of input as it is const
     // int iScale=1;
 
     // if((minecraft->player->m_iScreenSection==C4JRender::VIEWPORT_TYPE_SPLIT_TOP)
@@ -1446,7 +1448,8 @@ void Gui::addMessage(const std::wstring& _string, int iPad,
         }
     } else if (!(bIsDeathMessage &&
                  app.GetGameSettings(iPad, eGameSetting_DeathMessages) == 0)) {
-        guiMessages[iPad].insert(guiMessages[iPad].begin(), GuiMessage(std::string));
+        guiMessages[iPad].insert(guiMessages[iPad].begin(),
+                                 GuiMessage(std::string));
         while (guiMessages[iPad].size() > 50) {
             guiMessages[iPad].pop_back();
         }

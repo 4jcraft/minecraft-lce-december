@@ -104,8 +104,8 @@ void Player::_init() {
     m_ePlayerNameValidState = ePlayerNameValid_NotSet;
 #endif
 
-    enderChestInventory =
-        std::shared_ptr<PlayerEnderChestContainer>(new PlayerEnderChestContainer());
+    enderChestInventory = std::shared_ptr<PlayerEnderChestContainer>(
+        new PlayerEnderChestContainer());
 
     m_bAwardedOnARail = false;
 }
@@ -1001,7 +1001,8 @@ void Player::die(DamageSource* source) {
 
     // 4J - TODO need to use a xuid
     if (app.isXuidNotch(m_xuid)) {
-        drop(std::shared_ptr<ItemInstance>(new ItemInstance(Item::apple, 1)), true);
+        drop(std::shared_ptr<ItemInstance>(new ItemInstance(Item::apple, 1)),
+             true);
     }
     if (!level->getGameRules()->getBoolean(GameRules::RULE_KEEPINVENTORY)) {
         inventory->dropAll();
@@ -1587,10 +1588,11 @@ Player::BedSleepingResult Player::startSleepInBed(int x, int y, int z,
 
             double hRange = 8;
             double vRange = 5;
-            std::vector<std::shared_ptr<Entity> >* monsters = level->getEntitiesOfClass(
-                typeid(Monster),
-                AABB::newTemp(x - hRange, y - vRange, z - hRange, x + hRange,
-                              y + vRange, z + hRange));
+            std::vector<std::shared_ptr<Entity> >* monsters =
+                level->getEntitiesOfClass(
+                    typeid(Monster),
+                    AABB::newTemp(x - hRange, y - vRange, z - hRange,
+                                  x + hRange, y + vRange, z + hRange));
             if (!monsters->empty()) {
                 delete monsters;
                 return NOT_SAFE;
@@ -2366,8 +2368,7 @@ int Player::hash_fnct(const std::shared_ptr<Player> k) {
     return (int)boost::hash_value(
         k->name);  // 4J Stu - Names are completely unique?
 #else
-    return (int)hash_value(
-        k->name);  // 4J Stu - Names are completely unique?
+    return (int)hash_value(k->name);  // 4J Stu - Names are completely unique?
 #endif  //__PS3__
 }
 

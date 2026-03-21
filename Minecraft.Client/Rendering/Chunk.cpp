@@ -207,10 +207,11 @@ void Chunk::rebuild() {
     LevelChunk::touchedSky = false;
 
     //	unordered_set<shared_ptr<TileEntity> >
-    //oldTileEntities(renderableTileEntities.begin(),renderableTileEntities.end());
+    // oldTileEntities(renderableTileEntities.begin(),renderableTileEntities.end());
     //// 4J removed this & next line 	renderableTileEntities.clear();
 
-    std::vector<std::shared_ptr<TileEntity> > renderableTileEntities;  // 4J - added
+    std::vector<std::shared_ptr<TileEntity> >
+        renderableTileEntities;  // 4J - added
 
     int r = 1;
 
@@ -417,7 +418,7 @@ void Chunk::rebuild() {
                     // If flagged as not visible, drop out straight away
                     if (tileId == 0xff) continue;
                     //					int tileId =
-                    //region->getTile(x,y,z);
+                    // region->getTile(x,y,z);
                     if (tileId > 0) {
                         if (!started) {
                             started = true;
@@ -556,7 +557,7 @@ void Chunk::rebuild() {
             // list, then unflag the remove flag. If they aren't, then add
             for (int i = 0; i < renderableTileEntities.size(); i++) {
                 AUTO_VAR(it2, std::find(it->second.begin(), it->second.end(),
-                                   renderableTileEntities[i]));
+                                        renderableTileEntities[i]));
                 if (it2 == it->second.end()) {
                     (*globalRenderableTileEntities)[key].push_back(
                         renderableTileEntities[i]);
@@ -702,10 +703,11 @@ void Chunk::rebuild_SPU() {
     LevelChunk::touchedSky = false;
 
     //	unordered_set<shared_ptr<TileEntity> >
-    //oldTileEntities(renderableTileEntities.begin(),renderableTileEntities.end());
+    // oldTileEntities(renderableTileEntities.begin(),renderableTileEntities.end());
     //// 4J removed this & next line 	renderableTileEntities.clear();
 
-    std::vector<std::shared_ptr<TileEntity> > renderableTileEntities;  // 4J - added
+    std::vector<std::shared_ptr<TileEntity> >
+        renderableTileEntities;  // 4J - added
 
     //        List<TileEntity> newTileEntities = new ArrayList<TileEntity>();
     //        newTileEntities.clear();
@@ -879,7 +881,7 @@ void Chunk::rebuild_SPU() {
             // list, then unflag the remove flag. If they aren't, then add
             for (int i = 0; i < renderableTileEntities.size(); i++) {
                 AUTO_VAR(it2, std::find(it->second.begin(), it->second.end(),
-                                   renderableTileEntities[i]));
+                                        renderableTileEntities[i]));
                 if (it2 == it->second.end()) {
                     (*globalRenderableTileEntities)[key].push_back(
                         renderableTileEntities[i]);

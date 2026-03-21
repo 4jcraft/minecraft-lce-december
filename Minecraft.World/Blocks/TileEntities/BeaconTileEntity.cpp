@@ -85,7 +85,8 @@ void BeaconTileEntity::applyEffects() {
         if (levels >= 4 && primaryPower != secondaryPower &&
             secondaryPower > 0) {
             for (AUTO_VAR(it, players->begin()); it != players->end(); ++it) {
-                std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(*it);
+                std::shared_ptr<Player> player =
+                    dynamic_pointer_cast<Player>(*it);
                 player->addEffect(new MobEffectInstance(
                     secondaryPower, SharedConstants::TICKS_PER_SECOND * 9, 0,
                     true));

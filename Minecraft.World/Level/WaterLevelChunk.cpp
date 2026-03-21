@@ -74,8 +74,9 @@ void WaterLevelChunk::markUnsaved() {}
 void WaterLevelChunk::getEntities(std::shared_ptr<Entity> except, AABB bb,
                                   std::vector<std::shared_ptr<Entity> >& es) {}
 
-void WaterLevelChunk::getEntitiesOfClass(const std::type_info& ec, AABB bb,
-                                         std::vector<std::shared_ptr<Entity> >& es) {}
+void WaterLevelChunk::getEntitiesOfClass(
+    const std::type_info& ec, AABB bb,
+    std::vector<std::shared_ptr<Entity> >& es) {}
 
 int WaterLevelChunk::countEntities() { return 0; }
 

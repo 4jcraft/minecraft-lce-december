@@ -47,7 +47,7 @@ unsigned short FAR* work;
     unsigned used;                  /* code entries in table used */
     unsigned huff;                  /* Huffman code */
     unsigned incr;                  /* for incrementing code, index */
-    unsigned std::fill;                  /* index for replicating entries */
+    unsigned std::fill;             /* index for replicating entries */
     unsigned low;                   /* low bits for current root entry */
     unsigned mask;                  /* mask for low root bits */
     code here;                      /* table entry for duplication */

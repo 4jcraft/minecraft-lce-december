@@ -49,7 +49,8 @@ bool FlowerPotTile::use(Level* level, int x, int y, int z,
 }
 
 int FlowerPotTile::cloneTileId(Level* level, int x, int y, int z) {
-    std::shared_ptr<ItemInstance> item = getItemFromType(level->getData(x, y, z));
+    std::shared_ptr<ItemInstance> item =
+        getItemFromType(level->getData(x, y, z));
 
     if (item == NULL) {
         return Item::flowerPot_Id;
@@ -59,7 +60,8 @@ int FlowerPotTile::cloneTileId(Level* level, int x, int y, int z) {
 }
 
 int FlowerPotTile::cloneTileData(Level* level, int x, int y, int z) {
-    std::shared_ptr<ItemInstance> item = getItemFromType(level->getData(x, y, z));
+    std::shared_ptr<ItemInstance> item =
+        getItemFromType(level->getData(x, y, z));
 
     if (item == NULL) {
         return Item::flowerPot_Id;
@@ -103,9 +105,11 @@ std::shared_ptr<ItemInstance> FlowerPotTile::getItemFromType(int type) {
         case TYPE_FLOWER_RED:
             return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::rose));
         case TYPE_FLOWER_YELLOW:
-            return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::flower));
+            return std::shared_ptr<ItemInstance>(
+                new ItemInstance(Tile::flower));
         case TYPE_CACTUS:
-            return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::cactus));
+            return std::shared_ptr<ItemInstance>(
+                new ItemInstance(Tile::cactus));
         case TYPE_MUSHROOM_BROWN:
             return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::mushroom_brown));
@@ -113,7 +117,8 @@ std::shared_ptr<ItemInstance> FlowerPotTile::getItemFromType(int type) {
             return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::mushroom_red));
         case TYPE_DEAD_BUSH:
-            return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::deadBush));
+            return std::shared_ptr<ItemInstance>(
+                new ItemInstance(Tile::deadBush));
         case TYPE_SAPLING_DEFAULT:
             return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::sapling, 1, Sapling::TYPE_DEFAULT));

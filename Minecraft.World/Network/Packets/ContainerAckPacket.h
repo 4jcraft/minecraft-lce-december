@@ -6,8 +6,9 @@
 #include <iostream>
 #include "PacketListener.h"
 
-class ContainerAckPacket : public Packet,
-                           public std::enable_shared_from_this<ContainerAckPacket> {
+class ContainerAckPacket
+    : public Packet,
+      public std::enable_shared_from_this<ContainerAckPacket> {
 public:
     int containerId;
     short uid;

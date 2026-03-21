@@ -86,7 +86,8 @@ protected:
 
 public:
     virtual void addChildren(StructurePiece* startPiece,
-                             std::list<StructurePiece*>* pieces, Random* random);
+                             std::list<StructurePiece*>* pieces,
+                             Random* random);
     virtual bool postProcess(Level* level, Random* random,
                              BoundingBox* chunkBB) = 0;
 
@@ -96,8 +97,8 @@ public:
 
 public:
     bool isInChunk(ChunkPos* pos);
-    static StructurePiece* findCollisionPiece(std::list<StructurePiece*>* pieces,
-                                              BoundingBox* box);
+    static StructurePiece* findCollisionPiece(
+        std::list<StructurePiece*>* pieces, BoundingBox* box);
     virtual TilePos* getLocatorPosition();
 
 protected:

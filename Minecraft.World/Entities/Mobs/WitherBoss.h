@@ -64,7 +64,8 @@ private:
     virtual double getHeadY(int index);
     virtual double getHeadZ(int index);
     virtual float rotlerp(float a, float b, float max);
-    virtual void performRangedAttack(int head, std::shared_ptr<LivingEntity> target);
+    virtual void performRangedAttack(int head,
+                                     std::shared_ptr<LivingEntity> target);
     virtual void performRangedAttack(int head, double tx, double ty, double tz,
                                      bool dangerous);
 

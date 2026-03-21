@@ -198,12 +198,14 @@ public:
     virtual void setScore(int value);
     virtual void increaseScore(int amount);
     virtual void die(DamageSource* source);
-    virtual void awardKillScore(std::shared_ptr<Entity> victim, int awardPoints);
+    virtual void awardKillScore(std::shared_ptr<Entity> victim,
+                                int awardPoints);
     virtual bool isShootable();
     bool isCreativeModeAllowed();
     virtual std::shared_ptr<ItemEntity> drop(bool all);
     std::shared_ptr<ItemEntity> drop(std::shared_ptr<ItemInstance> item);
-    std::shared_ptr<ItemEntity> drop(std::shared_ptr<ItemInstance> item, bool randomly);
+    std::shared_ptr<ItemEntity> drop(std::shared_ptr<ItemInstance> item,
+                                     bool randomly);
 
 protected:
     virtual void reallyDrop(std::shared_ptr<ItemEntity> thrownItem);
@@ -257,10 +259,10 @@ protected:
 public:
     using Entity::interact;
 
-    virtual bool openFurnace(
-        std::shared_ptr<FurnaceTileEntity> container);  // 4J - added bool return
-    virtual bool openTrap(
-        std::shared_ptr<DispenserTileEntity> container);  // 4J - added bool return
+    virtual bool openFurnace(std::shared_ptr<FurnaceTileEntity>
+                                 container);  // 4J - added bool return
+    virtual bool openTrap(std::shared_ptr<DispenserTileEntity>
+                              container);  // 4J - added bool return
     virtual void openTextEdit(std::shared_ptr<TileEntity> sign);
     virtual bool openBrewingStand(std::shared_ptr<BrewingStandTileEntity>
                                       brewingStand);  // 4J - added bool return
@@ -268,7 +270,8 @@ public:
     virtual bool openTrading(
         std::shared_ptr<Merchant> traderTarget,
         const std::wstring& name);  // 4J - added bool return
-    virtual void openItemInstanceGui(std::shared_ptr<ItemInstance> itemInstance);
+    virtual void openItemInstanceGui(
+        std::shared_ptr<ItemInstance> itemInstance);
     virtual bool interact(std::shared_ptr<Entity> entity);
     virtual std::shared_ptr<ItemInstance> getSelectedItem();
     void removeSelectedItem();
@@ -365,7 +368,8 @@ protected:
 public:
     virtual void killed(std::shared_ptr<LivingEntity> mob);
     virtual void makeStuckInWeb();
-    virtual Icon* getItemInHandIcon(std::shared_ptr<ItemInstance> item, int layer);
+    virtual Icon* getItemInHandIcon(std::shared_ptr<ItemInstance> item,
+                                    int layer);
     virtual std::shared_ptr<ItemInstance> getArmor(int pos);
     virtual void increaseXp(int i);
     virtual void giveExperienceLevels(int amount);
@@ -387,7 +391,8 @@ protected:
 public:
     virtual std::wstring getAName();
     virtual bool shouldShowName();
-    virtual void restoreFrom(std::shared_ptr<Player> oldPlayer, bool restoreAll);
+    virtual void restoreFrom(std::shared_ptr<Player> oldPlayer,
+                             bool restoreAll);
 
 protected:
     bool makeStepSound();
@@ -418,7 +423,8 @@ public:
     //////// 4J /////////////////
 
     static int hash_fnct(const std::shared_ptr<Player> k);
-    static bool eq_test(const std::shared_ptr<Player> x, const std::shared_ptr<Player> y);
+    static bool eq_test(const std::shared_ptr<Player> x,
+                        const std::shared_ptr<Player> y);
 
     // 4J Stu - Added to allow callback to tutorial to stay within
     // Minecraft.Client Overidden in LocalPlayer
@@ -571,7 +577,8 @@ public:
     virtual void handleCollectItem(std::shared_ptr<ItemInstance> item) {}
 
     std::vector<ModelPart*>* GetAdditionalModelParts();
-    void SetAdditionalModelParts(std::vector<ModelPart*>* ppAdditionalModelParts);
+    void SetAdditionalModelParts(
+        std::vector<ModelPart*>* ppAdditionalModelParts);
 
 #if defined(__PS3__) || defined(__ORBIS__)
     enum ePlayerNameValidState {

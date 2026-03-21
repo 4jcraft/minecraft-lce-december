@@ -50,7 +50,8 @@ AddPlayerPacket::AddPlayerPacket(std::shared_ptr<Player> player, PlayerUID xuid,
     // printf("%d: New add player (%f,%f,%f) : (%d,%d,%d) : xRot %d, yRot
     // %d\n",id,player->x,player->y,player->z,x,y,z,xRot,yRot);
 
-    std::shared_ptr<ItemInstance> itemInstance = player->inventory->getSelected();
+    std::shared_ptr<ItemInstance> itemInstance =
+        player->inventory->getSelected();
     carriedItem = itemInstance == NULL ? 0 : itemInstance->id;
 
     this->xuid = xuid;

@@ -62,7 +62,8 @@ bool GameRenderer::nearThingsToDo = false;
 bool GameRenderer::updateRunning = false;
 std::vector<byte*> GameRenderer::m_deleteStackByte;
 std::vector<SparseLightStorage*> GameRenderer::m_deleteStackSparseLightStorage;
-std::vector<CompressedTileStorage*> GameRenderer::m_deleteStackCompressedTileStorage;
+std::vector<CompressedTileStorage*>
+    GameRenderer::m_deleteStackCompressedTileStorage;
 std::vector<SparseDataStorage*> GameRenderer::m_deleteStackSparseDataStorage;
 #endif
 CRITICAL_SECTION GameRenderer::m_csDeleteStack;
@@ -677,7 +678,8 @@ void GameRenderer::renderItemInHand(float a, int eye) {
     // 4J-PB - to turn off the hand for screenshots, but not when the item held
     // is a map
     if (localplayer != NULL) {
-        std::shared_ptr<ItemInstance> item = localplayer->inventory->getSelected();
+        std::shared_ptr<ItemInstance> item =
+            localplayer->inventory->getSelected();
         if (!(item && item->getItem()->id == Item::map_Id) &&
             app.GetGameSettings(localplayer->GetXboxPad(),
                                 eGameSetting_DisplayHand) == 0)
@@ -1193,8 +1195,8 @@ void GameRenderer::DisableUpdateThread() {
 
 void GameRenderer::renderLevel(float a, __int64 until) {
     //	if (updateLightTexture) updateLightTexture();	// 4J - TODO -
-    //Java 1.0.1 has this line enabled, should check why - don't want to put it
-    //in now in case it breaks split-screen
+    // Java 1.0.1 has this line enabled, should check why - don't want to put it
+    // in now in case it breaks split-screen
 
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
@@ -1208,7 +1210,7 @@ void GameRenderer::renderLevel(float a, __int64 until) {
         (mc->player == mc->localplayers[ProfileManager.GetPrimaryPad()]);
 
     //	if (mc->cameraTargetPlayer == NULL)	// 4J - removed condition as we
-    //want to update this is mc->player changes for different local players
+    // want to update this is mc->player changes for different local players
     {
         mc->cameraTargetPlayer = mc->player;
     }
@@ -1543,8 +1545,8 @@ void GameRenderer::tickRain() {
                         rainPosY = y + 0.1f - Tile::tiles[t]->getShapeY0();
                         rainPosZ = z + za;
                     }
-                    mc->particleEngine->add(
-                        std::shared_ptr<WaterDropParticle>(new WaterDropParticle(
+                    mc->particleEngine->add(std::shared_ptr<WaterDropParticle>(
+                        new WaterDropParticle(
                             level, x + xa,
                             y + 0.1f - Tile::tiles[t]->getShapeY0(), z + za)));
                 }

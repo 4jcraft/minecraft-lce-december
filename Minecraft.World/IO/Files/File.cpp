@@ -150,7 +150,8 @@ bool File::mkdir() const {
 //          parent directories to be created
 //
 bool File::mkdirs() const {
-    std::vector<std::wstring> path = stringSplit(m_abstractPathName, pathSeparator);
+    std::vector<std::wstring> path =
+        stringSplit(m_abstractPathName, pathSeparator);
 
     std::wstring pathToHere = L"";
     AUTO_VAR(itEnd, path.end());

@@ -110,9 +110,9 @@ void EmptyLevelChunk::getEntities(std::shared_ptr<Entity> except, AABB bb,
                                   std::vector<std::shared_ptr<Entity> >& es,
                                   EntitySelector* selector) {}
 
-void EmptyLevelChunk::getEntitiesOfClass(const std::type_info& ec, AABB bb,
-                                         std::vector<std::shared_ptr<Entity> >& es,
-                                         EntitySelector* selector) {}
+void EmptyLevelChunk::getEntitiesOfClass(
+    const std::type_info& ec, AABB bb,
+    std::vector<std::shared_ptr<Entity> >& es, EntitySelector* selector) {}
 
 int EmptyLevelChunk::countEntities() { return 0; }
 

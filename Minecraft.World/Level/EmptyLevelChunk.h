@@ -37,14 +37,16 @@ public:
     void skyBrightnessChanged();
     std::shared_ptr<TileEntity> getTileEntity(int x, int y, int z);
     void addTileEntity(std::shared_ptr<TileEntity> te);
-    void setTileEntity(int x, int y, int z, std::shared_ptr<TileEntity> tileEntity);
+    void setTileEntity(int x, int y, int z,
+                       std::shared_ptr<TileEntity> tileEntity);
     void removeTileEntity(int x, int y, int z);
     void load();
     void unload(bool unloadTileEntities);  // 4J - added parameter
     bool containsPlayer();                 // 4J added
     void markUnsaved();
     void getEntities(std::shared_ptr<Entity> except, AABB bb,
-                     std::vector<std::shared_ptr<Entity> >& es, EntitySelector* selector);
+                     std::vector<std::shared_ptr<Entity> >& es,
+                     EntitySelector* selector);
     void getEntitiesOfClass(const std::type_info& ec, AABB bb,
                             std::vector<std::shared_ptr<Entity> >& es,
                             EntitySelector* selector);

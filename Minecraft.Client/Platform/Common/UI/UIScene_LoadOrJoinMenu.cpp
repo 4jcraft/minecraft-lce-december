@@ -3123,7 +3123,7 @@ int UIScene_LoadOrJoinMenu::UploadSonyCrossSaveThreadProc(LPVOID lpParameter) {
             } break;
             case eSaveUpload_Cancelled:  // this is no longer used
                 assert(0);               //			pClass->m_eSaveUploadState =
-                                         //eSaveUpload_Idle;
+                                         // eSaveUpload_Idle;
                 break;
             case eSaveUpload_Error: {
                 if (pClass->m_saveTransferUploadCancelled) {
@@ -3454,7 +3454,7 @@ int UIScene_LoadOrJoinMenu::DownloadXbox360SaveThreadProc(LPVOID lpParameter) {
                 //	pClass->m_iProgress=0;
                 //	pClass->m_eSaveTransferState=C4JStorage::eSaveTransfer_Idle;
                 //	pMinecraft->progressRenderer->progressStage(
-                //IDS_SAVE_TRANSFER_DOWNLOAD_AND_CONVERT_COMPLETE );
+                // IDS_SAVE_TRANSFER_DOWNLOAD_AND_CONVERT_COMPLETE );
 
                 //	break;
                 //}

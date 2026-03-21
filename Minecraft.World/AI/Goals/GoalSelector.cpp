@@ -57,7 +57,8 @@ void GoalSelector::tick() {
         for (AUTO_VAR(it, goals.begin()); it != goals.end(); ++it) {
             InternalGoal* ig = *it;
             // bool isUsing = usingGoals.contains(ig);
-            AUTO_VAR(usingIt, std::find(usingGoals.begin(), usingGoals.end(), ig));
+            AUTO_VAR(usingIt,
+                     std::find(usingGoals.begin(), usingGoals.end(), ig));
 
             // if (isUsing)
             if (usingIt != usingGoals.end()) {

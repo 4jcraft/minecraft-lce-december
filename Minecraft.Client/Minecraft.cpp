@@ -336,7 +336,7 @@ void Minecraft::init() {
     // if (options.languageCode != null) {
     //	Language.getInstance().loadLanguage(options.languageCode);
     //	//
-    //font.setEnforceUnicodeSheet("true".equalsIgnoreCase(I18n.get("language.enforceUnicode")));
+    // font.setEnforceUnicodeSheet("true".equalsIgnoreCase(I18n.get("language.enforceUnicode")));
     //	font.setEnforceUnicodeSheet(Language.getInstance().isSelectedLanguageIsUnicode());
     //	font.setBidirectional(Language.isBidirectional(options.languageCode));
     // }
@@ -1041,7 +1041,7 @@ std::shared_ptr<MultiplayerLocalPlayer> Minecraft::createExtraLocalPlayer(
         // loaded "Mass Effect World". Move this check to
         // ClientConnection::handleMovePlayer
         //		// 4J-PB - can't call this when this function is called
-        //from the qnet thread (GetGameStarted will be false)
+        // from the qnet thread (GetGameStarted will be false)
         //		if(app.GetGameStarted())
         //		{
         //			ui.CloseUIScenes(idx);
@@ -1879,7 +1879,8 @@ void Minecraft::run_middle() {
                 //                setScreen(new LevelConflictScreen());
                 //            }
                 // 				SparseLightStorage::tick();
-                // // 4J added 				CompressedTileStorage::tick();	// 4J added
+                // // 4J added
+                // CompressedTileStorage::tick();	// 4J added
                 // 				SparseDataStorage::tick();
                 // // 4J added
             }
@@ -3096,8 +3097,9 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 if (player->isAllowedToAttackAnimals())
                                     *piAction = IDS_TOOLTIPS_HIT;
 
-                                std::shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(
-                                    hitResult->entity);
+                                std::shared_ptr<Pig> pig =
+                                    dynamic_pointer_cast<Pig>(
+                                        hitResult->entity);
 
                                 if (pig->isLeashed() &&
                                     pig->getLeashHolder() == player) {
@@ -3786,7 +3788,8 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
         if (selected || wheel != 0 ||
             (player->ullButtonsPressed & (1LL << MINECRAFT_ACTION_DROP))) {
             std::wstring itemName = L"";
-            std::shared_ptr<ItemInstance> selectedItem = player->getSelectedItem();
+            std::shared_ptr<ItemInstance> selectedItem =
+                player->getSelectedItem();
             // Dropping items happens over network, so if we only have one then
             // assume that we dropped it and should hide the item
             int iCount = 0;
@@ -4781,9 +4784,10 @@ int Minecraft::maxSupportedTextureSize() {
 
     // for (int texSize = 16384; texSize > 0; texSize >>= 1) {
     //	GL11.glTexImage2D(GL11.GL_PROXY_TEXTURE_2D, 0, GL11.GL_RGBA, texSize,
-    //texSize, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, (ByteBuffer) null); 	final
-    //int width = GL11.glGetTexLevelParameteri(GL11.GL_PROXY_TEXTURE_2D, 0,
-    //GL11.GL_TEXTURE_WIDTH); 	if (width != 0) { 		return texSize;
+    // texSize, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, (ByteBuffer) null);
+    // final int width = GL11.glGetTexLevelParameteri(GL11.GL_PROXY_TEXTURE_2D,
+    // 0, GL11.GL_TEXTURE_WIDTH); 	if (width != 0) { 		return
+    // texSize;
     //	}
     // }
     // return -1;
@@ -4793,7 +4797,7 @@ void Minecraft::delayTextureReload() { reloadTextures = true; }
 
 __int64 Minecraft::currentTimeMillis() {
     return System::currentTimeMillis();  //(Sys.getTime() * 1000) /
-                                         //Sys.getTimerResolution();
+                                         // Sys.getTimerResolution();
 }
 
 /*void Minecraft::handleMouseDown(int button, bool down)
@@ -5138,7 +5142,7 @@ void Minecraft::tickAllConnections() {
 bool Minecraft::addPendingClientTextureRequest(
     const std::wstring& textureName) {
     AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
-                      m_pendingTextureRequests.end(), textureName));
+                           m_pendingTextureRequests.end(), textureName));
     if (it == m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.push_back(textureName);
         return true;
@@ -5148,7 +5152,7 @@ bool Minecraft::addPendingClientTextureRequest(
 
 void Minecraft::handleClientTextureReceived(const std::wstring& textureName) {
     AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
-                      m_pendingTextureRequests.end(), textureName));
+                           m_pendingTextureRequests.end(), textureName));
     if (it != m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.erase(it);
     }

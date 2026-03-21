@@ -56,7 +56,7 @@ PlayerConnection::PlayerConnection(MinecraftServer* server,
     connection->setListener(this);
     this->player = player;
     //	player->connection = this;		// 4J - moved out as we can't
-    //assign in a ctor
+    // assign in a ctor
     InitializeCriticalSection(&done_cs);
 
     m_bCloseOnTick = false;
@@ -93,7 +93,8 @@ void PlayerConnection::tick() {
         lastKeepAliveTick = tickCount;
         lastKeepAliveTime = System::nanoTime() / 1000000;
         lastKeepAliveId = random.nextInt();
-        send(std::shared_ptr<KeepAlivePacket>(new KeepAlivePacket(lastKeepAliveId)));
+        send(std::shared_ptr<KeepAlivePacket>(
+            new KeepAlivePacket(lastKeepAliveId)));
     }
 
     if (chatSpamTickCount > 0) {
@@ -137,12 +138,14 @@ void PlayerConnection::disconnect(DisconnectPacket::eDisconnectReason reason) {
     LeaveCriticalSection(&done_cs);
 }
 
-void PlayerConnection::handlePlayerInput(std::shared_ptr<PlayerInputPacket> packet) {
+void PlayerConnection::handlePlayerInput(
+    std::shared_ptr<PlayerInputPacket> packet) {
     player->setPlayerInput(packet->getXxa(), packet->getYya(),
                            packet->isJumping(), packet->isSneaking());
 }
 
-void PlayerConnection::handleMovePlayer(std::shared_ptr<MovePlayerPacket> packet) {
+void PlayerConnection::handleMovePlayer(
+    std::shared_ptr<MovePlayerPacket> packet) {
     ServerLevel* level = server->getLevel(player->dimension);
 
     didTick = true;
@@ -419,10 +422,11 @@ void PlayerConnection::handlePlayerAction(
     if (packet->action == PlayerActionPacket::START_DESTROY_BLOCK) {
         if (true)
             player->gameMode->startDestroyBlock(
-                x, y, z, packet->face);  // 4J - condition was
-                                         // !server->isUnderSpawnProtection(level,
-                                         // x, y, z, player) (from Java 1.6.4)
-                                         // but putting back to old behaviour
+                x, y, z,
+                packet->face);  // 4J - condition was
+                                // !server->isUnderSpawnProtection(level,
+                                // x, y, z, player) (from Java 1.6.4)
+                                // but putting back to old behaviour
         else
             player->connection->send(std::shared_ptr<TileUpdatePacket>(
                 new TileUpdatePacket(x, y, z, level)));
@@ -487,8 +491,8 @@ void PlayerConnection::handleUseItem(std::shared_ptr<UseItemPacket> packet) {
     }
 
     if (informClient) {
-        player->connection->send(
-            std::shared_ptr<TileUpdatePacket>(new TileUpdatePacket(x, y, z, level)));
+        player->connection->send(std::shared_ptr<TileUpdatePacket>(
+            new TileUpdatePacket(x, y, z, level)));
 
         if (face == 0) y--;
         if (face == 1) y++;
@@ -538,9 +542,10 @@ void PlayerConnection::handleUseItem(std::shared_ptr<UseItemPacket> packet) {
         if (forceClientUpdate ||
             !ItemInstance::matches(player->inventory->getSelected(),
                                    packet->getItem())) {
-            send(std::shared_ptr<ContainerSetSlotPacket>(new ContainerSetSlotPacket(
-                player->containerMenu->containerId, s->index,
-                player->inventory->getSelected())));
+            send(std::shared_ptr<ContainerSetSlotPacket>(
+                new ContainerSetSlotPacket(player->containerMenu->containerId,
+                                           s->index,
+                                           player->inventory->getSelected())));
         }
     }
 }
@@ -701,7 +706,8 @@ void PlayerConnection::handlePlayerCommand(
 
 void PlayerConnection::setShowOnMaps(bool bVal) { player->setShowOnMaps(bVal); }
 
-void PlayerConnection::handleDisconnect(std::shared_ptr<DisconnectPacket> packet) {
+void PlayerConnection::handleDisconnect(
+    std::shared_ptr<DisconnectPacket> packet) {
     // 4J Stu - Need to remove the player from the receiving list before their
     // socket is NULLed so that we can find another player on their system
     server->getPlayers()->removePlayerFromReceiving(player);
@@ -873,11 +879,12 @@ void PlayerConnection::handleTextureAndGeometry(
     }
 }
 
-void PlayerConnection::handleTextureReceivestd::d(const std::wstring& textureName) {
+void PlayerConnection::handleTextureReceivestd::d(
+    const std::wstring& textureName) {
     // This sends the server received texture out to any other players waiting
     // for the data
-    AUTO_VAR(it, std::find(m_texturesRequested.begin(), m_texturesRequested.end(),
-                      textureName));
+    AUTO_VAR(it, std::find(m_texturesRequested.begin(),
+                           m_texturesRequested.end(), textureName));
     if (it != m_texturesRequested.end()) {
         PBYTE pbData = NULL;
         DWORD dwBytes = 0;
@@ -895,8 +902,8 @@ void PlayerConnection::handleTextureAndGeometryReceivestd::d(
     const std::wstring& textureName) {
     // This sends the server received texture out to any other players waiting
     // for the data
-    AUTO_VAR(it, std::find(m_texturesRequested.begin(), m_texturesRequested.end(),
-                      textureName));
+    AUTO_VAR(it, std::find(m_texturesRequested.begin(),
+                           m_texturesRequested.end(), textureName));
     if (it != m_texturesRequested.end()) {
         PBYTE pbData = NULL;
         DWORD dwTextureBytes = 0;
@@ -1069,7 +1076,8 @@ void PlayerConnection::handleServerSettingsstd::Changed(
     }
 }
 
-void PlayerConnection::handleKickPlayer(std::shared_ptr<KickPlayerPacket> packet) {
+void PlayerConnection::handleKickPlayer(
+    std::shared_ptr<KickPlayerPacket> packet) {
     INetworkPlayer* networkPlayer = getNetworkPlayer();
     if ((networkPlayer != NULL && networkPlayer->IsHost()) ||
         player->isModerator()) {
@@ -1077,7 +1085,8 @@ void PlayerConnection::handleKickPlayer(std::shared_ptr<KickPlayerPacket> packet
     }
 }
 
-void PlayerConnection::handleGameCommand(std::shared_ptr<GameCommandPacket> packet) {
+void PlayerConnection::handleGameCommand(
+    std::shared_ptr<GameCommandPacket> packet) {
     MinecraftServer::getInstance()->getCommandDispatcher()->performCommand(
         player, packet->command, packet->data);
 }
@@ -1094,10 +1103,10 @@ void PlayerConnection::handleClientCommand(
         // else if (player.getLevel().getLevelData().isHardcore())
         //{
         //	if (server.isSingleplayer() &&
-        //player.name.equals(server.getSingleplayerName()))
+        // player.name.equals(server.getSingleplayerName()))
         //	{
         //		player.connection.disconnect("You have died. Game over,
-        //man, it's game over!"); 		server.selfDestruct();
+        // man, it's game over!"); 		server.selfDestruct();
         //	}
         //	else
         //	{
@@ -1106,7 +1115,7 @@ void PlayerConnection::handleClientCommand(
 
         //		server.getPlayers().getBans().add(ban);
         //		player.connection.disconnect("You have died. Game over,
-        //man, it's game over!");
+        // man, it's game over!");
         //	}
         //}
         else {
@@ -1232,7 +1241,8 @@ void PlayerConnection::handleSetCreativeModeSlot(
             swprintf(buf, 64, L"map_%d", item->getAuxValue());
             std::wstring id = std::wstring(buf);
             if (data == NULL) {
-                data = std::shared_ptr<MapItemSavedData>(new MapItemSavedData(id));
+                data =
+                    std::shared_ptr<MapItemSavedData>(new MapItemSavedData(id));
             }
             player->level->setSavedData(id, (std::shared_ptr<SavedData>)data);
 
@@ -1301,7 +1311,8 @@ void PlayerConnection::handleContainerAck(
     }
 }
 
-void PlayerConnection::handleSignUpdate(std::shared_ptr<SignUpdatePacket> packet) {
+void PlayerConnection::handleSignUpdate(
+    std::shared_ptr<SignUpdatePacket> packet) {
     player->resetLastActionTime();
     app.DebugPrintf("PlayerConnection::handleSignUpdate\n");
 
@@ -1338,14 +1349,16 @@ void PlayerConnection::handleSignUpdate(std::shared_ptr<SignUpdatePacket> packet
     }
 }
 
-void PlayerConnection::handleKeepAlive(std::shared_ptr<KeepAlivePacket> packet) {
+void PlayerConnection::handleKeepAlive(
+    std::shared_ptr<KeepAlivePacket> packet) {
     if (packet->id == lastKeepAliveId) {
         int time = (int)(System::nanoTime() / 1000000 - lastKeepAliveTime);
         player->latency = (player->latency * 3 + time) / 4;
     }
 }
 
-void PlayerConnection::handlePlayerInfo(std::shared_ptr<PlayerInfoPacket> packet) {
+void PlayerConnection::handlePlayerInfo(
+    std::shared_ptr<PlayerInfoPacket> packet) {
     // Need to check that this player has permission to change each individual
     // setting?
 
@@ -1392,9 +1405,10 @@ void PlayerConnection::handlePlayerInfo(std::shared_ptr<PlayerInfoPacket> packet
                             packet->m_playerPrivileges,
                             Player::ePlayerGamePrivilege_CreativeMode));
                     serverPlayer->gameMode->setGameModeForPlayer(gameType);
-                    serverPlayer->connection->send(std::shared_ptr<GameEventPacket>(
-                        new GameEventPacket(GameEventPacket::CHANGE_GAME_MODE,
-                                            gameType->getId())));
+                    serverPlayer->connection->send(
+                        std::shared_ptr<GameEventPacket>(new GameEventPacket(
+                            GameEventPacket::CHANGE_GAME_MODE,
+                            gameType->getId())));
                 } else {
 #ifndef _CONTENT_PACKAGE
                     wprintf(L"%ls already has game mode %d\n",
@@ -1519,8 +1533,9 @@ void PlayerConnection::handlePlayerInfo(std::shared_ptr<PlayerInfoPacket> packet
                 }
             }
 
-            server->getPlayers()->broadcastAll(std::shared_ptr<PlayerInfoPacket>(
-                new PlayerInfoPacket(serverPlayer)));
+            server->getPlayers()->broadcastAll(
+                std::shared_ptr<PlayerInfoPacket>(
+                    new PlayerInfoPacket(serverPlayer)));
         }
     }
 }
@@ -1537,7 +1552,8 @@ void PlayerConnection::handlePlayerAbilities(
 //	StringBuilder result = new StringBuilder();
 
 //	for (String candidate : server.getAutoCompletions(player,
-//packet.getMessage())) { 		if (result.length() > 0) result.append("\0");
+// packet.getMessage())) { 		if (result.length() > 0)
+// result.append("\0");
 
 //		result.append(candidate);
 //	}
@@ -1642,7 +1658,8 @@ void PlayerConnection::handleCustomPayload(
             Slot* slot = beaconMenu->getSlot(0);
             if (slot->hasItem()) {
                 slot->remove(1);
-                std::shared_ptr<BeaconTileEntity> beacon = beaconMenu->getBeacon();
+                std::shared_ptr<BeaconTileEntity> beacon =
+                    beaconMenu->getBeacon();
                 beacon->setPrimaryPower(primary);
                 beacon->setSecondaryPower(secondary);
                 beacon->setChanged();
@@ -1678,7 +1695,8 @@ void PlayerConnection::handleDebugOptions(
     player->SetDebugOptions(packet->m_uiVal);
 }
 
-void PlayerConnection::handleCraftItem(std::shared_ptr<CraftItemPacket> packet) {
+void PlayerConnection::handleCraftItem(
+    std::shared_ptr<CraftItemPacket> packet) {
     int iRecipe = packet->recipe;
 
     if (iRecipe == -1) return;
@@ -1830,7 +1848,8 @@ void PlayerConnection::handleCraftItem(std::shared_ptr<CraftItemPacket> packet) 
     // ELSE The server thinks the client was wrong...
 }
 
-void PlayerConnection::handleTradeItem(std::shared_ptr<TradeItemPacket> packet) {
+void PlayerConnection::handleTradeItem(
+    std::shared_ptr<TradeItemPacket> packet) {
     if (player->containerMenu->containerId == packet->containerId) {
         MerchantMenu* menu = (MerchantMenu*)player->containerMenu;
 

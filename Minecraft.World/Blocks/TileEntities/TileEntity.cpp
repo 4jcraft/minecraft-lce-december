@@ -9,7 +9,8 @@
 TileEntity::idToCreateMapType TileEntity::idCreateMap =
     std::unordered_map<std::wstring, tileEntityCreateFn>();
 TileEntity::classToIdMapType TileEntity::classIdMap =
-    std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>();
+    std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
+                       eINSTANCEOFKeyEq>();
 
 void TileEntity::staticCtor() {
     TileEntity::setId(FurnaceTileEntity::create, eTYPE_FURNACETILEENTITY,
@@ -103,7 +104,8 @@ std::shared_ptr<TileEntity> TileEntity::loadStatic(CompoundTag* tag) {
     // try
     //{
     AUTO_VAR(it, idCreateMap.find(tag->getString(L"id")));
-    if (it != idCreateMap.end()) entity = std::shared_ptr<TileEntity>(it->second());
+    if (it != idCreateMap.end())
+        entity = std::shared_ptr<TileEntity>(it->second());
     //}
     // catch (Exception e)
     //{

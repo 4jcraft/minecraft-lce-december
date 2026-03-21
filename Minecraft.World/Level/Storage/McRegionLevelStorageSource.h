@@ -34,8 +34,8 @@ private:
     void convertRegions(File& baseFolder, std::vector<ChunkFile*>* chunkFiles,
                         int currentCount, int totalCount,
                         ProgressListener* progress);
-    void eraseFolders(std::vector<File*>* folders, int currentCount, int totalCount,
-                      ProgressListener* progress);
+    void eraseFolders(std::vector<File*>* folders, int currentCount,
+                      int totalCount, ProgressListener* progress);
 
 public:
 #if 0

@@ -41,7 +41,7 @@ bool ShapelessRecipy::matches(std::shared_ptr<CraftingContainer> craftSlots,
                          item->getAuxValue() == ingredient->getAuxValue())) {
                         found = true;
                         AUTO_VAR(it, std::find(tempList.begin(), tempList.end(),
-                                          ingredient));
+                                               ingredient));
                         if (it != tempList.end()) tempList.erase(it);
                         break;
                     }

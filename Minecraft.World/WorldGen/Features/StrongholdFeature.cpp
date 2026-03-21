@@ -43,7 +43,8 @@ void StrongholdFeature::_init() {
 
 StrongholdFeature::StrongholdFeature() : StructureFeature() { _init(); }
 
-StrongholdFeature::StrongholdFeature(std::unordered_map<std::wstring, std::wstring> options) {
+StrongholdFeature::StrongholdFeature(
+    std::unordered_map<std::wstring, std::wstring> options) {
     _init();
 
     for (AUTO_VAR(it, options.begin()); it != options.end(); ++it) {

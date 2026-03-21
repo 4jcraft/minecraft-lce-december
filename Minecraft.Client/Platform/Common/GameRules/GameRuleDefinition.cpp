@@ -18,7 +18,8 @@ void GameRuleDefinition::write(DataOutputStream* dos) {
     writeAttributes(dos, 0);
 
     // 4J-JEV: Get children.
-    std::vector<GameRuleDefinition*>* children = new std::vector<GameRuleDefinition*>();
+    std::vector<GameRuleDefinition*>* children =
+        new std::vector<GameRuleDefinition*>();
     getChildren(children);
 
     // Write children.
@@ -42,7 +43,8 @@ void GameRuleDefinition::writeAttributes(DataOutputStream* dos,
     dos->writeUTF(_toString(m_4JDataValue));
 }
 
-void GameRuleDefinition::getChildren(std::vector<GameRuleDefinition*>* children) {}
+void GameRuleDefinition::getChildren(
+    std::vector<GameRuleDefinition*>* children) {}
 
 GameRuleDefinition* GameRuleDefinition::addChild(
     ConsoleGameRules::EGameRuleType ruleType) {
@@ -110,7 +112,8 @@ std::vector<GameRuleDefinition*>* GameRuleDefinition::enumerate() {
     return gRules;
 }
 
-std::unordered_map<GameRuleDefinition*, int>* GameRuleDefinition::enumerateMap() {
+std::unordered_map<GameRuleDefinition*, int>*
+GameRuleDefinition::enumerateMap() {
     std::unordered_map<GameRuleDefinition*, int>* out =
         new std::unordered_map<GameRuleDefinition*, int>();
 

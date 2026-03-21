@@ -65,7 +65,9 @@ void Villages::removeVillages() {
     }
 }
 
-std::vector<std::shared_ptr<Village> >* Villages::getVillages() { return &villages; }
+std::vector<std::shared_ptr<Village> >* Villages::getVillages() {
+    return &villages;
+}
 
 std::shared_ptr<Village> Villages::getClosestVillage(int x, int y, int z,
                                                      int maxDist) {
@@ -111,7 +113,8 @@ void Villages::cluster() {
         if (found) continue;
 
         // create new Village
-        std::shared_ptr<Village> village = std::shared_ptr<Village>(new Village(level));
+        std::shared_ptr<Village> village =
+            std::shared_ptr<Village>(new Village(level));
         village->addDoorInfo(di);
         villages.push_back(village);
         setDirty();
@@ -125,7 +128,8 @@ void Villages::addDoorInfos(Pos* pos) {
         for (int yy = pos->y - scanY; yy < pos->y + scanY; yy++) {
             for (int zz = pos->z - scanZ; zz < pos->z + scanZ; zz++) {
                 if (isDoor(xx, yy, zz)) {
-                    std::shared_ptr<DoorInfo> currentDoor = getDoorInfo(xx, yy, zz);
+                    std::shared_ptr<DoorInfo> currentDoor =
+                        getDoorInfo(xx, yy, zz);
                     if (currentDoor == NULL)
                         createDoorInfo(xx, yy, zz);
                     else
@@ -194,7 +198,8 @@ void Villages::load(CompoundTag* tag) {
         (ListTag<CompoundTag>*)tag->getList(L"Villages");
     for (int i = 0; i < villageTags->size(); i++) {
         CompoundTag* compoundTag = villageTags->get(i);
-        std::shared_ptr<Village> village = std::shared_ptr<Village>(new Village());
+        std::shared_ptr<Village> village =
+            std::shared_ptr<Village>(new Village());
         village->readAdditionalSaveData(compoundTag);
         villages.push_back(village);
     }

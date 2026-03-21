@@ -65,10 +65,10 @@ Sheep::Sheep(Level* level) : Animal(level) {
 
     container = std::shared_ptr<CraftingContainer>(
         new CraftingContainer(new SheepContainer(), 2, 1));
-    container->setItem(
-        0, std::shared_ptr<ItemInstance>(new ItemInstance(Item::dye_powder, 1, 0)));
-    container->setItem(
-        1, std::shared_ptr<ItemInstance>(new ItemInstance(Item::dye_powder, 1, 0)));
+    container->setItem(0, std::shared_ptr<ItemInstance>(
+                              new ItemInstance(Item::dye_powder, 1, 0)));
+    container->setItem(1, std::shared_ptr<ItemInstance>(
+                              new ItemInstance(Item::dye_powder, 1, 0)));
 }
 
 bool Sheep::useNewAi() { return true; }
@@ -156,10 +156,10 @@ bool Sheep::mobInteract(std::shared_ptr<Player> player) {
             setSheared(true);
             int count = 1 + random->nextInt(3);
             for (int i = 0; i < count; i++) {
-                std::shared_ptr<ItemEntity> ie =
-                    spawnAtLocation(std::shared_ptr<ItemInstance>(new ItemInstance(
-                                        Tile::wool_Id, 1, getColor())),
-                                    1.0f);
+                std::shared_ptr<ItemEntity> ie = spawnAtLocation(
+                    std::shared_ptr<ItemInstance>(
+                        new ItemInstance(Tile::wool_Id, 1, getColor())),
+                    1.0f);
                 ie->yd += random->nextFloat() * 0.05f;
                 ie->xd += (random->nextFloat() - random->nextFloat()) * 0.1f;
                 ie->zd += (random->nextFloat() - random->nextFloat()) * 0.1f;

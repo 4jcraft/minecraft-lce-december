@@ -12,7 +12,8 @@
 
 const std::wstring HumanoidMobRenderer::MATERIAL_NAMES[5] = {
     L"cloth", L"chain", L"iron", L"diamond", L"gold"};
-std::map<std::wstring, ResourceLocation> HumanoidMobRenderer::ARMOR_LOCATION_CACHE;
+std::map<std::wstring, ResourceLocation>
+    HumanoidMobRenderer::ARMOR_LOCATION_CACHE;
 
 void HumanoidMobRenderer::_init(HumanoidModel* humanoidModel, float scale) {
     this->humanoidModel = humanoidModel;
@@ -55,11 +56,12 @@ ResourceLocation* HumanoidMobRenderer::getArmorLocation(ArmorItem* armorItem,
         case 4:
             break;
     };
-    std::wstring path = std::wstring(L"armor/" + MATERIAL_NAMES[armorItem->modelIndex])
-                       .append(L"_")
-                       .append(_toString<int>(layer == 2 ? 2 : 1))
-                       .append((overlay ? L"_b" : L""))
-                       .append(L".png");
+    std::wstring path =
+        std::wstring(L"armor/" + MATERIAL_NAMES[armorItem->modelIndex])
+            .append(L"_")
+            .append(_toString<int>(layer == 2 ? 2 : 1))
+            .append((overlay ? L"_b" : L""))
+            .append(L".png");
 
     std::map<std::wstring, ResourceLocation>::iterator it =
         ARMOR_LOCATION_CACHE.find(path);
@@ -68,8 +70,8 @@ ResourceLocation* HumanoidMobRenderer::getArmorLocation(ArmorItem* armorItem,
     if (it != ARMOR_LOCATION_CACHE.end()) {
         location = &it->second;
     } else {
-        ARMOR_LOCATION_CACHE.insert(
-            std::pair<std::wstring, ResourceLocation>(path, ResourceLocation(path)));
+        ARMOR_LOCATION_CACHE.insert(std::pair<std::wstring, ResourceLocation>(
+            path, ResourceLocation(path)));
 
         it = ARMOR_LOCATION_CACHE.find(path);
         location = &it->second;
@@ -101,7 +103,8 @@ void HumanoidMobRenderer::createArmorParts() {
 
 int HumanoidMobRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob,
                                       int layer, float a) {
-    std::shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
+    std::shared_ptr<LivingEntity> mob =
+        dynamic_pointer_cast<LivingEntity>(_mob);
 
     std::shared_ptr<ItemInstance> itemInstance = mob->getArmor(3 - layer);
     if (itemInstance != NULL) {
@@ -152,7 +155,8 @@ int HumanoidMobRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob,
 
 void HumanoidMobRenderer::render(std::shared_ptr<Entity> _mob, double x,
                                  double y, double z, float rot, float a) {
-    std::shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
+    std::shared_ptr<LivingEntity> mob =
+        dynamic_pointer_cast<LivingEntity>(_mob);
 
     float brightness =
         SharedConstants::TEXTURE_LIGHTING ? 1 : mob->getBrightness(a);

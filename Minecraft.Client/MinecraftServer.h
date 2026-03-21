@@ -102,7 +102,7 @@ public:
 
 private:
     //	std::vector<Tickable *> tickables = new ArrayList<Tickable>();	// 4J -
-    //removed
+    // removed
     CommandDispatcher* commandDispatcher;
     std::vector<ConsoleInput*>
         consoleInput;  // 4J - was synchronizedList - TODO - investigate

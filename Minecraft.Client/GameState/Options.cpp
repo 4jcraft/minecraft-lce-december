@@ -439,14 +439,16 @@ void Options::save() {
     dos.writeChars(L"guiScale:" + _toString<int>(guiScale));
     dos.writeChars(L"particles:" + _toString<int>(particles));
     dos.writeChars(L"bobView:" + std::wstring(bobView ? L"true" : L"false"));
-    dos.writeChars(L"anaglyph3d:" + std::wstring(anaglyph3d ? L"true" : L"false"));
+    dos.writeChars(L"anaglyph3d:" +
+                   std::wstring(anaglyph3d ? L"true" : L"false"));
     dos.writeChars(L"advancedOpengl:" +
                    std::wstring(advancedOpengl ? L"true" : L"false"));
     dos.writeChars(L"fpsLimit:" + _toString<int>(framerateLimit));
     dos.writeChars(L"difficulty:" + _toString<int>(difficulty));
     dos.writeChars(L"fancyGraphics:" +
                    std::wstring(fancyGraphics ? L"true" : L"false"));
-    dos.writeChars(L"ao:" + std::wstring(ambientOcclusion ? L"true" : L"false"));
+    dos.writeChars(L"ao:" +
+                   std::wstring(ambientOcclusion ? L"true" : L"false"));
     dos.writeChars(L"clouds:" + _toString<bool>(renderClouds));
     dos.writeChars(L"skin:" + skin);
     dos.writeChars(L"lastServer:" + lastMpIp);

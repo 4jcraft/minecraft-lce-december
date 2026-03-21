@@ -1568,8 +1568,8 @@ void Level::playStreamingMusic(const std::wstring& name, int x, int y, int z) {
     }
 }
 
-void Level::playMusic(double x, double y, double z, const std::wstring& std::string,
-                      float volume) {}
+void Level::playMusic(double x, double y, double z,
+                      const std::wstring& std::string, float volume) {}
 
 // 4J removed -
 /*
@@ -1803,7 +1803,8 @@ AABBList* Level::getCubes(std::shared_ptr<Entity> source, AABB* box,
     if (noEntities) return &boxes;
 
     double r = 0.25;
-    std::vector<std::shared_ptr<Entity> >* ee = getEntities(source, box->grow(r, r, r));
+    std::vector<std::shared_ptr<Entity> >* ee =
+        getEntities(source, box->grow(r, r, r));
     std::vector<std::shared_ptr<Entity> >::iterator itEnd = ee->end();
     for (AUTO_VAR(it, ee->begin()); it != itEnd; it++) {
         AABB* collideBox = (*it)->getCollideBox();
@@ -2072,7 +2073,8 @@ void Level::forceAddTileTick(int x, int y, int z, int tileId, int tickDelay,
                              int prioTilt) {}
 
 void Level::tickEntities() {
-    std::vector<std::shared_ptr<Entity> >::iterator itGE = globalEntities.begin();
+    std::vector<std::shared_ptr<Entity> >::iterator itGE =
+        globalEntities.begin();
     while (itGE != globalEntities.end()) {
         std::shared_ptr<Entity> e = *itGE;
         e->tickCount++;
@@ -2236,8 +2238,8 @@ void Level::tickEntities() {
              it != pendingTileEntities.end(); it++) {
             std::shared_ptr<TileEntity> e = *it;
             if (!e->isRemoved()) {
-                if (std::find(tileEntityList.begin(), tileEntityList.end(), e) ==
-                    tileEntityList.end()) {
+                if (std::find(tileEntityList.begin(), tileEntityList.end(),
+                              e) == tileEntityList.end()) {
                     tileEntityList.push_back(e);
                 }
                 if (hasChunk(e->x >> 4, e->z >> 4)) {
@@ -2708,19 +2710,19 @@ void Level::removeTileEntity(int x, int y, int z) {
     if (te != NULL && updatingTileEntities) {
         te->setRemoved();
         AUTO_VAR(it, std::find(pendingTileEntities.begin(),
-                          pendingTileEntities.end(), te));
+                               pendingTileEntities.end(), te));
         if (it != pendingTileEntities.end()) {
             pendingTileEntities.erase(it);
         }
     } else {
         if (te != NULL) {
             AUTO_VAR(it, std::find(pendingTileEntities.begin(),
-                              pendingTileEntities.end(), te));
+                                   pendingTileEntities.end(), te));
             if (it != pendingTileEntities.end()) {
                 pendingTileEntities.erase(it);
             }
-            AUTO_VAR(it2,
-                     std::find(tileEntityList.begin(), tileEntityList.end(), te));
+            AUTO_VAR(it2, std::find(tileEntityList.begin(),
+                                    tileEntityList.end(), te));
             if (it2 != tileEntityList.end()) {
                 tileEntityList.erase(it2);
             }
@@ -3418,12 +3420,12 @@ void Level::checkLight(LightLayer::variety layer, int xc, int yc, int zc,
 bool Level::tickPendingTicks(bool force) { return false; }
 
 std::vector<TickNextTickData>* Level::fetchTicksInChunk(LevelChunk* chunk,
-                                                   bool remove) {
+                                                        bool remove) {
     return NULL;
 }
 
-std::vector<std::shared_ptr<Entity> >* Level::getEntities(std::shared_ptr<Entity> except,
-                                                AABB* bb) {
+std::vector<std::shared_ptr<Entity> >* Level::getEntities(
+    std::shared_ptr<Entity> except, AABB* bb) {
     return getEntities(except, bb, NULL);
 }
 
@@ -3476,7 +3478,8 @@ std::vector<std::shared_ptr<Entity> >* Level::getEntitiesOfClass(
     int xc1 = Mth::floor((bb->x1 + 2) / 16);
     int zc0 = Mth::floor((bb->z0 - 2) / 16);
     int zc1 = Mth::floor((bb->z1 + 2) / 16);
-    std::vector<std::shared_ptr<Entity> >* es = new std::vector<std::shared_ptr<Entity> >();
+    std::vector<std::shared_ptr<Entity> >* es =
+        new std::vector<std::shared_ptr<Entity> >();
 
 #ifdef __PSVITA__
 #ifdef _ENTITIES_RW_SECTION
@@ -3510,7 +3513,8 @@ std::vector<std::shared_ptr<Entity> >* Level::getEntitiesOfClass(
 
 std::shared_ptr<Entity> Level::getClosestEntityOfClass(
     const std::type_info& baseClass, AABB* bb, std::shared_ptr<Entity> source) {
-    std::vector<std::shared_ptr<Entity> >* entities = getEntitiesOfClass(baseClass, bb);
+    std::vector<std::shared_ptr<Entity> >* entities =
+        getEntitiesOfClass(baseClass, bb);
     std::shared_ptr<Entity> closest = nullptr;
     double closestDistSqr = Double::MAX_VALUE;
     // for (Entity entity : entities)
@@ -4021,7 +4025,8 @@ void Level::setGameTime(__int64 time) {
         // Apply stat to each player.
         if (timeDiff > 0 && levelData->getGameTime() != -1) {
             AUTO_VAR(itEnd, players.end());
-            for (std::vector<std::shared_ptr<Player> >::iterator it = players.begin();
+            for (std::vector<std::shared_ptr<Player> >::iterator it =
+                     players.begin();
                  it != itEnd; it++) {
                 (*it)->awardStat(GenericStats::timePlayed(),
                                  GenericStats::param_time(timeDiff));

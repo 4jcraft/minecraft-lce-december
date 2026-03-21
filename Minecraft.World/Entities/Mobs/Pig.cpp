@@ -128,7 +128,8 @@ void Pig::setSaddle(bool value) {
 
 void Pig::thunderHit(const LightningBolt* lightningBolt) {
     if (level->isClientSide) return;
-    std::shared_ptr<PigZombie> pz = std::shared_ptr<PigZombie>(new PigZombie(level));
+    std::shared_ptr<PigZombie> pz =
+        std::shared_ptr<PigZombie>(new PigZombie(level));
     pz->moveTo(x, y, z, yRot, xRot);
     level->addEntity(pz);
     remove();

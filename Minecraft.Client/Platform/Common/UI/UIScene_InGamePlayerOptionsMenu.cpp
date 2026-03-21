@@ -537,8 +537,9 @@ void UIScene_InGamePlayerOptionsMenu::handleInput(int iPad, int key,
                         pMinecraft->localplayers[m_iPad];
                     if (player->connection) {
                         player->connection->send(
-                            std::shared_ptr<PlayerInfoPacket>(new PlayerInfoPacket(
-                                m_networkSmallId, -1, m_playerPrivileges)));
+                            std::shared_ptr<PlayerInfoPacket>(
+                                new PlayerInfoPacket(m_networkSmallId, -1,
+                                                     m_playerPrivileges)));
                     }
                 }
                 navigateBack();
@@ -586,8 +587,8 @@ int UIScene_InGamePlayerOptionsMenu::KickPlayerReturned(
         std::shared_ptr<MultiplayerLocalPlayer> localPlayer =
             pMinecraft->localplayers[iPad];
         if (localPlayer->connection) {
-            localPlayer->connection->send(
-                std::shared_ptr<KickPlayerPacket>(new KickPlayerPacket(smallId)));
+            localPlayer->connection->send(std::shared_ptr<KickPlayerPacket>(
+                new KickPlayerPacket(smallId)));
         }
 
         // Fix for #61494 - [CRASH]: TU7: Code: Multiplayer: Title may crash

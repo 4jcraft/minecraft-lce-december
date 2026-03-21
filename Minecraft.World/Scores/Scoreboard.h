@@ -14,7 +14,8 @@ public:
 
 private:
     std::unordered_map<std::wstring, Objective*> objectivesByName;
-    std::unordered_map<ObjectiveCriteria*, std::vector<Objective*>*> objectivesByCriteria;
+    std::unordered_map<ObjectiveCriteria*, std::vector<Objective*>*>
+        objectivesByCriteria;
     std::unordered_map<std::wstring, std::unordered_map<Objective*, Score*> >
         playerScores;
     Objective* displayObjectives[DISPLAY_SLOTS];

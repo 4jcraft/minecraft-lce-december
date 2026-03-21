@@ -58,8 +58,8 @@ public:
     double viewScale;
 
     bool blocksBuilding;
-    std::weak_ptr<Entity> rider;  // Changed to weak to avoid circular dependency
-                             // between rider/riding entity
+    std::weak_ptr<Entity> rider;  // Changed to weak to avoid circular
+                                  // dependency between rider/riding entity
     std::shared_ptr<Entity> riding;
     bool forcedLoading;
 
@@ -324,7 +324,7 @@ public:
     virtual float getShadowHeightOffs();
     std::shared_ptr<ItemEntity> spawnAtLocation(int resource, int count);
     std::shared_ptr<ItemEntity> spawnAtLocation(int resource, int count,
-                                           float yOffs);
+                                                float yOffs);
     std::shared_ptr<ItemEntity> spawnAtLocation(
         std::shared_ptr<ItemInstance> itemInstance, float yOffs);
     virtual bool isAlive();
@@ -439,7 +439,8 @@ public:
     virtual bool skipAttackInteraction(std::shared_ptr<Entity> source);
     virtual bool isInvulnerable();
     virtual void copyPosition(std::shared_ptr<Entity> target);
-    virtual void restoreFrom(std::shared_ptr<Entity> oldEntity, bool teleporting);
+    virtual void restoreFrom(std::shared_ptr<Entity> oldEntity,
+                             bool teleporting);
     virtual void changeDimension(int i);
     virtual float getTileExplosionResistance(Explosion* explosion, Level* level,
                                              int x, int y, int z, Tile* tile);

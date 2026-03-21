@@ -396,8 +396,8 @@ void UIScene_DLCOffersMenu::tick() {
                         bDLCIsAvailable = true;
                     }
                 }
-#else  // __ORBIS__
-       // is the item purchasable?
+#else   // __ORBIS__
+        // is the item purchasable?
                 if (info.purchasabilityFlag ==
                     SCE_TOOLKIT_NP_COMMERCE_NOT_PURCHASED) {
                     // can be bought

@@ -809,8 +809,9 @@ void EnderDragon::checkCrystals() {
 
     if (random->nextInt(10) == 0) {
         float maxDist = 32;
-        std::vector<std::shared_ptr<Entity> >* crystals = level->getEntitiesOfClass(
-            typeid(EnderCrystal), bb->grow(maxDist, maxDist, maxDist));
+        std::vector<std::shared_ptr<Entity> >* crystals =
+            level->getEntitiesOfClass(typeid(EnderCrystal),
+                                      bb->grow(maxDist, maxDist, maxDist));
 
         std::shared_ptr<EnderCrystal> crystal = nullptr;
         double nearest = Double::MAX_VALUE;

@@ -101,7 +101,8 @@ bool CauldronTile::use(Level* level, int x, int y, int z,
     } else if (item->id == Item::glassBottle_Id) {
         if (fillLevel > 0) {
             std::shared_ptr<ItemInstance> potion =
-                std::shared_ptr<ItemInstance>(new ItemInstance(Item::potion, 1, 0));
+                std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::potion, 1, 0));
             if (!player->inventory->add(potion)) {
                 level->addEntity(std::shared_ptr<ItemEntity>(
                     new ItemEntity(level, x + 0.5, y + 1.5, z + 0.5, potion)));

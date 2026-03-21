@@ -21,7 +21,8 @@ void ArchiveFile::_readHeader(DataInputStream* dis) {
         } else
             meta->isCompressed = false;
 
-        m_index.insert(std::pair<std::wstring, PMetaData>(meta->filename, meta));
+        m_index.insert(
+            std::pair<std::wstring, PMetaData>(meta->filename, meta));
     }
 }
 

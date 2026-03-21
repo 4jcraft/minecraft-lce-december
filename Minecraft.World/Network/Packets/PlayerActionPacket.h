@@ -2,8 +2,9 @@
 
 #include "Packet.h"
 
-class PlayerActionPacket : public Packet,
-                           public std::enable_shared_from_this<PlayerActionPacket> {
+class PlayerActionPacket
+    : public Packet,
+      public std::enable_shared_from_this<PlayerActionPacket> {
 public:
     static const int START_DESTROY_BLOCK;
     static const int ABORT_DESTROY_BLOCK;

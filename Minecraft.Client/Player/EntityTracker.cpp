@@ -29,7 +29,8 @@ EntityTracker::EntityTracker(ServerLevel* level) {
 void EntityTracker::addEntity(std::shared_ptr<Entity> e) {
     if (e->instanceof(eTYPE_SERVERPLAYER)) {
         addEntity(e, 32 * 16, 2);
-        std::shared_ptr<ServerPlayer> player = dynamic_pointer_cast<ServerPlayer>(e);
+        std::shared_ptr<ServerPlayer> player =
+            dynamic_pointer_cast<ServerPlayer>(e);
         for (AUTO_VAR(it, entities.begin()); it != entities.end(); it++) {
             if ((*it)->e != player) {
                 (*it)->updatePlayer(this, player);
@@ -126,7 +127,8 @@ void EntityTracker::removeEntity(std::shared_ptr<Entity> e) {
 
 void EntityTracker::removePlayer(std::shared_ptr<Entity> e) {
     if (e->GetType() == eTYPE_SERVERPLAYER) {
-        std::shared_ptr<ServerPlayer> player = dynamic_pointer_cast<ServerPlayer>(e);
+        std::shared_ptr<ServerPlayer> player =
+            dynamic_pointer_cast<ServerPlayer>(e);
         for (AUTO_VAR(it, entities.begin()); it != entities.end(); it++) {
             (*it)->removePlayer(player);
         }

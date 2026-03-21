@@ -82,8 +82,8 @@ public:
     DWORD getPackIndex(DLCPack* pack, bool& found,
                        EDLCType type = e_DLCType_All);
     DLCSkinFile* getSkinFile(
-        const std::wstring& path);  // Will hunt all packs of type skin to find the
-                               // right skinfile
+        const std::wstring& path);  // Will hunt all packs of type skin to find
+                                    // the right skinfile
 
     DLCPack* getPackContainingSkin(const std::wstring& path);
     DWORD getPackIndexContainingSkin(const std::wstring& path, bool& found);

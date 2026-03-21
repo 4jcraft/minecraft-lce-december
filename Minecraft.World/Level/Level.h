@@ -491,7 +491,7 @@ public:
 public:
     virtual bool tickPendingTicks(bool force);
     virtual std::vector<TickNextTickData>* fetchTicksInChunk(LevelChunk* chunk,
-                                                        bool remove);
+                                                             bool remove);
 
 private:
     std::vector<std::shared_ptr<Entity> > es;

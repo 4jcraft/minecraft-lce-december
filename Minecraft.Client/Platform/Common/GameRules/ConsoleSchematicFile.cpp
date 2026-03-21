@@ -745,7 +745,7 @@ void ConsoleSchematicFile::generateSchematicFile(
             // 4J-JEV: All these are derived from eTYPE_ANIMAL and true
             // implicitly.
             //||	( e->GetType() == eTYPE_CHICKEN ) || ( e->GetType() ==
-            //eTYPE_WOLF ) || ( e->GetType() == eTYPE_MUSHROOMCOW ) )
+            // eTYPE_WOLF ) || ( e->GetType() == eTYPE_MUSHROOMCOW ) )
             {
                 mobCanBeSaved = true;
             }
@@ -794,8 +794,8 @@ void ConsoleSchematicFile::getBlocksAndData(LevelChunk* chunk, byteArray* data,
     // if (xs * ys * zs == LevelChunk::BLOCKS_LENGTH)
     //{
     //	byteArray blockData = byteArray(data->data + blocksP,
-    //Level::CHUNK_TILE_COUNT); 	chunk->getBlockData(blockData); 	blocksP  +=
-    //blockData.length;
+    // Level::CHUNK_TILE_COUNT); 	chunk->getBlockData(blockData);
+    // blocksP  += blockData.length;
 
     //	byteArray dataData = byteArray(data->data + dataP, 16384);
     //	chunk->getBlockLightData(dataData);

@@ -118,7 +118,8 @@ void UpdatePlayerRuleDefinition::addAttribute(
     }
 }
 
-void UpdatePlayerRuleDefinition::postProcessPlayer(std::shared_ptr<Player> player) {
+void UpdatePlayerRuleDefinition::postProcessPlayer(
+    std::shared_ptr<Player> player) {
     if (m_bUpdateHealth) {
         player->lastHealth = m_health;
         player->setHealth(m_health);

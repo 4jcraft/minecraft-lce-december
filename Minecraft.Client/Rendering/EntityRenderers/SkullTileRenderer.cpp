@@ -61,13 +61,13 @@ void SkullTileRenderer::renderSkull(float x, float y, float z, int face,
             // if (!extra.empty())
             //{
             //	wstring url = "http://skins.minecraft.net/MinecraftSkins/" +
-            //StringUtil.stripColor(extra) + ".png";
+            // StringUtil.stripColor(extra) + ".png";
 
             //	if
             //(!instance->tileEntityRenderDispatcher->textures->hasHttpTexture(url))
             //	{
             //		instance->tileEntityRenderDispatcher->textures->addHttpTexture(url,
-            //new MobSkinTextureProcessor());
+            // new MobSkinTextureProcessor());
             //	}
 
             //	bindTexture(url, "/mob/char.png");

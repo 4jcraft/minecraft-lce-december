@@ -368,7 +368,8 @@ ConsoleSaveFileSplit::ConsoleSaveFileSplit(ConsoleSaveFile* sourceSave,
     header.setSaveVersion(sourceSave->getSaveVersion());
 
     if (alreadySmallRegions) {
-        std::vector<FileEntry*>* sourceFiles = sourceSave->getFilesWithPrefix(L"");
+        std::vector<FileEntry*>* sourceFiles =
+            sourceSave->getFilesWithPrefix(L"");
 
         DWORD bytesWritten;
         for (AUTO_VAR(it, sourceFiles->begin()); it != sourceFiles->end();
@@ -1203,8 +1204,8 @@ std::wstring ConsoleSaveFileSplit::GetNameFromNumericIdentifier(
     }
     signed char regionX = (idIn >> 8) & 255;
     signed char regionZ = idIn & 255;
-    std::wstring region = (prefix + std::wstring(L"r.") + _toString(regionX) + L"." +
-                      _toString(regionZ) + L".mcr");
+    std::wstring region = (prefix + std::wstring(L"r.") + _toString(regionX) +
+                           L"." + _toString(regionZ) + L".mcr");
 
     return region;
 }
@@ -1624,7 +1625,8 @@ void ConsoleSaveFileSplit::ConvertToLocalPlatform() {
         return;
     }
     // convert each of the region files to the local platform
-    std::vector<FileEntry*>* allFilesInSave = getFilesWithPrefix(std::wstring(L""));
+    std::vector<FileEntry*>* allFilesInSave =
+        getFilesWithPrefix(std::wstring(L""));
     for (AUTO_VAR(it, allFilesInSave->begin()); it < allFilesInSave->end();
          ++it) {
         FileEntry* fe = *it;

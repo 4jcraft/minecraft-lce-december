@@ -38,7 +38,8 @@ Objective* Scoreboard::addObjective(const std::wstring& name,
     //	return objective;
 }
 
-std::vector<Objective*>* Scoreboard::findObjectiveFor(ObjectiveCriteria* criteria) {
+std::vector<Objective*>* Scoreboard::findObjectiveFor(
+    ObjectiveCriteria* criteria) {
     return NULL;
     // vector<Objective *> *objectives =
     // objectivesByCriteria.find(criteria)->second;

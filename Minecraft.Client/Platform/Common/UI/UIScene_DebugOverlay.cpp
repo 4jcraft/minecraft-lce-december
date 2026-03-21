@@ -63,7 +63,8 @@ UIScene_DebugOverlay::UIScene_DebugOverlay(int iPad, void* initData,
 
         for (unsigned int level = ench->getMinLevel();
              level <= ench->getMaxLevel(); ++level) {
-            m_enchantmentIdAndLevels.push_back(std::pair<int, int>(ench->id, level));
+            m_enchantmentIdAndLevels.push_back(
+                std::pair<int, int>(ench->id, level));
             m_buttonListEnchantments.addItem(
                 app.GetString(ench->getDescriptionId()) +
                 _toString<int>(level));

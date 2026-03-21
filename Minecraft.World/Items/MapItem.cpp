@@ -43,7 +43,8 @@ std::shared_ptr<MapItemSavedData> MapItem::getSavedData(short idNum,
 std::shared_ptr<MapItemSavedData> MapItem::getSavedData(
     std::shared_ptr<ItemInstance> itemInstance, Level* level) {
     MemSect(31);
-    std::wstring id = std::wstring(L"map_") + _toString(itemInstance->getAuxValue());
+    std::wstring id =
+        std::wstring(L"map_") + _toString(itemInstance->getAuxValue());
     MemSect(0);
     std::shared_ptr<MapItemSavedData> mapItemSavedData =
         dynamic_pointer_cast<MapItemSavedData>(
@@ -295,8 +296,9 @@ std::shared_ptr<Packet> MapItem::getUpdatePacket(
 
     if (data.data == NULL || data.length == 0) return nullptr;
 
-    std::shared_ptr<Packet> retval = std::shared_ptr<Packet>(new ComplexItemDataPacket(
-        (short)Item::map->id, (short)itemInstance->getAuxValue(), data));
+    std::shared_ptr<Packet> retval =
+        std::shared_ptr<Packet>(new ComplexItemDataPacket(
+            (short)Item::map->id, (short)itemInstance->getAuxValue(), data));
     delete data.data;
     return retval;
 }

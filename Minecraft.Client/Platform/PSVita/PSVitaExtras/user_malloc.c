@@ -345,7 +345,7 @@ void* user_memalign(size_t boundary, size_t size) {
 /**J reallocalign 関数と置き換わる */
 void* user_reallocalign(void* ptr, size_t size, size_t boundary) {
     //	SCE_DBG_LOG_TRACE("Called reallocalign(%p, %u, %u)", ptr, size,
-    //boundary);
+    // boundary);
     return mspace_reallocalign(s_mspace, ptr, size, boundary);
 }
 

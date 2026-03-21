@@ -52,8 +52,9 @@ void TntTile::wasExploded(Level* level, int x, int y, int z,
     // is unchecked.
     if (level->newPrimedTntAllowed() &&
         app.GetGameHostOption(eGameHostOption_TNT)) {
-        std::shared_ptr<PrimedTnt> primed = std::shared_ptr<PrimedTnt>(new PrimedTnt(
-            level, x + 0.5f, y + 0.5f, z + 0.5f, explosion->getSourceMob()));
+        std::shared_ptr<PrimedTnt> primed = std::shared_ptr<PrimedTnt>(
+            new PrimedTnt(level, x + 0.5f, y + 0.5f, z + 0.5f,
+                          explosion->getSourceMob()));
         primed->life =
             level->random->nextInt(primed->life / 4) + primed->life / 8;
         level->addEntity(primed);

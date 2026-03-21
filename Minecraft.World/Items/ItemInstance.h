@@ -75,15 +75,16 @@ public:
     Item* getItem() const;
     Icon* getIcon();
     int getIconType();
-    bool useOn(std::shared_ptr<Player> player, Level* level, int x, int y, int z,
-               int face, float clickX, float clickY, float clickZ,
+    bool useOn(std::shared_ptr<Player> player, Level* level, int x, int y,
+               int z, int face, float clickX, float clickY, float clickZ,
                bool bTestUseOnOnly = false);
     float getDestroySpeed(Tile* tile);
     bool TestUse(std::shared_ptr<ItemInstance> itemInstance, Level* level,
                  std::shared_ptr<Player> player);
-    std::shared_ptr<ItemInstance> use(Level* level, std::shared_ptr<Player> player);
-    std::shared_ptr<ItemInstance> useTimeDepleted(Level* level,
-                                             std::shared_ptr<Player> player);
+    std::shared_ptr<ItemInstance> use(Level* level,
+                                      std::shared_ptr<Player> player);
+    std::shared_ptr<ItemInstance> useTimeDepleted(
+        Level* level, std::shared_ptr<Player> player);
     CompoundTag* save(CompoundTag* compoundTag);
     void load(CompoundTag* compoundTag);
     int getMaxStackSize();
@@ -97,17 +98,20 @@ public:
     int getMaxDamage();
     bool hurt(int dmg, Random* random);
     void hurtAndBreak(int dmg, std::shared_ptr<LivingEntity> owner);
-    void hurtEnemy(std::shared_ptr<LivingEntity> mob, std::shared_ptr<Player> attacker);
+    void hurtEnemy(std::shared_ptr<LivingEntity> mob,
+                   std::shared_ptr<Player> attacker);
     void mineBlock(Level* level, int tile, int x, int y, int z,
                    std::shared_ptr<Player> owner);
     bool canDestroySpecial(Tile* tile);
-    bool interactEnemy(std::shared_ptr<Player> player, std::shared_ptr<LivingEntity> mob);
+    bool interactEnemy(std::shared_ptr<Player> player,
+                       std::shared_ptr<LivingEntity> mob);
     std::shared_ptr<ItemInstance> copy() const;
     ItemInstance* copy_not_shared() const;  // 4J Stu - Added for use in recipes
     static bool tagMatches(
         std::shared_ptr<ItemInstance> a,
         std::shared_ptr<ItemInstance> b);  // 4J Brought forward from 1.2
-    static bool matches(std::shared_ptr<ItemInstance> a, std::shared_ptr<ItemInstance> b);
+    static bool matches(std::shared_ptr<ItemInstance> a,
+                        std::shared_ptr<ItemInstance> b);
 
     // 4J-PB
     int GetCount() { return count; }
@@ -131,11 +135,13 @@ public:
     virtual unsigned int getUseDescriptionId();  // 4J Added
     virtual unsigned int getDescriptionId(int iData = -1);
     virtual ItemInstance* setDescriptionId(unsigned int id);
-    static std::shared_ptr<ItemInstance> clone(std::shared_ptr<ItemInstance> item);
+    static std::shared_ptr<ItemInstance> clone(
+        std::shared_ptr<ItemInstance> item);
     std::wstring toString();
     void inventoryTick(Level* level, std::shared_ptr<Entity> owner, int slot,
                        bool selected);
-    void onCraftedBy(Level* level, std::shared_ptr<Player> player, int craftCount);
+    void onCraftedBy(Level* level, std::shared_ptr<Player> player,
+                     int craftCount);
     bool equals(std::shared_ptr<ItemInstance> ii);
 
     int getUseDuration();
@@ -152,9 +158,10 @@ public:
     void setHoverName(const std::wstring& name);
     void resetHoverName();
     bool hasCustomHoverName();
-    std::vector<HtmlString>* getHoverText(std::shared_ptr<Player> player, bool advanced);
+    std::vector<HtmlString>* getHoverText(std::shared_ptr<Player> player,
+                                          bool advanced);
     std::vector<HtmlString>* getHoverTextOnly(std::shared_ptr<Player> player,
-                                         bool advanced);  // 4J Added
+                                              bool advanced);  // 4J Added
     bool isFoil();
     const Rarity* getRarity();
     bool isEnchantable();

@@ -23,7 +23,8 @@ public:
     virtual void handle(PacketListener* listener);
     virtual int getEstimatedSize();
 
-    std::vector<std::shared_ptr<SynchedEntityData::DataItem> >* getUnpackedData();
+    std::vector<std::shared_ptr<SynchedEntityData::DataItem> >*
+    getUnpackedData();
 
 public:
     static std::shared_ptr<Packet> create() {

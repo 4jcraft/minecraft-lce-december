@@ -263,13 +263,13 @@ void Zombie::populateDefaultEquipmentSlots() {
         (level->difficulty == Difficulty::HARD ? 0.05f : 0.01f)) {
         int rand = random->nextInt(3);
         if (rand == 0) {
-            setEquippedSlot(
-                SLOT_WEAPON,
-                std::shared_ptr<ItemInstance>(new ItemInstance(Item::sword_iron)));
+            setEquippedSlot(SLOT_WEAPON,
+                            std::shared_ptr<ItemInstance>(
+                                new ItemInstance(Item::sword_iron)));
         } else {
-            setEquippedSlot(
-                SLOT_WEAPON,
-                std::shared_ptr<ItemInstance>(new ItemInstance(Item::shovel_iron)));
+            setEquippedSlot(SLOT_WEAPON,
+                            std::shared_ptr<ItemInstance>(
+                                new ItemInstance(Item::shovel_iron)));
         }
     }
 }
@@ -303,7 +303,8 @@ void Zombie::killed(std::shared_ptr<LivingEntity> mob) {
         if (level->difficulty == Difficulty::NORMAL && random->nextBoolean())
             return;
 
-        std::shared_ptr<Zombie> zombie = std::shared_ptr<Zombie>(new Zombie(level));
+        std::shared_ptr<Zombie> zombie =
+            std::shared_ptr<Zombie>(new Zombie(level));
         zombie->copyPosition(mob);
         level->removeEntity(mob);
         zombie->finalizeMobSpawn(NULL);
@@ -441,7 +442,8 @@ bool Zombie::isConverting() {
 }
 
 void Zombie::finishConversion() {
-    std::shared_ptr<Villager> villager = std::shared_ptr<Villager>(new Villager(level));
+    std::shared_ptr<Villager> villager =
+        std::shared_ptr<Villager>(new Villager(level));
     villager->copyPosition(shared_from_this());
     villager->finalizeMobSpawn(NULL);
     villager->setRewardPlayersInVillage();

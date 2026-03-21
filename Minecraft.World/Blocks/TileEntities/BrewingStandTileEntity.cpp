@@ -212,8 +212,8 @@ void BrewingStandTileEntity::doBrew() {
                 items[dest]->setAuxValue(newBrew);
             } else if (isWater && items[dest] != NULL &&
                        items[dest]->id == Item::glassBottle_Id) {
-                items[dest] =
-                    std::shared_ptr<ItemInstance>(new ItemInstance(Item::potion));
+                items[dest] = std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::potion));
             }
         }
     }

@@ -98,8 +98,8 @@ private:
                                        int start, int end, int brew);
 
 public:
-    static std::vector<MobEffectInstance*>* getEffects(int brew,
-                                                  bool includeDisabledEffects);
+    static std::vector<MobEffectInstance*>* getEffects(
+        int brew, bool includeDisabledEffects);
 
 #if !(_SIMPLIFIED_BREWING)
     static int boil(int brew);

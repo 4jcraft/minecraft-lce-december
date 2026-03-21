@@ -55,8 +55,9 @@ bool NearestAttackableTargetGoal::canUse() {
         return false;
     double within = getFollowDistance();
 
-    std::vector<std::shared_ptr<Entity> >* entities = mob->level->getEntitiesOfClass(
-        targetType, mob->bb->grow(within, 4, within), selector);
+    std::vector<std::shared_ptr<Entity> >* entities =
+        mob->level->getEntitiesOfClass(
+            targetType, mob->bb->grow(within, 4, within), selector);
 
     bool result = false;
     if (entities != NULL && !entities->empty()) {

@@ -384,7 +384,8 @@ void Mob::checkDespawn() {
         noActionTime = 0;
         return;
     }
-    std::shared_ptr<Entity> player = level->getNearestPlayer(shared_from_this(), -1);
+    std::shared_ptr<Entity> player =
+        level->getNearestPlayer(shared_from_this(), -1);
     if (player != NULL) {
         double xd = player->x - x;
         double yd = player->y - y;
@@ -494,7 +495,8 @@ void Mob::lookAt(std::shared_ptr<Entity> e, float yMax, float xMax) {
     double zd = e->z - z;
 
     if (e->instanceof(eTYPE_LIVINGENTITY)) {
-        std::shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(e);
+        std::shared_ptr<LivingEntity> mob =
+            dynamic_pointer_cast<LivingEntity>(e);
         yd = (mob->y + mob->getHeadHeight()) - (y + getHeadHeight());
     } else {
         yd = (e->bb->y0 + e->bb->y1) / 2 - (y + getHeadHeight());
@@ -845,8 +847,9 @@ void Mob::restoreLeashFromSave() {
     if (_isLeashed && leashInfoTag != NULL) {
         if (leashInfoTag->contains(L"UUID")) {
             std::wstring leashUuid = leashInfoTag->getString(L"UUID");
-            std::vector<std::shared_ptr<Entity> >* livingEnts = level->getEntitiesOfClass(
-                typeid(LivingEntity), bb->grow(10, 10, 10));
+            std::vector<std::shared_ptr<Entity> >* livingEnts =
+                level->getEntitiesOfClass(typeid(LivingEntity),
+                                          bb->grow(10, 10, 10));
             for (AUTO_VAR(it, livingEnts->begin()); it != livingEnts->end();
                  ++it) {
                 std::shared_ptr<LivingEntity> le =

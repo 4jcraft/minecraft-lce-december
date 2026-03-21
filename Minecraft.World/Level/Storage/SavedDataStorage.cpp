@@ -36,7 +36,8 @@ std::shared_ptr<SavedData> SavedDataStorage::get(const std::type_info& clazz,
 
             if (clazz == typeid(MapItemSavedData)) {
                 data = dynamic_pointer_cast<SavedData>(
-                    std::shared_ptr<MapItemSavedData>(new MapItemSavedData(id)));
+                    std::shared_ptr<MapItemSavedData>(
+                        new MapItemSavedData(id)));
             } else if (clazz == typeid(Villages)) {
                 data = dynamic_pointer_cast<SavedData>(
                     std::shared_ptr<Villages>(new Villages(id)));
@@ -59,8 +60,10 @@ std::shared_ptr<SavedData> SavedDataStorage::get(const std::type_info& clazz,
     }
 
     if (data != NULL) {
-        cache.insert(std::unordered_map<std::wstring, std::shared_ptr<SavedData> >::value_type(
-            id, data));
+        cache.insert(
+            std::unordered_map<std::wstring,
+                               std::shared_ptr<SavedData> >::value_type(id,
+                                                                        data));
         savedDatas.push_back(data);
     }
     return data;
@@ -74,7 +77,8 @@ void SavedDataStorage::set(const std::wstring& id,
     }
     AUTO_VAR(it, cache.find(id));
     if (it != cache.end()) {
-        AUTO_VAR(it2, std::find(savedDatas.begin(), savedDatas.end(), it->second));
+        AUTO_VAR(it2,
+                 std::find(savedDatas.begin(), savedDatas.end(), it->second));
         if (it2 != savedDatas.end()) {
             savedDatas.erase(it2);
         }

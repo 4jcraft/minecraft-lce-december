@@ -173,7 +173,7 @@ Node* PathFinder::getNode(Entity* entity, int x, int y, int z, Node* size,
                               // version as we're suspicious of the performance
                               // implications of this
                               //			if (drop++ >=
-                              //entity->getMaxFallDistance()) return NULL;
+                              // entity->getMaxFallDistance()) return NULL;
             y--;
 
             if (y > 0) best = getNode(x, y, z);

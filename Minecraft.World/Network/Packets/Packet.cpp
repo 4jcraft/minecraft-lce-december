@@ -267,9 +267,12 @@ Packet::Packet() : createTime(System::currentTimeMillis()) {
 
 std::unordered_map<int, packetCreateFn> Packet::idToCreateMap;
 
-std::unordered_set<int> Packet::clientReceivedPackets = std::unordered_set<int>();
-std::unordered_set<int> Packet::serverReceivedPackets = std::unordered_set<int>();
-std::unordered_set<int> Packet::sendToAnyClientPackets = std::unordered_set<int>();
+std::unordered_set<int> Packet::clientReceivedPackets =
+    std::unordered_set<int>();
+std::unordered_set<int> Packet::serverReceivedPackets =
+    std::unordered_set<int>();
+std::unordered_set<int> Packet::sendToAnyClientPackets =
+    std::unordered_set<int>();
 
 // 4J Added
 std::unordered_map<int, Packet::PacketStatistics*> Packet::outgoingStatistics =
@@ -585,7 +588,8 @@ std::shared_ptr<ItemInstance> Packet::readItem(DataInputStream* dis) {
         int count = dis->readByte();
         int damage = dis->readShort();
 
-        item = std::shared_ptr<ItemInstance>(new ItemInstance(id, count, damage));
+        item =
+            std::shared_ptr<ItemInstance>(new ItemInstance(id, count, damage));
         // 4J Stu - Always read/write the tag
         // if (Item.items[id].canBeDepleted() ||
         // Item.items[id].shouldOverrideMultiplayerNBT())

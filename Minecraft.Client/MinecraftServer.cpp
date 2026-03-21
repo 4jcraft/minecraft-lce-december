@@ -419,8 +419,8 @@ void MinecraftServer::postProcessTerminate(ProgressRenderer* mcprogress) {
 }
 
 bool MinecraftServer::loadLevel(LevelStorageSource* storageSource,
-                                consstd::t std::wstring& name, __int64 levelSeed,
-                                LevelType* pLevelType,
+                                consstd::t std::wstring& name,
+                                __int64 levelSeed, LevelType* pLevelType,
                                 NetworkGameInitData* initData) {
     //	4J - TODO - do with new save stuff
     //    if (storageSource->requiresConversion(name))
@@ -493,13 +493,14 @@ bool MinecraftServer::loadLevel(LevelStorageSource* storageSource,
         storage = std::shared_ptr<McRegionLevelStorage>(
             new McRegionLevelStorage(newFormatSave, File(L"."), name, true));
 #else
-        storage = std::shared_ptr<McRegionLevelStorage>(new McRegionLevelStorage(
-            new ConsoleSaveFileOriginal(L""), File(L"."), name, true));
+        storage =
+            std::shared_ptr<McRegionLevelStorage>(new McRegionLevelStorage(
+                new ConsoleSaveFileOriginal(L""), File(L"."), name, true));
 #endif
     }
 
     //	McRegionLevelStorage *storage = new McRegionLevelStorage(new
-    //ConsoleSaveFile( L"" ), L"", L"", 0); // original
+    // ConsoleSaveFile( L"" ), L"", L"", 0); // original
     //    McRegionLevelStorage *storage = new McRegionLevelStorage(File(L"."),
     //    name, true); // TODO
     for (unsigned int i = 0; i < levels.length; i++) {
@@ -739,7 +740,7 @@ bool MinecraftServer::loadLevel(LevelStorageSource* storageSource,
         }
     }
     //	printf("Main thread complete at %dms\n",System::currentTimeMillis() -
-    //startTime);
+    // startTime);
 
     // Wait for post processing, then lighting threads, to end (post-processing
     // may make more lighting changes)
@@ -778,7 +779,7 @@ bool MinecraftServer::loadLevel(LevelStorageSource* storageSource,
     //- startTime);
 
     //	printf("Lighting complete at %dms\n",System::currentTimeMillis() -
-    //startTime);
+    // startTime);
 
     if (s_bServerHalted || !g_NetworkManager.IsInSession()) return false;
 
@@ -892,7 +893,8 @@ void MinecraftServer::overwriteHellBordersForNewWorldSize(ServerLevel* level,
 
 #endif
 
-void MinecraftServer::setProgress(consstd::t std::wstring& status, int progress) {
+void MinecraftServer::setProgress(consstd::t std::wstring& status,
+                                  int progress) {
     progressStatus = status;
     this->progress = progress;
     //    logger.info(status + ": " + progress + "%");
@@ -1276,25 +1278,26 @@ void MinecraftServer::run(__int64 seed, void* lpParameter) {
                 } else {
                     //					int tickcount = 0;
                     //					__int64 beforeall =
-                    //System::currentTimeMillis();
+                    // System::currentTimeMillis();
                     while (unprocessedTime > MS_PER_TICK) {
                         unprocessedTime -= MS_PER_TICK;
                         chunkPacketManagement_PreTick();
                         //						__int64
-                        //before = System::currentTimeMillis();
+                        // before = System::currentTimeMillis();
                         tick();
                         //						__int64
-                        //after = System::currentTimeMillis();
+                        // after = System::currentTimeMillis();
                         //						PIXReportCounter(L"Server
-                        //time",(float)(after-before));
+                        // time",(float)(after-before));
 
                         chunkPacketManagement_PostTick();
                     }
                     //					__int64 afterall =
-                    //System::currentTimeMillis(); 					PIXReportCounter(L"Server
-                    //time all",(float)(afterall-beforeall));
+                    // System::currentTimeMillis();
+                    // PIXReportCounter(L"Server time
+                    // all",(float)(afterall-beforeall));
                     //					PIXReportCounter(L"Server
-                    //ticks",(float)tickcount);
+                    // ticks",(float)tickcount);
                 }
             } else {
                 // 4J Stu - TU1-hotfix
@@ -1313,7 +1316,7 @@ void MinecraftServer::run(__int64 seed, void* lpParameter) {
                 MinecraftServer::setTimeAtEndOfTick = false;
                 for (unsigned int i = 0; i < levels.length; i++) {
                     //					if (i == 0 ||
-                    //settings->getBoolean(L"allow-nether", true))
+                    // settings->getBoolean(L"allow-nether", true))
                     //// 4J removed - we always have nether
                     {
                         ServerLevel* level = levels[i];
@@ -1402,8 +1405,9 @@ void MinecraftServer::run(__int64 seed, void* lpParameter) {
                                 Minecraft::GetInstance()->progressRenderer);
                         }
 
-                        players->broadcastAll(std::shared_ptr<UpdateProgressPacket>(
-                            new UpdateProgressPacket(20)));
+                        players->broadcastAll(
+                            std::shared_ptr<UpdateProgressPacket>(
+                                new UpdateProgressPacket(20)));
 
                         for (unsigned int j = 0; j < levels.length; j++) {
                             if (s_bServerHalted) break;
@@ -1880,7 +1884,8 @@ void MinecraftServer::chunkPacketManagement_PreTick() {
     s_tickStartTime = System::currentTimeMillis();
     s_sentTo.clear();
 
-    std::vector<std::shared_ptr<PlayerConnection> >* players = connection->getPlayers();
+    std::vector<std::shared_ptr<PlayerConnection> >* players =
+        connection->getPlayers();
 
     if (players->size()) {
         std::vector<std::shared_ptr<PlayerConnection> > playersOrig = *players;
@@ -1919,7 +1924,7 @@ bool MinecraftServer::chunkPacketManagement_CanSendTo(INetworkPlayer* player) {
     if (player->GetSessionIndex() == s_slowQueuePlayerIndex &&
         (time - s_slowQueueLastTime) > MINECRAFT_SERVER_SLOW_QUEUE_DELAY) {
         //		app.DebugPrintf("Slow queue OK for player #%d\n",
-        //player->GetSessionIndex());
+        // player->GetSessionIndex());
         return true;
     }
 
@@ -1940,7 +1945,7 @@ void MinecraftServer::chunkPacketManagement_PostTick() {
                                     (2 * MINECRAFT_SERVER_SLOW_QUEUE_DELAY))) {
         //		app.DebugPrintf("Considering cycling: (%d) %d - %d -> %d
         //> %d\n",s_slowQueuePacketSent, time, s_slowQueueLastTime, (time -
-        //s_slowQueueLastTime), (2*MINECRAFT_SERVER_SLOW_QUEUE_DELAY));
+        // s_slowQueueLastTime), (2*MINECRAFT_SERVER_SLOW_QUEUE_DELAY));
         MinecraftServer::cycleSlowQueueIndex();
         s_slowQueuePacketSent = false;
         s_slowQueueLastTime = time;
@@ -1979,7 +1984,7 @@ void MinecraftServer::cycleSlowQueueIndex() {
              s_slowQueuePlayerIndex != startingIndex && currentPlayer != NULL &&
              currentPlayer->IsLocal());
     //	app.DebugPrintf("Cycled slow queue index to %d\n",
-    //s_slowQueuePlayerIndex);
+    // s_slowQueuePlayerIndex);
 }
 #endif
 

@@ -104,8 +104,8 @@ void BaseMobSpawner::tick() {
                                   getLevel()->random->nextDouble()) *
                                      spawnRange;
             std::shared_ptr<Mob> mob = entity->instanceof(eTYPE_MOB)
-                                      ? dynamic_pointer_cast<Mob>(entity)
-                                      : nullptr;
+                                           ? dynamic_pointer_cast<Mob>(entity)
+                                           : nullptr;
 
             entity->moveTo(xp, yp, zp, getLevel()->random->nextFloat() * 360,
                            0);

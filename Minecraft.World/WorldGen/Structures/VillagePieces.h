@@ -57,19 +57,20 @@ private:
         std::list<PieceWeight*>* currentPieces);  // 4J = was array list
     static VillagePiece* findAndCreatePieceFactory(
         StartPiece* startPiece, PieceWeight* piece,
-        std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
-        int footZ, int direction, int depth);
+        std::list<StructurePiece*>* pieces, Random* random, int footX,
+        int footY, int footZ, int direction, int depth);
     static VillagePiece* generatePieceFromSmallDoor(
-        StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
-        int footX, int footY, int footZ, int direction, int depth);
-    static StructurePiece* generateAndAddPiece(StartPiece* startPiece,
-                                               std::list<StructurePiece*>* pieces,
-                                               Random* random, int footX,
-                                               int footY, int footZ,
-                                               int direction, int depth);
+        StartPiece* startPiece, std::list<StructurePiece*>* pieces,
+        Random* random, int footX, int footY, int footZ, int direction,
+        int depth);
+    static StructurePiece* generateAndAddPiece(
+        StartPiece* startPiece, std::list<StructurePiece*>* pieces,
+        Random* random, int footX, int footY, int footZ, int direction,
+        int depth);
     static StructurePiece* generateAndAddRoadPiece(
-        StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
-        int footX, int footY, int footZ, int direction, int depth);
+        StartPiece* startPiece, std::list<StructurePiece*>* pieces,
+        Random* random, int footX, int footY, int footZ, int direction,
+        int depth);
 
     /**
      *
@@ -91,10 +92,9 @@ private:
         VillagePiece(StartPiece* startPiece, int genDepth);
         virtual void addAdditonalSaveData(CompoundTag* tag);
         virtual void readAdditonalSaveData(CompoundTag* tag);
-        StructurePiece* generateHouseNorthernLeft(StartPiece* startPiece,
-                                                  std::list<StructurePiece*>* pieces,
-                                                  Random* random, int yOff,
-                                                  int zOff);
+        StructurePiece* generateHouseNorthernLeft(
+            StartPiece* startPiece, std::list<StructurePiece*>* pieces,
+            Random* random, int yOff, int zOff);
         StructurePiece* generateHouseNorthernRight(
             StartPiece* startPiece, std::list<StructurePiece*>* pieces,
             Random* random, int yOff, int zOff);
@@ -137,7 +137,8 @@ public:
         Well(StartPiece* startPiece, int genDepth, Random* random,
              BoundingBox* stairsBox, int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 std::list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces,
+                                 Random* random);
         virtual bool postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB);
     };
@@ -210,7 +211,8 @@ public:
 
     public:
         virtual void addChildren(StructurePiece* startPiece,
-                                 std::list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces,
+                                 Random* random);
         static BoundingBox* findPieceBox(StartPiece* startPiece,
                                          std::list<StructurePiece*>* pieces,
                                          Random* random, int footX, int footY,

@@ -43,7 +43,8 @@ void AddEnchantmentRuleDefinition::addAttribute(
     }
 }
 
-bool AddEnchantmentRuleDefinition::enchantItem(std::shared_ptr<ItemInstance> item) {
+bool AddEnchantmentRuleDefinition::enchantItem(
+    std::shared_ptr<ItemInstance> item) {
     bool enchanted = false;
     if (item != NULL) {
         // 4J-JEV: Ripped code from enchantmenthelpers

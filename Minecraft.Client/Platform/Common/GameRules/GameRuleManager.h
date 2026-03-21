@@ -51,7 +51,7 @@ private:
 public:
     bool readRuleFile(LevelGenerationOptions* lgo, byte* dIn, UINT dSize,
                       StringTable* strings);  //(DLCGameRulesFile *dlcFile,
-                                              //StringTable *strings);
+                                              // StringTable *strings);
 
 private:
     void readAttributes(DataInputStream* dis,

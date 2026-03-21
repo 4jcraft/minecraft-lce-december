@@ -66,8 +66,9 @@ public:
     std::vector<std::shared_ptr<HoldingPlayer> > carriedBy;
 
 private:
-    typedef std::unordered_map<std::shared_ptr<Player>, std::shared_ptr<HoldingPlayer>,
-                          PlayerKeyHash, PlayerKeyEq>
+    typedef std::unordered_map<std::shared_ptr<Player>,
+                               std::shared_ptr<HoldingPlayer>, PlayerKeyHash,
+                               PlayerKeyEq>
         playerHoldingPlayerMapType;
     playerHoldingPlayerMapType carriedByPlayers;
 
@@ -95,7 +96,8 @@ public:
     using SavedData::setDirty;
     void setDirty(int x, int y0, int y1);
     void handleComplexItemData(charArray& data);
-    std::shared_ptr<HoldingPlayer> getHoldingPlayer(std::shared_ptr<Player> player);
+    std::shared_ptr<HoldingPlayer> getHoldingPlayer(
+        std::shared_ptr<Player> player);
 
     // 4J Stu Added
     void mergeInMapData(std::shared_ptr<MapItemSavedData> dataToAdd);

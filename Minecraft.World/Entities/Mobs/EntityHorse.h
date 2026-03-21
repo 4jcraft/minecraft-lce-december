@@ -193,8 +193,8 @@ public:
     virtual bool canSpawn();
 
 protected:
-    virtual std::shared_ptr<EntityHorse> getClosestMommy(std::shared_ptr<Entity> baby,
-                                                    double searchRadius);
+    virtual std::shared_ptr<EntityHorse> getClosestMommy(
+        std::shared_ptr<Entity> baby, double searchRadius);
 
 public:
     virtual double getCustomJump();

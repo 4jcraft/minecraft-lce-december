@@ -16,7 +16,8 @@ public:
 
 private:
     std::vector<FlatLayerInfo*> layers;
-    std::unordered_map<std::wstring, std::unordered_map<std::wstring, std::wstring> >
+    std::unordered_map<std::wstring,
+                       std::unordered_map<std::wstring, std::wstring> >
         structures;
     int biome;
 
@@ -26,7 +27,8 @@ public:
 
     int getBiome();
     void setBiome(int biome);
-    std::unordered_map<std::wstring, std::unordered_map<std::wstring, std::wstring> >*
+    std::unordered_map<std::wstring,
+                       std::unordered_map<std::wstring, std::wstring> >*
     getStructures();
     std::vector<FlatLayerInfo*>* getLayers();
     void updateLayers();

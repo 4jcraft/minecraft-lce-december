@@ -25,7 +25,7 @@ public:
 
 private:
     typedef std::unordered_map<std::shared_ptr<Player>, Vec3*, PlayerKeyHash,
-                          PlayerKeyEq>
+                               PlayerKeyEq>
         playerVec3Map;
     playerVec3Map hitPlayers;
 
@@ -38,9 +38,9 @@ public:
     void explode();
 
 public:
-    void finalizeExplosion(
-        bool generateParticles,
-        std::vector<TilePos>* toBlowDirect = NULL);  // 4J - added toBlow parameter
+    void finalizeExplosion(bool generateParticles,
+                           std::vector<TilePos>* toBlowDirect =
+                               NULL);  // 4J - added toBlow parameter
     playerVec3Map* getHitPlayers();
     Vec3* getHitPlayerKnockback(std::shared_ptr<Player> player);
     std::shared_ptr<LivingEntity> getSourceMob();

@@ -161,7 +161,7 @@ LevelRenderer::LevelRenderer(Minecraft* mc, Textures* textures) {
         emptyChunks = 0;
     for (int i = 0; i < 4; i++) {
         //		sortedChunks[i] = NULL;	// 4J - removed - not sorting
-        //our chunks anymore
+        // our chunks anymore
         chunks[i] = ClipChunkArray();
         lastPlayerCount[i] = 0;
     }
@@ -380,7 +380,7 @@ void LevelRenderer::setLevel(int playerIndex, MultiPlayerLevel* level) {
         allChanged(playerIndex);
     } else {
         //		printf("NULLing player %d, chunks @
-        //0x%x\n",playerIndex,chunks[playerIndex]);
+        // 0x%x\n",playerIndex,chunks[playerIndex]);
         if (chunks[playerIndex].data != NULL) {
             for (unsigned int i = 0; i < chunks[playerIndex].length; i++) {
                 chunks[playerIndex][i].chunk->_delete();
@@ -390,8 +390,9 @@ void LevelRenderer::setLevel(int playerIndex, MultiPlayerLevel* level) {
             chunks[playerIndex].data = NULL;
             chunks[playerIndex].length = 0;
             //			delete sortedChunks[playerIndex];	// 4J -
-            //removed - not sorting our chunks anymore 			sortedChunks[playerIndex]
-            //= NULL;	// 4J - removed - not sorting our chunks anymore
+            // removed - not sorting our chunks anymore
+            // sortedChunks[playerIndex] = NULL;	// 4J - removed - not
+            //sorting our chunks anymore
         }
 
         // 4J Stu - If we do this for splitscreen players leaving, then all the
@@ -465,7 +466,7 @@ void LevelRenderer::allChanged(int playerIndex) {
 
     chunks[playerIndex] = ClipChunkArray(xChunks * yChunks * zChunks);
     //	sortedChunks[playerIndex] = new vector<Chunk *>(xChunks * yChunks *
-    //zChunks);		// 4J - removed - not sorting our chunks anymore
+    // zChunks);		// 4J - removed - not sorting our chunks anymore
     int id = 0;
     int count = 0;
 
@@ -496,8 +497,8 @@ void LevelRenderer::allChanged(int playerIndex) {
                     count++;
                 //				sortedChunks[playerIndex]->at((z
                 //* yChunks + y) * xChunks + x) = chunks[playerIndex]->at((z *
-                //yChunks + y) * xChunks + x);	// 4J - removed - not sorting
-                //our chunks anymore
+                // yChunks + y) * xChunks + x);	// 4J - removed - not sorting
+                // our chunks anymore
 
                 id += 3;
             }
@@ -511,8 +512,8 @@ void LevelRenderer::allChanged(int playerIndex) {
             this->resortChunks(Mth::floor(player->x), Mth::floor(player->y),
                                Mth::floor(player->z));
             //			sort(sortedChunks[playerIndex]->begin(),sortedChunks[playerIndex]->end(),
-            //DistanceChunkSorter(player));	// 4J - removed - not sorting
-            //our chunks anymore
+            // DistanceChunkSorter(player));	// 4J - removed - not sorting
+            // our chunks anymore
         }
     }
 
@@ -561,7 +562,8 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
 
     mc->gameRenderer->turnOnLightLayer(a);  // 4J - brought forward from 1.8.2
 
-    std::vector<std::shared_ptr<Entity> > entities = level[playerIndex]->getAllEntities();
+    std::vector<std::shared_ptr<Entity> > entities =
+        level[playerIndex]->getAllEntities();
     totalEntities = (int)entities.size();
 
     AUTO_VAR(itEndGE, level[playerIndex]->globalEntities.end());
@@ -763,8 +765,8 @@ int LevelRenderer::render(std::shared_ptr<LivingEntity> player, int layer,
         resortChunks(Mth::floor(player->x), Mth::floor(player->y),
                      Mth::floor(player->z));
         //		sort(sortedChunks[playerIndex]->begin(),sortedChunks[playerIndex]->end(),
-        //DistanceChunkSorter(player));	// 4J - removed - not sorting our chunks
-        //anymore
+        // DistanceChunkSorter(player));	// 4J - removed - not sorting
+        // our chunks anymore
     }
     Lighting::turnOff();
 
@@ -2052,7 +2054,7 @@ bool LevelRenderer::updateDirtyChunks() {
 
             //			app.DebugPrintf("!! %d %d %d, %d %d %d {%d,%d}
             //",px,py,pz,stackChunkDirty,nonStackChunkDirty,onlyRebuild,
-            //xChunks, zChunks);
+            // xChunks, zChunks);
 
             int considered = 0;
             int wouldBeNearButEmpty = 0;
@@ -2233,8 +2235,9 @@ bool LevelRenderer::updateDirtyChunks() {
 
             if (bAtomic || (index == 0)) {
                 // PIXBeginNamedEvent(0,"Rebuilding near chunk %d %d
-                // %d",chunk->x, chunk->y, chunk->z); 		static __int64 totalTime =
-                //0; 		static __int64 countTime = 0;
+                // %d",chunk->x, chunk->y, chunk->z); 		static __int64
+                // totalTime =
+                // 0; 		static __int64 countTime = 0;
                 //		__int64 startTime = System::currentTimeMillis();
 
                 // app.DebugPrintf("Rebuilding permaChunk %d\n", index);
@@ -2530,7 +2533,7 @@ void LevelRenderer::setDirty(int x0, int y0, int z0, int x1, int y1, int z1,
         for (int y = _y0; y <= _y1; y++) {
             for (int z = _z0; z <= _z1; z++) {
                 //				printf("Setting %d %d %d
-                //dirty\n",x,y,z);
+                // dirty\n",x,y,z);
                 int index =
                     getGlobalIndexForChunk(x * 16, y * 16, z * 16, level);
                 // Rather than setting the flags directly, add any dirty chunks
@@ -2608,7 +2611,7 @@ void LevelRenderer::setDirty(int x0, int y0, int z0, int x1, int y1, int z1,
 #endif
                 }
                 //				setGlobalChunkFlag(x * 16, y *
-                //16, z * 16, level, CHUNK_FLAG_DIRTY);
+                // 16, z * 16, level, CHUNK_FLAG_DIRTY);
             }
         }
     }
@@ -3016,8 +3019,9 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
                 new SuspendedTownParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_crit: {
-            std::shared_ptr<CritParticle2> critParticle2 = std::shared_ptr<CritParticle2>(
-                new CritParticle2(lev, x, y, z, xa, ya, za));
+            std::shared_ptr<CritParticle2> critParticle2 =
+                std::shared_ptr<CritParticle2>(
+                    new CritParticle2(lev, x, y, z, xa, ya, za));
             critParticle2->CritParticle2PostConstructor();
             particle = std::shared_ptr<Particle>(critParticle2);
             // request from 343 to set pink for the needler in the Halo Texture
@@ -3045,8 +3049,9 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
             }
         } break;
         case eParticleType_magicCrit: {
-            std::shared_ptr<CritParticle2> critParticle2 = std::shared_ptr<CritParticle2>(
-                new CritParticle2(lev, x, y, z, xa, ya, za));
+            std::shared_ptr<CritParticle2> critParticle2 =
+                std::shared_ptr<CritParticle2>(
+                    new CritParticle2(lev, x, y, z, xa, ya, za));
             critParticle2->CritParticle2PostConstructor();
             particle = std::shared_ptr<Particle>(critParticle2);
             particle->setColor(particle->getRedCol() * 0.3f,
@@ -3072,8 +3077,8 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
             particle = std::shared_ptr<Particle>(tmp);
         } break;
         case eParticleType_mobSpell:
-            particle =
-                std::shared_ptr<Particle>(new SpellParticle(lev, x, y, z, 0, 0, 0));
+            particle = std::shared_ptr<Particle>(
+                new SpellParticle(lev, x, y, z, 0, 0, 0));
             particle->setColor((float)xa, (float)ya, (float)za);
             break;
         case eParticleType_mobSpellAmbient:
@@ -3124,7 +3129,8 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
                 new FlameParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_lava:
-            particle = std::shared_ptr<Particle>(new LavaParticle(lev, x, y, z));
+            particle =
+                std::shared_ptr<Particle>(new LavaParticle(lev, x, y, z));
             break;
         case eParticleType_footstep:
             particle = std::shared_ptr<Particle>(

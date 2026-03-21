@@ -197,7 +197,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
                                     e->entityId, (char)xa, (char)ya, (char)za,
                                     (char)yRota, (char)xRota));
                             //					printf("%d: New
-                            //posrot %d + %d =
+                            // posrot %d + %d =
                             //%d\n",e->entityId,yRotp,yRota,yRotn);
                             c0b++;
                         }
@@ -247,7 +247,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
                             c2a++;
                         } else {
                             //					printf("%d: New
-                            //rot %d + %d =
+                            // rot %d + %d =
                             //%d\n",e->entityId,yRotp,yRota,yRotn);
                             packet = std::shared_ptr<MoveEntityPacket>(
                                 new MoveEntityPacket::Rot(
@@ -329,8 +329,8 @@ void TrackedEntity::tick(EntityTracker* tracker,
 
     if (e->hurtMarked) {
         // broadcast(new AnimatePacket(e, AnimatePacket.HURT));
-        broadcastAndSend(
-            std::shared_ptr<SetEntityMotionPacket>(new SetEntityMotionPacket(e)));
+        broadcastAndSend(std::shared_ptr<SetEntityMotionPacket>(
+            new SetEntityMotionPacket(e)));
         e->hurtMarked = false;
     }
 }
@@ -343,7 +343,8 @@ void TrackedEntity::sendDirtyEntityData() {
     }
 
     if (e->instanceof(eTYPE_LIVINGENTITY)) {
-        std::shared_ptr<LivingEntity> living = dynamic_pointer_cast<LivingEntity>(e);
+        std::shared_ptr<LivingEntity> living =
+            dynamic_pointer_cast<LivingEntity>(e);
         ServersideAttributeMap* attributeMap =
             (ServersideAttributeMap*)living->getAttributes();
         std::unordered_set<AttributeInstance*>* attributes =
@@ -392,7 +393,8 @@ void TrackedEntity::broadcast(std::shared_ptr<Packet> packet) {
                             // #ifdef _DEBUG
                             // 					shared_ptr<SetEntityMotionPacket>
                             // emp= dynamic_pointer_cast<SetEntityMotionPacket>
-                            // (packet); 					if(emp!=NULL)
+                            // (packet);
+                            // if(emp!=NULL)
                             // 					{
                             // 						app.DebugPrintf("Not
                             // sending this SetEntityMotionPacket to player -
@@ -424,9 +426,10 @@ void TrackedEntity::broadcast(std::shared_ptr<Packet> packet) {
 void TrackedEntity::broadcastAndSend(std::shared_ptr<Packet> packet) {
     std::vector<std::shared_ptr<ServerPlayer> > sentTo;
     broadcast(packet);
-    std::shared_ptr<ServerPlayer> sp = e->instanceof(eTYPE_SERVERPLAYER)
-                                      ? dynamic_pointer_cast<ServerPlayer>(e)
-                                      : nullptr;
+    std::shared_ptr<ServerPlayer> sp =
+        e->instanceof(eTYPE_SERVERPLAYER)
+            ? dynamic_pointer_cast<ServerPlayer>(e)
+            : nullptr;
     if (sp != NULL && sp->connection) {
         sp->connection->send(packet);
     }
@@ -487,7 +490,8 @@ TrackedEntity::eVisibility TrackedEntity::isVisible(
                 // Consider extra players, but not if they are the entity we are
                 // tracking, or the player we've been passed as input, or in
                 // another dimension
-                std::shared_ptr<ServerPlayer> ep = server->getPlayers()->players[i];
+                std::shared_ptr<ServerPlayer> ep =
+                    server->getPlayers()->players[i];
                 if (ep == sp) continue;
                 if (ep == e) continue;
                 if (ep->dimension != sp->dimension) continue;
@@ -612,17 +616,20 @@ void TrackedEntity::updatePlayer(EntityTracker* tracker,
         if (e->instanceof(eTYPE_PLAYER)) {
             std::shared_ptr<Player> spe = dynamic_pointer_cast<Player>(e);
             if (spe->isSleeping()) {
-                sp->connection->send(std::shared_ptr<EntityActionAtPositionPacket>(
-                    new EntityActionAtPositionPacket(
-                        e, EntityActionAtPositionPacket::START_SLEEP,
-                        Mth::floor(e->x), Mth::floor(e->y), Mth::floor(e->z))));
+                sp->connection->send(
+                    std::shared_ptr<EntityActionAtPositionPacket>(
+                        new EntityActionAtPositionPacket(
+                            e, EntityActionAtPositionPacket::START_SLEEP,
+                            Mth::floor(e->x), Mth::floor(e->y),
+                            Mth::floor(e->z))));
             }
         }
 
         if (e->instanceof(eTYPE_LIVINGENTITY)) {
             std::shared_ptr<LivingEntity> mob =
                 dynamic_pointer_cast<LivingEntity>(e);
-            std::vector<MobEffectInstance*>* activeEffects = mob->getActiveEffects();
+            std::vector<MobEffectInstance*>* activeEffects =
+                mob->getActiveEffects();
             for (AUTO_VAR(it, activeEffects->begin());
                  it != activeEffects->end(); ++it) {
                 MobEffectInstance* effect = *it;
@@ -650,11 +657,11 @@ bool TrackedEntity::canBySeenBy(std::shared_ptr<ServerPlayer> player) {
 
     return true;
     //	return player->getLevel()->getChunkMap()->isPlayerIn(player, e->xChunk,
-    //e->zChunk);
+    // e->zChunk);
 }
 
-void TrackedEntity::updatePlayers(EntityTracker* tracker,
-                                  std::vector<std::shared_ptr<Player> >* players) {
+void TrackedEntity::updatePlayers(
+    EntityTracker* tracker, std::vector<std::shared_ptr<Player> >* players) {
     for (unsigned int i = 0; i < players->size(); i++) {
         updatePlayer(tracker,
                      dynamic_pointer_cast<ServerPlayer>(players->at(i)));
@@ -680,7 +687,8 @@ std::shared_ptr<Packet> TrackedEntity::getAddEntityPacket() {
                 e, AddEntityPacket::ITEM, 1, yRotp, xRotp, xp, yp, zp));
         return packet;
     } else if (e->instanceof(eTYPE_SERVERPLAYER)) {
-        std::shared_ptr<ServerPlayer> player = dynamic_pointer_cast<ServerPlayer>(e);
+        std::shared_ptr<ServerPlayer> player =
+            dynamic_pointer_cast<ServerPlayer>(e);
 
         PlayerUID xuid = INVALID_XUID;
         PlayerUID OnlineXuid = INVALID_XUID;
@@ -707,7 +715,8 @@ std::shared_ptr<Packet> TrackedEntity::getAddEntityPacket() {
             new AddMobPacket(dynamic_pointer_cast<LivingEntity>(e), yRotp,
                              xRotp, xp, yp, zp, yHeadRotp));
     } else if (e->instanceof(eTYPE_FISHINGHOOK)) {
-        std::shared_ptr<Entity> owner = dynamic_pointer_cast<FishingHook>(e)->owner;
+        std::shared_ptr<Entity> owner =
+            dynamic_pointer_cast<FishingHook>(e)->owner;
         return std::shared_ptr<AddEntityPacket>(
             new AddEntityPacket(e, AddEntityPacket::FISH_HOOK,
                                 owner != NULL ? owner->entityId : e->entityId,
@@ -789,9 +798,10 @@ std::shared_ptr<Packet> TrackedEntity::getAddEntityPacket() {
             app.DebugPrintf("eTYPE_ITEM_FRAME xyz %d,%d,%d\n", ix, iy, iz);
         }
 
-        std::shared_ptr<AddEntityPacket> packet = std::shared_ptr<AddEntityPacket>(
-            new AddEntityPacket(e, AddEntityPacket::ITEM_FRAME, frame->dir,
-                                yRotp, xRotp, xp, yp, zp));
+        std::shared_ptr<AddEntityPacket> packet =
+            std::shared_ptr<AddEntityPacket>(
+                new AddEntityPacket(e, AddEntityPacket::ITEM_FRAME, frame->dir,
+                                    yRotp, xRotp, xp, yp, zp));
         packet->x = Mth::floor(frame->xTile * 32.0f);
         packet->y = Mth::floor(frame->yTile * 32.0f);
         packet->z = Mth::floor(frame->zTile * 32.0f);

@@ -101,8 +101,8 @@ void EggTile::teleport(Level* level, int x, int y, int z) {
 
             //			double _x = xt + (x - xt) * d +
             //(level->random->nextDouble() - 0.5) * 1 + 0.5f;
-            //double _y = yt + (y - yt) * d + level->random->nextDouble() * 1 -
-            //0.5f; 			double _z = zt + (z - zt) * d +
+            // double _y = yt + (y - yt) * d + level->random->nextDouble() * 1 -
+            // 0.5f; 			double _z = zt + (z - zt) * d +
             // (level->random->nextDouble() - 0.5) * 1 + 0.5f;
             // level->addParticle(eParticleType_ender, _x, _y, _z, xa, ya, za);
             //		}

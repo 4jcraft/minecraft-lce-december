@@ -277,8 +277,8 @@ std::wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal,
             m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::stick_Id, 1, 0));
         } else if (temp.find(L"{*PlanksIcon*}") != wstring::npos) {
-            m_iconItem =
-                std::shared_ptr<ItemInstance>(new ItemInstance(Tile::wood_Id, 1, 0));
+            m_iconItem = std::shared_ptr<ItemInstance>(
+                new ItemInstance(Tile::wood_Id, 1, 0));
         } else if (temp.find(L"{*WoodenShovelIcon*}") != wstring::npos) {
             m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::shovel_wood_Id, 1, 0));
@@ -298,8 +298,8 @@ std::wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal,
             m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::torch_Id, 1, 0));
         } else if (temp.find(L"{*BoatIcon*}") != wstring::npos) {
-            m_iconItem =
-                std::shared_ptr<ItemInstance>(new ItemInstance(Item::boat_Id, 1, 0));
+            m_iconItem = std::shared_ptr<ItemInstance>(
+                new ItemInstance(Item::boat_Id, 1, 0));
         } else if (temp.find(L"{*FishingRodIcon*}") != wstring::npos) {
             m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::fishingRod_Id, 1, 0));
@@ -310,8 +310,8 @@ std::wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal,
             m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::minecart_Id, 1, 0));
         } else if (temp.find(L"{*RailIcon*}") != wstring::npos) {
-            m_iconItem =
-                std::shared_ptr<ItemInstance>(new ItemInstance(Tile::rail_Id, 1, 0));
+            m_iconItem = std::shared_ptr<ItemInstance>(
+                new ItemInstance(Tile::rail_Id, 1, 0));
         } else if (temp.find(L"{*PoweredRailIcon*}") != wstring::npos) {
             m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::goldenRail_Id, 1, 0));

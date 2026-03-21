@@ -149,8 +149,8 @@ ServerLevel::ServerLevel(MinecraftServer* server,
     // ScoreboardSaveData::FILE_ID) ); if (scoreboardSaveData == NULL)
     //{
     //	scoreboardSaveData = shared_ptr<ScoreboardSaveData>( new
-    //ScoreboardSaveData() ); 	savedDataStorage->set(ScoreboardSaveData::FILE_ID,
-    //scoreboardSaveData);
+    // ScoreboardSaveData() );
+    // savedDataStorage->set(ScoreboardSaveData::FILE_ID, scoreboardSaveData);
     // }
     // scoreboardSaveData->setScoreboard(scoreboard);
     //((ServerScoreboard *) scoreboard)->setSaveData(scoreboardSaveData);
@@ -404,7 +404,8 @@ bool ServerLevel::allPlayersAreSleeping() {
     if (allPlayersSleeping && !isClientSide) {
         // all players are sleeping, but have they slept long enough?
         AUTO_VAR(itEnd, players.end());
-        for (std::vector<std::shared_ptr<Player> >::iterator it = players.begin();
+        for (std::vector<std::shared_ptr<Player> >::iterator it =
+                 players.begin();
              it != itEnd; it++) {
             //                System.out.println(player->entityId + ": " +
             //                player->getSleepTimer());
@@ -704,7 +705,7 @@ bool ServerLevel::tickPendingTicks(bool force) {
 }
 
 std::vector<TickNextTickData>* ServerLevel::fetchTicksInChunk(LevelChunk* chunk,
-                                                         bool remove) {
+                                                              bool remove) {
     EnterCriticalSection(&m_tickNextTickCS);
     std::vector<TickNextTickData>* results = new std::vector<TickNextTickData>;
 
@@ -968,7 +969,8 @@ void ServerLevel::save(bool force, ProgressListener* progressListener,
         if (chunkMap->players.size() > 0) {
             // 4J Stu - This will come in a later change anyway
             // clean cache
-            std::vector<LevelChunk*>* loadedChunkList = cache->getLoadedChunkList();
+            std::vector<LevelChunk*>* loadedChunkList =
+                cache->getLoadedChunkList();
             for (AUTO_VAR(it, loadedChunkList->begin());
                  it != loadedChunkList->end(); ++it) {
                 LevelChunk* lc = *it;
@@ -983,7 +985,7 @@ void ServerLevel::save(bool force, ProgressListener* progressListener,
     // if( force && !isClientSide )
     //{
     //	if (progressListener != NULL)
-    //progressListener->progressStage(IDS_PROGRESS_SAVING_TO_DISC);
+    // progressListener->progressStage(IDS_PROGRESS_SAVING_TO_DISC);
     //	levelStorage->flushSaveFile();
     // }
 }
@@ -1052,9 +1054,9 @@ std::shared_ptr<Entity> ServerLevel::getEntity(int id) {
 
 bool ServerLevel::addGlobalEntity(std::shared_ptr<Entity> e) {
     if (Level::addGlobalEntity(e)) {
-        server->getPlayers()->broadcast(
-            e->x, e->y, e->z, 512, dimension->id,
-            std::shared_ptr<AddGlobalEntityPacket>(new AddGlobalEntityPacket(e)));
+        server->getPlayers()->broadcast(e->x, e->y, e->z, 512, dimension->id,
+                                        std::shared_ptr<AddGlobalEntityPacket>(
+                                            new AddGlobalEntityPacket(e)));
         return true;
     }
     return false;
@@ -1067,9 +1069,9 @@ void ServerLevel::broadcastEntityEvent(std::shared_ptr<Entity> e, byte event) {
 }
 
 std::shared_ptr<Explosion> ServerLevel::explode(std::shared_ptr<Entity> source,
-                                           double x, double y, double z,
-                                           float r, bool fire,
-                                           bool destroyBlocks) {
+                                                double x, double y, double z,
+                                                float r, bool fire,
+                                                bool destroyBlocks) {
     // instead of calling super, we run the same explosion code here except
     // we don't generate any particles
     std::shared_ptr<Explosion> explosion =
@@ -1386,7 +1388,8 @@ void ServerLevel::entityRemovedExtra(std::shared_ptr<Entity> e) {
         EnterCriticalSection(&m_limiterCS);
         //		printf("entity removed: item entity count
         //%d\n",m_itemEntities.size());
-        AUTO_VAR(it, std::find(m_itemEntities.begin(), m_itemEntities.end(), e));
+        AUTO_VAR(it,
+                 std::find(m_itemEntities.begin(), m_itemEntities.end(), e));
         if (it != m_itemEntities.end()) {
             //			printf("Item to remove found\n");
             m_itemEntities.erase(it);
@@ -1398,8 +1401,8 @@ void ServerLevel::entityRemovedExtra(std::shared_ptr<Entity> e) {
         EnterCriticalSection(&m_limiterCS);
         //		printf("entity removed: item entity count
         //%d\n",m_itemEntities.size());
-        AUTO_VAR(it,
-                 std::find(m_hangingEntities.begin(), m_hangingEntities.end(), e));
+        AUTO_VAR(it, std::find(m_hangingEntities.begin(),
+                               m_hangingEntities.end(), e));
         if (it != m_hangingEntities.end()) {
             //			printf("Item to remove found\n");
             m_hangingEntities.erase(it);
@@ -1411,7 +1414,8 @@ void ServerLevel::entityRemovedExtra(std::shared_ptr<Entity> e) {
         EnterCriticalSection(&m_limiterCS);
         //		printf("entity removed: arrow entity count
         //%d\n",m_arrowEntities.size());
-        AUTO_VAR(it, std::find(m_arrowEntities.begin(), m_arrowEntities.end(), e));
+        AUTO_VAR(it,
+                 std::find(m_arrowEntities.begin(), m_arrowEntities.end(), e));
         if (it != m_arrowEntities.end()) {
             //			printf("Item to remove found\n");
             m_arrowEntities.erase(it);
@@ -1424,7 +1428,7 @@ void ServerLevel::entityRemovedExtra(std::shared_ptr<Entity> e) {
         //		printf("entity removed: experience orb entity count
         //%d\n",m_arrowEntities.size());
         AUTO_VAR(it, std::find(m_experienceOrbEntities.begin(),
-                          m_experienceOrbEntities.end(), e));
+                               m_experienceOrbEntities.end(), e));
         if (it != m_experienceOrbEntities.end()) {
             //			printf("Item to remove found\n");
             m_experienceOrbEntities.erase(it);

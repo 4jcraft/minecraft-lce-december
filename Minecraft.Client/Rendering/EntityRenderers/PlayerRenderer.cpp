@@ -197,7 +197,8 @@ void PlayerRenderer::render(std::shared_ptr<Entity> _mob, double x, double y,
     }
 
     // 4J-PB - any additional parts to turn on for this player (skin dependent)
-    std::vector<ModelPart*>* pAdditionalModelParts = mob->GetAdditionalModelParts();
+    std::vector<ModelPart*>* pAdditionalModelParts =
+        mob->GetAdditionalModelParts();
     // turn them on
     if (pAdditionalModelParts != NULL) {
         for (AUTO_VAR(it, pAdditionalModelParts->begin());

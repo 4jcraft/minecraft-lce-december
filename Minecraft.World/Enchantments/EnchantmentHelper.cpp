@@ -46,15 +46,17 @@ std::unordered_map<int, int>* EnchantmentHelper::getEnchantments(
             int level =
                 list->get(i)->getShort((wchar_t*)ItemInstance::TAG_ENCH_LEVEL);
 
-            result->insert(std::unordered_map<int, int>::value_type(type, level));
+            result->insert(
+                std::unordered_map<int, int>::value_type(type, level));
         }
     }
 
     return result;
 }
 
-void EnchantmentHelper::setEnchantments(std::unordered_map<int, int>* enchantments,
-                                        std::shared_ptr<ItemInstance> item) {
+void EnchantmentHelper::setEnchantments(
+    std::unordered_map<int, int>* enchantments,
+    std::shared_ptr<ItemInstance> item) {
     ListTag<CompoundTag>* list = new ListTag<CompoundTag>();
 
     // for (int id : enchantments.keySet())
@@ -448,7 +450,8 @@ EnchantmentHelper::getAvailableEnchantmentResults(
             if (value >= e->getMinCost(level) &&
                 value <= e->getMaxCost(level)) {
                 if (results == NULL) {
-                    results = new std::unordered_map<int, EnchantmentInstance*>();
+                    results =
+                        new std::unordered_map<int, EnchantmentInstance*>();
                 }
                 AUTO_VAR(it, results->find(e->id));
                 if (it != results->end()) {

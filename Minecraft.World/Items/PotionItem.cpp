@@ -46,7 +46,8 @@ std::vector<MobEffectInstance*>* PotionItem::getMobEffects(
         return effects == NULL ? NULL
                                : new std::vector<MobEffectInstance*>(*effects);
     } else {
-        std::vector<MobEffectInstance*>* effects = new std::vector<MobEffectInstance*>();
+        std::vector<MobEffectInstance*>* effects =
+            new std::vector<MobEffectInstance*>();
         ListTag<CompoundTag>* customList =
             (ListTag<CompoundTag>*)potion->getTag()->getList(
                 L"CustomPotionEffects");
@@ -68,7 +69,8 @@ std::vector<MobEffectInstance*>* PotionItem::getMobEffects(int auxValue) {
         effects = PotionBrewing::getEffects(auxValue, false);
         if (effects != NULL)
             cachedMobEffects.insert(
-                std::pair<int, std::vector<MobEffectInstance*>*>(auxValue, effects));
+                std::pair<int, std::vector<MobEffectInstance*>*>(auxValue,
+                                                                 effects));
     }
     return effects;
 }
@@ -92,8 +94,8 @@ std::shared_ptr<ItemInstance> PotionItem::useTimeDepleted(
             return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::glassBottle));
         } else {
-            player->inventory->add(
-                std::shared_ptr<ItemInstance>(new ItemInstance(Item::glassBottle)));
+            player->inventory->add(std::shared_ptr<ItemInstance>(
+                new ItemInstance(Item::glassBottle)));
         }
     }
 
@@ -226,7 +228,8 @@ std::wstring PotionItem::getHoverName(
 
 void PotionItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                                  std::shared_ptr<Player> player,
-                                 std::vector<HtmlString>* lines, bool advanced) {
+                                 std::vector<HtmlString>* lines,
+                                 bool advanced) {
     if (itemInstance->getAuxValue() == 0) {
         return;
     }
@@ -237,11 +240,12 @@ void PotionItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
         // for (MobEffectInstance effect : effects)
         for (AUTO_VAR(it, effects->begin()); it != effects->end(); ++it) {
             MobEffectInstance* effect = *it;
-            std::wstring effectString = app.GetString(effect->getDescriptionId());
+            std::wstring effectString =
+                app.GetString(effect->getDescriptionId());
 
             MobEffect* mobEffect = MobEffect::effects[effect->getId()];
-            std::unordered_map<Attribute*, AttributeModifier*>* effectModifiers =
-                mobEffect->getAttributeModifiers();
+            std::unordered_map<Attribute*, AttributeModifier*>*
+                effectModifiers = mobEffect->getAttributeModifiers();
 
             if (effectModifiers != NULL && effectModifiers->size() > 0) {
                 for (AUTO_VAR(it, effectModifiers->begin());

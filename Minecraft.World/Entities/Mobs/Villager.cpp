@@ -351,7 +351,8 @@ void Villager::addOffers(int addCount) {
                 newOffers->push_back(new MerchantRecipe(
                     std::shared_ptr<ItemInstance>(
                         new ItemInstance(Tile::gravel, 10)),
-                    std::shared_ptr<ItemInstance>(new ItemInstance(Item::emerald)),
+                    std::shared_ptr<ItemInstance>(
+                        new ItemInstance(Item::emerald)),
                     std::shared_ptr<ItemInstance>(new ItemInstance(
                         Item::flint_Id, 4 + random->nextInt(2), 0))));
             }

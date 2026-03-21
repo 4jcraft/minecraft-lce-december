@@ -30,8 +30,9 @@ void StringTable::ProcessStringTableData(void) {
         std::wstring langId = dis.readUTF();
         int langSize = dis.readInt();
 
-        langSizeMap.push_back(std::vector<std::pair<std::wstring, int> >::value_type(
-            langId, langSize));
+        langSizeMap.push_back(
+            std::vector<std::pair<std::wstring, int> >::value_type(langId,
+                                                                   langSize));
     }
 
     std::vector<std::wstring> locales;

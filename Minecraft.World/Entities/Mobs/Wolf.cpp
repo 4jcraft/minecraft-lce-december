@@ -233,7 +233,8 @@ bool Wolf::hurt(DamageSource* source, float dmg) {
     if (isTame()) {
         std::shared_ptr<Entity> entity = source->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            std::shared_ptr<Player> attacker = dynamic_pointer_cast<Player>(entity);
+            std::shared_ptr<Player> attacker =
+                dynamic_pointer_cast<Player>(entity);
             attacker->canHarmPlayer(getOwnerUUID());
         }
     }
@@ -432,7 +433,8 @@ std::shared_ptr<AgableMob> Wolf::getBreedOffspring(
     std::shared_ptr<AgableMob> target) {
     // 4J - added limit to wolves that can be bred
     if (level->canCreateMore(GetType(), Level::eSpawnType_Breed)) {
-        std::shared_ptr<Wolf> pBabyWolf = std::shared_ptr<Wolf>(new Wolf(level));
+        std::shared_ptr<Wolf> pBabyWolf =
+            std::shared_ptr<Wolf>(new Wolf(level));
 
         if (!getOwnerUUID().empty()) {
             // set the baby wolf to be tame, and assign the owner

@@ -40,8 +40,10 @@ public:
         unsigned int dimensionIndex) = 0;
 
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
-    virtual std::wstring getPlayerDataFilenameForLoad(const PlayerUID& pUID) = 0;
-    virtual std::wstring getPlayerDataFilenameForSave(const PlayerUID& pUID) = 0;
+    virtual std::wstring getPlayerDataFilenameForLoad(
+        const PlayerUID& pUID) = 0;
+    virtual std::wstring getPlayerDataFilenameForSave(
+        const PlayerUID& pUID) = 0;
     virtual std::vector<FileEntry*>* getValidPlayerDatFiles() = 0;
 #endif  //__PS3__
 

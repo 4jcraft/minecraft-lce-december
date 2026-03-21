@@ -233,7 +233,8 @@ void PendingConnection::handleGetInfo(std::shared_ptr<GetInfoPacket> packet) {
     //}
 }
 
-void PendingConnection::handleKeepAlive(std::shared_ptr<KeepAlivePacket> packet) {
+void PendingConnection::handleKeepAlive(
+    std::shared_ptr<KeepAlivePacket> packet) {
     // Ignore
 }
 

@@ -207,11 +207,9 @@ void McRegionLevelStorageSource::addRegions(File &baseFolder, std::vector<ChunkF
 }
 #endif
 
-void McRegionLevelStorageSource::convertRegions(File& baseFolder,
-                                                std::vector<ChunkFile*>* chunkFiles,
-                                                int currentCount,
-                                                int totalCount,
-                                                ProgressListener* progress) {
+void McRegionLevelStorageSource::convertRegions(
+    File& baseFolder, std::vector<ChunkFile*>* chunkFiles, int currentCount,
+    int totalCount, ProgressListener* progress) {
     assert(false);
 
     // 4J Stu - Removed, see comment in convertLevel above

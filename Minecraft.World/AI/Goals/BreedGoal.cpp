@@ -64,7 +64,8 @@ std::shared_ptr<Animal> BreedGoal::getFreePartner() {
 }
 
 void BreedGoal::breed() {
-    std::shared_ptr<AgableMob> offspring = animal->getBreedOffspring(partner.lock());
+    std::shared_ptr<AgableMob> offspring =
+        animal->getBreedOffspring(partner.lock());
     animal->setDespawnProtected();
     partner.lock()->setDespawnProtected();
     if (offspring == NULL) {

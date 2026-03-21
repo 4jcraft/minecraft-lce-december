@@ -44,7 +44,8 @@ bool RecordingItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
 
 void RecordingItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                                     std::shared_ptr<Player> player,
-                                    std::vector<HtmlString>* lines, bool advanced) {
+                                    std::vector<HtmlString>* lines,
+                                    bool advanced) {
     eMinecraftColour color = getRarity(std::shared_ptr<ItemInstance>())->color;
 
     wchar_t text[256];

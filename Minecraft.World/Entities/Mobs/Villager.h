@@ -127,7 +127,7 @@ private:
     static void addItemForTradeIn(MerchantRecipeList* list, int itemId,
                                   Random* random, float likelyHood);
     static std::shared_ptr<ItemInstance> getItemTradeInValue(int itemId,
-                                                        Random* random);
+                                                             Random* random);
     static int getTradeInValue(int itemId, Random* random);
 
     /**

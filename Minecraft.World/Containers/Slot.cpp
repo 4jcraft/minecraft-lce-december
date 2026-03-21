@@ -33,7 +33,8 @@ void Slot::checkTakeAchievements(std::shared_ptr<ItemInstance> picked) {}
 
 void Slot::swap(Slot* other) {
     std::shared_ptr<ItemInstance> item1 = container->getItem(slot);
-    std::shared_ptr<ItemInstance> item2 = other->container->getItem(other->slot);
+    std::shared_ptr<ItemInstance> item2 =
+        other->container->getItem(other->slot);
 
     if (item1 != NULL && item1->count > other->getMaxStackSize()) {
         if (item2 != NULL) return;

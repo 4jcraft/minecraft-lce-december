@@ -277,7 +277,8 @@ bool EntityHorse::hurt(DamageSource* damagesource, float dmg) {
     if (isTamed()) {
         std::shared_ptr<Entity> entity = damagesource->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            std::shared_ptr<Player> attacker = dynamic_pointer_cast<Player>(entity);
+            std::shared_ptr<Player> attacker =
+                dynamic_pointer_cast<Player>(entity);
             attacker->canHarmPlayer(getOwnerName());
         }
     }

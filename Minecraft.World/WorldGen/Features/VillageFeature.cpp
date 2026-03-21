@@ -25,8 +25,8 @@ void VillageFeature::_init(int iXZSize) {
 
 VillageFeature::VillageFeature(int iXZSize) { _init(iXZSize); }
 
-VillageFeature::VillageFeature(std::unordered_map<std::wstring, std::wstring> options,
-                               int iXZSize) {
+VillageFeature::VillageFeature(
+    std::unordered_map<std::wstring, std::wstring> options, int iXZSize) {
     _init(iXZSize);
 
     for (AUTO_VAR(it, options.begin()); it != options.end(); ++it) {

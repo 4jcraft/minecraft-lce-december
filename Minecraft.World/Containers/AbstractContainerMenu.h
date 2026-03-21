@@ -126,10 +126,9 @@ public:
     static bool canItemQuickReplace(Slot* slot,
                                     std::shared_ptr<ItemInstance> item,
                                     bool ignoreSize);
-    static void getQuickCraftSlotCount(std::unordered_set<Slot*>* quickCraftSlots,
-                                       int quickCraftingType,
-                                       std::shared_ptr<ItemInstance> item,
-                                       int carry);
+    static void getQuickCraftSlotCount(
+        std::unordered_set<Slot*>* quickCraftSlots, int quickCraftingType,
+        std::shared_ptr<ItemInstance> item, int carry);
     bool canDragTo(Slot* slot);
     static int getRedstoneSignalFromContainer(
         std::shared_ptr<Container> container);

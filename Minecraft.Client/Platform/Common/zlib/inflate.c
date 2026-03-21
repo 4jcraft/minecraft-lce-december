@@ -593,8 +593,7 @@ unsigned copy;
    will return Z_BUF_ERROR if it has not reached the end of the stream.
  */
 
-int ZEXPORT inflate(strm, std::flush)
-z_streamp strm;
+int ZEXPORT inflate(strm, std::flush) z_streamp strm;
 int std::flush;
 {
     struct inflate_state FAR* state;
@@ -810,7 +809,8 @@ int std::flush;
                 strm->adler = state->check = adler32(0L, Z_NULL, 0);
                 state->mode = TYPE;
             case TYPE:
-                if (std::flush == Z_BLOCK || std::flush == Z_TREES) goto inf_leave;
+                if (std::flush == Z_BLOCK || std::flush == Z_TREES)
+                    goto inf_leave;
             case TYPEDO:
                 if (state->last) {
                     BYTEBITS();

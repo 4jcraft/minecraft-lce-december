@@ -242,8 +242,8 @@ bool DLCPack::doesPackContainFile(DLCManager::EDLCType type,
         }
     } else {
         g_pathCmpString = &path;
-        AUTO_VAR(it,
-                 std::find_if(m_files[type].begin(), m_files[type].end(), pathCmp));
+        AUTO_VAR(it, std::find_if(m_files[type].begin(), m_files[type].end(),
+                                  pathCmp));
         hasFile = it != m_files[type].end();
         if (!hasFile && m_parentPack) {
             hasFile = m_parentPack->doesPackContainFile(type, path);
@@ -281,8 +281,8 @@ DLCFile* DLCPack::getFile(DLCManager::EDLCType type, const std::wstring& path) {
         }
     } else {
         g_pathCmpString = &path;
-        AUTO_VAR(it,
-                 std::find_if(m_files[type].begin(), m_files[type].end(), pathCmp));
+        AUTO_VAR(it, std::find_if(m_files[type].begin(), m_files[type].end(),
+                                  pathCmp));
 
         if (it == m_files[type].end()) {
             // Not found

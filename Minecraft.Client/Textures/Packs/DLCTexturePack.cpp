@@ -280,7 +280,8 @@ int DLCTexturePack::packMounted(LPVOID pParam, int iPad, DWORD dwErr,
         texturePack->setHasAudio(false);
         DWORD dwFilesProcessed = 0;
         // Load the DLC textures
-        std::wstring dataFilePath = texturePack->m_dlcInfoPack->getFullDataPath();
+        std::wstring dataFilePath =
+            texturePack->m_dlcInfoPack->getFullDataPath();
         if (!dataFilePath.empty()) {
             if (!app.m_dlcManager.readDLCDataFile(
                     dwFilesProcessed,

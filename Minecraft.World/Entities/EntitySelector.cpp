@@ -26,7 +26,8 @@ bool MobCanWearArmourEntitySelector::matches(
     if (!entity->isAlive()) return false;
     if (!entity->instanceof(eTYPE_LIVINGENTITY)) return false;
 
-    std::shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(entity);
+    std::shared_ptr<LivingEntity> mob =
+        dynamic_pointer_cast<LivingEntity>(entity);
 
     if (mob->getCarried(Mob::getEquipmentSlotForItem(item)) != NULL)
         return false;

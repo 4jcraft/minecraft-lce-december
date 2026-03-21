@@ -87,7 +87,8 @@ std::shared_ptr<DoorInfo> MoveThroughVillageGoal::getNextDoorInfo(
     std::shared_ptr<Village> village) {
     std::shared_ptr<DoorInfo> closest = nullptr;
     int closestDistSqr = Integer::MAX_VALUE;
-    std::vector<std::shared_ptr<DoorInfo> >* doorInfos = village->getDoorInfos();
+    std::vector<std::shared_ptr<DoorInfo> >* doorInfos =
+        village->getDoorInfos();
     // for (DoorInfo di : doorInfos)
     for (AUTO_VAR(it, doorInfos->begin()); it != doorInfos->end(); ++it) {
         std::shared_ptr<DoorInfo> di = *it;

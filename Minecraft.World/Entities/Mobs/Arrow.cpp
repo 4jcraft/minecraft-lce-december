@@ -255,7 +255,8 @@ void Arrow::tick() {
 
     if ((res != NULL) && (res->entity != NULL) &&
         res->entity->instanceof(eTYPE_PLAYER)) {
-        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(res->entity);
+        std::shared_ptr<Player> player =
+            dynamic_pointer_cast<Player>(res->entity);
         // 4J: Check for owner being null
         if (player->abilities.invulnerable ||
             ((owner != NULL) &&
@@ -317,8 +318,8 @@ void Arrow::tick() {
                     if (owner != NULL && res->entity != owner &&
                         owner->GetType() == eTYPE_SERVERPLAYER) {
                         dynamic_pointer_cast<ServerPlayer>(owner)
-                            ->connection->send(
-                                std::shared_ptr<GameEventPacket>(new GameEventPacket(
+                            ->connection->send(std::shared_ptr<GameEventPacket>(
+                                new GameEventPacket(
                                     GameEventPacket::SUCCESSFUL_BOW_HIT, 0)));
                     }
                 }
@@ -468,8 +469,8 @@ void Arrow::playerTouch(std::shared_ptr<Player> player) {
         (pickup == PICKUP_CREATIVE_ONLY && player->abilities.instabuild);
 
     if (pickup == PICKUP_ALLOWED) {
-        if (!player->inventory->add(
-                std::shared_ptr<ItemInstance>(new ItemInstance(Item::arrow, 1)))) {
+        if (!player->inventory->add(std::shared_ptr<ItemInstance>(
+                new ItemInstance(Item::arrow, 1)))) {
             bRemove = false;
         }
     }

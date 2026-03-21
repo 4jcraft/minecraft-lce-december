@@ -87,7 +87,8 @@ private:
     };
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__) || \
     defined(_DURANGO)
-    std::unordered_map<PlayerUID, PlayerMappings, PlayerUID::Hash> m_playerMappings;
+    std::unordered_map<PlayerUID, PlayerMappings, PlayerUID::Hash>
+        m_playerMappings;
 #else
     std::unordered_map<PlayerUID, PlayerMappings> m_playerMappings;
 #endif

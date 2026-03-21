@@ -54,9 +54,11 @@ bool LeashFenceKnotEntity::interact(std::shared_ptr<Player> player) {
         if (!level->isClientSide) {
             // look for entities that can be attached to the fence
             double range = 7;
-            std::vector<std::shared_ptr<Entity> >* mobs = level->getEntitiesOfClass(
-                typeid(Mob), AABB::newTemp(x - range, y - range, z - range,
-                                           x + range, y + range, z + range));
+            std::vector<std::shared_ptr<Entity> >* mobs =
+                level->getEntitiesOfClass(
+                    typeid(Mob),
+                    AABB::newTemp(x - range, y - range, z - range, x + range,
+                                  y + range, z + range));
             if (mobs != NULL) {
                 for (AUTO_VAR(it, mobs->begin()); it != mobs->end(); ++it) {
                     std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
@@ -76,9 +78,11 @@ bool LeashFenceKnotEntity::interact(std::shared_ptr<Player> player) {
             // if the player is in creative mode, attempt to remove all leashed
             // mobs without dropping additional items
             double range = 7;
-            std::vector<std::shared_ptr<Entity> >* mobs = level->getEntitiesOfClass(
-                typeid(Mob), AABB::newTemp(x - range, y - range, z - range,
-                                           x + range, y + range, z + range));
+            std::vector<std::shared_ptr<Entity> >* mobs =
+                level->getEntitiesOfClass(
+                    typeid(Mob),
+                    AABB::newTemp(x - range, y - range, z - range, x + range,
+                                  y + range, z + range));
             if (mobs != NULL) {
                 for (AUTO_VAR(it, mobs->begin()); it != mobs->end(); ++it) {
                     std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
@@ -106,8 +110,9 @@ bool LeashFenceKnotEntity::survives() {
 
 std::shared_ptr<LeashFenceKnotEntity> LeashFenceKnotEntity::createAndAddKnot(
     Level* level, int x, int y, int z) {
-    std::shared_ptr<LeashFenceKnotEntity> knot = std::shared_ptr<LeashFenceKnotEntity>(
-        new LeashFenceKnotEntity(level, x, y, z));
+    std::shared_ptr<LeashFenceKnotEntity> knot =
+        std::shared_ptr<LeashFenceKnotEntity>(
+            new LeashFenceKnotEntity(level, x, y, z));
     knot->forcedLoading = true;
     level->addEntity(knot);
     return knot;

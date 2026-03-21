@@ -29,7 +29,8 @@ public:
 
     virtual unsigned int getContainerSize();
     virtual std::shared_ptr<ItemInstance> getItem(unsigned int slot);
-    virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
+    virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot,
+                                                     int count);
     virtual std::shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
     virtual bool removeProjectile(int itemId);
     virtual int getRandomSlot();

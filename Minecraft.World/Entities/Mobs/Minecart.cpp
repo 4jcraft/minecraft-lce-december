@@ -63,12 +63,14 @@ std::shared_ptr<Minecart> Minecart::createMinecart(Level* level, double x,
                                                    int type) {
     switch (type) {
         case TYPE_CHEST:
-            return std::shared_ptr<MinecartChest>(new MinecartChest(level, x, y, z));
+            return std::shared_ptr<MinecartChest>(
+                new MinecartChest(level, x, y, z));
         case TYPE_FURNACE:
             return std::shared_ptr<MinecartFurnace>(
                 new MinecartFurnace(level, x, y, z));
         case TYPE_TNT:
-            return std::shared_ptr<MinecartTNT>(new MinecartTNT(level, x, y, z));
+            return std::shared_ptr<MinecartTNT>(
+                new MinecartTNT(level, x, y, z));
         case TYPE_SPAWNER:
             return std::shared_ptr<MinecartSpawner>(
                 new MinecartSpawner(level, x, y, z));

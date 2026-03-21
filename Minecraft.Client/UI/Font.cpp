@@ -316,8 +316,8 @@ void Font::drawWordWrap(const std::wstring& std::string, int x, int y, int w,
     drawWordWrapInternal(std::string, x, y, w, col, h);
 }
 
-void Font::drawWordWrapInternal(const std::wstring& std::string, int x, int y, int w,
-                                int col, int h) {
+void Font::drawWordWrapInternal(const std::wstring& std::string, int x, int y,
+                                int w, int col, int h) {
     drawWordWrapInternal(std::string, x, y, w, col, false, h);
 }
 
@@ -330,8 +330,8 @@ void Font::drawWordWrap(const std::wstring& std::string, int x, int y, int w,
     drawWordWrapInternal(std::string, x, y, w, col, darken, h);
 }
 
-void Font::drawWordWrapInternal(const std::wstring& std::string, int x, int y, int w,
-                                int col, bool darken, int h) {
+void Font::drawWordWrapInternal(const std::wstring& std::string, int x, int y,
+                                int w, int col, bool darken, int h) {
     std::vector<std::wstring> lines = stringSplit(std::string, L'\n');
     if (lines.size() > 1) {
         AUTO_VAR(itEnd, lines.end());

@@ -362,7 +362,8 @@ void ClientConnection::handleLogin(std::shared_ptr<LoginPacket> packet) {
                 packet->dimension, this, levelpassedin);
 
             // need to have a player before the setlevel
-            std::shared_ptr<MultiplayerLocalPlayer> lastPlayer = minecraft->player;
+            std::shared_ptr<MultiplayerLocalPlayer> lastPlayer =
+                minecraft->player;
             minecraft->player = minecraft->localplayers[m_userIndex];
             minecraft->setLevel(level);
             minecraft->player = lastPlayer;
@@ -416,7 +417,8 @@ void ClientConnection::handleLogin(std::shared_ptr<LoginPacket> packet) {
         app.GetLocalPlayerCount(), g_NetworkManager.GetOnlinePlayerCount());
 }
 
-void ClientConnection::handleAddEntity(std::shared_ptr<AddEntityPacket> packet) {
+void ClientConnection::handleAddEntity(
+    std::shared_ptr<AddEntityPacket> packet) {
     double x = packet->x / 32.0;
     double y = packet->y / 32.0;
     double z = packet->z / 32.0;
@@ -447,9 +449,11 @@ void ClientConnection::handleAddEntity(std::shared_ptr<AddEntityPacket> packet) 
             }
 
             if (owner->instanceof(eTYPE_PLAYER)) {
-                std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(owner);
-                std::shared_ptr<FishingHook> hook = std::shared_ptr<FishingHook>(
-                    new FishingHook(level, x, y, z, player));
+                std::shared_ptr<Player> player =
+                    dynamic_pointer_cast<Player>(owner);
+                std::shared_ptr<FishingHook> hook =
+                    std::shared_ptr<FishingHook>(
+                        new FishingHook(level, x, y, z, player));
                 e = hook;
                 // 4J Stu - Move the player->fishing out of the ctor as we
                 // cannot reference 'this'
@@ -650,7 +654,8 @@ void ClientConnection::handleAddEntity(std::shared_ptr<AddEntityPacket> packet) 
             e->xRot = 0.0f;
         }
 
-        std::vector<std::shared_ptr<Entity> >* subEntities = e->getSubEntities();
+        std::vector<std::shared_ptr<Entity> >* subEntities =
+            e->getSubEntities();
         if (subEntities != NULL) {
             int offs = packet->id - e->entityId;
             // for (int i = 0; i < subEntities.length; i++)
@@ -745,7 +750,8 @@ void ClientConnection::handleAddGlobalEntity(
     }
 }
 
-void ClientConnection::handleAddPainting(std::shared_ptr<AddPaintingPacket> packet) {
+void ClientConnection::handleAddPainting(
+    std::shared_ptr<AddPaintingPacket> packet) {
     std::shared_ptr<Painting> painting = std::shared_ptr<Painting>(new Painting(
         level, packet->x, packet->y, packet->z, packet->dir, packet->motive));
     level->putEntity(packet->id, painting);
@@ -767,7 +773,8 @@ void ClientConnection::handleSetEntityData(
     }
 }
 
-void ClientConnection::handleAddPlayer(std::shared_ptr<AddPlayerPacket> packet) {
+void ClientConnection::handleAddPlayer(
+    std::shared_ptr<AddPlayerPacket> packet) {
     // Some remote players could actually be local players that are already
     // added
     for (unsigned int idx = 0; idx < XUSER_MAX_COUNT; ++idx) {
@@ -917,7 +924,8 @@ void ClientConnection::handleSetCarriedItem(
     }
 }
 
-void ClientConnection::handleMoveEntity(std::shared_ptr<MoveEntityPacket> packet) {
+void ClientConnection::handleMoveEntity(
+    std::shared_ptr<MoveEntityPacket> packet) {
     std::shared_ptr<Entity> e = getEntity(packet->id);
     if (e == NULL) return;
     e->xp += packet->xa;
@@ -938,7 +946,8 @@ void ClientConnection::handleMoveEntity(std::shared_ptr<MoveEntityPacket> packet
     e->lerpTo(x, y, z, yRot, xRot, 3);
 }
 
-void ClientConnection::handleRotateMob(std::shared_ptr<RotateHeadPacket> packet) {
+void ClientConnection::handleRotateMob(
+    std::shared_ptr<RotateHeadPacket> packet) {
     std::shared_ptr<Entity> e = getEntity(packet->id);
     if (e == NULL) return;
     float yHeadRot = packet->yHeadRot * 360 / 256.f;
@@ -974,7 +983,8 @@ void ClientConnection::handleRemoveEntity(
     }
 }
 
-void ClientConnection::handleMovePlayer(std::shared_ptr<MovePlayerPacket> packet) {
+void ClientConnection::handleMovePlayer(
+    std::shared_ptr<MovePlayerPacket> packet) {
     std::shared_ptr<Player> player =
         minecraft->localplayers[m_userIndex];  // minecraft->player;
 
@@ -1189,7 +1199,8 @@ void ClientConnection::handleBlockRegionUpdate(
     }
 }
 
-void ClientConnection::handleTileUpdate(std::shared_ptr<TileUpdatePacket> packet) {
+void ClientConnection::handleTileUpdate(
+    std::shared_ptr<TileUpdatePacket> packet) {
     // 4J added - using a block of 255 to signify that this is a packet for
     // destroying a tile, where we need to inform the level renderer that we are
     // about to do so. This is used in creative mode as the point where a tile
@@ -1257,7 +1268,8 @@ void ClientConnection::handleTileUpdate(std::shared_ptr<TileUpdatePacket> packet
     }
 }
 
-void ClientConnection::handleDisconnect(std::shared_ptr<DisconnectPacket> packet) {
+void ClientConnection::handleDisconnect(
+    std::shared_ptr<DisconnectPacket> packet) {
     connection->close(DisconnectPacket::eDisconnect_Kicked);
     done = true;
 
@@ -1375,8 +1387,9 @@ void ClientConnection::handleTakeItemEntity(
                 }
 
                 minecraft->particleEngine->add(
-                    std::shared_ptr<TakeAnimationParticle>(new TakeAnimationParticle(
-                        minecraft->level, from, to, -0.5f)));
+                    std::shared_ptr<TakeAnimationParticle>(
+                        new TakeAnimationParticle(minecraft->level, from, to,
+                                                  -0.5f)));
                 level->removeEntity(packet->itemId);
             } else {
                 // Don't know if this should ever really happen, but seems
@@ -1389,8 +1402,10 @@ void ClientConnection::handleTakeItemEntity(
                 from, eSoundType_RANDOM_POP, 0.2f,
                 ((random->nextFloat() - random->nextFloat()) * 0.7f + 1.0f) *
                     2.0f);
-            minecraft->particleEngine->add(std::shared_ptr<TakeAnimationParticle>(
-                new TakeAnimationParticle(minecraft->level, from, to, -0.5f)));
+            minecraft->particleEngine->add(
+                std::shared_ptr<TakeAnimationParticle>(
+                    new TakeAnimationParticle(minecraft->level, from, to,
+                                              -0.5f)));
             level->removeEntity(packet->itemId);
         }
     }
@@ -1812,12 +1827,14 @@ void ClientConnection::handleAnimate(std::shared_ptr<AnimatePacket> packet) {
     } else if (packet->action == AnimatePacket::RESPAWN) {
     } else if (packet->action == AnimatePacket::CRITICAL_HIT) {
         std::shared_ptr<CritParticle> critParticle =
-            std::shared_ptr<CritParticle>(new CritParticle(minecraft->level, e));
+            std::shared_ptr<CritParticle>(
+                new CritParticle(minecraft->level, e));
         critParticle->CritParticlePostConstructor();
         minecraft->particleEngine->add(critParticle);
     } else if (packet->action == AnimatePacket::MAGIC_CRITICAL_HIT) {
-        std::shared_ptr<CritParticle> critParticle = std::shared_ptr<CritParticle>(
-            new CritParticle(minecraft->level, e, eParticleType_magicCrit));
+        std::shared_ptr<CritParticle> critParticle =
+            std::shared_ptr<CritParticle>(
+                new CritParticle(minecraft->level, e, eParticleType_magicCrit));
         critParticle->CritParticlePostConstructor();
         minecraft->particleEngine->add(critParticle);
     } else if ((packet->action == AnimatePacket::EAT) &&
@@ -2139,11 +2156,12 @@ void ClientConnection::handlePreLogin(std::shared_ptr<PreLoginPacket> packet) {
                 // Check this friend against each player, if we find them we
                 // have at least one friend
                 for (int j = 0; j < g_NetworkManager.GetPlayerCount(); j++) {
-                    Platform::String ^ xboxUserId = std::ref new Platform::String(
-                        g_NetworkManager.GetPlayerByIndex(j)
-                            ->GetUID()
-                            .toString()
-                            .data());
+                    Platform::String ^ xboxUserId =
+                        std::ref new Platform::String(
+                            g_NetworkManager.GetPlayerByIndex(j)
+                                ->GetUID()
+                                .toString()
+                                .data());
                     if (friendsXuid == xboxUserId) {
                         isAtLeastOneFriend = true;
                         break;
@@ -2246,8 +2264,8 @@ void ClientConnection::handlePreLogin(std::shared_ptr<PreLoginPacket> packet) {
             // down, because they are trying to lock the incoming critsec when
             // it's already locked by this thread
             // 			Minecraft::GetInstance()->connectionDisconnected(
-            // m_userIndex , reason ); 			done = true; 			connection->flush();
-            // 			connection->close(reason);
+            // m_userIndex , reason ); 			done = true;
+            // connection->flush(); 			connection->close(reason);
             //			app.SetAction(m_userIndex,eAppAction_ExitPlayer);
 
             // 4J-PB - doing this instead
@@ -2493,7 +2511,8 @@ void ClientConnection::handleEntityLinkPacket(
     }
 }
 
-void ClientConnection::handleEntityEvent(std::shared_ptr<EntityEventPacket> packet) {
+void ClientConnection::handleEntityEvent(
+    std::shared_ptr<EntityEventPacket> packet) {
     std::shared_ptr<Entity> e = getEntity(packet->entityId);
     if (e != NULL) e->handleEntityEvent(packet->eventId);
 }
@@ -2507,7 +2526,8 @@ std::shared_ptr<Entity> ClientConnection::getEntity(int entityId) {
     return level->getEntity(entityId);
 }
 
-void ClientConnection::handleSetHealth(std::shared_ptr<SetHealthPacket> packet) {
+void ClientConnection::handleSetHealth(
+    std::shared_ptr<SetHealthPacket> packet) {
     // minecraft->player->hurtTo(packet->health);
     minecraft->localplayers[m_userIndex]->hurtTo(packet->health,
                                                  packet->damageSource);
@@ -3011,8 +3031,9 @@ void ClientConnection::handleContainerOpen(
             }
         } break;
         case ContainerOpenPacket::TRADER_NPC: {
-            std::shared_ptr<ClientSideMerchant> csm = std::shared_ptr<ClientSideMerchant>(
-                new ClientSideMerchant(player, packet->title));
+            std::shared_ptr<ClientSideMerchant> csm =
+                std::shared_ptr<ClientSideMerchant>(
+                    new ClientSideMerchant(player, packet->title));
             csm->createContainer();
             if (player->openTrading(csm,
                                     packet->customName ? packet->title : L"")) {
@@ -3165,7 +3186,8 @@ void ClientConnection::handleTileEditorOpen(
     }
 }
 
-void ClientConnection::handleSignUpdate(std::shared_ptr<SignUpdatePacket> packet) {
+void ClientConnection::handleSignUpdate(
+    std::shared_ptr<SignUpdatePacket> packet) {
     app.DebugPrintf("ClientConnection::handleSignUpdate - ");
     if (minecraft->level->hasChunkAt(packet->x, packet->y, packet->z)) {
         std::shared_ptr<TileEntity> te =
@@ -3246,7 +3268,8 @@ void ClientConnection::handleContainerClose(
     minecraft->localplayers[m_userIndex]->clientSideCloseContainer();
 }
 
-void ClientConnection::handleTileEvent(std::shared_ptr<TileEventPacket> packet) {
+void ClientConnection::handleTileEvent(
+    std::shared_ptr<TileEventPacket> packet) {
     PIXBeginNamedEvent(0, "Handle tile event\n");
     minecraft->level->tileEvent(packet->x, packet->y, packet->z, packet->tile,
                                 packet->b0, packet->b1);
@@ -3352,7 +3375,8 @@ void ClientConnection::handleComplexItemData(
     }
 }
 
-void ClientConnection::handleLevelEvent(std::shared_ptr<LevelEventPacket> packet) {
+void ClientConnection::handleLevelEvent(
+    std::shared_ptr<LevelEventPacket> packet) {
     if (packet->type == LevelEvent::SOUND_DRAGON_DEATH) {
         for (unsigned int i = 0; i < XUSER_MAX_COUNT; ++i) {
             if (minecraft->localplayers[i] != NULL &&
@@ -3377,7 +3401,8 @@ void ClientConnection::handleLevelEvent(std::shared_ptr<LevelEventPacket> packet
                                  packet->data);
 }
 
-void ClientConnection::handleAwardStat(std::shared_ptr<AwardStatPacket> packet) {
+void ClientConnection::handleAwardStat(
+    std::shared_ptr<AwardStatPacket> packet) {
     minecraft->localplayers[m_userIndex]->awardStatFromServer(
         GenericStats::stat(packet->statId), packet->getParamData());
 }
@@ -3388,8 +3413,8 @@ void ClientConnection::handleUpdateMobEffect(
     if ((e == NULL) || !e->instanceof(eTYPE_LIVINGENTITY)) return;
 
     //( dynamic_pointer_cast<LivingEntity>(e) )->addEffect(new
-    //MobEffectInstance(packet->effectId, packet->effectDurationTicks,
-    //packet->effectAmplifier));
+    // MobEffectInstance(packet->effectId, packet->effectDurationTicks,
+    // packet->effectAmplifier));
 
     MobEffectInstance* mobEffectInstance = new MobEffectInstance(
         packet->effectId, packet->effectDurationTicks, packet->effectAmplifier);
@@ -3408,7 +3433,8 @@ void ClientConnection::handleRemoveMobEffect(
 
 bool ClientConnection::isServerPacketListener() { return false; }
 
-void ClientConnection::handlePlayerInfo(std::shared_ptr<PlayerInfoPacket> packet) {
+void ClientConnection::handlePlayerInfo(
+    std::shared_ptr<PlayerInfoPacket> packet) {
     unsigned int startingPrivileges =
         app.GetPlayerPrivileges(packet->m_networkSmallId);
 
@@ -3614,7 +3640,8 @@ void ClientConnection::displayPrivilegeChanges(
     }
 }
 
-void ClientConnection::handleKeepAlive(std::shared_ptr<KeepAlivePacket> packet) {
+void ClientConnection::handleKeepAlive(
+    std::shared_ptr<KeepAlivePacket> packet) {
     send(std::shared_ptr<KeepAlivePacket>(new KeepAlivePacket(packet->id)));
 }
 
@@ -3629,7 +3656,8 @@ void ClientConnection::handlePlayerAbilities(
     player->abilities.setWalkingSpeed(playerAbilitiesPacket->getWalkingSpeed());
 }
 
-void ClientConnection::handleSoundEvent(std::shared_ptr<LevelSoundPacket> packet) {
+void ClientConnection::handleSoundEvent(
+    std::shared_ptr<LevelSoundPacket> packet) {
     minecraft->level->playLocalSound(
         packet->getX(), packet->getY(), packet->getZ(), packet->getSound(),
         packet->getVolume(), packet->getPitch(), false);
@@ -3826,7 +3854,8 @@ int ClientConnection::ExitGameAndSaveReturned(
 //
 std::wstring ClientConnection::GetDisplayNameByGamertag(std::wstring gamertag) {
 #ifdef _DURANGO
-    std::wstring displayName = g_NetworkManager.GetDisplayNameByGamertag(gamertag);
+    std::wstring displayName =
+        g_NetworkManager.GetDisplayNameByGamertag(gamertag);
     return displayName;
 #else
     return gamertag;

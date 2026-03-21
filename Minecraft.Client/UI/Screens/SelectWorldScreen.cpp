@@ -91,11 +91,13 @@ void SelectWorldScreen::buttonClicked(Button* button) {
             isDeleting = true;
 
             Language* language = Language::getInstance();
-            std::wstring title = language->getElement(L"selectWorld.deleteQuestion");
+            std::wstring title =
+                language->getElement(L"selectWorld.deleteQuestion");
             std::wstring warning =
                 L"'" + worldName + L"' " +
                 language->getElement(L"selectWorld.deleteWarning");
-            std::wstring yes = language->getElement(L"selectWorld.deleteButton");
+            std::wstring yes =
+                language->getElement(L"selectWorld.deleteButton");
             std::wstring no = language->getElement(L"gui.cancel");
 
             ConfirmScreen* confirmScreen =

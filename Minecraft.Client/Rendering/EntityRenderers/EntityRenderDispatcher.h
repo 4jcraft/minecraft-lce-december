@@ -15,7 +15,7 @@ private:
     // 4J - was:
     //	Map<Class<? extends Entity>, EntityRenderer<? extends Entity>> renderers
     //= new HashMap<Class<? extends Entity>, EntityRenderer<? extends
-    //Entity>>();
+    // Entity>>();
 
 public:
     static EntityRenderDispatcher* instance;

@@ -9,7 +9,7 @@ class ItemEntity;
 class ItemRenderer : public EntityRenderer {
 private:
     //	TileRenderer *tileRenderer;	// 4J - removed - this is shadowing the
-    //tilerenderer from entityrenderer
+    // tilerenderer from entityrenderer
     Random* random;
     bool m_bItemFrame;
 

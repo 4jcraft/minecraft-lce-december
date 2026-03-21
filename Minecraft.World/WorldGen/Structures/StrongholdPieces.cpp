@@ -614,9 +614,9 @@ void StrongholdPieces::StairsDown::readAdditonalSaveData(CompoundTag* tag) {
     isSource = tag->getBoolean(L"Source");
 }
 
-void StrongholdPieces::StairsDown::addChildren(StructurePiece* startPiece,
-                                               std::list<StructurePiece*>* pieces,
-                                               Random* random) {
+void StrongholdPieces::StairsDown::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     if (isSource) {
         imposedPiece = EPieceClass_FiveCrossing;
     }
@@ -844,9 +844,9 @@ void StrongholdPieces::ChestCorridor::readAdditonalSaveData(CompoundTag* tag) {
     hasPlacedChest = tag->getBoolean(L"Chest");
 }
 
-void StrongholdPieces::ChestCorridor::addChildren(StructurePiece* startPiece,
-                                                  std::list<StructurePiece*>* pieces,
-                                                  Random* random) {
+void StrongholdPieces::ChestCorridor::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     generateSmallDoorChildForward((StartPiece*)startPiece, pieces, random, 1,
                                   1);
 }
@@ -933,16 +933,16 @@ StrongholdPieces::StraightStairsDown::StraightStairsDown(int genDepth,
 }
 
 void StrongholdPieces::StraightStairsDown::addChildren(
-    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     generateSmallDoorChildForward((StartPiece*)startPiece, pieces, random, 1,
                                   1);
 }
 
 StrongholdPieces::StraightStairsDown*
-StrongholdPieces::StraightStairsDown::createPiece(std::list<StructurePiece*>* pieces,
-                                                  Random* random, int footX,
-                                                  int footY, int footZ,
-                                                  int direction, int genDepth) {
+StrongholdPieces::StraightStairsDown::createPiece(
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    int footZ, int direction, int genDepth) {
     BoundingBox* box =
         BoundingBox::orientBox(footX, footY, footZ, -1, 4 - height, 0, width,
                                height, depth, direction);
@@ -1071,9 +1071,9 @@ StrongholdPieces::RightTurn::RightTurn(int genDepth, Random* random,
                                        BoundingBox* stairsBox, int direction)
     : LeftTurn(genDepth, random, stairsBox, direction) {}
 
-void StrongholdPieces::RightTurn::addChildren(StructurePiece* startPiece,
-                                              std::list<StructurePiece*>* pieces,
-                                              Random* random) {
+void StrongholdPieces::RightTurn::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     if (orientation == Direction::NORTH || orientation == Direction::EAST) {
         generateSmallDoorChildRight((StartPiece*)startPiece, pieces, random, 1,
                                     1);
@@ -1128,9 +1128,9 @@ void StrongholdPieces::RoomCrossing::readAdditonalSaveData(CompoundTag* tag) {
     type = tag->getInt(L"Type");
 }
 
-void StrongholdPieces::RoomCrossing::addChildren(StructurePiece* startPiece,
-                                                 std::list<StructurePiece*>* pieces,
-                                                 Random* random) {
+void StrongholdPieces::RoomCrossing::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     generateSmallDoorChildForward((StartPiece*)startPiece, pieces, random, 4,
                                   1);
     generateSmallDoorChildLeft((StartPiece*)startPiece, pieces, random, 1, 4);
@@ -1288,9 +1288,9 @@ StrongholdPieces::PrisonHall::PrisonHall(int genDepth, Random* random,
     boundingBox = stairsBox;
 }
 
-void StrongholdPieces::PrisonHall::addChildren(StructurePiece* startPiece,
-                                               std::list<StructurePiece*>* pieces,
-                                               Random* random) {
+void StrongholdPieces::PrisonHall::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     generateSmallDoorChildForward((StartPiece*)startPiece, pieces, random, 1,
                                   1);
 }
@@ -1618,9 +1618,9 @@ void StrongholdPieces::FiveCrossing::readAdditonalSaveData(CompoundTag* tag) {
     rightHigh = tag->getBoolean(L"rightHigh");
 }
 
-void StrongholdPieces::FiveCrossing::addChildren(StructurePiece* startPiece,
-                                                 std::list<StructurePiece*>* pieces,
-                                                 Random* random) {
+void StrongholdPieces::FiveCrossing::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     int zOffA = 3;
     int zOffB = 5;
     // compensate for weird negative-facing behaviour
@@ -1745,9 +1745,9 @@ void StrongholdPieces::PortalRoom::readAdditonalSaveData(CompoundTag* tag) {
     hasPlacedMobSpawner = tag->getBoolean(L"Mob");
 }
 
-void StrongholdPieces::PortalRoom::addChildren(StructurePiece* startPiece,
-                                               std::list<StructurePiece*>* pieces,
-                                               Random* random) {
+void StrongholdPieces::PortalRoom::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     if (startPiece != NULL) {
         ((StartPiece*)startPiece)->portalRoomPiece = this;
     }

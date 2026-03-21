@@ -74,7 +74,8 @@ public:
 
     virtual std::wstring getFilename();
 
-    virtual std::vector<FileEntry*>* getFilesWithPrefix(const std::wstring& prefix);
+    virtual std::vector<FileEntry*>* getFilesWithPrefix(
+        const std::wstring& prefix);
     virtual std::vector<FileEntry*>* getRegionFilesByDimension(
         unsigned int dimensionIndex);
 

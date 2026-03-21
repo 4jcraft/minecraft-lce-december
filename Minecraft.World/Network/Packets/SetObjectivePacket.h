@@ -4,8 +4,9 @@
 
 class Objective;
 
-class SetObjectivePacket : public Packet,
-                           public std::enable_shared_from_this<SetObjectivePacket> {
+class SetObjectivePacket
+    : public Packet,
+      public std::enable_shared_from_this<SetObjectivePacket> {
 public:
     static const int METHOD_ADD = 0;
     static const int METHOD_REMOVE = 1;

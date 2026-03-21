@@ -289,7 +289,7 @@ void UIScene_HowToPlay::StartPage(EHowToPlayPage ePage) {
     // 4J-PB - replace the title with the platform specific title, and the
     // platform name
     //	replacedText =
-    //replaceAll(replacedText,L"{*TITLE_UPDATE_NAME*}",app.GetString(IDS_TITLE_UPDATE_NAME));
+    // replaceAll(replacedText,L"{*TITLE_UPDATE_NAME*}",app.GetString(IDS_TITLE_UPDATE_NAME));
     replacedText = replaceAll(replacedText, L"{*KICK_PLAYER_DESCRIPTION*}",
                               app.GetString(IDS_KICK_PLAYER_DESCRIPTION));
 #ifdef _XBOX_ONE

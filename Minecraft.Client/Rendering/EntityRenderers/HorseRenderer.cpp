@@ -60,7 +60,8 @@ void HorseRenderer::bindTexture(ResourceLocation* location) {
 
 ResourceLocation* HorseRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
-    std::shared_ptr<EntityHorse> horse = dynamic_pointer_cast<EntityHorse>(entity);
+    std::shared_ptr<EntityHorse> horse =
+        dynamic_pointer_cast<EntityHorse>(entity);
 
     if (!horse->hasLayeredTextures()) {
         switch (horse->getType()) {

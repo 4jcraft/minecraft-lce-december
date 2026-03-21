@@ -4,8 +4,9 @@
 
 class Painting;
 
-class AddPaintingPacket : public Packet,
-                          public std::enable_shared_from_this<AddPaintingPacket> {
+class AddPaintingPacket
+    : public Packet,
+      public std::enable_shared_from_this<AddPaintingPacket> {
 public:
     int id;
     int x, y, z;

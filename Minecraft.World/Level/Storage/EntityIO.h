@@ -27,11 +27,11 @@ public:
 private:
     static std::unordered_map<std::wstring, entityCreateFn>* idCreateMap;
     static std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
-                         eINSTANCEOFKeyEq>* classIdMap;
+                              eINSTANCEOFKeyEq>* classIdMap;
     static std::unordered_map<int, entityCreateFn>* numCreateMap;
     static std::unordered_map<int, eINSTANCEOF>* numClassMap;
     static std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
-                         eINSTANCEOFKeyEq>* classNumMap;
+                              eINSTANCEOFKeyEq>* classNumMap;
     static std::unordered_map<std::wstring, int>* idNumMap;
 
 public:
@@ -47,10 +47,12 @@ private:
 
 public:
     static void staticCtor();
-    static std::shared_ptr<Entity> newEntity(const std::wstring& id, Level* level);
+    static std::shared_ptr<Entity> newEntity(const std::wstring& id,
+                                             Level* level);
     static std::shared_ptr<Entity> loadStatic(CompoundTag* tag, Level* level);
     static std::shared_ptr<Entity> newById(int id, Level* level);
-    static std::shared_ptr<Entity> newByEnumType(eINSTANCEOF eType, Level* level);
+    static std::shared_ptr<Entity> newByEnumType(eINSTANCEOF eType,
+                                                 Level* level);
     static int getId(std::shared_ptr<Entity> entity);
     static std::wstring getEncodeId(std::shared_ptr<Entity> entity);
     static int getId(const std::wstring& encodeId);

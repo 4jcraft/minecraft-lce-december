@@ -249,8 +249,8 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
         if (hp->player->removed)  //|| (!hp->player->inventory->contains(item)
                                   //&& !item->isFramed() ))
         {
-            AUTO_VAR(it2,
-                     carriedByPlayers.find((std::shared_ptr<Player>)hp->player));
+            AUTO_VAR(it2, carriedByPlayers.find(
+                              (std::shared_ptr<Player>)hp->player));
             if (it2 != carriedByPlayers.end()) {
                 carriedByPlayers.erase(it2);
             }
@@ -473,8 +473,9 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
 
             // 			float xd = (float) (hp->player->x - x) / (1 <<
             // scale); 			float yd = (float) (hp->player->z - z) /
-            // (1 << scale); 			int ww = 64; 			int hh = 64; 			if (xd >= -ww && yd >=
-            // -hh && xd <= ww && yd <= hh)
+            // (1 << scale); 			int ww = 64;
+            // int hh = 64; 			if (xd >= -ww && yd >= -hh && xd
+            // <= ww && yd <= hh)
             // 			{
             // 				char img = 0;
             // 				char x = (char) (xd * 2 + 0.5);

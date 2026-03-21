@@ -220,8 +220,8 @@ private:
     std::vector<CachedSlotDrawData*> m_cachedSlotDraw;
 
     void _customDrawSlotControl(CustomDrawData* region, int iPad,
-                                std::shared_ptr<ItemInstance> item, float fAlpha,
-                                bool isFoil, bool bDecorations,
+                                std::shared_ptr<ItemInstance> item,
+                                float fAlpha, bool isFoil, bool bDecorations,
                                 bool usingCommandBuffer);
 
 public:
@@ -276,8 +276,9 @@ public:
 
     virtual void HandleMessage(EUIMessage message, void* data);
 
-    void registerSubstitutionTexture(const std::wstring& textureName, PBYTE pbData,
-                                     DWORD dwLength, bool deleteData = false);
+    void registerSubstitutionTexture(const std::wstring& textureName,
+                                     PBYTE pbData, DWORD dwLength,
+                                     bool deleteData = false);
     bool hasRegisteredSubstitutionTexture(const std::wstring& textureName);
 
     virtual void handleUnlockFullVersion() {}

@@ -9,7 +9,8 @@ DummyCriteria::DummyCriteria(const std::wstring& name) {
 
 std::wstring DummyCriteria::getName() { return name; }
 
-int DummyCriteria::getScoreModifier(std::vector<std::shared_ptr<Player> >* players) {
+int DummyCriteria::getScoreModifier(
+    std::vector<std::shared_ptr<Player> >* players) {
     return 0;
 }
 

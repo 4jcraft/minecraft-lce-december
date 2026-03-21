@@ -79,7 +79,8 @@ const std::wstring PotionBrewing::MOD_FERMENTEDEYE = L"+14+9";
 const std::wstring PotionBrewing::MOD_SPECKLEDMELON = L"";
 const std::wstring PotionBrewing::MOD_BLAZEPOWDER = L"+14";
 const std::wstring PotionBrewing::MOD_MAGMACREAM = L"+14+6+1";
-const std::wstring PotionBrewing::MOD_REDSTONE = L"";  // redstone increases duration
+const std::wstring PotionBrewing::MOD_REDSTONE =
+    L"";  // redstone increases duration
 const std::wstring PotionBrewing::MOD_GLOWSTONE =
     L"";  // glowstone increases amplification
 const std::wstring PotionBrewing::MOD_GUNPOWDER =
@@ -224,7 +225,8 @@ int PotionBrewing::getColorValue(std::vector<MobEffectInstance*>* effects) {
     return ((int)red) << 16 | ((int)green) << 8 | ((int)blue);
 }
 
-bool PotionBrewing::areAllEffectsAmbient(std::vector<MobEffectInstance*>* effects) {
+bool PotionBrewing::areAllEffectsAmbient(
+    std::vector<MobEffectInstance*>* effects) {
     for (AUTO_VAR(it, effects->begin()); it != effects->end(); ++it) {
         MobEffectInstance* effect = *it;
         if (!effect->isAmbient()) return false;
@@ -390,8 +392,8 @@ int PotionBrewing::parseEffectFormulaValue(const std::wstring& definition,
     return result;
 }
 #else
-int PotionBrewing::parseEffectFormulaValue(const std::wstring& definition, int start,
-                                           int end, int brew) {
+int PotionBrewing::parseEffectFormulaValue(const std::wstring& definition,
+                                           int start, int end, int brew) {
     if (start >= definition.length() || end < 0 || start >= end) {
         return 0;
     }
@@ -822,6 +824,6 @@ std::wstring PotionBrewing::toString(int brew) {
 
 //	System.out.println("Combination with no effects: " + noEffects + " (" +
 //((double) noEffects / BREW_MASK * 100.0) + " %)");
-//System.out.println("Unique combinations: " + existingCombinations.size());
+// System.out.println("Unique combinations: " + existingCombinations.size());
 // System.out.println("Distinct combinations: " + distinctCombinations.size());
 //}

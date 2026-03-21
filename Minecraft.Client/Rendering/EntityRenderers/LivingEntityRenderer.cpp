@@ -30,7 +30,8 @@ float LivingEntityRenderer::rotlerp(float from, float to, float a) {
 
 void LivingEntityRenderer::render(std::shared_ptr<Entity> _mob, double x,
                                   double y, double z, float rot, float a) {
-    std::shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
+    std::shared_ptr<LivingEntity> mob =
+        dynamic_pointer_cast<LivingEntity>(_mob);
 
     glPushMatrix();
     glDisable(GL_CULL_FACE);
@@ -292,8 +293,8 @@ void LivingEntityRenderer::renderArrows(std::shared_ptr<LivingEntity> mob,
                                         float a) {
     int arrowCount = mob->getArrowCount();
     if (arrowCount > 0) {
-        std::shared_ptr<Entity> arrow =
-            std::shared_ptr<Entity>(new Arrow(mob->level, mob->x, mob->y, mob->z));
+        std::shared_ptr<Entity> arrow = std::shared_ptr<Entity>(
+            new Arrow(mob->level, mob->x, mob->y, mob->z));
         Random random = Random(mob->entityId);
         Lighting::turnOff();
         for (int i = 0; i < arrowCount; i++) {
