@@ -27,8 +27,8 @@
 #include "../Entities/TamableAnimal.h"
 
 // 1.6.4
-#include "../LeashFenceKnotEntity.h"
-#include "../MobGroupData.h"
-#include "../OwnableEntity.h"
+#include "../Entities/LeashFenceKnotEntity.h"
+#include "../Entities/MobGroupData.h"
+#include "../Entities/OwnableEntity.h"
 #include "../Entities/EntitySelector.h"
-#include "../LivingEntity.h"
+#include "../Entities/LivingEntity.h"

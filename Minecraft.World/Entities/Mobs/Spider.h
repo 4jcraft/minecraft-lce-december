@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Monster.h"
-#include "../../MobGroupData.h"
+#include "../MobGroupData.h"
 
 class Spider : public Monster {
 public:

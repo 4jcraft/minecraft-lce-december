@@ -4,7 +4,7 @@
 #include "../Headers/net.minecraft.world.item.h"
 #include "../Headers/net.minecraft.world.level.h"
 #include "../Headers/net.minecraft.world.level.tile.entity.h"
-#include "../WitherBoss.h"
+#include "../Entities/Mobs/WitherBoss.h"
 #include "../Headers/net.minecraft.h"
 #include "SkullTile.h"
 

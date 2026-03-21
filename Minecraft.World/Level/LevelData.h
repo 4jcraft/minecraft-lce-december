@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../GameRules.h"
+#include "GameRules.h"
 
 class Player;
 class CompoundTag;

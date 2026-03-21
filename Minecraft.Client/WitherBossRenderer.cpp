@@ -2,7 +2,7 @@
 #include "WitherBossRenderer.h"
 #include "WitherBossModel.h"
 #include "Rendering/EntityRenderers/MobRenderer.h"
-#include "../Minecraft.World/WitherBoss.h"
+#include "../Minecraft.World/Entities/Mobs/WitherBoss.h"
 #include "../Minecraft.Client/BossMobGuiInfo.h"
 
 ResourceLocation WitherBossRenderer::WITHER_ARMOR_LOCATION =

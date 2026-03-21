@@ -1,5 +1,5 @@
 #pragma once
 
 #include "../Entities/Mobs/BossMob.h"
-#include "../MultiEntityMob.h"
-#include "../MultiEntityMobPart.h"
+#include "../Entities/Mobs/MultiEntityMob.h"
+#include "../Entities/Mobs/MultiEntityMobPart.h"

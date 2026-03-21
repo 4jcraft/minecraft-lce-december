@@ -1,7 +1,7 @@
 #pragma once
 
 #include "TileEntity.h"
-#include "../../BaseMobSpawner.h"
+#include "../../Level/BaseMobSpawner.h"
 
 class Packet;
 class Entity;

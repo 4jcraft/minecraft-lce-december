@@ -1,12 +1,12 @@
 #pragma once
 
-#include "../BaseMobSpawner.h"
+#include "../Level/BaseMobSpawner.h"
 #include "../Level/BlockDestructionProgress.h"
 #include "../Level/ChunkPos.h"
 #include "../Util/Coord.h"
 #include "../Level/Explosion.h"
 #include "../Util/FoliageColor.h"
-#include "../GameRules.h"
+#include "../Level/GameRules.h"
 #include "../Util/GrassColor.h"
 #include "../Level/LevelConflictException.h"
 #include "../Level/Events/LevelListener.h"
@@ -23,4 +23,4 @@
 #include "../Level/Storage/LevelType.h"
 #include "../Level/Storage/LevelSettings.h"
 
-#include "../Calendar.h"
+#include "../Util/Calendar.h"

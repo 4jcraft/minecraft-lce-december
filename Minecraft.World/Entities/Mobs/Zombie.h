@@ -2,7 +2,7 @@
 
 #include "../Monster.h"
 #include "../../Util/SharedConstants.h"
-#include "../../MobGroupData.h"
+#include "../MobGroupData.h"
 
 class Zombie : public Monster {
 private:

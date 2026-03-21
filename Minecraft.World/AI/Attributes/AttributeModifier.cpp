@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 
 #include "AttributeModifier.h"
-#include "../../HtmlString.h"
+#include "../../Util/HtmlString.h"
 
 void AttributeModifier::_init(eMODIFIER_ID id, const std::wstring name,
                               double amount, int operation) {

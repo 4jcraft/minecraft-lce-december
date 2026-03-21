@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../LivingEntity.h"
+#include "../Entities/LivingEntity.h"
 #include "../Util/Definitions.h"
 #include "Abilities.h"
 #include "FoodData.h"

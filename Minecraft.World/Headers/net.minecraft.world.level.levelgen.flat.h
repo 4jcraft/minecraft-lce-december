@@ -1,4 +1,4 @@
 #pragma once
 
-#include "../FlatGeneratorInfo.h"
-#include "../FlatLayerInfo.h"
+#include "../WorldGen/Flat/FlatGeneratorInfo.h"
+#include "../WorldGen/Flat/FlatLayerInfo.h"

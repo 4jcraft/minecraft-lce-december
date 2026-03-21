@@ -21,6 +21,6 @@
 #include "../Entities/Mobs/LavaSlime.h"
 
 // 1.6.4
-#include "../RangedAttackMob.h"
-#include "../SharedMonsterAttributes.h"
+#include "../Entities/Mobs/RangedAttackMob.h"
+#include "../Entities/Mobs/SharedMonsterAttributes.h"
 #include "../Entities/Mobs/Witch.h"

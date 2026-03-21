@@ -18,7 +18,7 @@
 #include "../Entities/Mobs/DragonFireball.h"
 
 // 1.6.4
-#include "../FireworksRocketEntity.h"
-#include "../LargeFireball.h"
-#include "../Projectile.h"
-#include "../WitherSkull.h"
+#include "../Entities/FireworksRocketEntity.h"
+#include "../Entities/LargeFireball.h"
+#include "../Entities/Projectile.h"
+#include "../Entities/WitherSkull.h"

@@ -15,8 +15,8 @@
 #include "../Entities/Mobs/SnowMan.h"
 
 // 1.2.3
-#include "../Ocelot.h"
+#include "../Entities/Mobs/Ocelot.h"
 #include "../Entities/Mobs/VillagerGolem.h"
 
 // 1.6.4
-#include "../EntityHorse.h"
+#include "../Entities/Mobs/EntityHorse.h"
