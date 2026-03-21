@@ -41,7 +41,7 @@
 #include "../Minecraft.World/Level/Storage/CompressedTileStorage.h"
 #include "../Minecraft.World/Level/Storage/SparseLightStorage.h"
 #include "../Minecraft.World/Level/Storage/SparseDataStorage.h"
-#include "../Minecraft.World/compression.h"
+#include "../Minecraft.World/IO/Streams/Compression.h"
 #ifdef _XBOX
 #include "Common/XUI/XUI_DebugSetCamera.h"
 #endif

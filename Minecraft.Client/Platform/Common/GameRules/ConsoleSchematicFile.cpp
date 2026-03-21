@@ -10,7 +10,7 @@
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.entity.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.entity.item.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.phys.h"
-#include "../../../Minecraft.World/compression.h"
+#include "../../../../Minecraft.World/IO/Streams/Compression.h"
 
 ConsoleSchematicFile::ConsoleSchematicFile() {
     m_xSize = m_ySize = m_zSize = 0;

@@ -181,7 +181,7 @@ void MemSect(int sect);
 #include "../../Minecraft.Client/Platform/Common/Network/GameNetworkManager.h"
 
 // #ifdef _XBOX
-#include "../Minecraft.Client/Common/App_defines.h"
+#include "../../Minecraft.Client/Platform/Common/App_Defines.h"
 #include "../../Minecraft.Client/Platform/Common/UI/UIEnums.h"
 #include "../../Minecraft.Client/Platform/Common/App_enums.h"
 #include "../../Minecraft.Client/Platform/Common/Tutorial/TutorialEnum.h"

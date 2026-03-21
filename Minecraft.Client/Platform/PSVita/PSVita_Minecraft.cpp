@@ -51,7 +51,7 @@
 #include "../../../Minecraft.World/Util/IntCache.h"
 #include "../Textures.h"
 // #include "Resource.h"
-#include "../../Minecraft.World/compression.h"
+#include "../../../Minecraft.World/IO/Streams/Compression.h"
 #include "../../../Minecraft.World/Level/Storage/OldChunkStorage.h"
 // #include "PS3/PS3Extras/EdgeZLib.h"
 #include "../../../Minecraft.World/Util/C4JThread.h"

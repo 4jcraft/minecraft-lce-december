@@ -8,7 +8,7 @@
 #include "PlayerList.h"
 #include "../MinecraftServer.h"
 #include "../../Minecraft.World/Headers/net.minecraft.network.h"
-#include "../Minecraft.World/pos.h"
+#include "../../Minecraft.World/Util/Pos.h"
 #include "../../Minecraft.World/Headers/net.minecraft.world.level.dimension.h"
 #include "../../Minecraft.World/Headers/net.minecraft.world.level.storage.h"
 #include "../../Minecraft.World/Headers/net.minecraft.world.item.h"

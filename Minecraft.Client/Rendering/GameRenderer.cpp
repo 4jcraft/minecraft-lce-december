@@ -44,7 +44,7 @@
 #include "../../Minecraft.World/Util/SoundTypes.h"
 #include "Models/HumanoidModel.h"
 #include "../../Minecraft.World/Items/Item.h"
-#include "../Minecraft.World/compression.h"
+#include "../../Minecraft.World/IO/Streams/Compression.h"
 #include "PS3/PS3Extras/ShutdownManager.h"
 #include "../UI/BossMobGuiInfo.h"
 

@@ -1,7 +1,7 @@
 #include "../Platform/stdafx.h"
 
 #include "../../Minecraft.World/Util/StringHelpers.h"
-#include "../Minecraft.World/compression.h"
+#include "../../Minecraft.World/IO/Streams/Compression.h"
 
 #include "ArchiveFile.h"
 

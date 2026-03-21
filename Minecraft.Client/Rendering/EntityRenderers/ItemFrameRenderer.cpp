@@ -7,9 +7,9 @@
 #include "../../Textures/TextureAtlas.h"
 
 #include "../../../Minecraft.World/Util/JavaMath.h"
-#include "../Minecraft.World/net.minecraft.world.entity.Item.h"
-#include "../Minecraft.World/net.minecraft.world.Item.h"
-#include "../Minecraft.World/net.minecraft.world.Item.alchemy.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.item.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.item.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.item.alchemy.h"
 #include "../../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
 #include "../../../Minecraft.World/Util/StringHelpers.h"
 #include "../../Minecraft.h"

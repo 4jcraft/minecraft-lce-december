@@ -145,11 +145,11 @@ typedef XUID GameSessionUID;
 #endif
 
 #include "../../Minecraft.World/Util/Definitions.h"
-#include "../Minecraft.World/class.h"
+#include "../../Minecraft.World/Util/Class.h"
 #include "../../Minecraft.World/Util/ArrayWithLength.h"
 #include "../../Minecraft.World/Util/SharedConstants.h"
 #include "../../Minecraft.World/Util/Random.h"
-#include "../Minecraft.World/compression.h"
+#include "../../Minecraft.World/IO/Streams/Compression.h"
 #include "../../Minecraft.World/Util/PerformanceTimer.h"
 
 #ifdef _XBOX
