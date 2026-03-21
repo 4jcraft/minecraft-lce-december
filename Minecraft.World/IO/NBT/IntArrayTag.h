@@ -32,7 +32,7 @@ public:
         }
     }
 
-    byte getId() { return TAG_Int_Array; }
+    uint8_t getId() { return TAG_Int_Array; }
 
     std::wstring toString() {
         static wchar_t buf[32];
@@ -51,7 +51,7 @@ public:
         return false;
     }
 
-    Tag* std::copy() {
+    Tag* copy() {
         intArray cp = intArray(data.length);
         System::arraycopy(data, 0, &cp, 0, data.length);
         return new IntArrayTag(getName(), cp);

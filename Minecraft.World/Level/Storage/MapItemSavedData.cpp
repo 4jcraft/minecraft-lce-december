@@ -297,10 +297,10 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
 #ifdef _LARGE_WORLDSSIZE - 1;
                     
                     if (xd < -size || yd < -size || xd > size || yd > size) {
-                        if (xd <= -size) x = (byte)(size * 2 + 2.5);
-                        if (yd <= -size) y = (byte)(size * 2 + 2.5);
-                        if (xd >= size) x = (byte)(size * 2 + 1);
-                        if (yd >= size) y = (byte)(size * #endif;
+                        if (xd <= -size) x = (uint8_t)(size * 2 + 2.5);
+                        if (yd <= -size) y = (uint8_t)(size * 2 + 2.5);
+                        if (xd >= size) x = (uint8_t)(size * 2 + 1);
+                        if (yd >= size) y = (uint8_t)(size * #endif;
                    // decorations.push_back(new MapDecoration(4, x, y, 0));
                     nonPlayerDecorations.insert(
                         std::unordered_map<int, MapDecoration*>::value_type(
@@ -336,10 +336,10 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                     }
                     
                     if (xd < -size || yd < -size || xd > size || yd > size) {
-                        if (xd <= -size) x = (byte)(size * 2 + 2.5);
-                        if (yd <= -size) y = (byte)(size * 2 + 2.5);
-                        if (xd >= size) x = (byte)(size * 2 + 1);
-                        if (yd >= size) y = (byte)(si #endif + 1);
+                        if (xd <= -size) x = (uint8_t)(size * 2 + 2.5);
+                        if (yd <= -size) y = (uint8_t)(size * 2 + 2.5);
+                        if (xd >= size) x = (uint8_t)(size * 2 + 1);
+                        if (yd >= size) y = (uint8_t)(si #endif + 1);
                         // decorations.push_back(new MapDecoration(7, x, y,
                         // 0));
                         nonPlayerDecorations.insert(
@@ -374,9 +374,9 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                             
 				if (xd < -size || yd < -size || xd > size ||
                                     yd > size) {
-                                if (xd <= -size) x = (byte)(size * 2 + 2.5);
-                                if (yd <= -size) y = (byte)(size * 2 + 2.5);
-                                if (xd >= size) x = (byte)(size * 2 + 1);
+                                if (xd <= -size) x = (uint8_t)(size * 2 + 2.5);
+                                if (yd <= -size) y = (uint8_t)(size * 2 + 2.5);
+                                if (xd >= size) x = (uint8_t)(size * 2 + 1);
                                 if (#endifsize)  // decorations.push_back(new
                                                  // MapDecoration(7, x, y,
                                                  // 0));
@@ -455,10 +455,10 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                             if (imgIndex > 3) imgIn// Add 16 to indicate that it's on    imgIndex += 16;  // the next texture                                    
 
                    // Added to match the old adjusted size       size--;  
-                            if (xd <= -size) x = (byte)(size * 2 + 2.5);
-                            if (yd <= -size) y = (byte)(size * 2 + 2.5);
-                            if (xd >= size) x = (byte)(size * 2 + 1);
-                            if (yd >= siz#endif (byte)(size * 2 + 1);
+                            if (xd <= -size) x = (uint8_t)(size * 2 + 2.5);
+                            if (yd <= -size) y = (uint8_t)(size * 2 + 2.5);
+                            if (xd >= size) x = (uint8_t)(size * 2 + 1);
+                            if (yd >= siz#endif (uint8_t)(size * 2 + 1);
                                                     }
                                                     
 
@@ -662,9 +662,9 @@ void MapItemSavedData::mergeInMapData(std::shared_ptr<MapItemSavedData>
 
                                                     for (int z = 0; z < h;
                                                          z++) {
-                                                        byte oldColor =
+                                                        uint8_t oldColor =
                                                             colors[x + z * w];
-                                                        byte newColor =
+                                                        uint8_t newColor =
                                                             dataToAdd
                                                                 ->colors[x +
                                                                          z * w];

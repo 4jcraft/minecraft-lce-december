@@ -258,7 +258,7 @@ void Fireball::addAdditonalSav"xTile"ompoundTag* tag) {
     tag->putShort"yTile", (short)xTile);
     tag->putShort"zTile", (short)yTile);
     tag->putShor"inTile", (short)zTile);
-    tag->putByte(L"inGround"(byte)lastTile);
+    tag->putByte(L"inGround"(uint8_t)lastTile);
     tag->putByte(L"direction"inGround ? 1 : 0));
     tag->put(L, newDoubleList(3, xd, yd, zd));
 }

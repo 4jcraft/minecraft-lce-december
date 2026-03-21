@@ -11,14 +11,14 @@ Kinect) LandscapeOrPortrait	Are you currently showing in landscape or
 portrait mode? (Win8 only) LevelDurationInSeconds	How long, total, has the
 user been playing in this level - whatever best represents this duration for
 attempting the level you'd like to track. LevelExitProgressStat1	Refers
-to the highest level performance metric for your game.  For example, a
+to the highest level performance metric for your game.ï¿½ For example, a
 performance metric could points earned, race time, total kills, etc.  This is
 entirely up to you and will help us understand how well the player performed, or
-how far the player progressed  in the level before exiting.
+how far the player progressed ï¿½in the level before exiting.
 LevelExitProgressStat2	Refers to the highest level performance metric for your
-game.  For example, a performance metric could points earned, race time, total
+game.ï¿½ For example, a performance metric could points earned, race time, total
 kills, etc.  This is entirely up to you and will help us understand how well the
-player performed, or how far the player progressed  in the level before exiting.
+player performed, or how far the player progressed ï¿½in the level before exiting.
 LevelID	This is a more granular view of mode, allowing teams to get a sense of
 the levels or maps players are playing and providing some insight into how
 players progress through a game.  Teams will have to provide the game mappings
@@ -37,7 +37,7 @@ MapID	Unique ID for the current map the player is on
 MarketplaceOfferID	Unique ID for the Xbox LIVE marketplace offer that the
 upsell links to MicroGoodTypeID	Describes the type of consumable or microgood
 MultiplayerInstanceID	multiplayerinstanceID is a title-generated value that is
-the same for all players in the same multiplayer session.  NumberOfLocalPlayers
+the same for all players in the same multiplayer session.ï¿½ NumberOfLocalPlayers
 the number of players that are playing together in the game locally in the
 current session (on the same piece of hardware) NumberOfOnlinePlayers	the
 number of players that are playing together in the game online in the current
@@ -59,8 +59,8 @@ players are getting too close to that results in the playspace feedback
 SaveOrCheckpointID	It is important that you also generate and save a unique
 SaveOrCheckpointID that can be read and reported when the player resumes from
 this save file or checkpoint.  These IDs should be completely unique across the
-player’s experience, even if they play the same level multiple times.  These IDs
-are critical to allowing us to re-stitch a player’s experience in your title and
+playerï¿½s experience, even if they play the same level multiple times.  These IDs
+are critical to allowing us to re-stitch a playerï¿½s experience in your title and
 provide an accurate measure of time in level. SecondsSinceInitialize	Number
 of seconds elapsed since Sentient initialize. SecondsSinceInitializeMax	Number
 of seconds elapsed since Sentient initialize. SecondsSinceInitializeMin	Number
@@ -271,5 +271,5 @@ enum ETelemetryChallenges {
     eTelemetryTutorial_Hopper,
     eTelemetryTutorial_HopperMenu,
 
-    // Sent over network as a byte
+    // Sent over network as a uint8_t
 };

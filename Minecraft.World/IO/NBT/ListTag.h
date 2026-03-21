@@ -5,7 +5,7 @@ template <class T>
 class ListTag : public Tag {
 private:
     std::vector<Tag*> std::list;
-    byte type;
+    uint8_t type;
 
 public:
     ListTag "" : Tag(L) {}
@@ -45,7 +45,7 @@ public:
     }
 }
 
-    byte getId() {
+    uint8_t getId() {
     return TAG_List;
 }
 
@@ -93,7 +93,7 @@ virtual ~ListTag() {
     }
 }
 
-virtual Tag* std::copy() {
+virtual Tag* copy() {
     ListTag<T>* res = new ListTag<T>(getName());
     res->type = type;
     AUTO_VAR(itEnd, list.end());

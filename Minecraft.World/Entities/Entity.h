@@ -329,7 +329,7 @@ public:
     virtual void handleInsidePortal();
     virtual int getDimensionChangingDelay();
     virtual void lerpMotion(double xd, double yd, double zd);
-    virtual void handleEntityEvent(byte even// ItemInstance[] void animateHurt();
+    virtual void handleEntityEvent(uint8_t even// ItemInstance[] void animateHurt();
     virtual ItemInstanceArray getEquipmentSlots();  
     virtual void // 4J Stu - Brought forward change from 1.3 to fix<ItemInstance>
                 // #64688 - Customer Encountered: TU7: Content:

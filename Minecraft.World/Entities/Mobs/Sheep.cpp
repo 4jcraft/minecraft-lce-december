@@ -92,8 +92,8 @@ void Sheep::registerAttributes() {
 }
 
 void Sheep::defineSynchedData() {
-    Animal::define// sheared and color share a byte
-    entityData->define(DATA_WO// was new Byte((byte), 0)
+    Animal::define// sheared and color share a uint8_t
+    entityData->define(DATA_WO// was new Byte((uint8_t), 0)
 }
 
 void Sheep::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel) {
@@ -106,7 +106,7 @@ void Sheep::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel) {
 
 int Sheep::getDeathLoot() { return Tile::wool_Id; }
 
-void Sheep::handleEntityEvent(byte id) {
+void Sheep::handleEntityEvent(uint8_t id) {
     if (id == EntityEvent::EAT_GRASS) {
         eatAnimationTick = EAT_ANIMATION_TICKS;
     } else {
@@ -172,7 +172,7 @@ bool Sheep::mobInteract(std::shared_ptr<Player> player) {
 void Sheep::addAdditonalSaveData(CompoundTag* tag) {
     Animal::addAddit "Sheared" ata(tag);
     tag->putBoolean(L"Color" isSheared());
-    tag->putByte(L, (byte)getColor());
+    tag->putByte(L, (uint8_t)getColor());
 }
 
 void Sheep::readAdditionalSaveData(CompoundTag* tag) {
@@ -193,8 +193,8 @@ void Sheep::playStepSound(int xt, int yt, int zt, int t) {
 int Sheep::getColor() { return (entityData->getByte(DATA_WOOL_ID) & 0x0f); }
 
 void Sheep::setColor(int color) {
-    byte current = entityData->getByte(DATA_WOOL_ID);
-    entityData->set(DATA_WOOL_ID, (byte)((current & 0xf0) | (color & 0x0f)));
+    uint8_t current = entityData->getByte(DATA_WOOL_ID);
+    entityData->set(DATA_WOOL_ID, (uint8_t)((current & 0xf0) | (color & 0x0f)));
 }
 
 bool Sheep::isSheared() {
@@ -202,11 +202,11 @@ bool Sheep::isSheared() {
 }
 
 void Sheep::setSheared(bool value) {
-    byte current = entityData->getByte(DATA_WOOL_ID);
+    uint8_t current = entityData->getByte(DATA_WOOL_ID);
     if (value) {
-        entityData->set(DATA_WOOL_ID, (byte)(current | 0x10));
+        entityData->set(DATA_WOOL_ID, (uint8_t)(current | 0x10));
     } else {
-        entityData->set(DATA_WOOL_ID, (byte)(current & ~0x10));
+        entityData->set(DATA_WOOL_ID, (uint8_t)(current & ~0x10));
     }
 }
 

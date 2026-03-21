@@ -138,7 +138,7 @@ int EmptyLevelChunk::getBlocksAndData(byteArray data, int x0, int y0, int z0,
         len = s + s / 2;
     }
 
-    Arrays::fill(data, p, p + len, (byte)0);
+    Arrays::fill(data, p, p + len, (uint8_t)0);
     return len;
 }
 

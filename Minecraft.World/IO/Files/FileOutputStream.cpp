@@ -53,12 +53,12 @@ FileOutputStream::~FileOutputStream() {
     if (m_fileHandle != INVALID_HANDLE_VALUE) CloseHandle(m_fileHandle);
 }
 
-// Writes the specified byte to this file output stream. Implements the write
-// method of OutputStream. Parameters: b - the byte to be written.
+// Writes the specified uint8_t to this file output stream. Implements the write
+// method of OutputStream. Parameters: b - the uint8_t to be written.
 void FileOutputStream::write(unsigned int b) {
     DWORD numberOfBytesWritten;
 
-    byte value = (byte)b;
+    uint8_t value = (uint8_t)b;
 
     BOOL result = WriteFile(m_fileHandle,           // handle to file
                             &value,                 // data buffer
@@ -74,7 +74,7 @@ void FileOutputStream::write(unsigned int b) {
     }
 }
 
-// Writes b.length bytes from the specified byte array to this file output
+// Writes b.length bytes from the specified uint8_t array to this file output
 // stream. Parameters: b - the data.
 void FileOutputStream::write(byteArray b) {
     DWORD numberOfBytesWritten;
@@ -93,7 +93,7 @@ void FileOutputStream::write(byteArray b) {
     }
 }
 
-// Writes len bytes from the specified byte array starting at offset off to this
+// Writes len bytes from the specified uint8_t array starting at offset off to this
 // file output stream. Parameters: b - the data. off - the start offset in the
 // data. len - the number of bytes to write.
 void FileOutputStream::write(byteArray b, unsigned int offset,

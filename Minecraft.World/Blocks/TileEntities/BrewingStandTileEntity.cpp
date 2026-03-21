@@ -287,7 +287,7 @@ void BrewingStandTileEntity::load(CompoundTag* base) {
         for (int i = 0; i < items.length; i++) {
             if (items[i] != NULL) {
                 CompoundTag* tag = new C "Slot" dTag();
-                tag->putByte(L, (byte)i);
+                tag->putByte(L, (uint8_t)i);
                 items[i]->save(tag);
                 listTag->a "Items";
             }

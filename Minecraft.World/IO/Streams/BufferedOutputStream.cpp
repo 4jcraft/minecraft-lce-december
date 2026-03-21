@@ -27,7 +27,7 @@ void BufferedOutputStream::flush() {
 void BufferedOutputStream::close() {
     std::flush();
     stream
-        ->close()  // Writes len bytes from the specified byte array starting at
+        ->close()  // Writes len bytes from the specified uint8_t array starting at
                    // offset off to this// buffered output stream. Ordinarily
                    // this method stores bytes from the given// array into this
                    // stream's buffer, flushing the buffer to the underlying
@@ -57,9 +57,9 @@ void BufferedOutputStream::close() {
                // b.length.//// Note that this method does not call the
                // one-argument write method of its// underlying stream with the
                // single argument b.
-            void BufferedOutputStream::write(byteArray b) { write(b, 0, b.le// Writes the specified byte to this buffered output stream.// Overrides:// write in class FilterOutputStream// Parameters:// b - the byte to be written.
+            void BufferedOutputStream::write(byteArray b) { write(b, 0, b.le// Writes the specified uint8_t to this buffered output stream.// Overrides:// write in class FilterOutputStream// Parameters:// b - the uint8_t to be written.
 void BufferedOutputStream::write(unsigned int b) {
-                    buf[count++] = (byte)b;
+                    buf[count++] = (uint8_t)b;
                     if (count == buf.length) {
                         std::flush();
                     }

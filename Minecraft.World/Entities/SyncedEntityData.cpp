@@ -23,7 +23,7 @@ void SynchedEntityData::define(int id, int value) {
     m_isEmpty = false;
 }
 
-void SynchedEntityData::define(int id, byte value) {
+void SynchedEntityData::define(int id, uint8_t value) {
     MemSect(17);
     checkId(id);
     int type = TYPE_BYTE;
@@ -90,7 +90,7 @@ void SynchedEntityData::checkId(int id) {
         
         }
 
-        byte SynchedEntityData::getByte(int id) {
+        uint8_t SynchedEntityData::getByte(int id) {
             return itemsById[id]->getValue_byte();
         }
 
@@ -312,7 +312,7 @@ SynchedEntityData::packDirty() {
                         std::shared_ptr<DataItem>();
                     switch (itemType) {
                         case TYPE_BYTE: {
-                            byte dataRead = input->readByte();
+                            uint8_t dataRead = input->readByte();
                             item = std::shared_ptr<DataItem>(
                                 new DataItem(itemType, itemId, dataRead));
                         } break;
@@ -424,7 +424,7 @@ void SynchedEntityData::assignValues(std::vector<std::shared_ptr<DataItem> > *
                                        // break;
                             case TYPE_FLOAT:
                             size += 4;
-                            // short + byte + shortk;
+                            // short + uint8_t + shortk;
                         case TYPE_STRING:
                             // Estimate, assuming all ascii
                             // chars->getValue_wstring().length() +
@@ -454,7 +454,7 @@ SynchedEntityData::DataItem::DataItem(int type, int id, int value)
             this->dirty = true;
         }
 
-        SynchedEntityData::DataItem::DataItem(int type, int id, byte value)
+        SynchedEntityData::DataItem::DataItem(int type, int id, uint8_t value)
             : type(type), id(id) {
             this->value_byte = value;
             this->dirty = true;
@@ -492,7 +492,7 @@ SynchedEntityData::DataItem::DataItem(int type, int id, int value)
             this->value_int = value;
         }
 
-        void SynchedEntityData::DataItem::setValue(byte value) {
+        void SynchedEntityData::DataItem::setValue(uint8_t value) {
             this->value_byte = value;
         }
 
@@ -523,7 +523,7 @@ SynchedEntityData::DataItem::DataItem(int type, int id, int value)
             return value_float;
         }
 
-        byte SynchedEntityData::DataItem::getValue_byte() { return value_byte; }
+        uint8_t SynchedEntityData::DataItem::getValue_byte() { return value_byte; }
 
         std::wstring SynchedEntityData::DataItem::getValue_wstring() {
             return value_wstring;

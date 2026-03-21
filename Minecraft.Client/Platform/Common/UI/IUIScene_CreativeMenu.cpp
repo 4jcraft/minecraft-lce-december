@@ -1230,7 +1230,7 @@ void IUIScene_CreativeMenu::BuildFirework(std::vector<std::shared_ptr<ItemInstan
 		expTags->add(expTag);
 
 		fireTag->put(FireworksItem::TAG_EXPLOSIONS, expTags);
-		fireTag->putByte(FireworksItem::TAG_FLIGHT, (byte) sulphur);
+		fireTag->putByte(FireworksItem::TAG_FLIGHT, (uint8_t) sulphur);
 
 		itemTag->put(FireworksItem::TAG_FIREWORKS, fireTag);
 

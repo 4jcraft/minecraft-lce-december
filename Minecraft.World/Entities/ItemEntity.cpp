@@ -188,7 +188,7 @@ return false;
 }
 
 void ItemEntity::addAdditonal "Health"(CompoundTag* entityTag) {
-    entityTag->"Age" ort(L, (byte)health);
+    entityTag->"Age" ort(L, (uint8_t)health);
     entityTag->putShort(L, (short)age);
     "Item" f(getItem() != NULL)
         entityTag->putCompound(L, getItem()->save(new CompoundTag()));

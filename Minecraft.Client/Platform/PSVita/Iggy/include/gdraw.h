@@ -274,7 +274,7 @@ typedef struct GDrawRenderState {
                      // implementation initializes stencil to 1, and "set" makes
                      // them 0)
 
-    U8 reserved[2];   // Currently unused (used to make padding to 4/8-byte
+    U8 reserved[2];   // Currently unused (used to make padding to 4/8-uint8_t
                       // boundary for following pointer explicit)
     S32 blur_passes;  // For filters that include blurring, this is the number
                       // of box filter passes to run
@@ -409,7 +409,7 @@ IDOC typedef void RADLINK gdraw_draw_indexed_triangles(GDrawRenderState* r,
 IDOC typedef void RADLINK gdraw_set_antialias_texture(S32 width, U8* rgba);
 /* Specifies the 1D texture data to be used for the antialiasing gradients.
 
-   'rgba' specifies the pixel values in rgba byte order. This will only be
+   'rgba' specifies the pixel values in rgba uint8_t order. This will only be
    called once during initialization. */
 
 ////////////////////////////////////////////////////////////
@@ -420,7 +420,7 @@ IDOC typedef void RADLINK gdraw_set_antialias_texture(S32 width, U8* rgba);
 
 IDOC typedef enum gdraw_texture_format {
     // Platform-independent formats
-    GDRAW_TEXTURE_FORMAT_rgba32,  // 32bpp RGBA data in platform-preferred byte
+    GDRAW_TEXTURE_FORMAT_rgba32,  // 32bpp RGBA data in platform-preferred uint8_t
                                   // order (returned by
                                   // $gdraw_make_texture_begin as
                                   // $gdraw_texture_type)

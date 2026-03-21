@@ -41,7 +41,7 @@ void UpdateAttributesPacket::read(DataInputStream* dis) {
         for (int j = 0; j < modifierCount; j++) {
             eMODIFIER_ID id = static_cast<eMODIFIER_ID>(dis->readInt());
             double amount = dis->readDouble();
-            byte operation = dis->readByte();
+            uint8_t operation = dis->readByte();
             modifiers.insert(new AttributeModifier(
 /*L"Unknown synced attribute modifier",*/ amount,
                 operation));

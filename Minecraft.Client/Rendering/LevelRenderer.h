@@ -295,7 +295,7 @@ public:
     void clearGlobalChunkFlag(int x, int y, int z, Level* level,
                               unsigned char flag, unsigned char shift = 0);
 
-    // Get/set whole byte of flags
+    // Get/set whole uint8_t of flags
     unsigned char getGlobalChunkFlags(int x, int y, int z, Level* level);
     void setGlobalChunkFlags(int x, int y, int z, Level* level,
                              unsigned char flags);

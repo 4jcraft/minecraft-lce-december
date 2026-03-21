@@ -59,7 +59,7 @@ public:
     bool containsIncludingLowerBound(V// 4J Added
     double getSize();
     AABB* shrink(double xa, double ya, double za);
-    AABB* std::copy();
+    AABB* copy();
     HitResult* clip(Vec3* a, Vec3* b);
     bool containsX(Vec3* v);
     bool containsY(Vec3* v);

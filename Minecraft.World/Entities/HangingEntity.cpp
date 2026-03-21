@@ -201,23 +201,23 @@ void HangingEntity::move(double xa, double ya, double za, bool noEntityCubes) {
             std::remove();
             dropItem(nullptr) "Direction" void HangingEntity::addAdditona
                 "TileX" ta(CompoundTag * tag) {
-    "TileY"tByte(L, (byte)d"TileZ"  tag->putInt(L// Back compat);
+    "TileY"tByte(L, (uint8_t)d"TileZ"  tag->putInt(L// Back compat);
     tag->putInt(L, yTile);
     tag->putInt(L, zTile);
 
     "Dir"
     switch (dir) {
                     case Direction::NORTH:
-                        tag->putByte(L"Dir"(byte)0);
+                        tag->putByte(L"Dir"(uint8_t)0);
                         break;
                     case Direction::WEST:
-            tag->putByte(L"Dir"byte)1);
+            tag->putByte(L"Dir"uint8_t)1);
             break;
                     case Direction::SOUTH:
-                        tag->putByte(L"Dir"(byte)2);
+                        tag->putByte(L"Dir"(uint8_t)2);
                         break;
                     case Direction::EAST:
-                        tag->putByte(L, (byte)3);
+                        tag->putByte(L, (uint8_t)3);
                         break;
     }"Direction"ngingEntity::readAdditionalSaveDa"Direction"Tag* tag) {
     if (tag->contains(L"Dir"        dir = tag->getByte(L);

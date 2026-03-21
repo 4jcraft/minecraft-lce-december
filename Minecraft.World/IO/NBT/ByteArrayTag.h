@@ -30,7 +30,7 @@ public:
         dis->readFully(data);
     }
 
-    byte getId() { return TAG_Byte_Array; }
+    uint8_t getId() { return TAG_Byte_Array; }
 
     std::wstring toString() {
         static wchar_t buf[32];
@@ -48,7 +48,7 @@ public:
         return false;
     }
 
-    Tag* std::copy() {
+    Tag* copy() {
         byteArray cp = byteArray(data.length);
         System::arraycopy(data, 0, &cp, 0, data.length);
         return new ByteArrayTag(getName(), cp, true);

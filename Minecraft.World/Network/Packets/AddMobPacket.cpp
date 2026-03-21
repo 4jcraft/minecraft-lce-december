@@ -23,7 +23,7 @@ AddMobPacket::AddMobPacket(std::shared_ptr<LivingEntity> mob, int yRotp,
                            int xRotp, int xp, int yp, int zp, int yHeadRotp) {
     id = mob->entityId;
 
-    type = (byte)EntityIO::getId(mob);
+    type = (uint8_t)EntityIO::getId(mob);
     // 4J Stu - We should add entities at their "last sent" position so that the
     // relative update packets put them in the correct place
     x = xp;  // Mth::floor(mob->x * 32);
@@ -34,9 +34,9 @@ AddMobPacket::AddMobPacket(std::shared_ptr<LivingEntity> mob, int yRotp,
     yRot = yRotp;
     xRot = xRotp;
     yHeadRot = yHeadRotp;
-    //	yRot = (byte) (mob->yRot * 256 / 360);
-    //	xRot = (byte) (mob->xRot * 256 / 360);
-    //	yHeadRot = (byte) (mob->yHeadRot * 256 / 360);
+    //	yRot = (uint8_t) (mob->yRot * 256 / 360);
+    //	xRot = (uint8_t) (mob->xRot * 256 / 360);
+    //	yHeadRot = (uint8_t) (mob->yHeadRot * 256 / 360);
 
     // From SetEntityMotionpacket
     double m = 3.9;

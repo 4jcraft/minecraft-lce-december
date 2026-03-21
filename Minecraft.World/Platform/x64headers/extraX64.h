@@ -10,7 +10,7 @@
 
 #define MULTITHREAD_ENABLE
 
-typedef unsigned char byte;
+typedef unsigned char uint8_t;
 
 const int XUSER_INDEX_ANY = 255;
 const int XUSER_INDEX_FOCUS = 254;
@@ -393,7 +393,7 @@ const int QNET_SENDDATA_SEQUENTIAL = 0;
 
 struct XRNM_SEND_BUFFER {
     DWORD dwDataSize;
-    byte* pbyData;
+    uint8_t* pbyData;
 };
 
 const int D3DBLEND_CONSTANTALPHA = 0;

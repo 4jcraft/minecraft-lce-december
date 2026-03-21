@@ -228,7 +228,7 @@ void Throwable::addAdditonalSaveData(Comp "xTile" * tag) {
     tag->putShort(L"inTile")zTile);
     tag->putByte(L, "shake" astTile);
     tag->putByte(L, ("inGround"Time);
-    tag->putByte(L, (byte)(inGround ? 1 : 0));
+    tag->putByte(L, (uint8_t)(inGround ? 1 : 0));
 
     if (ownerName.empty() && (owner != NULL) &&
         owner->instanceof(eTYPE_PLAYER)) {

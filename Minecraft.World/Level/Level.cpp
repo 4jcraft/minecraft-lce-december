@@ -93,7 +93,7 @@ DWORD Level::tlsIdxLightCache = TlsAlloc();
 #endif
 
 void Level::enableLightingCache() {
-    // Allocate 16K (needs 32K for large worlds) for a 16x16x16x4 byte cache of
+    // Allocate 16K (needs 32K for large worlds) for a 16x16x16x4 uint8_t cache of
     // results, plus 128K required for toCheck array. Rounding up to 256 to keep
     // as multiple of alignement - aligning to 128K boundary for possible cache
     // locking.
@@ -5261,7 +5261,7 @@ bool Level::mayInteract(std::shared_ptr<Player> player, int xt, int yt, int zt,
     return true;
 }
 
-void Level::broadcastEntityEvent(std::shared_ptr<Entity> e, byte event) {}
+void Level::broadcastEntityEvent(std::shared_ptr<Entity> e, uint8_t event) {}
 
 ChunkSource* Level::getChunkSource() { return chunkSource; }
 

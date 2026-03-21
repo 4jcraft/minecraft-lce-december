@@ -105,11 +105,11 @@ private:
             // side// For local connections between the host player and
             // the server
             static CRITICAL_SECTION s_hostQueueLock[2];
-        static std::queue<byte> s_hostQueue[2];
+        static std::queue<uint8_t> s_hostQueue[2];
         static SocketOutputStreamLocal* s_hostOutStream[2];
         static SocketInputStreamLocal*
             s_ho  // For network connections
-                std::queue<byte>
+                std::queue<uint8_t>
                     m_qu  // For input data   
                         CRITICAL_SECTION
                             m_qu  // For input data;  

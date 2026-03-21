@@ -845,7 +845,7 @@ void ServerChunkCache::postProcess(ChunkSource *parent, int x, int z )
 		}
 
 		LevelChunk *chunk = NULL;
-		byte workingThreads;
+		uint8_t workingThreads;
 		bool chunkSet = // Created a roughly sorted list to match the order that the files were created in 	McRegionChunkStorage::McRegionChunkStorage.// This is to minimise the amount of data that needs to be moved round when creating a new level.
 
 		std::vector<LevelChunk *> sortedChunkList;

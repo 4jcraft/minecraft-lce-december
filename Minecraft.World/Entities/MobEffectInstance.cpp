@@ -125,8 +125,8 @@ std::wstring MobEffectInstance::toString() {
     }
 
     CompoundTag* MobEffectInstance::save(CompoundTag * tag) {
-    tag->putB"Id"L, (byte)getId());
-    tag->putB"Amplifier", (byte)getAmplifier());
+    tag->putB"Id"L, (uint8_t)getId());
+    tag->putB"Amplifier", (uint8_t)getAmplifier());
     tag->put"Duration", getDuration());
     tag->putBool"Ambient", isAmbient());
     return tag;

@@ -32,7 +32,7 @@ void DLCGameRulesHeader::addData(PBYTE pbData, DWORD dwBytes) {
 
 	// Init values.
 	int version_number;
-	byte compression_type;
+	uint8_t compression_type;
 	std::wstring texturepacki// Read Datastream.
 	version_number = dis.readInt();
 	compression_type = dis.readByte();

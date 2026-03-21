@@ -18,9 +18,9 @@ typedef struct _GameSessionData {
                   [XUSER_NAME_SIZE];    // 128 bytes ( 8*16)
     unsigned int m_uiGameHostSettings;  //   4 bytes
     unsigned int texturePackParentId;   //   4 bytes
-    unsigned char subTexturePackId;     //   1 byte
+    unsigned char subTexturePackId;     //   1 uint8_t
 
-    bool isJoinable;  //   1 byte
+    bool isJoinable;  //   1 uint8_t
 
     _GameSessionData() {
         netVersion = 0;
@@ -42,12 +42,12 @@ typedef struct _GameSessionData {
                                              //  24*8) on PS3
     unsigned int m_uiGameHostSettings;       //   4 bytes
     unsigned int texturePackParentId;        //   4 bytes
-    unsigned char subTexturePackId;          //   1 byte
+    unsigned char subTexturePackId;          //   1 uint8_t
 
-    bool isJoinable;  //   1 byte
+    bool isJoinable;  //   1 uint8_t
 
-    unsigned char playerCount;  //   1 byte
-    bool isReadyToJoin;         //   1 byte
+    unsigned char playerCount;  //   1 uint8_t
+    bool isReadyToJoin;         //   1 uint8_t
 
     _GameSessionData() {
         netVersion = 0;
@@ -65,9 +65,9 @@ typedef struct _GameSessionData {
     unsigned short netVersion;          //   2 bytes
     unsigned int m_uiGameHostSettings;  //   4 bytes
     unsigned int texturePackParentId;   //   4 bytes
-    unsigned char subTexturePackId;     //   1 byte
+    unsigned char subTexturePackId;     //   1 uint8_t
 
-    bool isReadyToJoin;  //   1 byte
+    bool isReadyToJoin;  //   1 uint8_t
 
     _GameSessionData() {
         netVersion = 0;

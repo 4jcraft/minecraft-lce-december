@@ -649,7 +649,7 @@ void Villager::addItemForPurchase(MerchantRecipeList* std::list, int itemId,
         return minMax.first + random->nextInt(minMax.second - minMax.first);
     }
 
-    void Villager::handleEntityEvent(byte id) {
+    void Villager::handleEntityEvent(uint8_t id) {
         if (id == EntityEvent::LOVE_HEARTS) {
             addParticlesAroundSelf(eParticleType_heart);
         } else if (id == EntityEvent::VILLAGER_ANGRY) {

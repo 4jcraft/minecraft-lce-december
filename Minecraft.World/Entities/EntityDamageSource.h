@@ -27,5 +27,5 @@ public:
 
     virtual bool scalesWithDifficulty();
 
-    virtual DamageSource* std::copy();
+    virtual DamageSource* copy();
 };

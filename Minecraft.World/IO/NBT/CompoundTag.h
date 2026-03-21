@@ -56,13 +56,13 @@ for (std::unordered_map<std::wstring, Tag*>::iterator it = tags.begin();
 return ret;
 }
 
-byte getId() { return TAG_Compound; }
+uint8_t getId() { return TAG_Compound; }
 
 void put(const std::wstring& name, Tag* tag) {
     tags[name] = tag->setName(name);
 }
 
-void putByte(const std::wstring& name, byte value) {
+void putByte(const std::wstring& name, uint8_t value) {
     tags[name] = (new ByteTag(name, value));
 }
 
@@ -103,7 +103,7 @@ void putCompound(const std::wstring& name, CompoundTag* value) {
 }
 
 void putBoolean(const std::wstring& name, bool val) {
-    putByte(name, val ? (byte)1 : 0);
+    putByte(name, val ? (uint8_t)1 : 0);
 }
 
 Tag* std::get(const std::wstring& name) {
@@ -116,8 +116,8 @@ bool contains(const std::wstring& name) {
     return tags.find(name) != tags.end();
 }
 
-byte getByte(const std::wstring& name) {
-    if (tags.find(name) == tags.end()) return (byte)0;
+uint8_t getByte(const std::wstring& name) {
+    if (tags.find(name) == tags.end()) return (uint8_t)0;
     return ((ByteTag*)tags[name])->data;
 }
 
@@ -213,7 +213,7 @@ bool getBoolean(const std::wstring& std::string) {
         }
     }
 
-    Tag* std::copy() {
+    Tag* copy() {
         CompoundTag* tag = new CompoundTag(getName());
 
         AUTO_VAR(itEnd, tags.end());

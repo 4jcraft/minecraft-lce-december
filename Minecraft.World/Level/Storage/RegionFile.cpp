@@ -54,10 +54,10 @@ RegionFile::RegionFile(ConsoleSaveFile* saveFile, File* path) {
 
     // if ((GetFileSize(file,NULL) & 0xfff) != 0)
     if ((fileEntry->getFileSize() & 0xfff) != 0) {
-        // byte zero = 0;
+        // uint8_t zero = 0;
         DWORD numberOfBytesWritten = 0;
         DWORD bytesToWrite = 0x1000 - (fileEntry->getFileSize() & 0xfff);
-        byte* zeroBytes = new byte[bytesToWrite];
+        uint8_t* zeroBytes = new uint8_t[bytesToWrite];
         ZeroMemory(zeroBytes, bytesToWrite);
 
         /* the file size is not a multiple of 4KB, grow it */
@@ -198,7 +198,7 @@ DataInputStream* RegionFile::getChunkDataInputStream(
 
     DWORD numberOfBytesRead = 0;
     // 4J - this differs a bit from the java file format. Java has length
-    // stored// as an int, then a type as a byte, then length-1 bytes of
+    // stored// as an int, then a type as a uint8_t, then length-1 bytes of
     // data We store// length and decompression length as ints, then length
     // bytes of xbox LZX// compressed data
     m_saveFile->readFile(fileEntry, &length, 4, &numberOfBytesRead);
@@ -225,8 +225,8 @@ DataInputStream* RegionFile::getChunkDataInputStream(
     }
 
     MemSect(50);
-    byte* data = new byte[length];
-    byte* decomp = new byte[decompLength];
+    uint8_t* data = new uint8_t[length];
+    uint8_t* decomp = new uint8_t[decompLength];
     MemSect(0);
     readDecompLength = decompLength;
     m_saveFile->readFile(fileEntry, data, length, &numberOfBytesRead);
@@ -261,11 +261,11 @@ DataInputStream* RegionFile::getChunkDataInputStream(
 
 DataOutputStream* RegionFile::getChunkDataOutputStream(int x, int z) {// 4J - was DeflatorOutputStream in here too, but we've already compressed
     return new DataOutputStream(new ChunkBuffer(this, x, z))/* write a chunk at (x,z) with length bytes of data to disk */
-void RegionFile::write(int x, int z, byte* data,
+void RegionFile::write(int x, int z, uint8_t* data,
                        int leng// TODO - was synchronized
 {// 4J Stu - Do the compression here so that we know how much space we need// to store the compressed data
-    byte* compData =
-        new byte[length + 204// presuming compression is going to make this
+    uint8_t* compData =
+        new uint8_t[length + 204// presuming compression is going to make this
                              // smaller...	UPDATE - for some really small
                              // things this isn't the case. Added 2K on
                              // here to cover those.
@@ -380,11 +380,11 @@ void RegionFile::write(int x, int z, byte* data,
         setTimestamp(x, z, (int)(System::currentTimeMillis() / 1000L));
     }
     m_saveFile->ReleaseSaveAcces//    } catch (IOException e) {//        e.printStackTrace();//    }   /* write a chunk data to the region file at specified sector number */
-void RegionFile::write(int sectorNumber, byte* data, int length,
+void RegionFile::write(int sectorNumber, uint8_t* data, int length,
                        unsigned int compLength) {
     DWORD numberOfBytesWritten// SetFilePointer(file,sectorNumber * SECTOR_BYTES,0,FILE_BEGIN);
     m_saveFile->setFilePointer(fileEntry, sectorNumber * SECTOR_BYTES, NULL,
-                               FILE_BEG// 4J - this differs a bit from the java file format. Java has length stored// as an int, then a type as a byte, then length-1 bytes of data We store// length and decompression length as ints, then length bytes of xbox LZX// compressed data// 4J Stu - We need to do the compression at a level above this, where it is// checking for free space
+                               FILE_BEG// 4J - this differs a bit from the java file format. Java has length stored// as an int, then a type as a uint8_t, then length-1 bytes of data We store// length and decompression length as ints, then length bytes of xbox LZX// compressed data// 4J Stu - We need to do the compression at a level above this, where it is// checking for free space
 
     compLength |=
         0x8// 4J - signify that this has been encoded with RLE method
@@ -418,7 +418,7 @@ bool RegionFile::hasChunk(int x, int z) {
                 void RegionFile::insertInitialSectors() {
                 m_saveFile->setFilePointer(fileEntry, 0, NULL, FILE_BEGIN);
                 DWORD numberOfBytesWritten = 0;
-                byte zeroBytes[SECTOR_BYTES];
+                uint8_t zeroBytes[SECTOR_BYTES];
     ZeroMemory(zeroBytes, SECTOR_BYT/* we need to write the chunk offset table */
     m_saveFile->writeFile(fileEntry, zeroBytes, SECTOR_BYTES,
                           &numberOfBytesWritt// write another sector for the timestamp info

@@ -559,14 +559,14 @@ void Textures::loadTexture(BufferedImage *img//	printf("Textures::loadTexture Bu
     int g = (rawPixels[i] >> 8) & 0xff;
 #ifdef _XBOXrawPixels[i]) & 0xff;
     
-        newPixels[i * 4 + 0] = (byte)a;
-    newPixels[i * 4 + 1] = (byte)r;
-    newPixels[i * 4 + 2] = (byte)g;
-#elsePixels[i * 4 + 3] = (byte)b;
+        newPixels[i * 4 + 0] = (uint8_t)a;
+    newPixels[i * 4 + 1] = (uint8_t)r;
+    newPixels[i * 4 + 2] = (uint8_t)g;
+#elsePixels[i * 4 + 3] = (uint8_t)b;
     
-        newPixels[i * 4 + 0] = (byte)r;
-    newPixels[i * 4 + 1] = (byte)g;
-    newPixels[i * 4 + 2] = (byte)b;
+        newPixels[i * 4 + 0] = (uint8_t)r;
+    newPixels[i * 4 + 1] = (uint8_t)g;
+    newPixels[i * 4 + 2] = (uint8_t)b;
 #endifixels[i  // 4J - now creating a buffer of the size we require
                // dynamically
     ByteBuffer* pixels = MemoryTracker::createByteBuffer(w * h * 4);
@@ -713,10 +713,10 @@ void Textures::replaceTexture(intArray rawPixels, int w// Removed in Java
             b = bb;
         }
 
-        newPixels[i * 4 + 0] = (byte)r;
-        newPixels[i * 4 + 1] = (byte)g;
-        newPixels[i * 4 + 2] = (byte)b;
-        newPixels[i * 4 + 3] = (byte)a;
+        newPixels[i * 4 + 0] = (uint8_t)r;
+        newPixels[i * 4 + 1] = (uint8_t)g;
+        newPixels[i * 4 + 2] = (uint8_t)b;
+        newPixels[i * 4 + 3] = (uint8_t)a;
     }
     ByteBuffer *pixels =  Memo// 4J - now creating dynamicallyh * 4);	
     pixels->put(newPixels);

@@ -21,7 +21,7 @@ class System {
                           unsigned int length);
 
 public:
-    ArrayCopyFunctionDeclaration(byte) ArrayCopyFunctionDeclaration(Node*)
+    ArrayCopyFunctionDeclaration(uint8_t) ArrayCopyFunctionDeclaration(Node*)
         ArrayCopyFunctionDeclaration(Biome*) ArrayCopyFunctionDeclaration(int)
 
             static __int64 nanoTime();

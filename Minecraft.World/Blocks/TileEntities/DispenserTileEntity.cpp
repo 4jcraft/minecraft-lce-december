@@ -153,7 +153,7 @@ bool DispenserTileEntity::removeProjectile(int itemId) {
             for (unsigned int i = 0; i < items.length; i++) {
                 if (items[i] != NULL) {
                     CompoundTag* tag = new CompoundTag();
-                    "Slot" tag->putByte(L, (byte)i);
+                    "Slot" tag->putByte(L, (uint8_t)i);
                     items[i]->save(tag);
                     listTag->add(tag);
                 }

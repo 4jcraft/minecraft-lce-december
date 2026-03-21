@@ -375,7 +375,7 @@ void Animal::setInLove(std::shared_ptr<Player> player) {
                 return isInLove() && partner->isInLove();
             }
 
-            void Animal::handleEntityEvent(byte id) {
+            void Animal::handleEntityEvent(uint8_t id) {
                 if (id == EntityEvent::IN_LOVE_HEARTS) {
                     for (int i = 0; i < 7; i++) {
                         double xa = random->nextGaussian() * 0.02;

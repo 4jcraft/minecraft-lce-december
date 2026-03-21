@@ -41,7 +41,7 @@ ConsoleSaveFileSplit::RegionFileReference::~RegionFileReference() {
 
 // Compress from data to dataCompressed. Uses a special compression method that
 // is designed just to efficiently store runs of zeros, with little overhead on
-// other stuff. Compresed format is a 4 byte uncompressed size, followed by data
+// other stuff. Compresed format is a 4 uint8_t uncompressed size, followed by data
 // as follows:
 //
 // Byte value
@@ -69,7 +69,7 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
             // If there was a preceeding run of zeros, encode that nwo
             if (runLength != 0) {
                 if (runLength < 256) {
-                    // Runs of 1 to 255 encoded as 0 followed by one byte of run
+                    // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run
                     // length
                     outputSize += 2;
                 } else {
@@ -80,7 +80,7 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
                 // Run is now processed
                 runLength = 0;
             }
-            // Now handle the current byte
+            // Now handle the current uint8_t
             if (thisByte == 0) {
                 runLength++;
             } else {
@@ -95,7 +95,7 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
     // Handle any outstanding run
     if (runLength != 0) {
         if (runLength < 256) {
-            // Runs of 1 to 255 encoded as 0 followed by one byte of run length
+            // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run length
             outputSize += 2;
         } else {
             // Runs of 256 to 65791 encoded as two 0s followed by two bytes of
@@ -121,7 +121,7 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
             // If there was a preceeding run of zeros, encode that nwo
             if (runLength != 0) {
                 if (runLength < 256) {
-                    // Runs of 1 to 255 encoded as 0 followed by one byte of run
+                    // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run
                     // length
                     *dataOut++ = 0;
                     *dataOut++ = runLength;
@@ -137,7 +137,7 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
                 // Run is now processed
                 runLength = 0;
             }
-            // Now handle the current byte
+            // Now handle the current uint8_t
             if (thisByte == 0) {
                 runLength++;
             } else {
@@ -152,7 +152,7 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
     // Handle any outstanding run
     if (runLength != 0) {
         if (runLength < 256) {
-            // Runs of 1 to 255 encoded as 0 followed by one byte of run length
+            // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run length
             *dataOut++ = 0;
             *dataOut++ = runLength;
         } else {
@@ -269,7 +269,7 @@ unsigned int ConsoleSaveFileSplit::RegionFileReference::GetCompressedSize() {
             // If there was a preceeding run of zeros, encode that nwo
             if (runLength != 0) {
                 if (runLength < 256) {
-                    // Runs of 1 to 255 encoded as 0 followed by one byte of run
+                    // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run
                     // length
                     outputSize += 2;
                 } else {
@@ -280,7 +280,7 @@ unsigned int ConsoleSaveFileSplit::RegionFileReference::GetCompressedSize() {
                 // Run is now processed
                 runLength = 0;
             }
-            // Now handle the current byte
+            // Now handle the current uint8_t
             if (thisByte == 0) {
                 runLength++;
             } else {
@@ -295,7 +295,7 @@ unsigned int ConsoleSaveFileSplit::RegionFileReference::GetCompressedSize() {
     // Handle any outstanding run
     if (runLength != 0) {
         if (runLength < 256) {
-            // Runs of 1 to 255 encoded as 0 followed by one byte of run length
+            // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run length
             outputSize += 2;
         } else {
             // Runs of 256 to 65791 encoded as two 0s followed by two bytes of
@@ -485,7 +485,7 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
                         buf, &decompSize, (unsigned char*)pvSaveMem + 8,
                         fileSize - 8) == S_OK) {
                     // Only ReAlloc if we need to (we might already have
-                    // enough) and align to 512 byte
+                    // enough) and align to 512 uint8_t
                     // boundaries
                     DWORD currentHeapSize = pagesCommitted * CSF_PAGE_SIZE;
 
@@ -579,7 +579,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
 
         const int bufferSize = 4096;
         int amountToRead = bufferSize;
-        byte buffer[bufferSize];
+        uint8_t buffer[bufferSize];
         DWORD bufferDataSize = 0;
 
         char* readStartOffset =
@@ -1055,9 +1055,9 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                // nNumberOfBytesToWrite
                                                                // <= bufferSize
                                                                // );
-                                                            static byte buffer1
+                                                            static uint8_t buffer1
                                                                 [bufferSize];
-                                                        static byte
+                                                        static uint8_t
                                                             buffer2[bufferSize];
                                                         DWORD buffer1Size = 0;
                                                         DWORD
@@ -1073,7 +1073,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                  // and
                                                                  // align
                                                                  // to//
-                                                                 // 512 byte
+                                                                 // 512 uint8_t
                                                                  // boundaries
                                                             DWORD currentHeapSize =
                                                                 pagesCommitted *
@@ -1174,7 +1174,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                     (uintptr_t)
                                                                         spaceStartOffset;
                                                             uintptr_t uiFromEnd =
-                                                                (uintptr_t)beginEndOfDataOffset  // Round both of these values to get 4096 byte chunks that we will// need to at least partially move
+                                                                (uintptr_t)beginEndOfDataOffset  // Round both of these values to get 4096 uint8_t chunks that we will// need to at least partially move
                                                                     uintptr_t uiFromStartChunk =
                                                                         uiFromStart &
                                                                         ~((uintptr_t)4095);
@@ -1478,7 +1478,7 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
     unsig// 4J Stu - Added TU-1 interim+ 8;
 
 // Attempt to allocate the required memory// We do not own this, it belongs to the StorageManager
-    byte* compData = (byte*)StorageMan// If we failed to allocate then compData will be NULL// Pre-calculate the compressed data size so that we can attempt to allocate// a smaller buffer
+    uint8_t* compData = (uint8_t*)StorageMan// If we failed to allocate then compData will be NULL// Pre-calculate the compressed data size so that we can attempt to allocate// a smaller buffer
     // Length should be 0 here so that the compression call knows that we// want to know the length back
         // Pre-calculate the buffer size required for the compressed data"Pre-calc save compression"amedEvent(0// Save the start time);
         
@@ -1490,7 +1490,7 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
         qwDeltaTime.QuadPart = qwNewTime.QuadPart - qwTime.QuadPart;
         fElapsedTime = fSecsPerTick * ((FLOAT)(qwDeltaTi"Check buffer size: Elapsed time %f\n"f(, fElapsedTime// We add 4 bytes to the start so that we can signal compressed data// And another 4 bytes to store the decompressed data size
       // Attempt to allocate the required memory
-        compData = (byte*)StorageManager.AllocateSaveData(compLength);
+        compData = (uint8_t*)StorageManager.AllocateSaveData(compLength);
    // Re-compress all save data before we save it to disk"Actual save compression"nNamedEvent// Save the start time);
         
         QueryPerformanceCounter(&qwTime);

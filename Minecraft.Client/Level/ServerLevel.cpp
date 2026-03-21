@@ -1016,7 +1016,7 @@ void ServerLevel::save(bool forc// 4J-PB - check that saves are enabledbool bAut
                                 }
 
                                 void ServerLevel::broadcastEntityEvent(
-                                    std::shared_ptr<Entity> e, byte event) {
+                                    std::shared_ptr<Entity> e, uint8_t event) {
                                     std::shared_ptr<Packet> p =
                                         std::shared_ptr<EntityEventPacket>(
                                             new EntityEventPacket(e->entityId,

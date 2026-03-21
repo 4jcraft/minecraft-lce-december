@@ -226,7 +226,7 @@ void BiomeSource::getBiomeIndexBlock(byteArray& biomeIndices, int x, int z,
 
     intArray result = zoomedLayer->getArea(x, z, w, h);
     for (int i = 0; i < w * h; i++) {
-        biomeIndices[i] = (byte)result[i];
+        biomeIndices[i] = (uint8_t)result[i];
     }
 }
 

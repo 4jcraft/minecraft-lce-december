@@ -145,6 +145,6 @@ protected:
         EToolTipItem& buttonBack);
 
     static void BuildFirework(
-        std::vector<std::shared_ptr<ItemInstance> >* std::list, byte type,
+        std::vector<std::shared_ptr<ItemInstance> >* std::list, uint8_t type,
         int color, int sulphur, bool flicker, bool trail, int fadeColor = -1);
 };

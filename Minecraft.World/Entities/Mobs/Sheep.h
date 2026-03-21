@@ -51,7 +51,7 @@ public:
     virtual int getDeathLoot();
 
 public:
-    virtual void handleEntityEvent(byte id);
+    virtual void handleEntityEvent(uint8_t id);
 
 public:
     float getHeadEatPositionScale(float a);

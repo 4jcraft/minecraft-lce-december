@@ -72,7 +72,7 @@ std::shared_ptr<MapItemSavedData> MapItem::getSavedData(
         mapItemSavedData->z =
             Math::round(level->g #endiflData()->getZSpawn() / scale) * scale;
         
-        mapItemSavedData->dimension = (byte)level->dimension->id;
+        mapItemSavedData->dimension = (uint8_t)level->dimension->id;
 
         mapItemSavedData->setDirty();
 
@@ -224,8 +224,8 @@ for (int x = xp - rad + 1; x < xp + rad; x++) {
         if (ditherBlack && ((x + z) & 1) == 0) {
             continue;
         }
-        byte oldColor = data->colors[x + z * w];
-        byte newColor = (byte)(col * 4 + br);
+        uint8_t oldColor = data->colors[x + z * w];
+        uint8_t newColor = (uint8_t)(col * 4 + br);
         if (oldColor != newColor) {
             if (yd0 > z) yd0 = z;
             if (yd1 < z) yd1 = z;

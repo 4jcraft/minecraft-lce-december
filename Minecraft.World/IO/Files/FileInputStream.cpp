@@ -59,11 +59,11 @@ FileInputStream::~FileInputStream() {
     if (m_fileHandle != INVALID_HANDLE_VALUE) CloseHandle(m_fileHandle);
 }
 
-// Reads a byte of data from this input stream. This method blocks if no input
-// is yet available. Returns: the next byte of data, or -1 if the end of the
+// Reads a uint8_t of data from this input stream. This method blocks if no input
+// is yet available. Returns: the next uint8_t of data, or -1 if the end of the
 // file is reached.
 int FileInputStream::read() {
-    byte byteRead = 0;
+    uint8_t byteRead = 0;
     DWORD numberOfBytesRead;
 
     BOOL bSuccess = ReadFile(m_fileHandle,        // handle to file

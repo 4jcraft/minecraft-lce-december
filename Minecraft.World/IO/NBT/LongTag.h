@@ -12,14 +12,14 @@ public:
     void write(DataOutput* dos) { dos->writeLong(data); }
     void load(DataInput* dis, int tagDepth) { data = dis->readLong(); }
 
-    byte getId() { return TAG_Long; }
+    uint8_t getId() { return TAG_Long; }
     std::wstring toString() {
         static wchar_t buf[32];
         swprintf(buf, 32, L"%I64d", data);
         return std::wstring(buf);
     }
 
-    Tag* std::copy() { return new LongTag(getName(), data); }
+    Tag* copy() { return new LongTag(getName(), data); }
 
     bool equals(Tag* obj) {
         if (Tag::equals(obj)) {

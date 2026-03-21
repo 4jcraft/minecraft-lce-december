@@ -49,7 +49,7 @@ Witch::Witch(Level* level) : Monster(level) {
 void Witch::defineSynchedData() {
     Monster::defineSynchedData();
 
-    getEntityData()->define(DATA_USING_ITEM, (byte)0);
+    getEntityData()->define(DATA_USING_ITEM, (uint8_t)0);
 }
 
 int Witch::getAmbientSound() {
@@ -65,7 +65,7 @@ int Witch::getDeathSound() {
 }
 
 void Witch::setUsingItem(bool isUsing) {
-    getEntityData()->set(DATA_USING_ITEM, isUsing ? (byte)1 : (byte)0);
+    getEntityData()->set(DATA_USING_ITEM, isUsing ? (uint8_t)1 : (uint8_t)0);
 }
 
 bool Witch::isUsingItem() {
@@ -148,7 +148,7 @@ void Witch::aiStep() {
     Monster::aiStep();
 }
 
-void Witch::handleEntityEvent(byte id) {
+void Witch::handleEntityEvent(uint8_t id) {
     if (id == EntityEvent::WITCH_HAT_MAGIC) {
         for (int i = 0; i < random->nextInt(35) + 10; i++) {
             level->addParticle(eParticleType_witchMagic,

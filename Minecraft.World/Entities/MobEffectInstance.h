@@ -4,11 +4,11 @@ class Mob;
 
 class MobEffectInstance {
 private:
-    // sent as byte
+    // sent as uint8_t
     int id;
     // sent as short
     int duration;
-    // sent as byte
+    // sent as uint8_t
     int amplifier;
     bool splash;
     bool ambient;

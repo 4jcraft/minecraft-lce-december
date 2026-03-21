@@ -61,7 +61,7 @@ public:
 public:
     int x, z;
     char dimension;
-    byte scale;
+    uint8_t scale;
     byteArray colors;
     std::vector<std::shared_ptr<HoldingPlayer> > carriedBy;
 

@@ -181,7 +181,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
 						}
 
 						else if( ( xa >= -16 ) && ( xa <= 15 ) &&
-							( za >= -16 // use the packet with small packet with rotation if we can - 5 bits each for x & z, and 6 for y - still a byte less than the alternative
+							( za >= -16 // use the packet with small packet with rotation if we can - 5 bits each for x & z, and 6 for y - still a uint8_t less than the alternative
 							packet = std::shared_ptr<MoveEntityPacketSmall>( new MoveEntityPacketSmall::PosRot(e->entityId, (char) xa, (char) ya, (char) za, 0, 0 ));
 							c1b++;
 						}
@@ -265,7 +265,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
                             
 				broadcast(std::shared_ptr<MoveEntityPacket>(
                                 new MoveEntityPacket::Rot(
-                                    e->entityId, (byte)yRota, (byte)xRota)));
+                                    e->entityId, (uint8_t)yRota, (uint8_t)xRota)));
                             yRotp = yRotn;
                             xRotp = xRotn;
                         }
@@ -281,7 +281,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
 
                     int yHeadRot = Mth::floor(e->getYHeadRot() * 256 / 360);
                     if (abs(yHeadRot - yHeadRotp) >= TOLERANCE_LEVEL) {
-                        broadcast(std::shared_ptr<RotateHeadPacket>( new RotateHeadPacket(e->entityId, (byte) yH// broadcast(new AnimatePacket(e, AnimatePacket.HURT));e = false;
+                        broadcast(std::shared_ptr<RotateHeadPacket>( new RotateHeadPacket(e->entityId, (uint8_t) yH// broadcast(new AnimatePacket(e, AnimatePacket.HURT));e = false;
                     }
 
                     tickCount++;

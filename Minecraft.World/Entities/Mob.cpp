@@ -129,7 +129,7 @@ void Mob::ate() {}
 
 void Mob::defineSynchedData() {
     LivingEntity::defineSynchedData();
-    entityData->define(DATA_CUSTOM_NAME_VISIBLE, (byte)0);
+    entityData->define(DATA_CUSTOM_NAME_VISIBLE, (uint8_t)0);
     entityData->define(DATA_CUSTOM_NAME, L"");
 }
 
@@ -710,7 +710,7 @@ float Mob::rotlerp(float a, float b, float max) {
 
             void Mob::setCustomNameVisible(bool visible) {
                 entityData->set(DATA_CUSTOM_NAME_VISIBLE,
-                                visible ? (byte)1 : (byte)0);
+                                visible ? (uint8_t)1 : (uint8_t)0);
             }
 
             bool Mob::isCustomNameVisible() {

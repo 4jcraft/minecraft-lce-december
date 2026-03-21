@@ -35,7 +35,7 @@ public:
     int xa, ya, za;
     int type;
     int data;
-    byte yRot, xRot;  // 4J added
+    uint8_t yRot, xRot;  // 4J added
 
 private:
     void _init(std::shared_ptr<Entity> e, int type, int data, int xp, int yp,

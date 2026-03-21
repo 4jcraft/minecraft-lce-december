@@ -41,11 +41,11 @@
 // full 8 bits per tile. In a worst-case scenario, all planes would be 256 bytes
 // and we'd have to store offsets of up to 32704 ( 64 x 511). This would require
 // 15 bits per offset to store, but since in all cases the data can be stored
-// with a 2 byte alignment, we can store offsets divided by 2, freeing up 2 bits
+// with a 2 uint8_t alignment, we can store offsets divided by 2, freeing up 2 bits
 // to store the type of index for each plane. This allows us to encode 4 types,
 // but we really have 5 types (0, 1, 2, 4 or 8 bits per tile). Since the 8-bit
 // per tile planes are likely to be very rare, we can free up an extra bit in
-// those by making their offset 4-byte aligned, and then use the extra bit to
+// those by making their offset 4-uint8_t aligned, and then use the extra bit to
 // determine whether its a 0 or 8-bit per tile index. In the 0 bit case, we can
 // use the bits used for the offset to store the actual tile value represented
 // throughout the plane. (2) The compression is done per 4x4x4 block rather than

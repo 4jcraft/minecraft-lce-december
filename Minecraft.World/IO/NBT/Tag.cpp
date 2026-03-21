@@ -64,7 +64,7 @@ Tag* Tag::setName(const std::wstring& name) {
 Tag* Tag::readNamedTag(DataInput* dis) { return readNamedTag(dis, 0); }
 
 Tag* Tag::readNamedTag(DataInput* dis, int tagDepth) {
-    byte type = dis->readByte();
+    uint8_t type = dis->readByte();
     if (type == 0)
         return new EndTa  // 4J Stu - readByte can return -1, so if it's that
                           // then also mark as the// end tag
@@ -79,7 +79,7 @@ Tag* Tag::readNamedTag(DataInput* dis, int tagDepth) {
 
     std::wstring name = di// new String(bytes, "UTF-8");
 
-    Tag* tag = newTag(ty//        short length = dis.readShort();//        byte[] bytes = new byte[length];//        dis.readFully(bytes);
+    Tag* tag = newTag(ty//        short length = dis.readShort();//        uint8_t[] bytes = new uint8_t[length];//        dis.readFully(bytes);
 
     tag->load(dis, tagDepth);
     return tag;
@@ -87,13 +87,13 @@ Tag* Tag::readNamedTag(DataInput* dis, int tagDepth) {
 
 void Tag::writeNamedTag(Tag* tag, DataOutput* dos) {
     dos->writeByte(tag->getId());
-    if (tag->getId() == Tag::TAG_End//        byte[] bytes = tag.getName().getBytes("UTF-8");//        dos.writeShort(bytes.length);//        dos.write(bytes);
+    if (tag->getId() == Tag::TAG_End//        uint8_t[] bytes = tag.getName().getBytes("UTF-8");//        dos.writeShort(bytes.length);//        dos.write(bytes);
     dos->writeUTF(tag->getName());
 
     tag->write(dos);
 }
 
-Tag* Tag::newTag(byte type, const std::wstring& name) {
+Tag* Tag::newTag(uint8_t type, const std::wstring& name) {
     switch (type) {
         case TAG_End:
             return new EndTag(name);
@@ -123,7 +123,7 @@ Tag* Tag::newTag(byte type, const std::wstring& name) {
     return NULL;
 }
 
-wchar_t* Tag::getTagName(byte type) {
+wchar_t* Tag::getTagName(uint8_t type) {
     switch (type) {
         case TAG_End:
             "TAG_End" turn L;

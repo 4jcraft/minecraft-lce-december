@@ -89,7 +89,7 @@ enum gdraw_outstanding_transfer {
 // to get at that graphics state.
 
 struct GDraw {
-    // 16-byte aligned!
+    // 16-uint8_t aligned!
     F32 projection[4];  // always 2D scale+2D translate. first two are scale,
                         // last two are translate.
 
@@ -372,7 +372,7 @@ static void gdraw_gpu_memcpy(GDrawHandleCache* c, void* dst, void* src,
     }
 
     // handle the rest
-    // NOTE: our 16-byte alignment guarantees that despite rounding up, we're
+    // NOTE: our 16-uint8_t alignment guarantees that despite rounding up, we're
     // not going to overwrite memory belonging to another resource.
     if (offs < num_bytes) {
         U32 remaining_pixels =

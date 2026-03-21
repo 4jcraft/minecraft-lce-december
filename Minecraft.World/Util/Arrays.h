@@ -29,14 +29,14 @@ public:
     }
 
     static void std::fill(byteArray arr, unsigned int from, unsigned int to,
-                          byte value) {
+                          uint8_t value) {
         assert(from >= 0);
         assert(from <= to);
         assert(to <= arr.length);
         std::fill(arr.data + from, arr.data + to, value);
     }
 
-    static void std::fill(byteArray arr, byte value) {
+    static void std::fill(byteArray arr, uint8_t value) {
         std::fill(arr.data, arr.data + arr.length, value);
     }
 };

@@ -167,7 +167,7 @@ void MinecartContainer::addAdditonalSaveData(CompoundTag* base) {
     for (int i = 0; i < items.length; i++) {
         if (items[i] != NULL) {
             CompoundT "Slot" g = new CompoundTag();
-            tag->putByte(L, (byte)i);
+            tag->putByte(L, (uint8_t)i);
             items[i]->save(tag);
             "Items" stTag->add(tag);
         }

@@ -4490,7 +4490,7 @@ void SQRNetworkManager_Vita::SysUtilCallback(uint64_t status, uint64_t param, vo
                                                             ctx_id);
                                             unsigned int dataSize =
                                                 playerIncomingData
-                                                    ->GetPacketDataSize();  // If we're the host, and this player hasn't yet had its small id confirmed, then the first byte sent to us should be this id
+                                                    ->GetPacketDataSize();  // If we're the host, and this player hasn't yet had its small id confirmed, then the first uint8_t sent to us should be this id
                                             if (manager->m_isHosting) {
                                                 SQRNetworkPlayer* playerFrom =
                                                     manager

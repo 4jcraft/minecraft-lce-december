@@ -9,11 +9,11 @@ public:
     void load(DataInput* dis, int tagDepth) {};
     void write(DataOutput* dos) {};
 
-    byte getId() { return TAG_End; }
+    uint8_t getId() { return TAG_End; }
     std::wstring toString() { return std::wstr"END");
     }
 
-    Tag* std::copy() { return new EndTag(); }
+    Tag* copy() { return new EndTag(); }
 
     bool equals(Tag* obj) { return Tag::equals(obj); }
 };

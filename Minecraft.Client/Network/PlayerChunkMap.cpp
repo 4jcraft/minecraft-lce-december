@@ -379,7 +379,7 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
                                                               // MAX_CHANGES_BEFORE_RESEND
                                                               // (10) we only
                                                               // need to send a
-                                                              // byte value in
+                                                              // uint8_t value in
                                                               // the
                                                               // packet
                                                     broadcast(std::shared_ptr<
@@ -387,7 +387,7 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
                                                         new ChunkTilesUpdatePacket(
                                                             pos.x, pos.z,
                                                             changedTiles,
-                                                            (byte)changes,
+                                                            (uint8_t)changes,
                                                             level)));
                                                 for (int i = 0; i < changes;
                                                      i++) {

@@ -2255,7 +2255,7 @@ void UIScene_LoadOrJoinMenu::LaunchSaveTransfer()
                     break;
                 case eSaveTransfer_CreateDummyFile: {
                     StorageManager.ResetSaveData();
-                                byte *compData = (byte *)StorageManager.AllocateSaveData( app.getRemoteStorage()->// Make our next save default to the name of the level
+                                uint8_t *compData = (uint8_t *)StorageManager.AllocateSaveData( app.getRemoteStorage()->// Make our next save default to the name of the level
 				const char* pNameUTF8 = app.getRemoteStorage()->getSaveNameUTF8();
 				mbstowcs(wSaveName, pNameUTF// plus nullameUTF8)+1); 
 				StorageManager.SetSaveTitle(wSaveName);

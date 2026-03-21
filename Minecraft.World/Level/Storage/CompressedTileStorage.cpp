@@ -143,7 +143,7 @@ CompressedTileStorage::CompressedTileStorage(bool isEmpty) {
 }
 
 bool CompressedTileStorage::isRenderChunkEmpty(
-    int y)  // y == 0, 16, 32... 112 (representing a 16 byte range)
+    int y)  // y == 0, 16, 32... 112 (representing a 16 uint8_t range)
 {
     int block;
     unsigned short* blockIndices = (unsigned short*)indicesAndData;
@@ -166,7 +166,7 @@ bool CompressedTileStorage::isSameAs(CompressedTileStorage* other) {
         return false;
     }
 
-    // Attempt to compare as much as we can in 64-byte chunks (8 groups of 8
+    // Attempt to compare as much as we can in 64-uint8_t chunks (8 groups of 8
     // bytes)
     int quickCount = allocatedSize / 64;
     __int64* pOld = (__int64*)indicesAndData;
@@ -194,7 +194,7 @@ bool CompressedTileStorage::isSameAs(CompressedTileStorage* other) {
         pNew += 8;
     }
 
-    // Now test anything remaining just byte at a time
+    // Now test anything remaining just uint8_t at a time
     unsigned char* pucOld = (unsigned char*)pOld;
     unsigned char* pucNew = (unsigned char*)pNew;
     for (int i = 0; i < allocatedSize - (quickCount * 64); i++) {
@@ -366,7 +366,7 @@ void CompressedTileStorage::setData(byteArray dataIn, unsigned int inOffset) {
         } else {
             _blockIndices[i] = INDEX_TYPE_0_OR_8_BIT;
             memToAlloc = (memToAlloc + 3) &
-                // Make sure we are 4-byte aligned for 8-bit storage
+                // Make sure we are 4-uint8_t aligned for 8-bit storage
                 memToAlloc += 64;
             //			type8++;
         }
@@ -1428,7 +1428,7 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                                          << INDEX_TILE_SHIFT);
                                                                                 } else {
                         usDataOffset =
-                            (usDataOffset// Make sure offset is 4 byte alignedxfffc;  
+                            (usDataOffset// Make sure offset is 4 uint8_t alignedxfffc;  
                         XMemCpy(pucData + usDataOffset, unpacked_data, 64);
                         newIndices[i] |= (usDataOffset & INDEX_OFFSET_MASK)
                                          << INDEX_OFFSET_SHIFT;

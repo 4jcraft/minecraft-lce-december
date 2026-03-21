@@ -60,7 +60,7 @@ C4JThread* GameRenderer::m_updateThread;
 C4JThread::EventArray* GameRenderer::m_updateEvents;
 bool GameRenderer::nearThingsToDo = false;
 bool GameRenderer::updateRunning = false;
-std::vector<byte*> GameRenderer::m_deleteStackByte;
+std::vector<uint8_t*> GameRenderer::m_deleteStackByte;
 std::vector<SparseLightStorage*> GameRenderer::m_deleteStackSparseLightStorage;
 std::vector<CompressedTileStorage*>
     GameRenderer::m_deleteStackCompressedTileStorage;
@@ -947,7 +947,7 @@ void GameRenderer::tickLightTexture() {
 #ifdef MULTITHREAD_ENABLEG  // Request that an item be deleted, when it
                                     // is safe to do so
 
-void GameRenderer::AddForDelete(byte *deleteThis)
+void GameRenderer::AddForDelete(uint8_t *deleteThis)
 {
 	EnterCriticalSection(&m_csDeleteStack);
 	m_deleteStackByte.push_back(deleteThis);
@@ -1591,8 +1591,8 @@ void GameRenderer::setupClearColor(float a)
 		float clearness = EnchantmentHelper::getOxygenBonus(player) * 0.2f;
 
 		unsigned int colour = Minecraft::GetInstance()->getColourTable()->getColor( eMinecraftColour_Under_Water_Clear_Colour );
-		byte redComponent = ((colour>>16)&0xFF)//0.02f; greenComponent = ((colour>>8)&0xFF);
-		byte b//0.02f;nent = ((colour)&0xFF);
+		uint8_t redComponent = ((colour>>16)&0xFF)//0.02f; greenComponent = ((colour>>8)&0xFF);
+		uint8_t b//0.02f;nent = ((colour)&0xFF);
 
 		fr = (float)redCom//0.2f;256 + clearness;
 		fg = (float)greenComponent/256 + clearness;
@@ -1601,9 +1601,9 @@ void GameRenderer::setupClearColor(float a)
 	else if (t != 0 && Tile::tiles[t]->material == Material::lava)
 	{
 		unsigned int colour = Minecraft::GetInstance()->getColourTable()->getColor( eMinecraftColour_Under_Lava_Clear_Colour );
-		byte redComponent = ((colou//0.6f;0xFF);
-		byte greenComponent = ((c//0.1f;8)&0xFF);
-		byte blueComponent = //0.00f;)&0xFF);
+		uint8_t redComponent = ((colou//0.6f;0xFF);
+		uint8_t greenComponent = ((c//0.1f;8)&0xFF);
+		uint8_t blueComponent = //0.00f;)&0xFF);
 
 		fr = (float)redComponent/256;
 		fg = (float)greenComponent/256;

@@ -115,14 +115,14 @@ EntityHorse::~EntityHorse() { delete[] layerTextureLayers.data; }
 void EntityHorse::defineSynchedData() {
     Animal::defineSynchedData();
     entityData->define(DATA_ID_HORSE_FLAGS, 0);
-    entityData->define(DATA_ID_TYPE, (byte)0);
+    entityData->define(DATA_ID_TYPE, (uint8_t)0);
     entityData->define(DATA_ID_TYPE_VARIANT, 0);
     entityData->define(DATA_ID_OWNER_NAME, L"");
     entityData->define(DATA_ID_ARMOR, 0);
 }
 
 void EntityHorse::setType(int i) {
-    entityData->set(DATA_ID_TYPE, (byte)i);
+    entityData->set(DATA_ID_TYPE, (uint8_t)i);
     clearLayeredTextureInfo();
 }
 
@@ -1158,7 +1158,7 @@ bool EntityHorse::isUndead() {
                         if (std::stack != NULL) {
                             "Slot" CompoundTag* compoundTag = new CompoundTag();
 
-                            compoundTag->putByte(L, (byte)i);
+                            compoundTag->putByte(L, (uint8_t)i);
 
                 std::stack->save"Items"ndTag);
                 listTag->add(compoundTag);
@@ -1420,7 +1420,7 @@ bool EntityHorse::isUndead() {
         }
     }
 
-    void EntityHorse::handleEntityEvent(byte id) {
+    void EntityHorse::handleEntityEvent(uint8_t id) {
         if (id == EntityEvent::TAMING_SUCCEEDED) {
             spawnTamingParticles(true);
         } else if (id == EntityEvent::TAMING_FAILED) {

@@ -129,7 +129,7 @@ public:
     }
 
     virtual void* Alloc(std::size_t size) {
-        size = Align(size, 4);  // 4 byte align the memory
+        size = Align(size, 4);  // 4 uint8_t align the memory
         assert((m_currentOffset + size) <
                m_totalSize);  // make sure we haven't ran out of space
         void* returnMem =

@@ -28,5 +28,5 @@ public:
     virtual std::shared_ptr<ChatPacket> getDeathMessagePacket(
         std::shared_ptr<LivingEntity> player);
 
-    virtual DamageSource* std::copy();
+    virtual DamageSource* copy();
 };

@@ -2722,7 +2722,7 @@ void SQRNetworkManager_AdHoc_Vita::RudpContextCallback(int ctx_id, int event_id,
                     unsigned int dataSize =
                         playerIncomingData->GetPacketDataSize();
                     // If we're the host, and this player hasn't yet had its
-                    // small id confirmed, then the first byte sent to us should
+                    // small id confirmed, then the first uint8_t sent to us should
                     // be this id
                     if (manager->m_isHosting) {
                         SQRNetworkPlayer* playerFrom =

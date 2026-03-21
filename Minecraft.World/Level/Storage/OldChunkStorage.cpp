@@ -517,8 +517,8 @@ for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
     del"BlockLight"etByteArray(L//	levelChunk->skyLight = new DataLayer(tag->getByteArray(L"SkyLight"),//level->depthBits); 	levelChunk->blockLight = new//DataLayer(tag->getByteArray(L"BlockLight"), level->depthBits);
 
     delete[] levelChunk->heightmap.data;
-    levelChunk->height"HeightMap"getByte// 4J - TerrainPopulated was a bool (java), then changed to be a byte// bitfield, then replaced with TerrainPopulatedShort to store a wider// bitfield
-    "TerrainPopulated"->get(L// Java bool type or byte bitfield
+    levelChunk->height"HeightMap"getByte// 4J - TerrainPopulated was a bool (java), then changed to be a uint8_t// bitfield, then replaced with TerrainPopulatedShort to store a wider// bitfield
+    "TerrainPopulated"->get(L// Java bool type or uint8_t bitfield
         levelChunk->terrainP"TerrainPopulated"tByte(L);
         if (levelChunk->terrainPopulated >= 1)
             levelChunk->terrainPopulated =

@@ -1210,7 +1210,7 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
 			data->x = centreXC;
                                             data->z = centreZC;
                                             data->dimension =
-                                                (byte)player->level->dimension
+                                                (uint8_t)player->level->dimension
                                                     ->id;
                                             data->setDirty();
                                         }

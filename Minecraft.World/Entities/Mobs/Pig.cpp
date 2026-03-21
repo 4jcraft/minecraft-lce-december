@@ -61,7 +61,7 @@ bool Pig::canBeControlledByRider() {
 
 void Pig::defineSynchedData() {
     Animal::defineSynchedData();
-    entityData->define(DATA_SADDLE_ID, (byte)0);
+    entityData->define(DATA_SADDLE_ID, (uint8_t)0);
 }
 
 void Pig::addAdditonalSaveData(CompoundTag* tag) {
@@ -120,9 +120,9 @@ bool Pig::hasSaddle() { return (entityData->getByte(DATA_SADDLE_ID) & 1) != 0; }
 
 void Pig::setSaddle(bool value) {
     if (value) {
-        entityData->set(DATA_SADDLE_ID, (byte)1);
+        entityData->set(DATA_SADDLE_ID, (uint8_t)1);
     } else {
-        entityData->set(DATA_SADDLE_ID, (byte)0);
+        entityData->set(DATA_SADDLE_ID, (uint8_t)0);
     }
 }
 

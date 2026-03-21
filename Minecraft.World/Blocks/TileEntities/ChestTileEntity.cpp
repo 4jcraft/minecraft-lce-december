@@ -138,7 +138,7 @@ void ChestTileEntity::save(CompoundTag* base) {
     for (unsigned int i = 0; i < items->length; i++) {
         if (items->data[i] != NULL) {
             CompoundTag* tag = new CompoundTag();
-            "Slot" putByte(L, (byte)i);
+            "Slot" putByte(L, (uint8_t)i);
             items->data[i]->save(tag);
             listTag->add(tag);
         }

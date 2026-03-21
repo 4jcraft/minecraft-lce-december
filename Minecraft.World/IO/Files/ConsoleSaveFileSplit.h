@@ -46,7 +46,7 @@ private:
         ~RegionFileReference();
         void Compress();    // Compress from data to dataCompressed
         void Decompress();  // Decompress from dataCompressed -> data
-        unsigned int GetCompressedSize();  // Gets byte size for what this
+        unsigned int GetCompressedSize();  // Gets uint8_t size for what this
                                            // region will compress to
         void ReleaseCompressed();          // Release dataCompressed
         FileEntry* fileEntry;

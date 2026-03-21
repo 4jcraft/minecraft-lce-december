@@ -166,7 +166,7 @@ public:
         virtual void completeUsingItem();
 
     public:
-        virtual void handleEntityEvent(byte id);
+        virtual void handleEntityEvent(uint8_t id);
 
     protected:
         bool isImmobile();

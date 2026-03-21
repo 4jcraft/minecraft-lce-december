@@ -10,9 +10,9 @@ FastNoise::FastNoise(Random* random, int levels) { init(random, levels); }
 
 void FastNoise::init(Random* random, int levels) {
     this->levels = levels;
-    noiseMaps = new byte*[levels];
+    noiseMaps = new uint8_t*[levels];
     for (int i = 0; i < levels; i++) {
-        noiseMaps[i] = new byte[0x100000];
+        noiseMaps[i] = new uint8_t[0x100000];
         random->nextBytes(noiseMaps[i], 0x100000);
     }
 }
@@ -36,7 +36,7 @@ doubleArray FastNoise::getRegion(doubleArray buffer, double x, double y,
     int AA = 487211441;
     int BB = 21771;
     for (int i = 0; i < levels; i++) {
-        byte* map = noiseMaps[i];
+        uint8_t* map = noiseMaps[i];
         int pp = 0;
 
         for (int zp = 0; zp < zSize; zp++) {

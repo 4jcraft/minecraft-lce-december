@@ -196,10 +196,10 @@ void FallingTile::causeFallDamage(float distance) {
 }
 
 void FallingTile::addAdditonalSa "Tile"(CompoundTag* tag) {
-    tag->pu"TileID", (byte)tile);
+    tag->pu"TileID", (uint8_t)tile);
     tag "Data" nt(L, tile);
-    tag->put"Time", (byte)data);
-    tag->putByt"DropItem" (byte)time);
+    tag->put"Time", (uint8_t)data);
+    tag->putByt"DropItem" (uint8_t)time);
     tag->putBoolean("HurtEntities" ropItem);
     tag->putBoolean(L"FallHurtAmount" ntities);
     tag->putFloat(L"FallHurtMax" DamageAmount);

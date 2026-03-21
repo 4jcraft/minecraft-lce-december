@@ -10,7 +10,7 @@ MinecartSpawner::MinecartMobSpawner::MinecartMobSpawner(
 
 void MinecartSpawner::MinecartMobSpawner::broadcastEvent(int id) {
     m_parent->level->broadcastEntityEvent(m_parent->shared_from_this(),
-                                          (byte)id);
+                                          (uint8_t)id);
 }
 
 Level* MinecartSpawner::MinecartMobSpawner::getLevel() {
@@ -62,7 +62,7 @@ void MinecartSpawner::addAdditonalSaveData(CompoundTag* tag) {
     spawner->save(tag);
 }
 
-void MinecartSpawner::handleEntityEvent(byte eventId) {
+void MinecartSpawner::handleEntityEvent(uint8_t eventId) {
     spawner->onEventTriggered(eventId);
 }
 
