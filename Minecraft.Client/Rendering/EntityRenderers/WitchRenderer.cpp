@@ -13,7 +13,7 @@ WitchRenderer::WitchRenderer() : MobRenderer(new WitchModel(0), 0.5f) {
 
 void WitchRenderer::render(std::shared_ptr<Entity> entity, double x, double y,
                            double z, float rot, float a) {
-    std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
+    std::shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(entity);
 
     std::shared_ptr<ItemInstance> item = mob->getCarriedItem();
 
@@ -28,7 +28,7 @@ ResourceLocation* WitchRenderer::getTextureLocation(
 
 void WitchRenderer::additionalRendering(std::shared_ptr<LivingEntity> entity,
                                         float a) {
-    std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
+    std::shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(entity);
 
     float brightness =
         SharedConstants::TEXTURE_LIGHTING ? 1 : mob->getBrightness(a);

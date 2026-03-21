@@ -53,7 +53,8 @@ FishingHook::FishingHook(Level* level, double x, double y, double z,
 
     this->owner = owner;
     // 4J Stu - Moved this outside the ctor
-    // owner->fishing = dynamic_pointer_cast<FishingHook>( shared_from_this() );
+    // owner->fishing = std::dynamic_pointer_cast<FishingHook>(
+    // shared_from_this() );
 
     setPos(x, y, z);
 }
@@ -64,7 +65,8 @@ FishingHook::FishingHook(Level* level, std::shared_ptr<Player> mob)
 
     owner = mob;
     // 4J Stu - Moved this outside the ctor
-    // owner->fishing = dynamic_pointer_cast<FishingHook>( shared_from_this() );
+    // owner->fishing = std::dynamic_pointer_cast<FishingHook>(
+    // shared_from_this() );
 
     moveTo(mob->x, mob->y + 1.62 - mob->heightOffset, mob->z, mob->yRot,
            mob->xRot);

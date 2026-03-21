@@ -51,7 +51,7 @@ void ThrownEnderpearl::onHit(HitResult* res) {
         if ((getOwner() != NULL) &&
             getOwner()->instanceof(eTYPE_SERVERPLAYER)) {
             std::shared_ptr<ServerPlayer> serverPlayer =
-                dynamic_pointer_cast<ServerPlayer>(getOwner());
+                std::dynamic_pointer_cast<ServerPlayer>(getOwner());
             if (!serverPlayer->removed) {
                 if (!serverPlayer->connection->done &&
                     serverPlayer->level == this->level) {

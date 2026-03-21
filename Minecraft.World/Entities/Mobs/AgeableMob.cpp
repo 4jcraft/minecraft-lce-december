@@ -28,8 +28,9 @@ bool AgableMob::mobInteract(std::shared_ptr<Player> player) {
                     SpawnEggItem::canSpawn(item->getAuxValue(), level, &error);
 
                 if (result != NULL) {
-                    std::shared_ptr<AgableMob> offspring = getBreedOffspring(
-                        dynamic_pointer_cast<AgableMob>(shared_from_this()));
+                    std::shared_ptr<AgableMob> offspring =
+                        getBreedOffspring(std::dynamic_pointer_cast<AgableMob>(
+                            shared_from_this()));
                     if (offspring != NULL) {
                         offspring->setAge(BABY_START_AGE);
                         offspring->moveTo(x, y, z, 0, 0);

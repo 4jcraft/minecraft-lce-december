@@ -34,7 +34,8 @@ int LavaSlimeModel::getModelVersion() { return 5; }
 
 void LavaSlimeModel::prepareMobModel(std::shared_ptr<LivingEntity> mob,
                                      float time, float r, float a) {
-    std::shared_ptr<LavaSlime> lavaSlime = dynamic_pointer_cast<LavaSlime>(mob);
+    std::shared_ptr<LavaSlime> lavaSlime =
+        std::dynamic_pointer_cast<LavaSlime>(mob);
 
     float slimeSquish =
         (lavaSlime->oSquish + (lavaSlime->squish - lavaSlime->oSquish) * a);

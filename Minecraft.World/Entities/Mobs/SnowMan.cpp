@@ -87,7 +87,7 @@ void SnowMan::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel) {
 void SnowMan::performRangedAttack(std::shared_ptr<LivingEntity> target,
                                   float power) {
     std::shared_ptr<Snowball> snowball = std::shared_ptr<Snowball>(new Snowball(
-        level, dynamic_pointer_cast<LivingEntity>(shared_from_this())));
+        level, std::dynamic_pointer_cast<LivingEntity>(shared_from_this())));
     double xd = target->x - x;
     double yd = (target->y + target->getHeadHeight() - 1.1f) - snowball->y;
     double zd = target->z - z;

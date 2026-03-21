@@ -75,6 +75,6 @@ bool TeleportEntityPacket::canBeInvalidated() { return true; }
 
 bool TeleportEntityPacket::isInvalidatedBy(std::shared_ptr<Packet> packet) {
     std::shared_ptr<TeleportEntityPacket> target =
-        dynamic_pointer_cast<TeleportEntityPacket>(packet);
+        std::dynamic_pointer_cast<TeleportEntityPacket>(packet);
     return target->id == id;
 }

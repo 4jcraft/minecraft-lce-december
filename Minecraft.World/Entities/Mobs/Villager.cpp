@@ -149,7 +149,7 @@ bool Villager::mobInteract(std::shared_ptr<Player> player) {
 
             // 4J-JEV: Villagers in PC game don't display professions.
             player->openTrading(
-                dynamic_pointer_cast<Merchant>(shared_from_this()),
+                std::dynamic_pointer_cast<Merchant>(shared_from_this()),
                 getDisplayName());
         }
         return true;
@@ -223,7 +223,7 @@ void Villager::setLastHurtByMob(std::shared_ptr<LivingEntity> mob) {
                 amount = -3;
             }
             _village->modifyStanding(
-                dynamic_pointer_cast<Player>(mob)->getName(), amount);
+                std::dynamic_pointer_cast<Player>(mob)->getName(), amount);
             if (isAlive()) {
                 level->broadcastEntityEvent(shared_from_this(),
                                             EntityEvent::VILLAGER_ANGRY);
@@ -239,7 +239,8 @@ void Villager::die(DamageSource* source) {
         if (sourceEntity != NULL) {
             if (sourceEntity->instanceof(eTYPE_PLAYER)) {
                 _village->modifyStanding(
-                    dynamic_pointer_cast<Player>(sourceEntity)->getName(), -2);
+                    std::dynamic_pointer_cast<Player>(sourceEntity)->getName(),
+                    -2);
             } else if (sourceEntity->instanceof(eTYPE_ENEMY)) {
                 _village->resetNoBreedTimer();
             }

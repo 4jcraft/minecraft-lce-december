@@ -118,7 +118,7 @@ void PistonBaseTile::setPlacedBy(Level* level, int x, int y, int z,
                                  std::shared_ptr<LivingEntity> by,
                                  std::shared_ptr<ItemInstance> itemInstance) {
     int targetData =
-        getNewFacing(level, x, y, z, dynamic_pointer_cast<Player>(by));
+        getNewFacing(level, x, y, z, std::dynamic_pointer_cast<Player>(by));
     level->setData(x, y, z, targetData, Tile::UPDATE_CLIENTS);
     if (!level->isClientSide && !ignoreUpdate()) {
         checkIfExtend(level, x, y, z);
@@ -251,8 +251,9 @@ bool PistonBaseTile::triggerEvent(Level* level, int x, int y, int z, int param1,
             x + Facing::STEP_X[facing], y + Facing::STEP_Y[facing],
             z + Facing::STEP_Z[facing]);
         if (prevTileEntity != NULL &&
-            dynamic_pointer_cast<PistonPieceEntity>(prevTileEntity) != NULL) {
-            dynamic_pointer_cast<PistonPieceEntity>(prevTileEntity)
+            std::dynamic_pointer_cast<PistonPieceEntity>(prevTileEntity) !=
+                NULL) {
+            std::dynamic_pointer_cast<PistonPieceEntity>(prevTileEntity)
                 ->finalTick();
         }
 
@@ -285,10 +286,11 @@ bool PistonBaseTile::triggerEvent(Level* level, int x, int y, int z, int param1,
                 std::shared_ptr<TileEntity> tileEntity =
                     level->getTileEntity(twoX, twoY, twoZ);
                 if (tileEntity != NULL &&
-                    dynamic_pointer_cast<PistonPieceEntity>(tileEntity) !=
+                    std::dynamic_pointer_cast<PistonPieceEntity>(tileEntity) !=
                         NULL) {
                     std::shared_ptr<PistonPieceEntity> ppe =
-                        dynamic_pointer_cast<PistonPieceEntity>(tileEntity);
+                        std::dynamic_pointer_cast<PistonPieceEntity>(
+                            tileEntity);
 
                     if (ppe->getFacing() == facing && ppe->isExtending()) {
                         // force the tile to air before pushing

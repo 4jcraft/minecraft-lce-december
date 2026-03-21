@@ -148,9 +148,9 @@ bool HangingEntity::isPickable() { return true; }
 
 bool HangingEntity::skipAttackInteraction(std::shared_ptr<Entity> source) {
     if (source->GetType() == eTYPE_PLAYER) {
-        return hurt(
-            DamageSource::playerAttack(dynamic_pointer_cast<Player>(source)),
-            0);
+        return hurt(DamageSource::playerAttack(
+                        std::dynamic_pointer_cast<Player>(source)),
+                    0);
     }
     return false;
 }
@@ -163,7 +163,7 @@ bool HangingEntity::hurt(DamageSource* source, float damage) {
 
             if ((sourceEntity != NULL) &&
                 sourceEntity->instanceof(eTYPE_PLAYER) &&
-                !dynamic_pointer_cast<Player>(sourceEntity)
+                !std::dynamic_pointer_cast<Player>(sourceEntity)
                      ->isAllowedToHurtEntity(shared_from_this())) {
                 return false;
             }
@@ -178,7 +178,7 @@ bool HangingEntity::hurt(DamageSource* source, float damage) {
             e->instanceof(
                 eTYPE_PLAYER))  // check if it's serverplayer or player
         {
-            player = dynamic_pointer_cast<Player>(e);
+            player = std::dynamic_pointer_cast<Player>(e);
         }
 
         if (player != NULL && player->abilities.instabuild) {

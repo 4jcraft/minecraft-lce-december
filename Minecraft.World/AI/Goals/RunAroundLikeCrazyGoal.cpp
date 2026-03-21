@@ -18,7 +18,8 @@ RunAroundLikeCrazyGoal::RunAroundLikeCrazyGoal(EntityHorse* mob,
 bool RunAroundLikeCrazyGoal::canUse() {
     if (horse->isTamed() || horse->rider.lock() == NULL) return false;
     Vec3* pos = RandomPos::getPos(
-        dynamic_pointer_cast<PathfinderMob>(horse->shared_from_this()), 5, 4);
+        std::dynamic_pointer_cast<PathfinderMob>(horse->shared_from_this()), 5,
+        4);
     if (pos == NULL) return false;
     posX = pos->x;
     posY = pos->y;
@@ -42,7 +43,7 @@ void RunAroundLikeCrazyGoal::tick() {
             if (maxTemper > 0 &&
                 horse->getRandom()->nextInt(maxTemper) < temper) {
                 horse->tameWithName(
-                    dynamic_pointer_cast<Player>(horse->rider.lock()));
+                    std::dynamic_pointer_cast<Player>(horse->rider.lock()));
                 horse->level->broadcastEntityEvent(
                     horse->shared_from_this(), EntityEvent::TAMING_SUCCEEDED);
                 return;

@@ -170,7 +170,7 @@ bool SpawnEggItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
         level->setTileAndData(x, y, z, Tile::mobSpawner_Id, 0,
                               Tile::UPDATE_ALL);
         std::shared_ptr<MobSpawnerTileEntity> mste =
-            dynamic_pointer_cast<MobSpawnerTileEntity>(
+            std::dynamic_pointer_cast<MobSpawnerTileEntity>(
                 level->getTileEntity(x, y, z));
         if (mste != NULL) {
             mste->setEntityId(
@@ -205,7 +205,7 @@ bool SpawnEggItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
         // instanceof to check for Mobs.
         if (result->instanceof(eTYPE_MOB) &&
             itemInstance->hasCustomHoverName()) {
-            dynamic_pointer_cast<Mob>(result)->setCustomName(
+            std::dynamic_pointer_cast<Mob>(result)->setCustomName(
                 itemInstance->getHoverName());
         }
         if (!player->abilities.instabuild) {
@@ -250,7 +250,7 @@ std::shared_ptr<ItemInstance> SpawnEggItem::use(
                 // so change instanceof to check for Mobs.
                 if (result->instanceof(eTYPE_MOB) &&
                     itemInstance->hasCustomHoverName()) {
-                    dynamic_pointer_cast<Mob>(result)->setCustomName(
+                    std::dynamic_pointer_cast<Mob>(result)->setCustomName(
                         itemInstance->getHoverName());
                 }
                 if (!player->abilities.instabuild) {
@@ -287,7 +287,8 @@ std::shared_ptr<Entity> SpawnEggItem::spawnMobAt(Level* level, int auxVal,
         // 4J-JEV: DynCasting to Mob not LivingEntity; so change instanceof to
         // check for Mobs.
         if (newEntity != NULL && newEntity->instanceof(eTYPE_MOB)) {
-            std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(newEntity);
+            std::shared_ptr<Mob> mob =
+                std::dynamic_pointer_cast<Mob>(newEntity);
             newEntity->moveTo(
                 x, y, z, Mth::wrapDegrees(level->random->nextFloat() * 360), 0);
             newEntity->setDespawnProtected();  // 4J added, default to being

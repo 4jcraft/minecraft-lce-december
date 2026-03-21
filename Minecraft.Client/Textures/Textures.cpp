@@ -419,7 +419,8 @@ void Textures::bind(int id) {
 }
 
 ResourceLocation* Textures::getTextureLocation(std::shared_ptr<Entity> entity) {
-    std::shared_ptr<ItemEntity> item = dynamic_pointer_cast<ItemEntity>(entity);
+    std::shared_ptr<ItemEntity> item =
+        std::dynamic_pointer_cast<ItemEntity>(entity);
     int iconType = item->getItem()->getIconType();
     return getTextureLocation(iconType);
 }

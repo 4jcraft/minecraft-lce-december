@@ -16,7 +16,7 @@ void FishingHookRenderer::render(std::shared_ptr<Entity> _hook, double x,
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
     std::shared_ptr<FishingHook> hook =
-        dynamic_pointer_cast<FishingHook>(_hook);
+        std::dynamic_pointer_cast<FishingHook>(_hook);
 
     glPushMatrix();
 
@@ -74,7 +74,7 @@ void FishingHookRenderer::render(std::shared_ptr<Entity> _hook, double x,
             hook->owner->yo + (hook->owner->y - hook->owner->yo) * a + vv->y;
         double zp =
             hook->owner->zo + (hook->owner->z - hook->owner->zo) * a + vv->z;
-        double yOffset = hook->owner == dynamic_pointer_cast<Player>(
+        double yOffset = hook->owner == std::dynamic_pointer_cast<Player>(
                                             Minecraft::GetInstance()->player)
                              ? 0
                              : hook->owner->getHeadHeight();

@@ -31,7 +31,7 @@ float LivingEntityRenderer::rotlerp(float from, float to, float a) {
 void LivingEntityRenderer::render(std::shared_ptr<Entity> _mob, double x,
                                   double y, double z, float rot, float a) {
     std::shared_ptr<LivingEntity> mob =
-        dynamic_pointer_cast<LivingEntity>(_mob);
+        std::dynamic_pointer_cast<LivingEntity>(_mob);
 
     glPushMatrix();
     glDisable(GL_CULL_FACE);
@@ -50,7 +50,7 @@ void LivingEntityRenderer::render(std::shared_ptr<Entity> _mob, double x,
 
         if (mob->isRiding() && mob->riding->instanceof(eTYPE_LIVINGENTITY)) {
             std::shared_ptr<LivingEntity> riding =
-                dynamic_pointer_cast<LivingEntity>(mob->riding);
+                std::dynamic_pointer_cast<LivingEntity>(mob->riding);
             bodyRot = rotlerp(riding->yBodyRotO, riding->yBodyRot, a);
 
             float headDiff = Mth::wrapDegrees(headRot - bodyRot);
@@ -232,7 +232,7 @@ void LivingEntityRenderer::renderModel(std::shared_ptr<LivingEntity> mob,
     if (!mob->isInvisible()) {
         model->render(mob, wp, ws, bob, headRotMinusBodyRot, headRotx, scale,
                       true);
-    } else if (!mob->isInvisibleTo(dynamic_pointer_cast<Player>(
+    } else if (!mob->isInvisibleTo(std::dynamic_pointer_cast<Player>(
                    Minecraft::GetInstance()->player))) {
         glPushMatrix();
         glColor4f(1, 1, 1, 0.15f);
@@ -269,7 +269,7 @@ void LivingEntityRenderer::setupRotations(std::shared_ptr<LivingEntity> mob,
         std::wstring name = mob->getAName();
         if (name == L"Dinnerbone" || name == L"Grumm") {
             if (!mob->instanceof(eTYPE_PLAYER) ||
-                !dynamic_pointer_cast<Player>(mob)->isCapeHidden()) {
+                !std::dynamic_pointer_cast<Player>(mob)->isCapeHidden()) {
                 glTranslatef(0, mob->bbHeight + 0.1f, 0);
                 glRotatef(180, 0, 0, 1);
             }
@@ -507,7 +507,7 @@ void LivingEntityRenderer::renderNameTag(std::shared_ptr<LivingEntity> mob,
     WCHAR wchName[2];
 
     if (mob->instanceof(eTYPE_PLAYER)) {
-        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(mob);
+        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(mob);
 
         if (app.isXuidDeadmau5(player->getXuid())) offs = -10;
 

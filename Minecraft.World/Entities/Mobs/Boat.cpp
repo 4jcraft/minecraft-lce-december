@@ -76,7 +76,7 @@ bool Boat::hurt(DamageSource* source, float hurtDamage) {
         std::shared_ptr<Entity> attacker = source->getDirectEntity();
 
         if (attacker->instanceof(eTYPE_PLAYER) &&
-            !dynamic_pointer_cast<Player>(attacker)->isAllowedToHurtEntity(
+            !std::dynamic_pointer_cast<Player>(attacker)->isAllowedToHurtEntity(
                 shared_from_this())) {
             return false;
         }
@@ -99,10 +99,10 @@ bool Boat::hurt(DamageSource* source, float hurtDamage) {
     // Minecarts and boat requires more hits than one to be destroyed in
     // creative mode 4J-PB - Fix for XB1 #175735 - [CRASH] [Multi-Plat]: Code:
     // Gameplay: Placing a boat on harmful surfaces causes the game to crash
-    bool creativePlayer =
-        (source->getEntity() != NULL) &&
-        source->getEntity()->instanceof(eTYPE_PLAYER) &&
-        dynamic_pointer_cast<Player>(source->getEntity())->abilities.instabuild;
+    bool creativePlayer = (source->getEntity() != NULL) &&
+                          source->getEntity()->instanceof(eTYPE_PLAYER) &&
+                          std::dynamic_pointer_cast<Player>(source->getEntity())
+                              ->abilities.instabuild;
 
     if (creativePlayer || getDamage() > 20 * 2) {
         if (rider.lock() != NULL) rider.lock()->ride(shared_from_this());
@@ -275,7 +275,7 @@ void Boat::tick() {
 
     if (rider.lock() != NULL && rider.lock()->instanceof(eTYPE_LIVINGENTITY)) {
         std::shared_ptr<LivingEntity> livingRider =
-            dynamic_pointer_cast<LivingEntity>(rider.lock());
+            std::dynamic_pointer_cast<LivingEntity>(rider.lock());
         double std::forward = livingRider->yya;
 
         if (std::forward > 0) {

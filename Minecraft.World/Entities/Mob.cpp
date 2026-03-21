@@ -248,7 +248,7 @@ void Mob::addAdditonalSaveData(CompoundTag* entityTag) {
         } else if (leashHolder->instanceof(eTYPE_HANGING_ENTITY)) {
             // a fixed holder (that doesn't save itself)
             std::shared_ptr<HangingEntity> hangInThere =
-                dynamic_pointer_cast<HangingEntity>(leashHolder);
+                std::dynamic_pointer_cast<HangingEntity>(leashHolder);
             leashTag->putInt(L"X", hangInThere->xTile);
             leashTag->putInt(L"Y", hangInThere->yTile);
             leashTag->putInt(L"Z", hangInThere->zTile);
@@ -306,7 +306,7 @@ void Mob::aiStep() {
             level->getEntitiesOfClass(typeid(ItemEntity), bb->grow(1, 0, 1));
         for (AUTO_VAR(it, entities->begin()); it != entities->end(); ++it) {
             std::shared_ptr<ItemEntity> entity =
-                dynamic_pointer_cast<ItemEntity>(*it);
+                std::dynamic_pointer_cast<ItemEntity>(*it);
             if (entity->removed || entity->getItem() == NULL) continue;
             std::shared_ptr<ItemInstance> item = entity->getItem();
             int slot = getEquipmentSlotForItem(item);
@@ -496,7 +496,7 @@ void Mob::lookAt(std::shared_ptr<Entity> e, float yMax, float xMax) {
 
     if (e->instanceof(eTYPE_LIVINGENTITY)) {
         std::shared_ptr<LivingEntity> mob =
-            dynamic_pointer_cast<LivingEntity>(e);
+            std::dynamic_pointer_cast<LivingEntity>(e);
         yd = (mob->y + mob->getHeadHeight()) - (y + getHeadHeight());
     } else {
         yd = (e->bb->y0 + e->bb->y1) / 2 - (y + getHeadHeight());
@@ -760,7 +760,7 @@ bool Mob::interact(std::shared_ptr<Player> player) {
             if (canBeLeashed()) {
                 std::shared_ptr<TamableAnimal> tamableAnimal = nullptr;
                 if (shared_from_this()->instanceof(eTYPE_TAMABLE_ANIMAL) &&
-                    (tamableAnimal = dynamic_pointer_cast<TamableAnimal>(
+                    (tamableAnimal = std::dynamic_pointer_cast<TamableAnimal>(
                          shared_from_this()))
                         ->isTame())  // 4J-JEV: excuse the assignment operator
                                      // in here, don't want to dyn-cast if it's
@@ -854,7 +854,7 @@ void Mob::restoreLeashFromSave() {
             for (AUTO_VAR(it, livingEnts->begin()); it != livingEnts->end();
                  ++it) {
                 std::shared_ptr<LivingEntity> le =
-                    dynamic_pointer_cast<LivingEntity>(*it);
+                    std::dynamic_pointer_cast<LivingEntity>(*it);
                 if (le->getUUID().compare(leashUuid) == 0) {
                     leashHolder = le;
                     setLeashedTo(leashHolder, true);

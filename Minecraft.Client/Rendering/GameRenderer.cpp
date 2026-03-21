@@ -218,7 +218,7 @@ void GameRenderer::tick(bool first)  // 4J - add bFirst
     }
 
     if (mc->cameraTargetPlayer == NULL) {
-        mc->cameraTargetPlayer = dynamic_pointer_cast<Mob>(mc->player);
+        mc->cameraTargetPlayer = std::dynamic_pointer_cast<Mob>(mc->player);
     }
 
     float brr = mc->level->getBrightness(Mth::floor(mc->cameraTargetPlayer->x),
@@ -349,7 +349,7 @@ void GameRenderer::pick(float a) {
             mc->hitResult = new HitResult(hovered);
             if (hovered->instanceof(eTYPE_LIVINGENTITY)) {
                 mc->crosshairPickMob =
-                    dynamic_pointer_cast<LivingEntity>(hovered);
+                    std::dynamic_pointer_cast<LivingEntity>(hovered);
             }
         }
     }
@@ -361,7 +361,7 @@ float GameRenderer::GetFovVal() { return m_fov; }
 
 void GameRenderer::tickFov() {
     std::shared_ptr<LocalPlayer> player =
-        dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
+        std::dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
 
     int playerIdx = player ? player->GetXboxPad() : 0;
     tFov[playerIdx] = player->getFieldOfViewModifier();
@@ -377,7 +377,7 @@ float GameRenderer::getFov(float a, bool applyEffects) {
     if (cameraFlip > 0) return 90;
 
     std::shared_ptr<LocalPlayer> player =
-        dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
+        std::dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
     int playerIdx = player ? player->GetXboxPad() : 0;
     float fov = m_fov;  // 70;
     if (applyEffects) {
@@ -423,7 +423,7 @@ void GameRenderer::bobView(float a) {
     if (!mc->cameraTargetPlayer->instanceof(eTYPE_LIVINGENTITY)) return;
 
     std::shared_ptr<Player> player =
-        dynamic_pointer_cast<Player>(mc->cameraTargetPlayer);
+        std::dynamic_pointer_cast<Player>(mc->cameraTargetPlayer);
 
     float wda = player->walkDist - player->walkDistO;
     float b = -(player->walkDist + wda * a);
@@ -439,7 +439,7 @@ void GameRenderer::bobView(float a) {
 void GameRenderer::moveCameraToPlayer(float a) {
     std::shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
     std::shared_ptr<LocalPlayer> localplayer =
-        dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
+        std::dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
     float heightOffset = player->heightOffset - 1.62f;
 
     double x = player->xo + (player->x - player->xo) * a;
@@ -670,7 +670,7 @@ void GameRenderer::renderItemInHand(float a, int eye) {
     // isnt a local player anyway, but oh well.
     std::shared_ptr<LocalPlayer> localplayer =
         mc->cameraTargetPlayer->instanceof(eTYPE_LOCALPLAYER)
-            ? dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer)
+            ? std::dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer)
             : nullptr;
 
     bool renderHand = true;
@@ -1353,7 +1353,7 @@ void GameRenderer::renderLevel(float a, __int64 until) {
                     eTYPE_PLAYER))  //&& !mc->options.hideGui)
             {
                 std::shared_ptr<Player> player =
-                    dynamic_pointer_cast<Player>(cameraEntity);
+                    std::dynamic_pointer_cast<Player>(cameraEntity);
                 glDisable(GL_ALPHA_TEST);
                 levelRenderer->renderHit(player, mc->hitResult, 0,
                                          player->inventory->getSelected(), a);
@@ -1432,7 +1432,7 @@ void GameRenderer::renderLevel(float a, __int64 until) {
             if (mc->hitResult != NULL &&
                 !cameraEntity->isUnderLiquid(Material::water)) {
                 std::shared_ptr<Player> player =
-                    dynamic_pointer_cast<Player>(cameraEntity);
+                    std::dynamic_pointer_cast<Player>(cameraEntity);
                 glDisable(GL_ALPHA_TEST);
                 levelRenderer->renderHitOutline(player, mc->hitResult, 0, a);
                 glEnable(GL_ALPHA_TEST);
@@ -1450,7 +1450,7 @@ void GameRenderer::renderLevel(float a, __int64 until) {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
         levelRenderer->renderDestroyAnimation(
             Tesselator::getInstance(),
-            dynamic_pointer_cast<Player>(cameraEntity), a);
+            std::dynamic_pointer_cast<Player>(cameraEntity), a);
         glDisable(GL_BLEND);
 
         if (cameraEntity->y >= Level::genDepth) {
@@ -1958,7 +1958,8 @@ void GameRenderer::setupFog(int i, float alpha) {
     // 4J - check for creative mode brought forward from 1.2.3
     bool creative = false;
     if (player->instanceof(eTYPE_PLAYER)) {
-        creative = (dynamic_pointer_cast<Player>(player))->abilities.instabuild;
+        creative =
+            (std::dynamic_pointer_cast<Player>(player))->abilities.instabuild;
     }
 
     if (i == 999) {

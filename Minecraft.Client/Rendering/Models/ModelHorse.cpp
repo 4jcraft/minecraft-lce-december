@@ -282,7 +282,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                         float bob, float yRot, float xRot, float scale,
                         bool usecompiled) {
     std::shared_ptr<EntityHorse> entityhorse =
-        dynamic_pointer_cast<EntityHorse>(entity);
+        std::dynamic_pointer_cast<EntityHorse>(entity);
 
     int type = entityhorse->getType();
     float eating = entityhorse->getEatAnim(0);
@@ -420,7 +420,7 @@ void ModelHorse::prepareMobModel(std::shared_ptr<LivingEntity> mob, float wp,
     }
 
     std::shared_ptr<EntityHorse> entityhorse =
-        dynamic_pointer_cast<EntityHorse>(mob);
+        std::dynamic_pointer_cast<EntityHorse>(mob);
 
     float eating = entityhorse->getEatAnim(a);
     float standing = entityhorse->getStandAnim(a);

@@ -54,7 +54,7 @@ void Pig::newServerAiStep() { Animal::newServerAiStep(); }
 
 bool Pig::canBeControlledByRider() {
     std::shared_ptr<ItemInstance> item =
-        dynamic_pointer_cast<Player>(rider.lock())->getCarriedItem();
+        std::dynamic_pointer_cast<Player>(rider.lock())->getCarriedItem();
 
     return item != NULL && item->id == Item::carrotOnAStick_Id;
 }
@@ -139,7 +139,7 @@ void Pig::causeFallDamage(float distance) {
     Animal::causeFallDamage(distance);
     if ((distance > 5) && rider.lock() != NULL &&
         rider.lock()->instanceof(eTYPE_PLAYER)) {
-        (dynamic_pointer_cast<Player>(rider.lock()))
+        (std::dynamic_pointer_cast<Player>(rider.lock()))
             ->awardStat(GenericStats::flyPig(), GenericStats::param_flyPig());
     }
 }

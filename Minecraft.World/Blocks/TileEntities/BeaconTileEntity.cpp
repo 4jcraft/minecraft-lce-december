@@ -76,7 +76,8 @@ void BeaconTileEntity::applyEffects() {
         std::vector<std::shared_ptr<Entity> >* players =
             level->getEntitiesOfClass(typeid(Player), bb);
         for (AUTO_VAR(it, players->begin()); it != players->end(); ++it) {
-            std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(*it);
+            std::shared_ptr<Player> player =
+                std::dynamic_pointer_cast<Player>(*it);
             player->addEffect(new MobEffectInstance(
                 primaryPower, SharedConstants::TICKS_PER_SECOND * 9, baseAmp,
                 true));
@@ -86,7 +87,7 @@ void BeaconTileEntity::applyEffects() {
             secondaryPower > 0) {
             for (AUTO_VAR(it, players->begin()); it != players->end(); ++it) {
                 std::shared_ptr<Player> player =
-                    dynamic_pointer_cast<Player>(*it);
+                    std::dynamic_pointer_cast<Player>(*it);
                 player->addEffect(new MobEffectInstance(
                     secondaryPower, SharedConstants::TICKS_PER_SECOND * 9, 0,
                     true));

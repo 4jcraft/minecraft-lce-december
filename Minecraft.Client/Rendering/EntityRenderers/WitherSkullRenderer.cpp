@@ -35,7 +35,7 @@ void WitherSkullRenderer::render(std::shared_ptr<Entity> entity, double x,
 ResourceLocation* WitherSkullRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
     std::shared_ptr<WitherSkull> mob =
-        dynamic_pointer_cast<WitherSkull>(entity);
+        std::dynamic_pointer_cast<WitherSkull>(entity);
 
     return mob->isDangerous() ? &WITHER_ARMOR_LOCATION : &WITHER_LOCATION;
 }

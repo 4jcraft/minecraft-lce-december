@@ -66,13 +66,13 @@ std::shared_ptr<Particle> Particle::setPower(float power) {
     xd *= power;
     yd = (yd - 0.1f) * power + 0.1f;
     zd *= power;
-    return dynamic_pointer_cast<Particle>(shared_from_this());
+    return std::dynamic_pointer_cast<Particle>(shared_from_this());
 }
 
 std::shared_ptr<Particle> Particle::scale(float scale) {
     setSize(0.2f * scale, 0.2f * scale);
     size *= scale;
-    return dynamic_pointer_cast<Particle>(shared_from_this());
+    return std::dynamic_pointer_cast<Particle>(shared_from_this());
 }
 
 void Particle::setColor(float r, float g, float b) {
@@ -85,10 +85,10 @@ void Particle::setAlpha(float alpha) {
     // 4J - brought forward from Java 1.8
     if (this->alpha == 1.0f && alpha < 1.0f) {
         Minecraft::GetInstance()->particleEngine->markTranslucent(
-            dynamic_pointer_cast<Particle>(shared_from_this()));
+            std::dynamic_pointer_cast<Particle>(shared_from_this()));
     } else if (this->alpha < 1.0f && alpha == 1.0f) {
         Minecraft::GetInstance()->particleEngine->markOpaque(
-            dynamic_pointer_cast<Particle>(shared_from_this()));
+            std::dynamic_pointer_cast<Particle>(shared_from_this()));
     }
     this->alpha = alpha;
 }

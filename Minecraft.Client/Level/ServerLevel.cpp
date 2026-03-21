@@ -144,7 +144,7 @@ ServerLevel::ServerLevel(MinecraftServer* server,
     scoreboard = new ServerScoreboard(server);
 
     // shared_ptr<ScoreboardSaveData> scoreboardSaveData =
-    // dynamic_pointer_cast<ScoreboardSaveData>(
+    // std::dynamic_pointer_cast<ScoreboardSaveData>(
     // savedDataStorage->get(typeid(ScoreboardSaveData),
     // ScoreboardSaveData::FILE_ID) ); if (scoreboardSaveData == NULL)
     //{
@@ -769,7 +769,8 @@ void ServerLevel::tick(std::shared_ptr<Entity> e, bool actual) {
         (e->instanceof(eTYPE_ANIMAL) || e->instanceof(eTYPE_WATERANIMAL))) {
         e->remove();
     }
-    if (!server->isNpcsEnabled() && (dynamic_pointer_cast<Npc>(e) != NULL)) {
+    if (!server->isNpcsEnabled() &&
+        (std::dynamic_pointer_cast<Npc>(e) != NULL)) {
         e->remove();
     }
     Level::tick(e, actual);
@@ -896,7 +897,7 @@ void ServerLevel::generateBonusItemsNearSpawn() {
 
             if (getTile(x, y, z) == Tile::chest_Id) {
                 std::shared_ptr<ChestTileEntity> chest =
-                    dynamic_pointer_cast<ChestTileEntity>(
+                    std::dynamic_pointer_cast<ChestTileEntity>(
                         getTileEntity(x, y, z));
                 if (chest != NULL) {
                     if (chest->isBonusChest) {
@@ -1089,7 +1090,7 @@ std::shared_ptr<Explosion> ServerLevel::explode(std::shared_ptr<Entity> source,
     std::vector<std::shared_ptr<ServerPlayer> > sentTo;
     for (AUTO_VAR(it, players.begin()); it != players.end(); ++it) {
         std::shared_ptr<ServerPlayer> player =
-            dynamic_pointer_cast<ServerPlayer>(*it);
+            std::dynamic_pointer_cast<ServerPlayer>(*it);
         if (player->dimension != dimension->id) continue;
 
         bool knockbackOnly = false;
@@ -1234,7 +1235,7 @@ void ServerLevel::sendParticles(const std::wstring& name, double x, double y,
 
     for (AUTO_VAR(it, players.begin()); it != players.end(); ++it) {
         std::shared_ptr<ServerPlayer> player =
-            dynamic_pointer_cast<ServerPlayer>(*it);
+            std::dynamic_pointer_cast<ServerPlayer>(*it);
         player->connection->send(packet);
     }
 }

@@ -246,7 +246,8 @@ bool ServerPlayerGameMode::destroyBlock(int x, int y, int z) {
     bool clientToUpdateRenderer = false;
     if (isCreative()) {
         clientToUpdateRenderer = true;
-        if (dynamic_pointer_cast<ServerPlayer>(player)->connection->isLocal()) {
+        if (std::dynamic_pointer_cast<ServerPlayer>(player)
+                ->connection->isLocal()) {
             // Establish whether we are sharing this chunk between client &
             // server
             MultiPlayerLevel* clientLevel =
@@ -321,7 +322,7 @@ bool ServerPlayerGameMode::useItem(std::shared_ptr<Player> player, Level* level,
             player->inventory->items[player->inventory->selected] = nullptr;
         }
         if (!player->isUsingItem()) {
-            dynamic_pointer_cast<ServerPlayer>(player)->refreshContainer(
+            std::dynamic_pointer_cast<ServerPlayer>(player)->refreshContainer(
                 player->inventoryMenu);
         }
         return true;

@@ -528,8 +528,9 @@ void Inventory::hurtArmor(float dmg) {
     for (unsigned int i = 0; i < armor.length; i++) {
         if (armor[i] != NULL &&
             dynamic_cast<ArmorItem*>(armor[i]->getItem()) != NULL) {
-            armor[i]->hurtAndBreak((int)dmg, dynamic_pointer_cast<LivingEntity>(
-                                                 player->shared_from_this()));
+            armor[i]->hurtAndBreak((int)dmg,
+                                   std::dynamic_pointer_cast<LivingEntity>(
+                                       player->shared_from_this()));
             if (armor[i]->count == 0) {
                 armor[i] = nullptr;
             }

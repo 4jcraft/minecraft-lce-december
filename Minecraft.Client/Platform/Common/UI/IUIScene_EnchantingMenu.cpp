@@ -116,7 +116,7 @@ void IUIScene_EnchantingMenu::handleOtherClicked(int iPad,
     Minecraft* pMinecraft = Minecraft::GetInstance();
     if (index >= 0 &&
         m_menu->clickMenuButton(
-            dynamic_pointer_cast<Player>(pMinecraft->localplayers[iPad]),
+            std::dynamic_pointer_cast<Player>(pMinecraft->localplayers[iPad]),
             index)) {
         pMinecraft->localgameModes[iPad]->handleInventoryButtonClick(
             m_menu->containerId, index);

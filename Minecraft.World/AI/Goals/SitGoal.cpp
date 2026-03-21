@@ -20,7 +20,7 @@ bool SitGoal::canUse() {
     if (!mob->onGround) return false;
 
     std::shared_ptr<LivingEntity> owner =
-        dynamic_pointer_cast<LivingEntity>(mob->getOwner());
+        std::dynamic_pointer_cast<LivingEntity>(mob->getOwner());
     if (owner == NULL) return true;  // owner not on level
 
     if (mob->distanceToSqr(owner) < FollowOwnerGoal::TeleportDistance *

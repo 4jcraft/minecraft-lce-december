@@ -34,7 +34,8 @@ bool MakeLoveGoal::canUse() {
         villager->shared_from_this());
     if (mate == NULL) return false;
 
-    partner = std::weak_ptr<Villager>(dynamic_pointer_cast<Villager>(mate));
+    partner =
+        std::weak_ptr<Villager>(std::dynamic_pointer_cast<Villager>(mate));
     if (partner.lock()->getAge() != 0) return false;
 
     return true;
@@ -93,7 +94,7 @@ void MakeLoveGoal::breed() {
     villager->setAge(5 * 60 * 20);
     // 4J - added limit to number of animals that can be bred
     if (level->canCreateMore(eTYPE_VILLAGER, Level::eSpawnType_Breed)) {
-        std::shared_ptr<Villager> child = dynamic_pointer_cast<Villager>(
+        std::shared_ptr<Villager> child = std::dynamic_pointer_cast<Villager>(
             villager->getBreedOffspring(partner.lock()));
         child->setAge(-20 * 60 * 20);
         child->moveTo(villager->x, villager->y, villager->z, 0, 0);

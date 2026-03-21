@@ -40,21 +40,21 @@ void ZombieRenderer::createArmorParts() {
 
 int ZombieRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob, int layer,
                                  float a) {
-    std::shared_ptr<Zombie> mob = dynamic_pointer_cast<Zombie>(_mob);
+    std::shared_ptr<Zombie> mob = std::dynamic_pointer_cast<Zombie>(_mob);
     swapArmor(mob);
     return HumanoidMobRenderer::prepareArmor(_mob, layer, a);
 }
 
 void ZombieRenderer::render(std::shared_ptr<Entity> _mob, double x, double y,
                             double z, float rot, float a) {
-    std::shared_ptr<Zombie> mob = dynamic_pointer_cast<Zombie>(_mob);
+    std::shared_ptr<Zombie> mob = std::dynamic_pointer_cast<Zombie>(_mob);
     swapArmor(mob);
     HumanoidMobRenderer::render(_mob, x, y, z, rot, a);
 }
 
 ResourceLocation* ZombieRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
-    std::shared_ptr<Zombie> mob = dynamic_pointer_cast<Zombie>(entity);
+    std::shared_ptr<Zombie> mob = std::dynamic_pointer_cast<Zombie>(entity);
 
     // TODO Extract this clusterfck into 3 renderers
     if (entity->instanceof(eTYPE_PIGZOMBIE)) {
@@ -69,7 +69,7 @@ ResourceLocation* ZombieRenderer::getTextureLocation(
 
 void ZombieRenderer::additionalRendering(std::shared_ptr<LivingEntity> _mob,
                                          float a) {
-    std::shared_ptr<Zombie> mob = dynamic_pointer_cast<Zombie>(_mob);
+    std::shared_ptr<Zombie> mob = std::dynamic_pointer_cast<Zombie>(_mob);
     swapArmor(mob);
     HumanoidMobRenderer::additionalRendering(_mob, a);
 }
@@ -97,7 +97,7 @@ void ZombieRenderer::swapArmor(std::shared_ptr<Zombie> mob) {
 
 void ZombieRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob,
                                     float bob, float bodyRot, float a) {
-    std::shared_ptr<Zombie> mob = dynamic_pointer_cast<Zombie>(_mob);
+    std::shared_ptr<Zombie> mob = std::dynamic_pointer_cast<Zombie>(_mob);
     if (mob->isConverting()) {
         bodyRot += (float)(cos(mob->tickCount * 3.25) * PI * .25f);
     }

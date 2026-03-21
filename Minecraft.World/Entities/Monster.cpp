@@ -73,18 +73,18 @@ bool Monster::doHurtTarget(std::shared_ptr<Entity> target) {
 
     if (target->instanceof(eTYPE_LIVINGENTITY)) {
         std::shared_ptr<LivingEntity> livingTarget =
-            dynamic_pointer_cast<LivingEntity>(target);
+            std::dynamic_pointer_cast<LivingEntity>(target);
         dmg += EnchantmentHelper::getDamageBonus(
-            dynamic_pointer_cast<LivingEntity>(shared_from_this()),
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this()),
             livingTarget);
         knockback += EnchantmentHelper::getKnockbackBonus(
-            dynamic_pointer_cast<LivingEntity>(shared_from_this()),
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this()),
             livingTarget);
     }
 
     boolean wasHurt = target->hurt(
         DamageSource::mobAttack(
-            dynamic_pointer_cast<LivingEntity>(shared_from_this())),
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this())),
         dmg);
 
     if (wasHurt) {
@@ -96,14 +96,14 @@ bool Monster::doHurtTarget(std::shared_ptr<Entity> target) {
         }
 
         int fireAspect = EnchantmentHelper::getFireAspect(
-            dynamic_pointer_cast<LivingEntity>(shared_from_this()));
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this()));
         if (fireAspect > 0) {
             target->setOnFire(fireAspect * 4);
         }
 
         if (target->instanceof(eTYPE_LIVINGENTITY)) {
             std::shared_ptr<LivingEntity> livingTarget =
-                dynamic_pointer_cast<LivingEntity>(target);
+                std::dynamic_pointer_cast<LivingEntity>(target);
             ThornsEnchantment::doThornsAfterAttack(shared_from_this(),
                                                    livingTarget, random);
         }

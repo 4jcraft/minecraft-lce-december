@@ -104,7 +104,7 @@ void HumanoidMobRenderer::createArmorParts() {
 int HumanoidMobRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob,
                                       int layer, float a) {
     std::shared_ptr<LivingEntity> mob =
-        dynamic_pointer_cast<LivingEntity>(_mob);
+        std::dynamic_pointer_cast<LivingEntity>(_mob);
 
     std::shared_ptr<ItemInstance> itemInstance = mob->getArmor(3 - layer);
     if (itemInstance != NULL) {
@@ -156,7 +156,7 @@ int HumanoidMobRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob,
 void HumanoidMobRenderer::render(std::shared_ptr<Entity> _mob, double x,
                                  double y, double z, float rot, float a) {
     std::shared_ptr<LivingEntity> mob =
-        dynamic_pointer_cast<LivingEntity>(_mob);
+        std::dynamic_pointer_cast<LivingEntity>(_mob);
 
     float brightness =
         SharedConstants::TEXTURE_LIGHTING ? 1 : mob->getBrightness(a);

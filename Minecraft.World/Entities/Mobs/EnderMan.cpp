@@ -218,7 +218,8 @@ void EnderMan::aiStep() {
     if (!level->isClientSide && isAlive()) {
         if (attackTarget != NULL) {
             if (attackTarget->instanceof(eTYPE_PLAYER) &&
-                isLookingAtMe(dynamic_pointer_cast<Player>(attackTarget))) {
+                isLookingAtMe(
+                    std::dynamic_pointer_cast<Player>(attackTarget))) {
                 if (attackTarget->distanceToSqr(shared_from_this()) < 4 * 4) {
                     teleport();
                 }

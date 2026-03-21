@@ -107,7 +107,7 @@ bool PigZombie::hurt(DamageSource* source, float dmg) {
             std::shared_ptr<Entity> e = *it;  // nearby->at(i);
             if (e->instanceof(eTYPE_PIGZOMBIE)) {
                 std::shared_ptr<PigZombie> pigZombie =
-                    dynamic_pointer_cast<PigZombie>(e);
+                    std::dynamic_pointer_cast<PigZombie>(e);
                 pigZombie->alert(sourceEntity);
             }
         }

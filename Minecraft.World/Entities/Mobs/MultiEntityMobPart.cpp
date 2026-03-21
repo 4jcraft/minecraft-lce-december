@@ -24,11 +24,11 @@ bool MultiEntityMobPart::isPickable() { return true; }
 
 bool MultiEntityMobPart::hurt(DamageSource* source, float damage) {
     return parentMob.lock()->hurt(
-        dynamic_pointer_cast<MultiEntityMobPart>(shared_from_this()), source,
-        damage);
+        std::dynamic_pointer_cast<MultiEntityMobPart>(shared_from_this()),
+        source, damage);
 }
 
 bool MultiEntityMobPart::is(std::shared_ptr<Entity> other) {
     return shared_from_this() == other ||
-           parentMob.lock() == dynamic_pointer_cast<MultiEntityMob>(other);
+           parentMob.lock() == std::dynamic_pointer_cast<MultiEntityMob>(other);
 }

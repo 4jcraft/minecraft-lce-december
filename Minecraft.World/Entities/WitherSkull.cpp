@@ -74,7 +74,7 @@ void WitherSkull::onHit(HitResult* res) {
                     witherSeconds = 40;
                 }
                 if (witherSeconds > 0) {
-                    dynamic_pointer_cast<LivingEntity>(res->entity)
+                    std::dynamic_pointer_cast<LivingEntity>(res->entity)
                         ->addEffect(new MobEffectInstance(
                             MobEffect::wither->id,
                             SharedConstants::TICKS_PER_SECOND * witherSeconds,

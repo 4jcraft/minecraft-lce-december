@@ -30,19 +30,20 @@ std::shared_ptr<SavedData> SavedDataStorage::get(const std::type_info& clazz,
         ConsoleSavePath file = levelStorage->getDataFile(id);
         if (!file.getName().empty() &&
             levelStorage->getSaveFile()->doesFileExist(file)) {
-            // mob = dynamic_pointer_cast<Mob>(Mob::_class->newInstance( level
+            // mob = std::dynamic_pointer_cast<Mob>(Mob::_class->newInstance(
+            // level
             // ));
             // data = clazz.getConstructor(String.class).newInstance(id);
 
             if (clazz == typeid(MapItemSavedData)) {
-                data = dynamic_pointer_cast<SavedData>(
+                data = std::dynamic_pointer_cast<SavedData>(
                     std::shared_ptr<MapItemSavedData>(
                         new MapItemSavedData(id)));
             } else if (clazz == typeid(Villages)) {
-                data = dynamic_pointer_cast<SavedData>(
+                data = std::dynamic_pointer_cast<SavedData>(
                     std::shared_ptr<Villages>(new Villages(id)));
             } else if (clazz == typeid(StructureFeatureSavedData)) {
-                data = dynamic_pointer_cast<SavedData>(
+                data = std::dynamic_pointer_cast<SavedData>(
                     std::shared_ptr<StructureFeatureSavedData>(
                         new StructureFeatureSavedData(id)));
             } else {

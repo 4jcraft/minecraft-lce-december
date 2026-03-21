@@ -88,7 +88,7 @@ std::shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket() {
                    (killingEntity == NULL || attackerEntity != killingEntity)) {
             std::shared_ptr<ItemInstance> attackerItem =
                 attackerEntity->instanceof(eTYPE_LIVINGENTITY)
-                    ? dynamic_pointer_cast<LivingEntity>(attackerEntity)
+                    ? std::dynamic_pointer_cast<LivingEntity>(attackerEntity)
                           ->getCarriedItem()
                     : nullptr;
 
@@ -107,7 +107,7 @@ std::shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket() {
         } else if (killingEntity != NULL) {
             std::shared_ptr<ItemInstance> killerItem =
                 killingEntity->instanceof(eTYPE_LIVINGENTITY)
-                    ? dynamic_pointer_cast<LivingEntity>(killingEntity)
+                    ? std::dynamic_pointer_cast<LivingEntity>(killingEntity)
                           ->getCarriedItem()
                     : nullptr;
             if (killerItem != NULL && killerItem->hasCustomHoverName()) {
@@ -127,7 +127,7 @@ std::shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket() {
         }
     } else {
         result = killingBlow->getSource()->getDeathMessagePacket(
-            dynamic_pointer_cast<LivingEntity>(mob->shared_from_this()));
+            std::dynamic_pointer_cast<LivingEntity>(mob->shared_from_this()));
     }
 
     return result;
@@ -146,8 +146,8 @@ std::shared_ptr<LivingEntity> CombatTracker::getKiller() {
             entry->getSource()->getEntity()->instanceof(eTYPE_PLAYER) &&
             (bestPlayer == NULL || entry->getDamage() > bestPlayerDamage)) {
             bestPlayerDamage = entry->getDamage();
-            bestPlayer =
-                dynamic_pointer_cast<Player>(entry->getSource()->getEntity());
+            bestPlayer = std::dynamic_pointer_cast<Player>(
+                entry->getSource()->getEntity());
         }
 
         if (entry->getSource() != NULL &&
@@ -155,7 +155,7 @@ std::shared_ptr<LivingEntity> CombatTracker::getKiller() {
             entry->getSource()->getEntity()->instanceof(eTYPE_LIVINGENTITY) &&
             (bestMob == NULL || entry->getDamage() > bestMobDamage)) {
             bestMobDamage = entry->getDamage();
-            bestMob = dynamic_pointer_cast<LivingEntity>(
+            bestMob = std::dynamic_pointer_cast<LivingEntity>(
                 entry->getSource()->getEntity());
         }
     }

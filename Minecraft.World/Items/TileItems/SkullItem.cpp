@@ -52,7 +52,7 @@ bool SkullItem::useOn(
 
         std::shared_ptr<TileEntity> skullTE = level->getTileEntity(x, y, z);
         std::shared_ptr<SkullTileEntity> skull =
-            dynamic_pointer_cast<SkullTileEntity>(skullTE);
+            std::dynamic_pointer_cast<SkullTileEntity>(skullTE);
 
         if (skull != NULL) {
             std::wstring extra = L"";

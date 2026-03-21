@@ -185,7 +185,7 @@ bool HopperTileEntity::suckInItems(Hopper* hopper) {
         int face = Facing::DOWN;
 
         std::shared_ptr<WorldlyContainer> worldly =
-            dynamic_pointer_cast<WorldlyContainer>(container);
+            std::dynamic_pointer_cast<WorldlyContainer>(container);
         if ((worldly != NULL) && (face > -1)) {
             intArray slots = worldly->getSlotsForFace(face);
 
@@ -351,7 +351,7 @@ std::shared_ptr<ItemEntity> HopperTileEntity::getItemAt(Level* level, double xt,
 
     if (entities->size() > 0) {
         std::shared_ptr<ItemEntity> out =
-            dynamic_pointer_cast<ItemEntity>(entities->at(0));
+            std::dynamic_pointer_cast<ItemEntity>(entities->at(0));
         delete entities;
         return out;
     } else {
@@ -371,9 +371,9 @@ std::shared_ptr<Container> HopperTileEntity::getContainerAt(Level* level,
 
     std::shared_ptr<TileEntity> entity = level->getTileEntity(xt, yt, zt);
 
-    result = dynamic_pointer_cast<Container>(entity);
+    result = std::dynamic_pointer_cast<Container>(entity);
     if (result != NULL) {
-        if (dynamic_pointer_cast<ChestTileEntity>(result) != NULL) {
+        if (std::dynamic_pointer_cast<ChestTileEntity>(result) != NULL) {
             int id = level->getTile(xt, yt, zt);
             Tile* tile = Tile::tiles[id];
 
@@ -389,7 +389,7 @@ std::shared_ptr<Container> HopperTileEntity::getContainerAt(Level* level,
             EntitySelector::CONTAINER_ENTITY_SELECTOR);
 
         if ((entities != NULL) && (entities->size() > 0)) {
-            result = dynamic_pointer_cast<Container>(
+            result = std::dynamic_pointer_cast<Container>(
                 entities->at(level->random->nextInt(entities->size())));
         }
     }

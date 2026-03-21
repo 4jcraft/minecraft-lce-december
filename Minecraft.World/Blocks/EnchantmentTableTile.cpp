@@ -75,7 +75,7 @@ bool EnchantmentTableTile::use(
         return true;
     }
     std::shared_ptr<EnchantmentTableEntity> table =
-        dynamic_pointer_cast<EnchantmentTableEntity>(
+        std::dynamic_pointer_cast<EnchantmentTableEntity>(
             level->getTileEntity(x, y, z));
     player->startEnchanting(x, y, z,
                             table->hasCustomName() ? table->getName() : L"");
@@ -87,7 +87,7 @@ void EnchantmentTableTile::setPlacedBy(
     std::shared_ptr<ItemInstance> itemInstance) {
     BaseEntityTile::setPlacedBy(level, x, y, z, by, itemInstance);
     if (itemInstance->hasCustomHoverName()) {
-        dynamic_pointer_cast<EnchantmentTableEntity>(
+        std::dynamic_pointer_cast<EnchantmentTableEntity>(
             level->getTileEntity(x, y, z))
             ->setCustomName(itemInstance->getHoverName());
     }

@@ -20,9 +20,10 @@ bool RandomStrollGoal::canUse() {
     // fenced-off region far enough to determine we can despawn them
     if (mob->getNoActionTime() < SharedConstants::TICKS_PER_SECOND * 5) {
         if (mob->getRandom()->nextInt(120) == 0) {
-            Vec3* pos = RandomPos::getPos(
-                dynamic_pointer_cast<PathfinderMob>(mob->shared_from_this()),
-                10, 7);
+            Vec3* pos =
+                RandomPos::getPos(std::dynamic_pointer_cast<PathfinderMob>(
+                                      mob->shared_from_this()),
+                                  10, 7);
             if (pos == NULL) return false;
             wantedX = pos->x;
             wantedY = pos->y;
@@ -37,9 +38,10 @@ bool RandomStrollGoal::canUse() {
         // a given area and so waiting around is just wasting time
 
         if (mob->isExtraWanderingEnabled()) {
-            Vec3* pos = RandomPos::getPos(
-                dynamic_pointer_cast<PathfinderMob>(mob->shared_from_this()),
-                10, 7, mob->getWanderingQuadrant());
+            Vec3* pos =
+                RandomPos::getPos(std::dynamic_pointer_cast<PathfinderMob>(
+                                      mob->shared_from_this()),
+                                  10, 7, mob->getWanderingQuadrant());
             if (pos == NULL) return false;
             wantedX = pos->x;
             wantedY = pos->y;

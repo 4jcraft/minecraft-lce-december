@@ -146,10 +146,11 @@ bool Zombie::hurt(DamageSource* source, float dmg) {
         std::shared_ptr<LivingEntity> target = getTarget();
         if ((target == NULL) && getAttackTarget() != NULL &&
             getAttackTarget()->instanceof(eTYPE_LIVINGENTITY))
-            target = dynamic_pointer_cast<LivingEntity>(getAttackTarget());
+            target = std::dynamic_pointer_cast<LivingEntity>(getAttackTarget());
         if ((target == NULL) && source->getEntity() != NULL &&
             source->getEntity()->instanceof(eTYPE_LIVINGENTITY))
-            target = dynamic_pointer_cast<LivingEntity>(source->getEntity());
+            target =
+                std::dynamic_pointer_cast<LivingEntity>(source->getEntity());
 
         if ((target != NULL) && level->difficulty >= Difficulty::HARD &&
             random->nextFloat() <

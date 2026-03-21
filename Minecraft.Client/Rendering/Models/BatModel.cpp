@@ -59,7 +59,7 @@ int BatModel::modelVersion() { return 36; }
 void BatModel::render(std::shared_ptr<Entity> entity, float time, float r,
                       float bob, float yRot, float xRot, float scale,
                       bool usecompiled) {
-    std::shared_ptr<Bat> bat = dynamic_pointer_cast<Bat>(entity);
+    std::shared_ptr<Bat> bat = std::dynamic_pointer_cast<Bat>(entity);
     if (bat->isResting()) {
         float rad = 180 / PI;
         head->xRot = xRot / rad;

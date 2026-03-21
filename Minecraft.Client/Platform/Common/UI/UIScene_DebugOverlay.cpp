@@ -174,7 +174,7 @@ void UIScene_DebugOverlay::handlePress(F64 controlId, F64 childId) {
             ClientConnection* conn = Minecraft::GetInstance()->getConnection(
                 ProfileManager.GetPrimaryPad());
             conn->send(GiveItemCommand::preparePacket(
-                dynamic_pointer_cast<Player>(
+                std::dynamic_pointer_cast<Player>(
                     Minecraft::GetInstance()
                         ->localplayers[ProfileManager.GetPrimaryPad()]),
                 m_itemIds[id]));
@@ -192,7 +192,7 @@ void UIScene_DebugOverlay::handlePress(F64 controlId, F64 childId) {
             ClientConnection* conn = Minecraft::GetInstance()->getConnection(
                 ProfileManager.GetPrimaryPad());
             conn->send(EnchantItemCommand::preparePacket(
-                dynamic_pointer_cast<Player>(
+                std::dynamic_pointer_cast<Player>(
                     Minecraft::GetInstance()
                         ->localplayers[ProfileManager.GetPrimaryPad()]),
                 m_enchantmentIdAndLevels[id].first,

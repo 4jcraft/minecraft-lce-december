@@ -196,24 +196,24 @@ void ChestTileEntity::checkNeighbors() {
     s = std::weak_ptr<ChestTileEntity>();
 
     if (isSameChest(x - 1, y, z)) {
-        w = dynamic_pointer_cast<ChestTileEntity>(
+        w = std::dynamic_pointer_cast<ChestTileEntity>(
             level->getTileEntity(x - 1, y, z));
     }
     if (isSameChest(x + 1, y, z)) {
-        e = dynamic_pointer_cast<ChestTileEntity>(
+        e = std::dynamic_pointer_cast<ChestTileEntity>(
             level->getTileEntity(x + 1, y, z));
     }
     if (isSameChest(x, y, z - 1)) {
-        n = dynamic_pointer_cast<ChestTileEntity>(
+        n = std::dynamic_pointer_cast<ChestTileEntity>(
             level->getTileEntity(x, y, z - 1));
     }
     if (isSameChest(x, y, z + 1)) {
-        s = dynamic_pointer_cast<ChestTileEntity>(
+        s = std::dynamic_pointer_cast<ChestTileEntity>(
             level->getTileEntity(x, y, z + 1));
     }
 
     std::shared_ptr<ChestTileEntity> cteThis =
-        dynamic_pointer_cast<ChestTileEntity>(shared_from_this());
+        std::dynamic_pointer_cast<ChestTileEntity>(shared_from_this());
     if (n.lock() != NULL)
         n.lock()->heyImYourNeighbor(cteThis, Direction::SOUTH);
     if (s.lock() != NULL)
@@ -248,7 +248,8 @@ void ChestTileEntity::tick() {
                 AABB::newTemp(x - range, y - range, z - range, x + 1 + range,
                               y + 1 + range, z + 1 + range));
         for (AUTO_VAR(it, players->begin()); it != players->end(); ++it) {
-            std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(*it);
+            std::shared_ptr<Player> player =
+                std::dynamic_pointer_cast<Player>(*it);
 
             ContainerMenu* containerMenu =
                 dynamic_cast<ContainerMenu*>(player->containerMenu);
@@ -256,9 +257,9 @@ void ChestTileEntity::tick() {
                 std::shared_ptr<Container> container =
                     containerMenu->getContainer();
                 std::shared_ptr<Container> thisContainer =
-                    dynamic_pointer_cast<Container>(shared_from_this());
+                    std::dynamic_pointer_cast<Container>(shared_from_this());
                 std::shared_ptr<CompoundContainer> compoundContainer =
-                    dynamic_pointer_cast<CompoundContainer>(container);
+                    std::dynamic_pointer_cast<CompoundContainer>(container);
                 if ((container == thisContainer) ||
                     (compoundContainer != NULL &&
                      compoundContainer->contains(thisContainer))) {

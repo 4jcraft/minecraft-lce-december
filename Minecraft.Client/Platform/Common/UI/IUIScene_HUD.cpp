@@ -241,7 +241,7 @@ void IUIScene_HUD::renderPlayerHealth() {
         }
     } else if (riding->instanceof(eTYPE_LIVINGENTITY)) {
         std::shared_ptr<LivingEntity> living =
-            dynamic_pointer_cast<LivingEntity>(riding);
+            std::dynamic_pointer_cast<LivingEntity>(riding);
         int riderCurrentHealth = (int)ceil(living->getHealth());
         float maxRiderHealth = living->getMaxHealth();
 

@@ -110,8 +110,8 @@ bool CauldronTile::use(Level* level, int x, int y, int z,
             // 4J Stu - Brought forward change to update inventory when filling
             // bottles with water
             else if (player->instanceof(eTYPE_SERVERPLAYER)) {
-                dynamic_pointer_cast<ServerPlayer>(player)->refreshContainer(
-                    player->inventoryMenu);
+                std::dynamic_pointer_cast<ServerPlayer>(player)
+                    ->refreshContainer(player->inventoryMenu);
             }
             // 4J-PB - don't lose the water in creative mode
             if (player->abilities.instabuild == false) {

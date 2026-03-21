@@ -53,7 +53,7 @@ std::shared_ptr<Animal> BreedGoal::getFreePartner() {
     double dist = Double::MAX_VALUE;
     std::shared_ptr<Animal> partner = nullptr;
     for (AUTO_VAR(it, others->begin()); it != others->end(); ++it) {
-        std::shared_ptr<Animal> p = dynamic_pointer_cast<Animal>(*it);
+        std::shared_ptr<Animal> p = std::dynamic_pointer_cast<Animal>(*it);
         if (animal->canMate(p) && animal->distanceToSqr(p) < dist) {
             partner = p;
             dist = animal->distanceToSqr(p);

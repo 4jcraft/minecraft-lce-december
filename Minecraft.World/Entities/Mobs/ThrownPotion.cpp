@@ -92,7 +92,7 @@ void ThrownPotion::onHit(HitResult* res) {
                      it != entitiesOfClass->end(); ++it) {
                     // shared_ptr<Entity> e = *it;
                     std::shared_ptr<LivingEntity> e =
-                        dynamic_pointer_cast<LivingEntity>(*it);
+                        std::dynamic_pointer_cast<LivingEntity>(*it);
                     double dist = distanceToSqr(e);
                     if (dist < SPLASH_RANGE_SQ) {
                         double scale = 1.0 - (sqrt(dist) / SPLASH_RANGE);

@@ -107,7 +107,7 @@ std::shared_ptr<ItemInstance> BucketItem::use(
         if (!level->mayInteract(player, xt, yt, zt, content)) {
             app.DebugPrintf("!!!!!!!!!!! Can't place that here\n");
             std::shared_ptr<ServerPlayer> servPlayer =
-                dynamic_pointer_cast<ServerPlayer>(player);
+                std::dynamic_pointer_cast<ServerPlayer>(player);
             if (servPlayer != NULL) {
                 app.DebugPrintf(
                     "Sending ChatPacket::e_ChatCannotPlaceLava to player\n");

@@ -2865,7 +2865,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                     *piAction = IDS_TOOLTIPS_HIT;
 
                                 std::shared_ptr<Animal> animal =
-                                    dynamic_pointer_cast<Animal>(
+                                    std::dynamic_pointer_cast<Animal>(
                                         hitResult->entity);
 
                                 if (animal->isLeashed() &&
@@ -2903,7 +2903,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                     *piAction = IDS_TOOLTIPS_HIT;
 
                                 std::shared_ptr<Animal> animal =
-                                    dynamic_pointer_cast<Animal>(
+                                    std::dynamic_pointer_cast<Animal>(
                                         hitResult->entity);
 
                                 if (animal->isLeashed() &&
@@ -2945,7 +2945,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                     *piAction = IDS_TOOLTIPS_HIT;
 
                                 std::shared_ptr<Animal> animal =
-                                    dynamic_pointer_cast<Animal>(
+                                    std::dynamic_pointer_cast<Animal>(
                                         hitResult->entity);
 
                                 if (animal->isLeashed() &&
@@ -3035,7 +3035,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                     *piAction = IDS_TOOLTIPS_HIT;
 
                                 std::shared_ptr<Sheep> sheep =
-                                    dynamic_pointer_cast<Sheep>(
+                                    std::dynamic_pointer_cast<Sheep>(
                                         hitResult->entity);
 
                                 if (sheep->isLeashed() &&
@@ -3098,7 +3098,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                     *piAction = IDS_TOOLTIPS_HIT;
 
                                 std::shared_ptr<Pig> pig =
-                                    dynamic_pointer_cast<Pig>(
+                                    std::dynamic_pointer_cast<Pig>(
                                         hitResult->entity);
 
                                 if (pig->isLeashed() &&
@@ -3138,7 +3138,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 // enter love mode
                                 {
                                     std::shared_ptr<Wolf> wolf =
-                                        dynamic_pointer_cast<Wolf>(
+                                        std::dynamic_pointer_cast<Wolf>(
                                             hitResult->entity);
 
                                     if (player->isAllowedToAttackAnimals())
@@ -3236,7 +3236,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 break;
                             case eTYPE_OCELOT: {
                                 std::shared_ptr<Ocelot> ocelot =
-                                    dynamic_pointer_cast<Ocelot>(
+                                    std::dynamic_pointer_cast<Ocelot>(
                                         hitResult->entity);
 
                                 if (player->isAllowedToAttackAnimals())
@@ -3287,7 +3287,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 // button prompt is available when attacking a
                                 // host who has "Invisible" option turned on
                                 std::shared_ptr<Player> TargetPlayer =
-                                    dynamic_pointer_cast<Player>(
+                                    std::dynamic_pointer_cast<Player>(
                                         hitResult->entity);
 
                                 if (!TargetPlayer
@@ -3311,7 +3311,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
 
                             case eTYPE_ITEM_FRAME: {
                                 std::shared_ptr<ItemFrame> itemFrame =
-                                    dynamic_pointer_cast<ItemFrame>(
+                                    std::dynamic_pointer_cast<ItemFrame>(
                                         hitResult->entity);
 
                                 // is the frame occupied?
@@ -3331,7 +3331,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 // 4J-JEV: Cannot leash villagers.
 
                                 std::shared_ptr<Villager> villager =
-                                    dynamic_pointer_cast<Villager>(
+                                    std::dynamic_pointer_cast<Villager>(
                                         hitResult->entity);
                                 if (!villager->isBaby()) {
                                     *piUse = IDS_TOOLTIPS_TRADE;
@@ -3341,7 +3341,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
 
                             case eTYPE_ZOMBIE: {
                                 std::shared_ptr<Zombie> zomb =
-                                    dynamic_pointer_cast<Zombie>(
+                                    std::dynamic_pointer_cast<Zombie>(
                                         hitResult->entity);
                                 static GoldenAppleItem* goldapple =
                                     (GoldenAppleItem*)Item::apple_gold;
@@ -3358,7 +3358,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
 
                             case eTYPE_HORSE: {
                                 std::shared_ptr<EntityHorse> horse =
-                                    dynamic_pointer_cast<EntityHorse>(
+                                    std::dynamic_pointer_cast<EntityHorse>(
                                         hitResult->entity);
 
                                 bool heldItemIsFood = false,
@@ -3464,7 +3464,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                             default:
                                 if (hitResult->entity->instanceof(eTYPE_MOB)) {
                                     std::shared_ptr<Mob> mob =
-                                        dynamic_pointer_cast<Mob>(
+                                        std::dynamic_pointer_cast<Mob>(
                                             hitResult->entity);
                                     if (mob->isLeashed() &&
                                         mob->getLeashHolder() == player) {
@@ -3659,11 +3659,11 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                      (1LL << MINECRAFT_ACTION_SPAWN_CREEPER)) &&
                     app.GetMobsDontAttackEnabled()) {
                     // shared_ptr<Mob> mob =
-                    // dynamic_pointer_cast<Mob>(Creeper::_class->newInstance(
+                    // std::dynamic_pointer_cast<Mob>(Creeper::_class->newInstance(
                     // level )); shared_ptr<Mob> mob =
-                    // dynamic_pointer_cast<Mob>(Wolf::_class->newInstance(
+                    // std::dynamic_pointer_cast<Mob>(Wolf::_class->newInstance(
                     // level ));
-                    std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(
+                    std::shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(
                         std::shared_ptr<Spider>(new Spider(level)));
                     mob->moveTo(player->x + 1, player->y, player->z + 1,
                                 level->random->nextFloat() * 360, 0);
@@ -4843,7 +4843,7 @@ game - we need to wake up, and we don't have the inbedchatscreen with a button
 if(button==1 && (player->isSleeping() && level != NULL && level->isClientSide))
 {
 shared_ptr<MultiplayerLocalPlayer> mplp =
-dynamic_pointer_cast<MultiplayerLocalPlayer>( player );
+std::dynamic_pointer_cast<MultiplayerLocalPlayer>( player );
 
 if(mplp) mplp->StopSleeping();
 

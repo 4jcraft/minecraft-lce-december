@@ -193,7 +193,7 @@ void MinecartContainer::readAdditionalSaveData(CompoundTag* base) {
 bool MinecartContainer::interact(std::shared_ptr<Player> player) {
     if (!level->isClientSide) {
         player->openContainer(
-            dynamic_pointer_cast<Container>(shared_from_this()));
+            std::dynamic_pointer_cast<Container>(shared_from_this()));
     }
 
     return true;
@@ -201,7 +201,7 @@ bool MinecartContainer::interact(std::shared_ptr<Player> player) {
 
 void MinecartContainer::applyNaturalSlowdown() {
     std::shared_ptr<Container> container =
-        dynamic_pointer_cast<Container>(shared_from_this());
+        std::dynamic_pointer_cast<Container>(shared_from_this());
     int emptiness =
         Redstone::SIGNAL_MAX -
         AbstractContainerMenu::getRedstoneSignalFromContainer(container);

@@ -102,7 +102,7 @@ bool MonsterRoomFeature::place(Level* level, Random* random, int x, int y,
                 wrapperArray,
                 Item::enchantedBook->createForRandomTreasure(random));
             std::shared_ptr<ChestTileEntity> chest =
-                dynamic_pointer_cast<ChestTileEntity>(
+                std::dynamic_pointer_cast<ChestTileEntity>(
                     level->getTileEntity(xc, yc, zc));
             if (chest != NULL) {
                 WeighedTreasure::addChestItems(random, treasure, chest, 8);
@@ -115,7 +115,7 @@ bool MonsterRoomFeature::place(Level* level, Random* random, int x, int y,
     level->setTileAndData(x, y, z, Tile::mobSpawner_Id, 0,
                           Tile::UPDATE_CLIENTS);
     std::shared_ptr<MobSpawnerTileEntity> entity =
-        dynamic_pointer_cast<MobSpawnerTileEntity>(
+        std::dynamic_pointer_cast<MobSpawnerTileEntity>(
             level->getTileEntity(x, y, z));
     if (entity != NULL) {
         entity->getSpawner()->setEntityId(randomEntityId(random));

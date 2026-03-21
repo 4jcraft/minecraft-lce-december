@@ -13,15 +13,15 @@ BrewingStandMenu::BrewingStandMenu(
 
     this->brewingStand = brewingStand;
 
-    addSlot(new PotionSlot(
-        dynamic_pointer_cast<Player>(inventory->player->shared_from_this()),
-        brewingStand, 0, 56, 46));
-    addSlot(new PotionSlot(
-        dynamic_pointer_cast<Player>(inventory->player->shared_from_this()),
-        brewingStand, 1, 79, 53));
-    addSlot(new PotionSlot(
-        dynamic_pointer_cast<Player>(inventory->player->shared_from_this()),
-        brewingStand, 2, 102, 46));
+    addSlot(new PotionSlot(std::dynamic_pointer_cast<Player>(
+                               inventory->player->shared_from_this()),
+                           brewingStand, 0, 56, 46));
+    addSlot(new PotionSlot(std::dynamic_pointer_cast<Player>(
+                               inventory->player->shared_from_this()),
+                           brewingStand, 1, 79, 53));
+    addSlot(new PotionSlot(std::dynamic_pointer_cast<Player>(
+                               inventory->player->shared_from_this()),
+                           brewingStand, 2, 102, 46));
     ingredientSlot = addSlot(new IngredientsSlot(brewingStand, 3, 79, 17));
 
     for (int y = 0; y < 3; y++) {

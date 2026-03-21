@@ -104,29 +104,30 @@ EnderDragon::EnderDragon(Level* level) : Mob(level) {
 // 4J - split off from ctor so we can use shared_from_this()
 void EnderDragon::AddParts() {
     head = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
-        dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"head", 6,
-        6));
+        std::dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"head",
+        6, 6));
     neck = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
-        dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"neck", 6,
+        std::dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"neck",
+        6,
         6));  // 4J Added
     body = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
-        dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"body", 8,
-        8));
+        std::dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"body",
+        8, 8));
     tail1 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
-        dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"tail", 4,
-        4));
+        std::dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"tail",
+        4, 4));
     tail2 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
-        dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"tail", 4,
-        4));
+        std::dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"tail",
+        4, 4));
     tail3 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
-        dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"tail", 4,
-        4));
+        std::dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"tail",
+        4, 4));
     wing1 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
-        dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"wing", 4,
-        4));
+        std::dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"wing",
+        4, 4));
     wing2 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
-        dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"wing", 4,
-        4));
+        std::dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"wing",
+        4, 4));
 
     subEntities.push_back(head);
     subEntities.push_back(neck);  // 4J Added
@@ -466,7 +467,7 @@ void EnderDragon::aiStep() {
                     if ((*it)->instanceof(eTYPE_LIVINGENTITY)) {
                         // app.DebugPrintf("Attacking entity with acid\n");
                         std::shared_ptr<LivingEntity> e =
-                            dynamic_pointer_cast<LivingEntity>(*it);
+                            std::dynamic_pointer_cast<LivingEntity>(*it);
                         e->hurt(DamageSource::dragonbreath, 2);
                     }
                 }
@@ -761,8 +762,8 @@ void EnderDragon::aiStep() {
                     std::shared_ptr<DragonFireball> ie =
                         std::shared_ptr<DragonFireball>(new DragonFireball(
                             level,
-                            dynamic_pointer_cast<Mob>(shared_from_this()), xdd,
-                            ydd, zdd));
+                            std::dynamic_pointer_cast<Mob>(shared_from_this()),
+                            xdd, ydd, zdd));
                     ie->x = startingX;
                     ie->y = startingY;
                     ie->z = startingZ;
@@ -818,7 +819,7 @@ void EnderDragon::checkCrystals() {
         // for (Entity ec : crystals)
         for (AUTO_VAR(it, crystals->begin()); it != crystals->end(); ++it) {
             std::shared_ptr<EnderCrystal> ec =
-                dynamic_pointer_cast<EnderCrystal>(*it);
+                std::dynamic_pointer_cast<EnderCrystal>(*it);
             double dist = ec->distanceToSqr(shared_from_this());
             if (dist < nearest) {
                 nearest = dist;
@@ -855,7 +856,7 @@ void EnderDragon::knockBack(std::vector<std::shared_ptr<Entity> >* entities) {
         if ((*it)->instanceof(eTYPE_LIVINGENTITY))  //(e instanceof Mob)
         {
             std::shared_ptr<LivingEntity> e =
-                dynamic_pointer_cast<LivingEntity>(*it);
+                std::dynamic_pointer_cast<LivingEntity>(*it);
             double xd = e->x - xm;
             double zd = e->z - zm;
             double dd = xd * xd + zd * zd;
@@ -870,9 +871,10 @@ void EnderDragon::hurt(std::vector<std::shared_ptr<Entity> >* entities) {
         if ((*it)->instanceof(eTYPE_LIVINGENTITY))  //(e instanceof Mob)
         {
             std::shared_ptr<LivingEntity> e =
-                dynamic_pointer_cast<LivingEntity>(*it);  // entities.get(i);
+                std::dynamic_pointer_cast<LivingEntity>(
+                    *it);  // entities.get(i);
             DamageSource* damageSource = DamageSource::mobAttack(
-                dynamic_pointer_cast<LivingEntity>(shared_from_this()));
+                std::dynamic_pointer_cast<LivingEntity>(shared_from_this()));
             e->hurt(damageSource, 10);
             delete damageSource;
         }
@@ -1425,7 +1427,8 @@ void EnderDragon::handleCrystalDestroyed(DamageSource* source) {
     } else if (source->getEntity() != NULL &&
                source->getEntity()->instanceof(eTYPE_PLAYER)) {
         if (setSynchedAction(e_EnderdragonAction_StrafePlayer)) {
-            attackTarget = dynamic_pointer_cast<Player>(source->getEntity());
+            attackTarget =
+                std::dynamic_pointer_cast<Player>(source->getEntity());
 #if PRINT_DRAGON_STATE_CHANGE_MESSAGES
             app.DebugPrintf("Dragon action is now: StrafePlayer\n");
 #endif

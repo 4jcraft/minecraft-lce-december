@@ -51,7 +51,7 @@ int PlayerRenderer::prepareArmor(std::shared_ptr<LivingEntity> _player,
                                  int layer, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(_player);
+    std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(_player);
 
     // 4J-PB - need to disable rendering armour for some special skins (Daleks)
     unsigned int uiAnimOverrideBitmask = player->getAnimOverrideBitmask();
@@ -112,7 +112,7 @@ void PlayerRenderer::prepareSecondPassArmor(
     std::shared_ptr<LivingEntity> _player, int layer, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(_player);
+    std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(_player);
     std::shared_ptr<ItemInstance> itemInstance =
         player->inventory->getArmor(3 - layer);
     if (itemInstance != NULL) {
@@ -134,7 +134,7 @@ void PlayerRenderer::render(std::shared_ptr<Entity> _mob, double x, double y,
                             double z, float rot, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<Player> mob = dynamic_pointer_cast<Player>(_mob);
+    std::shared_ptr<Player> mob = std::dynamic_pointer_cast<Player>(_mob);
 
     if (mob->hasInvisiblePrivilege()) return;
 
@@ -239,7 +239,7 @@ void PlayerRenderer::additionalRendering(std::shared_ptr<LivingEntity> _mob,
 
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<Player> mob = dynamic_pointer_cast<Player>(_mob);
+    std::shared_ptr<Player> mob = std::dynamic_pointer_cast<Player>(_mob);
 
     std::shared_ptr<ItemInstance> headGear = mob->inventory->getArmor(3);
     if (headGear != NULL) {
@@ -494,7 +494,7 @@ void PlayerRenderer::setupPosition(std::shared_ptr<LivingEntity> _mob, double x,
                                    double y, double z) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<Player> mob = dynamic_pointer_cast<Player>(_mob);
+    std::shared_ptr<Player> mob = std::dynamic_pointer_cast<Player>(_mob);
 
     if (mob->isAlive() && mob->isSleeping()) {
         LivingEntityRenderer::setupPosition(
@@ -513,7 +513,7 @@ void PlayerRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob,
                                     float bob, float bodyRot, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<Player> mob = dynamic_pointer_cast<Player>(_mob);
+    std::shared_ptr<Player> mob = std::dynamic_pointer_cast<Player>(_mob);
 
     if (mob->isAlive() && mob->isSleeping()) {
         glRotatef(mob->getSleepRotation(), 0, 1, 0);
@@ -528,7 +528,7 @@ void PlayerRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob,
 void PlayerRenderer::renderShadow(std::shared_ptr<Entity> e, double x, double y,
                                   double z, float pow, float a) {
     if (app.GetGameHostOption(eGameHostOption_HostCanBeInvisible) > 0) {
-        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(e);
+        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(e);
         if (player != NULL && player->hasInvisiblePrivilege()) return;
     }
     EntityRenderer::renderShadow(e, x, y, z, pow, a);
@@ -536,12 +536,12 @@ void PlayerRenderer::renderShadow(std::shared_ptr<Entity> e, double x, double y,
 
 // 4J Added override
 void PlayerRenderer::bindTexture(std::shared_ptr<Entity> entity) {
-    std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+    std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
     bindTexture(player->customTextureUrl, player->getTexture());
 }
 
 ResourceLocation* PlayerRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
-    std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+    std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
     return new ResourceLocation((_TEXTURE_NAME)player->getTexture());
 }

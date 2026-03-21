@@ -659,7 +659,7 @@ bool StructurePiece::createChest(Level* level, BoundingBox* chunkBB,
             level->setTileAndData(worldX, worldY, worldZ, Tile::chest->id, 0,
                                   Tile::UPDATE_CLIENTS);
             std::shared_ptr<ChestTileEntity> chest =
-                dynamic_pointer_cast<ChestTileEntity>(
+                std::dynamic_pointer_cast<ChestTileEntity>(
                     level->getTileEntity(worldX, worldY, worldZ));
             if (chest != NULL)
                 WeighedTreasure::addChestItems(random, treasure, chest,
@@ -685,7 +685,7 @@ bool StructurePiece::createDispenser(Level* level, BoundingBox* chunkBB,
                 getOrientationData(Tile::dispenser_Id, facing),
                 Tile::UPDATE_CLIENTS);
             std::shared_ptr<DispenserTileEntity> dispenser =
-                dynamic_pointer_cast<DispenserTileEntity>(
+                std::dynamic_pointer_cast<DispenserTileEntity>(
                     level->getTileEntity(worldX, worldY, worldZ));
             if (dispenser != NULL)
                 WeighedTreasure::addDispenserItems(random, items, dispenser,

@@ -137,7 +137,7 @@ charArray MapItemSavedData::HoldingPlayer::nextUpdatePacket(
         delete data.data;
     }
     std::shared_ptr<ServerPlayer> servPlayer =
-        dynamic_pointer_cast<ServerPlayer>(player);
+        std::dynamic_pointer_cast<ServerPlayer>(player);
     for (int d = 0; d < 10; d++) {
         int column = (tick++ * 11) % (MapItem::IMAGE_WIDTH);
 

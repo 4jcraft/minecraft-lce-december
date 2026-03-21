@@ -90,7 +90,7 @@ bool DispenserTile::use(Level* level, int x, int y, int z,
     }
 
     std::shared_ptr<DispenserTileEntity> trap =
-        dynamic_pointer_cast<DispenserTileEntity>(
+        std::dynamic_pointer_cast<DispenserTileEntity>(
             level->getTileEntity(x, y, z));
     player->openTrap(trap);
 
@@ -100,7 +100,7 @@ bool DispenserTile::use(Level* level, int x, int y, int z,
 void DispenserTile::dispenseFrom(Level* level, int x, int y, int z) {
     BlockSourceImpl source(level, x, y, z);
     std::shared_ptr<DispenserTileEntity> trap =
-        dynamic_pointer_cast<DispenserTileEntity>(source.getEntity());
+        std::dynamic_pointer_cast<DispenserTileEntity>(source.getEntity());
     if (trap == NULL) return;
 
     int slot = trap->getRandomSlot();
@@ -159,7 +159,8 @@ void DispenserTile::setPlacedBy(Level* level, int x, int y, int z,
     level->setData(x, y, z, dir, Tile::UPDATE_CLIENTS);
 
     if (itemInstance->hasCustomHoverName()) {
-        dynamic_pointer_cast<DispenserTileEntity>(level->getTileEntity(x, y, z))
+        std::dynamic_pointer_cast<DispenserTileEntity>(
+            level->getTileEntity(x, y, z))
             ->setCustomName(itemInstance->getHoverName());
     }
 }
@@ -167,7 +168,7 @@ void DispenserTile::setPlacedBy(Level* level, int x, int y, int z,
 void DispenserTile::onRemove(Level* level, int x, int y, int z, int id,
                              int data) {
     std::shared_ptr<Container> container =
-        dynamic_pointer_cast<DispenserTileEntity>(
+        std::dynamic_pointer_cast<DispenserTileEntity>(
             level->getTileEntity(x, y, z));
     if (container != NULL) {
         for (unsigned int i = 0; i < container->getContainerSize(); i++) {
@@ -228,5 +229,5 @@ bool DispenserTile::hasAnalogOutputSignal() { return true; }
 int DispenserTile::getAnalogOutputSignal(Level* level, int x, int y, int z,
                                          int dir) {
     return AbstractContainerMenu::getRedstoneSignalFromContainer(
-        dynamic_pointer_cast<Container>(level->getTileEntity(x, y, z)));
+        std::dynamic_pointer_cast<Container>(level->getTileEntity(x, y, z)));
 }

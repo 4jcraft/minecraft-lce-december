@@ -138,9 +138,9 @@ float Ocelot::getSoundVolume() { return 0.4f; }
 int Ocelot::getDeathLoot() { return Item::leather_Id; }
 
 bool Ocelot::doHurtTarget(std::shared_ptr<Entity> target) {
-    return target->hurt(
-        DamageSource::mobAttack(dynamic_pointer_cast<Mob>(shared_from_this())),
-        3);
+    return target->hurt(DamageSource::mobAttack(
+                            std::dynamic_pointer_cast<Mob>(shared_from_this())),
+                        3);
 }
 
 bool Ocelot::hurt(DamageSource* source, float dmg) {
@@ -222,7 +222,7 @@ bool Ocelot::canMate(std::shared_ptr<Animal> animal) {
     if (animal == shared_from_this()) return false;
     if (!isTame()) return false;
 
-    std::shared_ptr<Ocelot> partner = dynamic_pointer_cast<Ocelot>(animal);
+    std::shared_ptr<Ocelot> partner = std::dynamic_pointer_cast<Ocelot>(animal);
     if (partner == NULL) return false;
     if (!partner->isTame()) return false;
 

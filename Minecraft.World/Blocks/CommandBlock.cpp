@@ -31,9 +31,9 @@ void CommandBlock::tick(Level* level, int x, int y, int z, Random* random) {
     std::shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
 
     if (tileEntity != NULL &&
-        dynamic_pointer_cast<CommandBlockEntity>(tileEntity) != NULL) {
+        std::dynamic_pointer_cast<CommandBlockEntity>(tileEntity) != NULL) {
         std::shared_ptr<CommandBlockEntity> commandBlock =
-            dynamic_pointer_cast<CommandBlockEntity>(tileEntity);
+            std::dynamic_pointer_cast<CommandBlockEntity>(tileEntity);
         commandBlock->setSuccessCount(commandBlock->performCommand(level));
         level->updateNeighbourForOutputSignal(x, y, z, id);
     }
@@ -46,7 +46,8 @@ bool CommandBlock::use(Level* level, int x, int y, int z,
                        float clickX, float clickY, float clickZ,
                        bool soundOnly) {
     std::shared_ptr<CommandBlockEntity> amce =
-        dynamic_pointer_cast<CommandBlockEntity>(level->getTileEntity(x, y, z));
+        std::dynamic_pointer_cast<CommandBlockEntity>(
+            level->getTileEntity(x, y, z));
 
     if (amce != NULL) {
         player->openTextEdit(amce);
@@ -62,8 +63,8 @@ int CommandBlock::getAnalogOutputSignal(Level* level, int x, int y, int z,
     std::shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
 
     if (tileEntity != NULL &&
-        dynamic_pointer_cast<CommandBlockEntity>(tileEntity) != NULL) {
-        return dynamic_pointer_cast<CommandBlockEntity>(tileEntity)
+        std::dynamic_pointer_cast<CommandBlockEntity>(tileEntity) != NULL) {
+        return std::dynamic_pointer_cast<CommandBlockEntity>(tileEntity)
             ->getSuccessCount();
     }
 
@@ -74,7 +75,8 @@ void CommandBlock::setPlacedBy(Level* level, int x, int y, int z,
                                std::shared_ptr<LivingEntity> by,
                                std::shared_ptr<ItemInstance> itemInstance) {
     std::shared_ptr<CommandBlockEntity> cblock =
-        dynamic_pointer_cast<CommandBlockEntity>(level->getTileEntity(x, y, z));
+        std::dynamic_pointer_cast<CommandBlockEntity>(
+            level->getTileEntity(x, y, z));
 
     if (itemInstance->hasCustomHoverName()) {
         cblock->setName(itemInstance->getHoverName());

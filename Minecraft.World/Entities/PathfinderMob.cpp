@@ -280,7 +280,7 @@ void PathfinderMob::tickLeash() {
 
         std::shared_ptr<TamableAnimal> tamabaleAnimal =
             shared_from_this()->instanceof(eTYPE_TAMABLE_ANIMAL)
-                ? dynamic_pointer_cast<TamableAnimal>(shared_from_this())
+                ? std::dynamic_pointer_cast<TamableAnimal>(shared_from_this())
                 : nullptr;
         if ((tamabaleAnimal != NULL) && tamabaleAnimal->isSitting()) {
             if (_distanceTo > 10) {

@@ -15,7 +15,7 @@ SubselectEntitySelector::~SubselectEntitySelector() { delete m_subselector; }
 bool SubselectEntitySelector::matches(std::shared_ptr<Entity> entity) const {
     if (!entity->instanceof(eTYPE_LIVINGENTITY)) return false;
     if (m_subselector != NULL && !m_subselector->matches(entity)) return false;
-    return m_parent->canAttack(dynamic_pointer_cast<LivingEntity>(entity),
+    return m_parent->canAttack(std::dynamic_pointer_cast<LivingEntity>(entity),
                                false);
 }
 
@@ -63,7 +63,7 @@ bool NearestAttackableTargetGoal::canUse() {
     if (entities != NULL && !entities->empty()) {
         std::sort(entities->begin(), entities->end(), *distComp);
         target = std::weak_ptr<LivingEntity>(
-            dynamic_pointer_cast<LivingEntity>(entities->at(0)));
+            std::dynamic_pointer_cast<LivingEntity>(entities->at(0)));
         result = true;
     }
 
