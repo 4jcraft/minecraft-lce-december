@@ -66,7 +66,7 @@ private:
         }
     };
 
-    static list<PieceWeight*> currentPieces;
+    static std::list<PieceWeight*> currentPieces;
     static EPieceClass imposedPiece;
     static int totalWeight;
 
@@ -78,13 +78,13 @@ private:
     class StrongholdPiece;
     static bool updatePieceWeight();
     static StrongholdPiece* findAndCreatePieceFactory(
-        EPieceClass pieceClass, list<StructurePiece*>* pieces, Random* random,
+        EPieceClass pieceClass, std::list<StructurePiece*>* pieces, Random* random,
         int footX, int footY, int footZ, int direction, int depth);
     static StrongholdPiece* generatePieceFromSmallDoor(
-        StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+        StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
         int footX, int footY, int footZ, int direction, int depth);
     static StructurePiece* generateAndAddPiece(StartPiece* startPiece,
-                                               list<StructurePiece*>* pieces,
+                                               std::list<StructurePiece*>* pieces,
                                                Random* random, int footX,
                                                int footY, int footZ,
                                                int direction, int depth);
@@ -119,13 +119,13 @@ private:
                                int footX, int footY, int footZ);
         SmallDoorType randomSmallDoor(Random* random);
         StructurePiece* generateSmallDoorChildForward(
-            StartPiece* startPiece, list<StructurePiece*>* pieces,
+            StartPiece* startPiece, std::list<StructurePiece*>* pieces,
             Random* random, int xOff, int yOff);
         StructurePiece* generateSmallDoorChildLeft(
-            StartPiece* startPiece, list<StructurePiece*>* pieces,
+            StartPiece* startPiece, std::list<StructurePiece*>* pieces,
             Random* random, int yOff, int zOff);
         StructurePiece* generateSmallDoorChildRight(
-            StartPiece* startPiece, list<StructurePiece*>* pieces,
+            StartPiece* startPiece, std::list<StructurePiece*>* pieces,
             Random* random, int yOff, int zOff);
 
         static bool isOkBox(BoundingBox* box,
@@ -157,7 +157,7 @@ public:
         virtual void readAdditonalSaveData(CompoundTag* tag);
 
     public:
-        static BoundingBox* findPieceBox(list<StructurePiece*>* pieces,
+        static BoundingBox* findPieceBox(std::list<StructurePiece*>* pieces,
                                          Random* random, int footX, int footY,
                                          int footZ, int direction);
         virtual bool postProcess(Level* level, Random* random,
@@ -193,8 +193,8 @@ public:
 
     public:
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
-        static StairsDown* createPiece(list<StructurePiece*>* pieces,
+                                 std::list<StructurePiece*>* pieces, Random* random);
+        static StairsDown* createPiece(std::list<StructurePiece*>* pieces,
                                        Random* random, int footX, int footY,
                                        int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -255,8 +255,8 @@ public:
 
     public:
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
-        static Straight* createPiece(list<StructurePiece*>* pieces,
+                                 std::list<StructurePiece*>* pieces, Random* random);
+        static Straight* createPiece(std::list<StructurePiece*>* pieces,
                                      Random* random, int footX, int footY,
                                      int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -295,8 +295,8 @@ public:
 
     public:
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
-        static ChestCorridor* createPiece(list<StructurePiece*>* pieces,
+                                 std::list<StructurePiece*>* pieces, Random* random);
+        static ChestCorridor* createPiece(std::list<StructurePiece*>* pieces,
                                           Random* random, int footX, int footY,
                                           int footZ, int direction,
                                           int genDepth);
@@ -326,8 +326,8 @@ public:
         StraightStairsDown(int genDepth, Random* random, BoundingBox* stairsBox,
                            int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
-        static StraightStairsDown* createPiece(list<StructurePiece*>* pieces,
+                                 std::list<StructurePiece*>* pieces, Random* random);
+        static StraightStairsDown* createPiece(std::list<StructurePiece*>* pieces,
                                                Random* random, int footX,
                                                int footY, int footZ,
                                                int direction, int genDepth);
@@ -355,8 +355,8 @@ public:
         LeftTurn(int genDepth, Random* random, BoundingBox* stairsBox,
                  int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
-        static LeftTurn* createPiece(list<StructurePiece*>* pieces,
+                                 std::list<StructurePiece*>* pieces, Random* random);
+        static LeftTurn* createPiece(std::list<StructurePiece*>* pieces,
                                      Random* random, int footX, int footY,
                                      int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -378,7 +378,7 @@ public:
         RightTurn(int genDepth, Random* random, BoundingBox* stairsBox,
                   int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces, Random* random);
         virtual bool postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB);
     };
@@ -418,8 +418,8 @@ public:
 
     public:
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
-        static RoomCrossing* createPiece(list<StructurePiece*>* pieces,
+                                 std::list<StructurePiece*>* pieces, Random* random);
+        static RoomCrossing* createPiece(std::list<StructurePiece*>* pieces,
                                          Random* random, int footX, int footY,
                                          int footZ, int direction,
                                          int genDepth);
@@ -447,8 +447,8 @@ public:
         PrisonHall(int genDepth, Random* random, BoundingBox* stairsBox,
                    int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
-        static PrisonHall* createPiece(list<StructurePiece*>* pieces,
+                                 std::list<StructurePiece*>* pieces, Random* random);
+        static PrisonHall* createPiece(std::list<StructurePiece*>* pieces,
                                        Random* random, int footX, int footY,
                                        int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -489,7 +489,7 @@ public:
         virtual void readAdditonalSaveData(CompoundTag* tag);
 
     public:
-        static Library* createPiece(list<StructurePiece*>* pieces,
+        static Library* createPiece(std::list<StructurePiece*>* pieces,
                                     Random* random, int footX, int footY,
                                     int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -527,8 +527,8 @@ public:
 
     public:
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
-        static FiveCrossing* createPiece(list<StructurePiece*>* pieces,
+                                 std::list<StructurePiece*>* pieces, Random* random);
+        static FiveCrossing* createPiece(std::list<StructurePiece*>* pieces,
                                          Random* random, int footX, int footY,
                                          int footZ, int direction,
                                          int genDepth);
@@ -565,8 +565,8 @@ public:
 
     public:
         void addChildren(StructurePiece* startPiece,
-                         list<StructurePiece*>* pieces, Random* random);
-        static PortalRoom* createPiece(list<StructurePiece*>* pieces,
+                         std::list<StructurePiece*>* pieces, Random* random);
+        static PortalRoom* createPiece(std::list<StructurePiece*>* pieces,
                                        Random* random, int footX, int footY,
                                        int footZ, int direction, int genDepth);
         bool postProcess(Level* level, Random* random, BoundingBox* chunkBB);

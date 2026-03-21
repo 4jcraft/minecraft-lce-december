@@ -25,7 +25,7 @@ StructureStart::~StructureStart() {
 
 BoundingBox* StructureStart::getBoundingBox() { return boundingBox; }
 
-list<StructurePiece*>* StructureStart::getPieces() { return &pieces; }
+std::list<StructurePiece*>* StructureStart::getPieces() { return &pieces; }
 
 void StructureStart::postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB) {

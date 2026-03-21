@@ -110,7 +110,7 @@ VillageFeature::VillageStart::VillageStart(Level* level, Random* random,
     valid = false;  // 4J added initialiser
     m_iXZSize = iXZSize;
 
-    list<VillagePieces::PieceWeight*>* pieceSet =
+    std::list<VillagePieces::PieceWeight*>* pieceSet =
         VillagePieces::createPieceSet(random, villageSizeModifier);
 
     VillagePieces::StartPiece* startRoom = new VillagePieces::StartPiece(

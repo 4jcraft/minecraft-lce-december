@@ -61,9 +61,9 @@ bool VillagePieces::PieceWeight::isValid() {
     return maxPlaceCount == 0 || placeCount < maxPlaceCount;
 }
 
-list<VillagePieces::PieceWeight*>* VillagePieces::createPieceSet(
+std::list<VillagePieces::PieceWeight*>* VillagePieces::createPieceSet(
     Random* random, int villageSize) {
-    list<PieceWeight*>* newPieces = new list<PieceWeight*>;
+    std::list<PieceWeight*>* newPieces = new std::list<PieceWeight*>;
 
     newPieces->push_back(new PieceWeight(
         VillagePieces::EPieceClass_SimpleHouse, 4,
@@ -107,7 +107,7 @@ list<VillagePieces::PieceWeight*>* VillagePieces::createPieceSet(
     return newPieces;
 }
 
-int VillagePieces::updatePieceWeight(list<PieceWeight*>* currentPieces) {
+int VillagePieces::updatePieceWeight(std::list<PieceWeight*>* currentPieces) {
     bool hasAnyPieces = false;
     int totalWeight = 0;
     for (AUTO_VAR(it, currentPieces->begin()); it != currentPieces->end();
@@ -124,7 +124,7 @@ int VillagePieces::updatePieceWeight(list<PieceWeight*>* currentPieces) {
 
 VillagePieces::VillagePiece* VillagePieces::findAndCreatePieceFactory(
     StartPiece* startPiece, VillagePieces::PieceWeight* piece,
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int depth) {
     VillagePieces::EPieceClass pieceClass = piece->pieceClass;
     VillagePiece* villagePiece = NULL;
@@ -162,7 +162,7 @@ VillagePieces::VillagePiece* VillagePieces::findAndCreatePieceFactory(
 }
 
 VillagePieces::VillagePiece* VillagePieces::generatePieceFromSmallDoor(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int depth) {
     int totalWeight = updatePieceWeight(startPiece->pieceSet);
     if (totalWeight <= 0) {
@@ -215,7 +215,7 @@ VillagePieces::VillagePiece* VillagePieces::generatePieceFromSmallDoor(
 }
 
 StructurePiece* VillagePieces::generateAndAddPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int depth) {
     if (depth > MAX_DEPTH) {
         return NULL;
@@ -245,7 +245,7 @@ StructurePiece* VillagePieces::generateAndAddPiece(
 }
 
 StructurePiece* VillagePieces::generateAndAddRoadPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int depth) {
     if (depth > BASE_ROAD_DEPTH + startPiece->villageSize) {
         return NULL;
@@ -312,7 +312,7 @@ void VillagePieces::VillagePiece::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 StructurePiece* VillagePieces::VillagePiece::generateHouseNorthernLeft(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int yOff, int zOff) {
     switch (orientation) {
         case Direction::NORTH:
@@ -340,7 +340,7 @@ StructurePiece* VillagePieces::VillagePiece::generateHouseNorthernLeft(
 }
 
 StructurePiece* VillagePieces::VillagePiece::generateHouseNorthernRight(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int yOff, int zOff) {
     switch (orientation) {
         case Direction::NORTH:
@@ -528,7 +528,7 @@ VillagePieces::Well::Well(StartPiece* startPiece, int genDepth, Random* random,
 }
 
 void VillagePieces::Well::addChildren(StructurePiece* startPiece,
-                                      list<StructurePiece*>* pieces,
+                                      std::list<StructurePiece*>* pieces,
                                       Random* random) {
     generateAndAddRoadPiece((StartPiece*)startPiece, pieces, random,
                             boundingBox->x0 - 1, boundingBox->y1 - 4,
@@ -596,7 +596,7 @@ VillagePieces::StartPiece::StartPiece() {
 
 VillagePieces::StartPiece::StartPiece(BiomeSource* biomeSource, int genDepth,
                                       Random* random, int west, int north,
-                                      list<PieceWeight*>* pieceSet,
+                                      std::list<PieceWeight*>* pieceSet,
                                       int villageSize, Level* level)
     : Well(NULL, 0, random, west, north) {
     isLibraryAdded = false;  // 4J - added initialiser
@@ -643,7 +643,7 @@ void VillagePieces::StraightRoad::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 void VillagePieces::StraightRoad::addChildren(StructurePiece* startPiece,
-                                              list<StructurePiece*>* pieces,
+                                              std::list<StructurePiece*>* pieces,
                                               Random* random) {
     bool hasHouses = false;
 
@@ -732,7 +732,7 @@ void VillagePieces::StraightRoad::addChildren(StructurePiece* startPiece,
 }
 
 BoundingBox* VillagePieces::StraightRoad::findPieceBox(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction) {
     int length = 7 * (Mth::nextInt(random, 3, 5));
 
@@ -790,7 +790,7 @@ void VillagePieces::SimpleHouse::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 VillagePieces::SimpleHouse* VillagePieces::SimpleHouse::createPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);
@@ -922,7 +922,7 @@ VillagePieces::SmallTemple::SmallTemple(StartPiece* startPiece, int genDepth,
 }
 
 VillagePieces::SmallTemple* VillagePieces::SmallTemple::createPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);
@@ -1078,7 +1078,7 @@ VillagePieces::BookHouse::BookHouse(StartPiece* startPiece, int genDepth,
 }
 
 VillagePieces::BookHouse* VillagePieces::BookHouse::createPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);
@@ -1256,7 +1256,7 @@ void VillagePieces::SmallHut::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 VillagePieces::SmallHut* VillagePieces::SmallHut::createPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);
@@ -1375,7 +1375,7 @@ VillagePieces::PigHouse::PigHouse(StartPiece* startPiece, int genDepth,
 }
 
 VillagePieces::PigHouse* VillagePieces::PigHouse::createPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);
@@ -1537,7 +1537,7 @@ VillagePieces::TwoRoomHouse::TwoRoomHouse(StartPiece* startPiece, int genDepth,
 }
 
 VillagePieces::TwoRoomHouse* VillagePieces::TwoRoomHouse::createPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);
@@ -1747,7 +1747,7 @@ VillagePieces::Smithy::Smithy(StartPiece* startPiece, int genDepth,
 }
 
 VillagePieces::Smithy* VillagePieces::Smithy::createPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);
@@ -1925,7 +1925,7 @@ void VillagePieces::Farmland::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 VillagePieces::Farmland* VillagePieces::Farmland::createPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);
@@ -2038,7 +2038,7 @@ int VillagePieces::DoubleFarmland::selectCrops(Random* random) {
 }
 
 VillagePieces::DoubleFarmland* VillagePieces::DoubleFarmland::createPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);
@@ -2128,7 +2128,7 @@ VillagePieces::LightPost::LightPost(StartPiece* startPiece, int genDepth,
 }
 
 BoundingBox* VillagePieces::LightPost::findPieceBox(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, 0, 0, 0,
                                               width, height, depth, direction);

@@ -12,7 +12,7 @@
 #include "../../Util/Facing.h"
 
 int StrongholdPieces::totalWeight = 0;
-list<StrongholdPieces::PieceWeight*> StrongholdPieces::currentPieces;
+std::list<StrongholdPieces::PieceWeight*> StrongholdPieces::currentPieces;
 StrongholdPieces::EPieceClass StrongholdPieces::imposedPiece;
 const bool StrongholdPieces::CHECK_AIR = true;
 
@@ -100,7 +100,7 @@ bool StrongholdPieces::updatePieceWeight() {
 }
 
 StrongholdPieces::StrongholdPiece* StrongholdPieces::findAndCreatePieceFactory(
-    EPieceClass pieceClass, list<StructurePiece*>* pieces, Random* random,
+    EPieceClass pieceClass, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int depth) {
     StrongholdPiece* strongholdPiece = NULL;
 
@@ -143,7 +143,7 @@ StrongholdPieces::StrongholdPiece* StrongholdPieces::findAndCreatePieceFactory(
 }
 
 StrongholdPieces::StrongholdPiece* StrongholdPieces::generatePieceFromSmallDoor(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int depth) {
     if (!updatePieceWeight()) {
         return NULL;
@@ -203,7 +203,7 @@ StrongholdPieces::StrongholdPiece* StrongholdPieces::generatePieceFromSmallDoor(
 }
 
 StructurePiece* StrongholdPieces::generateAndAddPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int depth) {
     if (depth > MAX_DEPTH) {
         return NULL;
@@ -369,7 +369,7 @@ StrongholdPieces::StrongholdPiece::randomSmallDoor(Random* random) {
 
 StructurePiece*
 StrongholdPieces::StrongholdPiece::generateSmallDoorChildForward(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int xOff, int yOff) {
     switch (orientation) {
         case Direction::NORTH:
@@ -397,7 +397,7 @@ StrongholdPieces::StrongholdPiece::generateSmallDoorChildForward(
 }
 
 StructurePiece* StrongholdPieces::StrongholdPiece::generateSmallDoorChildLeft(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int yOff, int zOff) {
     switch (orientation) {
         case Direction::NORTH:
@@ -425,7 +425,7 @@ StructurePiece* StrongholdPieces::StrongholdPiece::generateSmallDoorChildLeft(
 }
 
 StructurePiece* StrongholdPieces::StrongholdPiece::generateSmallDoorChildRight(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int yOff, int zOff) {
     switch (orientation) {
         case Direction::NORTH:
@@ -503,7 +503,7 @@ void StrongholdPieces::FillerCorridor::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 BoundingBox* StrongholdPieces::FillerCorridor::findPieceBox(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction) {
     const int maxLength = 3;
 
@@ -615,7 +615,7 @@ void StrongholdPieces::StairsDown::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 void StrongholdPieces::StairsDown::addChildren(StructurePiece* startPiece,
-                                               list<StructurePiece*>* pieces,
+                                               std::list<StructurePiece*>* pieces,
                                                Random* random) {
     if (isSource) {
         imposedPiece = EPieceClass_FiveCrossing;
@@ -625,7 +625,7 @@ void StrongholdPieces::StairsDown::addChildren(StructurePiece* startPiece,
 }
 
 StrongholdPieces::StairsDown* StrongholdPieces::StairsDown::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     BoundingBox* box =
         BoundingBox::orientBox(footX, footY, footZ, -1, 4 - height, 0, width,
@@ -736,7 +736,7 @@ void StrongholdPieces::Straight::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 void StrongholdPieces::Straight::addChildren(StructurePiece* startPiece,
-                                             list<StructurePiece*>* pieces,
+                                             std::list<StructurePiece*>* pieces,
                                              Random* random) {
     generateSmallDoorChildForward((StartPiece*)startPiece, pieces, random, 1,
                                   1);
@@ -749,7 +749,7 @@ void StrongholdPieces::Straight::addChildren(StructurePiece* startPiece,
 }
 
 StrongholdPieces::Straight* StrongholdPieces::Straight::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, -1, 0,
                                               width, height, depth, direction);
@@ -845,14 +845,14 @@ void StrongholdPieces::ChestCorridor::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 void StrongholdPieces::ChestCorridor::addChildren(StructurePiece* startPiece,
-                                                  list<StructurePiece*>* pieces,
+                                                  std::list<StructurePiece*>* pieces,
                                                   Random* random) {
     generateSmallDoorChildForward((StartPiece*)startPiece, pieces, random, 1,
                                   1);
 }
 
 StrongholdPieces::ChestCorridor* StrongholdPieces::ChestCorridor::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, -1, 0,
                                               width, height, depth, direction);
@@ -933,13 +933,13 @@ StrongholdPieces::StraightStairsDown::StraightStairsDown(int genDepth,
 }
 
 void StrongholdPieces::StraightStairsDown::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
     generateSmallDoorChildForward((StartPiece*)startPiece, pieces, random, 1,
                                   1);
 }
 
 StrongholdPieces::StraightStairsDown*
-StrongholdPieces::StraightStairsDown::createPiece(list<StructurePiece*>* pieces,
+StrongholdPieces::StraightStairsDown::createPiece(std::list<StructurePiece*>* pieces,
                                                   Random* random, int footX,
                                                   int footY, int footZ,
                                                   int direction, int genDepth) {
@@ -1011,7 +1011,7 @@ StrongholdPieces::LeftTurn::LeftTurn(int genDepth, Random* random,
 }
 
 void StrongholdPieces::LeftTurn::addChildren(StructurePiece* startPiece,
-                                             list<StructurePiece*>* pieces,
+                                             std::list<StructurePiece*>* pieces,
                                              Random* random) {
     if (orientation == Direction::NORTH || orientation == Direction::EAST) {
         generateSmallDoorChildLeft((StartPiece*)startPiece, pieces, random, 1,
@@ -1023,7 +1023,7 @@ void StrongholdPieces::LeftTurn::addChildren(StructurePiece* startPiece,
 }
 
 StrongholdPieces::LeftTurn* StrongholdPieces::LeftTurn::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, -1, 0,
                                               width, height, depth, direction);
@@ -1072,7 +1072,7 @@ StrongholdPieces::RightTurn::RightTurn(int genDepth, Random* random,
     : LeftTurn(genDepth, random, stairsBox, direction) {}
 
 void StrongholdPieces::RightTurn::addChildren(StructurePiece* startPiece,
-                                              list<StructurePiece*>* pieces,
+                                              std::list<StructurePiece*>* pieces,
                                               Random* random) {
     if (orientation == Direction::NORTH || orientation == Direction::EAST) {
         generateSmallDoorChildRight((StartPiece*)startPiece, pieces, random, 1,
@@ -1129,7 +1129,7 @@ void StrongholdPieces::RoomCrossing::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 void StrongholdPieces::RoomCrossing::addChildren(StructurePiece* startPiece,
-                                                 list<StructurePiece*>* pieces,
+                                                 std::list<StructurePiece*>* pieces,
                                                  Random* random) {
     generateSmallDoorChildForward((StartPiece*)startPiece, pieces, random, 4,
                                   1);
@@ -1138,7 +1138,7 @@ void StrongholdPieces::RoomCrossing::addChildren(StructurePiece* startPiece,
 }
 
 StrongholdPieces::RoomCrossing* StrongholdPieces::RoomCrossing::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -4, -1, 0,
                                               width, height, depth, direction);
@@ -1289,14 +1289,14 @@ StrongholdPieces::PrisonHall::PrisonHall(int genDepth, Random* random,
 }
 
 void StrongholdPieces::PrisonHall::addChildren(StructurePiece* startPiece,
-                                               list<StructurePiece*>* pieces,
+                                               std::list<StructurePiece*>* pieces,
                                                Random* random) {
     generateSmallDoorChildForward((StartPiece*)startPiece, pieces, random, 1,
                                   1);
 }
 
 StrongholdPieces::PrisonHall* StrongholdPieces::PrisonHall::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, -1, 0,
                                               width, height, depth, direction);
@@ -1385,7 +1385,7 @@ void StrongholdPieces::Library::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 StrongholdPieces::Library* StrongholdPieces::Library::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     // attempt to make a tall library first
     BoundingBox* box = BoundingBox::orientBox(
@@ -1619,7 +1619,7 @@ void StrongholdPieces::FiveCrossing::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 void StrongholdPieces::FiveCrossing::addChildren(StructurePiece* startPiece,
-                                                 list<StructurePiece*>* pieces,
+                                                 std::list<StructurePiece*>* pieces,
                                                  Random* random) {
     int zOffA = 3;
     int zOffB = 5;
@@ -1646,7 +1646,7 @@ void StrongholdPieces::FiveCrossing::addChildren(StructurePiece* startPiece,
 }
 
 StrongholdPieces::FiveCrossing* StrongholdPieces::FiveCrossing::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -4, -3, 0,
                                               width, height, depth, direction);
@@ -1746,7 +1746,7 @@ void StrongholdPieces::PortalRoom::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 void StrongholdPieces::PortalRoom::addChildren(StructurePiece* startPiece,
-                                               list<StructurePiece*>* pieces,
+                                               std::list<StructurePiece*>* pieces,
                                                Random* random) {
     if (startPiece != NULL) {
         ((StartPiece*)startPiece)->portalRoomPiece = this;
@@ -1754,7 +1754,7 @@ void StrongholdPieces::PortalRoom::addChildren(StructurePiece* startPiece,
 }
 
 StrongholdPieces::PortalRoom* StrongholdPieces::PortalRoom::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -4, -1, 0,
                                               width, height, depth, direction);

@@ -14,12 +14,12 @@ public:
     static void loadStatic();
 
 private:
-    static StructurePiece* createRandomShaftPiece(list<StructurePiece*>* pieces,
+    static StructurePiece* createRandomShaftPiece(std::list<StructurePiece*>* pieces,
                                                   Random* random, int footX,
                                                   int footY, int footZ,
                                                   int direction, int genDepth);
     static StructurePiece* generateAndAddPiece(StructurePiece* startPiece,
-                                               list<StructurePiece*>* pieces,
+                                               std::list<StructurePiece*>* pieces,
                                                Random* random, int footX,
                                                int footY, int footZ,
                                                int direction, int depth);
@@ -37,7 +37,7 @@ public:
         }
 
     private:
-        list<BoundingBox*> childEntranceBoxes;
+        std::list<BoundingBox*> childEntranceBoxes;
 
     public:
         MineShaftRoom();
@@ -45,7 +45,7 @@ public:
         ~MineShaftRoom();
 
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces, Random* random);
         virtual bool postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB);
 
@@ -82,12 +82,12 @@ public:
         MineShaftCorridor(int genDepth, Random* random,
                           BoundingBox* corridorBox, int direction);
 
-        static BoundingBox* findCorridorSize(list<StructurePiece*>* pieces,
+        static BoundingBox* findCorridorSize(std::list<StructurePiece*>* pieces,
                                              Random* random, int footX,
                                              int footY, int footZ,
                                              int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces, Random* random);
 
     protected:
         virtual bool createChest(Level* level, BoundingBox* chunkBB,
@@ -125,11 +125,11 @@ public:
         MineShaftCrossing(int genDepth, Random* random,
                           BoundingBox* crossingBox, int direction);
 
-        static BoundingBox* findCrossing(list<StructurePiece*>* pieces,
+        static BoundingBox* findCrossing(std::list<StructurePiece*>* pieces,
                                          Random* random, int footX, int footY,
                                          int footZ, int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces, Random* random);
         virtual bool postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB);
     };
@@ -155,11 +155,11 @@ public:
         void readAdditonalSaveData(CompoundTag* tag);
 
     public:
-        static BoundingBox* findStairs(list<StructurePiece*>* pieces,
+        static BoundingBox* findStairs(std::list<StructurePiece*>* pieces,
                                        Random* random, int footX, int footY,
                                        int footZ, int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces, Random* random);
         virtual bool postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB);
     };

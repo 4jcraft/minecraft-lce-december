@@ -49,7 +49,7 @@ void MineShaftPieces::loadStatic() {
 }
 
 StructurePiece* MineShaftPieces::createRandomShaftPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     int randomSelection = random->nextInt(100);
     if (randomSelection >= 80) {
@@ -79,7 +79,7 @@ StructurePiece* MineShaftPieces::createRandomShaftPiece(
 }
 
 StructurePiece* MineShaftPieces::generateAndAddPiece(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int depth) {
     if (depth > MAX_DEPTH) {
         return NULL;
@@ -120,7 +120,7 @@ MineShaftPieces::MineShaftRoom::~MineShaftRoom() {
 }
 
 void MineShaftPieces::MineShaftRoom::addChildren(StructurePiece* startPiece,
-                                                 list<StructurePiece*>* pieces,
+                                                 std::list<StructurePiece*>* pieces,
                                                  Random* random) {
     int depth = getGenDepth();
 
@@ -299,7 +299,7 @@ MineShaftPieces::MineShaftCorridor::MineShaftCorridor(int genDepth,
 }
 
 BoundingBox* MineShaftPieces::MineShaftCorridor::findCorridorSize(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction) {
     BoundingBox* box = new BoundingBox(
         footX, footY, footZ, footX, footY + (DEFAULT_SHAFT_HEIGHT - 1), footZ);
@@ -343,7 +343,7 @@ BoundingBox* MineShaftPieces::MineShaftCorridor::findCorridorSize(
 }
 
 void MineShaftPieces::MineShaftCorridor::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
     int depth = getGenDepth();
     int endSelection = random->nextInt(4);
     switch (orientation) {
@@ -636,7 +636,7 @@ MineShaftPieces::MineShaftCrossing::MineShaftCrossing(int genDepth,
 }
 
 BoundingBox* MineShaftPieces::MineShaftCrossing::findCrossing(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction) {
     BoundingBox* box = new BoundingBox(
         footX, footY, footZ, footX, footY + (DEFAULT_SHAFT_HEIGHT - 1), footZ);
@@ -677,7 +677,7 @@ BoundingBox* MineShaftPieces::MineShaftCrossing::findCrossing(
 }
 
 void MineShaftPieces::MineShaftCrossing::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
     int depth = getGenDepth();
     // crossings are coming from a direction and will generate children
     // in the
@@ -835,7 +835,7 @@ void MineShaftPieces::MineShaftStairs::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 BoundingBox* MineShaftPieces::MineShaftStairs::findStairs(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction) {
     // stairs are two steps in, 5x5 steps down, two steps out
 
@@ -871,7 +871,7 @@ BoundingBox* MineShaftPieces::MineShaftStairs::findStairs(
 }
 
 void MineShaftPieces::MineShaftStairs::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
     int depth = getGenDepth();
     // crossings are coming from a direction and will generate children
     // in the

@@ -46,7 +46,7 @@ public:
         bool isValid();
     };
 
-    static list<PieceWeight*>* createPieceSet(
+    static std::list<PieceWeight*>* createPieceSet(
         Random* random, int villageSize);  // 4J - was ArrayList
 
     class StartPiece;
@@ -54,21 +54,21 @@ public:
 private:
     class VillagePiece;
     static int updatePieceWeight(
-        list<PieceWeight*>* currentPieces);  // 4J = was array list
+        std::list<PieceWeight*>* currentPieces);  // 4J = was array list
     static VillagePiece* findAndCreatePieceFactory(
         StartPiece* startPiece, PieceWeight* piece,
-        list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+        std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
         int footZ, int direction, int depth);
     static VillagePiece* generatePieceFromSmallDoor(
-        StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+        StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
         int footX, int footY, int footZ, int direction, int depth);
     static StructurePiece* generateAndAddPiece(StartPiece* startPiece,
-                                               list<StructurePiece*>* pieces,
+                                               std::list<StructurePiece*>* pieces,
                                                Random* random, int footX,
                                                int footY, int footZ,
                                                int direction, int depth);
     static StructurePiece* generateAndAddRoadPiece(
-        StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+        StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
         int footX, int footY, int footZ, int direction, int depth);
 
     /**
@@ -92,11 +92,11 @@ private:
         virtual void addAdditonalSaveData(CompoundTag* tag);
         virtual void readAdditonalSaveData(CompoundTag* tag);
         StructurePiece* generateHouseNorthernLeft(StartPiece* startPiece,
-                                                  list<StructurePiece*>* pieces,
+                                                  std::list<StructurePiece*>* pieces,
                                                   Random* random, int yOff,
                                                   int zOff);
         StructurePiece* generateHouseNorthernRight(
-            StartPiece* startPiece, list<StructurePiece*>* pieces,
+            StartPiece* startPiece, std::list<StructurePiece*>* pieces,
             Random* random, int yOff, int zOff);
         int getAverageGroundHeight(Level* level, BoundingBox* chunkBB);
         static bool isOkBox(BoundingBox* box,
@@ -137,7 +137,7 @@ public:
         Well(StartPiece* startPiece, int genDepth, Random* random,
              BoundingBox* stairsBox, int direction);
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces, Random* random);
         virtual bool postProcess(Level* level, Random* random,
                                  BoundingBox* chunkBB);
     };
@@ -158,7 +158,7 @@ public:
         int villageSize;
         bool isLibraryAdded;
         PieceWeight* previousPiece;
-        list<PieceWeight*>* pieceSet;
+        std::list<PieceWeight*>* pieceSet;
         Level* m_level;
 
         // these queues are used so that the addChildren calls are called in a
@@ -168,7 +168,7 @@ public:
 
         StartPiece();
         StartPiece(BiomeSource* biomeSource, int genDepth, Random* random,
-                   int west, int north, list<PieceWeight*>* pieceSet,
+                   int west, int north, std::list<PieceWeight*>* pieceSet,
                    int villageSize, Level* level);  // 4J Added level param
         virtual ~StartPiece();
 
@@ -210,9 +210,9 @@ public:
 
     public:
         virtual void addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces, Random* random);
+                                 std::list<StructurePiece*>* pieces, Random* random);
         static BoundingBox* findPieceBox(StartPiece* startPiece,
-                                         list<StructurePiece*>* pieces,
+                                         std::list<StructurePiece*>* pieces,
                                          Random* random, int footX, int footY,
                                          int footZ, int direction);
         virtual bool postProcess(Level* level, Random* random,
@@ -250,7 +250,7 @@ public:
 
     public:
         static SimpleHouse* createPiece(StartPiece* startPiece,
-                                        list<StructurePiece*>* pieces,
+                                        std::list<StructurePiece*>* pieces,
                                         Random* random, int footX, int footY,
                                         int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -278,7 +278,7 @@ public:
                     BoundingBox* stairsBox, int direction);
 
         static SmallTemple* createPiece(StartPiece* startPiece,
-                                        list<StructurePiece*>* pieces,
+                                        std::list<StructurePiece*>* pieces,
                                         Random* random, int footX, int footY,
                                         int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -305,7 +305,7 @@ public:
                   BoundingBox* stairsBox, int direction);
 
         static BookHouse* createPiece(StartPiece* startPiece,
-                                      list<StructurePiece*>* pieces,
+                                      std::list<StructurePiece*>* pieces,
                                       Random* random, int footX, int footY,
                                       int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -338,7 +338,7 @@ public:
 
     public:
         static SmallHut* createPiece(StartPiece* startPiece,
-                                     list<StructurePiece*>* pieces,
+                                     std::list<StructurePiece*>* pieces,
                                      Random* random, int footX, int footY,
                                      int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -361,7 +361,7 @@ public:
         PigHouse(StartPiece* startPiece, int genDepth, Random* random,
                  BoundingBox* stairsBox, int direction);
         static PigHouse* createPiece(StartPiece* startPiece,
-                                     list<StructurePiece*>* pieces,
+                                     std::list<StructurePiece*>* pieces,
                                      Random* random, int footX, int footY,
                                      int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -389,7 +389,7 @@ public:
         TwoRoomHouse(StartPiece* startPiece, int genDepth, Random* random,
                      BoundingBox* stairsBox, int direction);
         static TwoRoomHouse* createPiece(StartPiece* startPiece,
-                                         list<StructurePiece*>* pieces,
+                                         std::list<StructurePiece*>* pieces,
                                          Random* random, int footX, int footY,
                                          int footZ, int direction,
                                          int genDepth);
@@ -419,7 +419,7 @@ public:
         Smithy(StartPiece* startPiece, int genDepth, Random* random,
                BoundingBox* stairsBox, int direction);
         static Smithy* createPiece(StartPiece* startPiece,
-                                   list<StructurePiece*>* pieces,
+                                   std::list<StructurePiece*>* pieces,
                                    Random* random, int footX, int footY,
                                    int footZ, int direction, int genDepth);
 
@@ -460,7 +460,7 @@ public:
 
     public:
         static Farmland* createPiece(StartPiece* startPiece,
-                                     list<StructurePiece*>* pieces,
+                                     std::list<StructurePiece*>* pieces,
                                      Random* random, int footX, int footY,
                                      int footZ, int direction, int genDepth);
         virtual bool postProcess(Level* level, Random* random,
@@ -500,7 +500,7 @@ public:
 
     public:
         static DoubleFarmland* createPiece(StartPiece* startPiece,
-                                           list<StructurePiece*>* pieces,
+                                           std::list<StructurePiece*>* pieces,
                                            Random* random, int footX, int footY,
                                            int footZ, int direction,
                                            int genDepth);
@@ -526,7 +526,7 @@ public:
         LightPost(StartPiece* startPiece, int genDepth, Random* random,
                   BoundingBox* box, int direction);
         static BoundingBox* findPieceBox(StartPiece* startPiece,
-                                         list<StructurePiece*>* pieces,
+                                         std::list<StructurePiece*>* pieces,
                                          Random* random, int footX, int footY,
                                          int footZ, int direction);
         virtual bool postProcess(Level* level, Random* random,

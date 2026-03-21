@@ -83,7 +83,7 @@ void StructurePiece::load(Level* level, CompoundTag* tag) {
 }
 
 void StructurePiece::addChildren(StructurePiece* startPiece,
-                                 list<StructurePiece*>* pieces,
+                                 std::list<StructurePiece*>* pieces,
                                  Random* random) {}
 
 BoundingBox* StructurePiece::getBoundingBox() { return boundingBox; }
@@ -98,7 +98,7 @@ bool StructurePiece::isInChunk(ChunkPos* pos) {
 }
 
 StructurePiece* StructurePiece::findCollisionPiece(
-    list<StructurePiece*>* pieces, BoundingBox* box) {
+    std::list<StructurePiece*>* pieces, BoundingBox* box) {
     for (AUTO_VAR(it, pieces->begin()); it != pieces->end(); it++) {
         StructurePiece* piece = *it;
         if (piece->getBoundingBox() != NULL &&
