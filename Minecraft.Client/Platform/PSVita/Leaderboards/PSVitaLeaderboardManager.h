@@ -7,28 +7,28 @@
 
 #include <np.h>
 
-class PSVitaLeaderboardManager : public SonyLeaderboardManager
-{
+class PSVitaLeaderboardManager : public SonyLeaderboardManager {
 public:
-	PSVitaLeaderboardManager();
+    PSVitaLeaderboardManager();
 
 protected:
+    virtual HRESULT initialiseScoreUtility();
 
-	virtual HRESULT initialiseScoreUtility();
+    virtual bool scoreUtilityAlreadyInitialised(HRESULT hr);
 
-	virtual bool scoreUtilityAlreadyInitialised(HRESULT hr);
+    virtual HRESULT createTitleContext(const SceNpId& npId);
 
-	virtual HRESULT createTitleContext(const SceNpId &npId);
+    virtual HRESULT destroyTitleContext(int titleContext);
 
-	virtual HRESULT destroyTitleContext(int titleContext);
+    virtual HRESULT createTransactionContext(int titleContext);
 
-	virtual HRESULT createTransactionContext(int titleContext);
+    virtual HRESULT abortTransactionContext(int transactionContext);
 
-	virtual HRESULT abortTransactionContext(int transactionContext);
+    virtual HRESULT destroyTransactionContext(int transactionContext);
 
-	virtual HRESULT destroyTransactionContext(int transactionContext);
+    virtual HRESULT getFriendsList(
+        sce::Toolkit::NP::Utilities::Future<sce::Toolkit::NP::FriendsList>&
+            friendsList);
 
-	virtual HRESULT getFriendsList(sce::Toolkit::NP::Utilities::Future<sce::Toolkit::NP::FriendsList> &friendsList);
-
-	virtual char *	getComment(SceNpScoreComment *comment);
+    virtual char* getComment(SceNpScoreComment* comment);
 };

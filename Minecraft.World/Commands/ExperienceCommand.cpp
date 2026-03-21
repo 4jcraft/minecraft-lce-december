@@ -16,8 +16,9 @@ void ExperienceCommand::execute(std::shared_ptr<CommandSender> source,
     //		String inputAmount = args[0];
     //
     //		boolean levels = inputAmount.endsWith("l") ||
-    //inputAmount.endsWith("L"); 		if (levels && inputAmount.length() > 1)
-    //inputAmount = inputAmount.substring(0, inputAmount.length() - 1);
+    // inputAmount.endsWith("L"); 		if (levels &&
+    // inputAmount.length() > 1) inputAmount = inputAmount.substring(0,
+    // inputAmount.length() - 1);
     //
     //		int amount = convertArgToInt(source, inputAmount);
     //		boolean take = amount < 0;
@@ -34,17 +35,17 @@ void ExperienceCommand::execute(std::shared_ptr<CommandSender> source,
     //			if (take) {
     //				player.giveExperienceLevels(-amount);
     //				logAdminAction(source,
-    //"commands.xp.success.negative.levels", amount, player.getAName()); 			} else
-    //{ 				player.giveExperienceLevels(amount); 				logAdminAction(source,
-    //"commands.xp.success.levels", amount, player.getAName());
+    //"commands.xp.success.negative.levels", amount, player.getAName());
+    //} else { 				player.giveExperienceLevels(amount);
+    //logAdminAction(source, "commands.xp.success.levels", amount,
+    //player.getAName());
     //			}
     //		} else {
     //			if (take) {
     //				throw new
-    //UsageException("commands.xp.failure.widthdrawXp"); 			} else {
-    //				player.increaseXp(amount);
-    //				logAdminAction(source, "commands.xp.success",
-    //amount, player.getAName());
+    // UsageException("commands.xp.failure.widthdrawXp");
+    // } else { 				player.increaseXp(amount); 				logAdminAction(source,
+    //"commands.xp.success", amount, player.getAName());
     //			}
     //		}
     //

@@ -11,21 +11,21 @@ void GameModeCommand::execute(std::shared_ptr<CommandSender> source,
     // if (args.length > 0) {
     //	GameType newMode = getModeForString(source, args[0]);
     //	Player player = args.length >= 2 ? convertToPlayer(source, args[1]) :
-    //convertSourceToPlayer(source);
+    // convertSourceToPlayer(source);
 
     //	player.setGameMode(newMode);
     //	player.fallDistance = 0; // reset falldistance so flying people do not
-    //die :P
+    // die :P
 
     //	ChatMessageComponent mode =
-    //ChatMessageComponent.forTranslation("gameMode." + newMode.getName());
+    // ChatMessageComponent.forTranslation("gameMode." + newMode.getName());
 
     //	if (player != source) {
     //		logAdminAction(source,
-    //AdminLogCommand.LOGTYPE_DONT_SHOW_TO_SELF,
+    // AdminLogCommand.LOGTYPE_DONT_SHOW_TO_SELF,
     //"commands.gamemode.success.other", player.getAName(), mode); 	} else {
     //		logAdminAction(source,
-    //AdminLogCommand.LOGTYPE_DONT_SHOW_TO_SELF,
+    // AdminLogCommand.LOGTYPE_DONT_SHOW_TO_SELF,
     //"commands.gamemode.success.self", mode);
     //	}
 
@@ -43,8 +43,9 @@ GameType* GameModeCommand::getModeForString(
     // (name.equalsIgnoreCase(GameType.CREATIVE.getName()) ||
     // name.equalsIgnoreCase("c")) { 	return GameType.CREATIVE; } else if
     // (name.equalsIgnoreCase(GameType.ADVENTURE.getName()) ||
-    // name.equalsIgnoreCase("a")) { 	return GameType.ADVENTURE; } else { 	return
-    //LevelSettings.validateGameType(convertArgToInt(source, name, 0,
-    //GameType.values().length - 2));
+    // name.equalsIgnoreCase("a")) { 	return GameType.ADVENTURE; } else {
+    // return
+    // LevelSettings.validateGameType(convertArgToInt(source, name, 0,
+    // GameType.values().length - 2));
     // }
 }

@@ -1,16 +1,14 @@
 #pragma once
 
-class PSVitaTLSStorage
-{
+class PSVitaTLSStorage {
 private:
-
 public:
-	static void Init();
-	static PSVitaTLSStorage *Instance();
+    static void Init();
+    static PSVitaTLSStorage* Instance();
 
-	static DWORD Alloc();
-	static BOOL Free(DWORD dwTlsIndex);
-	static void RemoveThread(int UniqueID);
-	static LPVOID GetValue(DWORD dwTlsIndex);
-	static BOOL SetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
+    static DWORD Alloc();
+    static BOOL Free(DWORD dwTlsIndex);
+    static void RemoveThread(int UniqueID);
+    static LPVOID GetValue(DWORD dwTlsIndex);
+    static BOOL SetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
 };

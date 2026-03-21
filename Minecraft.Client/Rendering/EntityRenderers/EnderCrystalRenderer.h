@@ -3,16 +3,16 @@
 
 class Model;
 
-class EnderCrystalRenderer : public EntityRenderer
-{
+class EnderCrystalRenderer : public EntityRenderer {
 private:
-	int currentModel;
-	Model *model;
-	static ResourceLocation ENDER_CRYSTAL_LOCATION;
+    int currentModel;
+    Model* model;
+    static ResourceLocation ENDER_CRYSTAL_LOCATION;
 
 public:
-	EnderCrystalRenderer();
+    EnderCrystalRenderer();
 
-	virtual void render(std::shared_ptr<Entity> _crystal, double x, double y, double z, float rot, float a);
-	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
+    virtual void render(std::shared_ptr<Entity> _crystal, double x, double y,
+                        double z, float rot, float a);
+    virtual ResourceLocation* getTextureLocation(std::shared_ptr<Entity> mob);
 };

@@ -1,189 +1,159 @@
 #include "stdafx.h"
 #include "StringTable.h"
 
-StringTable::StringTable(void)
-{
+StringTable::StringTable(void) {}
 
+// Load std::string table from a binary blob, filling out with the current
+// localisation data only
+StringTable::StringTable(PBYTE pbData, DWORD dwSize) {
+    src = byteArray(pbData, dwSize);
+
+    ProcessStringTableData();
 }
 
-// Load std::string table from a binary blob, filling out with the current localisation data only
-StringTable::StringTable(PBYTE pbData, DWORD dwSize)
-{
-	src = byteArray(pbData, dwSize);
+void StringTable::ReloadStringTable() {
+    m_stringsMap.clear();
+    m_stringsVec.clear();
 
-	ProcessStringTableData();
+    ProcessStringTableData();
 }
 
+void StringTable::ProcessStringTableData(void) {
+    ByteArrayInputStream bais(src);
+    DataInputStream dis(&bais);
 
-void StringTable::ReloadStringTable()
-{
-	m_stringsMap.clear();
-	m_stringsVec.clear();
+    int versionNumber = dis.readInt();
+    int languagesCount = dis.readInt();
 
-	ProcessStringTableData();
-}
+    std::vector<pair<std::wstring, int> > langSizeMap;
+    for (int i = 0; i < languagesCount; ++i) {
+        std::wstring langId = dis.readUTF();
+        int langSize = dis.readInt();
 
-void StringTable::ProcessStringTableData(void)
-{
-	ByteArrayInputStream bais(src);
-	DataInputStream dis(&bais);
+        langSizeMap.push_back(std::vector<pair<std::wstring, int> >::value_type(
+            langId, langSize));
+    }
 
-	int versionNumber = dis.readInt();
-	int languagesCount = dis.readInt();
+    std::vector<std::wstring> locales;
+    app.getLocale(locales);
 
-	std::vector< pair<std::wstring, int> > langSizeMap;
-	for(int i = 0; i < languagesCount; ++i)
-	{
-		std::wstring langId = dis.readUTF();
-		int langSize = dis.readInt();
+    bool foundLang = false;
+    __int64 bytesToSkip = 0;
+    int dataSize = 0;
 
-		langSizeMap.push_back( std::vector< pair<std::wstring, int> >::value_type(langId, langSize));
-	}
+    //
+    for (AUTO_VAR(it_locales, locales.begin());
+         it_locales != locales.end() && (!foundLang); it_locales++) {
+        bytesToSkip = 0;
 
-	std::vector<std::wstring> locales;
-	app.getLocale(locales);
+        for (AUTO_VAR(it, langSizeMap.begin()); it != langSizeMap.end(); ++it) {
+            if (it->first.compare(*it_locales) == 0) {
+                app.DebugPrintf("StringTable:: Found language '%ls'.\n",
+                                it_locales->c_str());
+                dataSize = it->second;
+                foundLang = true;
+                break;
+            }
 
-	bool foundLang = false;
-	__int64 bytesToSkip = 0;
-	int dataSize = 0;
+            bytesToSkip += it->second;
+        }
 
-	//
-	for(	AUTO_VAR(it_locales, locales.begin());
-		it_locales!=locales.end() && (!foundLang); 
-		it_locales++
-		)
-	{
-		bytesToSkip = 0;
+        if (!foundLang)
+            app.DebugPrintf("StringTable:: Can't find language '%ls'.\n",
+                            it_locales->c_str());
+    }
 
-		for(AUTO_VAR(it, langSizeMap.begin()); it != langSizeMap.end(); ++it)
-		{
-			if(it->first.compare(*it_locales) == 0)
-			{
-				app.DebugPrintf("StringTable:: Found language '%ls'.\n", it_locales->c_str());
-				dataSize = it->second;
-				foundLang = true;
-				break;
-			}
+    if (foundLang) {
+        dis.skip(bytesToSkip);
 
-			bytesToSkip += it->second;
-		}
+        byteArray langData(dataSize);
+        dis.read(langData);
 
-		if (!foundLang)
-			app.DebugPrintf("StringTable:: Can't find language '%ls'.\n", it_locales->c_str());
-	}
+        dis.close();
 
-	if(foundLang)
-	{
-		dis.skip(bytesToSkip);
+        ByteArrayInputStream bais2(langData);
+        DataInputStream dis2(&bais2);
 
-		byteArray langData(dataSize);
-		dis.read(langData);
+        // Read the language file for the selected language
+        int langVersion = dis2.readInt();
 
-		dis.close();
+        isStatic = false;     // 4J-JEV: Versions 1 and up could use
+        if (langVersion > 0)  // integers rather than wstrings as keys.
+            isStatic = dis2.readBoolean();
 
-		ByteArrayInputStream bais2(langData);
-		DataInputStream dis2(&bais2);
+        std::wstring langId = dis2.readUTF();
+        int totalStrings = dis2.readInt();
 
-		// Read the language file for the selected language
-		int langVersion = dis2.readInt();
+        app.DebugPrintf("IsStatic=%d totalStrings = %d\n", isStatic ? 1 : 0,
+                        totalStrings);
 
-		isStatic = false;     // 4J-JEV: Versions 1 and up could use 
-		if (langVersion > 0)  // integers rather than wstrings as keys.
-			isStatic = dis2.readBoolean();
+        if (!isStatic) {
+            for (int i = 0; i < totalStrings; ++i) {
+                std::wstring stringId = dis2.readUTF();
+                std::wstring stringValue = dis2.readUTF();
 
-		std::wstring langId = dis2.readUTF();
-		int totalStrings = dis2.readInt();
+                m_stringsMap.insert(
+                    std::unordered_map<std::wstring, std::wstring>::value_type(
+                        stringId, stringValue));
+            }
+        } else {
+            for (int i = 0; i < totalStrings; ++i)
+                m_stringsVec.push_back(dis2.readUTF());
+        }
+        dis2.close();
 
-		app.DebugPrintf("IsStatic=%d totalStrings = %d\n",isStatic?1:0,totalStrings);
-
-		if (!isStatic)
-		{
-			for(int i = 0; i < totalStrings; ++i)
-			{
-				std::wstring stringId = dis2.readUTF();
-				std::wstring stringValue = dis2.readUTF();
-
-				m_stringsMap.insert( std::unordered_map<std::wstring, std::wstring>::value_type(stringId, stringValue) );
-			}
-		}
-		else
-		{
-			for(int i = 0; i < totalStrings; ++i)
-				m_stringsVec.push_back( dis2.readUTF() );
-		}
-		dis2.close();
-
-		// We can't delete this data in the dtor, so clear the reference
-		bais2.reset();
-	}
-	else
-	{
-		app.DebugPrintf("Failed to get language\n");
+        // We can't delete this data in the dtor, so clear the reference
+        bais2.reset();
+    } else {
+        app.DebugPrintf("Failed to get language\n");
 #ifdef _DEBUG
-		__debugbreak();
+        __debugbreak();
 #endif
 
-		isStatic = false;
-	}
+        isStatic = false;
+    }
 
-	// We can't delete this data in the dtor, so clear the reference
-	bais.reset();
+    // We can't delete this data in the dtor, so clear the reference
+    bais.reset();
 }
 
-
-StringTable::~StringTable(void)
-{
-	// delete src.data; TODO 4J-JEV: ?
+StringTable::~StringTable(void) {
+    // delete src.data; TODO 4J-JEV: ?
 }
 
-void StringTable::getData(PBYTE *ppData, UINT *pSize)
-{
-	*ppData = src.data;
-	*pSize = src.length;
+void StringTable::getData(PBYTE* ppData, UINT* pSize) {
+    *ppData = src.data;
+    *pSize = src.length;
 }
 
-LPCWSTR StringTable::getString(const std::wstring &id)
-{
+LPCWSTR StringTable::getString(const std::wstring& id) {
 #ifndef _CONTENT_PACKAGE
-	if (isStatic)
-	{
-		__debugbreak();
-		return L"";
-	}
+    if (isStatic) {
+        __debugbreak();
+        return L"";
+    }
 #endif
 
-	AUTO_VAR(it, m_stringsMap.find(id) );
+    AUTO_VAR(it, m_stringsMap.find(id));
 
-	if(it != m_stringsMap.end())
-	{
-		return it->second.c_str();
-	}
-	else
-	{
-		return L"";
-	}
+    if (it != m_stringsMap.end()) {
+        return it->second.c_str();
+    } else {
+        return L"";
+    }
 }
 
-LPCWSTR StringTable::getString(int id)
-{
+LPCWSTR StringTable::getString(int id) {
 #ifndef _CONTENT_PACKAGE
-	if (!isStatic)
-	{
-		__debugbreak();
-		return L"";
-	}
+    if (!isStatic) {
+        __debugbreak();
+        return L"";
+    }
 #endif
 
-	if (id < m_stringsVec.size())
-	{
-		LPCWSTR pwchString=m_stringsVec.at(id).c_str();
-		return pwchString;
-	}
-	else
-		return L"";
+    if (id < m_stringsVec.size()) {
+        LPCWSTR pwchString = m_stringsVec.at(id).c_str();
+        return pwchString;
+    } else
+        return L"";
 }
-
-
-
-
-

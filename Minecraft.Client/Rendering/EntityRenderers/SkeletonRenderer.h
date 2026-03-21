@@ -1,17 +1,17 @@
 #pragma once
 #include "HumanoidMobRenderer.h"
 
-class SkeletonRenderer : public HumanoidMobRenderer
-{
+class SkeletonRenderer : public HumanoidMobRenderer {
 private:
     static ResourceLocation SKELETON_LOCATION;
     static ResourceLocation WITHER_SKELETON_LOCATION;
 
 public:
-	SkeletonRenderer();
+    SkeletonRenderer();
 
 protected:
     virtual void scale(std::shared_ptr<LivingEntity> mob, float a);
     void translateWeaponItem();
-    virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> entity);
+    virtual ResourceLocation* getTextureLocation(
+        std::shared_ptr<Entity> entity);
 };

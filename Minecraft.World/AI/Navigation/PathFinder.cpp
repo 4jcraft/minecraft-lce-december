@@ -172,8 +172,8 @@ Node* PathFinder::getNode(Entity* entity, int x, int y, int z, Node* size,
                 return NULL;  // 4J - rolling this back to pre-java 1.6.4
                               // version as we're suspicious of the performance
                               // implications of this
-                              //			if (drop++ >= entity->getMaxFallDistance())
-                              //return NULL;
+                              //			if (drop++ >=
+                              //entity->getMaxFallDistance()) return NULL;
             y--;
 
             if (y > 0) best = getNode(x, y, z);

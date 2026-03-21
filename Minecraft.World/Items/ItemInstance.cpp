@@ -522,12 +522,13 @@ vector<HtmlString>* ItemInstance::getHoverText(std::shared_ptr<Player> player,
             //	{
             //		wchar_t text [256];
             //		swprintf(text, 256, L"Color: LOCALISE #%08X",
-            //display->getInt(L"color")); 		lines->push_back(HtmlString(text));
+            // display->getInt(L"color"));
+            // lines->push_back(HtmlString(text));
             //	}
             //	else
             //	{
             //		lines->push_back(HtmlString(L"Dyed LOCALISE",
-            //eMinecraftColour_NOT_SET, true));
+            // eMinecraftColour_NOT_SET, true));
             //	}
             // }
 

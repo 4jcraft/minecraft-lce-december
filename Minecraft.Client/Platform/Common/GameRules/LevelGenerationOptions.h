@@ -13,211 +13,215 @@ class LevelRuleset;
 class BiomeOverride;
 class StartFeature;
 
-class GrSource
-{
+class GrSource {
 public:
-	// 4J-JEV:
-	// Moved all this here; I didn't like that all this header information
-	// was being mixed in with all the game information as they have 
-	// completely different lifespans.
+    // 4J-JEV:
+    // Moved all this here; I didn't like that all this header information
+    // was being mixed in with all the game information as they have
+    // completely different lifespans.
 
-	virtual bool requiresTexturePack()=0;
-	virtual UINT getRequiredTexturePackId()=0;
-	virtual std::wstring getDefaultSaveName()=0;
-	virtual LPCWSTR getWorldName()=0;
-	virtual LPCWSTR getDisplayName()=0;
-	virtual std::wstring getGrfPath()=0;
-	virtual bool requiresBaseSave() = 0;
-	virtual std::wstring getBaseSavePath() = 0;
+    virtual bool requiresTexturePack() = 0;
+    virtual UINT getRequiredTexturePackId() = 0;
+    virtual std::wstring getDefaultSaveName() = 0;
+    virtual LPCWSTR getWorldName() = 0;
+    virtual LPCWSTR getDisplayName() = 0;
+    virtual std::wstring getGrfPath() = 0;
+    virtual bool requiresBaseSave() = 0;
+    virtual std::wstring getBaseSavePath() = 0;
 
-	virtual void setRequiresTexturePack(bool)=0;
-	virtual void setRequiredTexturePackId(UINT)=0;
-	virtual void setDefaultSaveName(const std::wstring &)=0;
-	virtual void setWorldName(const std::wstring &)=0;
-	virtual void setDisplayName(const std::wstring &)=0;
-	virtual void setGrfPath(const std::wstring &)=0;
-	virtual void setBaseSavePath(const std::wstring &)=0;
+    virtual void setRequiresTexturePack(bool) = 0;
+    virtual void setRequiredTexturePackId(UINT) = 0;
+    virtual void setDefaultSaveName(const std::wstring&) = 0;
+    virtual void setWorldName(const std::wstring&) = 0;
+    virtual void setDisplayName(const std::wstring&) = 0;
+    virtual void setGrfPath(const std::wstring&) = 0;
+    virtual void setBaseSavePath(const std::wstring&) = 0;
 
-	virtual bool ready()=0;
+    virtual bool ready() = 0;
 
-	//virtual void getGrfData(PBYTE &pData, DWORD &pSize)=0;
+    // virtual void getGrfData(PBYTE &pData, DWORD &pSize)=0;
 };
 
-class JustGrSource : public GrSource
-{
+class JustGrSource : public GrSource {
 protected:
-	std::wstring m_worldName;
-	std::wstring m_displayName;
-	std::wstring m_defaultSaveName;
-	bool m_bRequiresTexturePack;
-	int m_requiredTexturePackId;
-	std::wstring m_grfPath;
-	std::wstring m_baseSavePath;
-	bool m_bRequiresBaseSave;
+    std::wstring m_worldName;
+    std::wstring m_displayName;
+    std::wstring m_defaultSaveName;
+    bool m_bRequiresTexturePack;
+    int m_requiredTexturePackId;
+    std::wstring m_grfPath;
+    std::wstring m_baseSavePath;
+    bool m_bRequiresBaseSave;
 
 public:
-	virtual bool requiresTexturePack();
-	virtual UINT getRequiredTexturePackId();
-	virtual std::wstring getDefaultSaveName();
-	virtual LPCWSTR getWorldName();
-	virtual LPCWSTR getDisplayName();
-	virtual std::wstring getGrfPath();
-	virtual bool requiresBaseSave();
-	virtual std::wstring getBaseSavePath();
+    virtual bool requiresTexturePack();
+    virtual UINT getRequiredTexturePackId();
+    virtual std::wstring getDefaultSaveName();
+    virtual LPCWSTR getWorldName();
+    virtual LPCWSTR getDisplayName();
+    virtual std::wstring getGrfPath();
+    virtual bool requiresBaseSave();
+    virtual std::wstring getBaseSavePath();
 
-	virtual void setRequiresTexturePack(bool x);
-	virtual void setRequiredTexturePackId(UINT x);
-	virtual void setDefaultSaveName(const std::wstring &x);
-	virtual void setWorldName(const std::wstring &x);
-	virtual void setDisplayName(const std::wstring &x);
-	virtual void setGrfPath(const std::wstring &x);
-	virtual void setBaseSavePath(const std::wstring &x);
+    virtual void setRequiresTexturePack(bool x);
+    virtual void setRequiredTexturePackId(UINT x);
+    virtual void setDefaultSaveName(const std::wstring& x);
+    virtual void setWorldName(const std::wstring& x);
+    virtual void setDisplayName(const std::wstring& x);
+    virtual void setGrfPath(const std::wstring& x);
+    virtual void setBaseSavePath(const std::wstring& x);
 
-	virtual bool ready();
+    virtual bool ready();
 
-	JustGrSource();
+    JustGrSource();
 };
 
-class LevelGenerationOptions : public GameRuleDefinition
-{
+class LevelGenerationOptions : public GameRuleDefinition {
 public:
-	enum eSrc
-	{
-		eSrc_none,
+    enum eSrc {
+        eSrc_none,
 
-		eSrc_fromSave,	// Neither content or header is persistent.
+        eSrc_fromSave,  // Neither content or header is persistent.
 
-		eSrc_fromDLC,	// Header is persistent, content should be deleted to conserve space.
+        eSrc_fromDLC,  // Header is persistent, content should be deleted to
+                       // conserve space.
 
-		eSrc_tutorial,	// Both header and content is persistent, content cannot be reloaded.
+        eSrc_tutorial,  // Both header and content is persistent, content cannot
+                        // be reloaded.
 
-		eSrc_MAX
-	};
+        eSrc_MAX
+    };
 
 private:
-	eSrc m_src;
+    eSrc m_src;
 
-	GrSource *m_pSrc;
-	GrSource *info();
+    GrSource* m_pSrc;
+    GrSource* info();
 
-	bool m_hasLoadedData;
+    bool m_hasLoadedData;
 
-	PBYTE m_pbBaseSaveData;
-	DWORD m_dwBaseSaveSize;
+    PBYTE m_pbBaseSaveData;
+    DWORD m_dwBaseSaveSize;
 
 public:
+    void setSrc(eSrc src);
+    eSrc getSrc();
 
-	void setSrc(eSrc src);
-	eSrc getSrc();
+    bool isTutorial();
+    bool isFromSave();
+    bool isFromDLC();
 
-	bool isTutorial();
-	bool isFromSave();
-	bool isFromDLC();
+    bool requiresTexturePack();
+    UINT getRequiredTexturePackId();
+    std::wstring getDefaultSaveName();
+    LPCWSTR getWorldName();
+    LPCWSTR getDisplayName();
+    std::wstring getGrfPath();
+    bool requiresBaseSave();
+    std::wstring getBaseSavePath();
 
-	bool requiresTexturePack();
-	UINT getRequiredTexturePackId();
-	std::wstring getDefaultSaveName();
-	LPCWSTR getWorldName();
-	LPCWSTR getDisplayName();
-	std::wstring getGrfPath();
-	bool requiresBaseSave();
-	std::wstring getBaseSavePath();
+    void setGrSource(GrSource* grs);
 
-	void setGrSource(GrSource *grs);
+    void setRequiresTexturePack(bool x);
+    void setRequiredTexturePackId(UINT x);
+    void setDefaultSaveName(const std::wstring& x);
+    void setWorldName(const std::wstring& x);
+    void setDisplayName(const std::wstring& x);
+    void setGrfPath(const std::wstring& x);
+    void setBaseSavePath(const std::wstring& x);
 
-	void setRequiresTexturePack(bool x);
-	void setRequiredTexturePackId(UINT x);
-	void setDefaultSaveName(const std::wstring &x);
-	void setWorldName(const std::wstring &x);
-	void setDisplayName(const std::wstring &x);
-	void setGrfPath(const std::wstring &x);
-	void setBaseSavePath(const std::wstring &x);
+    bool ready();
 
-	bool ready();
+    void setBaseSaveData(PBYTE pbData, DWORD dwSize);
+    PBYTE getBaseSaveData(DWORD& size);
+    bool hasBaseSaveData();
+    void deleteBaseSaveData();
 
-	void setBaseSaveData(PBYTE pbData, DWORD dwSize);
-	PBYTE getBaseSaveData(DWORD &size);
-	bool hasBaseSaveData();
-	void deleteBaseSaveData();
-
-	bool hasLoadedData();
-	void setLoadedData();
+    bool hasLoadedData();
+    void setLoadedData();
 
 private:
-	// This should match the "MapOptionsRule" definition in the XML schema
-	__int64 m_seed;
-	bool m_useFlatWorld;
-	Pos *m_spawnPos;
-	int m_bHasBeenInCreative;
-	vector<ApplySchematicRuleDefinition *> m_schematicRules;
-	vector<ConsoleGenerateStructure *> m_structureRules;
-	bool m_bHaveMinY;
-	int m_minY;
-	unordered_map<wstring, ConsoleSchematicFile *> m_schematics;
-	vector<BiomeOverride *> m_biomeOverrides;
-	vector<StartFeature *> m_features;
+    // This should match the "MapOptionsRule" definition in the XML schema
+    __int64 m_seed;
+    bool m_useFlatWorld;
+    Pos* m_spawnPos;
+    int m_bHasBeenInCreative;
+    vector<ApplySchematicRuleDefinition*> m_schematicRules;
+    vector<ConsoleGenerateStructure*> m_structureRules;
+    bool m_bHaveMinY;
+    int m_minY;
+    unordered_map<wstring, ConsoleSchematicFile*> m_schematics;
+    vector<BiomeOverride*> m_biomeOverrides;
+    vector<StartFeature*> m_features;
 
-	bool m_bRequiresGameRules;
-	LevelRuleset *m_requiredGameRules;
+    bool m_bRequiresGameRules;
+    LevelRuleset* m_requiredGameRules;
 
-	StringTable *m_stringTable;
+    StringTable* m_stringTable;
 
-	DLCPack *m_parentDLCPack;
-	bool m_bLoadingData;
+    DLCPack* m_parentDLCPack;
+    bool m_bLoadingData;
 
 public:
-	LevelGenerationOptions(DLCPack *parentPack = NULL);
-	~LevelGenerationOptions();
+    LevelGenerationOptions(DLCPack* parentPack = NULL);
+    ~LevelGenerationOptions();
 
-	virtual ConsoleGameRules::EGameRuleType getActionType();
-	
-	virtual void writeAttributes(DataOutputStream *dos, UINT numAttributes);
-	virtual void getChildren(vector<GameRuleDefinition *> *children);
-	virtual GameRuleDefinition *addChild(ConsoleGameRules::EGameRuleType ruleType);
-	virtual void addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue);
+    virtual ConsoleGameRules::EGameRuleType getActionType();
 
-	__int64 getLevelSeed();
-	int getLevelHasBeenInCreative();
-	Pos *getSpawnPos();
-	bool getuseFlatWorld();
+    virtual void writeAttributes(DataOutputStream* dos, UINT numAttributes);
+    virtual void getChildren(vector<GameRuleDefinition*>* children);
+    virtual GameRuleDefinition* addChild(
+        ConsoleGameRules::EGameRuleType ruleType);
+    virtual void addAttribute(const std::wstring& attributeName,
+                              const std::wstring& attributeValue);
 
-	void processSchematics(LevelChunk *chunk);
-	void processSchematicsLighting(LevelChunk *chunk);
+    __int64 getLevelSeed();
+    int getLevelHasBeenInCreative();
+    Pos* getSpawnPos();
+    bool getuseFlatWorld();
 
-	bool checkIntersects(int x0, int y0, int z0, int x1, int y1, int z1);
+    void processSchematics(LevelChunk* chunk);
+    void processSchematicsLighting(LevelChunk* chunk);
+
+    bool checkIntersects(int x0, int y0, int z0, int x1, int y1, int z1);
 
 private:
-	void clearSchematics();
-
-public:	
-	ConsoleSchematicFile *loadSchematicFile(const std::wstring &filename, PBYTE pbData, DWORD dwLen);
+    void clearSchematics();
 
 public:
-	ConsoleSchematicFile *getSchematicFile(const std::wstring &filename);
-	void releaseSchematicFile(const std::wstring &filename);
+    ConsoleSchematicFile* loadSchematicFile(const std::wstring& filename,
+                                            PBYTE pbData, DWORD dwLen);
 
-	bool requiresGameRules();
-	void setRequiredGameRules(LevelRuleset *rules);
-	LevelRuleset *getRequiredGameRules();
+public:
+    ConsoleSchematicFile* getSchematicFile(const std::wstring& filename);
+    void releaseSchematicFile(const std::wstring& filename);
 
-	void getBiomeOverride(int biomeId, BYTE &tile, BYTE &topTile);
-	bool isFeatureChunk(int chunkX, int chunkZ, StructureFeature::EFeatureTypes feature, int *orientation = NULL);
+    bool requiresGameRules();
+    void setRequiredGameRules(LevelRuleset* rules);
+    LevelRuleset* getRequiredGameRules();
 
-	void loadStringTable(StringTable *table);
-	LPCWSTR getString(const std::wstring &key);
+    void getBiomeOverride(int biomeId, BYTE& tile, BYTE& topTile);
+    bool isFeatureChunk(int chunkX, int chunkZ,
+                        StructureFeature::EFeatureTypes feature,
+                        int* orientation = NULL);
 
-	unordered_map<wstring, ConsoleSchematicFile *> *getUnfinishedSchematicFiles();
+    void loadStringTable(StringTable* table);
+    LPCWSTR getString(const std::wstring& key);
 
-	void loadBaseSaveData();
-	static int packMounted(LPVOID pParam,int iPad,DWORD dwErr,DWORD dwLicenceMask);
-	
-	// 4J-JEV:
-	// ApplySchematicRules contain limited state
-	// which needs to be reset BEFORE a new game starts.
-	void reset_start();
+    unordered_map<wstring, ConsoleSchematicFile*>*
+    getUnfinishedSchematicFiles();
 
-	// 4J-JEV:
-	// This file contains state that needs to be deleted
-	// or reset once a game has finished.
-	void reset_finish();
+    void loadBaseSaveData();
+    static int packMounted(LPVOID pParam, int iPad, DWORD dwErr,
+                           DWORD dwLicenceMask);
+
+    // 4J-JEV:
+    // ApplySchematicRules contain limited state
+    // which needs to be reset BEFORE a new game starts.
+    void reset_start();
+
+    // 4J-JEV:
+    // This file contains state that needs to be deleted
+    // or reset once a game has finished.
+    void reset_finish();
 };

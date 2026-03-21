@@ -3,16 +3,15 @@
 
 class ColourTable;
 
-class DLCColourTableFile : public DLCFile
-{
+class DLCColourTableFile : public DLCFile {
 private:
-	ColourTable *m_colourTable;
+    ColourTable* m_colourTable;
 
 public:
-	DLCColourTableFile(const std::wstring &path);
-	~DLCColourTableFile();
+    DLCColourTableFile(const std::wstring& path);
+    ~DLCColourTableFile();
 
-	virtual void addData(PBYTE pbData, DWORD dwBytes);
+    virtual void addData(PBYTE pbData, DWORD dwBytes);
 
-	ColourTable *getColourTable() { return m_colourTable; }
+    ColourTable* getColourTable() { return m_colourTable; }
 };

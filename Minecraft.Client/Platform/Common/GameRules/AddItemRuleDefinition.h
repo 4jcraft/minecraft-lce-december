@@ -5,26 +5,29 @@
 class Container;
 class AddEnchantmentRuleDefinition;
 
-class AddItemRuleDefinition : public GameRuleDefinition
-{
+class AddItemRuleDefinition : public GameRuleDefinition {
 private:
-	int m_itemId;
-	int m_quantity;
-	int m_auxValue;
-	int m_dataTag;
-	int m_slot;
-	vector<AddEnchantmentRuleDefinition *> m_enchantments;
+    int m_itemId;
+    int m_quantity;
+    int m_auxValue;
+    int m_dataTag;
+    int m_slot;
+    vector<AddEnchantmentRuleDefinition*> m_enchantments;
 
 public:
-	AddItemRuleDefinition();
+    AddItemRuleDefinition();
 
-	virtual void writeAttributes(DataOutputStream *, UINT numAttributes);
-	virtual void getChildren(vector<GameRuleDefinition *> *children);
+    virtual void writeAttributes(DataOutputStream*, UINT numAttributes);
+    virtual void getChildren(vector<GameRuleDefinition*>* children);
 
-	virtual ConsoleGameRules::EGameRuleType getActionType() { return ConsoleGameRules::eGameRuleType_AddItem; }
+    virtual ConsoleGameRules::EGameRuleType getActionType() {
+        return ConsoleGameRules::eGameRuleType_AddItem;
+    }
 
-	virtual GameRuleDefinition *addChild(ConsoleGameRules::EGameRuleType ruleType);
-	virtual void addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue);
+    virtual GameRuleDefinition* addChild(
+        ConsoleGameRules::EGameRuleType ruleType);
+    virtual void addAttribute(const std::wstring& attributeName,
+                              const std::wstring& attributeValue);
 
-	bool addItemToContainer(shared_ptr<Container> container, int slotId);
+    bool addItemToContainer(shared_ptr<Container> container, int slotId);
 };

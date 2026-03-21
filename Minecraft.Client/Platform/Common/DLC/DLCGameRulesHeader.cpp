@@ -9,23 +9,21 @@
 #include "DLCManager.h"
 #include "DLCGameRulesHeader.h"
 
-DLCGameRulesHeader::DLCGameRulesHeader(const std::wstring &path) : DLCGameRules(DLCManager::e_DLCType_GameRulesHeader,path)
-{	
-	m_pbData = NULL;
-	m_dwBytes = 0;
+DLCGameRulesHeader::DLCGameRulesHeader(const std::wstring& path)
+    : DLCGameRules(DLCManager::e_DLCType_GameRulesHeader, path) {
+    m_pbData = NULL;
+    m_dwBytes = 0;
 
-	m_hasData = false;
+    m_hasData = false;
 
-	m_grfPath = path.substr(0, path.length() - 4) + L".grf";
+    m_grfPath = path.substr(0, path.length() - 4) + L".grf";
 
-	lgo = NULL;
+    lgo = NULL;
 }
 
-void DLCGameRulesHeader::addData(PBYTE pbData, DWORD dwBytes)
-{
-	m_pbData = pbData;
-	m_dwBytes = dwBytes;
-
+void DLCGameRulesHeader::addData(PBYTE pbData, DWORD dwBytes) {
+    m_pbData = pbData;
+    m_dwBytes = dwBytes;
 
 #if 0
 	byteArray data(m_pbData, m_dwBytes);
@@ -73,20 +71,17 @@ void DLCGameRulesHeader::addData(PBYTE pbData, DWORD dwBytes)
 #endif
 }
 
-PBYTE DLCGameRulesHeader::getData(DWORD &dwBytes)
-{
-	dwBytes = m_dwBytes;
-	return m_pbData;
+PBYTE DLCGameRulesHeader::getData(DWORD& dwBytes) {
+    dwBytes = m_dwBytes;
+    return m_pbData;
 }
 
-void DLCGameRulesHeader::setGrfData(PBYTE fData, DWORD fSize, StringTable *st)
-{
-	if (!m_hasData)
-	{
-		m_hasData = true;
-	
-		//app.m_gameRules.loadGameRules(lgo, fData, fSize);
+void DLCGameRulesHeader::setGrfData(PBYTE fData, DWORD fSize, StringTable* st) {
+    if (!m_hasData) {
+        m_hasData = true;
 
-		app.m_gameRules.readRuleFile(lgo, fData, fSize, st);
-	}
+        // app.m_gameRules.loadGameRules(lgo, fData, fSize);
+
+        app.m_gameRules.readRuleFile(lgo, fData, fSize, st);
+    }
 }

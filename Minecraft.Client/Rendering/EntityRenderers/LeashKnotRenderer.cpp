@@ -2,24 +2,21 @@
 #include "LeashKnotRenderer.h"
 #include "../Models/LeashKnotModel.h"
 
-ResourceLocation LeashKnotRenderer::KNOT_LOCATION = ResourceLocation(TN_ITEM_LEASHKNOT);
+ResourceLocation LeashKnotRenderer::KNOT_LOCATION =
+    ResourceLocation(TN_ITEM_LEASHKNOT);
 
-LeashKnotRenderer::LeashKnotRenderer() : EntityRenderer()
-{
-	model = new LeashKnotModel();
+LeashKnotRenderer::LeashKnotRenderer() : EntityRenderer() {
+    model = new LeashKnotModel();
 }
 
-LeashKnotRenderer::~LeashKnotRenderer()
-{
-	delete model;
-}
+LeashKnotRenderer::~LeashKnotRenderer() { delete model; }
 
-void LeashKnotRenderer::render(std::shared_ptr<Entity> entity, double x, double y, double z, float rot, float a)
-{
+void LeashKnotRenderer::render(std::shared_ptr<Entity> entity, double x,
+                               double y, double z, float rot, float a) {
     glPushMatrix();
     glDisable(GL_CULL_FACE);
 
-    glTranslatef((float) x, (float) y, (float) z);
+    glTranslatef((float)x, (float)y, (float)z);
 
     float scale = 1 / 16.0f;
     glEnable(GL_RESCALE_NORMAL);
@@ -33,7 +30,7 @@ void LeashKnotRenderer::render(std::shared_ptr<Entity> entity, double x, double 
     glPopMatrix();
 }
 
-ResourceLocation *LeashKnotRenderer::getTextureLocation(std::shared_ptr<Entity> entity)
-{
+ResourceLocation* LeashKnotRenderer::getTextureLocation(
+    std::shared_ptr<Entity> entity) {
     return &KNOT_LOCATION;
 }

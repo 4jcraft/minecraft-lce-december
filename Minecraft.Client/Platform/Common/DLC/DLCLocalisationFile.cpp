@@ -3,12 +3,11 @@
 #include "DLCLocalisationFile.h"
 #include "../../StringTable.h"
 
-DLCLocalisationFile::DLCLocalisationFile(const std::wstring &path) : DLCFile(DLCManager::e_DLCType_LocalisationData,path)
-{	
-	m_strings = NULL;
+DLCLocalisationFile::DLCLocalisationFile(const std::wstring& path)
+    : DLCFile(DLCManager::e_DLCType_LocalisationData, path) {
+    m_strings = NULL;
 }
 
-void DLCLocalisationFile::addData(PBYTE pbData, DWORD dwBytes)
-{
-	m_strings = new StringTable(pbData, dwBytes);
+void DLCLocalisationFile::addData(PBYTE pbData, DWORD dwBytes) {
+    m_strings = new StringTable(pbData, dwBytes);
 }

@@ -3,19 +3,23 @@
 #include "GameRuleDefinition.h"
 #include "../../../../Minecraft.World/WorldGen/Features/StructureFeature.h"
 
-class StartFeature : public GameRuleDefinition
-{
+class StartFeature : public GameRuleDefinition {
 private:
-	int m_chunkX, m_chunkZ, m_orientation;
-	StructureFeature::EFeatureTypes m_feature;
+    int m_chunkX, m_chunkZ, m_orientation;
+    StructureFeature::EFeatureTypes m_feature;
 
 public:
-	StartFeature();
+    StartFeature();
 
-	virtual ConsoleGameRules::EGameRuleType getActionType() { return ConsoleGameRules::eGameRuleType_StartFeature; }
-	
-	virtual void writeAttributes(DataOutputStream *dos, UINT numAttrs);
-	virtual void addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue);
+    virtual ConsoleGameRules::EGameRuleType getActionType() {
+        return ConsoleGameRules::eGameRuleType_StartFeature;
+    }
 
-	bool isFeatureChunk(int chunkX, int chunkZ, StructureFeature::EFeatureTypes feature, int *orientation);
+    virtual void writeAttributes(DataOutputStream* dos, UINT numAttrs);
+    virtual void addAttribute(const std::wstring& attributeName,
+                              const std::wstring& attributeValue);
+
+    bool isFeatureChunk(int chunkX, int chunkZ,
+                        StructureFeature::EFeatureTypes feature,
+                        int* orientation);
 };

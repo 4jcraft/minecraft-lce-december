@@ -69,7 +69,7 @@ const std::wstring PotionBrewing::MOD_GLOWSTONE =
 // with water bottle and gunpowder
 const std::wstring PotionBrewing::MOD_GUNPOWDER =
     L"+14";  //&13-13"; // gunpowder makes them throwable! // gunpowder requires
-             //13 and sets 14
+             // 13 and sets 14
 #else
 const wstring PotionBrewing::MOD_WATER = L"-1-3-5-7-9-11-13";
 const wstring PotionBrewing::MOD_SUGAR = L"+0";
@@ -775,10 +775,10 @@ std::wstring PotionBrewing::toString(int brew) {
 //{
 
 //	HashMap<String, Integer> existingCombinations = new HashMap<String,
-//Integer>(); 	HashMap<String, Integer> distinctCombinations = new
-//HashMap<String, Integer>(); 	int noEffects = 0; 	for (int brew = 0; brew <=
-//BREW_MASK; brew++) { 		List<MobEffectInstance> effects =
-//PotionBrewing.getEffects(brew, true); 		if (effects != null) {
+// Integer>(); 	HashMap<String, Integer> distinctCombinations = new
+// HashMap<String, Integer>(); 	int noEffects = 0; 	for (int brew = 0; brew
+// <= BREW_MASK; brew++) { 		List<MobEffectInstance> effects =
+// PotionBrewing.getEffects(brew, true); 		if (effects != null) {
 
 //			{
 //				StringBuilder builder = new StringBuilder();
@@ -788,8 +788,9 @@ std::wstring PotionBrewing::toString(int brew) {
 //				}
 //				String string = builder.toString();
 //				Integer count =
-//existingCombinations.get(string); 				if (count != null) { 					count++; 				} else { 					count
-//= 1;
+// existingCombinations.get(string); 				if (count !=
+// null) { 					count++;
+// } else { 					count = 1;
 //				}
 //				existingCombinations.put(string, count);
 //			}
@@ -801,8 +802,9 @@ std::wstring PotionBrewing::toString(int brew) {
 //				}
 //				String string = builder.toString();
 //				Integer count =
-//distinctCombinations.get(string); 				if (count != null) { 					count++; 				} else { 					count
-//= 1;
+// distinctCombinations.get(string); 				if (count !=
+// null) { 					count++;
+// } else { 					count = 1;
 //				}
 //				distinctCombinations.put(string, count);
 //			}
@@ -819,7 +821,7 @@ std::wstring PotionBrewing::toString(int brew) {
 //	}
 
 //	System.out.println("Combination with no effects: " + noEffects + " (" +
-//((double) noEffects / BREW_MASK * 100.0) + " %)"); 	System.out.println("Unique
-//combinations: " + existingCombinations.size()); 	System.out.println("Distinct
-//combinations: " + distinctCombinations.size());
+//((double) noEffects / BREW_MASK * 100.0) + " %)");
+//System.out.println("Unique combinations: " + existingCombinations.size());
+// System.out.println("Distinct combinations: " + distinctCombinations.size());
 //}

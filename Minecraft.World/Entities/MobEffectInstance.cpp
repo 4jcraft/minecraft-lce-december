@@ -113,7 +113,7 @@ std::wstring MobEffectInstance::toString() {
     // if (getAmplifier() > 0)
     //{
     //	result = getDescriptionId() + " x " + (getAmplifier() + 1) + ",
-    //Duration: " + getDuration();
+    // Duration: " + getDuration();
     // }
     // else
     //{

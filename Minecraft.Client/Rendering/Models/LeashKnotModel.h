@@ -1,15 +1,19 @@
 #pragma once
 #include "Model.h"
 
-class LeashKnotModel : public Model
-{
+class LeashKnotModel : public Model {
 public:
-    ModelPart *knot;
+    ModelPart* knot;
 
-	LeashKnotModel();
+    LeashKnotModel();
     LeashKnotModel(int u, int v, int tw, int th);
-	void _init(int u, int v, int tw, int th);
+    void _init(int u, int v, int tw, int th);
 
-    virtual void render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled);
-    virtual void setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim=0);
+    virtual void render(std::shared_ptr<Entity> entity, float time, float r,
+                        float bob, float yRot, float xRot, float scale,
+                        bool usecompiled);
+    virtual void setupAnim(float time, float r, float bob, float yRot,
+                           float xRot, float scale,
+                           std::shared_ptr<Entity> entity,
+                           unsigned int uiBitmaskOverrideAnim = 0);
 };

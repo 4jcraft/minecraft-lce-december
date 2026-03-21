@@ -7,178 +7,212 @@ class Node;
 class EntityTracker;
 class PlayerChunkMap;
 
-
-class ServerLevel : public Level
-{
+class ServerLevel : public Level {
 private:
-	static const int EMPTY_TIME_NO_TICK = SharedConstants::TICKS_PER_SECOND * 60;
+    static const int EMPTY_TIME_NO_TICK =
+        SharedConstants::TICKS_PER_SECOND * 60;
 
-	MinecraftServer *server;
-	EntityTracker *tracker;
-	PlayerChunkMap *chunkMap;
+    MinecraftServer* server;
+    EntityTracker* tracker;
+    PlayerChunkMap* chunkMap;
 
-	CRITICAL_SECTION				m_tickNextTickCS;	// 4J added
-	set<TickNextTickData, TickNextTickDataKeyCompare> tickNextTickList; // 4J Was TreeSet
-	unordered_set<TickNextTickData, TickNextTickDataKeyHash, TickNextTickDataKeyEq> tickNextTickSet; // 4J Was HashSet
+    CRITICAL_SECTION m_tickNextTickCS;  // 4J added
+    set<TickNextTickData, TickNextTickDataKeyCompare>
+        tickNextTickList;  // 4J Was TreeSet
+    unordered_set<TickNextTickData, TickNextTickDataKeyHash,
+                  TickNextTickDataKeyEq>
+        tickNextTickSet;  // 4J Was HashSet
 
-	std::vector<Pos *> m_queuedSendTileUpdates; // 4J added
-	CRITICAL_SECTION m_csQueueSendTileUpdates;
+    std::vector<Pos*> m_queuedSendTileUpdates;  // 4J added
+    CRITICAL_SECTION m_csQueueSendTileUpdates;
 
 protected:
-	int saveInterval;
+    int saveInterval;
 
 public:
-	ServerChunkCache *cache;
-	bool canEditSpawn;
-	bool noSave;
-private:
-	bool allPlayersSleeping;
-	PortalForcer *portalForcer;
-	MobSpawner *mobSpawner;
-	int emptyTime;
-	bool m_bAtLeastOnePlayerSleeping; // 4J Added
-	static WeighedTreasureArray RANDOM_BONUS_ITEMS;	// 4J - brought forward from 1.3.2
-
-	std::vector<TileEventData> tileEvents[2];
-	int activeTileEventsList;
-public:
-	static void staticCtor();
-	ServerLevel(MinecraftServer *server, std::shared_ptr<LevelStorage>levelStorage, const std::wstring& levelName, int dimension, LevelSettings *levelSettings);
-	~ServerLevel();
-	void tick();
-	Biome::MobSpawnerData *getRandomMobSpawnAt(MobCategory *mobCategory, int x, int y, int z);
-	void updateSleepingPlayerList();
-protected:
-	void awakenAllPlayers();
+    ServerChunkCache* cache;
+    bool canEditSpawn;
+    bool noSave;
 
 private:
-	void stopWeather();
+    bool allPlayersSleeping;
+    PortalForcer* portalForcer;
+    MobSpawner* mobSpawner;
+    int emptyTime;
+    bool m_bAtLeastOnePlayerSleeping;  // 4J Added
+    static WeighedTreasureArray
+        RANDOM_BONUS_ITEMS;  // 4J - brought forward from 1.3.2
+
+    std::vector<TileEventData> tileEvents[2];
+    int activeTileEventsList;
 
 public:
-	bool allPlayersAreSleeping();
-	void validateSpawn();
+    static void staticCtor();
+    ServerLevel(MinecraftServer* server,
+                std::shared_ptr<LevelStorage> levelStorage,
+                const std::wstring& levelName, int dimension,
+                LevelSettings* levelSettings);
+    ~ServerLevel();
+    void tick();
+    Biome::MobSpawnerData* getRandomMobSpawnAt(MobCategory* mobCategory, int x,
+                                               int y, int z);
+    void updateSleepingPlayerList();
 
 protected:
-	void tickTiles();
+    void awakenAllPlayers();
 
 private:
-	std::vector<TickNextTickData> toBeTicked;
+    void stopWeather();
 
 public:
-	bool isTileToBeTickedAt(int x, int y, int z, int tileId);
-	void addToTickNextTick(int x, int y, int z, int tileId, int tickDelay);
-	void addToTickNextTick(int x, int y, int z, int tileId, int tickDelay, int priorityTilt);
-	void forceAddTileTick(int x, int y, int z, int tileId, int tickDelay, int prioTilt);
-	void tickEntities();
-	void resetEmptyTime();
-	bool tickPendingTicks(bool force);
-	std::vector<TickNextTickData> *fetchTicksInChunk(LevelChunk *chunk, bool remove);
-	virtual void tick(std::shared_ptr<Entity> e, bool actual);
-	void forceTick(std::shared_ptr<Entity> e, bool actual);
-	bool AllPlayersAreSleeping()			{ return allPlayersSleeping;} // 4J added for a message to other players
-	bool isAtLeastOnePlayerSleeping()		{ return m_bAtLeastOnePlayerSleeping;}
+    bool allPlayersAreSleeping();
+    void validateSpawn();
+
 protected:
-	ChunkSource *createChunkSource();	// 4J - was virtual, but was called from parent ctor
-public:
-	std::vector<std::shared_ptr<TileEntity> > *getTileEntitiesInRegion(int x0, int y0, int z0, int x1, int y1, int z1);
-	virtual bool mayInteract(std::shared_ptr<Player> player, int xt, int yt, int zt, int content);
-protected:
-	virtual void initializeLevel(LevelSettings *settings);
-	virtual void setInitialSpawn(LevelSettings *settings);
-	void generateBonusItemsNearSpawn();	// 4J - brought forward from 1.3.2
-
-public:
-	Pos *getDimensionSpecificSpawn();
-
-	void Suspend(); // 4j Added for XboxOne PLM
-
-	void save(bool force, ProgressListener *progressListener, bool bAutosave=false);
-	void saveToDisc(ProgressListener *progressListener, bool autosave); // 4J Added
+    void tickTiles();
 
 private:
-	void saveLevelData();
+    std::vector<TickNextTickData> toBeTicked;
 
-	typedef std::unordered_map<int, std::shared_ptr<Entity> , IntKeyHash2, IntKeyEq> intEntityMap;
-	intEntityMap entitiesById;	// 4J - was IntHashMap, using same hashing function as this uses
-protected:
-	virtual void entityAdded(std::shared_ptr<Entity> e);
-	virtual void entityRemoved(std::shared_ptr<Entity> e);
 public:
-	std::shared_ptr<Entity> getEntity(int id);
-	virtual bool addGlobalEntity(std::shared_ptr<Entity> e);
-	void broadcastEntityEvent(std::shared_ptr<Entity> e, byte event);
-	virtual std::shared_ptr<Explosion> explode(std::shared_ptr<Entity> source, double x, double y, double z, float r, bool fire, bool destroyBlocks);
-	virtual void tileEvent(int x, int y, int z, int tile, int b0, int b1);
+    bool isTileToBeTickedAt(int x, int y, int z, int tileId);
+    void addToTickNextTick(int x, int y, int z, int tileId, int tickDelay);
+    void addToTickNextTick(int x, int y, int z, int tileId, int tickDelay,
+                           int priorityTilt);
+    void forceAddTileTick(int x, int y, int z, int tileId, int tickDelay,
+                          int prioTilt);
+    void tickEntities();
+    void resetEmptyTime();
+    bool tickPendingTicks(bool force);
+    std::vector<TickNextTickData>* fetchTicksInChunk(LevelChunk* chunk,
+                                                     bool remove);
+    virtual void tick(std::shared_ptr<Entity> e, bool actual);
+    void forceTick(std::shared_ptr<Entity> e, bool actual);
+    bool AllPlayersAreSleeping() {
+        return allPlayersSleeping;
+    }  // 4J added for a message to other players
+    bool isAtLeastOnePlayerSleeping() { return m_bAtLeastOnePlayerSleeping; }
+
+protected:
+    ChunkSource*
+    createChunkSource();  // 4J - was virtual, but was called from parent ctor
+public:
+    std::vector<std::shared_ptr<TileEntity> >* getTileEntitiesInRegion(
+        int x0, int y0, int z0, int x1, int y1, int z1);
+    virtual bool mayInteract(std::shared_ptr<Player> player, int xt, int yt,
+                             int zt, int content);
+
+protected:
+    virtual void initializeLevel(LevelSettings* settings);
+    virtual void setInitialSpawn(LevelSettings* settings);
+    void generateBonusItemsNearSpawn();  // 4J - brought forward from 1.3.2
+
+public:
+    Pos* getDimensionSpecificSpawn();
+
+    void Suspend();  // 4j Added for XboxOne PLM
+
+    void save(bool force, ProgressListener* progressListener,
+              bool bAutosave = false);
+    void saveToDisc(ProgressListener* progressListener,
+                    bool autosave);  // 4J Added
 
 private:
-	void runTileEvents();
-	bool doTileEvent(TileEventData *te);
+    void saveLevelData();
 
-public:
-	void closeLevelStorage();
+    typedef std::unordered_map<int, std::shared_ptr<Entity>, IntKeyHash2,
+                               IntKeyEq>
+        intEntityMap;
+    intEntityMap entitiesById;  // 4J - was IntHashMap, using same hashing
+                                // function as this uses
 protected:
-	virtual void tickWeather();
+    virtual void entityAdded(std::shared_ptr<Entity> e);
+    virtual void entityRemoved(std::shared_ptr<Entity> e);
 
 public:
-	MinecraftServer *getServer();
-	EntityTracker *getTracker();
-	void setTimeAndAdjustTileTicks(__int64 newTime);
-	PlayerChunkMap *getChunkMap();
-	PortalForcer *getPortalForcer();
-	void sendParticles(const std::wstring &name, double x, double y, double z, int count);
-	void sendParticles(const std::wstring &name, double x, double y, double z, int count, double xDist, double yDist, double zDist, double speed);
+    std::shared_ptr<Entity> getEntity(int id);
+    virtual bool addGlobalEntity(std::shared_ptr<Entity> e);
+    void broadcastEntityEvent(std::shared_ptr<Entity> e, byte event);
+    virtual std::shared_ptr<Explosion> explode(std::shared_ptr<Entity> source,
+                                               double x, double y, double z,
+                                               float r, bool fire,
+                                               bool destroyBlocks);
+    virtual void tileEvent(int x, int y, int z, int tile, int b0, int b1);
 
-	void queueSendTileUpdate(int x, int y, int z); // 4J Added
 private:
-	void runQueuedSendTileUpdates();// 4J Added
+    void runTileEvents();
+    bool doTileEvent(TileEventData* te);
 
-	// 4J - added for implementation of finite limit to number of item entities, tnt and falling block entities
 public:
+    void closeLevelStorage();
 
-	static const int MAX_HANGING_ENTITIES = 400;
-	static const int MAX_ITEM_ENTITIES = 200;
-	static const int MAX_ARROW_ENTITIES = 200;
-	static const int MAX_EXPERIENCEORB_ENTITIES = 50;
-	static const int MAX_PRIMED_TNT = 20;
-	static const int MAX_FALLING_TILE = 20;
+protected:
+    virtual void tickWeather();
 
-	int							m_primedTntCount;
-	int							m_fallingTileCount;
-	CRITICAL_SECTION			m_limiterCS;
-	list< std::shared_ptr<Entity> >	m_itemEntities;
-	list< std::shared_ptr<Entity> >	m_hangingEntities;
-	list< std::shared_ptr<Entity> >	m_arrowEntities;
-	list< std::shared_ptr<Entity> >	m_experienceOrbEntities;
+public:
+    MinecraftServer* getServer();
+    EntityTracker* getTracker();
+    void setTimeAndAdjustTileTicks(__int64 newTime);
+    PlayerChunkMap* getChunkMap();
+    PortalForcer* getPortalForcer();
+    void sendParticles(const std::wstring& name, double x, double y, double z,
+                       int count);
+    void sendParticles(const std::wstring& name, double x, double y, double z,
+                       int count, double xDist, double yDist, double zDist,
+                       double speed);
 
-	virtual bool addEntity(std::shared_ptr<Entity> e);
-	void entityAddedExtra(std::shared_ptr<Entity> e);
-	void entityRemovedExtra(std::shared_ptr<Entity> e);
+    void queueSendTileUpdate(int x, int y, int z);  // 4J Added
+private:
+    void runQueuedSendTileUpdates();  // 4J Added
 
-	bool atEntityLimit(std::shared_ptr<Entity> e); // 4J: Added
+    // 4J - added for implementation of finite limit to number of item entities,
+    // tnt and falling block entities
+public:
+    static const int MAX_HANGING_ENTITIES = 400;
+    static const int MAX_ITEM_ENTITIES = 200;
+    static const int MAX_ARROW_ENTITIES = 200;
+    static const int MAX_EXPERIENCEORB_ENTITIES = 50;
+    static const int MAX_PRIMED_TNT = 20;
+    static const int MAX_FALLING_TILE = 20;
 
-	virtual bool newPrimedTntAllowed();
-	virtual bool newFallingTileAllowed();
+    int m_primedTntCount;
+    int m_fallingTileCount;
+    CRITICAL_SECTION m_limiterCS;
+    list<std::shared_ptr<Entity> > m_itemEntities;
+    list<std::shared_ptr<Entity> > m_hangingEntities;
+    list<std::shared_ptr<Entity> > m_arrowEntities;
+    list<std::shared_ptr<Entity> > m_experienceOrbEntities;
 
-	void flagEntitiesToBeRemoved(unsigned int *flags, bool *removedFound);		// 4J added
+    virtual bool addEntity(std::shared_ptr<Entity> e);
+    void entityAddedExtra(std::shared_ptr<Entity> e);
+    void entityRemovedExtra(std::shared_ptr<Entity> e);
 
-	// 4J added
-	static const int MAX_UPDATES = 256;
+    bool atEntityLimit(std::shared_ptr<Entity> e);  // 4J: Added
 
-	// Each of these need to be duplicated for each level in the current game. As we currently only have 2 (over/nether), making this constant
-	static Level 				*m_level[3];
-	static int					m_updateChunkX[3][LEVEL_CHUNKS_TO_UPDATE_MAX];
-	static int					m_updateChunkZ[3][LEVEL_CHUNKS_TO_UPDATE_MAX];
-	static int					m_updateChunkCount[3];
-	static int					m_updateTileX[3][MAX_UPDATES];
-	static int					m_updateTileY[3][MAX_UPDATES];
-	static int					m_updateTileZ[3][MAX_UPDATES];
-	static int					m_updateTileCount[3];
-	static int					m_randValue[3];
+    virtual bool newPrimedTntAllowed();
+    virtual bool newFallingTileAllowed();
 
-	static C4JThread::EventArray*	m_updateTrigger;
-	static CRITICAL_SECTION		m_updateCS[3];
+    void flagEntitiesToBeRemoved(unsigned int* flags,
+                                 bool* removedFound);  // 4J added
 
-	static C4JThread*			m_updateThread;
-	static int 	runUpdate(void* lpParam);
+    // 4J added
+    static const int MAX_UPDATES = 256;
 
+    // Each of these need to be duplicated for each level in the current game.
+    // As we currently only have 2 (over/nether), making this constant
+    static Level* m_level[3];
+    static int m_updateChunkX[3][LEVEL_CHUNKS_TO_UPDATE_MAX];
+    static int m_updateChunkZ[3][LEVEL_CHUNKS_TO_UPDATE_MAX];
+    static int m_updateChunkCount[3];
+    static int m_updateTileX[3][MAX_UPDATES];
+    static int m_updateTileY[3][MAX_UPDATES];
+    static int m_updateTileZ[3][MAX_UPDATES];
+    static int m_updateTileCount[3];
+    static int m_randValue[3];
+
+    static C4JThread::EventArray* m_updateTrigger;
+    static CRITICAL_SECTION m_updateCS[3];
+
+    static C4JThread* m_updateThread;
+    static int runUpdate(void* lpParam);
 };

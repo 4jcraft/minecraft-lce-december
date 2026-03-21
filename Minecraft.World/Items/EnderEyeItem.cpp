@@ -169,7 +169,8 @@ bool EnderEyeItem::TestUse(std::shared_ptr<ItemInstance> itemInstance,
         }
         // 		TilePos *nearestMapFeature =
         // level->findNearestMapFeature(LargeFeature::STRONGHOLD, (int)
-        // player->x, (int) player->y, (int) player->z); 		if (nearestMapFeature
+        // player->x, (int) player->y, (int) player->z); 		if
+        // (nearestMapFeature
         // != NULL)
         // 		{
         // 			delete nearestMapFeature;

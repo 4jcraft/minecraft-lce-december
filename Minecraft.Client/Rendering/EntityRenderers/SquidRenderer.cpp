@@ -4,19 +4,19 @@
 
 ResourceLocation SquidRenderer::SQUID_LOCATION = ResourceLocation(TN_MOB_SQUID);
 
-SquidRenderer::SquidRenderer(Model *model, float shadow) : MobRenderer(model, shadow)
-{
+SquidRenderer::SquidRenderer(Model* model, float shadow)
+    : MobRenderer(model, shadow) {}
+
+void SquidRenderer::render(std::shared_ptr<Entity> mob, double x, double y,
+                           double z, float rot, float a) {
+    MobRenderer::render(mob, x, y, z, rot, a);
 }
 
-void SquidRenderer::render(std::shared_ptr<Entity> mob, double x, double y, double z, float rot, float a)
-{
-	MobRenderer::render(mob, x, y, z, rot, a);
-}
-
-void SquidRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a)
-{
-	// 4J - dynamic cast required because we aren't using templates/generics in our version
-	shared_ptr<Squid> mob = dynamic_pointer_cast<Squid>(_mob);
+void SquidRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob,
+                                   float bob, float bodyRot, float a) {
+    // 4J - dynamic cast required because we aren't using templates/generics in
+    // our version
+    shared_ptr<Squid> mob = dynamic_pointer_cast<Squid>(_mob);
 
     float bodyXRot = (mob->xBodyRotO + (mob->xBodyRot - mob->xBodyRotO) * a);
     float bodyZRot = (mob->zBodyRotO + (mob->zBodyRot - mob->zBodyRotO) * a);
@@ -28,15 +28,16 @@ void SquidRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob, float bob
     glTranslatef(0, -1.2f, 0);
 }
 
-float SquidRenderer::getBob(std::shared_ptr<LivingEntity> _mob, float a)
-{
-	// 4J - dynamic cast required because we aren't using templates/generics in our version
-	shared_ptr<Squid> mob = dynamic_pointer_cast<Squid>(_mob);
+float SquidRenderer::getBob(std::shared_ptr<LivingEntity> _mob, float a) {
+    // 4J - dynamic cast required because we aren't using templates/generics in
+    // our version
+    shared_ptr<Squid> mob = dynamic_pointer_cast<Squid>(_mob);
 
-    return mob->oldTentacleAngle + (mob->tentacleAngle - mob->oldTentacleAngle) * a;
+    return mob->oldTentacleAngle +
+           (mob->tentacleAngle - mob->oldTentacleAngle) * a;
 }
 
-ResourceLocation *SquidRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
-{
+ResourceLocation* SquidRenderer::getTextureLocation(
+    std::shared_ptr<Entity> mob) {
     return &SQUID_LOCATION;
 }

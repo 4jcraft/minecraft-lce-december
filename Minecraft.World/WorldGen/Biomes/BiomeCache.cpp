@@ -7,8 +7,10 @@
 
 BiomeCache::Block::Block(int x, int z, BiomeCache* parent) {
     // 	temps = floatArray(ZONE_SIZE * ZONE_SIZE, false);		// MGH -
-    // added "no clear" flag to arrayWithLength 	downfall = floatArray(ZONE_SIZE
-    // * ZONE_SIZE, false); 	biomes = BiomeArray(ZONE_SIZE * ZONE_SIZE, false);
+    // added "no clear" flag to arrayWithLength 	downfall =
+    // floatArray(ZONE_SIZE
+    // * ZONE_SIZE, false); 	biomes = BiomeArray(ZONE_SIZE * ZONE_SIZE,
+    // false);
     biomeIndices = byteArray(ZONE_SIZE * ZONE_SIZE, false);
 
     lastUse = 0;
@@ -34,7 +36,7 @@ BiomeCache::Block::~Block() {
 
 Biome* BiomeCache::Block::getBiome(int x, int z) {
     //	return biomes[(x & ZONE_SIZE_MASK) | ((z & ZONE_SIZE_MASK) <<
-    //ZONE_SIZE_BITS)];
+    // ZONE_SIZE_BITS)];
 
     int biomeIndex = biomeIndices[(x & ZONE_SIZE_MASK) |
                                   ((z & ZONE_SIZE_MASK) << ZONE_SIZE_BITS)];
@@ -43,7 +45,7 @@ Biome* BiomeCache::Block::getBiome(int x, int z) {
 
 float BiomeCache::Block::getTemperature(int x, int z) {
     //	return temps[(x & ZONE_SIZE_MASK) | ((z & ZONE_SIZE_MASK) <<
-    //ZONE_SIZE_BITS)];
+    // ZONE_SIZE_BITS)];
 
     int biomeIndex = biomeIndices[(x & ZONE_SIZE_MASK) |
                                   ((z & ZONE_SIZE_MASK) << ZONE_SIZE_BITS)];

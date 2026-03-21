@@ -9,34 +9,41 @@ class ConsoleGenerateStructureAction;
 class XboxStructureActionPlaceContainer;
 class GRFObject;
 
-class ConsoleGenerateStructure : public GameRuleDefinition, public StructurePiece
-{
+class ConsoleGenerateStructure : public GameRuleDefinition,
+                                 public StructurePiece {
 private:
-	int m_x, m_y, m_z;
-	vector<ConsoleGenerateStructureAction *> m_actions;
-	int m_dimension;
-public:	
-	ConsoleGenerateStructure();
+    int m_x, m_y, m_z;
+    vector<ConsoleGenerateStructureAction*> m_actions;
+    int m_dimension;
 
-	virtual ConsoleGameRules::EGameRuleType getActionType() { return ConsoleGameRules::eGameRuleType_GenerateStructure; }
+public:
+    ConsoleGenerateStructure();
 
-	virtual void getChildren(vector<GameRuleDefinition *> *children);
-	virtual GameRuleDefinition *addChild(ConsoleGameRules::EGameRuleType ruleType);
-	
-	virtual void writeAttributes(DataOutputStream *dos, UINT numAttrs);
-	virtual void addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue);
+    virtual ConsoleGameRules::EGameRuleType getActionType() {
+        return ConsoleGameRules::eGameRuleType_GenerateStructure;
+    }
 
-	// StructurePiece
-	virtual BoundingBox *getBoundingBox();
-	virtual bool postProcess(Level *level, Random *random, BoundingBox *chunkBB);
+    virtual void getChildren(vector<GameRuleDefinition*>* children);
+    virtual GameRuleDefinition* addChild(
+        ConsoleGameRules::EGameRuleType ruleType);
 
-	void createContainer(XboxStructureActionPlaceContainer *action, Level *level, BoundingBox *chunkBB);
+    virtual void writeAttributes(DataOutputStream* dos, UINT numAttrs);
+    virtual void addAttribute(const std::wstring& attributeName,
+                              const std::wstring& attributeValue);
 
-	bool checkIntersects(int x0, int y0, int z0, int x1, int y1, int z1);
+    // StructurePiece
+    virtual BoundingBox* getBoundingBox();
+    virtual bool postProcess(Level* level, Random* random,
+                             BoundingBox* chunkBB);
 
-	virtual int getMinY();
+    void createContainer(XboxStructureActionPlaceContainer* action,
+                         Level* level, BoundingBox* chunkBB);
 
-	EStructurePiece GetType() { return (EStructurePiece)0; }
-	void addAdditonalSaveData(CompoundTag *tag) {}
-	void readAdditonalSaveData(CompoundTag *tag) {}
+    bool checkIntersects(int x0, int y0, int z0, int x1, int y1, int z1);
+
+    virtual int getMinY();
+
+    EStructurePiece GetType() { return (EStructurePiece)0; }
+    void addAdditonalSaveData(CompoundTag* tag) {}
+    void readAdditonalSaveData(CompoundTag* tag) {}
 };

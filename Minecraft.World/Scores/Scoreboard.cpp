@@ -23,7 +23,7 @@ Objective* Scoreboard::addObjective(const std::wstring& name,
     //	objective = new Objective(this, name, criteria);
     //
     //	vector<Objective *> *criteriaList =
-    //objectivesByCriteria.find(criteria)->second;
+    // objectivesByCriteria.find(criteria)->second;
     //
     //	if (criteriaList == NULL)
     //	{
@@ -221,7 +221,7 @@ void Scoreboard::removePlayerFromTeam(const std::wstring& player,
                                       PlayerTeam* team) {
     // if (getPlayersTeam(player) != team) {
     //	throw new IllegalStateException("Player is either on another team or not
-    //on any team. Cannot remove from team '" + team.getName() + "'.");
+    // on any team. Cannot remove from team '" + team.getName() + "'.");
     // }
 
     // teamsByPlayer.remove(player);

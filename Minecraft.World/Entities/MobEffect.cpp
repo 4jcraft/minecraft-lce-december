@@ -64,7 +64,7 @@ void MobEffect::staticCtor() {
                 SharedMonsterAttributes::MOVEMENT_SPEED,
                 eModifierId_POTION_MOVESLOWDOWN, -0.15f,
                 AttributeModifier::OPERATION_MULTIPLY_TOTAL);  //->setIcon(1,
-                                                               //0);
+                                                               // 0);
     digSpeed =
         (new MobEffect(3, false, eMinecraftColour_Effect_DigSpeed))
             ->setDescriptionId(IDS_POTION_DIGSPEED)
@@ -77,16 +77,17 @@ void MobEffect::staticCtor() {
             ->setPostfixDescriptionId(IDS_POTION_DIGSLOWDOWN_POSTFIX)
             ->setIcon(
                 MobEffect::e_MobEffectIcon_MiningFatigue);  //->setIcon(3, 0);
-    damageBoost = (new AttackDamageMobEffect(
-                       5, false, eMinecraftColour_Effect_DamageBoost))
-                      ->setDescriptionId(IDS_POTION_DAMAGEBOOST)
-                      ->setPostfixDescriptionId(IDS_POTION_DAMAGEBOOST_POSTFIX)
-                      ->setIcon(MobEffect::e_MobEffectIcon_Strength)
-                      ->addAttributeModifier(
-                          SharedMonsterAttributes::ATTACK_DAMAGE,
-                          eModifierId_POTION_DAMAGEBOOST, 3,
-                          AttributeModifier::OPERATION_MULTIPLY_TOTAL);  //->setIcon(4,
-                                                                         //0);
+    damageBoost =
+        (new AttackDamageMobEffect(5, false,
+                                   eMinecraftColour_Effect_DamageBoost))
+            ->setDescriptionId(IDS_POTION_DAMAGEBOOST)
+            ->setPostfixDescriptionId(IDS_POTION_DAMAGEBOOST_POSTFIX)
+            ->setIcon(MobEffect::e_MobEffectIcon_Strength)
+            ->addAttributeModifier(
+                SharedMonsterAttributes::ATTACK_DAMAGE,
+                eModifierId_POTION_DAMAGEBOOST, 3,
+                AttributeModifier::OPERATION_MULTIPLY_TOTAL);  //->setIcon(4,
+                                                               // 0);
     heal = (new InstantenousMobEffect(6, false, eMinecraftColour_Effect_Heal))
                ->setDescriptionId(IDS_POTION_HEAL)
                ->setPostfixDescriptionId(IDS_POTION_HEAL_POSTFIX);

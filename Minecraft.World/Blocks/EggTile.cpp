@@ -92,18 +92,19 @@ void EggTile::teleport(Level* level, int x, int y, int z) {
             //		for (int j = 0; j < count; j++)
             //		{
             //			double d = level->random->nextDouble(); // j <
-            //count / 2 ? 0 :
+            // count / 2 ? 0 :
             //// 1;
             //			float xa = (level->random->nextFloat() - 0.5f) *
-            //0.2f; 			float ya = (level->random->nextFloat() - 0.5f) * 0.2f; 			float
-            //za = (level->random->nextFloat() - 0.5f) * 0.2f;
+            // 0.2f; 			float ya = (level->random->nextFloat() -
+            // 0.5f) * 0.2f; 			float za =
+            // (level->random->nextFloat() - 0.5f) * 0.2f;
 
             //			double _x = xt + (x - xt) * d +
-            //(level->random->nextDouble() - 0.5) * 1 + 0.5f; 			double _y = yt +
-            //(y - yt) * d + level->random->nextDouble() * 1 - 0.5f; 			double _z =
-            //zt + (z - zt) * d + (level->random->nextDouble() - 0.5) * 1 +
-            //0.5f; 			level->addParticle(eParticleType_ender, _x, _y, _z, xa, ya,
-            //za);
+            //(level->random->nextDouble() - 0.5) * 1 + 0.5f;
+            //double _y = yt + (y - yt) * d + level->random->nextDouble() * 1 -
+            //0.5f; 			double _z = zt + (z - zt) * d +
+            // (level->random->nextDouble() - 0.5) * 1 + 0.5f;
+            // level->addParticle(eParticleType_ender, _x, _y, _z, xa, ya, za);
             //		}
             //	}
             return;

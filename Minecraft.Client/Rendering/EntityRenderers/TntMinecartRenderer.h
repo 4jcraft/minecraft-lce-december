@@ -3,8 +3,8 @@
 
 class Minecart;
 
-class TntMinecartRenderer : public MinecartRenderer
-{
+class TntMinecartRenderer : public MinecartRenderer {
 protected:
-    void renderMinecartContents(std::shared_ptr<Minecart> cart, float a, Tile *tile, int tileData);
+    void renderMinecartContents(std::shared_ptr<Minecart> cart, float a,
+                                Tile* tile, int tileData);
 };

@@ -3,16 +3,17 @@
 
 class StringTable;
 
-class DLCLocalisationFile : public DLCFile
-{
+class DLCLocalisationFile : public DLCFile {
 private:
-	StringTable *m_strings;
+    StringTable* m_strings;
 
 public:
-	DLCLocalisationFile(const std::wstring &path);
-	DLCLocalisationFile(PBYTE pbData, DWORD dwBytes); // when we load in a texture pack details file from TMS++
+    DLCLocalisationFile(const std::wstring& path);
+    DLCLocalisationFile(PBYTE pbData,
+                        DWORD dwBytes);  // when we load in a texture pack
+                                         // details file from TMS++
 
-	virtual void addData(PBYTE pbData, DWORD dwBytes);
+    virtual void addData(PBYTE pbData, DWORD dwBytes);
 
-	StringTable *getStringTable() { return m_strings; }
+    StringTable* getStringTable() { return m_strings; }
 };

@@ -323,12 +323,12 @@ const int MobSpawner::tick(ServerLevel* level, bool spawnEnemies,
                         //(exception e)
                         //						   {
                         //							   //
-                        //TODO 4J We can't print a stack trace, and the
-                        //newInstance function doesn't throw an exception just
-                        //now anyway
+                        // TODO 4J We can't print a stack trace, and the
+                        // newInstance function doesn't throw an exception just
+                        // now anyway
                         //							   //e.printStackTrace();
                         //							   return
-                        //count;
+                        // count;
                         //						   }
 
                         // 4J - If it is an animal or a monster, don't let any
