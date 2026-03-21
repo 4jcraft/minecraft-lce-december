@@ -1,11 +1,11 @@
-#include "Platform/stdafx.h"
+#include "../Platform/stdafx.h"
 
 #include "AbstractProjectileDispenseBehavior.h"
-#include "Blocks/DispenserTile.h"
-#include "Projectile.h"
-#include "Level/Level.h"
-#include "Level/Events/LevelEvent.h"
-#include "Items/ItemInstance.h"
+#include "../Blocks/DispenserTile.h"
+#include "../Projectile.h"
+#include "../Level/Level.h"
+#include "../Level/Events/LevelEvent.h"
+#include "../Items/ItemInstance.h"
 
 std::shared_ptr<ItemInstance> AbstractProjectileDispenseBehavior::execute(
     BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
