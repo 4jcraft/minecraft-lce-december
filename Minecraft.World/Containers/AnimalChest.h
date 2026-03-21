@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Containers/SimpleContainer.h"
+#include "SimpleContainer.h"
 
 class AnimalChest : public SimpleContainer {
 public:

@@ -1,5 +1,5 @@
 #include "../Platform/stdafx.h"
-#include "../AnvilMenu.h"
+#include "AnvilMenu.h"
 #include "RepairContainer.h"
 
 RepairContainer::RepairContainer(AnvilMenu* menu, int name, bool customName,

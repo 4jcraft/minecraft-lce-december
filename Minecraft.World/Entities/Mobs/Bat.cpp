@@ -1,10 +1,10 @@
-#include "Platform/stdafx.h"
-#include "Headers/net.minecraft.world.entity.h"
-#include "Headers/net.minecraft.world.entity.ai.attributes.h"
-#include "Headers/net.minecraft.world.entity.monster.h"
-#include "Headers/net.minecraft.world.level.h"
-#include "Headers/net.minecraft.world.level.tile.h"
-#include "Headers/net.minecraft.world.phys.h"
+#include "../../Platform/stdafx.h"
+#include "../../Headers/net.minecraft.world.entity.h"
+#include "../../Headers/net.minecraft.world.entity.ai.attributes.h"
+#include "../../Headers/net.minecraft.world.entity.monster.h"
+#include "../../Headers/net.minecraft.world.level.h"
+#include "../../Headers/net.minecraft.world.level.tile.h"
+#include "../../Headers/net.minecraft.world.phys.h"
 #include "Bat.h"
 
 Bat::Bat(Level* level) : AmbientCreature(level) {

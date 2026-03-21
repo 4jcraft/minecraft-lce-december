@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Containers/AbstractContainerMenu.h"
+#include "AbstractContainerMenu.h"
 
 class CraftingContainer;
 class Container;

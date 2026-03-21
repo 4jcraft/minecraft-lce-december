@@ -1,6 +1,6 @@
 #pragma once
 
-#include "AmbientCreature.h"
+#include "../AmbientCreature.h"
 
 class Bat : public AmbientCreature {
 public:

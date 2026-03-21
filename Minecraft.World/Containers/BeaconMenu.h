@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Containers/AbstractContainerMenu.h"
-#include "Containers/Slot.h"
+#include "AbstractContainerMenu.h"
+#include "Slot.h"
 
 class BeaconTileEntity;
 

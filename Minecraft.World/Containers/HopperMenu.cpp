@@ -1,5 +1,5 @@
-#include "Platform/stdafx.h"
-#include "Headers/net.minecraft.world.inventory.h"
+#include "../Platform/stdafx.h"
+#include "../Headers/net.minecraft.world.inventory.h"
 #include "HopperMenu.h"
 
 HopperMenu::HopperMenu(std::shared_ptr<Container> inventory,

@@ -9,19 +9,10 @@
   ],
 
   "moves": [
-    { "from": "Behavior.*", "to": "Core" },
-    { "from": "BlockSource.*", "to": "Core" },
-    { "from": "BlockSourceImpl.*", "to": "Core" },
-    { "from": "BehaviorRegistry.*", "to": "Core" },
-    { "from": "DispenseItemBehavior.*", "to": "Core" },
-    { "from": "DefaultDispenseItemBehavior.*", "to": "Core" },
-    { "from": "AbstractProjectileDispenseBehavior.*", "to": "Core" },
-    { "from": "ItemDispenseBehaviors.*", "to": "Core" },
-    { "from": "FacingEnum.*", "to": "Core" },
-    { "from": "LocatableSource.*", "to": "Core" },
-    { "from": "Location.*", "to": "Core" },
-    { "from": "Position.*", "to": "Core" },
-    { "from": "PositionImpl.*", "to": "Core" },
-    { "from": "Source.*", "to": "Core" }
+    { "from": "AnimalChest.*", "to": "Containers" },
+    { "from": "BeaconMenu.*", "to": "Containers" },
+    { "from": "AnvilMenu.*", "to": "Containers" },
+    { "from": "FireworksMenu.*", "to": "Containers" },
+    { "from": "HopperMenu.*", "to": "Containers" }
   ]
 }

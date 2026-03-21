@@ -1,6 +1,6 @@
-#include "Platform/stdafx.h"
-#include "Headers/net.minecraft.world.item.h"
-#include "Headers/net.minecraft.world.level.tile.entity.h"
+#include "../Platform/stdafx.h"
+#include "../Headers/net.minecraft.world.item.h"
+#include "../Headers/net.minecraft.world.level.tile.entity.h"
 #include "BeaconMenu.h"
 
 BeaconMenu::BeaconMenu(std::shared_ptr<Container> inventory,
