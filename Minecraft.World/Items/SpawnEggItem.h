@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Items/Item.h"
+#include "Item.h"
 
 class SpawnEggItem : public Item {
 private:

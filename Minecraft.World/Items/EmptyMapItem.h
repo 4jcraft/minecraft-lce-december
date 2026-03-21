@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Items/ComplexItem.h"
+#include "ComplexItem.h"
 
 class EmptyMapItem : public ComplexItem {
 public:

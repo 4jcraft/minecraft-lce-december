@@ -59,7 +59,7 @@
 // TU9
 #include "../Items/FireChargeItem.h"
 #include "../Entities/Mobs/ItemFrame.h"
-#include "../SpawnEggItem.h"
+#include "../Items/SpawnEggItem.h"
 #include "../Items/TileItems/MultiTextureTileItem.h"
 
 // TU12
@@ -73,13 +73,13 @@
 #include "../Items/SeedFoodItem.h"
 
 // 1.6.4
-#include "../FireworksChargeItem.h"
-#include "../FireworksItem.h"
-#include "../LeashItem.h"
-#include "../NameTagItem.h"
-#include "../SimpleFoiledItem.h"
-#include "../SnowItem.h"
-#include "../EmptyMapItem.h"
+#include "../Items/FireworksChargeItem.h"
+#include "../Items/FireworksItem.h"
+#include "../Items/LeashItem.h"
+#include "../Items/NameTagItem.h"
+#include "../Items/SimpleFoiledItem.h"
+#include "../Items/SnowItem.h"
+#include "../Items/EmptyMapItem.h"
 
 // 4J Added
 #include "../Items/ClockItem.h"

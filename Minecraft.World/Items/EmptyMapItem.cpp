@@ -1,6 +1,6 @@
-#include "Platform/stdafx.h"
-#include "Headers/net.minecraft.world.item.h"
-#include "Headers/net.minecraft.world.entity.player.h"
+#include "../Platform/stdafx.h"
+#include "../Headers/net.minecraft.world.item.h"
+#include "../Headers/net.minecraft.world.entity.player.h"
 #include "EmptyMapItem.h"
 
 EmptyMapItem::EmptyMapItem(int id) : ComplexItem(id) {}

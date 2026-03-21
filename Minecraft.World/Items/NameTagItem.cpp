@@ -1,5 +1,5 @@
-#include "Platform/stdafx.h"
-#include "Headers/net.minecraft.world.entity.h"
+#include "../Platform/stdafx.h"
+#include "../Headers/net.minecraft.world.entity.h"
 #include "NameTagItem.h"
 
 NameTagItem::NameTagItem(int id) : Item(id) {}

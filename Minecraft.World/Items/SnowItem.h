@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Items/TileItems/AuxDataTileItem.h"
+#include "TileItems/AuxDataTileItem.h"
 
 class SnowItem : public AuxDataTileItem {
 public:

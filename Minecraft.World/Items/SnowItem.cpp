@@ -1,7 +1,7 @@
-#include "Platform/stdafx.h"
-#include "Headers/net.minecraft.world.entity.player.h"
-#include "Headers/net.minecraft.world.level.tile.h"
-#include "Headers/net.minecraft.world.level.h"
+#include "../Platform/stdafx.h"
+#include "../Headers/net.minecraft.world.entity.player.h"
+#include "../Headers/net.minecraft.world.level.tile.h"
+#include "../Headers/net.minecraft.world.level.h"
 #include "SnowItem.h"
 
 SnowItem::SnowItem(int id, Tile* parentTile)
