@@ -10,7 +10,7 @@
 #include "../../../Minecraft.World/net.minecraft.world.entity.h"
 #include "../../../Minecraft.World/net.minecraft.world.entity.item.h"
 #include "../../../Minecraft.World/net.minecraft.world.phys.h"
-#include "../../../Minecraft.World/compression.h"
+#include "../../../Minecraft.World/Compression.h"
 
 ConsoleSchematicFile::ConsoleSchematicFile()
 {

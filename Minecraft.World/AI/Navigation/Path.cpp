@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "../../Headers/net.minecraft.world.entity.h"
 #include "../../Headers/net.minecraft.world.level.pathfinder.h"
-#include "path.h"
+#include "Path.h"
 
 Path::~Path() {
     if (nodes.data) {

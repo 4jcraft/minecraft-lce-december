@@ -1,6 +1,6 @@
 #include "../Platform/stdafx.h"
 //#include "../Minecraft.World/JavaMath.h"
-#include "MultiplayerLocalPlayer.h"
+#include "MultiPlayerLocalPlayer.h"
 #include "../Network/ClientConnection.h"
 #include "../Minecraft.World/net.minecraft.world.level.h"
 #include "../Minecraft.World/net.minecraft.network.h"

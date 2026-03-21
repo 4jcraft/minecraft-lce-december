@@ -18,7 +18,7 @@
 #include "../../ProgressRenderer.h"
 #include "../../MultiPlayerLocalPlayer.h"
 #include "../../../Minecraft.World/DisconnectPacket.h"
-#include "../../../Minecraft.World/compression.h"
+#include "../../../Minecraft.World/Compression.h"
 #include "../../../Minecraft.World/OldChunkStorage.h"
 #include "../../TexturePackRepository.h"
 #include "../../TexturePack.h"

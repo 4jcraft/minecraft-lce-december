@@ -5,7 +5,7 @@
 #include "../../Minecraft.World/net.minecraft.world.level.tile.entity.h"
 #include "../../Minecraft.World/net.minecraft.world.phys.h"
 #include "../../Minecraft.World/InputOutputStream.h"
-#include "../../Minecraft.World/compression.h"
+#include "../../Minecraft.World/Compression.h"
 #include "../Options.h"
 #include "../MinecraftServer.h"
 #include "../MultiPlayerLevel.h"

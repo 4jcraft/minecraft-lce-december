@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
 #include "ChatScreen.h"
-#include "MultiplayerLocalPlayer.h"
+#include "MultiPlayerLocalPlayer.h"
 #include "../Minecraft.World/SharedConstants.h"
 #include "../Minecraft.World/StringHelpers.h"
 

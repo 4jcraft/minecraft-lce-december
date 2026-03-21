@@ -3,7 +3,7 @@
 #include "../Rendering/EntityRenderers/ItemRenderer.h"
 #include "../Rendering/GameRenderer.h"
 #include "../GameState/Options.h"
-#include "MultiplayerLocalPlayer.h"
+#include "MultiPlayerLocalPlayer.h"
 #include "../Textures/Textures.h"
 #include "../Textures/TextureAtlas.h"
 #include "../GameState/GameMode.h"

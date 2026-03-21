@@ -6,7 +6,7 @@
 #include "../Headers/net.minecraft.world.h"
 #include "../Util/SoundTypes.h"
 #include "FireChargeItem.h"
-#include "tile.h"
+#include "Tile.h"
 
 FireChargeItem::FireChargeItem(int id) : Item(id) {
     m_dragonFireballIcon = NULL;

@@ -9,7 +9,7 @@
 #include "../Minecraft.World/Pos.h"
 #include "../Minecraft.World/ProgressListener.h"
 #include "../Minecraft.World/ThreadName.h"
-#include "../Minecraft.World/compression.h"
+#include "../Minecraft.World/Compression.h"
 #include "../Minecraft.World/OldChunkStorage.h"
 #include "../Minecraft.World/Tile.h"
 

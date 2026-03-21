@@ -13,7 +13,7 @@
 #include "../GameState/CreativeMode.h"
 #include "Lighting.h"
 #include "../GameState/Options.h"
-#include "MultiplayerLocalPlayer.h"
+#include "MultiPlayerLocalPlayer.h"
 #include "Particles/GuiParticles.h"
 #include "../Level/MultiPlayerLevel.h"
 #include "Chunk.h"
@@ -44,7 +44,7 @@
 #include "../Minecraft.World/SoundTypes.h"
 #include "Models/HumanoidModel.h"
 #include "../Minecraft.World/Item.h"
-#include "../Minecraft.World/compression.h"
+#include "../Minecraft.World/Compression.h"
 #include "PS3/PS3Extras/ShutdownManager.h"
 #include "../UI/BossMobGuiInfo.h"
 

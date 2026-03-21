@@ -9,7 +9,7 @@
 #include "../../Headers/net.minecraft.world.h"
 #include "../../Headers/net.minecraft.stats.h"
 #include "TileItem.h"
-#include "facing.h"
+#include "Facing.h"
 
 // 4J-PB - for the debug option of not removing items
 #include <xuiresource.h>
