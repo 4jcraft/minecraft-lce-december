@@ -109,7 +109,7 @@ bool Dimension::isValidSpawn(int x, int z) const {
     return true;
 }
 
-float Dimension::getTimeOfDay(__int64 time, float a) const {
+float Dimension::getTimeOfDay(int64_t time, float a) const {
     int dayStep = (int)(time % Level::TICKS_PER_DAY);
     float td = (dayStep + a) / Level::TICKS_PER_DAY - 0.25f;
     if (td < 0) td += 1;
@@ -120,7 +120,7 @@ float Dimension::getTimeOfDay(__int64 time, float a) const {
     return td;
 }
 
-int Dimension::getMoonPhase(__int64 time) const {
+int Dimension::getMoonPhase(int64_t time) const {
     return ((int)(time / Level::TICKS_PER_DAY)) % 8;
 }
 

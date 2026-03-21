@@ -34,7 +34,7 @@ double Math::random() { return Math::rand.nextDouble(); }
 // the value of Long.MAX_VALUE, the result is equal to the value of
 // Long.MAX_VALUE. Parameters: a - a floating-point value to be rounded to a
 // long. Returns: the value of the argument rounded to the nearest long value.
-__int64 Math::round(double d) { return (__int64)floor(d + 0.5); }
+int64_t Math::round(double d) { return (int64_t)floor(d + 0.5); }
 
 int Math::_max(int a, int b) { return a > b ? a : b; }
 

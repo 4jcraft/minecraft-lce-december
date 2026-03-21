@@ -301,7 +301,7 @@ void CConsoleMinecraftApp::TemporaryCreateGameStart() {
     std::wstring wWorldName = L"TestWorld";
 
     bool isFlat = false;
-    __int64 seedValue =
+    int64_t seedValue =
         0;  // BiomeSource::findSeed(isFlat?LevelType::lvl_flat:LevelType::lvl_normal);
             // // 4J - was (new Random())->nextLong() - now trying to actually
             // find a seed to suit our requirements

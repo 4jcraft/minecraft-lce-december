@@ -44,13 +44,13 @@ typedef struct {
         return (int)(h ^ (h >> 7) ^ (h >> 4));
     }
 
-    int operator()(const __int64& k) const {
-        return hash((int)(k ^ (((__uint64)k) >> 32)));
+    int operator()(const int64_t& k) const {
+        return hash((int)(k ^ (((uint64_t)k) >> 32)));
     }
 } LongKeyHash;
 
 typedef struct {
-    bool operator()(const __int64& x, const __int64& y) const { return x == y; }
+    bool operator()(const int64_t& x, const int64_t& y) const { return x == y; }
 } LongKeyEq;
 
 typedef struct {

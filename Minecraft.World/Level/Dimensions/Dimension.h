@@ -37,8 +37,8 @@ public:
 
     virtual bool isValidSpawn(int x, int z) const;
 
-    virtual float getTimeOfDay(__int64 time, float a) const;
-    virtual int getMoonPhase(__int64 time) const;
+    virtual float getTimeOfDay(int64_t time, float a) const;
+    virtual int getMoonPhase(int64_t time) const;
     virtual bool isNaturalDimension();
 
 private:

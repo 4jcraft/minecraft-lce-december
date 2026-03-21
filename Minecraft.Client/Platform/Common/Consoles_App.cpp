@@ -6124,7 +6124,7 @@ void CMinecraftApp::GetTPD(int iConfig, PBYTE* ppbData, DWORD* pdwBytes) {
 // 	// read the local file
 // 	File gtsFile( wsFile->c_str() );
 //
-// 	__int64 fileSize = gtsFile.length();
+// 	int64_t fileSize = gtsFile.length();
 //
 // 	if(fileSize!=0)
 // 	{
@@ -7183,8 +7183,8 @@ HRESULT CMinecraftApp::RegisterConfigValues(WCHAR* pType, int iValue) {
 
 #if (defined _XBOX || defined _WINDOWS64)
 HRESULT CMinecraftApp::RegisterDLCData(WCHAR* pType, WCHAR* pBannerName,
-                                       int iGender, __uint64 ullOfferID_Full,
-                                       __uint64 ullOfferID_Trial,
+                                       int iGender, uint64_t ullOfferID_Full,
+                                       uint64_t ullOfferID_Trial,
                                        WCHAR* pFirstSkin,
                                        unsigned int uiSortIndex, int iConfig,
                                        WCHAR* pDataFile) {
@@ -8429,7 +8429,7 @@ void CMinecraftApp::GetImageTextData(PBYTE pbImageData, DWORD dwImageBytes,
 }
 
 unsigned int CMinecraftApp::CreateImageTextData(PBYTE bTextMetadata,
-                                                __int64 seed, bool hasSeed,
+                                                int64_t seed, bool hasSeed,
                                                 unsigned int uiHostOptions,
                                                 unsigned int uiTexturePackId) {
     int iTextMetadataBytes = 0;

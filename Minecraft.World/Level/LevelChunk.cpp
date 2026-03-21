@@ -404,7 +404,7 @@ void LevelChunk::startSharingTilesAndData(int forceMs) {
     } else {
         // Only force if it has been more than forceMs milliseconds since we
         // last wanted to unshare this chunk
-        __int64 timenow = System::currentTimeMillis();
+        int64_t timenow = System::currentTimeMillis();
         if ((timenow - lastUnsharedTime) < forceMs) {
             LeaveCriticalSection(&m_csSharing);
             return;
@@ -2057,7 +2057,7 @@ int LevelChunk::setBlocksAndData(byteArray data, int x0, int y0, int z0, int x1,
 
 void LevelChunk::setCheckAllLight() { checkLightPosition = 0; }
 
-Random* LevelChunk::getRandom(__int64 l) {
+Random* LevelChunk::getRandom(int64_t l) {
     return new Random((level->getSeed() + x * x * 4987142 + x * 5947611 +
                        z * z * 4392871l + z * 389711) ^
                       l);

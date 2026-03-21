@@ -399,10 +399,10 @@ void ServerPlayer::doChunkSendingTick(bool dontDelayChunks) {
                         connection->getNetworkPlayer());
 
                     //					static
-                    // unordered_map<wstring,__int64> mapLastTime;
-                    //					__int64 thisTime =
+                    // unordered_map<wstring,int64_t> mapLastTime;
+                    //					int64_t thisTime =
                     // System::currentTimeMillis();
-                    //					__int64 lastTime =
+                    //					int64_t lastTime =
                     // mapLastTime[connection->getNetworkPlayer()->GetUID().toString()];
                     //					app.DebugPrintf(" - OK
                     // to send (%d ms since last)\n", thisTime - lastTime);
@@ -447,13 +447,13 @@ void ServerPlayer::doChunkSendingTick(bool dontDelayChunks) {
                         //						app.DebugPrintf("Creating
                         // BRUP for %d %d\n",nearest.x, nearest.z);
                         PIXBeginNamedEvent(0, "Creation BRUP for sending\n");
-                        __int64 before = System::currentTimeMillis();
+                        int64_t before = System::currentTimeMillis();
                         std::shared_ptr<BlockRegionUpdatePacket> packet =
                             std::shared_ptr<BlockRegionUpdatePacket>(
                                 new BlockRegionUpdatePacket(
                                     nearest.x * 16, 0, nearest.z * 16, 16,
                                     Level::maxBuildHeight, 16, level));
-                        __int64 after = System::currentTimeMillis();
+                        int64_t after = System::currentTimeMillis();
                         //						app.DebugPrintf(">>><<<
                         //%d ms\n",after-before);
                         PIXEndNamedEvent();

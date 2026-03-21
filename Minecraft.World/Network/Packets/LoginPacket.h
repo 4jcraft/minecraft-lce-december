@@ -8,7 +8,7 @@ class LoginPacket : public Packet,
 public:
     int clientVersion;
     std::wstring userName;
-    __int64 seed;
+    int64_t seed;
     char dimension;
     PlayerUID m_offlineXuid, m_onlineXuid;  // 4J Added
     char difficulty;                        // 4J Added
@@ -31,7 +31,7 @@ public:
 
     LoginPacket();
     LoginPacket(const std::wstring& userName, int clientVersion,
-                LevelType* pLevelType, __int64 seed, int gameType,
+                LevelType* pLevelType, int64_t seed, int gameType,
                 char dimension, BYTE mapHeight, BYTE maxPlayers,
                 char difficulty, INT m_multiplayerInstanceId, BYTE playerIndex,
                 bool newSeaLevel, unsigned int uiGamePrivileges, int xzSize,

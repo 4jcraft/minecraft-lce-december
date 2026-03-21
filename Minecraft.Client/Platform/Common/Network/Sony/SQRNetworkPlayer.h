@@ -87,11 +87,11 @@ class SQRNetworkPlayer {
     };
 
 #ifndef _CONTENT_PACKAGE
-    std::vector<__int64> m_ackStats;
+    std::vector<int64_t> m_ackStats;
     int m_minAckTime;
     int m_maxAckTime;
     int m_totalAcks;
-    __int64 m_totalAckTime;
+    int64_t m_totalAckTime;
     int m_averageAckTime;
 #endif
 

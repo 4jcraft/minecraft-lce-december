@@ -25,7 +25,7 @@ static PerlinNoise_DataIn g_depthNoise_SPU __attribute__((__aligned__(16)));
 const double RandomLevelSource::SNOW_SCALE = 0.3;
 const double RandomLevelSource::SNOW_CUTOFF = 0.5;
 
-RandomLevelSource::RandomLevelSource(Level* level, __int64 seed,
+RandomLevelSource::RandomLevelSource(Level* level, int64_t seed,
                                      bool generateStructures)
     : generateStructures(generateStructures) {
     m_XZSize = level->getLevelData()->getXZSize();
@@ -783,8 +783,8 @@ void RandomLevelSource::postProcess(ChunkSource* parent, int xt, int zt) {
     }
 
     pprandom->setSeed(level->getSeed());
-    __int64 xScale = pprandom->nextLong() / 2 * 2 + 1;
-    __int64 zScale = pprandom->nextLong() / 2 * 2 + 1;
+    int64_t xScale = pprandom->nextLong() / 2 * 2 + 1;
+    int64_t zScale = pprandom->nextLong() / 2 * 2 + 1;
     pprandom->setSeed(((xt * xScale) + (zt * zScale)) ^ level->getSeed());
 
     bool hasVillage = false;

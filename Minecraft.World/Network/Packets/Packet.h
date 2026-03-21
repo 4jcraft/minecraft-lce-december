@@ -21,9 +21,9 @@ public:
         static const int TOTAL_TICKS = 100;
 
         // 4J Added
-        __int64 countSamples[TOTAL_TICKS];
-        __int64 sizeSamples[TOTAL_TICKS];
-        __int64 timeSamples[TOTAL_TICKS];
+        int64_t countSamples[TOTAL_TICKS];
+        int64_t sizeSamples[TOTAL_TICKS];
+        int64_t timeSamples[TOTAL_TICKS];
         int samplesPos;
 
     public:
@@ -35,8 +35,8 @@ public:
         int getCount();
         int getTotalSize();
         double getAverageSize();
-        __int64 getRunningTotal();
-        __int64 getRunningCount();
+        int64_t getRunningTotal();
+        int64_t getRunningCount();
         void IncrementPos();
     };
 
@@ -60,7 +60,7 @@ public:
                     const std::type_info& clazz, packetCreateFn);
 
 public:
-    const __int64 createTime;
+    const int64_t createTime;
 
     Packet();
 

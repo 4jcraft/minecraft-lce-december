@@ -738,7 +738,7 @@ public:
     DLC_INFO* GetDLCInfoForFullOfferID(WCHAR* pwchProductId);
     DLC_INFO* GetDLCInfoForProductName(WCHAR* pwchProductName);
 #else
-    static HRESULT RegisterDLCData(WCHAR*, WCHAR*, int, __uint64, __uint64,
+    static HRESULT RegisterDLCData(WCHAR*, WCHAR*, int, uint64_t, uint64_t,
                                    WCHAR*, unsigned int, int, WCHAR* pDataFile);
     bool GetDLCFullOfferIDForSkinID(const std::wstring& FirstSkin,
                                     ULONGLONG* pullVal);
@@ -892,7 +892,7 @@ public:
     void GetImageTextData(PBYTE pbImageData, DWORD dwImageBytes,
                           unsigned char* pszSeed, unsigned int& uiHostOptions,
                           bool& bHostOptionsRead, DWORD& uiTexturePack);
-    unsigned int CreateImageTextData(PBYTE bTextMetadata, __int64 seed,
+    unsigned int CreateImageTextData(PBYTE bTextMetadata, int64_t seed,
                                      bool hasSeed, unsigned int uiHostOptions,
                                      unsigned int uiTexturePackId);
 

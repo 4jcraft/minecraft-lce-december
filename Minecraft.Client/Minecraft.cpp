@@ -86,10 +86,10 @@
 #define DISABLE_LEVELTICK_THREAD
 
 Minecraft* Minecraft::m_instance = NULL;
-__int64 Minecraft::frameTimes[512];
-__int64 Minecraft::tickTimes[512];
+int64_t Minecraft::frameTimes[512];
+int64_t Minecraft::tickTimes[512];
 int Minecraft::frameTimePos = 0;
-__int64 Minecraft::warezTime = 0;
+int64_t Minecraft::warezTime = 0;
 File Minecraft::workDir = File(L"");
 
 #ifdef __PSVITA__
@@ -619,7 +619,7 @@ void Minecraft::run()
 		return;
 	}
 
-	__int64 lastTime = System::currentTimeMillis();
+	int64_t lastTime = System::currentTimeMillis();
 	int frames = 0;
 
 	while (running)
@@ -644,7 +644,7 @@ void Minecraft::run()
 			timer->advanceTime();
 		}
 
-		__int64 beforeTickTime = System::nanoTime();
+		int64_t beforeTickTime = System::nanoTime();
 		for (int i = 0; i < timer->ticks; i++)
 		{
 			ticks++;
@@ -656,7 +656,7 @@ void Minecraft::run()
 			//                setScreen(new LevelConflictScreen());
 			//            }
 		}
-		__int64 tickDuraction = System::nanoTime() - beforeTickTime;
+		int64_t tickDuraction = System::nanoTime() - beforeTickTime;
 		checkGlError(L"Pre render");
 
 		TileRenderer::fancy = options->fancyGraphics;
@@ -1153,7 +1153,7 @@ void Minecraft::createPrimaryLocalPlayer(int iPad) {
 }
 
 void Minecraft::run_middle() {
-    static __int64 lastTime = 0;
+    static int64_t lastTime = 0;
     static bool bFirstTimeIntoGame = true;
     static bool bAutosaveTimerSet = false;
     static unsigned int uiAutosaveTimer = 0;
@@ -1799,7 +1799,7 @@ void Minecraft::run_middle() {
                 timer->advanceTime();
             }
 
-            //__int64 beforeTickTime = System::nanoTime();
+            //int64_t beforeTickTime = System::nanoTime();
             for (int i = 0; i < timer->ticks; i++) {
                 bool bLastTimerTick = (i == (timer->ticks - 1));
                 // 4J-PB - the tick here can run more than once, and this is a
@@ -1884,7 +1884,7 @@ void Minecraft::run_middle() {
                 // 				SparseDataStorage::tick();
                 // // 4J added
             }
-            //__int64 tickDuraction = System::nanoTime() - beforeTickTime;
+            //int64_t tickDuraction = System::nanoTime() - beforeTickTime;
             MemSect(31);
             checkGlError(L"Pre render");
             MemSect(0);
@@ -2094,12 +2094,12 @@ void Minecraft::emergencySave() {
     setLevel(NULL);
 }
 
-void Minecraft::renderFpsMeter(__int64 tickTime) {
+void Minecraft::renderFpsMeter(int64_t tickTime) {
     int nsPer60Fps = 1000000000l / 60;
     if (lastTimer == -1) {
         lastTimer = System::nanoTime();
     }
-    __int64 now = System::nanoTime();
+    int64_t now = System::nanoTime();
     Minecraft::tickTimes[(Minecraft::frameTimePos) &
                          (Minecraft::frameTimes_length - 1)] = tickTime;
     Minecraft::frameTimes[(Minecraft::frameTimePos++) &
@@ -2137,7 +2137,7 @@ void Minecraft::renderFpsMeter(__int64 tickTime) {
               (float)(0));
 
     t->end();
-    __int64 totalTime = 0;
+    int64_t totalTime = 0;
     for (int i = 0; i < Minecraft::frameTimes_length; i++) {
         totalTime += Minecraft::frameTimes[i];
     }
@@ -2166,8 +2166,8 @@ void Minecraft::renderFpsMeter(__int64 tickTime) {
             t->color(0xff000000 + cc * 256);
         }
 
-        __int64 time = Minecraft::frameTimes[i] / 200000;
-        __int64 time2 = Minecraft::tickTimes[i] / 200000;
+        int64_t time = Minecraft::frameTimes[i] / 200000;
+        int64_t time2 = Minecraft::tickTimes[i] / 200000;
 
         t->vertex((float)(i + 0.5f), (float)(height - time + 0.5f), (float)(0));
         t->vertex((float)(i + 0.5f), (float)(height + 0.5f), (float)(0));
@@ -3758,7 +3758,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
             player->drop();
         }
 
-        __uint64 ullButtonsPressed = player->ullButtonsPressed;
+        uint64_t ullButtonsPressed = player->ullButtonsPressed;
 
         bool selected = false;
 #ifdef __PSVITA__
@@ -4734,7 +4734,7 @@ void Minecraft::main() {
     // if (ProfileManager.IsFullVersion())
     {
         name =
-            L"Player" + _toString<__int64>(System::currentTimeMillis() % 1000);
+            L"Player" + _toString<int64_t>(System::currentTimeMillis() % 1000);
         sessionId = L"-";
         /* 4J - TODO - get a session ID from somewhere?
         if (args.length > 0) name = args[0];
@@ -4795,7 +4795,7 @@ int Minecraft::maxSupportedTextureSize() {
 
 void Minecraft::delayTextureReload() { reloadTextures = true; }
 
-__int64 Minecraft::currentTimeMillis() {
+int64_t Minecraft::currentTimeMillis() {
     return System::currentTimeMillis();  //(Sys.getTime() * 1000) /
                                          // Sys.getTimerResolution();
 }

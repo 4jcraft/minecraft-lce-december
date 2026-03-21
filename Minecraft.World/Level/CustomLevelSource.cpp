@@ -13,7 +13,7 @@
 const double CustomLevelSource::SNOW_SCALE = 0.3;
 const double CustomLevelSource::SNOW_CUTOFF = 0.5;
 
-CustomLevelSource::CustomLevelSource(Level* level, __int64 seed,
+CustomLevelSource::CustomLevelSource(Level* level, int64_t seed,
                                      bool generateStructures)
     : generateStructures(generateStructures) {
 #ifdef _OVERRIDE_HEIGHTMAP
@@ -525,8 +525,8 @@ void CustomLevelSource::postProcess(ChunkSource* parent, int xt, int zt) {
     }
 
     pprandom->setSeed(level->getSeed());
-    __int64 xScale = pprandom->nextLong() / 2 * 2 + 1;
-    __int64 zScale = pprandom->nextLong() / 2 * 2 + 1;
+    int64_t xScale = pprandom->nextLong() / 2 * 2 + 1;
+    int64_t zScale = pprandom->nextLong() / 2 * 2 + 1;
     pprandom->setSeed(((xt * xScale) + (zt * zScale)) ^ level->getSeed());
 
     bool hasVillage = false;

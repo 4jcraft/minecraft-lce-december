@@ -327,7 +327,7 @@ public:
     XLockFreeStack<int> dirtyChunksLockFreeStack;
 
     bool dirtyChunkPresent;
-    __int64 lastDirtyChunkFound;
+    int64_t lastDirtyChunkFound;
     static const int FORCE_DIRTY_CHUNK_CHECK_PERIOD_MS = 250;
 
 #ifdef _LARGE_WORLDS

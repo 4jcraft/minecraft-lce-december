@@ -4066,7 +4066,7 @@ bool TileRenderer::tesselateCrossInWorld(Tile* tt, int x, int y, int z) {
     float zt = (float)z;
 
     if (tt == Tile::tallgrass) {
-        __int64 seed = (x * 3129871) ^ (z * 116129781l) ^ (y);
+        int64_t seed = (x * 3129871) ^ (z * 116129781l) ^ (y);
         seed = seed * seed * 42317861 + seed * 11;
 
         xt += ((((seed >> 16) & 0xf) / 15.0f) - 0.5f) * 0.5f;
@@ -4322,7 +4322,7 @@ bool TileRenderer::tesselateLilypadInWorld(Tile* tt, int x, int y, int z) {
     float u1 = tex->getU1(true);
     float v1 = tex->getV1(true);
 
-    __int64 seed = (x * 3129871) ^ (z * 116129781l) ^ (y);
+    int64_t seed = (x * 3129871) ^ (z * 116129781l) ^ (y);
     seed = seed * seed * 42317861 + seed * 11;
 
     int dir = (int)((seed >> 16) & 0x3);

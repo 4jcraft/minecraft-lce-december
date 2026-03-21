@@ -151,7 +151,7 @@ bool CompressedTileStorage::isRenderChunkEmpty(
     for (int x = 0; x < 16; x += 4)
         for (int z = 0; z < 16; z += 4) {
             getBlock(&block, x, y, z);
-            __uint64* comp = (__uint64*)&blockIndices[block];
+            uint64_t* comp = (uint64_t*)&blockIndices[block];
             // Are the 4 y regions stored here all zero? (INDEX_TYPE_0_OR_8_BIT
             // | INDEX_TYPE_0_BIT_FLAG )
             if ((*comp) != 0x0007000700070007L) return false;
@@ -169,17 +169,17 @@ bool CompressedTileStorage::isSameAs(CompressedTileStorage* other) {
     // Attempt to compare as much as we can in 64-byte chunks (8 groups of 8
     // bytes)
     int quickCount = allocatedSize / 64;
-    __int64* pOld = (__int64*)indicesAndData;
-    __int64* pNew = (__int64*)other->indicesAndData;
+    int64_t* pOld = (int64_t*)indicesAndData;
+    int64_t* pNew = (int64_t*)other->indicesAndData;
     for (int i = 0; i < quickCount; i++) {
-        __int64 d0 = pOld[0] ^ pNew[0];
-        __int64 d1 = pOld[1] ^ pNew[1];
-        __int64 d2 = pOld[2] ^ pNew[2];
-        __int64 d3 = pOld[3] ^ pNew[3];
-        __int64 d4 = pOld[4] ^ pNew[4];
-        __int64 d5 = pOld[5] ^ pNew[5];
-        __int64 d6 = pOld[6] ^ pNew[6];
-        __int64 d7 = pOld[7] ^ pNew[7];
+        int64_t d0 = pOld[0] ^ pNew[0];
+        int64_t d1 = pOld[1] ^ pNew[1];
+        int64_t d2 = pOld[2] ^ pNew[2];
+        int64_t d3 = pOld[3] ^ pNew[3];
+        int64_t d4 = pOld[4] ^ pNew[4];
+        int64_t d5 = pOld[5] ^ pNew[5];
+        int64_t d6 = pOld[6] ^ pNew[6];
+        int64_t d7 = pOld[7] ^ pNew[7];
         d0 |= d1;
         d2 |= d3;
         d4 |= d5;
@@ -328,8 +328,8 @@ void CompressedTileStorage::setData(byteArray dataIn, unsigned int inOffset) {
             }
         }
 #else
-        __uint64 usedFlags[4] = {0, 0, 0, 0};
-        __int64 i64_1 = 1;  // MGH - instead of 1i64, which is MS specific
+        uint64_t usedFlags[4] = {0, 0, 0, 0};
+        int64_t i64_1 = 1;  // MGH - instead of 1i64, which is MS specific
         for (int j = 0; j < 64; j++)  // This loop of 64 is to go round the 4 x
                                       // 4 tiles in the block
         {
@@ -977,8 +977,8 @@ void CompressedTileStorage::compress(int upgradeBlock /*=-1*/) {
                 }
 #else
 
-                __uint64 usedFlags[4] = {0, 0, 0, 0};
-                __int64 i64_1 =
+                uint64_t usedFlags[4] = {0, 0, 0, 0};
+                int64_t i64_1 =
                     1;  // MGH - instead of 1i64, which is MS specific
                 for (int j = 0; j < 64; j++)  // This loop of 64 is to go round
                                               // the 4x4x4 tiles in the block

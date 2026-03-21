@@ -369,7 +369,7 @@ void LevelData::setTagData(CompoundTag* tag) {
     tag->putInt(L"HellScale", m_hellScale);
 }
 
-__int64 LevelData::getSeed() { return seed; }
+int64_t LevelData::getSeed() { return seed; }
 
 int LevelData::getXSpawn() { return xSpawn; }
 
@@ -385,11 +385,11 @@ int LevelData::getXStrongholdEndPortal() { return xStrongholdEndPortal; }
 
 int LevelData::getZStrongholdEndPortal() { return zStrongholdEndPortal; }
 
-__int64 LevelData::getGameTime() { return gameTime; }
+int64_t LevelData::getGameTime() { return gameTime; }
 
-__int64 LevelData::getDayTime() { return dayTime; }
+int64_t LevelData::getDayTime() { return dayTime; }
 
-__int64 LevelData::getSizeOnDisk() { return sizeOnDisk; }
+int64_t LevelData::getSizeOnDisk() { return sizeOnDisk; }
 
 CompoundTag* LevelData::getLoadedPlayerTag() {
     return NULL;  // 4J - we don't store this anymore
@@ -401,7 +401,7 @@ CompoundTag* LevelData::getLoadedPlayerTag() {
 //    return dimension;
 //}
 
-void LevelData::setSeed(__int64 seed) { this->seed = seed; }
+void LevelData::setSeed(int64_t seed) { this->seed = seed; }
 
 void LevelData::setXSpawn(int xSpawn) { this->xSpawn = xSpawn; }
 
@@ -437,11 +437,11 @@ void LevelData::setZStrongholdEndPortal(int zStrongholdEndPortal) {
     this->zStrongholdEndPortal = zStrongholdEndPortal;
 }
 
-void LevelData::setGameTime(__int64 time) { gameTime = time; }
+void LevelData::setGameTime(int64_t time) { gameTime = time; }
 
-void LevelData::setDayTime(__int64 time) { dayTime = time; }
+void LevelData::setDayTime(int64_t time) { dayTime = time; }
 
-void LevelData::setSizeOnDisk(__int64 sizeOnDisk) {
+void LevelData::setSizeOnDisk(int64_t sizeOnDisk) {
     this->sizeOnDisk = sizeOnDisk;
 }
 
@@ -472,7 +472,7 @@ int LevelData::getVersion() { return version; }
 
 void LevelData::setVersion(int version) { this->version = version; }
 
-__int64 LevelData::getLastPlayed() { return lastPlayed; }
+int64_t LevelData::getLastPlayed() { return lastPlayed; }
 
 bool LevelData::isThundering() { return thundering; }
 

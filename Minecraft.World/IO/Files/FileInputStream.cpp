@@ -171,7 +171,7 @@ void FileInputStream::close() {
 // pos and k is returned. Overrides: skip in class InputStream Parameters: n -
 // the number of bytes to be skipped. Returns: the actual number of bytes
 // skipped.
-__int64 FileInputStream::skip(__int64 n) {
+int64_t FileInputStream::skip(int64_t n) {
 #ifdef _XBOX
     LARGE_INTEGER li;
     li.QuadPart = n;

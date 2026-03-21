@@ -66,7 +66,7 @@ LoginPacket::LoginPacket(const std::wstring& userName, int clientVersion,
 
 // Server -> Client
 LoginPacket::LoginPacket(const std::wstring& userName, int clientVersion,
-                         LevelType* pLevelType, __int64 seed, int gameType,
+                         LevelType* pLevelType, int64_t seed, int gameType,
                          char dimension, BYTE mapHeight, BYTE maxPlayers,
                          char difficulty, INT multiplayerInstanceId,
                          BYTE playerIndex, bool newSeaLevel,
@@ -175,7 +175,7 @@ int LoginPacket::getEstimatedSize() {
         length = (int)m_pLevelType->getGeneratorName().length();
     }
 
-    return (int)(sizeof(int) + userName.length() + 4 + 6 + sizeof(__int64) +
+    return (int)(sizeof(int) + userName.length() + 4 + 6 + sizeof(int64_t) +
                  sizeof(char) + sizeof(int) + (2 * sizeof(PlayerUID)) + 1 +
                  sizeof(char) + sizeof(BYTE) + sizeof(bool) + sizeof(bool) +
                  length + sizeof(unsigned int));

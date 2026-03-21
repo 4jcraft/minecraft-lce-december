@@ -76,7 +76,7 @@ public:
         tags[name] = (new IntTag(name, value));
     }
 
-    void putLong(const std::wstring& name, __int64 value) {
+    void putLong(const std::wstring& name, int64_t value) {
         tags[name] = (new LongTag(name, value));
     }
 
@@ -133,8 +133,8 @@ public:
         return ((IntTag*)tags[name])->data;
     }
 
-    __int64 getLong(const std::wstring& name) {
-        if (tags.find(name) == tags.end()) return (__int64)0;
+    int64_t getLong(const std::wstring& name) {
+        if (tags.find(name) == tags.end()) return (int64_t)0;
         return ((LongTag*)tags[name])->data;
     }
 

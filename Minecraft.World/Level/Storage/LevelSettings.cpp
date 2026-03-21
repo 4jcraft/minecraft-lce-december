@@ -70,7 +70,7 @@ GameType* GameType::byName(const std::wstring& name) {
     return SURVIVAL;
 }
 
-void LevelSettings::_init(__int64 seed, GameType* gameType,
+void LevelSettings::_init(int64_t seed, GameType* gameType,
                           bool generateMapFeatures, bool hardcore,
                           bool newSeaLevel, LevelType* levelType, int xzSize,
                           int hellScale) {
@@ -87,7 +87,7 @@ void LevelSettings::_init(__int64 seed, GameType* gameType,
     m_hellScale = hellScale;
 }
 
-LevelSettings::LevelSettings(__int64 seed, GameType* gameType,
+LevelSettings::LevelSettings(int64_t seed, GameType* gameType,
                              bool generateMapFeatures, bool hardcore,
                              bool newSeaLevel, LevelType* levelType, int xzSize,
                              int hellScale)
@@ -126,7 +126,7 @@ LevelSettings* LevelSettings::setLevelTypeOptions(const std::wstring& options) {
 
 bool LevelSettings::hasStartingBonusItems() { return startingBonusItems; }
 
-__int64 LevelSettings::getSeed() { return seed; }
+int64_t LevelSettings::getSeed() { return seed; }
 
 GameType* LevelSettings::getGameType() { return gameType; }
 

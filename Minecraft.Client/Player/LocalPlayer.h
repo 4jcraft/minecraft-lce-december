@@ -51,15 +51,15 @@ public:
 
     int m_iScreenSection;  // assuming 4player splitscreen for now, or -1 for
                            // single player
-    __uint64
+    uint64_t
         ullButtonsPressed;  // Stores the button presses, since the inputmanager
                             // can be ticked faster than the minecraft
     // player tick, and a button press and release combo can be missed in the
     // minecraft::tick
 
-    __uint64 ullDpad_last;
-    __uint64 ullDpad_this;
-    __uint64 ullDpad_filtered;
+    uint64_t ullDpad_last;
+    uint64_t ullDpad_this;
+    uint64_t ullDpad_filtered;
 
     // 4J-PB - moved these in from the minecraft structure, since they are per
     // player things for splitscreen

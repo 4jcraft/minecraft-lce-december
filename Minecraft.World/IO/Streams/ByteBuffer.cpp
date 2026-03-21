@@ -161,19 +161,19 @@ int ByteBuffer::getInt(unsigned int index) {
 //
 // Returns:
 // The long value at the buffer's current position
-__int64 ByteBuffer::getLong() {
+int64_t ByteBuffer::getLong() {
     assert(m_position + 8 < m_limit);
 
-    __int64 value = 0;
+    int64_t value = 0;
 
-    __int64 b1 = buffer[m_position];
-    __int64 b2 = buffer[m_position + 1];
-    __int64 b3 = buffer[m_position + 2];
-    __int64 b4 = buffer[m_position + 3];
-    __int64 b5 = buffer[m_position + 4];
-    __int64 b6 = buffer[m_position + 5];
-    __int64 b7 = buffer[m_position + 6];
-    __int64 b8 = buffer[m_position + 7];
+    int64_t b1 = buffer[m_position];
+    int64_t b2 = buffer[m_position + 1];
+    int64_t b3 = buffer[m_position + 2];
+    int64_t b4 = buffer[m_position + 3];
+    int64_t b5 = buffer[m_position + 4];
+    int64_t b6 = buffer[m_position + 5];
+    int64_t b7 = buffer[m_position + 6];
+    int64_t b8 = buffer[m_position + 7];
 
     m_position += 8;
 
@@ -341,7 +341,7 @@ ByteBuffer* ByteBuffer::putShortArray(shortArray& s) {
 // value - The long value to be written
 // Returns:
 // This buffer
-ByteBuffer* ByteBuffer::putLong(__int64 value) {
+ByteBuffer* ByteBuffer::putLong(int64_t value) {
     assert(m_position + 7 < m_limit);
 
     if (byteOrder == BIGENDIAN) {

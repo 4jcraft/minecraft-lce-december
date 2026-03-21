@@ -507,7 +507,7 @@ bool File::isDirectory() const {
 // value is unspecified if this pathname denotes a directory. Returns: The
 // length, in bytes, of the file denoted by this abstract pathname, or 0L if the
 // file does not exist
-__int64 File::length() {
+int64_t File::length() {
 #ifdef __PS3__
     // extern const char* getPS3HomePath();
     CellFsErrno err = 0;
@@ -600,7 +600,7 @@ __int64 File::length() {
 // modified. Returns: A long value representing the time the file was last
 // modified, measured in milliseconds since the epoch (00:00:00 GMT, January 1,
 // 1970), or 0L if the file does not exist or if an I/O error occurs
-__int64 File::lastModified() {
+int64_t File::lastModified() {
     WIN32_FILE_ATTRIBUTE_DATA fileInfoBuffer;
 #ifdef _UNICODE
     BOOL result =

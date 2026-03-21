@@ -6,22 +6,22 @@
 
 class TickNextTickData {
 private:
-    static __int64 C;
+    static int64_t C;
 
 public:
     int x, y, z, tileId;
-    __int64 m_delay;
+    int64_t m_delay;
     int priorityTilt;
 
 private:
-    __int64 c;
+    int64_t c;
 
 public:
     TickNextTickData(int x, int y, int z, int tileId);
 
     bool equals(const TickNextTickData* o) const;
     int hashCode() const;
-    TickNextTickData* delay(__int64 l);
+    TickNextTickData* delay(int64_t l);
     void setPriorityTilt(int priorityTilt);
     int compareTo(const TickNextTickData* tnd) const;
 

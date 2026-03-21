@@ -343,10 +343,10 @@ unsigned int UIGroup::GetLayerIndex(UILayer* layerPtr) {
     return 0;
 }
 
-void UIGroup::PrintTotalMemoryUsage(__int64& totalStatic,
-                                    __int64& totalDynamic) {
-    __int64 groupStatic = 0;
-    __int64 groupDynamic = 0;
+void UIGroup::PrintTotalMemoryUsage(int64_t& totalStatic,
+                                    int64_t& totalDynamic) {
+    int64_t groupStatic = 0;
+    int64_t groupDynamic = 0;
     app.DebugPrintf(app.USER_SR, "-- BEGIN GROUP %d\n", m_group);
     for (unsigned int i = 0; i < eUILayer_COUNT; ++i) {
         app.DebugPrintf(app.USER_SR, "  \\- BEGIN LAYER %d\n", i);

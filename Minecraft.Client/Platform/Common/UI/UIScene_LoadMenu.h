@@ -56,7 +56,7 @@ private:
     bool m_bRequestQuadrantSignin;
     bool m_bIsCorrupt;
     bool m_bThumbnailGetFailed;
-    __int64 m_seed;
+    int64_t m_seed;
 
 #ifdef __PS3__
     std::vector<SonyCommerce::ProductInfo>* m_pvProductInfo;

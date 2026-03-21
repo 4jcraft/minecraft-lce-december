@@ -65,7 +65,7 @@ private:
     const ConsoleSavePath playerDir;
     // const File dataDir;
     const ConsoleSavePath dataDir;
-    const __int64 sessionId;
+    const int64_t sessionId;
     const std::wstring levelId;
 
     static const std::wstring sc_szPlayerDir;
@@ -75,7 +75,7 @@ private:
         friend class DirectoryLevelStorage;
 
     private:
-        std::unordered_map<__int64, short> m_mappings;
+        std::unordered_map<int64_t, short> m_mappings;
 
     public:
         void addMapping(int id, int centreX, int centreZ, int dimension,

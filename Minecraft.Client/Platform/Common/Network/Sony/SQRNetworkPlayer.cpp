@@ -410,7 +410,7 @@ void SQRNetworkPlayer::ReadAck() {
 
 #ifndef _CONTENT_PACKAGE
 #ifdef PRINT_ACK_STATS
-    __int64 timeTaken = System::currentTimeMillis() - m_ackStats[0];
+    int64_t timeTaken = System::currentTimeMillis() - m_ackStats[0];
     if (timeTaken < m_minAckTime) m_minAckTime = timeTaken;
     if (timeTaken > m_maxAckTime) m_maxAckTime = timeTaken;
     m_totalAcks++;

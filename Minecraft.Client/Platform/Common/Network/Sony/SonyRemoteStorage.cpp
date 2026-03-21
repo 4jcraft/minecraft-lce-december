@@ -184,7 +184,7 @@ ESavePlatform SonyRemoteStorage::getSavePlatform() {
     return m_retrievedDescData.m_savePlatform;
 }
 
-__int64 SonyRemoteStorage::getSaveSeed() {
+int64_t SonyRemoteStorage::getSaveSeed() {
     if (m_getInfoStatus != e_infoFound) return 0;
 
     return m_retrievedDescData.m_seed;
@@ -291,7 +291,7 @@ int SonyRemoteStorage::getDataProgress() {
     int sizeTransferred = (totalSize * m_dataProgress) / 100;
     int nextChunk = ((sizeTransferred + chunkSize) * 100) / totalSize;
 
-    __int64 time = System::currentTimeMillis();
+    int64_t time = System::currentTimeMillis();
     int elapsedSecs = (time - m_startTime) / 1000;
     float estimatedTransfered = float(elapsedSecs * transferRatePerSec);
     int progVal =
@@ -364,7 +364,7 @@ void SonyRemoteStorage::GetDescriptionData(DescriptionData& descData) {
                              (unsigned char*)seed, uiHostOptions,
                              bHostOptionsRead, uiTexturePack);
 
-        __int64 iSeed = strtoll(seed, NULL, 10);
+        int64_t iSeed = strtoll(seed, NULL, 10);
         SetU64HexBytes(descData.m_seed, iSeed);
         // Save the host options that this world was last played with
         SetU32HexBytes(descData.m_hostOptions, uiHostOptions);
@@ -401,7 +401,7 @@ void SonyRemoteStorage::GetDescriptionData(DescriptionData_V2& descData) {
                              (unsigned char*)seed, uiHostOptions,
                              bHostOptionsRead, uiTexturePack);
 
-        __int64 iSeed = strtoll(seed, NULL, 10);
+        int64_t iSeed = strtoll(seed, NULL, 10);
         SetU64HexBytes(descData.m_seed, iSeed);
         // Save the host options that this world was last played with
         SetU32HexBytes(descData.m_hostOptions, uiHostOptions);

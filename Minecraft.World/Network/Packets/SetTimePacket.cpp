@@ -9,7 +9,7 @@ SetTimePacket::SetTimePacket() {
     dayTime = 0;
 }
 
-SetTimePacket::SetTimePacket(__int64 gameTime, __int64 dayTime,
+SetTimePacket::SetTimePacket(int64_t gameTime, int64_t dayTime,
                              bool tickDayTime) {
     this->gameTime = gameTime;
     this->dayTime = dayTime;

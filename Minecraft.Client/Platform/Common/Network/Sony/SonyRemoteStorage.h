@@ -66,7 +66,7 @@ public:
     public:
         int m_descDataVersion;
         ESavePlatform m_savePlatform;
-        __int64 m_seed;
+        int64_t m_seed;
         uint32_t m_hostOptions;
         uint32_t m_texturePack;
         uint32_t m_saveVersion;
@@ -107,7 +107,7 @@ public:
     const char* getLocalFilename();
     const char* getSaveNameUTF8();
     ESavePlatform getSavePlatform();
-    __int64 getSaveSeed();
+    int64_t getSaveSeed();
     unsigned int getSaveHostOptions();
     unsigned int getSaveTexturePack();
 
@@ -149,7 +149,7 @@ protected:
     unsigned int m_thumbnailDataSize;
     C4JThread* m_SetDataThread;
     PSAVE_INFO m_setDataSaveInfo;
-    __int64 m_startTime;
+    int64_t m_startTime;
 
     bool m_bAborting;
     bool m_bTransferStarted;

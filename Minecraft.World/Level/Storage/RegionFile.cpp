@@ -157,7 +157,7 @@ RegionFile::~RegionFile() {
     m_saveFile->closeHandle(fileEntry);
 }
 
-__int64 RegionFile::lastModified() { return _lastModified; }
+int64_t RegionFile::lastModified() { return _lastModified; }
 
 int RegionFile::getSizeDelta()  // TODO - was synchronized
 {

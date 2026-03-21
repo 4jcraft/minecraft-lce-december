@@ -142,7 +142,7 @@ public:
 
 private:
     // This should match the "MapOptionsRule" definition in the XML schema
-    __int64 m_seed;
+    int64_t m_seed;
     bool m_useFlatWorld;
     Pos* m_spawnPos;
     int m_bHasBeenInCreative;
@@ -175,7 +175,7 @@ public:
     virtual void addAttribute(const std::wstring& attributeName,
                               const std::wstring& attributeValue);
 
-    __int64 getLevelSeed();
+    int64_t getLevelSeed();
     int getLevelHasBeenInCreative();
     Pos* getSpawnPos();
     bool getuseFlatWorld();

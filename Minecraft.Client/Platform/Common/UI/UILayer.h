@@ -98,5 +98,5 @@ public:
     void handleUnlockFullVersion();
     UIScene* FindScene(EUIScene sceneType);
 
-    void PrintTotalMemoryUsage(__int64& totalStatic, __int64& totalDynamic);
+    void PrintTotalMemoryUsage(int64_t& totalStatic, int64_t& totalDynamic);
 };

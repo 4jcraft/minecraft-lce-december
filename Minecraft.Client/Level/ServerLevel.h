@@ -152,7 +152,7 @@ protected:
 public:
     MinecraftServer* getServer();
     EntityTracker* getTracker();
-    void setTimeAndAdjustTileTicks(__int64 newTime);
+    void setTimeAndAdjustTileTicks(int64_t newTime);
     PlayerChunkMap* getChunkMap();
     PortalForcer* getPortalForcer();
     void sendParticles(const std::wstring& name, double x, double y, double z,

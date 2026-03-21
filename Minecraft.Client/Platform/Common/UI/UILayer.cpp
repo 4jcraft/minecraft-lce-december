@@ -787,10 +787,10 @@ void UILayer::handleUnlockFullVersion() {
     }
 }
 
-void UILayer::PrintTotalMemoryUsage(__int64& totalStatic,
-                                    __int64& totalDynamic) {
-    __int64 layerStatic = 0;
-    __int64 layerDynamic = 0;
+void UILayer::PrintTotalMemoryUsage(int64_t& totalStatic,
+                                    int64_t& totalDynamic) {
+    int64_t layerStatic = 0;
+    int64_t layerDynamic = 0;
     for (AUTO_VAR(it, m_components.begin()); it != m_components.end(); ++it) {
         (*it)->PrintTotalMemoryUsage(layerStatic, layerDynamic);
     }

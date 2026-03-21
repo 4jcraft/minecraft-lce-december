@@ -14,7 +14,7 @@ class UIControl;
 // Base class for all shared functions between UIControllers
 class UIController : public IUIController {
 public:
-    static __int64 iggyAllocCount;
+    static int64_t iggyAllocCount;
 
     // MGH - added to prevent crash loading Iggy movies while the skins were
     // being reloaded
@@ -148,7 +148,7 @@ private:
 
     typedef struct _CachedMovieData {
         byteArray m_ba;
-        __int64 m_expiry;
+        int64_t m_expiry;
     } CachedMovieData;
     std::unordered_map<std::wstring, CachedMovieData> m_cachedMovieData;
 
@@ -165,7 +165,7 @@ private:
     C4JThread* m_reloadSkinThread;
     bool m_navigateToHomeOnReload;
     int m_accumulatedTicks;
-    __uint64 m_lastUiSfx;  // Tracks time (ms) of last UI sound effect
+    uint64_t m_lastUiSfx;  // Tracks time (ms) of last UI sound effect
 
     D3D11_RECT m_customRenderingClearRect;
 

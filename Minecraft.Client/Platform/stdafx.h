@@ -59,7 +59,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-typedef unsigned __int64 __uint64;
+typedef unsigned int64_t uint64_t;
 #endif
 
 #ifdef _WINDOWS64

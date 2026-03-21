@@ -27,9 +27,9 @@ private:
 
     bool didTick;
     int lastKeepAliveId;
-    __int64 lastKeepAliveTime;
+    int64_t lastKeepAliveTime;
     static Random random;
-    __int64 lastKeepAliveTick;
+    int64_t lastKeepAliveTick;
     int chatSpamTickCount;
     int dropSpamTickCount;
 

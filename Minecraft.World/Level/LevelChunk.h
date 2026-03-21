@@ -169,11 +169,11 @@ public:
     void stopSharingTilesAndData();                  // 4J added
     virtual void reSyncLighting();                   // 4J added
     void startSharingTilesAndData(int forceMs = 0);  // 4J added
-    __int64 lastUnsharedTime;                        // 4J added
-    __int64 lastSaveTime;
+    int64_t lastUnsharedTime;                        // 4J added
+    int64_t lastSaveTime;
     bool seenByPlayer;
     int lowestHeightmap;
-    __int64 inhabitedTime;
+    int64_t inhabitedTime;
 
 #ifdef _LARGE_WORLDS
     bool m_bUnloaded;
@@ -267,7 +267,7 @@ public:
                                       int p);  // 4J added
     virtual void setCheckAllLight();
 
-    virtual Random* getRandom(__int64 l);
+    virtual Random* getRandom(int64_t l);
     virtual bool isEmpty();
     virtual void attemptCompression();
 

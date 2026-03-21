@@ -40,7 +40,7 @@ private:
     int lastSentExp;
     int invulnerableTime;
     int viewDistance;
-    __int64 lastActionTime;
+    int64_t lastActionTime;
     int lastBrupSendTickCount;  // 4J Added
 
 public:

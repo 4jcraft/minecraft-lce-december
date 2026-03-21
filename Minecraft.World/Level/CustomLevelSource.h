@@ -42,7 +42,7 @@ private:
     const bool generateStructures;
 
 public:
-    CustomLevelSource(Level* level, __int64 seed, bool generateStructures);
+    CustomLevelSource(Level* level, int64_t seed, bool generateStructures);
     ~CustomLevelSource();
 
 public:
