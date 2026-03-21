@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "net.minecraft.world.item.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.item.h"
 #include "FireworksRecipe.h"
 
 DWORD FireworksRecipe::tlsIdx = 0;

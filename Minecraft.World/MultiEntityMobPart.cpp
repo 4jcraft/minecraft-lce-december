@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "BossMob.h"
+#include "Build/stdafx.h"
+#include "Entities/Mobs/BossMob.h"
 #include "MultiEntityMob.h"
 #include "MultiEntityMobPart.h"
 

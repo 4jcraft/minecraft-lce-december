@@ -1,8 +1,8 @@
 #pragma once
 
 #include "IUIScene_AbstractContainerMenu.h"
-#include "../../../../Minecraft.World/Container.h"
-#include "../../../../Minecraft.World/Inventory.h"
+#include "../../../../Minecraft.World/Containers/Container.h"
+#include "../../../../Minecraft.World/Containers/Inventory.h"
 #include "../../../../Minecraft.World/EntityHorse.h"
 
 class IUIScene_HorseInventoryMenu : public virtual IUIScene_AbstractContainerMenu

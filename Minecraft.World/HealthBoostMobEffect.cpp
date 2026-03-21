@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "net.minecraft.world.entity.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.entity.h"
 #include "HealthBoostMobEffect.h"
 
 HealthBoostMobEffect::HealthBoostMobEffect(int id, bool isHarmful, eMinecraftColour color) : MobEffect(id, isHarmful, color)

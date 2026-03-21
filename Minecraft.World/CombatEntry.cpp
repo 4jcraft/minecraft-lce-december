@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "net.minecraft.world.damagesource.h"
-#include "net.minecraft.world.entity.h"
-#include "BasicTypeContainers.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.damagesource.h"
+#include "Headers/net.minecraft.world.entity.h"
+#include "Util/BasicTypeContainers.h"
 #include "CombatEntry.h"
 
 CombatEntry::CombatEntry(DamageSource *source, int time, float health, float damage, CombatTracker::eLOCATION location, float fallDistance)

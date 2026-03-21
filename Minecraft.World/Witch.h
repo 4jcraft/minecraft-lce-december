@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Monster.h"
+#include "Entities/Monster.h"
 #include "RangedAttackMob.h"
 
 class Witch : public Monster, public RangedAttackMob

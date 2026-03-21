@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Minecart.h"
+#include "Entities/Mobs/Minecart.h"
 #include "BaseMobSpawner.h"
 
 class MinecartSpawner : public Minecart

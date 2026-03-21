@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Minecart.h"
-#include "Container.h"
+#include "Entities/Mobs/Minecart.h"
+#include "Containers/Container.h"
 
 class MinecartContainer : public Minecart, public virtual Container
 {

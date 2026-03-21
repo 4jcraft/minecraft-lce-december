@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "net.minecraft.world.entity.ai.attributes.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.entity.ai.attributes.h"
 #include "BaseAttributeMap.h"
 
 BaseAttributeMap::~BaseAttributeMap()

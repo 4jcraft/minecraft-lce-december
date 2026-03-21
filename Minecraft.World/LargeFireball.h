@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Fireball.h"
+#include "Entities/Mobs/Fireball.h"
 
 class LargeFireball : public Fireball
 {

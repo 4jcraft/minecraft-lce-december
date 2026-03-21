@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "net.minecraft.world.h"
-#include "net.minecraft.world.item.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.h"
+#include "Headers/net.minecraft.world.item.h"
 #include "StainedGlassPaneBlock.h"
 
 Icon *StainedGlassPaneBlock::ICONS[StainedGlassPaneBlock::ICONS_COUNT];

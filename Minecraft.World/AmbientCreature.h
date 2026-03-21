@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Mob.h"
-#include "Creature.h"
+#include "Entities/Mob.h"
+#include "Entities/Mobs/Creature.h"
 
 class AmbientCreature : public Mob, public Creature
 {

@@ -1,8 +1,8 @@
-#include "stdafx.h"
-#include "net.minecraft.world.entity.player.h"
-#include "net.minecraft.world.item.h"
-#include "net.minecraft.world.level.h"
-#include "net.minecraft.world.phys.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.entity.player.h"
+#include "Headers/net.minecraft.world.item.h"
+#include "Headers/net.minecraft.world.level.h"
+#include "Headers/net.minecraft.world.phys.h"
 #include "LeashFenceKnotEntity.h"
 
 void LeashFenceKnotEntity::_init()

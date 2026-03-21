@@ -1,9 +1,9 @@
-#include "stdafx.h"
-#include "net.minecraft.h"
-#include "net.minecraft.core.h"
-#include "net.minecraft.world.level.tile.h"
-#include "net.minecraft.world.level.h"
-#include "net.minecraft.world.entity.item.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.h"
+#include "Headers/net.minecraft.core.h"
+#include "Headers/net.minecraft.world.level.tile.h"
+#include "Headers/net.minecraft.world.level.h"
+#include "Headers/net.minecraft.world.entity.item.h"
 #include "DefaultDispenseItemBehavior.h"
 
 std::shared_ptr<ItemInstance> DefaultDispenseItemBehavior::dispense(BlockSource *source, std::shared_ptr<ItemInstance> dispensed)

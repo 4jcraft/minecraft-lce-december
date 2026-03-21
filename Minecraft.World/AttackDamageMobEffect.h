@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MobEffect.h"
+#include "Entities/MobEffect.h"
 
 class AttributeModifier;
 

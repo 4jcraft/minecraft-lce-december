@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Recipy.h"
+#include "Recipes/Recipy.h"
 
 class FireworksRecipe : public Recipy
 {

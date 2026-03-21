@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "net.minecraft.world.level.h"
-#include "net.minecraft.world.level.redstone.h"
-#include "net.minecraft.world.level.tile.entity.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.level.h"
+#include "Headers/net.minecraft.world.level.redstone.h"
+#include "Headers/net.minecraft.world.level.tile.entity.h"
 #include "CommandBlock.h"
 
 CommandBlock::CommandBlock(int id) : BaseEntityTile(id, Material::metal, isSolidRender() )

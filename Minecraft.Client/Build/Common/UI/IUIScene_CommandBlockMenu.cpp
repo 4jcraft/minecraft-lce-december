@@ -1,5 +1,5 @@
 #include "../../stdafx.h"
-#include "../../../../Minecraft.World/CustomPayloadPacket.h"
+#include "../../../../Minecraft.World/Network/Packets/CustomPayloadPacket.h"
 #include "../../../Player/MultiPlayerLocalPlayer.h"
 #include "../../../Network/ClientConnection.h"
 #include "IUIScene_CommandBlockMenu.h"

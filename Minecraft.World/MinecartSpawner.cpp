@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "net.minecraft.world.level.h"
-#include "net.minecraft.world.level.tile.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.level.h"
+#include "Headers/net.minecraft.world.level.tile.h"
 #include "MinecartSpawner.h"
 
 MinecartSpawner::MinecartMobSpawner::MinecartMobSpawner(MinecartSpawner *parent)

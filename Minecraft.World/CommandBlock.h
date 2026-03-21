@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseEntityTile.h"
+#include "Blocks/BaseEntityTile.h"
 
 class CommandBlock : public BaseEntityTile
 {

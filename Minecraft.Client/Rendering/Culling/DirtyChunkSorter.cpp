@@ -1,6 +1,6 @@
 #include "../../Build/stdafx.h"
 #include "DirtyChunkSorter.h"
-#include "../../../Minecraft.World/net.minecraft.world.entity.player.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.player.h"
 #include "../Chunk.h"
 
 DirtyChunkSorter::DirtyChunkSorter(std::shared_ptr<LivingEntity> cameraEntity, int playerIndex)	// 4J - added player index

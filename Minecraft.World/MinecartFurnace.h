@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Minecart.h"
+#include "Entities/Mobs/Minecart.h"
 
 class MinecartFurnace : public Minecart
 {

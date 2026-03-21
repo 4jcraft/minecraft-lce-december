@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "net.minecraft.world.damagesource.h"
-#include "net.minecraft.world.level.h"
-#include "net.minecraft.world.level.tile.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.damagesource.h"
+#include "Headers/net.minecraft.world.level.h"
+#include "Headers/net.minecraft.world.level.tile.h"
 #include "MinecartTNT.h"
 
 void MinecartTNT::_init()

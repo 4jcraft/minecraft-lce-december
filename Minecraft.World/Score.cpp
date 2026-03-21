@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "net.minecraft.world.scores.h"
-#include "net.minecraft.world.scores.criteria.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.scores.h"
+#include "Headers/net.minecraft.world.scores.criteria.h"
 #include "Score.h"
 
 Score::Score(Scoreboard *scoreboard, Objective *objective, const std::wstring &owner)

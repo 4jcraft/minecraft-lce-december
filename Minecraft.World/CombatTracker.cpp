@@ -1,9 +1,9 @@
-#include "stdafx.h"
-#include "net.minecraft.world.entity.h"
-#include "net.minecraft.world.level.h"
-#include "net.minecraft.world.level.tile.h"
-#include "net.minecraft.world.phys.h"
-#include "net.minecraft.world.damagesource.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.entity.h"
+#include "Headers/net.minecraft.world.level.h"
+#include "Headers/net.minecraft.world.level.tile.h"
+#include "Headers/net.minecraft.world.phys.h"
+#include "Headers/net.minecraft.world.damagesource.h"
 #include "CombatTracker.h"
 
 CombatTracker::CombatTracker(LivingEntity *mob)

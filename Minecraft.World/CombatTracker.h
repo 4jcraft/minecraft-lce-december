@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SharedConstants.h"
+#include "Util/SharedConstants.h"
 
 class CombatEntry;
 class LivingEntity;

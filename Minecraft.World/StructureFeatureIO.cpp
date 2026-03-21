@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "net.minecraft.world.level.levelgen.structure.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.level.levelgen.structure.h"
 #include "StructureFeatureIO.h"
 
 unordered_map<wstring, structureStartCreateFn> StructureFeatureIO::startIdClassMap;

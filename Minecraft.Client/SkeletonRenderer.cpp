@@ -1,7 +1,7 @@
 #include "Build/stdafx.h"
 #include "SkeletonRenderer.h"
 #include "Rendering/Models/SkeletonModel.h"
-#include "../Minecraft.World/Skeleton.h"
+#include "../Minecraft.World/Entities/Mobs/Skeleton.h"
 
 ResourceLocation SkeletonRenderer::SKELETON_LOCATION = ResourceLocation(TN_MOB_SKELETON);
 ResourceLocation SkeletonRenderer::WITHER_SKELETON_LOCATION = ResourceLocation(TN_MOB_WITHER_SKELETON);

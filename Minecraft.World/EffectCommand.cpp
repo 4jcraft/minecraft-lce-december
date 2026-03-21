@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "net.minecraft.commands.common.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.commands.common.h"
 #include "..\Minecraft.Client\MinecraftServer.h"
 
 EGameCommand EffectCommand::getId()

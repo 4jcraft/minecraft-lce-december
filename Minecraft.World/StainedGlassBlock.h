@@ -1,6 +1,6 @@
 #pragma once
 
-#include "HalfTransparentTile.h"
+#include "Blocks/HalfTransparentTile.h"
 
 class StainedGlassBlock : public HalfTransparentTile
 {

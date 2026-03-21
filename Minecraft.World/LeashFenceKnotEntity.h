@@ -1,6 +1,6 @@
 #pragma once
 
-#include "HangingEntity.h"
+#include "Entities/HangingEntity.h"
 
 class LeashFenceKnotEntity : public HangingEntity
 {

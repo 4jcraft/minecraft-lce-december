@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "net.minecraft.world.item.h"
-#include "net.minecraft.world.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.item.h"
+#include "Headers/net.minecraft.world.h"
 #include "StainedGlassBlock.h"
 
 Icon *StainedGlassBlock::ICONS[StainedGlassBlock::ICONS_LENGTH];

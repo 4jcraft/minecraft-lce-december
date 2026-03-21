@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "Entity.h"
-#include "MobType.h"
-#include "GoalSelector.h"
-#include "SharedConstants.h"
+#include "Entities/Entity.h"
+#include "Entities/MobType.h"
+#include "AI/Goals/GoalSelector.h"
+#include "Util/SharedConstants.h"
 
 class CombatTracker;
 class AttributeInstance;

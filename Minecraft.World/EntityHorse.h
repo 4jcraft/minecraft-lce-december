@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Animal.h"
-#include "net.minecraft.world.ContainerListener.h"
+#include "Entities/Mobs/Animal.h"
+#include "Headers/net.minecraft.world.ContainerListener.h"
 #include "MobGroupData.h"
-#include "EntitySelector.h"
+#include "Entities/EntitySelector.h"
 
 class Attribute;
 class AnimalChest;

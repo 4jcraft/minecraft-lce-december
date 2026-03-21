@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "net.minecraft.world.level.tile.h"
-#include "ItemInstance.h"
-#include "DyePowderItem.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.level.tile.h"
+#include "Items/ItemInstance.h"
+#include "Items/DyePowderItem.h"
 #include "WoolTileItem.h"
 
 const unsigned int WoolTileItem::COLOR_DESCS[] = 

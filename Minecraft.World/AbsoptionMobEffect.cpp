@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "net.minecraft.world.entity.h"
-#include "net.minecraft.world.effect.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.entity.h"
+#include "Headers/net.minecraft.world.effect.h"
 #include "AbsoptionMobEffect.h"
 
 AbsoptionMobEffect::AbsoptionMobEffect(int id, bool isHarmful, eMinecraftColour color) : MobEffect(id, isHarmful, color)

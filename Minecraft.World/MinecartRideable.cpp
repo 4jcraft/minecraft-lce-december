@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "net.minecraft.world.entity.h"
-#include "net.minecraft.world.entity.player.h"
-#include "net.minecraft.world.level.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.entity.h"
+#include "Headers/net.minecraft.world.entity.player.h"
+#include "Headers/net.minecraft.world.level.h"
 #include "MinecartRideable.h"
 
 

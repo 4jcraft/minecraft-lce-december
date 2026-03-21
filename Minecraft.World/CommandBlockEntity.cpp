@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "net.minecraft.network.packet.h"
-#include "net.minecraft.world.level.h"
-#include "net.minecraft.commands.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.network.packet.h"
+#include "Headers/net.minecraft.world.level.h"
+#include "Headers/net.minecraft.commands.h"
 #include "..\Minecraft.Client\MinecraftServer.h"
 #include "CommandBlockEntity.h"
 

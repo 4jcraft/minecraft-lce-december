@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "net.minecraft.world.entity.ai.attributes.h"
-#include "BasicTypeContainers.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.entity.ai.attributes.h"
+#include "Util/BasicTypeContainers.h"
 #include "SharedMonsterAttributes.h"
 
 Attribute *SharedMonsterAttributes::MAX_HEALTH = (new RangedAttribute(eAttributeId_GENERIC_MAXHEALTH, 20, 0, Double::MAX_VALUE))->setSyncable(true);

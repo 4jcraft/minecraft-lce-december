@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "net.minecraft.world.entity.player.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.entity.player.h"
 #include "HealthCriteria.h"
 
 HealthCriteria::HealthCriteria(const std::wstring &id) : DummyCriteria(id)

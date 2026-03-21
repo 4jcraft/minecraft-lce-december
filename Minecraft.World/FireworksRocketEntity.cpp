@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "net.minecraft.world.entity.h"
-#include "net.minecraft.world.item.h"
-#include "net.minecraft.world.level.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.entity.h"
+#include "Headers/net.minecraft.world.item.h"
+#include "Headers/net.minecraft.world.level.h"
 #include "FireworksRocketEntity.h"
 
 FireworksRocketEntity::FireworksRocketEntity(Level *level) : Entity(level)

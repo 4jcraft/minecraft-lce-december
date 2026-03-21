@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "StringHelpers.h"
-#include "net.minecraft.world.level.levelgen.flat.h"
-#include "net.minecraft.world.level.tile.h"
+#include "Build/stdafx.h"
+#include "Util/StringHelpers.h"
+#include "Headers/net.minecraft.world.level.levelgen.flat.h"
+#include "Headers/net.minecraft.world.level.tile.h"
 #include "FlatGeneratorInfo.h"
 
 const std::wstring FlatGeneratorInfo::STRUCTURE_VILLAGE = L"village";

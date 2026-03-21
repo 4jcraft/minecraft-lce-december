@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Monster.h"
+#include "Entities/Monster.h"
 #include "RangedAttackMob.h"
-#include "BossMob.h"
+#include "Entities/Mobs/BossMob.h"
 
 class LivingEntitySelector : public EntitySelector
 {

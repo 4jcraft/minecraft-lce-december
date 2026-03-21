@@ -2,7 +2,7 @@
 
 class LivingEntity;
 
-#include "MobEffect.h"
+#include "Entities/MobEffect.h"
 
 class AbsoptionMobEffect : public MobEffect
 {

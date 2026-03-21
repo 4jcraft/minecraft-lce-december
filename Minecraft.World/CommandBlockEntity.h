@@ -1,7 +1,7 @@
 #pragma once
 
-#include "TileEntity.h"
-#include "CommandSender.h"
+#include "Blocks/TileEntities/TileEntity.h"
+#include "Commands/CommandSender.h"
 
 class ChatMessageComponent;
 

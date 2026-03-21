@@ -1,6 +1,6 @@
 #include "Build/stdafx.h"
 #include "BossMobGuiInfo.h"
-#include "../Minecraft.World/BossMob.h"
+#include "../Minecraft.World/Entities/Mobs/BossMob.h"
 
 float BossMobGuiInfo::healthProgress = 0.0f;
 int BossMobGuiInfo::displayTicks = 0;

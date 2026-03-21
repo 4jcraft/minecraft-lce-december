@@ -1,6 +1,6 @@
 #pragma once
 
-#include "WeighedRandom.h"
+#include "Util/WeighedRandom.h"
 
 class BaseMobSpawner
 {

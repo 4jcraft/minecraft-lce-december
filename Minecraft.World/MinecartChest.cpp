@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "net.minecraft.world.level.tile.h"
-#include "net.minecraft.network.packet.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.level.tile.h"
+#include "Headers/net.minecraft.network.packet.h"
 #include "MinecartChest.h"
 
 MinecartChest::MinecartChest(Level *level) : MinecartContainer(level)

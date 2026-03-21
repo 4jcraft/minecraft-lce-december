@@ -1,10 +1,10 @@
-#include "stdafx.h"
-#include "net.minecraft.world.damagesource.h"
-#include "net.minecraft.world.entity.h"
-#include "net.minecraft.world.entity.player.h"
-#include "net.minecraft.world.level.h"
-#include "net.minecraft.world.item.h"
-#include "net.minecraft.network.packet.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.damagesource.h"
+#include "Headers/net.minecraft.world.entity.h"
+#include "Headers/net.minecraft.world.entity.player.h"
+#include "Headers/net.minecraft.world.level.h"
+#include "Headers/net.minecraft.world.item.h"
+#include "Headers/net.minecraft.network.packet.h"
 #include "MinecartFurnace.h"
 
 MinecartFurnace::MinecartFurnace(Level *level) : Minecart(level)

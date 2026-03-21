@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "net.minecraft.world.scores.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.scores.h"
 #include "PlayerTeam.h"
 
 PlayerTeam::PlayerTeam(Scoreboard *scoreboard, const std::wstring &name)

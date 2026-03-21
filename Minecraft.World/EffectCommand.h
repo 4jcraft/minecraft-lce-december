@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Command.h"
+#include "Commands/Command.h"
 
 class EffectCommand : public Command
 {

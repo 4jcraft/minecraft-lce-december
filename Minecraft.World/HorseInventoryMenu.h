@@ -1,7 +1,7 @@
 #pragma once
 
-#include "AbstractContainerMenu.h"
-#include "Slot.h"
+#include "Containers/AbstractContainerMenu.h"
+#include "Containers/Slot.h"
 
 class HorseInventoryMenu;
 

@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "net.minecraft.world.item.h"
-#include "net.minecraft.world.entity.animal.h"
+#include "Build/stdafx.h"
+#include "Headers/net.minecraft.world.item.h"
+#include "Headers/net.minecraft.world.entity.animal.h"
 #include "HorseInventoryMenu.h"
 
 HorseSaddleSlot::HorseSaddleSlot( std::shared_ptr<Container> horseInventory ) : Slot(horseInventory, EntityHorse::INV_SLOT_SADDLE, 8, 18)
