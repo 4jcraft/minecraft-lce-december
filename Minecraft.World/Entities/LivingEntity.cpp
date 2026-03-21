@@ -513,7 +513,7 @@ void LivingEntity::tickEffects() {
 
 void LivingEntity::removeAllEffects() {
     // Iterator<Integer> effectIdIterator =
-    // activeEffects.keySet().std::iterator(); while
+    // activeEffects.keySet().iterator(); while
     // (effectIdIterator.hasNext())
     for (AUTO_VAR(it, activeEffects.begin()); it != activeEffects.end();) {
         // Integer effectId = effectIdIterator.next();

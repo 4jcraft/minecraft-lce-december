@@ -30,10 +30,10 @@ public:
 
     void push_back(MerchantRecipe* recipe);
     MerchantRecipe* at(size_t index);
-    std::vector<MerchantRecipe*>::std::iterator begin();
-    std::vector<MerchantRecipe*>::std::iterator end();
-    std::vector<MerchantRecipe*>::std::iterator erase(
-        std::vector<MerchantRecipe*>::std::iterator it);
+    std::vector<MerchantRecipe*>::iterator begin();
+    std::vector<MerchantRecipe*>::iterator end();
+    std::vector<MerchantRecipe*>::iterator erase(
+        std::vector<MerchantRecipe*>::iterator it);
     size_t size();
     bool empty();
 };

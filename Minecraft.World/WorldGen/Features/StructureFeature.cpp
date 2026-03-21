@@ -125,7 +125,7 @@ StructureStart* StructureFeature::getStructureAt(int cellX, int cellY,
                                                               cellX, cellZ)) {
                 /*
                 Iterator<StructurePiece> it =
-                structureStart.getPieces().std::iterator(); while (it.hasNext())
+                structureStart.getPieces().iterator(); while (it.hasNext())
                 { StructurePiece next = it.next(); if
                 (next.getBoundingBox().isInside(cellX, cellY, cellZ)) { return
                 true;

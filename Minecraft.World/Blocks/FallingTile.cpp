@@ -165,7 +165,7 @@ void FallingTile::causeFallDamage(float distance) {
         int dmg = Mth::ceil(distance - 1);
         if (dmg > 0) {
             // 4J: Copy vector since it might be modified when we hurt the
-            // entities (invalidating our std::iterator)
+            // entities (invalidating our iterator)
             std::vector<std::shared_ptr<Entity> >* entities =
                 new std::vector<std::shared_ptr<Entity> >(
                     *level->getEntities(shared_from_this(), bb));
