@@ -41,7 +41,7 @@ class PsPlusUpsellWrapper;
 #include "..\Minecraft.World\File.h"
 #include "..\Minecraft.World\DisconnectPacket.h"
 #include "..\Minecraft.World\C4JThread.h"
-#include "ResourceLocation.h"
+#include "Textures/ResourceLocation.h"
 
 class Minecraft {
 private:

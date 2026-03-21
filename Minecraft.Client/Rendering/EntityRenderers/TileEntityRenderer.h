@@ -1,6 +1,6 @@
 #pragma once
 #include "../../Textures/Textures.h"
-#include "../../ResourceLocation.h"
+#include "../../Textures/ResourceLocation.h"
 
 class TileEntityRenderDispatcher;
 class TileEntity;

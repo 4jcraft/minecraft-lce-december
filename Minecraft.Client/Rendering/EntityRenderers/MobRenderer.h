@@ -1,5 +1,5 @@
 #pragma once
-#include "../../LivingEntityRenderer.h"
+#include "LivingEntityRenderer.h"
 class Mob;
 
 // This was used in MobRenderer but lots of code moved to LivingEntity and I

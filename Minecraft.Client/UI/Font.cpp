@@ -3,7 +3,7 @@
 #include "Font.h"
 #include "../GameState/Options.h"
 #include "../Rendering/Tesselator.h"
-#include "../ResourceLocation.h"
+#include "../Textures/ResourceLocation.h"
 #include "..\Minecraft.World\IntBuffer.h"
 #include "..\Minecraft.World\net.minecraft.h"
 #include "..\Minecraft.World\StringHelpers.h"

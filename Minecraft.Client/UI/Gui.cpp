@@ -5,7 +5,7 @@
 #include "../GameState/Options.h"
 #include "MultiplayerLocalPlayer.h"
 #include "../Textures/Textures.h"
-#include "../TextureAtlas.h"
+#include "../Textures/TextureAtlas.h"
 #include "../GameState/GameMode.h"
 #include "../Rendering/Lighting.h"
 #include "Screens/ChatScreen.h"

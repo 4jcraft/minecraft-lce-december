@@ -3,7 +3,7 @@
 #include "TileRenderer.h"
 #include "../Tesselator.h"
 #include "../../Textures/Textures.h"
-#include "../../TextureAtlas.h"
+#include "../../Textures/TextureAtlas.h"
 #include "EntityRenderer.h"
 #include "PlayerRenderer.h"
 #include "EntityRenderDispatcher.h"

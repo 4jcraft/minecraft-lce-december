@@ -4,7 +4,7 @@
 #include "../../Textures/Textures.h"
 #include "../Tesselator.h"
 #include "../Lighting.h"
-#include "../../ResourceLocation.h"
+#include "../../Textures/ResourceLocation.h"
 
 ResourceLocation HugeExplosionParticle::EXPLOSION_LOCATION =
     ResourceLocation(TN_MISC_EXPLOSION);

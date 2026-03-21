@@ -4,7 +4,7 @@
 #include "../Tesselator.h"
 #include "../../Textures/Textures.h"
 #include "ItemInHandRenderer.h"
-#include "../../ResourceLocation.h"
+#include "../../Textures/ResourceLocation.h"
 
 class Tile;
 class Entity;

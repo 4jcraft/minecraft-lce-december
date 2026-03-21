@@ -1,8 +1,8 @@
 #pragma once
-#include "../ResourceLocation.h"
+#include "../Textures/ResourceLocation.h"
 #include "GuiComponent.h"
 #include "GuiMessage.h"
-#include "../ResourceLocation.h"
+#include "../Textures/ResourceLocation.h"
 
 class Random;
 class Minecraft;

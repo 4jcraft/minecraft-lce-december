@@ -9,6 +9,6 @@
   ],
 
   "moves": [
-    { "from": "Build/Common", "to": "Platform/Common" }
+    { "from": "*Scoreboard.*", "to": "Core" }
   ]
 }
