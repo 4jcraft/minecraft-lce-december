@@ -1,3 +1,4 @@
+#pragma once
 #define IDC_CheckboxNaturalRegen L"CheckboxNaturalRegen"
 #define IDC_CheckboxTileDrops L"CheckboxTileDrops"
 #define IDC_CheckboxMobLoot L"CheckboxMobLoot"

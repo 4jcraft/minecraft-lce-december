@@ -1,3 +1,4 @@
+#pragma once
 #define IDC_TradingWindow L"TradingWindow"
 #define IDC_TradingWindow1 L"TradingWindow1"
 #define IDC_RequiredLabel L"RequiredLabel"

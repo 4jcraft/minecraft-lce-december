@@ -1,3 +1,4 @@
+#pragma once
 /*
 package net.minecraft.commands;
 

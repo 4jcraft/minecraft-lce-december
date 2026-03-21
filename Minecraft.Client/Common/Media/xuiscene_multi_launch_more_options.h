@@ -1,3 +1,4 @@
+#pragma once
 #define IDC_OptionsTab_off L"OptionsTab_off"
 #define IDC_GameOptionsDescription L"GameOptionsDescription"
 #define IDC_CheckboxNaturalRegeneration L"CheckboxNaturalRegeneration"
