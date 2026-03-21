@@ -1,4 +1,4 @@
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "Glowstonetile.h"
 #include "../Headers/net.minecraft.world.item.h"
 

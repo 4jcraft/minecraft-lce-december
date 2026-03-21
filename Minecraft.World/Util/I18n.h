@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "Language.h"
 
 class I18n {

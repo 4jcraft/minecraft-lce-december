@@ -1,4 +1,4 @@
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "WeighedRandom.h"
 
 int WeighedRandom::getTotalWeight(vector<WeighedRandomItem*>* items) {

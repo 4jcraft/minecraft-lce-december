@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include <queue>
-#include "../Build/System.h"
+#include "../Platform/System.h"
 #include "../IO/Streams/DataInputStream.h"
 #include "../IO/Streams/DataOutputStream.h"
 #include "../Headers/net.minecraft.network.packet.h"

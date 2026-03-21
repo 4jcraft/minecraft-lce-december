@@ -1,4 +1,4 @@
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "net.minecraft.world.Item.h"
 #include "../Headers/net.minecraft.world.level.tile.h"
 #include "Recipy.h"
