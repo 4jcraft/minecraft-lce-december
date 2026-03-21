@@ -18,7 +18,7 @@ public:
     virtual void write(byteArray b);
     virtual void write(byteArray b, unsigned int offset, unsigned int length);
     virtual void close();
-    virtual void std::flush() {}
+    virtual void flush() {}
 
 private:
     ConsoleSaveFile* m_saveFile;

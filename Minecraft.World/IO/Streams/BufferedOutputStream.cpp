@@ -25,7 +25,7 @@ void BufferedOutputStream::flush() {
 // the stream. The close method of FilterOutputStream calls its flush method,
 // and then calls the close method of its underlying output stream.
 void BufferedOutputStream::close() {
-    std::flush();
+    flush();
     stream->close();
 }
 
@@ -48,7 +48,7 @@ void BufferedOutputStream::write(byteArray b, unsigned int offset,
     // Over the length of what we can store in our buffer - just flush the
     // buffer and output directly
     if (length >= buf.length) {
-        std::flush();
+        flush();
         stream->write(b, offset, length);
     } else {
         for (unsigned int i = 0; i < length; i++) {
@@ -73,6 +73,6 @@ void BufferedOutputStream::write(byteArray b) { write(b, 0, b.length); }
 void BufferedOutputStream::write(unsigned int b) {
     buf[count++] = (uint8_t)b;
     if (count == buf.length) {
-        std::flush();
+        flush();
     }
 }

@@ -8,5 +8,5 @@ public:
     virtual void save(Level* level, LevelChunk* levelChunk);
     virtual void saveEntities(Level* level, LevelChunk* levelChunk);
     virtual void tick();
-    virtual void std::flush();
+    virtual void flush();
 };

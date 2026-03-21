@@ -70,17 +70,17 @@ typedef enum {
     finish_done     /* finish done, accept no more input or output */
 } block_state;
 
-typedef block_state(*compress_func) OF((deflate_state * s, int std::flush));
+typedef block_state(*compress_func) OF((deflate_state * s, int flush));
 /* Compression function. Returns the block state after the call. */
 
 local void fill_window OF((deflate_state * s));
-local block_state deflate_stored OF((deflate_state * s, int std::flush));
-local block_state deflate_fast OF((deflate_state * s, int std::flush));
+local block_state deflate_stored OF((deflate_state * s, int flush));
+local block_state deflate_fast OF((deflate_state * s, int flush));
 #ifndef FASTEST
-local block_state deflate_slow OF((deflate_state * s, int std::flush));
+local block_state deflate_slow OF((deflate_state * s, int flush));
 #endif
-local block_state deflate_rle OF((deflate_state * s, int std::flush));
-local block_state deflate_huff OF((deflate_state * s, int std::flush));
+local block_state deflate_rle OF((deflate_state * s, int flush));
+local block_state deflate_huff OF((deflate_state * s, int flush));
 local void lm_init OF((deflate_state * s));
 local void putShortMSB OF((deflate_state * s, uInt b));
 local void flush_pending OF((z_streamp strm));
@@ -648,28 +648,28 @@ local void flush_pending(strm) z_streamp strm;
 }
 
 /* ========================================================================= */
-int ZEXPORT deflate(strm, std::flush) z_streamp strm;
-int std::flush;
+int ZEXPORT deflate(strm, flush) z_streamp strm;
+int flush;
 {
     int old_flush; /* value of flush param for previous deflate call */
     deflate_state* s;
 
-    if (strm == Z_NULL || strm->state == Z_NULL || std::flush > Z_BLOCK ||
-        std::flush < 0) {
+    if (strm == Z_NULL || strm->state == Z_NULL || flush > Z_BLOCK ||
+        flush < 0) {
         return Z_STREAM_ERROR;
     }
     s = strm->state;
 
     if (strm->next_out == Z_NULL ||
         (strm->next_in == Z_NULL && strm->avail_in != 0) ||
-        (s->status == FINISH_STATE && std::flush != Z_FINISH)) {
+        (s->status == FINISH_STATE && flush != Z_FINISH)) {
         ERR_RETURN(strm, Z_STREAM_ERROR);
     }
     if (strm->avail_out == 0) ERR_RETURN(strm, Z_BUF_ERROR);
 
     s->strm = strm; /* just in case */
     old_flush = s->last_flush;
-    s->last_flush = std::flush;
+    s->last_flush = flush;
 
     /* Write the header */
     if (s->status == INIT_STATE) {
@@ -863,8 +863,8 @@ int std::flush;
          * flushes. For repeated and useless calls with Z_FINISH, we keep
          * returning Z_STREAM_END instead of Z_BUF_ERROR.
          */
-    } else if (strm->avail_in == 0 && RANK(std::flush) <= RANK(old_flush) &&
-               std::flush != Z_FINISH) {
+    } else if (strm->avail_in == 0 && RANK(flush) <= RANK(old_flush) &&
+               flush != Z_FINISH) {
         ERR_RETURN(strm, Z_BUF_ERROR);
     }
 
@@ -876,15 +876,15 @@ int std::flush;
     /* Start a new block or continue the current one.
      */
     if (strm->avail_in != 0 || s->lookahead != 0 ||
-        (std::flush != Z_NO_FLUSH && s->status != FINISH_STATE)) {
+        (flush != Z_NO_FLUSH && s->status != FINISH_STATE)) {
         block_state bstate;
 
         bstate = s->strategy == Z_HUFFMAN_ONLY
-                     ? deflate_huff(s, std::flush)
+                     ? deflate_huff(s, flush)
                      : (s->strategy == Z_RLE
-                            ? deflate_rle(s, std::flush)
+                            ? deflate_rle(s, flush)
                             : (*(configuration_table[s->level].func))(
-                                  s, std::flush));
+                                  s, flush));
 
         if (bstate == finish_started || bstate == finish_done) {
             s->status = FINISH_STATE;
@@ -903,14 +903,14 @@ int std::flush;
              */
         }
         if (bstate == block_done) {
-            if (std::flush == Z_PARTIAL_FLUSH) {
+            if (flush == Z_PARTIAL_FLUSH) {
                 _tr_align(s);
-            } else if (std::flush != Z_BLOCK) { /* FULL_FLUSH or SYNC_FLUSH */
+            } else if (flush != Z_BLOCK) { /* FULL_FLUSH or SYNC_FLUSH */
                 _tr_stored_block(s, (char*)0, 0L, 0);
                 /* For a full flush, this empty block will be recognized
                  * as a special marker by inflate_sync().
                  */
-                if (std::flush == Z_FULL_FLUSH) {
+                if (flush == Z_FULL_FLUSH) {
                     CLEAR_HASH(s); /* forget history */
                     if (s->lookahead == 0) {
                         s->strstart = 0;
@@ -929,7 +929,7 @@ int std::flush;
     }
     Assert(strm->avail_out > 0, "bug2");
 
-    if (std::flush != Z_FINISH) return Z_OK;
+    if (flush != Z_FINISH) return Z_OK;
     if (s->wrap <= 0) return Z_STREAM_END;
 
     /* Write the trailer */
@@ -1535,8 +1535,8 @@ local void fill_window(s) deflate_state* s;
  * NOTE: this function should be optimized to avoid extra copying from
  * window to pending_buf.
  */
-local block_state deflate_stored(s, std::flush) deflate_state* s;
-int std::flush;
+local block_state deflate_stored(s, flush) deflate_state* s;
+int flush;
 {
     /* Stored blocks are limited to 0xffff bytes, pending_buf is limited
      * to pending_buf_size, and each stored block has a 5 byte header:
@@ -1557,7 +1557,7 @@ int std::flush;
                    "slide too late");
 
             fill_window(s);
-            if (s->lookahead == 0 && std::flush == Z_NO_FLUSH) return need_more;
+            if (s->lookahead == 0 && flush == Z_NO_FLUSH) return need_more;
 
             if (s->lookahead == 0) break; /* flush the current block */
         }
@@ -1582,7 +1582,7 @@ int std::flush;
         }
     }
     s->insert = 0;
-    if (std::flush == Z_FINISH) {
+    if (flush == Z_FINISH) {
         FLUSH_BLOCK(s, 1);
         return finish_done;
     }
@@ -1597,8 +1597,8 @@ int std::flush;
  * new strings in the dictionary only for unmatched strings or for short
  * matches. It is used only for the fast compression options.
  */
-local block_state deflate_fast(s, std::flush) deflate_state* s;
-int std::flush;
+local block_state deflate_fast(s, flush) deflate_state* s;
+int flush;
 {
     IPos hash_head; /* head of the hash chain */
     int bflush;     /* set if current block must be flushed */
@@ -1611,7 +1611,7 @@ int std::flush;
          */
         if (s->lookahead < MIN_LOOKAHEAD) {
             fill_window(s);
-            if (s->lookahead < MIN_LOOKAHEAD && std::flush == Z_NO_FLUSH) {
+            if (s->lookahead < MIN_LOOKAHEAD && flush == Z_NO_FLUSH) {
                 return need_more;
             }
             if (s->lookahead == 0) break; /* flush the current block */
@@ -1683,7 +1683,7 @@ int std::flush;
         if (bflush) FLUSH_BLOCK(s, 0);
     }
     s->insert = s->strstart < MIN_MATCH - 1 ? s->strstart : MIN_MATCH - 1;
-    if (std::flush == Z_FINISH) {
+    if (flush == Z_FINISH) {
         FLUSH_BLOCK(s, 1);
         return finish_done;
     }
@@ -1697,8 +1697,8 @@ int std::flush;
  * evaluation for matches: a match is finally adopted only if there is
  * no better match at the next window position.
  */
-local block_state deflate_slow(s, std::flush) deflate_state* s;
-int std::flush;
+local block_state deflate_slow(s, flush) deflate_state* s;
+int flush;
 {
     IPos hash_head; /* head of hash chain */
     int bflush;     /* set if current block must be flushed */
@@ -1712,7 +1712,7 @@ int std::flush;
          */
         if (s->lookahead < MIN_LOOKAHEAD) {
             fill_window(s);
-            if (s->lookahead < MIN_LOOKAHEAD && std::flush == Z_NO_FLUSH) {
+            if (s->lookahead < MIN_LOOKAHEAD && flush == Z_NO_FLUSH) {
                 return need_more;
             }
             if (s->lookahead == 0) break; /* flush the current block */
@@ -1806,14 +1806,14 @@ int std::flush;
             s->lookahead--;
         }
     }
-    Assert(std::flush != Z_NO_FLUSH, "no flush?");
+    Assert(flush != Z_NO_FLUSH, "no flush?");
     if (s->match_available) {
         Tracevv((stderr, "%c", s->window[s->strstart - 1]));
         _tr_tally_lit(s, s->window[s->strstart - 1], bflush);
         s->match_available = 0;
     }
     s->insert = s->strstart < MIN_MATCH - 1 ? s->strstart : MIN_MATCH - 1;
-    if (std::flush == Z_FINISH) {
+    if (flush == Z_FINISH) {
         FLUSH_BLOCK(s, 1);
         return finish_done;
     }
@@ -1827,8 +1827,8 @@ int std::flush;
  * one.  Do not maintain a hash table.  (It will be regenerated if this run of
  * deflate switches away from Z_RLE.)
  */
-local block_state deflate_rle(s, std::flush) deflate_state* s;
-int std::flush;
+local block_state deflate_rle(s, flush) deflate_state* s;
+int flush;
 {
     int bflush;           /* set if current block must be flushed */
     uInt prev;            /* byte at distance one to match */
@@ -1841,7 +1841,7 @@ int std::flush;
          */
         if (s->lookahead <= MAX_MATCH) {
             fill_window(s);
-            if (s->lookahead <= MAX_MATCH && std::flush == Z_NO_FLUSH) {
+            if (s->lookahead <= MAX_MATCH && flush == Z_NO_FLUSH) {
                 return need_more;
             }
             if (s->lookahead == 0) break; /* flush the current block */
@@ -1885,7 +1885,7 @@ int std::flush;
         if (bflush) FLUSH_BLOCK(s, 0);
     }
     s->insert = 0;
-    if (std::flush == Z_FINISH) {
+    if (flush == Z_FINISH) {
         FLUSH_BLOCK(s, 1);
         return finish_done;
     }
@@ -1897,8 +1897,8 @@ int std::flush;
  * For Z_HUFFMAN_ONLY, do not look for matches.  Do not maintain a hash table.
  * (It will be regenerated if this run of deflate switches away from Huffman.)
  */
-local block_state deflate_huff(s, std::flush) deflate_state* s;
-int std::flush;
+local block_state deflate_huff(s, flush) deflate_state* s;
+int flush;
 {
     int bflush; /* set if current block must be flushed */
 
@@ -1907,7 +1907,7 @@ int std::flush;
         if (s->lookahead == 0) {
             fill_window(s);
             if (s->lookahead == 0) {
-                if (std::flush == Z_NO_FLUSH) return need_more;
+                if (flush == Z_NO_FLUSH) return need_more;
                 break; /* flush the current block */
             }
         }
@@ -1921,7 +1921,7 @@ int std::flush;
         if (bflush) FLUSH_BLOCK(s, 0);
     }
     s->insert = 0;
-    if (std::flush == Z_FINISH) {
+    if (flush == Z_FINISH) {
         FLUSH_BLOCK(s, 1);
         return finish_done;
     }

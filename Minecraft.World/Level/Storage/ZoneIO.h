@@ -14,5 +14,5 @@ public:
     void write(ByteBuffer* bb, int size);
     ByteBuffer* read(int size);
 
-    void std::flush();
+    void flush();
 };

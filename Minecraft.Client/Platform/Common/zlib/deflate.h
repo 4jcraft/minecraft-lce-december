@@ -328,7 +328,7 @@ extern const uch ZLIB_INTERNAL _dist_code[];
         s->d_buf[s->last_lit] = 0;                        \
         s->l_buf[s->last_lit++] = cc;                     \
         s->dyn_ltree[cc].Freq++;                          \
-        std::flush = (s->last_lit == s->lit_bufsize - 1); \
+        flush = (s->last_lit == s->lit_bufsize - 1); \
     }
 #define _tr_tally_dist(s, distance, length, flush)             \
     {                                                          \
@@ -339,12 +339,12 @@ extern const uch ZLIB_INTERNAL _dist_code[];
         dist--;                                                \
         s->dyn_ltree[_length_code[len] + LITERALS + 1].Freq++; \
         s->dyn_dtree[d_code(dist)].Freq++;                     \
-        std::flush = (s->last_lit == s->lit_bufsize - 1);      \
+        flush = (s->last_lit == s->lit_bufsize - 1);      \
     }
 #else
 #define _tr_tally_lit(s, c, flush) flush = _tr_tally(s, 0, c)
 #define _tr_tally_dist(s, distance, length, flush) \
-    std::flush = _tr_tally(s, distance, length)
+    flush = _tr_tally(s, distance, length)
 #endif
 
 #endif /* DEFLATE_H */

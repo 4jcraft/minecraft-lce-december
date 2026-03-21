@@ -16,5 +16,5 @@ public:
         stream->write(b, offset, length);
     };
     virtual void close() { stream->close(); };
-    virtual void std::flush() {}
+    virtual void flush() {}
 };

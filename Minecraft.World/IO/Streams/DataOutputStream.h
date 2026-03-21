@@ -35,5 +35,5 @@ public:
     virtual void writeBoolean(bool b);
     virtual void writeUTF(const std::wstring& a);
     virtual void writePlayerUID(PlayerUID player);
-    virtual void std::flush();
+    virtual void flush();
 };

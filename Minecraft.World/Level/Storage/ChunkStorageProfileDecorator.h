@@ -20,5 +20,5 @@ public:
     void save(Level* level, LevelChunk* levelChunk);
     void saveEntities(Level* level, LevelChunk* levelChunk);
     void tick();
-    void std::flush();
+    void flush();
 };

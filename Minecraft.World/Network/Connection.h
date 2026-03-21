@@ -114,7 +114,7 @@ private:
     bool writeTick();
 
 public:
-    void std::flush();
+    void flush();
 
 private:
     bool readTick();

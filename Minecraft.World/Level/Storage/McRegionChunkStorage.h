@@ -30,7 +30,7 @@ public:
     virtual void saveEntities(Level* level, LevelChunk* levelChunk);
     virtual void loadEntities(Level* level, LevelChunk* levelChunk);
     virtual void tick();
-    virtual void std::flush();
+    virtual void flush();
     virtual void WaitForAll();                 // 4J Added
     virtual void WaitIfTooManyQueuedChunks();  // 4J Added
 

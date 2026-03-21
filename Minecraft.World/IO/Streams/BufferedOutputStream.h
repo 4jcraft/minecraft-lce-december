@@ -14,7 +14,7 @@ public:
     BufferedOutputStream(OutputStream* out, int size);
     ~BufferedOutputStream();
 
-    virtual void std::flush();
+    virtual void flush();
     virtual void close();
     virtual void write(byteArray b, unsigned int offset, unsigned int length);
     virtual void write(byteArray b);

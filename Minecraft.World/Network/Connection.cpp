@@ -494,7 +494,7 @@ void Connection::tick() {
         packetsToHandle[i]->handle(packetListener);
         PIXEndNamedEvent();
     }
-    std::flush();
+    flush();
 
     // 4J Stu - Moved this a bit later in the function to stop the race
     // condition of Disconnect packets not being processed when local client
@@ -527,7 +527,7 @@ void Connection::sendAndQuit() {
         return;
     }
     //	printf("Con:0x%x send & quit\n",this);
-    std::flush();
+    flush();
     quitting = true;
     // TODO 4J Stu - How to interrupt threads? Or do we need to change the
     // multithreaded functions a bit more

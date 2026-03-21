@@ -55,6 +55,6 @@ public:
     static LevelChunk* load(Level* level, DataInputStream* dis);  // 4J Added
 
     virtual void tick();
-    virtual void std::flush();
+    virtual void flush();
     virtual void saveEntities(Level* level, LevelChunk* levelChunk);
 };

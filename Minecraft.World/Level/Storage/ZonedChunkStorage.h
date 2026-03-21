@@ -45,7 +45,7 @@ public:
 
     void tick();
 
-    void std::flush();
+    void flush();
 
     void loadEntities(Level* level, LevelChunk* lc);
     void saveEntities(Level* level, LevelChunk* lc);
