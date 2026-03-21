@@ -662,10 +662,10 @@ int File::hash_fnct(const File& k) {
     // if (k->parent != NULL)
     //	hashCode = hash_fnct(k->getParent());
 
-    wchar_t* std::ref = (wchar_t*)k.m_abstractPathName.c_str();
+    wchar_t* ref = (wchar_t*)k.m_abstractPathName.c_str();
 
     for (unsigned int i = 0; i < k.m_abstractPathName.length(); i++) {
-        hashCode += ((hashCode * 33) + std::ref[i]) % 149;
+        hashCode += ((hashCode * 33) + ref[i]) % 149;
     }
 
     return (int)hashCode;

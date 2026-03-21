@@ -1112,7 +1112,7 @@ IDOCN struct IggyValuePath {
     IggyValuePath* parent;
     // align 0 mod 8
     IggyName name;
-    IggyValueRef std::ref;
+    IggyValueRef ref;
     // align 0 mod 8
     S32 index;
     S32 type;
@@ -1124,8 +1124,8 @@ typedef enum {
     IGGY_ValueRef_Weak,
 } IggyValueRefType;
 
-RADEXPFUNC rrbool RADEXPLINK IggyValueRefCheck(IggyValueRef std::ref);
-RADEXPFUNC void RADEXPLINK IggyValueRefFree(Iggy* p, IggyValueRef std::ref);
+RADEXPFUNC rrbool RADEXPLINK IggyValueRefCheck(IggyValueRef ref);
+RADEXPFUNC void RADEXPLINK IggyValueRefFree(Iggy* p, IggyValueRef ref);
 RADEXPFUNC IggyValueRef RADEXPLINK
 IggyValueRefFromPath(IggyValuePath* var, IggyValueRefType reftype);
 RADEXPFUNC rrbool RADEXPLINK
@@ -1148,7 +1148,7 @@ RADEXPFUNC rrbool RADEXPLINK IggyValuePathMakeNameRef(IggyValuePath* result,
                                                       char const* text_utf8);
 RADEXPFUNC void RADEXPLINK IggyValuePathFromRef(IggyValuePath* result,
                                                 Iggy* iggy,
-                                                IggyValueRef std::ref);
+                                                IggyValueRef ref);
 
 RADEXPFUNC void RADEXPLINK IggyValuePathMakeNameRefFast(IggyValuePath* result,
                                                         IggyValuePath* parent,

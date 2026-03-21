@@ -2157,7 +2157,7 @@ void ClientConnection::handlePreLogin(std::shared_ptr<PreLoginPacket> packet) {
                 // have at least one friend
                 for (int j = 0; j < g_NetworkManager.GetPlayerCount(); j++) {
                     Platform::String ^ xboxUserId =
-                        std::ref new Platform::String(
+                        ref new Platform::String(
                             g_NetworkManager.GetPlayerByIndex(j)
                                 ->GetUID()
                                 .toString()
@@ -2177,7 +2177,7 @@ void ClientConnection::handlePreLogin(std::shared_ptr<PreLoginPacket> packet) {
             // Check that the user is friends with the host
             bool isFriend = false;
 
-            Platform::String ^ hostXboxUserId = std::ref new Platform::String(
+            Platform::String ^ hostXboxUserId = ref new Platform::String(
                 g_NetworkManager.GetHostPlayer()->GetUID().toString().data());
 
             for (int i = 0; i < friendsXuids->Size; i++) {

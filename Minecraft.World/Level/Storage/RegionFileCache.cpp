@@ -38,13 +38,13 @@ RegionFile* RegionFileCache::_getRegionFile(
     }
     MemSect(0);
 
-    RegionFile* std::ref = NULL;
+    RegionFile* ref = NULL;
     AUTO_VAR(it, cache.find(file));
-    if (it != cache.end()) std::ref = it->second;
+    if (it != cache.end()) ref = it->second;
 
     // 4J Jev, put back in.
-    if (std::ref != NULL) {
-        return std::ref;
+    if (ref != NULL) {
+        return ref;
     }
 
     // 4J Stu - Remove for new save files
