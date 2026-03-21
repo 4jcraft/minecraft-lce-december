@@ -75,147 +75,132 @@ void UIScene_JoinMenu::tick() {
                             m_selectedSession->data.players[i].getQuadrant() +
                                 1);
                         playerName.append(suffix);
-#endif 
-					m_buttonListPlayers.addItem( \
-    playerName);
+#endif
+                        m_buttonListPlayers.addItem(playerName);
 				}
                 }
                 else {  // Leave the loop when we hit the first NULL player
                     break;
                 }
 #elif defined(_DURANGO)
-		for (int i = 0; i < MINECRAFT_NET_MAX_PLAYERS; i++) {
-        if (m_selectedSession->searchResult.m_playerNames[i].size()) {
-            m_buttonListPlayers.addItem(
-                m_selectedSession->searchResult.m_playerNames[i]);
-        } else {  // Leave the loop when we hit the first empty
-                  // player name
-            break;
-        }
-#endif 
+        for (int i = 0; i < MINECRAFT_NET_MAX_PLAYERS; i++) {
+            if (m_selectedSession->searchResult.m_playerNames[i].size()) {
+                m_buttonListPlayers.addItem(
+                    m_selectedSession->searchResult.m_playerNames[i]);
+            } else {  // Leave the loop when we hit the first empty
+                      // player name
+                break;
+            }
+#endif
 
-		m_labelLabels[eLabel_Difficulty].init(
-                        app.GetString(IDS_LABEL_DIFFICULTY));
-                        m_labelLabels[eLabel_GameType].init(
-                            app.GetString(IDS_LABEL_GAME_TYPE));
-                        m_labelLabels[eLabel_GamertagsOn].init(
-                            app.GetString(IDS_LABEL_GAMERTAGS));
-                        m_labelLabels[eLabel_Structures].init(
-                            app.GetString(IDS_LABEL_STRUCTURES));
-                        m_labelLabels[eLabel_LevelType].init(
-                            app.GetString(IDS_LABEL_LEVEL_TYPE));
-                        m_labelLabels[eLabel_PVP].init(
-                            app.GetString(IDS_LABEL_PvP));
-                        m_labelLabels[eLabel_Trust].init(
-                            app.GetString(IDS_LABEL_TRUST));
-                        m_labelLabels[eLabel_TNTOn].init(
-                            app.GetString(IDS_LABEL_TNT));
-                        m_labelLabels[eLabel_FireOn].init(
-                            app.GetString(IDS_LABEL_FIRE_SPREADS));
+                m_labelLabels[eLabel_Difficulty].init(
+                    app.GetString(IDS_LABEL_DIFFICULTY));
+                m_labelLabels[eLabel_GameType].init(
+                    app.GetString(IDS_LABEL_GAME_TYPE));
+                m_labelLabels[eLabel_GamertagsOn].init(
+                    app.GetString(IDS_LABEL_GAMERTAGS));
+                m_labelLabels[eLabel_Structures].init(
+                    app.GetString(IDS_LABEL_STRUCTURES));
+                m_labelLabels[eLabel_LevelType].init(
+                    app.GetString(IDS_LABEL_LEVEL_TYPE));
+                m_labelLabels[eLabel_PVP].init(app.GetString(IDS_LABEL_PvP));
+                m_labelLabels[eLabel_Trust].init(
+                    app.GetString(IDS_LABEL_TRUST));
+                m_labelLabels[eLabel_TNTOn].init(app.GetString(IDS_LABEL_TNT));
+                m_labelLabels[eLabel_FireOn].init(
+                    app.GetString(IDS_LABEL_FIRE_SPREADS));
 
-                        unsigned int uiGameHostSettings =
-                            m_selectedSession->data.m_uiGameHostSettings;
-                        switch (app.GetGameHostOption(
-                            uiGameHostSettings, eGameHostOption_Difficulty)) {
-                            case Difficulty::EASY:
-                                m_labelValues[eLabel_Difficulty].init(
-                                    app.GetString(IDS_DIFFICULTY_TITLE_EASY));
-                                break;
-                            case Difficulty::NORMAL:
-                                m_labelValues[eLabel_Difficulty].init(
-                                    app.GetString(IDS_DIFFICULTY_TITLE_NORMAL));
-                                break;
-                            case Difficulty::HARD:
-                                m_labelValues[eLabel_Difficulty].init(
-                                    app.GetString(IDS_DIFFICULTY_TITLE_HARD));
-                                break;
-                            case Difficulty::PEACEFUL:
-                            default:
-                                m_labelValues[eLabel_Difficulty].init(
-                                    app.GetString(
-                                        IDS_DIFFICULTY_TITLE_PEACEFUL));
-                                break;
-                        }
+                unsigned int uiGameHostSettings =
+                    m_selectedSession->data.m_uiGameHostSettings;
+                switch (app.GetGameHostOption(uiGameHostSettings,
+                                              eGameHostOption_Difficulty)) {
+                    case Difficulty::EASY:
+                        m_labelValues[eLabel_Difficulty].init(
+                            app.GetString(IDS_DIFFICULTY_TITLE_EASY));
+                        break;
+                    case Difficulty::NORMAL:
+                        m_labelValues[eLabel_Difficulty].init(
+                            app.GetString(IDS_DIFFICULTY_TITLE_NORMAL));
+                        break;
+                    case Difficulty::HARD:
+                        m_labelValues[eLabel_Difficulty].init(
+                            app.GetString(IDS_DIFFICULTY_TITLE_HARD));
+                        break;
+                    case Difficulty::PEACEFUL:
+                    default:
+                        m_labelValues[eLabel_Difficulty].init(
+                            app.GetString(IDS_DIFFICULTY_TITLE_PEACEFUL));
+                        break;
+                }
 
-                        int option = app.GetGameHostOption(
-                            uiGameHostSettings, eGameHostOption_GameType);
-                        if (option == GameType::CREATIVE->getId()) {
-                            m_labelValues[eLabel_GameType].init(
-                                app.GetString(IDS_CREATIVE));
-                        } else if (option == GameType::ADVENTURE->getId()) {
-                            m_labelValues[eLabel_GameType].init(
-                                app.GetString(IDS_ADVENTURE));
-                        } else {
-                            m_labelValues[eLabel_GameType].init(
-                                app.GetString(IDS_SURVIVAL));
-                        }
+                int option = app.GetGameHostOption(uiGameHostSettings,
+                                                   eGameHostOption_GameType);
+                if (option == GameType::CREATIVE->getId()) {
+                    m_labelValues[eLabel_GameType].init(
+                        app.GetString(IDS_CREATIVE));
+                } else if (option == GameType::ADVENTURE->getId()) {
+                    m_labelValues[eLabel_GameType].init(
+                        app.GetString(IDS_ADVENTURE));
+                } else {
+                    m_labelValues[eLabel_GameType].init(
+                        app.GetString(IDS_SURVIVAL));
+                }
 
-                        if (app.GetGameHostOption(uiGameHostSettings,
-                                                  eGameHostOption_Gamertags))
-                            m_labelValues[eLabel_GamertagsOn].init(
-                                app.GetString(IDS_ON));
-                        else
-                            m_labelValues[eLabel_GamertagsOn].init(
-                                app.GetString(IDS_OFF));
+                if (app.GetGameHostOption(uiGameHostSettings,
+                                          eGameHostOption_Gamertags))
+                    m_labelValues[eLabel_GamertagsOn].init(
+                        app.GetString(IDS_ON));
+                else
+                    m_labelValues[eLabel_GamertagsOn].init(
+                        app.GetString(IDS_OFF));
 
-                        if (app.GetGameHostOption(uiGameHostSettings,
-                                                  eGameHostOption_Structures))
-                            m_labelValues[eLabel_Structures].init(
-                                app.GetString(IDS_ON));
-                        else
-                            m_labelValues[eLabel_Structures].init(
-                                app.GetString(IDS_OFF));
+                if (app.GetGameHostOption(uiGameHostSettings,
+                                          eGameHostOption_Structures))
+                    m_labelValues[eLabel_Structures].init(
+                        app.GetString(IDS_ON));
+                else
+                    m_labelValues[eLabel_Structures].init(
+                        app.GetString(IDS_OFF));
 
-                        if (app.GetGameHostOption(uiGameHostSettings,
-                                                  eGameHostOption_LevelType))
-                            m_labelValues[eLabel_LevelType].init(
-                                app.GetString(IDS_LEVELTYPE_SUPERFLAT));
-                        else
-                            m_labelValues[eLabel_LevelType].init(
-                                app.GetString(IDS_LEVELTYPE_NORMAL));
+                if (app.GetGameHostOption(uiGameHostSettings,
+                                          eGameHostOption_LevelType))
+                    m_labelValues[eLabel_LevelType].init(
+                        app.GetString(IDS_LEVELTYPE_SUPERFLAT));
+                else
+                    m_labelValues[eLabel_LevelType].init(
+                        app.GetString(IDS_LEVELTYPE_NORMAL));
 
-                        if (app.GetGameHostOption(uiGameHostSettings,
-                                                  eGameHostOption_PvP))
-                            m_labelValues[eLabel_PVP].init(
-                                app.GetString(IDS_ON));
-                        else
-                            m_labelValues[eLabel_PVP].init(
-                                app.GetString(IDS_OFF));
+                if (app.GetGameHostOption(uiGameHostSettings,
+                                          eGameHostOption_PvP))
+                    m_labelValues[eLabel_PVP].init(app.GetString(IDS_ON));
+                else
+                    m_labelValues[eLabel_PVP].init(app.GetString(IDS_OFF));
 
-                        if (app.GetGameHostOption(uiGameHostSettings,
-                                                  eGameHostOption_TrustPlayers))
-                            m_labelValues[eLabel_Trust].init(
-                                app.GetString(IDS_ON));
-                        else
-                            m_labelValues[eLabel_Trust].init(
-                                app.GetString(IDS_OFF));
+                if (app.GetGameHostOption(uiGameHostSettings,
+                                          eGameHostOption_TrustPlayers))
+                    m_labelValues[eLabel_Trust].init(app.GetString(IDS_ON));
+                else
+                    m_labelValues[eLabel_Trust].init(app.GetString(IDS_OFF));
 
-                        if (app.GetGameHostOption(uiGameHostSettings,
-                                                  eGameHostOption_TNT))
-                            m_labelValues[eLabel_TNTOn].init(
-                                app.GetString(IDS_ON));
-                        else
-                            m_labelValues[eLabel_TNTOn].init(
-                                app.GetString(IDS_OFF));
+                if (app.GetGameHostOption(uiGameHostSettings,
+                                          eGameHostOption_TNT))
+                    m_labelValues[eLabel_TNTOn].init(app.GetString(IDS_ON));
+                else
+                    m_labelValues[eLabel_TNTOn].init(app.GetString(IDS_OFF));
 
-                        if (app.GetGameHostOption(uiGameHostSettings,
-                                                  eGameHostOption_FireSpreads))
-                            m_labelValues[eLabel_FireOn].init(
-                                app.GetString(IDS_ON));
-                        else
-                            m_labelValues[eLabel_FireOn].init(
-                                app.GetString(IDS_OFF));
+                if (app.GetGameHostOption(uiGameHostSettings,
+                                          eGameHostOption_FireSpreads))
+                    m_labelValues[eLabel_FireOn].init(app.GetString(IDS_ON));
+                else
+                    m_labelValues[eLabel_FireOn].init(app.GetString(IDS_OFF));
 
-                        m_bIgnoreInput =
-                            false  // Alert the app the we want to be informed
-                                   // of ethernet connections
-                            app.SetLiveLinkRequired(true);
+                m_bIgnoreInput = false  // Alert the app the we want to be
+                                        // informed of ethernet connections
+                                 app.SetLiveLinkRequired(true);
 
-                        TelemetryManager->RecordMenuShown(m_iPad,
-                                                          eUIScene_JoinMenu, 0);
+                TelemetryManager->RecordMenuShown(m_iPad, eUIScene_JoinMenu, 0);
 
-                        addTimer(UPDATE_PLAYERS_TIMER_ID,
-                                 UPDATE_PLAYERS_TIMER_TIME);
+                addTimer(UPDATE_PLAYERS_TIMER_ID, UPDATE_PLAYERS_TIMER_TIME);
             }
 
             if (m_friendInfoUpdatedERROR) {
@@ -264,8 +249,6 @@ void UIScene_JoinMenu::tick() {
                 uiIDA[0] = IDS_CONFIRM#ifdef _XBOX_ONE
 		ui.RequestErrorMessage( IDS_CONNECTION_FAILED, IDS_DISCONNECTED_SERVER_QUIT, uiIDA,1,m_iPad,ErrorDialogReturned,th#else
 		ui.RequestErrorMessage( IDS_ERROR_NETWORK_TITLE, IDS_ERROR_NETWORK, uiIDA,1,m_iPad,ErrorDialogReturned,th#endif
-	
-                
             }
 
             UIScene::tick();
@@ -310,8 +293,7 @@ void UIScene_JoinMenu::tick() {
                         navigateBack();
                         handled = true;
                     }
-                br #ifdef _DURANGO
-	case ACTION_MENU_Y:
+                br #ifdef _DURANGO case ACTION_MENU_Y:
                     if (m_selectedSession != NULL &&
                         getControlFocus() == eControl_GamePlayers &&
                         m_buttonListPlayers.getItemCount() > 0) {
@@ -322,15 +304,12 @@ void UIScene_JoinMenu::tick() {
                             ProfileManager.ShowProfileCard(
                                 ProfileManager.GetLockedProfile(), uid);
                     }
-                br #endif 
-	case ACTION_MENU_OK:
+                br #endif case ACTION_MENU_OK:
                     if (getControlFocus() != eControl_GamePlayers) {
                         sendInputToMovie(key, repeat, pressed, released);
                     }
                     handled = true;
-                br #ifdef __ORBIS__
-	case ACTION_MENU_TOUCHPAD_PR #endif 
-	case ACTION_MENU_UP:
+                br #ifdef __ORBIS__ case ACTION_MENU_TOUCHPAD_PR #endif case ACTION_MENU_UP:
                 case ACTION_MENU_DOWN:
                 case ACTION_MENU_PAGEUP:
                 case ACTION_MENU_PAGEDOWN:
@@ -348,155 +327,149 @@ void UIScene_JoinMenu::tick() {
 #ifdef _DURANGO
 			ProfileManager.CheckMultiplayerPrivileges( \
     m_iPad, true, &checkPrivilegeCallback, (LPVOID)GetCallbackUniqueId #else 
-			StartSharedLaunchFlo #endif 
-		}
-		break;
-	case eControl_GamePlayers:
-		break;
-                };
-            }
+			StartSharedLaunchFlo #endif
+                } break;
+                case eControl_GamePlayers:
+                    break;
+            };
+        }
 
-            void UIScene_JoinMenu::handleFocusChange(F64 controlId,
-                                                     F64 childId) {
-                switch ((int)controlId) {
-                    case eControl_GamePlayers:
-                        m_buttonListPlayers.updateChildFocus((int)childId);
-                };
+        void UIScene_JoinMenu::handleFocusChange(F64 controlId, F64 childId) {
+            switch ((int)controlId) {
+                case eControl_GamePlayers:
+                    m_buttonListPlayers.updateChildFocus((int)childId);
+            };
         updateTooltips(
 #ifdef _DURANGO
 void UIScene_JoinMenu::checkPrivilegeCallback(LPVOID lpParam, \
                                               bool hasPrivilege, int iPad)
 {
+                UIScene_JoinMenu* pClass =
+                    (UIScene_JoinMenu*)ui.GetSceneFromCallbackId(
+                        (size_t)lpParam);
+
+                if (pClass) {
+                    if (hasPrivilege) {
+                        pClass->StartSharedLaunchFlow();
+                    } else {
+                        pClass->m_bIgnoreInput = false;
+                    }
+#endif
+
+                    void UIScene_JoinMenu::StartSharedLaunchFlow() {
+                        if (!app.IsLocalMultiplayerAvailable()) {
+                            JoinGame(this);
+                        } else
+                            // ProfileManager.RequestSignInUI(false,
+                            // false, false, true,
+                            // false,&UIScene_JoinMenu::StartGame_SignInReturned,
+                            // this,ProfileManager.GetPrimaryPad());
+                            SignInInfo info;
+                        info.Func = &UIScene_JoinMenu::StartGame_SignInReturned;
+                        info.lpParam = (LPVOID)GetCallbackUniqueId();
+                        info.requireOnline = true;
+                        ui.NavigateToScene(ProfileManager.GetPrimaryPad(),
+                                           eUIScene_QuadrantSignin, &info);
+                    }
+                }
+
+                int UIScene_JoinMenu::StartGame_SignInReturned(
+                    void* pParam, bool bContinue, int iPad) {
                     UIScene_JoinMenu* pClass =
                         (UIScene_JoinMenu*)ui.GetSceneFromCallbackId(
-                            (size_t)lpParam);
+                            (size_t)pParam);
 
                     if (pClass) {
-                        if (hasPrivilege) {
-                            pClass->StartSharedLaunchFlow();
-                        } else {
-                            pClass->m_bIgnoreInput = false;
-                        }
-#endif 
-
-void UIScene_JoinMenu::StartSharedLaunchFlow()
-                        {
-                            if (!app.IsLocalMultiplayerAvailable()) {
-                                JoinGame(this);
-                            } else
-                                // ProfileManager.RequestSignInUI(false,
-                                // false, false, true,
-                                // false,&UIScene_JoinMenu::StartGame_SignInReturned,
-                                // this,ProfileManager.GetPrimaryPad());
-                                SignInInfo info;
-                            info.Func =
-                                &UIScene_JoinMenu::StartGame_SignInReturned;
-                            info.lpParam = (LPVOID)GetCallbackUniqueId();
-                            info.requireOnline = true;
-                            ui.NavigateToScene(ProfileManager.GetPrimaryPad(),
-                                               eUIScene_QuadrantSignin, &info);
-                        }
+                        if (bContinue == true)
+                            // It's possible that the player has not
+                            // signed in - they can back out
+                            if (ProfileManager.IsSignedIn(iPad)) {
+                                JoinGame(pClass);
+                            } else {
+                                pClass->m_bIgnoreInput = false;
+                            }
+                    } else {
+                        pClass->m_bIgnoreInput = false;
                     }
-
-                    int UIScene_JoinMenu::StartGame_SignInReturned(
-                        void* pParam, bool bContinue, int iPad) {
-                        UIScene_JoinMenu* pClass =
-                            (UIScene_JoinMenu*)ui.GetSceneFromCallbackId(
-                                (size_t)pParam);
-
-                        if (pClass) {
-                            if (bContinue == true)
-                                // It's possible that the player has not
-                                // signed in - they can back out
-                                if (ProfileManager.IsSignedIn(iPad)) {
-                                    JoinGame(pClass);
-                                } else {
-                                    pClass->m_bIgnoreInput = false;
-                                }
-                        } else {
-                            pClass->m_bIgnoreInput = false;
-                        }
-                    }
-                    return 0  // Shared function to join the game that is
-                              // the same whether we used the sign-in UI or
-                              // not
-                        void UIScene_JoinMenu::JoinGame(UIScene_JoinMenu *
-                                                        pClass) {
-                        DWORD dwSignedInUsers = 0;
-                        bool noPrivileges = false;
-                        DWORD dwLocalUsersMask = 0;
-                        bool isSignedInLive = true;
-                        int iPadNotSignedInLive = -1;
+                }
+                return 0  // Shared function to join the game that is
+                          // the same whether we used the sign-in UI or
+                          // not
+                    void UIScene_JoinMenu::JoinGame(UIScene_JoinMenu * pClass) {
+                    DWORD dwSignedInUsers = 0;
+                    bool noPrivileges = false;
+                    DWORD dwLocalUsersMask = 0;
+                    bool isSignedInLive = true;
+                    int iPadNotSignedInLive = -1;
 
         ProfileManager.SetLockedProfile(// TEMP!// If we're in SD mode, then only the primary player gets to play
 	if (app.IsLocalMultiplayerAvailable())
 	{
-                            for (unsigned int index = 0;
-                                 index < XUSER_MAX_COUNT; ++index) {
-                                if (ProfileManager.IsSignedIn(index)) {
-                                    if (isSignedInLive &&
-                                        !ProfileManager.IsSignedInLive(index)) {
-                                        // Record the first non signed in
-                                        // live pad
-                                        iPadNotSignedInLive = index;
-                                    }
-
-                                    if (!ProfileManager
-                                             .AllowedToPlayMultiplayer(index))
-                                        noPrivileges = true;
-                                    dwLocalUsersMask |=
-                                        CGameNetworkManager::GetLocalPlayerMask(
-                                            index);
-                                    isSignedInLive =
-                                        isSignedInLive &&
-                                        ProfileManager.IsSignedInLive(index);
+                        for (unsigned int index = 0; index < XUSER_MAX_COUNT;
+                             ++index) {
+                            if (ProfileManager.IsSignedIn(index)) {
+                                if (isSignedInLive &&
+                                    !ProfileManager.IsSignedInLive(index)) {
+                                    // Record the first non signed in
+                                    // live pad
+                                    iPadNotSignedInLive = index;
                                 }
-                            }
-	}
-	else
-	{
-                            if (ProfileManager.IsSignedIn(
-                                    ProfileManager.GetPrimaryPad())) {
+
                                 if (!ProfileManager.AllowedToPlayMultiplayer(
-                                        ProfileManager.GetPrimaryPad()))
+                                        index))
                                     noPrivileges = true;
                                 dwLocalUsersMask |=
                                     CGameNetworkManager::GetLocalPlayerMask(
-                                        ProfileManager.GetPrimaryPad());
+                                        index);
+                                isSignedInLive =
+                                    isSignedInLive &&
+                                    ProfileManager.IsSignedInLive(index);
+                            }
+                        }
+	}
+	else
+	{
+                        if (ProfileManager.IsSignedIn(
+                                ProfileManager.GetPrimaryPad())) {
+                            if (!ProfileManager.AllowedToPlayMultiplayer(
+                                    ProfileManager.GetPrimaryPad()))
+                                noPrivileges = true;
+                            dwLocalUsersMask |=
+                                CGameNetworkManager::GetLocalPlayerMask(
+                                    ProfileManager.GetPrimaryPad());
 
                         isSignedInLive = ProfileManager.IsSignedInLive(ProfileManager.GetPrimaryPad#ifdef __PSVITA__
 			if(CGameNetworkManager::usingAdhocMode() && SQRNetworkManager_AdHoc_Vita::GetAdhocStatus())
 				isSignedInLive = t#endif
-
-		
-                                
-                            }
-                            // If this is an online game but not all players
-                            // are signed in to Live, stop!
+                        }
+                        // If this is an online game but not all players
+                        // are signed in to Live, stop!
         if (!isSignedInLive#ifdef __ORBIS__// Check if PSN is unavailable because of age restriction
 		int npAvailability = ProfileManager.getNPAvailability(iPadNotSignedInLive);
 		if (npAvailability == SCE_NP_ERROR_AGE_RESTRICTION)
 		{
-                                pClass->m_bIgnoreInput =
-                                    false  // 4J Stu - This is a bit messy
-                                           // and is due to the library
-                                           // incorrectly returning false
-                                           // for IsSignedInLive if the
-                                           // npAvailability isn't
-                                           // SCE_OK
-                                    UINT uiIDA[1];
-                                uiIDA[0] = IDS_OK;
-                                ui.RequestErrorMessage(IDS_ONLINE_SERVICE_TITLE,
-                                                       IDS_CONTENT_RESTRICTION,
-                                                       uiIDA, 1,
-                                                       iPadNotSignedInLive);
+                            pClass->m_bIgnoreInput =
+                                false  // 4J Stu - This is a bit messy
+                                       // and is due to the library
+                                       // incorrectly returning false
+                                       // for IsSignedInLive if the
+                                       // npAvailability isn't
+                                       // SCE_OK
+                                UINT uiIDA[1];
+                            uiIDA[0] = IDS_OK;
+                            ui.RequestErrorMessage(IDS_ONLINE_SERVICE_TITLE,
+                                                   IDS_CONTENT_RESTRICTION,
+                                                   uiIDA, 1,
+                                                   iPadNotSignedInLive);
 		}
 #endif 
 		{
-			pClass->m_bIgnoreInput=false;
-			UINT uiIDA[1];
-			uiIDA[0]=IDS_CONFIRM_OK;
-			ui.RequestErrorMessage( IDS_PRO_NOTONLINE_TITLE, IDS_PRO_NOTONLINE_TEXT, uiIDA,1,ProfileManager.GetPrimaryPad());
+                            pClass->m_bIgnoreInput = false;
+                            UINT uiIDA[1];
+                            uiIDA[0] = IDS_CONFIRM_OK;
+                            ui.RequestErrorMessage(
+                                IDS_PRO_NOTONLINE_TITLE, IDS_PRO_NOTONLINE_TEXT,
+                                uiIDA, 1, ProfileManager.GetPrimaryPad());
 		}
 		return;
 // Check if user-created content is allowed, as we cannot play multiplayer if it's not
@@ -509,20 +482,19 @@ void UIScene_JoinMenu::StartSharedLaunchFlow()
                             ProfileManager
                                 .GetChatAndContentRestrictions(
                                     ProfileManager.GetPrimaryPad(), false,
-                                    &noUGC, NULL, NULL) #else 
-	ProfileManager
+                                    &noUGC, NULL, NULL) #else ProfileManager
                                 .AllowedPlayerCreatedContent(
                                     ProfileManager.GetPrimaryPad(), false,
                                     &pccAllowed, &pccFriendsAllowed);
                             if (!pccAllowed && !pccFriendsAllowed)
-                                noUGC = t #endif 
+                                noUGC = t #endif
 
 #ifdef __PSVITA__
-	if (CGameNetworkManager::usingAdhocMode()) {
+                                    if (CGameNetworkManager::usingAdhocMode()) {
                                     noPrivileges = false;
-                                    noUGC = false #endif 
+                                    noUGC = false #endif
 
-	if (noUGC) {
+                                        if (noUGC) {
                                         pClass->setVisible(true);
                                         pClass->m_bIgnoreInput = false;
 
@@ -547,8 +519,9 @@ void UIScene_JoinMenu::StartSharedLaunchFlow()
                                             ProfileManager.GetPrimaryPad());
                                     }
                                     els #if defined (__ORBIS__) ||
-                                        defined(__PSVITA__)
-		bool chatRestricted = false;
+                                        defined(
+                                            __PSVITA__) bool chatRestricted =
+                                        false;
                                     ProfileManager
                                         .GetChatAndContentRestrictions(
                                             ProfileManager.GetPrimaryPad(),
@@ -557,25 +530,25 @@ void UIScene_JoinMenu::StartSharedLaunchFlow()
                                         ProfileManager.DisplaySystemMessage(
                                             SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_PSN_CHAT_RESTRICTION,
                                             ProfileManager.GetPrimaryPad());
-#endif 
-		CGameNetworkManager::eJoinGameResult result =
-                                        g_NetworkManager
-                                            .JoinGame(
-                                                pClass->m_selectedSession,
-                                                dwLocalUsersMask)  // Alert
-                                                                   // the
-                                                                   // app
-                                                                   // the
-                                                                   // we
-                                                                   // no
-                                                                   // longer
-                                                                   // want
-                                                                   // to
-                                                                   // be
-                                                                   // informed
-                                                                   // of
-                                                                   // ethernet
-                                                                   // connections
+#endif
+                                        CGameNetworkManager::eJoinGameResult result =
+                                            g_NetworkManager
+                                                .JoinGame(
+                                                    pClass->m_selectedSession,
+                                                    dwLocalUsersMask)  // Alert
+                                                                       // the
+                                                                       // app
+                                                                       // the
+                                                                       // we
+                                                                       // no
+                                                                       // longer
+                                                                       // want
+                                                                       // to
+                                                                       // be
+                                                                       // informed
+                                                                       // of
+                                                                       // ethernet
+                                                                       // connections
                                             app.SetLiveLinkRequired(false);
 
                                         if (result != CGameNetworkManager::
@@ -612,9 +585,9 @@ void UIScene_JoinMenu::StartSharedLaunchFlow()
                                 switch (id) {
                                     case UPDATE_PLAYERS_TIMER_ID:
 #if TO_BE_IMPLEMENTED
-			PlayerUID selectedPlayerXUID =
-                                        m_selectedSession->data
-                                            .players[playersList.GetCurSel()];
+                                        PlayerUID selectedPlayerXUID =
+                                            m_selectedSession->data.players
+                                                [playersList.GetCurSel()];
 
                                         bool success =
                                             g_NetworkManager.GetGameSessionInfo(
@@ -642,19 +615,26 @@ void UIScene_JoinMenu::StartSharedLaunchFlow()
 						}
 #endif 
 						{
-							playersList.SetText(i, convStringToWstring( m_selectedSession->data.szPlayers[i] ).c_str() );
+                                                        playersList.SetText(
+                                                            i,
+                                                            convStringToWstring(
+                                                                m_selectedSession
+                                                                    ->data
+                                                                    .szPlayers
+                                                                        [i])
+                                                                .c_str());
+                                                }
+                                                } else {
+                                                    // Leave the loop when we
+                                                    // hit the first NULL
+                                                    // player
+                                                    break;
                                                 }
                                             }
-                                            else {
-                                                // Leave the loop when we
-                                                // hit the first NULL
-                                                // player
-                                                break;
-                                            }
+                                            playersList.SetCurSel(
+                                                selectedIndex);
+#endif
                                         }
-                                        playersList.SetCurSel(selectedIndex);
-#endif 
-		}
                                         break;
                                 };
                             }

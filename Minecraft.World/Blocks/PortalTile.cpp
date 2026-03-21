@@ -139,9 +139,9 @@ void PortalTile::neighborChanged(Level* level, int x, int y, int z, int type) {
         return;
     }
 
-    if  //(  
+    if  //(
         (level->getTile(x + xd, y, z + zd) == Tile::obsidian_Id &&
-         level->getTile(x - xd, y, z - zd) == id)  //|  
+         level->getTile(x - xd, y, z - zd) == id)  //|
             (level->getTile(x - xd, y, z - zd) == Tile::obsidian_Id &&
              level->getTile(x + xd, y, z + zd) == //)  
             )) {

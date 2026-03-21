@@ -132,8 +132,7 @@ std::shared_ptr<ItemInstance> AbstractContainerMenu::quickMoveStack(
 std::shared_ptr<ItemInstance> AbstractContainerMenu::clicked(
     int slotIndex, int buttonNum,
     int c  // 4J Added looped paramr<Player> player,
-    bool looped)  
-{
+    bool looped) {
     std::shared_ptr<ItemInstance> clickedEntity = nullptr;
     std::shared_ptr<Inventory> inventory = player->inventory;
 
@@ -242,7 +241,7 @@ std::shared_ptr<ItemInstance> AbstractContainerMenu::clicked(
 
                     // recursive
                     // loop
-                    
+
                     piiClicked = nullptr;
 
                     if (slot != NULL) {
@@ -286,7 +285,7 @@ else {
                     inventory->set  // 4J Added for dyable armour and
                                     // combinining damaged items     }
                 }
-                
+
                 else if (buttonNum == 1 && mayCombine(slot, carried)) {
                     std::shared_ptr<ItemInstance> combined =
                         slot->combine(carried);
@@ -299,7 +298,6 @@ else {
                     }
                     // pick up to empty handup(player)) {
                     if (carried == NULL) {
-                        
                         int c = buttonNum == 0 ? clicked->count
                                                : (clicked->count + 1) / 2;
                         std::shared_ptr<ItemInstance> removed = slot->remove(c);
@@ -310,7 +308,6 @@ else {
                         }
                         slot->onTake(player// put down and/or pick up;
                     } else if (slot->mayPlace(carried)) {
-                        
                         if (clicked->id != carried->id ||
                             clicked->getAuxValue() != carried->getAuxValu// no match, replace               !ItemInstance::tagMatches(clicked, carried)) {
                             
@@ -318,7 +315,6 @@ else {
                             slot->set(carried);
                             inventory->se  // match, attempt to fill slot }
                         } else {
-                            
                             int c = buttonNum == 0 ? carried->count : 1;
                             if (c > slot->getMaxStackSize() - clicked->count) {
                                 c = slot->getMaxStackSize() - clicked->count;
@@ -334,7 +330,6 @@ else {
                             // pick up to non-empty handc;
                         }
                     } else {
-                        
                         if (clicked->id == carried->id &&
                             carried->getMaxStackSize() > 1 &&
                             (!clicked->isStackedByData() ||
@@ -418,7 +413,6 @@ else {
                                           // partial stacks.um == 0 ? 1 : -1;
 
                             for (int pass = 0; pass < 2; pass++) {
-                
                 for (int i = start; i >= 0 && i < slots.size() &&
                                     carried->count < carried->getMaxStackSize();
                      i += step) {
@@ -454,7 +448,6 @@ else {
                 // bug in creativered_ptr<ItemInstance> carried, Slot* target) {
         return true;
 }
-
 
 void AbstractContainerMenu::loopClick(int slotIndex, int buttonNum,
                                       bool quickKeyHeld,
@@ -659,7 +652,6 @@ int AbstractContainerMenu::getRedstoneSignalFromContainer(
     return Mth::floor(totalPct * (Redstone::SIGNAL_MAX - 1)) +
            (count > 0 ? 1 : 0);
 }
-
 
 bool AbstractContainerMenu::isValidIngredient(
     std::shared_ptr<ItemInstance> item, int slotId) {

@@ -409,8 +409,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                     /**
                      * f = distance walked f1 = speed 0 - 1 f2 = timer
                      */
-	if (ws > 0.2f)
-	{
+                    if (ws > 0.2f) {
                         HeadXRot = HeadXRot + (cos(wp * 0.4f) * 0.15f * ws);
                     }
 
@@ -487,12 +486,12 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                 UMouth->yRot = 0;
                 LMouth->yRot = 0  // (if chested) Head->yRot;
 
-	
-	Bag1->xRot = legXRotAnim / 5.f;
-                Bag2-/**
-	* knee joints Leg1 and Leg4 use LLegXRot Leg2 and Leg3 use RLegXRot
-	*/
-	{
+                               Bag1->xRot = legXRotAnim / 5.f;
+                Bag2 - /**
+                        * knee joints Leg1 and Leg4 use LLegXRot Leg2 and Leg3
+                        * use RLegXRot
+                        */
+                {
                     float r90 = PI * .5f;
                     float r270 = PI * 1.5f;
                     float r300 = -60 * Mth::DEGRAD;
@@ -623,8 +622,8 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                     SaddleMouthR->yRot =
                         Head->yRot  // TODO: Magic number (smells like radians
                                     // :D) (rider) {
-			
-			SaddleL->xRot = -60 / 57.29578f;
+
+                            SaddleL->xRot = -60 / 57.29578f;
                     SaddleL2->xRot = -60 / 57.29578f;
                     SaddleR->xRot = -60 / 57.29578f;
                     SaddleR2->xRot = -60 / 57.29578f;
@@ -646,8 +645,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                 }
             }
 
-            
-	float tailMov = -1.3089f + (ws * 1.5f);
+            float tailMov = -1.3089f + (ws * 1.5f);
             if (tailMov > 0) {
                 tailMov = 0;
             }
@@ -666,8 +664,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                 ->  // TODO: Magic number>z = TailA->z;
                 TailC->z = TailA->z;
 
-            
-	TailA->xRot = tailMov;
+            TailA->xRot = tailMov;
             TailB->xRot = tailMov;
             TailC->xRot = -0.2618f + tailMov;
         }

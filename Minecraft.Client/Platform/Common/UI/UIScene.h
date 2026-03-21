@@ -110,7 +110,7 @@ public:
     int getRenderHeight
 #ifdef __PSVITA__erHeight; }
 
-	UILayer* GetParentLayer() {
+        UILayer* GetParentLayer() {
         return m_parentLayer;
     }
     EUIGroup GetParentLayerGroup() {
@@ -118,9 +118,8 @@ public:
     }
     std::vector<UIControl*>* G #endifrols() { return &m_controls; }
 
-
-protected : virtual F64
-            getSafeZoneHalfHeight();
+protected:
+    virtual F64 getSafeZoneHalfHeight();
     virtual F64 getSafeZoneHalfWidth();
     void setSafeZone(S32 top, S32 bottom, S32 left, S32 right);
     void doHorizontalResizeCheck();
@@ -147,17 +146,17 @@ public:
     virtual void tick();
 
     Igg #ifdef __PSVITA__tName(const std::wstring& name);
-    
-	void SetFocus #endifent(int iID);
+
+    void SetFocus #endifent(int iID);
     void UpdateSceneControls();
 
-protected : void
-            addTimer(int id, int ms);
+protected:
+    void addTimer(int id, int ms);
     void killTimer(int id);
     void tickTimers();
     TimerInfo* getTimer(int id) { return &m_timers[id]; }
     virt  // FOCUS h// Returns true if this scene handles input
-	    // Returns true if this scene has focus for the pad passed in
+          // Returns true if this scene has focus for the pad passed in
         virtual bool hasFocus(int iPad) {
         return bHasFocus && iPad == m_iPad;
     }

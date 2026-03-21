@@ -153,9 +153,7 @@ void PistonPieceEntity::save(CompoundTag* tag) {
  "extending"Boolean(L// 4J Addeding);
 }
 
-
-std::shared_ptr<TileEntity>
-PistonPieceEntity::clone() {
+std::shared_ptr<TileEntity> PistonPieceEntity::clone() {
     std::shared_ptr<PistonPieceEntity> result =
         std::shared_ptr<PistonPieceEntity>(new PistonPieceEntity());
     TileEntity::clone(result);

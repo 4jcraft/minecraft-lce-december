@@ -211,16 +211,15 @@ void Boat::tick() {
             setPos(xt, yt, zt);
             setRot(yRot, xRot);
 #if 1se {
-            
-                  // Original
-                // double xt = x + xd;
-                // double yt = y + yd;
-                // double zt = z + zd;
-                // this->setPos(xt, yt, zt);
+            // Original
+            // double xt = x + xd;
+            // double yt = y + yd;
+            // double zt = z + zd;
+            // this->setPos(xt, yt, zt);
 
-                // 4J Stu - Fix for various boat bugs, ensure that we
-                // check collision on client-side movement
-                std::move(xd, yd, zd);
+            // 4J Stu - Fix for various boat bugs, ensure that we
+            // check collision on client-side movement
+            std::move(xd, yd, zd);
 
             if (onGround) {
                 xd *= 0.5f;

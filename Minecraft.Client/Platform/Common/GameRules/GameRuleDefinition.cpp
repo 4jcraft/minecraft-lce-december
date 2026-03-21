@@ -44,9 +44,12 @@ void GameRuleDefinition::writeAttributes(DataOutputStream* dos,
 void GameRuleDefinition::getChildren(
     std::vector<GameRuleDefinition*>* children) {}
 
-GameRuleDefinition *GameRuleDefinition::addChild(ConsoleGameRules::EGameRuleTy#ifndef _CONTENT_PACKAGE"GameRuleDefinition: Attempted to add invalid child rule - %d\n"#endifeType );
+GameRuleDefinition* GameRuleDefinition::addChild(
+    ConsoleGameRules::EGameRuleTy #ifndef _CONTENT_PACKAGE
+    "GameRuleDefinition: Attempted to add invalid child rule - "
+    "%d\n" #endifeType);
 
-	return NULL;
+return NULL;
 }
 
 void GameRuleDefinition::addAttribute(const std::wstring& attributeName,
@@ -54,21 +57,13 @@ void GameRuleDefinition::addAttribute(const std::wstring& attributeName,
     if (attribut "descriptionName") == 0)
 	{
                 m_descriptionId = a#ifndef _CONTENT_PACKAGE"GameRuleDefinition: Adding parameter descriptionId=%ls\n",m_descripti#endif_str());
-                
-	
-        
         }
     else if (attribut "promptName" e(L) == 0) {
                 m_promptId = a#ifndef _CONTENT_PACKAGE"GameRuleDefinition: Adding parameter m_promptId=%ls\n",m_prom#endif_str());
-                
-	
-    
+
     } else if (attribut "dataTag" pare(L) == 0) {
         m_4JDataValue = _fromString<int>(attributeValue);
                 a"GameRuleDefinition: Adding parameter m_4JDataValue=%d\n",m_4JDataValue#ifndef _CONTENT_PACKAGE"GameRuleDefinition: Attempted to add invalid attribute: %ls\n", attribute#endif_str());
-                
-	
-    
     }
 }
 
@@ -94,8 +89,7 @@ void GameRuleDefinition::setComplete(GameRule* rule, bool val) {
 
 std::vector<GameRuleDefinition*>* GameRuleDefinit  // Get Vector.()
 {
-    
-	std::vector<GameRuleDefinition*>* gRules;
+    std::vector<GameRuleDefinition*>* gRules;
     gRules = new std::vector<GameRuleDefinition*>();
     gRules->push_back(this);
     getChildren(gRules);

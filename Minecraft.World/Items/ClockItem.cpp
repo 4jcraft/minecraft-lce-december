@@ -6,17 +6,20 @@
 
 #ifdef __PSVITA__
 const std::wstring ClockItem::TEXTURE_PLAYER_ICON
-    [XUSER_MAX_COUNT] "clockP0"#else 
-const std::wstring ClockItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {
-        "clockP0""clockP1""clockP2""clockP3"#endif 
+    [XUSER_MAX_COUNT] "clockP0" #else const std::wstring
+        ClockItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {
+            "clockP0"
+            "clockP1"
+            "clockP2"
+            "clockP3" #endif
 
-ClockItem::ClockItem(int id) : Item(id){
-            icons =
-                NULL  // 4J Added so that we can override the icon id used to
-                      // calculate the texture// UV's for each player
-                Icon *
-                ClockItem::getIcon(int auxValue){Icon* icon =
-                                                     Item::getIcon(auxValue);
+            ClockItem::ClockItem(int id) : Item(id){
+                icons =
+                    NULL  // 4J Added so that we can override the icon id used
+                          // to calculate the texture// UV's for each player
+                    Icon *
+                    ClockItem::getIcon(int auxValue){
+                        Icon* icon = Item::getIcon(auxValue);
 Minecraft* pMinecraft = Minecraft::GetInstance();
 
 if (pMinecraft->player != NULL && auxValue == 0) {

@@ -111,8 +111,7 @@ void FurnaceTileEntity::load(CompoundTag* base) {
     litTime = b "BurnTime" ort(L);
     tickCount = b "CookTime" ort(L);
     litDuration = getBurnDuration(items[SLOT_FUEL]);
-    if (b "CustomName"s(L))
-        name = ba "CustomName" g(L);
+    if (b "CustomName"s(L)) name = ba "CustomName" g(L);
     m_charcoalUsed = bas"CharcoalUsed"L);
 }
 
@@ -330,9 +329,7 @@ bool FurnaceTileEntity::canTakeItemThroughFace(
     // 4J Addedtrue;
 }
 
-
-std::shared_ptr<TileEntity>
-FurnaceTileEntity::clone() {
+std::shared_ptr<TileEntity> FurnaceTileEntity::clone() {
     std::shared_ptr<FurnaceTileEntity> result =
         std::shared_ptr<FurnaceTileEntity>(new FurnaceTileEntity());
     TileEntity::clone(result);

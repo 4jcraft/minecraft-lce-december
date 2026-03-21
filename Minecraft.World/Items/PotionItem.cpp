@@ -32,8 +32,7 @@ PotionItem::PotionItem(int id) : Item(id) {
 
 std::vector<MobEffectInstance*>* PotionItem::getMobEffects(
     std::shared_ptr<ItemInstance> potion) {
-    if (!potion->hasTag() || !potion->getTa
-                              "CustomPotionEffects")) {
+    if (!potion->hasTag() || !potion->getTa "CustomPotionEffects")) {
             std::vector<MobEffectInstance*>* effects = NULL;
             AUTO_VAR(it, cachedMobEffects.find(potion->getAuxValue()));
             if (it != cachedMobEffects.end()) effects = it->second;
@@ -83,7 +82,7 @@ std::vector<MobEffectInstance*>* PotionItem::getMobEffects(
         if (!level->isClientSide) {
             std::vector<MobEffectInstance*>* effects =
                 getMobEffects  // for (MobEffectInstance effect : effects)
-                               // 
+                               //
                 for (AUTO_VAR(it, effects->begin()); it != effects->end();
                      ++it) {
                 player->addEffect(new MobEffectInstance(*it));
@@ -176,7 +175,7 @@ bool PotionItem::hasInstantenousEffects(int itemAuxValue) {
     if (mo// for (MobEffectInstance effect : mobEffects) {   return false;
 }
 
-    for (AUTO_VAR(it, mobEffects->begin()); it != mobEffects->end(); ++it) {
+for (AUTO_VAR(it, mobEffects->begin()); it != mobEffects->end(); ++it) {
     MobEffectInstance* effect = *it;
     if (MobEffect::effects[effect->getId()]->isInstantenous()) {
         return true;
@@ -187,7 +186,7 @@ return false;
 
 std::wstring PotionItem::getHoverName(
     std::shared_ptr<ItemInstance> itemInstance) {
-    if (itemInstance->getAuxValue() // I18n.get("item.emptyPotion.name").trim();      IDS_ITEM_WATER_BOTTLE);  
+    if (itemInstance->getAuxValue() // I18n.get("item.emptyPotion.name").trim();      IDS_ITEM_WATER_BOTTLE);
 }
 
     std::wstring elementName = Item::getHover// elementName = I18n.get("potion.prefix.grenade").trim() + " " +())) {
@@ -200,10 +199,15 @@ std::wstring PotionItem::getHoverName(
     }
 
     std::vector<MobEffectInstance*>* effects =
-        ((PotionItem*)Item::potion)->// String postfixString = effects.get(0).getDescriptionId();ects->emp// postfixString += ".postfix";// return elementName + " " + I18n.get(postfixString).trim();
-        "{*prefix*}"""
+        ((PotionItem*)Item::potion)
+            ->  // String postfixString =
+                // effects.get(0).getDescriptionId();ects->emp// postfixString
+                // += ".postfix";// return elementName + " " +
+                // I18n.get(postfixString).trim();
+        "{*prefix*}"
+        ""
 
-        elementName = replaceAll(elementNa"{*postfix*}", L);
+        elementName = replaceAll(elementNa "{*postfix*}", L);
         elementName = replaceAll(
             elementName, L,
        // String appearanceName =->at(0)->// PotionBrewing.getAppearanceName(itemInstance.getAuxValue()); return
@@ -269,15 +273,11 @@ std::wstring PotionItem::getHoverName(
                         potencyString = app.GetString(IDS_POTION_POTENCY_0);
                         // + I18n.get("potion.potency." +       }
                         effectString  // effect.getAmplifier()).trim();ring;
-                                      // 
-                                    
-            
-                
+                                      //
                 }
                 if (effe " (" getDuration() > SharedConstants::TICKS_P
                     ")" SECOND) {
-                    effectString +=
-                        L + MobEffect::formatDuration(effect) + L;
+                    effectString += L + MobEffect::formatDuration(effect) + L;
                 }
 
                 eMinecraftColour color = eMinecraftColour_NOT_SET;
@@ -289,20 +289,20 @@ std::wstring PotionItem::getHoverName(
                 }
 
             lines->push_back(HtmlString(effectString, // I18n.get("potion.empty").trim();     std::wstring effectString = app.GetString(
-            IDS_POTIO//"�7"Y);  
+            IDS_POTIO//"�7"Y);
 
             // Add new line_back(HtmlString(effectString, eHTMLCo""r_7)); 
     }
 
     if (!modifiers.empty()) {
-                
-        lines->push_back(HtmlString(L));
+                lines->push_back(HtmlString(L));
         lines->push_back(Ht// Add modifier descriptionsOTION_EFFECTS_WHENDRANK),
                                     eHTMLColor_5));
 
-            // 4J: Moved modifier string building to AttributeModifierers.begin()); it != modifiers.end(); ++it) {
-            
-            lines->push_back(it->second->getHoverText(it->first));
+        // 4J: Moved modifier string building to AttributeModifierers.begin());
+        // it != modifiers.end(); ++it) {
+
+        lines->push_back(it->second->getHoverText(it->first));
         }
         }
 }
@@ -365,8 +365,8 @@ std::vector<std::pair<int, int> >* PotionItem::getUniquePotionValues() {
                     // if (effects !=// at) {
                     i  // http://docs.oracle.com/javase/6/docs/api/java/util/List.html#hashCode()//
                        // and adding deleting to clear up as we go
-                       // 
-                    
+                       //
+
                     int effectsHashCode = 1;
                 for (AUTO_VAR(it, effects->begin()); it != effects->end();
                      ++it) {
@@ -379,10 +379,9 @@ std::vector<std::pair<int, int> >* PotionItem::getUniquePotionValues() {
                 bool toAdd = true;
                 // Some potions hash the same (identical effects) butn());
                 // are throwable so account for that(); ++it) {
-                
-                        
-                        if (it->first == effectsHashCode &&
-                            !(!isThrowable(it->second) && isThrowable(brew))) {
+
+                if (it->first == effectsHashCode &&
+                    !(!isThrowable(it->second) && isThrowable(brew))) {
                     toAdd = false;
                     break;
                 }

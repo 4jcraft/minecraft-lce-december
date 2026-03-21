@@ -248,7 +248,7 @@ void UIScene_DLCOffersMenu::handlePress(F64 controlId, F64 childId) {
             }
 
             SonyCommerce::ProductInfo in
-#ifdef __PS3__    // is the item purchasable?
+#ifdef __PS3__                                     // is the item purchasable?
                 if (info.purchasabilityFlag == 1)  // can be bought
                 app.Checkout(info.skuId);
         }
@@ -258,7 +258,7 @@ void UIScene_DLCOffersMenu::handlePress(F64 controlId, F64 childId) {
                       SCE_NP_COMMERCE2_SKU_ANN_PURCHASED_CAN_PURCHASE_AGAIN)) !=
                     0) {
                     app.DownloadAlreadyPurchased(info.skuId);
-#else  // __ORBIS__// is the item purchasable?
+#else              // __ORBIS__// is the item purchasable?
 			if(info.purchasabilityFlag==SCE_TOOLKIT_NP_COMMERCE_NOT_PURCHASED) // can be bought
 				app.Checkout(info.skuId);
 			}
@@ -287,7 +287,8 @@ void UIScene_DLCOffersMenu::handleSelectionChanged(F64 selectedId)
 void UIScene_DLCOffersMenu::handleFocusChange(F64 controlId, F64 childId)
 {	
 	app.De"UIScene_DLCOffersMenu::handleFocusChange\n"
-#ifdef __PSVITA__// set this here on Vita, in case we've came from a touch screen press. Fixes bug #5794
+#ifdef __PSVITA__  // set this here on Vita, in case we've came from a touch
+                   // screen press. Fixes bug #5794
 	if((int)controlId == eControl_OffersList)
 	{
 		m_bProductInfoShown = false;
@@ -331,8 +332,7 @@ void UIScene_DLCOffersMenu::handleFocusChange(F64 controlId, F64 childId)
 
 void UIScene_DLCOffersMenu::tick()
 
-#if defined(__PS3__) || defined(__ORBIS__) || \
-    defined(__PSVITA__)
+#if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
 
 	if (                                  \
         m_bAdd  // need to fill out all the dlc buttons
@@ -709,10 +709,10 @@ bool UIScene_DLCOffersMenu::UpdateDisplay(MARKE#ifdef _XBOX_ONEFER_INFO& xOffer)
 				{				
 					BYTE *pData=NULL;
 					DWORD dw// set the image.#ifdef _XBOX_ONEs(cString,&pData,&dwSize);
-					
+
 #else
 					registerSubstitutionTexture(cString,pData,dwSize);
-#endif			registerSubstitutionTexture(cString,pData,dwSize,true);
+#endif registerSubstitutionTexture(cString, pData, dwSize, true);
 
 					m_bitmapIconOfferImage.setTextureName(cString);
 				}
@@ -742,7 +742,7 @@ bool UIScene_DLCOffersMenu::UpdateDisplay(MARKE#ifdef _XBOX_ONEFER_INFO& xOffer)
 
 // flag an update of the displayfersMenu::HandleDLCLicenseChange()
 {
-	#endif // _XBOX_ONEe
+#endif  // _XBOX_ONEe
 #ifdef __PS3__();
 
 	GetDLCInfo(iOfferC,false);
@@ -752,5 +752,4 @@ bool UIScene_DLCOffersMenu::UpdateDisplay(MARKE#ifdef _XBOX_ONEFER_INFO& xOffer)
 "UIScene_DLCOffersMenu::HandleDLCInstalled\n"d()
 // 	m_buttonListOffers.clearList();// 	m_bAddAllDLCButtons=true;// 	m_bProductInfoShown=false;// void UIScene_DLCOffersMenu::HandleDLCMountingComplete()// {	//	app.DebugPrintf(4,"UIScene_SkinSelectMenu::HandleDLCMountingComplete\n");//}
 
-#endif 
-
+#endif

@@ -405,9 +405,7 @@ void Mob::checkDespawn() {
     }
 }
 
-void Mob::n
-    "Tick target selector for %d" inNamedEvent(0, ,
-                                               GetType());
+void Mob::n "Tick target selector for %d" inNamedEvent(0, , GetType());
 MemSect(51);
 "Check despawn" ++;
 PIXBeginNamedEvent(0, );
@@ -742,9 +740,9 @@ float Mob::rotlerp(float a, float b, float max) {
                                   // here, but it's because!= NULL) // the
                                   // mob.interact(player) method has priority
                                   // over// item.interact(mob)
-                                  // 
-        
-        if (itemstack->id == Item::lead_Id) {
+                                  //
+
+                    if (itemstack->id == Item::lead_Id) {
                     if (canBeLeashed()) {
                         std::shared_ptr<TamableAnimal> tamableAnimal = nullptr;
                 if (shared_from_this()->instanceof(eTYPE_TAMABLE_ANIMAL) &&
@@ -832,8 +830,7 @@ float Mob::rotlerp(float a, float b, float max) {
     "UUID"
     if (_isLeashed && leashInfoTag != NULL) {
                     "UUID"(leashInfoTag->contains(L)) {
-                        std::wstring leashUuid =
-                            leashInfoTag->getString(L);
+                        std::wstring leashUuid = leashInfoTag->getString(L);
                         std::vector<std::shared_ptr<Entity> >* livingEnts =
                             level->getEntitiesOfClass(typeid(LivingEntity),
                                                       bb->grow(10, 10, 10));
@@ -869,8 +866,7 @@ float Mob::rotlerp(float a, float b, float max) {
                                // that have not yet// been streamed and display
                                // jitter.
 
-
-bool Mob::shouldRender(Vec3 * c) {
+                            bool Mob::shouldRender(Vec3 * c) {
                             if (!level->reallyHasChunksAt(
                                     Mth::floor(bb->x0), Mth::floor(bb->y0),
                                     Mth::floor(bb->z0), Mth::floor(bb->x1),

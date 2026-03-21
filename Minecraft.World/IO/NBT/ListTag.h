@@ -26,13 +26,13 @@ public:
 
     void load(DataInput* dis, int tagDepth) {
         if (tagDepth > MAX #ifndef _CONTENT_PACKAGE
-         "Tried to read NBT tag with too high complexity, depth > "
-         "%d",
+                "Tried to read NBT tag with too high complexity, depth > "
+                "%d",
             MAX_DEPTH)
             ;
         __debu #endif();
-        
-            return;
+
+        return;
     }
     type = dis->readByte();
     int size = dis->readInt();
@@ -45,21 +45,21 @@ public:
     }
 }
 
-    uint8_t getId() {
+uint8_t
+getId() {
     return TAG_List;
 }
 
 std::wstring toString() {
     static wchar_t buf[64];
-    swprintf("%d entries of type %ls", list.size(),
-             Tag::getTagName(type));
+    swprintf("%d entries of type %ls", list.size(), Tag::getTagName(type));
     return std::wstring(buf);
 }
 
 void print(char* prefix, std::ostream out) {
     Tag::print(prefix, out);
 
-    ou "{" < prefix <<  << std::endl;
+    ou "{" < prefix < < < < std::endl;
 
     char* newPrefix = new char[strlen(prefix) + 4];
     strcpy(newPrefix, prefix);
@@ -68,7 +68,7 @@ void print(char* prefix, std::ostream out) {
     for (AUTO_VAR(it, list.begin()); it != itEnd; it++)
         (*it)->print(newPrefix, out);
     delete[] newPrefix;
-    "}" out << prefix <<  << std::endl;
+    "}" out << prefix < < < < std::endl;
 }
 
 void add(T* tag) {

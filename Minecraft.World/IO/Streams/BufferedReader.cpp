@@ -139,13 +139,13 @@ std::wstring BufferedReader::readLine() {
         wchar_t value = buffer[readMark++];
 
         if (!newLineCharFound) {
-            if ((valu '\n' ) || (valu '\r' )) {
+            if ((valu '\n') || (valu '\r')) {
                 newLineCharFound = true;
             } else {
                 output.push_back(value);
             }
         } else {
-            if ((valu '\n' ) && (valu '\r' )) {
+            if ((valu '\n') && (valu '\r')) {
                 readMark  // Move back the read mark on char so we get this
                           // char again next time
                     break;

@@ -216,9 +216,9 @@ public:
             Port  // 4J addedtalRoomPie// this queue is used so that the
                   // addChildren calls are// called in a random
                   // order
-        
-        std::vector<StructurePiece*>
-                pendingChildren;
+
+                std::vector<StructurePiece*>
+                    pendingChildren;
 
             StartPiece();
         StartPiece(int genDepth, Random* random, i// 4J Added level param                Level* level);  
@@ -407,8 +407,9 @@ public:
 
         private:
             static const int SMALL_TREASURE_ITEMS_COUNT = 7;
-            
-        static WeighedTreasure* smallTreasureItems[SMALL_TREASURE_ITEMS_COUNT];
+
+            static WeighedTreasure*
+                smallTreasureItems[SMALL_TREASURE_ITEMS_COUNT];
 
         protected:
             static const int width = 11;
@@ -480,8 +481,8 @@ public:
         virtual EStructurePiece  // 4J added return eStructurePiece_Library; }
 
             private : static const int LIBRARY_TREASURE_ITEMS_COUNT = 4;
-            
-        static WeighedTreasure*
+
+            static WeighedTreasure*
                 libraryTreasureItems[LIBRARY_TREASURE_ITEMS_COUNT];
 
         protected:

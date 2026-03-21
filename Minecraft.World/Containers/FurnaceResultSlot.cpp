@@ -45,9 +45,8 @@ bool FurnaceResultSlot::mayCombine(std::shared_ptr<ItemInstance> second) {
 
 void FurnaceResultSlot::checkTakeAchievements(
     std::shared_ptr<ItemInstance> carried) {
-    carried->onCraftedBy(
-        player->level, player,
-        removeCount);  // spawn xp right on top of the player
+    carried->onCraftedBy(player->level, player,
+                         removeCount);  // spawn xp right on top of the player
     if (!player->level->isClientSide) {
         int amount = removeCount;
         float value =
@@ -72,19 +71,19 @@ void FurnaceResultSlot::checkTakeAchievements(
                                   player->z + .5, newCount)));
 
 #ifdef _DURANGO
-    if (!player->level->isClientSide && removeCount > 0) {
+            if (!player->level->isClientSide && removeCount > 0) {
         player->awardStat(
             GenericStats::itemsSmelted(carried->id),
             GenericStats::param_itemsSmelted(
                 carried->id, carried->getAuxValue(), removeCount#else
-        }
-        
-    if (carried->id == Item::ironIngot_Id) player->awardStat(
-            GenericStats::acquireIron(), GenericStats::param_acquireIron());
-        if (carried->id == Item::fish_cooked_Id)
+            }
+
+            if (carried->id == Item::ironIngot_Id)
+                player->awardStat(GenericStats::acquireIron(),
+                                  GenericStats::param_acquireIron());
+            if (carried->id == Item::fish_cooked_Id)
         player->awardStat(GenericStats::cookFish(),
                           GenericStats::param_coo#endif));
-        
 
-    removeCount = 0;
-    }
+            removeCount = 0;
+        }

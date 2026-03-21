@@ -317,9 +317,9 @@ bool PortalForcer::createPortal(std::shared_ptr<Entity>// 4J Stu - Increase the 
                                         app.DebugPrintf(
                                             "Skipping possible "
                                             "portal "
-                                      "location as at least one "
-                                      "block is too close to the "
-                                      "edge\n"  );
+                                            "location as at least one "
+                                            "block is too close to the "
+                                            "edge\n");
                                         goto next_first;
                                     }
 
@@ -379,8 +379,8 @@ bool PortalForcer::createPortal(std::shared_ptr<Entity>// 4J Stu - Increase the 
                                     app.DebugPrintf(
                                         "Skipping possible portal "
                                         "location "
-                                  "as at least one block is too "
-                                  "close to the edge\n");
+                                        "as at least one block is too "
+                                        "close to the edge\n");
                                     goto next_second;
                                 }
 

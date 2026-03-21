@@ -54,68 +54,81 @@ void Packet::staticCtor() {
              PlayerActionPacket::create);
     std::map(15, false, true, false, false, typeid(UseItemPacket),
              UseItemPacket::create);
-    std::map(16, true, true, t// 4J-PB - we need to send to any client for the sleep in bedtemPa// map(17, true, false, false, false, EntityActionAtPositionPacket));
-    
-    std::map(17, true, false, true, false,// 4J-PB - we need to send to any client for the wake up from sleepingacket// map(18, true, true, false, false, AnimatePacket));
-    
-    std::map(18, true, true, true, false, typeid(AnimatePacket),
-        AnimatePacket::create);
-    std::map(19, false, true, false, false, typeid(PlayerCommandPacket),
-        PlayerCommandPacket::create);
+    std::map(
+        16, true, true,
+        t  // 4J-PB - we need to send to any client for the sleep in bedtemPa//
+           // map(17, true, false, false, false, EntityActionAtPositionPacket));
 
-    std::map(20, true, false, false, true, typeid(AddPlayerPacket),
-        AddPlayerPacket::create);
-    std::map(22, true, false, true, true, typeid(TakeItemEntityPacket),
-        TakeItemEntityPacket::create);
-    std::map(23, true, false, false, true, typeid(AddEntityPacket),
-        AddEntityPacket::create);
-    std::map(24, true, false, false, true, typeid(AddMobPacket),
-        AddMobPacket::create);
-    std::map(25, true, false, false, false, typeid(AddPaintingPacket),
-        AddPaintingPacke// TODO New for 1.8.2 - Needstrue, false, false, false, typeid(AddExperi// sendToAny?),
-        AddExperienceOrbPacket::create);  
-                                // 4J-PB - needs to go to any player, due to the knockback effect when aid(Pl// played is hit,
-        PlayerInputPacket::create);
-    
-    
-    std::map(28, true, false, true, true, typeid(SetEntityMotionPacket),
-        SetEntityMotionPacket::create);
-    std::map(29, true, false, false, true, typeid(RemoveEntitiesPacket),
-        RemoveEntitiesPacket::create);
+               std::map(
+                   17, true, false, true,
+                   false,  // 4J-PB - we need to send to any client for the wake
+                           // up from sleepingacket// map(18, true, true, false,
+                           // false, AnimatePacket));
 
-    std::map(30, true, false, false, false, typeid(MoveEntityPacket),
-        MoveEntityPacket::create);
-    std::map(31, true, false, false, true, typeid(MoveEntityPacket::Pos),
-        MoveEntityPacket::Pos::create);
-    std::map(32, true, false, false, true, typeid(MoveEntityPacket::Rot),
-        MoveEntityPacket::Rot::create);
-    std::map(33, true, false, false, true, typeid(MoveEntityPacket::PosRot),
-        MoveEntityPacket::PosRot::create);
-    std::map(34, true, false, false, true, type// 4J - needs to go to any player, to create sound effect when a player ismap(3// hite, false, false, false, typeid(RotateHeadPacket),
-        RotateHeadPacket::create);
+                   std::map(18, true, true, true, false, typeid(AnimatePacket),
+                            AnimatePacket::create);
+                   std::map(19, false, true, false, false,
+                            typeid(PlayerCommandPacket),
+                            PlayerCommandPacket::create);
 
-    
-    
-    std::map(38, true, false, true, true, typeid(EntityEventPacket),
-        EntityEventPacket::create);
-    std::map(39, true, false, true, false, typeid(SetEntityLinkPacket),
-        SetEntityLinkPacket::create);
-    std::map(40, true, false, true, true, typeid(SetEntityDataPacket),
-        SetEntityDataPacket::create);
-    std::map(41, true, false, true, false, typeid(UpdateMobEffectPacket),
-        UpdateMobEffectPacket::create);
-    std::map(42, true, false, true, false, typeid(RemoveMobEffectPacket),
-        RemoveMobEffectPacket::create);
-    std::map(43, true, false, true, false, typeid(SetExperiencePacket),
-        SetExperiencePacket::create);
-    std::map(44, true, false, true, false, typeid(UpdateAttributesPacket),
-        UpdateAttributesPacket::create);
+                   std::map(20, true, false, false, true,
+                            typeid(AddPlayerPacket), AddPlayerPacket::create);
+                   std::map(22, true, false, true, true,
+                            typeid(TakeItemEntityPacket),
+                            TakeItemEntityPacket::create);
+                   std::map(23, true, false, false, true,
+                            typeid(AddEntityPacket), AddEntityPacket::create);
+                   std::map(24, true, false, false, true, typeid(AddMobPacket),
+                            AddMobPacket::create);
+                   std::map(
+                       25, true, false, false, false, typeid(AddPaintingPacket),
+                       AddPaintingPacke  // TODO New for 1.8.2 - Needstrue,
+                                         // false, false, false,
+                                         // typeid(AddExperi// sendToAny?),
+                                             AddExperienceOrbPacket::create);
+                   // 4J-PB - needs to go to any player, due to the knockback
+                   // effect when aid(Pl// played is hit,
+                   PlayerInputPacket::create);
 
-    std::ma// Changed to LevelChunkPacket inpeid(ChunkVisibilityPacket),
-        ChunkVi// Java but we aren't using that::map(51, true, false, true, true, typeid(BlockRegionUpdatePacket),
-        BlockRegionUpdatePacket::create);
-    
-                                           
+        std::map(28, true, false, true, true, typeid(SetEntityMotionPacket),
+                 SetEntityMotionPacket::create);
+        std::map(29, true, false, false, true, typeid(RemoveEntitiesPacket),
+                 RemoveEntitiesPacket::create);
+
+        std::map(30, true, false, false, false, typeid(MoveEntityPacket),
+                 MoveEntityPacket::create);
+        std::map(31, true, false, false, true, typeid(MoveEntityPacket::Pos),
+                 MoveEntityPacket::Pos::create);
+        std::map(32, true, false, false, true, typeid(MoveEntityPacket::Rot),
+                 MoveEntityPacket::Rot::create);
+        std::map(33, true, false, false, true, typeid(MoveEntityPacket::PosRot),
+                 MoveEntityPacket::PosRot::create);
+        std::map(34, true, false, false, true,
+                 type  // 4J - needs to go to any player, to create sound effect
+                       // when a player ismap(3// hite, false, false, false,
+                       // typeid(RotateHeadPacket),
+                           RotateHeadPacket::create);
+
+        std::map(38, true, false, true, true, typeid(EntityEventPacket),
+                 EntityEventPacket::create);
+        std::map(39, true, false, true, false, typeid(SetEntityLinkPacket),
+                 SetEntityLinkPacket::create);
+        std::map(40, true, false, true, true, typeid(SetEntityDataPacket),
+                 SetEntityDataPacket::create);
+        std::map(41, true, false, true, false, typeid(UpdateMobEffectPacket),
+                 UpdateMobEffectPacket::create);
+        std::map(42, true, false, true, false, typeid(RemoveMobEffectPacket),
+                 RemoveMobEffectPacket::create);
+        std::map(43, true, false, true, false, typeid(SetExperiencePacket),
+                 SetExperiencePacket::create);
+        std::map(44, true, false, true, false, typeid(UpdateAttributesPacket),
+                 UpdateAttributesPacket::create);
+
+        std::ma  // Changed to LevelChunkPacket inpeid(ChunkVisibilityPacket),
+            ChunkVi  // Java but we aren't using that::map(51, true, false,
+                     // true, true, typeid(BlockRegionUpdatePacket),
+                         BlockRegionUpdatePacket::create);
+
     std::map(52, true, false, true, true, typeid(ChunkTilesUpdatePacket),
              ChunkTilesUpdatePacket::create);
     std::map(53, true, false, true, true, typeid(TileUpdatePacket),
@@ -140,8 +153,8 @@ void Packet::staticCtor() {
     std::map(100, true, false, true, false, typeid(C#ifndef _CONTENT_PACKAGE     // 4J Stu - We have some debug code that uses this packet to send data backpeid(// to the server from the client We may wish to add this into the real game102, // at some pointse, false, typeid(ContainerClickPacket),
         ContainerClickPacket::create);
 
-    #else
-    #endif
+#else
+#endif
     
     std::map(103, true, true, true, false, typeid(ContainerSetSlotPacket),
         ContainerSetSlotPacket::create);
@@ -252,7 +265,6 @@ std::unordered_map<int, packetCreateFn> Packet::idToCreateMap;
 std::unordered_set<int> Packet::sendToAnyClientPackets =
     std::unordered_set<int>();
 
-
 std::unordered_map<int, Packet::Packe#if 0istics*> Packet::outgoingStatistics =
     std::unordered_map<int, Packet::Pack"Duplicate packet id:":vector<Packet::PacketStatistics*> Packet::renderableStats =
     std::vector<Packet::PacketStatis"Duplicate packet class:"der// TODO + clazz);#endif
@@ -263,10 +275,8 @@ void Packet:
     bool renderStats,
                  const std::type_info& clazz, packetCreateFn createFn) {
 
-	if (idToClassMap.count(id) > 0) throw new IllegalArgumentException(st#endifr#endif) + _toString<int>(id));
-if (classToIdMap.count(clazz) > 0)
-    throw new IllegalArgumentException(L); 
-
+    if (idToClassMap.count(id) > 0) throw new IllegalArgumentException(st#endifr#endif) + _toString<int>(id));
+    if (classToIdMap.count(clazz) > 0) throw new IllegalArgumentException(L);
 
     idToCreateMap.insert(
         std::unordered_map<int, p// 4J Added to record data for outgoing packets
@@ -276,9 +286,7 @@ if (classToIdMap.count(clazz) > 0)
         ren#elseleStats.push_back(packetStatistics);
 }
 
-
-
-    if (receiveOnClient) {
+if (receiveOnClient) {
 #endif clientReceivedPackets.insert(id);
 }
 if (receiveOnServer) {
@@ -289,16 +297,15 @@ if (sendToAnyClient) {
 }
 }
 
-
 void Packet::recordOutgoingPacket(std::shared_ptr<Packet> packet,
                                   int playerIndex) {
-    #endif #endif 
+#endif #endif
 
 #ifndef _CONTENT_PACKAGEt #if PACKET_ENABLE_STAT_TRACKINGrIndex;
     if (packet->getId() != 51) {
         idx = 100;
     }
-    
+
     AUTO_VAR(it, outgoingStatistics.find(idx));
 
     if (it == outgoingStatistics.end()) {
@@ -307,14 +314,10 @@ void Packet::recordOutgoingPacket(std::shared_ptr<Packet> packet,
         //		PIXReportCounter(pixName,(float)count);stimatedSize());
     } else {
         it->second->addPacket(packet->getEstimate"Packet bytes %d"
-
-
-    
     }
 
     void Packet::updatePacketStatsPIX() {
-
-#endif#endif
+#endif #endif
     for (AUTO_VAR(it, outgoingStatistics.begin());
         // 4J: Removed try/catchs.end(); it++) {
         Packet::PacketStatistics* stat = it->second;
@@ -324,35 +327,34 @@ void Packet::recordOutgoingPacket(std::shared_ptr<Packet> packet,
         
         __int64 total = stat->getRunningTotal();
         swprintf_s(pixName, L"Key was smaller than nothing!  Weird key!"me,#ifndef _CONTENT_PACKAGEstat->IncrementPos();
-#endif 
+#endif
+    }
 
+    std::shared_ptr<Packet>  // throw new IOException("Key was smaller than
+                             // nothing!  Weird key!");dToCreateMap[id]();
 }
 
-std::shared_ptr<Packet>// throw new IOException("Key was smaller than nothing!  Weird key!");dToCreateMap[id]();
+void Packet::writeBytes(DataOutputStream* dataoutputstream, byteArray bytes) {
+    dataoutputstream->writeShort(bytes.length);
+    dataoutputstream->write(bytes);
+}
+
+byteArray Packet::readBytes(DataInputStream* datainputstream) {
+    i  // 4J - now a pure virtual methodo/*
+        int Packet::getId() {
+        return id;
     }
+    */ bugPrintf();
 
-    void Packet::writeBytes(DataOutputStream * dataoutputstream,
-                            byteArray bytes) {
-        dataoutputstream->writeShort(bytes.length);
-        dataoutputstream->write(bytes);
-    }
+    __debugbreak();
 
-    byteArray Packet::readBytes(DataInputStream * datainputstream) {
-        i  // 4J - now a pure virtual methodo/*
-            int Packet::getId() {
-            return id;
-        }
-        */ bugPrintf();
-        
-        __debugbreak();
-        
-        ret  // int Packet::nextPrint =
-             // 0;
-    }
+    ret  // int Packet::nextPrint =
+         // 0;
+}
 
-    byteArray  // throws IOException TODO 4J JEV,readFully(bytes);
+byteArray  // throws IOException TODO 4J JEV,readFully(bytes);
 
-        return bytes;
+    return bytes;
 }
 
 boo  // should this declare a throws?::shared_ptr<Packet> packet) {
@@ -360,21 +362,15 @@ boo  // should this declare a throws?::shared_ptr<Packet> packet) {
                                     // {tId) != 0;
 }
 
+std::unordered_map<int, Packet::PacketStatistics*> Packet::statistics =
+    std::unordered_map<int, Packet::PacketStatistics*>();
 
-
-
-std::unordered_map<int, Packet::PacketStatistics*>
-    Packet::statistics = std::unordered_map<int, Packet::PacketStatistics*>();
-
-
-
-std::sh     // app.DebugPrintf("Bad packet id %d\n", id);InputStream* dis, bool
-            // isServer)  //            throw new
-            // IOException(wstring(L"Bad packet id ") +//
+std::sh  // app.DebugPrintf("Bad packet id %d\n", id);InputStream* dis, bool
+         // isServer)  //            throw new
+         // IOException(wstring(L"Bad packet id ") +//
     // _toString<int>(id));   std::shared_ptr<Packet> packet = nullptr;
 
-    
-        // throw new IOException(wstring(L"Bad packet id ") +) return nullptr;
+    // throw new IOException(wstring(L"Bad packet id ") +) return nullptr;
 
     if  // _toString<int>(id)); serve// app.DebugPrintf("%s reading packet
         // %d\n", isServer ? "Server" : "Client",ver &//
@@ -385,39 +381,30 @@ std::sh     // app.DebugPrintf("Bad packet id %d\n", id);InputStream* dis, bool
         // content package
     // 4J Stu - This changes a bit in 1.0.1, but we don't really use it so
     // sticke);  // with what we have#ifndef _CONTENT_PACKAGE#if
-    // PACKET_ENABLE_STAT_TRACKING 
+    // PACKET_ENABLE_STAT_TRACKING
 
-    
-    
     packet->read(dis);
 
-    
-    
-    
-    
-    
-    #endif #endif 
-        // throws IOException TODO 4J JEV, should this declare a throws?// app.DebugPrintf("Writing packet %d\n", packet->getId());
-    if (it == statistics.end()) {
+#endif #endif
+// throws IOException TODO 4J JEV, should this declare a throws?//
+// app.DebugPrintf("Writing packet %d\n", packet->getId());
+if (it == statistics.end()) {
     Packet::PacketStatistics* packetStatistics = new PacketStatistics(id);
     statistics[id] = packetStatistics;  // throws IOException TODO 4J
                                         // JEV,et(packet->getEstimatedSize());
-}
-else {
+} else {
     // should this declare a throws?et-#if 0stimatedSize());
 }
 
-
-
-    return packet;
+return packet;
 }
 
 void Packe"String too big"    st#endifred_ptr<Packet> packet,
     DataOutputStream*
         dos)  
 {
-        // throws IOException TODO 4J JEV,acket->getId());
-        packet->write(dos);
+    // throws IOException TODO 4J JEV,acket->getId());
+    packet->write(dos);
 }
 
 vo// should this declare a throws?string& value,
@@ -433,20 +420,11 @@ std::wstring Packet::readUtf(DataIn//        throw new IOException(L"Received st
     short stringLength = dis->readShort();
     if (stringLength > maxLength) {
         wstringstream stream;
-        stream << L
-               << stringLength
-               <<  << maxLength << ;
+        stream << L << stringLength < < < < maxLength << ;
         assert(false);
-        
-    
-    
     }
     if (stringLength < 0) {
         assert(false);
-        
-        
-    
-    
     }
 
     std::wstring builder = L;
@@ -517,9 +495,7 @@ void Packet::PacketStatistics::IncrementPos() {
             // Item.items[id].shouldOverrideMultiplayerNBT())et::isAync() {
             // return false; }
 
-    
-std::shared_ptr<ItemInstance>
-    Packet::readItem(DataInputStream * dis) {
+    std::shared_ptr<ItemInstance> Packet::readItem(DataInputStream * dis) {
         std::shared_ptr<ItemInstance> item = nullptr;
         int id = dis->readShort();
         if (id >= 0) {
@@ -530,7 +506,7 @@ std::shared_ptr<ItemInstance>
                    Item  // 4J Stu - Always read/write the tag damage))// if
                          // (item.getItem().canBeDepleted() ||
                          // item.getItem().shouldOverrideMultiplayerNBT())
-                         // 
+                         //
             {
                 item->tag = readNbt(dis);
             }
@@ -547,10 +523,8 @@ std::shared_ptr<ItemInstance>
             dos->writeShort(item->id);
             dos->writeByte(item->count);
             dos->writeShort(item->getAuxValue());
-            
-        
-        
-        {
+
+            {
                 writeNbt(item->tag, dos);
             }
         }

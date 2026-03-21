@@ -63,7 +63,6 @@ std::wstring CompleteAllRuleDefinition::generateDescriptionString(
     PacketData* values = (PacketData*)data;
     std::wstring newDesc = description;
         newDesc = "{*progress*}"Desc,L,_toString<int>(values->progress));
-        newDesc =
-            "{*goal*}"(newDesc, L, _toString<int>(values->goal));
+        newDesc = "{*goal*}"(newDesc, L, _toString<int>(values->goal));
         return newDesc;
 }

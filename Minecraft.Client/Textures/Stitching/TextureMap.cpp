@@ -127,11 +127,7 @@ void TextureMap::stitch() {
                               // " + name);#ifndef
                               // _CONTENT_PACKAGE"Couldn't find
                               // premade icon for %ls doing %ls\n"
-                wprintf(L#endif ,
-                        textureName.c_str(), name.c_str());
-            
-			
-        
+                wprintf(L#endif, textureName.c_str(), name.c_str());
         }
 		}
 
@@ -144,14 +140,13 @@ void TextureMap::stitch() {
 		{
                         animatedTextures.push_ba".txt"red);
 
-                        std::wstring animationDefinitionFile =
-                            textureName + L;
+                        std::wstring animationDefinitionFile = textureName + L;
 
                         TexturePack* texturePack =
                             Minecraft::GetInstance()->sk "\\" > getSelected();
                         ".png" requiresFallb  // try {texturePack->hasFile(L
                                               // + textureName + L,
-                                              // false"\\"		
+                                              // false"\\"
                             InputStream* fileStream =
                                 texturePack
                                     ->getRes  // Minecraft::getInstance()->getLogger().info("Found
@@ -161,10 +156,10 @@ void TextureMap::stitch() {
                                               // animation info for:
                                               // %ls\n"
                                         wprintf(
-                                            L#endif ,
+                                            L#endif,
                                             animationDefinitionFile.c_str());
-                        
-				InputStreamReader isr(fileStream);
+
+                        InputStreamReader isr(fileStream);
                                 BufferedReader br(&//} catch (IOException ignored) {ames//}r);
 				delete fileStream;
 			
@@ -175,9 +170,8 @@ delete areas;
 
 m  // for (StitchedTexture texture : texturesToRegister.values())econd;
 
-	
-	for (AUTO_VAR(it, texturesToRegister.begin());
-             it != texturesToRegister.end(); ++it) {
+    for (AUTO_VAR(it, texturesToRegister.begin());
+         it != texturesToRegister.end(); ++it) {
     StitchedTexture* texture = it->second;
     "debug.stitched_" ith(missing ".png" on);
 }
@@ -192,9 +186,8 @@ StitchedTexture* TextureMap::getTexture(const std::wstring& name) {
         result = missingPo  // for (StitchedTexture texture :
                             // animatedTextures)nimationFrames()
         {
-            
-	for (AUTO_VAR(it, animatedTextures.begin());
-             it != animatedTextures.end(); ++it) {
+            for (AUTO_VAR(it, animatedTextures.begin());
+                 it != animatedTextures.end(); ++it) {
                 StitchedTexture* texture = *it;
                 texture->cycleFrames();
             }
@@ -202,15 +195,15 @@ StitchedTexture* TextureMap::getTexture(const std::wstring& name) {
     // 4J Stu - register is a reserved keyword in C++urn stitchResult;
 }
 
-
 Icon* TextureMap::registerIco
-    "Don't register NULL\n" ame #ifndef _CONTENT_PACKAGE {
-    app.DebugPrintf #endif     //new RuntimeException("Don't register null!").printStackTrace();
-		    // TODO: [EB]: Why do we allow multiple registrations?
-}
+    "Don't register NULL\n" ame #ifndef _CONTENT_PACKAGE{
+        app.DebugPrintf #endif  // new RuntimeException("Don't register
+                                // null!").printStackTrace();
+                                //  TODO: [EB]: Why do we allow multiple
+                                //  registrations?
+    }
 
-
-	StitchedTexture* result = NULL;
+StitchedTexture* result = NULL;
 AUTO_VAR(it, texturesToRegister.find(name));
 if (it != texturesToRegister.end()) result = it->second;
 

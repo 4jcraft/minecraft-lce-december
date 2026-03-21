@@ -288,12 +288,19 @@ RADEXPFUNC void RADEXPLINK IggyUseTelemetry(void * context, IggyTelemetryAmount 
 
 typedef struct
 {
-    IggyUTF16 *object_na/* null-terminated Textfield.name value at the time the text is set */
-   rrbool     autosize;/* true if the autosize value is non-zero at the time the text is set */
-    
-   F32        wid/* the objectspace width of the textfield at the time the text is set */
-   F32        hei/* the objectspace height of the textfield at the time the text is set */
-   rrbool     is_html_t/* whether the provided text is going through Textfield.htmlText or Textfield.text */
+    IggyUTF16*
+        object_na /* null-terminated Textfield.name value at the time the text
+                     is set */
+                      rrbool autosize; /* true if the autosize value is non-zero
+                                          at the time the text is set */
+
+    F32 wid /* the objectspace width of the textfield at the time the text is
+               set */
+                F32 hei /* the objectspace height of the textfield at the time
+                           the text is set */
+                            rrbool is_html_t /* whether the provided text is
+                                                going through Textfield.htmlText
+                                                or Textfield.text */
 } IggyTextfieldInfo;
 
 typedef void   RADLINK Iggy_TranslationFreeFunction(void *callback_data, void *data, S32 length);
@@ -333,7 +340,7 @@ typedef struct
     S32 total_storage_in_bytes;  // the total memory to use for the AS3 heap and
                                  // garbage collector
     S32 stack_size_in_bytes;     // size of the stack used for AS3 expression
-                              // evaluation and function activation records
+                                 // evaluation and function activation records
     S32 young_heap_size_in_bytes;    // size of the heap from which initial
                                      // allocations are made
     S32 old_heap_size_in_bytes;      // this parameter is not supported yet
@@ -350,7 +357,7 @@ typedef struct
                                      // old
                                      // heap
     S32 rootstack_size_in_bytes;     // size of the stack used for exposing
-                                  // temporaries to the garbage collector
+                                     // temporaries to the garbage collector
     S32 padding;
 } IggyPlayerGCSizes;
 
@@ -413,12 +420,17 @@ typedef struct IggyProperties
                 S32 swf_major_versio  // the major SWF version number of the
                                       // file, currently always 9
 
-                                          F64 time_passed_in_  // the total time
-                                                               // passed since
-                                                               // starting the
-                                                               // file
-                                                                   F64 seconds_since_l  // the number of seconds that have ocurred 
-                                                                       F64 seconds_per_dra  // 1/render fps, updated on $IggyPlayerDrawTilesStart
+                    F64 time_passed_in_      // the total time
+                                             // passed since
+                                             // starting the
+                                             // file
+                        F64 seconds_since_l  // the number of seconds that have
+                                             // ocurred
+                                                 F64 seconds_per_dra  // 1/render
+                                                                      // fps,
+                                                                      // updated
+                                                                      // on
+                                                                      // $IggyPlayerDrawTilesStart
 } IggyProperties;
 
 RADEXPFUNC IggyProperties * RADEXPLINK IggyPlayerProperties(Iggy *player);
@@ -440,9 +452,9 @@ RADEXPFUNC void RADEXPLINK IggyPlayerPause(Iggy *player, IggyAudioPauseMode paus
 RADEXPFUNC void RADEXPLINK IggyPlayerPlay(Iggy *player);
 RADEXPFUNC void RADEXPLINK IggyPlayerSetFrameRate(Iggy *player, F32 frame_rate_in_fps);
 RADEXPFUNC void RADEXPLINK IggyPlayerGotoFrameRS(Iggy *f, S32 frame, rrbo
-#ifndef __RAD_HIGGYEXP_#define __RAD_HIGGYEXP_
-typedef void* /* An IggyExplorer context, it represents a connection to Iggy Explorer. */#endif 
-#ifndef __RAD_HIGGYPERFMON_#define __RAD_HIGGYPERFMON_
+#ifndef __RAD_HIGGYEXP_ #define __RAD_HIGGYEXP_
+typedef void* /* An IggyExplorer context, it represents a connection to Iggy Explorer. */#endif
+#ifndef __RAD_HIGGYPERFMON_ #define __RAD_HIGGYPERFMON_
 typedef void*              \
     HIGG /* An IggyPerfMon context */#endif 
 
@@ -531,16 +543,15 @@ typedef struct
     S32 height_in_pixels;     // this is the actual height of the bitmap
                               // data
     S32 stride_in_bytes;      // the distance from one row to the next
-    S32 oversample;  // this is the amount of oversampling (0 or 1 = not
-                     // oversample, 2 = 2x oversampled, 4 = 4x
-                     // oversampled)
-    rrbool
-        point_sample;  // if true, the bitmap will be drawn with point sampling;
-                       // if false, it will be drawn with bilinear
-    S32 top_left_x;    // the offset of the top left corner from the character
-                       // origin
-    S32 top_left_y;    // the offset of the top left corner from the character
-                       // origin
+    S32 oversample;       // this is the amount of oversampling (0 or 1 = not
+                          // oversample, 2 = 2x oversampled, 4 = 4x
+                          // oversampled)
+    rrbool point_sample;  // if true, the bitmap will be drawn with point
+                          // sampling; if false, it will be drawn with bilinear
+    S32 top_left_x;  // the offset of the top left corner from the character
+                     // origin
+    S32 top_left_y;  // the offset of the top left corner from the character
+                     // origin
     F32 pixel_scale_correct    // the pixel_scale at which this character should
                                // be displayed at width_in_pixels
         F32 pixel_scale_min;   // the smallest
@@ -555,8 +566,7 @@ typedef struct
 } IggyBitmapCharacter;
 
 typedef IggyFontMetrics * RADLINK IggyFontGetFontMetrics(void *user_context, IggyFontMetrics *
-#define IGGY_GLYPH_INVALID \
-    -1
+#define IGGY_GLYPH_INVALID -1
 typedef S32 RADLINK        \
     IggyFontGetCodepointGlyph(void* user_context, U32 codepoint);
 typedef IggyGlyphMetrics * RADLINK IggyFontGetGlyphMetrics(void *user_context, S32 glyph, IggyGlyphMetrics *metrics);
@@ -617,10 +627,9 @@ typedef struct
 RADEXPFUNC void RADEXPLINK IggySetInstalledFontMaxCount(S32 num);
 RADEXPFUNC void RADEXPLINK IggySetIndirectFontMaxCount(
 #define IGGY_FONTFLAG_none                                                                   \
-    0#define IGGY_FONTFLAG_bold 1#define IGGY_FONTFLAG_italic 2#define IGGY_FONTFLAG_all( \
+    0 #define IGGY_FONTFLAG_bold 1 #define IGGY_FONTFLAG_italic 2 #define IGGY_FONTFLAG_all( \
         ~0U)  // indirection only
-#define IGGY_TTC_INDEX_none                                                  \
-    0
+#define IGGY_TTC_INDEX_none 0
 
 RADEXPFUNC void RADEXPLINK                                                   \
     IggyFontInstallTruetypeUTF8(const void* truetype_storage, S32 ttc_index, \
@@ -659,7 +668,7 @@ IDOCN RADEXPFUNC void RADEXPLINK IggyAudioUseAX(void);
 IDOCN RADEXPFUNC void RADEXPLINK IggyAudioUseCoreAudio(void);
 
 RADEXPFUNC void RADEXPLINK IggyAudioUseDefau
-#ifndef __RAD_DEFINE_IGGYMP3__#define __RAD_DEFINE_IGGYMP3__
+#ifndef __RAD_DEFINE_IGGYMP3__ #define __RAD_DEFINE_IGGYMP3__
 IDOCN typedef struct IggyMP3Interface IggyMP3Interface;
 IDOCN typedef rrbool IggyGetMP3Decoder(IggyMP3Interface *#endifr
 #ifdef __RADNT__
@@ -675,7 +684,8 @@ IDOCN typedef rrbool IggyGetMP3Decoder(IggyMP3Interface *#endifr
 RADEXPFUNC rrbool RADEXPLINK IggyAudioSetMaxBufferTime(S32 ms);
 RADEXPFUNC void   RADEXPLINK IggyAudioSetLatency(S32 ms);
 RADEXPFUNC void   RADEXPLINK IggyPlayerSetAudioVolume(Iggy *iggy, F32 atte
-#define IGGY_AUDIODEVICE_default    0#define   IGGY_AUDIODEVICE_primary    1#define   IGGY_AUDIODEVICE_secondary  2
+#define IGGY_AUDIODEVICE_default \
+    0 #define IGGY_AUDIODEVICE_primary 1 #define IGGY_AUDIODEVICE_secondary 2
 
 IDOCN RADEXPFUNC void   RADEXPLINK IggyPlayerSetAudioDevice(Iggy *iggy, S32 d//////////////////////////////////////////////////////////////// Rendering//
 
@@ -876,8 +886,7 @@ RADEXPFUNC IggyName RADEXPLINK IggyPlayerCreateFastNameUTF8(Iggy *f, char const 
 RADEXPFUNC IggyResult RADEXPLINK IggyPlayerCallFunctionRS(Iggy *player, IggyDataValue *result, IggyName function, S32 numargs, IggyDataValue *args);
 RADEXPFUNC IggyResult RADEXPLINK IggyPlayerCallMethodRS(Iggy *f, IggyDataValue *result, IggyValuePath *target, IggyName methodname, S32 numargs, IggyDataValue *args);
 RADEXPFUNC void RADEXPLINK IggyPlayerGarbageCollect(Iggy *player, S32 s
-#define IGGY_GC_MINIMAL \
-    0#define IGGY_GC_NORMAL 30#define IGGY_GC_MAXIMAL 100
+#define IGGY_GC_MINIMAL 0 #define IGGY_GC_NORMAL 30 #define IGGY_GC_MAXIMAL 100
 
 typedef struct
 {
@@ -915,10 +924,10 @@ typedef enum
 typedef struct
 {
     U64 event_time_in_microseconds;
-    U64 total_marked_bytes;     // total bytes ever marked by the GC
-    U64 total_swept_bytes;      // total bytes ever swept by the GC
-    U64 total_allocated_bytes;  // total bytes ever allocated from the old
-                                // heap
+    U64 total_marked_bytes;        // total bytes ever marked by the GC
+    U64 total_swept_bytes;         // total bytes ever swept by the GC
+    U64 total_allocated_bytes;     // total bytes ever allocated from the old
+                                   // heap
     U64 total_gc_time_in_microsec  // total time spent in GC while notify
                                    // callback was active
 
@@ -1239,22 +1248,23 @@ RADEXPFUNC rrbool RADEXPLINK IggyPlayerPasteUTF16(Iggy *f, U16 *std::string, S32
 RADEXPFUNC rrbool RADEXPLINK IggyPlayerPasteUTF8(Iggy *f, char *std::string, S32 stringlen);
 RADEXPFUNC rrbool RADEXPLINK IggyPlayerCut(
 #define IGGY_PLAYER_COPY_no_focused_textfield \
-    -1#define IGGY_PLAYER_COPY_textfield_has_no_selection 0
+    -1 #define IGGY_PLAYER_COPY_textfield_has_no_selection 0
 RADEXPFUNC S32 RADEXPLINK                     \
     IggyPlayerCopyUTF16(Iggy* f, U16* buffer, S32 bufferlen);
 RADEXPFUNC S32 RADEXPLINK IggyPlayerCopyUTF8(Iggy *f, char *buffer, S32 buff//////////////////////////////////////////////////////////////// IME
 //
 
-#ifdef __RADNT__#define IGGY_IME_SUPPORT#endif 
+#ifdef __RADNT__ #define IGGY_IME_SUPPORT #endif 
 
 
 RADEXPFUNC void RADEXPLINK IggyPlayerSetIMEFontUTF8( \
     Iggy* f, const char* font_name_utf8, S32 namelen_in_bytes);
 RADEXPFUNC void RADEXPLINK IggyPlayerSetIMEFontUTF16(Iggy *f, const IggyUTF16 *font_name_utf16, S32 namelen_in_2byt
 #ifdef IGGY_IME_SUPPORT
-#define IGGY_IME_MAX_CANDIDATE_LENGTH 256  // matches def in ImeUi.cpp, so no
-                                           // overflow checks needed when
-                                           // copying out.
+#define IGGY_IME_MAX_CANDIDATE_LENGTH \
+    256  // matches def in ImeUi.cpp, so no
+         // overflow checks needed when
+         // copying out.
 
 IDOCN typedef enum {
     IGGY_IME_COMPOSITION_STYLE_NONE,
@@ -1293,8 +1303,7 @@ IDOCN RADEXPFUNC void RADEXPLINK IggyIMEDrawRect(S32 x0, S32 y0, S32 x1, S32 y1,
 
 
 typedef void *IggyFoc
-#define IGGY_FOCUS_NULL \
-    0
+#define IGGY_FOCUS_NULL 0
 
 typedef struct
 {
@@ -1350,13 +1359,13 @@ typedef struct
                               // allocations for this
                               // subcategory
 
-            S32 dynamic_allocati  // number of freeable allocations for this
-                                  // subcategory
-                                      S32 dynamic_allocati  // estimated bytes
-                                                            // of freeable
-                                                            // allocations for
-                                                            // this
-                                                            // subcategory
+            S32 dynamic_allocati      // number of freeable allocations for this
+                                      // subcategory
+                S32 dynamic_allocati  // estimated bytes
+                                      // of freeable
+                                      // allocations for
+                                      // this
+                                      // subcategory
 } IggyMemoryUseInfo;
 
 RADEXPFUNC rrbool RADEXPLINK IggyDebugGetMemoryUseInfo(Iggy *player, IggyLibrary lib, char const *category_string, S32 category_stringlen, S32 iteration, IggyMemoryUseInfo *data);
@@ -1366,6 +1375,4 @@ IDOCN RADEXPFUNC void RADEXPLINK iggy_sync_check_todisk(char *filename_or_null, 
 IDOCN RADEXPFUNC void RADEXPLINK iggy_sync_check_fromdisk(char *filename_or_null, U32 flags);
 IDOCN RADEXPFUNC void RADEXPLINK iggy_sync_check_e#define IGGY_SYNCCHECK_readytotick  1U  IDOCN
 
-
 #endifND
-

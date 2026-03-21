@@ -19,16 +19,13 @@ public:
         unsigned int m_uiGlyp      // Unicode values of each glyph.
         unsigned short* m_arrCode  // X resolution of glyph archive.
         unsigned int m_uiGly       // Y resolution of glyph archive.
-        unsigned int
-            m_uiGly  // Number of columns in the glyph archive.
-        unsigned int
-            m_uiGlyphM  // Number of rows in the glyph archive.
-        unsigned int m_uiGlyphM  // Width of each glyph.
-        unsigned int m_uiGlyp    // Height of each glyph.
-        unsigned int m_uiGlyph   // Ascent of each glyph above the baseline
-                                 // (units?).
-        float
-            m_f  // Descent of each glyph below the baseline (units?).
+        unsigned int m_uiGly       // Number of columns in the glyph archive.
+        unsigned int m_uiGlyphM    // Number of rows in the glyph archive.
+        unsigned int m_uiGlyphM    // Width of each glyph.
+        unsigned int m_uiGlyp      // Height of each glyph.
+        unsigned int m_uiGlyph     // Ascent of each glyph above the baseline
+                                   // (units?).
+        float m_f       // Descent of each glyph below the baseline (units?).
         float m_fD      // How much to advance for each pixel wide the glyph
                         // is.
         float m_fAdvPe  // How many pixels wide any whitespace characters

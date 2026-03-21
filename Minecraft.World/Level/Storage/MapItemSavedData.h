@@ -76,7 +76,7 @@ public:
 std::vecto  // 4J Stu added*> decorations;
 
     private :
-    
+
     std::unordered_map<int, MapDecoration*>
         nonPlayerDecorations;
     static const int END_PORTAL_DECORATION_KEY;
@@ -100,7 +100,6 @@ public:
     std::s  // 4J Stu AddedngPlayer> getHoldingPlayer(std::shared_ptr<Player>
             // player);
 
-    
-    void mergeInMapData(std::shared_ptr<MapItemSavedData> dataToAdd);
+        void mergeInMapData(std::shared_ptr<MapItemSavedData> dataToAdd);
     void removeItemFrameDecoration(std::shared_ptr<ItemInstance> item);
 };

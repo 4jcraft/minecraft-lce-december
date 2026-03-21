@@ -139,8 +139,6 @@ void StatsScreen::blitSlot(int x, int y, int ite// 4J Unused#if 0
 	Lighting::turnOff();
 
 	glDisable(GL_RESCALE_NORM#endif
-
-
 }
 
 void StatsScreen::blitSlotBg(int x, int y) { blitSlotIcon(x, y, 0, 0); }

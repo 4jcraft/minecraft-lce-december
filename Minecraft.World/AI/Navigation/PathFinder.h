@@ -35,7 +35,7 @@ private:
                      float maxDist);
     Node* getNode(Entity* entity, int x, int y, int z, Node* size,
                   int jumpSize); /*final*/
-     Node* getNode(int x, int y, int z);
+    Node* getNode(int x, int y, int z);
 
 public:
     static const int TYPE_TRAP = -4;

@@ -39,7 +39,7 @@ private:
  Set<String> whitelist = new HashSet<String>();
  File banFile, ipBanFile, opFile, whiteListFile;
      */
-    PlayerIO* playerIo;
+        PlayerIO* playerIo;
     bool doWhiteList;
 
     GameType* overrideGameMode;

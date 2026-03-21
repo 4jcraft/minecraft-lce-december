@@ -108,7 +108,7 @@ bool CauldronTile::use(Level* level, int x, int y, int z,
                     new ItemEntity(level, x + 0.5, y + 1.5, z + 0.5, potion)));
                 // 4J Stu - Brought forward change to update inventory when
                 // filling// bottles with water
-                // 
+                //
                 else if (player->instanceof(eTYPE_SERVERPLAYER)) {
                     dynamic_pointer_cast<ServerPlayer>(player)
                         ->refreshContainer(player->inventoryMenu);

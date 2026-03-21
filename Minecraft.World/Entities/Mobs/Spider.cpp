@@ -52,9 +52,9 @@ std::shared_ptr<Entity> Spider::findAttackTarget() {
 #ifdef _DEBUG_MENUS_ENABLED
     if (app.GetMobsDontAttackEnabled()) {
         return std::shared_ptr<Player>();
-#endif #endif 
+#endif #endif
 
-    float br = getBrightness(1);
+        float br = getBrightness(1);
         if (br < 0.5f) {
             double maxDist = 16;
             return level->getNearestAttackablePlayer(shared_from_this(),
@@ -106,11 +106,8 @@ std::shared_ptr<Entity> Spider::findAttackTarget() {
                                  * The the spiders act as if they're always on a
                                  * ladder, which enables them to climb walls.
                                  */
-            
 
-bool Spider::onLadder() {
-                return isClimbing();
-            }
+            bool Spider::onLadder() { return isClimbing(); }
 
             void Spider::makeStuckInWe  // do nothing - spiders don't get stuck
                                         // in web
@@ -143,7 +140,7 @@ MobGroupData* Spider::finalizeMobSpawn(
     MobGroupData* groupData, int /*= 0*/ta // 4J Added extraData param
 {
     groupData = Monster::finalizeMobSpawn(gr
-#ifndef _CONTENT_PACKAGE    // 4J-JEV: Added for spider-jockey spawn-egg.
+#ifndef _CONTENT_PACKAGE  // 4J-JEV: Added for spider-jockey spawn-egg.
     if ((level->random->nextInt(100) == 0) || (extraDa#else 0))
 
     if (level->random->nextInt(1#endif 0)

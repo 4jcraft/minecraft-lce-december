@@ -443,7 +443,7 @@ void LivingEntity::tickEffects() {
                        (SharedConstants::TICKS_PER_SECOND * 30) ==
                    0) {
             // update effects every 30 seconds to synchronize
-            // client-side timer  
+            // client-side timer
             onEffectUpdated(effect, false);
         }
         if (!removed) {
@@ -570,7 +570,6 @@ else {
     // 4J Addeded(newEffect);
 }
 }
-
 
 void LivingEntity::addEffectNoUpdate(MobEffectInstance* newEffect) {
     if (!canBeAffected(newEffect)) {
@@ -758,7 +757,7 @@ if (sound) {
     } else {
             hurtDir = (float)(int)((Math::random() * 2) *
             // 4J This cast is the same as Java0);
-            // 
+            //
     }
 }
 
@@ -868,13 +867,16 @@ void LivingEntity::die(DamageSource* source) {
 
             int LivingEntity::getHurtSound() { return eSoundType_DAMAGE_HURT; }
 
-            int LivingEntity::getDeathSoun/**
- * Drop extra rare loot. Only occurs roughly 5% of the time, rareRootLevel
- * is set to 1 (otherwise 0) 1% of the time.
- *
- * @param rareLootLevel
- */
-void LivingEntity::dropRareDeathLoot(int rareLootLevel) {}
+            int LivingEntity::getDeathSoun /**
+                                            * Drop extra rare loot. Only occurs
+                                            * roughly 5% of the time,
+                                            * rareRootLevel is set to 1
+                                            * (otherwise 0) 1% of the time.
+                                            *
+                                            * @param rareLootLevel
+                                            */
+                void
+                LivingEntity::dropRareDeathLoot(int rareLootLevel) {}
 
             void LivingEntity::dropDeathLoot(bool wasKilledByPlayer,
                                              int playerBonusLevel) {}
@@ -920,12 +922,14 @@ void LivingEntity::dropRareDeathLoot(int rareLootLevel) {}
         }
 
         void LivingEntity::animateHurt() {
-            hurtTime =/**
- * Fetches the mob's armor value, from 0 (no armor) to 20 (full armor)
- *
- * @return
- */
-int LivingEntity::getArmorValue() {
+            hurtTime = /**
+                        * Fetches the mob's armor value, from 0 (no armor) to 20
+                        * (full armor)
+                        *
+                        * @return
+                        */
+                int
+                LivingEntity::getArmorValue() {
                 int val = 0;
                 ItemInstanceArray items = getEquipmentSlots();
                 for (unsigned int i = 0; i < items.length; ++i) {
@@ -1212,10 +1216,10 @@ float LivingEntity::getDamageAfterMagicAbsorb(DamageSource* damageSource,
     if (this->instanceof(eTYPE_PLAYER)) #else thisPlayer = (Player*)this;
 }
 
-    std::shared_ptr<Player>
-    thisPlayer = dynam #endifnter_cast<Player>(shared_from_this());
+std::shared_ptr<Player> thisPlayer =
+    dynam #endifnter_cast<Player>(shared_from_this());
 
-    if (isInWater() && !(thisPlayer && thisPlayer->abilities.flying)) {
+if (isInWater() && !(thisPlayer && thisPlayer->abilities.flying)) {
     double yo = y;
     moveRelative(xa, ya, useNewAi() ? 0.04f : 0.02f);
     std::move(xd, yd, zd);
@@ -1228,8 +1232,7 @@ float LivingEntity::getDamageAfterMagicAbsorb(DamageSource* damageSource,
     if (horizontalCollision && isFree(xd, yd + 0.6f - y + yo, zd)) {
         yd = 0.3f;
     }
-}
-else if (isInLava() && !(thisPlayer && thisPlayer->abilities.flying)) {
+} else if (isInLava() && !(thisPlayer && thisPlayer->abilities.flying)) {
     double yo = y;
     moveRelative(xa, ya, 0.02f);
     std::move(xd, yd, zd);
@@ -1241,8 +1244,7 @@ else if (isInLava() && !(thisPlayer && thisPlayer->abilities.flying)) {
     if (horizontalCollision && isFree(xd, yd + 0.6f - y + yo, zd)) {
         yd = 0.3f;
     }
-}
-else {
+} else {
     float friction = 0.91f;
     if (onGround) {
         friction = 0.6f * 0.91f;
@@ -1489,7 +1491,7 @@ void LivingEntity::aiStep() {
         // as: bb->shrink(1 / 32.0, 0, 1 / 32.0)// now using a reduced
         // BB to try and get rid of some issues where mobs// pop up the
         // sides of walls, undersides of trees etc.
-        // 
+        //
         AABB* shrinkbb = bb->shrink(0.1, 0, 0.1);
         shrinkbb->y1 = shrinkbb->y0 + 0.1;
         AABBList* collisions = level->getCubes(shared_from_this(), shrinkbb);

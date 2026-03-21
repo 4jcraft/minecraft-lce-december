@@ -35,8 +35,8 @@ McRegionLevelStorageSource::getLevelList() {  // 4J Stu - We don't need to do
                                               // directory lookups with the xbox
                                               // save files
     std::vector<LevelSummary*>* levels = new std::vector<L#if 0ummary *>;
-    
-	std::vector<File*>* subFolders = baseDir.listFiles();
+
+    std::vector<File*>* subFolders = baseDir.listFiles();
     File* file;
     AUTO_VAR(itEnd, subFolders->end());
         for (AUTO_VAR(it, subFolders->begin()); it != itEnd; it+//subFolders->at(i);
@@ -149,9 +149,9 @@ bool McRegionLevelStorageSource::convertLevel(ConsoleSaveFile* saveFile,
     return true;
 }
 
-
-void McRegionLevelStorageSource::addRegions(File &baseFolder, std::vector<ChunkFile *> *dest, std::vector<File *> *firstLevelFolders) 
-{
+void McRegionLevelStorageSource::addRegions(
+    File& baseFolder, std::vector<ChunkFile*>* dest,
+    std::vector<File*>* firstLevelFolders) {
     FolderFilter folderFilter;
     ChunkFilter chunkFilter;
 
@@ -168,9 +168,8 @@ void McRegionLevelStorageSource::addRegions(File &baseFolder, std::vector<ChunkF
 		AUTO_VAR(itEnd2, folderLevel2->en//folderLevel2->at(i2);t2, folderLevel2->begin()); it2 != itEnd; it2++)
 		{
         folder2 = *it2;
-        
 
-			std::vector<File*>* chunkFiles =
+        std::vector<File*>* chunkFiles =
             folder2->listFiles((FileFilter*)&chunkFilter);
 
         File* chunk;
@@ -178,14 +177,12 @@ void McRegionLevelStorageSource::addRegions(File &baseFolder, std::vector<ChunkF
         f  // chunkFiles->at(i3);chunkFiles->begin()); itFile != itEndFile;
            // itFile++)
         {
-#endifnk = *itFile; 
-
-				dest->push_back(new ChunkFile(chunk));
+#endifnk = *itFile;
+            dest->push_back(new ChunkFile(chunk));
         }
 		}
 }
 }
-
 
 void McRegionLevelStorageSource::convertRegions(File& baseFolder,
                                                 std::vector<ChunkFile*>* chunkFiles,
@@ -213,10 +210,8 @@ void McRegionLevelStorageSource::convertRegions(File& baseFolder,
     FileInputStream fis =
         new Buffered  // 4J - was new GZIPInputStream as well>getFile()));
             DataInputStream std::istream = DataInputStream(&fis);
-    
 
-			DataOutputStream* out =
-        region->getChunkDataOutputStream(x & 31, z & 31);
+    DataOutputStream* out = region->getChunkDataOutputStream(x & 31, z & 31);
 
     int length = 0;
                         while ( (length = std::is// 4J Stu - getChunkDataOutputStream makes a new DataOutputStream that points to a new ChunkBuffer( ByteArrayOutputStream )// We should clean these up when we are done
@@ -230,9 +225,6 @@ void McRegionLevelStorageSource::convertRegions(File& baseFolder,
 		progress->progressStagePercentage(percent);
 }
 RegionFileCache::clear();
-
-
-
 }
 
 void McRegionLevelStorageSource::eraseFolders(std::vector<File*>* folders,
@@ -241,7 +233,6 @@ void McRegionLevelStorageSource::eraseFolders(std::vector<File*>* folders,
     File* folde  // folders->at(i);End, folders->end());
         for (AUTO_VAR(it, folders->begin()); it != itEnd; it++) {
         folder = *it;
-        
 
         std::vector<File*>* files = folder->listFiles();
         deleteRecursive(files);
@@ -255,9 +246,7 @@ void McRegionLevelStorageSource::eraseFolders(std::vector<File*>* folders,
     }
 }
 
-
-bool McRegionLevelStorageSource::FolderFilter::accept(File *file) 
-{
+bool McRegionLevelStorageSource::FolderFilter::accept(File* file) {
     if (file->isDirectory()) {
         Matcher matcher(chunkFolderPattern, file->getName());
         return matcher.matches();
@@ -278,13 +267,11 @@ McRegionLevelStorageSource::ChunkFile::ChunkFile(File* file) {
     if (matcher.matches())  // Returns a negative integer, zero, or a positive
                             // integer as this object is less than, equal to, or
                             // greater than the specified object.
-            // sort chunk files so that they are placed according to their
-            i  // region positionorageSource::ChunkFile::compareTo(ChunkFile
-               // *rhs)
+        // sort chunk files so that they are placed according to their
+        i  // region positionorageSource::ChunkFile::compareTo(ChunkFile
+           // *rhs)
         {
-            
-	
-	int rx = x >> 5;
+            int rx = x >> 5;
             int r  // 4J Stu Added so we can use std::sort instead of the java
                    // Collections::sort-// a < b
                 return rz -
@@ -294,10 +281,7 @@ McRegionLevelStorageSource::ChunkFile::ChunkFile(File* file) {
     return rx - rhsrx;
 }
 
-
-
-bool McRegionLevelStorageSource::ChunkFile::operator<( ChunkFile *b )
-{
+bool McRegionLevelStorageSource::ChunkFile::operator<(ChunkFile* b) {
     return compareTo(b) < 0;
 }
 

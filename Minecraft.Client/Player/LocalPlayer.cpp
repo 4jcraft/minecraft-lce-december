@@ -702,16 +702,14 @@ void LocalPlayer::hurtTo(float newHealth, ETelemetryChallenges damageSource) {
             (int)(level->getGameTime() % Level::TICKS_PER_DAY) / 1000;
         int carriedId =
             inventory->getSelected() == NULL ? 0 : inventory->getSelected()->id;
-        TelemetryManager
-            ->RecordPlayerDiedOrFaile  // if there are any xuiscenes up for this
-                                       // player, close
-                                       // them
+        TelemetryManager->RecordPlayerDiedOrFaile  // if there are any xuiscenes
+                                                   // up for this player, close
+                                                   // them
             if (ui.GetMenuDisplayed(GetXboxPad())) {
             ui.CloseUIScen  // Select the right payer to
                             // respawncalPlayer::respawn()
             {
-        
-	minecraft->respawnPlayer(G//        Player.animateRespawn(this, level);ateRespawn()
+        minecraft->respawnPlayer(G//        Player.animateRespawn(this, level);ateRespawn()
 {
                     
 }
@@ -749,9 +747,8 @@ void LocalPlayer::displayClientMessage(int messageId)
 				}
             }
 
-            
-			unsigned long long achBit = ((unsigned long long)1)
-                                                    << ach->getAchievementID();
+            unsigned long long achBit = ((unsigned long long)1)
+                                        << ach->getAchievementID();
             if (!(achBit & m_awardedThisSession)) {
                 ProfileManager.Award(m_iPad, ach->getAchievementID());
                 if (ProfileManager.IsFullVersion())
@@ -760,8 +757,7 @@ void LocalPlayer::displayClientMessage(int messageId)
         }
                 minecraft->stats[m_// 4J : WESTY : Added for new achievements.);
     } else {
-                
-		StatsCounter* pStats = minecraft->stats[m// 4J-JEV: Check achievements for unlocks.cult// LEADER OF THE PACK
+                StatsCounter* pStats = minecraft->stats[m// 4J-JEV: Check achievements for unlocks.cult// LEADER OF THE PACK
 
 		
 		// Check to see if we have befriended 5 wolves! Is this really the best place to do this??!!
@@ -771,8 +767,7 @@ void LocalPlayer::displayClientMessage(int messageId)
 			}
     }
 
-    
-		{
+    {
         Stat* toolStats[4][5];
         toolStats[0][0] = GenericStats::itemsCrafted(Item::shovel_wood->id);
         toolStats[0][1] = GenericStats::itemsCrafted(Item::shovel_stone->id);
@@ -824,20 +819,18 @@ void LocalPlayer::displayClientMessage(int messageId)
                                         awardStat(GenericStats::MOA
 #ifdef _XBOXeri  // AWARD: Have we killed 10 creepers?
             }
-            
-		
-		if (pStats->getTotalValue(GenericStats::killsCreeper()) >= 10) {
+
+            if (pStats->getTotalValue(GenericStats::killsCreeper()) >= 10) {
                         awardStat( GenericSta// AWARD : Have we been playing for 100 game days?);
             }
 
-            
-		if (pStats->getTotalValue(GenericStats::timePlayed()) >=
-                    (Level::TICKS_PER_DAY * 100)) {
+            if (pStats->getTotalValue(GenericStats::timePlayed()) >=
+                (Level::TICKS_PER_DAY * 100)) {
                         awardStat( Generi// AWARD : Have we mined 100 blocks?:param_noArgs());
             }
-            
-		if (pStats->getTotalValue(GenericStats::totalBlocksMined()) >=
-                    100) {
+
+            if (pStats->getTotalValue(GenericStats::totalBlocksMined()) >=
+                100) {
                         awardStat( Generi#endif:
 #ifdef _EXTENDED_ACHIEVEMENTS::pa  // AWARD : Porkchop, cook and eat a
                                    // porkchop.
@@ -879,8 +872,7 @@ void LocalPlayer::displayClientMessage(int messageId)
 			}
                                 }
 
-                                
-		{
+                                {
                                     Stat *emeraldMined, *emeraldBought;
                                     emeraldMined = GenericStats::blocksMined(
                                         Tile::emeraldOre_Id);
@@ -904,8 +896,7 @@ void LocalPlayer::displayClientMessage(int messageId)
                                 if (totalSum >= 30)	awardStat( GenericStats::th// AWARD : Pot Planter, craft and place a flowerpot.
                                     }
 
-                                    
-		{
+                                    {
                                         Stat *craftFlowerpot, *placeFlowerpot;
                                         craftFlowerpot =
                                             GenericStats::itemsCrafted(
@@ -924,8 +915,7 @@ void LocalPlayer::displayClientMessage(int messageId)
                                             }
                                         }
 
-                                        
-		{
+                                        {
                                             Stat *craftSign, *placeWallsign,
                                                 *placeSignpost;
                                             craftSign =
@@ -1036,9 +1026,6 @@ void LocalPlayer::displayClientMessage(int messageId)
                                                                                 param_adventuringTime());
                                                                     }
 		}
-
-	
-                                                        
                                                         }
                                                         
 }
@@ -1176,8 +1163,8 @@ void LocalPlayer::setExperienceValues(float experienceProgress, int totalExp, in
                                                                              // *message)//{//
                                                                              // minecraft->gui->getChat()->addMessage(message.toString(true));//}
 
-
-Pos LocalPlayer::getCommandSenderWorldPosition() {
+                                                            Pos LocalPlayer::
+                                                                getCommandSenderWorldPosition() {
                                                             return new Pos(
                                                                 floor(x + .5),
                                                                 floor(y + .5),
@@ -1263,7 +1250,10 @@ Pos LocalPlayer::getCommandSenderWorldPosition() {
                                                                        // RemoveO#include
                                                                        // "..\Minecraft.World\LevelChunk.h"
 
-void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
+                                                            void
+                                                            LocalPlayer::mapPlayerChunk(
+                                                                const unsigned int
+                                                                    flagTileType) {
                                                             int cx =
                                                                 this->xChunk;
                                                             int cz =
@@ -1282,8 +1272,14 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                         x)) %
                                                                 16;
 
-                                                            st","cout<<","")\n"<<<cz<<
-		<<this->x<<<<this->y<<<<this->z<<;
+                                                            st "," cout
+                                                                    << ","
+                                                                       ")"
+                                                                       "\n" < < <
+                                                                cz < < < <
+                                                                this->x < < < <
+                                                                this->y < < < <
+                                                                this->z << ;
 
                                                             for (int v = -1;
                                                                  v < 2; v++)
@@ -1352,8 +1348,11 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                     std::cout
                                                                         <<  // 4J Stu - We should not accept any input while asleep, except the above to wake upl down)
                                                                     {
-                                                                        
-	if (isSleeping() && level != NULL && level->isClientSide) {
+                                                                        if (isSleeping() &&
+                                                                            level !=
+                                                                                NULL &&
+                                                                            level
+                                                                                ->isClientSide) {
                                                                             return;
                                                                         }
                                                                         if (!down)
@@ -1378,10 +1377,17 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                 0) {
                                                                             int x =
                                                                                 min  // 4J - addition to stop layer mining out of the top or bottom of the worldt->// 4J Stu - Allow this for The End
-		
-		if (((y == 0) ||
-                     ((y == 127) && level->dimension->hasCeiling)) &&
-                    level->dimension->id != 1) return;
+
+                                                                                if (((y ==
+                                                                                      0) ||
+                                                                                     ((y ==
+                                                                                       127) &&
+                                                                                      level
+                                                                                          ->dimension
+                                                                                          ->hasCeiling)) &&
+                                                                                    level->dimension
+                                                                                            ->id !=
+                                                                                        1) return;
 
                                                                             minecraft
                                                                                 ->gameMode
@@ -1421,13 +1427,15 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                         bool
                                                                             buttonPressed) {
                                                                         if  // Are we in an auto-repeat situation? - If so only tell the game that we've clicked if we move more than a unit away from our last// click position in any axis// If we're in disabled mode already (set when sprinting) then don't do anything - if we're sprinting, we don't auto-repeat at all.// With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing// If we've started sprinting, go into this mode & also don't do anythinged )// Ignore repeate when sleeping
-                                                                            
-	    // Get distance from last click point in each axisstClick_disabled;
-                                                                                return false;
+
+                                                                            // Get distance from last click point in each axisstClick_disabled;
+                                                                            return false;
                                                                     }
 
-                                                                    
-			float dX = (float)x - lastClickX;
+                                                                    float dX =
+                                                                        (float)
+                                                                            x -
+                                                                        lastClickX;
                                                                     float dY =
                                                                         (float)
                                                                             y -
@@ -1490,9 +1498,10 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                     0.0f;
                                                                                 lastClickState =
                                                                                     lastCli  // If we have moved more than one unit in any one axis, then register a new clickkdZ // The new click position is normalised at one unit in the direction of movement, so that we don't gradually drift away if we detect the movement a fraction over// the unit distance each time
-			
 
-			if (fabsf(dX) >= 1.0f) {
+                                                                                    if (fabsf(
+                                                                                            dX) >=
+                                                                                        1.0f) {
                                                                                     dX =
                                                                                         (dX <
                                                                                          0.0f)
@@ -1556,8 +1565,9 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                             true;
                                                                                 }
                                                                                 // Get a more accurate pick from the position where the new click should ideally have come from, rather than// where we happen to be now (ie a rounded number of units from the last Click position)
-                                                                                
-				double oldX = x;
+
+                                                                                double oldX =
+                                                                                    x;
                                                                                 double oldY =
                                                                                     y;
                                                                                 double oldZ =
@@ -1590,13 +1600,14 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                             }
                                                                         }
                                                                         else {
-                                                                                // If we actually placed an item, then move into the init state as we are going to be doing the special creative mode auto repeat// If we're sprinting or riding, don't auto-repeat at all. With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing// Also ignore repeats when the player is sleeping
-			
-			if (isSprinting() || isRiding() || isSleeping()) {
+                                                                            // If we actually placed an item, then move into the init state as we are going to be doing the special creative mode auto repeat// If we're sprinting or riding, don't auto-repeat at all. With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing// Also ignore repeats when the player is sleeping
+
+                                                                            if (isSprinting() ||
+                                                                                isRiding() ||
+                                                                                isSleeping()) {
                                                                                 lastClickState =
                                                                                     lastClick_disabled;
-                                                                            }
-                                                                            else {
+                                                                            } else {
                                                                                 if (itemPlaced) {
                                                                                     // Didn't place an item - might actually be activating a switch or door or something - just do a standard auto repeat in this case
                                                                                     lastClickState =
@@ -1625,15 +1636,32 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                           // ==
                                                                           // 0)
                                                                 {
-                                                                        // 4J-PB - Adding a special case in here for sleeping in a bed in a multiplayer game - we need to wake up, and we don't have the inbedchatscreen with a button
+                                                                    // 4J-PB -
+                                                                    // Adding a
+                                                                    // special
+                                                                    // case in
+                                                                    // here for
+                                                                    // sleeping
+                                                                    // in a bed
+                                                                    // in a
+                                                                    // multiplayer
+                                                                    // game - we
+                                                                    // need to
+                                                                    // wake up,
+                                                                    // and we
+                                                                    // don't
+                                                                    // have the
+                                                                    // inbedchatscreen
+                                                                    // with a
+                                                                    // button
 
-                                                                        if (button ==
-                                                                                1 &&
-                                                                            (isSleeping() &&
-                                                                             level !=
-                                                                                 NULL &&
-                                                                             level
-                                                                                 ->isClientSide)) {
+                                                                    if (button ==
+                                                                            1 &&
+                                                                        (isSleeping() &&
+                                                                         level !=
+                                                                             NULL &&
+                                                                         level
+                                                                             ->isClientSide)) {
                                                                         if (lastClickState ==
                                                                             lastClick_oldRepeat)
                                                                             return false;
@@ -1644,8 +1672,12 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                 dynamic_pointer_cast <
                                                                                 Multipl  // 4J Stu - We should not accept any input while asleep, except the above to wake upeeping();
                                                                     }
-                                                                    
-	if (isSleeping() && level != NULL && level->isClientSide) {
+
+                                                                    if (isSleeping() &&
+                                                                        level !=
+                                                                            NULL &&
+                                                                        level
+                                                                            ->isClientSide) {
                                                                         return false;
                                                                     }
 
@@ -1679,8 +1711,8 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                 ->at  // 4J-PB - if we milk a cow here, and end up with a bucket of milk, the if (mayUse && button == 1) further down will // then empty our bucket if we're pointing at a tile// It looks like interact really should be returning a result so we can check this, but it's possibly just the // milk bucket that causes a problem
                                                                             // If I have an empty bucket in my hand, it's going to be filled with milk, so turn off mayUse)
                                                                             {
-                                                                                
-				std::shared_ptr<ItemInstance>
+                                                                                std::shared_ptr<
+                                                                                    ItemInstance>
                                                                                     item =
                                                                                         inventory
                                                                                             ->getSelected();
@@ -1718,10 +1750,17 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                         int y =
                                                                             minecraft
                                                                                 ->hitR  // 4J - addition to stop layer mining out of the top or bottom of the worldult-// 4J Stu - Allow this for The End
-			
-			if (!((y == 0) ||
-                              ((y == 127) && level->dimension->hasCeiling)) ||
-                            level->dimension->id == 1) {
+
+                                                                            if (!((y ==
+                                                                                   0) ||
+                                                                                  ((y ==
+                                                                                    127) &&
+                                                                                   level
+                                                                                       ->dimension
+                                                                                       ->hasCeiling)) ||
+                                                                                level->dimension
+                                                                                        ->id ==
+                                                                                    1) {
                                                                             minecraft
                                                                                 ->gameMode
                                                                                 ->startDestroyBlock(
@@ -1745,7 +1784,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                             false;
                         if (minecraft->gameMode->useItemOn(minecra// Presume that if we actually used the held item, then we've placed ithitResult->pos, false, &usedItem))
 			{
-				//app.DebugPrintf("Player %d is swinging\n",GetXboxPad());		returnItemPlaced = true;
+                                                                            // app.DebugPrintf("Player %d is swinging\n",GetXboxPad());		returnItemPlaced = true;
 				}
 				mayUse = false;
 				
@@ -1806,7 +1845,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                     LocalPlayer::
                                                                         updateRichPresence() {
                                                                         if ((m_iPad !=
-                                                                             -1) ) {
+                                                                             -1)) {
                                                                             std::shared_ptr<
                                                                                 ItemInstance>
                                                                                 selectedItem =
@@ -1877,8 +1916,10 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                         }
                                                                     }
 
-                                                                    
-void LocalPlayer::SetSessionTimerStart(void) {
+                                                                    void
+                                                                    LocalPlayer::
+                                                                        SetSessionTimerStart(
+                                                                            void) {
                                                                         m_sessionTimeStart =
                                                                             app.getAppTime();
                                                                         m_dimensionTimeStart =
@@ -1923,8 +1964,11 @@ void LocalPlayer::SetSessionTimerStart(void) {
                                                                                         ->items
                                                                                             [k] !=
                                                                                     NULL) {
-                                                                                    
-				if (inventory->items[k]->id == item->id) {
+                                                                                    if (inventory
+                                                                                            ->items
+                                                                                                [k]
+                                                                                            ->id ==
+                                                                                        item->id) {
                                                                                         unsigned int quantity =
                                                                                             inventory
                                                                                                 ->items

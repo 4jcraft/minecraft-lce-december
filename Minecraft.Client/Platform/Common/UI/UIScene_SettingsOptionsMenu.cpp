@@ -144,8 +144,6 @@ UIScene_SettingsOptionsMenu::UIScene_SettingsOptionsMenu(int iPad,
 
 	if(app.GetLocalPlayerCount()>1#if TO_BE_IMPLEMENTED
 		app.AdjustSplitscreenScene(m_hObj,&m_OriginalPosition,m_iP#endif
-	
-        
         }
 
         m_labelDifficultyText.disableReinitialisation();
@@ -207,9 +205,8 @@ void UIScene_SettingsOptionsMenu::handleInput(int iPad, int key, bool repeat, bo
                     navigateBack();
                 }
                 break;
-            case ACTION_MENU #ifdef __ORBIS__
-	case ACTION_MENU_TOUCHPAD_PR #endif 
-		sendInputToMovie(key, repeat, pressed, released);
+            case ACTION_MENU #ifdef __ORBIS__ case ACTION_MENU_TOUCHPAD_PR #endif sendInputToMovie(
+                key, repeat, pressed, released);
                 break; case ACTION_MENU_UP:
             case ACTION_MENU_DOWN:
             case ACTION_MENU_LEFT:

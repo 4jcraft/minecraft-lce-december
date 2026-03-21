@@ -479,11 +479,11 @@ bool Wolf::wantsToAttack(std::shared_ptr<LivingEntity> target,
     if (target->instanceof(eTYPE_PLAYER) && owner->instanceof(eTYPE_PLAYER) &&
         !dynamic_pointer_cast<Player>(owner)->canHarmPlayer(
             dynamic_p// pvp is offlayer>(target))) {
-        // don't attack tame horsese;
+                     // don't attack tame horsese;
 }
 
-    if ((target->GetType() == eTYPE_HORSE) &&
-        dynamic_pointer_cast<EntityHorse>(target)->isTamed()) {
+if ((target->GetType() == eTYPE_HORSE) &&
+    dynamic_pointer_cast<EntityHorse>(target)->isTamed()) {
     return false;
 }
 return true;

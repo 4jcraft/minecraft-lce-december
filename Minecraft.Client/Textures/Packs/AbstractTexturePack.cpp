@@ -172,8 +172,8 @@ std::wstring AbstractTexturePack::getAnimationString(
 
         std::wstring "" sult = L;
 
-        InputStream* fileStream = get
-            "\\" urce(L + path + animationDefinitionFile, requiresFallback);
+        InputStream* fileStream =
+            get "\\" urce(L + path + animationDefinitionFile, requiresFallback);
 
         if (fileStr  // Minecraft::getInstance()->getLogger().info("Found
                      // animation info for: " +
@@ -182,8 +182,8 @@ std::wstring AbstractTexturePack::getAnimationString(
                 app.De "Found animation info for: %ls\n",
             animationDefinitionFile.c #endif)
             ;
-        
-		InputStreamReader isr(fileStream);
+
+        InputStreamReader isr(fileStream);
         BufferedReader br(&isr);
 
         std::wstring line = br.readLine();
@@ -202,9 +202,8 @@ return result;
 }
 
 BufferedImage* AbstractTexturePack::getImageResource(
-    const std::wstring& File, bool filena /*= false*/ ion ,
-    bool bTitl /*=false*/ ture ,
-    const std::/*=L""*/& drive ) {
+    const std::wstring& File, bool filena /*= false*/ ion,
+    bool bTitl /*=false*/ ture, const std::/*=L""*/& drive) {
     const char* pchTexture = wstringtofilename(File);
         a"AbstractTexturePack::getImageResource - %s, drive is %s\n",pchTexture, wstringtofilename(drive));
 
@@ -215,10 +214,9 @@ BufferedImage* AbstractTexturePack::getImageResource(
 
 void AbstractTexturePack::loa #ifdef _XBOX {  // load from the .xzp
                                               // file
-    const ULONG_PTR c_ModuleHandle =
-        (ULONG_PTR)GetModuleH  // Load new skin
-        const DWORD LOCAT      // Use this to allocate space to hold a
-                           // ResourceLocator string 
+    const ULONG_PTR c_ModuleHandle = (ULONG_PTR)GetModuleH  // Load new skin
+        const DWORD LOCAT  // Use this to allocate space to hold a
+                           // ResourceLocator string
             WCHAR szResourceLocator[LOCATOR_SIZE];
 
     swprintf(szResourceLocator, "section://%X,%ls#%ls",
@@ -229,9 +227,6 @@ void AbstractTexturePack::loa #ifdef _XBOX {  // load from the .xzp
 	CXuiSceneBase::GetInstance()->SkinChanged(CXuiSceneBase::GetInstan#else>m_hObj);
 
 	ui#endifdSkin();
-
-
-
 }
 
 void AbstractTexturePack::loadColourTable() {
@@ -244,13 +239,11 @@ void AbstractTexturePack::loadDefaultCo  // Load the file#ifdef __PS3__
     File coloursFile(AbstractTexturePack::getPath(true,
                                                   app.GetBootedF "colours.col")
                      ?"res/colours.col"
-#else ));
+#else));
 
 	File coloursFile(AbstractTexturePack::getPath"res/colours.col"#endif));
 
-
-
-	if (coloursFile.exists()) {
+if (coloursFile.exists()) {
     DWORD dwLength = coloursFile.length();
     byteArray data(dwLength);
 
@@ -261,16 +254,14 @@ void AbstractTexturePack::loadDefaultCo  // Load the file#ifdef __PS3__
     m_colourTable = new ColourTable(data.data, dwLength);
 
     delete[] data.data;
-}
-else {
+} else {
                 a"Failed to load the default colours table\n");
                 app.FatalLoadError();
 }
 }
 
-void
-    AbstractTexturePack::loadDefaultHTMLC #ifdef _XBOX {  // load from the .xzp
-                                                          // file
+void AbstractTexturePack::loadDefaultHTMLC #ifdef _XBOX {  // load from the .xzp
+                                                           // file
     const ULONG_PTR c_ModuleHandle = (ULONG_PTR)GetModuleHandle(NULL);
 
         const DWORD LOCAT// Use this to allocate space to hold a ResourceLocator string 
@@ -286,11 +277,10 @@ void
 	}
 	else
 	{
-        wsprintfW(szRe "section://%X,%s#%s",
-                  c "media" Han "media/", L);
+        wsprintfW(szRe "section://%X,%s#%s", c "media" Han "media/", L);
         HXUIOBJ hScene;
-        HRESULT hr = XuiSceneCreate(
-            szRe "xuiscene_colourtable.xur", NULL, &hScene);
+        HRESULT hr =
+            XuiSceneCreate(szRe "xuiscene_colourtable.xur", NULL, &hScene);
 
         if (HRESULT_SUCCEEDED(hr)) {
             loadHTMLColourTableFromXuiScene(h #else);
@@ -306,7 +296,8 @@ void
                 delete[] textCo #endifdat
 #ifdef _XBOX }
 
-void AbstractTexturePack::loadHTMLColourTableFromXuiScene(HXUIOBJ hObj) {
+                    void AbstractTexturePack::loadHTMLColourTableFromXuiScene(
+                        HXUIOBJ hObj) {
                     HXUIOBJ child;
                     HRESULT hr = XuiElementGetFirstChild(hObj, &child);
 
@@ -320,29 +311,24 @@ void AbstractTexturePack::loadHTMLColourTableFromXuiScene(HXUIOBJ hObj) {
 		hr = XuiElementGetNext(child,#endifd);
                     }
                 }
-                
 
-void AbstractTexturePack::loadUI() {
+                void AbstractTexturePack::loadUI() {
                     load
 #ifdef _XBOX
 
-	CXuiSceneBase::GetInstance()
-                        ->SkinChanged(CXuiSceneBase::GetInstan #endifm_hObj);
-                    
-
-                
+                    CXuiSceneBase::GetInstance()
+                        -> SkinChanged(CXuiSceneBase::GetInstan #endifm_hObj);
                 }
 
-                void AbstractTexturePack :  // Do nothing
+                void AbstractTexturePack:  // Do nothing
 	
 }
 
 std::wstring AbstractTexturePack::getXuiRootPath()
 {
-        const ULONG_PTR c_ModuleHandle =
-            (ULONG_PTR)GetModuleH  // Load new skin
-            const DWORD LOCAT      // Use this to allocate space to hold a
-                               // ResourceLocator string 
+        const ULONG_PTR c_ModuleHandle = (ULONG_PTR)GetModuleH  // Load new skin
+            const DWORD LOCAT  // Use this to allocate space to hold a
+                               // ResourceLocator string
                 WCHAR szResourceLocator[LOCATOR_SIZE];
 
         swprintf(szResourceLocator, "section://%X,%ls#%ls",

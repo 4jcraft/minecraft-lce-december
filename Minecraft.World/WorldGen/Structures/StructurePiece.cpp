@@ -215,16 +215,16 @@ StructurePiece* StructurePiece::findCollisionPiece(
                             return 0;
                         }
                     } else if (orientation == Direction::WEST) {
-                        // 0 = 1  
-                        // 1 = 2  
-                        // 2 = 3  
-                        // 3 = 0  
+                        // 0 = 1
+                        // 1 = 2
+                        // 2 = 3
+                        // 3 = 0
                         return (data + 1) & 3;
                     } else if (orientation == Direction::EAST) {
-                        // 0 = 3  
-                        // 1 = 0  
-                        // 2 = 1  
-                        // 3 = 2  
+                        // 0 = 3
+                        // 1 = 0
+                        // 2 = 1
+                        // 3 = 2
                         return (data + 3) & 3;
                     }
                 } else if (tile == Tile::stairs_stone_Id ||

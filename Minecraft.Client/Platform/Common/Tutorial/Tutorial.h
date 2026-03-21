@@ -108,13 +108,13 @@ public:
 
 private:
     bool hasRequestedUI;
-bool uiTempDisab
+    bool uiTempDisab
 #ifdef _XBOX
-	CXuiScene* m_UISc #else 
-	UIScene* m_UISc #endif 
+        CXuiScene* m_UISc #else UIScene* m_UISc #endif
 
-	int m_iPad;
-    public : bool m_allTutorialsComplete;
+        int m_iPad;
+public:
+    bool m_allTutorialsComplete;
     bool m_fullTutorialComplete;
     bool m_isFullTutorial;
 
@@ -180,17 +180,15 @@ public:
                getTasks();
         unsigned int getCurrentTaskInde
 #ifdef _XBOX
-	CXuiScene*                         \
-getScene(){                                \
-    return m_UIScen #else 
-	UIScene *                          \
-           getScene(){return m_UIScen #endif 
-	eTutorial_State getCurrentState(){ \
-               return m_CurrentState;  // These are required so that we have a
-                                       // consistent mapping of the completion
-                                       // bits stored in the profile data
-            static void staticCtor();
-        static std::vector<int> s_completableTasks;
+            CXuiScene* getScene() {
+            return m_UIScen #else UIScene * getScene() {
+                return m_UIScen #endif eTutorial_State getCurrentState() {
+                    return m_CurrentState;  // These are required so that we
+                                            // have a consistent mapping of the
+                                            // completion bits stored in the
+                                            // profile data
+                    static void staticCtor();
+                    static std::vector<int> s_completableTasks;
 
-        static void debugResetPlayerSavedProgress(int iPad);
-};
+                    static void debugResetPlayerSavedProgress(int iPad);
+                };

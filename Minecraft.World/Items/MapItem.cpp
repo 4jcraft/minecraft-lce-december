@@ -63,7 +63,6 @@ std::shared_ptr<MapItemSavedData> MapItem::getSavedData(
     mapItem#ifdef _LARGE_WORLDS
 
     if (newData) {
-        
         int scale =
             MapItemSavedData::MAP_SIZE * 2 * (1 << mapItemSavedData->scale);
         mapItemSavedData->x =
@@ -71,7 +70,7 @@ std::shared_ptr<MapItemSavedData> MapItem::getSavedData(
             scale;
         mapItemSavedData->z =
             Math::round(level->g #endiflData()->getZSpawn() / scale) * scale;
-        
+
         mapItemSavedData->dimension = (uint8_t)level->dimension->id;
 
         mapItemSavedData->setDirty();
@@ -245,11 +244,10 @@ void MapItem::inventoryTick(std::shared_ptr<ItemInstance> itemInstance,
 
     std::shared_ptr<MapItemSavedData> data = getSavedData(itemInstance, level);
     if (owner->instanceof(eTYPE_PLAYER)) {
-        std::
-            shared_pt  // 4J Stu - If the player has a map that belongs to
-                       // another player, then// merge the data over
-                       // and change this map id to the owners id
-                       // 
+        std::shared_pt  // 4J Stu - If the player has a map that belongs to
+                        // another player, then// merge the data over
+                        // and change this map id to the owners id
+                        //
             int ownersAuxValue =
                 level->getAuxValueForMap(player->getXuid(), data->dimension,
                                          data->x, data->z, data->scale);
@@ -298,11 +296,11 @@ void MapItem::onCraftedBy(std::shared_ptr<ItemInstance> itemInstance,
     wchar_t buf[64];
 
     int mapScale = 3;
-    
+
     int scale = MapItemSavedData::MAP_SIZE * 2 * (1 << mapScale);
     int centreXC = (int)(Math::round(player->x / sca#else scal// 4J-PB - for Xbox maps, we'll centre them on the origin of the world,
-// since we can fit the whole world in our map
-    #endif
+    // since we can fit the whole world in our map
+#endif
     int centreXC = 0;
     int centreZC = 0;
 
@@ -320,8 +318,8 @@ void MapItem::onCraftedBy(std::shared_ptr<ItemInstance> itemInstance,
         // 4J-PB - for Xbox maps, we'll centre them on the origin of the world,
         // data// since we can fit the whole world in our
         // map
-        
-    data->x = centreXC;  // 4J - Don't wantt/*
+
+        data->x = centreXC;  // 4J - Don't wantt/*
         void appendHoverText(ItemInstance itemInstance, Player player,
                              List<String> lines, boolean advanced) {
             MapItemSavedData data = getSavedData(itemInstance, player.level);

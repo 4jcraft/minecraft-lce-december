@@ -99,8 +99,7 @@ private:
 
     bool sn  // 4J Added    bool _hasRain;
 
-    
-    eMinecraftColour m_grassColor;
+        eMinecraftColour m_grassColor;
     eMinecraftColour m_foliageColor;
     eMinecraftColour m_waterColor;
     eMinecraftColour m_skyColor;
@@ -115,8 +114,8 @@ B /* removing these so that we can consistently return newly created
  *swampTree;
  */
 
-public : virtual Feature*
-         getTreeFeature(Random* random);
+    public : virtual Feature*
+             getTreeFeature(Random* random);
     virtual Feature* getGrassFeature(Random* random);
 
 protected:
@@ -125,12 +124,10 @@ protected:
     Biome* setLeafColor(int leafColor);
     // 4J AddedtColor(int color);
 
-    
-    Biome*
-    setLeafFoliageWaterSkyColor(eMinecraftColour grassColor,
-                                eMinecraftColour foliageColor,
-                                eMinecraftColour waterColour,
-                                eMinecraftColour skyColour);
+    Biome* setLeafFoliageWaterSkyColor(eMinecraftColour grassColor,
+                                       eMinecraftColour foliageColor,
+                                       eMinecraftColour waterColour,
+                                       eMinecraftColour skyColour);
 
 public:
     virtual int getSkyColor(float temp);
@@ -148,5 +145,5 @@ public:
     virtual void decorate(Level* level, Random* random, int xo, int zo);
 
     virtual int getGrassColor();
-    virtual int getFolageCol// 4J Addedirtual int getWaterColor();  
+    virtual int getFolageCol// 4J Addedirtual int getWaterColor();
 };

@@ -72,8 +72,8 @@ std::wstring CreateWorldScreen::findAvailableFolderName(
     while (levelSource->getDataTagFor(folder2) != NULL)
 	{
         folder2 = folder"-" L;
-#endif 
-    return folder2;
+#endif
+        return folder2;
 }
 
 void CreateWorldScreen::removed() { Keyboard::enableRepeatEvents(false); }
@@ -102,14 +102,11 @@ void CreateWorldScreen::buttonClicked(Button* button) {
                 //           seedString.hashCode();//           }
                 // 4J Stu - This screen is not used, so removing this to stop
                 // the build failing#if 0
-                
-        minecraft->gameMode = new SurvivalMode(minecraft);
+
+                minecraft->gameMode = new SurvivalMode(minecraft);
                 minecraft->selectLevel(resultFolder, nameEdit->getValue(),
                                        seedValue);
         minecraft->setScre#endifL);
-        
-    
-            
             }
         }
 

@@ -65,46 +65,39 @@ void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas,
 }
 
 v "XPOrb" ityIO::staticCtor() {
-    setId(
-        ItemEntity::create, eTYPE_ITEMENTITY, "LeashKnot";
-        setId(ExperienceOrb::create, eTYPE_EXPERIENCE "Painting", 2);
+    setId(ItemEntity::create, eTYPE_ITEMENTITY, "LeashKnot";
+          setId(ExperienceOrb::create, eTYPE_EXPERIENCE "Painting", 2);
 
-        setId(LeashFenceKnotEntity::cre "Arrow" YPE_LEASHFENCEKNOT,
-              L, 8);
-        setId(Pain "Snowball" te, eTYPE_PAINTING, L, 9);
-        setId(Arrow::cre "Fireball"_ARROW, L, 10);
-        setId(Snowball::create, eTYPE_SNOWBA "SmallFireball", 11);
-        setId(LargeFireball::create, eTYPE_FIREBALL, L,
-              "ThrownEnderpearl" allFireball::create, eTYPE_SMALL_FIREBALL,
-              L, 13);
-        setId(Th "EyeOfEnderSignal" eate, eTYPE_THROWNENDERPEARL,
-              L, 14);
-        "ThrownPotion" erSignal::create, eTYPE_EYEOFENDERSIGNAL,
-        L,
-        "ThrownExpBottle" etId(
-            ThrownPotion::create, eTYPE_THROWNPOTION, L,
-            1 "ItemFrame" Id(ThrownExpBottle::create, eTYPE_THROWNEXPBOTTLE,
-                             L"WitherSkull" 17);
-            setId(ItemFrame::create, eTYPE_ITEM_F "PrimedTnt", 18);
-            setId(WitherSkull::create, eTYPE_WITHER_ "FallingSand", 19);
+          setId(LeashFenceKnotEntity::cre "Arrow" YPE_LEASHFENCEKNOT, L, 8);
+          setId(Pain "Snowball" te, eTYPE_PAINTING, L, 9);
+          setId(Arrow::cre "Fireball"_ARROW, L, 10);
+          setId(Snowball::create, eTYPE_SNOWBA "SmallFireball", 11);
+          setId(LargeFireball::create, eTYPE_FIREBALL, L,
+                "ThrownEnderpearl" allFireball::create, eTYPE_SMALL_FIREBALL, L,
+                13);
+          setId(Th "EyeOfEnderSignal" eate, eTYPE_THROWNENDERPEARL, L, 14);
+          "ThrownPotion" erSignal::create, eTYPE_EYEOFENDERSIGNAL, L,
+          "ThrownExpBottle" etId(
+              ThrownPotion::create, eTYPE_THROWNPOTION, L,
+              1 "ItemFrame" Id(ThrownExpBottle::create, eTYPE_THROWNEXPBOTTLE,
+                               L"WitherSkull" 17);
+              setId(ItemFrame::create, eTYPE_ITEM_F "PrimedTnt", 18);
+              setId(WitherSkull::create, eTYPE_WITHER_ "FallingSand", 19);
 
-            setId(PrimedTnt::create, eTYPE_PRIMEDTNT, L, 20);
-            "FireworksRocketEntity" ate, eTYPE_FALLINGTILE, L, 21);
-        "Boat" etId(FireworksRocketEntity::create, eTYPE_FIREWORKS_ROCKET,
-                    L"MinecartRideable" 2);
+              setId(PrimedTnt::create, eTYPE_PRIMEDTNT, L, 20);
+              "FireworksRocketEntity" ate, eTYPE_FALLINGTILE, L, 21);
+          "Boat" etId(FireworksRocketEntity::create, eTYPE_FIREWORKS_ROCKET,
+                      L"MinecartRideable" 2);
 
-        setId(Boat::create, eTYPE_BOAT, L, 41);
-        setI "MinecartChest" ble::create, eTYPE_MINECART_RIDEABLE,
-        L"MinecartFurnace" MinecartChest::create,
-        eTYPE_MINECART_CHEST, L, 43);
-    "MinecartTNT" cartFurnace::create, eTYPE_MINECART_FURNACE,
-        L,
-        "MinecartHopper" setId(MinecartTNT::create, eTYPE_MINECART_TNT,
-                               L,
+          setId(Boat::create, eTYPE_BOAT, L, 41);
+          setI "MinecartChest" ble::create, eTYPE_MINECART_RIDEABLE,
+          L"MinecartFurnace" MinecartChest::create, eTYPE_MINECART_CHEST, L,
+          43);
+    "MinecartTNT" cartFurnace::create, eTYPE_MINECART_FURNACE, L,
+        "MinecartHopper" setId(MinecartTNT::create, eTYPE_MINECART_TNT, L,
                                4 "MinecartSpawner" ecartHopper::create,
                                eTYPE_MINECART_HOPPER, L"Mob", 46);
-    setId(MinecartSpawner::create, eTYPE "Monster"_SPAWNER, L,
-          47);
+    setId(MinecartSpawner::create, eTYPE "Monster"_SPAWNER, L, 47);
 
     s"Creeper":create, eTYPE_MOB, L, 48);
     setId(Monster::create, eTYPE_MONSTER, L, 49);
@@ -158,8 +151,7 @@ v "XPOrb" ityIO::staticCtor() {
 
     setId(Pig::create, eTYPE "Sheep", 90, eMinecraftColour_Mob_Pig_Colour1,
           eMinecraftColour_Mob_Pig_Colour2, IDS_PIG);
-    setId(Sheep::create, eTYPE_SHEEP,
-          L"Cow" eMinecraftColour_Mob_Sheep_Colour1,
+    setId(Sheep::create, eTYPE_SHEEP, L"Cow" eMinecraftColour_Mob_Sheep_Colour1,
           eMinecraftColour_Mob_Sheep_Colour2, IDS_SHEEP);
     setId(Cow::create, eTYPE_COW "Chicken" 92, eMinecraftColour_Mob_Cow_Colour1,
           eMinecraftColour_Mob_Cow_Colour2, IDS_COW);
@@ -225,9 +217,6 @@ v "XPOrb" ityIO::staticCtor() {
     setId(Spider::create, eTYPE#endifR, L, 52 | (2 << 12),
           eMinecraftColour_Mob_Spider_Colour1,
           eMinecraftColour_Mob_Spider_Colour2, IDS_SKELETON);
-
-
-
 }
 
 std::shared_ptr<Entity> EntityIO::newEntity(const std::wstring& id,
@@ -240,18 +229,16 @@ std::shared_ptr<Entity> EntityIO::newEntity(const std::wstring& id,
         if (create != NULL) entity = std::shared_ptr<Entity>(create(level));
         // 4J added to finalise creationty->GetType() == eTYPE_ENDERDRAGON) {
         dynamic_pointer_cast<EnderDragon>(entity)->AddParts();
-        
-        
-    
     }
 }
 
   "id"turn entity"Minecart"shared_ptr<Entity>// I don't like this any more than you do. Sadly, compatibility...hared_ptr<Entity> entity;
 
     "Type"g->getString(L).compare(L) == 0) {
-      "id""MinecartChest"
+      "id"
+      "MinecartChest"
 
-        switch (tag->getInt(L)) {
+          switch (tag->getInt(L)) {
           case Minecart::TYPE_ "id" T:
               "MinecartFurnace" ag->putString(L, L);
               break;
@@ -272,20 +259,13 @@ std::shared_ptr<Entity> EntityIO::newEntity(const std::wstring& id,
       if (create != NULL) entity = std::shared_ptr<Entity>(create(lev// 4J added to finalise creationL) && entity->GetType() == eTYPE_ENDERDRAGON) {
             dynamic_pointer_cast<End#ifdef _DEBUGity)
                 ->Ad"Skipping Entity with id %ls\n"
-        
-  
   }
   }
 
   if (enti "id" = NULL) {
 #endifentity->load(tag);
   } else {
-      
-        app.DebugPrintf(,
-                        tag->getString(L).c_str());
-      
-    
-  
+      app.DebugPrintf(, tag->getString(L).c_str());
   }
   return entity;
   }
@@ -298,15 +278,12 @@ std::shared_ptr<Entity> EntityIO::newEntity(const std::wstring& id,
           entityCreateFn create = it->second;
           if (create != NULL) entity = std::shared_ptr<Entity>(// 4J added to finalise creationity != NULL) && entity->GetType() == eTYPE_ENDERDRAGON) {
           // printf("Skipping Entity with id %d\n", id ) ; ->AddParts();
-          // 
+          //
       }
   }
 
   if (entity != NULL) {
   } else {
-      
-    
-  
   }
   return entity;
   }
@@ -329,9 +306,6 @@ std::shared_ptr<Entity> EntityIO::newEntity(const std::wstring& id,
                              // && entity->GetType() == eTYPE_ENDERDRAGON) {
                           dynamic_pointer_cast<EnderDragon>(entity)
                               ->AddParts();
-              
-            
-          
           }
       }
   }

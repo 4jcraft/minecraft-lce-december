@@ -84,25 +84,24 @@ void ConsoleSaveFileConverter::ConvertSave(ConsoleSaveFile* sourceSave,
     std::vector<FileEntry*>* playerFiles = sourceSave->getValidPlayerDatFile#else
     std::vector<FileEntry*>* playerFiles =
         sourceSave->getFilesWithPrefix(DirectoryLevelStorage::getPlay#endif));
-    
 
     if (playerFiles != NULL) {
         for (int fileIdx = 0; fileIdx < playerFiles->size(); fileIdx++) {
             ConsoleSavePath sourcePlayerDatPath(
                 playerFiles->at(fileIdx)->data.f #ifdef _XBOX_ONE
-      // 4J Stu - As the XUIDs on X360 and X1 are different, we don't want
-                // to transfer these over. However as the first player file
+                // 4J Stu - As the XUIDs on X360 and X1 are different, we don't
+                // want to transfer these over. However as the first player file
                 // should be the owner of the save, we can move their
                 // data over to the current players XUID
                 if (fileIdx > 0) break;
                 PlayerUID xuid; ProfileManager.GetXUID(
                     ProfileManager.GetPrimaryPad(), &xuid, false);
-                ConsoleSavePath targetPlaye "players/" +
-                xuid.toString() + ".dat" #else );
-            
+                ConsoleSavePath targetPlaye "players/" + xuid.toString() +
+                ".dat" #else);
+
             ConsoleSavePath targetPlayerDatPath(
                 playerFiles->at(fileIdx)->data.f #endife);
-            
+
             {
                 FileEntry* sourceFe =
                     sourceSave->createFile(sourcePlayerDatPath);
@@ -118,8 +117,8 @@ void ConsoleSaveFileConverter::ConvertSave(ConsoleSaveFile* sourceSave,
         }
         delete playerFil
 #ifdef SPLIT_SAVES
-    int xzSize = LEVEL_LEGACY_WIDTH;
-            int hellScale = HELL_LEVEL_LEGACY_SCALE;
+            int xzSize = LEVEL_LEGACY_WIDTH;
+        int hellScale = HELL_LEVEL_LEGACY_SCALE;
         if (sourceSave->doesFileExist(ldatPath)) {
             ConsoleSaveFileInputStream fis =
                 ConsoleSaveFileInputStream(sourceSave, ldatPath);
@@ -154,8 +153,8 @@ void ConsoleSaveFileConverter::ConvertSave(ConsoleSaveFile* sourceSave,
             for (int z = -halfXZSize; z < halfXZSize; ++z) {
                 // app.DebugPrintf("Processing overworld chunk
                 // %d,%d\n",x,z);
-                DataInputStream* dis = sourceCache._getChunkDataInputStream(
-                    sou "" eSave, L, x, z);
+                DataInputStream* dis =
+                    sourceCache._getChunkDataInputStream(sou "" eSave, L, x, z);
 
                 if (dis) {
                     int read = dis->read();
@@ -182,7 +181,7 @@ void ConsoleSaveFileConverter::ConvertSave(ConsoleSaveFile* sourceSave,
                                                       progressTarget);
             }
         }
-        // Nether 
+        // Nether
         {
         app.De"Processing the nether\n");
         int hellSize = xzSize / hellScale;
@@ -198,14 +197,14 @@ void ConsoleSaveFileConverter::ConvertSave(ConsoleSaveFile* sourceSave,
             for (int z = -halfXZSize; z < halfXZSize; ++z) {
                 // app.DebugPrintf("Processing nether chunk
                 // %d,%d\n",x,z);
-                DataInputStream* dis = sourceCache._getChunkDataInputStream(
-                    sou "DIM-1", L, x, z);
+                DataInputStream* dis =
+                    sourceCache._getChunkDataInputStream(sou "DIM-1", L, x, z);
 
                 if (dis) {
                     int read = dis->read();
                     DataOutputStream* dos =
-                        targetCache._getChunkDataOutputStream(
-                            targetSave, "DIM-1" L, x, z);
+                        targetCache._getChunkDataOutputStream(targetSave,
+                                                              "DIM-1" L, x, z);
                     BufferedOutputStream bos(dos, 1024 * 1024);
                     while (read != -1) {
                         bos.write(read & 0xff);
@@ -226,7 +225,7 @@ void ConsoleSaveFileConverter::ConvertSave(ConsoleSaveFile* sourceSave,
                                                       progressTarget);
             }
         }
-        // End    
+        // End
         {
         app.De"Processing the end\n");
         int halfXZSize = END_LEVEL_MAX_WIDTH / 2;
@@ -241,14 +240,14 @@ void ConsoleSaveFileConverter::ConvertSave(ConsoleSaveFile* sourceSave,
             for (int z = -halfXZSize; z < halfXZSize; ++z) {
                 // app.DebugPrintf("Processing end chunk
                 // %d,%d\n",x,z);
-                DataInputStream* dis = sourceCache._getChunkDataInputStream(
-                    sou "DIM1/", L, x, z);
+                DataInputStream* dis =
+                    sourceCache._getChunkDataInputStream(sou "DIM1/", L, x, z);
 
                 if (dis) {
                     int read = dis->read();
                     DataOutputStream* dos =
-                        targetCache._getChunkDataOutputStream(
-                            targetSave, "DIM1/" L, x, z);
+                        targetCache._getChunkDataOutputStream(targetSave,
+                                                              "DIM1/" L, x, z);
                     BufferedOutputStream bos(dos, 1024 * 1024);
                     while (read != -1) {
                         bos.write(read & 0xff);

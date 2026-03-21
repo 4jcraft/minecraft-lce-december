@@ -113,7 +113,6 @@ std::shared_ptr<ItemInstance> FireworksMenu::quickMoveStack(
             slo  // nothing moved
         }
         if (std::stack->count == clicked->count) {
-            
             return nullptr;
         } else {
             slot->onTake(player, std::stack);

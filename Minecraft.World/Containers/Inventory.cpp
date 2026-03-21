@@ -376,8 +376,7 @@ if (slot >= 0) {
 
     void Inventory::setItem(
         unsigned int #ifdef _DEBUGhared_ptr<ItemInstance> item) {
-        
-    if (item != NULL) {
+        if (item != NULL) {
         std::wstring items"Inventory::setItem - slot = %d,\t item = %d "ntf(,// OutputDebugStringW(itemstring.c_str());        "\n"#else
         app.DebugPrintf();
         }
@@ -388,18 +387,17 @@ if (slot >= 0) {
     if (slot >= items.length) {
         armor[slot - items.length] = item;
     } else {
-        items[slot] =
-            ite /*
-ItemInstanceArray& pile =
-items; if (slot >=
-pile.length)
-{
-slot -= pile.length;
-pile = armor;
-}
+        items[slot] = ite /*
+          ItemInstanceArray& pile =
+          items; if (slot >=
+          pile.length)
+          {
+          slot -= pile.length;
+          pile = armor;
+          }
 
-pile[slot] = item;
-*/
+          pile[slot] = item;
+          */
 }
 
 float Inventory::getDestroySpeed(Tile* tile) {
@@ -605,11 +603,7 @@ bool Inventory::contains(std::shared_ptr<ItemInstance> itemInstance) {
             // TODO Auto-generated method stub
         }
 
-        void Inventory::stopOpen() {
-            
-
-        
-        }
+        void Inventory::stopOpen() {}
 
         bool Inventory::canPlaceItem(int slot,
                                      std::shared_ptr<ItemInstance> item) {

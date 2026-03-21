@@ -45,7 +45,9 @@ GameRuleDefinition* AddItemRuleDefinition::addChild(
         rule = new AddEnchantmentRuleDefinition();
         m_enchantments.push_back((AddEnchantmentRuleDefinition*)rule);
     }
-    els #ifndef _CONTENT_PACKAGE    //wprintf(L"AddItemRuleDefinition: Attempted to add invalid child rule - %d\n", ruleType );#endif
+    els #ifndef _CONTENT_PACKAGE  // wprintf(L"AddItemRuleDefinition: Attempted
+                                  // to add invalid child rule - %d\n", ruleType
+                                  // );#endif
 }
 return rule;
 }
@@ -61,16 +63,14 @@ void AddItemRuleDefinition::addAttribute(const std::wstring& attributeName,
     else if (attributeName.comp "quantity") == 0)
 	{
             int value = _fromString<int>(attributeValue);
-            m_quantity =
-                valu  // app.DebugPrintf(2,"AddItemRuleDefinition: Adding
-                      // parameter quantity=%d\n",m_quantity);
+            m_quantity = valu  // app.DebugPrintf(2,"AddItemRuleDefinition:
+                               // Adding parameter quantity=%d\n",m_quantity);
         }
     else if (attributeName.comp "auxValue") == 0)
 	{
             int value = _fromString<int>(attributeValue);
-            m_auxValue =
-                valu  // app.DebugPrintf(2,"AddItemRuleDefinition: Adding
-                      // parameter auxValue=%d\n",m_auxValue);
+            m_auxValue = valu  // app.DebugPrintf(2,"AddItemRuleDefinition:
+                               // Adding parameter auxValue=%d\n",m_auxValue);
         }
     else if (attributeName.comp "dataTag") == 0)
 	{

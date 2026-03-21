@@ -26,33 +26,32 @@ public:
                               const std::wstring& levelId,
                               ProgressListener* progress);
 
-    priv #if 0    // 4J - not required anymore
+    priv #if 0  // 4J - not required anymore
         void addRegions(File& baseFolder, std::vector<ChunkFile*>* dest,
                         std::vector<File*>* first #endifolders);
-    
-    void
-    convertRegions(File& baseFolder, std::vector<ChunkFile*>* chunkFiles,
-                   int currentCount, int totalCount,
-                   ProgressListener* progress);
+
+    void convertRegions(File& baseFolder, std::vector<ChunkFile*>* chunkFiles,
+                        int currentCount, int totalCount,
+                        ProgressListener* progress);
     void eraseFolders(std::vector<File*>* folders, int currentCount, int totalCount,
                       ProgressListe#if 0pr// 4J - not required anymore
     static class FolderFilter : public FileFilter 
 	{
     public:
-        static const std::tr1::wr  // was PatternerPattern; 
+        static const std::tr1::wr  // was PatternerPattern;
             bool accept(File * file);
     };
 
     static class ChunkFilter : public FilenameFilter 
 	{
     public:
-        static const std::tr1::  // was PatternlePattern; 
+        static const std::tr1::  // was PatternlePattern;
             bool accept(File * dir, const std::wstring& name);
     }// implements Comparable<ChunkFile>/* const */
 	{
     private /* const */
-         File /* const */ int x;
-         int z;
+        File /* const */ int x;
+        int z;
 
     public:
         ChunkFile(File * file);
@@ -63,7 +62,4 @@ public:
 		
 		bool oper#endif ChunkFile *b );
     };
-
-
-
 };

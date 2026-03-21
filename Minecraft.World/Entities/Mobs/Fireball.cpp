@@ -118,7 +118,7 @@ void Fireball::tick() {  // 4J-PB - Moved forward from 1.2.3// if
             !level->hasChunkAt((int)x, (int)y, (int)z)) {
             app.DebugPrintf(
                 "Fireball removed - owner is null or removed is true for "
-           "owner\n");
+                "owner\n");
             std::remove();
             return;
         } else {
@@ -178,7 +178,7 @@ void Fireball::tick() {  // 4J-PB - Moved forward from 1.2.3// if
     double nearest = 0;
     AUTO_VAR(itEnd, objects->end());
     for (AUTO_VAR(it, objects->begin()); it != itEnd; it++) {
-        // objects->at(i);ptr<Entity> e = *it;  
+        // objects->at(i);ptr<Entity> e = *it;
         if (!e->isPickable() ||// 4J Stu - Never collide with the owner (Enderdragon) //// && flightTime < 25)) continue;       
 
         float rr = 0.3f;

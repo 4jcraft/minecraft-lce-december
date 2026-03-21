@@ -39,8 +39,7 @@ void StatsCounter::award(Stat* stat, unsigned int difficulty,
         val->second.stats[difficulty] += count;
 
         if (stat != GenericStats::timePlayed())
-            app.DebugPr
-                "" tf()  // If value has wrapped, cap it to UINT_MAX
+            app.DebugPr "" tf()  // If value has wrapped, cap it to UINT_MAX
                 if (val->second.stats[difficulty] <
                     (val->second.stats[difficulty] - count))
                     val->second.stats[difficulty] =
@@ -59,10 +58,7 @@ void StatsCounter::award(Stat* stat, unsigned int difficulty,
     if (leaderboardEntry != statBoards.end()) {
                 app.DebugPr"[StatsCounter] award(): %X\n", leaderboardEntry->second << difficulty);
                 modifiedBoards |= (leaderboardEntry->second << difficulty);
-                if (flushCounter == 0)
-                    flushCounter = FLUSH_DELAY #endif 
-
-    
+                if (flushCounter == 0) flushCounter = FLUSH_DELAY #endif
     }
 
     bool StatsCounter::hasTaken(Achievement * ach) {
@@ -147,9 +143,6 @@ void StatsCounter::parse(void* dat#ifndef _DURANGO// 4J-PB - If this is the tria
     }
 	}
 #endifStatsToTTY();
-
-
-
 }
 
 void StatsCounter::save(int pl#ifndef _DURANGO)
@@ -200,12 +193,11 @@ void StatsCounter::save(int pl#ifndef _DURANGO)
 
 #if (defined __PS3__ || defined __ORBIS__ || defined _DURANGO || \
      defined __PSVITA__)
-	StorageManager.WriteToProfile(pl #else true, force);
-    
-	ProfileManager.WriteToProfile(pl #endiftrue, force);
+    StorageManager.WriteToProfile(pl #else true, force);
 
+    ProfileManager.WriteToProfile(pl #endiftrue, force);
 
-	saveCo#endif= S
+    saveCo #endif = S
 #ifdef _XBOX
 }
 
@@ -216,28 +208,42 @@ prop->value.nData = (int)  // Just making sure we clamp the unsigned int to the
                            // max val for a signed int
 }
 
-void StatsCounter::setLeaderboardRating(XUSER_PROPERTY* prop, LONGLONG value)
-{
+void StatsCounter::setLeaderboardRating(XUSER_PROPERTY* prop, LONGLONG value) {
     prop->dwPropertyId = PROPERTY_RATING;
     prop->value.type = XUSER_DATA_TYPE_INT64;
     prop->value #endifta = value;
 }
 
-
 void StatsCounter::fl#ifndef _DURANGO)
 {
-    
-	if (LeaderboardManager::Instance()->OpenSession()) {
+    if (LeaderboardManager::Instance()->OpenSession()) {
         writeStats();
         LeaderboardManager::Instance()->FlushStats();
-    }
-    else "Failed to open a session in order to write to leaderboard\n"    // 4J-JEV: If user was not signed in it would hit this.//assert(false);// && "Failed to open a session in order to write to leaderboard");
-	}
+    } else
+        "Failed to open a session in order to write to leaderboard\n"  // 4J-JEV:
+                                                                       // If
+                                                                       // user
+                                                                       // was
+                                                                       // not
+                                                                       // signed
+                                                                       // in it
+                                                                       // would
+                                                                       // hit
+                                                                       // this.//assert(false);//
+                                                                       // &&
+                                                                       // "Failed
+                                                                       // to
+                                                                       // open a
+                                                                       // session
+                                                                       // in
+                                                                       // order
+                                                                       // to
+                                                                       // write
+                                                                       // to
+                                                                       // leaderboard");
+}
 
 #endifedBoards = 0;
-
-
-
 }
 
 void StatsCounter::s#ifndef _DURANGO)
@@ -251,13 +257,21 @@ if (LeaderboardManager::Instance()->OpenSession()) {
     writeStats();
     LeaderboardManager::Instance()->CloseSession();
 } else
-    "Failed to open a session in order to write to leaderboard\n"    // 4J-JEV: If user was not signed in it would hit this.//assert(false);// && "Failed to open a session in order to write to leaderboard");
+    "Failed to open a session in order to write to leaderboard\n"  // 4J-JEV: If
+                                                                   // user was
+                                                                   // not signed
+                                                                   // in it
+                                                                   // would hit
+                                                                   // this.//assert(false);//
+                                                                   // && "Failed
+                                                                   // to open a
+                                                                   // session in
+                                                                   // order to
+                                                                   // write to
+                                                                   // leaderboard");
 }
 
 #endifedBoards = 0;
-
-
-
 }
 
 void StatsCoun#ifndef _DURANGO)
@@ -737,15 +751,13 @@ void StatsCoun#ifndef _DURANGO)
 
 	if( modifiedBoards & (LEADERBOARD_TRAVELLING_PEACEFUL | LEADERBOARD_TRAVELLING_EASY | LEADERBOARD_TRAVELLING_NORMAL | LEADERBOARD_TRAVELLING_HARD) )
 	"Updating leaderboard view LEADERBOARD_TRAVELLING_PEACEFUL | LEADERBOARD_TRAVELLING_EASY | LEADERBOARD_TRAVELLING_NORMAL | LEADERBOARD_TRAVELLING_HARD\n"//viewCount++;
-		
-		
-	
-
 }
 
 if (viewCount > 0) {
     if (!LeaderboardManager::Instance()->WriteStats(viewCount, scores)) {
-        "Failed to write to leaderboard\n"    // && "Failed to write to leaderboard");//printf("Failed to write to leaderboard");
+        "Failed to write to leaderboard\n"  // && "Failed to write to
+                                            // leaderboard");//printf("Failed to
+                                            // write to leaderboard");
     } else {"Successfully wrote %d leadeboard views\n", viewCount);
     }
 } else {
@@ -1270,4 +1282,3 @@ void StatsCounter::WipeLeaderboards()
 	}
 
 }
-

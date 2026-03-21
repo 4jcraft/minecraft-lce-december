@@ -73,7 +73,7 @@ void ChestRenderer::render(std::shared_ptr<TileEntity> _chest, double x,
         if (chest->getType() == ChestTile::TYPE_TRAP) {
             bindTexture(&CHEST_LARGE_TRAP_LOCATION);
             // else if (xmasTextures)//{		//
-            // bindTexture(&CHEST_LARGE_XMAS_LOCATION);//}		
+            // bindTexture(&CHEST_LARGE_XMAS_LOCATION);//}
             else {
                 bindTexture(&CHEST_LARGE_LOCATION);
             }
@@ -82,7 +82,7 @@ void ChestRenderer::render(std::shared_ptr<TileEntity> _chest, double x,
             if (chest->getType() == ChestTile::TYPE_TRAP) {
                 bindTexture(&CHEST_TRAP_LOCATION);
                 // else if (xmasTextures)//{		//
-                // bindTexture(&CHEST_XMAS_LOCATION);//}		
+                // bindTexture(&CHEST_XMAS_LOCATION);//}
                 else {
                     bindTexture(&CHEST_LOCATION);
                 }

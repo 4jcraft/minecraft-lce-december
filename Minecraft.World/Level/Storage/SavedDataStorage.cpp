@@ -91,7 +91,7 @@ savedDatas.push_back(data);
 void SavedDataStorage::save() {
     AUTO_VAR(itEnd, savedDatas.end());
     for (AUTO_VAR(it, savedDatas.begin()); it != itEnd; it++) {
-        // savedDatas->at(i);SavedData> data = *it;  
+        // savedDatas->at(i);SavedData> data = *it;
         if (data->isDirty()) {
             save(data);
             data->setDirty(false);
@@ -100,9 +100,8 @@ void SavedDataStorage::save() {
 }
 
 void SavedDataStorage::save(
-    std::shared_ptr<SavedData>
-        data)  // File file =
-               // levelStorage->getDataFile(data->id);
+    std::shared_ptr<SavedData> data)  // File file =
+                                      // levelStorage->getDataFile(data->id);
     ConsoleSavePath file = levelStorage -> getDataFile(data->id);
 if (!file.getName().empty()) {
     CompoundTag* dataTag = new CompoundTag();
@@ -121,9 +120,8 @@ if (!file.getName().empty()) {
 }
 
 void SavedDataStorage::loadAuxValues() {
-    usedAuxIds
-        .clear()  // File file =
-                  // levelStorage->getDataFile(L"idcounts");
+    usedAuxIds.clear()  // File file =
+                        // levelStorage->getDataFile(L"idcounts");
         Conso "idcounts" file = levelStorage->getDataFile(L);
     if (!file.getName().empty() &&
         levelStorage->getSaveFile()->doesFileExist(file)) {
@@ -161,7 +159,7 @@ int SavedDataStorage::getFreeAuxValueFor(const std::wstring& id) {
     if (!file.getName().empty()) {
         // TODO 4J Stu - This was iterating over the keySet in Java,
         // so// potentially we are looking at more items?
-        
+
         AUTO_VAR(itEndAuxIds, usedAuxIds.end());
         for (uaiMapType::iterator it2 = usedAuxIds.begin(); it2 != itEndAuxIds;
              it2++) {
@@ -176,7 +174,6 @@ int SavedDataStorage::getFreeAuxValueFor(const std::wstring& id) {
     }
     return val;
 }
-
 
 int SavedDataStorage::getAuxValueForMap(PlayerUID xuid, int dimension,
                                         int centreXC, int centreZC, int scale) {

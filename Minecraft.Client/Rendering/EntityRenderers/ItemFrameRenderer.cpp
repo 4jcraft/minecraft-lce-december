@@ -64,8 +64,7 @@ void ItemFrameRenderer::drawFrame(std::shared_ptr<ItemFrame> itemFrame) {
     float width = 12.0f / 16.0f;
     float widthHalf = width  // Back
 
-	
-	glPushMatrix();
+    glPushMatrix();
 
     tileRenderer->setFixedShape(0, 0.5f - widthHalf + 1.0f / 16.0f,
                                 0.5f - widthHalf + 1.0f / 16.0f, depth * .5f,

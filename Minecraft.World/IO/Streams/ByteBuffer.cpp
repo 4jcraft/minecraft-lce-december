@@ -35,11 +35,11 @@ ByteBuffer::~ByteBuffer() {
 }
 
 // Wraps a uint8_t array into a buffer.
-// The new buffer will be backed by the given uint8_t array; that is, modifications
-// to the buffer will cause the array to be modified and vice versa. The new
-// buffer's capacity and limit will be array.length, its position will be zero,
-// and its mark will be undefined. Its backing array will be the given array,
-// and its array offset will be zero.
+// The new buffer will be backed by the given uint8_t array; that is,
+// modifications to the buffer will cause the array to be modified and vice
+// versa. The new buffer's capacity and limit will be array.length, its position
+// will be zero, and its mark will be undefined. Its backing array will be the
+// given array, and its array offset will be zero.
 //
 // Parameters:
 // array - The array that will back this buffer
@@ -189,8 +189,8 @@ __int64 ByteBuffer::getLong() {
 
 // Relative get method for reading a short value.
 // Reads the next two bytes at this buffer's current position, composing them
-// into a short value according to the current uint8_t order, and then increments
-// the position by two.
+// into a short value according to the current uint8_t order, and then
+// increments the position by two.
 //
 // Returns:
 // The short value at the buffer's current position
@@ -241,9 +241,9 @@ ByteBuffer* ByteBuffer::put(int index, uint8_t b) {
 }
 
 // Relative put method for writing an int value  (optional operation).
-// Writes four bytes containing the given int value, in the current uint8_t order,
-// into this buffer at the current position, and then increments the position by
-// four.
+// Writes four bytes containing the given int value, in the current uint8_t
+// order, into this buffer at the current position, and then increments the
+// position by four.
 //
 // Parameters:
 // value - The int value to be written
@@ -270,8 +270,8 @@ ByteBuffer* ByteBuffer::putInt(int value) {
 }
 
 // Absolute put method for writing an int value  (optional operation).
-// Writes four bytes containing the given int value, in the current uint8_t order,
-// into this buffer at the given index.
+// Writes four bytes containing the given int value, in the current uint8_t
+// order, into this buffer at the given index.
 //
 // Parameters:
 // index - The index at which the bytes will be written
@@ -297,9 +297,9 @@ ByteBuffer* ByteBuffer::putInt(unsigned int index, int value) {
 }
 
 // Relative put method for writing a short value  (optional operation).
-// Writes two bytes containing the given short value, in the current uint8_t order,
-// into this buffer at the current position, and then increments the position by
-// two.
+// Writes two bytes containing the given short value, in the current uint8_t
+// order, into this buffer at the current position, and then increments the
+// position by two.
 //
 // Parameters:
 // value - The short value to be written
@@ -368,9 +368,9 @@ ByteBuffer* ByteBuffer::putLong(__int64 value) {
 }
 
 // Relative bulk put method  (optional operation).
-// This method transfers the entire content of the given source uint8_t array into
-// this buffer. An invocation of this method of the form dst.put(a) behaves in
-// exactly the same way as the invocation
+// This method transfers the entire content of the given source uint8_t array
+// into this buffer. An invocation of this method of the form dst.put(a) behaves
+// in exactly the same way as the invocation
 //
 //      dst.put(a, 0, a.length)
 // Returns:
@@ -403,8 +403,8 @@ byteArray ByteBuffer::array() { return byteArray(buffer, m_capacity); }
 // Returns:
 // A new int buffer
 IntBuffer* ByteBuffer::asIntBuffer() {
-    // TODO 4J Stu - Is it safe to just cast our uint8_t array pointer to another
-    // type?
+    // TODO 4J Stu - Is it safe to just cast our uint8_t array pointer to
+    // another type?
     return new IntBuffer((m_limit - m_position) / 4,
                          (int*)(buffer + m_position));
 }
@@ -423,8 +423,8 @@ IntBuffer* ByteBuffer::asIntBuffer() {
 // Returns:
 // A new float buffer
 FloatBuffer* ByteBuffer::asFloatBuffer() {
-    // TODO 4J Stu - Is it safe to just cast our uint8_t array pointer to another
-    // type?
+    // TODO 4J Stu - Is it safe to just cast our uint8_t array pointer to
+    // another type?
     return new FloatBuffer((m_limit - m_position) / 4,
                            (float*)(buffer + m_position));
 }

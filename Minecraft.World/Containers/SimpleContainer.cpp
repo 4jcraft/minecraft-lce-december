@@ -101,7 +101,7 @@ int SimpleContainer::getMaxStackSize() {
 void SimpleContainer::setChanged() {
     if (listeners != NULL)
         for (unsigned int i = 0; i < listeners->size(); i++) {
-            listeners  // shared_from_this());ed();  
+            listeners  // shared_from_this());ed();
         }
 }
 

@@ -152,8 +152,8 @@ public:
         void stopUsingItem();
         virtual bool  // 4J Stu - Added for things that should only be ticked
                       // once per simulation// frame
-    
-    virtual void updateFrameTick();
+
+            virtual void updateFrameTick();
 
         virtual void tick();
         virtual int getPortalWaitTime();
@@ -211,9 +211,8 @@ public:
         virtual void addAdditonalSaveData(CompoundTag * entityTag);
     v// 4J - added bool return(
         std::shared_ptr<Container> container);
-    
-    virtual bool
-    openHopper(std::shared_ptr<HopperTileEntity> container);
+
+    virtual bool openHopper(std::shared_ptr<HopperTileEntity> container);
     virtual bool openHopper(std::shared_ptr<MinecartHopper> container);
     virtual bool openHorseInventory(std::shared_ptr<EntityHorse> horse,
                                     std::shared_ptr<Container> container);
@@ -485,8 +484,6 @@ public:
     };
 
 private:
-    
-    
     unsigned int m_uiGamePrivileges;
 
     unsigned int getPlayerGamePrivilege(EPlayerGamePrivileges privilege);
@@ -521,43 +518,40 @@ public:
 
     virtual bool canCrea
 #if defined(__PS3__) || defined(__ORBIS__)
-    virtual void handleCollectItem(std::shared_ptr<ItemInstance> item){}
+        virtual void handleCollectItem(std::shared_ptr<ItemInstance> item) {
+    }
 
-        std::vector<ModelPart*>* GetAdditionalModelParts();
+    std::vector<ModelPart*>* GetAdditionalModelParts();
     void SetAdditionalModelParts(
         std::vector<ModelPart*>* ppAdditionalModelParts);
-#endif 
+#endif
     enum ePlayerNameValidState {
-    ePlayerNameValid_NotSet = 0,
-    ePlayerNameVal
+        ePlayerNameValid_NotSet = 0,
+        ePlayerNameVal
 #if defined(__PS3__) || defined(__ORBIS__) };
 
-        ePlayerNameValidState GetPlayerNameValidState();
-    // 4J-PB - to ensure we have the characters
+            ePlayerNameValidState GetPlayerNameValidState();
+        // 4J-PB - to ensure we have the characters
 
-private
-    : std::vector <
-      Mo  // for this name in our font, or display aool m_bCheckedForModelParts;
-          bo  // player number
-              // insteadP#endif
-                  ePlayerNameValidState m_ePlayerNameValidState;
-    
-                                  
-                                  
+        private : std::vector <
+        Mo          // for this name in our font, or display aool
+                    // m_bCheckedForModelParts;
+                bo  // player number
+                    // insteadP#endif
+                    ePlayerNameValidState m_ePlayerNameValidState;
 
+    };
 
-};
+    typedef struct {
+        int operator()(const std::shared_ptr<Player> k) const {
+            return Player::hash_fnct(k);
+        }
 
-typedef struct {
-    int operator()(const std::shared_ptr<Player> k) const {
-        return Player::hash_fnct(k);
-    }
+    } PlayerKeyHash;
 
-} PlayerKeyHash;
-
-typedef struct {
-    bool operator()(const std::shared_ptr<Player> x,
-                    const std::shared_ptr<Player> y) const {
-        return Player::eq_test(x, y);
-    }
-} PlayerKeyEq;
+    typedef struct {
+        bool operator()(const std::shared_ptr<Player> x,
+                        const std::shared_ptr<Player> y) const {
+            return Player::eq_test(x, y);
+        }
+    } PlayerKeyEq;

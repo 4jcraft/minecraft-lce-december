@@ -159,11 +159,8 @@ GameRuleDefinition* LevelGenerationOptions::addChild(
         m_features.push_back((StartFeature*)rule);
     }
 #ifndef _CONTENT_PACKAGE
-	"LevelGenerationOptions: Attempted to add invalid child rule - %d\n",
+        "LevelGenerationOptions: Attempted to add invalid child rule - %d\n",
         ru #endif);
-        
-	
-
 }
 return rule;
 }
@@ -199,11 +196,10 @@ void LevelGenerationOptions::addAttribute(const std::wstring& attributeName,
             if (!std::string.empty())
                 setDefaultSaveName(std::string);
             else
-                setDefaultSaveName(
-                    attrib
-                    "LevelGenerationOptions: Adding parameter "
-                    "saveName=%ls\n",
-                    getDefaultSaveName().c_str());
+                setDefaultSaveName(attrib
+                                   "LevelGenerationOptions: Adding parameter "
+                                   "saveName=%ls\n",
+                                   getDefaultSaveName().c_str());
         }
         e"worldName"ibuteName.compare(L) == 0)
 	{
@@ -231,9 +227,9 @@ void LevelGenerationOptions::addAttribute(const std::wstring& attributeName,
 else if (attributeName.compare(L) == 0) {
     bool value =
         _fromString <
-        boo "LevelGenerationOptions: Adding parameter gameMode=%d\n" p
-            .DebugPrintf(,
-                         m_bHasBeenInCreative);
+        boo
+        "LevelGenerationOptions: Adding parameter gameMode=%d\n" p.DebugPrintf(
+            , m_bHasBeenInCreative);
 }
 else {
     GameRuleDefinition::addAttribute(attributeName, attributeValue);
@@ -242,8 +238,7 @@ else {
 
 void LevelGeneration"Processing schematics for chunk (%d,%d)"unk)
 {
-    PIXBeginNamedEvent(0,, chunk->x,
-                       chunk->z);
+    PIXBeginNamedEvent(0, , chunk->x, chunk->z);
     AABB* chunkBox =
         AABB::newTemp(chunk->x * 16, 0, chunk->z * 16, chunk->x * 16 + 16,
                       Level::maxBuildHeight, chunk->z * 16 + 16);
@@ -272,8 +267,7 @@ void LevelGeneration"Processing schematics for chunk (%d,%d)"unk)
 
 void LevelGenerationOptions
     : "Processing schematics (lighting) for chunk (%d,%d)" BeginNamedEvent(
-          0,, chunk->x,
-          chunk->z);
+          0, , chunk->x, chunk->z);
 AABB* chunkBox =
     AABB::newTemp(chunk->x * 16, 0, chunk->z * 16, chunk->x * 16 + 16,
                   Level::maxBuildHeight, chunk->z * 16 + 16);
@@ -298,12 +292,10 @@ bool LevelGenerationOptions::checkIntersects(in"Check Intersects"z0, i// As an o
     for (AUTO_VAR(it, m_structureRules.begin()); it != m_structureRules.end();
          it++) {
         ConsoleGenerateStructure* structureStart = *it;
-        int minY =
-            structureStart
-                ->getMinY()  // 4J Stu - We DO NOT intersect if our upper bound
-                             // is below the lower bound for all
-                             // schematics
-            if (y1 < m_minY) return false;
+        int minY = structureStart->getMinY()  // 4J Stu - We DO NOT intersect if
+                                              // our upper bound is below the
+                                              // lower bound for all schematics
+                   if (y1 < m_minY) return false;
 
         bool intersects = false;
         for (AUTO_VAR(it, m_schematicRules.begin());
@@ -338,11 +330,10 @@ bool LevelGenerationOptions::checkIntersects(in"Check Intersects"z0, i// As an o
         LevelGenerationOptions::loadSche  // If we have already loaded this,
                                           // just returnpbData, DWORD dwLen)
     {
-        
-	AUTO_V#ifndef _CONTENT_PACKAGE(filename));"We have already loaded schematic file %ls\n"
+        AUTO_V#ifndef _CONTENT_PACKAGE(filename));"We have already loaded schematic file %ls\n"
 		wprint#endif, filename.c_str() );
-        
-		it->second->incrementRefCount();
+
+        it->second->incrementRefCount();
         return it->second;
     }
 
@@ -367,22 +358,14 @@ ConsoleSchematicFile *LevelGenerationOptions::getSchematicFile(cons// If we have
 	return schematic;
 }
 
-void
-    LevelGen  // 4J Stu - We don't want to delete them when done, but probably
-              // want to keep a set of active schematics for the current
-              // world//AUTO_VAR(it, m_schematics.find(filename));//if(it !=
-              // m_schematics.end())//{//	ConsoleSchematicFile *schematic
-              // = it->second;//	schematic->decrementRefCount();//
-              // if(schematic->shouldDelete())
-              //	{//		delete schematic;//
-              // m_schematics.erase(it);//	}//}
-	
-	
-	
-	
-	
-
-
+void LevelGen  // 4J Stu - We don't want to delete them when done, but probably
+               // want to keep a set of active schematics for the current
+               // world//AUTO_VAR(it, m_schematics.find(filename));//if(it !=
+               // m_schematics.end())//{//	ConsoleSchematicFile *schematic
+               // = it->second;//	schematic->decrementRefCount();//
+               // if(schematic->shouldDelete())
+               //	{//		delete schematic;//
+               // m_schematics.erase(it);//	}//}
 }
 
 void LevelGenerationOptions::loadStringTable(StringTable* table) {
@@ -428,9 +411,8 @@ std::unordered_map < std::wstring,
     Co  // Clean schematic
         // rules.velGenerationOptions::getUnfinishedSchematicFiles()
 {
-    
-	std::unordered_set<std::wstring>
-        usedFiles = std::unordered_set<std::wstring>();
+    std::unordered_set<std::wstring> usedFiles =
+        std::unordered_set<std::wstring>();
         for (AUTO_VAR(it, m_schematicRules.begin()); it!=m_schematicR// Clean schematic files.!(*it)->isComplete() )
 			usedFiles.insert( (*it)->getSchematicName() );
 
@@ -452,9 +434,9 @@ void LevelGenerationOptions::loadBaseSaveData(#ifdef _DURANGOndex = -1;
 		if(StorageManager.#endifnstalled// corrupt DLCager.GetPrimaryPad(),mountIndex,&LevelGe"Failed to mount LGO DLC %d for pad %d\n")!=ERROR_IO_PENDING)
 
 		{
-        
-			setLoadedData();
-        app.DebugPrintf("Attempted to mount DLC data for LGO %d\n"eManager.GetPrimaryPad());	
+        setLoadedData();
+        app.DebugPrintf("Attempted to mount DLC data for LGO %d\n" eManager
+                            .GetPrimaryPad());	
 		}
 		else
 		{
@@ -485,10 +467,14 @@ else {
         if (!"WPACK:" > getGrfPath().empty()) {
                                 Fi#ifdef _UNICODEFilePath(lgo->m_parentDLCPack->GetPackID(), dlcFile->getGrfPath(),true, L ) );
                                 if (grf.exists()) {
-
-					// file name path = grf.getPath()// access modeCHAR *pchF// share mode // TODO 4J Stu - Will we need to share file? Probably not but...
-// UnusedERIC_READ, // how to create // TODO 4J Stu - Assuming that the file already exists if we are opening to read from it
-						OPEN_EXISTING , // file attributes// Unsupported#else
+                                    // file name path = grf.getPath()// access
+                                    // modeCHAR *pchF// share mode // TODO 4J
+                                    // Stu - Will we need to share file?
+                                    // Probably not but...
+                                    // UnusedERIC_READ, // how to create // TODO
+                                    // 4J Stu - Assuming that the file already
+                                    // exists if we are opening to read from it
+                                                OPEN_EXISTING , // file attributes// Unsupported#else
 						FILE_FLAG_SEQUENTIAL_SCAN, 
 						NULL // file name
 					const char *// access modetringtofil// share mode // TODO 4J Stu - Will we need to share file? Probably not but...
@@ -498,23 +484,27 @@ else {
 						NULL 
 						);
 
-
-					if (fileHandle !=
-                                            INVALID_HANDLE_VALUE) {
-    DWORD dwFileSize = grf.length();
-    DWORD bytesRead;
-    PBYTE pbData = (PBYTE) new BYTE[dwFileSize];
+                                                if (fileHandle !=
+                                                    INVALID_HANDLE_VALUE) {
+                                                    DWORD dwFileSize =
+                                                        grf.length();
+                                                    DWORD bytesRead;
+                                                    PBYTE pbData =
+                                                        (PBYTE) new BYTE
+                                                            [dwFileSize];
                                                 BOOL bSuccess = ReadFile(fileHandle,pbData,dwF// 4J-PB - is it possible that we can get here after a read fail and it's not an error?;
-}
-CloseHandle(fileHandle);
+                                                }
+                                                CloseHandle(fileHandle);
 
+                                                dlcFile->setGrfData(
+                                                    pbData, dwFileSize,
+                                                    lgo->m_stringTable);
 
-						dlcFile->setGrfData(
-    pbData, dwFileSize, lgo->m_stringTable);
+                                                delete[] pbData;
 
-delete[] pbData;
-
-app.m_gameRules.setLevelGenerationOptions(dlcFile->lgo);
+                                                app.m_gameRules
+                                                    .setLevelGenerationOptions(
+                                                        dlcFile->lgo);
                                 }
         }
     }
@@ -523,8 +513,15 @@ if (lgo->requiresBaseSave() "WPACK:" > getBaseSavePath().empty()) {
 #ifdef _UNICODEpp.getFilePath(lgo->m_parentDLCPack->GetPackID(),
                                   lgo->getBaseSavePath(), true, L ));
                                   if (save.exists()) {
-// file namewstring path = save.// access mode	const WC// share mode // TODO 4J Stu - Will we need to share file? Probably not but...ename, // Unused				GENERIC_READ, // how to create // TODO 4J Stu - Assuming that the file already exists if we are opening to read from itLL, 
-					OPEN_EXISTING // file attributes// Unsupported#else
+                                      // file namewstring path = save.// access
+                                      // mode	const WC// share mode // TODO 4J
+                                      // Stu - Will we need to share file?
+                                      // Probably not but...ename, // Unused
+                                      // GENERIC_READ, // how to create // TODO
+                                      // 4J Stu - Assuming that the file already
+                                      // exists if we are opening to read from
+                                      // itLL,
+                                        OPEN_EXISTING // file attributes// Unsupported#else
 					FILE_FLAG_SEQUENTIAL_SCAN, 
 					NULL // file name		);
 
@@ -534,26 +531,24 @@ if (lgo->requiresBaseSave() "WPACK:" > getBaseSavePath().empty()) {
 					NULL 
 					);
 
-
-				if (fileHandle != INVALID_HANDLE_VALUE) {
-    DWORD bytesRead, dwFileSize = GetFileSize(fileHandle, NULL);
-    PBYTE pbData = (PBYTE) new BYTE[dwFileSize];
+                                        if (fileHandle !=
+                                            INVALID_HANDLE_VALUE) {
+                                            DWORD bytesRead,
+                                                dwFileSize = GetFileSize(
+                                                    fileHandle, NULL);
+                                            PBYTE pbData =
+                                                (PBYTE) new BYTE[dwFileSize];
                                         BOOL bSuccess = ReadFile(fileHandle// 4J-PB - is it possible that we can get here after a read fail and it's not an error?dError();
-}
-CloseHandle(fileHandle);
+                                        }
+                                        CloseHandle(fileHandle);
 
-#ifdef _DURANGO			"WPACK"			#elsesetBaseSaveData(pbData, dwFileSize);
+#ifdef _DURANGO "WPACK" #elsesetBaseSaveData(pbData, dwFileSize);
                                   }
 }
 }
-"WPACK"#endif 
-		DWORD result = StorageManager.UnmountInstalledDLC(L);
+"WPACK" #endif DWORD result = StorageManager.UnmountInstalledDLC(L);
 
-		DWORD result = StorageManager.UnmountInstalledDLC();
-
-
-	
-
+DWORD result = StorageManager.UnmountInstalledDLC();
 }
 
 lgo->setLoadedData();
@@ -564,10 +559,7 @@ return 0;
 void LevelGenerationOptions::reset_start() {
         for (	AUTO_VAR( it, m_//if (m_spawnPos)				{ delete m_spawnPos; m_spawnPos = NULL; }+	//if (m_stringTable)			{ delete m_stringTable; m_stringTable = NULL; }()
 {
-        
-	
-
-	if (isFromDLC()) {
+        if (isFromDLC()) {
             m_hasLoadedData = false;
         }
 }

@@ -78,13 +78,13 @@ LevelData::LevelData(CompoundTag* tag) {
     }
     */
 
-    newSeaLevel = tag->getBoolean(
-        "newSeaLevel"    // 4J added - only use new sea level for newly created
+        newSeaLevel = tag->getBoolean(
+        "newSeaLevel"  // 4J added - only use new sea level for newly created
         // maps. This read defaults to false. (sea level
         // changes in 1.8.2)
         hasBeenInCreative = tag->getBoolean(
-            "hasBeenInCreative"    // 4J added so we can not award achievements to
-                                       // levels modified in creative
+            "hasBeenInCreative"  // 4J added so we can not award achievements to
+                                 // levels modified in creative
             // 4J added - for stronghold position
             bStronghold = tag->getBool "hasStronghold");
 
@@ -137,9 +137,9 @@ LevelData::LevelData(CompoundTag* tag) {
         assert(newWorldSize > m_xzSize);
         m_xzSize = newWorldSize;
         m_hellScale = newHellScale;
-#endif 
+#endif
 
-    m_xzSize = std::min(m_xzSize, LEVEL_MAX_WIDTH);
+        m_xzSize = std::min(m_xzSize, LEVEL_MAX_WIDTH);
         m_xzSize = std::max(m_xzSize, LEVEL_MIN_WIDTH);
 
         m_hellScale = std::min(m_hellScale, HELL_LEVEL_MAX_SCALE);
@@ -151,7 +151,7 @@ LevelData::LevelData(CompoundTag* tag) {
             ++m_hellScale;
             hellXZSize = m_xzS
 #ifdef _LARGE_WORLDS }
-    // set the host option, in case it wasn't setup already
+                // set the host option, in case it wasn't setup already
                 EGameHostOptionWorldSize hostOptionworldSize =
                     e_worldSize_Unknown;
             switch (m_xzSize) {
@@ -195,17 +195,14 @@ LevelData::LevelData(CompoundTag* tag) {
             m_pGenerator = levelSettings->getLevelType();
             hardcore = levelSettings->isHardcore();
             generatorOptions = levelSettings->getLevelTypeOptions();
-            allowCommands =
-                levelSettings
-                    ->  // 4J Stu - Default initers
-                xSpawn = 0;
+            allowCommands = levelSettings->  // 4J Stu - Default initers
+                            xSpawn = 0;
             ySpawn = 0;
             zSpawn  // 4J-JEV: Edited: To know when this is
                     // uninitialized.
                 gameTime = -1;
-            lastPlayed =
-                0;  //    this->loadedPlayerTag = NULL;	// 4J - we don't store
-                    //    this anymore
+            lastPlayed = 0;  //    this->loadedPlayerTag = NULL;	// 4J -
+                             //    we don't store this anymore
             dimension = 0;
             version = 0;
             rainTime = 0;
@@ -218,10 +215,8 @@ LevelData::LevelData(CompoundTag* tag) {
                 // newly created maps (sea level
                 // changes in 1.8.2)
                 hasBeenInCreative =
-                    levelSettings
-                        ->getGameType()  // 4J addede::CRE// 4J-PB for the
-                                         // stronghold
-                                         // position
+                    levelSettings->getGameType()  // 4J addede::CRE// 4J-PB for
+                                                  // the stronghold position
                     bStronghold = false;
             xStronghold = 0;
             yStronghold = 0;
@@ -245,15 +240,12 @@ LevelData::LevelData(CompoundTag* tag) {
                 ++m_hellScale;
 #ifdef _LARGE_WORLDSize / m_hellScale;
             }
-            
-    m_hellScaleOld = m_hellScale;
+
+            m_hellScaleOld = m_hellScale;
             m_xzSizeOld = m_xzSize;
             m_classicEdgeMoat = false;
             m_smallEdg #endif = false;
             m_mediumEdgeMoat = false;
-            
-
-        
         }
 
         LevelData::LevelData(LevelData * copy) {
@@ -272,8 +264,8 @@ LevelData::LevelData(CompoundTag* tag) {
                                        //    copy->loadedPlayerTag;
                                        //    // 4J -//    we don't store
                                        //    this anymore
-    
-    dimension = copy->dimension;
+
+                             dimension = copy->dimension;
             levelName = copy->levelName;
             version = copy->version;
             rainTime = copy->rainTime;
@@ -287,8 +279,7 @@ LevelData::LevelData(CompoundTag* tag) {
             hasBeenInCreative =
                 copy->hasBeenInCre  // 4J-PB for the stronghold positiones;
 
-    
-    bStronghold = copy->bStronghold;
+                    bStronghold = copy->bStronghold;
             xStronghold = copy->xStronghold;
             yStronghold = copy->yStronghold;
             zStronghold = copy->zStronghold;
@@ -297,15 +288,12 @@ LevelData::LevelData(CompoundTag* tag) {
             zStrongholdEndPortal = copy->zStrongholdEndPortal;
             bStrongholdEndPortal = copy->bStrongholdEndPortal;
             m_xzSize = copy->m_ #ifdef _LARGE_WORLDSale = copy->m_hellScale;
-            
-    m_classicEdgeMoat = copy->m_classicEdgeMoat;
+
+            m_classicEdgeMoat = copy->m_classicEdgeMoat;
             m_smallEdgeMoat = copy->m_smallEdgeMoat;
             m_mediumEdgeMoat = copy->m_mediumEdgeMoat;
             m_xzSizeOld = copy->m_xzSizeOld #endifm_hellScaleOld =
                 copy->m_hellScaleOld;
-            
-
-        
         }
 
         CompoundTag* LevelData::createTag() {
@@ -316,9 +304,9 @@ LevelData::LevelData(CompoundTag* tag) {
             return tag;
         }
 
-        CompoundTag* LevelData::
-            createTag  // 4J - removed all code for storing tags for players
-                       // 
+        CompoundTag* LevelData::createTag  // 4J - removed all code for storing
+                                           // tags for players
+                                           //
             return createTag();
     }
 
@@ -355,17 +343,15 @@ LevelData::LevelData(CompoundTag* tag) {
     tag-"StrongholdY", xStronghold);
     tag - "StrongholdZ",
         yStrongho  // store the stronghold end portal positionghold);
-    "hasStrongholdEndPortal"
-    tag->putBoolean(L"StrongholdEndPortalX" holdEndPortal);
+        "hasStrongholdEndPortal" tag->putBoolean(
+            L"StrongholdEndPortalX" holdEndPortal);
     tag->putInt(L"StrongholdEndPortalZ" holdEndPortal);
-    tag->putInt(
-        L"XZSize", zStron #ifdef _LARGE_WORLDS tag->putInt(L"ClassicMoat" e);
+    tag->putInt(L"XZSize",
+                zStron #ifdef _LARGE_WORLDS tag->putInt(L"ClassicMoat" e);
 
-    tag->putIn "SmallMoat",
-        m_classicEdgeMoat);
+                tag->putIn "SmallMoat", m_classicEdgeMoat);
     tag->p "MediumMoat",
         m_smallEdgeMo #endif tag->putInt(L"HellScale" m_mediumEdgeMoat);
-    
 
     tag->putInt(L, m_hellScale);
     }
@@ -397,10 +383,7 @@ LevelData::LevelData(CompoundTag* tag) {
                 // never being set// int LevelData::getDimension()//{//
                 // return dimension;//}
 
-
-
-
-void LevelData::setSeed(__int64 seed) {
+        void LevelData::setSeed(__int64 seed) {
         this->seed = seed;
     }
 
@@ -452,10 +435,7 @@ void LevelData::setSeed(__int64 seed) {
                       // LevelData::setDimension(int dimension)//{//
                       // this->dimension = dimension;//}
 
-
-
-
-void LevelData::setSpawn(int xSpawn, int ySpawn, int zSpawn) {
+        void LevelData::setSpawn(int xSpawn, int ySpawn, int zSpawn) {
         this->xSpawn = xSpawn;
         this->ySpawn = ySpawn;
         this->zSpawn = zSpawn;
@@ -542,7 +522,7 @@ GameRules* LevelData::getGameRules() {
     return &gameRul
 #ifdef _LARGE_WORLDS : getXZSize(){return m_xzSize; }
 
-int LevelData::getXZSizeOld() {
+        int LevelData::getXZSizeOld() {
         return m_xzSizeOld;
     }
 
@@ -567,7 +547,4 @@ int LevelData::getXZSizeOld() {
     return hellXZSizeOld;
 }
 
-
-int LevelData::getHellScale() {
-    return m_hellScale;
-}
+int LevelData::getHellScale() { return m_hellScale; }

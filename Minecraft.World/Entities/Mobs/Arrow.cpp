@@ -232,7 +232,7 @@ void Arrow::tick() {
     double nearest = 0;
     AUTO_VAR(itEnd, objects->end());
     for (AUTO_VAR(it, objects->begin()); it != itEnd; it++) {
-        std::shar  // objects->at(i); *it;  
+        std::shar  // objects->at(i); *it;
             if (!e->isPickable() || (e == owner && flightTime < 5)) continue;
 
         float rr = 0.3f;
@@ -315,7 +315,7 @@ void Arrow::tick() {
                             GameEventPacket::SUCCESSFUL_BOW_HIT, 0)));
                     // 4J : WESTY : For award, need to track if creeper was
                     // killed// by arrow from the player.
-                    // 
+                    //
                 if (owner != NULL &&
              // arrow owner is a playerTYPE_PLAYER)  
              // target is now deady->isAlive()       
@@ -350,9 +350,8 @@ void Arrow::tick() {
                 xd = (float)(res->pos->x - x);
                 yd = (float)(res->pos->y - y);
                 zd = (float)(res->pos->z - z);
-                float dd = (float)
-                    sq  // 4J added check - zero dd here was creating
-                        // NaNs
+                float dd = (float)sq  // 4J added check - zero dd here was
+                                      // creating NaNs
                     if (dd > 0.0001f) {
                     x -= (xd / dd) * 0.05f;
                     y -= (yd / dd) * 0.05f;
@@ -446,8 +445,7 @@ void Arrow::readAdditionalSaveData(Co "xTile" ag * tag) {
 if (tag->contains("pickup")) {
         pickup = tag->getBy"player");
 } else if (tag->contains(L)) {
-    "player" ickup =
-        tag->getBoolean(L) ? PICKUP_ALLOWED : PICKUP_DISALLOWED;
+    "player" ickup = tag->getBoolean(L) ? PICKUP_ALLOWED : PICKUP_DISALLOWED;
 }
 }
 

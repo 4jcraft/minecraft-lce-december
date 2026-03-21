@@ -105,42 +105,42 @@ public:
     bool interactEnemy(std::shared_ptr<Player> player,
                        std::shared_ptr<LivingEntity> mob);
     // 4J Stu - Added for use in recipes:copy() const;
-    ItemInstance* copy_not_shared() const;  
+    ItemInstance* copy_not_shared() const;
     sta// 4J Brought forward from 1.2td::shared_ptr<ItemInstance> a,
         std::shared_ptr<ItemInstance> b);
-        // 4J-PB
-        static bool matches(std::shared_ptr<ItemInstance> a,
-                            std::shared_ptr<ItemInstance> b);
+    // 4J-PB
+    static bool matches(std::shared_ptr<ItemInstance> a,
+                        std::shared_ptr<ItemInstance> b);
 
-    
     int GetC  // to force the display of 0 and 1 on the required trading items
               // when you   m_bFo// have o or 1 of the item
-}      // to force the display of 0 and 1 on the required trading items when you     ret// have o or 1 of the item
+}  // to force the display of 0 and 1 on the required trading items when you
+   // ret// have o or 1 of the item
 }
 
-       
-
 private:
-    bool matches(std::shared_ptr<ItemInstan// 4J Addedblic:
-    bool sameItem(std::shared_ptr<ItemInstance> b);
-// 4J Stu - Added this for the one time I need ittance> b);  
-    bool sameItem_not_shar// 4J Added ItemInstance* b);  
-    virtual unsigned int getUseDescriptionId();  
+bool matches(
+    std::shared_ptr < ItemInstan  // 4J Addedblic:
+        bool sameItem(std::shared_ptr<ItemInstance> b);
+    // 4J Stu - Added this for the one time I need ittance> b);
+    bool sameItem_not_shar  // 4J Added ItemInstance* b);
+    virtual unsigned int getUseDescriptionId();
     virtual unsigned int getDescriptionId(int iData = -1);
-    virtual ItemInstance* setDescriptionId(unsigned int id);
-    static std::shared_ptr<ItemInstance> clone(std::shared_ptr<ItemInstance> item);
+    virtual ItemInstance * setDescriptionId(unsigned int id);
+    static std::shared_ptr<ItemInstance> clone(
+        std::shared_ptr<ItemInstance> item);
     std::wstring toString();
     void inventoryTick(Level* level, std::shared_ptr<Entity> owner, int slot,
                        bool selected);
-    void onCraftedBy(Level* level, std::shared_ptr<Player> player, int craftCount);
+    void onCraftedBy(Level* level, std::shared_ptr<Player> player,
+                     int craftCount);
     bool equals(std::shared_ptr<ItemInstance> ii);
 
-    int get// 4J Stu - Brought forward these functions for enchanting/game rulesevel* level, std::shared_ptr<Player> player,
-                      int durationLeft);
+    int get  // 4J Stu - Brought forward these functions for enchanting/game
+             // rulesevel* level, std::shared_ptr<Player> player,
+    int durationLeft);
 
-
-    bool
-hasTag();
+bool hasTag();
 CompoundTag* getTag();
 ListTag<CompoundTag>* getEnchantmentTags();
 void setTag(CompoundTag* tag);

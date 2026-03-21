@@ -106,43 +106,45 @@ std::shared_ptr<Player> SignTileEntity::getPlayerWhoMayEdit() {
 }
 
 void SignTileEntity::setChanged() {
-    Minecraft* pMinecraft = Minecraft::GetInstanc// 4J-PB - For TU14 we are allowed to not verify strings anymore !
-    m_bVerified = /*
-    if(!g_NetworkManager.IsLocalGame() && !m_bVerified)
-    //if (pMinecraft->level->isClientSide)
-    {
-            WCHAR *wcMessages[MAX_SIGN_LINES];
-            for (int i = 0; i < MAX_SIGN_LINES; ++i)
-            {
-                    wcMessages[i]=new WCHAR [MAX_LINE_LENGTH+1];
-                    ZeroMemory(wcMessages[i],sizeof(WCHAR)*(MAX_LINE_LENGTH+1));
-                    if(m_wsmessages[i].length()>0)
-                    {
-                            memcpy(wcMessages[i],m_wsmessages[i].c_str(),m_wsmessages[i].length()*sizeof(WCHAR));
-                    }
-            }
-            // at this point, we can ask the online string verifier if our sign
-text is ok #ifdef __ORBIS__ m_bVerified=true; #else
+    Minecraft* pMinecraft = Minecraft::
+        GetInstanc  // 4J-PB - For TU14 we are allowed to not verify strings
+                    // anymore !
+                        m_bVerified = /*
+                        if(!g_NetworkManager.IsLocalGame() && !m_bVerified)
+                        //if (pMinecraft->level->isClientSide)
+                        {
+                                WCHAR *wcMessages[MAX_SIGN_LINES];
+                                for (int i = 0; i < MAX_SIGN_LINES; ++i)
+                                {
+                                        wcMessages[i]=new WCHAR
+                    [MAX_LINE_LENGTH+1];
+                                        ZeroMemory(wcMessages[i],sizeof(WCHAR)*(MAX_LINE_LENGTH+1));
+                                        if(m_wsmessages[i].length()>0)
+                                        {
+                                                memcpy(wcMessages[i],m_wsmessages[i].c_str(),m_wsmessages[i].length()*sizeof(WCHAR));
+                                        }
+                                }
+                                // at this point, we can ask the online string
+                    verifier if our sign text is ok #ifdef __ORBIS__
+                    m_bVerified=true; #else
 
-            if(!InputManager.VerifyStrings((WCHAR**)&wcMessages,MAX_SIGN_LINES,&SignTileEntity::StringVerifyCallback,(LPVOID)this))
-            {
-                    // Nothing to verify
-                    m_bVerified=true;
-            }
-            for(unsigned int i = 0; i < MAX_SIGN_LINES; ++i)
-            {
-                    delete [] wcMessages[i];
-            }
-#endif
-    }
-    else
-    {
-            // set the sign to allowed (local game)
-            m_bVerified=true;
-    }
-    */
-
-
+                                if(!InputManager.VerifyStrings((WCHAR**)&wcMessages,MAX_SIGN_LINES,&SignTileEntity::StringVerifyCallback,(LPVOID)this))
+                                {
+                                        // Nothing to verify
+                                        m_bVerified=true;
+                                }
+                                for(unsigned int i = 0; i < MAX_SIGN_LINES; ++i)
+                                {
+                                        delete [] wcMessages[i];
+                                }
+                    #endif
+                        }
+                        else
+                        {
+                                // set the sign to allowed (local game)
+                                m_bVerified=true;
+                        }
+                        */
 }
 
 void SignTileEntity::SetMessage(int iIndex, std::wstring& wsText) {

@@ -84,8 +84,8 @@ void StitchedTexture::init(Texture* source, std::vector<Texture*>* frames,
     this->v0 = y / (float)source->getHeight() + marginY;
     this->v1 = (y + height) / (float)source->getHeight() - marg
 #ifndef _CONTENT_PACKAGE
-	bool addBreakpoint = false;
-               if (addBreakpoint) {
+               bool addBreakpoint = false;
+    if (addBreakpoint) {
                 pr"\nTreeTop\n");
                 pr"u0 = %f\n", u0);
                 pr"u1 = %f\n", u1);
@@ -179,18 +179,18 @@ void StitchedTexture::init(Texture* source, std::vector<Texture*>* frames,
     Texture* StitchedTexture::getFrame(int i) { return frames->at(0); }
 
     int StitchedTexture::getFrames() {
-        return frames?frames->siz/**
-* Loads animation frames from a file with the syntax, <code>
-* 0,1,2,3,
-* 4*10,5*10,
-* 4*10,3,2,1,
-* 0
-* </code> or similar
-* 
-* @param bufferedReader
-*/
-void StitchedTexture::loadAnimationFrames(BufferedReader *bufferedReader)
-{
+        return frames ? frames->siz /**
+                                     * Loads animation frames from a file with
+                                     * the syntax, <code> 0,1,2,3, 4*10,5*10,
+                                     * 4*10,3,2,1,
+                                     * 0
+                                     * </code> or similar
+                                     *
+                                     * @param bufferedReader
+                                     */
+                        void
+                        StitchedTexture::loadAnimationFrames(BufferedReader *
+                                                             bufferedReader) {
             if (frameOverride != NULL) {
                 delete frameOverride;
                 frameOverride = NULL;
@@ -200,8 +200,7 @@ void StitchedTexture::loadAnimationFrames(BufferedReader *bufferedReader)
 
             intPairVector* results = new intPairVe  // try {
 
-	
-	std::wstring line = bufferedReader->readLine();
+                std::wstring line = bufferedReader->readLine();
             while (!line.empty()) {
                 line = trimString(line);
                 if (line.length() > 0) {
@@ -228,10 +227,10 @@ void StitchedTexture::loadAnimationFrames(BufferedReader *bufferedReader)
                                      // System.err.println("Failed to read
                                      // animation info for " + name + ": " +
                                      // e.getMessage());//}
-	
 
-	if (!results->empty() &&
-            results->size() < (SharedConstants::TICKS_PER_SECOND * 30)) {
+                    if (!results->empty() &&
+                        results->size() <
+                            (SharedConstants::TICKS_PER_SECOND * 30)) {
                     frameOverride = results;
                 }
                 else {

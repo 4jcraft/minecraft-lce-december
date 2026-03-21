@@ -90,6 +90,5 @@ void EnderParticle::tick() {
 
     //        spd+=0.002/lifetime*age;
 
-    if (age++ >= lifetime)
-        std::remove  //        move(xd*spd, yd*spd, zd*spd);
+    if (age++ >= lifetime) std::remove  //        move(xd*spd, yd*spd, zd*spd);
 }

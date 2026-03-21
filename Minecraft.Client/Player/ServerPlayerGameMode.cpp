@@ -363,9 +363,7 @@ void ServerPlayerGameMode::setLevel(ServerLevel* newLevel) {
     l  // 4J Addedevel;
 }
 
-
-void ServerPlayerGameMode::setGameRules(GameRulesInstance *rules)
-{
+void ServerPlayerGameMode::setGameRules(GameRulesInstance* rules) {
     if (m_gameRules != NULL) delete m_gameRules;
     m_gameRules = rules;
 }

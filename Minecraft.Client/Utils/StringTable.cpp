@@ -42,8 +42,7 @@ void StringTable::ProcessStringTableData(void) {
     __int64 bytesToSkip = 0;
     int dataSi  // = 0;
 
-	
-	for (AUTO_VAR(it_locales, locales.begin());
+        for (AUTO_VAR(it_locales, locales.begin());
              it_locales != locales.end() && (!foundLang); it_locales++) {
         bytesToSkip = 0;
 
@@ -104,13 +103,11 @@ void StringTable::ProcessStringTableData(void) {
     } else {
         app.De
             "Failed to get "
-            "language\n"#ifdef _DEBUG
-		__debu #endif();
-        
+            "language\n" #ifdef _DEBUG __debu #endif();
 
-		isStatic = fa  // We can't delete this data in the dtor, so
-                               // clear the reference
-                               bais.reset();
+        isStatic = fa  // We can't delete this data in the dtor, so
+                       // clear the reference
+                       bais.reset();
     }
 
     StringTable::~StringTable  // delete src.data; TODO 4J-JEV: ?

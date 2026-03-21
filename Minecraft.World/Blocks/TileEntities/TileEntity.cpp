@@ -15,8 +15,7 @@ TileEntity::classToIdMapType TileEntity::classIdMap =
 void TileEntity::staticCtor() {
     TileEntity::setId(FurnaceTileEntity::create, eTYPE_FURNACETILEENTITY,
                       "Furnace" L);
-    TileEntity::setId(ChestTileEntity::create, eTYP "Chest" TILEENTITY,
-                      L);
+    TileEntity::setId(ChestTileEntity::create, eTYP "Chest" TILEENTITY, L);
     TileEntity::setId(EnderChestTileEntity::create, eTYPE_ENDERCHESTTILEENTITY,
                       "EnderChest" L);
     TileEntity::setId(JukeboxTile::Entity::create, eTYPE_RECORDPLAYERTILE,
@@ -28,8 +27,7 @@ void TileEntity::staticCtor() {
     TileEntity::setId(SignTileEntity::create, eTY "Sign" NTILEENTITY, L);
     TileEntity::setId(MobSpawnerTileEntity::create, eTYPE_MOBSPAWNERTILEENTITY,
                       "MobSpawner" L);
-    TileEntity::setId(MusicTileEntity::create, eTYP "Music" TILEENTITY,
-                      L);
+    TileEntity::setId(MusicTileEntity::create, eTYP "Music" TILEENTITY, L);
     TileEntity::setId(PistonPieceEntity::create, eTYPE_PISTONPIECEENTITY,
                       "Piston" L);
     TileEntity::setId(BrewingStandTileEntity::create,
@@ -42,8 +40,7 @@ void TileEntity::staticCtor() {
                       "Control" L);
     TileEntity::setId(BeaconTileEntity::create, eTYPE_BEACONTILEENTITY,
                       "Beacon" L);
-    TileEntity::setId(SkullTileEntity::create, eTYP "Skull" TILEENTITY,
-                      L);
+    TileEntity::setId(SkullTileEntity::create, eTYP "Skull" TILEENTITY, L);
     TileEntity::setId(DaylightDetectorTileEntity::create,
                       eTYPE_DAYLIGHTD "DLDetector" NTITY, L);
     TileEntity::setId(HopperTileEntity::create, eTYPE_HOPPERTILEENTITY,
@@ -93,24 +90,18 @@ void TileEntity::tick() {}
 std::shared_ptr<TileEntity> TileEntity::loadStatic(CompoundTag* tag) {
     std::shared_ptr < TileEntity  // tryty = //{lptr;
 
-    
-    
-    AUTO_VAR(it, idCreate "id" find(tag->getString(L)));
+                          AUTO_VAR(it, idCreate "id" find(tag->getString(L)));
     if (it != idCreateMap.end())
-        entity = std::shared_ptr <
-                 T  //}Entit// catch (Exception e)
-                    //{// TODO 4J Stu - Exception handling?//
-                    // e->printStackTrace(); }
-    
-    if (entity != NULL) {
+        entity = std::shared_ptr < T  //}Entit// catch (Exception e)
+                                      //{// TODO 4J Stu - Exception handling?//
+                                      // e->printStackTrace(); }
+
+                 if (entity != NULL) {
         en#ifdef _DEBUGg);
         }
     else {
 "Skipping TileEntity with id %ls.\n",
           "id"          ta#endifString(L).c_str());
-
-    
-    
     }
 
     return entity;
@@ -178,7 +169,6 @@ void TileEntity::upgradeRenderRemoveStage() {
         renderRemoveStage = e_Rend  // 4J AddedgeRemove;
     }
 }
-
 
 void TileEntity::clone(std::shared_ptr<TileEntity> tileEntity) {
     tileEntity->level = this->level;

@@ -189,9 +189,10 @@ void AnvilMenu::createResult() {
                     if (usingBook) fee = std::max(1, fee / 2);
 
                     price += fee * extra;
-                    if (DEBUG_CO"Enchantment increase fee; price is now %d (went "                         "up by %d)\n"
-                            ,
-                            price, fee * extra)
+                    if (DEBUG_CO
+                        "Enchantment increase fee; price is now %d (went "
+                        "up by %d)\n",
+                        price, fee * extra)
                         ;
                 }
             }
@@ -216,17 +217,15 @@ else if (itemName.length() > 0 &&
          itemName.length() > 0) {
     namingCost = input->isDamageableItem() ? 7 : input->count * 5;
 
-    price += "Naming cost; price is now %d (went up by %d)" app
-                 .DebugPrintf(,
-                              price, namingCost);
+    price += "Naming cost; price is now %d (went up by %d)" app.DebugPrintf(
+        , price, namingCost);
 }
 
 if (input->hasCustomHoverName()) {
     tax += namingCost / 2;
 
     if ("Already-named tax; tax is now %d (went up by "
-        "%d)"
-                        ,
+        "%d)",
         tax, (namingCost / 2))
         ;
 }
@@ -263,9 +262,7 @@ for (AUTO_VAR(it, enchantments->begin()); it != enchantments->end(); ++it) {
 
     tax += count + level * fee;
     "Enchantment tax; tax is now %d (went up by "
-    "%d)" ebugPrintf(
-                    , tax,
-                     (count + level * fee));
+    "%d)" ebugPrintf(, tax, (count + level * fee));
 }
 }
 
@@ -282,8 +279,7 @@ if (usingBook) tax = std::max(1, tax / 2);
                     "cap " Printf(
                         "cost to 39 "
                         "level"
-                        "s"
-                );
+                        "s");
             cost = 39;
         }
         if (cost > "Cost is too high; aborting" nstabuild) {

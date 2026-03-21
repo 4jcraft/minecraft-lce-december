@@ -29,24 +29,22 @@
 #ifdef SONY_REMOTE_STORAGE_DOWNLOAD
 unsigned long UIScene_LoadOrJoinMenu::m_ulFileSize = 0L;
 std::wstring UIScene_LoadOrJoinMenu::m_wstrStageT "" t = L;
-bool UIScene_LoadOrJoinMenu::m_bSaveTransferRunning = fa #endif 
+bool UIScene_LoadOrJoinMenu::m_bSaveTransferRunning = fa #endif
 
-#define JOIN_LOAD_ONLINE_TIMER_ID 0#define JOIN_LOAD_ONLINE_TIMER_TIME 100
-#ifdef _XBOX#define CHECKFORAVAILABLETEXTUREPACKS_TIMER_ID 3#define CHECKFORAVAILABLETEXTUREPACKS_TIMER_TIME 50#endif 
+#define JOIN_LOAD_ONLINE_TIMER_ID 0 #define JOIN_LOAD_ONLINE_TIMER_TIME 100
+#ifdef _XBOX #define CHECKFORAVAILABLETEXTUREPACKS_TIMER_ID 3 #define CHECKFORAVAILABLETEXTUREPACKS_TIMER_TIME 50 #endif
 #ifdef _XBOX_ONE
-UIScene_LoadOrJoinMenu::ESaveTransferFiles
-    UIScene_LoadOrJoinMenu::s_eSaveTransferFile;
+    UIScene_LoadOrJoinMenu::ESaveTransferFiles
+        UIScene_LoadOrJoinMenu::s_eSaveTransferFile;
 unsigned long UIScene_LoadOrJoinMenu::s_ulFileSize = 0L;
 byteArray UIScene_LoadOrJoinMenu::s_transferData = byteArray();
 std::wstring UIScene_LoadOrJoinMenu::m_wstrS "" ge
 #ifdef _DEBUG_MENUS_ENABLED
-C4JStorage::SAVETRANSFER_FILE_DETAILS                      \
-    UIScene_LoadOrJoinMenu::m_debugTransfe #endifl #endif 
+    C4JStorage::SAVETRANSFER_FILE_DETAILS
+        UIScene_LoadOrJoinMenu::m_debugTransfe #endifl #endif
 
-
-int UIScene_LoadOrJoinMenu::LoadSaveDataThumbnailReturned( \
-        LPVOID lpParam, PBYTE pbThumbnail, DWORD dwThumbnailBytes)
-{
+    int UIScene_LoadOrJoinMenu::LoadSaveDataThumbnailReturned(
+        LPVOID lpParam, PBYTE pbThumbnail, DWORD dwThumbnailBytes) {
     UIScene_LoadOrJoinMenu* pClass = (UIScene_LoadOrJoinMenu*)lpParam;
 
     app.De"Received data for save thumbnail\n");
@@ -124,7 +122,10 @@ UIScene_LoadOrJoinMenu::UIScene_LoadOrJoinMenu(int iPad, void *initData, UILayer
 	m_eAction = eAction_None;
 
     m_bMultiplayerAllowed = ProfileManager.IsSignedInLive( m_iPad ) && ProfileManager.AllowedToPlayMultiplayer
-#ifdef _XBOX_ONE    // 4J-PB - in order to buy the skin packs & texture packs, we need the signed offer ids for them, which we get in the availability info// we need to retrieve this info though, so do it here
+#ifdef _XBOX_ONE  // 4J-PB - in order to buy the skin packs & texture packs, we
+                  // need the signed offer ids for them, which we get in the
+                  // availability info// we need to retrieve this info though,
+                  // so do it here
 	app.AddDLCRequest(e_Marketplace_// content is skin packs, texture packs and mash-up packs#endif
 
 
@@ -141,12 +142,11 @@ UIScene_LoadOrJoinMenu::UIScene_LoadOrJoinMenu(int iPad, void *initData, UILayer
     {
     m_bInParty = fal #endif
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__) || \
-    defined(                                                         \
-        _DURANGO)    // Always clear the saves when we enter this menu
+    defined(_DURANGO)  // Always clear the saves when we enter this menu
                  StorageManager.ClearSav #endif();
-        // block input if we're waiting for DLC to install, and wipe the saves list. The end of dlc mounting custom message will fill the list again
-        if (app.StartInstallDLCProcess(m_iPad) == true ||
-            app.DLCInstallPending())
+    // block input if we're waiting for DLC to install, and wipe the saves list.
+    // The end of dlc mounting custom message will fill the list again
+    if (app.StartInstallDLCProcess(m_iPad) == true || app.DLCInstallPending())
         // if we're waiting for DLC to mount, don't fill the save list. The
         // custom message on end of dlc mounting will do that
         m_bIgnoreInput = true;
@@ -155,16 +155,13 @@ UIScene_LoadOrJoinMenu::UIScene_LoadOrJoinMenu(int iPad, void *initData, UILayer
     {
     Initialise
 #ifdef __PSVITA__
-    if (CGameNetworkManager::usingAdhocMode() && \
-        SQRNetworkManager_AdHoc_Vita::GetAdhocStatus())
-    {
-        g_NetworkManager
-            .startAdhocMatc  // create the client matching context and clear out
-                             // the friends list
+        if (CGameNetworkManager::usingAdhocMode() &&
+            SQRNetworkManager_AdHoc_Vita::GetAdhocStatus()) {
+        g_NetworkManager.startAdhocMatc  // create the client matching context
+                                         // and clear out the friends list
 #endif }
 
-
-    UpdateGamesList();
+                                         UpdateGamesList();
 
         g_NetworkManager.SetSessionsUpdatedCallback(&UpdateGamesListCallback,
                                                     this);
@@ -201,13 +198,13 @@ UIScene_LoadOrJoinMenu::UIScene_LoadOrJoinMenu(int iPad, void *initData, UILayer
             for (unsigned int i = 0; i < app.GetDLCInfoTexturesOffersCount();
                  ++i) {
                 bTexturePackAlreadyList #if defined (__PS3__) ||
-                    defined(__ORBIS__)
-        char* pchDLCName = app.GetDLCInfoTextures(i);
+                    defined(__ORBIS__) char* pchDLCName =
+                    app.GetDLCInfoTextures(i);
                 pDLCInfo = app.GetDLCInfo(pch #elseme);
-                
-        ULONGLONG ull = app.GetDLCInfoTexturesFullOffer(i);
+
+                ULONGLONG ull = app.GetDLCInfoTexturesFullOffer(i);
         pDLCInfo=app.GetDLCInfoForFullOffe#endifl);
-        
+
         for (unsigned int i = 0; i < texturePacksCount; ++i) {
             TexturePack* tp = pMinecraft->skins->getTexturePackByIndex(i);
             if (pDLCInfo && pDLCInfo->iConfig == tp->getDLCParentPackId()) {
@@ -232,13 +229,13 @@ UIScene_LoadOrJoinMenu::UIScene_LoadOrJoinMenu(int iPad, void *initData, UILayer
             for (unsigned int i = 0; i < app.GetDLCInfoTexturesOffersCount();
                  ++i) {
                 bTexturePackAlreadyList #if defined (__PS3__) ||
-                    defined(__ORBIS__)
-            char* pchDLCName = app.GetDLCInfoTextures(i);
+                    defined(__ORBIS__) char* pchDLCName =
+                    app.GetDLCInfoTextures(i);
                 pDLCInfo = app.GetDLCInfo(pch #elseme);
-                
-            ULONGLONG ull = app.GetDLCInfoTexturesFullOffer(i);
+
+                ULONGLONG ull = app.GetDLCInfoTexturesFullOffer(i);
             pDLCInfo=app.GetDLCInfoForFullOffe#endifl);
-            
+
             for (unsigned int i = 0; i < texturePacksCount; ++i) {
                 TexturePack* tp = pMinecraft->skins->getTexturePackByIndex(i);
                 if (pDLCInfo->iConfig == tp->getDLCParentPackId()) {
@@ -254,9 +251,6 @@ UIScene_LoadOrJoinMenu::UIScene_LoadOrJoinMenu(int iPad, void *initData, UILayer
     addTimer(CHECKFORAVAILABLETEXTUREPACKS_TIMER_ID,CHECKFORAVAILABLETEXTUREPACKS_TIM#endifE
 #ifdef SONY_REMOTE_STORAGE_DOWNLOAD
     m_eSaveTransferState = eSaveTrans #endifle;
-
-
-    
     }
 
     UIScene_LoadOrJoinMenu::~UIScene_LoadOrJoinMenu() {
@@ -268,11 +262,11 @@ UIScene_LoadOrJoinMenu::UIScene_LoadOrJoinMenu(int iPad, void *initData, UILayer
                  it < m_currentSessions->end(); ++it) {
                 delete (*it);
 
-#if TO_BE_IMPLEMENTED    // Reset the background downloading, in case we changed it by attempting to download a texture pack
+#if TO_BE_IMPLEMENTED  // Reset the background downloading, in case we changed
+                       // it by attempting to download a texture pack
                 XBackgroundDownloadSetMode(XBACKGROUND_DOWNLOAD_MO #endifO);
-                
 
-    if (m_saveDetails) {
+                if (m_saveDetails) {
                     for (int i = 0; i < m_iSaveDetailsCount; ++i) {
                         delete m_saveDetails[i].pbThumbnailData;
                     }
@@ -284,8 +278,10 @@ void UIScene_LoadOrJoinMenu::updateToo#if defined __PS3__ || defined __ORBIS__ |
 	if(m_eSaveTransferState!=eSaveTransfer_I// we're in a full screen progress for the save download here, so don't change the tooltips
 		r#endif
         }
-            // update the tooltips// if the saves list has focus, then we should show the Delete Save tooltip// if the games list has focus, then we should the the View Gamercard tooltip
-            int iRB = -1;
+        // update the tooltips// if the saves list has focus, then we should
+        // show the Delete Save tooltip// if the games list has focus, then we
+        // should the the View Gamercard tooltip
+        int iRB = -1;
         int iY = -1;
         int iLB = -1;
         int iX = -1;
@@ -315,18 +311,14 @@ void UIScene_LoadOrJoinMenu::updateToo#if defined __PS3__ || defined __ORBIS__ |
         else
             iLB = IDS_TOOLTIPS_PARTY_GAM
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
-    if (m_iPad == ProfileManager.GetPrimaryPad()) iY = \
-    IDS_TOOLTIPS_GAME #endifES;
+                if (m_iPad == ProfileManager.GetPrimaryPad()) iY =
+                    IDS_TOOLTIPS_GAME #endifES;
 
-
-    if (ProfileManager.IsFullVersion() == false) {
-                iRB = -1;
+        if (ProfileManager.IsFullVersion() == false) {
+            iRB = -1;
             }
     else if(StorageManager.GetSaveDisabled#ifdef _XBOX
         iX = IDS_TOOLTIPS_SELE#endifCE;
-
-    
-    
     }
     e#if defined _XBOX_ONE
 		if(ProfileManager.IsSignedInLive( m_iPad // Is there a save from 360 on TMS?
@@ -902,7 +894,7 @@ void UIScene_LoadOrJoinMenu::handleInput(int iPad, int key, bool repeat, bool pr
                 int ret = sceNpBasicRecvMessageCustom(SCE_NP_BASIC_MESSAGE_MAIN_TYPE_INVITE, SCE_NP_BASIC_RECV_MESSAGE_OPTIONS_INCLUDE_BOOTABLE, SYS_MEMORY_CONTAINER_ID_INVALID);
                 a"sceNpBasicRecvMessageCustom return %d ( %08x )\n"#endift, ret);
 
-         #elif defined(_DURANGO)
+#elif defined(_DURANGO)
         if(getControlFocus() == eControl_GamesList && m_buttonListGames.getItemCount() > 0)
         {
             DWORD nIndex = m_buttonListGames.getCurrentSelection();
@@ -1208,7 +1200,8 @@ void UIScene_LoadOrJoinMenu::CheckAndJoinGame(int gameIndex) {
 		bool noUGC=false;
 		bool bContentRestri// we're online, since we are joining a game
 		ProfileManager.GetChatAndContentRestrictions(m_iPad,true,&noUGC,&bContentRes
-#ifdef __ORBIS__    // 4J Stu - On PS4 we don't restrict playing multiplayer based on chat restriction, so remove this check
+#ifdef __ORBIS__  // 4J Stu - On PS4 we don't restrict playing multiplayer based
+                  // on chat restriction, so remove this check
 		noUGC = false;
 
 		bool bPlayStationPlus=true;
@@ -1248,7 +1241,8 @@ void UIScene_LoadOrJoinMenu::CheckAndJoinGame(int gameIndex) {
                 ui.RequestContentRestrictedMessageBox();
 
                 m_bIgnoreInput = false;
-#ifdef __ORBIS__    // If this is an online game but not all players are signed in to Live, stop!
+#ifdef __ORBIS__  // If this is an online game but not all players are signed in
+                  // to Live, stop!
                 else if (!isSignedInLive) {
                     UINT uiIDA[1];
                     uiIDA[0] = IDS_C  // Check if PSN is unavailable because of
@@ -1648,8 +1642,7 @@ void UIScene_LoadOrJoinMenu::handleTimerComplete(int id) {
           // kill this timer  
                 killTimer(CHECKFORAVAILABLETEXTUREPACKS_TIMER#endif            }
 
-
-     #endif	      break;
+#endif break;
 
     }
 
@@ -2027,8 +2020,7 @@ int UIScene_LoadOrJoinMenu::TexturePackDialogReturned(
     
                 }
                 pClass->m_bIgnoreInpu
-#if defined __PS3__ || defined __PSVITA__ ||       \
-    defined __ORBIS__
+#if defined __PS3__ || defined __PSVITA__ || defined __ORBIS__
 int UIScene_LoadOrJoinMenu::MustSignInReturnedPSN( \
         void* pParam, int iPad, C4JStorage::EMessageResult result)
                 {
@@ -2638,8 +2630,7 @@ void UIScene_LoadOrJoinMenu::CancelSaveTransferCallback(LPVOID lpParam)
     UIScene_LoadOrJoinMenu* pClass = (UIScene_LoadOrJoinMenu *) lpParam;
 	pClass->m_saveTransferDownloadCancelled = true;
 	ui.SetTooltips( DEFAULT_XUI_MENU_USER, -1, -// MGH -  added - remove the "cancel" tooltip, so the player knows it's underway (really needs a "cancelling" message)
-#endif 
-
+#endif
 
 #ifdef SONY_REMOTE_STORAGE_UPLOAD
 
@@ -3289,8 +3280,7 @@ int UIScene_LoadOrJoinMenu::DownloadXbox360SaveThreadProc( LPVOID lpParameter )
 
 void UIScene  // may have installed Halloween on this menu
               // #endif
-#if defined _XBOX_ONE ||                            \
-    defined __ORBIS__
+#if defined _XBOX_ONE || defined __ORBIS__
 
 int UIScene_LoadOrJoinMenu::CopySaveDialogReturned( \
         void* pParam, int iPad, C4JStorage::EMessageResult result)
@@ -3472,4 +3462,3 @@ int UIScene_LoadOrJoinMenu::CopySaveErrorDialogFinishedCallback(
 
                             return 0;
                         }
-                        

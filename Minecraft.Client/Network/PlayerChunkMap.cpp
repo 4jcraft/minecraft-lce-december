@@ -69,9 +69,6 @@ player->chunksToSend.p
 #ifdef _LARGE_WORLDS
 	parent->getLevel() \
     ->cache->dontDrop(  // 4J Added;)#endif
-
-
-
 }
 
 void PlayerChunkMap::PlayerChunk::remove(std::shared_ptr<ServerPlayer> player) {
@@ -249,9 +246,10 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
                                             // encode the level so they are
                                             // robust// enough to cope with
                                             // this
-	
-	if (!((packet->getId() == 51) || (packet->getId() == 52) ||
-              (packet->getId() == 53))) {
+
+                                        if (!((packet->getId() == 51) ||
+                                              (packet->getId() == 52) ||
+                                              (packet->getId() == 53))) {
                                         return;
                                     }
 
@@ -321,8 +319,7 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
                                         if (level->isEntityTile(x, y, z)) {
             broadcast(level->getTileEntity(x, y,// 4J added, to allow limiting of region update packets createdESEND)
 	{
-                                                
-		if (!prioritised) {
+                                                if (!prioritised) {
                                                     if (!allowRegionUpdate ||
                                                         (ticksToNextRegionUpdate >
                                                          0)) {
@@ -353,8 +350,8 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
                                                          // packets can only
                                                          // encode ys in a range
                                                          // of 1 - 256
-		
-		if (ys > 256) ys = 256;
+
+                                                    if (ys > 256) ys = 256;
 
                                                 broadcast(std::shared_ptr<
                                                           BlockRegionUpdatePacket>(
@@ -379,16 +376,17 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
                                                               // MAX_CHANGES_BEFORE_RESEND
                                                               // (10) we only
                                                               // need to send a
-                                                              // uint8_t value in
-                                                              // the
-                                                              // packet
-                                                    broadcast(std::shared_ptr<
-                                                              ChunkTilesUpdatePacket>(
-                                                        new ChunkTilesUpdatePacket(
-                                                            pos.x, pos.z,
-                                                            changedTiles,
-                                                            (uint8_t)changes,
-                                                            level)));
+                                                              // uint8_t value
+                                                              // in the packet
+                                                                  broadcast(std::shared_ptr<
+                                                                            ChunkTilesUpdatePacket>(
+                                                                      new ChunkTilesUpdatePacket(
+                                                                          pos.x,
+                                                                          pos.z,
+                                                                          changedTiles,
+                                                                          (uint8_t)
+                                                                              changes,
+                                                                          level)));
                                                 for (int i = 0; i < changes;
                                                      i++) {
                                                     int x = pos.x * 16 +
@@ -400,8 +398,10 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
                                                     int z =
                                                         p  //                    System.out.println("Sending!");   if (level->isEntityTile(x, y, z))
                                                     {
-                                                        
-                broadcast(level->getTileEntity(x, y, z));
+                                                        broadcast(
+                                                            level
+                                                                ->getTileEntity(
+                                                                    x, y, z));
                                                     }
                                                 }
     }
@@ -459,8 +459,7 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
     for (unsigned int i = 0; i < changedChun// Changes will be 0 if the chunk actually sent something, in which case we can delete it from this array
 		if( changedChunks[i]->changes ==// Limiting of some kind means we didn't send this chunk so move onto the next();
                                             } else {
-                                                
-			i++;
+                                                i++;
                                                 // 4J Stu - Added 1.1 but not
                                                 // relevant to us as we never no
                                                 // 0 players anyway, and don't
@@ -476,12 +475,6 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
                                                 //{//
                                                 // level.cache.dropAll();//
                                                 //}//}
-                                                
-	
-	
-	
-
-                                            
                                             }
 
                                             bool PlayerChunkMap::hasChunk(
@@ -527,10 +520,12 @@ void PlayerChunkMap::PlayerChunk::tileChanged(int x, int y, int z) {
                                                                         // be
                                                                         // created.
 
-void PlayerChunkMap::getChunkAndAddPlayer(int x, int z,
-                                                        std::shared_ptr<
-                                                            ServerPlayer>
-                                                            player) {
+                                                        void PlayerChunkMap::
+                                                            getChunkAndAddPlayer(
+                                                                int x, int z,
+                                                                std::shared_ptr<
+                                                                    ServerPlayer>
+                                                                    player) {
                                                         __int64 id =
                                                             (x + 0x7fffffffLL) |
                                                             ((z + 0x7fffffffLL)
@@ -556,10 +551,13 @@ void PlayerChunkMap::getChunkAndAddPlayer(int x, int z,
                                                                   // main chunk
                                                                   // map.
 
-void PlayerChunkMap::getChunkAndRemovePlayer(int x, int z,
-                                                                  std::shared_ptr<
-                                                                      ServerPlayer>
-                                                                      player) {
+                                                                void
+                                                                PlayerChunkMap::getChunkAndRemovePlayer(
+                                                                    int x,
+                                                                    int z,
+                                                                    std::shared_ptr<
+                                                                        ServerPlayer>
+                                                                        player) {
                                                                 for (
                                                                     AUTO_VAR(
                                                                         it,
@@ -592,8 +590,9 @@ void PlayerChunkMap::getChunkAndRemovePlayer(int x, int z,
                                                                 {
                                                                     if (addRequests
                                                                             .size()) {
-                                                                        
-		int px = (int)player->x;
+                                                                        int px =
+                                                                            (int)player
+                                                                                ->x;
                                                                         int pz =
                                                                             (int)player
                                                                                 ->z;
@@ -638,8 +637,9 @@ void PlayerChunkMap::getChunkAndRemovePlayer(int x, int z,
                                                                         }
                                                                     }
 
-                                                                    
-		if (itNearest != addRequests.end()) {
+                                                                    if (itNearest !=
+                                                                        addRequests
+                                                                            .end()) {
                                                                         getChunk(
                                                                             itNearest
                                                                                 ->x,
@@ -770,20 +770,99 @@ void PlayerChunkMap::getChunkAndRemovePlayer(int x, int z,
                                                                         4;
                                                                     int  //        for (int x = xc - radius; x <= xc + radius; x++)r//            for (int z = zc - radius; z <= zc + radius; z++) {//                getChunk(x, z, true).add(player);//            }// CraftBukkit start
 
-
-
-        // Origin
+                                                                        // Origin
                                                                         int facing =
                                                                             0;
                                                                     int size =
                                                                         radiu  // 4J Added so we send an area packet rather than one visibility packet per chunk(player, false);
 
-	    // 4J - added so that we don't fully create/send every chunk at this stage. Particularly since moving on to large worlds, where// we can be adding 1024 chunks here of which a large % might need to be fully created, this can take a long time. Instead use// the getChunkAndAddPlayer for anything but the central region of chunks, which adds them to a queue of chunks which are added// one per tick per player.// All but the last leg
-	
-	const int maxLegSizeToAddNow = 14;
+                                                                        // 4J -
+                                                                        // added
+                                                                        // so
+                                                                        // that
+                                                                        // we
+                                                                        // don't
+                                                                        // fully
+                                                                        // create/send
+                                                                        // every
+                                                                        // chunk
+                                                                        // at
+                                                                        // this
+                                                                        // stage.
+                                                                        // Particularly
+                                                                        // since
+                                                                        // moving
+                                                                        // on to
+                                                                        // large
+                                                                        // worlds,
+                                                                        // where//
+                                                                        // we
+                                                                        // can
+                                                                        // be
+                                                                        // adding
+                                                                        // 1024
+                                                                        // chunks
+                                                                        // here
+                                                                        // of
+                                                                        // which
+                                                                        // a
+                                                                        // large
+                                                                        // %
+                                                                        // might
+                                                                        // need
+                                                                        // to be
+                                                                        // fully
+                                                                        // created,
+                                                                        // this
+                                                                        // can
+                                                                        // take
+                                                                        // a
+                                                                        // long
+                                                                        // time.
+                                                                        // Instead
+                                                                        // use//
+                                                                        // the
+                                                                        // getChunkAndAddPlayer
+                                                                        // for
+                                                                        // anything
+                                                                        // but
+                                                                        // the
+                                                                        // central
+                                                                        // region
+                                                                        // of
+                                                                        // chunks,
+                                                                        // which
+                                                                        // adds
+                                                                        // them
+                                                                        // to a
+                                                                        // queue
+                                                                        // of
+                                                                        // chunks
+                                                                        // which
+                                                                        // are
+                                                                        // added//
+                                                                        // one
+                                                                        // per
+                                                                        // tick
+                                                                        // per
+                                                                        // player.//
+                                                                        // All
+                                                                        // but
+                                                                        // the
+                                                                        // last
+                                                                        // leg
 
-                                                                    
-    for (int legSize = 1; legSize <= size * 2; legSize++) {
+                                                                        const int
+                                                                            maxLegSizeToAddNow =
+                                                                                14;
+
+                                                                    for (
+                                                                        int legSize =
+                                                                            1;
+                                                                        legSize <=
+                                                                        size *
+                                                                            2;
+                                                                        legSize++) {
                                                                         for (
                                                                             int leg =
                                                                                 0;
@@ -854,8 +933,7 @@ void PlayerChunkMap::getChunkAndRemovePlayer(int x, int z,
                                                                     }
                                                                 }
 
-                                                                
-    facing %= 4;
+                                                                facing %= 4;
                                                                 for (int k = 0;
                                                                      k <
                                                                      size * 2;
@@ -905,19 +983,21 @@ void PlayerChunkMap::getChunkAndRemovePlayer(int x, int z,
                                                                             player);
                                                                     }
                                                                 }
-                                                                
 
-	player->connection->send
+                                                                player
+                                                                    ->connection
+                                                                    ->send
 #ifdef _LARGE_WORLDSnkVisibilityAreaPacket> \
     (new ChunkVisi #endifAreaPacket(minX, maxX, minZ, maxZ)));
 
-	getLevel()
-                                                                    ->cache
+                                                                    getLevel()
+                                                                        -> cache
                                                                     ->dontDrop(
                                                                         xc, zc);
-                                                                
 
-	players.push_back(player);
+                                                                players
+                                                                    .push_back(
+                                                                        player);
                                                             }
 
                                                             void
@@ -979,8 +1059,14 @@ void PlayerChunkMap::getChunkAndRemovePlayer(int x, int z,
                                                                    // playerchunks
                                                                    // here.begin(),players.end(),player));
 
-	
-	for (AUTO_VAR(it, addRequests.begin()); it != addRequests.end();) {
+                                                                    for (
+                                                                        AUTO_VAR(
+                                                                            it,
+                                                                            addRequests
+                                                                                .begin());
+                                                                        it !=
+                                                                        addRequests
+                                                                            .end();) {
                                                                     if (it->player ==
                                                                         player) {
                                                                         it =
@@ -996,8 +1082,7 @@ void PlayerChunkMap::getChunkAndRemovePlayer(int x, int z,
                                                                     int z,
                                                                     int xc,
                                                                     int zc) {
-                                                                
-    int xd = x - xc;
+                                                                int xd = x - xc;
                                                                 int zd = z - zc;
                                                                 if  // 4J - have
                                                                     // changed
@@ -1022,8 +1107,12 @@ void PlayerChunkMap::getChunkAndRemovePlayer(int x, int z,
                                                                     // player
                                                                     // per
                                                                     // tick
-                                                                    
-void PlayerChunkMap::move(std::shared_ptr<ServerPlayer> player) {
+
+                                                                    void
+                                                                    PlayerChunkMap::move(
+                                                                        std::shared_ptr<
+                                                                            ServerPlayer>
+                                                                            player) {
                                                                         int xc =
                                                                             ((int)player
                                                                                  ->x) >>
@@ -1097,10 +1186,12 @@ void PlayerChunkMap::move(std::shared_ptr<ServerPlayer> player) {
                                                                         // queuest_xc,
                                                                         // last_zc))
                                                                         {
-                                                                                // 4J - changed from separate getChunk & remove so we can wrap these operations up and queue zd, xc, zc))
+                                                                            // 4J - changed from separate getChunk & remove so we can wrap these operations up and queue zd, xc, zc))
                                                                             {
-                                                                                
-				getChunkAndRemovePlayer(x - xd, z - zd, player);
+                                                                                getChunkAndRemovePlayer(
+                                                                                    x - xd,
+                                                                                    z - zd,
+                                                                                    player);
                                                                             }
                                                                         }
 
@@ -1152,15 +1243,26 @@ void PlayerChunkMap::move(std::shared_ptr<ServerPlayer> player) {
                 AUTO_VAR(it2, std::find(player->chunksToSend.begin(//return chunk == NULL ? false : chunk->players->contains(player) && !player->chunksToSend->contains(chunk->pos);end();
                                                                     }
 
-                                                                        // AP added for Vita so the range can be increased once the level startsgeToBlock(int radius)
+                                                                    // AP added
+                                                                    // for Vita
+                                                                    // so the
+                                                                    // range can
+                                                                    // be
+                                                                    // increased
+                                                                    // once the
+                                                                    // level
+                                                                    // startsgeToBlock(int
+                                                                    // radius)
                                                                     {
                                                                         return radius *
                                                                                    16 -
                                                                                16;
                                                                     }
 
-                                                                    
-void PlayerChunkMap::setRadius(int newRadius) {
+                                                                    void
+                                                                    PlayerChunkMap::
+                                                                        setRadius(
+                                                                            int newRadius) {
                                                                         if (radius !=
                                                                             newRadius) {
                                                                             PlayerList* players =
@@ -1203,11 +1305,14 @@ void PlayerChunkMap::setRadius(int newRadius) {
                                                                                         zc +
                                                                                             newRadius;
                                                                                         z++) {
-                                                                                        
-						if (x < xc - radius ||
-                                                    x > xc + radius ||
-                                                    z < zc - radius ||
-                                                    z > zc + radius) {
+                                                                                        if (x < xc -
+                                                                                                    radius ||
+                                                                                            x > xc +
+                                                                                                    radius ||
+                                                                                            z < zc -
+                                                                                                    radius ||
+                                                                                            z > zc +
+                                                                                                    radius) {
                                                                                             getChunkAndAddPlayer(
                                                                                                 x,
                                                                                                 z,

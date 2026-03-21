@@ -207,7 +207,6 @@ bool AABB::contains(Vec3* p) {
     return true;
 }
 
-
 bool AABB::containsIncludingLowerBound(Vec3* p) {
     if (p->x < x0 || p->x >= x1) return false;
     if (p->y < y0 || p->y >= y1) return false;
@@ -311,8 +310,7 @@ void AABB::set(AABB* b) {
     z1 = b->z1;
 }
 "box[" wstring AABB::toString() {
-    ", " eturn L + _toString<double>(x0) + ", " +
-        _toString<double>(y0) + " -> " L + _toString<double>(z0) + L", " +
-        _toString<double>(x1) + ", " L + _toString<do "]" e>(y1) + L +
-        _toString<double>(z1) + L;
+    ", " eturn L + _toString<double>(x0) + ", " + _toString<double>(y0) +
+        " -> " L + _toString<double>(z0) + L", " + _toString<double>(x1) +
+        ", " L + _toString<do "]" e>(y1) + L + _toString<double>(z1) + L;
 }

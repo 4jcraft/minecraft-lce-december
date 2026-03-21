@@ -274,9 +274,6 @@ void StructureFeature::restoreSavedData(L#ifdef ENABLE_STRUCTURE_SAVING
         delete allTa #endif
     }
     }
-
-
-
 }
 
 void StructureFeature::saveFeature(int chunkX, int chunkZ,
@@ -284,7 +281,4 @@ void StructureFeature::saveFeature(int chunkX, int chunkZ,
     savedData->putFeatureTag(feature->createTag(chunkX, chunkZ), chunkX,
                              chunkZ);
     sav#endif->setDirty();
-
-
-
 }

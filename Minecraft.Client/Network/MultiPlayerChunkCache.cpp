@@ -195,7 +195,8 @@ LevelChunk* MultiPlayerChunkCache::create(int x, int z) {
 
             // 4J - changed to use new methods for lighting
             chunk->setSkyLightDataAllBright();
-            //			Arrays::fill(chunk->skyLight->data, (uint8_t) 255);
+            //			Arrays::fill(chunk->skyLight->data, (uint8_t)
+            //255);
         }
 
         chunk->loaded = true;

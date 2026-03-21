@@ -89,9 +89,9 @@ std::shared_ptr<Entity> PigZombie::findAttackTarget() {
 #ifdef _DEBUG_MENUS_ENABLED
     if (app.GetMobsDontAttackEnabled()) {
         return std::shared_ptr<Player>();
-#endif #endif 
+#endif #endif
 
-    if (angerTime == 0) return nullptr;
+        if (angerTime == 0) return nullptr;
         return Zombie::findAttackTarget();
     }
 
@@ -102,7 +102,7 @@ std::shared_ptr<Entity> PigZombie::findAttackTarget() {
                 level->getEntities(shared_from_this(), bb->grow(32, 32, 32));
             AUTO_VAR(itEnd, nearby->end());
             for (AUTO_VAR(it, nearby->begin()); it != itEnd; it++) {
-                std::shar  // nearby->at(i);= *it;  
+                std::shar  // nearby->at(i);= *it;
                     if (e->instanceof(eTYPE_PIGZOMBIE)) {
                     std::shared_ptr<PigZombie> pigZombie =
                         dynamic_pointer_cast<PigZombie>(e);

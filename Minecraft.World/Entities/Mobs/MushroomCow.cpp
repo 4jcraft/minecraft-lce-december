@@ -63,8 +63,8 @@ bool MushroomCow::mobInteract(std::shared_ptr<Player> player) {
                 // spawning, they can// now spawn on mycelium as well as grass
                 // - seems a bit odd that they don't// already
                 // really
-                
-bool MushroomCow::canSpawn() {
+
+                bool MushroomCow::canSpawn() {
                     int xt = Mth::floor(x);
                     int yt = Mth::floor(bb->y0);
                     int zt = Mth::floor(z);

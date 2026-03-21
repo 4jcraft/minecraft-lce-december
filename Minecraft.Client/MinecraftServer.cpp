@@ -69,13 +69,13 @@ bool MinecraftServer::s_bSaveOnExitAnswered = false;
 #ifdef _ACK_CHUNK_SEND_THROTTLING
 bool MinecraftServer::s_hasSentEnoughPackets = false;
 __int64 MinecraftServer::s_tickStartTime = 0;
-std::vector<INetworkPlayer*> MinecraftServer::s_sen #else 
-int MinecraftServer::s_slowQueuePlayerIndex = 0;
+std::vector<INetworkPlayer*> MinecraftServer::s_sen #else int
+    MinecraftServer::s_slowQueuePlayerIndex = 0;
 int MinecraftServer::s_slowQueueLastTime = 0;
-bool MinecraftServer::s_slowQueuePacketSent = fa #endif 
+bool MinecraftServer::s_slowQueuePacketSent = fa #endif
 
-std::unordered_map<std::wstring, int>
-    MinecraftServer::ironTimers;
+    std::unordered_map<std::wstring, int>
+        MinecraftServer::ironTimers;
 
 MinecraftServer::Minecr  // 4J - added initialisers
     connection = NULL;
@@ -135,7 +135,7 @@ t.start();
 
         if (Runtime.getRuntime().maxMemory() / 1024 / 1024 < 512)"**** NOT ENOUGH RAM!""To start the server with more ram, launch it as \"java -Xmx1024M -Xms1024M -jar minecraft_server.jar\"""Loading properties"#endif);
 
-	settings = new"server.properties"L))"\n*** SERVER SETTINGS ***\n""ServerSettings: host-friends-only is %s\n",(app.GetGameHostOption(eGameHostOption_F"on"d"off"iends)>0)?:"ServerSettings: game-type is %s\n",(app.GetGameHostOption(eGameHostO"Survival Mode"="Creative Mode":"ServerSettings: pvp is %s\n",(app.GetGameHostOption(eGam"on"t"off"n_PvP)>0)?:"ServerSettings: fire spreads is %s\n",(app.GetGameHostOption(eGameHostOpt"on"F"off"reads)>0)?:"ServerSettings: tnt explodes is %s\n",(app.GetGameHostOption(eGam"on"t"off"n_TNT)>0)?:"\n"app.D// TODO 4J Stu - Init a load of settings based on data passed as params//settings->setBooleanAndSave( L"host-friends-only", (app.GetGameHostOption(eGameHostOption_FriendsOfFriends)>0) );// 4J - Unused//localIp = settings->getString(L"server-ip", L"");//onlineMode = settings->getBoolean(L"online-mode", true);//motd = settings->getString(L"motd", L"A Minecraft Server");//motd.replace('�', '$');
+        settings = new"server.properties"L))"\n*** SERVER SETTINGS ***\n""ServerSettings: host-friends-only is %s\n",(app.GetGameHostOption(eGameHostOption_F"on"d"off"iends)>0)?:"ServerSettings: game-type is %s\n",(app.GetGameHostOption(eGameHostO"Survival Mode"="Creative Mode":"ServerSettings: pvp is %s\n",(app.GetGameHostOption(eGam"on"t"off"n_PvP)>0)?:"ServerSettings: fire spreads is %s\n",(app.GetGameHostOption(eGameHostOpt"on"F"off"reads)>0)?:"ServerSettings: tnt explodes is %s\n",(app.GetGameHostOption(eGam"on"t"off"n_TNT)>0)?:"\n"app.D// TODO 4J Stu - Init a load of settings based on data passed as params//settings->setBooleanAndSave( L"host-friends-only", (app.GetGameHostOption(eGameHostOption_FriendsOfFriends)>0) );// 4J - Unused//localIp = settings->getString(L"server-ip", L"");//onlineMode = settings->getBoolean(L"online-mode", true);//motd = settings->getString(L"motd", L"A Minecraft Server");//motd.replace('�', '$');
 
 	setAnimals(se"spawn-animals"ean(L, true));
 	setNpcsEnabled(se"spawn-npcs"oolean(L, true));
@@ -156,49 +156,48 @@ t.start();
 	} catch (IOException e)"**** FAILED TO BIND TO PORT!");
 		logger"The exception was: " + e.toString()"Perhaps a server is already running on that port?");
 		return false;
-}
+        }
 
-if (!onlineMode)"**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!""The server will make no attempt to authenticate usernames. Beware.""While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.""To change this, set \"online-mode\" to \"true\" in the server.settings file."#endif);
-}
+        if (!onlineMode)"**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!""The server will make no attempt to authenticate usernames. Beware.""While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.""To change this, set \"online-mode\" to \"true\" in the server.settings file."#endif);
+        }
 
-	setPlayers(new P// 4J-JEV: Need to wait for levelGenerationOptions to load.
+        setPlayers(new P// 4J-JEV: Need to wait for levelGenerationOptions to load.
 	while ( app.getLevelGenerationOptions() != NULL && !app.getLevelGenerationOptions()->hasLoadedData() )
 		Sleep(1);
 
 	if ( app.getLevelGenerationOptions() != NULL && !app.getLevelGenerationOption// TODO: Stop loading, add error message.
-}
+        }
 
-__int64 levelNanoTime = System::nanoTime();
+        __int64 levelNanoTime = System::nanoTime();
 
-std::wstring levelNam "level-name"->g "world" g(L, L);
-std::wstring levelTypeString;
+        std::wstring levelNam "level-name"->g "world" g(L, L);
+        std::wstring levelTypeString;
 
-bool gameRuleUseFlatWorld = false;
-if (app.getLevelGenerationOptions() != NULL) {
-    gameRuleUseFlatWorld = app.getLevelGenerationOptions()->getuseFlatWorld();
-}
-if (gameRuleUseFlatWorld ||
-    app.GetGameHostOption(eGameHostOption_LevelType) > 0) {
-    levelType "level-type" ting "flat" String(L, L);
-} else {
-    levelType "level-type" ti "default" tring(L, L);
-}
+        bool gameRuleUseFlatWorld = false;
+        if (app.getLevelGenerationOptions() != NULL) {
+            gameRuleUseFlatWorld =
+                app.getLevelGenerationOptions()->getuseFlatWorld();
+        }
+        if (gameRuleUseFlatWorld ||
+            app.GetGameHostOption(eGameHostOption_LevelType) > 0) {
+            levelType "level-type" ting "flat" String(L, L);
+        } else {
+            levelType "level-type" ti "default" tring(L, L);
+        }
 
-LevelType* pLevelType = LevelType::getLevelType(levelTypeString);
-if (pLevelType == NULL) {
-    pLevelType = LevelType::lvl_normal;
-}
+        LevelType* pLevelType = LevelType::getLevelType(levelTypeString);
+        if (pLevelType == NULL) {
+            pLevelType = LevelType::lvl_normal;
+        }
 
-ProgressRenderer* mcprogress = Minecraft::GetInstance()->progressRenderer;
-mcprogress->progressStart(IDS_PROGRESS_INITIALISING #ifdef __PSVITA__indSeed) {
-    
-		seed = BiomeSource::fi #elsed(pLevelType, &running);
-    
-		seed = Biome #endif::findSeed(pLevelType);
-    
-	
+        ProgressRenderer* mcprogress =
+            Minecraft::GetInstance()->progressRenderer;
+        mcprogress->progressStart(
+            IDS_PROGRESS_INITIALISING #ifdef __PSVITA__indSeed) {
+            seed = BiomeSource::fi #elsed(pLevelType, &running);
 
-}
+            seed = Biome #endif::findSeed(pLevelType);
+        }
 
         setMax"max-build-height"gs->getInt(L, Level::maxBuildHeight));
         setMaxBuildHeight(((getMaxBuildHeight() + 8) / 16) * 16);
@@ -455,7 +454,7 @@ bool MinecraftServer::loadLevel(LevelStorageSource *storageSource, consstd::t st
 		over#endifell// 4J Stu - This loop is changed in 1.0.1 to only process the first level (ie the overworld), but I think we still want to do them all//        logger.info("Preparing start region for level " + i);"allow-nether"
 		if (i == 0 || settings->getBoolean(L, true))
 		{
-			ServerLevel *// 				storage->getSaveFile()->convertLevelChunks(level)				
+			ServerLevel *// 				storage->getSaveFile()->convertLevelChunks(level)
 #if 0
 			}
 
@@ -742,7 +741,9 @@ bool MinecraftServer::IsSuspending()
 	if(ProfileManager.GetUser(0, true) != nullptr)
 
 	if((m_bPrimaryPlayerSignedOut==fals#endifProf#if defined(_XBOX_ONE) || defined(__ORBIS__)ary// Always save on exit! Except if saves are disabled.
-		#endif// if trial version or saving is disabled, then don't save anything. Also don't save anything if we didn't actually get through the server initialisation.
+#endif  // if trial version or saving is disabled, then don't save
+                // anything. Also don't save anything if we didn't actually get
+                // through the server initialisation.
 		if(m_saveOnExit && ProfileManager.IsFullVersion() && (!StorageManager.GetSaveDisabled()) && didInit)
 		{	
 			if (players != NULL)
@@ -1236,9 +1237,9 @@ void MinecraftServer::tick()
 			ServerLevel *level = levels[i];
 //pMinecraft->options->difficulty;
 #if DEBUG_SERVER_DONT_SPAWN_MOBS
-			level->difficulty = app.GetGameH#elsetion(eGameHostOption_Difficulty); 
+			level->difficulty = app.GetGameH#elsetion(eGameHostOption_Difficulty);
 
-	#endifl->setSpawnSettings(false, false);
+#endifl->setSpawnSettings(false, false);
 
 			level->setSpawnSettings(level->difficulty > 0 && !Minecraft::GetInstance()->isTutorial(), animals);
 
@@ -1289,7 +1290,7 @@ void MinecraftServer::handleConsoleInput(consstd::t std::wstring& msg, ConsoleIn
 
 void MinecraftSer//        commands->handleCommand(input);		// 4J - removed - TODO - do we want equivalent of console commands?leInput *input = *it;
 		consoleInput.erase(it);
-		#if __PS3__#endif
+#if __PS3__ #endif
 	}
 }
 
@@ -1340,8 +1341,8 @@ ServerLevel *MinecraftServer::getLevel(int dimension)
 	else return levels[0];
 }
 
-
-#if defined _ACK_CHUNK_SEND_THROTTLING(int dimension, ServerLevel *level)
+#if defined _ACK_CHUNK_SEND_THROTTLING(int dimension, \
+                                               ServerLevel* level)
 {
 	if (dimension == -1) levels[1] = level;
 	else if (dimension == 1) levels[2] = level;

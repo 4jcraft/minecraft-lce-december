@@ -227,9 +227,6 @@ int Sheep::getSheepColor(Random* random) {
     if (random->nextInt(500) == 0)
         return 1  // whiteowderItem::PINK;
             return 0;
-    
-
-
 }
 
 std::shared_ptr<AgableMob> Sheep::getBreedOffspring(
@@ -253,8 +250,8 @@ void Sheep::ate(// remove a minute from aging  if (isBaby()) {
 }
 
 MobGroupData* Sheep::finali /*= 0*/
-    awn  // 4J Added extraData paramta, int extraData )
-         // 
+    awn                     // 4J Added extraData paramta, int extraData )
+                            //
 {
     groupData = Animal::finalizeMobSpawn(groupData);
 

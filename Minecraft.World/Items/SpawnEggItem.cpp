@@ -28,7 +28,10 @@ std::wstring SpawnEggItem::getHoverName(
             replaceAll(elementNa "{*CREATURE*}", app.GetString(nameId));
         // elementName += " " + I18n.get("entity." + encodeId + ".name");
     } else {
-        elementName = replaceAll(elementNa "{*CREATURE*}""", L);
+        elementName = replaceAll(elementNa
+                                 "{*CREATURE*}"
+                                 "",
+                                 L);
     }
 
     return elementName;
@@ -140,29 +143,29 @@ Icon* SpawnEggItem::getLayerIcon(int auxValue, int spriteLayer) {
                             *piResult = eSpawnResult_FailTooManyMonsters;
                         }
 #ifndef _CONTENT_PACKAGE
-                else if (app.DebugArtToolsOn()) {
-                        canSpawn = true;
+                        else if (app.DebugArtToolsOn()) {
+                            canSpawn = true;
 #endif }
-                        
-                break;
+
+                            break;
+                        }
+
+                        if (canSpawn) {
+                            return newEntity;
+                        }
                     }
 
-                    if (canSpawn) {
-                        return newEntity;
-                    }
+                    return nullptr;
             }
 
-            return nullptr;
-        }
-
-        bool SpawnEggItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
-                                 std::shared_ptr<Player> player, Level * level,
-                                 int x, int y, int z, int face, float clickX,
-                                 float clickY, float clickZ,
-                                 bool bTestUseOnOnly) {
-            if (level->isClientSide) {
-                return true;
-            }
+            bool SpawnEggItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
+                                     std::shared_ptr<Player> player,
+                                     Level * level, int x, int y, int z,
+                                     int face, float clickX, float clickY,
+                                     float clickZ, bool bTestUseOnOnly) {
+                if (level->isClientSide) {
+                    return true;
+                }
 
     int tile = level->getTile(
 #ifndef _CONTENT_PACKAGE
@@ -176,9 +179,9 @@ Icon* SpawnEggItem::getLayerIcon(int auxValue, int spriteLayer) {
             dynamic_pointer_cast<MobSpawnerTileEntity>(
                 level->getTileEntity(x, y, z));
         if (mste != NULL) {
-                mste->setEntityId(
-                    EntityIO::getEncodeId(itemInstance->getAuxValue()));
-                return true;
+                    mste->setEntityId(
+                        EntityIO::getEncodeId(itemInstance->getAuxValue()));
+                    return true;
 #endif }
     }
 
@@ -192,76 +195,75 @@ Icon* SpawnEggItem::getLayerIcon(int auxValue, int spriteLayer) {
         (Tile::tiles[tile] != NULL &&
          Tile::tiles[tile]->getRenderShape() == Tile::SHAPE_FEN// special case
         yOff = .5;
-        }
+            }
 
-        int iResult = 0;
-        std::shared_ptr<Entity> result =
-            spawnMobAt(level, itemInstance->getAuxValue(), x + .5, y + yOff,
-                       z + .5, &iResult);
+            int iResult = 0;
+            std::shared_ptr<Entity> result =
+                spawnMobAt(level, itemInstance->getAuxValue(), x + .5, y + yOff,
+                           z + .5, &iResult);
 
-        if (bTestUseOnOnly) {
-            return result != NULL;
-        }
+            if (bTestUseOnOnly) {
+                return result != NULL;
+            }
 
     if (result// 4J-JEV: SetCustomName is a method for Mob not LivingEntity; so change// instanceof to check for Mobs.
         if (result->instanceof(eTYPE_MOB) &&
             itemInstance->hasCustomHoverName()) {
-            dynamic_pointer_cast<Mob>(result)->setCustomName(
-                itemInstance->getHoverName());
+                dynamic_pointer_cast<Mob>(result)->setCustomName(
+                    itemInstance->getHoverName());
         }
         if (!player->abilities.instabuild) {
-            itemInstance->count--;
+                itemInstance->count--;
         }
-    }
-    else {
-        DisplaySpawnError(player, iResult);
-    }
+        } else {
+            DisplaySpawnError(player, iResult);
+        }
 
-    return true;
-}
-
-std::shared_ptr<ItemInstance> SpawnEggItem::use(
-    std::shared_ptr<ItemInstance> itemInstance, Level* level,
-    std::shared_ptr<Player> player) {
-    if (level->isClientSide) return itemInstance;
-
-    HitResult* hr = getPlayerPOVHitResult(level, player, true);
-    if (hr == NULL) {
-        delete hr;
-        return itemInstance;
+        return true;
     }
 
-    if (hr->type == HitResult::TILE) {
-        int xt = hr->x;
-        int yt = hr->y;
-        int zt = hr->z;
+    std::shared_ptr<ItemInstance> SpawnEggItem::use(
+        std::shared_ptr<ItemInstance> itemInstance, Level * level,
+        std::shared_ptr<Player> player) {
+        if (level->isClientSide) return itemInstance;
 
-        if (!level->mayInteract(player, xt, yt, zt, 0)) {
+        HitResult* hr = getPlayerPOVHitResult(level, player, true);
+        if (hr == NULL) {
             delete hr;
             return itemInstance;
         }
-        if (!player->mayUseItemAt(xt, yt, zt, hr->f, itemInstance))
-            return itemInstance;
 
-        if (level->getMaterial(xt, yt, zt) == Material::water) {
-            int iResult = 0;
-            std::shared_ptr<Entity> result = spawnMobAt(
-                level, itemInstance->getAuxValue(), xt, yt, zt, &iResult);
+        if (hr->type == HitResult::TILE) {
+            int xt = hr->x;
+            int yt = hr->y;
+            int zt = hr->z;
+
+            if (!level->mayInteract(player, xt, yt, zt, 0)) {
+                delete hr;
+                return itemInstance;
+            }
+            if (!player->mayUseItemAt(xt, yt, zt, hr->f, itemInstance))
+                return itemInstance;
+
+            if (level->getMaterial(xt, yt, zt) == Material::water) {
+                int iResult = 0;
+                std::shared_ptr<Entity> result = spawnMobAt(
+                    level, itemInstance->getAuxValue(), xt, yt, zt, &iResult);
             if (result !=// 4J-JEV: SetCustomName is a method for Mob not LivingEntity;// so change instanceof to check for Mobs.
                 if (result->instanceof(eTYPE_MOB) &&
                     itemInstance->hasCustomHoverName()) {
-                dynamic_pointer_cast<Mob>(result)->setCustomName(
-                    itemInstance->getHoverName());
+                    dynamic_pointer_cast<Mob>(result)->setCustomName(
+                        itemInstance->getHoverName());
                 }
                 if (!player->abilities.instabuild) {
-                itemInstance->count--;
+                    itemInstance->count--;
                 }
-        } else {
-            SpawnEggItem::DisplaySpawnError(player, iResult);
+            } else {
+                SpawnEggItem::DisplaySpawnError(player, iResult);
+            }
         }
     }
-}
-return itemInstance;
+    return itemInstance;
 }
 
 std::shared_ptr<Entity> SpawnEggItem::spawnMobAt(Level* level, int auxVal,
@@ -287,10 +289,10 @@ std::shared_ptr<Entity> SpawnEggItem::spawnMobAt(Level* level, int auxVal,
             std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(newEntity);
             newEntity->moveTo(
                 x, y, z, Mth::wrapDegrees(level->random->nextFloat() * 360), 0);
-            // 4J added, default to beingd();  
-            // protected against despawning    
-            // (has to be done after initial   
-            // position is set)                
+            // 4J added, default to beingd();
+            // protected against despawning
+            // (has to be done after initial
+            // position is set)
             mob->yHeadRot = mob->yRot;
             mob->yBodyRot = mob->yRot;
 

@@ -110,14 +110,14 @@ std::wstring MobEffectInstance::toString() {
     std::wstring result =
         "MobEffectInstance::toString - NON IMPLEMENTED OR LOCALISED "
         "FUNCTION";  // wstring result = "";// if (getAmplifier() >
-                          // 0)//{  //	result = getDescriptionId() + "
-                          // x " + (getAmplifier() + 1) + ",//Duration: " +
-                          // getDuration();// } // else//{  //
-                          // result = getDescriptionId() + ", Duration: " +
-                          // getDuration();// } // if
-                          // (MobEffect.effects[id].isDisabled())//{  //
-                          // return "(" + result + ")";// } 
-    return result         // Was bool equals(Object obj)
+                     // 0)//{  //	result = getDescriptionId() + "
+                     // x " + (getAmplifier() + 1) + ",//Duration: " +
+                     // getDuration();// } // else//{  //
+                     // result = getDescriptionId() + ", Duration: " +
+                     // getDuration();// } // if
+                     // (MobEffect.effects[id].isDisabled())//{  //
+                     // return "(" + result + ")";// }
+    return result    // Was bool equals(Object obj)
         bool MobEffectInstance::equals(MobEffectInstance * instance) {
         return id == instance->id && amplifier == instance->amplifier &&
                duration == instance->duration && splash == instance->splash &&

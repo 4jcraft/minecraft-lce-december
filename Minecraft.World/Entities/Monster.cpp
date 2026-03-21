@@ -33,13 +33,11 @@ void Monster::tick() {
         std::remove();
 }
 
-std::shared_ptr<Entity> Monster::findAttackTarget #ifndef _FINAL_BUILD
-    if (app.GetMobsDontAttackEnabled()) {
-    return std::shared_ptr<Player> #endif
-}
+std::shared_ptr<Entity> Monster::
+    findAttackTarget #ifndef _FINAL_BUILD if (app.GetMobsDontAttackEnabled()){
+        return std::shared_ptr<Player> #endif}
 
-
-    std::shared_ptr<Player>
+std::shared_ptr<Player>
     player = level->getNearestAttackablePlayer(shared_from_this(), 16);
 if (player != NULL && canSee(player)) return player;
 return std::shared_ptr<Player>();
@@ -62,7 +60,7 @@ bool Monster::hurt(DamageSource* source, float dmg) {
          * @param target
          * @return
          */
-bool Monster::doHurtTarget(std::shared_ptr<Entity> target) {
+        bool Monster::doHurtTarget(std::shared_ptr<Entity> target) {
             float dmg =
                 (float)getAttribute(SharedMonsterAttributes::ATTACK_DAMAGE)
                     ->getValue();

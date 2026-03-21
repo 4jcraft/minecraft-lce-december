@@ -420,9 +420,7 @@ void HopperTileEntity::s  // 4J Addedint time) { cooldownTime = time; }
     return cooldownTime > 0;
 }
 
-
-std::shared_ptr<TileEntity>
-HopperTileEntity::clone() {
+std::shared_ptr<TileEntity> HopperTileEntity::clone() {
     std::shared_ptr<HopperTileEntity> result =
         std::shared_ptr<HopperTileEntity>(new HopperTileEntity());
     TileEntity::clone(result);

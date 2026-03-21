@@ -87,10 +87,10 @@ std::shared_ptr<Entity> EnderMan::findAttackTarget() {
 #ifndef _FINAL_BUILD
     if (app.GetMobsDontAttackEnabled()) {
         return std::shared_ptr<Player>();
-#endif 
+#endif
 
-    std::shared_ptr < Player> player =
-        level->getNearestAttackablePlayer(shared_from_this(), 64);
+        std::shared_ptr<Player> player =
+            level->getNearestAttackablePlayer(shared_from_this(), 64);
         if (player != NULL) {
             if (isLookingAtMe(player)) {
                 aggroedByPlayer = true;

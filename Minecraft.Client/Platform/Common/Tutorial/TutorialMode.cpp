@@ -64,8 +64,6 @@ void TutorialMode::tick() {
 		delete this;
 	}
 	*/
-
-
 }
 
 bool TutorialMode::useItemOn(std::shared_ptr<Player> player, Level* level,

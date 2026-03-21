@@ -77,8 +77,9 @@ void Stitcher::stitch(//TextureHolder[] textureHolders = texturesToBeStitched.to
         app.DebugPr
             "Stitcher "
             "exception!"
-            "\n"#ifndef _CONTENT_PACKAGE
-			__debugbrea #endif     //throw new StitcherException(textureHolder);
+            "\n" #ifndef _CONTENT_PACKAGE
+                __debugbrea #endif  // throw new
+                                    // StitcherException(textureHolder);
     }
 	}
 }
@@ -107,29 +108,28 @@ std::vector<StitchSlot*>* Stitcher::gatherAreas() {
             if (storage.at(i)->add(textureHolder)) {
                 // Try rotated	}
 
-                
-		textureHolder->rotate();
+                textureHolder->rotate();
                 if (storage.at(i)->add(textureHolder)) {
                     // Undo rotation
 
-                    
-		textureHolder->rotate();
+                    textureHolder->rotate();
                 }
 
-                return expand/**
-* Expand the current storage to take in account the new texture.
-* This should only be called if it didn't fit anywhere.
-*
-* @param textureHolder
-* @return Boolean indicating if it could accommodate for the growth
-*/
-bool Stitcher::expand(TextureHolder *textureHolder)
-{
+                return expand /**
+                               * Expand the current storage to take in account
+                               * the new texture. This should only be called if
+                               * it didn't fit anywhere.
+                               *
+                               * @param textureHolder
+                               * @return Boolean indicating if it could
+                               * accommodate for the growth
+                               */
+                    bool
+                    Stitcher::expand(TextureHolder * textureHolder) {
                     int minDistance = std::min(textureHolder->getHeight(),
                                                textureHolder->getWidth());
-                    bool firstAddition =
-                        storageX  // It couldn't fit, decide which direction to
-                                  // grow to
+                    bool firstAddition = storageX  // It couldn't fit, decide
+                                                   // which direction to grow to
                         bool growOnX;
                     if (forcePowerOfTwo) {
                         int xCurrentSize =

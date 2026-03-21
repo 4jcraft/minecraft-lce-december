@@ -258,8 +258,7 @@ void UIScene::loadMovie() {
                                           // were being reloaded
     std::wstring moviePath = getMoviePat
 #ifdef __PS3__
-	if (RenderManager.IsWidescreen())
-    {
+        if (RenderManager.IsWidescreen()) {
                 moviePath.app"720.swf");
                 m_loadedResolution = eSceneResolution_720;
     }
@@ -267,8 +266,8 @@ void UIScene::loadMovie() {
                 moviePath.app"480.swf");
                 m_loadedResolution = eSceneResolution_480#elif defined __PSVITA__
 	moviePath.app"Vita.swf");
-                m_loadedResolution = eSceneResolution_V #elif defined _WINDOWS64
-	if (ui.getScreenHeight() == 720) {
+                m_loadedResolution = eSceneResolution_V #elif defined
+                    _WINDOWS64 if (ui.getScreenHeight() == 720) {
                 moviePath.app"720.swf");
                 m_loadedResolution = eSceneResolution_720;
                 }
@@ -284,9 +283,9 @@ void UIScene::loadMovie() {
                 moviePath.app"1080.swf");
                 m_loadedResolution = eSceneResolution_1080#else
 	moviePath.app"1080.swf");
-                m_loadedResolution = eSceneResolution_1 #endif 
+                m_loadedResolution = eSceneResolution_1 #endif
 
-	if (!app.hasArchiveFile(moviePath)) {
+                    if (!app.hasArchiveFile(moviePath)) {
                 app.DebugPr"WARNING: Could not find iggy movie %ls, falling back on 720\n", moviePath.c_str());
 
                 moviePath = getMoviePath();
@@ -298,8 +297,7 @@ void UIScene::loadMovie() {
                         "ERROR: Could not find any iggy movie for %ls!\n",
                         moviePath
                             .c_str #ifndef _CONTENT_PACKAGE
-			__debugbrea #endif 
-			app.FatalLoadError();
+                                __debugbrea #endif app.FatalLoadError();
                 }
                 }
 
@@ -315,9 +313,8 @@ void UIScene::loadMovie() {
                     app.DebugPr
                         "ERROR: Failed to load iggy "
                         "scene!"
-                        "\n"#ifndef _CONTENT_PACKAGE
-		__debugbrea #endif 
-		app.FatalLoadError();
+                        "\n" #ifndef _CONTENT_PACKAGE __debugbrea #endif app
+                            .FatalLoadError();
                 }
                 app.DebugPrintf(app.USER "Loaded iggy movie %ls\n",
                                 moviePath.c_str());
@@ -404,8 +401,8 @@ void UIScene::loadMovie() {
                     int iteration = 0;
                     __int64 sceneStatic = 0;
                     __int64 sceneDynamic = 0;
-                    while (res = IggyDebugGetMemoryUseInfo(swf, NULL ""
-		 , 0, iteration, &memoryInfo)) {
+                    while (res = IggyDebugGetMemoryUseInfo(
+                               swf, NULL "", 0, iteration, &memoryInfo)) {
                         sceneStatic += memoryInfo.static_allocation_bytes;
                         sceneDynamic += memoryInfo.dynamic_allocation_bytes;
                         totalStatic += memoryInfo.static_allocation_bytes;
@@ -502,17 +499,13 @@ void UIScene::loadMovie() {
                     IggyResult out = IggyPlayerCallMethodRS(
                         getMovie(), &result, IggyPlayerRootPath(getMovie()),
                         m_funcRemoveObject, 2,
-#ifdef __PSVITA__    // update the button positions since they may have changed
+#ifdef __PSVITA__  // update the button positions since they may have changed
                         UpdateSceneCont  // mark the button as removed
                             control
                                 ->setHidde  // remove it from the
                                             // touchboxes
                                     ui.TouchBoxRebuild(
                                         control->getParent #endif));
-                    
-
-
-                
                 }
 
                 void UIScene::slideLeft() {
@@ -614,16 +607,15 @@ void UIScene::loadMovie() {
                                            ->getCommandBufferList();
 
                             bool useComm #ifdef _XBOX_ONEse;
-                            
-				useCommandB  // 4J Stu - Temporary until we fix
-                                             // the glint animation which needs
-                                             // updated if we are just replaying
-                                             // a command
-                                             // buffer
+
+                            useCommandB  // 4J Stu - Temporary until we fix
+                                         // the glint animation which needs
+                                         // updated if we are just replaying
+                                         // a command
+                                         // buffer
                                 m_needsCa #endifdered = true;
 
-
-				if(!useCommandBuffers || m_needsC#if (!defined __PS3__) && (!defined __PSVITA__)
+                                if(!useCommandBuffers || m_needsC#if (!defined __PS3__) && (!defined __PSVITA__)
 					if(useCommandBuffers) RenderManager.CBuf#endif(std::list, true);
 
 	"Draw uncached"edEvent(0,);
@@ -648,22 +640,18 @@ void UIScene::loadMovie() {
 #ifndef __PS3__dEvent();
 
 					if(useCommandBuffers) R#endifanager.CBuffEnd();
-
-				
-                        
                         }
                         m
 #ifndef __PS3__clear();
 
-				if (useCommandBuffers) Render #endifr
-                            .CBuf  // Finish GDraw and anything else that needs
-                                   // to be
-                                   // finalised
-                                ui.endCustomDraw(region);
+                            if (useCommandBuffers) Render #endifr
+                                .CBuf  // Finish GDraw and anything else that
+                                       // needs to be finalised
+                                           ui.endCustomDraw(region);
 
                         pMinecraft->player = oldPlayer;
                     } else
-                        "Caching region" nNamedEvent(0,);
+                        "Caching region" nNamedEvent(0, );
                     CachedSlotDrawData* drawData = new CachedSlotDrawData();
                     drawData->item = item;
                     drawData->fAlpha = fAlpha;
@@ -677,14 +665,14 @@ void UIScene::loadMovie() {
                         CustomDrawData* customDrawRegion =
                             ui.setupCustomDraw(this, region);
 
-                    Minecraft*
-                        pMinecraft =  // Make sure that pMinecraft->player is
-                                      // the correct player so that player
-                                      // specific rendering// eg clock and
-                                      // compass, are rendered
-                                      // correctly
-                        std::shared_ptr<MultiplayerLocalPlayer>
-                            oldPlayer = pMinecraft->player;
+                    Minecraft* pMinecraft =  // Make sure that
+                                             // pMinecraft->player is the
+                                             // correct player so that player
+                                             // specific rendering// eg clock
+                                             // and compass, are rendered
+                                             // correctly
+                        std::shared_ptr<MultiplayerLocalPlayer> oldPlayer =
+                            pMinecraft->player;
                     if (iPad >= 0 && iPad < XUSER_MAX_COUNT)
                         pMinecraft->player = pMinecraft->localplayers[iPad];
 
@@ -768,8 +756,7 @@ void UIScene::_customDrawSlotControl(CustomDrawData* region, int iPad,
 	Lighting::turnO// 4J Stu - Not threadsafeE//void UIScene::navigateForward(int iPad, EUIScene scene, void *initData)//{//	if(m_parentLayer == NULL)//	{//		app.DebugPrintf("A scene is trying to navigate forwards, but it's parent layer is NULL!\n");//#ifndef _CONTENT_PACKAGE//		__debugbreak();//#endif//	}//	else//	{//		m_parentLayer->NavigateToScene(iPad,scene,initData);//	}//}
 //CD - Added for audionavigateBack()
 {
-            
-	ui.PlayUISFX(eSFX_Back);
+            ui.PlayUISFX(eSFX_Back);
 
         ui.NavigateBack(//		app.DebugPrintf("A scene is trying to navigate back, but it's parent layer is NULL!\n");#ifndef _CONTENT_PACKAGE//		__debugbreak();#endif//		m_parentLayer->removeScene(this);
 #ifdef _DURANGO
@@ -789,8 +776,7 @@ void UIScene::_customDrawSlotControl(CustomDrawData* region, int iPad,
         IggyPlayerDispatchEventRS(getMovie(), &event, &result);
 
         app.DebugPrintf("Sent gain focus event to scene\n");
-        */
-		bHasFocus = true;
+        */ bHasFocus = true;
         if (needsReloaded()) {
             reloadMovie();
         }
@@ -823,18 +809,14 @@ void UIS  // 4J Stu - Don't do thisHas/*
 IggyMakeEventFocusLost(&event);
 IggyEventResult result;
 IggyPlayerDispatchEventRS(getMovie(), &event, &result);
-*/"Sent lose focus event to scene\n"rintf();
+*/ "Sent lose focus event to scene\n" rintf();
 bHasFocus = false;
 handleLoseFocus();
 }
 }
 
 void U#ifdef _DURANGOainFocus(bool navBack) {
-    
-	InputManager.SetEnabledGtcB #endif(this->getDefaultGtcButtons());
-    
-
-
+    InputManager.SetEnabledGtcB #endif(this->getDefaultGtcButtons());
 }
 
 void UIScene::updateTooltips() {
@@ -848,7 +830,8 @@ void UIScene::sendInputToMovie(int key, bool repeat, bool pressed,
     int iggyKeyCode = convertGameActionToIggyKeycode(key);
 
     i "UI WARNING: Ignoring input as game action does not translate to an Iggy "
-      "keycode\n"    // 4J Stu - Keyloc is always standard as we don't care about shift/alt
+      "keycode\n"  // 4J Stu - Keyloc is always standard as we don't care about
+                   // shift/alt
         IggyMakeEventKey(&keyEvent,
                          pressed ? IGGY_KEYEVENT_Down : IGGY_KEYEVENT_Up,
                          (IggyKeycode)iggyKeyCode, IGGY_KEYLOC_Standard);
@@ -864,12 +847,12 @@ int UIScene::conver  // TODO: This action to key mapping should probably use the
     switch (action) {
 #endif case ACTION_MENU_TOUCHPAD_PRESS:
 
-	case ACTION_MENU_A:
-    keycode = IGGY_KEYCODE_ENTER;
-    break;
-case ACTION_MENU_B:
-    keycode = IGGY_KEYCODE_ESCAPE;
-    break;
+    case ACTION_MENU_A:
+        keycode = IGGY_KEYCODE_ENTER;
+        break;
+    case ACTION_MENU_B:
+        keycode = IGGY_KEYCODE_ESCAPE;
+        break;
     case ACTION_MENU_X:
         keycode = IGGY_KEYCODE_F1;
         break;
@@ -897,11 +880,10 @@ case ACTION_MENU_B:
     case ACTION_MENU_PAGEUP:
         keycode = IGGY_KEYCODE_PAGE_U #ifdef __PSVITA__ ACTION_MENU_PAGEDOWN :
 
-		if (!InputManager.IsVitaTV()) {
+            if (!InputManager.IsVitaTV()) {
 #endifode = IGGY_KEYCODE_F6;
         }
-        else 
-		{
+        else {
             keycode = IGGY_KEYCODE_PAGE_DOWN;
         }
         break;
@@ -931,7 +913,7 @@ case ACTION_MENU_B:
 return keycode;
 }  // 4J-PB - ignore repeats of action ABXY buttons // fix for PS3 213 - [MAIN
    // MENU] Holding down buttons will continue to activate every prompt.
-   // 
+   //
 switch (key) {
     case ACTION_MENU_OK:
     case ACTION_MENU_CANCEL:
@@ -949,22 +931,22 @@ void UIScene::externalCallback(IggyExternalFunctionCallUTF16* call) {
 	{
             if (call->num
                 "Callback for handlePress did not have the correct number of "
-                "arguments\n"#ifndef _CONTENT_PACKAGE)
+                "arguments\n" #ifndef _CONTENT_PACKAGE)
                 ;
-            #endif 
-			__debugbreak();
-            
-			return;
+#endif
+            __debugbreak();
+
+            return;
         }
     if (call->arguments[0].type != IGGY_DATATYPE_number ||
         call->arguments[1].type != IGGY_
             "Arguments for handlePress were not of the correct "
-            "type\n"#ifndef _CONTENT_PACKAGE)
+            "type\n" #ifndef _CONTENT_PACKAGE)
         ;
-    #endif 
-			__debugbreak();
-    
-			return;
+#endif
+    __debugbreak();
+
+    return;
 }
 handlePress(call->arguments[0].number, call->arguments[1].number);
 }
@@ -973,22 +955,22 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
             if (call->num
                 "Callback for handleFocusChange did not have the correct "
                 "number of "
-                "arguments\n"#ifndef _CONTENT_PACKAGE)
+                "arguments\n" #ifndef _CONTENT_PACKAGE)
                 ;
-            #endif 
-			__debugbreak();
-            
-			return;
+#endif
+            __debugbreak();
+
+            return;
         }
         if (call->arguments[0].type != IGGY_DATATYPE_number ||
             call->arguments[1].type != IGGY_
                 "Arguments for handleFocusChange were not of the correct "
-                "type\n"#ifndef _CONTENT_PACKAGE)
+                "type\n" #ifndef _CONTENT_PACKAGE)
             ;
-        #endif 
-			__debugbreak();
-        
-			return;
+#endif
+        __debugbreak();
+
+        return;
         }
         _handleFocusChange(call->arguments[0].number,
                            call->arguments[1].number);
@@ -997,22 +979,22 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
 	{
             if (call->num
                 "Callback for handleInitFocus did not have the correct number "
-                "of arguments\n"#ifndef _CONTENT_PACKAGE)
+                "of arguments\n" #ifndef _CONTENT_PACKAGE)
                 ;
-            #endif 
-			__debugbreak();
-            
-			return;
+#endif
+            __debugbreak();
+
+            return;
         }
         if (call->arguments[0].type != IGGY_DATATYPE_number ||
             call->arguments[1].type != IGGY_
                 "Arguments for handleInitFocus were not of the correct "
-                "type\n"#ifndef _CONTENT_PACKAGE)
+                "type\n" #ifndef _CONTENT_PACKAGE)
             ;
-        #endif 
-			__debugbreak();
-        
-			return;
+#endif
+        __debugbreak();
+
+        return;
         }
         _handleInitFocus(call->arguments[0].number, call->arguments[1].number);
         }
@@ -1021,22 +1003,22 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
             if (call->num
                 "Callback for handleCheckboxToggled did not have the correct "
                 "number of "
-                "arguments\n"#ifndef _CONTENT_PACKAGE)
+                "arguments\n" #ifndef _CONTENT_PACKAGE)
                 ;
-            #endif 
-			__debugbreak();
-            
-			return;
+#endif
+            __debugbreak();
+
+            return;
         }
         if (call->arguments[0].type != IGGY_DATATYPE_number ||
             call->arguments[1].type != IGGY_D
                 "Arguments for handleCheckboxToggled were not of the correct "
-                "type\n"#ifndef _CONTENT_PACKAGE)
+                "type\n" #ifndef _CONTENT_PACKAGE)
             ;
-        #endif 
-			__debugbreak();
-        
-			return;
+#endif
+        __debugbreak();
+
+        return;
         }
         handleCheckboxToggled(call->arguments[0].number,
                               call->arguments[1].boolval);
@@ -1045,22 +1027,22 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
 	{
             if (call->num
                 "Callback for handleSliderMove did not have the correct number "
-                "of arguments\n"#ifndef _CONTENT_PACKAGE)
+                "of arguments\n" #ifndef _CONTENT_PACKAGE)
                 ;
-            #endif 
-			__debugbreak();
-            
-			return;
+#endif
+            __debugbreak();
+
+            return;
         }
         if (call->arguments[0].type != IGGY_DATATYPE_number ||
             call->arguments[1].type != IGGY_
                 "Arguments for handleSliderMove were not of the correct "
-                "type\n"#ifndef _CONTENT_PACKAGE)
+                "type\n" #ifndef _CONTENT_PACKAGE)
             ;
-        #endif 
-			__debugbreak();
-        
-			return;
+#endif
+        __debugbreak();
+
+        return;
         }
         handleSliderMove(call->arguments[0].number, call->arguments[1].number);
         }
@@ -1069,12 +1051,12 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
             if (call->num
                 "Callback for handleAnimationEnd did not have the correct "
                 "number of "
-                "arguments\n"#ifndef _CONTENT_PACKAGE)
+                "arguments\n" #ifndef _CONTENT_PACKAGE)
                 ;
-            #endif 
-			__debugbreak();
-            
-			return;
+#endif
+            __debugbreak();
+
+            return;
         }
         handleAnimationEnd();
         }
@@ -1083,21 +1065,21 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
             if (call->num
                 "Callback for handleSelectionChanged did not have the correct "
                 "number of "
-                "arguments\n"#ifndef _CONTENT_PACKAGE)
+                "arguments\n" #ifndef _CONTENT_PACKAGE)
                 ;
-            #endif 
-			__debugbreak();
-            
-			return;
+#endif
+            __debugbreak();
+
+            return;
         }
         if (call->arguments[0].type != IGGY_
             "Arguments for handleSelectionChanged were not of the correct "
-            "type\n"#ifndef _CONTENT_PACKAGE)
+            "type\n" #ifndef _CONTENT_PACKAGE)
             ;
-        #endif 
-			__debugbreak();
-        
-			return;
+#endif
+        __debugbreak();
+
+        return;
         }
         handleSelectionChanged(call->arguments[0].number);
         }
@@ -1109,22 +1091,22 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
                 if (call->num_a
                     "Callback for handleRequestMoreData did not have the "
                     "correct number of "
-                    "arguments\n"#ifndef _CONTENT_PACKAGE)
+                    "arguments\n" #ifndef _CONTENT_PACKAGE)
                     ;
-                #endif 
-				__debugbreak();
-                
-				return;
+#endif
+                __debugbreak();
+
+                return;
             }
             if (call->arguments[0].type != IGGY_DATATYPE_number ||
                 call->arguments[1].type != IGGY_DAT
                     "Arguments for handleRequestMoreData were not of the "
-                    "correct type\n"#ifndef _CONTENT_PACKAGE)
+                    "correct type\n" #ifndef _CONTENT_PACKAGE)
                 ;
-            #endif 
-				__debugbreak();
-            
-				return;
+#endif
+            __debugbreak();
+
+            return;
         }
         handleRequestMoreData(call->arguments[0].number,
                               call->arguments[1].boolval);
@@ -1132,9 +1114,8 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
         }
         else if(wcscmp"handleTouchBoxRebuild"ion_name.string,L)==0)
 	{
-            handleTouchBoxR "Unhandled callback: %s\n" p
-                .DebugPrintf(,
-                             call->function_name.string);
+            handleTouchBoxR "Unhandled callback: %s\n" p.DebugPrintf(
+                , call->function_name.string);
         }
         }
 
@@ -1163,8 +1144,8 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
 
         void UIScene::_handleInitFocus(F64 controlId, F64 childId) {
             m_iFocusControl = (int)cont  // handleInitFocus(controlId, childId);
-	
-	handleFocusChange(controlId, childId);
+
+                handleFocusChange(controlId, childId);
         }
 
         bool UIScene::controlHasFocus(int iControlId) {
@@ -1183,17 +1164,16 @@ handlePress(call->arguments[0].number, call->arguments[1].number);
 
         UIScene* UIScene::#ifdef __PSVITA__ return m_backScene;
         }
-        
-void UIScene::UpdateSceneControls() {
+
+        void UIScene::UpdateSceneControls() {
             AUTO_VAR(itEnd, GetControls()->end());
             for (AUTO_VAR(it, GetControls()->begin()); it != itEnd; it++) {
                 UIControl *control=(UIControl #endif
 		control->UpdateControl();
             }
         }
-        
 
-void UIScene::HandleMessage(EUIMessage message, void* data) {}
+        void UIScene::HandleMessage(EUIMessage message, void* data) {}
 
         std::size_t UIScene::GetCallbackUniqueId() {
             if (m_callbackUniqueId == 0) {

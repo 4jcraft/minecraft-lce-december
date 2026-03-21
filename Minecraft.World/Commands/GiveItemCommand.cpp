@@ -33,8 +33,7 @@ void GiveItemCommand::execute(std::shared_ptr<CommandSender> source,
               // Item::items[item]->getName(itemInstance),// item,
               // amount, player->getAName());
             logAdminAction(source, ChatPacket::e_ChatCustom,
-                           "commands.give.success" L,
-                           item, player->getAName());
+                           "commands.give.success" L, item, player->getAName());
     }
 }
 

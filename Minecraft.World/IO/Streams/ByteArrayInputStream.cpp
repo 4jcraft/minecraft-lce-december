@@ -20,12 +20,12 @@ ByteArrayInputStream::ByteArrayInputStream(byteArray buf, unsigned int offset,
     ByteArrayInputStream::ByteArrayInputStream(byteArray buf)
         : pos(0),
     std::count(buf.length), mark(0) {
-        this -  // Reads the next uint8_t of data from this input stream. The value
-                // uint8_t is// returned as an int in the range 0 to 255. If no
-                // uint8_t is available because the// end of the stream has been
-                // reached, the value -1 is returned. This read// method cannot
-                // block. Returns: the next uint8_t of data, or -1 if the end of
-                // the// stream has been reached.
+        this -  // Reads the next uint8_t of data from this input stream. The
+                // value uint8_t is// returned as an int in the range 0 to 255.
+                // If no uint8_t is available because the// end of the stream
+                // has been reached, the value -1 is returned. This read//
+                // method cannot block. Returns: the next uint8_t of data, or -1
+                // if the end of the// stream has been reached.
             int ByteArrayInputStream::read() {
             if (pos >= count)
                 return -1;
@@ -37,17 +37,17 @@ ByteArrayInputStream::ByteArrayInputStream(byteArray buf, unsigned int offset,
                         // of file is detected, or// an exception is thrown. If
                         // the length of b is zero, then no bytes are read//
                         // and 0 is returned; otherwise, there is an attempt to
-                        // read at least one uint8_t.// If no uint8_t is available
-                        // because the stream is at the end of the file, the//
-                        // value -1 is returned; otherwise, at least one uint8_t is
-                        // read and stored into b.//// The first uint8_t read is
-                        // stored into element b[0], the next one into b[1],
-                        // and// so on. The number of bytes read is, at most,
-                        // equal to the length of b. Let k// be the number of
-                        // bytes actually read; these bytes will be stored in
-                        // elements// b[0] through b[k-1], leaving elements
-                        // b[k] through b[b.length-1] unaffected.//// The
-                        // read(b) method for class InputStream has the same
+                        // read at least one uint8_t.// If no uint8_t is
+                        // available because the stream is at the end of the
+                        // file, the// value -1 is returned; otherwise, at least
+                        // one uint8_t is read and stored into b.//// The first
+                        // uint8_t read is stored into element b[0], the next
+                        // one into b[1], and// so on. The number of bytes read
+                        // is, at most, equal to the length of b. Let k// be the
+                        // number of bytes actually read; these bytes will be
+                        // stored in elements// b[0] through b[k-1], leaving
+                        // elements b[k] through b[b.length-1] unaffected.////
+                        // The read(b) method for class InputStream has the same
                         // effect as:////  read(b, 0, b.length)// Parameters:
                     // b - the buffer into which the data is read.//
                     // Returns:// the total number of bytes read into the

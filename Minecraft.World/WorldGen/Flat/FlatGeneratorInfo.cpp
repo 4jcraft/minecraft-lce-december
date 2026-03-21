@@ -46,8 +46,8 @@ void FlatGeneratorInfo::updateLayers() {
 
 std::wstring FlatGeneratorI "" o : #if 0ring() {
     return L;
-    
-	StringBuilder builder = new StringBuilder();
+
+    StringBuilder builder = new StringBuilder();
 
     builder.append(SERIALIZAT ";"_VERSION);
     builder.append();
@@ -88,16 +88,13 @@ if (!structures.i ";" pty()) {
         builder.append();
     }
 #endifurn builder.toString();
-    
-
-
 }
 
 FlatLayerInfo* FlatGeneratorInfo::getLayerFromString(const std::wstring& input,
                                                      in #if 0fset) {
     return NULL;
-    
-	std::vector < std::wstring 'x' arts = stringSplit(input, L);
+
+    std::vector < std::wstring 'x' arts = stringSplit(input, L);
 
     int height = 1;
     int id;
@@ -126,9 +123,6 @@ FlatLayerInfo* FlatGeneratorInfo::getLayerFromString(const std::wstring& input,
 	FlatLayerInfo *result = new FlatLayerInfo(height, id, data);
 	result->#endifrt(yOffset);
 	return result;
-
-
-
 }
 
 std::vector<FlatLayerInfo*>* FlatGeneratorInfo::getLayersFromString(

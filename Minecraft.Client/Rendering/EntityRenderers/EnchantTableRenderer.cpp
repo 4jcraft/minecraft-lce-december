@@ -16,7 +16,12 @@ void EnchantTableRenderer::render(std::shared_ptr<TileEntity> _table, double x,
                                   float alpha, bool useCompiled) {
     // 4J Convert as we aren't using a templated class
         std::shared_ptr<EnchantmentTableEntity> table = dynamic_pointer_cast<EnchantmentTableEntity>(_tab
-#ifdef __PSVITA__    // AP - the book pages are made with 0 depth so the front and back polys are at the same location. This can cause z-fighting if culling is disabled which can sometimes happen// depending on what object was last seen so make sure culling is always enabled. Should this be a problem for other platforms?
+#ifdef __PSVITA__  // AP - the book pages are made with 0 depth so the front and
+                   // back polys are at the same location. This can cause
+                   // z-fighting if culling is disabled which can sometimes
+                   // happen// depending on what object was last seen so make
+                   // sure culling is always enabled. Should this be a problem
+                   // for other platforms?
 	glEnable(GL_CULL_FA#endif
 
 	glPushMatrix();

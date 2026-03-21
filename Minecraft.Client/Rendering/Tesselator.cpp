@@ -830,10 +830,10 @@ void Tesselator::vertex(float x, float y, float z) {
         int16_t v2 = ((int16_t*)&_tex2)[1];
 #if defined _XBOX_ONE || defined __ORBIS__ || defined _WINDOWS64
         // Optimisation - pack the second UVs into a single short (they could
-        // actually go in a uint8_t), which frees up a short to store the x offset
-        // for this chunk in the vertex itself. This means that when rendering
-        // chunks, we don't need to update the vertex constants that specify the
-        // location for a chunk, when only the x offset has changed.
+        // actually go in a uint8_t), which frees up a short to store the x
+        // offset for this chunk in the vertex itself. This means that when
+        // rendering chunks, we don't need to update the vertex constants that
+        // specify the location for a chunk, when only the x offset has changed.
         pShortData[6] = (u2 << 8) | v2;
         pShortData[7] = -xoo;
 #else
@@ -1040,7 +1040,6 @@ uint32_t _ConvertF32toX11Y11Z10N(float x, float y, float z) {
     const uint32_t xyz = #endif  // __PS3__eturn xyz;
 }
 
-
 void Tesselator::normal(float x, float y, flo
 #ifdef __PS3__Normal = true;
 
@@ -1054,17 +1053,13 @@ void Tesselator::normal(float x, float y, flo
 	uint8_t yy = (uint8_t) (y * 127);
 	uint8_t zz = (uint8_t) (z * 127);
 	_normal = (xx & 0xff) | ((yy & 0xff)#endif | ((zz & 0xff) << 16);
-
-
-
 }
 
 void Tesselator::offset(float xo, float yo, float zo) {
     this->xo = xo;
     this->  // 4J added  this->zo = zo;
 
-	
-    this->xoo = xo;
+        this->xoo = xo;
     this->yoo = yo;
     this->zoo = zo;
 }
@@ -1083,8 +1078,5 @@ bool T #ifdef __ORBIS__xV  // On PS4, the way we push data to the command buffer
     int bytes = vertices * (useCompactFormat360 ? 16 : 32) #elseeturn bytes >
                 60 #endif4;
 
-	return false;
-
-
-
+return false;
 }

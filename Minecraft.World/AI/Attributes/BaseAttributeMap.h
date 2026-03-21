@@ -7,12 +7,11 @@ protected:
     // unordered_map<Attribute *, AttributeInstance *> attributesByObject;
 #ifdef __ORBIS__
     std::unordered_map<eATTRIBUTE_ID, AttributeInstance*, std::hash<int> >
-        attributesB #else 
-    std::unordered_map<eATTRIBUTE_ID, AttributeInstance*>
+        attributesB #else std::unordered_map<eATTRIBUTE_ID, AttributeInstance*>
             attrib #endifId;
 
-
-public : virtual ~BaseAttributeMap();
+public:
+    virtual ~BaseAttributeMap();
 
     virtual AttributeInstance* getInstance(Attribute* attribute);
     virtual AttributeInstance* getInstance(eATTRIBUTE_ID name);

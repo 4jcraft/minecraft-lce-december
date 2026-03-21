@@ -260,9 +260,24 @@ __int64 ConsoleSchematicFile::applyBlocksAndData(LevelChunk* chunk,
 			dataP += (rowBlockCount-rowBlocksIncluded)/2;
 		}
 }
-e "ERROR: Rotation of block and data not implemented!!\n"    // 4J Stu - Hack for ME pack to replace sand with end stone in schematics//for(int i = 0; i < blockData.length; ++i)//{//	if(blockData[i] == Tile::sand_Id || blockData[i] == Tile::sandStone_Id)//	{//		blockData[i] = Tile::endStone_Id;//	}//}
-	
-	"Setting Block data" nt(0,);
+e "ERROR: Rotation of block and data not implemented!!\n"  // 4J Stu - Hack for
+                                                           // ME pack to replace
+                                                           // sand with end
+                                                           // stone in
+                                                           // schematics//for(int
+                                                           // i = 0; i <
+                                                           // blockData.length;
+                                                           // ++i)//{//
+                                                           // if(blockData[i] ==
+                                                           // Tile::sand_Id ||
+                                                           // blockData[i] ==
+                                                           // Tile::sandStone_Id)//
+                                                           // {//
+                                                           // blockData[i] =
+                                                           // Tile::endStone_Id;//
+                                                           // }//}
+
+  "Setting Block data" nt(0, );
 chunk->setBlockData(blockData);
 PIXEndNamedEvent();
 delete blockData.data;
@@ -327,7 +342,7 @@ __int64 ConsoleSchematicFile::applyLighting(LevelChunk *chunk, AABB *chunkBox, A
             ESchematicRotation rot, int& schematicX,
             int& schematicZ)  // schematicX decreases as chunkZ increases
                               // // schematicZ increases as chunkX increases
-                              // 
+                              //
             schematicX = chunkZ - destinationBox -> z0;
                 schematicZ = (destinationBox->x1 - 1 - destinationBox->x0) - (chunkX - destinationB// schematicX decreases as chunkX increases		// schematicZ decreases as chunkZ increases		
 		schematicX = (destinationBox->x1 - 1 - destinationBox->x0) - (chunkX - destinationBox->x0);
@@ -347,13 +362,13 @@ __int64 ConsoleSchematicFile::applyLighting(LevelChunk *chunk, AABB *chunkBox, A
                     double&
                         chunkZ)  // schematicX decreases as chunkZ increases
                                  // // schematicZ increases as chunkX increases
-                                 // 
+                                 //
                     chunkX = (destinationBox -> x1 - 1 - schematicZ);
                 chunkZ =
                     schematicX +
                     destination  // schematicX decreases as chunkX increases
                                  // // schematicZ decreases as chunkZ increases
-                                 // 
+                                 //
                         chunkX = (destinationBox->x1 - 1 - schematicX);
                 chunkZ = (destinationBox->z1 - 1 - sche// schematicX increases as chunkZ increases		// shcematicZ decreases as chunkX increases		
 		chunkX = schematicZ + destinationBox->x0;
@@ -477,8 +492,7 @@ __int64 ConsoleSchematicFile::applyLighting(LevelChunk *chunk, AABB *chunkBox, A
                          // with to avoid problems with half-bytes in data//
                          // We want the start to be even
 
-	
-	if (xStart > 0 && xStart % 2 != 0) xStart -= 1;
+                        if (xStart > 0 && xStart % 2 != 0) xStart -= 1;
                     else if (xStart < 0 && xStart % 2 != 0) xStart -= 1;
                     if (yStart < 0)
                         yStart = 0;
@@ -550,7 +564,10 @@ __int64 ConsoleSchematicFile::applyLighting(LevelChunk *chunk, AABB *chunkBox, A
 #ifndef _CONTENT_PACKAGE += (z1 - z0);
         }
 	}
-#endif// We don't know how this will compress - just make a fixed length buffer to initially decompress into// Some small sets of blocks can end up compressing into something bigger than their source
+#endif  // We don't know how this will compress - just make a
+                        // fixed length buffer to initially decompress into//
+                        // Some small sets of blocks can end up compressing into
+                        // something bigger than their source
 	unsigned int inputSize = blockCount * 3 / 2;
 	unsigned char *ucTemp = new unsigned char[inputSize];
 
@@ -596,11 +613,9 @@ __int64 ConsoleSchematicFile::applyLighting(LevelChunk *chunk, AABB *chunkBox, A
                  ++it) {
                 std::shared_ptr<TileEntity> te = *it;
                 CompoundTag* teTag = new CompoundTag();
-                std::
-                    share  // Adjust the tileEntity position to schematic coords
-                           // from world
-                           // co-ords
-                        teCopy->x -= xStart;
+                std::share  // Adjust the tileEntity position to schematic
+                            // coords from world co-ords
+                                teCopy->x -= xStart;
                 teCopy->y -= yStart;
                 teCopy->z -= zStart;
                 teCopy->save(teTag);
@@ -613,8 +628,7 @@ __int64 ConsoleSchematicFile::applyLighting(LevelChunk *chunk, AABB *chunkBox, A
         AABB* bb = AABB::newTemp(xStart, yStart, zStart, xEnd, yEnd, zEnd);
         std::vector<std::shared_ptr<Entity> >* entities =
             level->getEntities(nullptr, bb);
-        ListTag < CompoundT "entities" iesTag =
-            new ListTag<CompoundTag>(L);
+        ListTag < CompoundT "entities" iesTag = new ListTag<CompoundTag>(L);
 
         for (AUTO_VAR(it, entities->begin()); it != entities->end(); ++it) {
             std::shared_ptr<Entity> e = *it;
@@ -749,8 +763,7 @@ void ConsoleSchematicFile::getBlocksAndData(LevelChunk *chunk, byteArray *data, 
                                                // datatData.data;
                             }
 
-                            
-	if (skyLightP > -1) {
+                            if (skyLightP > -1) {
                                 byteArray skyLightData =
                                     byteArray(Level::HALF_CHUNK_TILE_COUNT);
                                 chunk->getSkyLightData(skyLightData);
@@ -816,7 +829,7 @@ void ConsoleSchematicFile::getBlocksAndData(LevelChunk *chunk, byteArray *data, 
                             upperY1 = y1 - Level::COMPRESSED_CH
                                       "Applying block data" bHasUpper = true;
                         }
-                        PIXBeginNamedEvent(0,);
+                        PIXBeginNamedEvent(0, );
                         for (int x = x0; x < x1; x++)
                             for (int z = z0; z < z1; z++) {
                                 if (bHasLower) {
@@ -839,7 +852,7 @@ void ConsoleSchematicFile::getBlocksAndData(LevelChunk *chunk, byteArray *data, 
                                     bloc
                                         "Applying Data data" PIXEndNamedEvent();
 
-                                    PIXBeginNamedEvent(0,);
+                                    PIXBeginNamedEvent(0, );
                                     for (int x = x0; x < x1; x++)
                                         for (int z = z0; z < z1; z++) {
                                             if (bHasLower) {
@@ -870,8 +883,8 @@ void ConsoleSchematicFile::getBlocksAndData(LevelChunk *chunk, byteArray *data, 
                                 System::arraycopy(inputData, dataP, &dataDa// 4J Stu - Allow ignoring light data}
                                             }
                                             PIXEndNamedEvent();
-                                            
-	if (blockLightP > -1) {
+
+                                            if (blockLightP > -1) {
                                                 byteArray blockLightData =
                                                     byteArray(
                                                         Level::
@@ -930,8 +943,7 @@ void ConsoleSchematicFile::getBlocksAndData(LevelChunk *chunk, byteArray *data, 
                                                              // blockLightData.data;
                                             }
 
-                                            
-	if (skyLightP > -1) {
+                                            if (skyLightP > -1) {
                                                 byteArray skyLightData = byteArray(
                                                     Level::
                                                         HALF_CHUNK_TILE_COUNT);

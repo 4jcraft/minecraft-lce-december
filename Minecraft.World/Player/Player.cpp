@@ -100,10 +100,9 @@ void Player::_init() {
     m_bCheckedForModelParts = false;
     m_bCheckedDLCForModelParts = fa
 #if defined(__PS3__) || defined(__ORBIS__)
-    m_ePlayerNameValidState = ePlayerNameValid_Not #endif 
+        m_ePlayerNameValidState = ePlayerNameValid_Not #endif
 
-    enderChestInventory =
-        std::shared_ptr<PlayerEnderChestContainer>(
+        enderChestInventory = std::shared_ptr<PlayerEnderChestContainer>(
             new PlayerEnderChestContainer());
 
     m_bAwardedOnARail = false;
@@ -139,11 +138,10 @@ Player::Player(Level* level, const std::wstring& name)
                                 ? true
                                 : false);
           m_bIsGuest
-#ifndef _XBOX_ONE    // 4J: Set UUID to name on none-XB1 consoles, may change in future but for// now ownership of animals on these consoles is done by name
+#ifndef _XBOX_ONE  // 4J: Set UUID to name on none-XB1 consoles, may change in
+                   // future but for// now ownership of animals on these
+                   // consoles is done by name
               setUU #endife);
-
-
-
 }
 
 Player::~Playe         // TODO 4J// printf("A player has been
@@ -215,24 +213,23 @@ bool Player::isBlocking() {
                UseAnim_  // 4J Stu - Added for things that should only be ticked
                          // once per simulation// frame
 
-void Player::updateFrameTick() {
+               void Player::updateFrameTick() {
         if (useItem != NULL) {
             std::shared_ptr<ItemInstance> item =
-                inventory
-                    ->getSelec  // 4J Stu - Fix for #45508 - TU5: Gameplay:
-                                // Eating one piece of food// will
-                                // result in a second piece being eaten as well
-                                // Original code was// item != useItem.
-                                // Changed this now to use the equals function,
-                                // and add// the NULL check as well for
-                                // the other possible not equals (useItem
-                                // is// not NULL if we are here) This
-                                // is because the useItem and item
-                                // could// be different objects due to
-                                // an inventory update from the server,
-                                // but// still be the same item (with
-                                // the same id,count and
-                                // auxvalue)
+                inventory->getSelec  // 4J Stu - Fix for #45508 - TU5: Gameplay:
+                                     // Eating one piece of food// will
+                                     // result in a second piece being eaten as
+                                     // well Original code was// item !=
+                                     // useItem. Changed this now to use the
+                                     // equals function, and add// the NULL
+                                     // check as well for the other possible not
+                                     // equals (useItem is// not NULL if we are
+                                     // here) This is because the useItem and
+                                     // item could// be different objects due to
+                                     // an inventory update from the server,
+                                     // but// still be the same item (with
+                                     // the same id,count and
+                                     // auxvalue)
                 if (item == NULL || !item->equals(useItem)) {
                 stopUsingItem();
             }
@@ -354,39 +351,65 @@ void Player::updateFrameTick() {
 			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Item::record_01) ) );
 			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Item::record_02) ) );
 			this->drop( std::shared_pt#endifI#endife>(new ItemIn// 4J-PB - Throw items out at the start of the level
-            // this->drop( new ItemInstance( Item::pickAxe_diamond, 1 ) );   // this->drop( new ItemInstance( Tile::workBench, 1 ) );         // this->drop( new ItemInstance( Tile::treeTrunk, 8 ) );         // this->drop( shared_ptr<ItemInstance>( new ItemInstance(       // Item::milk, 3 ) ) ); this->drop( shared_ptr<ItemInstance>( new// ItemInstance( Item::sugar, 2 ) ) ); this->drop( new ItemInstance(// Tile::stoneBrick, 8 ) ); this->drop( shared_ptr<ItemInstance>(// new ItemInstance( Item::wheat, 3 ) ) ); this->drop(           // shared_ptr<ItemInstance>( new ItemInstance( Item::egg, 1 ) ) );// this->drop( new ItemInstance( Item::bow, 1 ) );
-          // this->drop( new ItemInstance( Item::arrow, 10 ) );            // this->drop( shared_ptr<ItemInstance>( new ItemInstance(       // Item::saddle, 10 ) ) ); this->drop( shared_ptr<ItemInstance>( new// ItemInstance( Tile::fence, 64 ) ) ); this->drop(
-           // shared_ptr<ItemInstance>( new ItemInstance( Tile::fence, 64 ) )// ); this->drop( shared_ptr<ItemInstance>( new ItemInstance(    // Tile::fence, 64 ) ) );// shared_ptr<Mob> mob =  // dynamic_pointer_cast<Mob>(Pig::_class->newInstance( level )); // mob->moveTo(x+1, y, z+1, level->random->nextFloat() * 360, 0);// level->addEntity(mob);// 4J : WESTY : Spawn some wolves to befriend!
+                // this->drop( new ItemInstance( Item::pickAxe_diamond, 1 ) );
+                // // this->drop( new ItemInstance( Tile::workBench, 1 ) ); //
+                // this->drop( new ItemInstance( Tile::treeTrunk, 8 ) ); //
+                // this->drop( shared_ptr<ItemInstance>( new ItemInstance( //
+                // Item::milk, 3 ) ) ); this->drop( shared_ptr<ItemInstance>(
+                // new// ItemInstance( Item::sugar, 2 ) ) ); this->drop( new
+                // ItemInstance(// Tile::stoneBrick, 8 ) ); this->drop(
+                // shared_ptr<ItemInstance>(// new ItemInstance( Item::wheat, 3
+                // ) ) ); this->drop(           // shared_ptr<ItemInstance>( new
+                // ItemInstance( Item::egg, 1 ) ) );// this->drop( new
+                // ItemInstance( Item::bow, 1 ) );
+                // this->drop( new ItemInstance( Item::arrow, 10 ) ); //
+                // this->drop( shared_ptr<ItemInstance>( new ItemInstance( //
+                // Item::saddle, 10 ) ) ); this->drop( shared_ptr<ItemInstance>(
+                // new// ItemInstance( Tile::fence, 64 ) ) ); this->drop(
+                // shared_ptr<ItemInstance>( new ItemInstance( Tile::fence, 64 )
+                // )// ); this->drop( shared_ptr<ItemInstance>( new
+                // ItemInstance(    // Tile::fence, 64 ) ) );// shared_ptr<Mob>
+                // mob =  // dynamic_pointer_cast<Mob>(Pig::_class->newInstance(
+                // level )); // mob->moveTo(x+1, y, z+1,
+                // level->random->nextFloat() * 360, 0);//
+                // level->addEntity(mob);// 4J : WESTY : Spawn some wolves to
+                // befriend!
 
-      /*
-            shared_ptr<Mob> mob1 =
-            dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level ));
-            mob1->moveTo(x+1, y, z+1, level->random->nextFloat() * 360, 0);
-            level->addEntity(mob1);
+                /*
+                      shared_ptr<Mob> mob1 =
+                      dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level
+                   )); mob1->moveTo(x+1, y, z+1, level->random->nextFloat() *
+                   360, 0); level->addEntity(mob1);
 
-            shared_ptr<Mob> mob2 =
-            dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level ));
-            mob2->moveTo(x+2, y, z+1, level->random->nextFloat() * 360, 0);
-            level->addEntity(mob2);
+                      shared_ptr<Mob> mob2 =
+                      dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level
+                   )); mob2->moveTo(x+2, y, z+1, level->random->nextFloat() *
+                   360, 0); level->addEntity(mob2);
 
-            shared_ptr<Mob> mob3 =
-            dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level ));
-            mob3->moveTo(x+1, y, z+2, level->random->nextFloat() * 360, 0);
-            level->addEntity(mob3);
+                      shared_ptr<Mob> mob3 =
+                      dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level
+                   )); mob3->moveTo(x+1, y, z+2, level->random->nextFloat() *
+                   360, 0); level->addEntity(mob3);
 
-            shared_ptr<Mob> mob4 =
-            dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level ));
-            mob4->moveTo(x+3, y, z+1, level->random->nextFloat() * 360, 0);
-            level->addEntity(mob4);
+                      shared_ptr<Mob> mob4 =
+                      dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level
+                   )); mob4->moveTo(x+3, y, z+1, level->random->nextFloat() *
+                   360, 0); level->addEntity(mob4);
 
-            shared_ptr<Mob> mob5 =
-            dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level ));
-            mob5->moveTo(x+1, y, z+3, level->random->nextFloat() * 360, 0);
-            level->addEntity(mob5);
-            *///        inventory.add(new ItemInstance(Item.potion, 1,         //        PotionBrewing.THROWABLE_MASK | 0xc)); addEffect(new    //        MobEffectInstance(MobEffect.blindness.id, 60));        //        increaseXp(10);
-    //            ItemInstance itemInstance = new  {
-             //            ItemInstance(Item.pickAxe_diamond);                //            itemInstance.enchant(Enchantment.diggingBonus, 3); //            inventory.add(itemInstance);
-                #if 0// 4J Stu - This makes a tunnel with a powered track just over length to get the On A Rail achievement// It needs a few items at the start to get you going (a level and some powered rails) and of course a// minecart. For some reason some of the torches come off so it will also need some fixing along the way.
+                      shared_ptr<Mob> mob5 =
+                      dynamic_pointer_cast<Mob>(Wolf::_class->newInstance( level
+                   )); mob5->moveTo(x+1, y, z+3, level->random->nextFloat() *
+                   360, 0); level->addEntity(mob5);
+                      *///        inventory.add(new ItemInstance(Item.potion, 1,         //        PotionBrewing.THROWABLE_MASK | 0xc)); addEffect(new    //        MobEffectInstance(MobEffect.blindness.id, 60));        //        increaseXp(10);
+                //            ItemInstance itemInstance = new  {
+                //            ItemInstance(Item.pickAxe_diamond); //
+                //            itemInstance.enchant(Enchantment.diggingBonus, 3);
+                //            //            inventory.add(itemInstance);
+#if 0  // 4J Stu - This makes a tunnel with a powered track just over length to
+       // get the On A Rail achievement// It needs a few items at the start to
+       // get you going (a level and some powered rails) and of course a//
+       // minecart. For some reason some of the torches come off so it will also
+       // need some fixing along the way.
 		static bool madeTrack = false;
 		if( !madeTrack )
 		{
@@ -1801,8 +1824,8 @@ void Player::displayClientMessage(int messageId) {}
                 // 
                 
                 else {
-#ifdef _XBOX_ONE    // 4J-PB - send the event to cause the progress bar to
-                    // increase on XB1minecartAchievementPos->dist(
+#ifdef _XBOX_ONE       // 4J-PB - send the event to cause the progress bar to
+                       // increase on XB1minecartAchievementPos->dist(
                         Mth::floor(x), Mth::floor(y), Mth::floor(z));
                         
                     
@@ -2024,8 +2047,8 @@ void Player::startUsingItem(std::shared_ptr<ItemIn// 4J-JEV, hook for ItemUsed e
         setUsingItemFlag(true);
     }
 
-    
-#if (!defined _DURANGO) && (defined _EXTENDED_ACHIEVEMENTS)icStats::itemsUsed(instance->getItem()->id),
+#if (!defined _DURANGO) && (defined _EXTENDED_ACHIEVEMENTS)icStats::itemsUsed( \
+                               instance->getItem()->id),
               GenericStats::param_itemsUsed(
                   dynamic_pointer_cast<Player>(shared_from_this()), instance));
 #endif
@@ -2596,4 +2619,3 @@ void Player::SetPlayerNameValidState(bool bState) {
         m_ePlayerNameValidState = ePlayerNameValid_False;
     }
 }
-

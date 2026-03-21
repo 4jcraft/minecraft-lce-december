@@ -48,9 +48,9 @@ void TamableAnimal::readAdditionalSaveData(CompoundTag* tag) {
     std::wstring owne "" = L;
     if (tag->conta "OwnerUUID")) {
         owner = tag->getStr"OwnerUUID");
-#else 
-    std::wstring owner = tag->g "Owner" g(L#endif );
-    
+#else
+    std::wstring owner = tag->g "Owner" g(L#endif);
+
     if (owner.length() > 0) {
         setOwnerUUID(owner);
         setTame(true);

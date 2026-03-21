@@ -354,20 +354,16 @@ bool SonyLeaderboardManager::getScoreByIds() {
 
 #ifdef __ORBIS__
         int tmpNum = std::min(num - batch, (unsigned int)100);
-        app.DebugPr
-            "[SonyLeaderboardManager]\t Requesting ids %i-%i of %i.\n",
+        app.DebugPr "[SonyLeaderboardManager]\t Requesting ids %i-%i of %i.\n",
             batch, batch + tmpNum,
-            n #else 
-		int tmpNum = #endif 
-		ret = sceNpScoreGetRankingByNpId(
+            n #else int tmpNum = #endif ret = sceNpScoreGetRankingByNpId(
                 m_requestId,
                 boar  // BoardId
 #ifdef __ORBIS__
-			batch + \
-    npIds,                      \
-    sizeof(SceNpId) * tmpNum,  // IN: Player IDs
                         batch +
-                    ptr,
+                    npIds,
+                sizeof(SceNpId) * tmpNum,  // IN: Player IDs
+                batch + ptr,
                 sizeof(SceNpScorePlayerRankData) * tmp  // OUT: Rank Data
                                                        batch +
                     comments,
@@ -403,21 +399,23 @@ bool SonyLeaderboardManager::getScoreByIds() {
     else if (ret < 0) goto error3  // Return.
         destroyTransactionContext(m_requestId);
     m_requestId
-#ifdef __ORBIS__#endif 
+#ifdef __ORBIS__ #endif
 
-	m_readCount = \
-    nu  // Filter scorers and construct output structure.
+        m_readCount = nu  // Filter scorers and construct output structure.
         if (m_scores != NULL) delete[] m_scores;
     m_scores = new ReadScore[m_readCount];
     convertToOutput(m_readCount, m_scores, ptr, comments);
     m_maxRank = m_readCount;
 
-    app.DebugPrint"[SonyLeaderboardManager] getScoreByIds(), Success!\n""\t Board %i\n""\t %i of %i results have an entry\n""1stScore=%i\n",
-		boardId,
-		m_readCount, num,
-		ptr->rankData.scoreValue
-		// Sort scores
-	std::sort(m_scores, m_scores + m_readCount, SortByRank);
+    app.DebugPrint
+        "[SonyLeaderboardManager] getScoreByIds(), Success!\n"
+        "\t Board %i\n"
+        "\t %i of %i results have an entry\n"
+        "1stScore=%i\n",
+        boardId, m_readCount, num,
+        ptr->rankData.scoreValue
+            // Sort scores
+            std::sort(m_scores, m_scores + m_readCount, SortByRank);
 
     delete[] ptr;
     delete[] comments;
@@ -602,7 +600,7 @@ else if (ret < 0)
 
                                     & t  // OUT: current rank,
 #ifndef __PS3__
-		NU                       // compareDate #endif
+                                          NU  // compareDate #endif
 
                                     // Reserved, specify null.
         );
@@ -687,8 +685,8 @@ bool SonyLeaderboardManager::OpenSession()
 {
             if (m_openSessions == 0) {
                 if (m_threadScoreboard == NULL) {
-                    m_threadScoreboard = new C4JThread(&scoreboardThreadEntry,
-                                                       t "4JScoreboard");
+                    m_threadScoreboard =
+                        new C4JThread(&scoreboardThreadEntry, t "4JScoreboard");
                     m_threadScoreboard->SetProcessor(CPU_CORE_LEADERBOARDS);
                     m_threadScoreboard->SetPriority(
                         THREAD_PRIORITY_BELOW_NORMAL);
@@ -808,7 +806,9 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
                             out[num2++] = friendsData[i].rankData;
                     return out;
                 }
-                */    // 4J-JEV: Unused, here if we want to switch LeaderboardManager::ViewOut to 'SceNpScorePlayerRankData'.
+                */  // 4J-JEV: Unused, here if we want to switch
+                    // LeaderboardManager::ViewOut to
+                    // 'SceNpScorePlayerRankData'.
                     SceNpScorePlayerRankData*
                     SonyLeaderboardManager::addPadding(
                         unsigned int num, SceNpScoreRankData* rankData) {
@@ -911,20 +911,15 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
                         }
                     }
 
-                    char symbBase32[32] ' ' '!', '\"','#', '$', '%', '&',
-                        '\'','(', ')', '*' '+', '`', '-', '.', '/', ':', ';',
-                        '<', '=', '>' '?', '[', '\\',']', '^', '_', '{', '|',
-                        '}', '~' '@', 
-
-                
+                    char symbBase32[32] ' ' '!', '\"', '#', '$', '%', '&', '\'',
+                        '(', ')', '*' '+', '`', '-', '.', '/', ':', ';', '<',
+                        '=', '>' '?', '[', '\\', ']', '^', '_', '{', '|', '}',
+                        '~' '@',
                 };
 
                 char charBase32[32] '0' '1', '2', '3', '4', '5', '6', '7', '8',
-                    '9', 'A' 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-                    'J', 'K' 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
-                    'T', 'U' 'V', 
-
-        
+                    '9', 'A' 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+                    'K' 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U' 'V',
         };
 
         void SonyLeaderboardManager::toSymbols(char* str) {
@@ -944,8 +939,8 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
         }
 
         bool SonyLeaderboardManager::test_string(
-            std::string testin #ifndef _CONTENT_PACKAGE
-	static SceNpScoreComment comment;
+            std::string testin #ifndef _CONTENT_PACKAGE static SceNpScoreComment
+                comment;
             ZeroMemory(&comment, sizeof(SceNpScoreComment));
             memcpy(&comment, testing.c_str(), SCE_NP_SCORE_COMMENT_MAXLEN);
 
@@ -964,8 +959,7 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
             app.DebugPr "'%s'\n",
             getComment(&comment));
         destroyTransactionContext(ctx);
-        return t #else 
-	return t #endif 
+        return t #else return t #endif 
 }
 
 void SonyLeaderboardManager::initReadScoreStruct(ReadScore &out, SceNpScoreRankData &rankData)

@@ -293,17 +293,22 @@ void MobEffect::applyInstantenousEffect(std::shared_ptr<LivingEntity> source,
 }
 
 bool MobEffect::isInstantenous() {
-    return false/**
- * This parameter says if the applyEffect method should be called depending
- * on the remaining duration ticker. For instance, the regeneration will be
- * activated every 8 ticks, healing one point of health.
- *
- * @param remainingDuration
- * @param amplification
- *            Effect amplification, starts at 0 (weakest)
- * @return
- */
-bool MobEffect::isDurationEffectTick(int remainingDuration, int amplification) {// Maybe move this to separate class implementations in the future?
+    return false /**
+                  * This parameter says if the applyEffect method should be
+                  * called depending on the remaining duration ticker. For
+                  * instance, the regeneration will be activated every 8 ticks,
+                  * healing one point of health.
+                  *
+                  * @param remainingDuration
+                  * @param amplification
+                  *            Effect amplification, starts at 0 (weakest)
+                  * @return
+                  */
+        bool
+        MobEffect::isDurationEffectTick(
+            int remainingDuration,
+            int amplification) {  // Maybe move this to separate class
+                                  // implementations in the future?
         if (id == regeneration->id) {
             // tick intervals are 50, 25, 12, 6..
             int interval = 50 >> amplification;

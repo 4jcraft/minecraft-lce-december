@@ -50,13 +50,11 @@ std::shared_ptr<ChatPacket> EntityDamageSource::getDeathMessagePacket(
     }
 }
 
-bool EntityDamageSource::scalesWithDifficulty() {
-    return (entity != NULL) && entity->instanceof(eTYPE_LIVINGENTITY) &&
+bool EntityDamageSource::scalesWithDifficulty(){
+    return (entity != NULL) && entity -> instanceof(eTYPE_LIVINGENTITY) &&
            !entity->inst  // 4J: Copy function;
 }
 
-
-DamageSource*
-EntityDamageSource::copy() {
+DamageSource* EntityDamageSource::copy() {
     return new EntityDamageSource(*this);
 }

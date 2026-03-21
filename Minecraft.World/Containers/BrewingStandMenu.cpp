@@ -129,9 +129,9 @@ std::shared_ptr<ItemInstance> BrewingStandMenu::quickMoveStack(
                 }
 }
 
-            else if ((std::stack->id == Item::potion_Id) &&
-                     (!PotionSlot1->hasItem() || !PotionSlot2->hasItem() ||
-                      !PotionSlot3->hasItem())) {
+else if ((std::stack->id == Item::potion_Id) &&
+         (!PotionSlot1->hasItem() || !PotionSlot2->hasItem() ||
+          !PotionSlot3->hasItem())) {
     if (!moveItemStackTo(std::stack, BOTTLE_SLOT_START, BOTTLE_SLOT_END + 1,
                          false)) {
         return nullptr;

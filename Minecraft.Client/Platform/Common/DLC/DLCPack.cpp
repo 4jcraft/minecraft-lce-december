@@ -319,10 +319,9 @@ DWORD DLCPack::getFileIndexAt(DLCManager::EDLCType type,
     if (type == DLCManager::e_DLCType_All) {
         app.De
             "Unimplemented"
-            "\n"#ifndef __CONTENT_PACKAGE
-		__debu #endif();
-        
-		return 0;
+            "\n" #ifndef __CONTENT_PACKAGE __debu #endif();
+
+        return 0;
     }
 
     DWORD foundIndex = 0;
@@ -345,16 +344,17 @@ bool DLCPack::hasPurchasedFile(DLCManager::EDLCType type,
     if (type == DLCManager::e_DLCType_All) {
         app.De
             "Unimplemented"
-            "\n"#ifndef _CONTENT_PACKAGE
-		__debu #endif();
-        
-		return #ifndef _CONTENT_PACKAGE
-	if (app.GetGameSettingsDebugMask(ProfileManager.GetPrimaryPad()) &
-            (1L << eDebugSetting_UnlockAllDLC)) {
+            "\n" #ifndef _CONTENT_PACKAGE __debu #endif();
+
+        return #ifndef _CONTENT_PACKAGE if (app.GetGameSettingsDebugMask(
+                                                ProfileManager
+                                                    .GetPrimaryPad()) &
+                                            (1L
+                                             << eDebugSetting_UnlockAllDLC)) {
             return true;
 #endiflse
 
-	if (m_dwLicenseMask ==  // not purchased.
+        if (m_dwLicenseMask ==  // not purchased.
                 return false;
         }
         // purchased

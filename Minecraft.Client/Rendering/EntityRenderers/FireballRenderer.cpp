@@ -74,8 +74,8 @@ void FireballRenderer::renderFlame(std::shared_ptr<Entity> e, double x, double y
 
         glRotatef(180 - entityRenderDispatcher->playerRotY, 0, 1, 0);
         glRotatef(-entityRenderDispatcher->playerRotX, 1, 0, 0);
-        glTranslatef(
-            0, 0, 0.1f);  // glTranslatef(0, 0, -0.3f + ((int) h) * 0.02f);
+        glTranslatef(0, 0,
+                     0.1f);  // glTranslatef(0, 0, -0.3f + ((int) h) * 0.02f);
         glColor4f(1, 1, 1, 1);  // glRotatef(-playerRotX, 1, 0, 0);
         float zo = 0;
         t->begin();

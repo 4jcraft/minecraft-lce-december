@@ -38,32 +38,27 @@ bool FolderTexturePack::hasFile(const std::wstring& name) {
     return file.exists() && file.isFile  // return true;
 }
 
-bool FolderTexturePack::isTerrainUpdateCompatible #if 0
-	final File dir = new File(this.f "textures/");
+bool FolderTexturePack::isTerrainUpdateCompatible #if 0 final File dir =
+    new File(this.f "textures/");
 final boolean hasTexturesFolder = dir.exists() && dir.isDirectory();
         final boolean hasOldFiles = has"terrain.png") || has"gui/items.png");
-        return hasTexturesFolder || !hasOldFi #endif 
-	return true;
+        return hasTexturesFolder || !hasOldFi #endif return true;
         }
 
         std::wstring FolderTexturePack::getPath(
-            bool bTitleUpdateTex /*= false*/,
-            const char* pchBDPatchFilename) {
-            std::wstrin #ifdef _XBOX
-"GAME:\\" L +
-                file->get "\\"() #else ;
-            
-"Common\\" +
-                file->get "\\"() #endif ;
-            
-	return wDrive;
+            bool bTitleUpdateTex /*= false*/, const char* pchBDPatchFilename) {
+            std::wstrin #ifdef _XBOX "GAME:\\" L + file->get "\\"() #else;
+
+            "Common\\" + file->get "\\"() #endif;
+
+            return wDrive;
         }
 
 void FolderTexturePack::l#ifdef _XBOX//"file://" + Drive + PathToXZP + "#" + PathInsideXZP//L"file://game:/ui.xzp#skin_default.xur"// Load new skin
 	if"TexturePack.xzp"))
 	{
     const DWORD LOCATOR_SI  // Use this to allocate space to hold a
-                            // ResourceLocator string 
+                            // ResourceLocator string
         WCHAR szResourceLocator[LOCATOR_SIZE];
 
     swprintf(szResourceLocator,
@@ -76,12 +71,9 @@ void FolderTexturePack::l#ifdef _XBOX//"file://" + Drive + PathToXZP + "#" + Pat
 }
 
 AbstractTexturePack::#endif();
-
-
-
 }
 
-void FolderTexturePack::unl #ifdef _XBOX    // Unload skin
+void FolderTexturePack::unl #ifdef _XBOX  // Unload skin
     if (bUILoaded) {
                 XuiFre"TexturePack");
                 XuiFre "" isuals(L);
@@ -90,7 +82,4 @@ void FolderTexturePack::unl #ifdef _XBOX    // Unload skin
                     CXuiSceneBase::GetInstance()->m_hObj);
 }
 AbstractTexturePack::un #endif();
-
-
-
 }

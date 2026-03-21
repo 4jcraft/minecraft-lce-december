@@ -168,60 +168,55 @@ DirectoryLevelStorage::DirectoryLevelStorage(ConsoleSaveFile* saveFile,
     m_saveFile = saveFile;
     m_bHasLoadedMapDataMappings = fa
 #ifdef _LARGE_WORLDS
-    m_usedMappings = byteArray(MAXIMUM_MAP_SAVE_DATA / #endif 
+    m_usedMappings = byteArray(MAXIMUM_MAP_SAVE_DATA / #endif
 }
 
-        DirectoryLevelStorage::~DirectoryLevelStorage() {
-        delete m_saveFile;
+DirectoryLevelStorage::~DirectoryLevelStorage() {
+    delete m_saveFile;
 
-        for (AUTO_VAR(it, m_cachedSaveData.begin());
-             it != m_cachedSaveData.end(); ++it) {
-            delete it->second;
+    for (AUTO_VAR(it, m_cachedSaveData.begin()); it != m_cachedSaveData.end();
+         ++it) {
+        delete it->second;
 
 #ifdef _LARGE_WORLDS
-    delete m_usedMappings.d #endif 
-}
+        delete m_usedMappings.d #endif
+    }
 
-            void DirectoryLevelStorage::initiateSession() {  // 4J Jev, removed
-                                                             // try/catch.
+    void DirectoryLevelStorage::initiateSession() {  // 4J Jev, removed
+                                                     // try/catch.
 
     File dataFile = File(dir, std:"session.lock"));
     FileOutputStream fos = FileOutputStream(dataFile);
     DataOutputStream dos = DataOutputStream(&fos);
     dos.writeLong(sessionId);
     dos.close();
-            }
+    }
 
-            File DirectoryLevelStorage::getFolder() { return dir; }
+    File DirectoryLevelStorage::getFolder() { return dir; }
 
-            void DirectoryLevelStorage::
-                checkSessio  // 4J-PB - Not in the Xbox game/*
-                    File dataFile = File(dir, wstring(L"session.lock"));
-            FileInputStream fis = FileInputStream(dataFile);
-            DataInputStream dis = DataInputStream(&fis);
-            dis.close();
-            */
-
-        
-        }
+    void DirectoryLevelStorage::checkSessio  // 4J-PB - Not in the Xbox game/*
+        File dataFile = File(dir, wstring(L"session.lock"));
+    FileInputStream fis = FileInputStream(dataFile);
+    DataInputStream dis = DataInputStream(&fis);
+    dis.close();
+    */
+}
 
 ChunkStorage* DirectoryLevelStorage::createChunkStorage(Dimension* dimensi// 4J Jev, removed try/catch.
 
     if (dynamic_cast<HellDimension*>(dimension) != NULL) {
-            File dir2 =
-                File(dir, LevelStorage::NETHER_FOLDER)  // dir2.mkdirs(); // 4J
+    File dir2 = File(dir, LevelStorage::NETHER_FOLDER)  // dir2.mkdirs(); // 4J
                                                         // Removed
-                return new OldChunkStorage(dir2, true);
+        return new OldChunkStorage(dir2, true);
     }
     if (dynamic_cast<TheEndDimension*>(dimension) != NULL) {
-            File dir2 =
-                File(dir, LevelStorage::ENDER_FOLDER)  // dir2.mkdirs(); // 4J
+    File dir2 = File(dir, LevelStorage::ENDER_FOLDER)  // dir2.mkdirs(); // 4J
                                                        // Removed
-                return new OldChunkStorage(dir2, true);
+        return new OldChunkStorage(dir2, true);
     }
 
     return new OldChunkStorage(dir, true);
-    }
+}
 
 LevelData* DirectoryLevelStorage::prepareLeve// 4J Stu Added#ifdef _LARGE_WORLDS
     ConsoleSavePath mapFile = get"largeMapDataMappings"#else);
@@ -230,18 +225,19 @@ LevelData* DirectoryLevelStorage::prepareLeve// 4J Stu Added#ifdef _LARGE_WORLDS
 
     if (!m_bHasLoadedMapDataMappings && !mapFile.getName().empty() &&
         getSaveFile()->doesFileExist(mapFile)) {
-    DWORD NumberOfBytesRead;
+        DWORD NumberOfBytesRead;
         FileEntry* fileEntry = getSaveFile()->createFile(
-#ifdef __PS3__    // 4J Stu - This version changed happened before initial release
+#ifdef __PS3__  // 4J Stu - This version changed happened before initial
+                        // release
         if (getSaveFile()->getSaveVersion() <
             SAVE_FILE_VERSION_CHANGE_MAP_DATA_MAPPING_SIZE) {
-            // Delete the old file
-            if (fileEntry) getSaveFile()->deleteFile(fileEntry);
+        // Delete the old file
+        if (fileEntry) getSaveFile()->deleteFile(fileEntry);
 
-            // Save a new, blank version
-            saveMapIdLookup();
-#elif defined( \
-    _DURANGO)    // 4J Stu - This version changed happened before initial release
+        // Save a new, blank version
+        saveMapIdLookup();
+#elif defined(_DURANGO)  // 4J Stu - This version changed happened
+                                 // before initial release
         if (getSaveFile()->getSaveVersion() <
             SAVE_FILE_VERSION_DURANGO_CHANGE_MAP_DATA_MAPPING_SIZE) {
   // Delete the old file
@@ -365,7 +361,7 @@ void DirectoryLevelStorage::saveLevelDat// 4J Jev, removed try/catch
 void DirectoryLevelStorage::save(std// 4J Jev, removed try/catch.{
     
     PlayerU#if defined(__PS3__) || defined(__ORBIS__)
- #else (playerXuid != INVALID_XUID)
+#else(playerXuid != INVALID_XUID)
 
     if (playerXuid != I#endif_XUID && !player->isGuest())
 
@@ -434,8 +430,7 @@ CompoundTag* DirectoryLevelStorage::loadP// 4J Jev, removed try/catch.{#if defin
 
 void DirectoryLevelStorage::clearOldPlayerFiles() {
     if (Storage
-#if defined(__PS3__) || defined(__ORBIS__) || \
-    defined(__PSVITA__)
+#if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
     std::vector<FileEntry*> *                 \
         playerFiles #elseaveFile->getValidPlayerDatFiles();
 
@@ -451,7 +446,7 @@ void DirectoryLevelStorage::clearOldPlayerFiles() {
                     repl""eAll(file->data.filename".dat"erD"".ge#if defined(__PS3__) || defined(__ORBIS__) || defined(_DURANGO)#else
                 PlayerUID xuid(xuidStr);
 
-                #endifUID xuid = _fromString<PlayerUID>(xuidStr);
+#endifUID xuid = _fromString < PlayerUID>(xuidStr);
 
                 deleteMapFilesForPlayer(xuid);
                 m_saveFile->deleteFile(#endifFiles->at(i));
@@ -469,7 +464,7 @@ void DirectoryLevelStorage::clearOldPlayerFiles() {
               ""    replaceAll(file->dat".dat"nam"" pl#if defined(__PS3__) || defined(__ORBIS__) || defined(_DURANGO)#else
                 PlayerUID xuid(xuidStr);
 
-      #endif    PlayerUID xuid = _fromString<PlayerUID>(xuidStr);
+#endif PlayerUID xuid = _fromString < PlayerUID>(xuidStr);
 
                 deleteMapFilesForPlayer(xuid);
                 m_saveFile->deleteFile(playerFiles->at(i));
@@ -607,7 +602,8 @@ void DirectoryLeve
     if (!file.getName().empty()) {
         DWORD NumberOfBytesWritten;
         FileEntry* fileEntry = m_saveFile->create
-#ifdef _LARGE_WORLDS_saveFile->setFilePointer(fileEntry, 0, NULL, FILE_BEGIN);
+#ifdef _LARGE_WORLDS_saveFile->setFilePointer(fileEntry, 0, NULL, \
+                                                      FILE_BEGIN);
 
         ByteArrayOutputStream baos;
         DataOutputStream dos"Saving %d mappings\n"riteInt(m_playerMappings.size());
@@ -634,7 +630,8 @@ void DirectoryLeve
             &NumberOfBytesWritten        #endif      );
         assert(NumberOfBytesWritten == sizeof(MapDataMappings));
 
-   #ifdef _LARGE_WORLDSLevelStorage::dontSaveMapMappingForPlayer(PlayerUID xuid) {
+#ifdef _LARGE_WORLDSLevelStorage::dontSaveMapMappingForPlayer( \
+            PlayerUID xuid) {
 
     AUTO_VAR(it, m_playerMappings.find(xuid));
     if (it != m_playerMappings.end()) {

@@ -776,9 +776,8 @@ m_labelSkinOrigin.setLabel(skinOrigin);
         std::vector<SKIN_BOX*>*
             othervAdditionalSkinBoxes  // turn off all displays6];
 
-	
-	for (unsigned int i = eCharacter_Current + 1; i < eCharacter_COUNT;
-             ++i) {
+            for (unsigned int i = eCharacter_Current + 1; i < eCharacter_COUNT;
+                 ++i) {
             m_characters[i].setVisible(false);
         }
 
@@ -790,8 +789,8 @@ m_labelSkinOrigin.setLabel(skinOrigin);
 		{
     if (uiCurrentFavoriteC == 0) {
         sidePreviewControlsL = si  // might be an odd number}
-			
-			else if ((uiCurrentFavoriteC - 1) % 2 == 1) {
+
+            else if ((uiCurrentFavoriteC - 1) % 2 == 1) {
             sidePreviewControlsL = 1 + (uiCurrentFavoriteC - 1) / 2;
             sidePreviewControlsR = (uiCurrentFavoriteC - 1) / 2;
         }
@@ -1281,17 +1280,15 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
 		case ETouchInput_IggyCharacters:
 			if(m_currentNavig// not in skin select modekin)
 			{
-                
-				break;
+                break;
 			}
 			if(x < m_iTouchXStart - 50)
 			{
                 if (!m_bAnimatingMove && !m_bTouchScrolled) {
                     ui.PlayUISFX(eSFX_Scroll);
                     m_skinInde  // handleSkinIndexChanged();Index);
-					
 
-					m_bSlidingSkins = true;
+                        m_bSlidingSkins = true;
                     m_bAnimatingMove = true;
 
                     m_characters[eCharacter_Current].SetFacing(
@@ -1311,9 +1308,8 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
                     ui.PlayUISFX(eSFX_Scroll);
 
                     m_skinIndex =  // handleSkinIndexChanged();Index);
-					
 
-					m_bSlidingSkins = true;
+                        m_bSlidingSkins = true;
                     m_bAnimatingMove = true;
 
                     m_characters[eCharacter_Current].SetFacing(
@@ -1363,10 +1359,11 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
 
 void UIScene#ifdef __PSVITA__HandleDLCInstalled()
 {
+    // to prevent a race condition between the install and the mounted
+    // callback#endif"UIScene_SkinSelectMenu::HandleDLCInstalled\n"// mounted
+    // DLC may have changed);
 
-// to prevent a race condition between the install and the mounted callback#endif"UIScene_SkinSelectMenu::HandleDLCInstalled\n"// mounted DLC may have changed);
-	
-	if(app.Star// not doing a mount, so re-enable input"UIScene_SkinSelectMenu::HandleDLCInstalled - not doing a mount, so re-enable input\n");
+        if(app.Star// not doing a mount, so re-enable input"UIScene_SkinSelectMenu::HandleDLCInstalled - not doing a mount, so re-enable input\n");
 		m_bIgnoreInput=false;
 	}
 	else
@@ -1377,7 +1374,7 @@ void UIScene#ifdef __PSVITA__HandleDLCInstalled()
     m_control  // this will send a CustomMessage_DLCMountingComplete when done
 #ifdef __PSVITA__
 
-	#endifriticalSection(&m_DLCInstallCS);	
+#endifriticalSection(&m_DLCInstallCS);	
 
 
 }
@@ -1385,9 +1382,9 @@ void UIScene#ifdef __PSVITA__HandleDLCInstalled()
 
 void UIScene_SkinSel#ifdef __PSVITA__CMountingComplete()
 {
-    
-    // to prevent a race condition between the install and the mounted callback#endif"UIScene_SkinSelectMenu::HandleDLCMountingComplete\n");
-        m_controlTimer.setVisible(false);
+    // to prevent a race condition between the install and the mounted
+    // callback#endif"UIScene_SkinSelectMenu::HandleDLCMountingComplete\n");
+    m_controlTimer.setVisible(false);
     m_controlIggyCharacters.setVisible(true);
     m_controlSkinNamePlate.setVisible(true);
 
@@ -1415,17 +1412,13 @@ void UIScene_SkinSel#ifdef __PSVITA__CMountingComplete()
 
 	if(bInGame) XBackgroundDownloadS#endif(#ifdef __PSVITA__OAD_MODE_AUTO);
 
-
-	#endifriticalSection(&m_DLCInstallCS);	
-
-
-        
+#endifriticalSection(&m_DLCInstallCS);
         }
 
     void UIScene_SkinSelec  // need to be signed in to live. get them to sign in
                             // to online#if defined(__PS3__)
 
-	SQRNetworkManag
+        SQRNetworkManag
 #elif defined(__PSVITA__) ULL, this);		
 
 	if(CGameNetworkManager::usingAdhocMode() && SQRNetworkMan// we're in adhoc mode, we really need to ask before disconnecting
@@ -1480,7 +1473,7 @@ int UIScene_SkinSelectMenu::UnlockSkinReturned(void *pParam,int iPad,C4JStorage:
 
 				app
 #if defined __ORBIS__ || defined __PSVITA__ || defined __PS3__
-		#endifapp.CheckForEmptyStore(iPad) == false)
+#endifapp.CheckForEmptyStore(iPad) == false)
 
 				{	
 					if (app.DLCAlreadyPurc"Already purchased this DLC - DownloadAlreadyPurchased \n");
@@ -1561,9 +1554,7 @@ vo// Reinitialise a few values to prevent problems on reload
 
 void UIScene// update the lock flagDLCLicenseChange()
 {
-	#endif
-
-
+#endif
 
 #ifdef __PSVITA__ dexChanged();
 }

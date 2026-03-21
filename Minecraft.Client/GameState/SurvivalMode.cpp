@@ -141,24 +141,24 @@ float SurvivalMode::getPickRange() { return 4.0f; }
 void SurvivalMode::initLevel(Level* level) { GameMode::initLevel(level); }
 
 std::shared_ptr<Player> SurvivalMode::createPlayer(Level* level) {
-    std::shared_ptr<Player> player = GameMode::
-        createPlayer  //        player.inventory.add(new
-                      //        ItemInstance(Item.pickAxe_diamond));//
-                      //        player.inventory.add(new
-                      //        ItemInstance(Item.hatchet_diamond));//
-                      //        player.inventory.add(new
-                      //        ItemInstance(Tile.torch, 64));//
-                      //        player.inventory.add(new
-                      //        ItemInstance(Item.porkChop_cooked, 4));//
-                      //        player.inventory.add(new ItemInstance(Item.bow,
-                      //        1));//        player.inventory.add(new
-                      //        ItemInstance(Item.arrow, 64));
+    std::shared_ptr<Player> player =
+        GameMode::createPlayer  //        player.inventory.add(new
+                                //        ItemInstance(Item.pickAxe_diamond));//
+                                //        player.inventory.add(new
+                                //        ItemInstance(Item.hatchet_diamond));//
+                                //        player.inventory.add(new
+                                //        ItemInstance(Tile.torch, 64));//
+                                //        player.inventory.add(new
+                                //        ItemInstance(Item.porkChop_cooked,
+                                //        4));// player.inventory.add(new
+                                //        ItemInstance(Item.bow, 1));//
+                                //        player.inventory.add(new
+                                //        ItemInstance(Item.arrow, 64));
         return player;
 }
 
 void SurvivalMode::tick() {
-    oDestroyProgress =
-        destroyProg  // minecraft->soundEngine->playMusicTick();
+    oDestroyProgress = destroyProg  // minecraft->soundEngine->playMusicTick();
 }
 
 bool SurvivalMode::useItemOn(std::shared_ptr<Player> player, Level* level,

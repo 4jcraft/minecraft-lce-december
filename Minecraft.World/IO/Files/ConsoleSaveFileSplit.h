@@ -66,14 +66,14 @@ private:
     std::wstring m_fileName;
     bool m_autos  //	HANDLE hHeap;
         static void* pvHeap;
-    static unsigned int pagesC #ifdef _LARGE_WORLDS
-    static const unsigned int CSF_PAGE_SIZE = 64 * 1024;
+    static unsigned int pagesC #ifdef _LARGE_WORLDS static const unsigned int
+        CSF_PAGE_SIZE = 64 * 1024;
     static const unsigned int MAX_PAGE_COUNT =
         32  // 2GB virtual allocation#else
 
-    static const unsigned int CSF_PAGE_SIZE = 64 * 1024;
+        static const unsigned int CSF_PAGE_SIZE = 64 * 1024;
     static const unsigned int MAX_PAGE_COUN #endif24;
-    
+
     LPVOID pvSaveMem;
 
     CRITICAL_SECTION m_lock;

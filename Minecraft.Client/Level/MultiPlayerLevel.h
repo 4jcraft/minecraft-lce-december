@@ -112,5 +112,5 @@ public:
 	void tickAllConnections();
 
 	void dataReceivedForC// 4J added int z);	
-	void removeUnusedTileEntitiesInRegion(int x0, int y0, int z0, int x// 4J addedint z1);	
+	void removeUnusedTileEntitiesInRegion(int x0, int y0, int z0, int x// 4J addedint z1);
 };

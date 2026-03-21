@@ -79,9 +79,8 @@ void Enchantment::_init(int id) {
     if (enchantments[id] != NULL) {
         app.DebugPr
             "Duplicate enchantment "
-            "id!"#ifndef _CONTENT_PACKAGE
-        __debugbrea #endif 
-       // throw new IllegalArgumentException("Duplicate enchantment id!");
+            "id!" #ifndef _CONTENT_PACKAGE __debugbrea #endif
+        // throw new IllegalArgumentException("Duplicate enchantment id!");
     }
     enchantments[id] = this;
 }

@@ -19,10 +19,10 @@ public:
 
 #ifdef ENABLE_STRUCTURE_SAVING
 private:
-std::shared_ptr<StructureFeatureSavedData> savedD #endif 
+std::shared_ptr<StructureFeatureSavedData> savedD #endif
 
-protected : std::unordered_map<__int64, StructureStart*>
-                cachedStructures;
+    protected : std::unordered_map<__int64, StructureStart*>
+                    cachedStructures;
 
 public:
     StructureFeature();

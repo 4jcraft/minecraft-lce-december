@@ -164,8 +164,10 @@ void PistonBaseTile::checkIfExtend(Level* level, int x, int y, int z) {
              * @param z
              * @return
              */
-bool PistonBaseTile::getNeighborSignal(Level* level, int x, int y, int z,
-                                       int facing) {// check adjacent neighbors, but not in push direction
+            bool PistonBaseTile::getNeighborSignal(
+                Level * level, int x, int y, int z,
+                int facing) {  // check adjacent neighbors, but not in push
+                               // direction
                 if (facing != Facing::DOWN &&
                     level->hasSignal(x, y - 1, z, Facing::DOWN))
                     return true;

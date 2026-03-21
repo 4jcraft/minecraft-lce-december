@@ -98,8 +98,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
 	}
 	else if (tickCount % updateInterval == 0 || e->// 4J: Moved this as it's shared->isDirty())
 	{
-            
-		int yRotn = Mth::floor(e->yRot * 256 / 360);
+            int yRotn = Mth::floor(e->yRot * 256 / 360);
             // 4J: Changed rotation to be generally sent as a delta as well as
             // position
             int yRota = yRotn - yRotp;
@@ -128,17 +127,16 @@ void TrackedEntity::tick(EntityTracker* tracker,
 			if (tickCount > 0 || e->i// 4J: Modifed, see above e->instanceof(eTYPE_PLAYER)) 
 			{
                     if (xa < -128 || xa >= 128 ||
-                        ya <
-                            -128 ||  // 4J Stu - I fixed the initialisation of
-                                     // teleportDelay in the ctor, but we
-                                     // managed this far without out//
-                                     // and would prefer not to have all the
-                                     // extra traffix so ignore it// 4J
-                                     // Stu - Fix for #9579 - GAMEPLAY: Boats
-                                     // with a player in them slowly sink under
-                                     // the water over time, and with no player
-                                     // in them they float into the
-                                     // sky.
+                        ya < -128 ||  // 4J Stu - I fixed the initialisation of
+                                      // teleportDelay in the ctor, but we
+                                      // managed this far without out//
+                                      // and would prefer not to have all the
+                                      // extra traffix so ignore it// 4J
+                                      // Stu - Fix for #9579 - GAMEPLAY: Boats
+                                      // with a player in them slowly sink under
+                                      // the water over time, and with no player
+                                      // in them they float into the
+                                      // sky.
                         || (e->GetType() == eTYPE_BOAT &&
                             teleportDelay > 20 * 20)) {
                         teleportDelay = 0;
@@ -149,20 +147,17 @@ void TrackedEntity::tick(EntityTracker* tracker,
 							( za >= -16 ) && ( za <= 15 ) &&
 							( ya >= -32// Clamp rotations that are too biga == 0 ))
 						{
-                            
-							if (yRota < -16) {
+                            if (yRota < -16) {
                                 yRota = -16;
                                 yRotn = yRotp + yRota;
-                            }
-                            else if (yRota > 15) {
+                            } else if (yRota > 15) {
                                 // 5 bits each for x & z, and 6 for yyRota;
                             }
-                            
-							packet =
-                                std::shared_ptr<MoveEntityPacketSmall>(
-                                    new MoveEntityPacketSmall::PosRot(
-                                        e->entityId, (char)xa, (char)ya,
-                                        (char)za, (char)yRota, 0));
+
+                            packet = std::shared_ptr<MoveEntityPacketSmall>(
+                                new MoveEntityPacketSmall::PosRot(
+                                    e->entityId, (char)xa, (char)ya, (char)za,
+                                    (char)yRota, 0));
                             c0a++;
 						}
 						else
@@ -171,12 +166,10 @@ void TrackedEntity::tick(EntityTracker* tracker,
 						if( ( xa >= -8 ) && ( xa <= 7 ) &&
 							( za >= -8 ) &&// 4 bits each for x & z, and 5 for y&& ( ya <= 15 ) )
 						{
-                                
-							packet =
-                                    std::shared_ptr<MoveEntityPacketSmall>(
-                                        new MoveEntityPacketSmall::Pos(
-                                            e->entityId, (char)xa, (char)ya,
-                                            (char)za));
+                                packet = std::shared_ptr<MoveEntityPacketSmall>(
+                                    new MoveEntityPacketSmall::Pos(
+                                        e->entityId, (char)xa, (char)ya,
+                                        (char)za));
                                 c1a++;
 						}
 
@@ -189,21 +182,18 @@ void TrackedEntity::tick(EntityTracker* tracker,
 						{
                                                         packet = std::shared_ptr<MoveEntityPacket>( new MoveEntityPacket::Pos(e->entityId, (char) xa, (// 4J If there's no x rotation, then use the new smaller packet typeot)
 					{
-                                    // Clamp rotations that are too big
-                                    if (xRota == 0) {
-                                    
-							if (yRota < -16) {
+                                // Clamp rotations that are too big
+                                if (xRota == 0) {
+                                    if (yRota < -16) {
                                         yRota = -16;
                                         yRotn = yRotp + yRota;
-                                    }
-                                    else if (yRota > 15) {
+                                    } else if (yRota > 15) {
                                         yRota = 15;
                                         yRotn = yRotp + yRota;
                                     }
                                                         packet = std::shared_ptr<MoveEntityPacketSmall>( new MoveEntityPacketSm//					printf("%d: New rot %d + %d = %d\n",e->entityId,yRotp,yRota,yRotn);
 						{
-                                        
-							packet =
+                                        packet =
                                             std::shared_ptr<MoveEntityPacket>(
                                                 new MoveEntityPacket::Rot(
                                                     e->entityId, (char)yRota,
@@ -262,10 +252,10 @@ void TrackedEntity::tick(EntityTracker* tracker,
                         bool rot = a  // 4J: Changed this to use deltasVEL ||
                                       // abs(xRotn - xRotp) >= TOLERANCE_LEVEL;
                             if (rot) {
-                            
-				broadcast(std::shared_ptr<MoveEntityPacket>(
-                                new MoveEntityPacket::Rot(
-                                    e->entityId, (uint8_t)yRota, (uint8_t)xRota)));
+                            broadcast(std::shared_ptr<MoveEntityPacket>(
+                                new MoveEntityPacket::Rot(e->entityId,
+                                                          (uint8_t)yRota,
+                                                          (uint8_t)xRota)));
                             yRotp = yRotn;
                             xRotp = xRotn;
                         }
@@ -287,8 +277,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
                     tickCount++;
 
                     if (e->hurtMarked) {
-                        
-		broadcastAndSend(std::shared_ptr<SetEntityMotionPacket>(
+                        broadcastAndSend(std::shared_ptr<SetEntityMotionPacket>(
                             new SetEntityMotionPacket(e)));
                         e->hurtMarked = false;
                     }
@@ -336,9 +325,9 @@ void TrackedEntity::sendDirtyEntityData()
                         // restrict the network impact this has by not resending
                         // to the one
                         // machine
-                        
 
-		for (AUTO_VAR(it, seenBy.begin()); it != seenBy.end(); it++) {
+                        for (AUTO_VAR(it, seenBy.begin()); it != seenBy.end();
+                             it++) {
                             std::shared_ptr<ServerPlayer> player = *it;
                             bool dontSend = false;
                             if (sentTo.size()) {
@@ -358,25 +347,30 @@ void TrackedEntity::sendDirtyEntityData()
                                                      // dynamic_pointer_cast<SetEntityMotionPacket>
                                                      // (packet);
                                                      // {
-                                            // 					if(emp!=NULL)
-                                            // //
-                                            // {
-                                            // 						app.DebugPrintf("Not
-                                            // sending this
-                                            // SetEntityMotionPacket to player -
-                                            // it's already been sent to a
-                                            // player on their console\n");
-                                            // 					}
-                                            // #endif
-							
-							    // This packet hasn't got canSendToAnyClient set, so just send to everyone here, and itconnection->send(packet);
-                                            sentTo.push_back(player);
+                                                // 					if(emp!=NULL)
+                                                // //
+                                                // {
+                                                // 						app.DebugPrintf("Not
+                                                // sending this
+                                                // SetEntityMotionPacket to
+                                                // player - it's already been
+                                                // sent to a player on their
+                                                // console\n");
+                                                // 					}
+                                                // #endif
+
+                                                    // This packet hasn't got
+                                                    // canSendToAnyClient set,
+                                                    // so just send to everyone
+                                                    // here, and
+                                                    // itconnection->send(packet);
+                                                        sentTo.push_back(
+                                                            player);
                                     }
                                 }
                                 else {
-                                    
-
-		for (AUTO_VAR(it, seenBy.begin()); it != seenBy.end(); it++) {
+                                    for (AUTO_VAR(it, seenBy.begin());
+                                         it != seenBy.end(); it++) {
                                         (*it)->connection->send(packet);
                                     }
                                 }
@@ -410,33 +404,30 @@ void TrackedEntity::sendDirtyEntityData()
                                 AUTO_VAR(it, seenBy.find(sp));
                                 if (it != seenBy.end()) {
                                     sp->entitiesToRemove.push_back(e->entityId);
-                                    seenBy
-                                        .erase  // 4J Stu - We call update
-                                                // players when the entity has
-                                                // moved more than a certain
-                                                // amount at the start of it's
-                                                // tick*t// Before this call
-                                                // we set xpu, ypu and zpu to
-                                                // the entities new position,
-                                                // but xp,yp and zp are the
-                                                // old position until later in
-                                                // the tick.// Therefore we
-                                                // should use the new position
-                                                // for visibility
-                                                // checks//xp
-                                                // /
-                                                // 32;//zp
-                                                // / 32;// 4J Stu - Fix for
-                                                // loading a player who is
-                                                // currently riding something
-                                                // (e.g. a horse)
+                                    seenBy.erase  // 4J Stu - We call update
+                                                  // players when the entity has
+                                                  // moved more than a certain
+                                                  // amount at the start of it's
+                                                  // tick*t// Before this call
+                                                  // we set xpu, ypu and zpu to
+                                                  // the entities new position,
+                                                  // but xp,yp and zp are the
+                                                  // old position until later in
+                                                  // the tick.// Therefore we
+                                                  // should use the new position
+                                                  // for visibility
+                                                  // checks//xp
+                                                  // /
+                                                  // 32;//zp
+                                                  // / 32;// 4J Stu - Fix for
+                                                  // loading a player who is
+                                                  // currently riding something
+                                                  // (e.g. a horse)
                                         double xd = sp->x - xpu;
-                                    
-	double zd = sp->z - zpu;
-                                    
 
-	
-	if (e->forcedLoading) {
+                                    double zd = sp->z - zpu;
+
+                                    if (e->forcedLoading) {
                                         xd = sp->x - xp / 32;
                                         zd = sp->z - zp / 32;
                                     }
@@ -458,9 +449,8 @@ void TrackedEntity::sendDirtyEntityData()
                                             // only send entity tracking info
                                             // to// players who
                                             // canReceiveAllPackets().
-	
-	
-	if (!bVisible) {
+
+                                            if (!bVisible) {
                                             MinecraftServer* server =
                                                 MinecraftServer::getInstance();
                                             // Consider extra players, but not
@@ -471,8 +461,7 @@ void TrackedEntity::sendDirtyEntityData()
                                             // dimension()->players.size(); i++
                                             // )
                                             {
-                                                
-				std::shared_ptr<ServerPlayer>
+                                                std::shared_ptr<ServerPlayer>
                                                     ep = server->getPlayers()
                                                              ->players[i];
                                                 if (ep == sp) continue;
@@ -486,20 +475,21 @@ void TrackedEntity::sendDirtyEntityData()
                                     }
                                 }
 
-                                    // 4J-JEV: ADDED! An entities mount has to be visible before the entity visible,// this is to ensure that the mount is already in the client's game when the rider is added.
+                                // 4J-JEV: ADDED! An entities mount has to be
+                                // visible before the entity visible,// this is
+                                // to ensure that the mount is already in the
+                                // client's game when the rider is added.
                             }
 
-                            
-	
-	if (canBeSeenBy && bVisible && e->riding != NULL) {
+                            if (canBeSeenBy && bVisible && e->riding != NULL) {
                                 return tracker->getTracker(e->riding)
                                     ->isVisible(tracker, sp, true);
-                            }
-                            else if (
-                                canBeSeenBy &&
-                                bVisible) return eVisibility_SeenAndVisible;
-                            else if (bVisible) return eVisibility_IsVisible;
-                            else return eVisibility_NotVisible;
+                            } else if (canBeSeenBy && bVisible)
+                                return eVisibility_SeenAndVisible;
+                            else if (bVisible)
+                                return eVisibility_IsVisible;
+                            else
+                                return eVisibility_NotVisible;
                         }
 
                         void TrackedEntity::updatePlayer(
@@ -521,9 +511,9 @@ void TrackedEntity::sendDirtyEntityData()
                                     "visible to player '%ls', %s.\n"(
                                         e->instanceof(eTYPE_PLAYER)) {
                         std::shared_ptr<Player> p"not riding minecart"c"in minecart");
-                        app.DebugPrintf( ,
-                            // 4J Stu brought forward to fix when Item
-                            // Framesriding==NULL?:)
+                        app.DebugPrintf(,
+                                        // 4J Stu brought forward to fix when
+                                        // Item Framesriding==NULL?:)
                         );
                                 }
 
@@ -531,8 +521,8 @@ void TrackedEntity::sendDirtyEntityData()
                                     dynamic_pointer_cast<AddMobPacket>(
                                         packet) != NULL;
 
-                                
-		if (!e->getEntityData()->isEmpty() && !isAddMobPacket) {
+                                if (!e->getEntityData()->isEmpty() &&
+                                    !isAddMobPacket) {
                                     sp->connection->send(
                                         std::shared_ptr<SetEntityDataPacket>(
                                             new SetEntityDataPacket(
@@ -648,12 +638,8 @@ void TrackedEntity::sendDirtyEntityData()
                                    // player->getLevel()->getChunkMap()->isPlayerIn(player,
                                    // e->xChunk,
                                    // e->zChunk);
-	
 
-	return true;
-                            
-
-                        
+                                    return true;
                         }
 
 void TrackedEntity::updatePlayers(EntityTracker *tracker, std::vector<std::shar"Fetching addPacket for removed entity - %ls\n" i = 0; i < players->size(); i+// 4J-PB - replacing with a switch, rather than tons of ifsayer>( players->at(i) ) );
@@ -663,12 +649,10 @@ void TrackedEntity::updatePlayers(EntityTracker *tracker, std::vector<std::shar"
 std::shared_ptr<Packet> TrackedEntity::getAddEntityPacket()
 {
                     if (e->removed) {
-                        app.DebugPrintf(,
-                                        e->getAName().c_str());
+                        app.DebugPrintf(, e->getAName().c_str());
                     }
 
-                    
-	if (dynamic_pointer_cast<Creature>(e) != NULL) {
+                    if (dynamic_pointer_cast<Creature>(e) != NULL) {
                         yHeadRotp = Mth::floor(e->getYHeadRot() * 256 / 360);
                         return std::shared_ptr<AddMobPacket>(new AddMobPacket(
                             dynamic_pointer_cast<Mob>(e), yRotp, xRotp, xp, yp,
@@ -833,8 +817,7 @@ std::shared_ptr<Packet> TrackedEntity::getAddEntityPacket()
                             int ix = (int)frame->xTile;
                             int iy = (int)frame->yTile;
                             int iz = (int)frame->zTile;
-                            app.DebugPrintf(,
-                                            ix, iy, iz);
+                            app.DebugPrintf(, ix, iy, iz);
                         }
 
                         std::shared_ptr<AddEntityPacket> packet =

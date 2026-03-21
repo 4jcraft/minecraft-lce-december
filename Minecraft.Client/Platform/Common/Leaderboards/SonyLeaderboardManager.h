@@ -105,8 +105,7 @@ protect// 4J-JEV: Interface differences:// Sce NP score library function redirec
 	virtual HRESULT destroyTransactionContext(int transactionContext) = 0;
 
 	virtual HRESULT fillByIdsQuery(const SceNpId &myNpId, SceNpId* &npIds, uint32_t &le
-#if (defined __ORBIS__) ||                                                   \
-    (defined __PSVITA__)
+#if (defined __ORBIS__) || (defined __PSVITA__)
 	virtual HRESULT getFriendsList(                                      \
         sce::Toolkit::NP::Utilities::Future<sce::Toolkit::NP::FriendsList> & \
         friendsList) #endif 

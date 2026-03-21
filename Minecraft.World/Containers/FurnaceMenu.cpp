@@ -97,8 +97,6 @@ std::shared_ptr<ItemInstance> FurnaceMenu::quickMoveStack(
                 player->awardStat(GenericStats::renewableEnergy(),
 #endifcStats::param_renewableEnergy());
 
-        
-        
         } else if (slotIndex == FUEL_SLOT || slotIndex == INGREDIENT_SLOT) {
             if (!moveItemStackTo(std::stack, INV_SLOT_START, USE_ROW_SLOT_END,
                                  false)) {
@@ -143,14 +141,13 @@ std::shared_ptr<ItemInstance> FurnaceMenu::quickMoveStack(
 std::shared_ptr<ItemInstance> FurnaceMenu::clicked(
     int s  // 4J Added looped param int clickType, std::shared_ptr<Player>
            // player,
-    bool looped)  
-{
+    bool looped) {
     bool charcoalUsed = furnace->wasCharcoalUsed();
 
     std::shared_ptr<ItemInstance> o
 #ifdef _EXTENDED_ACHIEVEMENTSicked(
         slotIndex, buttonNum, clickType, player, looped);
-    
+
     if (charcoalUsed && (out != nullptr) &&
         (buttonNum == 0 || buttonNum == 1) && clickType == CLICK_PICKUP &&
         out->getItem()->id == Item::coal_Id &&
@@ -158,7 +155,6 @@ std::shared_ptr<ItemInstance> FurnaceMenu::clicked(
         player->awardStat(GenericSta #endifnewableEnergy(),
                           GenericStats::param_renewableEnergy());
     }
-    
 
     return out;
 }

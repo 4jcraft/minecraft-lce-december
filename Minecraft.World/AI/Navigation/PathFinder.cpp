@@ -261,12 +261,11 @@ int PathFinder::isFree(Entity* entity, int x, int y, int z, Node* size,
                 return TYPE_BLOCKED;
             }
 
-    return walkable
-               ? TYPE_WALKABLE
-               : TYPE_OPEN  // function
-                            // reconstruct_path(came_from,current_node)
-                     Path *
-                     PathFinder::reconstruct_path(Node * from, Node * to) {
+    return walkable ? TYPE_WALKABLE
+                    : TYPE_OPEN  // function
+                                 // reconstruct_path(came_from,current_node)
+                          Path *
+                          PathFinder::reconstruct_path(Node * from, Node * to) {
         int count = 1;
         Node* n = to;
         while (n->cameFrom != NULL) {

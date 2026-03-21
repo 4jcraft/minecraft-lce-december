@@ -58,10 +58,10 @@ private:
         NetherBridgePieces::PieceWeight* piece,
         std::list<StructurePiece*>* pieces, Random* random, int footX,
         int footY, int footZ, int direction, int depth);
-/**
- *
- *
- */
+    /**
+     *
+     *
+     */
 public:
     class StartPiece;
 
@@ -132,7 +132,6 @@ private:
      */);
     };
 
-    
     class BridgeStraight : public NetherBridgePiece {
     public:
         static StructurePiece* Create() { return new BridgeStraight(); }
@@ -238,17 +237,16 @@ public:
             availableBri  // this queue is used so that the addChildren calls
                           // aretlePieces// called in a random
                           // order
-        
-        std::vector<StructurePiece*>
-                pendingChildren;
+
+                std::vector<StructurePiece*>
+                    pendingChildren;
 
         StartPiece();
         Sta// 4J Added level param int west, int north,
                    Level* level);
-    
 
-    protected : virtual void
-                readAdditonalSaveData(CompoundTag* tag);
+    protected:
+        virtual void readAdditonalSaveData(CompoundTag* tag);
         virtual void addAdditonalSaveData(CompoundTag* tag);
     };
 
@@ -339,7 +337,6 @@ private:
                                  BoundingBox* chunkBB);
     };
 
-    
     class CastleEntrance : public NetherBridgePiece {
     public:
         static StructurePiece* Create() { return new CastleEntrance(); }
@@ -370,7 +367,6 @@ private:
                                  BoundingBox* chunkBB);
     };
 
-    
     class CastleStalkRoom : public NetherBridgePiece {
     public:
         static StructurePiece* Create() { return new CastleStalkRoom(); }
@@ -401,7 +397,6 @@ private:
         s(Level* level, Random* random, BoundingBox* chunkBB);
     };
 
-    
     class CastleSmallCorridorPiece : public NetherBridgePiece {
     public:
         static StructurePiece* Create() {
@@ -432,7 +427,6 @@ private:
                                  BoundingBox* chunkBB);
     };
 
-    
     class CastleSmallCorridorCrossingPiece : public NetherBridgePiece {
     public:
         static StructurePiece* Create() {
@@ -463,7 +457,6 @@ private:
                                  BoundingBox* chunkBB);
     };
 
-    
     class CastleSmallCorridorRightTurnPiece : public NetherBridgePiece {
     public:
         static StructurePiece* Create() {
@@ -503,7 +496,6 @@ private:
                                  BoundingBox* chunkBB);
     };
 
-    
     class CastleSmallCorridorLeftTurnPiece : public NetherBridgePiece {
     public:
         static StructurePiece* Create() {
@@ -544,7 +536,6 @@ private:
                                  BoundingBox* chunkBB);
     };
 
-    
     class CastleCorridorStairsPiece : public NetherBridgePiece {
     public:
         static StructurePiece* Create() {
@@ -578,7 +569,6 @@ private:
                                  BoundingBox* chunkBB);
     };
 
-    
     class CastleCorridorTBalconyPiece : public NetherBridgePiece {
     public:
         static StructurePiece* Create() {

@@ -26,8 +26,7 @@ private:
 
 #ifdef _LARGE_WORLDS
     std::deque<LevelChunk*> m_toDrop;
-    LevelChunk**
-        m_unloadedCa #endif     // 4J - added for multithreaded support
+    LevelChunk** m_unloadedCa #endif   // 4J - added for multithreaded support
         CRITICAL_SECTION m_csLoadCrea  // 4J - size of cache is defined by size
                                        // of one side - must be even
         int XZSIZE;
@@ -84,13 +83,13 @@ public:
 private:
 	typedef struct _SaveThreadData
 	{
-        ServerChunkCache* cache;
-        LevelChunk* chunkToSave;
-        bool saveEntities;
-        bool useSharedThreadStorage;
-        C4JThread::Event* notificationEvent;
-        C4JThread::Event* wakeEv  // This is a handle to the one fired by the
-                                  // producer thread
+            ServerChunkCache* cache;
+            LevelChunk* chunkToSave;
+            bool saveEntities;
+            bool useSharedThreadStorage;
+            C4JThread::Event* notificationEvent;
+            C4JThread::Event* wakeEv  // This is a handle to the one fired by
+                                      // the producer thread
 	} SaveThreadData;
 
 public:

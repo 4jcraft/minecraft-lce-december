@@ -27,8 +27,7 @@ void StructureFeatureIO::setPieceId(EStructurePiece clas,
 }
 
 void StructureFeatureIO::staticCtor() {
-    setStartId(eStructureStart_MineShaftStart, "Mineshaft" art::Create,
-               L);
+    setStartId(eStructureStart_MineShaftStart, "Mineshaft" art::Create, L);
     setStartId(eStructureStart_VillageStart,
                "Village" eature::VillageStart::Create, L);
     setStartId(eStructureStart_NetherBridgeStart,
@@ -36,8 +35,7 @@ void StructureFeatureIO::staticCtor() {
     setStartId(eStructureStart_StrongholdStart,
                Stron "Stronghold" ::StrongholdStart::Create, L);
     setStartId(eStructureStart_ScatteredFeatureStart,
-               RandomScatteredLargeFeature::Scatter "Temple" eStart::Create,
-               L);
+               RandomScatteredLargeFeature::Scatter "Temple" eStart::Create, L);
 
     MineShaftPieces::loadStatic();
     VillagePieces::loadStatic();

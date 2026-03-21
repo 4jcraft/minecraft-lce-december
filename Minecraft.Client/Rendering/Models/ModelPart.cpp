@@ -157,7 +157,7 @@ void ModelPart::render(float scale, bool usecompiled,
                     cubes[i]->render(t, scale);
                 }
             }
-        }  // if (children != NULL) 
+        }  // if (children != NULL)
         {
             for (unsigned int i = 0; i < children.size(); i++) {
                 children.at(i)->render(scale, usecompiled);
@@ -175,7 +175,7 @@ void ModelPart::render(float scale, bool usecompiled,
                 for (unsigned int i = 0; i < cubes.size(); i++) {
                     cubes[i]->render(t, scale);
                 }
-                // if (children != NULL) 
+                // if (children != NULL)
                 {
                     for (unsigned int i = 0; i < children.size(); i++) {
                         children.at(i)->render(scale, usecompiled);
@@ -191,7 +191,7 @@ void ModelPart::render(float scale, bool usecompiled,
                         Tesselator* t = Tesselator::getInstance();
                         for (unsigned int i = 0; i < cubes.size(); i++) {
                             cubes[i]->render(t, scale);
-                            // if (children != NULL) 
+                            // if (children != NULL)
                             {
                                 for (unsigned int i = 0; i < children.size();
                                      i++) {

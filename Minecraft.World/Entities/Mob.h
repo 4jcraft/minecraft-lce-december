@@ -168,19 +168,20 @@ public:
     static Item* getEquipmentForSlot(int slot, int type);
 
 protected:
-    virtua/**
-     * Added this method so mobs can handle their own spawn settings instead of
-     * hacking MobSpawner.java
-     *
-     * @param groupData
-     *            TODO
-     * @return TODO
-     */
-    virtual MobGroupData* finalizeMobSpawn(
-  // 4J Added extraData paramta,
-        int extraData = 0);
-        // 4J Addedtual void finalizeSpawnEggSpawn(int extraData);  
-        virtual bool canBeControlledByRider();
+    virtua /**
+            * Added this method so mobs can handle their own spawn settings
+            * instead of hacking MobSpawner.java
+            *
+            * @param groupData
+            *            TODO
+            * @return TODO
+            */
+        virtual MobGroupData*
+        finalizeMobSpawn(
+            // 4J Added extraData paramta,
+            int extraData = 0);
+    // 4J Addedtual void finalizeSpawnEggSpawn(int extraData);
+    virtual bool canBeControlledByRider();
     virtual std::wstring getAName();
     virtual void setPersistenceRequired();
     virtual void setCustomName(const std::wstring& name);
@@ -197,9 +198,7 @@ protected:
 
 protecte  // roper / leash methodsnteract(std::shared_ptr<Player> player);
 
-    
-
-private : bool _isLeashed;
+    private : bool _isLeashed;
     std::shared_ptr<Entity> leashHolder;
     CompoundTag* leashInfoTag;
 
@@ -217,6 +216,6 @@ private:
     virtu  // 4J Added override to update ai elements when loading entity from
            // c);
         // schematics
-    
-    virtual void setLevel(Level* level);
+
+        virtual void setLevel(Level* level);
 };

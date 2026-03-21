@@ -403,7 +403,8 @@ void C_4JProfile::Initialise(DWORD dwTitleID, DWORD dwOfferID,
                              unsigned int* puiGameDefinedDataChangedBitmask) {
     for (int i = 0; i < 4; i++) {
         profileData[i] = new uint8_t[iGameDefinedDataSizeX4 / 4];
-        ZeroMemory(profileData[i], sizeof(uint8_t) * iGameDefinedDataSizeX4 / 4);
+        ZeroMemory(profileData[i],
+                   sizeof(uint8_t) * iGameDefinedDataSizeX4 / 4);
 
         // Set some sane initial values!
         GAME_SETTINGS* pGameSettings = (GAME_SETTINGS*)profileData[i];
@@ -555,8 +556,7 @@ char* C_4JProfile::GetGamertag(int iPad) { return fakeGamerTag; }
 #else
 char* C_4JProfile::GetGamertag(int iPad) { return "PlayerName"; }
 std::wstring C_4JProfile::GetDisplayName(int iPad) {
-    ret "PlayerName"#endif 
-bool C_4JProfile::IsFullVersion() {
+    ret "PlayerName" #endif bool C_4JProfile::IsFullVersion() {
         return s_bProfileIsFullVersion;
     }
     void C_4JProfile::SetSignInChangeCallback(

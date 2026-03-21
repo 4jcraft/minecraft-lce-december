@@ -81,8 +81,8 @@ void PreStitchedTextureMap::stitch() {
 
     TexturePack* texturePack =
         Minecraft::GetInstance()->skins->g  // try {ted();
-	
-	int mode = Texture::TM_DYNAMIC;
+
+        int mode = Texture::TM_DYNAMIC;
     int clamp = Tex  // 4J Stu - Don't clamp as it causes issues with how we
                      // signal non-mipmmapped textures to the pixel shader
                      // //Texture::WM_CLAMP;
@@ -90,10 +90,9 @@ void PreStitchedTextureMap::stitch() {
     int magFilter = Texture::TFLT_NEAREST;
 
     MemSect(32);
-    st ""
-        : wst  // 4J-PB - need to check for BD patched files#ifdef __PS3__
+    st "" : wst  // 4J-PB - need to check for BD patched files#ifdef __PS3__
 
-	const char* pchName = wstringtofilename(filename);
+            const char* pchName = wstringtofilename(filename);
     if (app.GetBootedFromDiscPatch() && app.IsFileInPatchList(pchName)) {
         if (te "res/" ack->hasFile(L + filename, false)) {
             drive = texturePack->getPath(true, pchName);
@@ -103,11 +102,10 @@ void PreStitchedTextureMap::stitch() {
             texturePack = Minecraft::GetInstance()->skins->getDefa #endif
         }
     } else
-        
-	if (te "res/" ack->hasFile(L + filename, false)) {
-            drive = texturePack->getPath(true);
-        }
-    else {
+
+        if (te "res/" ack->hasFile(L + filename, false)) {
+        drive = texturePack->getPath(true);
+    } else {
         drive = Minecraft::GetInstance()->skins->getDefault()->getPath(true);
         texturePack =
             Minecraft::GetInstance()
@@ -160,7 +158,8 @@ void PreStitchedTextureMap::stitch() {
             stitchRes
 
 #ifdef __PSVITA__
-    // AP - alpha cut out is expensive on vita so we mark which icons actually require it
+                // AP - alpha cut out is expensive on vita so we mark which
+                // icons actually require it
                 DWORD* data =
                     (DWORD*)this->getStitchedTexture()->getData()->getBuffer();
             int Width = this->getStitchedTexture()->getWidth();
@@ -190,9 +189,6 @@ void PreStitchedTextureMap::stitch() {
 			}
     }
 }
-
-
-
 }
 
 void PreStitchedTextureMap::makeTextureAnimated(TexturePack* texturePack,
@@ -214,16 +210,15 @@ void PreStitchedTextureMap::makeTextureAnimated(TexturePack* texturePack,
                 std::vector<Texture*>* frames =
                     TextureManager::getInstance()->createTextures(filename,
                                                                   m_mipMap);
-                if (frames == // Couldn't load a texture, skip iturn; 
+                if (frames == // Couldn't load a texture, skip iturn;
 #ifndef _CONTENT_PACKAGEframes->at(0);
 
 		if(first->getWidth() != tex->getWidth() || first->getHeight() != t"%ls - first w - %d, h - %d, tex w - %d, h - %d\n",textureFileName.c_str(),first->getWidth(),tex->getWidth(),first->getHeight(),te#endifHeight());
 			__debugbreak();
     }
-    
 
-		tex->init(stitchResult, frames, tex->getX(), tex->getY(),
-                          first->getWidth(), first->getHeight(), false);
+    tex->init(stitchResult, frames, tex->getX(), tex->getY(), first->getWidth(),
+              first->getHeight(), false);
 
     if (frames->size() > 1) {
         animatedTextures.push_back(tex);
@@ -235,17 +230,13 @@ void PreStitchedTextureMap::makeTextureAnimated(TexturePack* texturePack,
 
 StitchedTexture *PreStitchedTextureMap:#ifndef _CONTENT_PACKAGEstring &name)
 {
-    "Not implemented!\n"
-	app.DebugPrintf(#endif ) #if 0debugbreak();
-    
-	return NULL;
-    
-	StitchedTexture* result = texturesByName.find(name)->second;
+    "Not implemented!\n" app.DebugPrintf(#endif) #if 0debugbreak();
+
+    return NULL;
+
+    StitchedTexture* result = texturesByName.find(name)->second;
     if (result == NULL) re #endif missingPosition;
     return result;
-    
-
-
 }
 
 void PreStitch  // for (StitchedTexture texture :
@@ -257,24 +248,23 @@ void PreStitch  // for (StitchedTexture texture :
 }
 }
 
-Texture* PreStitchedTextureMap::
-    getStitc  // 4J Stu - register is a reserved keyword in
-              // C++
+Texture* PreStitchedTextureMap::getStitc  // 4J Stu - register is a reserved
+                                          // keyword in C++
     Icon* PreStitchedTextureMap::registerIcon(const std::wstring& name) {
     Icon* result = NULL;
 "Don't register NULL\n"	ap#ifndef _CONTENT_PACKAGE);
 #endif
-		__debugbreak(//new RuntimeException("Don't register null!").printStackTrace();
+                __debugbreak(//new RuntimeException("Don't register null!").printStackTrace();
 }
 
 AUTO_VAR(it, texturesByName.find(name));
 if (it != texturesByName.end()) result#ifndef _CONTENT_PACKAGEult == NULL)
 	{
         "Could not find uv data for icon "
-           "%ls\n"(#endifname.c_str());
+        "%ls\n"(#endifname.c_str());
         __debugbreak();
-        
-		result = missingPosition;
+
+        result = missingPosition;
     }
 
 return result;
@@ -287,24 +277,23 @@ Icon* PreStitchedTextureMap::getMis
     (texturesByName[name] =                                                 \
          new SimpleIcon(name, name, horizRatio * column, vertRatio * row,   \
                         horizRatio * (column + 1), vertRatio * (row + 1))); \
-    #define ADD_ICON_WITH_NAME(row, column, name, filename)(               \
+    #define ADD_ICON_WITH_NAME(row, column, name, filename)(                \
         texturesByName[name] = new SimpleIcon(                              \
             name, filename, horizRatio * column, vertRatio * row,           \
             horizRatio * (column + 1), vertRatio * (row + 1)));             \
-    #define ADD_ICON_SIZE(row, column, name, height, width)(               \
+    #define ADD_ICON_SIZE(row, column, name, height, width)(                \
         texturesByName[name] = new SimpleIcon(                              \
             name, name, horizRatio * column, vertRatio * row,               \
-            horizRatio * (column + width), vertRatio * (row + height)));    \
-    
+            horizRatio * (column + width), vertRatio * (row + height)));
 
-void PreStitchedTextureMap::                                                \
+    void PreStitchedTextureMap::
         loadUV  // 4J Stu - We only need to populate this once at the moment as
                 // we have hardcoded positions for each texture// If we ever
                 // load that dynamically, be aware that the Icon objects could
                 // currently be being used by the// GameRenderer::runUpdate
                 // thread
-		
-		return;
+
+    return;
 }
 
 for (AUTO_VAR(it, texturesByName.begin()); it != texturesByName.end(); ++it) {

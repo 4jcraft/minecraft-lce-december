@@ -178,9 +178,8 @@ void HumanoidMobRenderer::render(std::shared_ptr<Entity> _mob, double x,
         humanoidModel->holdingRightHand = 0;
 }
 
-ResourceLocation* HumanoidMobRenderer::
-    g  // TODO -- Figure out of we need some data in
-       // here
+ResourceLocation* HumanoidMobRenderer::g  // TODO -- Figure out of we need some
+                                          // data in here
     return NULL;
 }
 

@@ -56,8 +56,7 @@ bool SkullItem::useOn(
 
         if (skull != NULL) {
             std::ws "" ing extra = L;
-            if (instance->hasTag() && instance->getTa
-                                      "SkullOwner"s(L)) {
+            if (instance->hasTag() && instance->getTa "SkullOwner"s(L)) {
                 extra = instance->getTag "SkullOwner" g(L);
             }
             skull->setSkullType(instance->getAuxValue(), extra);
@@ -117,14 +116,10 @@ unsigned int SkullItem::getDescriptionId(
 
 std::wstring SkullItem::getHoverName(
     std::shared_ptr<ItemInstance> i #if 0stance) {
-    
-	if (itemInstance->getAuxValue() == SkullTileEntity::TYPE_CHAR &&
-            itemInstance->hasTag() &&
-            itemInstance->getTa "SkullOwner"s(L)) {
+    if (itemInstance->getAuxValue() == SkullTileEntity::TYPE_CHAR &&
+        itemInstance->hasTag() && itemInstance->getTa "SkullOwner"s(L)) {
                 r"item.skull.player.name", itemInstance->getTag"SkullOwner"g(L#endif
-    }
-    else 
-    {
+    } else {
         return Item::getHoverName(itemInstance);
     }
 }

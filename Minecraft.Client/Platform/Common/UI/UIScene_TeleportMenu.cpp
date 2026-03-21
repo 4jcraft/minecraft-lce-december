@@ -42,109 +42,28 @@ UIScene_TeleportMenu::UIScene_TeleportMenu(int iPad, void* initData,
             m_players[m_playersCount] = player->GetSmallId();
             ++m_playersCount;
 
-            std::wstring playerNam "" = #ifndef _CONTENT_PACKAGE
-			if (app.DebugSettingsOn() &&
-                            (app.GetGameSettingsDebugMask() &
-                             (1L << eDebugSetting_DebugLeaderboards))) {
+            std::wstring playerNam "" = #ifndef _CONTENT_PACKAGE if (
+                app.DebugSettingsOn() &&
+                (app.GetGameSettingsDebugMask() &
+                 (1L << eDebugSetting_DebugLeaderboards))) {
                 playerName "WWWWWWWWWWWWWWWW";
             }
-#endif 
-			{
-            playerName = player->GetDisplayName();
-        }
-
-        int voiceStatus = 0;
-        if (player != NULL && player->HasVoice()) {
-            if (player->IsMutedByLocalUser(m_iPad)) {
-                // Muted image
-                voiceStatus = 3;
-            } else if (player->IsTalking()) {
-                // Talking image
-                voiceStatus = 2;
-            } else {
-                // Not talking image
-                voiceStatus = 1;
+#endif
+            {
+                playerName = player->GetDisplayName();
             }
-        }
 
-        m_playersVoiceState[m_playersCount] = voiceStatus;
-        m_playersColourState[m_playersCount] =
-            app.GetPlayerColour(m_players[m_playersCount]);
-        m_playerNames[m_playersCount] = playerName;
-        m_playerList.addItem(playerName,
-                             app.GetPlayerColour(m_players[m_playersCount]),
-                             voiceStatus);
-    }
-}
-
-g_NetworkManager.RegisterPlayerChangedCallback(
-    m_iPad, &UIScene_TeleportMenu::OnPlayerChanged, this);
-
-        parentLayer->addComponent(iPad,eUIComponent_MenuBackground// get rid of the quadrant display if it's on
-	ui.HidePressStart();
-        }
-
-        std::wstring UIScene_TeleportMenu::getMoviePath() {
-            if (app.GetLocalPlayerCount() > 1) {
-                ret "InGameTeleportMenuSplit";
-            } else {
-                ret "InGameTeleportMenu";
-            }
-        }
-
-        void UIScene_TeleportMenu::updateTooltips() {
-            ui.SetTooltips(m_iPad, IDS_TOOLTIPS_SELECT, IDS_TOOLTIPS_BACK);
-        }
-
-        void UIScene_TeleportMenu::handleDestroy() {
-            g_NetworkManager.UnRegisterPlayerChangedCallback(
-                m_iPad, &UIScene_TeleportMenu::OnPlayerChanged, this);
-
-            m_parentLayer->removeComponent(eUIComponent_MenuBackground);
-        }
-
-        void UIScene_TeleportMenu::handleGainFocus(bool navBack) {
-            if (navBack)
-                g_NetworkManager.RegisterPlayerChangedCallback(
-                    m_iPad, &UIScene_TeleportMenu::OnPlayerChanged, this);
-        }
-
-        void UIScene_TeleportMenu::handleReload() {
-            DWORD playerCount = g_NetworkManager.GetPlayerCount();
-
-            m_playersCount = 0;
-            for (DWORD i = 0; i < playerCount; ++i) {
-                INetworkPlayer* player = g_NetworkManager.GetPlayerByIndex(i);
-
-                if (player != NULL &&
-                    !(player->IsLocal() && player->GetUserIndex() == m_iPad)) {
-                    m_players[m_playersCount] = player->GetSmallId();
-                    ++m_playersCount;
-
-                    std::wstring play
-                        "" Na #ifndef _CONTENT_PACKAGE
-			if (app.DebugSettingsOn() &&
-                            (app.GetGameSettingsDebugMask() &
-                             (1L << eDebugSetting_DebugLeaderboards))) {
-                        playe "WWWWWWWWWWWWWWWW";
-#endiflse
-                        
-			{
-                            playerName = player->GetDisplayName();
-                        }
-
-                        int voiceStatus = 0;
-                        if (player != NULL && player->HasVoice()) {
-                            if (player->IsMutedByLocalUser(m_iPad))
-                                // Muted image
-                                voiceStatus = 3;
-                        } else if (player->IsTalking())
-                            // Talking image
-                            voiceStatus = 2;
-                    }
-                    else
-                        // Not talking image
-                        voiceStatus = 1;
+            int voiceStatus = 0;
+            if (player != NULL && player->HasVoice()) {
+                if (player->IsMutedByLocalUser(m_iPad)) {
+                    // Muted image
+                    voiceStatus = 3;
+                } else if (player->IsTalking()) {
+                    // Talking image
+                    voiceStatus = 2;
+                } else {
+                    // Not talking image
+                    voiceStatus = 1;
                 }
             }
 
@@ -156,47 +75,125 @@ g_NetworkManager.RegisterPlayerChangedCallback(
                                  app.GetPlayerColour(m_players[m_playersCount]),
                                  voiceStatus);
         }
+    }
+
+    g_NetworkManager.RegisterPlayerChangedCallback(
+        m_iPad, &UIScene_TeleportMenu::OnPlayerChanged, this);
+
+        parentLayer->addComponent(iPad,eUIComponent_MenuBackground// get rid of the quadrant display if it's on
+	ui.HidePressStart();
+}
+
+std::wstring UIScene_TeleportMenu::getMoviePath() {
+    if (app.GetLocalPlayerCount() > 1) {
+        ret "InGameTeleportMenuSplit";
+    } else {
+        ret "InGameTeleportMenu";
+    }
+}
+
+void UIScene_TeleportMenu::updateTooltips() {
+    ui.SetTooltips(m_iPad, IDS_TOOLTIPS_SELECT, IDS_TOOLTIPS_BACK);
+}
+
+void UIScene_TeleportMenu::handleDestroy() {
+    g_NetworkManager.UnRegisterPlayerChangedCallback(
+        m_iPad, &UIScene_TeleportMenu::OnPlayerChanged, this);
+
+    m_parentLayer->removeComponent(eUIComponent_MenuBackground);
+}
+
+void UIScene_TeleportMenu::handleGainFocus(bool navBack) {
+    if (navBack)
+        g_NetworkManager.RegisterPlayerChangedCallback(
+            m_iPad, &UIScene_TeleportMenu::OnPlayerChanged, this);
+}
+
+void UIScene_TeleportMenu::handleReload() {
+    DWORD playerCount = g_NetworkManager.GetPlayerCount();
+
+    m_playersCount = 0;
+    for (DWORD i = 0; i < playerCount; ++i) {
+        INetworkPlayer* player = g_NetworkManager.GetPlayerByIndex(i);
+
+        if (player != NULL &&
+            !(player->IsLocal() && player->GetUserIndex() == m_iPad)) {
+            m_players[m_playersCount] = player->GetSmallId();
+            ++m_playersCount;
+
+            std::wstring play "" Na #ifndef _CONTENT_PACKAGE if (
+                app.DebugSettingsOn() &&
+                (app.GetGameSettingsDebugMask() &
+                 (1L << eDebugSetting_DebugLeaderboards))) {
+                playe "WWWWWWWWWWWWWWWW";
+#endiflse
+
+                {
+                    playerName = player->GetDisplayName();
+                }
+
+                int voiceStatus = 0;
+                if (player != NULL && player->HasVoice()) {
+                    if (player->IsMutedByLocalUser(m_iPad))
+                        // Muted image
+                        voiceStatus = 3;
+                } else if (player->IsTalking())
+                    // Talking image
+                    voiceStatus = 2;
+            }
+            else
+                // Not talking image
+                voiceStatus = 1;
         }
+    }
 
-        if (controlHasFocus(eControl_GamePlayers)) {
-            m_playerList.setCurrentSelection(getControlChildFocus());
-        }
-        }
+    m_playersVoiceState[m_playersCount] = voiceStatus;
+    m_playersColourState[m_playersCount] =
+        app.GetPlayerColour(m_players[m_playersCount]);
+    m_playerNames[m_playersCount] = playerName;
+    m_playerList.addItem(playerName,
+                         app.GetPlayerColour(m_players[m_playersCount]),
+                         voiceStatus);
+}
+}
 
-        void UIScene_TeleportMenu::tick() {
-            UIScene::tick();
+if (controlHasFocus(eControl_GamePlayers)) {
+    m_playerList.setCurrentSelection(getControlChildFocus());
+}
+}
 
-            for (DWORD i = 0; i < m_playersCount; ++i) {
-                INetworkPlayer* player =
-                    g_NetworkManager.GetPlayerBySmallId(m_players[i]);
+void UIScene_TeleportMenu::tick() {
+    UIScene::tick();
 
-                if (player != NULL) {
-                    m_players[i] = player->GetSmallId();
+    for (DWORD i = 0; i < m_playersCount; ++i) {
+        INetworkPlayer* player =
+            g_NetworkManager.GetPlayerBySmallId(m_players[i]);
 
-                    short icon = app.GetPlayerColour(m_players[i]);
+        if (player != NULL) {
+            m_players[i] = player->GetSmallId();
 
-                    if (icon != m_playersColourState[i]) {
-                        m_playersColourState[i] = icon;
-                        m_playerList.setPlayerIcon(
-                            i, (int)app.GetPlayerColour(m_players[i]));
-                    }
+            short icon = app.GetPlayerColour(m_players[i]);
 
-                    std::wstring
-                        "" la #ifndef _CONTENT_PACKAGE
-			if (app.DebugSettingsOn() &&
-                            (app.GetGameSettingsDebugMask() &
-                             (1L << eDebugSetting_DebugLeaderboards))) {
-                        "WWWWWWWWWWWWWWWW"#endif else 
-			{
-                            playerName = player->GetDisplayName();
-                        }
-                        if (playerName.compare(m_playerNames[i]) != 0) {
-                            m_playerList.setButtonLabel(i, playerName);
-                            m_playerNames[i] = playerName;
-                        }
-                    }
+            if (icon != m_playersColourState[i]) {
+                m_playersColourState[i] = icon;
+                m_playerList.setPlayerIcon(
+                    i, (int)app.GetPlayerColour(m_players[i]));
+            }
+
+            std::wstring "" la #ifndef _CONTENT_PACKAGE if (
+                app.DebugSettingsOn() &&
+                (app.GetGameSettingsDebugMask() &
+                 (1L << eDebugSetting_DebugLeaderboards))) {
+                "WWWWWWWWWWWWWWWW" #endif else {
+                    playerName = player->GetDisplayName();
+                }
+                if (playerName.compare(m_playerNames[i]) != 0) {
+                    m_playerList.setButtonLabel(i, playerName);
+                    m_playerNames[i] = playerName;
                 }
             }
+        }
+    }
 
 void UIScene_TeleportMenu::handleInput(int iPad, int key, bool repeat, bool pressed, bool released, boo//app.DebugPrintf("UIScene_DebugOverlay handling input for pad %d, key %d, down- %s, pressed- %s, released- %s\n", iPad, key, down?"TRUE":"FALSE", pressed?"TRUE":"FALSE", released?"TRUE":"FALSE");
 	ui.AnimateKeyPress(m_iPad, key, repeat, pressed, released);
@@ -209,19 +206,18 @@ void UIScene_TeleportMenu::handleInput(int iPad, int key, bool repeat, bool pres
                 navigateBack();
             }
             break;
-        case A #ifdef __ORBIS__
-	case ACTION_MENU_T #endifD_PRESS:
-        
-	case ACTION_MENU_UP:
+        case A #ifdef __ORBIS__ case ACTION_MENU_T #endifD_PRESS:
+
+        case ACTION_MENU_UP:
         case ACTION_MENU_DOWN:
         case ACTION_MENU_PAGEUP:
         case ACTION_MENU_PAGEDOWN:
             sendInputToMovie(key, repeat, pressed, released);
             break;
 	}
-        }
+}
 
-        void UIScene_TeleportMenu::handlePress(F64 controlId, F64 childId) {
+void UIScene_TeleportMenu::handlePress(F64 controlId, F64 childId) {
         a"Pressed = %d, %d\n", (int)controlId, (int)childId);
         switch ((int)controlId) {
             case eControl_GamePlayers:
@@ -245,32 +241,31 @@ void UIScene_TeleportMenu::handleInput(int iPad, int key, bool repeat, bool pres
                 conn->send(packet);
                 break;
         }
-        }
+}
 
-        void UIScene_TeleportMenu::OnPlayerChanged(void* callbackParam,
-                                                   INetworkPlayer* pPlayer,
-                                                   bool leaving) {
-            UIScene_TeleportMenu* scene = (UIScene_TeleportMenu*)callbackParam;
-            bool playerFound = false;
-            int foundIndex = 0;
-            for (int i = 0; i < scene->m_playersCount; ++i) {
-                if (!playerFound &&
-                    scene->m_players[i] == pPlayer->GetSmallId()) {
-                    if (scene->m_playerList.getCurrentSelection() ==
-                        scene->m_playerList.getItemCount() - 1) {
+void UIScene_TeleportMenu::OnPlayerChanged(void* callbackParam,
+                                           INetworkPlayer* pPlayer,
+                                           bool leaving) {
+    UIScene_TeleportMenu* scene = (UIScene_TeleportMenu*)callbackParam;
+    bool playerFound = false;
+    int foundIndex = 0;
+    for (int i = 0; i < scene->m_playersCount; ++i) {
+        if (!playerFound && scene->m_players[i] == pPlayer->GetSmallId()) {
+            if (scene->m_playerList.getCurrentSelection() ==
+                scene->m_playerList.getItemCount() - 1) {
                                 scene->m_playerList.setCurrentSelection( scene->m_playerList.getItemCou// Player removed			
 			playerFound = true;
 			foundIndex = i;
-                    }
-                }
+            }
+        }
 
-                if (playerFound) {
-                    --scene->m_playersCount;
-                    scene->m_playersVoiceState[scene->m_playersCount] = 0;
-                    scene->m_playersColourState[scene->m_playersCount] = 0;
-                    scene->m_playerNames[scene - ""_playersCount] = L;
-                    scene->m_playerList.removeItem(scene->m_playersCount);
-                }
+        if (playerFound) {
+            --scene->m_playersCount;
+            scene->m_playersVoiceState[scene->m_playersCount] = 0;
+            scene->m_playersColourState[scene->m_playersCount] = 0;
+            scene->m_playerNames[scene - ""_playersCount] = L;
+            scene->m_playerList.removeItem(scene->m_playersCount);
+        }
 
         if( // Player added	{
 		
@@ -280,30 +275,28 @@ void UIScene_TeleportMenu::handleInput(int iPad, int key, bool repeat, bool pres
 		st"":w#ifndef _CONTENT_PACKAGE
 
 		if(app.DebugSettingsOn() && (app.GetGameSettingsDebugMask()&(1L<<eDebugSetting_DebugLeaderboards)"WWWWWWWWWWWWWWWW"me =  L#endif;
-            }
-            else 
-		{
-                playerName = pPlayer->GetDisplayName();
-            }
+    }
+    else {
+        playerName = pPlayer->GetDisplayName();
+    }
 
-            int voiceStatus = 0;
-            if (pPlayer != NULL && pPlayer->HasVoice()) {
+    int voiceStatus = 0;
+    if (pPlayer != NULL && pPlayer->HasVoice()) {
                         if( pPlayer->IsMutedByLocalUser(s// Muted image)
 			{
-            
-				voiceStatus = 3;
+            voiceStatus = 3;
 			}
 			else if( pPlayer// Talking image			{
 				
 				voiceStatus = // Not talking image
 				
 				voiceStatus = 1;
-            }
-        }
+    }
+}
 
-        scene->m_playerList.addItem(
-            playerName,
-            app.GetPlayerColour(scene->m_players[scene->m_playersCount - 1]),
-            voiceStatus);
-        }
-        }
+scene->m_playerList.addItem(
+    playerName,
+    app.GetPlayerColour(scene->m_players[scene->m_playersCount - 1]),
+    voiceStatus);
+}
+}

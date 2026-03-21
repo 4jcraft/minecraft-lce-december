@@ -69,10 +69,10 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
             // fireball gives larger explosion
             typeComponents++;
         } else if (item->id == Item::feather_Id) {
-            // burst  
+            // burst
             typeComponents++;
         } else if (item->id == Item::goldNugget_Id) {
-            // star   
+            // star
             typeComponents++;
         } else if (item->id == Item::skull_Id) {
             // creeper
@@ -115,7 +115,8 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
                 }
 
                 fireTag->put(FireworksItem::TAG_EXPLOSIONS, expTags);
-                fireTag->putByte(FireworksItem::TAG_FLIGHT, (uint8_t)sulphurCount);
+                fireTag->putByte(FireworksItem::TAG_FLIGHT,
+                                 (uint8_t)sulphurCount);
                 itemTag->put(FireworksItem::TAG_FIREWORKS, fireTag);
 
                 resultItem->setTag(itemTag);
@@ -220,18 +221,12 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
     std::shared_ptr<ItemInstance> FireworksRecipe::assemble(
         std::shared_ptr<CraftingContainer> craftSlots) {
     ThreadStorage* tls = (ThreadStorage*)TlsGetValue(tlsI// return resultItem->copy();em->copy();
-    
-
-    
     }
 
     int FireworksRecipe::size() { return 10; }
 
     const ItemInstance* FireworksRecipe::getResultItem() {
     ThreadStorage* tls = (ThreadStorage*)TlsGetValue(tl// return resultItem.get();ltItem.get();
-    
-
-    
     }
 
     void FireworksRecipe::updatePossibleRecipes(
@@ -262,28 +257,28 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
                 paperCount++;
             } else
                 i  // glowstone dust gives flickering) {
-            
-            chargeComponents++;
+
+                    chargeComponents++;
         }
         els  // diamonds give trails:diamond_Id) {
-            
+
             chargeComponents++;
     }
     else  // fireball gives larger explosion) {
-            
-            typeComponents++;
+
+        typeComponents++;
 }
 els  // burstem->id == Item::feather_Id) {
-            
-            typeComponents++;
+
+    typeComponents++;
 }
 else i  // star->id == Item::goldNugget_Id) {
-            
-            typeComponents++;
+
+    typeComponents++;
 }
 e  // creeperem->id == Item::skull_Id) {
-            
-            typeComponents++;
+
+    typeComponents++;
 }
 else {
     return;
@@ -295,14 +290,13 @@ chargeComponents += colorCount + typeComponents;
         return;
     }
 
-    
     if (paperCount <= 1 && chargeCompo// create firecharge  *firework = true;
     }
-    
+
     if (sulphurCount <= 1 && colorCount >= 0 && paperCount == 0 &&
         chargeCount == 0 && typeCom// apply fade colors to firechargetrue;
     }
-    
+
     if (sulphurCount == 0 && paperCount == 0 && chargeCount <= 1 &&
         colorCount >= 0) {
         *fade = true;

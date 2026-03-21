@@ -67,8 +67,7 @@ public:
 
     static std::shared_ptr<Packet>  // 4J Addedint id);
 
-    
-    static bool canSendToAnyClient(std::shared_ptr<Packet> packet);
+        static bool canSendToAnyClient(std::shared_ptr<Packet> packet);
 
     static void writeBytes(DataOutputStream* dataoutputstream, byteArray bytes);
     static byteArray readBytes(DataInputStream* datainputstream);
@@ -77,9 +76,9 @@ public:
 
     bool sh  // 4J Added to track stats for packets that are going out via
              // QNet
-        static std::unordered_map<
-            int, PacketStatistics*>  // IntHashMap in 1.8.2 ...
-                                     // needed?
+        static std::unordered_map<int,
+                                  PacketStatistics*>  // IntHashMap in 1.8.2 ...
+                                                      // needed?
         static std::vector<PacketStatistics*> renderableStats;
     static int renderPos;
 
@@ -90,21 +89,19 @@ public:
 
 private:
 static std::unordered_map <  // static int nextPrint;statistics;
-    
 
-public : static std::shared_ptr<Packet> readPacket(DataInputStream* dis,
-                                                   bool isServer);
+    public : static std::shared_ptr<Packet> readPacket(DataInputStream* dis,
+                                                       bool isServer);
     static void writePacket(std::shared_ptr<Packet> packet,
                             DataOutputStream* dos);
     static void writeUtf(const std::wstring& value, DataOutputStream* dos);
     static std::wstring readUtf(DataInputStream* dis, int maxLength);
-    virtual void re  // throws IOException = 0; TODO 4J JEV,
-                     // // should this
-                     // declare a throws? 
-        virtual void
-            writ  // throws IOException = 0; TODO 4J JEV,
-                  // // should this declare
-                  // a throws?        
+    virtual void re        // throws IOException = 0; TODO 4J JEV,
+                           // // should this
+                           // declare a throws?
+        virtual void writ  // throws IOException = 0; TODO 4J JEV,
+                           // // should this declare
+                           // a throws?
         virtual void handle(PacketListener* listener) = 0;
     virtual int getEstimatedSize() = 0;
     virtual bool canBeInvalidated();

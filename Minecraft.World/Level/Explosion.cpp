@@ -117,8 +117,8 @@ void Explosion::explode() {
                    // should not be damaged Fix for #46606 - TU5: Content:
                    // Gameplay:// The player can be damaged and killed
                    // by explosions behind obsidian// walls
-        
-        bool canDamage = false;
+
+            bool canDamage = false;
         for (AUTO_VAR(it2, toBlow.begin()); it2 != toBlow.end(); ++it2) {
             if (e->bb->intersects(it2->x, it2->y, it2->z, it2->x + 1,
                                   it2->y + 1, it2->z + 1)) {
@@ -161,7 +161,7 @@ void Explosion::explode() {
                                          // knockback (%f,%f,%f)\n", xa
                                          // *// pow, ya * pow,
                                          // za * pow);
-                                         // 
+                                         //
                         hitPlayers.insert(playerVec3Map::value_type(
                             player,
                             Vec3::newPermanent(xa * pow, ya * pow, za * pow)));

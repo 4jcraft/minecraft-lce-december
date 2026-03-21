@@ -46,6 +46,4 @@ public:
     void loadFromTag(CompoundTag *tag);
     vector<std::wstring> *getRuleNames();
     bool contains(const std::wstring &rule);*/
-
-
 };

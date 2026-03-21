@@ -56,7 +56,7 @@ public:
     static Achievement* mine100Blocks;
     static Achievement* kill10Creep
 #ifdef _EXTENDED_ACHIEVEMENTS
-    static Achievement* overki      // Old achievements;
+        static Achievement* overki  // Old achievements;
         static Achievement* bookca  // Old achievements;
         static Achievement* adventuringTime;
     static Achievement* repopulation;
@@ -76,10 +76,10 @@ public:
     static Achievement* bodyGuard;
     static Achievement* ironMan;
     static Achievement* zombieDoctor;
-    static Achievement* lionTa #endif 
+    static Achievement* lionTa #endif
 
-    static void
-    staticCtor();
+        static void
+        staticCtor();
 
     static void init();
 };

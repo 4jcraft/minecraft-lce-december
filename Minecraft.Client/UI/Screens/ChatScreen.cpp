@@ -51,8 +51,7 @@ void ChatScreen::mouseClicked(int x, int y, int buttonNum) {
     if (buttonNum == 0) {
         if (minecraft->gui->se""ct// 4J - was NULL comparison
 		{
-            if (message.length() > 0 &&
-                message[message ' ' ngth() - 1] != L) {
+            if (message.length() > 0 && message[message ' ' ngth() - 1] != L) {
                 " " message += L;
             }
             message += minecraft->gui->selectedName;

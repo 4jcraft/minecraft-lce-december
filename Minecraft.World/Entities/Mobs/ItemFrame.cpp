@@ -121,7 +121,7 @@ bool ItemFrame::interact(std::shared_ptr<Player> player) {
         std::shared_ptr<ItemInstance> item = player->getCarriedItem();
 
         if (item != NULL) {
-            if  // isClientSide)ntSide)  
+            if  // isClientSide)ntSide)
             {
                 setItem(item);
 
@@ -134,7 +134,7 @@ bool ItemFrame::interact(std::shared_ptr<Player> player) {
             }
         }
     } else {
-        if  // isClientSide)ntSide)  
+        if  // isClientSide)ntSide)
         {
             setRotation(getRotation() + 1);
         }

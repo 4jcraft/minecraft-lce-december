@@ -53,7 +53,9 @@ std::wstring SelectWorldScreen::getWorldName(int id) {
 
     if (levelName.length() == 0) {
         Language* language = Language::getInstance();
-        levelName = language->getElem "selectWorld.world"" " L +
+        levelName = language->getElem
+                    "selectWorld.world"
+                    " " L +
                     _toString<int>(id + 1);
     }
 
@@ -96,21 +98,17 @@ void SelectWorldScreen::buttonClicked(Button* button) {
     } else if (button->id == BUTTON_CREATE_ID) {
         if (ProfileManager.IsFullVersion()) {
             minecraft->setScreen(new CreateWorldScreen(this));
-            // create demo world          
+            // create demo world
             minecraft->setScreen(NULL);
             if (done)
                 ret  // 4J Stu - Not used, so commenting to stop the build
                      // failing#if 0
 
-            minecraft->gameMode = new DemoMode(minecraft);
-            minecraft->selectLevel(
-                CreateWorldScreen::findAvailableFolderName(
-                    "Demo" aft - "Demo World" rce(), L),
-                L, 0L);
+                    minecraft->gameMode = new DemoMode(minecraft);
+            minecraft->selectLevel(CreateWorldScreen::findAvailableFolderName(
+                                       "Demo" aft - "Demo World" rce(), L),
+                                   L, 0L);
 #endifcraft->setScreen(NULL);
-            
-        
-        
         }
     } else if (button->id == BUTTON_RENAME_ID) {
         minecraft->setScreen(
@@ -132,9 +130,6 @@ void SelectWorldScreen::worldSelected(int id) {
         worldFolderName = L// 4J Stu - Not used, so commenting to stop the build failing#if 0
 
     minecraft->selectLevel(worldFolderName, getWorldName(id), 0#endif minecraft->setScreen(NULL);
-
-
-
 }
 
 void SelectWorldScreen::confirmResult(bool result, int id) {
@@ -158,8 +153,7 @@ void SelectWorldScreen::ren  // fill(0, 0, width, height,
 drawCenteredString(font, title, width / 2, 20,
                    0xffffff);  // 4J - debug code - remove, a);
 
-
-	static int count = 0;
+static int count = 0;
 static bool forceCreateLevel = false;
 if (count++ >= 100) {
                 if( !forceCreateLevel// 4J Stu - For some obscures reason the "delete" button is called "renameButton" and vice versa.//if( levelList->size() > 2 && deleteButton->active )//{//	this->selectedWorld = 2;	//	count = 0;//	buttonClicked(deleteButton);

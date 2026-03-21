@@ -24,8 +24,7 @@ ServerConnection::~ServerConnection() { DeleteCriticalSection(&pending_cs); }
 void ServerConnection::NewIncomingSocket(Socket* socket) {
     std::shared_ptr<PendingConnection> unconnectedClient =
         std::shared_ptr<PendingConnection>(new PendingConnection(
-            server,
-            "Connection #" + _toString<int>(connectionCounter++)));
+            server, "Connection #" + _toString<int>(connectionCounter++)));
     handleConnection(unconnectedClient);
 }
 
@@ -68,10 +67,9 @@ for (unsigned int i = 0; i < tempPending.size(); i++) {
                 //            uc.disconnect("Internal server error");//
         //            logger.log(Level.WARNING, "Failed to handle packet: " + e,
         //            e);//        }
-	
-			if (uc->connection !=
-                            NULL)  // now remove from the pending
-                                   // list
+
+        if (uc->connection != NULL)  // now remove from the pending
+                                     // list
         EnterCriticalSection(&pending_cs);
     for (unsigned int i = 0; i < pending.size(); i++)
         if (pending[i]->done) {
@@ -150,12 +148,17 @@ bool ServerConnection::addPendingTextureRequest(
 
         if (packet->action == ServerSettingsChangedPacket::HOST_DIFFICULTY) {
                 for(unsigned int i = 0; i < pMinecraft->levels.length; ++i"ClientConnection::handleServerSettingsChanged - Difficulty = %d"intf(,packet->data// 	else if(packet->action==ServerSettingsChangedPacket::HOST_IN_GAME_SETTINGS)// options// 	{// 		app.SetGameHostOption(eGameHostOption_All,packet->m_serverSettings)// 	}// 	else// 	{// 		unsigned char ucData=(unsigned char)packet->data;
-// 		if(ucData&1)// 		{// 			// hide gamertags// 			pMinecraft->options->SetGamertagSetting(true);// 		}// 		else
-// 		{// 			pMinecraft->options->SetGamertagSetting(false);// 		}// // 		for (unsigned int i = 0; i < players.size(); i++)// 		{// 			shared_ptr<PlayerConnection> playerconnection = players[i];// 			playerconnection->setShowOnMaps(pMinecraft->options->GetGamertagSetting());				// 		}// 	}
-
-
-
-        
+                // 		if(ucData&1)// 		{//
+                // // hide gamertags//
+                // pMinecraft->options->SetGamertagSetting(true);//
+                // }// 		else
+                // 		{//
+                // pMinecraft->options->SetGamertagSetting(false);//
+                // }// // 		for (unsigned int i = 0; i <
+                // players.size(); i++)// 		{//
+                // shared_ptr<PlayerConnection> playerconnection = players[i];//
+                // playerconnection->setShowOnMaps(pMinecraft->options->GetGamertagSetting());
+                // // 		}// 	}
         }
 
         std::vector<std::shared_ptr<PlayerConnection> >*

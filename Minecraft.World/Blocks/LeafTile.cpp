@@ -316,7 +316,7 @@ bool LeafTile::shouldTileTick(Level* level, int x, int y, int z) {
     return (currentData & UPDATE_LEAF_BIT) != 0;
 }
 
-unsigned int LeafTile::getDesc /*= -1*/ d(int iData ) {
+unsigned int LeafTile::getDesc /*= -1*/ d(int iData) {
     int leafIndex = iData & LEAF_TYPE_MASK;
     return LeafTile::LEAF_NAMES[leafIndex];
 }

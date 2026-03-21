@@ -255,14 +255,16 @@ bool BiomeSource::containsOnly(int x, int z, int r,
             return false;
     }
 
-    return/**
- * Checks if an area around a block contains only the specified biome.
- * Useful for placing elements like towns.
- *
- * This is a bit of a rough check, to make it as fast as possible. To ensure
- * NO other biomes, add a margin of at least four blocks to the radius
- */
-bool BiomeSource::containsOnly(int x, int z, int r, Biome* allowed) {
+    return /**
+            * Checks if an area around a block contains only the specified
+            * biome. Useful for placing elements like towns.
+            *
+            * This is a bit of a rough check, to make it as fast as possible. To
+            * ensure NO other biomes, add a margin of at least four blocks to
+            * the radius
+            */
+        bool
+        BiomeSource::containsOnly(int x, int z, int r, Biome* allowed) {
         IntCache::releaseAll();
         int x0 = ((x - r) >> 2);
         int z0 = ((z - r) >> 2);
@@ -278,14 +280,15 @@ bool BiomeSource::containsOnly(int x, int z, int r, Biome* allowed) {
             if (allowed != b) return false;
         }
 
-        return/**
- * Finds the specified biome within the radius. This will return a random
- * position if several are found. This test is fairly rough.
- *
- * Returns null if the biome wasn't found
- */
-TilePos* BiomeSource::findBiome(int x, int z, int r, Biome* toFind,
-                                Random* random) {
+        return /**
+                * Finds the specified biome within the radius. This will return
+                * a random position if several are found. This test is fairly
+                * rough.
+                *
+                * Returns null if the biome wasn't found
+                */
+            TilePos * BiomeSource::findBiome(int x, int z, int r, Biome* toFind,
+                                             Random* random) {
             IntCache::releaseAll();
             int x0 = ((x - r) >> 2);
             int z0 = ((z - r) >> 2);
@@ -310,14 +313,17 @@ TilePos* BiomeSource::findBiome(int x, int z, int r, Biome* toFind,
                 }
             }
 
-            retur/**
- * Finds one of the specified biomes within the radius. This will return a
- * random position if several are found. This test is fairly rough.
- *
- * Returns null if the biome wasn't found
- */
-TilePos* BiomeSource::findBiome(int x, int z, int r, std::vector<Biome*> allowed,
-                                Random* random) {
+            retur /**
+                   * Finds one of the specified biomes within the radius. This
+                   * will return a random position if several are found. This
+                   * test is fairly rough.
+                   *
+                   * Returns null if the biome wasn't found
+                   */
+                TilePos*
+                BiomeSource::findBiome(int x, int z, int r,
+                                       std::vector<Biome*> allowed,
+                                       Random* random) {
                 IntCache::releaseAll();
                 int x0 = ((x - r) >> 2);
                 int z0 = ((z - r) >> 2);
@@ -352,16 +358,16 @@ TilePos* BiomeSource::findBiome(int x, int z, int r, std::vector<Biome*> allowed
                                           // - find a seed for this biomesource
                                           // that matches certain
                                           // criteria#ifdef __PSVITA__
-                
-__int64 BiomeSource::findSeed(
+
+                __int64 BiomeSource::findSeed(
                     LevelType * generator,
                     boo  // MGH - added pRunning, so we can early out of
                          // this on Vita as it can take up
                          // to 60 secs#else
 
-__int64 BiomeSource::findSeed(Le #endife * generator)
+                    __int64 BiomeSource::findSeed(Le #endife * generator)
 
-{
+                    {
                         __int64 bestSeed = 0;
 
                         ProgressRenderer* mcprogress =
@@ -405,11 +411,8 @@ __int64 BiomeSource::findSeed(Le #endife * generator)
                 mcprogress->progressStagePercenta#ifdef __PSVITA__);
                 
             } while (!matchFound &#elseerverRunning);
-
-            
-                    
                     } w #endif !matchFound);
-                // Clean up         
+                // Clean up
                 delete pr;
             d
 #ifdef DEBUG_SEEDS
@@ -423,33 +426,31 @@ __int64 BiomeSource::findSeed(Le #endife * generator)
 
             unsigned int* pixels = new unsigned int[54 * 16 * 54 * 16];
             for (int i = 0; i < 54 * 16 * 54 * 16; i++) {
-                int id =
-                    biomes[i]
-                        ->i  // Create following colours:// 0
-                             // ocean				0000
-                             // black// 1	plains
-                             // 0001	pastel cyan// 2
-                             // desert				0010
-                             // green// 3	extreme hills
-                             // 0011	yellow// 4	forest
-                             // 0100	blue// 5	taiga
-                             // 0101	magenta// 6	swamps
-                             // 0110	cyan// 7	river
-                             // 0111	white// 8	hell
-                             // 1000	grey// 9	end
-                             // biome			1001
-                             // white// 10	frozen ocean
-                             // 1010	pastel green// 11
-                             // frozen river		1011	pastel
-                             // yellow// 12	ice flats
-                             // 1100	pastel blue// 13
-                             // ice mountains		1101	pastel
-                             // magenta// 14	mushroom island
-                             // 1110	red// 15   mushroom
-                             // shore		1111	pastel
-                             // red
+                int id = biomes[i]->i  // Create following colours:// 0
+                                       // ocean				0000
+                                       // black// 1	plains
+                                       // 0001	pastel cyan// 2
+                                       // desert
+                                       // 0010 green// 3	extreme hills
+                                       // 0011	yellow// 4	forest
+                                       // 0100	blue// 5	taiga
+                                       // 0101	magenta// 6	swamps
+                                       // 0110	cyan// 7	river
+                                       // 0111	white// 8	hell
+                                       // 1000	grey// 9	end
+                                       // biome			1001
+                                       // white// 10	frozen ocean
+                                       // 1010	pastel green// 11
+                                       // frozen river		1011	pastel
+                                       // yellow// 12	ice flats
+                                       // 1100	pastel blue// 13
+                                       // ice mountains		1101	pastel
+                                       // magenta// 14	mushroom island
+                                       // 1110	red// 15   mushroom
+                                       // shore		1111	pastel
+                                       // red
 
-                    if (id == 1) id = 14;
+                         if (id == 1) id = 14;
                 else if (id == 14) id = 1;
                 else if (id == 9) id = 15;
                 else if (id == 15) id = 9;
@@ -472,9 +473,6 @@ __int64 BiomeSource::findSeed(Le #endife * generator)
      delete[] pixels;
      delete biomes.data;
 #endif biomeSource;
-     
-        
-            
             }
         }
 

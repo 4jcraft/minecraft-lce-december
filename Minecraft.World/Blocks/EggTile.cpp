@@ -88,14 +88,14 @@ void EggTile::teleport(Level* level, int x, int y, int z) {
             // 4J Stu - This code will not work correctly on the client as
             // it will show the particles going in the wrong direction
             // and only for the player who attacks the egg
-            //	else   
-            //	{      
+            //	else
+            //	{
             //		int count = 128;
             //		for (int j = 0; j < count; j++)
-            //		{     
+            //		{
             //			double d = level->random->nextDouble(); // j
             //< count / 2 ? 0 :
-            //// 1;   
+            //// 1;
             //			float xa = (level->random->nextFloat() - 0.5f)
             //* 0.2f; 			float ya =
             // (level->random->nextFloat() - 0.5f) * 0.2f;
@@ -109,7 +109,7 @@ void EggTile::teleport(Level* level, int x, int y, int z) {
             //_z = zt + (z - zt) * d + (level->random->nextDouble() -
             // 0.5) * 1 + 0.5f;
             // level->addParticle(eParticleType_ender, _x, _y, _z, xa,
-            // ya, za);     		}      	} 
+            // ya, za);     		}      	}
             return;
         }
     }
@@ -146,9 +146,8 @@ int EggTile::cloneTileId(Level* level, int x, int y, int z) {
         char deltaZ = (deltas >> 16) & 0xFF;
 
         for (int j = 0; j < count; j++) {
-            double d =
-                level->random->nextD  // j < count / 2 ? 0 :// 1; 
-                float xa = (level->random->nextFloat() - 0.5f) * 0.2f;
+            double d = level->random->nextD  // j < count / 2 ? 0 :// 1;
+                       float xa = (level->random->nextFloat() - 0.5f) * 0.2f;
             float ya = (level->random->nextFloat() - 0.5f) * 0.2f;
             float za = (level->random->nextFloat() - 0.5f) * 0.2f;
 

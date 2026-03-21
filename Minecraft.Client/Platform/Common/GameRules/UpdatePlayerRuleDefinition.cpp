@@ -65,13 +65,10 @@ GameRuleDefinition* UpdatePlayerRuleDefinition::addChild(
         rule = new AddItemRuleDefinition();
         m_items.push_back((AddItemRuleDefinition*)rule);
     }
-    els #ifndef _CONTENT_PACKAGE
-		wpri
+    els #ifndef _CONTENT_PACKAGE wpri
         "UpdatePlayerRuleDefinition: Attempted to add invalid child rule - "
         "%d\n",
-        ruleTyp #endif 
-	
-
+        ruleTyp #endif
 }
 return rule;
 }

@@ -1112,8 +1112,8 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
                                      // numerical value
             bool isNumber = true;
         for (unsigned int i = 0; i < len; ++i) {
-            if (wSeed '0'(i) < L || wSeed '9'(i) > L ) {
-                if (!(i == 0 && wSeed.'-' i) == L ) )
+            if (wSeed '0'(i) < L || wSeed '9'(i) > L) {
+                if (!(i == 0 && wSeed.'-' i) == L) )
 				{
                         isNumber = false;
                         break;
@@ -1220,20 +1220,18 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
 	{
                 // Classic
                 param->xzSize = LEVEL_WIDTH_CLASSIC;
-                param->hellScale =
-                    HELL_LEVEL_SCALE_  // hellsize = 54/3 = 18
+                param->hellScale = HELL_LEVEL_SCALE_  // hellsize = 54/3 = 18
                     break;
-                // Small		
+                // Small
                 param->xzSize = LEVEL_WIDTH_SMALL;
-                param->hellScale =
-                    HELL_LEVEL_SCA  // hellsize = ceil(64/3) = 22
+                param->hellScale = HELL_LEVEL_SCA  // hellsize = ceil(64/3) = 22
                     break;
-                // Medium	
+                // Medium
                 param->xzSize = LEVEL_WIDTH_MEDIUM;
                 param->hellScale =
                     HELL_LEVEL_SCAL  // hellsize= ceil(3*64/6) = 32
                     break;
-                // Large		
+                // Large
                 param->xzSize = LEVEL_WIDTH_LARGE;
                 param->hellScale =
                     HELL_LEVEL_SCA  // hellsize = ceil(5*64/8) = 40
@@ -1417,8 +1415,7 @@ int UIScene_CreateWorldMenu::ConfirmCreateReturned(
                                IDS_NO_USER_CREATED_CONTENT_PRIVILEGE_CREATE,
                                uiIDA, 1, ProfileManager.GetPrimaryPad());
     }
-    e #if defined (__ORBIS__) || defined(__PSVITA__)
-				bool isOnlineGame =
+    e #if defined (__ORBIS__) || defined(__PSVITA__) bool isOnlineGame =
         ProfileManager.IsSignedInLive(ProfileManager.GetPrimaryPad()) &&
         pClass->m_MoreOptionsParams.bOnlineGame;
     if (isOnlineGame) {
@@ -1430,8 +1427,8 @@ int UIScene_CreateWorldMenu::ConfirmCreateReturned(
                 SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_PSN_CHAT_RESTRICTION,
                 ProfileManager.GetPrimaryPad());
 #endif }
-            
-				CreateGame(pClass, 0);
+
+            CreateGame(pClass, 0);
         }
     }
 }
@@ -1440,8 +1437,8 @@ else {
 }
 re
 #ifdef __ORBIS__
-int UIScene_CreateWorldMenu::MustSignInReturnedPSN(void *pParam,int iPad,C4JStorage::EMessageResult result)
-{
+    int UIScene_CreateWorldMenu::MustSignInReturnedPSN(
+        void* pParam, int iPad, C4JStorage::EMessageResult result) {
     UIScene_CreateWorldMenu* pClass = (UIScene_CreateWorldMenu*)pParam;
     pClass->m_bIgnoreInput = false;
 
@@ -1468,10 +1465,8 @@ int UIScene_CreateWorldMenu::MustSignInReturnedPSN(void *pParam,int iPad,C4JStor
          // // continue offline//
          // pClass->m_MoreOptionsParams.bOnlineGame=false;//
          // pClass->checkStateAndStartGame();// 	}//
-        // 	pClass->m_bIgnoreInput=false;// 	return 0;// }#endif
+         // 	pClass->m_bIgnoreInput=false;// 	return 0;// }#endif
 
-
-
-void UIScene_CreateWorldMenu::handleTouchBoxRebuild() {
+        void UIScene_CreateWorldMenu::handleTouchBoxRebuild() {
         m_bRebuildTouchBoxes = true;
     }

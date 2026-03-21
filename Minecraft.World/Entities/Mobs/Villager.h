@@ -110,36 +110,39 @@ public:
 
 private:
     static std::unordered_map<int, std::pair<int, int> > MIN_MAX_VALUES;
-    static std::unordered_map<int, std::pair<int, int> > MIN_MAX_P/**
-     * Adds a merchant recipe that trades items for a single ruby.
-     *
-     * @param list
-     * @param itemId
-     * @param random
-     * @param likelyHood
-     */
-    static void addItemForTradeIn(MerchantRecipeList* std::list, int itemId,
-                                  Random* random, float likelyHood);
-    static std::shared_ptr<ItemInstance> getItemTradeInValue(int itemId,
-                                                        Random* rand/**
-     * Adds a merchant recipe that trades rubies for an item. If the cost is
-     * negative, one ruby will give several of that item.
-     *
-     * @param list
-     * @param itemId
-     * @param random
-     * @param likelyHood
-     */
-    static void addItemForPurchase(MerchantRecipeList* std::list, int itemId,
-                                   Random* random, float likelyHood);
-    static int getPurchaseCost(int itemId, Random* random);
+    static std::unordered_map<int, std::pair<int, int> >
+        MIN_MAX_P /**
+                   * Adds a merchant recipe that trades items for a single ruby.
+                   *
+                   * @param list
+                   * @param itemId
+                   * @param random
+                   * @param likelyHood
+                   */
+        static void
+        addItemForTradeIn(MerchantRecipeList* std::list, int itemId,
+                          Random* random, float likelyHood);
+    static std::shared_ptr<ItemInstance> getItemTradeInValue(
+        int itemId, Random* rand /**
+                                  * Adds a merchant recipe that trades rubies
+                                  * for an item. If the cost is negative, one
+                                  * ruby will give several of that item.
+                                  *
+                                  * @param list
+                                  * @param itemId
+                                  * @param random
+                                  * @param likelyHood
+                                  */
+        static void addItemForPurchase(MerchantRecipeList* std::list,
+                                       int itemId, Random* random,
+                                       float likelyHood);
+        static int getPurchaseCost(int itemId, Random* random);
 
-public:
-    virtual MobGroupData* final// 4J Added extraData paramupData* groupData,
+        public : virtual MobGroupData* final  // 4J Added extraData paramupData*
+                                              // groupData,
         int extraData = 0);
-    
-    virtual void
-    setRewardPlayersInVillage();
+
+    virtual void setRewardPlayersInVillage();
     virtual std::shared_ptr<AgableMob> getBreedOffspring(
         std::shared_ptr<AgableMob> target);
     virtual bool canBeLeashed();

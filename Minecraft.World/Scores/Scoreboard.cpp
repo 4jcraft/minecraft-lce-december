@@ -72,9 +72,6 @@ std::vector<std::wstring>* Scoreboard::getTrackedPlayers(// return playerScores.
 }
 
 void Scoreboard::resetPlayerScore(const std// unordered_map<Objective *, Score *> *removed =// playerScores.remove(player);// if (removed != NULL)  //{//	onPlayerRemoved(player);// }
-    
-
-
 }
 
 std::vector<Score*>*
@@ -83,26 +80,14 @@ std::vector<Score*>*
                        // ArrayList<Score>();// for (Map<Objective, Score>
                        // map : values)//{//
                        // result.addAll(map.values());// }// return
-                       // result;   
-
-    
-
-
+                       // result;
 }
 
 std::vector<Score*>* Scoreboard::getScores(Objective*// Collection<Map<Objective, Score>> values = playerScores.values();// List<Score> result = new ArrayList<Score>();// for (Map<Objective, Score> map : values) {//	Score score = map.get(objective);//	if (score != null) result.add(score);// }// return result;
-    
-
-    
-
-
 }
 
 std::unordered_map<Objective*, Score*>* Scoreboard::getPlayerScores(
     const std::// Map<Objective, Score> result = playerScores.get(player);// if (result == null) result = new HashMap<Objective, Score>();// return result;
-    
-
-
 }
 
 void Scoreboard::remo  // objectivesByName.remove(objective.getName());//
@@ -111,39 +96,25 @@ void Scoreboard::remo  // objectivesByName.remove(objective.getName());//
                        // setDisplayObjective(i, null);// }//
                        // List<Objective> objectives =
 
-    // objectivesByCriteria.get(objective.getCriteria()); if (objectives
-    // !=// null) objectives.remove(objective);  // for (Map<Objective,
-    // Score> objectiveScoreMap : playerScores.values()) {//
-    // objectiveScoreMap.remove(objective); // }//
-    // onObjectiveRemoved(objective);
-
-    
-
-
+// objectivesByCriteria.get(objective.getCriteria()); if (objectives
+// !=// null) objectives.remove(objective);  // for (Map<Objective,
+// Score> objectiveScoreMap : playerScores.values()) {//
+// objectiveScoreMap.remove(objective); // }//
+// onObjectiveRemoved(objective);
 }
 
 void Scoreboard::setDisplayObjectiv  // displayObjectives[slot] = objective;
-                                     // 
+                                     //
 }
 
 Objective* Scoreboard::getDisplayObj  // return displayObjectives[slot];;
-    
-
-
 }
 
 PlayerTeam* Scoreboard::getPlayerTeam(const std// return teamsByName.get(name);LL;
-    
-
-
 }
 
 PlayerTeam* Scoreboard::addPlayerTeam(const std// PlayerTeam team = getPlayerTeam(name);// if (team != null) throw new IllegalArgumentException("An objective with// the name '" + name + "' already exists!");// team = new PlayerTeam(this, name);   // teamsByName.put(name, team);
 // onTeamAdded(team);// return team;
-
-    
-
-
 }
 
 void Scoreboard::r  // teamsByName.remove(team.getName());  //// [TODO]:
@@ -151,28 +122,16 @@ void Scoreboard::r  // teamsByName.remove(team.getName());  //// [TODO]:
                     // team.getPlayers()) {//
                     // teamsByPlayer.remove(player); }//
                     // onTeamRemoved(team);
-    
-
-    
-
-
 }
 
 void Scoreboard::addPlayerToTeam(const std::w// if (getPlayersTeam(player) != null) {//	removePlayerFromTeam(player);
  // }// teamsByPlayer.put(player, team);
     // team.getPlayers().add(player);
-    
-
-
 }
 
 bool Scoreboard::removePlayerFromTeam(const std::w// PlayerTeam team = getPlayersTeam(player);// if (team != null) {//	removePlayerFromTeam(player, team);  //	return true;// } else {
 //	return false;
- // }
-    
-    
-
-
+// }
 }
 
 void Scoreboard::removePlayerFromTeam(const std::wstring& player,
@@ -181,20 +140,14 @@ void Scoreboard::removePlayerFromTeam(const std::wstring& player,
 // team. Cannot remove from team '" + team.getName() + "'.");// }//
 // teamsByPlayer.remove(player);
 
-// team.getPlayers().remove(player);    
+// team.getPlayers().remove(player);
 }
 
 std::vector<std::wstring>*  // return teamsByName.keySet();  return NULL;
-    
-
-
 }
 
 std::vector < PlayerTeam*  // return teamsByName.values(); {
     return NULL;
-
-
-
 }
 
 std::shared_ptr<Player> Scoreboard::
@@ -204,9 +157,6 @@ std::shared_ptr<Player> Scoreboard::
 
 PlayerTeam*
     Scoreboard::getPlayer  // return teamsByPlayer.get(name);    return NULL;
-    
-
-
 }
 
 void Scoreboard::onObjectiveAdded(Objective* objective) {}
@@ -236,18 +186,11 @@ std::wstring Scoreboard::getDisplaySlotName(int slot) {
 }
 }
 
-int Scoreboard::
-    getDisplaySlo  // if (name.equalsIgnoreCase("list"))   re//{n -1;//	return
-                   // DISPLAY_SLOT_LIST;// }// else if
-                   // (name.equalsIgnoreCase("sidebar")) //{  //	return
-                   // DISPLAY_SLOT_SIDEBAR;// } else if
-                   // (name.equalsIgnoreCase("belowName"))
-    //{//	return DISPLAY_SLOT_BELOW_NAME;// }    //
-    // else//{//	return -1;// }    
-    
-    
-    
-    
-
-
+int Scoreboard::getDisplaySlo  // if (name.equalsIgnoreCase("list"))   re//{n
+                               // -1;//	return DISPLAY_SLOT_LIST;// }// else if
+                               // (name.equalsIgnoreCase("sidebar")) //{  //
+                               // return DISPLAY_SLOT_SIDEBAR;// } else if
+                               // (name.equalsIgnoreCase("belowName"))
+//{//	return DISPLAY_SLOT_BELOW_NAME;// }    //
+// else//{//	return -1;// }
 }

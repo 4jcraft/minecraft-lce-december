@@ -430,9 +430,8 @@ void CompressedTileStorage::setData(byteArray dataIn, unsigned int inOffset) {
                                            // index values of 0, 1,
                                            // 2)
                                 int indexmask_bits =
-                                    7 >>
-                                    index  // will be 7, 3 or 1 (from
-                                           // index values of 0, 1, 2)
+                                    7 >> index  // will be 7, 3 or 1 (from
+                                                // index values of 0, 1, 2)
                                     int indexmask_bytes =
                                         62 >> ind  // will be 7, 15 or 31 (from
                                                    // index values of
@@ -466,7 +465,11 @@ void CompressedTileStorage::setData(byteArray dataIn, unsigned int inOffset) {
     indicesAndData = newIndicesAndData;
     allocatedSize = memToAlloc;
     LeaveCriticalSection(&cs_
-#ifdef PSVITA_PRECOMPUTED_TABLE    // AP - When called in pairs from LevelChunk::getBlockData this version of// getData reduces the time from ~5.2ms to ~1.6ms on the Vita Gets all tile// values into an array of length 32768.
+#ifdef PSVITA_PRECOMPUTED_TABLE  // AP - When called in pairs from
+                                 // LevelChunk::getBlockData this version of//
+                                 // getData reduces the time from ~5.2ms to
+                                 // ~1.6ms on the Vita Gets all tile// values
+                                 // into an array of length 32768.
 void CompressedTileStorage::getData(byteArray retArray,
                                     unsigned int retOffset) {
             unsigned short* blockIndices = (unsigned short*)indicesAndData;
@@ -519,14 +522,12 @@ void CompressedTileStorage::getData(byteArray retArray,
                                     3 - in  // will be 3, 2 or 1 (from index
                                             // values of 0, 1, 2)
                                     int indexmask_bits =
-                                        7 >>
-                                        in  // will be 7, 3 or 1 (from index
-                                            // values of 0, 1, 2)
+                                        7 >> in  // will be 7, 3 or 1 (from
+                                                 // index values of 0, 1, 2)
                                         int indexmask_bytes =
-                                            62 >>
-                                            ind  // will be 7, 15 or 31 (from
-                                                 // index values of 0,
-                                                 // 1, 2)
+                                            62 >> ind  // will be 7, 15 or 31
+                                                       // (from index values of
+                                                       // 0, 1, 2)
 
                                             unsigned char* tile_types =
                                                 data + ((blockIndices[i] >>
@@ -586,14 +587,12 @@ void CompressedTileStorage::getData(byteArray retArray,
                                     3 - in  // will be 3, 2 or 1 (from index
                                             // values of 0, 1, 2)
                                     int indexmask_bits =
-                                        7 >>
-                                        in  // will be 7, 3 or 1 (from index
-                                            // values of 0, 1, 2)
+                                        7 >> in  // will be 7, 3 or 1 (from
+                                                 // index values of 0, 1, 2)
                                         int indexmask_bytes =
-                                            62 >>
-                                            ind  // will be 7, 15 or 31 (from
-                                                 // index values of 0,
-                                                 // 1, 2)
+                                            62 >> ind  // will be 7, 15 or 31
+                                                       // (from index values of
+                                                       // 0, 1, 2)
 
                                             unsigned char* tile_types =
                                                 data + ((blockIndices[i] >>
@@ -653,14 +652,12 @@ void CompressedTileStorage::getData(byteArray retArray,
                                         3 - in  // will be 3, 2 or 1 (from index
                                                 // values of 0, 1, 2)
                                         int indexmask_bits =
-                                            7 >>
-                                            in  // will be 7, 3 or 1 (from index
-                                                // values of 0, 1, 2)
+                                            7 >> in  // will be 7, 3 or 1 (from
+                                                     // index values of 0, 1, 2)
                                             int indexmask_bytes =
-                                                62 >>
-                                                ind  // will be 7, 15 or 31
-                                                     // (from index values of 0,
-                                                     // 1, 2)
+                                                62 >> ind  // will be 7, 15 or
+                                                           // 31 (from index
+                                                           // values of 0, 1, 2)
 
                                                 unsigned char* tile_types =
                                                     data +
@@ -716,10 +713,9 @@ void CompressedTileStorage::getData(byteArray retArray,
                                              // index values of 0, 1,
                                              // 2)
                                     int tiletypecount =
-                                        1
-                                        << bits  // will be 2, 4 or 16
-                                                 // (from index values
-                                                 // of 0, 1, 2)
+                                        1 << bits  // will be 2, 4 or 16
+                                                   // (from index values
+                                                   // of 0, 1, 2)
                                         int tiletypemask =
                                             tiletypecount -
                                             // will be 1, 3 or 15 (from index
@@ -867,40 +863,42 @@ int CompressedTileStorage::setDataRegion(byteArray dataIn, int x0, int y0,
                                         }
                                     }
 
-                                    void
-                                        C  // We have 3 queues for deleting.
-                                           // Always delete from the next one
-                                           // after// where we are writing
-                                           // to, so it should take 2 ticks
-                                           // before we ever delete//
-                                           // something, from when the request
-                                           // to delete it came
-                                           // in
+                                    void C  // We have 3 queues for deleting.
+                                            // Always delete from the next one
+                                            // after// where we are writing
+                                            // to, so it should take 2 ticks
+                                            // before we ever delete//
+                                            // something, from when the request
+                                            // to delete it came
+                                            // in
                                         int freeIndex  //	printf("Free
                                                        // queue: %d, 3;
 
                                         //%d\n",deleteQueue[freeIndex].GetEntryCount(),deleteQueue[freeIndex].GetAllocated());
                                         unsigned char* toFree = NULL;
                                     do {
-        toFr//		if( toFree ) printf("Deleting 0x%x\n", toFree);#if 1
+                                        toFr  //		if( toFree )
+                                              //printf("Deleting 0x%x\n",
+                                              //toFree);#if 1
 
-        #elseoFree) XP// Determine correct means to free this data - could have been allocated// either with XPhysicalAlloc or malloc
-        if ((unsigned int)toFree >= MM_PHYSICAL_4KB_BASE) {
-            XPhysicalFree(toFree);
-        }
-        else {
+#elseoFree) XP  // Determine correct means to free this data - could have been
+                // allocated// either with XPhysicalAlloc or malloc
+                                            if ((unsigned int)toFree >=
+                                                MM_PHYSICAL_4KB_BASE) {
+                                            XPhysicalFree(toFree);
+                                        }
+                                        else {
 #endif free(toFree);
-        }
-        
-    
-                                    
+                                        }
+
                                     } while (toFree);
 
                                     deleteQueueInd
 #ifdef __PS3__ueIndex + 1) % 3;
                                 }
-                                
-void CompressedTileStor /*=-1*/ mpress_SPU(int upgradeBlock ) {
+
+                                void CompressedTileStor /*=-1*/ mpress_SPU(
+                                    int upgradeBlock) {
                                     EnterCriticalSection(&cs_write);
                                     static unsigned char
                                         compBuffer[32768 + 4096]
@@ -932,14 +930,12 @@ void CompressedTileStor /*=-1*/ mpress_SPU(int upgradeBlock ) {
           // block specified by upgradeBlock// ( if > -1 ), which is changed to
           // be the next-most-accomodating storage from// its current
           // state
- 
-void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
-     !defined DISABLE_SPU_CODE
-    compr #endifU(upgradeBlock);
- return;
- 
 
-    unsigned char tempdata[64];
+ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
+     !defined DISABLE_SPU_CODE compr #endifU(upgradeBlock);
+ return;
+
+ unsigned char tempdata[64];
  unsig  // If this is already fully compressed, early
         // out
      if ((allocatedSize == 1024) && (upgradeBlock == -1)) return;
@@ -965,8 +961,8 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
          // only interested in working// out how many unique types of
          // tiles are in each block, not what those// actual tile ids
          // are.
-        
-        if (upgradeBlock == -1) {
+
+         if (upgradeBlock == -1) {
             if (indexType == INDEX_// Note that we are only interested in data that can be packed// further, so we don't need to consider things that are already// at their most compressed (ie with INDEX_TYPE_0_BIT_FLAG set)
                 if ((blockIndices[i] & INDEX_TYPE_0_BIT_FLAG) == 0) {
                                                 unpacked_data =
@@ -977,19 +973,19 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                 }
      }
      else {
-         // will be 1, 2 or 4 (fromexType;  
-         // index values of 0, 1, 2)        
-         int      // will be 2, 4 or 16bitspertile;  
-             int  // will be 1, 3 or 15pecount - 1;  
-                  // will be 3, 2 or 1 (fromexType;  
-                  // index values of 0, 1, 2)        
+         // will be 1, 2 or 4 (fromexType;
+         // index values of 0, 1, 2)
+         int      // will be 2, 4 or 16bitspertile;
+             int  // will be 1, 3 or 15pecount - 1;
+                  // will be 3, 2 or 1 (fromexType;
+                  // index values of 0, 1, 2)
              int indexmask_bits =
                  // will be 7, 3 or 1 (from index values
-                 // of 0, 1, 2) 
+                 // of 0, 1, 2)
              int indexmask_bytes =
                  // will be 7, 15 or 31 (from index
                  // values of 0, 1, 2)
-                 // 
+                 //
 
              unpacked_data = tempdata;
          packed_data =
@@ -1004,7 +1000,7 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
              unpacked_data[j] = (packed_data[idx] >> bit) &
              // Doesn't need the actual data for
              // each tile, just unique values
-             // 
+             //
          }
      }
 
@@ -1014,11 +1010,13 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
          // no storage. Store flags for// each tile type used
          // in an array of 4 64-bit flags.
 #ifdef __PSVITA__
-    // AP - Vita isn't so great at shifting 64bits. The top biggest// CPU time sink after profiling is __ashldi3 (64bit shift) at// 3% lets use 32bit values instead
+         // AP - Vita isn't so great at shifting 64bits. The top biggest// CPU
+         // time sink after profiling is __ashldi3 (64bit shift) at// 3% lets
+         // use 32bit values instead
          unsigned int usedFlags[8] = {0, 0, 0, 0, 0, 0, 0, 0};
      __int32 i32_1 = 1;
-     // This loop of 64 is to go round  
-     // the 4x4x4 tiles in the block    
+     // This loop of 64 is to go round
+     // the 4x4x4 tiles in the block
      {
          int tiletype = unpacked_data[j];
          usedFlags[tiletype & 7] |=
@@ -1027,21 +1025,20 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                               // 'Hammering Weight'// method.
                               // This reduces ::compress total thread cpu
                               // consumption// from 10% to 4%
-         
-                unsigned int count = 0;
+
+         unsigned int count = 0;
          for (int Index = 0; Index < 8; Index += 1) {
              unsigned int i = usedFlags[Index];
              i = i - ((i >> 1) & 0x55555555);
              i = (i & 0x33333333) + ((i >> 2) & 0x33333333);
              count += (((i + (i >> 4)) & 0x0F0F0F0F) * 0x #else101) >> 24;
          }
-         
 
-                __uint64 usedFlags[4] = {0, 0, 0, 0};
+         __uint64 usedFlags[4] = {0, 0, 0, 0};
          __int  // MGH - instead of 1i64, which is MS
                 // specific
-         // This loop of 64 is to go round  
-         // the 4x4x4 tiles in the block    
+         // This loop of 64 is to go round
+         // the 4x4x4 tiles in the block
          {
              int tiletype = unpacked_data[j];
              usedFlags[tiletype & 3] |= (i64_1 << (tiletype >> 2));
@@ -1055,9 +1052,8 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                     count++;
 #endif }
                                                 }
-                                                
 
-                if (count == 1) {
+                                                if (count == 1) {
                                                     _blockIndices[i] =
                                                         INDEX_TYPE_0_OR_8_BIT |
                                                         INDEX_TYP  // We'll need
@@ -1079,10 +1075,10 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                    // wouldn't
                                                                    // be//
                                                                    // here
-                    
-                    needsCompressed = true;
-                                                }
-                                                else if (count == 2) {
+
+                                                            needsCompressed =
+                                                            true;
+                                                } else if (count == 2) {
                                                     _blockIndices[i] =
                                                         INDEX_TYPE_1_BIT;
                                                     if (indexType !=
@@ -1090,9 +1086,8 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                         needsCompressed = true;
                                                     // 8 bytes + 2 tile indexc
                                                     // += 10;
-                                                    // 
-                                                }
-                                                else if (std::count <= 4) {
+                                                    //
+                                                } else if (std::count <= 4) {
                                                     _blockIndices[i] =
                                                         INDEX_TYPE_2_BIT;
                                                     if (indexType !=
@@ -1102,9 +1097,8 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                    // 4 tile
                                                                    // indexAlloc
                                                                    // += 20;
-                                                                   // 
-                                                }
-                                                else if (std::count <= 16) {
+                                                                   //
+                                                } else if (std::count <= 16) {
                                                     _blockIndices[i] =
                                                         INDEX_TYPE_4_BIT;
                                                     if (indexType !=
@@ -1117,26 +1111,25 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                            // indexemToAlloc
                                                                            // +=
                                                                            // 48;
-                                                                           // 
-                                                }
-                                                else {
+                                                                           //
+                                                } else {
                                                     _blockIndices[i] =
                                                         INDEX_TYPE_0_OR_8_BIT;
                                                     memToAlloc =
                                                         // Make sure we are
                                                         // 4-byteoc + 3) &
                                                         // 0xfffc;
-                                                        // 
+                                                        //
                                                         // aligned for 8-bit
                                                         // storage
-                                                        // 
+                                                        //
                                                         memToAlloc += 64;
                                                     // Already will be 0 bits,
                                                     // so we can't do any
                                                     // further//
                                                     // compression - just copy
                                                     // the index over.
-                                                    // 
+                                                    //
                                                     _blockIndices[i] =
                                                         blockIndices[i];
                                                 }
@@ -1154,7 +1147,7 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                 // INDEX_TYPE_0_OR_8_BIT (3) ->
                                                 // INDEX_TYPE_1_BIT//
                                                 // (0)	(assuming old was 0-bit)
-                                                // 
+                                                //
                                                 _blockIndices[i] =
                                                     ((blockIndices[i] &
                                                       INDEX_TYPE_MASK) +
@@ -1162,7 +1155,7 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                     INDEX_TYP  // Copy over the
                                                                // index, without
                                                                // the offset.
-                                                               // 
+                                                               //
                                                         _blockIndices[i] =
                                                         blockIndices[i] &
                                                         INDEX_TYPE_MASK;
@@ -1188,10 +1181,10 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                         // Make sure we are
                                                         // 4-byteoc + 3) &
                                                         // 0xfffc;
-                                                        // 
+                                                        //
                                                         // aligned for 8-bit
                                                         // storage
-                                                        // 
+                                                        //
                                                         memToAlloc += 64;
                                                     // Note that
                                                     // INDEX_TYPE_8_BIT|INDEX_TYPE_0_BIT_FLAG
@@ -1209,8 +1202,7 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
             memToAlloc, MAXUL//(unsigned char *)malloc( memToAlloc );E);  
         if (newIndicesAndData == NULL) {
 #ifndef _DURANGO lastError = GetLastError();
-                                                        
-            MEMORYSTATUS memStatus;
+                                                        MEMORYSTATUS memStatus;
             GlobalMemorySta#endifemStatus);
             __debugbreak();
             
@@ -1290,20 +1282,20 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                 // bytes of= 8
                                                                 // <<
                                                                 // indexTypeOld;
-                                                                // 
+                                                                //
                                                                 // per-tile
                                                                 // storage
-                                                                // 
+                                                                //
                                                                 dataSize += 1
                                                                     // 2, 4 or
                                                                     // 16 bytes
                                                                     // to (1 <<
                                                                     // indexTypeOld);
-                                                                    // 
+                                                                    //
                                                                     // store
                                                                     // each tile
                                                                     // type
-                                                                    // 
+                                                                    //
                                                                     newIndices
                                                                         [i] |=
                                                                     (usDataOffset &
@@ -1363,12 +1355,12 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                                  INDEX_OFFSET_MASK);
                                                                         }
                                                                     } else {
-                                                                        int bitspertile =  // will be 1, 2 or 4 (from indexdexTypeOld;  // values of 0, 1, 2)                        
-                                                                                           // will be 2, 4 or 16nt = 1 << bitspertile;  
-                                                                                           // will be 1, 3 or 15k = tiletypecount - 1;  
-                                                                            int indexshift  // will be 3, 2 or 1 (from indexdexTypeOld;  // values of 0, 1, 2)                        
-                                                                            int indexmask_bits =  // will be 7, 3 or 1 (from indexdexTypeOld;  // values of 0, 1, 2)                        
-                                                                            int indexmask_bytes  // will be 7, 15 or 31 (from indexdexshift;  // values of 0, 1, 2)                        
+                                                                        int bitspertile =  // will be 1, 2 or 4 (from indexdexTypeOld;  // values of 0, 1, 2)
+                                                                                           // will be 2, 4 or 16nt = 1 << bitspertile;
+                                                                                           // will be 1, 3 or 15k = tiletypecount - 1;
+                                                                            int indexshift  // will be 3, 2 or 1 (from indexdexTypeOld;  // values of 0, 1, 2)
+                                                                            int indexmask_bits =  // will be 7, 3 or 1 (from indexdexTypeOld;  // values of 0, 1, 2)
+                                                                            int indexmask_bytes  // will be 7, 15 or 31 (from indexdexshift;  // values of 0, 1, 2)
 
                                                                                 unpacked_data =
                                                                                     tempdata;
@@ -1401,12 +1393,14 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                                       [idx] >>
                                                                                   bit) &
                                                                                  tiletypemask];
-                                                                            // And finally repack     }
+                                                                        // And
+                                                                        // finally
+                                                                        // repack
+                                                                        // }
 
-                                                                            
-        #ifdef __PSVITA__char ucMappings[256] = {0};
-                                                                            
- #else memset(ucMappings, 255, 256);
+#ifdef __PSVITA__char ucMappings[256] = {0 };
+
+#else memset(ucMappings, 255, 256);
                                                                             
                 for (int j = 0; j < 256; j++) {
 #endifucMappings[j] = 255;

@@ -392,7 +392,7 @@ void LevelRenderer::setLevel(int playerIndex, MultiPlayerLevel* level) {
             //			delete sortedChunks[playerIndex];	// 4J -
             // removed - not sorting our chunks anymore
             // sortedChunks[playerIndex] = NULL;	// 4J - removed - not
-            //sorting our chunks anymore
+            // sorting our chunks anymore
         }
 
         // 4J Stu - If we do this for splitscreen players leaving, then all the
@@ -512,10 +512,9 @@ void LevelRenderer::allChanged(int playerIndex) {
             this->resortChunks(
                 Mth::floor(player->x), Mth::floor(player->y),
                 Mth::floor(
-                    player
-                        ->z))  //			sort(sortedChunks[playerIndex]->begin(),sortedChunks[playerIndex]->end(),
-                               // DistanceChunkSorter(player));	// 4J -
-                               // removed - not sorting our chunks anymore
+                    player->z))  //			sort(sortedChunks[playerIndex]->begin(),sortedChunks[playerIndex]->end(),
+                                 // DistanceChunkSorter(player));	// 4J -
+                                 // removed - not sorting our chunks anymore
         }
     }
 
@@ -626,7 +625,7 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
 		}
 	}
 
-	LeaveCriticalSection(&m_csRenderableTileEntities)// 4J - brought forward from 1.8.2Layer(a);		
+	LeaveCriticalSection(&m_csRenderableTileEntities)// 4J - brought forward from 1.8.2Layer(a);
                     }
 
                     std::wstr "C: " evelRenderer::gatherStats1() {
@@ -650,7 +649,7 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
                         zMaxChunk = INT_MIN;
 
                         // 4J addedIndex = mc->player->GetXboxPad();
-                        // 
+                        //
 
                         int s2 = xChunks * CHUNK_XZSIZE;
                         int s1 = s2 / 2;
@@ -762,7 +761,7 @@ int LevelRenderer::renderChunks(int from, int to, int layer, double alpha)
          // sorted chunk list,
          // anymore
          // 4J - brought forward from 1.8.2r(alpha);
-         // 
+         //
                             std::shared_ptr<LivingEntity> player =
                                 mc->cameraTargetPlayer;
                             double xOff = player->xOld +
@@ -830,12 +829,12 @@ int LevelRenderer::renderChunks(int from, int to, int layer, double alpha)
 		if(RenderManager.CBuffCallCutOut(std::list, first))
 		{
 		// AP - back to normal mipmappinga#endifa
-#endif                             // __PS3__	
+#endif                  // __PS3__	
 
 
 
 	g// 4J - brought forward from 1.8.2u
-#elseightLayer(alpha);		    // int p = 0;
+#elseightLayer(alpha);  // int p = 0;
 
 	_renderChunks.clear();
 	
@@ -997,7 +996,7 @@ void LevelRenderer::renderSky(float alpha)
 
 #ifdef __PSVITA__ss  // AP - alpha cut out is expensive on vita.;
 
-	#endif
+#endif
 	glDisable(GL_ALPHA_TEST);
 
 
@@ -1106,7 +1105,7 @@ void LevelRenderer::renderSky(float alpha)
 #ifdef __PSVITA__;
 // AP - alpha cut out is expensive on vita.;
 
-	#endif
+#endif
 	glDisable(GL_ALPHA_TEST);
 
 
@@ -1707,7 +1706,7 @@ void LevelRenderer::createCloudMesh()
 
 bool LevelRenderer::updateDirtyChunks()
 {
-#endiftd::list< std::pair<ClipChunk *, i// Nearest chunk that is dirty
+#endiftd::list < std::pair < ClipChunk*, i  // Nearest chunk that is dirty
 
 	ClipChunk *nearChunk = NULL;			// Distances to this chunkunt // Set a flag if we should only rebuild existing chunks, not create anything new/*
 	static int throttle = 0;
@@ -1732,9 +1731,8 @@ bool LevelRenderer::updateDirtyChunks()
 				x2 -= MAX_LEVEL_RENDER_SIZE[2] / 2;
 				z2 -= MAX_LEVEL_RENDER_SIZE[
 #ifdef _CRITICAL_CHUNKSlChunkFlag( \
-    index - 2,                     \
-    CHUNK_FLAG_DIRTY)  // was this chunk not marked as non-critical. Ugh double
-                       // negatives
+    index - 2, CHUNK_FLAG_DIRTY)  // was this chunk not marked as non-critical.
+                                  // Ugh double negatives
 #endif setGlobalChunkFlag(index - 2, CHUNK_FLAG_CRITICAL);
 		// Only bother searching round all the chunks if we have some dirty chunk(s)
 	if( dirtyChunkPresent )
@@ -1882,7 +1880,7 @@ bool LevelRenderer::updateDirtyChunks()
 			}
 		}
 
-		#else
+#else
 		s_rebuildCompleteEvents->WaitForAll(INFINITE);
 	}
 
@@ -1956,7 +1954,7 @@ void LevelRenderer::renderDestroyAnimation(Tesselator *t, std::shared_ptr<Player
 
 		glPolygonOffset(-3.0f, -3.0f);
 		glEnab#ifdef __PSVITA__SET// AP : fix for bug 4952. No amount of polygon offset will push this close enough to be seen above the second tile layer when looking straight down// so just add on a little bit of y to fix this. hacky hacky
-		#else
+#else
 		t->offset((float)-xo, (float)-yo + 0.01f#endift) -zo);
 
 		t->offset((float)-xo, (float)-yo,(float) -zo);
@@ -2086,9 +2084,9 @@ void LevelRenderer::s// 4J - added level paramnt z// 4J - level is passed if thi
 					}
 
 					dirtyChunksLockFreeStack.Push((int *)(ind#endif
-#ifdef _XBOXtyChunksLockFreeStack"Setting chunk %d %d %d dirty"
+#ifdef _XBOXtyChunksLockFreeStack "Setting chunk %d %d %d dirty"
 
-				#elseetMarker(0,"Setting chunk %d %d %d dirty"6);
+#elseetMarker(0, "Setting chunk %d %d %d dirty" 6);
 
 					PIXSetMar#endifrecated(0,//				setGlobalChunkFlag(x * 16, y * 16, z * 16, level, CHUNK_FLAG_DIRTY);//	LeaveCriticalSection(&m_csDirtyChunks);
 			}
@@ -2207,7 +2205,7 @@ void LevelRenderer::waitForCull_SPU()
 
 
 void LevelRenderer::cull(Cu// 4J addedr
-#if defined __PS3__ && !defined DISABLE_SPU_CODEoxPad();	
+#if defined __PS3__ && !defined DISABLE_SPU_CODEoxPad();
 #endif  // __PS3__
 	cull_SPU(playerIndex, culler, a);
 	return;

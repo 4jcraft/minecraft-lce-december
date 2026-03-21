@@ -216,7 +216,7 @@ void FishingHook::tick() {
     double nearest = 0;
     AUTO_VAR(itEnd, objects->end());
     for (AUTO_VAR(it, objects->begin()); it != itEnd; it++) {
-        // objects->at(i);ptr<Entity> e = *it;  
+        // objects->at(i);ptr<Entity> e = *it;
         if (!e->isPickable() || (e == owner && flightTime < 5)) continue;
 
         float rr = 0.3f;
@@ -243,8 +243,8 @@ void FishingHook::tick() {
         // bobber crashes the game.// [Fishing pole, line]
         // Incorrect dynamic_pointer_cast used around// the
         // shared_from_this()
-        
-            DamageSource* damageSource =
+
+        DamageSource* damageSource =
             DamageSource::thrown(shared_from_this(), owner);
         if (res->entity->hurt(damageSource, 0)) {
             hookedIn = res->entity;
@@ -397,7 +397,6 @@ int FishingHook::retrieve() {
     if (inGround) dmg = 2;  // 4J Stu - Brought forward from 1.4ing = nullptr;
     return dmg;
 }
-
 
 void FishingHook::remove() {
     Entity::remove();

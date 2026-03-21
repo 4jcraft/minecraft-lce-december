@@ -86,19 +86,18 @@ void LevelChunk::init(Level* level, int x, int z) {
 
     for (int i = 0; i < ENTITY_BLOCKS_LENGTH; i++) {
         entityBlocks[i] =
-            new std::vector < std::shared_ptr #ifdef _ENTITIES_RW_SECTION
-    LeaveCriticalRWSection(&m #elsetities, true);
+            new std::vector <
+            std::shared_ptr #ifdef _ENTITIES_RW_SECTION LeaveCriticalRWSection(
+                &m #elsetities, true);
 
     LeaveCriticalSect#endif_csEntities);
 
-
     MemSect(0);
 
-lowestHeightmap = 256;
-inha  // Optimisation brought forward from 1.8.2, change from int to unsigned
-      // char// & this special value changed from -999 to
-      // 255
-    for (int i = 0; i < 16 * 16; i++) {
+    lowestHeightmap = 256;
+    inha  // Optimisation brought forward from 1.8.2, change from int to
+          // unsigned char// & this special value changed from -999 to 255
+        for (int i = 0; i < 16 * 16; i++) {
         rainHeights[// 4J - lighting change brought forward from 1.8.2, introduced an array of// bools called gapsToRecheck, which are now a single bit in array of nybble// flags in this version
     for (int i = 0; i < 8 * 16; i++) {
                 columnFlags  // 4J added - to flag if any emissive tile has been
@@ -110,11 +109,11 @@ inha  // Optimisation brought forward from 1.8.2, change from int to unsigned
                              // array.
                     em
 #ifdef _LARGE_WORLDS
-    m_                                         // 4J Added false;  
-                        m_unloaded #endifesTa  // This ctor is used
-                                               // for loading a
-                                               // save
-                                               // into
+                        m_                         // 4J Added false;
+                            m_unloaded #endifesTa  // This ctor is used
+                                                   // for loading a
+                                                   // save
+                                                   // into
                     LevelChunk::LevelChunk(Level * level, int x, int z)
                     : ENTITY_BLOCKS_LENGTH(Level::maxBuildHeight / 16) {
                     init(level, x, z);
@@ -137,13 +136,15 @@ inha  // Optimisation brought forward from 1.8.2, change from int to unsigned
                     upperSkyLight = NULL;
                     upperBlock
 #ifdef SHARING_ENABLED
-    sharingTi #endifData  // 4J - note that since we now compress the block
-                          // storage, the parameter blocks// is used as a
-                          // source of data, but doesn't get used As the source
-                          // data so needs// to be deleted after calling this
-                          // ctor.
-                    LevelChunk::LevelChunk(Level * level, byteArray blocks,
-                                           int x, int z)
+                        sharingTi #endifData  // 4J - note that since we now
+                                              // compress the block storage, the
+                                              // parameter blocks// is used as a
+                                              // source of data, but doesn't get
+                                              // used As the source data so
+                                              // needs// to be deleted after
+                                              // calling this ctor.
+                        LevelChunk::LevelChunk(Level * level, byteArray blocks,
+                                               int x, int z)
                         : ENTITY_BLOCKS_LENGTH(Level::maxBuildHeight / 16) {
                         init  // We'll be creating this as "empty" when this
                               // ctor is called on the client,// as a
@@ -205,13 +206,19 @@ inha  // Optimisation brought forward from 1.8.2, change from int to unsigned
                             }
 
                             serverTerra #ifdef SHARING_ENABLED
-    sharingTi #endifData        // 4J - this ctor added to be able to make a
-                                // levelchunk that shares its// underlying
-                                // block data between the server chunk cache &
-                                // the multiplayer chunk// cache. The original
-                                // version this is shared from owns all the data
-                                // that is// shared into this copy, so it isn't
-                                // deleted in the dtor.
+                                sharingTi #endifData  // 4J - this ctor added to
+                                                      // be able to make a
+                                                      // levelchunk that shares
+                                                      // its// underlying block
+                                                      // data between the server
+                                                      // chunk cache & the
+                                                      // multiplayer chunk//
+                                                      // cache. The original
+                                                      // version this is shared
+                                                      // from owns all the data
+                                                      // that is// shared into
+                                                      // this copy, so it isn't
+                                                      // deleted in the dtor.
                                 LevelChunk::LevelChunk(Level * level, int x,
                                                        int z, LevelChunk* lc)
                                 : ENTITY_BLOCKS_LENGTH(Level::maxBuildHeight /
@@ -248,7 +255,7 @@ void LevelChunk::setUnsa#ifdef _LARGE_WORLDS
                             }
 
                             void LevelChunk::stopShar #ifdef SHARING_ENABLED
-    EnterCriticalSection(&m_csSharing);
+                                EnterCriticalSection(&m_csSharing);
                             lastUnsharedTime = System::currentTimeMillis();
                             if (!sharingTilesAndData) {
                                 LeaveCriticalSection(&m_csSharing);
@@ -273,8 +280,8 @@ void LevelChunk::setUnsa#ifdef _LARGE_WORLDS
                                     // drop out here we'll end up unsharing the
                                     // chunk at this location for// no
                                     // reason
-                                    
-    if (isEmpty()) {
+
+                                    if (isEmpty()) {
                                         LeaveCriticalSection(&m_csSharing);
                                         return;
                                     }
@@ -332,7 +339,7 @@ void LevelChunk::setUnsa#ifdef _LARGE_WORLDS
                                      newDataLayer;
                                      */
 
-    sharingTilesAndData = false;
+                                            sharingTilesAndData = false;
                                         MemSect(0);
                                         LeaveCriticalSec #endifm_cs  // This is
                                                                      // a slight
@@ -378,25 +385,31 @@ void LevelChunk::setUnsa#ifdef _LARGE_WORLDS
                                                                      // not
                                                                      // sharing
 
-void LevelChunk : #ifdef SHARING_ENABLED
-    EnterCriticalSection(&m_csSharing);
+                                            void LevelChunk
+                                            : #ifdef SHARING_ENABLED
+                                                  EnterCriticalSection(
+                                                      &m_csSharing);
 
                                         if (isEmpty()) {
                                             LeaveCriticalSection(&m_csSharing);
 
 #ifdef _LARGE_WORLDS
-    LevelChunk* lc = MinecraftServer::getInstance()
-                                            ->getLevel(level->dimension->id)
-                                                ->cache
-                                                ->getChunkLoad #elsenloaded(x,
-                                                                            z);
-                                            
-    LevelChunk* lc = MinecraftServer::getInstance()
-                                                ->getLevel(level->dimension->id)
-                                                ->cac #endiftChunk(x, z);
-                                            
+                                            LevelChunk* lc =
+                                                MinecraftServer::getInstance()
+                                                    ->getLevel(
+                                                        level->dimension->id)
+                                                    ->cache
+                                                    ->getChunkLoad #elsenloaded(
+                                                        x, z);
 
-    GameRenderer::AddForDelete(lowerSkyLight);
+                                            LevelChunk* lc =
+                                                MinecraftServer::getInstance()
+                                                    ->getLevel(
+                                                        level->dimension->id)
+                                                    ->cac #endiftChunk(x, z);
+
+                                            GameRenderer::AddForDelete(
+                                                lowerSkyLight);
                                             lowerSkyLight =
                                                 new SparseLightStorage(
                                                     lc->lowerSkyLight);
@@ -427,14 +440,12 @@ void LevelChunk : #ifdef SHARING_ENABLED
                                                     FinishedReassigning();
                                             }
     LeaveCriticalSec#endifm_csSharing);
-    
-
-                                        
                                         }
 
                                         void LevelChunk::
                                             startSharingTilesAnd #ifdef SHARING_ENABLED
-    EnterCriticalSection(&m_csSharing);
+                                                EnterCriticalSection(
+                                                    &m_csSharing);
                                         if (sharingTilesAndData) {
                                             LeaveCriticalSection(&m_csSharing);
                                             // If this is the empty chunk, then
@@ -445,17 +456,20 @@ void LevelChunk : #ifdef SHARING_ENABLED
                                             // doesn't make sense to go
                                             // resharing the 0,0 block on behalf
                                             // of an empty// chunk either
-                                            
-    if (isEmpty()) {
+
+                                            if (isEmpty()) {
                                                 LeaveCriticalSection(
                                                     &m_csSharing);
 
 #ifdef _LARGE_WORLDS
-    LevelChunk* lc = MinecraftServer::getInstance()
-                                                ->getLevel(level->dimension->id)
-                                                    ->cache
-                                                    ->getChunkLoad #elsenloaded(
-                                                        x, z);
+                                                LevelChunk* lc =
+                                                    MinecraftServer::getInstance()
+                                                        ->getLevel(
+                                                            level->dimension
+                                                                ->id)
+                                                        ->cache
+                                                        ->getChunkLoad #elsenloaded(
+                                                            x, z);
 
     LevelChunk* lc = MinecraftServer::getInstance()
                          ->getLevel(level->dimension->id)
@@ -546,9 +560,6 @@ LevelChu#ifdef SHARING_ENABLED
     de
 #ifdef _LARGE_WORLDS
     delete m_u #endifdEntitiesTag;
-
-
-                                            
                                             }
 
                                             bool LevelChunk::isAt(int x,
@@ -565,29 +576,27 @@ LevelChu#ifdef SHARING_ENABLED
 
                                             int LevelChunk::
                                                 getHighestSectionPosition() {
-                                                return Level::maxBu  // 4J Stu -
-                                                                     // Unused
-                                                                     // //
-                                                                     // for (int
-                                                                     // i =
-                                                                     // sections.length
-                                                                     // - 1; i
-                                                                     // >= 0;
-                                                                     // i--)
-                                                                     // {//
-                                                                     // if
-                                                                     // (sections[i]
-                                                                     // != null)
-                                                                     // { // &&
-                                                                     // !sections[i].isEmpty())
-                                                                     // {//
-                                                                     // return
-                                                                     // sections[i].getYPosition();//
-                                                                     // }//}
-                                                    // return 0;
-    
-
-                                            
+                                                return Level::
+                                                    maxBu  // 4J Stu -
+                                                           // Unused
+                                                           // //
+                                                           // for (int
+                                                           // i =
+                                                           // sections.length
+                                                           // - 1; i
+                                                           // >= 0;
+                                                           // i--)
+                                                           // {//
+                                                           // if
+                                                           // (sections[i]
+                                                           // != null)
+                                                           // { // &&
+                                                           // !sections[i].isEmpty())
+                                                           // {//
+                                                           // return
+                                                           // sections[i].getYPosition();//
+                                                           // }//}
+                                                // return 0;
                                             }
 
                                             void
@@ -595,15 +604,15 @@ LevelChu#ifdef SHARING_ENABLED
 
                                             void LevelChunk::
                                                 reca #ifdef __PSVITA__ {
-                                                    // AP - lets fetch ALL the chunk data at the same time for a good speed up
-                                                    byteArray blockData =
-                                                        byteArray(
-                                                            Level::
-                                                                CHUNK_TILE_COUNT);
+                                                // AP - lets fetch ALL the chunk
+                                                // data at the same time for a
+                                                // good speed up
+                                                byteArray blockData = byteArray(
+                                                    Level::CHUNK_TILE_COUNT);
                                                 getBl #endifa(blockData);
-                                                
 
-    int min = Level::maxBuildHeight - 1;
+                                                int min =
+                                                    Level::maxBuildHeight - 1;
                                                 for (int x = 0; x < 16; x++)
                                                     for (int z = 0; z < 16;
                                                          z++) {
@@ -620,7 +629,9 @@ LevelChu#ifdef SHARING_ENABLED
                                                             int y = Level::
                                                                 maxBuild  //            int p = x << level->depthBitsPlusFour | z <<//            level->depthBits;		// 4J - removed#ifdef __PSVITA__
 
-            int Index = (x << 11) + (z << 7);
+                                                            int Index =
+                                                                (x << 11) +
+                                                                (z << 7);
                                                         int offset = Level::
                                                             COMPRESSED_CHUNK_SECTION_TILES;
                                                         y = 127;
@@ -672,34 +683,34 @@ LevelChu#ifdef SHARING_ENABLED
                                                 this
 #ifdef __PSVITA__;
 
-    del #endifockData.data;
-                                                
-
-                                            
+                                                    del #endifockData.data;
                                             }
 
                                             void LevelChunk::#ifdef __PSVITA__ {
-                                                    // AP - lets fetch ALL the chunk data at the same time for a good speed up
-                                                    byteArray blockData =
-                                                        byteArray(
-                                                            Level::
-                                                                CHUNK_TILE_COUNT);
+                                                // AP - lets fetch ALL the chunk
+                                                // data at the same time for a
+                                                // good speed up
+                                                byteArray blockData = byteArray(
+                                                    Level::CHUNK_TILE_COUNT);
                                                 getBl #endifa(blockData);
-                                                
-    lowestHeightmap = Integer::MAX_VALUE;
+
+                                                lowestHeightmap =
+                                                    Integer::MAX_VALUE;
 
                                                 int min =
                                                     Level::maxBuildHeight - 1;
                                                 for (int x = 0; x < 16; x++)
                                                     for (int z = 0; z < 16;
                                                          z++) {
-                                                        int y =
-                                                            Level::maxBuild  //            int p = x << level->depthBitsPlusFour | z <<//            level->depthBits;			// 4J - removed
+                                                        int y = Level::
+                                                            maxBuild  //            int p = x << level->depthBitsPlusFour | z <<//            level->depthBits;			// 4J - removed
 #ifdef __PSVITA__
 
-            int Index = (x << 11) + (z << 7);
-                                                            int offset = Level::
-                                                                COMPRESSED_CHUNK_SECTION_TILES;
+                                                            int Index =
+                                                                (x << 11) +
+                                                                (z << 7);
+                                                        int offset = Level::
+                                                            COMPRESSED_CHUNK_SECTION_TILES;
                                                         y = 127;
             while (y > 0 &&
                    Tile::lightBlock[blockData[Index + offset + (y - 1)]] ==
@@ -750,8 +761,9 @@ LevelChu#ifdef SHARING_ENABLED
                                                                 MAX_BRIGHTNESS;
                                                             int yy = Level::
 #ifdef __PSVITA__1;
-                                                            
-                int offset = Level::COMPRESSED_CHUNK_SECTION_TILES;
+
+                                                                int offset = Level::
+                                                                    COMPRESSED_CHUNK_SECTION_TILES;
                                                             SparseLightStorage*
                                                                 skyLight =
                                                                     upperSkyLight;
@@ -797,10 +809,13 @@ LevelChu#ifdef SHARING_ENABLED
                                                                     br >
                                                                         0) #else
                                                             }
-                                                            
-                CompressedTileStorage* blocks = yy >= Level::COMPRESSED_CHUNK_SECTION_HEIGHT
-                                                                ? upperBlocks
-                                                                : lowerBlocks;
+
+                                                            CompressedTileStorage*
+                                                                blocks =
+                                                                    yy >= Level::
+                                                                                COMPRESSED_CHUNK_SECTION_HEIGHT
+                                                                        ? upperBlocks
+                                                                        : lowerBlocks;
                                                             SparseLightStorage*
                                                                 skyLight =
                                                                     yy >= Level::
@@ -844,12 +859,42 @@ LevelChu#ifdef SHARING_ENABLED
                                                 this
 #ifdef __PSVITA__;
 
-    del #endifockD  // 4J - this code is fully commented out in the java
-                    // version, but we have// reimplemented something here to
-                    // try and light lava as chunks are created, as// otherwise
-                    // they get shared before being lit, and then their lighting
-                    // gets// updated on the client and causes framerate
-                    // stutters.
+                                                    del #endifockD  // 4J - this
+                                                                    // code is
+                                                                    // fully
+                                                                    // commented
+                                                                    // out in
+                                                                    // the java
+                                                                    // version,
+                                                                    // but we
+                                                                    // have//
+                                                                    // reimplemented
+                                                                    // something
+                                                                    // here to
+                                                                    // try and
+                                                                    // light
+                                                                    // lava as
+                                                                    // chunks
+                                                                    // are
+                                                                    // created,
+                                                                    // as//
+                                                                    // otherwise
+                                                                    // they get
+                                                                    // shared
+                                                                    // before
+                                                                    // being
+                                                                    // lit, and
+                                                                    // then
+                                                                    // their
+                                                                    // lighting
+                                                                    // gets//
+                                                                    // updated
+                                                                    // on the
+                                                                    // client
+                                                                    // and
+                                                                    // causes
+                                                                    // framerate
+                                                                    // stutters.
                                                     void
                                                     LevelChunk::lightLava() {
                                                     if (!emissiveAdded) return;
@@ -1242,8 +1287,7 @@ void LevelChunk::recheckGaps// 4J added - otherwise we can end up doing a very b
     }
     if (height < lowestHeightmap) lowestHeightmap = height;
     if (!level->dimension->hasCeiling) {
-                                                PI "Light gaps" vent(
-                                                    0, );
+                                                PI "Light gaps" vent(0, );
                                                 lightGap(xOffs - 1, zOffs, y1,
                                                          y2);
                                                 lightGap(xOffs + 1, zOffs, y1,
@@ -1283,17 +1327,15 @@ int LevelChunk::getTile(int x, int y, int z) {
 }
 
 bool LevelChunk::setTileAndData(int x, int y, int z, int _tile, int _data) {
-                                                uint8_t
-                                                    tile  // Optimisation
-                                                          // brought forward
-                                                          // from 1.8.2, change
-                                                          // from int to
-                                                          // unsigned
-                                                          // char// & this
-                                                          // special value
-                                                          // changed from -999
-                                                          // to
-                                                          // 255
+                                                uint8_t tile  // Optimisation
+                                                              // brought forward
+                                                              // from 1.8.2,
+                                                              // change from int
+                                                              // to unsigned
+                                                              // char// & this
+                                                              // special value
+                                                              // changed from
+                                                              // -999 to 255
                                                     int slot = z << 4 | x;
 
                                                 if (y >=
@@ -1371,8 +1413,7 @@ bool LevelChunk::setTileAndData(int x, int y, int z, int _tile, int _data) {
                                                         0) {
                                                         if (y >= oldHeight) {
                                                             "Recalc height "
-                                                            "1" vent(
-                                                                0, );
+                                                            "1" vent(0, );
                                                             recalcHeight(
                                                                 x, y + 1, z);
                                                             PIXEndNamedEvent();
@@ -1381,8 +1422,7 @@ bool LevelChunk::setTileAndData(int x, int y, int z, int _tile, int _data) {
                                                         if (y ==
                                                             oldHeight - 1) {
                                                             "Recalc height "
-                                                            "2" vent(
-                                                                0, );
+                                                            "2" vent(0, );
                                                             recalcHeight(x, y,
                                                                          z);
                                                             PIXEndNamedEvent();
@@ -1391,8 +1431,9 @@ bool LevelChunk::setTileAndData(int x, int y, int z, int _tile, int _data) {
                                                         // xOffs, y, zOffs,
                                                         // xOffs, y,//
                                                         // zOffs);
-                                                        
-     "Lighting gaps" dEvent(0, );
+
+                                                        "Lighting gaps" dEvent(
+                                                            0, );
                                                         lightGaps(x, z);
                                                         PIXEndNamedEvent();
                                                     }
@@ -1487,7 +1528,7 @@ bool LevelChunk::setTileAndData(int x, int y, int z, int _tile, int _data) {
                                                                                 EntityTile*>(
                                                                                 Tile::tiles
                                                                                     [_tile])
-                                                                                ->newTileE  // app.DebugPrintf("%s: Setting tile id %d, created tileEntity// type %d\n", level->isClientSide?"Client":"Server", _tile,// te->GetType());            
+                                                                                ->newTileE  // app.DebugPrintf("%s: Setting tile id %d, created tileEntity// type %d\n", level->isClientSide?"Client":"Server", _tile,// te->GetType());
                                                                                     level
                                                                                 ->setTileEntity(
                                                                                     xOffs,
@@ -1643,8 +1684,10 @@ bool LevelChunk::setTile(int// 4J Stu - Now using setTileAndData (like in 1.5 Ja
         return 0;
                                                                 }
 
-                                                                
-void LevelChunk::getNeighbourBrightnesses(int* brightnesses,
+                                                                void
+                                                                LevelChunk::getNeighbourBrightnesses(
+                                                                    int*
+                                                                        brightnesses,
                                                                     LightLayer::
                                                                         variety
                                                                             layer,
@@ -1879,7 +1922,7 @@ void LevelChunk::getNeighbourBrightnesses(int* brightnesses,
                                                                      * }
                                                                      */
 
-    return light;
+                                                                    return light;
                                                                 }
 
                                                                 void
@@ -1899,9 +1942,6 @@ void LevelChunk::getNeighbourBrightnesses(int* brightnesses,
                                                                             e->z /
                                                                             16);
     if (xc != this->x || z"Wrong location!"       app.//        System.out.println("Wrong location! " + e);//        Thread.dumpStack();
-        
-    
-                                                                
                                                                 }
                                                                 int yc =
                                                                     Mth::floor(
@@ -1918,19 +1958,20 @@ void LevelChunk::getNeighbourBrightnesses(int* brightnesses,
                                                                     true;
                                                                 e->xChunk = x;
 #ifdef _ENTITIES_RW_SECTIONzChunk = z;
-                                                                
-    Enter #elsecalRWSection(&m_csEntities, true);
-                                                                
- #endiferCriticalSection(&m_csEntities);
-                                                                #ifdef _ENTITIES_RW_SECTIONush_back(
-                                                                    e);
-                                                                
-    Leave #elsecalRWSection(&m_csEntities, true);
-                                                                
- #endifveCriticalSection(&m_csEntities);
-                                                                
 
-                                                            
+                                                                Enter #elsecalRWSection(
+                                                                    &m_csEntities,
+                                                                    true);
+
+#endiferCriticalSection(&m_csEntities);
+#ifdef _ENTITIES_RW_SECTIONush_back(
+                                                                    e);
+
+                                                                    Leave #elsecalRWSection(
+                                                                        &m_csEntities,
+                                                                        true);
+
+#endifveCriticalSection(&m_csEntities);
                                                             }
 
                                                             void LevelChunk::
@@ -1956,40 +1997,37 @@ void LevelChunk::getNeighbourBrightnesses(int* brightnesses,
 
     Enter#elsecalRWSection(&m_csEntities, true);
 
- #endiferCrit// 4J - was entityBlocks[yc]->remove(e);
+#endiferCrit  // 4J - was entityBlocks[yc]->remove(e);
     AUTO_VAR(it, std::find(entityBlocks[yc]->begin(), entityBlocks[yc]->end(), e));
     if (it != entityBlocks[yc]->end()) {
-                                                                    // 4J - we
-                                                                    // don't
-                                                                    // want
-                                                                    // storage
-                                                                    // creeping
-                                                                    // up here
-                                                                    // as
-                                                                    // thinkgs
-                                                                    // move
-                                                                    // round
-                                                                    // the//
-                                                                    // world
-                                                                    // accumulating
-                                                                    // up spare
-                                                                    // space
-                                                                    #ifdef __PS3__    // MGH - have to sort this C++11 code        
-                                                                        static bool
-                                                                            bShowMsg =
-                                                                                true;
+// 4J - we
+// don't
+// want
+// storage
+// creeping
+// up here
+// as
+// thinkgs
+// move
+// round
+// the//
+// world
+// accumulating
+// up spare
+// space
+#ifdef __PS3__  // MGH - have to sort this C++11 code
+                                                                    static bool
+                                                                        bShowMsg =
+                                                                            true;
        "Need to add C++11 shrink_to_fit for PS3\n"f(#else            bShowMsg = false;
         }
-#endif    entityBlocks[yc]->shrin
+#endif entityBlocks[yc]->shrin
 #ifdef _ENTITIES_RW_SECTIONemSect(0);
                                                             }
-                                                            
-    #elseCriticalRWSection(&m_csEntities, true);
-                                                            #endif LeaveCriticalSection(
-                                                                &m_csEntities);
-                                                            
 
-                                                        
+#elseCriticalRWSection(&m_csEntities, true);
+#endif LeaveCriticalSection(
+                                                                &m_csEntities);
                                                         }
 
                                                         bool
@@ -2196,9 +2234,10 @@ std::shared_ptr<TileEntity> LevelChunk::getTileEntity(int x, in// 4J Stu - Chang
                                                     // {//
                                                     // removeThis.setRemoved();
                                                     //   }
-                                                    //   
-                                                    
-        EnterCriticalSection(&m_csTileEntities);
+                                                    //
+
+                                                    EnterCriticalSection(
+                                                        &m_csTileEntities);
                                                     AUTO_VAR(
                                                         it,
                                                         tileEntities.find(pos));
@@ -2224,8 +2263,8 @@ std::shared_ptr<TileEntity> LevelChunk::getTileEntity(int x, in// 4J Stu - Chang
 void LevelChunk::load()#ifdef _LARGE_WORLDS;
 
     if (!level->isClientSide) {
-                                            
-        if (m_bUnloaded && m_unloadedEntitiesTag) {
+                                            if (m_bUnloaded &&
+                                                m_unloadedEntitiesTag) {
             ListTag<CompoundTag>* entityTags =
                 (ListTag<CompoundTag>"Entities"edEntitiesTag->getList(
                     L);
@@ -2272,9 +2311,9 @@ void LevelChunk::load()#ifdef _LARGE_WORLDS;
             m_unload#endiftiesTag = NULL;
             m_bUnloaded = false;
                                             }
-                                            
 
-        std::vector<std::shared_ptr<TileEntity> >
+                                            std::vector<
+                                                std::shared_ptr<TileEntity> >
                                                 values;
                                             EnterCriticalSection(
                                                 &m_csTileEntities);
@@ -2284,7 +2323,7 @@ void LevelChunk::load()#ifdef _LARGE_WORLDS;
                                                  it++) {
                                                 values.push_back(it->second);
                                             }
-        LeaveCriticalSec
+                                        LeaveCriticalSec
 #ifdef _ENTITIES_RW_SECTION level->addAllPendingTileEntities(values);
 #else
         EnterCriticalRWSectio#endifsEntities, true);
@@ -2321,10 +2360,12 @@ void LevelChunk::load()#ifdef _LARGE_WORLDS;
 
     for (int i = 0; i < ENTITY_B#ifdef _ENTITIES_RW_SECTION  level->removeEntities(entityBlocks[i]);
                                         }
-                                        #else 
+#else 
     LeaveCriticalRWSe #endif& m_cs      // app.DebugPrintf("Unloaded chunk %d,
                                         // %d\n", x, z);s
-#ifdef _LARGE_WORLDS     // 4J-JEV: If we unload a chunk twice, we delete all theif (!m_bUnloaded)  // entities/tile-entities its saved in the entitiesTag.                    
+#ifdef _LARGE_WORLDS  // 4J-JEV: If we unload a chunk twice, we delete all theif
+                      // (!m_bUnloaded)  // entities/tile-entities its saved in
+                      // the entitiesTag.                    
                                         {
                                             m_bUnloaded = true;
         if (!le// 4J Stu - Save out entities to a cached format that won'tag;
@@ -2394,7 +2435,7 @@ void LevelChunk::load()#ifdef _LARGE_WORLDS;
                                 }
 
                                 bool Lev #elsenk::containsPlayer() {
-                                    #endif 
+#endif 
     EnterCriticalRWSection(&m_csEntities, true);
                                     
     EnterCriticalSection(&m_csEntities);
@@ -2405,16 +2446,15 @@ void LevelChunk::load()#ifdef _LARGE_WORLDS;
 #ifdef _ENTITIES_RW_SECTIONty->size(); j++) {
                                         if (vecEntity->at(j)
                                                 ->GetType() #elseTYPE_SERVERPLAYER) {
-                                            
-     #endif LeaveCriticalRWSection(&m_csEntities, true);
-                                            
-    #ifdef _ENTITIES_RW_SECTIONction(&m_csEntities);
+#endif LeaveCriticalRWSection(&m_csEntities, true);
+
+#ifdef _ENTITIES_RW_SECTIONction(&m_csEntities);
                                             
                 retur #elsee;
                                         }
                                     }
                                 }
-                                #endif 
+#endif 
     Leav
 #ifdef _LARGE_WORLDS_csEntities, true);
 
@@ -2441,7 +2481,7 @@ void LevelChunk::markUnsaved() {
 #ifndef __PSVITA__ 2)  /// AP - RW critical sections are expensive so enter once
                        /// inS_LEN// Level::getEntitiesCKS_LENGTH - 1;
 
-    #endif 
+#endif 
     
     EnterCriticalSection(&m_csEntities);
                                 
@@ -2527,8 +2567,8 @@ void LevelChunk::markUnsaved() {
             if (isAssignableFro// 4J - note needs to be equivalent to        if (s// baseClass.isAssignableFrom(e.getClass())                 #ifndef __PSVITA__;
                                     }
                                 }
-#endif 
-            #ifdef _ENTITIES_RW_SECTION
+#endif
+#ifdef _ENTITIES_RW_SECTION
         }
                             }
                             
@@ -3117,8 +3157,8 @@ void LevelChunk::setBlockLightData(byteArray data) {
                            // copy here// or one of the
                            // server or client copies depending
                         // on
-    
-    #ifdef SHARING_ENABLED
+
+#ifdef SHARING_ENABLED
     
     lowerSkyLight->compress();
     upperSkyL  // If we're the host machine, and this is the client level, then
@@ -3138,8 +3178,8 @@ void LevelChunk::setBlockLightData(byteArray data) {
         } LeaveCriticalSection(&m_csSharing);
 }
 else {
-    
-        #elsesToCompressLower = lowerB #endif blocksToCompressUpper =
+
+#elsesToCompressLower = lowerB #endif blocksToCompressUpper =
         upperBlocks;
 }
 
@@ -3219,7 +3259,7 @@ void LevelChunk::readCompressedBlockLightData(DataInputStr// Attempt to compress
     } LeaveCriticalSection(&m_csSharing);
 }
 else {
-    #else 
+#else 
         dataToCompre #endifr = lowerData;
     dataToCompressUpper = upperData;
 }

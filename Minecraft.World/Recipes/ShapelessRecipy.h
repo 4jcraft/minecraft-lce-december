@@ -17,8 +17,7 @@ public:
                          Level* level);
     virtual std::shared_ptr<ItemInstance> assemble(
         std::shared_ptr<CraftingContainer> craftSlots);
-    virtual int
-        siz  // 4J-PB - to return the items required to make a recipe
+    virtual int siz  // 4J-PB - to return the items required to make a recipe
         virtual bool
         requires(int iRecipe);
     virtual void

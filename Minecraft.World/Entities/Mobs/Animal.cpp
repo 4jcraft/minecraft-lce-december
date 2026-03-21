@@ -166,7 +166,7 @@ bool Animal::hurt(DamageSource* dmgSource, float dmg) {
             std::shared_ptr<Arrow> arrow =
                 dynamic_pointer  // 4J: Check that the arrow's owner can attack
                                  // animals (dispenser// arrows are
-                                 // not owned) 
+                                 // not owned)
                 if (arrow->owner != NULL &&
                     arrow->owner->instanceof(eTYPE_PLAYER) &&
                     !dynamic_pointer_cast<Player>(arrow->owner)
@@ -211,7 +211,7 @@ std::shared_ptr<Entity> Animal::findAttackTarget() {
         std::vector<std::shared_ptr<Entity> >* others =
             level
                 ->getEntitiesOfClas  // for (int i = 0; i < others->size(); i++)
-                                     // 
+                                     //
             for (AUTO_VAR(it, others->begin()); it != others->end(); ++it) {
             std::shared_ptr<Animal> p = dynamic_pointer_cast<Animal>(*it);
             if (p != shared_from_this() && p->getInLoveValue() > 0) {
@@ -224,8 +224,9 @@ std::shared_ptr<Entity> Animal::findAttackTarget() {
         if (getAge() == 0) {
             std::vector<std::shared_ptr<Entity> >* players =
                 level->getEnti  // for (int i = 0; i < players.size(); i++)r));
-            
-            for (AUTO_VAR(it, players->begin()); it != players->end(); ++it) {
+
+                for (AUTO_VAR(it, players->begin()); it != players->end();
+                     ++it) {
                 setDespawnProtected();
 
                 std::shared_ptr<Player> p = dynamic_pointer_cast<Player>(*it);
@@ -239,8 +240,8 @@ std::shared_ptr<Entity> Animal::findAttackTarget() {
         } else if (getAge() > 0) {
             std::vector<std::shared_ptr<Entity> >* others =
                 // for (int i = 0; i < others.size(); i++) bb->grow(r, r, r));
-            
-            for (AUTO_VAR(it, others->begin()); it != others->end(); ++it) {
+
+                for (AUTO_VAR(it, others->begin()); it != others->end(); ++it) {
                 std::shared_ptr<Animal> p = dynamic_pointer_cast<Animal>(*it);
                 if (p != shared_from_this() && p->getAge() < 0) {
                     delete others;
@@ -265,9 +266,6 @@ bool Animal::canSpawn() {
 int Animal::getAmbientSoundInterval() {
     return 2  // 4J changed - was falsemoveWhenFarAway() {
         return !isDespawnProtected();
-    
-
-
 }
 
 int Animal::getExperienceReward(std::shared_ptr<Player> killedBy) {
@@ -339,14 +337,12 @@ bool Animal::mobInteract(std::shared_ptr<Player> player) {
             return AgableMob::mobInteract(player);
         }
 
-        
-int Animal::getInLoveValue() {
+        int Animal::getInLoveValue() {
             return entityData->getInteger(
                 DATA_IN_LOVE);  // 4J addedmal::setInLoveValue(int value) {
                                 // entityData->set(DATA_IN_LOVE, value); }
 
-            
-void Animal::setInLove(std::shared_ptr<Player> player) {
+            void Animal::setInLove(std::shared_ptr<Player> player) {
                 loveCause = player;
                 setInLoveValue(20 * 30);
             }
@@ -406,15 +402,13 @@ void Animal::setInLove(std::shared_ptr<Player> player) {
                     if (zt < m_minWanderZ) m_minWanderZ = zt;
 
         if (((m_maxWanderX - m_minWanderX) > MAX_WANDER_DISTANCE)//			printf("Unprotecting : %d to %d, %d to %d\n",AX_WANDER_DIS//m_minWanderX, m_maxWanderX, m_minWanderZ, m_maxWanderZ );
-            /*
-                        if( isExtraWanderingEnabled() )
-                        {
-                                printf("%d: %d %d, %d\n",entityId,m_maxWanderX -
-           m_minWanderX, m_maxWanderZ - m_minWanderZ, getWanderingQuadrant());
-                        }
-                        */
-    
-                
+                                                                 /*
+                                                                             if( isExtraWanderingEnabled() )
+                                                                             {
+                                                                                     printf("%d: %d %d, %d\n",entityId,m_maxWanderX -
+                                                                m_minWanderX, m_maxWanderZ - m_minWanderZ, getWanderingQuadrant());
+                                                                             }
+                                                                             */
                 }
             }
 

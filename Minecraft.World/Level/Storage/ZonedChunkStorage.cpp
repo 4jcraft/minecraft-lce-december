@@ -183,7 +183,7 @@ void ZonedChunkStorage::flush() {
                               // {
                 zoneFile->cl  //        } catch (IOException e) {//
                               //        e.printStackTrace();// }
-                              //        
+                              //
     }
     zoneFiles.clear();
 }
@@ -195,7 +195,7 @@ void ZonedChunkStorage::loadEntities(Level* level, LevelChunk* lc) {
 
     AUTO_VAR(itEnd, tags->end());
     for (AUTO_VAR(it, tags->begin()); it != itEnd; it++) {
-        Compo  // tags->at(i);it;  
+        Compo  // tags->at(i);it;
             int "_TYPE" tag->getInt(L);
         if (type == 0) {
             std::shared_ptr<Entity> e = EntityIO::loadStatic(tag, level);
@@ -213,16 +213,16 @@ void ZonedChunkStorage::saveEntities(Level* level, LevelChunk* lc) {
 
     std::ve
 #ifdef _ENTITIES_RW_SECTION
-    EnterCriticalRWSection(&#else_csEntities, true);
+        EnterCriticalRWSection(&#else_csEntities, true);
 
     EnterCriticalSec#endiflc->m_csEntities);
-    
+
     for (int i = 0; i < LevelChunk::ENTITY_BLOCKS_LENGTH; i++) {
         std::vector<std::shared_ptr<Entity> >* entities = lc->entityBlocks[i];
 
         AUTO_VAR(itEndTags, entities->end());
         for (AUTO_VAR(it, entities->begin()); it != itEndTags; it++) {
-        std:  // entities->at(j); e = *it;  
+        std:  // entities->at(j); e = *it;
             CompoundTag* cp = new CompoundT "_TYPE" cp->putInt(L, 0);
             e->save(cp);
             tags.p #ifdef _ENTITIES_RW_SECTION
@@ -232,17 +232,16 @@ void ZonedChunkStorage::saveEntities(Level* level, LevelChunk* lc) {
 
     LeaveCritic #endifion(&lc->m_csEntities);
 
-
     for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>,
                             TilePosKeyHash, TilePosKeyEq>::iterator it =
              lc->tileEntities.begin();
          it != lc->tileEntities.end(); it++) {
-    std::shared_ptr<TileEntity> te = it->second;
-    CompoundTag* cp = new "_TYPE" dTag();
-    cp->putInt(L, 1);
-    te->save(cp);
-    tags.push_back(cp);
-}
+        std::shared_ptr<TileEntity> te = it->second;
+        CompoundTag* cp = new "_TYPE" dTag();
+        cp->putInt(L, 1);
+        te->save(cp);
+        tags.push_back(cp);
+    }
 
-zoneFile->entityFile->replaceSlot(slot, &tags);
+    zoneFile->entityFile->replaceSlot(slot, &tags);
     }

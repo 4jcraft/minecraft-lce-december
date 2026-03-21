@@ -40,7 +40,8 @@ public:
     byteArray std::array();
     IntBuffer* asIntBuffer();
     FloatBuffer* asFlo
-#ifdef __PS3__    // we're using the RSX now to upload textures to vram, so we need th main ram// textures allocated from io space
+#ifdef __PS3__  // we're using the RSX now to upload textures to vram, so we
+                // need th main ram// textures allocated from io space
         class ByteBuffer_IO : public ByteBuffer {
     public:
         ByteBuffer_IO(unsigned int capacity);

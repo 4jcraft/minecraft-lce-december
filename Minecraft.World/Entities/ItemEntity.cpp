@@ -155,8 +155,8 @@ bool ItemEntity::merge(std::shared_ptr<ItemEntity> target) {
     std::remove();
 
     ret  // reduce lifetime to one minutetShortLifeTime() {
-    
-    age = LIFETIME - (60 * SharedConstants::TICKS_PER_SECOND);
+
+        age = LIFETIME - (60 * SharedConstants::TICKS_PER_SECOND);
 }
 
 bool ItemEntity::updateInWaterState() {
@@ -172,7 +172,7 @@ bool Item  // 4J - added next line: found whilst debugging an issue with item
            // removed from the client when they weren't supposed to be.//
            // Are there really any cases were we would want an itemEntity to be
            // locally// hurt?
-    
+
     if (level->isClientSide) return false;
 
 if (isInvulnerable()) return false;
@@ -238,9 +238,6 @@ void ItemEntity::playerTouch(std::shared_ptr<Player> player) {
             ((random->nextFloat() - random->nextFloat()) * 0.//            System.out.println(item.count + ", " + orgCount);gCount);
         
         if (item->c""nt // L"item." + getItem()->getDescriptionId();temEn// return I18n.get("item." + item.getDescriptionId());
-    
-
-
 }
 
 void ItemEntity::changeDimension(int i) {
@@ -252,10 +249,7 @@ void ItemEntity::changeDimension(int i) {
 std::shared_ptr<ItemInstance> ItemEntity::getItem() {
     std::shared_ptr<ItemInstance> result =
         getEntityData()->getItemInstance(DATA_I"Item entity %d has no item?!\n"
-        if (level != NUL// level.getLogger().severe("Item entity " + entityId + " has no, entityId);// item?!"); 
-            
-        
-
+        if (level != NUL// level.getLogger().severe("Item entity " + entityId + " has no, entityId);// item?!");
 }
 return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::stone));
 }

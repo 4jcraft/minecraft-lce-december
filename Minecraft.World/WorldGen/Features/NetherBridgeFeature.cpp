@@ -62,30 +62,30 @@ bool NetherBridgeFeature::isFeatureChunk(
         (x == netherFortressPos->x && z == netherFortressPos->z))
         return t
 #ifdef _LARGE_WORLDS
-    int xzSize = level->dimension->getXZSize();
-            if (xzSize > 30) {
-            // For large worlds, lets allow the PC version of the spawning to
-            // place nether fortresses (plus the one we forced above)
-            int cx = x >> 4;
-            int cz = z >> 4;
+               int xzSize = level->dimension->getXZSize();
+    if (xzSize > 30) {
+        // For large worlds, lets allow the PC version of the spawning to
+        // place nether fortresses (plus the one we forced above)
+        int cx = x >> 4;
+        int cz = z >> 4;
 
-            random->setSeed(cx ^ (cz << 4) ^ level->getSeed());
-            random->nextInt();
+        random->setSeed(cx ^ (cz << 4) ^ level->getSeed());
+        random->nextInt();
 
-            if (random->nextInt(3) != 0) {
-                return false;
-            }
-            if (x != ((cx << 4) + 4 + random->nextInt(8))) {
-                return false;
-            }
-            if (z != ((cz << 4) + 4 + random->nextInt(8))) {
-                return false;
-            }
-            return true;
-#endif 
-
-    return false;
+        if (random->nextInt(3) != 0) {
+            return false;
         }
+        if (x != ((cx << 4) + 4 + random->nextInt(8))) {
+            return false;
+        }
+        if (z != ((cz << 4) + 4 + random->nextInt(8))) {
+            return false;
+        }
+        return true;
+#endif
+
+        return false;
+    }
 
     StructureStart* NetherBridgeFeature::createStructureStart(int x, int z) {
         return new NetherBridgeStart(level, random, x, z);
@@ -95,8 +95,8 @@ bool NetherBridgeFeature::isFeatureChunk(
         cachedStructures.clear();
     }
 
-    NetherBridgeFeature::NetherBridgeStart::
-        NetherBridgeStart() {  // for reflection
+    NetherBridgeFeature::NetherBridgeStart::NetherBridgeStart() {  // for
+                                                                   // reflection
     }
 
     NetherBridgeFeature::NetherBridgeStart::NetherBridgeStart(

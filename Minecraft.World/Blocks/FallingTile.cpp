@@ -172,7 +172,7 @@ void FallingTile::causeFallDamage(float distance) {
         DamageSource* source = tile == Tile::anvil_Id
                                    ? DamageSource::anvil
                                    :  // for (Entity entity : entities)
-                                      // 
+                                      //
                                    for (AUTO_VAR(it, entities->begin());
                                         it != entities->end(); ++it) {
             (*it)->hurt(source, std::min(Mth::floor(dmg * fallDamageAmount),

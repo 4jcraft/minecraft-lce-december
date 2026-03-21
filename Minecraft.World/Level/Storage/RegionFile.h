@@ -64,11 +64,11 @@ bool m_bIsEmp  // 4J added
         }
         void close() { rf->write(x, z, buf.data, count); }
     };
-/* write a chunk at (x,z) with length bytes of data to disk */
-protected : void
-            write(int x, int z, uint8_t* data, int length);
-/* write a chunk data to the region file at specified sector number
- */
+    /* write a chunk at (x,z) with length bytes of data to disk */
+protected:
+    void write(int x, int z, uint8_t* data, int length);
+    /* write a chunk data to the region file at specified sector number
+     */
 private:
     void write(int sectorNumber, uint8_t* data, int length,
                unsigned int compLength);

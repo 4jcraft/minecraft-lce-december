@@ -31,10 +31,10 @@ void DataOutputStream::flush() { stream->flush(); }
 // effect as the call write(b, 0, b.length). Parameters: b - the data.
 void DataOutputStream::write(byteArray b) { write(b, 0, b.length); }
 
-// Writes len bytes from the specified uint8_t array starting at offset off to the
-// underlying output stream. If no exception is thrown, the counter written is
-// incremented by len. Parameters: b - the data. off - the start offset in the
-// data. len - the number of bytes to write.
+// Writes len bytes from the specified uint8_t array starting at offset off to
+// the underlying output stream. If no exception is thrown, the counter written
+// is incremented by len. Parameters: b - the data. off - the start offset in
+// the data. len - the number of bytes to write.
 void DataOutputStream::write(byteArray b, unsigned int offset,
                              unsigned int length) {
     stream->write(b, offset, length);
@@ -47,9 +47,9 @@ void DataOutputStream::write(byteArray b, unsigned int offset,
 // and then calls the close method of its underlying output stream.
 void DataOutputStream::close() { stream->close(); }
 
-// Writes out a uint8_t to the underlying output stream as a 1-uint8_t value. If no
-// exception is thrown, the counter written is incremented by 1. Parameters: v -
-// a uint8_t value to be written.
+// Writes out a uint8_t to the underlying output stream as a 1-uint8_t value. If
+// no exception is thrown, the counter written is incremented by 1. Parameters:
+// v - a uint8_t value to be written.
 void DataOutputStream::writeByte(uint8_t a) { stream->write(a); }
 
 // Converts the double argument to a long using the doubleToLongBits method in
@@ -67,8 +67,9 @@ void DataOutputStream::writeDouble(double a) {
 
 // Converts the float argument to an int using the floatToIntBits method in
 // class Float, and then writes that int value to the underlying output stream
-// as a 4-uint8_t quantity, high uint8_t first. If no exception is thrown, the counter
-// written is incremented by 4. Parameters: v - a float value to be written.
+// as a 4-uint8_t quantity, high uint8_t first. If no exception is thrown, the
+// counter written is incremented by 4. Parameters: v - a float value to be
+// written.
 void DataOutputStream::writeFloat(float a) {
     int bits = Float::floatToIntBits(a);
 
@@ -77,8 +78,8 @@ void DataOutputStream::writeFloat(float a) {
     written += 4;
 }
 
-// Writes an int to the underlying output stream as four bytes, high uint8_t first.
-// If no exception is thrown, the counter written is incremented by 4.
+// Writes an int to the underlying output stream as four bytes, high uint8_t
+// first. If no exception is thrown, the counter written is incremented by 4.
 // Parameters:
 // v - an int to be written.
 void DataOutputStream::writeInt(int a) {
@@ -107,8 +108,8 @@ void DataOutputStream::writeLong(__int64 a) {
     written += 4;
 }
 
-// Writes a short to the underlying output stream as two bytes, high uint8_t first.
-// If no exception is thrown, the counter written is incremented by 2.
+// Writes a short to the underlying output stream as two bytes, high uint8_t
+// first. If no exception is thrown, the counter written is incremented by 2.
 // Parameters:
 // v - a short to be written.
 void DataOutputStream::writeShort(short a) {
@@ -125,10 +126,9 @@ void DataOutputStream::writeUnsignedShort(unsigned short a) {
     written += 2;
 }
 
-// Writes a char to the underlying output stream as a 2-uint8_t value, high uint8_t
-// first. If no exception is thrown, the counter written is incremented by 2.
-// Parameters:
-// v - a char value to be written.
+// Writes a char to the underlying output stream as a 2-uint8_t value, high
+// uint8_t first. If no exception is thrown, the counter written is incremented
+// by 2. Parameters: v - a char value to be written.
 void DataOutputStream::writeChar(wchar_t v) {
     stream->write((v >> 8) & 0xff);
     stream->write(v & 0xff);

@@ -41,8 +41,8 @@ ConsoleSaveFileSplit::RegionFileReference::~RegionFileReference() {
 
 // Compress from data to dataCompressed. Uses a special compression method that
 // is designed just to efficiently store runs of zeros, with little overhead on
-// other stuff. Compresed format is a 4 uint8_t uncompressed size, followed by data
-// as follows:
+// other stuff. Compresed format is a 4 uint8_t uncompressed size, followed by
+// data as follows:
 //
 // Byte value
 // Meaning
@@ -69,8 +69,8 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
             // If there was a preceeding run of zeros, encode that nwo
             if (runLength != 0) {
                 if (runLength < 256) {
-                    // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run
-                    // length
+                    // Runs of 1 to 255 encoded as 0 followed by one uint8_t of
+                    // run length
                     outputSize += 2;
                 } else {
                     // Runs of 256 to 65791 encoded as two 0s followed by two
@@ -95,7 +95,8 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
     // Handle any outstanding run
     if (runLength != 0) {
         if (runLength < 256) {
-            // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run length
+            // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run
+            // length
             outputSize += 2;
         } else {
             // Runs of 256 to 65791 encoded as two 0s followed by two bytes of
@@ -121,8 +122,8 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
             // If there was a preceeding run of zeros, encode that nwo
             if (runLength != 0) {
                 if (runLength < 256) {
-                    // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run
-                    // length
+                    // Runs of 1 to 255 encoded as 0 followed by one uint8_t of
+                    // run length
                     *dataOut++ = 0;
                     *dataOut++ = runLength;
                 } else {
@@ -152,7 +153,8 @@ void ConsoleSaveFileSplit::RegionFileReference::Compress() {
     // Handle any outstanding run
     if (runLength != 0) {
         if (runLength < 256) {
-            // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run length
+            // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run
+            // length
             *dataOut++ = 0;
             *dataOut++ = runLength;
         } else {
@@ -269,8 +271,8 @@ unsigned int ConsoleSaveFileSplit::RegionFileReference::GetCompressedSize() {
             // If there was a preceeding run of zeros, encode that nwo
             if (runLength != 0) {
                 if (runLength < 256) {
-                    // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run
-                    // length
+                    // Runs of 1 to 255 encoded as 0 followed by one uint8_t of
+                    // run length
                     outputSize += 2;
                 } else {
                     // Runs of 256 to 65791 encoded as two 0s followed by two
@@ -295,7 +297,8 @@ unsigned int ConsoleSaveFileSplit::RegionFileReference::GetCompressedSize() {
     // Handle any outstanding run
     if (runLength != 0) {
         if (runLength < 256) {
-            // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run length
+            // Runs of 1 to 255 encoded as 0 followed by one uint8_t of run
+            // length
             outputSize += 2;
         } else {
             // Runs of 256 to 65791 encoded as two 0s followed by two bytes of
@@ -437,9 +440,6 @@ void ConsoleSaveFileSplit::_init(const std::wstring& fileName,
                           // than 2MB so allocate high to start with// Initially committ enough room to store headSize bytes (using// CSF_PAGE_SIZE pages, so rounding up here). We should only ever have one// save file at a time, and the pages should be decommitted in the dtor, so// pages committed should always be zero at this point.
     if (pagesCommitte#ifndef _CONTENT_PACKAGE
         __debu#endif();
-
-    
-
 }
 
 unsigned int pagesRequired = (heapSize + (CSF_PAGE_SIZE - 1)) / CSF_PAGE_SIZE;
@@ -448,9 +448,6 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
                            COMMIT_ALLOCATION, PAGE_READWRITE);
     if (pvRet =#ifndef _CONTENT_PACKAGE// Out of physical memory
         __debu#endif();
-
-    
-    
     }
     pagesCommitted = pagesRequired;
 
@@ -511,9 +508,8 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
                     app.De
                         "Failed to decompress save "
                         "data!"
-                        "\n"#ifndef _CONTENT_PACKAGE
-                    __debu #endif();
-                    
+                        "\n" #ifndef _CONTENT_PACKAGE __debu #endif();
+
                     ZeroMemory(pvSaveMem, fileSize);
                     // Clear the first 8 bytes that reference the
                     // header
@@ -870,8 +866,9 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                         return;
                         // ... or we haven't passed the required time since last
                         // assessing what to// do
-                        
-    if ((currentTime - m_lastTickTime) < WRITE_TICK_RATE_MS) {
+
+                        if ((currentTime - m_lastTickTime) <
+                            WRITE_TICK_RATE_MS) {
                             return;
                         }
 
@@ -974,8 +971,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                 regionRef->lastWritten =
                                                     System::currentTimeMillis();
 
-                                                writeRequired #ifndef _CONTENT_PACKAGE
-    {
+                                                writeRequired #ifndef _CONTENT_PACKAGE {
                                                     unsigned int totalDirty = 0;
                                                     unsigned int
                                                         totalDirtyBytes = 0;
@@ -1003,23 +999,16 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
 #ifdef _DURANGO
         PIX "Dirty regions", \
         (float)totalDirty);
-                                                            PIX "Dirty MB" ter(
-                                                                L,
-                                                                (float)totalDirtyBytes /
-                                                                    (1024 *
-                                                                     1024));
+        PIX "Dirty MB" ter(L, (float)totalDirtyBytes / (1024 * 1024));
         PIX"Dirty oldest age",
                          ((float)currentTime - oldestDirty));
         PIX"Region writing bandwidth",
                          ((float)bytesInTimePeriod /
                           WRITE_BANDWIDTH_MEASUREMENT_PERIOD_SECONDS) /
                              (#endif 1024))#endif
-    
-                                                        
                                                         }
-                                                        
 
-    if (writeRequired) {
+                                                        if (writeRequired) {
                                                             StorageManager
                                                                 .SaveSubfiles(
                                                                     SaveRegionFilesCallback,
@@ -1055,8 +1044,9 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                // nNumberOfBytesToWrite
                                                                // <= bufferSize
                                                                // );
-                                                            static uint8_t buffer1
-                                                                [bufferSize];
+                                                            static uint8_t
+                                                                buffer1
+                                                                    [bufferSize];
                                                         static uint8_t
                                                             buffer2[bufferSize];
                                                         DWORD buffer1Size = 0;
@@ -1206,7 +1196,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                 // region we are
                                                                 // trying
                                                                 // to
-                                                                // copy 
+                                                                // copy
                                                                 if (uiCopyStart <
                                                                     uiFromStart) {
                                                                     // Needs to
@@ -1272,7 +1262,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                             // that we are
                                                             // going//
                                                             // to read
-                                                            // 
+                                                            //
                                                             readStartOffset -=
                                                                 amountToRead  // printf("About to read %u from %d\n", amountToRead,// readStartOffset - (char *)pvSaveMem );
 
@@ -1284,7 +1274,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                 amountToRead;
 
                                                             buffer1Size =
-                                                                amountToRead  // Move back the write pointer by the amount of bytes we are going// to write    
+                                                                amountToRead  // Move back the write pointer by the amount of bytes we are going// to write
                                                                     writeStartOffset -=
                                                                 buffer2Size  // Write buffer 2 to file
                                                                 if ((writeStartOffset +
@@ -1322,7 +1312,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                 // COMPLETED
                                                                 // ***************
                                                                 // \n\n");
-                                                                // 
+                                                                //
                                                                 assert(
                                                                     writeStartOffset ==
                                                                     spaceEndOffset);
@@ -1366,11 +1356,9 @@ std::wstring ConsoleSaveFileSplit::GetNameFromNumericIdentifier(
                                                     switch (idIn & 0x00ff0000) {
                                                         "" se 0 : prefix = L;
                                                         break;
-                                                        "DIM-1" prefix =
-                                                            L;
+                                                        "DIM-1" prefix = L;
                                                         break;
-                                                        "DIM1/" prefix =
-                                                            L;
+                                                        "DIM1/" prefix = L;
                                                         break;
                                                     }
                                                     signed char regionX =
@@ -1419,11 +1407,20 @@ void ConsoleSav#if 0Sp// 4J Stu - There are debug reasons where we want to force
                                                                 ->lastWritten =
                                                                 Syste #endifrent  // Clean up any memory allocated for compressed data when we have finished// writing
 
-void ConsoleSaveFileS  // This is called from the StorageManager.Tick() which
-                       // should always be on// the main
-                       // thread
-    
-    for (AUTO_VAR(it, regionFiles.begin()); it != regionFiles.end(); it++) {
+                                                                void
+                                                                    ConsoleSaveFileS  // This is called from the StorageManager.Tick() which
+                                                                                      // should always be on// the main
+                                                                                      // thread
+
+                                                                for (
+                                                                    AUTO_VAR(
+                                                                        it,
+                                                                        regionFiles
+                                                                            .begin());
+                                                                    it !=
+                                                                    regionFiles
+                                                                        .end();
+                                                                    it++) {
                                                                 RegionFileReference*
                                                                     region =
                                                                         it->second;
@@ -1452,10 +1449,9 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
 
     MinecraftServer* s#endif= Mine// The storage manage might potentially be busy doing a sub-file write// initiated from the tick. Wait until this is totally processed.
     while (StorageManager.GetSaveS#ifdef _XBOX_ONErage::ESaveGame_Idle) {
-
         if (server &// If the server is mid-suspend we need to tick the storage manager// ourselves
-            
-     #endif StorageManager.Tick();
+
+#endif StorageManager.Tick();
   "Flush wait\n"
 
         app.DebugPrintf();
@@ -1534,11 +1530,14 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
                                  if (MinecraftServer::getInstance() != NULL &&
                                      MinecraftServer::getInstance()
                                              ->levels[0] != NULL) {
-                                     seed = MinecraftServer::getInstance()
-                                                ->levels[0]
-                                                ->getLevelData()
-                                                ->getSeed();
-                                     hasSeed = true;
+                                                                seed =
+                                                                    MinecraftServer::
+                                                                        getInstance()
+                                                                            ->levels
+                                                                                [0]
+                                                                            ->getLevelData()
+                                                                            ->getSeed();
+                                                                hasSeed = true;
                                  }
 
             int iTextMetadataBytes = app.CreateImageTextData(
@@ -1590,8 +1589,11 @@ int ConsoleSaveFileSplit::SaveSaveDataCallback(LPVOID lpParam, bool bRes) {
                                                                 // be//
                                                                 // on the main
                                                                 // thread
-        
-        StorageManager.SaveSubfiles(SaveRegionFilesCallback, pClass);
+
+                                                            StorageManager
+                                                                .SaveSubfiles(
+                                                                    SaveRegionFilesCallback,
+                                                                    pClass);
     }
     return 0;
                                                 }
@@ -1610,14 +1612,18 @@ int ConsoleSaveFileSplit::SaveSaveDataCallback(LPVOID lpParam, bool bRes) {
                                                                 // on// the
                                                                 // main
                                                                 // thread
-    
-    pClass->proces
+
+                                                            pClass->proces
 #ifndef _CONTENT_PACKAGE return 0;
                                                 }
-                                                
-void ConsoleSaveFileSplit::Deb /*= NULL*/ ile(void* compressedData /*= 0*/
-                                              unsigned int
-                                                  compressedDataSize ) {
+
+                                                void ConsoleSaveFileSplit::
+                                                    Deb /*= NULL*/
+                                                    ile(void*
+                                                            compressedData /*=
+                                                                              0*/
+                                                        unsigned int
+                                                            compressedDataSize) {
                                                     LockSaveAccess();
 
                                                     finalizeWrite();
@@ -1628,8 +1634,7 @@ void ConsoleSaveFileSplit::Deb /*= NULL*/ ile(void* compressedData /*= 0*/
                                                     DWORD numberOfByt
                                                         "Saves" en = 0;
 
-                                                    File targetFileDir(
-                                                        L);
+                                                    File targetFileDir(L);
 
                                                     if (!targetFileDir.exists())
                                                         targetFileDir.mkdir();
@@ -1644,8 +1649,10 @@ void ConsoleSaveFileSplit::Deb /*= NULL*/ ile(void* compressedData /*= 0*/
                                                         // separators + suffix
                                                         // // 25 chars
                                                         // total
-    
-    std::wstring cutFileName = m_fileName;
+
+                                                        std::wstring
+                                                            cutFileName =
+                                                                m_fileName;
                                                     if (m_fileName.length() >
                                                         XCONTENT_MAX_FILENAME_LENGTH -
                                                             25) {
@@ -1669,32 +1676,32 @@ void ConsoleSaveFileSplit::Deb /*= NULL*/ ile(void* compressedData /*= 0*/
                                                         t.wSecond);
 
     std::wstring wtemp = targetFileDir.getPath() + std::wstr#elseileName);
-LPCWSTR lpFileName = wtemp.c_str();
+    LPCWSTR lpFileName = wtemp.c_str();
 
     LPCSTR lpFileName =
-    wstringto #endifme(targetFileDir.getPath() + std::wstring(fileName));
-
+        wstringto #endifme(targetFileDir.getPath() + std::wstring(fileName));
 
     HANDLE hSaveFile = CreateFile(lpFileName, GENERIC_WRITE, 0, NULL,
                                   OPEN_ALWAYS, FILE_FLAG_RANDOM_ACCESS, NULL);
 
-if (compressedData != NULL && compressedDataSize > 0) {
-    WriteFile(hSaveFile, compressedData, compressedDataSize,
-              &numberOfBytesWritten, NULL);
-    assert(numberOfBytesWritten == compressedDataSize);
-} else {
-    WriteFile(hSaveFile, pvSaveMem, fileSize, &numberOfBytesWritten, NULL);
-    assert(numberOfBytesWritten == fileSize);
-}
+    if (compressedData != NULL && compressedDataSize > 0) {
+        WriteFile(hSaveFile, compressedData, compressedDataSize,
+                  &numberOfBytesWritten, NULL);
+        assert(numberOfBytesWritten == compressedDataSize);
+    } else {
+        WriteFile(hSaveFile, pvSaveMem, fileSize, &numberOfBytesWritten, NULL);
+        assert(numberOfBytesWritten == fileSize);
+    }
     CloseHandle(hSav#endif;
 
     delete[] fileName;
 
     ReleaseSaveAccess();
                                                 }
-                                                
 
-unsigned int ConsoleSaveFileSplit::getSizeOnDisk() {
+                                                unsigned int
+                                                ConsoleSaveFileSplit::
+                                                    getSizeOnDisk() {
                                                     return header.GetFileSize();
                                                 }
 
@@ -1746,9 +1753,12 @@ unsigned int ConsoleSaveFileSplit::getSizeOnDisk() {
 
                                                         return files;
                                                     }
-                                                    
-std::wstring ConsoleSaveFileSplit::getPlayerDataFilenameForLoad(
-                                                        const PlayerUID& pUID) {
+
+                                                    std::wstring
+                                                    ConsoleSaveFileSplit::
+                                                        getPlayerDataFilenameForLoad(
+                                                            const PlayerUID&
+                                                                pUID) {
                                                         return header
                                                             .getPlayerDataFilenameForLoad(
                                                                 pUID);
@@ -1768,9 +1778,9 @@ std::wstring ConsoleSaveFileSplit::getPlayerDataFilenameForLoad(
                                                         return header
                                                             .getValidPlayerDatFiles();
                                                     }
-                                                    
 
-int ConsoleSaveFileSplit::getSaveVersion() {
+                                                    int ConsoleSaveFileSplit::
+                                                        getSaveVersion() {
                                                         return header
                                                             .getSaveVersion();
                                                     }
@@ -1902,17 +1912,18 @@ int ConsoleSaveFileSplit::getSaveVersion() {
                                                                            // tourceRegionFile
                                                                         .writeA  // the file (not all of these are written in the
                                                                                  // above processing).
-                             
-
-                                                                
                                                                 }
 
                                                                 void
                                                                     ConsoleSaveFileSpli  // already in the correct format  if (getSavePlatform() == // convert each of the region files to the local platform
                                                                     return;
                                                             }
-                                                            ""
-    std::vector<FileEntry*>* allFilesInSave = getFilesWithPrefix(std::wstring(L));
+                                                            "" std::vector<
+                                                                FileEntry*>*
+                                                                allFilesInSave =
+                                                                    getFilesWithPrefix(
+                                                                        std::wstring(
+                                                                            L));
                                                             for (
                                                                 AUTO_VAR(
                                                                     it,
@@ -1928,8 +1939,7 @@ int ConsoleSaveFileSplit::getSaveVersion() {
                                                                     fe->data
                                                                         .filename);
                                                                 std::wstring
-                                                                    suffix(
-                                                                        L);
+                                                                    suffix(L);
                                                                 if (fName.compare(
                                                                         fName
                                                                             ."P"
@@ -1968,8 +1978,5 @@ int ConsoleSaveFileSplit::getSaveVersion() {
             app.DebugPrintf(, fN"%ls is not a region file, ignoring\n"nFile(File(fe->data.filename));
                                                                 } else {
             app.DebugPrintf(// set the platform of this save to the local platform,  fName.c_str());
-        // now that it's been coverted);  
-                         
-
-                                                                
+                            // now that it's been coverted);
                                                                 }

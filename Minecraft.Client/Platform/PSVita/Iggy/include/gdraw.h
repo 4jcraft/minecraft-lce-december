@@ -420,7 +420,8 @@ IDOC typedef void RADLINK gdraw_set_antialias_texture(S32 width, U8* rgba);
 
 IDOC typedef enum gdraw_texture_format {
     // Platform-independent formats
-    GDRAW_TEXTURE_FORMAT_rgba32,  // 32bpp RGBA data in platform-preferred uint8_t
+    GDRAW_TEXTURE_FORMAT_rgba32,  // 32bpp RGBA data in platform-preferred
+                                  // uint8_t
                                   // order (returned by
                                   // $gdraw_make_texture_begin as
                                   // $gdraw_texture_type)

@@ -41,7 +41,7 @@ protected:
 virtual vo  // 4J Stu - For container;
 
     public :
-    
+
     virtual bool hasCustomName() {
         return Minecart::hasCustomName();
     }

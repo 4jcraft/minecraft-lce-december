@@ -137,8 +137,8 @@ void PlayerList::placeNewPlayer(Connection* connection,
 
 	if(newPlayer)
 	{
-        int mapS #ifdef _LARGE_WORLDS
-		int scale = MapItemSavedData::MAP_SIZE * 2 * (1 << mapScale);
+        int mapS #ifdef _LARGE_WORLDS int scale =
+            MapItemSavedData::MAP_SIZE * 2 * (1 << mapScale);
         int centreXC = (int)(Math::round(player->x / scale) * scale);
         int centreZC = (int)(Math::round(
             player->z /
@@ -231,10 +231,8 @@ void PlayerList::placeNewPlayer(Connection* connection,
 
 	if (playerT// this player has been saved with a mount tagNG_TAG))
 	{
-        
-		std::shared_ptr<Entity>
-            mount = EntityIO::loadStatic(
-                playerTag->getCompound(Entity::RIDING_TAG), level);
+        std::shared_ptr<Entity> mount = EntityIO::loadStatic(
+            playerTag->getCompound(Entity::RIDING_TAG), level);
         if (mount != NULL) {
             mount->forcedLoading = true;
             level->addEntity(mount);
@@ -316,8 +314,7 @@ void // 4J Stu - TU-1 hotifxt// Add this function to take some of the code from 
 	}
 	app.DebugPrintf(// 4J Stu - If we are in the nether and the above while loop has put us above the nether then we have a problem// Finding a valid, safe spawn point is potentially computationally expensive (may have to hunt through a large part// of the nether) so move the player to their spawn position in the overworld so that they do not lose their inventory// 4J Stu - We also use this mechanism to force a spawn point in the overworld for players who were in the save when the reset nether option was applied"Player in the nether tried to spawn at y = %f, moving to overworld\n"25)
 	{
-    app.DebugPrintf(,
-                    player->y);
+    app.DebugPrintf(, player->y);
     player->setLevel(server->getLevel(0));
     player->gameMode->setLevel(server->getLevel(0));
     player->dimension = 0;
@@ -347,8 +344,7 @@ void // 4J Stu - TU-1 hotifxt// Add this function to take some of the code from 
 
 		app.DebugPrintf(, player->x, player->y, play//broadcastAll(shared_ptr<PlayerInfoPacket>( new PlayerInfoPacket(player->name, true, 1000) ) );
 {
-    
-	if (player->connection->getNetworkPlayer()) {
+    if (player->connection->getNetworkPlayer()) {
                 broadcastAll(// 4J Added_ptr<PlayerInfoPacket>( new Player// Ensure the area the player is spawning in is loaded!);
 
 	
@@ -385,11 +381,12 @@ void // 4J Stu - TU-1 hotifxt// Add this function to take some of the code from 
 void PlayerList:std:::move(std::shared_ptr<ServerPlayer> pla//4J Stu - We don't want to save the map data for guests, so when we are sure that the player is gone delete the mapr> player)
 {
     save(player);
-    // remove mount first because the player unmounts when beingpla// removed, also remove mount because it's saved in the player'sing// save tag{
-		
-		"removing player mount"
-		
-		level->removeEntityImmediately(player->riding);
+    // remove mount first because the player unmounts when beingpla// removed,
+    // also remove mount because it's saved in the player'sing// save tag{
+
+    "removing player mount"
+
+        level->removeEntityImmediately(player->riding);
     app.DebugPrintf();
 	}
 	level->removeEntity(player);
@@ -423,20 +420,17 @@ void PlayerList:std:::move(std::shared_ptr<ServerPlayer> pla//4J Stu - We don't 
                           // player
                           // settings
                         player->setXuid(xuid);
-            
-	player->setOnlineXuid(onlineXuid);
-            
 
-	
-	INetworkPlayer* networkPlayer =
+            player->setOnlineXuid(onlineXuid);
+
+            INetworkPlayer* networkPlayer =
                 pendingConnection->connection->getSocke  // 4J Addedyer();
                 if (networkPlayer != NULL && !networkPlayer->IsHost()) {
                 player->enableAllPlayerPrivileges(
                     app.GetGameHostOption(eGameHostOption_TrustPlayers) > 0);
             }
 
-            
-	LevelRuleset* serverRuleDefs = app.getGameRuleDefinitions();
+            LevelRuleset* serverRuleDefs = app.getGameRuleDefinitions();
             if (serverRuleDefs != NULL) {
                 player->gameMode->setGameRules( GameRuleDefinition::generateNewGameRulesInstance(GameRulesInstance::eGameRulesInstanceType_ServerPlayer, serverRuleDefs, pendingConnection->conne// How we handle the entity tracker depends on whether we are the primary player currently, and whether there will be any player in the same system in the same dimension once we finish respawning. // Is this the primary player in its current dimension?
 	bool isPrimary = canRecei// We're not emptying this dimension on this machine if this player is going back into the same dimensionerv// Also consider if there is another player on this machine which is in the same dimension and can take over as primary player
@@ -493,18 +487,15 @@ void PlayerList:std:::move(std::shared_ptr<ServerPlayer> pla//4J Stu - We don't 
 	std::shared_ptr<ServerPlayer> player = std::shared_ptr<ServerPlayer>(new ServerPlayer(server, server->getLevel(serverPlayer->dimension), serverPlayer->getName()// Fix for #81759 - TU9: Content: Gameplay: Entering The End Exit Portal replaces the Player's currently held item with the first one from the Quickbaryer, keepAllPlayerData);
 	if (keepAllPlayerData)
 	{
-                        // 4J added as had to remove this assignment from ServerPlayer ctor
-                        // 4J Addedventory->selected =
-                        // serverPlayer->inventory->// 4J Added} 4J Stu - Don't
-                        // reuse the id. If we do, then the player can be
-                        // re-added after being removed, but the add packet gets
-                        // sent before the remove packetpl//player->entityId =
-                        // serverPlayer->entityId;
+                    // 4J added as had to remove this assignment from
+                    // ServerPlayer ctor 4J Addedventory->selected =
+                    // serverPlayer->inventory->// 4J Added} 4J Stu - Don't
+                    // reuse the id. If we do, then the player can be
+                    // re-added after being removed, but the add packet gets
+                    // sent before the remove packetpl//player->entityId =
+                    // serverPlayer->entityId;
 
-	
-	
-
-	player->setPlayerDefaultSkin(skin);
+                    player->setPlayerDefaultSkin(skin);
                     player->setIsGuest(serverPlayer->isGuest());
                     player->setPlayerIndex(playerIndex);
                     player->setCustomSkin(serverPlayer->getCustomSkin());
@@ -516,22 +507,25 @@ void PlayerList:std:::move(std::shared_ptr<ServerPlayer> pla//4J Stu - We don't 
                                           // are the primary for the system and
                                           // can receive all packetsDimension;
 
-	
-	    // reset the player's game mode (first pick from old, then copy level ifco// necessary)Player( player );
+                        // reset the player's game mode (first pick from old,
+                        // then copy level ifco// necessary)Player( player );
 
-                        addPlayerToReceiving(player);
+                            addPlayerToReceiving(player);
 
                     ServerLevel* level =
                         server->getLevel(serverPlayer->dimension);
 
-                        // If the player is still alive and respawning to the same dimension, they are just being added back from someone else viewing the Win screenimension == oldDimension && serverPlayer->getHealth() > 0)
+                    // If the player is still alive and respawning to the same
+                    // dimension, they are just being added back from someone
+                    // else viewing the Win screenimension == oldDimension &&
+                    // serverPlayer->getHealth() > 0)
                     {
-                
-		player->moveTo(ser// Fix for #81759 - TU9: Content: Gameplay: Entering The End Exit Portal replaces the Player's currently held item with the first one from the QuickbardPosition, spawnForced);
+                player->moveTo(ser// Fix for #81759 - TU9: Content: Gameplay: Entering The End Exit Portal replaces the Player's currently held item with the first one from the QuickbardPosition, spawnForced);
 			delete bedPosition;
                     }
-                    
-		player->inventory->selected = serverPlayer->inventory->selected;
+
+                    player->inventory->selected =
+                        serverPlayer->inventory->selected;
 	}
 	else if (bedPosition != NULL)
 	{
@@ -591,12 +585,10 @@ void PlayerList:std:::move(std::shared_ptr<ServerPlayer> pla//4J Stu - We don't 
                         player->initMenu();
                     player->setHealth(player->getHealth());
 
-                    
-	
-	if (Minecraft::GetInstance()->isTutorial() &&
-            (!Minecraft::GetInstance()
-                  ->gameMode->getTutorial()
-                  ->isStateCompleted(e_Tutorial_State_Food_Bar))) {
+                    if (Minecraft::GetInstance()->isTutorial() &&
+                        (!Minecraft::GetInstance()
+                              ->gameMode->getTutorial()
+                              ->isStateCompleted(e_Tutorial_State_Food_Bar))) {
                         app.getGameRuleDefinitions()->postProcessPlayer(player);
                     }
 
@@ -610,20 +602,40 @@ void PlayerList:std:::move(std::shared_ptr<ServerPlayer> pla//4J Stu - We don't 
                                       // in the same dimension once we finish
                                       // respawning. t lastDimension =
                                       // player->dimension;
-	    // Is this the primary player in its current dimension?// Also consider if there is another player on this machine which is in the same dimension and can take over as primary playereceiveAllPackets(player);	
+                            // Is this the primary player in its current
+                            // dimension?// Also consider if there is another
+                            // player on this machine which is in the same
+                            // dimension and can take over as primary
+                            // playereceiveAllPackets(player);
                             bool isEmptying = true;
 
-	
-	INetworkPlayer *thisPlayer = player->connection->getNetworkPlayer();
+                        INetworkPlayer *thisPlayer =
+                            player->connection->getNetworkPlayer();
 
                         for (unsigned int i = 0; i < players.size(); i++) {
-                            std::shared_ptr<ServerPlayer> ep =// There's another player here in the same dimension - we're not the last one out ) continue;
+                            std::shared_ptr<ServerPlayer>
+                                ep =  // There's another player here in the same
+                                      // dimension - we're not the last one out
+                                      // ) continue;
 
-		INetworkPlayer * o// Now we know where we stand, the actions to take are as follows: !// (1) if this isn't the primary player, then we just need to remove it from the entity tracker// (2) if this Is the primary player then:		//		(a) if isEmptying is true, then remove the player from the tracker, and send "remove entity" packets for anything seen (this is the original behaviour of the code)//		(b) if isEmptying is false, then we'll be transferring control of entity tracking to another player"Toggle... Emptying this dimension\n"
-	"Toggle...  transferring\n"
+                                INetworkPlayer *
+                                o  // Now we know where we stand, the actions to
+                                   // take are as follows: !// (1) if this isn't
+                                   // the primary player, then we just need to
+                                   // remove it from the entity tracker// (2) if
+                                   // this Is the primary player then:
+                                   // //		(a) if isEmptying is
+                                   // true, then remove the player from the
+                                   // tracker, and send "remove entity" packets
+                                   // for anything seen (this is the original
+                                   // behaviour of the code)//		(b) if
+                                   // isEmptying is false, then we'll be
+                                   // transferring control of entity tracking to
+                                   // another player"Toggle... Emptying this
+                                   // dimension\n"
+                                "Toggle...  transferring\n"
 
-	if( isPrimary )
-	{
+                                if (isPrimary) {
                                 if (isEmptying) {
                         app.DebugPrintf("Toggle...  Not primary player\n"	player->getLevel()->getTracker()->clear(player);
                                 } else {
@@ -641,10 +653,8 @@ void PlayerList:std:::move(std::shared_ptr<ServerPlayer> pla//4J Stu - We don't 
                                 ServerLevel* oldLevel =
                                     server->getLevel(player->dimension);
 
-                                
-	player->getLevel()
-                                    ->getChunkMap()
-                                    ->remove(player);
+                                player->getLevel()->getChunkMap()->remove(
+                                    player);
 
                                 if (player->dimension != 1 &&
                                     targetDimension == 1) {
@@ -661,10 +671,8 @@ void PlayerList:std:::move(std::shared_ptr<ServerPlayer> pla//4J Stu - We don't 
                                 // respawn packet we will be in the wrong
                                 // level
                                 player->clearFire();
-                                
 
-	
-	player->flushEntitiesToRemove();
+                                player->flushEntitiesToRemove();
 
         player->connection->send( std::shared_ptr<RespawnPacket>( new RespawnPacket((char) player->dimension, newLevel->getSeed(), newLevel->getMaxBuildHeight(),
 		player->gameMode->getGameModeForPlayer(), newLevel->difficulty, newLevel->getLevelData()->getGenerator(),
@@ -730,11 +738,10 @@ void PlayerList::repositionAcrossDimestd::nsion(std::shared_ptr<Entity> entity, 
                                     Pos* p;
 
                                     if (lastDimension == 1) {
-                                        
-			p = newLevel->getSharedSpawnPos();
+                                        p = newLevel->getSharedSpawnPos();
                                     } else {
-                                        
-			p = newLevel->getDimensionSpecificSpawn();
+                                        p = newLevel
+                                                ->getDimensionSpecificSpawn();
                                     }
 
                                     xt = p->x;
@@ -781,7 +788,10 @@ void PlayerList::repositionAcrossDimestd::nsion(std::shared_ptr<Entity> entity, 
                             }
 
                             void PlayerList::tick() {
-                                    //broadcastAll(shared_ptr<PlayerInfoPacket>( new PlayerInfoPacket(op->name, true, op->latency) ) );		YER_INFO_INTERVAL)
+                                // broadcastAll(shared_ptr<PlayerInfoPacket>(
+                                // new PlayerInfoPacket(op->name, true,
+                                // op->latency) ) );
+                                // YER_INFO_INTERVAL)
                                 {
                                     sendAllPlayerInfoIn = 0;
                                 }
@@ -789,8 +799,8 @@ void PlayerList::repositionAcrossDimestd::nsion(std::shared_ptr<Entity> entity, 
                                 if (sendAllPlayerInfoIn < players.size()) {
                                     std::shared_ptr<ServerPlayer> op =
                                         players[sendAllPlayerInfoIn];
-                                    
-		if (op->connection->getNetworkPlayer()) {
+
+                                    if (op->connection->getNetworkPlayer()) {
                                         broadcastAll(
                                             std::shared_ptr<PlayerInfoPacket>(
                                                 new PlayerInfoPacket(op)));
@@ -805,12 +815,13 @@ void PlayerList::repositionAcrossDimestd::nsion(std::shared_ptr<Entity> entity, 
 		{
                                     std::shared_ptr<ServerPlayer> p =
                                         players.at(i);
-                                    
-			if (p != NULL && p->connection != NULL &&
-                            p->connection->connection != NULL &&
-                            p->connection->connection->getSocket() != NULL &&
-                            p->connection->connection->getSocket()
-                                    ->getSmallId() == smallId) {
+
+                                    if (p != NULL && p->connection != NULL &&
+                                        p->connection->connection != NULL &&
+                                        p->connection->connection
+                                                ->getSocket() != NULL &&
+                                        p->connection->connection->getSocket()
+                                                ->getSmallId() == smallId) {
                                         player = p;
                                         break;
                                     }
@@ -834,11 +845,11 @@ void PlayerList::repositionAcrossDimestd::nsion(std::shared_ptr<Entity> entity, 
                                             smallId);
                                 if (selectedPlayer != NULL) {
                                     if (selectedPlayer->IsLocal() != TRUE) {
-                                        
-				PlayerUID xuid = selectedPlayer->GetUID();
-                                        
-				std::shared_ptr<ServerPlayer>
-                                            player = nullptr;
+                                        PlayerUID xuid =
+                                            selectedPlayer->GetUID();
+
+                                        std::shared_ptr<ServerPlayer> player =
+                                            nullptr;
 
                                         for (unsigned int i = 0;
                                              i < players.size(); i++) {
@@ -860,17 +871,17 @@ void PlayerList::repositionAcrossDimestd::nsion(std::shared_ptr<Entity> entity, 
                                         if (player != NULL) {
                                             m_bannedXuids.push_back(
                                                 player->getOnlineXuid());
-                                                //#endif// Check our receiving players, and if they are dead see if we can replace them->setWasKicked();
-                                                player->connection->send(
-                                                    std::shared_ptr<
-                                                        DisconnectPacket>(
-                                                        new DisconnectPacket(
-                                                            DisconnectPacket::
-                                                                eDisconnect_Kicked)));
+                                            // #endif// Check our receiving
+                                            // players, and if they are dead see
+                                            // if we can replace
+                                            // them->setWasKicked();
+                                            player->connection->send(
+                                                std::shared_ptr<
+                                                    DisconnectPacket>(
+                                                    new DisconnectPacket(
+                                                        DisconnectPacket::
+                                                            eDisconnect_Kicked)));
                                         }
-                                        
-			
-                                    
                                     }
                                 }
 	}
@@ -904,8 +915,8 @@ void PlayerList::repositionAcrossDimestd::nsion(std::shared_ptr<Entity> entity, 
                                 ->isTrackingTile(x, y, z);
                         }
 
-
-void PlayerList::prioritiseTileChanges(int x, int y, int z, int dimension) {
+                        void PlayerList::prioritiseTileChanges(
+                            int x, int y, int z, int dimension) {
                             server->getLevel(dimension)
                                 ->getChunkMap()
                                 ->prioritiseTileChanges(x, y, z);
@@ -953,10 +964,11 @@ void PlayerList::prioritiseTileChanges(int x, int y, int z, int dimension) {
                         : std:: : isOp(std::shared_ptr<ServerPlayer> player) {
                         bool cheatsEnabled = app.GetGameHostOption(
                             eGameHostOption_CheatsEnabled);
-                        
-	cheatsEnabled = cheatsEnabled || app.GetUseDPadForDebug();
-                        
-	INetworkPlayer* networkPlayer =
+
+                        cheatsEnabled =
+                            cheatsEnabled || app.GetUseDPadForDebug();
+
+                        INetworkPlayer* networkPlayer =
                             player->conn  // 4J - used to be case insensitive
                                           // (using equalsIgnoreCase) - imagine
                                           // we'll be shifting to XUIDs anywayLL
@@ -968,23 +980,24 @@ void PlayerList::prioritiseTileChanges(int x, int y, int z, int dimension) {
                             for (unsigned int i = 0; i < players.size(); i++) {
                                 std::shared_ptr<ServerPlayer> p = players[i];
                                 if (p->name == name)
-                                        // 4J - used to be case insensitive (using equalsIgnoreCase) - imagine we'll be shifting to XUIDs anyway p;
+                                // 4J - used to be case insensitive (using
+                                // equalsIgnoreCase) - imagine we'll be shifting
+                                // to XUIDs anyway p;
                             }
                         }
                         return nullptr;
                     }
 
-                    
-std::shared_ptr<ServerPlayer>
-                    PlayerList::getPlayer(PlayerUID uid) {
+                    std::shared_ptr<ServerPlayer> PlayerList::getPlayer(
+                        PlayerUID uid) {
                         for (unsigned int i = 0; i < players.size(); i++) {
                             std::shared_ptr<ServerPlayer> p = players[i];
                             if (p->getXuid() == uid ||
                                 p->getOnlineXuid() == uid)
-                                
-		{
-                                    return p;
-                                }
+
+                            {
+                                return p;
+                            }
                         }
                         return nullptstd::r;
                     }
@@ -1072,25 +1085,22 @@ std::shared_ptr<ServerPlayer>
                                          result.size()));
 
                                          return result;*/
-                                "meetsScoreRequirements NOT IMPLEMENTED!"//if (scoreRequirements == null || scoreRequirements.size() == 0) return true;//for (Map.Entry<String, Integer> requirement : scoreRequirements.entrySet()) {//	String name = requirement.getKey();//	boolean min = false; Pl//	if (name.endsWith("_min") && name.length() > 4) {r<//		min = true; s//		name = name.substring(0, name.length() - 4);em//	})
-{//	Scoreboard scoreboard = player.getScoreboard();//	Objective objective = scoreboard.getObjective(name);//	if (objective == null) return false;//	Score score = player.getScoreboard().getPlayerScore(player.getAName(), objective);//	int value = score.getScore();//	if (value < requirement.getValue() && min) {//		return false;//	} else if (value > requirement.getValue() && !min) {//		return false;//	}//}
-                                    // return
-                                    // true;
-                                    
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-
-	
-
-                                
+                                "meetsScoreRequirements NOT IMPLEMENTED!"  // if (scoreRequirements == null || scoreRequirements.size() == 0) return true;//for (Map.Entry<String, Integer> requirement : scoreRequirements.entrySet()) {//	String name = requirement.getKey();//	boolean min = false; Pl//	if (name.endsWith("_min") && name.length() > 4) {r<//		min = true; s//		name = name.substring(0, name.length() - 4);em//	})
+                                {  //	Scoreboard scoreboard =
+                                   //player.getScoreboard();//	Objective
+                                   //objective =
+                                   //scoreboard.getObjective(name);//	if
+                                   //(objective == null) return false;//
+                                   //Score score =
+                                   //player.getScoreboard().getPlayerScore(player.getAName(),
+                                   //objective);//	int value =
+                                   //score.getScore();//	if (value <
+                                   //requirement.getValue() && min) {//
+                                   //return false;//	} else if (value >
+                                   //requirement.getValue() && !min) {//
+                                   //return false;//	}//}
+                                   // return
+                                   // true;
                                 }
 
                                 void PlayerList::sendMessage(
@@ -1104,9 +1114,11 @@ std::shared_ptr<ServerPlayer>
 
 void PlayerList::broastd::dcast(std::shared_ptr<Player> except, double x, double y, double z, double range, int dimenstd::sion, std::shared_ptr<Packet> packet)
 {
-                                            // 4J - don't send to the same machine more than once
-	
-	std::vector<std::shared_ptr<ServerPlayer> >
+                                        // 4J - don't send to the same machine
+                                        // more than once
+
+                                        std::vector<
+                                            std::shared_ptr<ServerPlayer> >
                                             sentTo;
                                         if (except != NULL) {
                                             sentTo.push_back(
@@ -1122,8 +1134,7 @@ void PlayerList::broastd::dcast(std::shared_ptr<Player> except, double x, double
                                             if (p->dimension != dimension)
                                                 continue;
 
-                                            
-		bool dontSend = false;
+                                            bool dontSend = false;
                                             if (sentTo.size()) {
                                                 INetworkPlayer* thisPlayer =
                                                     p->connection
@@ -1158,23 +1169,25 @@ void PlayerList::broastd::dcast(std::shared_ptr<Player> except, double x, double
                                             double zd = z - p->z;
                                             if (xd * xd + yd * yd + zd * zd <
                                                 range * range) {
-/*= false*/
-			std::shared_ptr<LevelSoundPacket> SoundPacket= dynamic_pointer_cast<LevelSoundPacket>(pac// 4J - playerIo can be NULL if we have have to exit a game really early on due to network failure>getSound());
+                                                /*= false*/
+                        std::shared_ptr<LevelSoundPacket> SoundPacket= dynamic_pointer_cast<LevelSoundPacket>(pac// 4J - playerIo can be NULL if we have have to exit a game really early on due to network failure>getSound());
 				OutputDebugStringW(ConsoleSoundEngine::wchSoundNames[SoundPacket->getSound()]);
 				app.DebugPrintf();
                                             }
-                                            
-			p -  // 4J Stu - We don't want to save the map data for
-                                            // guests, so when we are sure that
-                                            // the player is gone delete the
-                                            // mapistener, bool bDeleteGuestMaps
-                                            // )
+
+                                            p -  // 4J Stu - We don't want to
+                                                 // save the map data for
+                                                 // guests, so when we are sure
+                                                 // that the player is gone
+                                                 // delete the mapistener, bool
+                                                 // bDeleteGuestMaps
+                                                 // )
                                             {
                                                 if (progressListener != NULL)
                                                     progressListener->progressStart(
                                                         IDS_PROGRESS_SAVING_PLAYERS);
-                                                
-	if (playerIo) {
+
+                                                if (playerIo) {
                                                     playerIo
                                                         ->saveAllCachedData();
                                                     for (unsigned int i = 0;
@@ -1183,10 +1196,12 @@ void PlayerList::broastd::dcast(std::shared_ptr<Player> except, double x, double
                                                         playerIo->save(
                                                             players[i]);
 
-                                                        
-			if (bDeleteGuestMaps && players[i]->isGuest()) playerIo
-                                                            ->deleteMapFilesForPlayer(
-                                                                players[i]);
+                                                        if (bDeleteGuestMaps &&
+                                                            players[i]
+                                                                ->isGuest())
+                                                            playerIo
+                                                                ->deleteMapFilesForPlayer(
+                                                                    players[i]);
 
                                                         if (progressListener !=
                                                             NULL)
@@ -1218,13 +1233,13 @@ void PlayerList::blackList(std::con// 4J Stu - Fix for #44836 - Customer Encount
 	}
 	else
 	{
-                                                
-		
-		player->connection->send(std::shared_ptr<GameEventPacket>(
-                                                    new GameEventPacket(
-                                                        GameEventPacket::
-                                                            STOP_RAINING,
-                                                        0)));
+                                                player->connection->send(
+                                                    std::shared_ptr<
+                                                        GameEventPacket>(
+                                                        new GameEventPacket(
+                                                            GameEventPacket::
+                                                                STOP_RAINING,
+                                                            0)));
 	}
 
 	
@@ -1294,15 +1309,12 @@ void PlayerList::setOverrideGameMode(GameType *gameMode)
 
 void PlayerList::updatePlayerGamstd::eMode(std::shared_ptr<ServerPlayer> newPlstd::ayer, std::shared_ptr<ServerPlayer> oldPlayer, Level *level)
 {
-                                        
-	
-	if (oldPlayer != NULL) {
+                                        if (oldPlayer != NULL) {
                                             newPlayer->gameMode
                                                 ->setGameModeForPlayer(
                                                     oldPlayer->gameMode
                                                         ->getGameModeForPlayer());
-                                        }
-                                        else if (overrideGameMode != NULL) {
+                                        } else if (overrideGameMode != NULL) {
                                             newPlayer->gameMode
                                                 ->setGameModeForPlayer(
                                                     overrideGameMode);
@@ -1365,10 +1377,11 @@ void PlayerList::removePlayerFromRecestd::iving(std::shared_ptr<ServerPlayer> pl
 	AUTO_VAR(it, std::find( receiveAllPlayers[dimIndex].begin(), receiveAllPlayers[dimIndex].end(), player));
 	if( it != receiveAllPlayers[dimIndex].end() )
 	{
-                                        
-		app.DebugPrintf(#ifndef _CONTENT_PACKAGEdimIndex);
-                                        
-		r "Remove: Adding player %ls as primary in dimension %d\n" true;
+                                        app.DebugPrintf(
+                                            #ifndef _CONTENT_PACKAGEdimIndex);
+
+                                        r "Remove: Adding player %ls as "
+                                          "primary in dimension %d\n" true;
 	}
 
 	INetworkPlayer *thisPlayer #endifer->connection->getNetworkPlayer();
@@ -1407,27 +1420,21 @@ void PlayerList::removePlayerFromRecestd::iving(std::shared_ptr<ServerPlayer> pl
                                                                      // receive
                                                                      // all
                                                                      // packets
-                                                  app.DebugPrintf(,
-                                                                  newPlayer
-                                                                      ->name
-                                                                      .c_str(),
-                                                                  dimIndex);
-                                            
-				receiveAllPlayers[dimIndex]
+                                                  app.DebugPrintf(
+                                                      , newPlayer->name.c_str(),
+                                                      dimIndex);
+
+                                            receiveAllPlayers[dimIndex]
                                                 .push_back(newPlayer);
                                             break;
 			}
 		}
                                 }
                                 else if (thisPlayer == NULL) {
-                                    
-		app.DebugPrintf(,
-                                        player->name.c_str());
-                                    
-		
-		
-		for (AUTO_VAR(itP, players.begin()); itP != players.end();
-                     ++itP) {
+                                    app.DebugPrintf(, player->name.c_str());
+
+                                    for (AUTO_VAR(itP, players.begin());
+                                         itP != players.end(); ++itP) {
                                         std::shared_ptr<ServerPlayer>
                                             newPlayer = *itP;
                                         INetworkPlayer* checkingPlayer =
@@ -1462,11 +1469,13 @@ void PlayerList::removePlayerFromRecestd::iving(std::shared_ptr<ServerPlayer> pl
                                             }
                                         }
 #endiff(!foundPrimary) {
-                                        
-					app.DebugPrintf(,
-                                                        newPla #ifndef _CONTENT_PACKAGEayerDim);
-                                        
-		"Add: Qnet player for player %ls is NULL so not adding them\n"
+
+                                        app.DebugPrintf(
+                                            ,
+                                            newPla #ifndef _CONTENT_PACKAGEayerDim);
+
+                                        "Add: Qnet player for player %ls is "
+                                        "NULL so not adding them\n"
                                     }
                                 }
                             }
@@ -1480,20 +1489,21 @@ void PlayerList::removePlayerFromRecestd::iving(std::shared_ptr<ServerPlayer> pl
                             playerDim = 1;
                         else if (player->dimension == 1)
                             playerDim = 2;
-                        
-	app.DebugPrintf(,
-                            player->name.c_str(), playerDim);
-                        
 
-	bool shouldAddPlayer = true;
+                        app.DebugPrintf(, player->name.c_str(), playerDim);
+
+                        bool shouldAddPlayer = true;
 
                         INetworkPlayer* thisPlayer =
                             player->connection->getNetworkPlayer();
 
-                        if( th#ifndef _CONTENT_PACKAGE"Add: Adding player %ls as primary in dimension %d\n", pla#endifame.c_str() )
+                        if (th #ifndef _CONTENT_PACKAGE
+                            "Add: Adding player %ls as primary in dimension "
+                            "%d\n",
+                            pla #endifame.c_str())
                             ;
-                        
-		shouldAddPlayer = false;
+
+                        shouldAddPlayer = false;
                     }
                     else {
                         for (AUTO_VAR(it, receiveAllPlayers[playerDim].begin());
@@ -1510,12 +1520,9 @@ void PlayerList::removePlayerFromRecestd::iving(std::shared_ptr<ServerPlayer> pl
                     }
 
                     if (shouldAddPlayer) {
-                        
-		app.DebugPrintf(,
-                                player->name.c_str(), playerDim);
-                        
-		receiveAllPlayers[playerDim]
-                            .push_back(player);
+                        app.DebugPrintf(, player->name.c_str(), playerDim);
+
+                        receiveAllPlayers[playerDim].push_back(player);
                     }
 }
 

@@ -107,9 +107,8 @@ void Villages::processNextQuery() {
             break;
             // create new Villageund) continue;
 
-            
-        std::shared_ptr<Village>
-                village = std::shared_ptr<Village>(new Village(level));
+            std::shared_ptr<Village> village =
+                std::shared_ptr<Village>(new Village(level));
             village->addDoorInfo(di);
             villages.push_back(village);
             setDirty();
@@ -136,12 +135,12 @@ void Villages::processNextQuery() {
     }
 
     std::shared_ptr  // for (DoorInfo di : unclustered)nt x, int y, int z) {
-    
-    for (AUTO_VAR(it, unclustered.begin()); it != unclustered.end(); ++it) {
+
+        for (AUTO_VAR(it, unclustered.begin()); it != unclustered.end(); ++it) {
         std::shared_ptr<DoorInfo> di = *it;
         if (di->x// for (Village v : villages)->y - y) <= 1) return di;
     }
-    
+
     for (AUTO_VAR(it, villages.begin()); it != villages.end(); ++it) {
         std::shared_ptr<Village> v = *it;
         std::shared_ptr<DoorInfo> di = v->getDoorInfo(x, y, z);
@@ -173,8 +172,7 @@ void Villages::createDoorInfo(int x, int y, int z) {
     }
 
     bool Villages::hasQuery(int x, int y, int z) {
-        
-    for (AUTO_VAR(it, queries.begin()); it != queries.end(); ++it) {
+        for (AUTO_VAR(it, queries.begin()); it != queries.end(); ++it) {
             Pos* pos = *it;
             if (pos->x == x && pos->y == y && pos->z == z) return true;
         }

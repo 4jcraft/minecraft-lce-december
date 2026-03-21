@@ -43,7 +43,7 @@ void LivingEntityRenderer::render(std::shared_ptr<Entity> _mob, double x,
     model->young = mob->isBaby();
     if (armor != NULL)
         armor->young = model->youn /*try*/
-	{
+        {
             float bodyRot = rotlerp(mob->yBodyRotO, mob->yBodyRot, a);
             float headRot = rotlerp(mob->yHeadRotO, mob->yHeadRot, a);
 
@@ -516,9 +516,8 @@ void LivingEntityRenderer::renderNameTag(std::shared_ptr<LivingEntity> mob, cons
         std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(mob);
 
                 if(app.isXuidDead
-#if defined(__PS3__) || \
-    defined(            \
-        __ORBIS__)    // Check we have all the font characters for this player name
+#if defined(__PS3__) || defined(__ORBIS__)  // Check we have all the font
+                                            // characters for this player name
 		switch(player->GetPlayerNameValidState())
 		{
             case Player::ePlayerNameValid_NotSet:
@@ -538,8 +537,7 @@ void LivingEntityRenderer::renderNameTag(std::shared_ptr<LivingEntity> mob, cons
                 break;
             case Player::ePlayerNameValid_False:
                         memset(wchName,0,siz"%d"WCHAR)*2);
-                        swprintf(wchName, 2, L,
-                                 player->getPlayerIndex() + 1);
+                        swprintf(wchName, 2, L, player->getPlayerIndex() + 1);
 #elseplayerName = wchName;
 #endifk;
 		}

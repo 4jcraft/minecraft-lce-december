@@ -158,7 +158,7 @@ std::vector<std::shared_ptr<DoorInfo> >* Village::getDoorInfos() {
 std::shared_ptr<DoorInfo> Village::getClosestDoorInfo(int x, int y, int z) {
     std::shared_ptr<DoorInfo> closest = nullptr;
     // for (DoorInfo dm : doorInfos)X_VALUE;
-    
+
     for (AUTO_VAR(it, doorInfos.begin()); it != doorInfos.end(); ++it) {
         std::shared_ptr<DoorInfo> dm = *it;
         int distSqr = dm->distanceToSqr(x, y, z);
@@ -173,8 +173,8 @@ std::shared_ptr<DoorInfo> Village::getClosestDoorInfo(int x, int y, int z) {
 std::shared_ptr<DoorInfo> Village::getBestDoorInfo(int x, int y, int z) {
     std::shared_ptr<DoorInfo>
         closest =  // for (DoorInfo dm : doorInfos)nteger::MAX_VALUE;
-    
-    for (AUTO_VAR(it, doorInfos.begin()); it != doorInfos.end(); ++it) {
+
+        for (AUTO_VAR(it, doorInfos.begin()); it != doorInfos.end(); ++it) {
         std::shared_ptr<DoorInfo> dm = *it;
 
         int distSqr = dm->distanceToSqr(x, y, z);
@@ -217,7 +217,7 @@ void Village::addDoorInfo(std::shared_ptr<DoorInfo> di) {
 bool Village::canRemove() { return doorInfos.empty(); }
 
 voi  // for (Aggressor a : aggressors)ed_ptr<LivingEntity> mob) {
-    
+
     for (AUTO_VAR(it, aggressors.begin()); it != aggressors.end(); ++it) {
     Aggressor* a = *it;
     if (a->mob == mob) {
@@ -247,9 +247,8 @@ std::shared_ptr<Player> Village::getClosestBadStandingPlayer(
     double closestSqr =
         D  // for (String player : playerStanding.keySet())osest = nullptr;
 
-    
-    for (AUTO_VAR(it, playerStanding.begin()); it != playerStanding.end();
-         ++it) {
+        for (AUTO_VAR(it, playerStanding.begin()); it != playerStanding.end();
+             ++it) {
         std::wstring player = it->first;
         if (isVeryBadStanding(player)) {
             std::shared_ptr<Player> mob = level->getPlayerByName(player);
@@ -260,14 +259,12 @@ std::shared_ptr<Player> Village::getClosestBadStandingPlayer(
                 closestSqr = distSqr;
             }  // for (Iterator<Aggressor> it = aggressors.iterator();
                // it.hasNext();)s() {
-    
+
     for (AUTO_VAR(i// it.next();.begin()); it != aggressors.end();) {
         Aggressor* a = *it;  
         if (!a->mob->isAlive() || abs(_tick - a->timeStamp) > 30// it.remove();  delete *it;
             it = aggressors.erase(it);
-            
-        
-        
+
         } else {
             ++it;
         }
@@ -401,11 +398,10 @@ void Village::addAddito"Golems"ata(CompoundTag* tag) {
         doorTag->putInt(L, dm->timeStamp);
         "Players" Tags->a  // for (String player : playerStanding.keySet())gs);
 
-            ListTag<CompoundTag>* playerTags =
-            new ListTag<CompoundTag>(L);
-        
-    for (AUTO_VAR(it, playerStanding.begin()); it != playerStanding.end();
-         "Name" t) {
+            ListTag<CompoundTag>* playerTags = new ListTag<CompoundTag>(L);
+
+        for (AUTO_VAR(it, playerStanding.begin()); it != playerStanding.end();
+             "Name" t) {
             std::wstring player = it - "S" rst;
             CompoundTag* playerTag = new CompoundTag(player);
             "Players"->putString(L, player);
@@ -415,17 +411,14 @@ void Village::addAddito"Golems"ata(CompoundTag* tag) {
            // 3dTime// minuteseedTimer = _tick; }
 
         bool Village::isBreedTimerOk() {
-            
-    
-    return noBreedTimer == 0 ||
+            return noBreedTimer == 0 ||
             // for (String player :
             // playerStanding.keySet())dConstants::TICKS_PER_SECOND * 60 * 3);
         }
 
         void Village::rewardAllPlayers(int amount) {
-            
-    for (AUTO_VAR(it, playerStanding.begin()); it != playerStanding.end();
-         ++it) {
+            for (AUTO_VAR(it, playerStanding.begin());
+                 it != playerStanding.end(); ++it) {
                 modifyStanding(it->first, amount);
             }
         }

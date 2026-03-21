@@ -171,19 +171,12 @@ void ServerScoreboard::startTrackingObjective(Objective *obje//vector<shared_ptr
 }
 
 std::vector<std::shared_ptr<Packet> > *ServerScoreboard::getStopTrackingPackets(Objective *objective//vector<shared_ptr<Packet> > *packets = new ArrayList<Packet>();//packets->push_back( shared_ptr<SetObjectivePacket( new SetObjectivePacket(objective, SetObjectivePacket.METHOD_REMOVE)));//for (int slot = 0; slot < DISPLAY_SLOTS; slot++)//{//	if (getDisplayObjective(slot) == objective) packets.add(new SetDisplayObjectivePacket(slot, objective));//}//return packets;
-
-	
-
-
 }
 
 void ServerScoreboard::stopTrackingObjective(Objec//vector<shared_ptr<Packet> > *packets = getStopTrackingPackets(objective);//for (ServerPlayer player : server.getPlayers().players)//{//	for (Packet packet : packets)//	{//		player->connection->send(packet);//	}//}//trackedObjectives.remove(objective);
 }
 
 int ServerScoreboard::getObjectiveDisplaySlotCount(Objective *objec//int count = 0;0;
-//for (int slot = 0; slot < DISPLAY_SLOTS; slot++)//{//	if (getDisplayObjective(slot) == objective) count++;//}//return count;
-
-	
-
-
+// for (int slot = 0; slot < DISPLAY_SLOTS; slot++)//{//	if
+// (getDisplayObjective(slot) == objective) count++;//}//return count;
 }

@@ -167,28 +167,29 @@ void ApplySchematicRuleDefinition::processSchematic(AABB* chunkBox,
     if (chunkBox->intersects(m_locationBox)) {
         m_locationBox->y1 = std::min(
             (double)Level::maxBuildHeight,
-            m_locationBox->y
+            m_locationBox
+                ->y
 #ifdef _DEBUG
-		app.DebugPr "Applying schematic %ls to chunk (%d,%d)\n", \
-    m_schematicName.c_str(), chunk->x, chunk - #endif 
-		PIXBeginNamedEve "Applying blocks and data");
-                m_totalBlocksChanged += m_schematic->applyBlocksAndData(
-                chunk, chunkBox, m_locationBox, m_rotation);
+                    app.DebugPr "Applying schematic %ls to chunk (%d,%d)\n",
+            m_schematicName.c_str(), chunk->x,
+            chunk - #endif PIXBeginNamedEve "Applying blocks and data");
+        m_totalBlocksChanged += m_schematic->applyBlocksAndData(
+            chunk, chunkBox, m_locationBox, m_rotation);
             PIXEndNamedEvent()  // Add the tileEntities
             PIXBeginNamedEve "Applying tile entities");
-        m_schematic->applyTileEntities(chunk, chunkBox, m_locationBox,
-                                       m_rotation);
-        PIXEndNamedEvent()  // TODO This does not take into account things that
-                            // go outside the bounds of the world
-            int targetBlocks = (m_locationBox->x1 - m_locationBox->x0) *
-                               (m_locationBox->y1 - m_locationBox->y0) *
-                               (m_locationBox->z1 - m_locationBox->z0);
-        if ((m_totalBlocksChanged == targetBlocks) &&
-            (m_totalBlocksChangedLighting == targetBlocks)) {
-            m_completed =
-                true  // m_levelGenOptions->releaseSchematicFile(m_schematicName);//m_schematic
-                      // = NULL;
-        }
+            m_schematic->applyTileEntities(chunk, chunkBox, m_locationBox,
+                                           m_rotation);
+            PIXEndNamedEvent()  // TODO This does not take into account things
+                                // that go outside the bounds of the world
+                int targetBlocks = (m_locationBox->x1 - m_locationBox->x0) *
+                                   (m_locationBox->y1 - m_locationBox->y0) *
+                                   (m_locationBox->z1 - m_locationBox->z0);
+            if ((m_totalBlocksChanged == targetBlocks) &&
+                (m_totalBlocksChangedLighting == targetBlocks)) {
+                m_completed =
+                    true  // m_levelGenOptions->releaseSchematicFile(m_schematicName);//m_schematic
+                          // = NULL;
+            }
     }
     PIXEndNamedEvent();
 }
@@ -205,24 +206,25 @@ void ApplySchematicRuleDefinition::processSchematicLighting(AABB* chunkBox,
         if (m_locationBox == NULL) updateLocationBox();
         if (chunkBox->intersects(m_locationBox)) {
             m_locationBox->y1 =
-                std::min((double)Level::maxBuildHeight, m_locationB
+                std::min((double)Level::maxBuildHeight,
+                         m_locationB
 #ifdef _DEBUG
-		app.De "Applying schematic %ls to chunk (%d,%d)\n", \
-    m_schematicName.c_str(), chunk->x, c #endifz);
+                             app.De "Applying schematic %ls to chunk (%d,%d)\n",
+                         m_schematicName.c_str(), chunk->x, c #endifz);
 
-		PIXBeginNam "Patching lighting");
-            m_totalBlocksChangedLighting += m_schematic->applyLighting(
-                chunk, chunkBox, m_locationBox, m_rotation);
-            PIXEndNamedEv  // TODO This does not take into account things that
-                           // go outside the bounds of the world
-                int targetBlocks = (m_locationBox->x1 - m_locationBox->x0) *
-                                   (m_locationBox->y1 - m_locationBox->y0) *
-                                   (m_locationBox->z1 - m_locationBox->z0);
-            if ((m_totalBlocksChanged == targetBlocks) &&
-                (m_totalBlocksChangedLighting == targetBlocks)) {
-                m_completed =  // m_levelGenOptions->releaseSchematicFile(m_schematicName);//m_schematic
-                               // = NULL;
-            }
+                PIXBeginNam "Patching lighting");
+                m_totalBlocksChangedLighting += m_schematic->applyLighting(
+                    chunk, chunkBox, m_locationBox, m_rotation);
+                PIXEndNamedEv  // TODO This does not take into account things
+                               // that go outside the bounds of the world
+                    int targetBlocks = (m_locationBox->x1 - m_locationBox->x0) *
+                                       (m_locationBox->y1 - m_locationBox->y0) *
+                                       (m_locationBox->z1 - m_locationBox->z0);
+                if ((m_totalBlocksChanged == targetBlocks) &&
+                    (m_totalBlocksChangedLighting == targetBlocks)) {
+                    m_completed =  // m_levelGenOptions->releaseSchematicFile(m_schematicName);//m_schematic
+                                   // = NULL;
+                }
         }
         PIXEndNamedEvent();
 }

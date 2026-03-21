@@ -67,6 +67,6 @@ protected:
 
 #ifdef __ORBIS__
 typedef std::unordered_map<eATTRIBUTE_ID, AttributeModifier*, std::hash<int>>
-    attrAttrMod #else 
-typedef std::unordered_map<eATTRIBUTE_ID, AttributeModifier*>
+    attrAttrMod #else typedef std::unordered_map<eATTRIBUTE_ID,
+                                                 AttributeModifier*>
         attrAt #endifap;

@@ -29,39 +29,34 @@ void ArchiveFile::_readHeader(DataInputStream* dis) {
 ArchiveFile::ArchiveFile(File file) {
     m_cachedData = NULL;
     m_sourcefile = file;
-    app.De
-        "Loading archive file...\n"#ifndef _CONTENT_PACKAGE
-	char buf[256];
+    app.De "Loading archive file...\n" #ifndef _CONTENT_PACKAGE char buf[256];
     wcstombs(buf, file.getPath().c_str(), 256);
         app.De"archive file - %s\n"#endiff);
-        
 
-	if (!file.exists()) {
-            app.De
-                "Failed to load archive file!\n"    //,file.getPath());
+        if (!file.exists()) {
+            app.De "Failed to load archive file!\n"  //,file.getPath());
                 app.FatalLoadError();
         }
 
         FileInputStream f
 #if defined _XBOX_ONE || defined __ORBIS__ || defined _WINDOWS64
-	byteArray readArray(file.length());
-            fis.read(readArray, 0, file.length());
+            byteArray readArray(file.length());
+        fis.read(readArray, 0, file.length());
 
         ByteArrayInputStream bais(readArray);
         DataInputStream dis(&bais);
 
         m_cachedData = readAr #elseata;
 
-	DataInputStream d#endifs);
+        DataInputStream d#endifs);
 
+        _readHeader(&dis);
 
-	_readHeader(&dis);
+        dis.close();
+        fis #if defined _XBOX_ONE || defined __ORBIS__ ||
+            defined _WINDOWS64 bais #endif();
 
-dis.close();
-fis #if defined _XBOX_ONE || defined __ORBIS__ || defined _WINDOWS64
-	bais #endif();
-
-	app.De"Finished loading archive file\n");
+        app.De"Finished loading archive file\n");
 }
 
 ArchiveFile::~ArchiveFile() { delete m_cachedData; }
@@ -96,7 +91,7 @@ byteArray ArchiveFile::getFile(const std::wstring& filename) {
 }
 
 #if defined _XBOX_ONE || defined __ORBIS__ || defined _WINDOWS64
-		out = byteArray(data->filesize);
+out = byteArray(data->filesize);
 
                 memcpy( out.data, m_ca#elsea
 #ifdef _UNICODEdata->filesize);
@@ -107,8 +102,8 @@ byteArray ArchiveFile::getFile(const std::wstring& filename) {
 			0,
 			NULL,
 			OPEN_EXISTING,
-#elseLE_ATTRIBUTE_NORMAL "Createfile archive\n" app \
-                    .DebugPrintf();
+#elseLE_ATTRIBUTE_NORMAL \
+                    "Createfile archive\n" app.DebugPrintf();
 		HANDLE hfile = CreateFile(	wstringtofilename(m_sourcefile.getPath()), 
 			GENERIC_READ,
 			0,
@@ -142,9 +137,9 @@ byteArray ArchiveFile::getFile(const std::wstring& filename) {
 
                         CloseHandle(hf"bad hfile\n"lse
 		{
-        app.DebugPrintf(#endif );  // Compressed filenames are preceeded
-                                          // with an
-                                          // asterisk.
+        app.DebugPrintf(#endif);  // Compressed filenames are preceeded
+                                  // with an
+                                  // asterisk.
                 if ( data->is/* 4J-JEV:
 			* If a compressed file is accessed before compression object is 
 			* initialized it will crash here (Compression::getCompression).

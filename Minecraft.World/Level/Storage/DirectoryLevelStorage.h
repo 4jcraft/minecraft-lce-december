@@ -88,16 +88,15 @@ private:
     defined(_DURANGO)
         std::unordered_map<PlayerUID, PlayerMappings, PlayerUID::Hash>
             m_player #elsengs;
-        
-    std::unordered_map<PlayerUID, PlayerMappings>
-            m_p #endifappings;
-        
-    byteArray m #elseMappings;
-        
-    MapDataMappings m_mapDataMappings;
+
+        std::unordered_map<PlayerUID, PlayerMappings> m_p #endifappings;
+
+        byteArray m #elseMappings;
+
+        MapDataMappings m_mapDataMappings;
         MapDataMappings m_saveableMa #endifappings;
-        
-    bool m_bHasLoadedMapDataMappings;
+
+        bool m_bHasLoadedMapDataMappings;
 
         std::unordered_map<std::wstring, ByteArrayOutputStream*>
             m_cachedSaveData;

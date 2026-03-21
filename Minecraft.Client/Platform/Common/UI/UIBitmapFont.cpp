@@ -327,13 +327,23 @@ rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
            // here// as its already been done in 'GetGlyphMetrics' by:// >
            // metrics->x1 = m_kerningTable[glyph] * ratio;
         bitmap->width_in_pixels = m_cFontData->getFontData()->m_uiGlyphWidth;
-        bitmap->height_in_pixels = m_cFontData->getFontData()->m_uiGlyph/* 4J-JEV: This is to do with glyph placement,
-	 * and not the position in the archive.
-	 * I don't know why the 0.65 is needed, or what it represents,
-	 * although it doesn't look like its the baseline.
-	 */
-	bitmap->top_left// 4J-PB - this was chopping off the top of the characters, so accented ones were losing a couple of pixels at the top// DaveK has reduced the height of the accented capitalised characters, and we've dropped this from 0.65 to 0.64 
-	bitmap->top_left_y = -((S32) m_cFontData->getFontData()->m_uiGlyphHeight) * m_cFontData->getFontData()->m_fAscent;
+        bitmap->height_in_pixels =
+            m_cFontData->getFontData()
+                ->m_uiGlyph /* 4J-JEV: This is to do with glyph placement,
+                             * and not the position in the archive.
+                             * I don't know why the 0.65 is needed, or what it
+                             * represents, although it doesn't look like its the
+                             * baseline.
+                             */
+                                bitmap
+                ->top_left  // 4J-PB - this was chopping off the top of the
+                            // characters, so accented ones were losing a couple
+                            // of pixels at the top// DaveK has reduced the
+                            // height of the accented capitalised characters,
+                            // and we've dropped this from 0.65 to 0.64
+                                bitmap->top_left_y =
+                -((S32)m_cFontData->getFontData()->m_uiGlyphHeight) *
+                m_cFontData->getFontData()->m_fAscent;
 
         bitmap->oversample = 0;
         bitmap

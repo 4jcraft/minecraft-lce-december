@@ -68,10 +68,9 @@ public:
         std::vector<GameRuleDefinition*>* enumerate();
         std::unordered_map < GameRuleDefinition*,  // Static functions();
 
-	
-	static GameRulesInstance* generateNewGameRulesInstance(
-            GameRulesInstance::EGameRulesInstanceType type,
-            LevelRuleset * rules, Connection * connection);
+            static GameRulesInstance* generateNewGameRulesInstance(
+                GameRulesInstance::EGameRulesInstanceType type,
+                LevelRuleset * rules, Connection * connection);
         static std::wstring generateDescriptionString(
             ConsoleGameRules::EGameRuleType defType,
             const std::wstring& description, void* data = NULL,

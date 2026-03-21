@@ -13,7 +13,7 @@ private:
 
         std::vector<intArray> cache;
         std::vector<intArray> allocated;
-        std::vec  // 4J addedy> toosmall;  
+        std::vec  // 4J addedy> toosmall;
             ~ThreadStorage();
     };
     static DWORD tlsIdx;
@@ -26,5 +26,5 @@ public:
 
     static void CreateNewThreadStorage();
     static void ReleaseThreadStorage();
-    // 4J addedoid Reset();  
+    // 4J addedoid Reset();
 };

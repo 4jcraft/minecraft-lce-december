@@ -41,7 +41,8 @@ std::unordered_map<ChunkPos, bool, ChunkPosKeyHash, ChunkPosKeyEq>
 
 const int MobSpawner::tick(ServerLevel* level, bool spawnEnemies,
                            bool spawnFriendlies, bool spawnPersisten#ifndef _CONTENT_PACKAGE
-#if 0// PIX output for mob counters - generally disabling as Entity::countFlagsForPIX is reasonably expensive
+#if 0  // PIX output for mob counters - generally disabling as
+       // Entity::countFlagsForPIX is reasonably expensive
 	if( level->dimension->id == 0 )
 	{
 		Entity::countFlagsForPIX();
@@ -106,7 +107,11 @@ const int MobSpawner::tick(ServerLevel* level, bool spawnEnemies,
 			for (int z = -r; z <= r; z++)
 			{
 				chunksToPoll.insert(ChunkPos(x + xx, z + zz));
-#else     // 4J - rewritten to add chunks interleaved by player, and to add them from// the centre outwards. We're going to be potentially adding less creatures// than the original so that our count stays consistent with number of// players added, so we want to make sure as best we can that the ones we do// add are near the active players
+#else  // 4J - rewritten to add chunks interleaved by player, and to add them
+       // from// the centre outwards. We're going to be potentially adding less
+       // creatures// than the original so that our count stays consistent with
+       // number of// players added, so we want to make sure as best we can that
+       // the ones we do// add are near the active players
     int playerCount = (int)level->players.size();
     int* xx = new int[playerCount];
     int* zz = new int[playerCount];
@@ -402,7 +407,10 @@ const int MobSpawner::tick(ServerLevel* level, bool spawnEnemies,
 bool MobSpawner::isSpawnPositionOk(MobCategory* category, Level* level, int x,
                                    int y, int z) {// 4J - don't let this actually create/load a chunk that isn't here already// - we'll let the normal updateDirtyChunks etc. processes do that, so it// can happen on another thread
     if (!level->hasChunkAt(x, y, z)) return fa
-#ifdef __PSVITA__    // AP - added this for Vita. Make sure a new spawn point has 2 chunks around// it. This will make sure monsters don't keep getting spawned on the edge// preventing other new monsters from being spawned
+#ifdef __PSVITA__  // AP - added this for Vita. Make sure a new spawn point has
+                   // 2 chunks around// it. This will make sure monsters don't
+                   // keep getting spawned on the edge// preventing other new
+                   // monsters from being spawned
     int r = 32;
     if (!level->hasChunksAt(x - r, 0, z - r, x + r, 0, z + r)) {
         return false;

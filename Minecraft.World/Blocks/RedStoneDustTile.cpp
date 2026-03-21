@@ -323,19 +323,17 @@ void RedStoneDustTile::animateTick(Level* level, int x, int y, int z,
     if (data > 0) {
         double xx = x + 0.5 + (random->nextFloat() - 0.5) * 0.2;
         double yy = y + 1 / 16.0f;
-        double zz =
-            z + 0.5 +
-            (random->nextFloat() -
-             0.5)* 0.2  // use the x movement variable to determine particle
-                        // color// 4J Stu - Unused// float
-                        // pow = (data / 15.0f);// float red = pow *
-                        // 0.6f + 0.4f;// if (data == 0) red =
-                        // 0;// float green = pow * pow * 0.7f -
-                        // 0.5f;// float blue = pow * pow * 0.6f -
-                        // 0.7f;// if (green < 0) green = 0;//
-                        // if (blue < 0) blue = 0;
+        double zz = z + 0.5 +
+                    (random->nextFloat() -
+                     0.5)* 0.2  // use the x movement variable to determine
+                                // particle color// 4J Stu - Unused// float pow
+                                // = (data / 15.0f);// float red = pow * 0.6f +
+                                // 0.4f;// if (data == 0) red = 0;// float green
+                                // = pow * pow * 0.7f - 0.5f;// float blue = pow
+                                // * pow * 0.6f - 0.7f;// if (green < 0) green =
+                                // 0;// if (blue < 0) blue = 0;
 
-            unsigned int colour = 0;
+                    unsigned int colour = 0;
         if (data == 0) {
             colour = Minecraft::GetInstance()->getColourTable()->getColor(
                 eMinecraftColour_Tile_RedstoneDustUnlit);
@@ -356,8 +354,8 @@ void RedStoneDustTile::animateTick(Level* level, int x, int y, int z,
                 (((maxColour >> 8) & 0xFF - (minColour >> 8) & 0xFF) *
                  ((data - 1) / 14.0f));
             uint8_t blueComponent = ((minColour) & 0xFF) +
-                                 (((maxColour) & 0xFF - (minColour) & 0xFF) *
-                                  ((data - 1) / 14.0f));
+                                    (((maxColour) & 0xFF - (minColour) & 0xFF) *
+                                     ((data - 1) / 14.0f));
 
             colour = redComponent << 16 | greenComponent << 8 | blueComponent;
         }
@@ -418,13 +416,12 @@ void RedStoneDustTile::registerIcons(IconRegister* iconRegister) {
 }
 
 Icon* RedStoneDustTile::getTexture(
-    const std::
-        wstring #ifdef __PSVITA__    // AP - alpha cut out is expensive on vita. Set the Alpha Cut out flag
+    const std::wstring #ifdef __PSVITA__  // AP - alpha cut out is expensive on
+                                          // vita. Set the Alpha Cut out flag
     Tesselator* t = Tesselator::getInstance();
     t->setAlphaCutO #endife);
 
-
-    if (name.compare(TEXTURE_CROSS) == 0) return Tile::redStoneDust->iconCross;
+if (name.compare(TEXTURE_CROSS) == 0) return Tile::redStoneDust->iconCross;
 if (name.compare(TEXTURE_LINE) == 0) return Tile::redStoneDust->iconLine;
 if (name.compare(TEXTURE_CROSS_OVERLAY) == 0)
     return Tile::redStoneDust->iconCrossOver;

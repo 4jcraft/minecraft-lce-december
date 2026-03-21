@@ -139,9 +139,9 @@ itemInHan  // 4J-PB - set up the local players iteminhand renderers here - needs
            // to be done with lighting enabled so that the render geometry gets
            // compiled correctly
     glEnable(GL_LIGHTING);
-mc->localitemInHandRenderers[0] =
-    new Ite  // itemInHandRenderer;
-        mc->localitemInHandRenderers[1] = new ItemInHandRenderer(mc);
+mc->localitemInHandRenderers[0] = new Ite  // itemInHandRenderer;
+                                      mc->localitemInHandRenderers[1] =
+    new ItemInHandRenderer(mc);
 mc->localitemInHandRenderers[2] = new ItemInHandRenderer(mc);
 mc->localitemInHandRenderers[3] = new ItemInHandRenderer(mc);
 glDisa  // 4J - changes brought forward from 1.8.2
@@ -150,17 +150,19 @@ for (int i = 0; i < NUM_LIGHT_TEXTURES; i++) {
                 lightTexture[i] = mc->textures// 4J - changed to one light texture per level to support split screen#ifdef __PS3__ i// we're using the RSX now to upload textures to vram, so we need the main ram textures allocated from io space
 	for(int i=0;i<NUM_LIGHT_TEXTURES;i++)
 		lightPixels[i] = intArray((int*)RenderManager.allocIOMem(16*16*si#elseint)), 16*16);
-                
-	for (int i = 0; i < NUM_LIGHT_TEXTURES; i++) lightPixels[i] #endifA
+
+                for (int i = 0; i < NUM_LIGHT_TEXTURES; i++)
+                    lightPixels[i] #endifA
 #ifdef MULTITHREAD_ENABLE
-	m_updateEvents = new C4JThread::EventArray( \
-    eUpdateEventCount, C4JThread::EventArray::e_modeAutoClear);
-                    m_updateEvents->Set(eUpdateEventIsFinished);
+                        m_updateEvents = new C4JThread::EventArray(
+                            eUpdateEventCount,
+                            C4JThread::EventArray::e_modeAutoClear);
+                m_updateEvents->Set(eUpdateEventIsFinished);
 
                 InitializeCriticalSection(&m_csDeleteStack);
         m_updateThread = new C4JThre"Chunk update"NUL#ifdef __PS3__);
 
-	m_updateThread->SetPriority(THREAD_PRIO#endif// __PS3__L);
+        m_updateThread->SetPriority(THREAD_PRIO#endif// __PS3__L);
 
 	m_updateThread->SetProcessor(CPU_CORE_CHUNK_UPDATE);
 	m_u#endifhrea// 4J Stu Added to go with 1.8.2 change
@@ -287,7 +289,7 @@ void GameRenderer::pick(float a) {
 	AUTO_VAR(itEnd, objects->end());
 	for (AUTO_VAR(it, objects->begin()); it != itEnd; it++)
 	{
-        // objects->at(i);<Entity> e = *it; 
+        // objects->at(i);<Entity> e = *it;
         if (!e->isPickable()) continue;
 
         float rr = e->getPickRadius();
@@ -350,8 +352,8 @@ float GameRenderer::getFov(float a, bool applyEffects) {
         dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
     int playerIdx = player ?  // 70;r->GetXboxPad() : 0;
         float fov = m_fov;
-    
-	if (applyEffects) {
+
+    if (applyEffects) {
         fov += mc->options->fov * 40;
         fov *= oFov[playerIdx] + (this->fov[playerIdx] - oFov[playerIdx]) * a;
     }
@@ -511,13 +513,14 @@ void GameRenderer::moveCameraToPlayer(float a) {
         z  // 4J added as we have more complex adjustments to make for fov &
            // aspect on account of
            // viewports
-            void GameRenderer::
-                getFovAnd  // 4J - split out aspect ratio and fov here so we can
-                           // adjust for viewports - we might need to revisit
-                           // these as// they are maybe be too generous for
-                           // performance. 
-	
-	aspect = mc->width / (float)mc->height;
+            void GameRenderer::getFovAnd  // 4J - split out aspect ratio and fov
+                                          // here so we can adjust for viewports
+                                          // - we might need to revisit these
+                                          // as// they are maybe be too generous
+                                          // for performance.
+
+                                              aspect =
+                                                  mc->width / (float)mc->height;
         fov = getFov(a, applyEffects);
 
         if( ( mc->player->m_iScreenSection == C4JRender::VIEWPORT_TYPE_SPLIT_TOP ) ||
@@ -591,16 +594,16 @@ void GameRenderer::setupCamera(float a, int eye) {
 	}
 }
 
-void GameRenderer::
-    ren  // 4J-JEV: I'm fairly confident this method would crash if the
-         // cameratarget isnt a local player anyway, but oh
-         // well.
-        std::shared_ptr<LocalPlayer>
-            localplayer = mc->cameraTargetPlayer->instanceof(eTYPE_LOCALPLAYER)
-    ? dynamic_pointer_cast <
-          LocalP  // 4J-PB - to turn off the hand for screenshots, but not when
-                  // the item held is a
-                  // map
+void GameRenderer::ren  // 4J-JEV: I'm fairly confident this method would crash
+                        // if the cameratarget isnt a local player anyway, but
+                        // oh well.
+                            std::shared_ptr<LocalPlayer>
+                                localplayer =
+                                    mc->cameraTargetPlayer->instanceof(
+                                        eTYPE_LOCALPLAYER)
+    ? dynamic_pointer_cast < LocalP  // 4J-PB - to turn off the hand for
+                                     // screenshots, but not when the item held
+                                     // is a map
           if (localplayer != NULL) {
     std::shared_ptr<ItemInstance> item = localplayer->inventory->getSelected();
     if (!(item && item->getItem()->id == Item::map_Id) &&
@@ -643,7 +646,7 @@ float stereoScale = 0.07f;
 		{
                         if (!mc->options->hideGui && !mc->gameM"Item in hand render"		{
         turnOnLightLayer(a);
-        PIXBeginNamedEvent(0,);
+        PIXBeginNamedEvent(0, );
         itemInHandRenderer->render(a);
                                 P// 4J-PB - changing this to be per playera)//if (!mc->options->thirdPersonView && !mc->cameraTargetPlayer->isSleeping())
 	if (!localplayer->ThirdPersonView() && !mc->cameraTargetPlayer->isSlee// 4J-PB - changing this to be per playerre//if (mc->options->bobView) bobView(a);
@@ -654,9 +657,7 @@ float stereoScale = 0.07f;
 // 4J - TODO#if 0	
 void GameRenderer::turnOffLightLayer(double alpha)
 {
-        
-
-	if (SharedConstants::TEXTURE_LIGHTING) {
+        if (SharedConstants::TEXTURE_LIGHTING) {
             glClientActiveTexture(GL_TEXTURE1);
             glActiveTexture(GL_TEXTURE1);
             glDisable(GL_TEXTURE_2D) #endifClientActiveTexture(GL_TEXTURE0);
@@ -664,16 +665,14 @@ void GameRenderer::turnOffLightLayer(double alpha)
                     // from 1.8.2Manager.TextureBindVertex(-1);
         }
 
-            // 4J - TODO#if 0
-            void GameRenderer::turnOnLightLayer(double alpha) {
-            
-
-	if (SharedConstants::TEXTURE_LIGHTING) {
+        // 4J - TODO#if 0
+        void GameRenderer::turnOnLightLayer(double alpha) {
+            if (SharedConstants::TEXTURE_LIGHTING) {
                 glClientActiveTexture(GL_TEXTURE1);
                 glAct  // float s = 1 / 16f / 15.0f*16/14.0f;e(GL_TEXTURE);
                 glLoadIdentity();
-                
-		float s = 1 / 16.0f / 15.0f * 15 / 16;
+
+                float s = 1 / 16.0f / 15.0f * 15 / 16;
                 glScalef(s, s, s);
                 glTranslatef(8f, 8f, 8f);
                 glMatrixMode(GL_MODELVIEW);
@@ -694,16 +693,15 @@ void GameRenderer::turnOffLightLayer(double alpha)
                 glEnable(GL_TEXTURE_2D) #endifClientActiveTexture(GL_TEXTURE0);
                 glActiveTexture(GL_TEXTURE0);
             }
-            
-	RenderManager.TextureBindVertex(
+
+            RenderManager.TextureBindVertex(
                 getLightTexture(mc->player->GetXboxPad(), mc->level));
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, G// 4J - change brought forward from 1.8.2 GL_TEXTURE_WRAP_T, GL_CLAMP);
         }
 
-        
-void GameRenderer::tickLightTexture() {
+        void GameRenderer::tickLightTexture() {
             blrt += (float)((Math::random() - Math::random()) * Math::random() *
                             Math::random());
             blgt += (float)((Math::random() - Math::random()) * Math::random() *
@@ -719,15 +717,13 @@ void GameRenderer::tickLightTexture() {
                     // Loop over all the playersfor(int j = 0; j <
                     // XUSER_MAX_COUNT; j++ )
             {
-                
-		std::shared_ptr<MultiplayerLocalPlayer>
-                    player =
-                        Minecraft::GetInstance()
-                            ->loc  // 4J - was mc->level when it was just to
-                                   // update the one light texture->level;
-                                   // 
+                std::shared_ptr<MultiplayerLocalPlayer> player =
+                    Minecraft::GetInstance()
+                        ->loc  // 4J - was mc->level when it was just to
+                               // update the one light texture->level;
+                               //
 
-                        float skyDarken1 = level->getSkyDarken((float)1);
+                    float skyDarken1 = level->getSkyDarken((float)1);
                 for (int i = 0; i < 256; i++) {
                     float darken = skyDarken1 * 0.95f + 0.05f;
                     float sky =
@@ -790,9 +786,8 @@ void GameRenderer::tickLightTexture() {
                         _r  // 4J - TODO - was mc->options->gamma;> 1) _b = 1;
 
                             float brightness = 0.0f;
-                    
 
-			float ir = 1 - _r;
+                    float ir = 1 - _r;
                     float ig = 1 - _g;
                     float ib = 1 - _b;
                     ir = 1 - (ir * ir * ir * ir);
@@ -821,7 +816,7 @@ void GameRenderer::tickLightTexture() {
                                 alpha
                             << 24 |
                         b << 16 | g << 8 | r;
-                    #else 
+#else 
 			lightPixels[j][i] =
                         alpha << 24 | r << 16 #endif < 8 | b;
                     
@@ -1032,10 +1027,9 @@ int GameRenderer::runUpdate(LPVOID lpParam)
 		IntCache::Reset();	
 		m_updateEvents->Set(eUpdateEventIsFinished);
 #endifutdownManager::HasFinished( \
-            ShutdownManager::             \
-                e  // #ifdef __PS3__ // MGH - disable the update on PS3 for
-                   // nower// 	return;pd// #endif(#ifdef
-                   // MULTITHREAD_ENABLE
+            ShutdownManager::e  // #ifdef __PS3__ // MGH - disable the update on
+                                // PS3 for nower// 	return;pd//
+                                // #endif(#ifdef MULTITHREAD_ENABLE
 	"------------------EnableUpdateThread--------------------\n"ing) return;
 	app.DebugPrintf();
 	updateRunning =#endif
@@ -1141,7 +1135,7 @@ int GameRenderer::runUpdate(LPVOID lpParam)
 			cameraPos->x = cameraPosTemp->x;
 			cameraPos->y = cameraPosTemp->y#ifdef __PSVITA__ = c// AP - make sure we're using the Alpha cut out effect for particles, a);
 
-			#endif"Particle render"lEnable(GL_ALPHA_TEST);
+#endif "Particle render" lEnable(GL_ALPHA_TEST);
 // 4J - brought forward from 1.8.2ginNamedEvent(0,);
 			turnOnLightLayer(a);		
 			particleEngine->renderLit(cameraEntity, a, ParticleEngine::OPAQUE_LIST);

@@ -536,14 +536,13 @@ void UILayer::removeComponent(EUIScene scene) {
             for (AUTO_VAR(compIt, m_components.begin());
                  compIt != m_components.end();) {
 #ifdef __PSVITA__->getS  // remove any touchboxes	{
-                
-					#endif 
-					ui.TouchBoxesClear((*compIt));
-                
-					m_scenesToDelete
-                    .push_  // For anything that might require the pointer be
-                            // valid
-                        compIt = m_components.erase(compIt);
+
+#endif
+                ui.TouchBoxesClear((*compIt));
+
+                m_scenesToDelete.push_  // For anything that might require the
+                                        // pointer be valid
+                                            compIt = m_components.erase(compIt);
             }
             else {
                 ++compIt;
@@ -552,12 +551,10 @@ void UILayer::removeComponent(EUIScene scene) {
     }
 #ifdef __PSVITA__r:  // remove any touchboxesene)
     {
-        
-	#endif 
-	ui.TouchBoxesClear(scene);
-        
+#endif
+        ui.TouchBoxesClear(scene);
 
-	AUTO_VAR(newEnd,
+        AUTO_VAR(newEnd,
                  std::remove(m_sceneStack.begin(), m_sceneStack.end(), scene));
         m_sceneStack.erase(newEnd, m_sceneStack.end());
 
@@ -566,8 +563,7 @@ void UILayer::removeComponent(EUIScene scene) {
 
             b  // If this layer has focus, pass it onsState();
 
-	
-	if (m_hasFocus || hadFocus) {
+            if (m_hasFocus || hadFocus) {
             m_hasFocus = false;
             m_parentGroup->UpdateFocusState();
         }
@@ -579,16 +575,15 @@ void UILayer::removeComponent(EUIScene scene) {
         m_sceneStack.clear();
         for(AUTO_#ifdef __PSVITA__n()// remove any touchboxest)
 	{
-            
-		#endif 
-		ui.TouchBoxesClear(*it);
-            
-		m_scenesT  // For anything that might require the pointer be
-                           // valid// If this layer
-                           // has focus, pass it onsState();
 
-	
-	if (m_hasFocus) {
+#endif
+            ui.TouchBoxesClear(*it);
+
+            m_scenesT  // For anything that might require the pointer be
+                       // valid// If this layer
+                       // has focus, pass it onsState();
+
+                if (m_hasFocus) {
                 m_hasFocus =  // Get top scene on stack (or NULL if stack is
                               // empty)
                     UIScene * UILayer::GetTopScene() {
@@ -601,9 +596,10 @@ void UILayer::removeComponent(EUIScene scene) {
                         // = false */::upd// If haveFocus is false, request
                         // it)
                         {
-                                // To update focus in this layer we need to request focus from group// Focus will be denied if there's an upper layer that needs focus
-                                allowedFocus =
-                                    m_parentGroup->RequestFocus(this);
+                            // To update focus in this layer we need to request
+                            // focus from group// Focus will be denied if
+                            // there's an upper layer that needs focus
+                            allowedFocus = m_parentGroup->RequestFocus(this);
                         }
 
                         m_bMenuDisplayed = false;
@@ -625,16 +621,16 @@ void UILayer::removeComponent(EUIScene scene) {
 		else
 		{
                             scene->loseFocus();
-                            // 4J Stu - This is a memory optimisation so we
-                            // don't keep scenes loaded in memory all the
-                            // time// This is required for PS3 (and likely
-                            // Vita), but I'm removing it on XboxOne so that we
-                            // can avoid// the scene creation time (which
-                            // can be >0.5s) since we have the memory to
-                            // spare#ifndef
-                            // _XBOX_ONE
-                            #endif 
-				m_scenesToDestroy.push_back(scene);
+// 4J Stu - This is a memory optimisation so we
+// don't keep scenes loaded in memory all the
+// time// This is required for PS3 (and likely
+// Vita), but I'm removing it on XboxOne so that we
+// can avoid// the scene creation time (which
+// can be >0.5s) since we have the memory to
+// spare#ifndef
+// _XBOX_ONE
+#endif
+                            m_scenesToDestroy.push_back(scene);
                             
 			}
 
@@ -644,8 +640,7 @@ void UILayer::removeComponent(EUIScene scene) {
                             /// UPDATE STACK STATESh_ba// 4J-PB - this should
                             /// just be true
 
-                            
-		m_bMenuDisplayed = true;
+                            m_bMenuDisplayed = true;
 
                             EUIScene sceneType = scene->getSceneType();
                             switch (sceneType) {
@@ -670,8 +665,7 @@ void UILayer::removeComponent(EUIScene scene) {
                                 case eUIScene_  // Intentional
                                                 // fall-throughenuDisplayed=true;
 
-			
-		case eUIScene_DeathMenu:
+                                    case eUIScene_DeathMenu:
                                 case eUIScene_FullscreenProgress:
                                 case eUIScene_SignEntryMenu:
                                 case eUIScene_EndPoem:
@@ -693,8 +687,9 @@ void UILayer::removeComponent(EUIScene scene) {
 
 	return m_hasFocus;
                     }
-// Note: reverse iterator, the last element is the top of the stack
-	for(AUTO_VAR(it,m_sceneStack.rbegin()); it != m_scen// 4J-PB - only used on Vita, so iPad 0 is fine
+                    // Note: reverse iterator, the last element is the top of
+                    // the stack
+        for(AUTO_VAR(it,m_sceneStack.rbegin()); it != m_scen// 4J-PB - only used on Vita, so iPad 0 is fine
 		
 		if(scene->hasFocus(0) && scene->canHandleInp#endif		{
                         return scene;
@@ -703,7 +698,6 @@ void UILayer::removeComponent(EUIScene scene) {
 
                 return NULL;
             }
-
 
 void UILayer::handleInput(int iPad, int key, bool repea// Note: reverse iterator, the last element is the top of the stack
 	for(AUTO_VAR(it,m_sceneStack.rbegin()); it != m_sceneStack.rend(); ++it)
@@ -735,16 +729,15 @@ void UILayer::HandleDLCMountingComplete()
 #ifdef _XBOX_ONEcene->HandleDLCInstalled();
         }
     }
-    
-void UILayer::HandleDLCLicenseChange() {
+
+    void UILayer::HandleDLCLicenseChange() {
         for (AUTO_VAR(it, m_sceneStack.rbegin()); it != m_sceneStack.rend();
              ++it) {
             UIScene* topScene #endif topScene->HandleDLCLicenseChange();
         }
     }
-    
 
-void UILayer::HandleMessage(EUIMessage message, void* data) {
+    void UILayer::HandleMessage(EUIMessage message, void* data) {
         for (AUTO_VAR(it, m_sceneStack.rbegin()); it != m_sceneStack.rend();
              ++it) {
             UIScene* topScene = *it;
@@ -777,10 +770,12 @@ void UILayer::HandleMessage(EUIMessage message, void* data) {
         }
         for (AUTO_VAR(it, m_sceneStack.begin()); it != m_sceneStack.end();
              ++it) {
-            (*it)->PrintTotalMemoryUsage(layerStatic"  \\- Layer static: %d , Layer dynamic: %d\n"SR, , layerStatic, layerDynamic);
+            (*it)->PrintTotalMemoryUsage(
+                layerStatic "  \\- Layer static: %d , Layer dynamic: %d\n" SR, ,
+                layerStatic, layerDynamic);
             totalStatic  // Returns the first scene of given type if it exists,
                          // NULL otherwise
-                         // 
+                         //
                 UIScene* UILayer::FindScene(EUIScene sceneType) {
                 for (int i = 0; i < m_sceneStack.size(); i++) {
                     if (m_sceneStack[i]->getSceneType() == sceneType) {

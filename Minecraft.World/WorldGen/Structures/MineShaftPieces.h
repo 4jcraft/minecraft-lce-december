@@ -61,8 +61,8 @@ public:
             }
 
         private:
-            bo      // was final        
-                bo  // was finalridor;  
+            bo      // was final
+                bo  // was finalridor;
                 bool hasPlacedSpider;
             int numSections;
 

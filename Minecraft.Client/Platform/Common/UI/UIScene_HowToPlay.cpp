@@ -176,18 +176,16 @@ els "HowToPlay" rn L;
 }
 
 void UIScene_HowToPlay::updat  // Tool tips.
-	
-	int iPage = (int)(m_eCurrPage);
 
-int firstPage =
-    eHowToPl  // 4J Stu - Add back for future platforms#if 0// No What's New
-              // for the first PS4 and Xbox One builds
+    int iPage = (int)(m_eCurrPage);
+
+int firstPage = eHowToPl  // 4J Stu - Add back for future platforms#if 0// No
+                          // What's New for the first PS4 and Xbox One builds
     if (true) {
     +#endifPage;
 }
 
-
-	int iA = -1;
+int iA = -1;
 int iX = -1;
         if ( iPage == fi// No previous page.
 		iA = IDS_HOW_TO_PLAY_NEXT;
@@ -216,10 +214,9 @@ int iX = -1;
                         handled = true;
                     }
                     break;
-                case #ifdef __ORBIS__
-	case ACTION_MENU_T #endifD_PRESS:
+                case #ifdef __ORBIS__ case ACTION_MENU_T #endifD_PRESS:
 
-		if(p// Next page			
+                if(p// Next page			
 			int iNextPage = ( int )( m_eCurrPage ) + 1;
 			if ( iNextPage != eHowToPlay_NumPages )
 			{
@@ -238,8 +235,8 @@ int iX = -1;
                 StartPage((EHowToPlayPage)(iPrevPage));
                 ui.PlayUISFX(eSFX_Press);
 #endif else
-                
-			{
+
+                {
                     if (iPrevPage >= 0) {
                         StartPage((EHowToPlayPage)(iPrevPage));
                         ui.PlayUISFX(eSFX_Press);
@@ -272,13 +269,12 @@ int iX = -1;
                 replacedText = replac"\u00A9"lac"(C)"t, L, L);
                 replacedText = replac"\u00AE"lac"(R)"t, L, L);
                 replacedText = replac "\u2013" lac "-" ext,
-                L    // strip out any tab characters and repeated spaces
-                    stripWhitespaceForHtml(
-                        repl  // Set the text colour
-                            std::wstring finalText(replacedText.c_str());
-                        wchar_t startTags[64];
-                        "<font color=\"#%08x\">" L,
-                        app.GetHTMLColour(eHTMLColor_White));
+                L  // strip out any tab characters and repeated spaces
+                stripWhitespaceForHtml(
+                    repl  // Set the text colour
+                        std::wstring finalText(replacedText.c_str());
+                    wchar_t startTags[64]; "<font color=\"#%08x\">" L,
+                                           app.GetHTMLColour(eHTMLColor_White));
                 finalText = startTags + finalText;
 
                 std::vector<std::wstring> paragraphs;
@@ -288,9 +284,8 @@ int iX = -1;
                 index = finalText.find(L, lastIndex, 2)
 		)
 	{
-                    paragraphs.push_back(finalText.sub
-                                         " "(lastIndex, index - lastIndex) +
-                                         L );
+                    paragraphs.push_back(
+                        finalText.sub " "(lastIndex, index - lastIndex) + L);
                     lastIndex = index + 2;
                 }
         paragraphs.push_back( finalText.substr( lastIndex, fin// Set the text in the scene) );

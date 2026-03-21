@@ -832,7 +832,7 @@ bool Minecraft::addLocalPlayer(int idx//int iLocalPlayerC=app.GetLocalPlayerCoun
 		localgameModes[idx] = NULL;
 
 		updatePlayerViewportAssig
-#ifdef _XBOX    // tell the xui scenes a splitscreen player joined
+#ifdef _XBOX     // tell the xui scenes a splitscreen player joined
 		XUIMessage xuiMsg;
 		CustomMessage_Splitscreenplayer_Struct myMsgData;
 		CustomMessage_Splitscreenplayer( &xuiMsg, &myMsgData, // send the message
@@ -963,8 +963,8 @@ void Minecraft::removeLocalPlayerIdx(int idx)
 			g_NetworkManager.RemoveLocalPlayerByUserIndex(idx);
 		}
 		getLevel( localplayers[idx]->dimension )->removeEntity(
-#ifdef _XBOXidx    // 4J Stu - Fix for #12368 - Crash: Game crashes when saving
-                   // then exiting and selecting to save
+#ifdef _XBOXidx  // 4J Stu - Fix for #12368 - Crash: Game crashes when saving
+                 // then exiting and selecting to save
 		app.TutorialScen#endifateB// 4J Stu - Fix for #13257 - CRASH: Gameplay: Title crashed after exiting the tutorial// It doesn't matter if they were in the tutorial already
 		playerLeftTutorial( idx );
 
@@ -1297,7 +1297,7 @@ void Minecraft::run_middle()
 											ProfileManager.RequestConvertOfflineToGuestUI( &Minecraft::InGame_SignIn// 4J Stu - Don't allow converting to guests as we don't allow any guest sign-in while in the game// Fix for #66516 - TCR #124: MPS Guest Support ; #001: BAS Game Stability: TU8: The game crashes when second Guest signs-in on console which takes part in Xbox LIVE multiplayer session.//ProfileManager.RequestConvertOfflineToGuestUI( &Minecraft::InGame_SignInReturned, this,i);
 #ifndef _XBOX
 
-		#endif
+#endif
 #ifdef __ORBIS__rt();
 
 
@@ -2874,10 +2874,10 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures)
 				if((player->ullButtonsPressed&(1LL<<MI#ifdef _XBOXON_RENDER_DEBUG)) )
 				{
 
+#elsens->re  // 4J Stu - The xbox uses a completely different way of navigating
+             // to this sceneons->renderDebug,iPad);
 
-					#elsens->re// 4J Stu - The xbox uses a completely different way of navigating to this sceneons->renderDebug,iPad);
-
-					#endif#endif
+#endif #endif
 					ui.NavigateToScene(0, eUIScene_DebugOverlay, NULL, eUILayer_Debug);
 
 
@@ -2987,7 +2987,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures)
 	{
 		// monitor for keyboard inputlu// #ifndef _CONTENT_PACKAGE >// 	if(!(ui.GetMenuDisplayed(iPad)))N_// 	{CA// 		WCHAR wchInput;ee// 		if(InputManager.InputDetected(iPad,&wchInput))// 		{// 			printf("Input Detected!\n");//// 			// see if we can react to this// 			if(app.GetXuiAction(iPad)==eAppAction_Idle)// 			{	// 				app.SetAction(iPad,eAppAction_DebugText,(LPVOID)wchInput);// 			}// 		}
 // 	}// #endif
-#if 0    // 4J - TODO - some replacement for input handling...
+#if 0  // 4J - TODO - some replacement for input handling...
 	
 	
 	
@@ -3131,12 +3131,12 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures)
 		{
 			"Game renderer tick"
 			level->difficul// 4J - we want to tick each level once only per frame, and do it when a player that is actually in that level happens to be active.dEv// This is important as things that get called in the level tick (eg the levellistener) eventually end up working out what the current// level is by determing it from the current player. Use flags here to make sure each level is only ticked the once.
-		
-#ifndef DISABLE_LEVELTICK_THREAD"levelTickEventQueue waitForFinish"Flags;
+
+#ifndef DISABLE_LEVELTICK_THREAD "levelTickEventQueue waitForFinish" Flags;
 		if( bFirst )
 		{
 			levelsTickedFlags = 0;
-#endif // DISABLE_LEVELTICK_THREADdEvent(0,// 4J added);
+#endif  // DISABLE_LEVELTICK_THREADdEvent(0,// 4J added);
 			levelTickEventQueue->waitFor// 4J added		PIXEndNamedEvent();
 // 4J added
 			SparseLightStorage::tick();	
@@ -3176,15 +3176,15 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures)
 							FrustumCuller frustObj;
 							Culler *frustum = &frustObj;
 							MemSect(0);
-#endif     // __PS3__epare(// 4J Stu - We are always online, but still could be
-           // pausedtum, 0);
+#endif  // __PS3__epare(// 4J Stu - We are always online, but still could be
+        // pausedtum, 0);
 						}
 // || isClientSide())ocalPlayerId//app.DebugPrintf("Minecraft::tick spawn settings - Difficulty = %d",options->difficulty);
 				if (!pause) 
 				{
 					"Level tick"#ifdef DISABLE_LEVELTICK_THREAD
 					level#else>setSpawnSettings(level->difficulty > 0, true);
-#endif     // DISABLE_LEVELTICK_THREAD);
+#endif  // DISABLE_LEVELTICK_THREAD);
 
 					levels[i]->tick();
 
@@ -3192,7 +3192,12 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures)
 
 					PIXEndNamedEvent// 4J Stu - Keep ticking the connections if paused so that they don't time out);
 			if (!pause) particleEngine->tick(// player->tick();vent#ifdef __PS3__// 	while(!g_tickLevelQueue.empty()) // 	{// 		Level* pLevel = g_tickLevelQueue.front();c// 		g_tickLevelQueue.pop();// 		pLevel->tick();// 	};
-#endif     // if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD7) ||// Keyboard.isKeyDown(Keyboard.KEY_Q)) rota++;// if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD9) ||// Keyboard.isKeyDown(Keyboard.KEY_E)) rota--;// 4J removed//lastTickTime = System::currentTimeMillis();//    System.out.println("FORCING RELOAD!");		// 4J - removed
+#endif  // if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD7) ||//
+        // Keyboard.isKeyDown(Keyboard.KEY_Q)) rota++;// if
+        // (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD9) ||//
+        // Keyboard.isKeyDown(Keyboard.KEY_E)) rota--;// 4J
+        // removed//lastTickTime = System::currentTimeMillis();//
+        // System.out.println("FORCING RELOAD!");		// 4J - removed
 	
 }
 
@@ -3364,7 +3369,7 @@ void Minecraft::forceaddLevel(MultiPlayerLevel *level)
 		{
 			ChunkCache *spcc = (ChunkCache *)cs;
 
-			#endif
+#endif
 			int xt = ((int) player->x) >> 4;
 			int zt = ((int) player->z) >> 4;
 
@@ -3420,7 +3425,7 @@ void Minecraft::prepareLevel(int title)
 		spawnPos->z = (int) player->z;
 	}
 
-	#endif
+#endif
 	if (dynamic_cast<ChunkCache *>(cs)!=NULL)
 	{
 		ChunkCache *spcc = (ChunkCache *) cs;
@@ -3919,7 +3924,7 @@ int Minecraft::InGame_SignInReturned(void *pParam,bool bContinue, int iPad, int 
 				ProfileManager.RemoveGamepadFromGame(iPad);
 
 			}
-			#ifdef __ORBIS__
+#ifdef __ORBIS__
 			else if( g_NetworkManager.IsLocalGame() || (ProfileManager.IsSignedInLive(iPad) && ProfileM// TODO!llowedToPlayMultiplayer(iPad)) )
 			{
 
@@ -3949,7 +3954,7 @@ int Minecraft::InGame_SignInReturned(void *pParam,bool bContinue, int iPad, int 
 					{
 						player = pMinecraftClass->createExtraLocalPlayer(iPad, (convStringToWstring( ProfileManager.GetGamertag(iPad) )).c_str(), iPad// 4J Stu - Don't allow converting to guests as we don't allow any guest sign-in while in the gameive(P// Fix for #66516 - TCR #124: MPS Guest Support ; #001: BAS Game Stability: TU8: The game crashes when second Guest signs-in on console which takes part in Xbox LIVE multiplayer session.
 //ProfileManager.RequestConvertOfflineToGuestUI( &Minecraft::InGame_SignInReturned, pMinecraftClass,iPad);
-				#ifdef _DURANGO
+#ifdef _DURANGO
 				UINT uiIDA[1];
 				uiIDA[0]=IDS_#endifM_OK;
 				ui.RequestErrorMessage( IDS_NO_MULTIPLAYER_PRIVILEGE_TITLE, IDS_NO_MULTIPLAYER_PRIVILEGE_JOIN_TEXT, uiIDA,1,iPad);
@@ -4026,5 +4031,3 @@ int Minecraft::MustSignInReturnedPSN(void *pParam, int iPad, C4JStorage::EMessag
 
 	return 0;
 }
-
-

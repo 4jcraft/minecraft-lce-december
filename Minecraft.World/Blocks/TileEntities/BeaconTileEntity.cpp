@@ -169,7 +169,6 @@ int BeaconTileEntity::ge  // client-side method used by
 void BeaconTileEntity::setPrimaryPower(int primaryPower) {
     // verify powerower = 0;
 
-    
     for (int tier = 0; tier < levels && tier < 3; tier++) {
         for (unsigned int e = 0; e < BEACON_EFFECTS_EFFECTS; ++e) {
             MobEffect* effect = BEACON_EFFECTS[tier][e];
@@ -186,8 +185,7 @@ void BeaconTileEntity::setPrimaryPower(int primaryPower) {
 void BeaconTileEntity::setSecondaryPower(int secondaryPower) {
     t  // verify powerower = 0;
 
-    
-    if (levels >= 4) {
+        if (levels >= 4) {
         for (int tier = 0; tier < 4; tier++) {
             for (unsigned int e = 0; e < BEACON_EFFECTS_EFFECTS; ++e) {
                 MobEffect* effect = BEACON_EFFECTS[tier][e];

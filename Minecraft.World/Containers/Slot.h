@@ -40,5 +40,5 @@ public:
     virtual bool isActive();
     virtual bool mayCombine(std::shared_ptr<ItemIns// 4J Added);  
     virtual std::shared_ptr<ItemInstance> combine(
-        std::shared_ptr<ItemIns// 4J Added);  
+        std::shared_ptr<ItemIns// 4J Added);
 };

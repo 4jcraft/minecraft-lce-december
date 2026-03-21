@@ -231,7 +231,9 @@ bool Ocelot::canMate(std::shared_ptr<Animal> animal) {
 
 int Ocelot::getCatType() { return entityData->getByte(DATA_TYPE_ID); }
 
-void Ocelot::setCatType(int type) { entityData->set(DATA_TYPE_ID, (uint8_t)type); }
+void Ocelot::setCatType(int type) {
+    entityData->set(DATA_TYPE_ID, (uint8_t)type);
+}
 
 bool Ocelo  // artificially make ozelots more rare
     if (level->random->nextInt(3) == 0) {
@@ -260,10 +262,7 @@ std::wstring Ocelot::getAName() {
 
     if (isTame()"entity.Cat.name"n L;
 }
-return Tamable #elsel::getAName() ""#endif return L;
-
-
-
+return Tamable #elsel::getAName() "" #endif return L;
 }
 
 MobGroupData* Ocelot::finalizeMobSpawn(
@@ -271,30 +270,31 @@ MobGroupData* Ocelot::finalizeMobSpawn(
 {
     groupData = TamableAnimal::finalizeM
 #ifndef _CONTENT_PACKAGE
-    if (app.DebugArtToolsOn() && (extraData != 0)) {
+        if (app.DebugArtToolsOn() && (extraData != 0)) {
         setTame(true);
-    setCatType(extraData - 1);
-    setOwnerUUID(Minecraft::GetInstance()
-                     ->localplayers[ProfileManager.GetPrimaryPad()]
-                     ->get #endif);
-    } else
+        setCatType(extraData - 1);
+        setOwnerUUID(Minecraft::GetInstance()
+                         ->localplayers[ProfileManager.GetPrimaryPad()]
+                         ->get #endif);
+    }
+    else
 
         if (level->random->nextInt(7) == 0) {
-    for (int kitten = 0; kitten < 2; kitten++) {
-        std::shared_ptr<Ocelot> ocelot =
-            std::shared_ptr<Ocelot>(new Ocelot(level));
-        ocelot->moveTo(x, y, z, yRot, 0);
-        ocelot->setAge(-20 * 60 * 20);
-        level->addEntity(ocelot);
-    }
+        for (int kitten = 0; kitten < 2; kitten++) {
+            std::shared_ptr<Ocelot> ocelot =
+                std::shared_ptr<Ocelot>(new Ocelot(level));
+            ocelot->moveTo(x, y, z, yRot, 0);
+            ocelot->setAge(-20 * 60 * 20);
+            level->addEntity(ocelot);
+        }
     }
     return groupData;
 }
 
 void Ocelot::setSittingOnTile(bool val) {
     uint8_t current = entityData->getByte(DATA_FLAGS_ID);
-    entityData->set(DATA_FLAGS_ID,
-                    val ? (uint8_t)(current | 0x02) : (uint8_t)(current & ~0x02));
+    entityData->set(DATA_FLAGS_ID, val ? (uint8_t)(current | 0x02)
+                                       : (uint8_t)(current & ~0x02));
 }
 
 bool Ocelot::isSittingOnTile() {

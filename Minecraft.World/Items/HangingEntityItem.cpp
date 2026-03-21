@@ -75,29 +75,28 @@ std::shared_ptr<HangingEntity> HangingEntityItem::createEntity(
             painting->PaintingPostConstructor(dir, auxValue - 1);
 #endif } else
 
-        {
-            painting->PaintingPostConstructor(dir);
-        }
+            {
+                painting->PaintingPostConstructor(dir);
+            }
 
-        return dynamic_pointer_cast<HangingEntity>(painting);
+            return dynamic_pointer_cast<HangingEntity>(painting);
     } else if (eType == eTYPE_ITEM_FRAME) {
-        std::shared_ptr<ItemFrame> itemFrame =
-            std::shared_ptr<ItemFrame>(new ItemFrame(level, x, y, z, dir));
+            std::shared_ptr<ItemFrame> itemFrame =
+                std::shared_ptr<ItemFrame>(new ItemFrame(level, x, y, z, dir));
 
-        return dynamic_pointer_cast<HangingEntity>(itemFrame);
+            return dynamic_pointer_cast<HangingEntity>(itemFrame);
     } else {
-        // 4J Adding overrides for art tools
-        void HangingEntityItem::appendHoverText(
-            std::shared_ptr<ItemInstance> itemInstance,
-            std::shared_ptr<Player> player,
-            std::vector < HtmlStr #ifndef _CONTENT_PACKAGEed) {
-            
-    if (eType == eTYPE_PAINTING && app.DebugArtToolsOn() &&
-        itemInstance->getAuxValue() > 0) {
-                int motive = itemInstance->getAuxValue() - 1;
+            // 4J Adding overrides for art tools
+            void HangingEntityItem::appendHoverText(
+                std::shared_ptr<ItemInstance> itemInstance,
+                std::shared_ptr<Player> player,
+                std::vector < HtmlStr #ifndef _CONTENT_PACKAGEed) {
+                if (eType == eTYPE_PAINTING && app.DebugArtToolsOn() &&
+                    itemInstance->getAuxValue() > 0) {
+                    int motive = itemInstance->getAuxValue() - 1;
 
-                wchar_t formatted[256];
-                ZeroMemory(formatted, 256 * sizeof(wchar_t));
+                    wchar_t formatted[256];
+                    ZeroMemory(formatted, 256 * sizeof(wchar_t));
     "** %ls %dx%d"ormatted, 256, L,
                  Painting::Motive::values[motive]->name.c_str(),
                  Painting::Motive::values[motive]->w / 16,
@@ -106,10 +105,8 @@ std::shared_ptr<HangingEntity> HangingEntityItem::createEntity(
     std::wstring motiveName = formatted;
 
     lines->push_back(HtmlString(motiveName.c #endif, eHTMLColor_c));
+                } else {
+                    return Item::appendHoverText(itemInstance, player, lines,
+                                                 advanced);
+                }
             }
-            else 
-    {
-                return Item::appendHoverText(itemInstance, player, lines,
-                                             advanced);
-            }
-        }

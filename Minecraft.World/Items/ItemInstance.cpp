@@ -141,14 +141,16 @@ bool ItemInstance::isStackable() {
 }
 
 bool ItemInstance::isDamageableItem() {
-    return Item::items[id]->get/**
- * Returns true if this item type only can be stacked with items that have
- * the same auxValue data.
- *
- * @return
- */
+    return Item::items[id]
+        ->get /**
+               * Returns true if this item type only can be stacked with items
+               * that have the same auxValue data.
+               *
+               * @return
+               */
 
-bool ItemInstance::isStackedByData() {
+        bool
+        ItemInstance::isStackedByData() {
         return Item::items[id]->isStackedByData();
     }
 
@@ -249,9 +251,8 @@ ItemInstance* ItemInstance::copy_not_shared() const {
                     return co  // 4J Brought forward from 1.2 copy;
                 }
 
-                
-bool ItemInstance::tagMatches(std::shared_ptr<ItemInstance> a,
-                              std::shared_ptr<ItemInstance> b) {
+                bool ItemInstance::tagMatches(std::shared_ptr<ItemInstance> a,
+                                              std::shared_ptr<ItemInstance> b) {
                     if (a == NULL && b == NULL) return true;
                     if (a == NULL || b == NULL) return false;
 
@@ -291,7 +292,8 @@ bool ItemInstance::tagMatches(std::shared_ptr<ItemInstance> a,
                          * @param b
                          * @return
                          */
-bool ItemInstance::sameItem(std::shared_ptr<ItemInstance> b) {
+                        bool ItemInstance::sameItem(
+                            std::shared_ptr<ItemInstance> b) {
                             return id == b->id && auxValue == b->auxValue;
                         }
 
@@ -306,8 +308,9 @@ bool ItemInstance::sameItem(std::shared_ptr<ItemInstance> b) {
                                 // 4J Stu - Added this for the one time when we
                                 // compare with a non-shared//
                                 // pointer
-                                
-bool ItemInstance::sameItem_not_shared(ItemInstance * b) {
+
+                                bool ItemInstance::sameItem_not_shared(
+                                    ItemInstance * b) {
                                     return id == b->id &&
                                            auxValue == b->auxValue;
                                 }
@@ -319,7 +322,7 @@ bool ItemInstance::sameItem_not_shared(ItemInstance * b) {
                                 }
 
                                 unsigned int I /*= -1*/ nce::getDescriptionId(
-                                    int iData ) {
+                                    int iData) {
                                     return Item::items[id]->getDescriptionId(
                                         shared_from_this());
                                 }
@@ -330,7 +333,7 @@ bool ItemInstance::sameItem_not_shared(ItemInstance * b) {
                                                     // used. It if is, it
                                                     // should// probably
                                                     // return shared_from_this()
-                                                    // 
+                                                    //
                                     assert(false);
                                 return this;
                             }
@@ -343,15 +346,18 @@ bool ItemInstance::sameItem_not_shared(ItemInstance * b) {
                         std:  // return count + "x" +
                               // Item::items[id]->getDescriptionId() + "@"
                               // +// auxValue;
-                            // 4J-PB - TODO - temp fix until ore recipe issue is fixed
-    if (Item::items[id] == NULL)"x"     " Item::items[id] is NULL "count"@" L << L << L
-            << auxValue;
+                            // 4J-PB - TODO - temp fix until ore recipe issue is
+                            // fixed
+                            if (Item::items[id] == NULL)
+                                "x"
+                                " Item::items[id] is NULL " count "@" L
+                                    << L << L << auxValue;
                         }
                         "x" se {
                             oss << std::dec << std::count << L
-            << Item::"@"ms[id]->getDescription(shared_from_this())
-                                << L
-            << auxValue;
+                                << Item::"@"ms[id]->getDescription(
+                                       shared_from_this())
+                                << L << auxValue;
                         }
                         return oss.str();
                     }
@@ -402,8 +408,7 @@ CompoundTag* ItemInstance::getTag() {
 ListTag<CompoundTag>* ItemInstance::getEnchantmentTags() {
                         if (tag == NULL) {
                             return NULL;
-                            "ench" return (ListTag<CompoundTag>*)tag->get(
-                                L);
+                            "ench" return (ListTag<CompoundTag>*)tag->get(L);
                         }
 
                         void ItemInstance::setTag(CompoundTag * tag) {
@@ -447,8 +452,7 @@ void ItemInstance::resetHoverName() "display"(tag == NULL) return;
                 bool ItemInstance::hasCustomHoverName() {
     "display"= NULL) return false;
     if (!tag->contains(L"display"))
-        return fal "Name" return tag->getCompound(L)
-            ->contains(L);
+        return fal "Name" return tag->getCompound(L)->contains(L);
                 }
 
                 std::vector<HtmlString>* ItemInstance::getHoverText(
@@ -479,12 +483,11 @@ void ItemInstance::resetHoverName() "display"(tag == NULL) return;
                         ==
                         Item::map_Id)
                         {
-                                title.text += L" #"
-                        +
-                        _toString(auxValue);
-                        }*/
+                            title.text += L" #" + _toString(auxValue);
+                        }
+                    */
 
-    lines->push_back(title);
+                        lines->push_back(title);
 
                     item->appendHoverText(shared_from_this(), player, lines,
                                           advanced);
@@ -519,7 +522,7 @@ void ItemInstance::resetHoverName() "display"(tag == NULL) return;
                                 // //eMinecraftColour_NOT_SET,
                                 // true));//	}
                                 // }      // 4J: Lore isn't in use in
-                                // game        
+                                // game
                                 /*if
                                    (display->contains(L"Lore"))
                                             {
@@ -546,8 +549,6 @@ void ItemInstance::resetHoverName() "display"(tag == NULL) return;
                                                             }
                                                     }
                                             }*/
-        
-                            
                             }
                         }
 
@@ -562,8 +563,8 @@ void ItemInstance::resetHoverName() "display"(tag == NULL) return;
                     }
                 }
 
-                
-    for (AUTO_VAR(it, modifiers->begin()); it != modifiers->end(); ++it) {
+                for (AUTO_VAR(it, modifiers->begin()); it != modifiers->end();
+                     ++it) {
                     AttributeModifier* modifier = it->second;
                     delete modifier;
                 }
@@ -583,10 +584,8 @@ void ItemInstance::resetHoverName() "display"(tag == NULL) return;
                 return lines;
             }
 
-            
-std::vector<HtmlString>*
-            ItemInstance::getHoverTextOnly(std::shared_ptr<Player> player,
-                                           bool advanced) {
+            std::vector<HtmlString>* ItemInstance::getHoverTextOnly(
+                std::shared_ptr<Player> player, bool advanced) {
                 std::vector<HtmlString>* lines = new std::vector<HtmlString>();
                 Item* item = Item::items[id];
 
@@ -630,8 +629,7 @@ std::vector<HtmlString>*
             void ItemInstance::enchant(const Enchantment* ench "ench" t,
                                        int level) {
     i"ench" == NULL) this->setTag(new C"ench"dTag());
-    if (!tag->contains(L))
-        tag->put(L, new "ench" ag<CompoundTag>(L));
+    if (!tag->contains(L)) tag->put(L, new "ench" ag<CompoundTag>(L));
 
     ListTag<CompoundTag>* list = (ListTag<CompoundTag>*)tag->get(L);
     CompoundTag* ench = new CompoundTag();
@@ -683,21 +681,17 @@ attrAttrModMap* ItemInstanc"AttributeModifiers"iers() {
             if (hasTag() && tag->contains(L)) {
                 result = new attrAtt
                     "AttributeModifiers" istTag<CompoundTag>* entries =
-                        (ListTag<CompoundTag>*)tag->getList(
-                            L);
+                        (ListTag<CompoundTag>*)tag->getList(L);
 
                 for (int i = 0; i < entries->size(); i++) {
                     CompoundTag* entry = entries->get(i);
             AttributeModifi// 4J Not sure why but this is a check that the attribute ID is notuteModifier(e// empty            /*if (attribute->getId()->getLeastSignificantBits() != 0 &&
             attribute->getId()->getMostSignificantBits() != 0)
             {
-                */
-            result->insert(std : "ID" r<eATTRIBUTE_ID, AttributeMod /*}*/*>(
-                    static_cast<eATTRIBUTE_ID>(entry->getInt(L)),
-                    attribute));
-                
-        
-            
+                */ result->insert(
+                       std : "ID" r<eATTRIBUTE_ID, AttributeMod /*}*/*>(
+                           static_cast<eATTRIBUTE_ID>(entry->getInt(L)),
+                           attribute));
             }
                 }
                 else {
@@ -729,8 +723,8 @@ attrAttrModMap* ItemInstanc"AttributeModifiers"iers() {
                     // leaving the bar on an awkward potion so we
                     // can differentiate it from a water
                     // bottle
-                    
-    {
+
+                    {
                         return true;
                     }
 

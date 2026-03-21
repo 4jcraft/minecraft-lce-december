@@ -99,7 +99,5 @@ public:
     virtual void stopOpen();
     bool canPlaceItem(int slot, std::shared_ptr<ItemInstance> i// 4J Addedoid replaceWith(std::shared_ptr<Inventory> other);
 
-    int countMatches(std::shared_ptr<ItemInstance> itemInstance);  
-
-
+    int countMatches(std::shared_ptr<ItemInstance> itemInstance);
 };

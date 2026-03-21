@@ -41,8 +41,7 @@ private:
     Socket* socket;
     const SocketAddress* address;
     DataInputStream* dis;
-    DataOutputStream*
-        bufferedDos;  // 4J This is the same type of dos the java game has
+    DataOutputStream* bufferedDos;  // 4J This is the same type of dos the java game has
 
     // 4J Added
     DataOutputStream* byteArrayDos;  // 4J This dos allows us to write
@@ -52,21 +51,17 @@ private:
 
     bool running;
 
-    std::queue<std::shared_ptr<Packet> >
-            i  // 4J - was using synchronizedList...
-                CRITICAL_SECTION
-                    incoming_cs  // ... now has this critical section
-                        std::queue<std::shared_ptr<
-                            Packet> >  // 4J - was using synchronizedList - but
-                                       // don't think it
-                                       // is// required as
-                                       // usage is wrapped in writeLock critical
-                                       // section
-                            std::queue < std::shared_ptr <
-        Pack  // 4J - was using synchronizedList - but don't think
-              // it// is required as usage is wrapped
-              // in writeLock critical// section
-              // 
+    std::queue<std::shared_ptr<Packet> > i               // 4J - was using synchronizedList...
+            CRITICAL_SECTION incoming_cs                 // ... now has this critical section
+                std::queue<std::shared_ptr<Packet> >     // 4J - was using synchronizedList - but
+                                                         // don't think it
+                                                         // is// required as
+                                                         // usage is wrapped in writeLock critical
+                                                         // section
+                    std::queue < std::shared_ptr < Pack  // 4J - was using synchronizedList - but
+                                                         // don't think it// is required as usage is
+                                                         // wrapped in writeLock critical// section
+                                                         //
 
         PacketListener* packetListener;
     bool quitting;
@@ -81,10 +76,10 @@ private:
 
     bool disconnected;
     DisconnectPacket::eDisconnectReason disconnectReason;
-    voi  // 4J a pointer to an array.  
+    voi  // 4J a pointer to an array.
 
         int noInputTicks;
-int estimatedRe  // 4J Added   int tickCount;  
+int estimatedRe  // 4J Added   int tickCount;
 
     public : static int readSizes[256];
     static int writeSizes[256];

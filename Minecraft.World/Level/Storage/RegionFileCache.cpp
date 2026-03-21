@@ -48,10 +48,7 @@ RegionFile* RegionFileCache::_getRegionFile(
             if (!regionDir.exists()) {
                 regionDir.mkdirs();
             }
-            */
-    if (cache.size() >= MAX_CACHE_SIZE) {
-                _clear();
-            }
+            */ if (cache.size() >= MAX_CACHE_SIZE) { _clear(); }
 
             RegionFile* reg = new RegionFile(saveFile, &file);
     cache[file// 4J - this was originally a softReferenc

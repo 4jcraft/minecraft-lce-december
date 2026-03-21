@@ -89,20 +89,20 @@ private:
     SparseLightStorage* upperBlockLight;  // 128 - 255
 public:
     void getSkyLightData(
-        byteArray
-            data);  // Get a uint8_t array of length 16384 ( 128 x 16 x 16 x 0.5 ),
-                    // containing sky light data. Ordering same as java version.
+        byteArray data);  // Get a uint8_t array of length 16384 ( 128 x 16 x 16
+                          // x 0.5 ), containing sky light data. Ordering same
+                          // as java version.
     void getBlockLightData(
-        byteArray data);  // Get a uint8_t array of length 16384 ( 128 x 16 x 16 x
-                          // 0.5 ), containing block light data. Ordering same
+        byteArray data);  // Get a uint8_t array of length 16384 ( 128 x 16 x 16
+                          // x 0.5 ), containing block light data. Ordering same
                           // as java version.
     void setSkyLightData(
         byteArray data);  // Set sky light data to data passed in input uint8_t
                           // array of length 16384. This data must be in
                           // original (java version) order
     void setBlockLightData(
-        byteArray data);  // Set block light data to data passed in input uint8_t
-                          // array of length 16384. This data must be in
+        byteArray data);  // Set block light data to data passed in input
+                          // uint8_t array of length 16384. This data must be in
                           // original (java version) order
     void setSkyLightDataAllBright();  // Set sky light data to be all fully lit
     bool isLowerBlockStorageCompressed();
@@ -136,20 +136,18 @@ public:
     static const int sTerrainPopulatedFromW = 4;
     static const int sTerrainPopulatedFromS = 8;
     static const int sTerrainPopulatedFromSW = 16;
-    static const int
-        sTerrainPopulatedAllAffec  // All the post-processing that can actually
-                                   // place tiles in this// chunk
-                                   // are complete
+    static const int sTerrainPopulatedAllAffec  // All the post-processing that
+                                                // can actually place tiles in
+                                                // this// chunk are complete
         static const int sTerrainPopulatedFromNW = 32;
     static const int sTerrainPopulatedFromN = 64;
     static const int sTerrainPopulatedFromNE = 128;
     static const int sTerrainPopulatedFromE = 256;
     static const int sTerrainPopulatedFromSE = 512;
-    static const int
-        sTerrainPopulatedAllNeighbou  // The post-processing passes of all
-                                      // neighbours to this chunk
-                                      // are// complete
-                                      // 
+    static const int sTerrainPopulatedAllNeighbou  // The post-processing passes
+                                                   // of all neighbours to this
+                                                   // chunk are// complete
+                                                   //
         static const int
             sTerrainPostPostProcess  // This chunk has been post-post-processed,
                                      // which is only done//
@@ -158,7 +156,7 @@ public:
 
         short         // 4J - changed from bool to bitfield within
                       // short
-        short* serve  // 4J addedulated;  
+        short* serve  // 4J addedulated;
 
         void setUnsa  // 4J addedsaved);  // 4J Stu - Stopped this being
                       // private so we can add some more logic to
@@ -167,10 +165,9 @@ public:
 
 public:
     bool dontSave;
-    bool l #ifdef SHARING_ENABLED
-    bool sh  // 4J addedn#endif  
+    bool l #ifdef SHARING_ENABLED bool sh  // 4J addedn#endif
 
-    bool emissiveAdded;          // 4J added         
+        bool emissiveAdded;      // 4J added
     void stopSharingTilesAndData(// 4J added         
     virtual void reSyncLighting()// 4J added         
     void startSharingTilesAndData// 4J addeds = 0);  
@@ -240,8 +237,8 @@ public:
                                std::shared_ptr<TileEntity> tileEntity);
     virtual void removeTileEntity(int x, int y, int z);
     virtual void load();
- // 4J - added parameterbool unloadTileEntities);  
- // 4J - addedo#ifdef _LARGE_WORLDS                
+    // 4J - added parameterbool unloadTileEntities);
+    // 4J - addedo#ifdef _LARGE_WORLDS
 #endif
     virtual bool isUnloaded();
 
@@ -267,11 +264,11 @@ public:
 
     virtual Random* getRandom(__in
 #ifdef SHARING_ENABLEDl isEmpty();
-    virtual void attemptCompre// 4J added#endif// 4J  added #ifdef _ENTITIES_RW_SECTIONcsSharing;  
+    virtual void attemptCompre// 4J added#endif// 4J  added #ifdef _ENTITIES_RW_SECTIONcsSharing;
 
-    
-// AP - we're using a RW critical so we can do multiple     m_csEntities;  // reads without contention#else
-                       #endif
+    // AP - we're using a RW critical so we can do multiple     m_csEntities; //
+    // reads without contention#else
+#endif
 
     static CRITICAL_S// 4J  addedntities;
 
@@ -305,11 +302,9 @@ publi// 4J added compressLighting();  // 4J added compressBlocks();
         return upperBlockLight->#endif #ifdef DATA_COMPRESSION_STATSper() {
             return upperSkyLight->count;
         }
-        
-#endif 
-    int getDataPlanes() {
-            return data->count;
-        }
+
+#endif
+        int getDataPlanes() { return data->count; }
         
 
 }

@@ -87,9 +87,6 @@ void DragonBreathParticle::tick() {
     if (m_bHasHitGround)
         yd *=  //   if (onGround)//{//       xd *= 0.7f;//       zd *=
                //   0.7f;//   }
- 
-
-
 }
 
 int DragonBreathParticle::getParticleTexture() {

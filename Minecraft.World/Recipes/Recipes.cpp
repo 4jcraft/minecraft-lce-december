@@ -1005,10 +1005,9 @@ ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
             'g' ak;
         case L:
             wchFrom = va_arg(vl, wchar_t);
-            switch (
-                wchFrom) {  // 			case L'W': //
-                            // group=ShapedRecipy::eGroupType_Weapon;//
-                            // break;            
+            switch (wchFrom) {  // 			case L'W': //
+                                // group=ShapedRecipy::eGroupType_Weapon;//
+                                // break;
             'T' case L:
                 group = ShapedRecipy::eGroupType_Tool;
                 break;
@@ -1075,8 +1074,9 @@ void Recipes::addShapelessRecipy(ItemInstance* result, ...) {
                     va_  // 4J-PB - original code copies the item instance, copy
                          // the// pointer isnt the same...
                          // // TODO
-                
-                ingredients->push_back(pItemInstance->copy_not_shared());
+
+                        ingredients->push_back(
+                            pItemInstance->copy_not_shared());
                 'i' break;
             case L:
                 pItem = va_arg(vl, Item*);
@@ -1122,7 +1122,7 @@ void Recipes::addShapelessRecipy(ItemInstance* result, ...) {
 
 std::shared_ptr<ItemInstance> Recipes::getItemFor(
     std::shared_ptr<CraftingContainer> craftSlots, /*= NULL*/ vel,
-    Recipy* recipesClass ) {
+    Recipy* recipesClass) {
     int count = 0;
     std::shared_ptr<ItemInstance> first = nullptr;
     std::shared_ptr<ItemInstance> second = nullptr;
@@ -1163,14 +1163,14 @@ return nullptr;
 
 st  // 4J-PB - added to deal with Xb0x 'crafting'return recipies; }
 
-
-std::shared_ptr<ItemInstance>
-    Recipes::g  // 4J-PB - build the required ingredients for recipesullptr);
+    std::shared_ptr<ItemInstance>
+        Recipes::g  // 4J-PB - build the required ingredients for
+                    // recipesullptr);
 }
 
-    // RecipyList *recipes = ((Recipes *)Recipes::getInstance())->getRecipies();
+// RecipyList *recipes = ((Recipes *)Recipes::getInstance())->getRecipies();
 
-    int iRecipeC = (int)recipies->size();
+int iRecipeC = (int)recipies->size();
 
 m_pRecipeIngredientsRequired = new Recipy::INGREDIENTS_REQUIRED[iRecipeC];
 

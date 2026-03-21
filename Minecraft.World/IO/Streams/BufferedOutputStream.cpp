@@ -26,20 +26,19 @@ void BufferedOutputStream::flush() {
 // and then calls the close method of its underlying output stream.
 void BufferedOutputStream::close() {
     std::flush();
-    stream
-        ->close()  // Writes len bytes from the specified uint8_t array starting at
-                   // offset off to this// buffered output stream. Ordinarily
-                   // this method stores bytes from the given// array into this
-                   // stream's buffer, flushing the buffer to the underlying
-                   // output// stream as needed. If the requested length is at
-                   // least as large as this// stream's buffer, however, then
-                   // this method will flush the buffer and write// the bytes
-                   // directly to the underlying output stream. Thus
-                   // redundant// BufferedOutputStreams will not copy data
-                   // unnecessarily.//// Overrides:// write in class
-                   // FilterOutputStream// Parameters:// b - the data.// off
-                   // - the start offset in the data.// len - the number of
-                   // bytes to write.
+    stream->close()  // Writes len bytes from the specified uint8_t array
+                     // starting at offset off to this// buffered output stream.
+                     // Ordinarily this method stores bytes from the given//
+                     // array into this stream's buffer, flushing the buffer to
+                     // the underlying output// stream as needed. If the
+                     // requested length is at least as large as this// stream's
+                     // buffer, however, then this method will flush the buffer
+                     // and write// the bytes directly to the underlying output
+                     // stream. Thus redundant// BufferedOutputStreams will not
+                     // copy data unnecessarily.//// Overrides:// write in class
+                     // FilterOutputStream// Parameters:// b - the data.// off
+                     // - the start offset in the data.// len - the number of
+                     // bytes to write.
         void BufferedOutputStream::write(
             byteArray b, unsigned int offset,
             unsigned int length) {  // Over the length of what we can store in

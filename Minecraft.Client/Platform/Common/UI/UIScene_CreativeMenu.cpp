@@ -23,8 +23,8 @@ UIScene_CreativeMenu::UIScene_CreativeMenu(int iPad, void* _initData,
     InventoryScreenInput* initData = (InventoryScreenInput*)_initData;
 
     std::shared_ptr<SimpleContainer> creativeContainer =
-        std::shared_ptr<SimpleContainer>(
-            new SimpleConta "" er(0, L, false, TabSpec::MAX_SIZE));
+        std::shared_ptr<SimpleContainer>(new SimpleConta
+                                         "" er(0, L, false, TabSpec::MAX_SIZE));
     itemPickerMenu =
         new ItemPickerMenu(creativeContainer, initData->player->inventory);
 
@@ -32,7 +32,7 @@ UIScene_CreativeMenu::UIScene_CreativeMenu(int iPad, void* _initData,
                eSectionInventoryCreativeUsing, eSectionInventoryCreativeMax,
                initData->bNavigateBack);
 
-    m_labelInventory.s "" Label(L );
+    m_labelInventory.s "" Label(L);
     m_bFirstCal  // m_slotListContainer.addSlots(0,TabSpec::MAX_SIZE);//m_slotListHotbar.addSlots(TabSpec::MAX_SIZE,TabSpec::MAX_SIZE
                  // + 9);
         for (unsigned int i = 0; i < TabSpec::MAX_SIZE; ++i) {
@@ -56,14 +56,11 @@ UIScene_CreativeMenu::UIScene_CreativeMenu(int iPad, void* _initData,
 
     m_curTab = eCreativeInventoryTab_COUNT;
         switchTab(eCreativeInventoryTab_Buildin
-#ifdef __PSVITA__    // initialise vita touch controls with ids
+#ifdef __PSVITA__  // initialise vita touch controls with ids
 	for(unsigned int i = 0; i < ETouchInput_Count; ++i)
 	{
         m_TouchInput[i].in #endif
 	}
-
-
-
 }
 
 std::wstring UIScene_CreativeMenu::getMoviePath() {
@@ -72,8 +69,7 @@ std::wstring UIScene_CreativeMenu::getMoviePath() {
     } else {
         "CreativeMenu"
 #ifdef __PSVITA__
-UIControl*
-        UIScene_CreativeMenu::GetMainPanel() {
+            UIControl* UIScene_CreativeMenu::GetMainPanel() {
             return &m_controlMainPanel;
         }
 
@@ -111,9 +107,8 @@ void UIScene_CreativeMenu::handleTimerComplete(int id) {
 }
 }
 
-
-void UIScene_CreativeMenu::handleOtherClicked(int iPad, ESceneSection eSection, int buttonNum, bool quickKey)
-{
+void UIScene_CreativeMenu::handleOtherClicked(int iPad, ESceneSection eSection,
+                                              int buttonNum, bool quickKey) {
     switch (eSection) {
         case eSectionInventoryCreativeTab_0:
         case eSectionInventoryCreativeTab_1:

@@ -224,13 +224,11 @@ void UIScene_DLCMainMenu::tick() {
                             .GetPrimaryPad #endif   // need to display text to say no downloadable content available yet
                         m_labelOffers.setLabel(app.GetString(
                             IDS_NO_DLCCATEGORIE
-#ifdef __ORBIS__    // 4J-JEV: TRC Requirement (R4055), need to display this system message.
+#ifdef __ORBIS__  // 4J-JEV: TRC Requirement (R4055), need to display this
+                  // system message.
                                 ProfileManager.DisplaySystemMessage(
                                     SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_EMPTY_STORE,
-                                    ProfileManager.GetPrimaryPad(#endif 
-		
-        
+                                    ProfileManager.GetPrimaryPad(#endif
         }
-#endif 
-
+#endif
     }

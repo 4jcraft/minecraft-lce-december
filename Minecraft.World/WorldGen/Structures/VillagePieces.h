@@ -149,21 +149,20 @@ public:
                                           // generation step and aren't
                                           // serialized//
                                           // :{
-        
-        BiomeSource *
+
+                   BiomeSource *
                    biomeSource;
             bool isDesertVillage;
 
             int villageSize;
             bool isLibraryAdded;
             PieceWeight* previousPiece;
-            std::list <
-                PieceWei  // these queues are used so that the addChildren calls
-                          // are called in a// random
-                          // order
-        
-        std::vector<StructurePiece*>
-                    pendingHouses;
+            std::list < PieceWei  // these queues are used so that the
+                                  // addChildren calls are called in a// random
+                                  // order
+
+                                      std::vector<StructurePiece*>
+                                          pendingHouses;
             std::vector<StructurePiece*> pendingRoads;
 
             StartPiece();
@@ -185,8 +184,8 @@ public:
                 ce(startPiece, genDepth) {}
         };
 
-    
-public : class StraightRoad : public VillageRoadPiece {
+    public:
+        class StraightRoad : public VillageRoadPiece {
         public:
             static StructurePiece* Create() { return new StraightRoad(); }
             virtual EStructurePiece GetType() {
@@ -222,8 +221,8 @@ public : class StraightRoad : public VillageRoadPiece {
                                      BoundingBox* chunkBB);
         };
 
-    
-public : class SimpleHouse : public VillagePiece {
+    public:
+        class SimpleHouse : public VillagePiece {
         public:
             static StructurePiece* Create() { return new SimpleHouse(); }
             virtual EStructurePiece GetType() {

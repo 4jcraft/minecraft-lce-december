@@ -163,10 +163,9 @@ void UIScene_InGameHostOptionsMenu::handleInput(int iPad, int key, bool repeat,
                 handled = true;
             }
             break;
-        case ACTION #ifdef __ORBIS__
-	case ACTION_MENU_TOUCHP #endifSS:
-            
-		sendInputToMovie(key, repeat, pressed, released);
+        case ACTION #ifdef __ORBIS__ case ACTION_MENU_TOUCHP #endifSS:
+
+            sendInputToMovie(key, repeat, pressed, released);
             break;
         case ACTION_MENU_UP:
         case ACTION_MENU_DOWN:

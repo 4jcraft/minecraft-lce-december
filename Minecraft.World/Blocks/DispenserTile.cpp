@@ -199,8 +199,8 @@ void DispenserTile::onRemove(Level* level, int x, int y, int z, int id,
                     }
                     level
                         ->add  // 4J Stu - Fix for duplication glitch
-                
-                container->setItem(i, nullptr);
+
+                            container->setItem(i, nullptr);
                 }
             }
             level->updateNeighbourForOutputSignal(x, y, z, id);

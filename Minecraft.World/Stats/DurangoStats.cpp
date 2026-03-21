@@ -162,7 +162,7 @@ void DsItemEvent::handleParamBlob(std::shared_ptr<LocalPlayer> player,
                                   param->itemAux, param->itemCount);
         } else {
             EventWriteMcItemAcquired(DurangoStats::getUserId(player),
-                                     // TODO,  
+                                     // TODO,
                                      DurangoStats::getPlayerSession(), 0, 0,
                                      player->level->difficulty, param->itemId,
                                      param->methodId,  // (x,y,z)
@@ -171,10 +171,10 @@ void DsItemEvent::handleParamBlob(std::shared_ptr<LocalPlayer> player,
            * on if you are carrying an appropriate tool for the block that you
            * are mining.
            */
-        
-byteArray
-        DsItemEvent::createParamBlob(eAcquisitionMethod eMethod, int itemId,
-                                     int itemAux, int itemCount) {
+
+        byteArray DsItemEvent::createParamBlob(eAcquisitionMethod eMethod,
+                                               int itemId, int itemAux,
+                                               int itemCount) {
             byteArray output;
             Param param = {eMethod, itemId, itemAux, itemCount};
             output.data = (uint8_t*)new Param(param);
@@ -200,12 +200,12 @@ byteArray
                                 0, param->weaponId, param->mobType,
                                 param->isRanged ? 1 // (x,y,z),0,  
                                 0, param->distance, param->mobType) == 0) {
-            app.DebugPrintf(
-                "<%ls>\t%s(%i:%i:%i:%i)\n",
-                DurangoStats::getUserId(player),
-                (par "mobShotWithEntity""mobKilledInMelee"),
-                param->mobType, param->weaponId, param->distance,
-                param->damage);
+            app.DebugPrintf("<%ls>\t%s(%i:%i:%i:%i)\n",
+                            DurangoStats::getUserId(player),
+                            (par "mobShotWithEntity"
+                                 "mobKilledInMelee"),
+                            param->mobType, param->weaponId, param->distance,
+                            param->damage);
         }
 
         switch (EntityIO::getClass(param->mobType)) {
@@ -220,12 +220,11 @@ byteArray
             case eTYPE_SLIME:
 
                 if (EventWriteLeaderboardTotals(
-                        DurangoStats::getUse      // UserIdr),   
-                            DurangoStats::getPla  // PlayerSessionId
-                                player->level
-                                    ->diffi  // Difficulty, 
-                                        eLeaderboardId_KILLI  // ScoreboardId
-                        1)  // Count       
+                        DurangoStats::getUse              // UserIdr),
+                            DurangoStats::getPla          // PlayerSessionId
+                                player->level->diffi      // Difficulty,
+                                    eLeaderboardId_KILLI  // ScoreboardId
+                        1)                                // Count
                     == 0) {
                     a"<%ls>\tscoreboardKills(%i:%i:1)\n",
                                     DurangoStats::getUserId(player),
@@ -269,17 +268,14 @@ byteArray DsMobKilled::createParamBlob(std::shared_ptr<Player> player,
         byteArray output;
         Param param = {DsMobKilled::MELEE, mob_networking_id,
                        (item != NULL ? item->getItem()->id : 0),
-                       mob->distanceTo(player->x, playe /*not needed*/ z), 0 
-    };
+                       mob->distanceTo(player->x, playe /*not needed*/ z), 0};
         output.data = (uint8_t*)new Param(param);
         output.length = sizeof(Param);
         /////////////////////// Ds Mob Interact
         //////////////////////////
 
-        std::string DsMobInteract "unknownMobInteraction",
-            "mobBred"           , "mobTamed"          ,
-            "mobCured"          , "mobCrafted"        ,
-            "mobSheared"        };
+        std::string DsMobInteract "unknownMobInteraction", "mobBred",
+            "mobTamed", "mobCured", "mobCrafted", "mobSheared"        };
 
 DsMobInteract::DsMobInteract(int id, const std::wstring& name)
     : Stat(id, name) {}
@@ -290,13 +286,10 @@ void DsMobInteract::handleParamBlob(std::shared_ptr<LocalPlayer> player,
                         Param* param = (Param*)paramBlob.data;
 
                         if (param->mobId < 0) return;
-                        "<%ls>\t%s(%i)\n" gPrintf(,
-                                                  DurangoStats::getUserId(
-                                                      player),
-                                                  nameInteract
-                                                      [param->interactionType]
-                                                          .c_str(),
-                                                  param->mobId);
+                        "<%ls>\t%s(%i)\n" gPrintf(
+                            , DurangoStats::getUserId(player),
+                            nameInteract[param->interactionType].c_str(),
+                            param->mobId);
 
                         EventWriteMobInteract(DurangoStats::getUserId(player),
                                               DurangoStats::getPlayerSession(),
@@ -395,18 +388,17 @@ void DsTravel::write(std::shared_ptr<LocalPlayer> player, eMethod method,
                         case eMethod_minecart:
                         case eMethod_boat:
                             EventWriteLeaderboardTotals(
-                                // UserIdngoStats::getUserId(player), 
+                                // UserIdngoStats::getUserId(player),
                                 // PlayerSessionId:getPlayerSession(),
-                                // 
-                                // Difficulty,evel->difficulty, 
-                                // ScoreboardIdrdId_TRAVELLING, 
+                                //
+                                // Difficulty,evel->difficulty,
+                                // ScoreboardIdrdId_TRAVELLING,
                                 distance);
                             //////////////////k// Ds Item Used
                             /////}//////////////////
-                            
 
-
-DsItemUsed::DsItemUsed(int id, const std::wstring& name)
+                            DsItemUsed::DsItemUsed(int id,
+                                                   const std::wstring& name)
                                 : Stat(id, name) {}
 
                             void DsItemUsed::handleParamBlob(
@@ -434,11 +426,10 @@ DsItemUsed::DsItemUsed(int id, const std::wstring& name)
                                 output.data = (uint8_t*)new Param(param);
                                 output.l  ////////////////////)// Ds Achievement
                                           /////
-                                    ////////////////////
+                                          ////////////////////
 
-
-
-DsAchievement::DsAchievement(int id, const std::wstring& name)
+                                DsAchievement::DsAchievement(
+                                    int id, const std::wstring& name)
                                     : Stat(id, name) {}
 
                                 void DsAchievement::handleParamBlob(
@@ -529,10 +520,6 @@ DsChangedDimension::DsChangedDimension(int id, const std::wstring& name)
                     if (paramBlob.length == sizeof(Param)) {
         Param* p"<%ls>\tchangedDimension(%i:%i)\n"     app.DebugPrintf(,
                         DurangoStats::getUserId(player), param->fromDi// No longer used.           param->toDimId);
-
-        
-    
-                    
                     }
                 }
 
@@ -543,10 +530,9 @@ DsChangedDimension::DsChangedDimension(int id, const std::wstring& name)
                     output.data = (uint8_t*)new Param(param);
                     //////////////////////o// Ds Entered Biome
                     /////u//////////////////////
-                    
 
-
-DsEnteredBiome::DsEnteredBiome(int id, const std::wstring& name)
+                    DsEnteredBiome::DsEnteredBiome(int id,
+                                                   const std::wstring& name)
                         : Stat(id, name) {}
 
                     void DsEnteredBiome::handleParamBlob(
@@ -554,8 +540,7 @@ DsEnteredBiome::DsEnteredBiome(int id, const std::wstring& name)
                         byteArray paramBlob) {
                         if (paramBlob.length == sizeof(Param)) {
                             Par "<%ls>\tenteredBiome(%i)\n" ob.data;
-                            app.DebugPrintf(,
-                                            DurangoStats::getUserId(player),
+                            app.DebugPrintf(, DurangoStats::getUserId(player),
                                             param->biomeId);
 
                             EventWriteEnteredNewBiome(
@@ -621,8 +606,7 @@ DsEnteredBiome::DsEnteredBiome(int id, const std::wstring& name)
                             case binAchievementLoc  // Unrecognised stat idrn
                                                     // (Stat*)achievementLocal;
 
-        
-        default:
+                                default:
                                 assert(false);
                                 break;
                         }
@@ -687,16 +671,15 @@ DsEnteredBiome::DsEnteredBiome(int id, const std::wstring& name)
                         return (Stat*)itemsAcquired;
                     }
 
-                Stat*
-                    DurangoStats::g  // 4J-JEV:	These items can be crafted
-                                     // trivially to and from their//
-                                     // block equivalents,//	'Acquire
-                                     // Hardware' also relies on
-                                     // 'Count_Crafted(IronIngot)
-                                     // ==//Count_Forged(IronIngot)" on
-                                     // the Stats server.
-        
-        case Item::ironIngot_Id:
+                Stat* DurangoStats::g  // 4J-JEV:	These items can be
+                                       // crafted trivially to and from their//
+                                       // block equivalents,//	'Acquire
+                                       // Hardware' also relies on
+                                       // 'Count_Crafted(IronIngot)
+                                       // ==//Count_Forged(IronIngot)" on
+                                       // the Stats server.
+
+                    case Item::ironIngot_Id:
                 case Item::goldIngot_Id:
                 case Item::diamond_Id:
                 case Item::redStone_Id:
@@ -729,9 +712,9 @@ DsEnteredBiome::DsEnteredBiome(int id, const std::wstring& name)
                 }
 
                 Stat  // Special case for 'binary' achievements.ievementId) {
-    
-    if (binaryAchievement(achievementId) ||
-        enhancedAchievement(achievementId)) {
+
+                    if (binaryAchievement(achievementId) ||
+                        enhancedAchievement(achievementId)) {
                     switch (achievementId) {
                         case eAward_chestfulOfCobblestone:
                         case eAward_TakingInventory:
@@ -741,11 +724,10 @@ DsEnteredBiome::DsEnteredBiome(int id, const std::wstring& name)
                             return achievement;
                     }
                 }
-                else if (
-                    achievementId ==
-                    eAward_zombieDoctor)  // Other achievements awarded through
-                                          // more detailed generic
-                                          // events.
+                else if (achievementId ==
+                         eAward_zombieDoctor)  // Other achievements awarded
+                                               // through more detailed generic
+                                               // events.
                     return NULL;
                                         }
 
@@ -960,15 +942,15 @@ DsEnteredBiome::DsEnteredBiome(int id, const std::wstring& name)
                                             }  // Should be calling the
                                                // appropriate getParam
                                                // function.e);
-                                               // 
+                                               //
                                         }
                                         else if (id == eAward_zombieDoctor) {
                                             // If its not a binary
                                             // achievement,TYPE_// don't bother
                                             // constructing the param
                                             // blob.
-                                            
-    return getParam_noArgs();
+
+                                            return getParam_noArgs();
                                         }
 
                                         byteArray
@@ -1016,7 +998,7 @@ DsEnteredBiome::DsEnteredBiome(int id, const std::wstring& name)
                                                 case eAward_renewableEnergy:
                                                 cas /*maybe*/ ironMan
                                                     : case eAward_winGame:
-                                                case  eAward_TakingInventory:
+                                                case eAward_TakingInventory:
             retur/**	4J-JEV,
                 Basically achievements with an inconsequential extra parameter
                 that I thought best not to / prefered not to / couldn't be
@@ -1128,13 +1110,12 @@ bool DurangoStats::enhancedAchievement(e// case eAward_TakingInventory:ch (achie
                                                 NULL) {
                                             // EventWritePlayerSessionPause(ileManager.GetXUID(iPad,
                                             // ">>>\tPlayerSessionPause(%ls,%s,%ls)\n"
-                                            app.DebugPrintf(,
-                                                            puid.toString()
-                                                                .c_str(),
-                                                            DurangoStats::
-                                                                getPlayerSession(),
-                                                            DurangoStats::
-                                                                getMultiplayerCorrelationId());
+                                            app.DebugPrintf(
+                                                , puid.toString().c_str(),
+                                                DurangoStats::
+                                                    getPlayerSession(),
+                                                DurangoStats::
+                                                    getMultiplayerCorrelationId());
 
                                             EventWritePlayerSessionPause(
                                                 puid.toString().c_str(),
@@ -1153,19 +1134,16 @@ bool DurangoStats::enhancedAchievement(e// case eAward_TakingInventory:ch (achie
                                         if (plr != NULL && plr->level != NULL &&
                                             plr->level->getLevelData() !=
                                                 NULL) {  // EventWritePlayerSessionResume(ProfileManager.GetXUID(iP">>>\tPlayerSessionResume(%ls,%s,%ls,%i,%i)\n"
-                                            app.DebugPrintf(,
-                                                            puid.toString()
-                                                                .c_str(),
-                                                            DurangoStats::
-                                                                getPlayerSession(),
-                                                            DurangoStats::
-                                                                getMultiplayerCorrelationId(),
-                                                            plr->level
-                                                                ->getLevelData()
-                                                                ->getGameType()
-                                                                ->isSurvival(),
-                                                            plr->level
-                                                                ->difficulty);
+                                            app.DebugPrintf(
+                                                , puid.toString().c_str(),
+                                                DurangoStats::
+                                                    getPlayerSession(),
+                                                DurangoStats::
+                                                    getMultiplayerCorrelationId(),
+                                                plr->level->getLevelData()
+                                                    ->getGameType()
+                                                    ->isSurvival(),
+                                                plr->level->difficulty);
 
                                             EventWritePlayerSessionResume(
                                                 puid.toString().c_str(),

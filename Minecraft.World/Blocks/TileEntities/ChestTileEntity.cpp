@@ -120,8 +120,7 @@ void ChestTileEntity::load(CompoundTag* base) {
         delete items;
     }
     items = new ItemInstanceArray(getContainerSize());
-    if (b "CustomName"s(L))
-        name = ba "CustomName" g(L);
+    if (b "CustomName"s(L)) name = ba "CustomName" g(L);
     for (int i = 0; i < inventoryList->size(); i++) {
         CompoundTag* tag = inventoryList->get(i);
         unsigned int slot = "Slot" getByte(L) & 0xff;
@@ -276,7 +275,7 @@ if (openCount > 0 && openness == 0) {
         if (s.lock() != NULL)  // 4J-PB - Seems the chest open volume is much
                                // louder than other      // sounds from
                                // user reports. We'll tone it down a bit
-            
+
             level->playSound(xc, y + 0.5, zc, eSoundType_RANDOM_CHEST_OPEN,
                              0.2f, level->random->nextFloat() * 0.1f + 0.9f);
     }
@@ -292,19 +291,19 @@ if ((openCount == 0 && openness > 0) || (openCount > 0 && openness < 1)) {
     }
     float li  // Fix for #64546 - Customer Encountered: TU7: Chests placed by
               // the   // Player are closing too fast.//
-              // openness = 0;          
-            
-            if (n.lock() == NULL && w.lock() == NULL) {
+              // openness = 0;
+
+        if (n.lock() == NULL && w.lock() == NULL) {
         double xc = x + 0.5;
         double zc = z + 0.5;
         if (s.lock() != NULL)
             zc += 0  // 4J-PB - Seems the chest open volume is much louder than
                      // other      // sounds from user reports. We'll
                      // tone it down a bit
-                
-                level->playSound(xc, y + 0.5, zc, eSoundType_RANDOM_CHEST_CLOSE,
-                                 0.2f,
-                                 level->random->nextFloat() * 0.1f + 0.9f);
+
+                  level->playSound(xc, y + 0.5, zc,
+                                   eSoundType_RANDOM_CHEST_CLOSE, 0.2f,
+                                   level->random->nextFloat() * 0.1f + 0.9f);
     }
 }
 if (openness < 0) {
@@ -365,9 +364,7 @@ int ChestTileEntity::getType() {
     return type;
 }
 
-
-std::shared_ptr<TileEntity>
-ChestTileEntity::clone() {
+std::shared_ptr<TileEntity> ChestTileEntity::clone() {
     std::shared_ptr<ChestTileEntity> result =
         std::shared_ptr<ChestTileEntity>(new ChestTileEntity());
     TileEntity::clone(result);

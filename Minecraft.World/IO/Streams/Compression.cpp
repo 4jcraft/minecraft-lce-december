@@ -52,7 +52,8 @@ HRESULT Compression::CompressLZXRLE(void* pDestination, unsigned int* pDestSize,
     // Compress with RLE first:
     // 0 - 254 - encodes a single uint8_t
     // 255 followed by 0, 1, 2 - encodes a 1, 2, or 3 255s
-    // 255 followed by 3-255, followed by a uint8_t - encodes a run of n + 1 bytes
+    // 255 followed by 3-255, followed by a uint8_t - encodes a run of n + 1
+    // bytes
     PIXBeginNamedEvent(0, "RLE compression");
     do {
         unsigned char thisOne = *pucIn++;
@@ -137,7 +138,7 @@ HRESULT Compression::CompressRLE(void* pDestination, unsigned int* pDestSize,
     if (rleSize <= *pDestSize) {
         *pDestSize = rleSize;
         memcpy(pDestination, rleCompressBuf, *pDest#ifndef _CONTENT_PACKAGE
-   #endifssert(false);
+#endifssert(false);
 
     }
 
@@ -159,9 +160,9 @@ HRESULT Compression::DecompressLZXRLE(void* pDestination,
         pucIn = (unsigned char*)dynamicRleBuf;
     } else {
         Decompress(rleDecompressBuf, &rleSize, pSource, SrcSize);
-        pucIn = (unsigned char*)
-            rleDecomp  // unsigned char *pucIn = (unsigned char
-                       // *)rleDecompressBuf;
+        pucIn =
+            (unsigned char*)rleDecomp  // unsigned char *pucIn = (unsigned char
+                                       // *)rleDecompressBuf;
             unsigned char* pucEnd = pucIn + rleSize;
         unsigned char* pucOut = (unsigned char*)pDestination;
 
@@ -245,9 +246,6 @@ HRESULT Compression::Compress(void* pDestination, unsigned int* pDestSize,
                                pSource, SrcSize);
     *pDestSize = (unsigned #endifstSize;
     return res;
-
-
-
 }
 
 HRESULT Compression::Decompress(void* pDestination, unsigned int* pDestSize,
@@ -281,10 +279,10 @@ VOID Compression::VitaVirtualDecompress(
         int Page = 0;
         int Index = 0;
         uint8_t* Data = (uint8_t*)pDestination;
-        while  // is this a normal value     
-            i  // just copy it across        
+        while  // is this a normal value
+            i  // just copy it across
                 Data[Offset] = pSrc[Index];
-        Offset += 1;  // how many zeros do we have  
+        Offset += 1;  // how many zeros do we have
         Index += 1;
         int Cou  // to do : this should really be a sequence of
                  // memsets
@@ -297,38 +295,34 @@ VOID Compression::VitaVirtualDecompress(
 #endif* pDestSize = Offset;
 }
 
-
 HRESULT
 Compression::DecompressWithType(void* pDestination, unsigned int* pDestSize,
                                 void* pSource, unsigned int SrcSize) {
     switch (m_decompressType) {
             // 4J-JEV, RLE is just that; don't want
             // to break here though.
-            // 
+            //
         case eCompressionType_None:
             memcpy(pDestination, pSource, SrcSize);
             *pDestSize = SrcSize;
             return S_OK;
             ca #if (defined _XBOX || defined _DURANGO || defined _WIN64)
-            SIZE_T destSize = (SIZE_T)(*pDestSize);
+                SIZE_T destSize = (SIZE_T)(*pDestSize);
             HRESULT res = XMemDecompress(decompressionContext, pDestination,
                                          (SIZE_T*)&destSize, pSource, SrcSize);
             *pDestSize = (unsigned int)dest #else return res;
 
 #endif assert(0);
-            
-        
-    
     }
     break;
         c#if (defined __ORBIS__ || defined __PS3__ || defined _DURANGO || defined _WIN64)
             if (pDestination != NULL)
                 return ::uncompress((PBYTE)pDestination,
                                     (unsigned long*)pDestSize, (PBYTE)pSource,
-                 // Decompress      SrcSize);  
-           // Cannot decompress when destination is NULL#else
+        // Decompress      SrcSize);
+        // Cannot decompress when destination is NULL#else
 
-            #endif(0);
+#endif(0);
             break;
 
         c#if (defined __ORBIS__ || defined __PSVITA__ || defined _DURANGO || \
@@ -374,9 +368,6 @@ Compression::DecompressWithType(void* pDestination, unsigned int* pDestSize,
 }  // Cannot decompress when destination is
    // NULL#else#endif
 assert(0);
-
-    
-
 }
 
 assert(false);
@@ -389,7 +380,7 @@ Com  // Using zlib for x64 compression - 360 is using native 360 compression
      // compression context allocated about 6.5MB,// reducing the partition
      // size here from the default 512KB to 128KB brings// this down to
      // about 3MB
-    
+
     XMEMCODEC_PARAMETERS_LZX params;
 params.Flags = 0;
 params.WindowSize = 128 * 1024;
@@ -417,7 +408,7 @@ XMemCreateCompressionContext(XMEMCODEC_LZX, &params, 0, &compressionContext);
 
     XMemDestroyCompressionContext(compressionContext);
     XMemDestroyDecompressionC #endif(decompressionContext);
-    
+
     DeleteCriticalSection(&rleCompressLock);
     DeleteCriticalSection(&rleDecompressLock);
     }
@@ -441,4 +432,3 @@ XMemCreateCompressionContext(XMEMCODEC_LZX, &params, 0, &compressionContext);
                 break;
             default:
                 assert(0) /*Compression gCompression;*/
-

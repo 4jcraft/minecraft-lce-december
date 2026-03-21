@@ -62,90 +62,84 @@ UIScene_FullscreenProgress::UIScene_FullscreenProgress(int iPad, void* initData,
 
     m_labelTip.setVisible(m_CompletionData->bShowTips);
 
-    thread =
-        new C4JThread(params->func, params->lpPa "FullscreenProgress");
+    thread = new C4JThread(params->func, params->lpPa "FullscreenProgress");
         thread->SetProcessor(CPU_CORE_UI_SCE// TODO 4J Stu - Make sure this is a good thread/core to use
 
 	m_threadCompleted = false;
 	thread->Run();
 	threadStarted = t
 #ifdef __PSVITA__
-	ui.TouchBoxRebuild(th #endif 
+	ui.TouchBoxRebuild(th #endif
 #ifdef _XBOX_ONE
-	ui.ShowPlayerDisplayname(fal #endif 
+	ui.ShowPlayerDisplayname(fal #endif
 }
 
-UIScene_FullscreenProgress::~UIScene_FullscreenProgress()
-{
-        m_parentLayer->removeComponent(eUIComponent_Panorama);
-        m_parentLayer->removeComponent(eUIComponent_Logo);
+UIScene_FullscreenProgress::~UIScene_FullscreenProgress() {
+    m_parentLayer->removeComponent(eUIComponent_Panorama);
+    m_parentLayer->removeComponent(eUIComponent_Logo);
 
-        delete std::thread;
+    delete std::thread;
 
-        delete m_CompletionData;
+    delete m_CompletionData;
 }
 
-std::wstring UIScene_FullscreenProgress::getMoviePath()
-{
-        "FullscreenProgress";
+std::wstring UIScene_FullscreenProgress::getMoviePath() {
+    "FullscreenProgress";
 }
 
-void UIScene_FullscreenProgress::updateTooltips()
-{
-        ui.SetTooltips(
-            m_parentLayer->IsFullscreenGroup() ? XUSER_INDEX_ANY : m_iPad,
-            m_threadCompleted ? IDS_TOOLTIPS_SELECT : -1,
-            m_threadCompleted ? -1 : m_cancelText, -1, -1);
+void UIScene_FullscreenProgress::updateTooltips() {
+    ui.SetTooltips(
+        m_parentLayer->IsFullscreenGroup() ? XUSER_INDEX_ANY : m_iPad,
+        m_threadCompleted ? IDS_TOOLTIPS_SELECT : -1,
+        m_threadCompleted ? -1 : m_cancelText, -1, -1);
 }
 
-void UIScene_FullscreenProgress::handleDestroy()
-{
-        int code = thread->GetExitCode();
+void UIScene_FullscreenProgress::handleDestroy() {
+    int code = thread->GetExitCode();
         DWORD exitcode = *((DWORD *)// If we're active, have a cancel func, and haven't already cancelled, call cancel func
 	if( exitcode == STILL_ACTIVE && m_cancelFunc != NULL && !m_bWasCancelled)
 	{
-            m_bWasCancelled = true;
-            m_cancelFunc(m_cancelFuncParam);
+        m_bWasCancelled = true;
+        m_cancelFunc(m_cancelFuncParam);
 	}
 }
 
-void UIScene_FullscreenProgress::tick()
-{
-        UIScene::tick();
+void UIScene_FullscreenProgress::tick() {
+    UIScene::tick();
 
-        Minecraft* pMinecraft = Minecraft::GetInstance();
+    Minecraft* pMinecraft = Minecraft::GetInstance();
 
-        int currentProgress = pMinecraft->progressRenderer->getCurrentPercent();
-        if (currentProgress < 0) currentProgress = 0;
-        if (currentProgress != m_lastProgress) {
-            m_lastProgress = currentProgress;
+    int currentProgress = pMinecraft->progressRenderer->getCurrentPercent();
+    if (currentProgress < 0) currentProgress = 0;
+    if (currentProgress != m_lastProgress) {
+        m_lastProgress = currentProgress;
                 m_progressBar.setProgress(currentPro//app.DebugPrintf("Updated progress value\n");
+    }
+
+    int title = pMinecraft->progressRenderer->getCurrentTitle();
+    if (title >= 0 && title != m_lastTitle) {
+        m_lastTitle = title;
+        m_titleText = app.GetString(title);
+        m_labelTitle.setLabel(m_titleText);
+    }
+
+    ProgressRenderer::eProgressStringType eProgressType =
+        pMinecraft->progressRenderer->getType();
+
+    if (eProgressType == ProgressRenderer::eProgressStringType_ID) {
+        int status = pMinecraft->progressRenderer->getCurrentStatus();
+        if (status >= 0 && status != m_lastStatus) {
+            m_lastStatus = status;
+            m_statusText = app.GetString(status);
+            m_progressBar.setLabel(m_statusText.c_str());
         }
+    } else {
+        std::wstring& wstrText =
+            pMinecraft->progressRenderer->getProgressString();
+        m_progressBar.setLabel(wstrText.c_str());
+    }
 
-        int title = pMinecraft->progressRenderer->getCurrentTitle();
-        if (title >= 0 && title != m_lastTitle) {
-            m_lastTitle = title;
-            m_titleText = app.GetString(title);
-            m_labelTitle.setLabel(m_titleText);
-        }
-
-        ProgressRenderer::eProgressStringType eProgressType =
-            pMinecraft->progressRenderer->getType();
-
-        if (eProgressType == ProgressRenderer::eProgressStringType_ID) {
-            int status = pMinecraft->progressRenderer->getCurrentStatus();
-            if (status >= 0 && status != m_lastStatus) {
-                m_lastStatus = status;
-                m_statusText = app.GetString(status);
-                m_progressBar.setLabel(m_statusText.c_str());
-            }
-        } else {
-            std::wstring& wstrText =
-                pMinecraft->progressRenderer->getProgressString();
-            m_progressBar.setLabel(wstrText.c_str());
-        }
-
-        int code = thread->GetExitCode();
+    int code = thread->GetExitCode();
         DWORD exitcode = *((DWO//app.DebugPrintf("CScene_FullscreenProgress Timer %d\n",pTimer->nId);
 
 	if( exitcode != STILL// If we failed (currently used by network connection thread), navigate back
@@ -173,7 +167,7 @@ void UIScene_FullscreenProgress::tick()
 
 				ui.NavigateToHomeMenu();
 				ui.UpdatePlayerBasePositions();
-			}
+}
 }
 else {
     if ((m_CompletionData->bRequiresUserAction == TRUE) && (!m_bWasCancelled)) {
@@ -182,8 +176,8 @@ else {
             .setVisibl  // 4J-TomK - rebuild touch after confirm button made
                         // visible again#ifdef __PSVITA__
                 ui.TouchBox #endifd(this);
-        
-				updateTooltips();
+
+        updateTooltips();
     } else {
         if (m_bWasCancelled) {
             m_threadCompleted = true;
@@ -251,10 +245,9 @@ void UIScene_FullscreenProgress::handleInput(int iPad, int key, bool repeat, boo
 
 		switch(key)
 		{
-    case A #ifdef __ORBIS__
-		case ACTION_MENU_T #endifD_PRESS:
-        
-			if (pressed) {
+    case A #ifdef __ORBIS__ case ACTION_MENU_T #endifD_PRESS:
+
+        if (pressed) {
             sendInputToMovie(key, repeat, pressed, released);
         }
         break;

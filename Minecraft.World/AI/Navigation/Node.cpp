@@ -40,7 +40,7 @@ float Node::distanceToSqr(Node* to) {
 
 bool Node::equals(
     Node* o) {  // 4J Jev, never used anything other than a node.// if
-                // (dynamic_cast<Node *>((Node *) o) != NULL)//{  
+                // (dynamic_cast<Node *>((Node *) o) != NULL)//{
     return hash == o->hash && x == o->x && y == o->y &&
            z == o->z;  //}  // return false;
 }

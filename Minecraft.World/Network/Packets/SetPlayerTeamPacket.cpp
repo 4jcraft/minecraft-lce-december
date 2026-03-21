@@ -35,20 +35,12 @@ SetPlayerTeamPacket::SetPlayerTeamPacket(PlayerTeam* team,
     if (method != METHOD_JOIN && method != METHOD_LEAVE) {
         app.De
             "Method must be join or leave for player "
-            "constructor"#ifndef _CONTENT_PACKAGE
-        __debu #endif();
-        
-    
-    
+            "constructor" #ifndef _CONTENT_PACKAGE __debu #endif();
     }
     if (playerNames == NULL || playerNames->empty()) {
         app.De
             "Players cannot be "
-            "null/empty"#ifndef _CONTENT_PACKAGE
-        __debu #endif();
-        
-    
-    
+            "null/empty" #ifndef _CONTENT_PACKAGE __debu #endif();
     }
 
     this->method = method;

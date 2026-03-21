@@ -69,7 +69,7 @@ void SignRenderer::render(std::shared_ptr<TileEntity> _sign, double x, double y,
                     case XC_LANGUAGE_KOREAN:
                     case XC_LANGUAGE_JAPANESE:
                     case XC_LANGUAGE_TCHINESE:
-                        "Censored"    // In-game font, so English only 
+                        "Censored"  // In-game font, so English only
                             break;
                     default:
                         msg = app.GetString(IDS_STRINGVERIFY_CENSORED);
@@ -83,7 +83,7 @@ void SignRenderer::render(std::shared_ptr<TileEntity> _sign, double x, double y,
                 case XC_LANGUAGE_KOREAN:
                 case XC_LANGUAGE_JAPANESE:
                 case XC_LANGUAGE_TCHINESE:
-                    "Awaiting Approval"    // In-game font, so English only 
+                    "Awaiting Approval"  // In-game font, so English only
                         break;
                 default:
                     msg = app.GetString(IDS_STRINGVERIFY_AWAITING_APPROVAL);

@@ -53,11 +53,10 @@ void FileHeader::RemoveFile(FileEntry* file) {
     if (it < fileTable.end()) {
         fileTable.erase(i
 #ifndef _CONTENT_PACKAGE
-   "Removed file %ls\n", \
-    file->data.f #endife);
+                        "Removed file %ls\n",
+                        file->data.f #endife);
 
-
-    delete file;
+        delete file;
     }
 
     void FileHeader::WriteHeader(LPVOID saveMem) {
@@ -105,8 +104,8 @@ void FileHeader::RemoveFile(FileEntry* file) {
     }
 }
 
-void FileHeader::ReadHeader(
-    LPVOID saveMem, ESavePlat /*= SAVE_FILE_PLATFORM_LOCAL */) {
+void FileHeader::ReadHeader(LPVOID saveMem,
+                            ESavePlat /*= SAVE_FILE_PLATFORM_LOCAL */) {
     unsigned int headerOffset;
     unsigned int headerSize;
 
@@ -185,40 +184,33 @@ void FileHeader::ReadHeader(
                     FileEntry* entry = new FileEntry();
             // assert(numberOfBytesRead == sizeof(FileEntrySaveData));
 #ifdef __PSVITA__
-                VirtualCopyFrom(&entry->data, fesdHeaderPosition,
-                                sizeof(FileEntrySa#elsea));
-                                
-                memcpy(&entry->data, fesdHeaderPosition,
-                                    sizeof(FileEntrySa #endif));
-                                
+                    VirtualCopyFrom(&entry->data, fesdHeaderPosition,
+                                    sizeof(FileEntrySa #elsea));
 
-                if (isSaveEndianDifferent()) {
-                                    // Reverse bytes
-                                    System::ReverseWCHARA(entry->data.filename,
-                                                          64);
-                                    System::ReverseULONG(&entry->data.length);
-                                    System::ReverseULONG(
-                                        &entry->data.startOffset);
-                                    System::ReverseULONGLONG(
-                                        &entry->data.lastModifiedTime);
-                                }
+                    memcpy(&entry->data, fesdHeaderPosition,
+                           sizeof(FileEntrySa #endif));
 
-                                entry->currentFilePointer =
-                                    entry->data.startOffset;
-                                lastFile = entry;
-                                fileTable
-                                    .push_bac #ifdef _DEBUG_FILE_HEADER
-                app.DebugPrintf("File: %ls, Start = %d, Length = %d, End = %d, "
-                                "Timestamp = "
-          "%lld\n"  ,
-                                    entry->data.filename,
-                                    entry->data.startOffset, entry->data.length,
-                                    entry->data.startOffset +
-                                        entry->data.length,
-                                    entry->data.lastModif #endife);
-                                
+                    if (isSaveEndianDifferent()) {
+                        // Reverse bytes
+                        System::ReverseWCHARA(entry->data.filename, 64);
+                        System::ReverseULONG(&entry->data.length);
+                        System::ReverseULONG(&entry->data.startOffset);
+                        System::ReverseULONGLONG(&entry->data.lastModifiedTime);
+                    }
 
-                fesdHeaderPosition++;
+                    entry->currentFilePointer = entry->data.startOffset;
+                    lastFile = entry;
+                    fileTable.push_bac #ifdef _DEBUG_FILE_HEADER app
+                        .DebugPrintf(
+                            "File: %ls, Start = %d, Length = %d, End = %d, "
+                            "Timestamp = "
+                            "%lld\n",
+                            entry->data.filename, entry->data.startOffset,
+                            entry->data.length,
+                            entry->data.startOffset + entry->data.length,
+                            entry->data.lastModif #endife);
+
+                    fesdHeaderPosition++;
                 }
         } break;// Legacy save versions, with updated code to convert the// FileEntrySaveData to the latest version 4J Stu - At time of writing,// the tutorial save is V1 so need to keep this for compatibility
         case SAVE_FILE_VERSION_PRE_LAUNCH: {
@@ -231,27 +223,24 @@ void FileHeader::ReadHeader(
                     FileEntry* entry = new FileEntry();
             // assert(numberOfBytesRead == sizeof(FileEntrySaveData));
 #ifdef __PSVITA__
-                VirtualCopyFrom(&entry->data, headerPosition,
-                                sizeof(FileEntrySave#else1));
-                                
-                memcpy(&entry->data, headerPosition,
-                                    sizeof(FileEntrySave #endif));
-                                
+                    VirtualCopyFrom(&entry->data, headerPosition,
+                                    sizeof(FileEntrySave #else1));
 
-                entry->currentFilePointer = entry->data.startOffset;
-                                lastFile = entry;
-                                fileTable
-                                    .push_bac #ifdef _DEBUG_FILE_HEADER
-                app.DebugPrintf("File: %ls, Start = %d, Length = %d, End = "
-                                "%d\n",
-                                    entry->data.filename,
-                                    entry->data.startOffset, entry->data.length,
-                                    entry->data.startOffset +
-                                        entry->data #endifh);
-                                
+                    memcpy(&entry->data, headerPosition,
+                           sizeof(FileEntrySave #endif));
 
-                i += sizeof(FileEntrySaveDataV1);
-                                headerPosition += sizeof(FileEntrySaveDataV1);
+                    entry->currentFilePointer = entry->data.startOffset;
+                    lastFile = entry;
+                    fileTable.push_bac #ifdef _DEBUG_FILE_HEADER app
+                        .DebugPrintf(
+                            "File: %ls, Start = %d, Length = %d, End = "
+                            "%d\n",
+                            entry->data.filename, entry->data.startOffset,
+                            entry->data.length,
+                            entry->data.startOffset + entry->data #endifh);
+
+                    i += sizeof(FileEntrySaveDataV1);
+                    headerPosition += sizeof(FileEntrySaveDataV1);
                 }
         } break;
 #ifndef _CONTENT_PACKAGE
@@ -263,13 +252,14 @@ void FileHeader::ReadHeader(
     }
 }
 
-unsigned int FileHeader::
-    GetStartOfNextDat  // The first 4 bytes is the location of the header (the
-                       // header itself is at// the end of the file) Then 4
-                       // bytes for the size of the header Then 2 bytes//
-                       // for the version number at which this save was first
-                       // generated Then 2// bytes for the version number
-                       // that the save should now be at
+unsigned int
+    FileHeader::GetStartOfNextDat  // The first 4 bytes is the location of the
+                                   // header (the header itself is at// the end
+                                   // of the file) Then 4 bytes for the size of
+                                   // the header Then 2 bytes// for the version
+                                   // number at which this save was first
+                                   // generated Then 2// bytes for the version
+                                   // number that the save should now be at
     unsigned int totalBytesSoFar = SAVE_FILE_HEADER_SIZE;
 for (unsigned int i = 0; i < fileTable.size(); ++i) {
     if (fileTable[i]->getFileSize() > 0)
@@ -328,76 +318,75 @@ std::vector<FileEntry*>* FileHeader::getFilesWithPrefix(
 
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
 
-static bool isHexChar(wcha '0' wc) {
-        '9'(wc >= L && wc <= L) ret 'a' true;
-        'f'(wc >= L && wc <= L) return true;
-        return false;
-    }
-    static bool isHexString(wchar_t * ws, int size) {
-        for (int i = 0; i < size; i++) {
-            if (!isHexChar(ws[i])) return false;
+        static bool isHexChar(wcha '0' wc) {
+            '9'(wc >= L && wc <= L) ret 'a' true;
+            'f'(wc >= L && wc <= L) return true;
+            return false;
         }
-        return true;
-    }
-    static bool isDecimalChar(wcha '0' wc) {
-        '9'(wc >= L && wc <= L) return true;
-        return false;
-    }
-    static bool isDecimalString(wchar_t * ws, int size) {
-        for (int i = 0; i < size; i++) {
-            if (!isDecimalChar(ws[i])) return false;
+        static bool isHexString(wchar_t * ws, int size) {
+            for (int i = 0; i < size; i++) {
+                if (!isHexChar(ws[i])) return false;
+            }
+            return true;
         }
-        return true;
-    }
-    static wchar_t*
-        findFilenameS  // find the last forward slash in the filename, and
-                       // return the pointer to// the following
-                       // character
-        wchar_t* filenameStart = str;
-    int len = wcslen(str);
+        static bool isDecimalChar(wcha '0' wc) {
+            '9'(wc >= L && wc <= L) return true;
+            return false;
+        }
+        static bool isDecimalString(wchar_t * ws, int size) {
+            for (int i = 0; i < size; i++) {
+                if (!isDecimalChar(ws[i])) return false;
+            }
+            return true;
+        }
+        static wchar_t* findFilenameS  // find the last forward slash in the
+                                       // filename, and return the pointer to//
+                                       // the following character
+            wchar_t* filenameStart = str;
+        int len = wcslen(str);
     for (int i = 0; i < len; i++'/'       if (str[i] == L) filenameStart = &str[i + 1];
     return filenameStart;
-}
+    }
 
-std::wstring FileHeader::getPlayerDataFilenameForLoad(const PlayerUID & "" ID) {
-    std::wstring retVal = L;
+    std::wstring FileHeader::getPlayerDataFilenameForLoad(const PlayerUID &
+                                                          "" ID) {
+        std::wstring retVal = L;
     std::vector<FileEntry*>* pFiles = getDatFilesWithOnl// we didn't find a matching online dat file, so look for an offline// version
         
         pFiles = getDatFilesWithMacAndUserID(// and we didn't find an offline file, so check if we're the primary// user, and grab the primary file if we are
         if (pUID.isPrimaryUser()) {
-        pFiles = getDatFilesWithPrimaryUser();
-        // we've got something to load{
-        // 		assert(pFiles->size() == 1);
-        // 
-        retVal = pFiles->at(0)->data.filename;
-        delete pFiles;
+            pFiles = getDatFilesWithPrimaryUser();
+            // we've got something to load{
+            // 		assert(pFiles->size() == 1);
+            //
+            retVal = pFiles->at(0)->data.filename;
+            delete pFiles;
     }
+    return retVal;
+    }
+
+    std::wstring
+        FileHeader::getPlayerData  // check if we're online firstD& pUID) {
+
+        if  // OK, we're not online, see if we can find another data file
+            // with// matching mac and userID
+
+        std::vector<FileEntry*>* pFiles =
+            getDatFilesWithMacA  // we've found a previous save, use the
+                                 // filename from it, as it// might
+                                 // have the online part too
+                                 // 			assert(pFiles->size() == 1);
+
+                std::wstring retVal = pFiles->at(0)->data.filename;
+    delete p  // we're either online, or we can't find a previous save, so use
+              // the// standard filename
+        ".dat" std::wstring retVal = pUID.toString() + L;
     return retVal;
 }
 
-std::wstring FileHeader::getPlayerData  // check if we're online firstD& pUID) {
-    
-    if  // OK, we're not online, see if we can find another data file
-        // with// matching mac and userID
-        
-        std::vector<FileEntry*>* pFiles =
-    getDatFilesWithMacA  // we've found a previous save, use the
-                         // filename from it, as it// might
-                         // have the online part too
-    // 			assert(pFiles->size() == 1);
-            
-            std::wstring retVal = pFiles->at(0)->data.filename;
-delete p  // we're either online, or we can't find a previous save, so use
-          // the// standard filename
-    ".dat"
-    std::wstring retVal = pUID.toString() + L;
-return retVal;
-}
-
-std::vector<FileEntry*>* FileHeader::
-    getVa  // find filenames that match this patterneEntr//
-           // P_5e7ff8372ea9_00000004_Mark_4J
-    
+std::vector<FileEntry*>*
+    FileHeader::getVa  // find filenames that match this patterneEntr//
+                       // P_5e7ff8372ea9_00000004_Mark_4J
 
     for (unsigned int i = 0; i < fileTable.size(); ++i) {
     wchar_t* filenameOnly = findFilenameStart(fileTable[i]->data.filename);
@@ -429,23 +418,19 @@ std::vector<FileEntry*>* FileHeader::getDatFilesWithOnlineID(
     const PlayerUID& pUID) {
     if (pUID.isSignedIntoPSN() == false) return NULL;
 
-    std::vector <
-        FileEntry  // we're looking for the online name from the pUID in these
-                   // types ofeturn// filenames -
-                   // P_5e7ff8372ea9_00000004_Mark_4J
-    
-    wchar_t onlineIDW[64];
+    std::vector < FileEntry  // we're looking for the online name from the pUID
+                             // in these types ofeturn// filenames -
+                             // P_5e7ff8372ea9_00000004_Mark_4J
+
+                                 wchar_t onlineIDW[64];
     mbstowcs(onlineIDW, pUID.getOnlineID(), 64);
 
     std::vector<FileEntry*>* files = NULL;
     int onlineID ".dat" wc
-#ifdef __ORBIS__ if (onlineIDSize == 0) return NULL; \
-    #else wcscat(onlineIDW, L);
-    // 24 characters into the filenamen#endif
+#ifdef __ORBIS__ if (onlineIDSize == 0) return NULL; #else wcscat(onlineIDW, L);
+        // 24 characters into the filenamen#endif
 
-    static const int onlineIDStart = 24;
-    
-
+        static const int onlineIDStart = 24;
 
     char tempStr[128];
     for (unsigned int i = 0; i < datFiles->size(); ++i) {
@@ -455,7 +440,8 @@ std::vector<FileEntry*>* FileHeader::getDatFilesWithOnlineID(
 #ifdef __ORBIS__tr, filenameOnly, 128);
         app.DebugPrintf(, tempStr);
 
-      #else onlineIDStart = wcslen(filenameOnly) - onlineIDSiz#endif     if (onlineIDStart > 0)
+#else onlineIDStart = \
+    wcslen(filenameOnly) - onlineIDSiz #endif if (onlineIDStart > 0)
 
         if (wcslen(filenameOnly) > onlineIDStart)
 

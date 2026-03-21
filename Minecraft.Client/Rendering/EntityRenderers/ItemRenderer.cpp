@@ -347,8 +347,8 @@ void ItemRenderer::renderGuiItem(Font *font, Textures *textures, std::shared_ptr
                 Tile* tile = Tile::tiles[itemId];
                 // 4J - original code left here for reference#if
                 // 0
-                
-		glTranslatef((float)(x), (float)(y), 0.0f);
+
+                glTranslatef((float)(x), (float)(y), 0.0f);
                 glScalef(fScale, fScale, fScale);
                 glTranslatef(-2.0f, 3.0f, -3.0f + blitOffset);
                 glScalef(10.0f, 10.0f, 10.0f);
@@ -357,7 +357,7 @@ void ItemRenderer::renderGuiItem(Font *font, Textures *textures, std::shared_ptr
                 glRotatef(180.0f + 30.0f, 1.0f, 0.0f, 0.0f);
                 glRotatef(45.0f, #else, 1.0f, 0.0f);
 
-		glTranslate// Translate to screen coords
+                glTranslate// Translate to screen coords
 		glScalef(16.0f*fScaleX, 16.// Scale to 0 to 16*scale range
 		glTranslatef(0// Translate to 0 to 1 range
 		glScalef(0.55f// Scale to occupy full -0.5 to 0.5 bounding region (just touching top & bottom)// 0.55 comes from 1/(1+sqrt(2)/sqrt(3)) which is determined by the angles that the cube is rotated in an orthographic projection
@@ -369,7 +369,7 @@ void ItemRenderer::renderGuiItem(Font *font, Textures *textures, std::shared_ptr
         glPopMatrix();
 		PIXEndNamedEvent();
         } else if (Item::items[itemId]->hasMultipleSpriteLayers()) {
-            P "Potion gui item render %d\n"    // special double-layered
+            P "Potion gui item render %d\n"  // special double-layered
                 glDisable(GL_LIGHTING);
 
             ResourceLocation* location =
@@ -406,10 +406,6 @@ void ItemRenderer::renderGuiItem(Font *font, Textures *textures, std::shared_ptr
                 } else {
             textures->bindTexture(&TextureAtl//L"/gui/items.png"));#ifdef _XBOX// 4J - make sure we've got linear sampling on minification here as non-mipmapped things like this currently// default to having point sampling, which makes very small icons render rather badly
 			g_pD3DDevice->SetSamplerState( 0, D3DSAMP_MINFILTER#endifEXF_LINEAR );
-
-
-		
-                
                 }
                 MemSect(0);
 
@@ -499,11 +495,10 @@ void ItemRenderer::blitGlint(int id, float x, float y, float w, float h)
                             float xx0 = x * sfx;
                             float xx1 = (x + w) * sfx;
                             float yy0 = y * sfy;
-                            float
-                                yy1  // Round to whole pixels - rounding inwards
-                                     // so that we don't overlap any surrounding
-                                     // graphics
-                                    xx0 = ceilf(xx0);
+                            float yy1  // Round to whole pixels - rounding
+                                       // inwards so that we don't overlap any
+                                       // surrounding graphics
+                                           xx0 = ceilf(xx0);
                             xx1 = floorf(xx1);
                             yy0 = ceilf(yy0);
                             // Offset by half to get actual centre of pixel -
@@ -646,11 +641,12 @@ void ItemRenderer::blit(float x, float y, int sx, int sy, float w, float h)
 {
                                 float us = 1 / 256.0f;
                                 float vs = 1 / 256.0f;
-                                Tesselator* t = Tesselator::
-                                    getIn  // 4J - calculate what the pixel
-                                           // coordinates will be in final
-                                           // screen
-                                           // coordinates
+                                Tesselator* t =
+                                    Tesselator::getIn  // 4J - calculate what
+                                                       // the pixel coordinates
+                                                       // will be in final
+                                                       // screen
+                                                       // coordinates
                                     float sfx =
                                         (float)Minecraft::GetInstance()->width /
                                         (float)Minecraft::GetInstance()
@@ -687,11 +683,12 @@ void ItemRenderer::blit(float x, float y, int sx, int sy, float w, float h)
 
 void ItemRenderer::blit(float x, float y, Icon *tex, float w, float h)
 {
-                                Tesselator* t = Tesselator::
-                                    getIn  // 4J - calculate what the pixel
-                                           // coordinates will be in final
-                                           // screen
-                                           // coordinates
+                                Tesselator* t =
+                                    Tesselator::getIn  // 4J - calculate what
+                                                       // the pixel coordinates
+                                                       // will be in final
+                                                       // screen
+                                                       // coordinates
                                     float sfx =
                                         (float)Minecraft::GetInstance()->width /
                                         (float)Minecraft::GetInstance()

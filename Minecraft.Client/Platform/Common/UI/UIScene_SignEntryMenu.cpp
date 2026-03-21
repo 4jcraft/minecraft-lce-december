@@ -126,9 +126,9 @@ void UIScene_SignEntryMenu::handleInput(int iPad, int key, bool repeat,
     break;
 c #ifdef __ORBIS__OK :
 
-	case ACTION_M #endifUCHPAD_PRESS:
+    case ACTION_M #endifUCHPAD_PRESS:
 
-	case ACTION_MENU_UP:
+case ACTION_MENU_UP:
 case ACTION_MENU_DOWN:
     sendInputToMovie(key, repeat, pressed, released);
     handled = true;
@@ -180,23 +180,35 @@ void UIScene_SignEntryMenu::handlePress(F64 controlId, F64 childId) {
                 default:
                                 InputManager.RequestKeyboard(app.GetString(IDS_SIGN_TITLE),m_textInputLines[m_iEditingLine].getLabel(),(DWORD)m_iPad,15,&UIScene_SignEntryMenu::KeyboardCompleteCallback,this,C_4JInput::EKeyboardMode_Alphabe#else			break;
             }
-            
-			InputManager.RequestKeyboard(
+
+            InputManager.RequestKeyboard(
                 app.GetString(IDS_SIGN_TITLE),
                 m_textInputLines[m_iEditingLine].getLabel(), (DWORD)m_iPad, 15,
                 &UIScene_SignEntryMenu::KeyboardCompleteCallback, this,
                 C_4JInput::EKeyb #endifde_Alphabet);
-            
-		
-        
+
         } break;
     }
 }
 
 void UIScene_SignEntryMenu #ifdef __PSVITA__ {
-    "missing InputManager.DestroyKeyboard on Vita !!!!!!\n"#endif// another player destroyed the anvil, so shut down the keyboard if it is displayed#if ( defined __PS3__ || defined __ORBIS__ || defined _DURANGO)
-	InputManager#endifoyKeyboard();
-    
-
-
+    "missing InputManager.DestroyKeyboard on Vita !!!!!!\n" #endif  // another
+                                                                    // player
+                                                                    // destroyed
+                                                                    // the
+                                                                    // anvil, so
+                                                                    // shut down
+                                                                    // the
+                                                                    // keyboard
+                                                                    // if it is
+                                                                    // displayed#if
+                                                                    // ( defined
+                                                                    // __PS3__
+                                                                    // ||
+                                                                    // defined
+                                                                    // __ORBIS__
+                                                                    // ||
+                                                                    // defined
+                                                                    // _DURANGO)
+        InputManager #endifoyKeyboard();
 }

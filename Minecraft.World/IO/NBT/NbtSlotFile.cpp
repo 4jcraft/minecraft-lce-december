@@ -131,7 +131,6 @@ int NbtSlotFile::getFreeSl  // 4J - removed - don't see how toReplace can ever
                             // 0)//	{// fileSlot =
                             // toReplace->back();// toReplace->pop_back();
                             // //    } else
-    
 
     if (freeFileSlots.size() > 0) {
     fileSlot = freeFileSlots.back();

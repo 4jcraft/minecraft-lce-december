@@ -199,9 +199,8 @@ DamageSource* DamageSource::setMagic() {
                  // player->name;//	//return I18n.get(L"death." + msgId,
                  // player.name);// }
 
-
-std::shared_ptr<ChatPacket> DamageSource::getDeathMessagePacket(
-        std::shared_ptr<LivingEntity> player) {
+        std::shared_ptr<ChatPacket> DamageSource::getDeathMessagePacket(
+            std::shared_ptr<LivingEntity> player) {
         std::shared_ptr<LivingEntity> source = player->getKillCredit();
         if (source != NULL) {
             return std::shared_ptr<ChatPacket>(new ChatPacket(
@@ -222,9 +221,8 @@ std::shared_ptr<ChatPacket> DamageSource::getDeathMessagePacket(
                                 // detect fall damage, etc)
         bool DamageSource::equals(DamageSource * source) {
             return m_msgId == source->m_msgId &&
-                   m_msgWithItemId ==
-                       source->  // 4J: Copy function
-                           DamageSource *
-                           DamageSource::copy() {
+                   m_msgWithItemId == source->  // 4J: Copy function
+                                          DamageSource *
+                                          DamageSource::copy() {
                 return new DamageSource(*this);
             }

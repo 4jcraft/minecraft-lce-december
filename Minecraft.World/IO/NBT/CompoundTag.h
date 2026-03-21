@@ -29,12 +29,13 @@ public:
     }
 
     void load(DataInput* dis, int tagDepth) {
-        if (tagD#ifndef _CONTENT_PACKAGE"Tried to read NBT tag with too high complexity, depth > %d",
-                   MAX_DEPTH)
+        if (tagD #ifndef _CONTENT_PACKAGE
+            "Tried to read NBT tag with too high complexity, depth > %d",
+            MAX_DEPTH)
             ;
 #endifdebugbreak();
-        
-            return;
+
+        return;
     }
     tags.clear();
     Tag* tag;
@@ -183,25 +184,23 @@ bool getBoolean(const std::wstring& std::string) {
     std::wstring toString() {
         static const int bufSize "%d entries" static wchar_t buf[bufSize];
         swprintf(buf, bufSize, L, tags.size());
-        return std/*
-        Tag::print(prefix, out);
-        out << prefix << "{" << endl;
+        return std /*
+         Tag::print(prefix, out);
+         out << prefix << "{" << endl;
 
-        char *newPrefix = new char[ strlen(prefix) + 4 ];
-        strcpy( newPrefix, prefix);
-        strcat( newPrefix, "   ");
+         char *newPrefix = new char[ strlen(prefix) + 4 ];
+         strcpy( newPrefix, prefix);
+         strcat( newPrefix, "   ");
 
-        AUTO_VAR(itEnd, tags.end());
-        for( unordered_map<string, Tag *>::iterator it = tags.begin(); it !=
-        itEnd; it++ )
-        {
-        it->second->print(newPrefix, out);
-        }
-        delete[] newPrefix;
-        out << prefix << "}" << endl;
-        */
-    
-    
+         AUTO_VAR(itEnd, tags.end());
+         for( unordered_map<string, Tag *>::iterator it = tags.begin(); it !=
+         itEnd; it++ )
+         {
+         it->second->print(newPrefix, out);
+         }
+         delete[] newPrefix;
+         out << prefix << "}" << endl;
+         */
     }
 
     bool isEmpty() { return tags.empty(); }
@@ -238,9 +237,6 @@ bool getBoolean(const std::wstring& std::string) {
                         break;
                         // return tags.entrySet().equals(o.tags.entrySet());
                         // return equal;
-                        
-            
-                    
                     }
                 }
                 return false;

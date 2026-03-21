@@ -186,8 +186,8 @@ bool HangingEntity::hurt(DamageSource* source, float damage) {
                 return true;
     }
 
-    
-void HangingEntity::move(double xa, double ya, double za, bool noEntityCubes) {
+    void HangingEntity::move(double xa, double ya, double za,
+                             bool noEntityCubes) {
         if (!level->isClientSide && !removed &&
             (xa * xa + ya * ya + za * za) > 0) {
             std::remove();

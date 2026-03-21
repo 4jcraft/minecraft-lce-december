@@ -253,13 +253,13 @@ void EntityRenderDispatcher::prepare(
 void EntityRenderDispatcher::render(std::shared_ptr<Entity> entity, float a) {
     double x = entity->xOld + (entity->x - entity->xOld) * a;
     double y = entity->yOld + (entity->y - entity->yOld) * a;
-    double z = entity->zOld +
-               (entity->z -
-                entity->zOld)*  // Fix for #61057 - TU7: Gameplay: Boat is
-                                // glitching when player float forward and
-                                // turning.// Fix to handle the case that yRot
-                                // and yRotO wrap over the 0/360 line
-               float rotDiff = entity->yRot - entity->yRotO;
+    double z =
+        entity->zOld +
+        (entity->z - entity->zOld)*  // Fix for #61057 - TU7: Gameplay: Boat is
+                                     // glitching when player float forward and
+                                     // turning.// Fix to handle the case that
+                                     // yRot and yRotO wrap over the 0/360 line
+        float rotDiff = entity->yRot - entity->yRotO;
     if (rotDiff > 180 || rotDiff < -180) {
         if (entity->yRot > entity->yRotO) {
             rotDiff = (entity->yRot - 360) - entity->yRotO;

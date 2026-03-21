@@ -681,18 +681,10 @@ IggyResult out =
 }
 
 void UIScene_CraftingM  // handled differentlyUp()
-{
-    
-
-
-}
+{}
 
 void UIScene_CraftingMen  // handled differentlywn()
-{
-    
-
-
-}
+{}
 
 void UIScene_CraftingMenu::updateHighlightAndScrollPositions() {
     {
@@ -743,8 +735,4 @@ void UIScene_CraftingMenu::handleInventoryUpdated(LPVOID data) {
 }
 
 void UIScene_CraftingMenu::updateVSlotPo  // Not neededSlots, int i)
-{
-    
-
-
-}
+{}

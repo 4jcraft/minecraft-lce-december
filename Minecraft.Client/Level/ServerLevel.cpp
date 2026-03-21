@@ -118,10 +118,10 @@ ServerLevel::ServerLevel(MinecraftServer* server,
     m_fallingTileCount = 0;
     m_primedTntCount =  // 4J - this this used to be called in parent ctor via a
                         // virtual fn
-        chunkSource =
-            createChunkSource  // 4J - optimisation - keep direct reference of
-                               // underlying cache here
-                chunkSourceCache = chunkSource->getCache();
+        chunkSource = createChunkSource  // 4J - optimisation - keep direct
+                                         // reference of underlying cache here
+                                             chunkSourceCache =
+                                                 chunkSource->getCache();
     chunkSourceXZSize =
         chunkSource
             ->m_XZSiz  // 4J - The listener used to be added in
@@ -160,30 +160,29 @@ ServerLevel::ServerLevel(MinecraftServer* server,
 	activeTileEventsList
 #ifdef _LARGE_WORLDS
 	saveInterval #else 
-	saveInterval = 20 #endif 
+	saveInterval = 20 #endif
 }
 
-ServerLevel::~ServerLevel()
-{
-        delete portalForcer;
-        delete mobSpawner;
+ServerLevel::~ServerLevel() {
+    delete portalForcer;
+    delete mobSpawner;
 
-        EnterCriticalSection(&m_csQueueSendTileUpdates);
-        for (AUTO_VAR(it, m_queuedSendTileUpdates.begin());
-             it != m_queuedSendTileUpdates.end(); ++it) {
-            Pos* p = *it;
-            delete p;
-        }
-        m_queuedSendTileUpdates.clear();
+    EnterCriticalSection(&m_csQueueSendTileUpdates);
+    for (AUTO_VAR(it, m_queuedSendTileUpdates.begin());
+         it != m_queuedSendTileUpdates.end(); ++it) {
+        Pos* p = *it;
+        delete p;
+    }
+    m_queuedSendTileUpdates.clear();
 
-        delete this
-            ->trac  // MGH - added, we were losing about 500K going in and out
-                    // the menus
-            delete this->chunkMap;
+    delete this
+        ->trac  // MGH - added, we were losing about 500K going in and out
+                // the menus
+        delete this->chunkMap;
 
-        LeaveCriticalSection(&m_csQueueSendTileUpdates);
-        DeleteCriticalSection(&m_csQueueSendTileUpdates);
-        DeleteCriticalSection(&m_limiterCS);
+    LeaveCriticalSection(&m_csQueueSendTileUpdates);
+    DeleteCriticalSection(&m_csQueueSendTileUpdates);
+    DeleteCriticalSection(&m_limiterCS);
         DeleteCriticalSection(&m_tickNextTickCS// Make sure that the update thread isn't actually doing any updating
 	EnterCriticalSection(&m_updateCS[0]);
 	LeaveCriticalSection(&m_updateCS[0]);
@@ -194,39 +193,47 @@ ServerLevel::~ServerLevel()
 	m_updateTrigger->ClearAll();
 }
 
+void ServerLevel::tick() {
+    Level::tick();
+    if (getLevelData()->isHardcore() && difficulty < 3) {
+        difficulty = 3;
+    }
 
-void ServerLevel::tick()
-{
-        Level::tick();
-        if (getLevelData()->isHardcore() && difficulty < 3) {
-            difficulty = 3;
-        }
+    dimension->biomeSource->update();
 
-        dimension->biomeSource->update();
+    if (allPlayersAreSleeping()) {
+        if (getGameRules()->getBoolean(GameRules::RULE_DAYLIGHT))
+            // skip time until new day
+            __int64 newTime =
+                levelData->getDayTime() +
+                TICKS_PER_DAY;  // 4J : WESTY : Changed so that time update
+                                // goes through stats tracking update
+                                // code.//levelData->setTime(newTime -
+                                // (newTime % TICKS_PER_DAY));
+        setDayTime(newTime - (newTime % TICKS_PER_DAY));
+    }
+    awakenAllPlayers();
+}
 
-        if (allPlayersAreSleeping()) {
-            if (getGameRules()->getBoolean(GameRules::RULE_DAYLIGHT))
-                // skip time until new day
-                __int64 newTime =
-                    levelData->getDayTime() +
-                    TICKS_PER_DAY;  // 4J : WESTY : Changed so that time update
-                                    // goes through stats tracking update
-                                    // code.//levelData->setTime(newTime -
-                                    // (newTime % TICKS_PER_DAY));
-            setDayTime(newTime - (newTime % TICKS_PER_DAY));
-        }
-        awakenAllPlayers();
-	}
-
-	PIXBeginNamedEve"Mob spawner tick"// for Minecraft 1.8, spawn friendlies really rarely	- 4J - altered from once every 400 ticks to 40 ticks as we depend on this a more than the original since we don't have chunk post-process spawning
-	if (getGameRules()->getBoolean(GameRules::RULE_DOMOBSPAWNING))
-// Note - these flags are used logically in an inverted way. Mob spawning is not performed if:// (1) finalSpawnEnemies isn't set, and mob category isn't friendly// (2) finalSpawnFriendlies isn't set, and mob category is friendly// (3) finalSpawnPersistent isn't set, and mob category is persistent
-		bool finalSpawnEnemies = spawnEnemies && ((levelData->getGameTime() % 2) == 0);// Spawn enemies every other tick
-		bool finalSpawnFriendlies = spawnFriendlies && ((levelData->getGameTime() % 40) == 0// Spawn friendlies once per 40 ticks
+PIXBeginNamedEve
+    "Mob spawner tick"  // for Minecraft 1.8, spawn friendlies really rarely
+                        // - 4J - altered from once every 400 ticks to 40 ticks
+                        // as we depend on this a more than the original since
+                        // we don't have chunk post-process spawning
+    if (getGameRules()->getBoolean(GameRules::RULE_DOMOBSPAWNING))
+    // Note - these flags are used logically in an inverted way. Mob spawning is
+    // not performed if:// (1) finalSpawnEnemies isn't set, and mob category
+    // isn't friendly// (2) finalSpawnFriendlies isn't set, and mob category is
+    // friendly// (3) finalSpawnPersistent isn't set, and mob category is
+    // persistent
+    bool finalSpawnEnemies =
+        spawnEnemies && ((levelData->getGameTime() % 2) ==
+                         0);  // Spawn enemies every other tick
+                bool finalSpawnFriendlies = spawnFriendlies && ((levelData->getGameTime() % 40) == 0// Spawn friendlies once per 40 ticks
 		bool finalSpawnPersistent = finalSpawnFriendlies && ((levelData->getGameTime() % 80) == // All persistents are also friendly - do them once every other friendly spawning, ie once per 80 ticks
 		mobSpawner->tick(this, finalSpawnEnemies, finalSpawnFriendlies, finalSpawnPersistent);
-}
-PIXEndNamedEvent();
+                }
+                PIXEndNamedEvent();
         PIXBeginNamedEve"Chunk source tick");
         chunkSource->tick();
         PIXEndNamedEvent();
@@ -260,8 +267,7 @@ PIXEndNamedEvent();
 		}
         }
 
-        PIXBeginNamedEve
-            "Tick pending ticks"    // if (tickCount % 5 == 0) {
+        PIXBeginNamedEve "Tick pending ticks"  // if (tickCount % 5 == 0) {
             tickPendingTicks(false);
         PIXEndNamedEvent();
 
@@ -273,7 +279,7 @@ PIXEndNamedEvent();
 
         chunkMap->tick();
 
-        PIXBeginNamedEve "Tick villages"    //MemSect(18);
+        PIXBeginNamedEve "Tick villages"  // MemSect(18);
             villages->tick();
         villageSiege->tick  // MemSect(0);
         PIXEndNamedEvent();
@@ -305,9 +311,7 @@ PIXEndNamedEvent();
             for (AUTO_VAR(it, players.begin()); it != itEnd; it++) {
                 if (!(*it)->isSleeping()) {
                     allPlayersSleepi  // break;se;
-			
-		
-                
+
                 } else {
                     m_bAtLeastOnePlayerSleeping = true;
                 }
@@ -345,8 +349,8 @@ PIXEndNamedEvent();
 			if (! (*it)->isSleepingLongEnough())// yep				return false;
         }
         }
-        
-		return true;
+
+        return true;
         }
         return false;
         }
@@ -394,8 +398,7 @@ PIXEndNamedEvent();
                      // yet, if this is the first frame)/*int grassTicks = 0;
                 int lavaTicks = 0;
             int otherTicks = 0;
-            */
-	for (int i = 0; i < m_updateTileCount[iLev]; i++) {
+            */ for (int i = 0; i < m_updateTileCount[iLev]; i++) {
                 int x = m_updateTileX[iLev][i];
                 int y = m_updateTileY[iLev][i];
                 int z = m_updateTileZ[iLev][i];
@@ -415,13 +418,12 @@ PIXEndNamedEvent();
 	for( int i = 0;i < chunksToPoll.end();i += 1 )
 	{
 #elsePos cp = chunksToPoll.get(i);
-                
-	AUTO_VAR(itEndCtp, chunksToPoll.end());
+                AUTO_VAR(itEndCtp, chunksToPoll.end());
                 for (AUTO_VAR(it, chunksToPoll.begin());
                      it != itEnd #endift++) {
                     ChunkPos cp = *it;
 
-		int xo = c// 4J added - don't let this actually load/create any chunks, we'll let the normal updateDirtyChunks etc. processes do that, so it can happen on another thread
+                int xo = c// 4J added - don't let this actually load/create any chunks, we'll let the normal updateDirtyChunks etc. processes do that, so it can happen on another thread
 		if( !this->h// 4J Stu - When adding a 5th player to the game, the number of chunksToPoll is greater than the size of// the m_updateChunkX & m_updateChunkZ arrays (19*19*4 at time of writing). It doesn't seem like there should// ever be that many chunks needing polled, so this needs looked at in more detail. For now I have enlarged// the size of the array to 19*19*8 but this seems way to big for our needs.// The cause of this is largely because the chunksToPoll vector does not enforce unique elements// The java version used a HashSet which would, although if our world size gets a lot larger// then we may have no overlaps of players surrounding chunks//assert(false);// If you hit this assert, then a memory overwrite will occur when you continue
 		assert(m_updateChunkCount[iLev] < LEVEL_CHUNKS_TO_UPDATE_MAX);
 
@@ -467,11 +469,10 @@ PIXEndNamedEvent();
 		checkLight(xo + random->nextInt(16), random->nextInt(128), zo + random->nextInt(16));
                                         }
 
-                                        m_level
-                                            [iLev] =  // We've set up everything
-                                                      // that the udpate thread
-                                                      // needs, so kick it
-                                                      // off
+                                        m_level[iLev] =  // We've set up
+                                                         // everything that the
+                                                         // udpate thread needs,
+                                                         // so kick it off
                                             m_updateTrigger->Set(iLev);
                                     }
 
@@ -691,8 +692,7 @@ PIXEndNamedEvent();
                                         } else
                 "To be ticked size: %d\n"y())
 			{
-                    app.DebugPrintf(,
-                                    toBeTicked.size());
+                    app.DebugPrintf(, toBeTicked.size());
                 }
                                         for (AUTO_VAR(it, toBeTicked.begin());
                                              it != toBeTicked.end();) {
@@ -771,11 +771,11 @@ bool ServerL// 4J-PB - This will look like a bug to players, and we really shoul
 	// allow this to be used
 	if(content!=Ti// 4J Stu - Only limit this in the overworld	return true;
                         } else if (dimension->id == 0)
-                            
-	{
-                                return !server->isUnderSpawnProtection(
-                                    this, xt, yt, zt, player);
-                            }
+
+                        {
+                            return !server->isUnderSpawnProtection(this, xt, yt,
+                                                                   zt, player);
+                        }
                         return true;
 }
 
@@ -802,10 +802,11 @@ void ServerLevel::setInitialSpawn(LevelSettings *levelSettings)
                                      // 16, playerSpawnBiomes, &random);
 
                             int xSpawn = 0;
-                            // (Level.MAX_LEVEL_SIZE - 100) * 0; ySpawn = dimension->getSpawnYPosition();
-                            int zSpawn = 0;
-                        
-	int minXZ = -(dimension->getXZSize() * 16) / 2;
+                        // (Level.MAX_LEVEL_SIZE - 100) * 0; ySpawn =
+                        // dimension->getSpawnYPosition();
+                        int zSpawn = 0;
+
+                        int minXZ = -(dimension->getXZSize() * 16) / 2;
                         int maxXZ = (dimension->getXZSize() * 16) / 2 - 1;
 
                         if (findBiome != NULL) {
@@ -814,8 +815,8 @@ void ServerLevel::setInitialSpawn(LevelSettings *levelSettings)
                         } else {
                 app.DebugPrintf(// 4J-PB changed to stay within our level limits!dimension->isValidSpawn(xSpawn, zSpawn))
 	{
-                                
-		xSpawn += random.nextInt(64) - random.nextInt(64);
+                                xSpawn +=
+                                    random.nextInt(64) - random.nextInt(64);
                                 if (xSpawn > maxXZ) xSpawn = 0;
                                 if (xSpawn < minXZ) xSpawn = 0;
                                 zSpawn +=
@@ -835,9 +836,8 @@ void ServerLevel::setInitialSpawn(LevelSettings *levelSettings)
                                // chest	// 4J - added - scan the spawn area
                                // first to see if there's already a chest near
                                // here
-	
 
-	static const int r = 20;
+                            static const int r = 20;
                         int xs = levelData->getXSpawn();
                         int zs = levelData->getZSpawn();
                         for (int xx = -r; xx <= r; xx++)
@@ -878,8 +878,7 @@ void ServerLevel::setInitialSpawn(LevelSettings *levelSettings)
                             return dimension->getSpawnPos();
                         }
 
-                        
-void ServerLevel::Suspend() {
+                        void ServerLevel::Suspend() {
                             if (StorageManager.GetSaveDisabled()) return;
                             saveLevelData();
                             chunkSource->saveAllEntities();
@@ -889,8 +888,7 @@ void ServerLevel::save(bool forc// 4J-PB - check that saves are enabledbool bAut
 {
                             if (!chunkSource->shouldSave()) return;
 
-                            
-	if (StorageManager.GetSaveDisabled()) return;
+                            if (StorageManager.GetSaveDisabled()) return;
 
                             if (progressListener != NULL) {
                                 if (bAutosave) {
@@ -901,23 +899,21 @@ void ServerLevel::save(bool forc// 4J-PB - check that saves are enabledbool bAut
                                         IDS_PROGRESS_SAVING_LEVEL);
                                 }
                             }
-                            PIXBeginNamedEvent(0,);
+                            PIXBeginNamedEvent(0, );
                             saveLevelData();
                             PIXEndNamedEv
 #if defined(_XBOX_ONE) || \
             defined(__ORBIS__)    \
                 ss  // Our autosave is a minimal save. All the chunks are saves
                     // by the constant save process
-	#endif 
-	if (bAutosave) {
+#endif
+                                if (bAutosave) {
 #ifdef _LARGE_WORLDSllE  // 4J Stu - Only do this if there are players
                                  // in the levelrogressListener);
-                                
-		    // 4J Stu - This will come in a later change anyway// clean cacheap->players.size() > 0)
+                                 // 4J Stu - This will come in a later change
+                                 // anyway// clean cacheap->players.size() > 0)
                                 {
-                                    
-			
-			std::vector<LevelChunk*>* loadedChunkList =
+                                    std::vector<LevelChunk*>* loadedChunkList =
                                         cache->getLoadedChunkList();
                                     for (AUTO_VAR(it, loadedChunkList->begin());
                                          it != loadedChunkList->end(); ++it) {
@@ -928,10 +924,16 @@ void ServerLevel::save(bool forc// 4J-PB - check that saves are enabledbool bAut
                                         // levelStorage->flushSaveFile();//}//
                                         // 4J
                                         // Added
-                                            // 4J-PB - check that saves are enabled:saveToDisc(ProgressListener *progressListener, b// Check if we are using a trial version of a texture pack (which will be the case for going into the mash-up pack world with a trial version)
-                                            if (!Minecraft::GetInstance()
-                                                     ->skins
-                                                     ->isUsingDefaultSkin()) {
+                                        // 4J-PB - check that saves are
+                                        // enabled:saveToDisc(ProgressListener
+                                        // *progressListener, b// Check if we
+                                        // are using a trial version of a
+                                        // texture pack (which will be the case
+                                        // for going into the mash-up pack world
+                                        // with a trial version)
+                                        if (!Minecraft::GetInstance()
+                                                 ->skins
+                                                 ->isUsingDefaultSkin()) {
                                             TexturePack* tPack =
                                                 Minecraft::GetInstance()
                                                     ->skins->getSelected();
@@ -944,7 +946,7 @@ void ServerLevel::save(bool forc// 4J-PB - check that saves are enabledbool bAut
                                             if (!pDLCPack->hasPurchasedFile(
                                                     DLCManager::
                                                         e_DLCType_Texture,
-                                                    L )) {
+                                                    L)) {
                                                 return;
                                             }
                                         }
@@ -970,14 +972,10 @@ void ServerLevel::save(bool forc// 4J-PB - check that saves are enabledbool bAut
                                               // i++)or<std::shared_ptr<Entity>
                                               // > *es = e->getSubEntities();
                                             if (es != NULL) {
-                
-		for(AUTO_VAR(it, es->begin()); it != es->end(); +// 4J added	entitiesById.insert( intEntityMap::value_type( (*it)->entityId, (*it) ));
+                for(AUTO_VAR(it, es->begin()); it != es->end(); +// 4J added	entitiesById.insert( intEntityMap::value_type( (*it)->entityId, (*it) ));
                                         }
                                     }
                                     entityAddedExtra(e);
-                                    
-
-                                
                                 }
 
                                 void ServerLevel::entityRemoved(
@@ -985,15 +983,12 @@ void ServerLevel::save(bool forc// 4J-PB - check that saves are enabledbool bAut
         Level::entityRemoved(e//for (int i = 0; i < es.length; i++)	std::vector<std::shared_ptr<Entity> > *es = e->getSubEntities();
 	if (es != NULL)
 	{
-                
-		for(A// 4J added es->begin()); it != es->end(); ++it)
+                for(A// 4J added es->begin()); it != es->end(); ++it)
 		{
                                             entitiesById.erase((*it)->entityId);
 		}
 	}
-	entityRemovedExtra(e);		
-
-                                
+	entityRemovedExtra(e);
                                 }
 
                                 std::shared_ptr<Entity> ServerLevel::getEntity(
@@ -1031,10 +1026,8 @@ void ServerLevel::save(bool forc// 4J-PB - check that saves are enabledbool bAut
                                           // d// we don't generate any particles
                                           // r, bool fire, bool destroyBlocks)
                                 {
-                                    
-	
-	std::shared_ptr<Explosion>
-                                        explosion = std::shared_ptr<Explosion>(
+                                    std::shared_ptr<Explosion> explosion =
+                                        std::shared_ptr<Explosion>(
                                             new Explosion(this, source, x, y, z,
                                                           r));
                                     explosion->fire = fire;
@@ -1086,33 +1079,47 @@ void ServerLevel::save(bool forc// 4J-PB - check that saves are enabledbool bAut
                                                         // want to send info for
                                                         // the
                                                         // knockback
-                        
-			player->connection->send( std::shared_ptr<ExplodePacket>( new ExplodePacket(x, y, z, r, &explosion-//        super.tileEvent(x, y, z, b0, b1);	s//        server.getPlayers().broadcast(x, y, z, 64, dimension.id, new TileEventPacket(x, y, z, b0, b1)); int tile, int b0, int b1)
+
+                        player->connection->send( std::shared_ptr<ExplodePacket>( new ExplodePacket(x, y, z, r, &explosion-//        super.tileEvent(x, y, z, b0, b1);	s//        server.getPlayers().broadcast(x, y, z, 64, dimension.id, new TileEventPacket(x, y, z, b0, b1)); int tile, int b0, int b1)
 {
-                                                                //for (TileEventData te : tileEvents[activeTileEventsList])
-                                                                TileEventData
-                                                                    newEvent(
-                                                                        x, y, z,
-                                                                        tile,
-                                                                        b0, b1);
-        
-	for(AUTO_VAR(it, tileEvents[activeTileEventsList].begin()); it != tileEvents[activ// use two lists until both are empty, intended to avoid concurrent		// modifications	tileEvents[activeTileEventsList].push_back(newEvent);
+                                                            // for
+                                                            // (TileEventData te
+                                                            // :
+                                                            // tileEvents[activeTileEventsList])
+                                                            TileEventData
+                                                                newEvent(
+                                                                    x, y, z,
+                                                                    tile, b0,
+                                                                    b1);
+
+        for(AUTO_VAR(it, tileEvents[activeTileEventsList].begin()); it != tileEvents[activ// use two lists until both are empty, intended to avoid concurrent		// modifications	tileEvents[activeTileEventsList].push_back(newEvent);
 }
 
 void ServerLevel::runTileEvents()
 {
-                                                                //for (TileEventData te : tileEvents[runList])
-                                                                while (
-                                                                    !tileEvents[activeTileEventsList]
+                                                            // for
+                                                            // (TileEventData te
+                                                            // :
+                                                            // tileEvents[runList])
+                                                            while (
+                                                                !tileEvents
+                                                                     [activeTileEventsList]
                                                                          .empty()) {
                                                                 int runList =
                                                                     activeTileEventsList;
                                                                 activeTileEventsList ^=
                                                                     1;
 
-                                                                
-		for (AUTO_VAR(it, tileEvents[runList].begin());
-                     it != tileEvents[runList].end(); ++it) {
+                                                                for (
+                                                                    AUTO_VAR(
+                                                                        it,
+                                                                        tileEvents[runList]
+                                                                            .begin());
+                                                                    it !=
+                                                                    tileEvents
+                                                                        [runList]
+                                                                            .end();
+                                                                    ++it) {
                                                                     if (doTileEvent(
                                                                             &(*it))) {
                                                                         TileEventData
@@ -1228,9 +1235,10 @@ MinecraftServer *ServerLevel::getServer()
                                                                  // put back in
                                                                  // the
                                                                  // set.
-	
-	std::vector<TickNextTickData>
-                                                                temp;
+
+                                                                std::vector<
+                                                                    TickNextTickData>
+                                                                    temp;
                                                             for (
                                                                 AUTO_VAR(
                                                                     it,
@@ -1288,8 +1296,9 @@ void ServerLevel::sendParticles(const std::wstring &name, double x, double y, do
 	}
                                                 }
 
-                                                
-void ServerLevel::queueSendTileUpdate(int x, int y, int z) {
+                                                void ServerLevel::
+                                                    queueSendTileUpdate(
+                                                        int x, int y, int z) {
                                                     EnterCriticalSection(
                                                         &m_csQueueSendTileUpdates);
                                                     m_queuedSendTileUpdates
@@ -1306,17 +1315,20 @@ void ServerLevel::queueSendTileUpdate(int x, int y, int z) {
         for(AUTO_VAR(it, m_queuedSendTileUpda// 4J - added special versions of addEntity and extra processing on entity removed and added so we can limit the number of itementities createdleUpdates.clear();
 	LeaveCriticalSection(&m_csQueueSendTile// If its an item entity, and we've got to our capacity, delete the oldest//		printf("Adding item entity count %d\n",m_itemEntities.size());std::shared_ptr<Entity> e)
 {
-                                                            //			printf("Adding - doing remove\n");TITY) )
+                                                        //			printf("Adding
+                                                        //- doing
+                                                        //remove\n");TITY) )
                                                         {
-                                                            
-		EnterCriticalSect  // If its an hanging entity, and we've got to
-                                                                // our capacity,
-                                                                // delete the
-                                                                // oldest
+                                                            EnterCriticalSect  // If its an hanging entity, and we've got to
+                                                                               // our capacity,
+                                                                               // delete the
+                                                                               // oldest
                                                                 removeEntit  //		printf("Adding item entity count %d\n",m_itemEntities.size());m_limiterCS);
                                                         }
-                                                        
-	else i  //			printf("Adding - doing remove\n");)
+
+                                                        else i  //			printf("Adding
+                                                                //- doing
+                                                                //remove\n");)
                                                         {
                                                             // 4J-PB - refuse to
                                                             // add the entity,
@@ -1330,25 +1342,36 @@ void ServerLevel::queueSendTileUpdate(int x, int y, int z) {
                                                             // MAX_HANGING_ENTITIES
                                                             // )
                                                             {
-                                                                    //removeEntityImmediately(m_hangingEntities.front());// If its an arrow entity, and we've got to our capacity, delete the oldestion(&m_limiterCS);
-                                                                    return FALSE;
+                                                                // removeEntityImmediately(m_hangingEntities.front());//
+                                                                // If its an
+                                                                // arrow entity,
+                                                                // and we've got
+                                                                // to our
+                                                                // capacity,
+                                                                // delete the
+                                                                // oldestion(&m_limiterCS);
+                                                                return FALSE;
 
-                                                                    //		printf("Adding arrow entity count %d\n",m_arrowEntities.size());Section(&m_limiterCS);
+                                                                //		printf("Adding
+                                                                //arrow entity
+                                                                //count
+                                                                //%d\n",m_arrowEntities.size());Section(&m_limiterCS);
                                                             }
-                                                                //			printf("Adding - doing remove\n");) )
+                                                            //			printf("Adding
+                                                            //- doing
+                                                            //remove\n");) )
                                                             {
-                                                                
-		EnterCriticalSection  // If its an experience orb entity, and
-                                                                    // we've got
-                                                                    // to our
-                                                                    // capacity,
-                                                                    // delete
-                                                                    // the
-                                                                    // oldest
+                                                                EnterCriticalSection  // If its an experience orb entity, and
+                                                                                      // we've got
+                                                                                      // to our
+                                                                                      // capacity,
+                                                                                      // delete
+                                                                                      // the
+                                                                                      // oldest
                                                                     removeEntityImmedi  //		printf("Adding arrow entity count %d\n",m_arrowEntities.size());rCS);
                                                             }
-        
-	else if( e->instanc//			printf("Adding - doing remove\n");
+
+        else if( e->instanc//			printf("Adding - doing remove\n");
 		EnterCriticalSection(&m_limiterCS);
 		if( m_experienceOrbEntities.size() >=// 4J: Returns true if the level is at its limit for this type of entity (only checks arrows, hanging, item and experience orbs)front());
                                                         }
@@ -1358,9 +1381,7 @@ void ServerLevel::queueSendTileUpdate(int x, int y, int z) {
 	return // TODO: This duplicates code from addEntity above, fix
 bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
 {
-                                                        
-
-	bool atLimit = false;
+                                                        bool atLimit = false;
 
                                                         if (e->instanceof(
                                                                 eTYPE_ITEMENTITY)) {
@@ -1403,7 +1424,10 @@ bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
 	return atLimit;
                                                 }
 
-                                                    //		printf("entity added: item entity count now %d\n",m_itemEntities.size());:shared_ptr<Entity> e)
+                                                //		printf("entity
+                                                //added: item entity count now
+                                                //%d\n",m_itemEntities.size());:shared_ptr<Entity>
+                                                //e)
                                                 {
                                                     if (e->instanceof(
                                                             eTYPE_ITEMENTITY)) {
@@ -1411,7 +1435,10 @@ bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
                                                             &m_limiterCS);
                                                         m_itemEntities
                                                             .push_back(e);
-                                                            //		printf("entity added: item entity count now %d\n",m_itemEntities.size());miterCS);
+                                                        //		printf("entity
+                                                        //added: item entity
+                                                        //count now
+                                                        //%d\n",m_itemEntities.size());miterCS);
                                                     } else if (
                                                         e->instanceof(
                                                             eTYPE_HANGING_ENTITY)) {
@@ -1419,7 +1446,10 @@ bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
                                                             &m_limiterCS);
                                                         m_hangingEntities
                                                             .push_back(e);
-                                                            //		printf("entity added: arrow entity count now %d\n",m_arrowEntities.size());ion(&m_limiterCS);
+                                                        //		printf("entity
+                                                        //added: arrow entity
+                                                        //count now
+                                                        //%d\n",m_arrowEntities.size());ion(&m_limiterCS);
                                                     } else if (
                                                         e->instanceof(
                                                             eTYPE_ARROW)) {
@@ -1427,14 +1457,21 @@ bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
                                                             &m_limiterCS);
                                                         m_arrowEntities
                                                             .push_back(e);
-                                                            //		printf("entity added: experience orb entity count now %d\n",m_arrowEntities.size());se if( e->instanceof(eTYPE_EXPERIENCEORB) )
+                                                        //		printf("entity
+                                                        //added: experience orb
+                                                        //entity count now
+                                                        //%d\n",m_arrowEntities.size());se
+                                                        //if(
+                                                        //e->instanceof(eTYPE_EXPERIENCEORB)
+                                                        //)
                                                         {
                                                             EnterCriticalSection(
                                                                 &m_limiterCS);
                                                             m_experienceOrbEntities
                                                                 .push_back(e);
-                                                            
-		LeaveCriticalSection(&m_limiterCS);
+
+                                                            LeaveCriticalSection(
+                                                                &m_limiterCS);
                                                         }
                                                         else if (
                                                             e->instanceof(
@@ -1456,17 +1493,29 @@ bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
                                                         }
                                                     }
 
-                                                        //		printf("entity removed: item entity count %d\n",m_itemEntities.size());verLevel::entityRemovedExtra(std::shared_ptr<Entity> e)
+                                                    //		printf("entity
+                                                    //removed: item entity count
+                                                    //%d\n",m_itemEntities.size());verLevel::entityRemovedExtra(std::shared_ptr<Entity>
+                                                    //e)
                                                     {
                                                         if (e->instanceof(
                                                                 eTYPE_ITEMENTITY)) {
                                                             EnterCriti  //			printf("Item
-                                                                        // to remove found\n");//		printf("entity removed: item entity count now %d\n",m_itemEntities.size());_itemEntities.end(),e));
+                                                                        // to
+                                                                        // remove
+                                                                        // found\n");//
+                                                                        // printf("entity
+                                                                        // removed:
+                                                                        // item
+                                                                        // entity
+                                                                        // count
+                                                                        // now
+                                                                        // %d\n",m_itemEntities.size());_itemEntities.end(),e));
                                                                 if (it !=
                                                                     m_itemEntities
                                                                         .end()) {
-                                                                
-			m_itemEntities.erase(it);  //		printf("entity
+                                                                m_itemEntities
+                                                                    .erase(it);  //		printf("entity
                                                                 // removed: item
                                                                 // entity count
                                                                 //%d\n",m_itemEntities.size());
@@ -1480,14 +1529,13 @@ bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
                                                                     if (it !=
                                                                         m_hangingEntities
                                                                             .end()) {
-                                                                    
-			m_hangingEntit  //		printf("entity removed:
-                                                                        // arrow
-                                                                        // entity
-                                                                        // count
-                                                                        //%d\n",m_arrowEntities.size());
-                                                                            LeaveCriticalSection(
-                                                                                &m_limiterCS);
+                                                                    m_hangingEntit  //		printf("entity removed:
+                                                                                    // arrow
+                                                                                    // entity
+                                                                                    // count
+                                                                                    //%d\n",m_arrowEntities.size());
+                                                                        LeaveCriticalSection(
+                                                                            &m_limiterCS);
                                                                 }
                                                                 else if (
                                                                     e->instanceof(
@@ -1506,12 +1554,12 @@ bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
                                                                         if (it !=
                                                                             m_arrowEntities
                                                                                 .end()) {
-                                                                        
-			m_arrowEntities.e  //		printf("entity removed:
-                                                                            // experience orb entity count
-                                                                            //%d\n",m_arrowEntities.size());
-                                                                            LeaveCriticalSection(
-                                                                                &m_limiterCS);
+                                                                        m_arrowEntities
+                                                                            .e  //		printf("entity removed:
+                                                                                // experience orb entity count
+                                                                                //%d\n",m_arrowEntities.size());
+                                                                                LeaveCriticalSection(
+                                                                                    &m_limiterCS);
                                                                     }
                                                                     else if (
                                                                         e->instanceof(
@@ -1519,8 +1567,9 @@ bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
                 EnterCriticalSection(&m_limiterCS//			printf("Item to remove found\n");//		printf("entity removed: experience orb entity count now %d\n",m_arrowEntities.size());end(),e));
 		if( it != m_experienceOrbEntities.end() )
 		{
-                                                                            
-			m_experienceOrbEntities.erase(it);
+                                                                            m_experienceOrbEntities
+                                                                                .erase(
+                                                                                    it);
 		}
 		
 		LeaveCriticalSection(&m_limiterCS);
@@ -1671,11 +1720,8 @@ bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
                                                                         [iLev]);
                                                             }
                                                             PIXEndNamedEvent();
-                                                            
-		Sleep(10);
-                                                            
-	
-                                                        
+
+                                                            Sleep(10);
                                                         }
 
                                                         ShutdownManager::HasFinished(

@@ -210,8 +210,7 @@ void Chunk::rebuild() {
     // oldTileEntities(renderableTileEntities.begin(),renderableTileEntities.end());
     //// 4J removed this & next line 	renderableTileEntities.clear();
 
-    std::vector<std::shared_ptr<TileEntity> >
-        renderableTile  // 4J - added
+    std::vector<std::shared_ptr<TileEntity> > renderableTile  // 4J - added
 
         int r = 1;
 
@@ -223,14 +222,22 @@ void Chunk::rebuild() {
     PIXEndNamedEvent();
 
     PIXBeginNam
-        "Rebuild section B"    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 4J - optimisation begins.// Get the data for the level chunk that this render chunk is it (level chunk is 16 x 16 x 128,// render chunk is 16 x 16 x 16. We wouldn't have to actually get all of it if the data was ordered differently, but currently// it is ordered by x then z then y so just getting a small range of y out of it would involve getting the whole thing into// the cache anyway. 
+        "Rebuild section B"  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                             ///4J - optimisation begins.// Get the data for the
+                             ///level chunk that this render chunk is it (level
+                             ///chunk is 16 x 16 x 128,// render chunk is 16 x
+                             ///16 x 16. We wouldn't have to actually get all of
+                             ///it if the data was ordered differently, but
+                             ///currently// it is ordered by x then z then y so
+                             ///just getting a small range of y out of it would
+                             ///involve getting the whole thing into// the cache
+                             ///anyway.
 #ifdef _LARGE_WORLDS
-	unsigned char* tileIds = GetTileIdsS #elsee();
+        unsigned char* tileIds = GetTileIdsS #elsee();
 
-	static unsigned char tileIds[16 * 16 * Level::maxBuil #endift];
-    
-	byteArray tileArray =
-        byteArray(tileIds, 16 * 16 * Level::maxBuildHeight);
+    static unsigned char tileIds[16 * 16 * Level::maxBuil #endift];
+
+    byteArray tileArray = byteArray(tileIds, 16 * 16 * Level::maxBuildHeight);
         level->getChunkAt(x,z)->getBlockData(til// 4J - TODO - now our data has been re-arranged, we could just extra the vertical slice of this chunk rather than the whole thing
 
 	LevelSource *region = new Region(level, x0 - r, y0 - r, z0 - r, x1 + r, y1 + r, z1 + r, r);
@@ -346,7 +353,7 @@ PIXEndNamed  // Nothing at all to do for this chunk?
 
         PIXBeginNam "Rebuild section C");
 Tesselator::Bound  // 4J MGH - added// this was the old default clip
-                   // bounds for the chunk, set in Chunk::setPos. 
+                   // bounds for the chunk, set in Chunk::setPos.
     float g = 6.0f;
 bounds.boundingBox[0] = -g;
 bounds.boundingBox[1] = -g;
@@ -395,12 +402,11 @@ for (int currentLayer = 0; currentLayer < 2; currentLayer++) {
                                       // translate with this matrix anyway#if
                                       // 0
 
-							glTranslatef(
-                                -zs / 2.0f, -ys / 2.0f, -zs / 2.0f);
+                            glTranslatef(-zs / 2.0f, -ys / 2.0f, -zs / 2.0f);
                         glScalef(ss, ss, ss);
                         glTranslatef(zs / 2.0f, ys / 2.0f, zs #endiff);
-                        
-							t->begin();
+
+                        t->begin();
                         t->offset((float)(-this->x), (float)(-this->y),
                                   (float)(-this->z));
                     }
@@ -479,10 +485,17 @@ for (int currentLayer = 0; currentLayer < 2; currentLayer++) {
 
             PIXEndNamedEvent();
             PIXBeg
-                "Rebuild section D"    // 4J - have rewritten the way that tile entities are stored globally to make it work more easily with split screen. Chunks are now// stored globally in the levelrenderer, in a hashmap with a special key made up from the dimension and chunk position (using same index// as is used for global flags)#if 1
+                "Rebuild section D"  // 4J - have rewritten the way that tile
+                                     // entities are stored globally to make it
+                                     // work more easily with split screen.
+                                     // Chunks are now// stored globally in the
+                                     // levelrenderer, in a hashmap with a
+                                     // special key made up from the dimension
+                                     // and chunk position (using same index//
+                                     // as is used for global flags)#if 1
 
-	int key = levelRenderer->getGlobalIndexForChunk(this->x, this->y,
-                                                        this->z, level);
+                int key = levelRenderer->getGlobalIndexForChunk(
+                    this->x, this->y, this->z, level);
             EnterCriticalSection(globalRenderableTileEntities_cs);
             if (renderableTileEntities.size()) {
                 AUTO_VAR(it, globalRenderableTileEntities->find(key));
@@ -533,9 +546,8 @@ for (int currentLayer = 0; currentLayer < 2; currentLayer++) {
                         oldTileEntities.removeAll(renderableTileEntities);
                         globalRenderableTileEntities.removeAll(oldTileEntities);
                         */
-        
 
-    std::unordered_set<std::shared_ptr<TileEntity> >
+                            std::unordered_set<std::shared_ptr<TileEntity> >
                                 newTileEntities(renderableTileEntities.begin(),
                                                 renderableTileEntities.end());
 
@@ -578,8 +590,9 @@ for (int currentLayer = 0; currentLayer < 2; currentLayer++) {
 	PIXEndNamedEvent();
 	return;
                             }
-                            
-ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
+
+                            ChunkRebuildData g_rebuildDataIn
+                                __attribute__((__aligned__(16)));
                             ChunkRebuildData g_rebuildDataOut
                                 __attribute__((__aligned__(16)));
                             TileCompressData_SPU g_tileCompressDataIn
@@ -587,8 +600,7 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
                             unsigned char* g_tileCompressDataOut =
                                 (unsigned char*)&g_rebuildDataIn
                                     ."C4JSpursJob_ChunkUpdate" ebuild() {
-                                static C4JSpursJobQueue::Port
-                                    p();
+                                static C4JSpursJobQueue::Port p();
                                 C4JSpursJob_CompressedTile tileJob(
                                     &g_tileCompressDataIn,
                                     g_tileCompressDataOut);
@@ -604,11 +616,11 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
 	assert(g_rebuildD//	if (!dirty) return;dDataOut.m_x0);
                             }
 
-                            void Chunk::
-                                rebuild_S  // 4J - added - static initialiser
-                                           // being set at the wrong timeance();
-                                           // 
-                                    updates++;
+                            void Chunk::rebuild_S  // 4J - added - static
+                                                   // initialiser being set at
+                                                   // the wrong timeance();
+                                                   //
+                                                       updates++;
 
                             int x0 = x;
                             int y0 = y;
@@ -618,11 +630,13 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
                                  // oldTileEntities(renderableTileEntities.begin(),renderableTileEntities.end());
                                  //// 4J removed this & next line//
                                  // renderableTileEntities.clear();
-    // 4J - added	s//        List<TileEntity> newTileEntities = new ArrayList<TileEntity>();//        newTileEntities.clear();//        renderableTileEntities.clear();
+                                // 4J - added	s//        List<TileEntity>
+                                // newTileEntities = new
+                                // ArrayList<TileEntity>();//
+                                // newTileEntities.clear();//
+                                // renderableTileEntities.clear();
 
-
-
-	int r = 1;
+                                int r = 1;
 
                             Region region(level, x0 - r, y0 - r, z0 - r, x1 + r,
                                           y1 + r, z1 + r, r);
@@ -656,14 +670,14 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
                                                           /// the whole thing
                                                           /// into// the cache
                                                           /// anyway.
-                                                          /// 
-	
-	ChunkRebuildData* pOutData = NULL;
+                                                          ///
+
+                                ChunkRebuildData* pOutData = NULL;
                             g_rebuildDataI  // this was the old default clip
                                             // bounds for the chunk, set in
-                                            // Chunk::setPos. 
-		
-		float g = 6.0f;
+                                            // Chunk::setPos.
+
+                                float g = 6.0f;
                             bounds.boundingBox[0] = -g;
                             bounds.boundingBox[1] = -g;
                             bounds.boundingBox[2] = -g;
@@ -708,7 +722,7 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
 		{
                                 // 4J - get tile from those copied into our
                                 // local array in earlier optimisation
-                                // 
+                                //
                                 unsigned char tileId =
                                     pOutData->getTile(x, y, z);
                                 if (tileId > 0) {
@@ -731,11 +745,11 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
                                                   //= true;;
 
                                             if (renderLayer != currentLayer) {
-                                                //if(currentLayer == 0)							el//	numRenderedLayer0++;urrentLayer)
+                                            // if(currentLayer == 0)
+                                            // el//
+                                            // numRenderedLayer0++;urrentLayer)
                                             {
-                                                
-								
- 								rendered |=
+                                                rendered |=
                                                     tileRenderer
                                                         .tesselateInWorld(
                                                             tile, x, y, z);
@@ -753,15 +767,14 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
                             glPopMatrix();
                             glEndList();
                             t->useCompactVertices(false);
-                            
-			t->offset(0, 0, 0);
+
+                            t->offset(0, 0, 0);
 		}
 		if (rendered)
 		{
                         levelRenderer->clearGlobalChunkFlag(this->x, this->y// 4J - added - clear any renderer data associated with this unused list	else
 		{
-                                
-			levelRenderer->setGlobalChunkFlag(
+                                levelRenderer->setGlobalChunkFlag(
                                     this->x, this->y, this->z, level,
                                     LevelRenderer::CHUNK_FLAG_EMPTY0,
                                     currentLayer);
@@ -808,9 +821,10 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
                                                 // existing for this chunk. Add
                                                 // them all in.		}
                                             else {
-                                            
-			for (int i = 0; i < renderableTileEntities.size();
-                             i++) {
+                                            for (int i = 0;
+                                                 i <
+                                                 renderableTileEntities.size();
+                                                 i++) {
                                 (*global// Another easy case - we don't want any renderable tile entities associated with this chunk. Flag all to be removed.
 		AUTO_VAR(it, globalRenderableTileEntities->find(key));
 		if( it != globalRenderableTileEntities->end() )
@@ -844,9 +858,10 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
 		globalRenderableTileEntities.push_back(*it);
                                                     }
 
-                                                    
-
-	AUTO_VAR(endItRTE, renderableTileEntities.end());
+                                                    AUTO_VAR(
+                                                        endItRTE,
+                                                        renderableTileEntities
+                                                            .end());
         for( std::vector<std::sh// 4J - oldTileEntities is now the removed itemsTileEntities.begin(); it != endItRTE; it++ )
 	{
                                                         oldTileEntities.erase(
@@ -862,20 +877,17 @@ ChunkRebuildData g_rebuildDataIn __attribute__((__aligned__(16)));
                                                                 .end())
 #endifit  // 4J - These removed items are now also removed from
           // globalRenderableTileEntitiesriticalSection(globalRenderableTileEntities_cs);
-                                                            
 
-	
-
-	if (LevelChunk::touchedSky) {
+                                                            if (LevelChunk::
+                                                                    touchedSky) {
                                                                 levelRenderer->clearGlobalChunkFlag(
                                                                     x, y, z,
                                                                     level,
                                                                     LevelRenderer::
                                                                         CHUNK_FLAG_NOTSKYLIT);
-                                                            }
-                                                        else {
+                                                            } else {
                 levelRenderer->setGlobalChunkFlag(x, y, z, level, L#endif // _PS3_HUNK_FLAG_NOTSKYLIT);
-                                                        }
+                                                            }
                                                         levelRenderer
                                                             ->setGlobalChunkFlag(
                                                                 x, y, z, level,
@@ -926,8 +938,8 @@ void Chunk::reset()
                                                             EnterCriticalSect  //		printf("\t\t [dec] refcount %d at %d, %d, %d\n",refCount,x,y,z);elRenderer->decGlobalChunkRefCount(x, y, z, level);
                                                                 assigned =
                                                                     false;
-                                                            
-		if (refCount == 0) {
+
+                                                            if (refCount == 0) {
                                                                 int lists =
                                                                     levelRenderer
                                                                         ->getGlobalI  // 4J - added - clear any renderer data associated with this unused listvelRenderer->chunkLists;
@@ -935,8 +947,10 @@ void Chunk::reset()
                                                                              0;
                                                                          i < 2;
                                                                          i++) {
-                                                                    
-					RenderManager.CBuffClear(lists + i);
+                                                                    RenderManager
+                                                                        .CBuffClear(
+                                                                            lists +
+                                                                            i);
                                                                 }
                                                                 levelRenderer
                                                                     ->setGlobalChunkFlags(
@@ -993,11 +1007,7 @@ int Chunk::getList(int layer)
                                                                         bb);
                                                         }
 
-                                                    void Chunk::renderBB() {
-                                                        
-
-                                                    
-                                                    }
+                                                    void Chunk::renderBB() {}
 
                                                     bool Chunk::isEmpty() {
                                                         if (!levelRenderer->getGlobalChunkFlag(
@@ -1007,8 +1017,7 @@ int Chunk::getList(int layer)
                                                     }
 
                                                     void Chunk::setDirty() {
-                                                        
-	__debugbreak();
+                                                        __debugbreak();
         levelRenderer->setGlobalChunkFlag(x, y, z, level, LevelRender#ifdef _CRITICAL_CHUNKS
                                                     }
 
@@ -1017,13 +1026,12 @@ int Chunk::getList(int layer)
                                                             ->clearGlobalChunkFlag(
                                                                 x, y, z, level,
                                                                 LevelRen #endif : CHUNK_FLAG_DIRTY);
-                                                        
-	levelRenderer->clearGlobalChunkFlag(x, y, z, level,
-                                                            LevelRenderer::
-                                                                CHUNK_FLAG_CRITICAL);
-                                                        
 
-                                                    
+                                                        levelRenderer
+                                                            ->clearGlobalChunkFlag(
+                                                                x, y, z, level,
+                                                                LevelRenderer::
+                                                                    CHUNK_FLAG_CRITICAL);
                                                     }
 
                                                     Chunk::~Chunk() {

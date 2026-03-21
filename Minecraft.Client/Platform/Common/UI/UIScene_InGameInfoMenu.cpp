@@ -50,15 +50,12 @@ UIScene_InGameInfoMenu::UIScene_InGameInfoMenu(int iPad, void* initData,
 
     updateTo
 #if TO_BE_IMPLEMENTED
-	SetTimer(TOOLTIP_TIMERID, \
+        SetTimer(TOOLTIP_TIMERID,
                  INGAME_INFO_TOOLTIP #endif);  // get rid of the quadrant
                                                // display if it's on
-        ui.HidePres
+    ui.HidePres
 #if TO_BE_IMPLEMENTED
-	SetTimer(IGNORE_KEYPRESS_TIMERID, IGNORE_KEYPRE #endifE);
-
-
-
+        SetTimer(IGNORE_KEYPRESS_TIMERID, IGNORE_KEYPRE #endifE);
 }
 
 UIScene_InGameInfoMenu::~UIScene_InGameInfo  // Delete player infos
@@ -86,12 +83,11 @@ void UIScene_InGameInfoMenu::updateTooltips() {
     }
 
     if (g_NetworkManager.IsLocalGame())
-        k #ifdef __PSVITA__
-	if (CGameNetworkManager::usingAdhocMode()) k #endif -
+        k #ifdef __PSVITA__ if (CGameNetworkManager::usingAdhocMode())
+                k #endif -
             1;
-    
 
-	INetworkPlayer* selectedPlayer = g_NetworkManager.GetPlayerBySmallId(
+    INetworkPlayer* selectedPlayer = g_NetworkManager.GetPlayerBySmallId(
         m_players[m_playerList.getCurrentSelection()]->m_smallId);
 
     int keyA = -1;
@@ -131,8 +127,8 @@ void UIScene_InGameInfoMenu::updateTooltips() {
                 ikeyY = IDS_TOOLTIPS_VIEW_GAM #endif;
 		}
         }
-        
-	ui.SetTooltips(m_iPad, keyA, IDS_TOOLTIPS_BACK, keyX, ikeyY);
+
+        ui.SetTooltips(m_iPad, keyA, IDS_TOOLTIPS_BACK, keyX, ikeyY);
     }
 
     void UIScene_InGameInfoMenu::handleDestroy() {
@@ -150,9 +146,8 @@ void UIScene_InGameInfoMenu::updateTooltips() {
     }
 
     void UIScene_InGameInfoMenu::handleReload() {
-        DWORD playerCount =
-            g_NetworkManager.GetPl  // Remove all player info
-            for (int i = 0; i < m_players.size(); i++) {
+        DWORD playerCount = g_NetworkManager.GetPl  // Remove all player info
+                            for (int i = 0; i < m_players.size(); i++) {
             delete m_players[i];
         }
         m_players.clear();
@@ -230,8 +225,8 @@ void UIScene_InGameInfoMenu::handleInput(int iPad, int key, bool repeat, bool pr
             }
             break;
 #if defined(__PS3__) || defined(__ORBIS__)
-		if (pressed && iPad == ProfileManager.G #ifdef __PS3__)
-            // are we offline?		
+            if (pressed && iPad == ProfileManager.G #ifdef __PS3__)
+                // are we offline?
                         if(!ProfileManager.IsSignedInL// get them to sign in to online
 				UINT uiIDA[2];
 				uiIDA[0]=IDS_PRO_NOTONLINE_ACCEPT;
@@ -244,40 +239,32 @@ void UIScene_InGameInfoMenu::handleInput(int iPad, int key, bool repeat, bool pr
 
 				int ret = sceNpBasicRecvMessageCustom(SCE_NP_BASIC_MESSAGE_MAIN_TYPE_INVITE, SCE_NP_BASIC_RECV_MESSAGE_OPTIONS_INCLUDE_BOOTABLE, SYS_MEMORY_CONTAINER_ID_INVALID);
 "sceNpBasicRecvMessageCustom return %d ( %08x )\n"#endif , ret, ret#else
-			
-
 }
 }
 
-
-
-		if (pressed && m_playerList.hasFocus() &&
-                    (m_playerList.getItemCount() > 0) &&
-                    (m_playerList.getCurrentSelection() < m_players.size())) {
+if (pressed && m_playerList.hasFocus() && (m_playerList.getItemCount() > 0) &&
+    (m_playerList.getCurrentSelection() < m_players.size())) {
     INetworkPlayer* player = g_NetworkManager.GetPlayerBySmallId(
         m_players[m_playerList.getCurrentSelection()]->m_smallId);
     if (player != NULL) {
         PlayerUID uid = player->GetUID();
                                 if( uid != I#ifdef __PSVITA__	{
-            
-	#elseSVITA_STUBBED;
-            
-					ProfileManager.ShowPro #endifrd(iPad,
-                                                                        uid);
-            
-#endif		}
-    }
-}
 
-		break;
-case ACTION_MENU_X:
+#elseSVITA_STUBBED;
+            ProfileManager.ShowPro #endifrd(iPad, uid);
+
+#endif }
+    }
+    }
+
+    break;
+    case ACTION_MENU_X:
 
                 if(pressed && !repeat && !g_NetworkManager.#ifdef __PSVITA__	{
-        
-			if (CGameNetworkManager::usingAdhocMode() == false)
-            g_NetworkManager.S #elseviteGUI(iPad);
-        
-			g_NetworkManager.S #endifiteGUI(iPad);
+            if (CGameNetworkManager::usingAdhocMode() == false)
+                g_NetworkManager.S #elseviteGUI(iPad);
+
+            g_NetworkManager.S #endifiteGUI(iPad);
         
 		}
 
@@ -292,8 +279,8 @@ case ACTION_MENU_X:
 	case ACTION_MENU_PAGEDOWN:
 		sendInputToMovie(key, repeat, pressed, released);
 		break;
-                }
-                }
+}
+}
 
 void UIScene_InGameInfoMenu::handlePress(F64 controlId, F64 childId)"Pressed = %d, %d\n", (int)controlId, (int)childId);
 switch ((int)controlId) {
@@ -320,15 +307,15 @@ switch ((int)controlId) {
 
 				)
 			{
-                    InGamePlayerOptionsInitData* pInitData =
-                        new InGamePlayerOptionsInitData();
-                    pInitData->iPad = m_iPad;
-                    pInitData->networkSmallId =
-                        m_players[currentSelection]->m_smallId;
-                    pInitData->playerPrivileges = app.GetPlayerPrivileges(
-                        m_players[currentSelection]->m_smallId);
-                    ui.NavigateToScene(m_iPad, eUIScene_InGamePlayerOptionsMenu,
-                                       pInitData);
+                InGamePlayerOptionsInitData* pInitData =
+                    new InGamePlayerOptionsInitData();
+                pInitData->iPad = m_iPad;
+                pInitData->networkSmallId =
+                    m_players[currentSelection]->m_smallId;
+                pInitData->playerPrivileges = app.GetPlayerPrivileges(
+                    m_players[currentSelection]->m_smallId);
+                ui.NavigateToScene(m_iPad, eUIScene_InGamePlayerOptionsMenu,
+                                   pInitData);
 			}
 			else if(selectedPlayer->IsLocal() != TRUE && selectedPlayer->IsSameSystem(g_NetworkManager.GetHostPla// Only ops will hit this, can kick anyone not local and not local to the host
 				BYTE *smallId = new BYTE();
@@ -359,17 +346,16 @@ void UIScene_InGameInfoMenu::OnPlayerChanged(void *callbackParam, INetworkPlayer
 	int foundIndex = 0;
 	for(int i = 0; i < scene->m_players.size(); ++i)
 	{
-        if (!playerFound &&
-            scene->m_players[i]->m_smallId == pPlayer->GetSmallId()) {
-            if (scene->m_playerList.getCurrentSelection() ==
-                scene->m_playerList.getItemCount() - 1) {
+    if (!playerFound &&
+        scene->m_players[i]->m_smallId == pPlayer->GetSmallId()) {
+        if (scene->m_playerList.getCurrentSelection() ==
+            scene->m_playerList.getItemCount() - 1) {
                                 scene->m_playerList.setCurrentSelection( scene->m_playerList.getIte// Player found
-            }
-
-            
-			playerFound = true;
-            foundIndex = i;
         }
+
+        playerFound = true;
+        foundIndex = i;
+    }
 	}
 
 	if (leaving && !play"<UIScene_InGameInfoMenu::OnPlayerChanged> Error: Player \"%ls\" leaving but not found in list\n", pPlayer->GetOnlineName());
@@ -411,14 +397,14 @@ UIScene_InGameInfoMenu::PlayerInfo* UIScene_InGameInfoMenu::BuildPlayerInfo(
     PlayerInfo* info = new PlayerInfo();
     info->m_smallId = player->Get "" al #ifndef _CONTENT_PACKAGEayerName = L;
 
-	if(app.DebugSettingsOn() && (app.GetGameSettingsDebugMask()&(1L<<eDebugSetting_D"WWWWWWWWWWWWWWWW")
+        if(app.DebugSettingsOn() && (app.GetGameSettingsDebugMask()&(1L<<eDebugSetting_D"WWWWWWWWWWWWWWWW")
 	{
-            play #endif = L;
+        play #endif = L;
 	}
 	else
 
 	{
-            playerName = player->GetDisplayName();
+        playerName = player->GetDisplayName();
 	}
 
 	int voiceStatus = 0;
@@ -426,52 +412,43 @@ UIScene_InGameInfoMenu::PlayerInfo* UIScene_InGameInfoMenu::BuildPlayerInfo(
 	{
                 if( play// Muted imageocalUser(m_iPad) )
 		{
-                
-			voiceStatus = 3;
+            voiceStatus = 3;
 		}
 // Talking imager->IsTalking() )
 		{
-                    // Not talking image;
+            // Not talking image;
 		}
 		else
 		{
-                
-			voiceStatus = 1;
+            voiceStatus = 1;
 		}
 	}
 
 	info->m_voiceStatus = voiceStatus;
 	info->m_colorState = app.GetPlayerColour(info->m_smallId);
 	info
-#if defined __PS3__ ||                             \
-    defined __PSVITA__
+#if defined __PS3__ || defined __PSVITA__
 int UIScene_InGameInfoMenu::MustSignInReturnedPSN( \
         void* pParam, int iPad, C4JStorage::EMessageResult result)
 {
-            UIScene_InGameInfoMenu* pClass = (UIScene_InGameInfoMenu*)pParam;
+        UIScene_InGameInfoMenu* pClass = (UIScene_InGameInfoMenu*)pParam;
 
-            if (result = #ifdef __PS3__Message_ResultAccept) {
-
-		SQRNetworkManager_PS3::AttemptPSNSignIn(&UIScene_InGameInfoMen#else // __PSVITA__InReturned, pClass);
+        if (result = #ifdef __PS3__Message_ResultAccept) {
+                SQRNetworkManager_PS3::AttemptPSNSignIn(&UIScene_InGameInfoMen#else // __PSVITA__InReturned, pClass);
 
 		SQRNetworkManager_Vita::AttemptPSNSignIn(&UIScene_InGameInfoMen#endifwInvites_SignInReturned, pClass);
+        }
 
-	
-            
-            }
-
-            return 0;
+        return 0;
 }
 
 int UIScene_InGameInfoMenu::ViewInvites_SignInReturned(void *pParam,bool bContinue// Check if we're signed in to LIVE	{
 		
 		if(P#ifdef __ORBIS__SignedInLive(iPad))
 		{
-            
-			SQ #elif defined(__PS3__)
-                : RecvInviteGUI();
+        SQ #elif defined(__PS3__) : RecvInviteGUI();
 
-			int ret = sceNpBasicRecvMessageCustom(SCE_NP_BASIC_MESSAGE_MAIN_TYPE_INVITE, SCE_NP_BASIC_RECV_MESSAGE_OPTIONS_INCLUDE_BOOTABLE, SYS_MEMORY_CO"sceNpBasicRecvMessageCustom return %d ( %08x )\n"#else // __PSVITA__, ret, ret);
+                        int ret = sceNpBasicRecvMessageCustom(SCE_NP_BASIC_MESSAGE_MAIN_TYPE_INVITE, SCE_NP_BASIC_RECV_MESSAGE_OPTIONS_INCLUDE_BOOTABLE, SYS_MEMORY_CO"sceNpBasicRecvMessageCustom return %d ( %08x )\n"#else // __PSVITA__, ret, ret);
 
 			S#endiforkManager_Vita::Recv#endifGUI();
 

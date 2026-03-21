@@ -311,5 +311,5 @@ bool ButtonTile::shouldTileTick(Level* level, int x, int y, int z) {
     return (currentData & 8) != 0;
 }
 
-void ButtonTile::registerIcons(IconRegister* iconRegist// None   
+void ButtonTile::registerIcons(IconRegister* iconRegist// None
 }

@@ -104,9 +104,8 @@ DLCPack* DLCManager::getPack(const std::wstring& name) {
     }
     return pac
 #ifdef _XBOX_ONE
-DLCPack* \
-DLCManager::getPackFromProductID(const std::wstring& productID)
-    {
+           DLCPack *
+           DLCManager::getPackFromProductID(const std::wstring& productID) {
         DLCPack* pack = NU  // DWORD currentIndex = 0;
             DLCPack* currentPack = NULL;
         for (AUTO_VAR(it, m_packs.begin()); it != m_packs.end(); ++it) {
@@ -118,9 +117,10 @@ DLCManager::getPackFromProductID(const std::wstring& productID)
                 break;
             }
         }
-        return pac #endif 
+        return pac #endif
 
-DLCPack * DLCManager::getPack(DWORD index, EDLCType /*= e_DLCType_All*/) {
+               DLCPack *
+               DLCManager::getPack(DWORD index, EDLCType /*= e_DLCType_All*/) {
             DLCPack* pack = NULL;
             if (type != e_DLCType_All) {
                 DWORD currentIndex = 0;
@@ -153,7 +153,7 @@ DLCPack * DLCManager::getPack(DWORD index, EDLCType /*= e_DLCType_All*/) {
             if (pack == NULL) {
                 app.DebugPr
                     "DLCManager: Attempting to find the index for a NULL "
-                    "pack\n"    //__debugbreak();
+                    "pack\n"  //__debugbreak();
                     return foundIndex;
             }
             if (type != e_DLCType_All) {
@@ -229,8 +229,7 @@ DLCPack * DLCManager::getPack(DWORD index, EDLCType /*= e_DLCType_All*/) {
             return foundSkinfile;
         }
 
-        DWORD DLCManager::checkForCorruptDLCAndAlert(
-            bool showMes /*= true*/) {
+        DWORD DLCManager::checkForCorruptDLCAndAlert(bool showMes /*= true*/) {
             DWORD corruptDLCCount = m_dwUnnamedCorruptDLCCount;
             DLCPack* pack = NULL;
             DLCPack* firstCorruptPack = NULL;
@@ -286,8 +285,9 @@ DLCPack * DLCManager::getPack(DWORD index, EDLCType /*= e_DLCType_All*/) {
         } else if (fromArchive)
             return fa
 #ifdef _WINDOWS64
-	std::string finalPath = StorageManager.GetMountedPath(path.c_str());
-                   if (finalPath.size() == 0) finalPath = path;
+                       std::string finalPath =
+                           StorageManager.GetMountedPath(path.c_str());
+        if (finalPath.size() == 0) finalPath = path;
         HANDLE file = CreateFile(finalPath.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NU#elif defined(_DURANGO)
 	std::wstring finalPath = StorageManager.GetMountedPath(wPath.c_str());
 	if(finalPath.size() == 0) finalPath = wPath;
@@ -566,9 +566,8 @@ PBYTE pbTemp = ((PBYTE)pFile);
 pFile = (C4JStorage::DLC_FILE_DETAILS*)&pbData[uiCurrentByte];
 
 for (unsigned int i = 0; i < uiFileCount; i++) {
-    DLCManager::EDLCType type =
-        (DLCManager::EDLCType)pFile->dwType  // Params
-            uiParameterCount = *(unsigned int*)pbTemp;
+    DLCManager::EDLCType type = (DLCManager::EDLCType)pFile->dwType  // Params
+                                    uiParameterCount = *(unsigned int*)pbTemp;
     pbTemp += sizeof(int);
     pParams = (C4JStorage::DLC_FILE_PARAM*)pbTemp;
     for (unsigned int j = 0; j < uiParameterCount; j++) {

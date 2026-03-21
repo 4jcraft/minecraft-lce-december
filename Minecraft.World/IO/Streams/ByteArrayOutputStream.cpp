@@ -2,8 +2,8 @@
 
 #include "ByteArrayOutputStream.h"
 
-// Creates a new uint8_t array output stream. The buffer capacity is initially 32
-// bytes, though its size increases if necessary.
+// Creates a new uint8_t array output stream. The buffer capacity is initially
+// 32 bytes, though its size increases if necessary.
 ByteArrayOutputStream::ByteArrayOutputStream() {
     count = 0;
     buf = byteArray(32);
@@ -36,9 +36,9 @@ void ByteArrayOutputStream::write(unsigned int b) {
 // effect as the call write(b, 0, b.length).
 void ByteArrayOutputStream::write(byteArray b) { write(b, 0, b.length); }
 
-// Writes len bytes from the specified uint8_t array starting at offset off to this
-// uint8_t array output stream. Parameters: b - the data. off - the start offset in
-// the data. len - the number of bytes to write.
+// Writes len bytes from the specified uint8_t array starting at offset off to
+// this uint8_t array output stream. Parameters: b - the data. off - the start
+// offset in the data. len - the number of bytes to write.
 void ByteArrayOutputStream::write(byteArray b, unsigned int offset,
                                   unsigned int length) {
     assert(b.length >= offset + length);

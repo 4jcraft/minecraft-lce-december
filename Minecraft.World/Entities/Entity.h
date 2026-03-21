@@ -58,11 +58,10 @@ public:
     double viewScale;
 
     bool blocksBuilding;
-    std::weak_ptr<Entity>
-        rid  // Changed to weak to avoid circular dependency
-             // between rider/riding entity
-            std::shared_ptr<Entity>
-                riding;
+    std::weak_ptr<Entity> rid  // Changed to weak to avoid circular dependency
+                               // between rider/riding entity
+        std::shared_ptr<Entity>
+            riding;
     bool forcedLoading;
 
     Level* level;
@@ -70,7 +69,7 @@ public:
     double x, y, z;
     double xd, yd, zd;
     float yRot, xRot;
-    float yRotO, x /*const*/  A  // 4J Was final
+    float yRotO, x /*const*/ A  // 4J Was final
         bool onGround;
     bool horizontalCollision, verticalCollision;
     bool collision;
@@ -163,7 +162,7 @@ private:
     std::wstring uuid;
 
     // 4J Added so that client side simulations on the host are not affected
-    // by// zero-lag    
+    // by// zero-lag
     bool m_ignoreVerticalCollisions;
 
     bool m_ignorePortal;

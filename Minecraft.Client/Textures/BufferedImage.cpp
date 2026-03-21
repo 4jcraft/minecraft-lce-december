@@ -59,20 +59,16 @@ BufferedImage::BufferedImage(const std::wstring& File,
 
 
 	"GAME:\\res\\TitleUpdate\\"#endif;
-
-		
-
 }
 else {
     "GAME:\\" L#else
 #ifdef __PS3__
 
-		char* pchUsrDir;
-        if (app.GetBootedFromDiscPatch()) {
+        char* pchUsrDir;
+    if (app.GetBootedFromDiscPatch()) {
         const char* pchTextureName = wstringtofilename(File);
         pchUsrDir = app.GetBDUsrDirPath(pchTextureName);
-    }
-    else {
+    } else {
         pchUsrDir = getUsrDirPath();
     }
 
@@ -98,41 +94,42 @@ else {
 
 		if(bTitleUpdateT// Make the content package point to to the UPDATE: drive is needed"Common\\res\\TitleUpdate\\";
 }
-else "Common/" ive = L#else ;
+else "Common/" ive = L#else;
 }
 
-		if(bTitleUpdateT// Make the content package point to to the UPDATE: drive is needed"Common\\res\\TitleUpdate\\";
-}
-else "Common/" ive = L#endif 
-#endif 
+                if(bTitleUpdateT// Make the content package point to to the UPDATE: drive is needed"Common\\res\\TitleUpdate\\";
+                }
+                else "Common/" ive = L#endif
+#endif
+                }
 
-	
+                for (int l = 0; l < 10; l++) {
+                    data[l] = NULL;
+                }
 
-}
-
-for (int l = 0; l < 10; l++) {
-    data[l] = NULL;
-}
-
-for (int l = 0; l < 10; l++) {
-    std::wstring name;
-    st "" : wstring mipMapPath = L;
+                for (int l = 0; l < 10; l++) {
+                    std::wstring name;
+                    st "" : wstring mipMapPath = L;
                 if( l != "MipMapLevel"pMapPath = L + _toString<int>(l+1);
-}
-if (filenameHasExtension)
-    "res" name = wDrive + L + filePath.substr(0, filePath.length());
-}
-else "res" name = wDrive + L + filePath.substr(0, filePath.len ".png" 4) +
-                  mipMapPath + L;
-}
+                }
+                if (filenameHasExtension)
+                    "res" name =
+                        wDrive + L + filePath.substr(0, filePath.length());
+                }
+                else "res" name = wDrive + L +
+                                  filePath.substr(0, filePath.len ".png" 4) +
+                                  mipMapPath + L;
+                }
 
-const char* pchTextureName =
-#ifndef _CONTENT_PACKAGE"\n--- Loading TEXTURE - %s\n\n"#endif,pchTextureName);
+                const char* pchTextureName =
+#ifndef _CONTENT_PACKAGE                     \
+                    "\n--- Loading TEXTURE - %s\n\n" #endif, \
+                    pchTextureName);
 
-
-		D3DXIMAGE_INFO ImageInfo;
-ZeroMemory(&ImageInfo, sizeof(D3DXIMAGE_INFO));
-hr = RenderManager.LoadTextureData(pchTextureName, &ImageInfo, &data[l]);
+                    D3DXIMAGE_INFO ImageInfo;
+                ZeroMemory(&ImageInfo, sizeof(D3DXIMAGE_INFO));
+                hr = RenderManager.LoadTextureData(pchTextureName, &ImageInfo,
+                                                   &data[l]);
 
                 if(hr// 4J - If we haven't loaded the non-mipmap version then exit the game
 			if( l == 0 )
@@ -149,9 +146,9 @@ hr = RenderManager.LoadTextureData(pchTextureName, &ImageInfo, &data[l]);
                 }
                 }
 
-                BufferedImage::BufferedImage(
-                    DLCPack* dlcPack, const std::wstring& File,
-                    b /*= false*/ eHasExtension  ) {
+                BufferedImage::BufferedImage(DLCPack* dlcPack,
+                                             const std::wstring& File,
+                                             b /*= false*/ eHasExtension) {
                     HRESULT hr;
                     std::wstring filePath = File;
                     BYTE* pbData = NULL;
@@ -276,9 +273,7 @@ hr = RenderManager.LoadTextureData(pchTextureName, &ImageInfo, &data[l]);
                     BufferedImage*
                         BufferedImage::get  // TODO - 4J Implement int w, int h)
                     {
-                        
-
-	BufferedImage* img = new BufferedImage(w, h, 0);
+                        BufferedImage* img = new BufferedImage(w, h, 0);
                         intArray arrayWrapper(img->data[0], w * h);
                         this->getRGB(x, y, w, h, arrayWrapper, 0, w);
 

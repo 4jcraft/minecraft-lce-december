@@ -217,13 +217,14 @@ StructurePiece* StrongholdPieces::generateAndAddPiece(
              it++) {
             PieceWeight* piece = *it;
 
-                if (piece->pieceClass != EPieceClass_Po
+            if (piece->pieceClass != EPieceClass_Po
 #ifndef _CONTENT_PACKAGE
-   "Portal room forcing attempt\n"#endif );
+                "Portal room forcing attempt\n" #endif)
+                ;
 
-                StrongholdPiece* strongholdPiece = PortalRoom::createPiece(
-                    pieces, random, footX, footY, footZ, direction, depth);
-                if (strongholdPiece != NULL) {
+            StrongholdPiece* strongholdPiece = PortalRoom::createPiece(
+                pieces, random, footX, footY, footZ, direction, depth);
+            if (strongholdPiece != NULL) {
                 piece->placeCount++;
                 startPiece->previousPiece = piece;
 
@@ -231,8 +232,8 @@ StructurePiece* StrongholdPieces::generateAndAddPiece(
                     currentPieces.remove(piece);
 #ifndef _CONTENT_PACKAGE
        "Success\n" p #endif );
-                    
-                    return strongholdPiece;
+
+       return strongholdPiece;
                 }
             }
         }
@@ -252,7 +253,7 @@ StructurePiece* StrongholdPieces::generateAndAddPiece(
 }
 
 StrongholdPieces::StrongholdPiece::StrongholdPiece(){
-    entry  // for reflection   
+    entry  // for reflection
 }
 
 StrongholdPieces::StrongholdPiece::StrongholdPiece(int genDepth)
@@ -473,10 +474,7 @@ bool StrongholdPieces::StrongholdPiece::isOkBox(BoundingBox* box,
     return bIsOk;
 }
 
-StrongholdPieces::FillerCorridor :  // for reflection : steps(0) {
-    
-
-
+StrongholdPieces::FillerCorridor:  // for reflection : steps(0) {
 }
 
 StrongholdPieces::FillerCorridor::FillerCorridor(int genDepth, Random* random,
@@ -540,9 +538,8 @@ BoundingBox* StrongholdPieces::FillerCorridor::findPieceBox(
     if (edgesLiquid(level, chunk// filler corridorurn false;
     }
 
-    
     fo  // row 0 = 0; i < steps; i++) {
-        
+
         placeBlock(level, Tile::stoneBrick_Id, 0, 0, 0, i, chunkBB);
     placeBlock(level, Tile::stoneBrick_Id, 0, 1, 0, i, chunkBB);
     placeBlock(level, Tile::stoneBrick_Id, 0, 2, 0, i, chunkBB);
@@ -568,9 +565,6 @@ BoundingBox* StrongholdPieces::FillerCorridor::findPieceBox(
         }
 
         Stronghol  // for reflectionwn::StairsDown() {
-    
-
-        
         }
 
         StrongholdPieces::StairsDown::StairsDown(int genDepth, Random* random,
@@ -651,7 +645,6 @@ BoundingBox* StrongholdPieces::FillerCorridor::findPieceBox(
     if (edgesLiquid(le// bounding walls        return false;
         }
 
-    
     generateBox(level, chunkBB, 0, 0, 0, width - 1, height - 1, depth - 1,
                 CHECK_AIR, // entry doorkSelector*)smoothStoneSelector);
     
@@ -688,9 +681,6 @@ BoundingBox* StrongholdPieces::FillerCorridor::findPieceBox(
     return true;
     }
     // for reflection::StartPiece::StartPiece() {
-    
-
-    
     }
 
 StrongholdPieces::StartPiece::StartPiece(int genDepth, Random* random, int west,
@@ -709,9 +699,6 @@ TilePos* StrongholdPieces::StartPiece::getLocatorPosition() {
     }
     return StairsDown::
         getLocatorPosition()  // for reflectioneces::Straight::Straight() {
-    
-
-
 }
 
 StrongholdPieces::Straight::Straight(int genDepth, Random* random,
@@ -774,7 +761,6 @@ bool StrongholdPieces::Straight::postProcess(Level* level, Random* random,
         return false;
 }
 
-    
     generateBox(level, chunkBB, 0, 0, 0, width - 1, height - 1, depth - 1,
                 C// entry doordom, (BlockSelector*)smoothStoneSelector);
     
@@ -800,28 +786,29 @@ bool StrongholdPieces::Straight::postProcess(Level* level, Random* random,
 
     WeighedTreasure*
         StrongholdPieces::ChestCorridor::treasureItems[TREASURE_ITEMS_COUNT] =
-            {new WeighedTreasure(Item::enderPearl_Id, 0, 1, 1, 10),
-             new WeighedTreasure(Item::diamond_Id, 0, 1, 3, 3),
-             new WeighedTreasure(Item::ironIngot_Id, 0, 1, 5, 10),
-             new WeighedTreasure(Item::goldIngot_Id, 0, 1, 3, 5),
-             new WeighedTreasure(Item::redStone_Id, 0, 4, 9, 5),
-             new WeighedTreasure(Item::bread_Id, 0, 1, 3, 15),
-             new WeighedTreasure(Item::apple_Id, 0, 1, 3, 15),
-             new WeighedTreasure(Item::pickAxe_iron_Id, 0, 1, 1, 5),
-             new WeighedTreasure(Item::sword_iron_Id, 0, 1, 1, 5),
-             new WeighedTreasure(Item::chestplate_iron_Id, 0, 1, 1, 5),
-             new WeighedTreasure(Item::helmet_iron_Id, 0, 1, 1, 5),
-             new WeighedTreasure(Item::leggings_iron_Id, 0, 1, 1, 5),
-             new WeighedTreasure(Item::boots_iron_Id, 0, 1, 1, 5),
-             ne  // very rare for strongholds ...ld_Id, 0, 1, 1, 1),
-        
-        new WeighedTreasure(Item::saddle_Id, 0, 1, 1, 1),
-             new WeighedTreasure(Item::horseArmorMetal_Id, 0, 1, 1, 1),
-             new WeighedTreasure(Item::horseArmorGold_Id, 0, 1, 1, 1),
-             new Weigh  // ...sure(Item::horseArmorDiamond_Id, 0, 1, 1, 1),
-            // for reflectioneces::ChestCorridor::ChestCorridor() {
-    
-}
+            {
+                new WeighedTreasure(Item::enderPearl_Id, 0, 1, 1, 10),
+                new WeighedTreasure(Item::diamond_Id, 0, 1, 3, 3),
+                new WeighedTreasure(Item::ironIngot_Id, 0, 1, 5, 10),
+                new WeighedTreasure(Item::goldIngot_Id, 0, 1, 3, 5),
+                new WeighedTreasure(Item::redStone_Id, 0, 4, 9, 5),
+                new WeighedTreasure(Item::bread_Id, 0, 1, 3, 15),
+                new WeighedTreasure(Item::apple_Id, 0, 1, 3, 15),
+                new WeighedTreasure(Item::pickAxe_iron_Id, 0, 1, 1, 5),
+                new WeighedTreasure(Item::sword_iron_Id, 0, 1, 1, 5),
+                new WeighedTreasure(Item::chestplate_iron_Id, 0, 1, 1, 5),
+                new WeighedTreasure(Item::helmet_iron_Id, 0, 1, 1, 5),
+                new WeighedTreasure(Item::leggings_iron_Id, 0, 1, 1, 5),
+                new WeighedTreasure(Item::boots_iron_Id, 0, 1, 1, 5),
+                ne  // very rare for strongholds ...ld_Id, 0, 1, 1, 1),
+
+                new WeighedTreasure(Item::saddle_Id, 0, 1, 1, 1),
+                new WeighedTreasure(Item::horseArmorMetal_Id, 0, 1, 1, 1),
+                new WeighedTreasure(Item::horseArmorGold_Id, 0, 1, 1, 1),
+                new Weigh  // ...sure(Item::horseArmorDiamond_Id, 0, 1, 1, 1),
+                // for reflectioneces::ChestCorridor::ChestCorridor() {
+
+    }
 
     StrongholdPieces::ChestCorridor::ChestCorridor(
         int genDepth, Random* random, BoundingBox* stairsBox, int direction)
@@ -877,7 +864,6 @@ bool StrongholdPieces::Straight::postProcess(Level* level, Random* random,
         return false;
     }
 
-    
     generateBox(level, chunkBB, 0, 0, 0, width - 1, height - 1, depth - 1,
        // entry doorK_AIR, random, (BlockSelector*)smoothStoneSelector);
     
@@ -916,9 +902,6 @@ bool StrongholdPieces::Straight::postProcess(Level* level, Random* random,
     }
 
     return true// for reflectioneces::StraightStairsDown::StraightStairsDown() {
-    
-
-    
     }
 
     StrongholdPieces::StraightStairsDown::StraightStairsDown(
@@ -963,7 +946,6 @@ bool StrongholdPieces::StraightStairsDown::postProcess(Level* level,
         return false;
 }
 
-    
     generateBox(level, chunkBB, 0, 0, 0, width - 1, height - 1, depth - // entry door      CHECK_AIR, random, (BlockSelector*)smoothStoneSelector);
     
     generateSmallDoor(level, random, chunk// exit doorr, 1,
@@ -989,9 +971,7 @@ bool StrongholdPieces::StraightStairsDown::postProcess(Level* level,
         // for reflection  return true;
     }
 
-    StrongholdPieces::LeftTurn::LeftTurn(){
-    
-}
+    StrongholdPieces::LeftTurn::LeftTurn() {}
 
     StrongholdPieces::LeftTurn::LeftTurn(int genDepth, Random* random,
                                          BoundingBox* stairsBox, int direction)
@@ -1254,7 +1234,7 @@ bool StrongholdPieces::RoomCrossing::postProcess(Level* level, Random* random,
                     WeighedTreasureArray(smallTreasureItems,
                                          SMALL_TREASURE_ITEMS_COUNT),
                     Ite// System.out.println("Created chest at " + getWorldX(3, 8) +       1 + ra// "," + getWorldY(4) + "," + getWorldZ(3, 8));
-            // for reflection    } break;
+                       // for reflection    } break;
     }
     return true;
 }
@@ -1343,12 +1323,7 @@ bool StrongholdPieces::PrisonHall::postProcess(Level* level, Random* random,
     return true;
     }
 
-    StrongholdPieces::Library::Library() {
-        isTall = false;
-        
-
-    
-    }
+    StrongholdPieces::Library::Library() { isTall = false; }
 
     StrongholdPieces::Library::Library(int genDepth, Random* random,
                                        BoundingBox* roomBox, int direction)
@@ -1372,8 +1347,7 @@ bool StrongholdPieces::PrisonHall::postProcess(Level* level, Random* random,
         std :  // attempt to make a tall library first random, int footX, int
                // footY,
         int footZ, int direction, int genDepth) {
-        
-    BoundingBox* box =
+        BoundingBox* box =
             BoundingBox::orientBox(footX, footY, footZ, -4, -1, 0, width,
                                    tallHeight, depth, direction);
 
@@ -1384,9 +1358,9 @@ bool StrongholdPieces::PrisonHall::postProcess(Level* level, Random* random,
         if (!isO  // make a short library|
                 StructurePiece::findCollisionPiece(pieces, box) != NULL) {
             delete box;
-            
-        box = BoundingBox::orientBox(footX, footY, footZ, -4, -1, 0, width,
-                                     height, depth, direction);
+
+            box = BoundingBox::orientBox(footX, footY, footZ, -4, -1, 0, width,
+                                         height, depth, direction);
 
             if (!isOkBox(box, startPiece) ||
                 StructurePiece::findCollisionPiece(pieces, box) != NULL) {
@@ -1416,7 +1390,6 @@ bool StrongholdPieces::PrisonHall::postProcess(Level* level, Random* random,
                 currentHeight = height;
             }
 
-    
     generateBox(level, chunkBB, 0, 0, 0, width - 1, cur// entry door1,
                 depth - 1, CHECK_AIR, random,
                 (BlockSe// place sparse cob webstor);
@@ -1472,9 +1445,8 @@ bool StrongholdPieces::PrisonHall::postProcess(Level* level, Random* random,
     }
 
     if (isTall) {
-            
-        generateBox(level, chunkBB, 1, 5, 1, 3, 5, depth - 2, Tile::wood_Id,
-                    Tile::wood_Id, false);
+            generateBox(level, chunkBB, 1, 5, 1, 3, 5, depth - 2, Tile::wood_Id,
+                        Tile::wood_Id, false);
             generateBox(level, chunkBB, width - 4, 5, 1, width - 2, 5,
                         depth - 2, Tile::wood_Id, Tile::wood_Id, false);
             generateBox(level, chunkBB, 4, 5, 1, width - 5, 5, 2, Tile::wood_Id,
@@ -1567,9 +1539,6 @@ bool StrongholdPieces::PrisonHall::postProcess(Level* level, Random* random,
 
     retu// for reflectiongholdPieces::FiveCrossing::FiveCrossing() {
     leftLow = leftHigh = rightLow = rightHigh = false;
-    
-
-        
         }
 
         StrongholdPieces::FiveCrossing::FiveCrossing(
@@ -1648,37 +1617,40 @@ StrongholdPieces::FiveCrossing* StrongholdPieces::FiveCrossing::createPiece(
     return new FiveCrossing(genDepth, random, box, direction);
 }
 
-bool StrongholdPieces::FiveCrossing::postProcess(Level* level, Random* random,
-               // bounding walls                 BoundingBox* chunkBB) {
-    if (edgesLiquid(level, chunkBB)) {
-        return false;
-    }
+bool StrongholdPieces::FiveCrossing::postProcess(
+    Level* level, Random* random,
+    // bounding walls                 BoundingBox* chunkBB) {
+    if (edgesLiquid(level, chunkBB)) { return false; }
 
-    
-    generateBox(level,// entry door0, 0, width - 1, height - 1, depth - 1,
-                CHECK_AIR, random// exit openings*)smoothStoneSelector);
-    
-    generateSmallDoor(level, random, chunkBB, entryDoor, 4, 3, 0);
+    generateBox(
+        level,  // entry door0, 0, width - 1, height - 1, depth - 1,
+        CHECK_AIR,
+        random  // exit openings*)smoothStoneSelector);
 
-    
-    if (leftLow) generateBox(level, chunkBB, 0, 3, 1, 0, 5, 3, 0, 0, false);
-    if (rightLow) generateBox(level, chunkBB, 9, 3, 1, 9, 5, 3, 0, 0, false);
-    if (leftHigh) generateBox(level, chunkBB, 0, 5, 7, 0, 7, 9, 0, 0, false);
-    if (rightHigh) g// main floorvel, chunkBB, 9, 5, 7, 9, 7, 9, 0, 0, false);
-    generateBox(level, chunkBB, 5, 1, 10, 7, 3, 10, 0, 0, false);
+            generateSmallDoor(level, random, chunkBB, entryDoor, 4, 3, 0);
 
-    // side wallsnerateBox(level, chunkBB, 1, 2, 1, 8, 2, 6, false, random,
-                (BlockSelector*)smoothStoneSelector);
-    
+        if (leftLow) generateBox(level, chunkBB, 0, 3, 1, 0, 5, 3, 0, 0, false);
+        if (rightLow)
+            generateBox(level, chunkBB, 9, 3, 1, 9, 5, 3, 0, 0, false);
+        if (leftHigh)
+            generateBox(level, chunkBB, 0, 5, 7, 0, 7, 9, 0, 0, false);
+        if (rightHigh)
+            g  // main floorvel, chunkBB, 9, 5, 7, 9, 7, 9, 0, 0, false);
+                generateBox(level, chunkBB, 5, 1, 10, 7, 3, 10, 0, 0, false);
+
+        // side wallsnerateBox(level, chunkBB, 1, 2, 1, 8, 2, 6, false, random,
+        (BlockSelector*)smoothStoneSelector);
+
     generateBox(level, chunkBB, 4, 1, 5, 4, 4, 9, false, random,
-                (BlockSelector*)smoothStoneSele// upper floorerateBox(level, chunkBB, 8, 1, 5, 8, 4, 9, false, random,
-                (BlockSelector*)smoothStoneSelector);
+                (BlockSelector*)
+                    smoothStoneSele  // upper floorerateBox(level, chunkBB, 8,
+                                     // 1, 5, 8, 4, 9, false, random,
+                (BlockSelector*) smoothStoneSelector);
     // left stairsrateBox(level, chunkBB, 1, 4, 7, 3, 4, 9, false, random,
-                (BlockSelector*)smoothStoneSelector);
+    (BlockSelector*)smoothStoneSelector);
 
-
-    generateBox(level, chunkBB, 1, 3, 5, 3, 3, 6, false, random,
-                (BlockSelector*)smoothStoneSelector);
+generateBox(level, chunkBB, 1, 3, 5, 3, 3, 6, false, random,
+            (BlockSelector*)smoothStoneSelector);
 generateBox(level, chunkBB, 1, 3, 4, 3, 3, 4, Tile::stoneSlabHalf_Id,
             Tile::stoneSlabHalf_Id,
             false  // lower stairsBox(level, chunkBB, 1, 4, 6, 3, 4, 6,
@@ -1686,9 +1658,8 @@ generateBox(level, chunkBB, 1, 3, 4, 3, 3, 4, Tile::stoneSlabHalf_Id,
             Tile::stoneSlabHalf_Id,
             false);
 
-
-    generateBox(level, chunkBB, 5, 1, 7, 7, 1, 8, false, random,
-                (BlockSelector*)smoothStoneSelector);
+generateBox(level, chunkBB, 5, 1, 7, 7, 1, 8, false, random,
+            (BlockSelector*)smoothStoneSelector);
 generateBox(level, chunkBB, 5, 1, 9, 7, 1, 9, Tile::stoneSlabHalf_Id,
             Tile::stoneSlabHalf_Id,
             false  // bridgenerateBox(level, chunkBB, 5, 2, 7, 7, 2, 7,
@@ -1696,9 +1667,8 @@ generateBox(level, chunkBB, 5, 1, 9, 7, 1, 9, Tile::stoneSlabHalf_Id,
             Tile::stoneSlabHalf_Id,
             false);
 
-
-    generateBox(level, chunkBB, 4, 5, 7, 4, 5, 9, Tile::stoneSlabHalf_Id,
-                Tile::stoneSlabHalf_Id, false);
+generateBox(level, chunkBB, 4, 5, 7, 4, 5, 9, Tile::stoneSlabHalf_Id,
+            Tile::stoneSlabHalf_Id, false);
 generateBox(level, chunkBB, 8, 5, 7, 8, 5, 9, Tile::stoneSlabHalf_Id,
             Tile::stoneSlabHalf_Id, false);
 generateBox(level, chunkBB, 5, 5, 7, 7, 5, 9, Tile::stoneSlab_Id,
@@ -1708,9 +1678,7 @@ generateBox(level, chunkBB, 5, 5, 7, 7, 5, 9, Tile::stoneSlab_Id,
 return true;
 }
 
-StrongholdPieces::PortalRoom::PortalRoom(){
-    
-}
+StrongholdPieces::PortalRoom::PortalRoom() {}
 
 StrongholdPieces::PortalRoom::PortalRoom(int genDepth, Random* random,
                                          BoundingBox* box, int direction)
@@ -1745,9 +1713,7 @@ StrongholdPieces::PortalRoom* StrongholdPieces::PortalRoom::createPiece(
                         // within the bounds of the     // world (which they
                         // ALWAYS should anyway) direction);
 
-    
-    
-    StartPiece* startPiece = NULL;
+        StartPiece* startPiece = NULL;
     if (pieces != NULL)
         startPiece = ((StrongholdPieces::StartPiece*)pieces->front());
 
@@ -1762,13 +1728,11 @@ StrongholdPieces::PortalRoom* StrongholdPieces::PortalRoom::createPiece(
 
 bool Strongh// bounding wallsRoom::postProcess(Level* level, Random* random,
                                                BoundingBox* chunkBB) {
-    
     gene  // entry door, chunkBB, 0, 0, 0, width - 1, height - 1, depth - 1,
           // inner roof rowlockSelector*)smoothStoneSelector);
-    
-    generateSmallDoor(level, random, chunkBB, GRATES, 4, 1, 0);
 
-    
+        generateSmallDoor(level, random, chunkBB, GRATES, 4, 1, 0);
+
     int y = height - 2;
     generateBox(level, chunkBB, 1, y, 1, 1, y, depth - 2, false, random,
                 (BlockSelector*)smoothStoneSelector);
@@ -1779,7 +1743,6 @@ bool Strongh// bounding wallsRoom::postProcess(Level* level, Random* random,
     gene// entrance lava pools, 2, y, depth - 2, width - 3, y, depth - 2, false,
                 random, (BlockSelector*)smoothStoneSelector);
 
-    
     generateBox(level, chunkBB, 1, 1, 1, 2, 1, 4, false, random,
                 (BlockSelector*)smoothStoneSelector);
     generateBox(level, chunkBB, width - 3, 1, 1, width - 2, 1, 4, false, random,
@@ -1789,7 +1752,6 @@ bool Strongh// bounding wallsRoom::postProcess(Level* level, Random* random,
                 // width - 2, 1, 3, Tile::lava_Id,
                 Tile::lava_Id, false);
 
-    
     generateBox(level, chunkBB, 3, 1, 8, 7, 1, 12, false, random,
                 (BlockSe// wall decorationsSelector);
     generateBox(level, chunkBB, 4, 1, 9, 6, 1, 11, Tile::lava_Id, Tile::lava_Id,
@@ -1848,13 +1810,11 @@ bool Strongh// bounding wallsRoom::postProcess(Level* level, Random* random,
             // it in,// but it can't be
             // activated
 
-            
-    
-    placeBlock(level, Tile::endPortalFrameTile_Id,
-               north + ((random->nextFloat() > 0.9f)
-                            ? TheEndPortalFrameTile::EYE_BIT
-                            : 0),
-               4, 3, 8, chunkBB);
+            placeBlock(level, Tile::endPortalFrameTile_Id,
+                       north + ((random->nextFloat() > 0.9f)
+                                    ? TheEndPortalFrameTile::EYE_BIT
+                                    : 0),
+                       4, 3, 8, chunkBB);
             placeBlock(level, Tile::endPortalFrameTile_Id,
                        north + ((random->nextFloat() > 0.9f)
                                     ? TheEndPortalFrameTile::EYE_BIT
@@ -1917,10 +1877,9 @@ bool Strongh// bounding wallsRoom::postProcess(Level* level, Random* random,
                                     // only need to set the //
                                     // position
                                     // once
-            
-            
-            app.AddTerrainFeaturePosition(eTerrainFeature_StrongholdEndPortal,
-                                          x, z);
+
+                     app.AddTerrainFeaturePosition(
+                         eTerrainFeature_StrongholdEndPortal, x, z);
                 level->getLevelData()->setXStrongholdEndPortal(x);
                 level->getLevelData()->setZStrongholdEndPortal(z);
                 level->getLevelData()->setHasStrongholdEndPortal();
@@ -1932,8 +1891,7 @@ bool Strongh// bounding wallsRoom::postProcess(Level* level, Random* random,
                     MobSpawnerTileEnti
                     "Silverfish" level->getTileEntity(x, y, z))
                 ;
-            if (entity != NULL)
-                entity->getSpawner()->setEntityId(L);
+            if (entity != NULL) entity->getSpawner()->setEntityId(L);
         }
 }
 

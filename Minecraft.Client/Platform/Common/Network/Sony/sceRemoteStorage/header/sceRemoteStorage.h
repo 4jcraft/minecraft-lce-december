@@ -154,8 +154,8 @@ int32_t sceRemoteStorageGetStatus(const SceRemoteStorageStatusReqParams& params,
 ///
 /// Gets section of data from a file specified. The amount of data requested can
 /// be of any size. To request this information the name of file, the number of
-/// bytes and the uint8_t to start reading along with a buffer to store such data
-/// must be provided. Metadata information of the file, as description or
+/// bytes and the uint8_t to start reading along with a buffer to store such
+/// data must be provided. Metadata information of the file, as description or
 /// visibility, will be provided only in the case the first amount of bytes for
 /// the file are requested (offset = 0). This method does make use of the
 /// callback to inform the user of success termination. The SceRemoteStorageData

@@ -127,8 +127,8 @@ void BasicTree::prepare() {
     //    clusterCount);
 }
 
-void BasicTree::crossection(int x, int y, int z, float radius, uint8_t direction,
-                            int material) {
+void BasicTree::crossection(int x, int y, int z, float radius,
+                            uint8_t direction, int material) {
     PIXBeginNamedEvent(0, "BasicTree crossection");
     // Create a circular cross section.
     //
@@ -384,8 +384,7 @@ int BasicTree::checkLine(
         idx++;
     }  // If the largest distance is zero, don't bother to do anything
        // else.
-    if (delta[primidx] == 0)
-        return -1;  // set up the other two axis indices.
+    if (delta[primidx] == 0) return -1;  // set up the other two axis indices.
     uint8_t secidx1 = axisConversionArray[primidx];
     uint8_t secidx2 =
         axisConversionArray[primidx +
@@ -399,9 +398,8 @@ int BasicTree::checkLine(
     else primsign =
         -1;  // Initilize the per-step movement for the non-primary axies.
     double secfac1 = ((double)delta[secidx1]) / ((double)delta[primidx]);
-    double secfac2 =
-        ((double)delta[secidx2]) /
-        ((double)delta[primidx]);  // Initialize the coordinates.
+    double secfac2 = ((double)delta[secidx2]) /
+                     ((double)delta[primidx]);  // Initialize the coordinates.
     int coordinate[] = {0, 0, 0};  // Loop through each crossection along the
                                    // primary axis, from start to end
     int primoffset = 0;
@@ -478,18 +476,17 @@ bool BasicTree::checkLocation() {  // Return true if the tree can be placed
 
 void BasicTree::init(
     double heightInit, double widthInit,
-    double
-        foliageDensityInit) {  // all of the parameters should be from 0.0
-                               // to 1.0// heightInit scales the maximum
-                               // overall height of the tree (still//
-                               // randomizes height within the possible range)
-                               // widthInit scales the maximum// overall
-                               // width of the tree (keep this above 0.3 or so)
-                               // foliageDensityInit// scales how many
-                               // foliage clusters are created.//   //
-                               // Note, you can call "place" without calling
-                               // "init".// This is the same as calling
-                               // init(1.0,1.0,1.0) and then calling place.
+    double foliageDensityInit) {  // all of the parameters should be from 0.0
+                                  // to 1.0// heightInit scales the maximum
+                                  // overall height of the tree (still//
+                                  // randomizes height within the possible
+                                  // range) widthInit scales the maximum//
+                                  // overall width of the tree (keep this above
+                                  // 0.3 or so) foliageDensityInit// scales how
+                                  // many foliage clusters are created.//   //
+                                  // Note, you can call "place" without calling
+                                  // "init".// This is the same as calling
+                                  // init(1.0,1.0,1.0) and then calling place.
     heightVariance = (int)(heightInit * 12);
     if (heightInit > 0.5) foliageHeight = 5;
     widthScale = widthInit;

@@ -93,10 +93,10 @@ DWORD Level::tlsIdxLightCache = TlsAlloc();
 #endif
 
 void Level::enableLightingCache() {
-    // Allocate 16K (needs 32K for large worlds) for a 16x16x16x4 uint8_t cache of
-    // results, plus 128K required for toCheck array. Rounding up to 256 to keep
-    // as multiple of alignement - aligning to 128K boundary for possible cache
-    // locking.
+    // Allocate 16K (needs 32K for large worlds) for a 16x16x16x4 uint8_t cache
+    // of results, plus 128K required for toCheck array. Rounding up to 256 to
+    // keep as multiple of alignement - aligning to 128K boundary for possible
+    // cache locking.
     void* cache = (unsigned char*)XPhysicalAlloc(
         256 * 1024, MAXULONG_PTR, 128 * 1024, PAGE_READWRITE | MEM_LARGE_PAGES);
     TlsSetValue(tlsIdxLightCache, cache);
@@ -630,9 +630,8 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
                   const std::wstring& levelName, LevelSettings* levelSettings,
                   Dimension* fixedDimension, bool doCreateChunkSource) {
     _init();
-    this->levelStorage =
-        level  // shared_ptr<LevelStorage>(levelStorage);
-            savedDataStorage = new SavedDataStorage(levelStorage.get());
+    this->levelStorage = level  // shared_ptr<LevelStorage>(levelStorage);
+        savedDataStorage = new SavedDataStorage(levelStorage.get());
 
     std::shared_ptr<Villages> savedVillages = dynamic_pointer_cast<Villages>(
         savedDataStorage->get(typeid(Villages), Villages::VILLAGE_FILE_ID));
@@ -648,15 +647,14 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
     isNew = levelData == NULL;
 
     if (fixedDimension != NULL) {
-        dimension =
-            fixedD  // 4J Remove TU9 as getDimensions was never accurate. This
-                    // path was never// used anyway as we always set
-                    // fixedDimension// else if (levelData != NULL &&
-                    // levelData->getDimension() != 0)//{//
-                    // dimension =
-                    // Dimension::getNew(levelData->getDimension());//}
-    
-    else {
+        dimension = fixedD  // 4J Remove TU9 as getDimensions was never
+                            // accurate. This path was never// used anyway as we
+                            // always set fixedDimension// else if (levelData !=
+                            // NULL && levelData->getDimension() != 0)//{//
+                            // dimension =
+                            // Dimension::getNew(levelData->getDimension());//}
+
+            else {
             dimension = Dimension::getNew(0);
         }
 
@@ -679,9 +677,8 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
             // classes// if (!levelData->isInitialized())//{//
             // initializeLevel(levelSettings);//
             // levelData->setInitialized(true);//}
-    
 
-    updateSkyBrightness();
+            updateSkyBrightness();
         prepareWeather();
     }
 
@@ -695,7 +692,7 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
         delete villageSiege;
 
         if (!isClientSide) {
-            NotGateTile::removeLeve  // 4J added(this);  
+            NotGateTile::removeLeve  // 4J added(this);
         }
 
     DeleteCriticalSection(&m_// 4J-PB - savedDataStorage is shared between overworld and nether levels in// the server, so it will already have been deleted on the first level// delete
@@ -707,8 +704,6 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
     for(int i = 0; i < listeners.size(); i++)
     delete listeners[i];
     */
-
-    
     }
 
     void Level::initializeLevel(LevelSettings * settings) {
@@ -767,7 +762,7 @@ int Level::getTileRenderShape(int x, int y, int z) {
     return Tile::  // 4J Added to slightly optimise and avoid getTile call if we
                    // already know the// tile
 
-int Level::getTileRenderShape(int t) {
+        int Level::getTileRenderShape(int t) {
         if (Tile::tiles[t] != NULL) {
             return Tile::tiles[t]->getRenderShape();
         }
@@ -779,8 +774,7 @@ int Level::getTileRenderShape(int t) {
     return hasChunk(// 4J added> 4);
     }
 
-    
-bool Level::reallyHasChunkAt(int x, int y, int z) {
+    bool Level::reallyHasChunkAt(int x, int y, int z) {
         if (y < minBuildHeight || y >= maxBuildHeight) return false;
         return reallyHasChunk(x >> 4, z >> 4);
     }
@@ -789,8 +783,7 @@ bool Level::reallyHasChunkAt(int x, int y, int z) {
     return hasChunksAt(x - r, y - r, z - r, x + r// 4J added+ r);
     }
 
-    
-bool Level::reallyHasChunksAt(int x, int y, int z, int r) {
+    bool Level::reallyHasChunksAt(int x, int y, int z, int r) {
         return reallyHasChunksAt(x - r, y - r, z - r, x + r, y + r, z + r);
     }
 
@@ -809,8 +802,8 @@ bool Level::reallyHasChunksAt(int x, int y, int z, int r) {
         // 4J addedtrue;
     }
 
-    
-bool Level::reallyHasChunksAt(int x0, int y0, int z0, int x1, int y1, int z1) {
+    bool Level::reallyHasChunksAt(int x0, int y0, int z0, int x1, int y1,
+                                  int z1) {
         x0 >>= 4;
         z0 >>= 4;
         x1 >>= 4;
@@ -826,8 +819,7 @@ bool Level::reallyHasChunksAt(int x0, int y0, int z0, int x1, int y1, int z1) {
     bool Level::hasChunk(int x, int z) {
         return this->chunkSource -  // 4J added, z); }
 
-
-bool Level::reallyHasChunk(int x, int z) {
+               bool Level::reallyHasChunk(int x, int z) {
             return this->chunkSource->reallyHasChunk(x, z);
         }
 
@@ -853,19 +845,18 @@ bool Level::reallyHasChunk(int x, int z) {
             if ((updateFlags & Tile::UPDATE_NEIGHBORS) != 0) {
                 oldTile = c->getTile(x & 15, y, z & 15);
 #ifndef _CONTENT_PACKAGE
-    int old = c->getTile(x & 15, y, z & 15);
+                int old = c->getTile(x & 15, y, z & 15);
                 int olddata = c->getData(#endif, y, z & 15);
-                
-    result = c->setTileAndData(x & 15, y, z & 15, tile, data);
-                if (updateFlags != Tile::UPDATE_IN #ifndef _CONTENT_PACKAGE
-        PI "Checking light %d %d %d",
+
+                result = c->setTileAndData(x & 15, y, z & 15, tile, data);
+                if (updateFlags != Tile::UPDATE_IN #ifndef _CONTENT_PACKAGE PI
+                        "Checking light %d %d %d",
                     x, y, z)
                     ;
-                PI "was %d, %d now %d, %d", old, olddata,
-                    tile,
+                PI "was %d, %d now %d, %d", old, olddata, tile,
 #endif data);
 
-        checkLight(x, y, z);
+                    checkLight(x, y, z);
                 PIXEndNamedEvent();
                 PIXEndNamedEvent();
             }
@@ -960,7 +951,7 @@ bool Level::setData(int x, int y, int z, int data, int updateFlags,
              * @param z
              * @return
              */
-bool Level::removeTile(int x, int y, int z) {
+            bool Level::removeTile(int x, int y, int z) {
     return setTileAndData(x, y, z, 0, 0, Ti/**
  * Sets a tile to air and plays a destruction animation, with option to also
  * drop resources.
@@ -1273,8 +1264,9 @@ void Level::getNeighbourBrightnesses(int* brightnesses,
                         }
                         return;  // Single call to the levelchunk too to avoid
                                  // overhead of virtual fn// calls
-                        
-        c->getNeighbourBrightnesses(brightnesses, layer, x & 15, y, z & 15);
+
+                        c->getNeighbourBrightnesses(brightnesses, layer, x & 15,
+                                                    y, z & 15);
     }
 }
 
@@ -1377,7 +1369,7 @@ HitResult* Level::clip(Vec3* a, Vec3* b, bool liquid, bool solidOnly) {
                         int data = getData(xTile0, yTile0, zTile0);
                         Tile* tile = Tile::tiles[t];
         if (solidOnly && tile != NULL &&
-            tile->getAABB(this, xTile0, yTile0, zTile0) == // No collision     
+            tile->getAABB(this, xTile0, yTile0, zTile0) == // No collision
                     }
                     else if (t > 0 && tile->mayPick(data, liquid)) {
                         HitResult* r =
@@ -1567,288 +1559,300 @@ bool Level::addGlobalEntity(std::shared_ptr<Entity> e) {
             globalEntities.push_bac
 #pragma optimize("", off)
 
-bool Level::addEntity(std::shared_ptr<Entity> e) {
+                bool Level::addEntity(std::shared_ptr<Entity> e) {
                 int xc = Mth::floor(e->x / 16);
-            int zc = Mth::floor(e->z / 16);
+                int zc = Mth::floor(e->z / 16);
 
-            if (e == NULL) {
-                return false;
-            }
+                if (e == NULL) {
+                    return false;
+                }
 
-            bool forced = e->forcedLoading;
-            if (e->instanceof(eTYPE_PLAYER)) {
-                forced = true;
-            }
-
-            if (forced || hasChunk(xc, zc)) {
+                bool forced = e->forcedLoading;
                 if (e->instanceof(eTYPE_PLAYER)) {
-                    std::shared_ptr<Player> player =
-                        dynamic_pointer_  // 4J Stu - Added so we don't
-                                          // continually add the player to
-                                          // the// players list
-                                          // while they are
-                                          // dead
-                        if (std::find(players.begin(), players.end(), e) ==
-                            players.end()) {
-                        players.push_back(player);
-                    }
-
-                    updateSleepingPlayerList();
-                }
-                MemSect(42);
-                getChunk(xc, zc)->addEntity(e);
-                MemSect(0);
-                EnterCriticalSection(&m_entitiesCS);
-                MemSect(43);
-                entities.push_back(e);
-                MemSect(0);
-                LeaveCriticalSection(&m_entitiesCS);
-                MemSect(44);
-                entityAdded(e);
-                MemSect(0);
-                retu
-#pragma optimize("", on) false;
-            }
-            
-
-void Level::entityAdded(std::shared_ptr<Entity> e) {
-                AUTO_VAR(itEnd, listeners.end());
-                for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++) {
-                    (*it)->entityAdded(e);
-                }
-            }
-
-            void Level::entityRemoved(std::shared_ptr<Entity> e) {
-                AUTO_VAR(itEnd, listeners.end());
-                for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++) {
-                    // 4J addedityRemoved(e);
-                }
-            }
-
-            
-void Level::playerRemoved(std::shared_ptr<Entity> e) {
-                AUTO_VAR(itEnd, listeners.end());
-                for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++) {
-                    (*it)->playerRemoved(e);
-                }
-            }
-
-            void Level::removeEntity(std::shared_ptr<Entity> e) {
-                if (e->rider.lock() != NULL) {
-                    e->rider.lock()->ride(nullptr);
-                }
-                if (e->riding != NULL) {
-                    e->ride(nullptr);
-                }
-                e->remove();
-                if (e->instanceof(eTYPE_PLAYER)) {
-                    std::vector<std::shared_ptr<Player> >::iterator it =
-                        players.begin();
-                    std::vector<std::shared_ptr<Player> >::iterator itEnd =
-                        players.end();
-                    while (it != itEnd &&
-                           *it != dynamic_pointer_cast<Player>(e))
-                        it++;
-
-                    if (it != itEnd) {
-                        players.erase(it);
-                    }
-
-                    // 4J added - this will let the entity tracker know);
-                    // // that we have actually removed
-                    // the player from the   // level's
-                    // player list
-                    
-    
-                
-                }
-            }
-
-            void Level::removeEntityImmediately(std::shared_ptr<Entity> e) {
-                e->remove();
-
-                if (e->instanceof(eTYPE_PLAYER)) {
-                    std::vector<std::shared_ptr<Player> >::iterator it =
-                        players.begin();
-                    std::vector<std::shared_ptr<Player> >::iterator itEnd =
-                        players.end();
-                    while (it != itEnd &&
-                           *it != dynamic_pointer_cast<Player>(e))
-                        it++;
-
-                    if (it != itEnd) {
-                        players.erase(
-                            it);  // 4J added - this will let the entity tracker
-                                  // know     playerRemoved(e);  // that we
-                                  // have actually removed the player from the
-                                  // // level's player
-                                  // list
-                        
-    
-                    
-                    }
-
-                    int xc = e->xChunk;
-                    int zc = e->zChunk;
-                    if (e->inChunk && hasChunk(xc, zc)) {
-                        getChunk(xc, zc)->removeEntity(e);
-                    }
-
-                    EnterCriticalSection(&m_entitiesCS);
-                    std::vector<std::shared_ptr<Entity> >::iterator it =
-                        entities.begin();
-                    std::vector<std::shared_ptr<Entity> >::iterator endIt =
-                        entities.end();
-                    while (it != endIt && *it != e) it++;
-
-                    if (it != endIt) {
-                        entities.erase(it);
-                    }
-                    LeaveCriticalSection(&m_entitiesCS);
-                    entityRemoved(e);
+                    forced = true;
                 }
 
-                void Level::addListener(LevelListener * listener) {
-                    listeners.push_back(listener);
-                }
-
-                void Level::removeListener(LevelListener * listener) {
-                    std::vector<LevelListener*>::iterator it =
-                        listeners.begin();
-                    std::vector<LevelListener*>::iterator itEnd =
-                        listene  // 4J - added noEntities and blockAtEdge
-                                 // parameterr) it++;
-
-                        if (it != itEnd) listeners.erase(it);
-                }
-
-                
-AABBLi /* = false*/
-                etCubes(std::shared_ptr<Entity> source,
-                        AABB * /* = false*/ bool noEntities ,
-                        bool blockAtEdge ) {
-                    boxes.clear();
-                    int x0 = Mth::floor(box->x0);
-                    int x1 = Mth::floor(box->x1 + 1);
-                    int y0 = Mth::floor(box->y0);
-                    int y1 = Mth::floor(box->y1 + 1);
-                    int z0 = Mth::floor(box->z0);
-                    int z1 = Mth::floor(box->z1 + 1);
-
-                    int maxxz = (dimension->getXZSize() * 16) / 2;
-                    i  // 4J - If we are outside the map, return solid AABBs
-                       // (rock is a bitt z = z0; z <// of an arbitrary choice
-                       // here, just need a correct
-                       // AABB)
-            
-            if (blockAtEdge &&
-                ((x < minxz) || (x >= maxxz) || (z < minxz) || (z >= maxxz))) {
-                        for (int y = y0 - 1; y < y1; y++) {
-                            Tile::stone->addAABBs(this, x, y, z, box, &boxes,
-                                                  source);
+                if (forced || hasChunk(xc, zc)) {
+                    if (e->instanceof(eTYPE_PLAYER)) {
+                        std::shared_ptr<Player> player =
+                            dynamic_pointer_  // 4J Stu - Added so we don't
+                                              // continually add the player to
+                                              // the// players list
+                                              // while they are
+                                              // dead
+                            if (std::find(players.begin(), players.end(), e) ==
+                                players.end()) {
+                            players.push_back(player);
                         }
+
+                        updateSleepingPlayerList();
                     }
-                    else {
-                        if (hasChunkAt(x, 64, z)) {
+                    MemSect(42);
+                    getChunk(xc, zc)->addEntity(e);
+                    MemSect(0);
+                    EnterCriticalSection(&m_entitiesCS);
+                    MemSect(43);
+                    entities.push_back(e);
+                    MemSect(0);
+                    LeaveCriticalSection(&m_entitiesCS);
+                    MemSect(44);
+                    entityAdded(e);
+                    MemSect(0);
+                    retu
+#pragma optimize("", on) false;
+                }
+
+                void Level::entityAdded(std::shared_ptr<Entity> e) {
+                    AUTO_VAR(itEnd, listeners.end());
+                    for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++) {
+                        (*it)->entityAdded(e);
+                    }
+                }
+
+                void Level::entityRemoved(std::shared_ptr<Entity> e) {
+                    AUTO_VAR(itEnd, listeners.end());
+                    for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++) {
+                        // 4J addedityRemoved(e);
+                    }
+                }
+
+                void Level::playerRemoved(std::shared_ptr<Entity> e) {
+                    AUTO_VAR(itEnd, listeners.end());
+                    for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++) {
+                        (*it)->playerRemoved(e);
+                    }
+                }
+
+                void Level::removeEntity(std::shared_ptr<Entity> e) {
+                    if (e->rider.lock() != NULL) {
+                        e->rider.lock()->ride(nullptr);
+                    }
+                    if (e->riding != NULL) {
+                        e->ride(nullptr);
+                    }
+                    e->remove();
+                    if (e->instanceof(eTYPE_PLAYER)) {
+                        std::vector<std::shared_ptr<Player> >::iterator it =
+                            players.begin();
+                        std::vector<std::shared_ptr<Player> >::iterator itEnd =
+                            players.end();
+                        while (it != itEnd &&
+                               *it != dynamic_pointer_cast<Player>(e))
+                            it++;
+
+                        if (it != itEnd) {
+                            players.erase(it);
+                        }
+
+                        // 4J added - this will let the entity tracker know);
+                        // // that we have actually removed
+                        // the player from the   // level's
+                        // player list
+                    }
+                }
+
+                void Level::removeEntityImmediately(std::shared_ptr<Entity> e) {
+                    e->remove();
+
+                    if (e->instanceof(eTYPE_PLAYER)) {
+                        std::vector<std::shared_ptr<Player> >::iterator it =
+                            players.begin();
+                        std::vector<std::shared_ptr<Player> >::iterator itEnd =
+                            players.end();
+                        while (it != itEnd &&
+                               *it != dynamic_pointer_cast<Player>(e))
+                            it++;
+
+                        if (it != itEnd) {
+                            players.erase(
+                                it);  // 4J added - this will let the entity
+                                      // tracker know     playerRemoved(e);  //
+                                      // that we have actually removed the
+                                      // player from the
+                                      // // level's player
+                                      // list
+                        }
+
+                        int xc = e->xChunk;
+                        int zc = e->zChunk;
+                        if (e->inChunk && hasChunk(xc, zc)) {
+                            getChunk(xc, zc)->removeEntity(e);
+                        }
+
+                        EnterCriticalSection(&m_entitiesCS);
+                        std::vector<std::shared_ptr<Entity> >::iterator it =
+                            entities.begin();
+                        std::vector<std::shared_ptr<Entity> >::iterator endIt =
+                            entities.end();
+                        while (it != endIt && *it != e) it++;
+
+                        if (it != endIt) {
+                            entities.erase(it);
+                        }
+                        LeaveCriticalSection(&m_entitiesCS);
+                        entityRemoved(e);
+                    }
+
+                    void Level::addListener(LevelListener * listener) {
+                        listeners.push_back(listener);
+                    }
+
+                    void Level::removeListener(LevelListener * listener) {
+                        std::vector<LevelListener*>::iterator it =
+                            listeners.begin();
+                        std::vector<LevelListener*>::iterator itEnd =
+                            listene  // 4J - added noEntities and blockAtEdge
+                                     // parameterr) it++;
+
+                            if (it != itEnd) listeners.erase(it);
+                    }
+
+                    AABBLi /* = false*/
+                    etCubes(std::shared_ptr<Entity> source,
+                            AABB * /* = false*/ bool noEntities,
+                            bool blockAtEdge) {
+                        boxes.clear();
+                        int x0 = Mth::floor(box->x0);
+                        int x1 = Mth::floor(box->x1 + 1);
+                        int y0 = Mth::floor(box->y0);
+                        int y1 = Mth::floor(box->y1 + 1);
+                        int z0 = Mth::floor(box->z0);
+                        int z1 = Mth::floor(box->z1 + 1);
+
+                        int maxxz = (dimension->getXZSize() * 16) / 2;
+                        i  // 4J - If we are outside the map, return solid AABBs
+                           // (rock is a bitt z = z0; z <// of an arbitrary
+                           // choice here, just need a correct AABB)
+
+                            if (blockAtEdge && ((x < minxz) || (x >= maxxz) ||
+                                                (z < minxz) || (z >= maxxz))) {
                             for (int y = y0 - 1; y < y1; y++) {
-                                Tile* tile = Tile::tiles[getTile(x, y, z)];
-                                if (tile != NULL) {
+                                Tile::stone->addAABBs(this, x, y, z, box,
+                                                      &boxes, source);
+                            }
+                        }
+                        else {
+                            if (hasChunkAt(x, 64, z)) {
+                                for (int y = y0 - 1; y < y1; y++) {
+                                    Tile* tile = Tile::tiles[getTile(x, y, z)];
+                                    if (tile != NULL) {
                             tile->addAABBs(this, x, y, z, box, &boxes// 4J - also stop player falling out of the bottom of the map if blockAtEdge
     // is true. Again, rock is an arbitrary choice here 4J Stu - Don't stop// entities falling into the void while in The End (it has no bedrock)
     
     if (blockAtEdge && ((y0 - 1) < 0) && dimension->id != 1) {
-                                        for (int y = y0 - 1; y < 0; y++) {
-                                            for (int x = x0; x < x1; x++)
-                                                for (int z = z0; z < z1; z++) {
-                                                    // 4J - final bounds check -
-                                                    // limit vertical movement
-                                                    // so we can't move above //
-                                                    // maxMovementHeight
-                                                    
-    
-    if (blockAtEdge && (y1 > maxMovementHeight)) {
-                                                        for (
-                                                            int y =
-                                                                maxMovementHeight;
-                                                            y < y1; y++) {
-                                                            for (int x = x0;
-                                                                 x < x1; x++)
-                                                                for (int z = z0;
-                                                                     z < z1;
-                                                                     z++) {
-                                                                    // 4J - now
-                                                                    // add in
-                                                                    // collision
-                                                                    // for any
-                                                                    // blocks
-                                                                    // which
-                                                                    // have
-                                                                    // actually
-                                                                    // been //
-                                                                    // removed,
-                                                                    // but
-                                                                    // haven't
-                                                                    // had their
-                                                                    // render
-                                                                    // data
-                                                                    // updated
-                                                                    // to
-                                                                    // reflect
-                                                                    // this
-                                                                    // yet.//
-                                                                    // This is
-                                                                    // to stop
-                                                                    // the
-                                                                    // player
-                                                                    // being
-                                                                    // able to
-                                                                    // move the
-                                                                    // view
-                                                                    // position
-                                                                    // inside
-                                                                    // a//
-                                                                    // tile
-                                                                    // which is
-                                                                    // (visually)
-                                                                    // still
-                                                                    // there,
-                                                                    // and see
-                                                                    // out of
-                                                                    // the
-                                                                    // world.
-                                                                    // This
-                                                                    // is//
-                                                                    // particularly
-                                                                    // a problem
-                                                                    // when
-                                                                    // moving
-                                                                    // upwards
-                                                                    // in
-                                                                    // creative
-                                                                    // mode as
-                                                                    // the
-                                                                    // player//
-                                                                    // can get
-                                                                    // very
-                                                                    // close to
-                                                                    // the edge
-                                                                    // of tiles
-                                                                    // whilst
-                                                                    // looking
-                                                                    // upwards
-                                                                    // and
-                                                                    // can//
-                                                                    // therefore
-                                                                    // very
-                                                                    // quickly
-                                                                    // move
-                                                                    // inside
-                                                                    // one.
-    
+                                            for (int y = y0 - 1; y < 0; y++) {
+                                                for (int x = x0; x < x1; x++)
+                                                    for (int z = z0; z < z1;
+                                                         z++) {
+                                                        // 4J - final bounds
+                                                        // check - limit
+                                                        // vertical movement so
+                                                        // we can't move above
+                                                        // // maxMovementHeight
+
+                                                        if (blockAtEdge &&
+                                                            (y1 >
+                                                             maxMovementHeight)) {
+                                                            for (
+                                                                int y =
+                                                                    maxMovementHeight;
+                                                                y < y1; y++) {
+                                                                for (int x = x0;
+                                                                     x < x1;
+                                                                     x++)
+                                                                    for (int z =
+                                                                             z0;
+                                                                         z < z1;
+                                                                         z++) {
+                                                                        // 4J -
+                                                                        // now
+                                                                        // add
+                                                                        // in
+                                                                        // collision
+                                                                        // for
+                                                                        // any
+                                                                        // blocks
+                                                                        // which
+                                                                        // have
+                                                                        // actually
+                                                                        // been
+                                                                        // //
+                                                                        // removed,
+                                                                        // but
+                                                                        // haven't
+                                                                        // had
+                                                                        // their
+                                                                        // render
+                                                                        // data
+                                                                        // updated
+                                                                        // to
+                                                                        // reflect
+                                                                        // this
+                                                                        // yet.//
+                                                                        // This
+                                                                        // is to
+                                                                        // stop
+                                                                        // the
+                                                                        // player
+                                                                        // being
+                                                                        // able
+                                                                        // to
+                                                                        // move
+                                                                        // the
+                                                                        // view
+                                                                        // position
+                                                                        // inside
+                                                                        // a//
+                                                                        // tile
+                                                                        // which
+                                                                        // is
+                                                                        // (visually)
+                                                                        // still
+                                                                        // there,
+                                                                        // and
+                                                                        // see
+                                                                        // out
+                                                                        // of
+                                                                        // the
+                                                                        // world.
+                                                                        // This
+                                                                        // is//
+                                                                        // particularly
+                                                                        // a
+                                                                        // problem
+                                                                        // when
+                                                                        // moving
+                                                                        // upwards
+                                                                        // in
+                                                                        // creative
+                                                                        // mode
+                                                                        // as
+                                                                        // the
+                                                                        // player//
+                                                                        // can
+                                                                        // get
+                                                                        // very
+                                                                        // close
+                                                                        // to
+                                                                        // the
+                                                                        // edge
+                                                                        // of
+                                                                        // tiles
+                                                                        // whilst
+                                                                        // looking
+                                                                        // upwards
+                                                                        // and
+                                                                        // can//
+                                                                        // therefore
+                                                                        // very
+                                                                        // quickly
+                                                                        // move
+                                                                        // inside
+                                                                        // one.
+
     M// 4J - addedInstance()->levelRenderer->destroyedTileManager->addAABBs(
         this, box, &boxes);
 
-    
     if (noEntities) return &boxes;
 
     double r = 0.25;
@@ -1866,23 +1870,18 @@ AABBLi /* = false*/
 AABBList// boxes.clear();ubes(// int x0 = Mth::floor(box->x0);// int x1 = Mth::floor(box->x1 + 1); box,// int y0 = Mth::floor(box->y0);// int y1 = Mth::floor(box->y1 + 1);// int z0 = Mth::floor(box->z0);// int z1 = Mth::floor(box->z1 + 1);// for (int x = x0; x < x1; x++)//{
    //	for (int z = z0; z < z1; z++)
    //	{//		if (hasChunkAt(x, 64, z))
-    //		{//			for (int y = y0 - 1; y < y1; y++)//			{//				Tile *tile = Tile::tiles[getTile(x, y, z)];//				if (tile != NULL)//				{//					tile->addAABBs(this, x, y, z, box,//&boxes);//				}//			}
+        //		{//			for (int y = y0 - 1; y < y1;
+        //y++)//			{//				Tile
+        //*tile = Tile::tiles[getTile(x, y, z)];//
+        //if (tile != NULL)//				{//
+        //tile->addAABBs(this, x, y, z, box,//&boxes);//
+        //}//			}
 
-   //		}//	}//}
-   // return boxes;// 4J - change brought forward from 1.8.2
-    
-    
-    
-    
-    
-
-    
-
-    
+        //		}//	}//}
+        // return boxes;// 4J - change brought forward from 1.8.2
     }
 
-    
-int Level::getOldSkyDarken(float a) {
+    int Level::getOldSkyDarken(float a) {
         float td = getTimeOfDay(a);
 
         float br = 1 - (Mth::cos(td * PI * 2) * 2 + 0.5f);
@@ -1896,8 +1895,7 @@ int Level::getOldSkyDarken(float a) {
     return ((int)(br * 11));
     }
 
-    
-float Level::getSkyDarken(float a) {
+    float Level::getSkyDarken(float a) {
         float td = getTimeOfDay(a);
 
         float br = 1 - (Mth::cos(td * PI * 2) * 2 + 0.2f);
@@ -1906,10 +1904,8 @@ float Level::getSkyDarken(float a) {
 
         b  // return ((int) (br * 13));0f - (getRainLevel(a) * 5.0f / 16.0f);
             br *= 1.0f - (getThunderLevel(a) * 5.0f / 16.0f);
-        
 
-    return br * 0.8f +
-            0.2f;
+        return br * 0.8f + 0.2f;
     }
 
     Vec3* Level::getSkyColor(std::shared_ptr<Entity> source, float a) {
@@ -1956,16 +1952,20 @@ float Level::getSkyDarken(float a) {
             if (f > 1) f = 1;
             f = f * 0.45f;
             r = r * (1 - f) + 0.8f * f;
-            g = g * (1 - f) + 0.8f/*
-     * 4J-PB removed line below - notch committed 1.6.6 with the incorrect
-     * getTimeOfDay and changed it before releasing (without
-     * re-committing)... that should be the only difference // jeb
-     *//* if (this != NULL) return 0.5f; */// 4J Added if so we can override timeOfDay without changing the time that
-// affects ticking of things
+            g = g * (1 - f) +
+                0.8f                                  /*
+                                                       * 4J-PB removed line below - notch committed 1.6.6 with
+                                                       * the incorrect                                  getTimeOfDay and changed it before
+                                                       * releasing (without                                  re-committing)... that should be the
+                                                       * only difference // jeb
+                                                       */
+                /* if (this != NULL) return 0.5f; */  // 4J Added if so we can
+                                                      // override timeOfDay
+                                                      // without changing the
+                                                      // time that
+                // affects ticking of things
 
-    
-    
-    return dimension->getTimeOfDay(levelData->getDayTime(), a);
+                return dimension->getTimeOfDay(levelData->getDayTime(), a);
             ;
         }
 
@@ -2026,109 +2026,108 @@ float Level::getSkyDarken(float a) {
         }
 
         Vec3* Level::getFogColor(
-            float
-                a) {  // 4J - optimisation brought forward from 1.8.2 - used to
-                      // do fullr(td,// calculation here but result is now
-                      // cached in
-                      // LevelChunk
+            float a) {  // 4J - optimisation brought forward from 1.8.2 - used
+                        // to do fullr(td,// calculation here but result is now
+                        // cached in
+                        // LevelChunk
             // 4J added
     return getChunkAt(x, z)->getTopRainBlock(x & 15, z // 4J added
 bool Level::biomeHasRain(int x, int z) {
-                                                                                return getChunkAt(
-                                                                                           x,
-                                                                                           z)
-                                                                                    ->biomeHasRain(
-                                                                                        x & 15,
-                                                                                        z & 15);
+                                                                                    return getChunkAt(
+                                                                                               x,
+                                                                                               z)
+                                                                                        ->biomeHasRain(
+                                                                                            x & 15,
+                                                                                            z & 15);
 }
 
 
 bool Level::biomeHasSnow(int x, int z) {
-                                                                                return getChunkAt(
-                                                                                           x,
-                                                                                           z)
-                                                                                    ->biomeHasSnow(
-                                                                                        x & 15,
-                                                                                        z & 15);
+                                                                                    return getChunkAt(
+                                                                                               x,
+                                                                                               z)
+                                                                                        ->biomeHasSnow(
+                                                                                            x & 15,
+                                                                                            z & 15);
 }
 
 int Level::getTopSolidBlock(int x, int z) {
-                                                                                LevelChunk* levelChunk =
-                                                                                    getChunkAt(
-                                                                                        x,
-                                                                                        z);
+                                                                                    LevelChunk* levelChunk =
+                                                                                        getChunkAt(
+                                                                                            x,
+                                                                                            z);
 
-                                                                                int y =
-                                                                                    levelChunk
-                                                                                        ->getHighestSectionPosition() +
-                                                                                    15;
-
-                                                                                x &=
-                                                                                    15;
-                                                                                z &=
-                                                                                    15;
-
-                                                                                while (
-                                                                                    y >
-                                                                                    0) {
-                                                                                    int t =
+                                                                                    int y =
                                                                                         levelChunk
-                                                                                            ->getTile(
-                                                                                                x,
-                                                                                                y,
-                                                                                                z);
-                                                                                    if (t ==
-                                                                                            0 ||
-                                                                                        !(Tile::tiles[t]
-                                                                                              ->material
-                                                                                              ->blocksMotion()) ||
-                                                                                        Tile::tiles[t]
-                                                                                                ->material ==
-                                                                                            Material::
-                                                                                                leaves) {
-                                                                                        y--;
-                                                                                    } else {
-                                                                                        return y +
-                                                                                               1;
+                                                                                            ->getHighestSectionPosition() +
+                                                                                        15;
+
+                                                                                    x &=
+                                                                                        15;
+                                                                                    z &=
+                                                                                        15;
+
+                                                                                    while (
+                                                                                        y >
+                                                                                        0) {
+                                                                                        int t =
+                                                                                            levelChunk
+                                                                                                ->getTile(
+                                                                                                    x,
+                                                                                                    y,
+                                                                                                    z);
+                                                                                        if (t ==
+                                                                                                0 ||
+                                                                                            !(Tile::tiles[t]
+                                                                                                  ->material
+                                                                                                  ->blocksMotion()) ||
+                                                                                            Tile::tiles[t]
+                                                                                                    ->material ==
+                                                                                                Material::
+                                                                                                    leaves) {
+                                                                                            y--;
+                                                                                        } else {
+                                                                                            return y +
+                                                                                                   1;
+                                                                                        }
                                                                                     }
-                                                                                }
-                                                                                return -1;
+                                                                                    return -1;
 }
 
 int Level::getLightDepth(int x, int z) {
-                                                                                return getChunkAt(
-                                                                                           x,
-                                                                                           z)
-                                                                                    ->getHeightmap(
-                                                                                        x & 15,
-                                                                                        z & 15);
+                                                                                    return getChunkAt(
+                                                                                               x,
+                                                                                               z)
+                                                                                        ->getHeightmap(
+                                                                                            x & 15,
+                                                                                            z & 15);
 }
 
 float Level::getStarBrightness(float a) {
-                                                                                float td =
-                                                                                    getTimeOfDay(
-                                                                                        a);
+                                                                                    float td =
+                                                                                        getTimeOfDay(
+                                                                                            a);
 
-                                                                                float br =
-                                                                                    1 -
-                                                                                    (Mth::cos(
-                                                                                         td *
-                                                                                         PI *
-                                                                                         2) *
-                                                                                         2 +
-                                                                                     0.25f);
-                                                                                if (br <
-                                                                                    0.0f)
-                                                                                    br =
-                                                                                        0.0f;
-                                                                                if (br >
-                                                                                    1.0f)
-                                                                                    br =
-                                                                                        1.0f;
+                                                                                    float br =
+                                                                                        1 -
+                                                                                        (Mth::cos(
+                                                                                             td *
+                                                                                             PI *
+                                                                                             2) *
+                                                                                             2 +
+                                                                                         0.25f);
+                                                                                    if (br <
+                                                                                        0.0f)
+                                                                                        br =
+                                                                                            0.0f;
+                                                                                    if (br >
+                                                                                        1.0f)
+                                                                                        br =
+                                                                                            1.0f;
 
-                                                                                return br *
-                                                                                       br *
-                                                                                       0.5f;
+                                                                                    return br *
+                                                                                           br *
+                                                                                           0.5f;
 }
 
 void Level::addToTickNextTick(int x, int y, int z, int tileId, int tickDelay) {}
@@ -2140,143 +2139,144 @@ void Level::forceAddTileTick(int x, int y, int z, int tileId, int tickDelay,
                              int prioTilt) {}
 
 void Level::tickEntities() {
-                                                                                std::vector<
-                                                                                    std::shared_ptr<
-                                                                                        Entity> >::iterator
-                                                                                    itGE =
-                                                                                        globalEntities
-                                                                                            .begin();
-                                                                                while (
-                                                                                    itGE !=
-                                                                                    globalEntities
-                                                                                        .end()) {
-                                                                                    std::shared_ptr<
-                                                                                        Entity>
-                                                                                        e = *itGE;
-                                                                                    e->tickCount++;
-                                                                                    e->tick();
-                                                                                    if (e->removed) {
+                                                                                    std::vector<
+                                                                                        std::shared_ptr<
+                                                                                            Entity> >::iterator
                                                                                         itGE =
                                                                                             globalEntities
-                                                                                                .erase(
-                                                                                                    itGE);
-                                                                                    } else {
-                                                                                        itGE++;
-                                                                                    }
-                                                                                }
-
-                                                                                EnterCriticalSection(
-                                                                                    &m_entitiesCS);
-
-                                                                                for (
-                                                                                    AUTO_VAR(
-                                                                                        it,
-                                                                                        entities
-                                                                                            .begin());
-                                                                                    it !=
-                                                                                    entities
-                                                                                        .end();) {
-                                                                                    bool found =
-                                                                                        false;
-                                                                                    for (
-                                                                                        AUTO_VAR(
-                                                                                            it2,
-                                                                                            entitiesToRemove
-                                                                                                .begin());
-                                                                                        it2 !=
-                                                                                        entitiesToRemove
-                                                                                            .end();
-                                                                                        it2++) {
-                                                                                        if ((*it) ==
-                                                                                            (*it2)) {
-                                                                                            found =
-                                                                                                true;
-                                                                                            break;
-                                                                                        }
-                                                                                    }
-                                                                                    if (found) {
-                                                                                        it =
-                                                                                            entities
-                                                                                                .erase(
-                                                                                                    it);
-                                                                                    } else {
-                                                                                        it++;
-                                                                                    }
-                                                                                }
-                                                                                LeaveCriticalSection(
-                                                                                    &m_entitiesCS);
-
-                                                                                AUTO_VAR(
-                                                                                    itETR  // entitiesToRemove.at(j);));
-                                                                                        for (
-                                                                                            AUTO_VAR(
-                                                                                                it,
-                                                                                                entitiesToRemove
-                                                                                                    .begin());
-                                                                                            it !=
-                                                                                            itETREnd;
-                                                                                            it++) {
-                                                                                            std::shared_ptr<
-                                                                                                Entity>
-                                                                                                e = *it;
-                                                                                            
-        int xc = e->xChunk;
-                                                                                            int zc =
-                                                                                                e->zChunk;
-                                                                                            if (e->inChunk &&
-                                                                                                hasChunk(
-                                                                                                    xc,
-                                                                                                    zc)) {
-                                                                                                getChunk(
-                                                                                                    xc,
-                                                                                                    zc)
-                                                                                                    ->removeEntity(
-                                                                                                        e);
-                                                                                            }
-                                                                                        }
-
-                                                                                        i  // TREnd = entitiesToRemove.end();
-                                                                                        // for (int i = 0; i < entities.size(); i++) it !=/* 4J Jev, using an iterator causes problems here as
-                                                                                        *
-                                                                                        the vector is modified from
-                                                                                                inside this loop.*
-                                                                                        /
-
-    
-    EnterCriticalSection(&m_entitiesCS);
-
-                                                                                    for (
-                                                                                        unsigned int
-                                                                                            i = 0;
-                                                                                        i <
-                                                                                        entities
-                                                                                            .size();) {
+                                                                                                .begin();
+                                                                                    while (
+                                                                                        itGE !=
+                                                                                        globalEntities
+                                                                                            .end()) {
                                                                                         std::shared_ptr<
                                                                                             Entity>
-                                                                                            e = entities
-                                                                                                    .at(i);
+                                                                                            e = *itGE;
+                                                                                        e->tickCount++;
+                                                                                        e->tick();
+                                                                                        if (e->removed) {
+                                                                                            itGE =
+                                                                                                globalEntities
+                                                                                                    .erase(
+                                                                                                        itGE);
+                                                                                        } else {
+                                                                                            itGE++;
+                                                                                        }
+                                                                                    }
 
-                                                                                        if (e->riding !=
-                                                                                            NULL) {
-                                                                                            if (e->riding
-                                                                                                    ->removed ||
-                                                                                                e->riding
-                                                                                                        ->rider
-                                                                                                        .lock() !=
-                                                                                                    e) {
-                                                                                                e->riding
-                                                                                                    ->rider =
-                                                                                                    std::weak_ptr<
-                                                                                                        Entity>();
-#ifndef _FINAL_BUILDing = nullptr;
-                                                                                            } else {
-                                                                                                i++;
-                                                                                                continue;
+                                                                                    EnterCriticalSection(
+                                                                                        &m_entitiesCS);
+
+                                                                                    for (
+                                                                                        AUTO_VAR(
+                                                                                            it,
+                                                                                            entities
+                                                                                                .begin());
+                                                                                        it !=
+                                                                                        entities
+                                                                                            .end();) {
+                                                                                        bool found =
+                                                                                            false;
+                                                                                        for (
+                                                                                            AUTO_VAR(
+                                                                                                it2,
+                                                                                                entitiesToRemove
+                                                                                                    .begin());
+                                                                                            it2 !=
+                                                                                            entitiesToRemove
+                                                                                                .end();
+                                                                                            it2++) {
+                                                                                            if ((*it) ==
+                                                                                                (*it2)) {
+                                                                                                found =
+                                                                                                    true;
+                                                                                                break;
                                                                                             }
                                                                                         }
+                                                                                        if (found) {
+                                                                                            it =
+                                                                                                entities
+                                                                                                    .erase(
+                                                                                                        it);
+                                                                                        } else {
+                                                                                            it++;
+                                                                                        }
+                                                                                    }
+                                                                                    LeaveCriticalSection(
+                                                                                        &m_entitiesCS);
 
-                                                                                        if (!e->removed) {
-                                                                                            #endif if (
+                                                                                    AUTO_VAR(
+                                                                                        itETR  // entitiesToRemove.at(j);));
+                                                                                            for (
+                                                                                                AUTO_VAR(
+                                                                                                    it,
+                                                                                                    entitiesToRemove
+                                                                                                        .begin());
+                                                                                                it !=
+                                                                                                itETREnd;
+                                                                                                it++) {
+                                                                                                std::shared_ptr<
+                                                                                                    Entity>
+                                                                                                    e = *it;
+
+                                                                                                int xc =
+                                                                                                    e->xChunk;
+                                                                                                int zc =
+                                                                                                    e->zChunk;
+                                                                                                if (e->inChunk &&
+                                                                                                    hasChunk(
+                                                                                                        xc,
+                                                                                                        zc)) {
+                                                                                                    getChunk(
+                                                                                                        xc,
+                                                                                                        zc)
+                                                                                                        ->removeEntity(
+                                                                                                            e);
+                                                                                                }
+                                                                                            }
+
+                                                                                            i  // TREnd = entitiesToRemove.end();
+                                                                                            // for (int i = 0; i < entities.size(); i++) it !=/* 4J Jev, using an iterator causes problems here as
+                                                                                            *
+                                                                                            the vector is modified from
+                                                                                                    inside this loop.*
+                                                                                            /
+
+                                                                                            EnterCriticalSection(
+                                                                                                &m_entitiesCS);
+
+                                                                                        for (
+                                                                                            unsigned int
+                                                                                                i = 0;
+                                                                                            i <
+                                                                                            entities
+                                                                                                .size();) {
+                                                                                            std::shared_ptr<
+                                                                                                Entity>
+                                                                                                e = entities
+                                                                                                        .at(i);
+
+                                                                                            if (e->riding !=
+                                                                                                NULL) {
+                                                                                                if (e->riding
+                                                                                                        ->removed ||
+                                                                                                    e->riding
+                                                                                                            ->rider
+                                                                                                            .lock() !=
+                                                                                                        e) {
+                                                                                                    e->riding
+                                                                                                        ->rider =
+                                                                                                        std::weak_ptr<
+                                                                                                            Entity>();
+#ifndef _FINAL_BUILDing = nullptr;
+                                                                                                } else {
+                                                                                                    i++;
+                                                                                                    continue;
+                                                                                                }
+                                                                                            }
+
+                                                                                            if (!e->removed) {
+#endif if (
                                                                                                 !(app.DebugSettingsOn() &&
                                                                                                   app.GetMobsDontTickEnabled() &&
                                                                                                   e->instanceof(
@@ -2285,231 +2285,259 @@ void Level::tickEntities() {
                                                                                                       eTYPE_PLAYER)))
 
             {
-                                                                                                tick(
-                                                                                                    e);
-                                                                                            }
-                                                                                        }
-
-                                                                                        if (e->removed) {
-                                                                                            int xc =
-                                                                                                e->xChunk;
-                                                                                            // entities.remove(i--);nk;
-                                                                                            // itE = entities.erase( itE );c, zc)) {
-                                                                                            // 4J Find the entity again before deleting, as things might have        // moved in the entity array eg from the explosion created by tnt            
-                                                                                            
-            AUTO_VAR(it, std::find(entities.begin(), entities.end(), e));
-                                                                                            if (it !=
-                                                                                                entities
-                                                                                                    .end()) {
-                                                                                                entities
-                                                                                                    .erase(
-                                                                                                        it);
-                                                                                            }
-
-                                                                                            entityRemoved(
-                                                                                                e);
-                                                                                        } else {
-                                                                                            i++;
-                                                                                        }
-                                                                                    } LeaveCriticalSection(&m_entitiesCS);
-
-                                                                                    EnterCriticalSection(
-                                                                                        &m_tileEntityListCS);
-
-                                                                                    u  // tilevector<shared_ptr<Entity> >.at(i);_VAR(it, tileEntityList.begin()); it != tileEntityList.end();) {
-                                                                                        std::shared_ptr<
-                                                                                            TileEntity>
-                                                                                            t #ifdef _LARGE_WORLDS  
-        if (!te->isRemoved() && te->hasLevel()) {
-                                                                                                if (hasChunkAt(
-                                                                                                        te -
-#endif
-                                                                                                                ->y,
-                                                                                                        te->z)) {
-                                                                                                    
-                LevelChunk* lc = getChunk(te->x >> 4, te->z >> 4);
-                                                                                                    if (!isClientSide ||
-                                                                                                        !lc->isUnloaded())
-                                                                                                        
-                {
-                                                                                                            te->tick();
-                                                                                                        }
+                                                                                                    tick(
+                                                                                                        e);
                                                                                                 }
                                                                                             }
 
-                                                                                    if (te->isRemoved()) {
-                                                                                        it =
-                                                                                            tileEntityList
-                                                                                                .erase(
-                                                                                                    it);
-                                                                                        if (hasChunk(
-                                                                                                te->x >>
-                                                                                                    4,
-                                                                                                te->z >>
-                                                                                                    4)) {
-                                                                                            LevelChunk* lc = getChunk(
-                                                                                                te->x >>
-                                                                                                    4,
-                                                                                                te->z >>
-                                                                                                    4);
-                                                                                            if (lc !=
-                                                                                                NULL)
-                                                                                            // 4J-PB - Stuart  - check this is correct here te->z & 15);
-                                                                                        }
-                                                                                    } else {
-                                                                                        // tileEntityList.removeAll(tileEntitiesToUnload);es = false;
+                                                                                            if (e->removed) {
+                                                                                                int xc =
+                                                                                                    e->xChunk;
+                                                                                                // entities.remove(i--);nk;
+                                                                                                // itE = entities.erase( itE );c, zc)) {
+                                                                                                // 4J Find the entity again before deleting, as things might have        // moved in the entity array eg from the explosion created by tnt
 
-                                                                                        
-
-    if (!tileEntitiesToUnload.empty()) {
-                                                                                            
-
-        for (AUTO_VAR(it, tileEntityList.begin());
-             it != tileEntityList.end();) {
-                                                                                                bool found =
-                                                                                                    false;
-                                                                                                for (
-                                                                                                    AUTO_VAR(
-                                                                                                        it2,
-                                                                                                        tileEntitiesToUnload
-                                                                                                            .begin());
-                                                                                                    it2 !=
-                                                                                                    tileEntitiesToUnload
-                                                                                                        .end();
-                                                                                                    it2++) {
-                                                                                                    if ((*it) ==
-                                                                                                        (*it2)) {
-                                                                                                        found =
-                                                                                                            true;
-                                                                                                        break;
-                                                                                                    }
-                                                                                                }
-                                                                                                if (found) {
-                                                                                                    if (isClientSide) {
-                                                                                                        __debugbreak();
-                                                                                                    }
-                                                                                                    it =
-                                                                                                        tileEntityList
-                                                                                                            .erase(
-                                                                                                                it);
-                                                                                                } else {
-                                                                                                    it++;
-                                                                                                }
-                                                                                            }
-                                                                                            tileEntitiesToUnload
-                                                                                                .clear();
-                                                                                        }
-
-                                                                                        if (!pendingTileEntities
-                                                                                                 .empty()) {
-                                                                                            for (
                                                                                                 AUTO_VAR(
                                                                                                     it,
-                                                                                                    pendingTileEntities
-                                                                                                        .begin());
-                                                                                                it !=
-                                                                                                pendingTileEntities
-                                                                                                    .end();
-                                                                                                it++) {
-                                                                                                std::shared_ptr<
-                                                                                                    TileEntity>
-                                                                                                    e = *it;
-                                                                                                if (!e->isRemoved()) {
-                                                                                                    if (std::find(
-                                                                                                            tileEntityList
-                                                                                                                .begin(),
-                                                                                                            tileEntityList
-                                                                                                                .end(),
-                                                                                                            e) ==
-                                                                                                        tileEntityList
-                                                                                                            .end()) {
-                                                                                                        tileEntityList
-                                                                                                            .push_back(
-                                                                                                                e);
-                                                                                                    }
-                                                                                                    if (hasChunk(
-                                                                                                            e->x >>
-                                                                                                                4,
-                                                                                                            e->z >>
-                                                                                                                4)) {
-                                                                                                        LevelChunk* lc = getChunk(
-                                                                                                            e->x >>
-                                                                                                                4,
-                                                                                                            e->z >>
-                                                                                                                4);
-                                                                                                        if (lc !=
-                                                                                                            NULL)
-                                                                                                            lc->setTileEntity(
-                                                                                                                e->x &
-                                                                                                                    15,
-                                                                                                                e->y,
-                                                                                                                e->z &
-                                                                                                                    15,
-                                                                                                                e);
-                                                                                                    }
-
-                                                                                                    sendTileUpdated(
-                                                                                                        e->x,
-                                                                                                        e->y,
-                                                                                                        e->z);
+                                                                                                    std::find(
+                                                                                                        entities
+                                                                                                            .begin(),
+                                                                                                        entities
+                                                                                                            .end(),
+                                                                                                        e));
+                                                                                                if (it !=
+                                                                                                    entities
+                                                                                                        .end()) {
+                                                                                                    entities
+                                                                                                        .erase(
+                                                                                                            it);
                                                                                                 }
-                                                                                            }
-                                                                                            pendingTileEntities
-                                                                                                .clear();
-                                                                                        }
-                                                                                        LeaveCriticalSection(
-                                                                                            &m_tileEntityListCS);
-                                                                                    }
 
-                                                                                    void Level::addAllPendingTileEntities(
-                                                                                        std::vector<
-                                                                                            std::shared_ptr<
-                                                                                                TileEntity> > &
-                                                                                        entities) {
+                                                                                                entityRemoved(
+                                                                                                    e);
+                                                                                            } else {
+                                                                                                i++;
+                                                                                            }
+                                                                                        } LeaveCriticalSection(&m_entitiesCS);
+
                                                                                         EnterCriticalSection(
                                                                                             &m_tileEntityListCS);
-                                                                                        if (updatingTileEntities) {
-                                                                                            for (
-                                                                                                AUTO_VAR(
-                                                                                                    it,
-                                                                                                    entities
-                                                                                                        .begin());
-                                                                                                it !=
-                                                                                                entities
-                                                                                                    .end();
-                                                                                                it++) {
-                                                                                                pendingTileEntities
-                                                                                                    .push_back(
-                                                                                                        *it);
+
+                                                                                        u  // tilevector<shared_ptr<Entity> >.at(i);_VAR(it, tileEntityList.begin()); it != tileEntityList.end();) {
+                                                                                            std::shared_ptr<
+                                                                                                TileEntity>
+                                                                                                t #ifdef _LARGE_WORLDS if (
+                                                                                                    !te->isRemoved() &&
+                                                                                                    te->hasLevel()) {
+                                                                                                    if (hasChunkAt(
+                                                                                                            te -
+#endif
+                                                                                                                    ->y,
+                                                                                                            te->z)) {
+                                                                                                        LevelChunk* lc = getChunk(
+                                                                                                            te->x >>
+                                                                                                                4,
+                                                                                                            te->z >>
+                                                                                                                4);
+                                                                                                        if (!isClientSide ||
+                                                                                                            !lc->isUnloaded())
+
+                                                                                                        {
+                                                                                                            te->tick();
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+
+                                                                                        if (te->isRemoved()) {
+                                                                                            it =
+                                                                                                tileEntityList
+                                                                                                    .erase(
+                                                                                                        it);
+                                                                                            if (hasChunk(
+                                                                                                    te->x >>
+                                                                                                        4,
+                                                                                                    te->z >>
+                                                                                                        4)) {
+                                                                                                LevelChunk* lc = getChunk(
+                                                                                                    te->x >>
+                                                                                                        4,
+                                                                                                    te->z >>
+                                                                                                        4);
+                                                                                                if (lc !=
+                                                                                                    NULL)
+                                                                                                // 4J-PB - Stuart  - check this is correct here te->z & 15);
                                                                                             }
                                                                                         } else {
-                                                                                            for (
-                                                                                                AUTO_VAR(
-                                                                                                    it,
-                                                                                                    entities
-                                                                                                        .begin());
-                                                                                                it !=
-                                                                                                entities
-                                                                                                    .end();
-                                                                                                it++) {
-                                                                                                tileEntityList
-                                                                                                    .push_back(
-                                                                                                        *it);
+                                                                                            // tileEntityList.removeAll(tileEntitiesToUnload);es = false;
+
+                                                                                            if (!tileEntitiesToUnload
+                                                                                                     .empty()) {
+                                                                                                for (
+                                                                                                    AUTO_VAR(
+                                                                                                        it,
+                                                                                                        tileEntityList
+                                                                                                            .begin());
+                                                                                                    it !=
+                                                                                                    tileEntityList
+                                                                                                        .end();) {
+                                                                                                    bool found =
+                                                                                                        false;
+                                                                                                    for (
+                                                                                                        AUTO_VAR(
+                                                                                                            it2,
+                                                                                                            tileEntitiesToUnload
+                                                                                                                .begin());
+                                                                                                        it2 !=
+                                                                                                        tileEntitiesToUnload
+                                                                                                            .end();
+                                                                                                        it2++) {
+                                                                                                        if ((*it) ==
+                                                                                                            (*it2)) {
+                                                                                                            found =
+                                                                                                                true;
+                                                                                                            break;
+                                                                                                        }
+                                                                                                    }
+                                                                                                    if (found) {
+                                                                                                        if (isClientSide) {
+                                                                                                            __debugbreak();
+                                                                                                        }
+                                                                                                        it =
+                                                                                                            tileEntityList
+                                                                                                                .erase(
+                                                                                                                    it);
+                                                                                                    } else {
+                                                                                                        it++;
+                                                                                                    }
+                                                                                                }
+                                                                                                tileEntitiesToUnload
+                                                                                                    .clear();
                                                                                             }
+
+                                                                                            if (!pendingTileEntities
+                                                                                                     .empty()) {
+                                                                                                for (
+                                                                                                    AUTO_VAR(
+                                                                                                        it,
+                                                                                                        pendingTileEntities
+                                                                                                            .begin());
+                                                                                                    it !=
+                                                                                                    pendingTileEntities
+                                                                                                        .end();
+                                                                                                    it++) {
+                                                                                                    std::shared_ptr<
+                                                                                                        TileEntity>
+                                                                                                        e = *it;
+                                                                                                    if (!e->isRemoved()) {
+                                                                                                        if (std::find(
+                                                                                                                tileEntityList
+                                                                                                                    .begin(),
+                                                                                                                tileEntityList
+                                                                                                                    .end(),
+                                                                                                                e) ==
+                                                                                                            tileEntityList
+                                                                                                                .end()) {
+                                                                                                            tileEntityList
+                                                                                                                .push_back(
+                                                                                                                    e);
+                                                                                                        }
+                                                                                                        if (hasChunk(
+                                                                                                                e->x >>
+                                                                                                                    4,
+                                                                                                                e->z >>
+                                                                                                                    4)) {
+                                                                                                            LevelChunk* lc = getChunk(
+                                                                                                                e->x >>
+                                                                                                                    4,
+                                                                                                                e->z >>
+                                                                                                                    4);
+                                                                                                            if (lc !=
+                                                                                                                NULL)
+                                                                                                                lc->setTileEntity(
+                                                                                                                    e->x &
+                                                                                                                        15,
+                                                                                                                    e->y,
+                                                                                                                    e->z &
+                                                                                                                        15,
+                                                                                                                    e);
+                                                                                                        }
+
+                                                                                                        sendTileUpdated(
+                                                                                                            e->x,
+                                                                                                            e->y,
+                                                                                                            e->z);
+                                                                                                    }
+                                                                                                }
+                                                                                                pendingTileEntities
+                                                                                                    .clear();
+                                                                                            }
+                                                                                            LeaveCriticalSection(
+                                                                                                &m_tileEntityListCS);
                                                                                         }
-                                                                                        LeaveCriticalSection(
-                                                                                            &m_tileEntityListCS);
-                                                                                    }
 
-                                                                                    void Level::
-                                                                                        tick #ifdef __PSVITA__Entit  // AP - make sure the dragon ticks all the time, even when there aren't anyactua// chunks.nt xc = Mth::floor(e->x);
-                                                                                    int zc = Mth::floor(
-                                                                                        e->z);
-                                                                                    int r = 32;
+                                                                                        void Level::addAllPendingTileEntities(
+                                                                                            std::vector<
+                                                                                                std::shared_ptr<
+                                                                                                    TileEntity> > &
+                                                                                            entities) {
+                                                                                            EnterCriticalSection(
+                                                                                                &m_tileEntityListCS);
+                                                                                            if (updatingTileEntities) {
+                                                                                                for (
+                                                                                                    AUTO_VAR(
+                                                                                                        it,
+                                                                                                        entities
+                                                                                                            .begin());
+                                                                                                    it !=
+                                                                                                    entities
+                                                                                                        .end();
+                                                                                                    it++) {
+                                                                                                    pendingTileEntities
+                                                                                                        .push_back(
+                                                                                                            *it);
+                                                                                                }
+                                                                                            } else {
+                                                                                                for (
+                                                                                                    AUTO_VAR(
+                                                                                                        it,
+                                                                                                        entities
+                                                                                                            .begin());
+                                                                                                    it !=
+                                                                                                    entities
+                                                                                                        .end();
+                                                                                                    it++) {
+                                                                                                    tileEntityList
+                                                                                                        .push_back(
+                                                                                                            *it);
+                                                                                                }
+                                                                                            }
+                                                                                            LeaveCriticalSection(
+                                                                                                &m_tileEntityListCS);
+                                                                                        }
 
-    #else 
-    
-    if #endifal && e->GetType() != eTYPE_ENDERDRAGON && !hasChunksAt(xc - r, 0, zc - r, xc + r, 0, zc + r))
+                                                                                        void Level::
+                                                                                            tick #ifdef __PSVITA__Entit  // AP - make sure the dragon ticks all the time, even when there aren't anyactua// chunks.nt xc = Mth::floor(e->x);
+                                                                                        int zc = Mth::floor(
+                                                                                            e->z);
+                                                                                        int r =
+                                                                                            32;
+
+#else
+
+                                                                                        if #endifal &&
+                                                                                        e->GetType() !=
+                                                                                            eTYPE_ENDERDRAGON &&
+                                                                                        !hasChunksAt(
+                                                                                            xc -
+                                                                                                r,
+                                                                                            0,
+                                                                                            zc -
+                                                                                                r,
+                                                                                            xc +
+                                                                                                r,
+                                                                                            0,
+                                                                                            zc +
+                                                                                                r))
 
     if (actual && !hasChunksA
 #ifdef __PSVITA__r, xc  // AP - make sure the dragon ticks all the time, even
@@ -2517,20 +2545,20 @@ void Level::tickEntities() {
     e->zOld = e->z;
     e->yRotO = e->yRot;
     e->xRotO = e->xRot#else
-    #endif
+#endif
     
     if (actual && (e->GetType() == eTYPE_ENDERDRAGON || e->inChunk))
 
    // SANTITY!!&& e->inChunk)
 
     {
-                                                                                    e->tickCount++;
-                                                                                    if (e->riding !=
-                                                                                        NULL) {
-                                                                                        e->rideTick();
-                                                                                    } else {
-                                                                                        e->tick();
-                                                                                    }
+                                                                                        e->tickCount++;
+                                                                                        if (e->riding !=
+                                                                                            NULL) {
+                                                                                            e->rideTick();
+                                                                                        } else {
+                                                                                            e->tick();
+                                                                                        }
     }
 
     
@@ -2548,640 +2576,642 @@ void Level::tickEntities() {
 
     if (!e->inChunk ||
         (e->xChunk != xcn || e->yChunk != ycn || e->zChunk != zcn)) {
-                                                                                    if (e->inChunk &&
-                                                                                        hasChunk(
-                                                                                            e->xChunk,
-                                                                                            e->zChunk)) {
-                                                                                        getChunk(
-                                                                                            e->xChunk,
-                                                                                            e->zChunk)
-                                                                                            ->removeEntity(
-                                                                                                e,
-                                                                                                e->yChunk);
-                                                                                    }
+                                                                                        if (e->inChunk &&
+                                                                                            hasChunk(
+                                                                                                e->xChunk,
+                                                                                                e->zChunk)) {
+                                                                                            getChunk(
+                                                                                                e->xChunk,
+                                                                                                e->zChunk)
+                                                                                                ->removeEntity(
+                                                                                                    e,
+                                                                                                    e->yChunk);
+                                                                                        }
 
-                                                                                    if (hasChunk(
-                                                                                            xcn,
-                                                                                            zcn)) {
-                                                                                        // e.remove();nChunk = true;
-                                                                                        MemSect(
-                                                                                            39);
-                                                                                        getChunk(
-                                                                                            xcn,
-                                                                                            zcn)
-                                                                                            ->addEntity(
-                                                                                                e);
-                                                                                        MemSect(
-                                                                                            0);
-                                                                                    } else {
-                                                                                        e->inChunk =
-                                                                                            false;
-                                                                                        
-        
-                                                                                    
-                                                                                    }
+                                                                                        if (hasChunk(
+                                                                                                xcn,
+                                                                                                zcn)) {
+                                                                                            // e.remove();nChunk = true;
+                                                                                            MemSect(
+                                                                                                39);
+                                                                                            getChunk(
+                                                                                                xcn,
+                                                                                                zcn)
+                                                                                                ->addEntity(
+                                                                                                    e);
+                                                                                            MemSect(
+                                                                                                0);
+                                                                                        } else {
+                                                                                            e->inChunk =
+                                                                                                false;
+                                                                                        }
     }
 
     if (actual && e->inChunk) {
-                                                                                    if (e->rider
-                                                                                            .lock() !=
-                                                                                        NULL) {
                                                                                         if (e->rider
-                                                                                                .lock()
-                                                                                                ->removed ||
-                                                                                            e->rider.lock()
-                                                                                                    ->riding !=
-                                                                                                e) {
-                                                                                            e->rider
-                                                                                                .lock()
-                                                                                                ->riding =
-                                                                                                nullptr;
-                                                                                            e->rider =
-                                                                                                std::weak_ptr<
-                                                                                                    Entity>();
-                                                                                        } else {
-                                                                                            tick(
+                                                                                                .lock() !=
+                                                                                            NULL) {
+                                                                                            if (e->rider
+                                                                                                    .lock()
+                                                                                                    ->removed ||
+                                                                                                e->rider.lock()
+                                                                                                        ->riding !=
+                                                                                                    e) {
                                                                                                 e->rider
-                                                                                                    .lock());
+                                                                                                    .lock()
+                                                                                                    ->riding =
+                                                                                                    nullptr;
+                                                                                                e->rider =
+                                                                                                    std::weak_ptr<
+                                                                                                        Entity>();
+                                                                                            } else {
+                                                                                                tick(
+                                                                                                    e->rider
+                                                                                                        .lock());
+                                                                                            }
                                                                                         }
-                                                                                    }
     }
 }
 
 bool Level::isUnobstructed(AABB* aabb) {
-                                                                                return isUnobstructed(
-                                                                                    aabb,
-                                                                                    nullptr); }
+                                                                                    return isUnobstructed(
+                                                                                        aabb,
+                                                                                        nullptr); }
 
 bool Level::isUnobstructed(AABB* aabb, std::shared_ptr<Entity> ignore) {
-                                                                                std::vector<
-                                                                                    std::shared_ptr<
-                                                                                        Entity> >*
-                                                                                    ents = getEntities(
-                                                                                        nullptr,
-                                                                                        aabb);
-                                                                                AUTO_VAR(
-                                                                                    itEnd,
-                                                                                    ents->end());
-                                                                                for (
+                                                                                    std::vector<
+                                                                                        std::shared_ptr<
+                                                                                            Entity> >*
+                                                                                        ents = getEntities(
+                                                                                            nullptr,
+                                                                                            aabb);
                                                                                     AUTO_VAR(
-                                                                                        it,
-                                                                                        ents->begin());
-                                                                                    it !=
-                                                                                    itEnd;
-                                                                                    it++) {
-                                                                                    std::shared_ptr<
-                                                                                        Entity>
-                                                                                        e = *it;
-                                                                                    if (!e->removed &&
-                                                                                        e->blocksBuilding &&
-                                                                                        e !=
-                                                                                            ignore)
-                                                                                        return false;
-                                                                                }
-                                                                                return true;
+                                                                                        itEnd,
+                                                                                        ents->end());
+                                                                                    for (
+                                                                                        AUTO_VAR(
+                                                                                            it,
+                                                                                            ents->begin());
+                                                                                        it !=
+                                                                                        itEnd;
+                                                                                        it++) {
+                                                                                        std::shared_ptr<
+                                                                                            Entity>
+                                                                                            e = *it;
+                                                                                        if (!e->removed &&
+                                                                                            e->blocksBuilding &&
+                                                                                            e !=
+                                                                                                ignore)
+                                                                                            return false;
+                                                                                    }
+                                                                                    return true;
 }
 
 bool Level::containsAnyBlocks(AABB* box) {
-                                                                                int x0 = Mth::floor(
-                                                                                    box->x0);
-                                                                                int x1 = Mth::floor(
-                                                                                    box->x1 +
-                                                                                    1);
-                                                                                int y0 = Mth::floor(
-                                                                                    box->y0);
-                                                                                int y1 = Mth::floor(
-                                                                                    box->y1 +
-                                                                                    1);
-                                                                                int z0 = Mth::floor(
-                                                                                    box->z0);
-                                                                                int z1 = Mth::floor(
-                                                                                    box->z1 +
-                                                                                    1);
+                                                                                    int x0 = Mth::floor(
+                                                                                        box->x0);
+                                                                                    int x1 = Mth::floor(
+                                                                                        box->x1 +
+                                                                                        1);
+                                                                                    int y0 = Mth::floor(
+                                                                                        box->y0);
+                                                                                    int y1 = Mth::floor(
+                                                                                        box->y1 +
+                                                                                        1);
+                                                                                    int z0 = Mth::floor(
+                                                                                        box->z0);
+                                                                                    int z1 = Mth::floor(
+                                                                                        box->z1 +
+                                                                                        1);
 
-                                                                                if (box->x0 <
-                                                                                    0)
-                                                                                    x0--;
-                                                                                if (box->y0 <
-                                                                                    0)
-                                                                                    y0--;
-                                                                                if (box->z0 <
-                                                                                    0)
-                                                                                    z0--;
+                                                                                    if (box->x0 <
+                                                                                        0)
+                                                                                        x0--;
+                                                                                    if (box->y0 <
+                                                                                        0)
+                                                                                        y0--;
+                                                                                    if (box->z0 <
+                                                                                        0)
+                                                                                        z0--;
 
-                                                                                for (
-                                                                                    int x =
-                                                                                        x0;
-                                                                                    x <
-                                                                                    x1;
-                                                                                    x++)
                                                                                     for (
-                                                                                        int y =
-                                                                                            y0;
-                                                                                        y <
-                                                                                        y1;
-                                                                                        y++)
+                                                                                        int x =
+                                                                                            x0;
+                                                                                        x <
+                                                                                        x1;
+                                                                                        x++)
                                                                                         for (
-                                                                                            int z =
-                                                                                                z0;
-                                                                                            z <
-                                                                                            z1;
-                                                                                            z++) {
-                                                                                            Tile* tile = Tile::
-                                                                                                tiles[getTile(
-                                                                                                    x,
-                                                                                                    y,
-                                                                                                    z)];
-                                                                                            if (tile !=
-                                                                                                NULL) {
-                                                                                                return true;
+                                                                                            int y =
+                                                                                                y0;
+                                                                                            y <
+                                                                                            y1;
+                                                                                            y++)
+                                                                                            for (
+                                                                                                int z =
+                                                                                                    z0;
+                                                                                                z <
+                                                                                                z1;
+                                                                                                z++) {
+                                                                                                Tile* tile = Tile::
+                                                                                                    tiles[getTile(
+                                                                                                        x,
+                                                                                                        y,
+                                                                                                        z)];
+                                                                                                if (tile !=
+                                                                                                    NULL) {
+                                                                                                    return true;
+                                                                                                }
                                                                                             }
-                                                                                        }
-                                                                                return false;
+                                                                                    return false;
 }
 
 bool Level::containsAnyLiquid(AABB* box) {
-                                                                                int x0 = Mth::floor(
-                                                                                    box->x0);
-                                                                                int x1 = Mth::floor(
-                                                                                    box->x1 +
-                                                                                    1);
-                                                                                int y0 = Mth::floor(
-                                                                                    box->y0);
-                                                                                int y1 = Mth::floor(
-                                                                                    box->y1 +
-                                                                                    1);
-                                                                                int z0 = Mth::floor(
-                                                                                    box->z0);
-                                                                                int z1 = Mth::floor(
-                                                                                    box->z1 +
-                                                                                    1);
+                                                                                    int x0 = Mth::floor(
+                                                                                        box->x0);
+                                                                                    int x1 = Mth::floor(
+                                                                                        box->x1 +
+                                                                                        1);
+                                                                                    int y0 = Mth::floor(
+                                                                                        box->y0);
+                                                                                    int y1 = Mth::floor(
+                                                                                        box->y1 +
+                                                                                        1);
+                                                                                    int z0 = Mth::floor(
+                                                                                        box->z0);
+                                                                                    int z1 = Mth::floor(
+                                                                                        box->z1 +
+                                                                                        1);
 
-                                                                                if (box->x0 <
-                                                                                    0)
-                                                                                    x0--;
-                                                                                if (box->y0 <
-                                                                                    0)
-                                                                                    y0--;
-                                                                                if (box->z0 <
-                                                                                    0)
-                                                                                    z0--;
+                                                                                    if (box->x0 <
+                                                                                        0)
+                                                                                        x0--;
+                                                                                    if (box->y0 <
+                                                                                        0)
+                                                                                        y0--;
+                                                                                    if (box->z0 <
+                                                                                        0)
+                                                                                        z0--;
 
-                                                                                for (
-                                                                                    int x =
-                                                                                        x0;
-                                                                                    x <
-                                                                                    x1;
-                                                                                    x++)
                                                                                     for (
-                                                                                        int y =
-                                                                                            y0;
-                                                                                        y <
-                                                                                        y1;
-                                                                                        y++)
+                                                                                        int x =
+                                                                                            x0;
+                                                                                        x <
+                                                                                        x1;
+                                                                                        x++)
                                                                                         for (
-                                                                                            int z =
-                                                                                                z0;
-                                                                                            z <
-                                                                                            z1;
-                                                                                            z++) {
-                                                                                            // 4J - added this to be used during mob spawning, and it returns true ift// there's any liquid in the bounding box, or might be because we don't have a // loaded chunk that we'd need to determine whether it really did. The overall// aim is to not load or create any chunk we haven't already got, and be// cautious about placing the mob's.
-                                                                                            
+                                                                                            int y =
+                                                                                                y0;
+                                                                                            y <
+                                                                                            y1;
+                                                                                            y++)
+                                                                                            for (
+                                                                                                int z =
+                                                                                                    z0;
+                                                                                                z <
+                                                                                                z1;
+                                                                                                z++) {
+                                                                                                // 4J - added this to be used during mob spawning, and it returns true ift// there's any liquid in the bounding box, or might be because we don't have a // loaded chunk that we'd need to determine whether it really did. The overall// aim is to not load or create any chunk we haven't already got, and be// cautious about placing the mob's.
 
+                                                                                                bool
+                                                                                                Level::containsAnyLiquid_NoLoad(
+                                                                                                    AABB *
+                                                                                                    box) {
+                                                                                                    int x0 = Mth::floor(
+                                                                                                        box->x0);
+                                                                                                    int x1 = Mth::floor(
+                                                                                                        box->x1 +
+                                                                                                        1);
+                                                                                                    int y0 = Mth::floor(
+                                                                                                        box->y0);
+                                                                                                    int y1 = Mth::floor(
+                                                                                                        box->y1 +
+                                                                                                        1);
+                                                                                                    int z0 = Mth::floor(
+                                                                                                        box->z0);
+                                                                                                    int z1 = Mth::floor(
+                                                                                                        box->z1 +
+                                                                                                        1);
 
-bool Level::containsAnyLiquid_NoLoad(AABB * box) {
-                                                                                                int x0 = Mth::floor(
-                                                                                                    box->x0);
-                                                                                                int x1 = Mth::floor(
-                                                                                                    box->x1 +
-                                                                                                    1);
-                                                                                                int y0 = Mth::floor(
-                                                                                                    box->y0);
-                                                                                                int y1 = Mth::floor(
-                                                                                                    box->y1 +
-                                                                                                    1);
-                                                                                                int z0 = Mth::floor(
-                                                                                                    box->z0);
-                                                                                                int z1 = Mth::floor(
-                                                                                                    box->z1 +
-                                                                                                    1);
-
-                                                                                                if (box->x0 <
-                                                                                                    0)
-                                                                                                    x0--;
-                                                                                                if (box->y0 <
-                                                                                                    0)
-                                                                                                    y0--;
+                                                                                                    if (box->x0 <
+                                                                                                        0)
+                                                                                                        x0--;
+                                                                                                    if (box->y0 <
+                                                                                                        0)
+                                                                                                        y0--;
     if (box->z0// If we don't have it, it might be liquid...)
         for (int y = y0; y < y1; y++)
             for (int z = z0; z < z1; z++) {
-                                                                                                    if (!hasChunkAt(
-                                                                                                            x,
-                                                                                                            y,
-                                                                                                            z))
-                                                                                                        return true;
-                                                                                                    
-                Tile* tile = Tile::tiles[getTile(x, y, z)];
-                                                                                                    if (tile !=
-                                                                                                            NULL &&
-                                                                                                        tile->material
-                                                                                                            ->isLiquid()) {
-                                                                                                        return true;
-                                                                                                    }
+                                                                                                        if (!hasChunkAt(
+                                                                                                                x,
+                                                                                                                y,
+                                                                                                                z))
+                                                                                                            return true;
+
+                                                                                                        Tile* tile = Tile::
+                                                                                                            tiles[getTile(
+                                                                                                                x,
+                                                                                                                y,
+                                                                                                                z)];
+                                                                                                        if (tile !=
+                                                                                                                NULL &&
+                                                                                                            tile->material
+                                                                                                                ->isLiquid()) {
+                                                                                                            return true;
+                                                                                                        }
             }
     return false;
-                                                                                            }
+                                                                                                }
 
-                                                                                            bool
-                                                                                            Level::containsFireTile(
-                                                                                                AABB *
-                                                                                                box) {
-                                                                                                int x0 = Mth::floor(
-                                                                                                    box->x0);
-                                                                                                int x1 = Mth::floor(
-                                                                                                    box->x1 +
-                                                                                                    1);
-                                                                                                int y0 = Mth::floor(
-                                                                                                    box->y0);
-                                                                                                int y1 = Mth::floor(
-                                                                                                    box->y1 +
-                                                                                                    1);
-                                                                                                int z0 = Mth::floor(
-                                                                                                    box->z0);
-                                                                                                int z1 = Mth::floor(
-                                                                                                    box->z1 +
-                                                                                                    1);
+                                                                                                bool
+                                                                                                Level::containsFireTile(
+                                                                                                    AABB *
+                                                                                                    box) {
+                                                                                                    int x0 = Mth::floor(
+                                                                                                        box->x0);
+                                                                                                    int x1 = Mth::floor(
+                                                                                                        box->x1 +
+                                                                                                        1);
+                                                                                                    int y0 = Mth::floor(
+                                                                                                        box->y0);
+                                                                                                    int y1 = Mth::floor(
+                                                                                                        box->y1 +
+                                                                                                        1);
+                                                                                                    int z0 = Mth::floor(
+                                                                                                        box->z0);
+                                                                                                    int z1 = Mth::floor(
+                                                                                                        box->z1 +
+                                                                                                        1);
 
-                                                                                                if (hasChunksAt(
-                                                                                                        x0,
-                                                                                                        y0,
-                                                                                                        z0,
-                                                                                                        x1,
-                                                                                                        y1,
-                                                                                                        z1)) {
+                                                                                                    if (hasChunksAt(
+                                                                                                            x0,
+                                                                                                            y0,
+                                                                                                            z0,
+                                                                                                            x1,
+                                                                                                            y1,
+                                                                                                            z1)) {
+                                                                                                        for (
+                                                                                                            int x =
+                                                                                                                x0;
+                                                                                                            x <
+                                                                                                            x1;
+                                                                                                            x++)
+                                                                                                            for (
+                                                                                                                int y =
+                                                                                                                    y0;
+                                                                                                                y <
+                                                                                                                y1;
+                                                                                                                y++)
+                                                                                                                for (
+                                                                                                                    int z =
+                                                                                                                        z0;
+                                                                                                                    z <
+                                                                                                                    z1;
+                                                                                                                    z++) {
+                                                                                                                    int t = getTile(
+                                                                                                                        x,
+                                                                                                                        y,
+                                                                                                                        z);
+
+                                                                                                                    if (t ==
+                                                                                                                            Tile::
+                                                                                                                                fire_Id ||
+                                                                                                                        t ==
+                                                                                                                            Tile::
+                                                                                                                                lava_Id ||
+                                                                                                                        t ==
+                                                                                                                            Tile::
+                                                                                                                                calmLava_Id)
+                                                                                                                        return true;
+                                                                                                                }
+                                                                                                    }
+                                                                                                    return false;
+                                                                                                }
+
+                                                                                                bool
+                                                                                                Level::checkAndHandleWater(
+                                                                                                    AABB *
+                                                                                                        box,
+                                                                                                    Material *
+                                                                                                        material,
+                                                                                                    std::shared_ptr<
+                                                                                                        Entity>
+                                                                                                        e) {
+                                                                                                    int x0 = Mth::floor(
+                                                                                                        box->x0);
+                                                                                                    int x1 = Mth::floor(
+                                                                                                        box->x1 +
+                                                                                                        1);
+
+                                                                                                    int y0 = Mth::floor(
+                                                                                                        box->y0);
+                                                                                                    int y1 = Mth::floor(
+                                                                                                        box->y1 +
+                                                                                                        1);
+
+                                                                                                    int z0 = Mth::floor(
+                                                                                                        box->z0);
+                                                                                                    int z1 = Mth::floor(
+                                                                                                        box->z1 +
+                                                                                                        1);
+
+                                                                                                    if (!hasChunksAt(
+                                                                                                            x0,
+                                                                                                            y0,
+                                                                                                            z0,
+                                                                                                            x1,
+                                                                                                            y1,
+                                                                                                            z1)) {
+                                                                                                        return false;
+                                                                                                    }
+
+                                                                                                    bool ok =
+                                                                                                        false;
+                                                                                                    Vec3* current =
+                                                                                                        Vec3::newTemp(
+                                                                                                            0,
+                                                                                                            0,
+                                                                                                            0);
                                                                                                     for (
                                                                                                         int x =
                                                                                                             x0;
                                                                                                         x <
                                                                                                         x1;
-                                                                                                        x++)
+                                                                                                        x++) {
                                                                                                         for (
                                                                                                             int y =
                                                                                                                 y0;
                                                                                                             y <
                                                                                                             y1;
-                                                                                                            y++)
+                                                                                                            y++) {
                                                                                                             for (
                                                                                                                 int z =
                                                                                                                     z0;
                                                                                                                 z <
                                                                                                                 z1;
                                                                                                                 z++) {
-                                                                                                                int t = getTile(
-                                                                                                                    x,
-                                                                                                                    y,
-                                                                                                                    z);
-
-                                                                                                                if (t ==
-                                                                                                                        Tile::
-                                                                                                                            fire_Id ||
-                                                                                                                    t ==
-                                                                                                                        Tile::
-                                                                                                                            lava_Id ||
-                                                                                                                    t ==
-                                                                                                                        Tile::
-                                                                                                                            calmLava_Id)
-                                                                                                                    return true;
+                                                                                                                Tile* tile = Tile::
+                                                                                                                    tiles[getTile(
+                                                                                                                        x,
+                                                                                                                        y,
+                                                                                                                        z)];
+                                                                                                                if (tile !=
+                                                                                                                        NULL &&
+                                                                                                                    tile->material ==
+                                                                                                                        material) {
+                                                                                                                    double yt0 =
+                                                                                                                        y +
+                                                                                                                        1 -
+                                                                                                                        LiquidTile::getHeight(
+                                                                                                                            getData(
+                                                                                                                                x,
+                                                                                                                                y,
+                                                                                                                                z));
+                                                                                                                    if (y1 >=
+                                                                                                                        yt0) {
+                                                                                                                        ok =
+                                                                                                                            true;
+                                                                                                                        tile->handleEntityInside(
+                                                                                                                            this,
+                                                                                                                            x,
+                                                                                                                            y,
+                                                                                                                            z,
+                                                                                                                            e,
+                                                                                                                            current);
+                                                                                                                    }
+                                                                                                                }
                                                                                                             }
+                                                                                                        }
+                                                                                                    }
+                                                                                                    if (current->length() >
+                                                                                                            0 &&
+                                                                                                        e->isPushedByWater()) {
+                                                                                                        current =
+                                                                                                            current
+                                                                                                                ->normalize();
+                                                                                                        double pow =
+                                                                                                            0.014;
+                                                                                                        e->xd +=
+                                                                                                            current
+                                                                                                                ->x *
+                                                                                                            pow;
+                                                                                                        e->yd +=
+                                                                                                            current
+                                                                                                                ->y *
+                                                                                                            pow;
+                                                                                                        e->zd +=
+                                                                                                            current
+                                                                                                                ->z *
+                                                                                                            pow;
+                                                                                                    }
+                                                                                                    return ok;
                                                                                                 }
-                                                                                                return false;
-                                                                                            }
 
-                                                                                            bool
-                                                                                            Level::checkAndHandleWater(
-                                                                                                AABB *
-                                                                                                    box,
-                                                                                                Material *
-                                                                                                    material,
-                                                                                                std::shared_ptr<
-                                                                                                    Entity>
-                                                                                                    e) {
-                                                                                                int x0 = Mth::floor(
-                                                                                                    box->x0);
-                                                                                                int x1 = Mth::floor(
-                                                                                                    box->x1 +
-                                                                                                    1);
+                                                                                                bool
+                                                                                                Level::containsMaterial(
+                                                                                                    AABB *
+                                                                                                        box,
+                                                                                                    Material *
+                                                                                                        material) {
+                                                                                                    int x0 = Mth::floor(
+                                                                                                        box->x0);
+                                                                                                    int x1 = Mth::floor(
+                                                                                                        box->x1 +
+                                                                                                        1);
+                                                                                                    int y0 = Mth::floor(
+                                                                                                        box->y0);
+                                                                                                    int y1 = Mth::floor(
+                                                                                                        box->y1 +
+                                                                                                        1);
+                                                                                                    int z0 = Mth::floor(
+                                                                                                        box->z0);
+                                                                                                    int z1 = Mth::floor(
+                                                                                                        box->z1 +
+                                                                                                        1);
 
-                                                                                                int y0 = Mth::floor(
-                                                                                                    box->y0);
-                                                                                                int y1 = Mth::floor(
-                                                                                                    box->y1 +
-                                                                                                    1);
-
-                                                                                                int z0 = Mth::floor(
-                                                                                                    box->z0);
-                                                                                                int z1 = Mth::floor(
-                                                                                                    box->z1 +
-                                                                                                    1);
-
-                                                                                                if (!hasChunksAt(
-                                                                                                        x0,
-                                                                                                        y0,
-                                                                                                        z0,
-                                                                                                        x1,
-                                                                                                        y1,
-                                                                                                        z1)) {
+                                                                                                    for (
+                                                                                                        int x =
+                                                                                                            x0;
+                                                                                                        x <
+                                                                                                        x1;
+                                                                                                        x++) {
+                                                                                                        for (
+                                                                                                            int y =
+                                                                                                                y0;
+                                                                                                            y <
+                                                                                                            y1;
+                                                                                                            y++) {
+                                                                                                            for (
+                                                                                                                int z =
+                                                                                                                    z0;
+                                                                                                                z <
+                                                                                                                z1;
+                                                                                                                z++) {
+                                                                                                                Tile* tile = Tile::
+                                                                                                                    tiles[getTile(
+                                                                                                                        x,
+                                                                                                                        y,
+                                                                                                                        z)];
+                                                                                                                if (tile !=
+                                                                                                                        NULL &&
+                                                                                                                    tile->material ==
+                                                                                                                        material) {
+                                                                                                                    return true;
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
                                                                                                     return false;
                                                                                                 }
 
-                                                                                                bool ok =
-                                                                                                    false;
-                                                                                                Vec3* current =
-                                                                                                    Vec3::newTemp(
-                                                                                                        0,
-                                                                                                        0,
-                                                                                                        0);
-                                                                                                for (
-                                                                                                    int x =
-                                                                                                        x0;
-                                                                                                    x <
-                                                                                                    x1;
-                                                                                                    x++) {
+                                                                                                bool
+                                                                                                Level::containsLiquid(
+                                                                                                    AABB *
+                                                                                                        box,
+                                                                                                    Material *
+                                                                                                        material) {
+                                                                                                    int x0 = Mth::floor(
+                                                                                                        box->x0);
+                                                                                                    int x1 = Mth::floor(
+                                                                                                        box->x1 +
+                                                                                                        1);
+                                                                                                    int y0 = Mth::floor(
+                                                                                                        box->y0);
+                                                                                                    int y1 = Mth::floor(
+                                                                                                        box->y1 +
+                                                                                                        1);
+                                                                                                    int z0 = Mth::floor(
+                                                                                                        box->z0);
+                                                                                                    int z1 = Mth::floor(
+                                                                                                        box->z1 +
+                                                                                                        1);
+
                                                                                                     for (
-                                                                                                        int y =
-                                                                                                            y0;
-                                                                                                        y <
-                                                                                                        y1;
-                                                                                                        y++) {
+                                                                                                        int x =
+                                                                                                            x0;
+                                                                                                        x <
+                                                                                                        x1;
+                                                                                                        x++) {
                                                                                                         for (
-                                                                                                            int z =
-                                                                                                                z0;
-                                                                                                            z <
-                                                                                                            z1;
-                                                                                                            z++) {
-                                                                                                            Tile* tile = Tile::
-                                                                                                                tiles[getTile(
-                                                                                                                    x,
-                                                                                                                    y,
-                                                                                                                    z)];
-                                                                                                            if (tile !=
-                                                                                                                    NULL &&
-                                                                                                                tile->material ==
-                                                                                                                    material) {
-                                                                                                                double yt0 =
-                                                                                                                    y +
-                                                                                                                    1 -
-                                                                                                                    LiquidTile::getHeight(
-                                                                                                                        getData(
-                                                                                                                            x,
-                                                                                                                            y,
-                                                                                                                            z));
-                                                                                                                if (y1 >=
-                                                                                                                    yt0) {
-                                                                                                                    ok =
-                                                                                                                        true;
-                                                                                                                    tile->handleEntityInside(
-                                                                                                                        this,
+                                                                                                            int y =
+                                                                                                                y0;
+                                                                                                            y <
+                                                                                                            y1;
+                                                                                                            y++) {
+                                                                                                            for (
+                                                                                                                int z =
+                                                                                                                    z0;
+                                                                                                                z <
+                                                                                                                z1;
+                                                                                                                z++) {
+                                                                                                                Tile* tile = Tile::
+                                                                                                                    tiles[getTile(
                                                                                                                         x,
                                                                                                                         y,
-                                                                                                                        z,
-                                                                                                                        e,
-                                                                                                                        current);
-                                                                                                                }
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                                if (current->length() >
-                                                                                                        0 &&
-                                                                                                    e->isPushedByWater()) {
-                                                                                                    current =
-                                                                                                        current
-                                                                                                            ->normalize();
-                                                                                                    double pow =
-                                                                                                        0.014;
-                                                                                                    e->xd +=
-                                                                                                        current
-                                                                                                            ->x *
-                                                                                                        pow;
-                                                                                                    e->yd +=
-                                                                                                        current
-                                                                                                            ->y *
-                                                                                                        pow;
-                                                                                                    e->zd +=
-                                                                                                        current
-                                                                                                            ->z *
-                                                                                                        pow;
-                                                                                                }
-                                                                                                return ok;
-                                                                                            }
-
-                                                                                            bool
-                                                                                            Level::containsMaterial(
-                                                                                                AABB *
-                                                                                                    box,
-                                                                                                Material *
-                                                                                                    material) {
-                                                                                                int x0 = Mth::floor(
-                                                                                                    box->x0);
-                                                                                                int x1 = Mth::floor(
-                                                                                                    box->x1 +
-                                                                                                    1);
-                                                                                                int y0 = Mth::floor(
-                                                                                                    box->y0);
-                                                                                                int y1 = Mth::floor(
-                                                                                                    box->y1 +
-                                                                                                    1);
-                                                                                                int z0 = Mth::floor(
-                                                                                                    box->z0);
-                                                                                                int z1 = Mth::floor(
-                                                                                                    box->z1 +
-                                                                                                    1);
-
-                                                                                                for (
-                                                                                                    int x =
-                                                                                                        x0;
-                                                                                                    x <
-                                                                                                    x1;
-                                                                                                    x++) {
-                                                                                                    for (
-                                                                                                        int y =
-                                                                                                            y0;
-                                                                                                        y <
-                                                                                                        y1;
-                                                                                                        y++) {
-                                                                                                        for (
-                                                                                                            int z =
-                                                                                                                z0;
-                                                                                                            z <
-                                                                                                            z1;
-                                                                                                            z++) {
-                                                                                                            Tile* tile = Tile::
-                                                                                                                tiles[getTile(
-                                                                                                                    x,
-                                                                                                                    y,
-                                                                                                                    z)];
-                                                                                                            if (tile !=
-                                                                                                                    NULL &&
-                                                                                                                tile->material ==
-                                                                                                                    material) {
-                                                                                                                return true;
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                                return false;
-                                                                                            }
-
-                                                                                            bool
-                                                                                            Level::containsLiquid(
-                                                                                                AABB *
-                                                                                                    box,
-                                                                                                Material *
-                                                                                                    material) {
-                                                                                                int x0 = Mth::floor(
-                                                                                                    box->x0);
-                                                                                                int x1 = Mth::floor(
-                                                                                                    box->x1 +
-                                                                                                    1);
-                                                                                                int y0 = Mth::floor(
-                                                                                                    box->y0);
-                                                                                                int y1 = Mth::floor(
-                                                                                                    box->y1 +
-                                                                                                    1);
-                                                                                                int z0 = Mth::floor(
-                                                                                                    box->z0);
-                                                                                                int z1 = Mth::floor(
-                                                                                                    box->z1 +
-                                                                                                    1);
-
-                                                                                                for (
-                                                                                                    int x =
-                                                                                                        x0;
-                                                                                                    x <
-                                                                                                    x1;
-                                                                                                    x++) {
-                                                                                                    for (
-                                                                                                        int y =
-                                                                                                            y0;
-                                                                                                        y <
-                                                                                                        y1;
-                                                                                                        y++) {
-                                                                                                        for (
-                                                                                                            int z =
-                                                                                                                z0;
-                                                                                                            z <
-                                                                                                            z1;
-                                                                                                            z++) {
-                                                                                                            Tile* tile = Tile::
-                                                                                                                tiles[getTile(
-                                                                                                                    x,
-                                                                                                                    y,
-                                                                                                                    z)];
-                                                                                                            if (tile !=
-                                                                                                                    NULL &&
-                                                                                                                tile->material ==
-                                                                                                                    material) {
-                                                                                                                int data = getData(
-                                                                                                                    x,
-                                                                                                                    y,
-                                                                                                                    z);
-                                                                                                                double yh1 =
-                                                                                                                    y +
-                                                                                                                    1;
-                                                                                                                if (data <
-                                                                                                                    8) {
-                                                                                                                    yh1 =
+                                                                                                                        z)];
+                                                                                                                if (tile !=
+                                                                                                                        NULL &&
+                                                                                                                    tile->material ==
+                                                                                                                        material) {
+                                                                                                                    int data = getData(
+                                                                                                                        x,
+                                                                                                                        y,
+                                                                                                                        z);
+                                                                                                                    double yh1 =
                                                                                                                         y +
-                                                                                                                        1 -
-                                                                                                                        data /
-                                                                                                                            8.0;
-                                                                                                                }
-                                                                                                                if (yh1 >=
-                                                                                                                    box->y0) {
-                                                                                                                    return true;
+                                                                                                                        1;
+                                                                                                                    if (data <
+                                                                                                                        8) {
+                                                                                                                        yh1 =
+                                                                                                                            y +
+                                                                                                                            1 -
+                                                                                                                            data /
+                                                                                                                                8.0;
+                                                                                                                    }
+                                                                                                                    if (yh1 >=
+                                                                                                                        box->y0) {
+                                                                                                                        return true;
+                                                                                                                    }
                                                                                                                 }
                                                                                                             }
                                                                                                         }
                                                                                                     }
+                                                                                                    return false;
                                                                                                 }
-                                                                                                return false;
-                                                                                            }
 
-                                                                                            std::shared_ptr<
-                                                                                                Explosion>
-                                                                                            Level::explode(
-                                                                                                std::shared_ptr<
-                                                                                                    Entity>
-                                                                                                    source,
-                                                                                                double
-                                                                                                    x,
-                                                                                                double
-                                                                                                    y,
-                                                                                                double
-                                                                                                    z,
-                                                                                                float
-                                                                                                    r,
-                                                                                                bool
-                                                                                                    destroyBlocks) {
-                                                                                                return explode(
-                                                                                                    source,
-                                                                                                    x,
-                                                                                                    y,
-                                                                                                    z,
-                                                                                                    r,
-                                                                                                    false,
-                                                                                                    destroyBlocks);
-                                                                                            }
-
-                                                                                            std::shared_ptr<
-                                                                                                Explosion>
-                                                                                            Level::explode(
-                                                                                                std::shared_ptr<
-                                                                                                    Entity>
-                                                                                                    source,
-                                                                                                double
-                                                                                                    x,
-                                                                                                double
-                                                                                                    y,
-                                                                                                double
-                                                                                                    z,
-                                                                                                float
-                                                                                                    r,
-                                                                                                bool
-                                                                                                    fire,
-                                                                                                bool
-                                                                                                    destroyBlocks) {
                                                                                                 std::shared_ptr<
                                                                                                     Explosion>
-                                                                                                    explosion = std::shared_ptr<
-                                                                                                        Explosion>(new Explosion(
-                                                                                                        this,
+                                                                                                Level::explode(
+                                                                                                    std::shared_ptr<
+                                                                                                        Entity>
+                                                                                                        source,
+                                                                                                    double
+                                                                                                        x,
+                                                                                                    double
+                                                                                                        y,
+                                                                                                    double
+                                                                                                        z,
+                                                                                                    float
+                                                                                                        r,
+                                                                                                    bool
+                                                                                                        destroyBlocks) {
+                                                                                                    return explode(
                                                                                                         source,
                                                                                                         x,
                                                                                                         y,
                                                                                                         z,
-                                                                                                        r));
-                                                                                                explosion
-                                                                                                    ->fire =
-                                                                                                    fire;
-                                                                                                explosion
-                                                                                                    ->destroyBlocks =
-                                                                                                    destroyBlocks;
-                                                                                                explosion
-                                                                                                    ->explode();
-                                                                                                explosion
-                                                                                                    ->finalizeExplosion(
-                                                                                                        true);
-                                                                                                return explosion;
-                                                                                            }
+                                                                                                        r,
+                                                                                                        false,
+                                                                                                        destroyBlocks);
+                                                                                                }
 
-                                                                                            float
-                                                                                            Level::getSeenPercent(
-                                                                                                Vec3 *
-                                                                                                    center,
-                                                                                                AABB *
-                                                                                                    bb) {
+                                                                                                std::shared_ptr<
+                                                                                                    Explosion>
+                                                                                                Level::explode(
+                                                                                                    std::shared_ptr<
+                                                                                                        Entity>
+                                                                                                        source,
+                                                                                                    double
+                                                                                                        x,
+                                                                                                    double
+                                                                                                        y,
+                                                                                                    double
+                                                                                                        z,
+                                                                                                    float
+                                                                                                        r,
+                                                                                                    bool
+                                                                                                        fire,
+                                                                                                    bool
+                                                                                                        destroyBlocks) {
+                                                                                                    std::shared_ptr<
+                                                                                                        Explosion>
+                                                                                                        explosion = std::shared_ptr<
+                                                                                                            Explosion>(new Explosion(
+                                                                                                            this,
+                                                                                                            source,
+                                                                                                            x,
+                                                                                                            y,
+                                                                                                            z,
+                                                                                                            r));
+                                                                                                    explosion
+                                                                                                        ->fire =
+                                                                                                        fire;
+                                                                                                    explosion
+                                                                                                        ->destroyBlocks =
+                                                                                                        destroyBlocks;
+                                                                                                    explosion
+                                                                                                        ->explode();
+                                                                                                    explosion
+                                                                                                        ->finalizeExplosion(
+                                                                                                            true);
+                                                                                                    return explosion;
+                                                                                                }
+
+                                                                                                float
+                                                                                                Level::getSeenPercent(
+                                                                                                    Vec3 *
+                                                                                                        center,
+                                                                                                    AABB *
+                                                                                                        bb) {
     double xs = 1.0 / ((bb->// 4J Stu - xx, yy and zz were floats, made them doubles to>y0) * 2 + 1);
     do// remove warningsbb->z1 - bb->z0) * 2 + 1);
     int hits = 0;
@@ -3191,298 +3221,287 @@ bool Level::containsAnyLiquid_NoLoad(AABB * box) {
                     
         for (double yy = 0; yy <= 1; yy += ys)
             for (double zz = 0; zz <= 1; zz += zs) {
-                                                                                                    double x =
-                                                                                                        bb->x0 +
-                                                                                                        (bb->x1 -
-                                                                                                         bb->x0) *
-                                                                                                            xx;
-                                                                                                    double y =
-                                                                                                        bb->y0 +
-                                                                                                        (bb->y1 -
-                                                                                                         bb->y0) *
-                                                                                                            yy;
-                                                                                                    double z =
-                                                                                                        bb->z0 +
-                                                                                                        (bb->z1 -
-                                                                                                         bb->z0) *
-                                                                                                            zz;
-                                                                                                    HitResult* res = clip(
-                                                                                                        Vec3::newTemp(
-                                                                                                            x,
-                                                                                                            y,
-                                                                                                            z),
-                                                                                                        center);
-                                                                                                    if (res ==
-                                                                                                        NULL)
-                                                                                                        hits++;
-                                                                                                    delete res;
-                                                                                                    count++;
+                                                                                                        double x =
+                                                                                                            bb->x0 +
+                                                                                                            (bb->x1 -
+                                                                                                             bb->x0) *
+                                                                                                                xx;
+                                                                                                        double y =
+                                                                                                            bb->y0 +
+                                                                                                            (bb->y1 -
+                                                                                                             bb->y0) *
+                                                                                                                yy;
+                                                                                                        double z =
+                                                                                                            bb->z0 +
+                                                                                                            (bb->z1 -
+                                                                                                             bb->z0) *
+                                                                                                                zz;
+                                                                                                        HitResult* res = clip(
+                                                                                                            Vec3::newTemp(
+                                                                                                                x,
+                                                                                                                y,
+                                                                                                                z),
+                                                                                                            center);
+                                                                                                        if (res ==
+                                                                                                            NULL)
+                                                                                                            hits++;
+                                                                                                        delete res;
+                                                                                                        count++;
             }
 
     return hits / (float)count;
-                                                                                            }
+                                                                                                }
 
-                                                                                            bool
-                                                                                            Level::extinguishFire(
-                                                                                                std::shared_ptr<
-                                                                                                    Player>
-                                                                                                    player,
-                                                                                                int x,
-                                                                                                int y,
-                                                                                                int z,
-                                                                                                int face) {
-                                                                                                if (face ==
-                                                                                                    0)
-                                                                                                    y--;
-                                                                                                if (face ==
-                                                                                                    1)
-                                                                                                    y++;
-                                                                                                if (face ==
-                                                                                                    2)
-                                                                                                    z--;
-                                                                                                if (face ==
-                                                                                                    3)
-                                                                                                    z++;
-                                                                                                if (face ==
-                                                                                                    4) x/*
+                                                                                                bool
+                                                                                                Level::extinguishFire(
+                                                                                                    std::shared_ptr<
+                                                                                                        Player>
+                                                                                                        player,
+                                                                                                    int x,
+                                                                                                    int y,
+                                                                                                    int z,
+                                                                                                    int face) {
+                                                                                                    if (face ==
+                                                                                                        0)
+                                                                                                        y--;
+                                                                                                    if (face ==
+                                                                                                        1)
+                                                                                                        y++;
+                                                                                                    if (face ==
+                                                                                                        2)
+                                                                                                        z--;
+                                                                                                    if (face ==
+                                                                                                        3)
+                                                                                                        z++;
+                                                                                                    if (face ==
+                                                                                                        4) x/*
 shared_ptr<Entity> Level::findSubclassOf(Entity::Class *entityClass)
 {
 return shared_ptr<Entity>();
 }
 */vent::SOUND_FIZZ, x, y, z, 0);
-                                                                                                removeTile(
-                                                                                                    x,
-                                                                                                    y,
-                                                                                                    z);
-                                                                                                return true;
+                                                                                                    removeTile(
+                                                                                                        x,
+                                                                                                        y,
+                                                                                                        z);
+                                                                                                    return true;
+                                                                                                }
+                                                                                                return false;
                                                                                             }
-                                                                                            return false;
-                                                                                        }
 
-                                                                                "All:%d"
+                                                                                    "All:%d"
 
-std::wstring Level::gatherStats() {
-                                                                                    wchar_t buf
-                                                                                        [64];
-                                                                                    EnterCriticalSection(
-                                                                                        &m_entitiesCS);
-                                                                                    swprintf(
-                                                                                        buf,
-                                                                                        64,
-                                                                                        L,
-                                                                                        entities
-                                                                                            .size());
-                                                                                    LeaveCriticalSection(
-                                                                                        &m_entitiesCS);
-                                                                                    return std::
-                                                                                        wstring(
-                                                                                            buf);
-                                                                                }
-
-                                                                                std::wstring
-                                                                                Level::
-                                                                                    gatherChunkSourceStats() {
-                                                                                    return chunkSource
-                                                                                        ->gatherStats();
-                                                                                }
-
-                                                                                std::shared_ptr<
-                                                                                    TileEntity>
-                                                                                Level::getTileEntity(
-                                                                                    int x,
-                                                                                    int y,
-                                                                                    int z) {
-                                                                                    if (y < minBuildHeight ||
-                                                                                        y >=
-                                                                                            maxBuildHeight) {
-                                                                                        return nullptr;
+                                                                                        std::wstring
+                                                                                        Level::
+                                                                                            gatherStats() {
+                                                                                        wchar_t buf
+                                                                                            [64];
+                                                                                        EnterCriticalSection(
+                                                                                            &m_entitiesCS);
+                                                                                        swprintf(
+                                                                                            buf,
+                                                                                            64,
+                                                                                            L,
+                                                                                            entities
+                                                                                                .size());
+                                                                                        LeaveCriticalSection(
+                                                                                            &m_entitiesCS);
+                                                                                        return std::
+                                                                                            wstring(
+                                                                                                buf);
                                                                                     }
+
+                                                                                    std::wstring
+                                                                                    Level::
+                                                                                        gatherChunkSourceStats() {
+                                                                                        return chunkSource
+                                                                                            ->gatherStats();
+                                                                                    }
+
                                                                                     std::shared_ptr<
                                                                                         TileEntity>
-                                                                                        tileEntity =
-                                                                                            nullptr;
-
-                                                                                    if (updatingTileEntities) {
-                                                                                        EnterCriticalSection(
-                                                                                            &m_tileEntityListCS);
-                                                                                        for (
-                                                                                            int i =
-                                                                                                0;
-                                                                                            i <
-                                                                                            pendingTileEntities
-                                                                                                .size();
-                                                                                            i++) {
-                                                                                            std::shared_ptr<
-                                                                                                TileEntity>
-                                                                                                e = pendingTileEntities
-                                                                                                        .at(i);
-                                                                                            if (!e->isRemoved() &&
-                                                                                                e->x ==
-                                                                                                    x &&
-                                                                                                e->y ==
-                                                                                                    y &&
-                                                                                                e->z ==
-                                                                                                    z) {
-                                                                                                tileEntity =
-                                                                                                    e;
-                                                                                                break;
-                                                                                            }
+                                                                                    Level::getTileEntity(
+                                                                                        int x,
+                                                                                        int y,
+                                                                                        int z) {
+                                                                                        if (y < minBuildHeight ||
+                                                                                            y >=
+                                                                                                maxBuildHeight) {
+                                                                                            return nullptr;
                                                                                         }
-                                                                                        LeaveCriticalSection(
-                                                                                            &m_tileEntityListCS);
-                                                                                    }
+                                                                                        std::shared_ptr<
+                                                                                            TileEntity>
+                                                                                            tileEntity =
+                                                                                                nullptr;
 
-                                                                                    if (tileEntity ==
-                                                                                        NULL) {
-                                                                                        LevelChunk* lc = getChunk(
-                                                                                            x >>
-                                                                                                4,
-                                                                                            z >>
-                                                                                                4);
-                                                                                        if (lc !=
-                                                                                            NULL) {
-                                                                                            tileEntity = lc->getTileEntity(
-                                                                                                x & 15,
-                                                                                                y,
-                                                                                                z & 15);
-                                                                                        }
-                                                                                    }
-
-                                                                                    if (tileEntity ==
-                                                                                        NULL) {
-                                                                                        EnterCriticalSection(
-                                                                                            &m_tileEntityListCS);
-                                                                                        for (
-                                                                                            AUTO_VAR(
-                                                                                                it,
+                                                                                        if (updatingTileEntities) {
+                                                                                            EnterCriticalSection(
+                                                                                                &m_tileEntityListCS);
+                                                                                            for (
+                                                                                                int i =
+                                                                                                    0;
+                                                                                                i <
                                                                                                 pendingTileEntities
-                                                                                                    .begin());
-                                                                                            it !=
-                                                                                            pendingTileEntities
-                                                                                                .end();
-                                                                                            it++) {
-                                                                                            std::shared_ptr<
-                                                                                                TileEntity>
-                                                                                                e = *it;
+                                                                                                    .size();
+                                                                                                i++) {
+                                                                                                std::shared_ptr<
+                                                                                                    TileEntity>
+                                                                                                    e = pendingTileEntities
+                                                                                                            .at(i);
+                                                                                                if (!e->isRemoved() &&
+                                                                                                    e->x ==
+                                                                                                        x &&
+                                                                                                    e->y ==
+                                                                                                        y &&
+                                                                                                    e->z ==
+                                                                                                        z) {
+                                                                                                    tileEntity =
+                                                                                                        e;
+                                                                                                    break;
+                                                                                                }
+                                                                                            }
+                                                                                            LeaveCriticalSection(
+                                                                                                &m_tileEntityListCS);
+                                                                                        }
 
-                                                                                            if (!e->isRemoved() &&
-                                                                                                e->x ==
-                                                                                                    x &&
-                                                                                                e->y ==
-                                                                                                    y &&
-                                                                                                e->z ==
-                                                                                                    z) {
-                                                                                                tileEntity =
-                                                                                                    e;
-                                                                                                break;
+                                                                                        if (tileEntity ==
+                                                                                            NULL) {
+                                                                                            LevelChunk* lc = getChunk(
+                                                                                                x >>
+                                                                                                    4,
+                                                                                                z >>
+                                                                                                    4);
+                                                                                            if (lc !=
+                                                                                                NULL) {
+                                                                                                tileEntity = lc->getTileEntity(
+                                                                                                    x & 15,
+                                                                                                    y,
+                                                                                                    z & 15);
                                                                                             }
                                                                                         }
-                                                                                        LeaveCriticalSection(
-                                                                                            &m_tileEntityListCS);
-                                                                                    }
-                                                                                    return tileEntity;
-                                                                                }
 
-                                                                                void
-                                                                                Level::setTileEntity(
-                                                                                    int x,
-                                                                                    int y,
-                                                                                    int z,
-                                                                                    std::shared_ptr<
-                                                                                        TileEntity>
-                                                                                        tileEntity) {
+                                                                                        if (tileEntity ==
+                                                                                            NULL) {
+                                                                                            EnterCriticalSection(
+                                                                                                &m_tileEntityListCS);
+                                                                                            for (
+                                                                                                AUTO_VAR(
+                                                                                                    it,
+                                                                                                    pendingTileEntities
+                                                                                                        .begin());
+                                                                                                it !=
+                                                                                                pendingTileEntities
+                                                                                                    .end();
+                                                                                                it++) {
+                                                                                                std::shared_ptr<
+                                                                                                    TileEntity>
+                                                                                                    e = *it;
+
+                                                                                                if (!e->isRemoved() &&
+                                                                                                    e->x ==
+                                                                                                        x &&
+                                                                                                    e->y ==
+                                                                                                        y &&
+                                                                                                    e->z ==
+                                                                                                        z) {
+                                                                                                    tileEntity =
+                                                                                                        e;
+                                                                                                    break;
+                                                                                                }
+                                                                                            }
+                                                                                            LeaveCriticalSection(
+                                                                                                &m_tileEntityListCS);
+                                                                                        }
+                                                                                        return tileEntity;
+                                                                                    }
+
+                                                                                    void
+                                                                                    Level::setTileEntity(
+                                                                                        int x,
+                                                                                        int y,
+                                                                                        int z,
+                                                                                        std::shared_ptr<
+                                                                                            TileEntity>
+                                                                                            tileEntity) {
     if (tileEnti// avoid adding duplicates>isRemoved()) {
         EnterCriticalSection(&m_tileEntityListCS);
         if (updatingTileEntities) {
-                                                                                        tileEntity
-                                                                                            ->x =
-                                                                                            x;
-                                                                                        tileEntity
-                                                                                            ->y =
-                                                                                            y;
-                                                                                        tileEntity
-                                                                                            ->z =
-                                                                                            z;
+                                                                                            tileEntity
+                                                                                                ->x =
+                                                                                                x;
+                                                                                            tileEntity
+                                                                                                ->y =
+                                                                                                y;
+                                                                                            tileEntity
+                                                                                                ->z =
+                                                                                                z;
 
-                                                                                        
-            for (AUTO_VAR(it, pendingTileEntities.begin());
-                 it != pendingTileEntities.end();) {
-                                                                                            std::shared_ptr<
-                                                                                                TileEntity>
-                                                                                                next =
-                                                                                                    *it;
-                                                                                            if (next->x ==
-                                                                                                    x &&
-                                                                                                next->y ==
-                                                                                                    y &&
-                                                                                                next->z ==
-                                                                                                    z) {
-                                                                                                next->setRemoved();
-                                                                                                it =
+                                                                                            for (
+                                                                                                AUTO_VAR(
+                                                                                                    it,
                                                                                                     pendingTileEntities
-                                                                                                        .erase(
-                                                                                                            it);
-                                                                                            } else {
-                                                                                                ++it;
+                                                                                                        .begin());
+                                                                                                it !=
+                                                                                                pendingTileEntities
+                                                                                                    .end();) {
+                                                                                                std::shared_ptr<
+                                                                                                    TileEntity>
+                                                                                                    next =
+                                                                                                        *it;
+                                                                                                if (next->x ==
+                                                                                                        x &&
+                                                                                                    next->y ==
+                                                                                                        y &&
+                                                                                                    next->z ==
+                                                                                                        z) {
+                                                                                                    next->setRemoved();
+                                                                                                    it =
+                                                                                                        pendingTileEntities
+                                                                                                            .erase(
+                                                                                                                it);
+                                                                                                } else {
+                                                                                                    ++it;
+                                                                                                }
                                                                                             }
-                                                                                        }
 
-                                                                                        pendingTileEntities
-                                                                                            .push_back(
-                                                                                                tileEntity);
+                                                                                            pendingTileEntities
+                                                                                                .push_back(
+                                                                                                    tileEntity);
         } else {
-                                                                                        tileEntityList
-                                                                                            .push_back(
-                                                                                                tileEntity);
+                                                                                            tileEntityList
+                                                                                                .push_back(
+                                                                                                    tileEntity);
 
-                                                                                        LevelChunk* lc = getChunk(
-                                                                                            x >>
-                                                                                                4,
-                                                                                            z >>
-                                                                                                4);
-                                                                                        if (lc !=
-                                                                                            NULL)
-                                                                                            lc->setTileEntity(
-                                                                                                x & 15,
-                                                                                                y,
-                                                                                                z & 15,
-                                                                                                tileEntity);
+                                                                                            LevelChunk* lc = getChunk(
+                                                                                                x >>
+                                                                                                    4,
+                                                                                                z >>
+                                                                                                    4);
+                                                                                            if (lc !=
+                                                                                                NULL)
+                                                                                                lc->setTileEntity(
+                                                                                                    x & 15,
+                                                                                                    y,
+                                                                                                    z & 15,
+                                                                                                    tileEntity);
         }
         LeaveCriticalSection(&m_tileEntityListCS);
-                                                                                }
+                                                                                    }
 }
 
 void Level::removeTileEntity(int x, int y, int z) {
-                                                                                EnterCriticalSection(
-                                                                                    &m_tileEntityListCS);
-                                                                                std::shared_ptr<
-                                                                                    TileEntity>
-                                                                                    te = getTileEntity(
-                                                                                        x,
-                                                                                        y,
-                                                                                        z);
-                                                                                if (te !=
-                                                                                        NULL &&
-                                                                                    updatingTileEntities) {
-                                                                                    te->setRemoved();
-                                                                                    AUTO_VAR(
-                                                                                        it,
-                                                                                        std::find(
-                                                                                            pendingTileEntities
-                                                                                                .begin(),
-                                                                                            pendingTileEntities
-                                                                                                .end(),
-                                                                                            te));
-                                                                                    if (it !=
-                                                                                        pendingTileEntities
-                                                                                            .end()) {
-                                                                                        pendingTileEntities
-                                                                                            .erase(
-                                                                                                it);
-                                                                                    }
-                                                                                } else {
+                                                                                    EnterCriticalSection(
+                                                                                        &m_tileEntityListCS);
+                                                                                    std::shared_ptr<
+                                                                                        TileEntity>
+                                                                                        te = getTileEntity(
+                                                                                            x,
+                                                                                            y,
+                                                                                            z);
                                                                                     if (te !=
-                                                                                        NULL) {
+                                                                                            NULL &&
+                                                                                        updatingTileEntities) {
+                                                                                        te->setRemoved();
                                                                                         AUTO_VAR(
                                                                                             it,
                                                                                             std::find(
@@ -3498,34 +3517,52 @@ void Level::removeTileEntity(int x, int y, int z) {
                                                                                                 .erase(
                                                                                                     it);
                                                                                         }
-                                                                                        AUTO_VAR(
-                                                                                            it2,
-                                                                                            std::find(
+                                                                                    } else {
+                                                                                        if (te !=
+                                                                                            NULL) {
+                                                                                            AUTO_VAR(
+                                                                                                it,
+                                                                                                std::find(
+                                                                                                    pendingTileEntities
+                                                                                                        .begin(),
+                                                                                                    pendingTileEntities
+                                                                                                        .end(),
+                                                                                                    te));
+                                                                                            if (it !=
+                                                                                                pendingTileEntities
+                                                                                                    .end()) {
+                                                                                                pendingTileEntities
+                                                                                                    .erase(
+                                                                                                        it);
+                                                                                            }
+                                                                                            AUTO_VAR(
+                                                                                                it2,
+                                                                                                std::find(
+                                                                                                    tileEntityList
+                                                                                                        .begin(),
+                                                                                                    tileEntityList
+                                                                                                        .end(),
+                                                                                                    te));
+                                                                                            if (it2 !=
                                                                                                 tileEntityList
-                                                                                                    .begin(),
+                                                                                                    .end()) {
                                                                                                 tileEntityList
-                                                                                                    .end(),
-                                                                                                te));
-                                                                                        if (it2 !=
-                                                                                            tileEntityList
-                                                                                                .end()) {
-                                                                                            tileEntityList
-                                                                                                .erase(
-                                                                                                    it2);
+                                                                                                    .erase(
+                                                                                                        it2);
+                                                                                            }
                                                                                         }
+                                                                                        LevelChunk* lc = getChunk(
+                                                                                            x >>
+                                                                                                4,
+                                                                                            z >>
+                                                                                                4);
+                                                                                        if (lc !=
+                                                                                            NULL)
+                                                                                            lc->removeTileEntity(
+                                                                                                x & 15,
+                                                                                                y,
+                                                                                                z & 15);
                                                                                     }
-                                                                                    LevelChunk* lc = getChunk(
-                                                                                        x >>
-                                                                                            4,
-                                                                                        z >>
-                                                                                            4);
-                                                                                    if (lc !=
-                                                                                        NULL)
-                                                                                        lc->removeTileEntity(
-                                                                                            x & 15,
-                                                                                            y,
-                                                                                            z & 15);
-                                                                                }
     LeaveCriticalSection(&m_tileEntityListCS// 4J - addition here to make rendering big blocks of leaves more efficient.ileEn// Normally leaves never consider themselves as solid, so blocks of leavesint y// will have all sides of each block completely visible. Changing toile =// consider as solid if this block is surrounded by other leaves (or solid// things). This is paired with another change in Tile::getTexture which// makes such solid tiles actually visibly solid (these textures exist// already for non-fancy graphics). Note: this tile-specific code is here// rather than making some new virtual method in the tiles, for the sake of// efficiency - I don't imagine we'll be doing much more of this sort of// thing
     
     
@@ -3533,459 +3570,461 @@ void Level::removeTileEntity(int x, int y, int z) {
     
 
     if (tile->id == Tile::leaves_Id) {
-                                                                                    int axo[6] = {
-                                                                                        1, -1, 0, 0, 0, 0};
-                                                                                    int ayo[6] = {
-                                                                                        0, 0, 1, -1, 0, 0};
-                                                                                    int azo[6] = {
-                                                                                        0, 0, 0, 0, 1, -1};
-                                                                                    for (
-                                                                                        int i =
-                                                                                            0;
-                                                                                        i <
-                                                                                        6;
-                                                                                        i++) {
-                                                                                        int t = getTile(
-                                                                                            x + axo[i],
-                                                                                            y + ayo[i],
-                                                                                            z + azo[i]);
+                                                                                        int axo[6] = {
+                                                                                            1, -1, 0, 0, 0, 0};
+                                                                                        int ayo[6] = {
+                                                                                            0, 0, 1, -1, 0, 0};
+                                                                                        int azo[6] = {
+                                                                                            0, 0, 0, 0, 1, -1};
+                                                                                        for (
+                                                                                            int i =
+                                                                                                0;
+                                                                                            i <
+                                                                                            6;
+                                                                                            i++) {
+                                                                                            int t = getTile(
+                                                                                                x + axo[i],
+                                                                                                y + ayo[i],
+                                                                                                z + azo[i]);
             if ((t != Tile::leaves_Id) && ((Tile::tiles[t] == NULL) ||
                                            !Tile::tiles[t]->isSoli/**
  * This method does the same as isSolidBlockingTile, except it will not
  * check the tile if the coordinates is in an unloaded or empty chunk. This
  * is to help vs the problem of "popping" torches in SMP.
  */ile::isSolidBlockingTile(getTile(x, y, z));
-                                                                                    }
-
-                                                                                    
-
-bool Level::isSolidBlockingTileInLoadedChunk(int x, int y, int z, bool valueIfNotLoaded) {
-                                                                                        if (x < -MAX_LEVEL_SIZE ||
-                                                                                            z < -MAX_LEVEL_SIZE ||
-                                                                                            x >=
-                                                                                                MAX_LEVEL_SIZE ||
-                                                                                            z >=
-                                                                                                MAX_LEVEL_SIZE) {
-                                                                                            return valueIfNotLoaded;
-                                                                                        }
-                                                                                        LevelChunk* chunk =
-                                                                                            chunkSource
-                                                                                                ->getChunk(
-                                                                                                    x >>
-                                                                                                        4,
-                                                                                                    z >>
-                                                                                                        4);
-                                                                                        if (chunk ==
-                                                                                                NULL ||
-                                                                                            chunk
-                                                                                                ->isEmpty()) {
-                                                                                            return valueIfNotLoaded;
                                                                                         }
 
+                                                                                        bool
+                                                                                        Level::isSolidBlockingTileInLoadedChunk(
+                                                                                            int x,
+                                                                                            int y,
+                                                                                            int z,
+                                                                                            bool
+                                                                                                valueIfNotLoaded) {
+                                                                                            if (x < -MAX_LEVEL_SIZE ||
+                                                                                                z < -MAX_LEVEL_SIZE ||
+                                                                                                x >=
+                                                                                                    MAX_LEVEL_SIZE ||
+                                                                                                z >=
+                                                                                                    MAX_LEVEL_SIZE) {
+                                                                                                return valueIfNotLoaded;
+                                                                                            }
+                                                                                            LevelChunk* chunk =
+                                                                                                chunkSource
+                                                                                                    ->getChunk(
+                                                                                                        x >>
+                                                                                                            4,
+                                                                                                        z >>
+                                                                                                            4);
+                                                                                            if (chunk ==
+                                                                                                    NULL ||
+                                                                                                chunk
+                                                                                                    ->isEmpty()) {
+                                                                                                return valueIfNotLoaded;
+                                                                                            }
+
+                                                                                            Tile* tile = Tile::
+                                                                                                tiles[getTile(
+                                                                                                    x,
+                                                                                                    y,
+                                                                                                    z)];
+                                                                                            if (tile ==
+                                                                                                NULL)
+                                                                                                return false;
+                                                                                            return tile->material
+                                                                                                       ->isSolidBlocking() &&
+                                                                                                   tile->isCubeShaped();
+                                                                                        }
+
+                                                                                        bool
+                                                                                        Level::isFullAABBTile(
+                                                                                            int x,
+                                                                                            int y,
+                                                                                            int z){
+                                                                                            int tile =
+                                                                                                getTil  // Temporary workaround until tahgs per-face solidity is finished     return false;
+                                                                                        } AABB* aabb =
+                                                                                            Tile::tiles
+                                                                                                [tile]
+                                                                                            -> getAABB(
+                                                                                                this,
+                                                                                                x,
+                                                                                                y,
+                                                                                                z);
+                                                                                        return aabb !=
+                                                                                                   NULL &&
+                                                                                               aabb->getSize() >=
+                                                                                                   1;
+}
+
+bool Level::isTopSolidBlocking(int x, int y, int z) {
                                                                                         Tile* tile = Tile::
                                                                                             tiles[getTile(
                                                                                                 x,
                                                                                                 y,
                                                                                                 z)];
-                                                                                        if (tile ==
-                                                                                            NULL)
-                                                                                            return false;
-                                                                                        return tile->material
-                                                                                                   ->isSolidBlocking() &&
-                                                                                               tile->isCubeShaped();
-                                                                                    }
-
-                                                                                    bool
-                                                                                    Level::isFullAABBTile(
-                                                                                        int x,
-                                                                                        int y,
-                                                                                        int z){
-                                                                                        int tile =
-                                                                                            getTil  // Temporary workaround until tahgs per-face solidity is finished     return false;
-                                                                                    } AABB* aabb =
-                                                                                        Tile::tiles
-                                                                                            [tile]
-                                                                                        -> getAABB(
-                                                                                            this,
-                                                                                            x,
-                                                                                            y,
-                                                                                            z);
-                                                                                    return aabb !=
-                                                                                               NULL &&
-                                                                                           aabb->getSize() >=
-                                                                                               1;
-}
-
-bool Level::isTopSolidBlocking(int x, int y, int z) {
-                                                                                    
-    Tile* tile = Tile::tiles[getTile(x, y, z)];
-                                                                                    return isTopSolidBlocking(
-                                                                                        tile,
-                                                                                        getData(
-                                                                                            x,
-                                                                                            y,
-                                                                                            z));
+                                                                                        return isTopSolidBlocking(
+                                                                                            tile,
+                                                                                            getData(
+                                                                                                x,
+                                                                                                y,
+                                                                                                z));
 }
 
 bool Level::isTopSolidBlocking(Tile* tile, int data) {
-                                                                                    if (tile ==
-                                                                                        NULL)
-                                                                                        return false;
+                                                                                        if (tile ==
+                                                                                            NULL)
+                                                                                            return false;
 
-                                                                                    if (tile->material
-                                                                                            ->isSolidBlocking() &&
-                                                                                        tile->isCubeShaped())
-                                                                                        return true;
-                                                                                    if (dynamic_cast<
-                                                                                            StairTile*>(
-                                                                                            tile) !=
-                                                                                        NULL) {
-                                                                                        return (data &
-                                                                                                StairTile::
-                                                                                                    UPSIDEDOWN_BIT) ==
-                                                                                               StairTile::
-                                                                                                   UPSIDEDOWN_BIT;
-                                                                                    }
-                                                                                    if (dynamic_cast<
-                                                                                            HalfSlabTile*>(
-                                                                                            tile) !=
-                                                                                        NULL) {
-                                                                                        return (data &
-                                                                                                HalfSlabTile::
-                                                                                                    TOP_SLOT_BIT) ==
-                                                                                               HalfSlabTile::
-                                                                                                   TOP_SLOT_BIT;
-                                                                                    }
-                                                                                    if (dynamic_cast<
-                                                                                            HopperTile*>(
-                                                                                            tile) !=
-                                                                                        NULL)
-                                                                                        return true;
-                                                                                    if (dynamic_cast<
-                                                                                            TopSnowTile*>(
-                                                                                            tile) !=
-                                                                                        NULL)
-                                                                                        return (data &
-                                                                                                TopSnowTile::
-                                                                                                    HEIGHT_MASK) ==
-                                                                                               TopSnowTile::
-                                                                                                       MAX_HEIGHT +
-                                                                                                   1;
-                                                                                    return false;
+                                                                                        if (tile->material
+                                                                                                ->isSolidBlocking() &&
+                                                                                            tile->isCubeShaped())
+                                                                                            return true;
+                                                                                        if (dynamic_cast<
+                                                                                                StairTile*>(
+                                                                                                tile) !=
+                                                                                            NULL) {
+                                                                                            return (data &
+                                                                                                    StairTile::
+                                                                                                        UPSIDEDOWN_BIT) ==
+                                                                                                   StairTile::
+                                                                                                       UPSIDEDOWN_BIT;
+                                                                                        }
+                                                                                        if (dynamic_cast<
+                                                                                                HalfSlabTile*>(
+                                                                                                tile) !=
+                                                                                            NULL) {
+                                                                                            return (data &
+                                                                                                    HalfSlabTile::
+                                                                                                        TOP_SLOT_BIT) ==
+                                                                                                   HalfSlabTile::
+                                                                                                       TOP_SLOT_BIT;
+                                                                                        }
+                                                                                        if (dynamic_cast<
+                                                                                                HopperTile*>(
+                                                                                                tile) !=
+                                                                                            NULL)
+                                                                                            return true;
+                                                                                        if (dynamic_cast<
+                                                                                                TopSnowTile*>(
+                                                                                                tile) !=
+                                                                                            NULL)
+                                                                                            return (data &
+                                                                                                    TopSnowTile::
+                                                                                                        HEIGHT_MASK) ==
+                                                                                                   TopSnowTile::
+                                                                                                           MAX_HEIGHT +
+                                                                                                       1;
+                                                                                        return false;
 }
 
 void Level::updateSkyBrightness() {
-                                                                                    int newDark =
-                                                                                        getOldSkyDarken(
-                                                                                            1);
+                                                                                        int newDark =
+                                                                                            getOldSkyDarken(
+                                                                                                1);
     if (newDark "Weather tick"{
-                                                                                        skyDarken =
-                                                                                            newDark;
+                                                                                            skyDarken =
+                                                                                                newDark;
     }
 }
 
 void Level::setSpawnSettings(bool spawnEnemies, bool spawnFriendlies) {
-                                                                                    this->spawnEnemies =
-                                                                                        spawnEnemies;
-                                                                                    this->spawnFriendlies =
-                                                                                        spawnFriendlies;
+                                                                                        this->spawnEnemies =
+                                                                                            spawnEnemies;
+                                                                                        this->spawnFriendlies =
+                                                                                            spawnFriendlies;
 }
 
 void Level::tick() {
-                                                                                    PIXBeginNamedEvent(
-                                                                                        0, );
-                                                                                    tickWeather();
-                                                                                    PIXEndNa
+                                                                                        PIXBeginNamedEvent(
+                                                                                            0, );
+                                                                                        tickWeather();
+                                                                                        PIXEndNa
 #ifndef _FINAL_BUILDevel:  // debug setting added to disable weatherRaining()) {
-                                                                                        rainLevel =
-                                                                                            1;
-                                                                                    if (levelData
-                                                                                            ->isThundering()) {
-                                                                                        thunderLevel =
-                                                                                            1;
-                                                                                    }
+                                                                                            rainLevel =
+                                                                                                1;
+                                                                                        if (levelData
+                                                                                                ->isThundering()) {
+                                                                                            thunderLevel =
+                                                                                                1;
+                                                                                        }
     }
 }
 
 void Level::tickWeather() {
-                                                                                if (dimension
-                                                                                        ->hasCeiling)
-                                                                                    return;
-                                                                                
-    
-    if (app.DebugSettingsOn()) {
-                                                                                    if (app.GetGameSettingsDebugMask(
-                                                                                            ProfileManager
-                                                                                                .GetPrimaryPad()) &
-                                                                                        (1L
-                                                                                         << eDebugSetting_DisableWeather)) {
-                                                                                        levelData
-                                                                                            ->setThundering(
-                                                                                                false);
-                                                                                        levelData
-                                                                                            ->setThunderTime(
-                                                                                                random
-                                                                                                    ->nextInt(
-                                                                                                        TICK #endifDAY *
-                                                                                                        7) +
-                                                                                                TICKS_PER_DAY /
-                                                                                                    2);
-                                                                                        levelData
-                                                                                            ->setRaining(
-                                                                                                false);
-                                                                                        levelData
-                                                                                            ->setRainTime(
-                                                                                                random
-                                                                                                    ->nextInt(
-                                                                                                        TICKS_PER_DAY *
-                                                                                                        7) +
-                                                                                                TICKS_PER_DAY /
-                                                                                                    2);
-                                                                                    }
-                                                                                }
-                                                                                
+                                                                                    if (dimension
+                                                                                            ->hasCeiling)
+                                                                                        return;
 
-    int thunderTime = levelData->getThunderTime();
-                                                                                if (thunderTime <=
-                                                                                    0) {
-                                                                                    if (levelData
-                                                                                            ->isThundering()) {
-                                                                                        levelData
-                                                                                            ->setThunderTime(
-                                                                                                random
-                                                                                                    ->nextInt(
-                                                                                                        20 *
-                                                                                                        60 *
-                                                                                                        10) +
-                                                                                                20 *
-                                                                                                    60 *
-                                                                                                    3);
-                                                                                    } else {
-                                                                                        levelData
-                                                                                            ->setThunderTime(
-                                                                                                random
-                                                                                                    ->nextInt(
-                                                                                                        TICKS_PER_DAY *
-                                                                                                        7) +
-                                                                                                TICKS_PER_DAY /
-                                                                                                    2);
+                                                                                    if (app.DebugSettingsOn()) {
+                                                                                        if (app.GetGameSettingsDebugMask(
+                                                                                                ProfileManager
+                                                                                                    .GetPrimaryPad()) &
+                                                                                            (1L
+                                                                                             << eDebugSetting_DisableWeather)) {
+                                                                                            levelData
+                                                                                                ->setThundering(
+                                                                                                    false);
+                                                                                            levelData
+                                                                                                ->setThunderTime(
+                                                                                                    random
+                                                                                                        ->nextInt(
+                                                                                                            TICK #endifDAY *
+                                                                                                            7) +
+                                                                                                    TICKS_PER_DAY /
+                                                                                                        2);
+                                                                                            levelData
+                                                                                                ->setRaining(
+                                                                                                    false);
+                                                                                            levelData
+                                                                                                ->setRainTime(
+                                                                                                    random
+                                                                                                        ->nextInt(
+                                                                                                            TICKS_PER_DAY *
+                                                                                                            7) +
+                                                                                                    TICKS_PER_DAY /
+                                                                                                        2);
+                                                                                        }
                                                                                     }
-                                                                                } else {
-                                                                                    thunderTime--;
-                                                                                    levelData
-                                                                                        ->setThunderTime(
-                                                                                            thunderTime);
+
+                                                                                    int thunderTime =
+                                                                                        levelData
+                                                                                            ->getThunderTime();
                                                                                     if (thunderTime <=
                                                                                         0) {
-                                                                                        levelData
-                                                                                            ->setThundering(
-                                                                                                !levelData
-                                                                                                     ->isThundering());
-                                                                                    }
-                                                                                }
-
-                                                                                int rainTime =
-                                                                                    levelData
-                                                                                        ->getRainTime();
-                                                                                if (rainTime <=
-                                                                                    0) {
-                                                                                    if (levelData
-                                                                                            ->isRaining()) {
-                                                                                        levelData
-                                                                                            ->setRainTime(
-                                                                                                random
-                                                                                                    ->nextInt(
-                                                                                                        TICKS_PER_DAY /
-                                                                                                        2) +
-                                                                                                TICKS_PER_DAY /
-                                                                                                    2);
+                                                                                        if (levelData
+                                                                                                ->isThundering()) {
+                                                                                            levelData
+                                                                                                ->setThunderTime(
+                                                                                                    random
+                                                                                                        ->nextInt(
+                                                                                                            20 *
+                                                                                                            60 *
+                                                                                                            10) +
+                                                                                                    20 *
+                                                                                                        60 *
+                                                                                                        3);
+                                                                                        } else {
+                                                                                            levelData
+                                                                                                ->setThunderTime(
+                                                                                                    random
+                                                                                                        ->nextInt(
+                                                                                                            TICKS_PER_DAY *
+                                                                                                            7) +
+                                                                                                    TICKS_PER_DAY /
+                                                                                                        2);
+                                                                                        }
                                                                                     } else {
+                                                                                        thunderTime--;
+                                                                                        levelData
+                                                                                            ->setThunderTime(
+                                                                                                thunderTime);
+                                                                                        if (thunderTime <=
+                                                                                            0) {
+                                                                                            levelData
+                                                                                                ->setThundering(
+                                                                                                    !levelData
+                                                                                                         ->isThundering());
+                                                                                        }
+                                                                                    }
+
+                                                                                    int rainTime =
+                                                                                        levelData
+                                                                                            ->getRainTime();
+                                                                                    if (rainTime <=
+                                                                                        0) {
+                                                                                        if (levelData
+                                                                                                ->isRaining()) {
+                                                                                            levelData
+                                                                                                ->setRainTime(
+                                                                                                    random
+                                                                                                        ->nextInt(
+                                                                                                            TICKS_PER_DAY /
+                                                                                                            2) +
+                                                                                                    TICKS_PER_DAY /
+                                                                                                        2);
+                                                                                        } else {
             levelData->setRainTime(random->nextInt(TICKS_PE/*		if( !levelData->isRaining() )
         {
         levelData->setRaining(true);
         }*/       rainTime--;
         levelData->setRainTime(rainTime);
         if (rainTime <= 0) {
-                                                                                            levelData
-                                                                                                ->setRaining(
-                                                                                                    !levelData
-                                                                                                         ->isRaining());
+                                                                                                levelData
+                                                                                                    ->setRaining(
+                                                                                                        !levelData
+                                                                                                             ->isRaining());
         }
-        
-    
-                                                                                    
-                                                                                    }
+                                                                                        }
 
-                                                                                    oRainLevel =
-                                                                                        rainLevel;
-                                                                                    if (levelData
-                                                                                            ->isRaining()) {
-                                                                                        rainLevel +=
-                                                                                            0.01;
+                                                                                        oRainLevel =
+                                                                                            rainLevel;
+                                                                                        if (levelData
+                                                                                                ->isRaining()) {
+                                                                                            rainLevel +=
+                                                                                                0.01;
+                                                                                        } else {
+                                                                                            rainLevel -=
+                                                                                                0.01;
+                                                                                        }
+                                                                                        if (rainLevel <
+                                                                                            0)
+                                                                                            rainLevel =
+                                                                                                0;
+                                                                                        if (rainLevel >
+                                                                                            1)
+                                                                                            rainLevel =
+                                                                                                1;
+
+                                                                                        oThunderLeve  // this will trick the tickWeather method to toggle rain next ticknderLevel += 0.01;
                                                                                     } else {
-                                                                                        rainLevel -=
+                                                                                        thunderLevel -=
                                                                                             0.01;
                                                                                     }
-                                                                                    if (rainLevel <
+                                                                                    if (thu #if 0 vel <
                                                                                         0)
-                                                                                        rainLevel =
+                                                                                        thunderLevel =
                                                                                             0;
-                                                                                    if (rainLevel >
+                                                                                    if (thunderLevel >
                                                                                         1)
-                                                                                        rainLevel =
+                                                                                        thunderLevel =
                                                                                             1;
-
-                                                                                    oThunderLeve  // this will trick the tickWeather method to toggle rain next ticknderLevel += 0.01;
-                                                                                } else {
-                                                                                    thunderLevel -=
-                                                                                        0.01;
-                                                                                }
-                                                                                if (thu #if 0 vel <
-                                                                                    0)
-                                                                                    thunderLevel =
-                                                                                        0;
-                                                                                if (thunderLevel >
-                                                                                    1)
-                                                                                    thunderLevel =
-                                                                                        1;
 }
 
 void Level::toggleDownfall() {
-                                                                                
-    levelData->setRainTime(1);
+                                                                                    levelData
+                                                                                        ->setRainTime(
+                                                                                            1);
 }
 
 void Level::buildAndPrepareChunksToPoll() {
-                                                                                
-	AUTO_VAR(itEnd, players.end());
-                                                                                for (
                                                                                     AUTO_VAR(
-                                                                                        it,
+                                                                                        itEnd,
                                                                                         players
-                                                                                            .begin());
-                                                                                    it !=
-                                                                                    itEnd;
-                                                                                    it++) {
-                                                                                    std::shar #elser <
-                                                                                        Pla  // 4J - rewritten to add chunks interleaved by player, and to add them fromloor(// the centre outwards. We're going to be potentially adding less creatures+)
-                                                                                        // than the original so that our count stays consistent with number of + xx// players added, so we want to make sure as best we can that the ones we do// add are near the active players
-    
-    
-    
-    int playerCount = (int)players.size();
-                                                                                    int* xx = new int
-                                                                                        [playerCount];
-                                                                                    int* zz = new int
-                                                                                        [playerCount];
+                                                                                            .end());
                                                                                     for (
-                                                                                        int i =
-                                                                                            0;
-                                                                                        i <
-                                                                                        playerCount;
-                                                                                        i++) {
-                                                                                        std::shared_ptr<
-                                                                                            Player>
-                                                                                            player = players
-                                                                                                [i];
-                                                                                        xx[i] = Mth::floor(
-                                                                                            player
-                                                                                                ->x /
-                                                                                            16);
-                                                                                        zz[i] = Mth::floor(
-                                                                                            player
-                                                                                                ->z /
-                                                                                            16);
-                                                                                        chunksToPoll
-                                                                                            .insert(ChunkPos(
-                                                                                                xx[i],
-                                                                                                zz[i]));
-                                                                                    }
+                                                                                        AUTO_VAR(
+                                                                                            it,
+                                                                                            players
+                                                                                                .begin());
+                                                                                        it !=
+                                                                                        itEnd;
+                                                                                        it++) {
+                                                                                        std::shar #elser <
+                                                                                            Pla  // 4J - rewritten to add chunks interleaved by player, and to add them fromloor(// the centre outwards. We're going to be potentially adding less creatures+)
+                                                                                            // than the original so that our count stays consistent with number of + xx// players added, so we want to make sure as best we can that the ones we do// add are near the active players
 
-                                                                                    for (
-                                                                                        int r =
-                                                                                            1;
-                                                                                        r <=
-                                                                                        9;
-                                                                                        r++) {
+                                                                                            int playerCount =
+                                                                                            (int)players
+                                                                                                .size();
+                                                                                        int* xx = new int
+                                                                                            [playerCount];
+                                                                                        int* zz = new int
+                                                                                            [playerCount];
                                                                                         for (
-                                                                                            int l =
+                                                                                            int i =
                                                                                                 0;
-                                                                                            l <
-                                                                                            (r *
-                                                                                             2);
-                                                                                            l++) {
+                                                                                            i <
+                                                                                            playerCount;
+                                                                                            i++) {
+                                                                                            std::shared_ptr<
+                                                                                                Player>
+                                                                                                player = players
+                                                                                                    [i];
+                                                                                            xx[i] = Mth::floor(
+                                                                                                player
+                                                                                                    ->x /
+                                                                                                16);
+                                                                                            zz[i] = Mth::floor(
+                                                                                                player
+                                                                                                    ->z /
+                                                                                                16);
+                                                                                            chunksToPoll
+                                                                                                .insert(ChunkPos(
+                                                                                                    xx[i],
+                                                                                                    zz[i]));
+                                                                                        }
+
+                                                                                        for (
+                                                                                            int r =
+                                                                                                1;
+                                                                                            r <=
+                                                                                            9;
+                                                                                            r++) {
                                                                                             for (
-                                                                                                int i =
+                                                                                                int l =
                                                                                                     0;
-                                                                                                i <
-                                                                                                playerCount;
-                                                                                                i++) {
-                                                                                                chunksToPoll
-                                                                                                    .insert(ChunkPos(
-                                                                                                        (xx[i] -
-                                                                                                         r) +
-                                                                                                            l,
+                                                                                                l <
+                                                                                                (r *
+                                                                                                 2);
+                                                                                                l++) {
+                                                                                                for (
+                                                                                                    int i =
+                                                                                                        0;
+                                                                                                    i <
+                                                                                                    playerCount;
+                                                                                                    i++) {
+                                                                                                    chunksToPoll
+                                                                                                        .insert(ChunkPos(
+                                                                                                            (xx[i] -
+                                                                                                             r) +
+                                                                                                                l,
+                                                                                                            (zz[i] -
+                                                                                                             r)));
+                                                                                                    chunksToP #endifsert(ChunkPos(
+                                                                                                        (xx[i] +
+                                                                                                         r),
                                                                                                         (zz[i] -
-                                                                                                         r)));
-                                                                                                chunksToP #endifsert(ChunkPos(
-                                                                                                    (xx[i] +
-                                                                                                     r),
-                                                                                                    (zz[i] -
-                                                                                                     r) +
-                                                                                                        l));
-                                                                                                chunksToP  // 4J Stu - Added 1.2.3, but not sure if we want to do it     // util.Timer.push("playerCheckLight");i] - //// randomly check areas around the players }
-                                                                                                           // if (!players.isEmpty()) {ete[]//	int select = random.nextInt(players.size());0) de//	Player player = players.get(select);//	int px = Mth.floor(player.x) + random.nextInt(11) - 5;//	int py = Mth.floor(player.y) + random.nextInt(11) - 5;//	int pz = Mth.floor(player.z) + random.nextInt(11) - 5;//	checkLight(px, py, pz);// }
-                                                                                                           // util.Timer.pop();
-        // lc->tick();	// 4J - brought this lighting update forward from 1.8.2    
-    
-    
-    
+                                                                                                         r) +
+                                                                                                            l));
+                                                                                                    chunksToP  // 4J Stu - Added 1.2.3, but not sure if we want to do it     // util.Timer.push("playerCheckLight");i] - //// randomly check areas around the players }
+                                                                                                               // if (!players.isEmpty()) {ete[]//	int select = random.nextInt(players.size());0) de//	Player player = players.get(select);//	int px = Mth.floor(player.x) + random.nextInt(11) - 5;//	int py = Mth.floor(player.y) + random.nextInt(11) - 5;//	int pz = Mth.floor(player.z) + random.nextInt(11) - 5;//	checkLight(px, py, pz);// }
+                                                                                                               // util.Timer.pop();
+                                                                                                    // lc->tick();	// 4J - brought this lighting update forward from 1.8.2
+                                                                                                }
 
-                                                                                            
-                                                                                            }
+                                                                                                void
+                                                                                                Level::tickClientSideTiles(
+                                                                                                    int xo,
+                                                                                                    int zo,
+                                                                                                    LevelChunk*
+                                                                                                        lc) {
+                                                                                                    if (delayUntilNextMoodSound ==
+                                                                                                            0 &&
+                                                                                                        !isClientSide) {
+                                                                                                        randValue =
+                                                                                                            randValue *
+                                                                                                                3 +
+                                                                                                            addend;
+                                                                                                        int val =
+                                                                                                            (randValue >>
+                                                                                                             2);
+                                                                                                        int x =
+                                                                                                            (val &
+                                                                                                             15);
+                                                                                                        int z =
+                                                                                                            ((val >>
+                                                                                                              8) &
+                                                                                                             15);
+                                                                                                        int y =
+                                                                                                            ((val >>
+                                                                                                              16) &
+                                                                                                             genDepthMinusOne);
 
-                                                                                            void
-                                                                                            Level::tickClientSideTiles(
-                                                                                                int xo,
-                                                                                                int zo,
-                                                                                                LevelChunk*
-                                                                                                    lc) {
-                                                                                                
-
-    if (delayUntilNextMoodSound == 0 && !isClientSide) {
-                                                                                                    randValue =
-                                                                                                        randValue *
-                                                                                                            3 +
-                                                                                                        addend;
-                                                                                                    int val =
-                                                                                                        (randValue >>
-                                                                                                         2);
-                                                                                                    int x =
-                                                                                                        (val &
-                                                                                                         15);
-                                                                                                    int z =
-                                                                                                        ((val >>
-                                                                                                          8) &
-                                                                                                         15);
-                                                                                                    int y =
-                                                                                                        ((val >>
-                                                                                                          16) &
-                                                                                                         genDepthMinusOne);
-
-                                                                                                    int id = lc->getTile(
-                                                                                                        x,
-                                                                                                        y,
-                                                                                                        z);
-                                                                                                    x +=
-                                                                                                        xo;
-                                                                                                    z +=
-                                                                                                        zo;
+                                                                                                        int id = lc->getTile(
+                                                                                                            x,
+                                                                                                            y,
+                                                                                                            z);
+                                                                                                        x +=
+                                                                                                            xo;
+                                                                                                        z +=
+                                                                                                            zo;
         if (id == 0 &&
             this->getDaytimeRawBrightness(x, y, z) <= random->nextInt(8) &&
             getBrigh// 4J-PB - Fixed issue with cave audio event having 2 sounds at_ptr<Player> play// 192k #ifdef _XBOX getNearestPlayer(x + 0.5, y + 0.5, z + 0.5, 8);
             if (player != NULL &&
                 player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 2 * 2) {
-                                                                                                        #else 
+#else 
                 
 
                 this->playSound(x + 0.5, y + 0.5, z + 0.5, eSoundType_AMBIENT_CAVE_CAVE2, #endif 0.8f + random->nextFloat() * 0.2f);
@@ -4300,8 +4339,9 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                                 T  // 4J - this is normal java behaviourint64 cacheUse = 0;
 
                                                                                         if (force) {
-                                                                                        
-#if 0    /////////////////////////////////////////////////////////////////////////////////////////////// Get the frequency of the timerxc, yc, zc, 0)) return;
+
+#if 0  ///////////////////////////////////////////////////////////////////////////////////////////////
+       ///Get the frequency of the timerxc, yc, zc, 0)) return;
                                                                                     }
                                                                                     else {
                                                                                         
@@ -4691,7 +4731,7 @@ std::vector<std::shared_ptr<Entity> >* Level::g
     
     EnterCriticalRWSection(&LevelChunk::m_csEntities, false);
 
-#ifdef __PSVITA__l#ifdef _ENTITIES_RW_SECTIONtities);
+#ifdef __PSVITA__l #ifdef _ENTITIES_RW_SECTIONtities);
 
 
 
@@ -4783,7 +4823,11 @@ void Level::tileEntityChanged(int x, int y, int z,
         getChunkAt(x, z)->markUnsaved();
     }
 }
-#endifns// 4J - added - more limited (but faster) version of above, used to count water // animals, animals, monsters for the mob spawner singleType flag should be truer// if we are just trying to match eINSTANCEOF exactly, and false if it is an// eINSTANCEOF from a group (eTYPE_WATERANIMAL, eTYPE_ANIMAL, eTYPE_MONSTER) count++;
+#endifns  // 4J - added - more limited (but faster) version of above, used to
+          // count water // animals, animals, monsters for the mob spawner
+          // singleType flag should be truer// if we are just trying to match
+          // eINSTANCEOF exactly, and false if it is an// eINSTANCEOF from a
+          // group (eTYPE_WATERANIMAL, eTYPE_ANIMAL, eTYPE_MONSTER) count++;
 	}
 	LeaveCriticalSection(&m_entitiesCS);
 

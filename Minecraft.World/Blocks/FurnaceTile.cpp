@@ -169,16 +169,13 @@ void FurnaceTile::onRemove(Level* level, int x, int y, int z, int id,
                         if (level->isClientSide) {
           "Client furnace dropping %d of %d/%d\n",
                                    count, item->id, item->getAuxValue());
-                    }
-                    else {
+                        } else {
           "Server furnace dropping %d of %d/%d\n",
                                    count, item->id, item->getAuxValue());
 #endif }
-          
 
-                        std::shared_ptr<ItemInstance>
-              newItem = std::shared_ptr<ItemInstance>(
-                  new ItemInstance(item->id, count, item->getAuxValue()));
+          std::shared_ptr<ItemInstance> newItem = std::shared_ptr<ItemInstance>(
+              new ItemInstance(item->id, count, item->getAuxValue()));
           newItem->set4JData(item->get4JData());
           std::shared_ptr<ItemEntity> itemEntity = std::shared_ptr<ItemEntity>(
               new ItemEntity(level, x + xo, y + yo, z + zo, newItem));
@@ -192,24 +189,24 @@ void FurnaceTile::onRemove(Level* level, int x, int y, int z, int id,
           }
           level
               ->addEntity(itemEntity)  // 4J Stu - Fix for duplication glitch
-                                       // 
+                                       //
               container->setItem(i, nullptr);
+                        }
                     }
+                    level->updateNeighbourForOutputSignal(x, y, z, id);
                 }
-                level->updateNeighbourForOutputSignal(x, y, z, id);
             }
+            BaseEntityTile::onRemove(level, x, y, z, id, data);
         }
-        BaseEntityTile::onRemove(level, x, y, z, id, data);
-    }
 
-    bool FurnaceTile::hasAnalogOutputSignal() { return true; }
+        bool FurnaceTile::hasAnalogOutputSignal() { return true; }
 
-    int FurnaceTile::getAnalogOutputSignal(Level * level, int x, int y, int z,
-                                           int dir) {
-        return AbstractContainerMenu::getRedstoneSignalFromContainer(
-            dynamic_pointer_cast<Container>(level->getTileEntity(x, y, z)));
-    }
+        int FurnaceTile::getAnalogOutputSignal(Level * level, int x, int y,
+                                               int z, int dir) {
+            return AbstractContainerMenu::getRedstoneSignalFromContainer(
+                dynamic_pointer_cast<Container>(level->getTileEntity(x, y, z)));
+        }
 
-    int FurnaceTile::cloneTileId(Level * level, int x, int y, int z) {
-        return Tile::furnace_Id;
-    }
+        int FurnaceTile::cloneTileId(Level * level, int x, int y, int z) {
+            return Tile::furnace_Id;
+        }

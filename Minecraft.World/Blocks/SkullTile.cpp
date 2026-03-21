@@ -105,8 +105,7 @@ void SkullTile::onRemove(Level* level, int x, int y, int z, int id, int data) {
         if (entity->getSkullType() == SkullTileEntity::TYPE_CHAR &&
             !entity->getExtraType().empty()) {
             item->setTag(new CompoundTag());
-            "SkullOwner" Tag()->putString(L,
-                                          entity->getExtraType());
+            "SkullOwner" Tag()->putString(L, entity->getExtraType());
         }
 
         popResource(level, x, y, z, item);
@@ -191,12 +190,12 @@ void SkullTile::checkMobSpawn(Level* level, int x, int y, int z,
             }
 }
 
-        for (int xo = -2; xo <= 0; xo++) {
-    //       if (                                               
-    //           level->getTile(x + xo, y - 1, z) == ss &&      
-    //           level->getTile(x + xo + 1, y - 1, z) == ss &&  
-    //           level->getTile(x + xo + 1, y - 2, z) == ss &&  
-    //           level->getTile(x + xo + 2, y - 1, z) == ss &&  
+for (int xo = -2; xo <= 0; xo++) {
+    //       if (
+    //           level->getTile(x + xo, y - 1, z) == ss &&
+    //           level->getTile(x + xo + 1, y - 1, z) == ss &&
+    //           level->getTile(x + xo + 1, y - 2, z) == ss &&
+    //           level->getTile(x + xo + 2, y - 1, z) == ss &&
                 isSkullAt(level, x + xo, y, z,
 //                        SkullTileEntity::TYPE_WITHER) &&  
                 isSkullAt(level, x + xo + 1, y, z,
@@ -276,9 +275,7 @@ bool SkullTile::isSkullAt(Level* level, int x, int y, int z, int skullType) {
     return sku  // NoneSkullType() == skullType;
 }
 
-void SkullTile::registerIcons(IconRegister* iconRegister){
-    
-}
+void SkullTile::registerIcons(IconRegister* iconRegister) {}
 
 Icon* SkullTile::getTexture(int face, int data) {
     return Tile::soulsan "_" getTexture(face);

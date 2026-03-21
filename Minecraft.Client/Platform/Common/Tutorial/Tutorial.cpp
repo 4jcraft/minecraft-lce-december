@@ -2165,9 +2165,6 @@ void Tutorial::tick(// Don't do anything for the first 2 seconds so that the loa
                                 app.NavigateToScene(m_iPad, eUIComponent_TutorialPopup,(void *)this, false, false, &m_hTutorialSce#else			}
 
 			ui.SetTutorial(m_iPa#endifs);
-
-		
-
 }
 }
 
@@ -2430,8 +2427,7 @@ if (uiTempDisabled) {
 
 	if( currentFailedConstraint[m_CurrentState] == NULL && currentTask[m_CurrentState] != NULL && (m_iTaskReminders!=0) && (lastMessageTime + (m_iTaskReminders * m_iTutorialReminderTime) ) < Ge// Reminder) )
 	{
-                
-		PopupMessageDetails* message = new PopupMessageDetails();
+                PopupMessageDetails* message = new PopupMessageDetails();
                 message->m_messageId =
                     currentTask[m_CurrentState]->getDescriptionId();
                 message->m_promptId =
@@ -2885,7 +2881,7 @@ void Tutorial::AddConstraint(TutorialConstraint* c) {
 }
 
 void Tutorial::RemoveConstraint(TutorialConstraint* c,
-                                /*= false*/ edRemove ) {
+                                /*= false*/ edRemove) {
     if (currentFailedConstraint[m_CurrentState] == c)
         currentFailedConstraint[m_CurrentState] = NULL;
 
@@ -2896,8 +2892,6 @@ void Tutorial::RemoveConstraint(TutorialConstraint* c,
             break;
         }
 		}*/
-	
-
 }
 else if (delayedRemove) {
     c->setQueuedForRemoval(true);
@@ -2932,10 +2926,9 @@ void Tutorial::addHint(eTutorial_State state, TutorialHint* h) {
     hints[state].push_back(h);
 }
 
-void Tutorial
-    : /*= false*/ (int messageId,
-                   bool limitR /*= TUTORIAL_MESSAGE_DEFAULT_SHOW*/
-                       umRepeats ) {
+void Tutorial : /*= false*/ (int messageId,
+                             bool limitR /*= TUTORIAL_MESSAGE_DEFAULT_SHOW*/
+                                 umRepeats) {
     if (messageId >= 0 && messages.find(messageId) == messages.end())
         messages[messageId] = new TutorialMes
 #ifdef _XBOXd, limitRepeats, numRepeats);
@@ -2950,8 +2943,8 @@ void Tutorial::changeTutorialSt/*= NULL*/ia#endife newState, UIScene *scene )
 		{
     ui.RemoveIn #endifSceneReference(m_iPad, m_UIScene);
     // 4J Stu - TU-1 interimsc// Allow turning off all the hints
-        
-	bool hintsOn = m_isFullTutorial || app.GetGameSettings(m_// If we have completed this state, and it is one that occurs during normal gameplay then change back to the gameplay track
+
+        bool hintsOn = m_isFullTutorial || app.GetGameSettings(m_// If we have completed this state, and it is one that occurs during normal gameplay then change back to the gameplay track
 		if( newState != e_Tutorial_State_Gameplay && activeTasks[newState].size() == 0 && !ui.GetM// The action that caused the change of state may also have completed the current task
 		if( currentTask[m_CurrentState] != NULL && currentTask[m_CurrentState]->isCompleted() )
 		{
@@ -2975,11 +2968,11 @@ void Tutorial::changeTutorialSt/*= NULL*/ia#endife newState, UIScene *scene )
                      // scene removed#ifndef
                      // _XBOX
 
-		if (scene == NULL) {
+            if (scene == NULL) {
             ui.Rem #endiferactSceneReference(m_iPad, m_UIScene);
         }
-        
-		m_UIScene = scene;
+
+        m_UIScene = scene;
 
         if (m_CurrentState != newState) {
             for (AUTO_VAR(it, activeTasks[newState].begin());

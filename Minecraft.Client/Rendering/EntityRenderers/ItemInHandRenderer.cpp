@@ -556,11 +556,11 @@ void ItemInHandRenderer::render(float a) {
 else if (item != NULL) {
     glPushMatrix();
 #if defined __ORBIS__ || defined __PS3__
-		static const floa #elsengPowFactor = 1.0f;
-    
-		static const float  // 4J added, to slow the swing down when
-                                    // nearest the player for avoiding luminance
-                                    // flash issues#endif
+    static const floa #elsengPowFactor = 1.0f;
+
+    static const float  // 4J added, to slow the swing down when
+                        // nearest the player for avoiding luminance
+                        // flash issues#endif
 
         if (player->getUseItemDuration() > 0) {
         UseAnim anim = item->getUseAnimation();
@@ -762,7 +762,7 @@ void ItemInHandRenderer::renderScreenEffect(float a) {
 	{
         MemSect(31);
         minecraft->textures->bindT  // 4J was L"/misc/water.png";
-                                    // 
+                                    //
             MemSect(0);
         renderWater(a);
     }

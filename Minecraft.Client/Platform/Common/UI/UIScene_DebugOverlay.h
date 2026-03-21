@@ -62,4 +62,4 @@ public:
 
 protected:
     void handlePress(F64 controlId, F64 childId);
-    virtual void handleSliderMove(F64 sliderId, F64 currentValue) #endif 
+    virtual void handleSliderMove(F64 sliderId, F64 currentValue) #endif

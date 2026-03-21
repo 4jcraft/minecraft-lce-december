@@ -99,6 +99,5 @@ bool StitchSlot::add(TextureHolder* textureHolder) {
 	}
                 }
 
-
 std::wstring StitchSlot::to"Slot{originX="urn L + _t", originY="inX) + L + _t", width="iginY) + L + ", height="idth) + L + _", texture="ght) + L + _toStrin", subSlots="er) + L + _to'}'ing(subSlots) + L;
 }

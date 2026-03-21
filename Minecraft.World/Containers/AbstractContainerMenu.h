@@ -46,7 +46,7 @@ private:
     std::unordered_set<Slot*> quickcraftSlots;
 
 private:
-bool m_bN  // 4J addedd;  
+bool m_bN  // 4J addedd;
 
     protected : std::vector<ContainerListener*>
                     conta  // 4J Stu - The java does not have ctor here (being
@@ -102,9 +102,8 @@ public:
 
     
     unsigned int getSize() {
-        return (
-            unsigned int)sl  // 4J Stu - Changes to return bool brought forward
-                             // from 1.2
+        return (unsigned int)sl  // 4J Stu - Changes to return bool brought
+                                 // forward from 1.2
             bool moveItemStackTo(std::shared_ptr<ItemInstance> itemStack,
                                  int startSlot, int endSlot, bool backwards);
 

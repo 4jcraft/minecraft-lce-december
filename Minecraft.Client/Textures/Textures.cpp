@@ -324,8 +324,6 @@ intArray Textures::loadTexturePixels(TEXTURE_NAME texId,
         return res;
     }
 	*/
-
-    
     }
 
     intArray Textures::loadTexturePixels(BufferedImage * img) {
@@ -382,72 +380,72 @@ void Textures::setTextureFormat(const std::wstring& resourceName// 4J Stu - Thes
 	}
 #endif 
 	{
-		TEXTURE_FORMAT = C4JRender::TEXTURE_FORMAT_RxGyBzAw;
+                TEXTURE_FORMAT = C4JRender::TEXTURE_FORMAT_RxGyBzAw;
         }
-    }
+        }
 
-    void Textures::bindTexture(const std::wstring& resourceName) {
+        void Textures::bindTexture(const std::wstring& resourceName) {
         std::bind(loadTexture(TN_COUNT,resourceN// 4J Added
 void Textures::bindTexture(ResourceLocation *resource)
 {
-            if (resource->isPreloaded()) {
-                std::bind(loadTexture(resource->getTexture()));
-            } else {
-                std::bind(loadTexture(TN_COUNT, resource->getPath()));
-            }
+                if (resource->isPreloaded()) {
+                    std::bind(loadTexture(resource->getTexture()));
+                } else {
+                    std::bind(loadTexture(TN_COUNT, resource->getPath()));
+                }
 }
 
 void Textures::bindTextureLayers(ResourceLocation *resource)
 {
-            assert(resource->isPreloaded());
+                assert(resource->isPreloaded());
 
-            int layers = resource->getTextureCount();
+                int layers = resource->getTextureCount();
 
-            for (int i = 0; i < layers; i++) {
-                RenderManager.TextureBind(i,
-                                          loadTexture(resource->getTexture(i)));
-            }
+                for (int i = 0; i < layers; i++) {
+                    RenderManager.TextureBind(
+                        i, loadTexture(resource->getTexture(i)));
+                }
 }
 
 void Textur//if (id != lastBoundId)
 	{
-            if (id < 0) return;
+                if (id < 0) return;
                 glBindTexture(G//	lastBoundId = id;
 	}
-    }
-
-    ResourceLocation* Textures::getTextureLocation(
-        std::shared_ptr<Entity> entity) {
-        std::shared_ptr<ItemEntity> item =
-            dynamic_pointer_cast<ItemEntity>(entity);
-        int iconType = item->getItem()->getIconType();
-        return getTextureLocation(iconType);
-    }
-
-    ResourceLocation* Textures::getTextureLocation(int iconType) {
-        switch (iconType) {
-            case Icon::TYPE_TERRAIN:
-                return &TextureAtlas::LOCATION_BLOCKS;
-                break;
-            case Icon::TYPE_ITEM:
-                return &TextureAtlas::LOCATION_ITEMS;
-                break;
         }
-    }
 
-    void Textures::clearLastBoundId() { lastBoundId = -1; }
+        ResourceLocation* Textures::getTextureLocation(
+            std::shared_ptr<Entity> entity) {
+            std::shared_ptr<ItemEntity> item =
+                dynamic_pointer_cast<ItemEntity>(entity);
+            int iconType = item->getItem()->getIconType();
+            return getTextureLocation(iconType);
+        }
+
+        ResourceLocation* Textures::getTextureLocation(int iconType) {
+            switch (iconType) {
+                case Icon::TYPE_TERRAIN:
+                    return &TextureAtlas::LOCATION_BLOCKS;
+                    break;
+                case Icon::TYPE_ITEM:
+                    return &TextureAtlas::LOCATION_ITEMS;
+                    break;
+            }
+        }
+
+        void Textures::clearLastBoundId() { lastBoundId = -1; }
 
 int Textures::loadTexture(TEXTURE_NAME texId, const std::// 	char buf[256];a// 	wcstombs(buf, resourceName.c_str(), 256);// 	printf("Textures::loadTexture name - %s\n",buf);//if (resourceName.compare(L"/terrain.png") == 0)//{//	terrain->getStitchedTexture()->bind(0);//	return terrain->getStitchedTexture()->getGlId();//}//if (resourceName.compare(L"/gui/items.png") == 0)//{//	items->getStitchedTexture()->bind(0);//	return items->getStitchedTexture()->getGlId();//}// If the texture is not present in the idMap, load it, otherwise return its id
 
     {
-        bool inMap = (idMap.find(resourceName) != idMap.end());
-        int id = idMap[resourceName];
-        if (inMap) return id;
+            bool inMap = (idMap.find(resourceName) != idMap.end());
+            int id = idMap[resourceName];
+            if (inMap) return id;
     }
 
 	std::wstri// 4J - added special cases to avoid mipmapping on clouds & shadows"environment/clouds.png"e == L"%clamp%misc/shadow.png"e == L"%blur%misc/pumpkinblur.png" L"%clamp%misc/shadow.png"e == L"gui/icons.png"sourceName == L"gui/gui.png"resourceName == L"misc/footprint.png"eName == L) )
 	{
-        MIPMAP = false;
+            MIPMAP = false;
 	}
 	setT// 4J - removed try/catch)//    try {
 
@@ -480,26 +478,24 @@ int Textures::loadTexture(TEXTURE_NAME texId, const std::// 	char buf[256];a// 	
         return id;
     }
 	*/
+    }
 
+    int Textures::getTexture(BufferedImage * img,
+                             C4JRender::eTextureFormat format, bool mipmap) {
+        int id = MemoryTracker::genTextures();
+        TEXTURE_FORMAT = format;
+        MIPMAP = mipmap;
+        loadTexture(img, id);
+        TEXTURE_FORMAT = C4JRender::TEXTURE_FORMAT_RxGyBzAw;
+        MIPMAP = true;
+        loadedImages[id] = img;
+        return id;
+    }
 
-}
+    void Textures::loadTex  //	printf("Textures::loadTexture BufferedImage
+                            //%d\n",id);
 
-int Textures::getTexture(BufferedImage* img, C4JRender::eTextureFormat format,
-                         bool mipmap) {
-    int id = MemoryTracker::genTextures();
-    TEXTURE_FORMAT = format;
-    MIPMAP = mipmap;
-    loadTexture(img, id);
-    TEXTURE_FORMAT = C4JRender::TEXTURE_FORMAT_RxGyBzAw;
-    MIPMAP = true;
-    loadedImages[id] = img;
-    return id;
-}
-
-void Textures::loadTex  //	printf("Textures::loadTexture BufferedImage
-                        //%d\n",id);
-
-    loadTexture(img, id, false, false);
+        loadTexture(img, id, false, false);
 }
 
 void Textures::loadTexture(BufferedImage *img//	printf("Textures::loadTexture BufferedImage with blur and clamp %d\n",id);
@@ -558,13 +554,13 @@ void Textures::loadTexture(BufferedImage *img//	printf("Textures::loadTexture Bu
     int r = (rawPixels[i] >> 16) & 0xff;
     int g = (rawPixels[i] >> 8) & 0xff;
 #ifdef _XBOXrawPixels[i]) & 0xff;
-    
-        newPixels[i * 4 + 0] = (uint8_t)a;
+
+    newPixels[i * 4 + 0] = (uint8_t)a;
     newPixels[i * 4 + 1] = (uint8_t)r;
     newPixels[i * 4 + 2] = (uint8_t)g;
 #elsePixels[i * 4 + 3] = (uint8_t)b;
-    
-        newPixels[i * 4 + 0] = (uint8_t)r;
+
+    newPixels[i * 4 + 0] = (uint8_t)r;
     newPixels[i * 4 + 1] = (uint8_t)g;
     newPixels[i * 4 + 2] = (uint8_t)b;
 #endifixels[i  // 4J - now creating a buffer of the size we require
@@ -592,7 +588,7 @@ void Textures::loadTexture(BufferedImage *img//	printf("Textures::loadTexture Bu
 	if (MIPMAP)
 	{
     for (int level = 1; level < iMipLevels; level++) {
-        int  // int oh = h >> (level - 1);      
+        int  // int oh = h >> (level - 1);
 
             int ww = w >> level;
         // 4J - added tempData so we aren't overwriting source
@@ -607,9 +603,6 @@ void Textures::loadTexture(BufferedImage *img//	printf("Textures::loadTexture Bu
 				{
                                         tempData[i] = ( tempData[i] >>#endif| (tempData[i] << 8 );
 				}
-
-			
-        
         }
         else {
             for (int x = 0; x < ww; x++)
@@ -730,9 +723,7 @@ void Textures::replaceTextureDirect(intArray rawPixels, int w, int h, int id)
 {
         // Remove in Java(#if 0XTURE_2D, id);
 
-        
-
-	if (MIPMAP) {
+        if (MIPMAP) {
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
                             GL_NEAREST_MIPMAP_LINEAR);
                 glTexParameteri(GL_TEXTURE_2D/*
@@ -741,11 +732,8 @@ void Textures::replaceTextureDirect(intArray rawPixels, int w, int h, int id)
 		* glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
 		* glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 4);
 		*/#endif
-	
-        
-        }
-        else 
-	{
+
+        } else {
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         }
@@ -762,9 +750,7 @@ void Textures::replaceTextureDirect(shortArray rawPixels, int w, int h, int id)
 {
             // Remove in Java(#if 0XTURE_2D, id);
 
-            
-
-	if (MIPMAP) {
+            if (MIPMAP) {
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
                                 GL_NEAREST_MIPMAP_LINEAR);
                 glTexParameteri(GL_TEXTURE_2D/*
@@ -773,11 +759,8 @@ void Textures::replaceTextureDirect(shortArray rawPixels, int w, int h, int id)
 		* glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
 		* glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 4);
 		*/#endif
-	
-            
-            }
-            else 
-	{
+
+            } else {
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
                                 GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
@@ -969,11 +952,8 @@ MemTexture *Textures::addMemTexture(const std::wstring& name,MemTextureProcessor
         // MemTextureProcessor *processor)// {// 	MemTexture *texture =
         // memTextures[url];// 	if (texture != NULL)// 	{//
         // texture->count++;// 	}// 	return texture;// }
-        
 
-
-
-void Textures::removeMemTexture(const std::wstring& url) {
+        void Textures::removeMemTexture(const std::wstring& url) {
             MemTexture* texture = NULL;
             AUTO_VAR(it, memTextures.find(url));
         if (it != memTextures// If it's NULL then we should just remove the entry
@@ -1054,14 +1034,13 @@ void Textures::reloadAll()
         int id = idMap[name];
         BufferedImage* image;
 
-        std::wstring
-            p  // name.startsWith("%blur%");ur = name.substr(0,
-               // prefix.size()).compare(prefix"%clamp%"
+        std::wstring p  // name.startsWith("%blur%");ur = name.substr(0,
+                        // prefix.size()).compare(prefix"%clamp%"
             if (blur) name = name.substr(6);
 
         pre  // name.startsWith("%clamp%");p = name.substr(0,
              // prefix.size()).compare(prefix) == 0;
-             // 
+             //
             if (clamp) name = name.substr(7);
 
         image = readImage(skin->getResource(name));
@@ -1097,8 +1076,7 @@ Icon *Textures::getMissingIcon(int type)
                 {
                     BufferedImage* img = NULL;
                     MemSect(32);
-                    ""
-	bool isTu = IsTUImage(texId "res/");
+                    "" bool isTu = IsTUImage(texId "res/");
                     std::wstring drive = L;
 
                     if (!skins->isUsingDefaultSkin() &&
@@ -1110,9 +1088,9 @@ Icon *Textures::getMissingIcon(int type)
                                      // __PS3__
                     } else {
                         const char* pchName = wstringtofilename(name);
-                        
-		if (app.GetBootedFromDiscPatch() &&
-                    app.IsFileInPatchList(pchName)) {
+
+                        if (app.GetBootedFromDiscPatch() &&
+                            app.IsFileInPatchList(pchName)) {
                         char *pchUsrDir = app.GetBDUsrDirPath("\\Common\\res\\TitleUpdate\\" (pchUsrDir, pchUsrDir+strlen(pchUsrDir)"\\Common\\"Tu)
 			{
                                 drive #endif + L;
@@ -1122,9 +1100,7 @@ Icon *Textures::getMissingIcon(int type)
 			{
                                 drive = wstr + L;
 			}
-                        }
-                        else 
-		{
+                        } else {
                             drive = skins->getDefault()->getPath(isTu);
                         }
 
@@ -1134,8 +1110,7 @@ Icon *Textures::getMissingIcon(int type)
     return img;
                     }
 
-                    
-TEXTURE_NAME TUImages[] = {
+                    TEXTURE_NAME TUImages[] = {
                         TN_POWERED_CREEPER, TN_MOB_ENDERMAN_EYES,
                         TN_MISC_EXPLOSION, TN_MOB_ZOMBIE, TN_MISC_FOOTSTEP,
                         TN_MOB_RED_COW, TN_MOB_SNOWMAN, TN_MOB_ENDERDRAGON,
@@ -1147,18 +1122,15 @@ TEXTURE_NAME TUImages[] = {
                         TN__BLUR__MISC_GLINT, TN_ITEM_BOOK,
                         TN_MISC_PARTIC  // TU12,
 
-	
-	TN_MISC_TUNNEL,
+                            TN_MISC_TUNNEL,
                         // TU14_ENDERDRAGON_BEAM,
                         TN_GUI_ITEMS, TN_TERRAIN, TN_MISC_MAPICONS,
 
-	
-	TN_MOB_WITHER_SKELETON,
+                        TN_MOB_WITHER_SKELETON,
 
-	
-	TN_TILE_ENDER_CHEST,
-                        TN_ART_KZ, TN_MOB_WOLF_TAME, TN_MOB_WOLF_COLLAR,
-                        TN_PARTICLES, TN_MOB_ZOMBIE_VILLAGER,
+                        TN_TILE_ENDER_CHEST, TN_ART_KZ, TN_MOB_WOLF_TAME,
+                        TN_MOB_WOLF_COLLAR, TN_PARTICLES,
+                        TN_MOB_ZOMBIE_VILLAGER,
 
                         TN_ITEM_LEASHKNOT,
 
@@ -1182,20 +1154,20 @@ TEXTURE_NAME TUImages[] = {
                         TN_MOB  // TN_TILE_XMAS_CHEST,
                                 // R_//TN_TILE_LARGE_XMAS_CHEST,N
 #ifdef _LARGE_WORLDSP_CHEST,
-                            TN_TILE_LARGE_TRAP_C #endif     // TU17
-	    // TN_ALT_FONT, // Not in TU yet// Why is this here? APICO// This is for any TU textures that aren't part of our enum indexed preload setOUNT 
+                            TN_TILE_LARGE_TRAP_C #endif  // TU17
+                        // TN_ALT_FONT, // Not in TU yet// Why is this here?
+                        // APICO// This is for any TU textures that aren't part
+                        // of our enum indexed preload setOUNT
                     };
 
-                    "font/Default""font/Mojangles_7""font/Mojangles_11"// TU12"armor/cloth_1.png"mage"armor/cloth_1_b.png""armor/cloth_2.png""armor/cloth_2_b.png"//
-	
-	L,
-	L,
-	L,
-	L,
+                    "font/Default"
+                    "font/Mojangles_7"
+                    "font/Mojangles_11"  // TU12"armor/cloth_1.png"mage"armor/cloth_1_b.png""armor/cloth_2.png""armor/cloth_2_b.png"//
 
-	
+                        L,
+                        L, L, L,
 
-	NULL
+                        NULL
                 };
 
                 bool Textures::IsTUImage(TEXTURE_NAME texId,

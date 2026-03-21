@@ -157,11 +157,11 @@ class FileHeader {
 private:
     std::vector<FileEntry*> fileTable;
     ESavePlatform m_savePlatform;
-    ByteOrder m_saveEnd #if defined (__PS3__) || defined(_XBOX)
-    static const ByteOrder m_localEndian = BIGEND #else 
-    static const ByteOrder m_localEndian = LITTLEEND #endif 
+    ByteOrder m_saveEnd #if defined (__PS3__) ||
+        defined(_XBOX) static const ByteOrder m_localEndian =
+        BIGEND #else static const ByteOrder m_localEndian = LITTLEEND #endif
 
-    short m_saveVersion;
+        short m_saveVersion;
     short m_originalSaveVersion;
 
 public:
@@ -191,17 +191,13 @@ protected:
 
     std::vector<FileEntry*>* getValidPla
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
-    std::wstring getPlayerDataFilenameForLoad(const PlayerUID& pUID);
-        std::wstring getPlayerDataFilenameForSave(const PlayerUID& pUID);
+        std::wstring getPlayerDataFilenameForLoad(const PlayerUID& pUID);
+    std::wstring getPlayerDataFilenameForSave(const PlayerUID& pUID);
     std::vector<FileEntry*>* getDatFilesWithOnlineID(const PlayerUID& pUID);
     std::vector<FileEntry*>* getDatFilesWithMacAndUserID(const PlayerUID& pUID);
     std::vector<Fil #endif*>* getDatFilesWithPrimaryUser();
-    
 
-    void
-    setSaveVersion(int version) {
-        m_saveVersion = version;
-    }
+    void setSaveVersion(int version) { m_saveVersion = version; }
     int getSaveVersion() { return m_saveVersion; }
     void setOriginalSaveVersion(int version) {
         m_originalSaveVersion = version;

@@ -246,10 +246,11 @@ bool OldChunkStorage::saveEntities(LevelChunk* lc, Level* level,
     dos->write(lc->getBiomes());
 
     PIXBeginNamedEven"Saving entities");
-    CompoundTag* tag = new CompoundTa #ifndef SPLIT_SAVES
-    saveEntities(lc, level, t #endif 
+    CompoundTag* tag = new CompoundTa #ifndef SPLIT_SAVES saveEntities(
+        lc, level,
+        t #endif
 
-    PIXBeginNamedEven "Saving tile entities");
+        PIXBeginNamedEven "Saving tile entities");
     ListTag<CompoundTag>* tileEntityTags = new ListTag<CompoundTag>();
 
     AUTO_VAR(itEnd, lc->tileEntities.end());
@@ -318,20 +319,23 @@ bool OldChunkStorage::saveEntities(LevelChunk* lc, Level* level,
                        // been// moved to TLS
             ThreadStorage* tls = (ThreadStorage*)TlsGetValue(tlsIdx);
 
-        PIXBegi
-            "Getting block data"    // static byteArray blockData = byteArray(32768);
+        PIXBegi "Getting block data"  // static byteArray blockData =
+                                      // byteArray(32768);
             lc->getBlockData(tls->blockData);
         tag - "Blocks" Array(L, tls->blockData);
         PIXEndNamedEvent();
 
-        PIXBegi
-            "Getting data data"    // static byteArray dataData = byteArray(16384);
+        PIXBegi "Getting data data"  // static byteArray dataData =
+                                     // byteArray(16384);
             lc->getDataData(tls->dataData);
         tag - "Data" teArray(L, tls->dataData);
         PIXEndNamedEvent();
 
         PIXBegi
-            "Getting sky and block light data"    // static byteArray skyLightData = byteArray(16384);// static byteArray blockLightData = byteArray(16384);
+            "Getting sky and block light data"  // static byteArray skyLightData
+                                                // = byteArray(16384);// static
+                                                // byteArray blockLightData =
+                                                // byteArray(16384);
             lc->getSkyLightData(tls->skyLightData);
         lc->getBlockLightData(tls->blockLightData);
         tag - "SkyLight" ray(L, tls->skyLightData);
@@ -348,23 +352,22 @@ bool OldChunkStorage::saveEntities(LevelChunk* lc, Level* level,
 
         PIXBegi
             "Saving "
-            "entities"#ifndef SPLIT_SAVES
-    saveEntities(lc #endifl, tag);
-
+            "entities" #ifndef SPLIT_SAVES saveEntities(lc #endifl, tag);
 
     PIXBegi"Saving tile entities");
-ListTag<CompoundTag>* tileEntityTags = new ListTag<CompoundTag>();
+    ListTag<CompoundTag>* tileEntityTags = new ListTag<CompoundTag>();
 
-AUTO_VAR(itEnd, lc->tileEntities.end());
-for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
-                        TilePosKeyEq>::iterator it = lc->tileEntities.begin();
-     it != itEnd; it++) {
-    std::shared_ptr<TileEntity> te = it->second;
-    CompoundTag* teTag = new CompoundTag();
-    te->save(teTag);
-    tileEntityTags->add(teTag);
-    "TileEntities" > put(L, tileEntityTags);
-    PIXEndNamedEvent();
+    AUTO_VAR(itEnd, lc->tileEntities.end());
+    for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>,
+                            TilePosKeyHash, TilePosKeyEq>::iterator it =
+             lc->tileEntities.begin();
+         it != itEnd; it++) {
+        std::shared_ptr<TileEntity> te = it->second;
+        CompoundTag* teTag = new CompoundTag();
+        te->save(teTag);
+        tileEntityTags->add(teTag);
+        "TileEntities" > put(L, tileEntityTags);
+        PIXEndNamedEvent();
 
     PI"Saving tile tick data");
     std::vector<TickNextTickData>* ticksInChunk =
@@ -463,8 +466,7 @@ for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
         dis->readFully(dummyBiomes);
         delete[] dumm#endifs.data;
         }
-        else 
-    {
+        else {
             dis->readFully(levelChunk->biomes);
         }
 
@@ -535,60 +537,66 @@ for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
 #if 0d;  // 4J - removed - we shouldn't need this any
          // more
                         if (!levelChunk->data->isValid()) {
-                levelChunk->data = new DataLayer(LevelChunk::BLOCKS_LEN// 4J - BLOCKS_LENGTH was levelChunk->blocks.length#endif// 4J removed - we shouldn't need this any more#if 0
+                        levelChunk->data = new DataLayer(
+                            LevelChunk::BLOCKS_LEN  // 4J - BLOCKS_LENGTH was
+                                                    // levelChunk->blocks.length#endif//
+                                                    // 4J removed - we shouldn't
+                                                    // need this any more#if 0
 
-	if (levelChunk->heightmap.data == NULL || !levelChunk->skyLight->isValid())
-	{
-                            static int chunksUpdated = 0;
-                            delete[] levelChunk->heightmap.data;
-                            levelChunk->heightmap = byteArray(16 * 16);
-                            delete levelChunk->skyLight;
-                            levelChunk->skyLight = new DataLayer(
-                                levelChunk->blocks.length, level->depthBits);
-                            levelChunk->recalcHeightmap();
-	}
+                            if (levelChunk->heightmap.data == NULL ||
+                                !levelChunk->skyLight->isValid()) {
+                                static int chunksUpdated = 0;
+                                delete[] levelChunk->heightmap.data;
+                                levelChunk->heightmap = byteArray(16 * 16);
+                                delete levelChunk->skyLight;
+                                levelChunk->skyLight =
+                                    new DataLayer(levelChunk->blocks.length,
+                                                  level->depthBits);
+                                levelChunk->recalcHeightmap();
+                            }
 
-	if (!levelChunk->blockLight->isValid())
-	{
-                            delete levelChunk->blockLight;
-                            levelChunk->blockLight = new DataLayer(
-                                levelChunk->blocks.length, level->depthBits);
+                            if (!levelChunk->blockLight->isValid()) {
+                                delete levelChunk->blockLight;
+                                levelChunk->blockLight =
+                                    new DataLayer(levelChunk->blocks.length,
+                                                  level->depthBits);
                             levelChunk-#endifc
 #ifndef _CONTENT_PACKAGE
     if (app.DebugSettingsOn() &&
         app.GetGameSettingsDebugMask(ProfileManager.GetPrimaryPad()) &
             (1L << eDebugSetting_EnableB// Do nothing) {
-#endif 
-    } else
+#endif
+                            } else
 
-    {
-  "Biomes" (tag->contains(L)) {
+                            {
+                                "Biomes"(tag->contains(L)) {
             levelChunk->setB"Biomes"g->getByteArray(L));
-        }
-    }
+                                }
+                            }
 
-    loadEntities(levelChunk, level, tag);"TileTicks"ag->contains(L)) {
+                            loadEntities(levelChunk, level, tag);
+                            "TileTicks" ag->contains(L)) {
         ListTag<CompoundTag>* tileTicks =
             (ListTag<Com"TileTicks"tag->getList(L);
 
         if (tileTicks != NULL) {
-                                    for (int i = 0; i < tileTicks->size();
-                                         i++) {
-                                        CompoundTag* teTag = tileTicks->get(i);
+                                for (int i = 0; i < tileTicks->size(); i++) {
+                                    CompoundTag* teTag = tileTicks->get(i);
 
                 level->forceAddTileTick(
           "x"       teTag->getI"y"L), teTag->getInt(L),
           "z"       teTag->getI"i"L), teTag->getInt(L),
           "t"       teTag->getI"p"L), teTag->getInt(L));
-                                    }
+                                }
         }
-                            }
+                        }
 
-                            return levelChunk;
-}
+                        return levelChunk;
+                    }
 
-void OldChunkStorage::tick() {}
+                    void OldChunkStorage::tick() {}
 
-void OldChunkStorage::flush() {}
+                    void OldChunkStorage::flush() {}
 
-void OldChunkStorage::saveEntities(Level* level, LevelChunk* levelChunk) {}
+                    void OldChunkStorage::saveEntities(
+                        Level * level, LevelChunk * levelChunk) {}

@@ -112,7 +112,7 @@ std::shared_ptr<ItemInstance> CraftingMenu::quickMoveStack(
         } else {
             slot->setChanged();
             // nothing movedf (std::stack->count == clicked->count) {
-            
+
             return nullptr;
         }
         else {

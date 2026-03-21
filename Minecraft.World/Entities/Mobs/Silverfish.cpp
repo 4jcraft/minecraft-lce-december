@@ -34,9 +34,9 @@ std::shared_ptr<Entity> Silverfish::findAttackTarget() {
 #ifndef _FINAL_BUILD
     if (app.GetMobsDontAttackEnabled()) {
         return std::shared_ptr<Player>();
-#endif 
+#endif
 
-    double maxDist = 8;
+        double maxDist = 8;
         return level->getNearestAttackablePlayer(shared_from_this(), maxDist);
     }
 

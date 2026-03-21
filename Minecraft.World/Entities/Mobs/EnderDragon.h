@@ -33,7 +33,7 @@ public:
     // MultiEntityMobPart[] subEntities;
     std::vector<std::shared_ptr<Entity> > subEntities;
     std::shared_ptr<MultiEntityMobPart> head;
-    std::shared_ptr < MultiEn  // 4J Added> neck;  
+    std::shared_ptr < MultiEn  // 4J Added> neck;
                           std::shared_ptr<MultiEntityMobPart>
                               body;
     std::shared_ptr<MultiEntityMobPart> tail1;
@@ -45,8 +45,7 @@ public:
     float oFlapTime;
 float fl  // 4J Stu - Added for new dragon behaviourl;
 
-    
-private : int m_fireballCharge;
+    private : int m_fireballCharge;
     float m_holdingPatternAngle;
     bool m_holdingPatternClockwise;
     int m_actionTicks;
@@ -92,8 +91,8 @@ private : int m_fireballCharge;
     static const int SITTING_SCANNING_IDLE_TICKS;
     s  // The percentage of max health that the dragon will take while in
        // the// "Sitting" states before flying away
-    
-    static const float SITTING_ALLOWED_DAMAGE_PERCENTAGE;
+
+        static const float SITTING_ALLOWED_DAMAGE_PERCENTAGE;
 
     static const int PODIUM_X_POS = 0;
     static const int PODIUM_Z_POS = 0;
@@ -158,9 +157,7 @@ protected  // 4J added for new dragon behaviour getHurtSound();
     float getSoundVolume();
 
 private:
-    
-    bool
-    setSynchedAction(EEnderdragonAction action, bool force = false);
+    bool setSynchedAction(EEnderdragonAction action, bool force = false);
     EEnderdragonAction getSynchedAction();
     int findClosestNode(double tX, double tY, double tZ);
     int findClosestNode();

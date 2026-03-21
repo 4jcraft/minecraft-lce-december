@@ -173,11 +173,11 @@ void Minecart::animateHurt() {
 
 bool Minecart::isPickable() {
     return !removed;  // if (soundUpdater != NULL) soundUpdater->tick();
-        // if (soundUpdater != NULL) soundUpdater->tick();
-        //  4J - make minecarts (server-side) tick twice, to put things back to
-        //  how//  they were when we were accidently ticking them
-        //  twice
-        for (int i = 0; i < 2; i++) {
+    // if (soundUpdater != NULL) soundUpdater->tick();
+    //  4J - make minecarts (server-side) tick twice, to put things back to
+    //  how//  they were when we were accidently ticking them
+    //  twice
+    for (int i = 0; i < 2; i++) {
         if (getHurtTime() > 0) setHurtTime(getHurtTime() - 1);
         if (getDamage() > 0) setDamage(getDamage() - 1);
         if (y < -64) {
@@ -234,9 +234,6 @@ bool Minecart::isPickable() {
                     s  // 4J - return here stops the client-side version of
                        // this// from ticking
                        // twice
-                     
-        
-                
                 }
                 xo = x;
                 yo = y;
@@ -305,8 +302,8 @@ bool Minecart::isPickable() {
                                    // an animal inside               //
                                    // will be forced to
                                    // despawn
-                    
-                    if (cart->m_bHasPushedCartThisTick) break;
+
+                            if (cart->m_bHasPushedCartThisTick) break;
                 }
                 }
         }
@@ -410,8 +407,7 @@ bool Minecart::isPickable() {
             }
         }
 
-        
-    if (haltTrack) {
+        if (haltTrack) {
             double speedLength = sqrt(xd * xd + zd * zd);
             if (speedLength < .03) {
                 xd *= 0;
@@ -493,17 +489,16 @@ bool Minecart::isPickable() {
                 zd = pow * (zn - zt);
         }
 
-        
-    if (powerTrack) {
+        if (powerTrack) {
             double speedLength = sqrt(xd * xd + zd * zd);
             if (speedLength > .01) {
                 double speed = 0.06;
                 xd += xd  /// if the minecart is standing still, accelerate it
                           /// away fromeed;
                           // potential walls
-                    // 
-            
-            if (data == BaseRailTile::DIR_FLAT_X) {
+                          //
+
+                    if (data == BaseRailTile::DIR_FLAT_X) {
                     if (level->isSolidBlockingTile(xt - 1, yt, zt)) {
                         xd = .02;
                     } else if (level->isSolidBlockingTile(xt + 1, yt, zt)) {
@@ -553,9 +548,8 @@ bool Minecart::isPickable() {
             // need? 1;
         }
 
-        
-       // int exits[2][3] = EXITS[data];cpy(&exits, (void*)EXITS[data], sizeof(int) * 2 * 3);
-        
+        // int exits[2][3] = EXITS[data];cpy(&exits, (void*)EXITS[data],
+        // sizeof(int) * 2 * 3);
 
         double xD = exits[1][0] - exits[0][0];
         double zD = exits[1][2] - exits[0][2];
@@ -599,9 +593,8 @@ Vec3* Minecart::getPos(double x, double y, double z) {
                                                   // array that we need? 1;
         }
 
-        
-       // int exits[2][3] = EXITS[data];cpy(&exits, (void*)EXITS[data], sizeof(int) * 2 * 3);
-        
+        // int exits[2][3] = EXITS[data];cpy(&exits, (void*)EXITS[data],
+        // sizeof(int) * 2 * 3);
 
         double progress = 0;
         double x0 = xt + 0.5 + exits[0][0] * 0.5;
@@ -645,9 +638,9 @@ Vec3* Minecart::getPos(double x, double y, double z) {
     void Minecart::a "CustomDisplayTile"(CompoundTag* tag) {
         if (h "DisplayTile" ay()) {
             tag->putBoolean(L, true);
-            tag->putInt(L, "DisplayData" getDisplayTile() == NULL
-                                            ? 0
-                                            : getD "DisplayOffset"d);
+            tag->putInt(L, "DisplayData" getDisplayTile() == NULL ? 0
+                                                                  : getD
+                               "DisplayOffset"d);
             tag->putInt(L, getDisplayData());
         ta"CustomName", getDisplayOffset());
         }
@@ -736,17 +729,16 @@ Vec3* Minecart::getPos(double x, double y, double z) {
             // stuck inside each other, so if// they are too
             // close then they should separate
             // quickly
-            
-                double modifier = 1.0;
+
+            double modifier = 1.0;
             if (abs(xo) < 1 && abs(zo) < 1)  // 4J Stu - Decelerate the cart
                                              // that is pushing this one if
                                              // they; are too close
-                // 
-                    // 4J Backup fix for QNAN    e->xd /= modifier;
-                    e->zd /= modifier;
+                                             //
+                // 4J Backup fix for QNAN    e->xd /= modifier;
+                e->zd /= modifier;
 
-            
-                if (!(xd == xd)) xd = 0;
+            if (!(xd == xd)) xd = 0;
             if (!(zd == zd)) zd = 0;
             if (!(e->xd == e->xd)) e->xd = 0;
             if (!(e->zd == e->zd)) e->zd = 0;

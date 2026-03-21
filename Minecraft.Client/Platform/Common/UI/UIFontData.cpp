@@ -703,8 +703,7 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
             assert(((row + 1) * sFontData.m_uiGlyphHeight) <
                    sFontData.m_uiGlyphMapY);
 
-            static int XX =
-                7  // Find the furthest filled pixel to the right.
+            static int XX = 7  // Find the furthest filled pixel to the right.
                 for (short y = 0; y < sFontData.m_uiGlyphHeight; y++) {
                 for (short x = 0; x < sFontData.m_uiGlyphWidth; x++) {
                     cursor = topLeft;
@@ -719,8 +718,7 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
                     }
                 }
 #if _DEBUG_BLOCK_CHARS
-		for (short y = 0; y < sFontData.m_uiGlyphHeight; y++)
-                {
+                for (short y = 0; y < sFontData.m_uiGlyphHeight; y++) {
                     for (short x = 0; x < sFontData.m_uiGlyphWidth; x++) {
                         cursor = topLeft;
                         moveCursor(cursor, x, y);
@@ -732,7 +730,7 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
                         else
                             *cursor = 0x00;
                     }
-#endif     // 4J-JEV: Empty glyphs are considered to be whitespace.
+#endif  // 4J-JEV: Empty glyphs are considered to be whitespace.
                     if (xMax == 0)
                         m_kerningTable[glyph] = sFontData.m_uiWhitespaceWidth;
                     else
@@ -754,85 +752,91 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
 
                             getPos(i, row, col);
 
-                            std::string sta "ok" ;
+                            std::string sta "ok";
                             if (i != getGlyphId(unicode)) {
                                 sta "MISSMATCHED!";
 
                         app.DebugPri"<GLYPH_%03i> %i\t%c\tU+%.4X, kerning=%i, (%2i,%2i). %s\n", 
 				i, getGlyphId(unicode), unicodeChar, unicode, m_kerningTable[i], row, col, state.c_str() );
-#endif 
-}
-
-                        void CFontData::release() {
-                            delete[] m_kerningTable;
-                            delete[] m_pfAdvanceTable;
-                            delete[] m_pbRawImage;
-                        }
-
-                        const std::string CFontData::getFontName() {
-                            return m_sFontData->m_strFontName;
-                        }
-
-                        SFontData* CFontData::getFontData() {
-                            return m_sFontData;
-                        }
-
-                        unsigned short CFontData::getGlyphId(
-                            unsigned int unicodepoint) {
-                            std::unordered_map<unsigned int,
-                                               unsigned short>::iterator out =
-                                m_unicodeMap.find(unicodepoint);
-                            if (out != m_unicodeMap.end()) return out->second;
-                            return 0;
-                        }
-
-                        unsigned int CFontData::getUnicode(
-                            unsigned short glyphId) {
-                            return m_sFontData->Codepoints[glyphId];
-                        }
-
-                        unsigned char* CFontData::topLeftPixel(int row,
-                                                               int col) {
-                            unsigned char* out = m_pbRawImage;
-                            moveCursor(out, col * m_sFontData->m_uiGlyphWidth,
-                                       row * m_sFontData->m_uiGlyphHeight);
-                            return out;
-                        }
-
-                        void CFontData::getPos(unsigned short glyphId,
-                                               int& rowOut, int& colOut) {
-                            rowOut = glyphId / m_sFontData->m_uiGlyphMapCols;
-                            colOut = glyphId % m_sFontData->m_uiGlyphMapCols;
-                        }
-
-                        float CFontData::getAdvance(unsigned short glyphId) {
-                            return m_pfAdvanceTable[glyphId];
-                        }
-
-                        int CFontData::getWidth(unsigned short glyphId) {
-                            return m_kerningTable[glyphId];
-                        }
-
-                        bool CFontData::glyphIsWhitespace(
-                            unsigned short glyphId) {
-                            return unicodeIsWhitespace(getUnicode(glyphId));
-                        }
-
-                        bool CFontData::unicodeIsWhitespace(
-                            unsigned int unicode) {
-                            static const unsigned int MAX_WHITESPACE = 1;
-                            static const unsigned int
-                                whitespace[MAX_WHITESPACE] = {0x0020};
-
-                            for (int i = 0; i < MAX_WHITESPACE; i++) {
-                                if (unicode == whitespace[i]) return true;
+#endif
                             }
 
-                            return false;
-                        }
+                            void CFontData::release() {
+                                delete[] m_kerningTable;
+                                delete[] m_pfAdvanceTable;
+                                delete[] m_pbRawImage;
+                            }
 
-                        void CFontData::moveCursor(unsigned char*& cursor,
-                                                   unsigned int dx,
-                                                   unsigned int dy) {
-                            cursor += (dy * m_sFontData->m_uiGlyphMapX) + dx;
-                        }
+                            const std::string CFontData::getFontName() {
+                                return m_sFontData->m_strFontName;
+                            }
+
+                            SFontData* CFontData::getFontData() {
+                                return m_sFontData;
+                            }
+
+                            unsigned short CFontData::getGlyphId(
+                                unsigned int unicodepoint) {
+                                std::unordered_map<unsigned int,
+                                                   unsigned short>::iterator
+                                    out = m_unicodeMap.find(unicodepoint);
+                                if (out != m_unicodeMap.end())
+                                    return out->second;
+                                return 0;
+                            }
+
+                            unsigned int CFontData::getUnicode(
+                                unsigned short glyphId) {
+                                return m_sFontData->Codepoints[glyphId];
+                            }
+
+                            unsigned char* CFontData::topLeftPixel(int row,
+                                                                   int col) {
+                                unsigned char* out = m_pbRawImage;
+                                moveCursor(out,
+                                           col * m_sFontData->m_uiGlyphWidth,
+                                           row * m_sFontData->m_uiGlyphHeight);
+                                return out;
+                            }
+
+                            void CFontData::getPos(unsigned short glyphId,
+                                                   int& rowOut, int& colOut) {
+                                rowOut =
+                                    glyphId / m_sFontData->m_uiGlyphMapCols;
+                                colOut =
+                                    glyphId % m_sFontData->m_uiGlyphMapCols;
+                            }
+
+                            float CFontData::getAdvance(
+                                unsigned short glyphId) {
+                                return m_pfAdvanceTable[glyphId];
+                            }
+
+                            int CFontData::getWidth(unsigned short glyphId) {
+                                return m_kerningTable[glyphId];
+                            }
+
+                            bool CFontData::glyphIsWhitespace(
+                                unsigned short glyphId) {
+                                return unicodeIsWhitespace(getUnicode(glyphId));
+                            }
+
+                            bool CFontData::unicodeIsWhitespace(
+                                unsigned int unicode) {
+                                static const unsigned int MAX_WHITESPACE = 1;
+                                static const unsigned int
+                                    whitespace[MAX_WHITESPACE] = {0x0020};
+
+                                for (int i = 0; i < MAX_WHITESPACE; i++) {
+                                    if (unicode == whitespace[i]) return true;
+                                }
+
+                                return false;
+                            }
+
+                            void CFontData::moveCursor(unsigned char*& cursor,
+                                                       unsigned int dx,
+                                                       unsigned int dy) {
+                                cursor +=
+                                    (dy * m_sFontData->m_uiGlyphMapX) + dx;
+                            }

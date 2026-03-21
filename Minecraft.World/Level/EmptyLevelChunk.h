@@ -41,8 +41,8 @@ public:
                        std::shared_ptr<TileEntity> tileEntity);
     void removeTileEntity(int x, int y, int z);
     void load();
-    void unlo      // 4J - added parameteries);  
-        bool cont  // 4J added);                 
+    void unlo      // 4J - added parameteries);
+        bool cont  // 4J added);
         void markUnsaved();
     void getEntities(std::shared_ptr<Entity> except, AABB bb,
                      std::vector<std::shared_ptr<Entity> >& es,
@@ -61,7 +61,5 @@ public:
 // 4J added                   int y1, int z1, int p);  
     Random* getRandom(__int64 l);
     // 4J addedy();
-    virtual void reSyncLighting() {};  
-
-
+    virtual void reSyncLighting() {};
 };

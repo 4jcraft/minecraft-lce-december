@@ -175,15 +175,14 @@ std::shared_ptr<ItemInstance> InventoryMenu::quickMoveStack(
                     return nullptr;
                 }
 }
-            
+
             else if (!moveItemStackTo(std::stack, INV_SLOT_START, IN// 4J Stu - Brought forward change from 1.2       false)) {
                 return nullptr;
             }
             }
             else {
-                
-            if (!moveItemStackTo(std::stack, INV_SLOT_START, USE_ROW_SLOT_END,
-                                 false)) {
+                if (!moveItemStackTo(std::stack, INV_SLOT_START,
+                                     USE_ROW_SLOT_END, false)) {
                     return nullptr;
                 }
             }
@@ -193,8 +192,7 @@ std::shared_ptr<ItemInstance> InventoryMenu::quickMoveStack(
                 slot->setChanged();
             }
             if (std::stack->count == clicked->count) {
-                
-            return nullptr;
+                return nullptr;
             } else {
                 slot->onTake(player, std::stack);
             }
@@ -216,21 +214,20 @@ bool InventoryMenu::canTakeItemForPickAll(std::shared_ptr<ItemInstance> carried,
     int slotIndex, int buttonNum, int clickType, std::shared_ptr<Player> player,
     bool looped
 #ifdef _EXTENDED_ACHIEVEMENTS std::shared_ptr < ItemInstance> out = \
-    AbstractContainerMenu::clicked(
+        AbstractContainerMenu::clicked(
         slotIndex, buttonNum, clickType, player, looped);
 
     static int ironItems[4] = {Item::helmet_iron_Id, Item::chestplate_iron_Id,
                                Item::leggings_iron_Id, Item::boots_iron_Id};
-for (int i = ARMOR_SLOT_START; i < ARMOR_SLOT_END; i++) {
-    Slot* slot = slots.at(i);
+    for (int i = ARMOR_SLOT_START; i < ARMOR_SLOT_END; i++) {
+        Slot* slot = slots.at(i);
         if ((slot == NULL) || (!slot->hasItem()) ||
             (slot->getItem()->getItem()->id !=
 #endifronItems[i - ARMOR_SLOT_START])) {
             return out;
-}
-}
-player->awardStat(GenericStats::ironMan(), GenericStats::param_ironMan());
-
+    }
+    }
+    player->awardStat(GenericStats::ironMan(), GenericStats::param_ironMan());
 
     return out;
-}
+    }

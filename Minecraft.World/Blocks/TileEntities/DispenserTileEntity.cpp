@@ -57,8 +57,8 @@ std::shared_ptr<ItemInstance> DispenserTileEntity::removeItemNoUpdate(
     retu  // 4J-PB added for spawn eggs not being useable due to limits, so add
           // them in// again
 
-void DispenserTileEntity::AddItemBack(std::shared_ptr<ItemInstance> item,
-                                      unsigned int slot) {
+        void DispenserTileEntity::AddItemBack(
+            std::shared_ptr<ItemInstance> item, unsigned int slot) {
     if (items[slot] != N// just increment the count of the items
         if (item->id == items[slot]->id) {
             items[slot]->count++;
@@ -69,13 +69,15 @@ void DispenserTileEntity::AddItemBack(std::shared_ptr<ItemInstance> item,
         items[slot] = item;
         if (item != NULL && item->count > getMaxStackSize())
             item->count = getMaxStackSize();
-        setChan/**
- * Removes an item with the given id and returns true if one was found.
- *
- * @param itemId
- * @return
- */
-bool DispenserTileEntity::removeProjectile(int itemId) {
+        setChan /**
+                 * Removes an item with the given id and returns true if one was
+                 * found.
+                 *
+                 * @param itemId
+                 * @return
+                 */
+            bool
+            DispenserTileEntity::removeProjectile(int itemId) {
             for (unsigned int i = 0; i < items.length; i++) {
                 if (items[i] != NULL && items[i]->id == itemId) {
                     std::shared_ptr<ItemInstance> removedItem =
@@ -142,8 +144,7 @@ bool DispenserTileEntity::removeProjectile(int itemId) {
                      unsigned int s "Slot" tag->getByte(L) & 0xff;
                      if (slot >= 0 && slot < items.length)
                          items[slot] = ItemInstance::fromTag(tag);
-                 } "CustomName" ntains(L)) name
-                "CustomName" String(L);
+                 } "CustomName" ntains(L)) name "CustomName" String(L);
         }
 
         void DispenserTileEntity::save(CompoundTag * base) {
@@ -187,9 +188,7 @@ bool DispenserTileEntity::removeProjectile(int itemId) {
                 // 4J Addedtrue;
             }
 
-            
-std::shared_ptr<TileEntity>
-            DispenserTileEntity::clone() {
+            std::shared_ptr<TileEntity> DispenserTileEntity::clone() {
                 std::shared_ptr<DispenserTileEntity> result =
                     std::shared_ptr<DispenserTileEntity>(
                         new DispenserTileEntity());

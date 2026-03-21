@@ -53,13 +53,13 @@ InputStream* DefaultTexturePack::getResourceImplementation(
     std::wstring wDriv "" =
         L  // Make the content package point to to the UPDATE: drive is
            // needed#ifdef _XBOX	#ifdef _TU_BUILD
-        wDr "UPDATE:\\res"	#else 
-		
-			wDr
-        "GAME:"
-        "\\res\\TitleUpdate\\res"	#endif #elif __PS3__
+        wDr "UPDATE:\\res" #else
 
-	char* pchUsrDir;
+        wDr
+        "GAME:"
+        "\\res\\TitleUpdate\\res" #endif #elif __PS3__
+
+        char* pchUsrDir;
     if (app.GetBootedFromDiscPatch()) {
         const char* pchTextureName = wstringtofilename(name);
         pchUsrDir = app.GetBDUsrDirPath(pchTextureName);
@@ -72,16 +72,16 @@ InputStream* DefaultTexturePack::getResourceImplementation(
 
     std::wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
 
-    wDrive "\\Common\\res\\TitleUpdate\\res"#elif __PSVITA__/*
-    char *pchUsrDir=getUsrDirPath();
-    wstring wstr (pchUsrDir, pchUsrDir+strlen(pchUsrDir));
+    wDrive "\\Common\\res\\TitleUpdate\\res" #elif __PSVITA__ /*
+      char *pchUsrDir=getUsrDirPath();
+      wstring wstr (pchUsrDir, pchUsrDir+strlen(pchUsrDir));
 
-    wDrive = wstr + L"Common\\res\\TitleUpdate\\res";
-    */
-	"Common\\res\\TitleUpdate\\res"#else ;
-    
-	"Common\\res\\TitleUpdate\\res"
-#endif ;
+      wDrive = wstr + L"Common\\res\\TitleUpdate\\res";
+      */
+           "Common\\res\\TitleUpdate\\res" #else;
+
+        "Common\\res\\TitleUpdate\\res"
+#endif;
 
 	InputStream *resource = InputStream::getResourceAsStream(wDrive //InputStream *stream = DefaultTexturePack::class->getResourceAsStream(name);//if (stream == NULL)//{//	throw new FileNotFoundException(name);//}//return stream;
 	return resource;

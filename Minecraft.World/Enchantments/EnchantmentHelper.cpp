@@ -57,9 +57,8 @@ std::unordered_map<int, int>* EnchantmentHelper::getEnchantments(
 void EnchantmentHelper::setEnchantments(
     std::unordered_map<int, int>* enchantments,
     std::shared_ptr<ItemInstance> item) {
-    ListTag<CompoundTag>* list =
-        new List  // for (int id :
-                  // enchantments.keySet())
+    ListTag<CompoundTag>* list = new List  // for (int id :
+                                           // enchantments.keySet())
         for (AUTO_VAR(it, enchantments->begin()); it != enchantments->end();
              ++it) {
         int id = it->first;
@@ -134,14 +133,15 @@ void EnchantmentHelper::GetDamageProtectionIteration::doEnchantment(
 }
 
 EnchantmentHelper::GetDamageProtectionIteration
-    EnchantmentHelper::g/**
- * Fetches the protection value for enchanted items.
- *
- * @param inventory
- * @param source
- * @return
- */
-int EnchantmentHelper::getDamageProtection(ItemInstanceArray armor,
+    EnchantmentHelper::g /**
+                          * Fetches the protection value for enchanted items.
+                          *
+                          * @param inventory
+                          * @param source
+                          * @return
+                          */
+    int
+    EnchantmentHelper::getDamageProtection(ItemInstanceArray armor,
                                            DamageSource* source) {
     getDamageProtectionIteration.sum = 0;
     getDamageProtectionIteration.source = source;
@@ -163,14 +163,16 @@ int EnchantmentHelper::getDamageProtection(ItemInstanceArray armor,
     }
 
     EnchantmentHelper::GetDamageBonusIteration
-    EnchantmentHelp/**
- *
- * @param inventory
- * @param target
- * @return
- */
-float EnchantmentHelper::getDamageBonus(std::shared_ptr<LivingEntity> source,
-                                        std::shared_ptr<LivingEntity> target) {
+        EnchantmentHelp /**
+                         *
+                         * @param inventory
+                         * @param target
+                         * @return
+                         */
+        float
+        EnchantmentHelper::getDamageBonus(
+            std::shared_ptr<LivingEntity> source,
+            std::shared_ptr<LivingEntity> target) {
         getDamageBonusIteration.sum = 0;
         getDamageBonusIteration.target = target;
 
@@ -265,14 +267,14 @@ float EnchantmentHelper::getDamageBonus(std::shared_ptr<LivingEntity> source,
                  * is
                  * max.
                  */
-int EnchantmentHelper::getEnchantmentCost(
-    Random* random, int slot, int bookcases,
-    std::shared_ptr<ItemInstance> itemInstance) {
+                int EnchantmentHelper::getEnchantmentCost(
+                    Random * random, int slot, int bookcases,
+                    std::shared_ptr<ItemInstance> itemInstance) {
                     Item* item = itemInstance->getItem();
                     int itemValue = item->getEnchantmentValue();
                     // not enchantable <= 0) {
-                        // 4J Stu - Updated function to 1.3 version for TU7
-                        if (bookcases > 15) {
+                    // 4J Stu - Updated function to 1.3 version for TU7
+                    if (bookcases > 15) {
                         bookcases = 15;
                     }
 
@@ -374,8 +376,8 @@ std::vector<EnchantmentInstance*>* EnchantmentHelper::selectEnchantment(
                                     }
                                     // mapIter.remove();                 if
                                     // (!valid) {
-                                    
-                        delete it->second;
+
+                                    delete it->second;
                                     it = availableEnchantments->erase(it);
                     } else {
                                     ++it;
@@ -396,7 +398,7 @@ std::vector<EnchantmentInstance*>* EnchantmentHelper::selectEnchantment(
                     results->push_back(
                     // 4J Stu - Inserting a copy so we can ->copy());  //
                     // clear memory from the availableEnchantments
-                    // collection 
+                    // collection
                             }
 
                             bonusChance >>= 1;
@@ -423,15 +425,14 @@ std::vector<EnchantmentInstance*>* EnchantmentHelper::selectEnchantment(
                                    // Enchantment.enchantments)Instance->id
                                    // == Item::book_Id;
 
-    
-    for (unsigned int i = 0; i < Enchantment::enchantments.length; ++i) {
+                    for (unsigned int i = 0;
+                         i < Enchantment::enchantments.length; ++i) {
                     Enchantment* e =
                         Enchantment  // Only picks "normal" enchantments, no
                                      // specialcases    continue;
                 }
 
-                
-        if (!e->category->canEnchant(item) && !isBook) {
+                if (!e->category->canEnchant(item) && !isBook) {
                     continue;
                 }
 

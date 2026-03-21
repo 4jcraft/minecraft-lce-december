@@ -108,8 +108,7 @@ void TextureAndGeometryPacket::handle(PacketListener* listener) {
     listener->handleTextureAndGeometry(shared_from_this());
 }
 
-void
-    TextureAndGeometryPacket::rea  // throws IOExceptions) 
+void TextureAndGeometryPacket::rea  // throws IOExceptions)
 {
     textureName = dis->readUTF();
     dwSkinID = (DWORD)dis->readInt();

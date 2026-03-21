@@ -140,7 +140,8 @@ void GameRuleManager::loadGameRules(DLCPack* pack) {
     }
 }
 
-LevelGenerationOptions* GameRuleManager::loadGameRules(uint8_t* dIn, UINT dSize) {
+LevelGenerationOptions* GameRuleManager::loadGameRules(uint8_t* dIn,
+                                                       UINT dSize) {
     LevelGenerationOptions* lgo = new LevelGenerationOptions();
     lgo->setGrSource(new JustGrSource());
     lgo->setSrc(LevelGenerationOptions::eSrc_fromSave);
@@ -360,7 +361,7 @@ void GameRuleManager::writeRuleFile(DataOutputStream* dos) {
 
         fileDos.close();
         fileBaos   // Write xml objects.
-            dos->  // numChildren 
+            dos->  // numChildren
             m_currentLevelGenerationOptions->write(dos);
         m_currentGameRuleDefinitions->write(dos);
     }
@@ -369,8 +370,7 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, uint8_t *dIn, UI
 {
         bool levelGenAdded = false;
         bool gameRulesAdded = false;
-        LevelGenerationOptions*
-            levelG  // new LevelGenerationOptions();
+        LevelGenerationOptions* levelG  // new LevelGenerationOptions();
             LevelRuleset* gameRules =
                 new Lev  // DWORD dwLen = 0;//PBYTE pbData =
                          // dlcFile->getData(dwLen);//byteArray
@@ -379,7 +379,7 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, uint8_t *dIn, UI
                     byteArray data(dIn, dSize);
         ByteArrayInputStream bais(data);
         DataInputStream  // Read File.
-	    // version_number
+                         // version_number
             __int64 version = dis.readShort();
         unsigned char compressionType = 0;
         if (version == 0) {
@@ -443,8 +443,6 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, uint8_t *dIn, UI
 			if(!gameRulesAdded) delete gameRules;
 			return false;
 			*/
-		
-        
         };
 
         delete[] compressedBuffer.data;
@@ -525,8 +523,7 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, uint8_t *dIn, UI
                         readAttributes(contentDis, &tagsAndAtts, rule);
                 readChildren(contentDis, &tagsAndAtts, &tagIdMap, ru// Not defaultompressionType != 0)
 	{
-                            
-		contentDis->close();
+                            contentDis->close();
                             if (contentBais != NULL) delete contentBais;
                 delete content//if(!levelGenAdded) { delete levelGenerator; levelGenerator = NULL; }
 	if(!gameRulesA//return levelGenerator;
@@ -597,12 +594,12 @@ void GameRuleManager::processSchematicsLighting(LevelChunk *levelChunk)
                                     ->processSchematicsLight #ifdef _XBOXn #ifdef _TU_BUILDameRuleManager::
                                         loadDe
                                     "UPDATE:\\res\\GameRules\\Tutorial."
-                                    "pck"#else 
-	std::wstring fileR "GAME:\\res\\TitleUpdate\\GameRules\\Tutorial."
-                           "pck"#endif::wstring fileRoot =
-                                    L;
-                                
-	File packedTutorialFile(fileRoot);
+                                    "pck" #else std::wstring fileR
+                                    "GAME:"
+                                    "\\res\\TitleUpdate\\GameRules\\Tutorial."
+                                    "pck" #endif::wstring fileRoot = L;
+
+                                File packedTutorialFile(fileRoot);
                                 if (loadGameRulesPack(&packedTutorialFile)) {
                                 m_levelGenerators  // m_levelGenerators.getLevelGenerators()->at(0)->setDefaultSaveName(L"Tutorial");
                                     m_levelGenerators.getLevelG

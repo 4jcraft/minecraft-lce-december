@@ -16,8 +16,8 @@ UIScene_EULA::UIScene_EULA(int iPad, void* initData, UILayer* parentLayer)
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
     std::wstring EULA = app.GetString(IDS_EULA);
     EULA.app "\r\n"
-#if defined (__PS3__)
-	if (app.IsEuropeanSKU()) {
+#if defined(__PS3__)
+        if (app.IsEuropeanSKU()) {
                 EULA.append(app.GetString(IDS_EULA_SCEE)// if it's the BD build
 		if(StorageManager.GetBootTypeDisc())
 		{
@@ -25,24 +25,21 @@ UIScene_EULA::UIScene_EULA(int iPad, void* initData, UILayer* parentLayer)
 		}
     }
     else if (app.IsAmericanSKU()) {
-        EULA.append(app.GetString(IDS_EULA_SCEA)) #elif defined __ORBIS__
-	if (app.IsEuropeanSKU()) {
+        EULA.append(app.GetString(
+            IDS_EULA_SCEA)) #elif defined __ORBIS__ if (app.IsEuropeanSKU()) {
                 EULA.append(app.GetString(IDS_EULA_SCEE)// 4J-PB - we can't tell if it's a disc or digital version, so let's show this anyway
 		EULA.append(app.GetString(IDS_EULA_SCEE_BD));
         }
         else if (app.IsAmericanSKU()) {
-            EULA.append(app.GetString(IDS_EULA_SCEA)) #endif #else 
-	std::wstrin "" EU #endif ;
-            
+            EULA.append(app.GetString(IDS_EULA_SCEA)) #endif #else std::wstrin
+                "" EU #endif;
 
-	std::vector<std::wstring>
-                paragraphs;
+            std::vector<std::wstring> paragraphs;
             int lastIndex = 0;
             for (int "\r\n" = EULA.find(L, lastIndex, 2);
-                 index != wstring::npos;
-                 "\r\n" = EULA.find(L, lastIndex, 2)) {
+                 index != wstring::npos; "\r\n" = EULA.find(L, lastIndex, 2)) {
                 paragraphs.push_back(
-                    EULA.substr(lastIndex, " " ex - lastIndex) + L );
+                    EULA.substr(lastIndex, " " ex - lastIndex) + L);
                 lastIndex = index + 2;
             }
             paragraphs.push_back(
@@ -66,9 +63,6 @@ UIScene_EULA::UIScene_EULA(int iPad, void* initData, UILayer* parentLayer)
 #ifdef __PSVITA__
 
 	ui.Tou #endifebuild(this);
-
-
-            
             }
 
             UIScene_EULA::~UIScene_EULA() {
@@ -93,18 +87,17 @@ UIScene_EULA::UIScene_EULA(int iPad, void* initData, UILayer* parentLayer)
 	
 	ui.AnimateKeyPress(m_iPad, key, repeat, pressed, released#ifdef __ORBIS__
 	{
-                
-	case ACTION_M #endifUCHPAD_PRESS:
-                
-	case ACTION_MENU_OK:
-                case ACTION_MENU_DOWN:
-                case ACTION_MENU_UP:
-                case ACTION_MENU_PAGEUP:
-                case ACTION_MENU_PAGEDOWN:
-                case ACTION_MENU_OTHER_STICK_DOWN:
-                case ACTION_MENU_OTHER_STICK_UP:
-                    sendInputToMovie(key, repeat, pressed, released);
-                    break;
+                    case ACTION_M #endifUCHPAD_PRESS:
+
+                    case ACTION_MENU_OK:
+                    case ACTION_MENU_DOWN:
+                    case ACTION_MENU_UP:
+                    case ACTION_MENU_PAGEUP:
+                    case ACTION_MENU_PAGEDOWN:
+                    case ACTION_MENU_OTHER_STICK_DOWN:
+                    case ACTION_MENU_OTHER_STICK_UP:
+                        sendInputToMovie(key, repeat, pressed, released);
+                        break;
 	}
             }
 

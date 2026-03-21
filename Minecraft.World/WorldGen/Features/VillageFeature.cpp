@@ -50,36 +50,40 @@ bool VillageFeature::isFeatureChunk(int x, int z, bool bIsSuperflat) {
     level->dimension #endifZSize() < 128
 
     ) {
-    // 4J change 32;6;  
-}
+            // 4J change 32;6;
+        }
 
-int xx = x;
-int zz = z;
-if (x < 0) x -= townSpacing - 1;
-if (z < 0) z -= townSpacing - 1;
+        int xx = x;
+        int zz = z;
+        if (x < 0) x -= townSpacing - 1;
+        if (z < 0) z -= townSpacing - 1;
 
-int xCenterTownChunk = x / townSpacing;
-int zCenterTownChunk = z / townSpacing;
-Random* r = level->getRandomFor(xCenterTownChunk, zCenterTownChunk, 10387312);
-xCenterTownChunk *= townSpacing;
-zCenterTownChunk *= townSpacing;
-xCenterTownChunk += r->nextInt(townSpacing - minTownSeparation);
-zCenterTownChunk += r->nextInt(townSpacing - minTownSeparation);
-x = xx;
-z = zz;
+        int xCenterTownChunk = x / townSpacing;
+        int zCenterTownChunk = z / townSpacing;
+        Random* r =
+            level->getRandomFor(xCenterTownChunk, zCenterTownChunk, 10387312);
+        xCenterTownChunk *= townSpacing;
+        zCenterTownChunk *= townSpacing;
+        xCenterTownChunk += r->nextInt(townSpacing - minTownSeparation);
+        zCenterTownChunk += r->nextInt(townSpacing - minTownSeparation);
+        x = xx;
+        z = zz;
 
-bool forcePlacement = false;
-LevelGenerationOptions* levelGenOptions = app.getLevelGenerationOptions();
-if (levelGenOptions != NULL) {
-    forcePlacement = levelGenOptions->isFeatureChunk(x, z, eFeature_Village);
-}
+        bool forcePlacement = false;
+        LevelGenerationOptions* levelGenOptions =
+            app.getLevelGenerationOptions();
+        if (levelGenOptions != NULL) {
+            forcePlacement =
+                levelGenOptions->isFeatureChunk(x, z, eFeature_Village);
+        }
 
-if (forcePlacement || (x == xCenterTownChunk && z == zCenterTownChunk)) {
-    bool biomeOk = level->getBiomeSource()->containsOnly(x * 16 + 8, z * 16 + 8,
-                                                         0, allowedBiomes);
+        if (forcePlacement ||
+            (x == xCenterTownChunk && z == zCenterTownChunk)) {
+            bool biomeOk = level->getBiomeSource()->containsOnly(
+                x * 16 + 8, z * 16 + 8, 0, allowedBiomes);
         if (bio// app.DebugPrintf("Biome ok for Village at %d, %d\n",(x * 16 +// 8),(z * 16 + 8));
             return true;
-}
+        }
 }
 
 return false;
@@ -95,7 +99,7 @@ StructureStart* VillageFeature::createStructureStart(// 4J addedz) {
 
 VillageFeature::VillageStart::VillageStart() {
     // 4J added initialiser
-    // for reflection   
+    // for reflection
 }
 
 VillageFeature::VillageStart::VillageStart(Level* level, Random* random,

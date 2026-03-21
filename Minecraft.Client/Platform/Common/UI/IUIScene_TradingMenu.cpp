@@ -235,9 +235,8 @@ void IUIScene_TradingMenu::updateDisplay() {
             MerchantRecipe* activeRecipe =
                 m_activeOffers.at(selectedShopItem).first;
 
-            std::wstring
-                ws  // 4J-PB - need to get the villager type here
-                    wsTemp = app.GetString(IDS_VILLAGER_OFFERS_ITEM);
+            std::wstring ws  // 4J-PB - need to get the villager type here
+                wsTemp = app.GetString(IDS_VILLAGER_OFFERS_ITEM);
                         wsTemp = replaceAl"{*VILLAGER_TYPE*}",m_merchant->getDisplayName());
                         int iPos = wsT "%s" find(L);
                         wsTemp.replace(

@@ -76,13 +76,12 @@ void MultiPlayerLevel::tick() {
         setGameTime(getGameTime() + 1);
         if (getGameRules()->getBoolean(GameRules::RULE_DAYLIGHT))
             // 4J: Debug setting added to keep it at day time#ifndef
-            // _FINAL_BUILD		
+            // _FINAL_BUILD
             bool freezeTime =
                 app.DebugSettingsOn() &&
                 app.GetGameSettingsDebugMask(ProfileManager.GetPrimaryPad()) &
                     (1L << eDebugSetting_FreezeTime);
-        if (!freezeT #endif 
-		{
+        if (!freezeT #endif {
                 setDayTime(getDayTime() + 1);
             } /* 4J - change brought forward from 1.8.2
      int newDark = this->getSkyDarken(1);
@@ -95,7 +94,7 @@ void MultiPlayerLevel::tick() {
      listeners[i]->skyColorChanged();
      }
      }*/
-	PIXEndNamedEvent();
+            PIXEndNamedEvent();
 
             PIXBeginNamedEve "Entity re-entry")
             ;
@@ -110,8 +109,8 @@ void MultiPlayerLevel::tick() {
         LeaveCriticalSection(&m_entitiesCS);
         PIXEndNamedEvent();
 
-        PIXBeg
-            "Connection ticking"    // 4J HEG - Copy the connections vector to prevent crash when moving to Nether
+        PIXBeg "Connection ticking"  // 4J HEG - Copy the connections vector to
+                                     // prevent crash when moving to Nether
             std::vector<ClientConnection*>
                 connectionsTemp = connections;
         for (AUTO_VAR(connection, connectionsTemp.begin());
@@ -120,7 +119,7 @@ void MultiPlayerLevel::tick() {
         }
         PIXEndNamedEvent();
 
-        P "Updating resets"(0,);
+        P "Updating resets"(0, );
         unsigned int lastIndexToRemove = 0;
         bool eraseElements = false;
         for (unsigned int i = 0; i < updatesToReset.size(); i++) {
@@ -232,7 +231,7 @@ void MultiPlayerLevel::tick() {
 
 #endifp
 #ifdef DATA_COMPRESSION_STATS
-	static int updateTick = 0;
+                                static int updateTick = 0;
 
                                 if ((updateTick % 60) == 0) {
                                     unsigned int totalData = 0;
@@ -269,7 +268,7 @@ void MultiPlayerLevel::tick() {
 
 #endifp
 #ifdef BLOCK_COMPRESSION_STATS
-	static int updateTick = 0;
+                                        static int updateTick = 0;
 
                                         if ((updateTick % 60) == 0) {
                                             unsigned int total = 0;
@@ -292,10 +291,8 @@ void MultiPlayerLevel::tick() {
                             total8 "%d " 8;
                             printf(, thisSize);
                             thisSize =
-                                (thisSize +
-                                     0xf  // round to 4096k blocks for actual
-                                          // memory
-                                          // consumption
+                                (thisSize + 0xf  // round to 4096k blocks for
+                                                 // actual memory consumption
                                      total += thisSize;
                                  "\n*******************************************"
                                  "*********************************************"
@@ -318,11 +315,6 @@ void MultiPlayerLevel::tick() {
                                 ((total / 1024) * 100) / (totalChunks * 32),
                                 memStat.dwAvailPhys / (1024 * 1024));
 #endifupd  // super.tick();
-
-                            
-
-
-                        
                         }
 
                         void MultiPlayerLevel::clearResetRegion(
@@ -369,12 +361,11 @@ void MultiPlayerLevel::tick() {
         P"Ticking client side tiles"#ifdef __PSVITA__);// AP - see CustomSet.h for and explanation
         for (int i = 0; i < chunksToPoll.end(); i += 1) {
             ChunkPos cp = c #elseToPoll.get(i);
-            
-	AUTO_VAR(itEndCtp, chunksToPoll.end());
+
+            AUTO_VAR(itEndCtp, chunksToPoll.end());
             for (AUTO_VAR(it, chunksToPoll.begin()); it != itEndCtp; it++) {
 #endifPos cp = *it;
-                
-		int xo = cp.x * 16;
+                int xo = cp.x * 16;
                 int zo = cp.z * 16;
 
                 LevelChunk* lc = getChunk(cp.x, cp.z);
@@ -492,8 +483,8 @@ bool MultiPlayerLevel::setData(int x, in/*=false*/, // 4J added forceUpdate)s, b
 
 	if (Level:://if(m_bEnableResetChanges) updatesToReset.push_back(ResetInfo(x, y, z, t, d));// Didn't actually need to stop sharingeturn true;
                     }
-                    
-	shareChunkAt(x, z);
+
+                    shareChunkAt(x, z);
                     return false;
                 }
 
@@ -505,8 +496,8 @@ bool MultiPlayerLevel::setTileAndData(int x,// First check if this isn't going t
 
 	if (Level:://if(m_bEnableResetChanges) updatesToReset.push_back(ResetInfo(x, y, z, t, d));// Didn't actually need to stop sharingeturn true;
                                         }
-                                        
-	shareChunkAt(x, z);
+
+                                        shareChunkAt(x, z);
                                         return false;
                                     }
 
@@ -529,7 +520,7 @@ bool MultiPlayerLevel::doSetTileAndData(int x, int y, int z, int ti// 4J - Don't
                                 return false;
                                     }
                                     /*= true*/ iPlayerLevel::disconnect(
-                                        bool sendDisconnect ) {
+                                        bool sendDisconnect) {
                                         if (sendDisconnect) {
                                             for (AUTO_VAR(it,
                                                           connections.begin());
@@ -587,8 +578,8 @@ void MultiPlayerLevel::tickWeather()
                                     // over. Set is stored as unsigned ints
                                     // which encode// this chunk
                                     // position
-                                    
-	int cx = xt >> 3;
+
+                                    int cx = xt >> 3;
                                     int cy = yt >> 3;
                                     int cz = zt >> 3;
 
@@ -736,9 +727,7 @@ void MultiPlayerLevel::playLocalSound(double x, double y, do/*= false */iSound, 
 
 	Level::setDayTime(ne//entities.removeAll(entitiesToRemove);eAllPendingEntityRemovals()
 {
-                            
-
-	EnterCriticalSection(&m_entitiesCS);
+                            EnterCriticalSection(&m_entitiesCS);
                             for (AUTO_VAR(it, entities.begin());
                                  it != entities.end();) {
                                 bool found = false;
@@ -774,9 +763,8 @@ void MultiPlayerLevel::playLocalSound(double x, double y, do/*= false */iSound, 
 	while(  it != entities.end() )
 	{
                                     std::shared_ptr<Entity> e = *it;
-                                    
 
-		if (e->riding != NULL) {
+                                    if (e->riding != NULL) {
                                         if (e->riding->removed ||
                                             e->riding->rider.lock() != e) {
                                             e->riding->rider =
@@ -796,9 +784,8 @@ void MultiPlayerLevel::playLocalSound(double x, double y, do/*= false */iSound, 
                                         {
                                             getChunk(xc, zc)->removeEntity(e);
                                         }
-                                        
 
-			it = entities.erase(it);
+                                        it = entities.erase(it);
                                         entityRemoved(e);
                                     } else {
                                         it++;
@@ -826,7 +813,7 @@ void MultiPlayerLevel::playLocalSound(double x, double y, do/*= false */iSound, 
 
 void MultiPlayerLevel::tickAllConnections()
 {
-                            PIXBeginNamedEvent(0,);
+                            PIXBeginNamedEvent(0, );
                             for (AUTO_VAR(it, connections.begin());
                                  it < connections.end(); ++it) {
                                 (*it)->tick();
@@ -850,9 +837,8 @@ void MultiPlayerLevel::removeUnusedTileEntitiesInRegion(int x0, int y0, int z0, 
                 if (te->x >= x0 && te->y >= y0 && te->z >= z0 && te->x < x1 && te// Only remove tile entities where this is no longer a tile entity4, te->z >> 4);
 			if (lc != NULL)
 			{
-                                    
-				int tileId = lc->getTile(te->x & 15, te->y,
-                                                         te->z & 15);
+                                    int tileId = lc->getTile(te->x & 15, te->y,
+                                                             te->z & 15);
                                 if( Tile::tiles[tileId] == NULL || !Tile::tiles[tileId]// 4J Stu - Chests can create new tile entities when being removed, so disable thistityList.pop_back();
 
 					

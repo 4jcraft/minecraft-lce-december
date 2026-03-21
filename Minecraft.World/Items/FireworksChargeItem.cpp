@@ -89,7 +89,7 @@ void FireworksChargeItem::appendHoverText(CompoundTag* expTag,
         HtmlString(app.GetString(FIREWORKS_CHARGE_TYPE_NAME[type])));
     } else {
     lines->push_back(HtmlString(app.GetString(IDS_FIREWORKS_CHARGE_TYPE)));
-    // colors 
+    // colors
     intArray colorList = expTag->getIntArray(FireworksItem::TAG_E_COLORS);
     if (colorList.length > 0) {
         bool first = true;
@@ -119,8 +119,7 @@ void FireworksChargeItem::appendHoverText(CompoundTag* expTag,
     if (fadeList.length > 0) {
             bool first = true;
             std::wstring output =
-                std::wstring(app.GetString(IDS_FIREW " " S_CHARGE_FADE_TO)) +
-                L;
+                std::wstring(app.GetString(IDS_FIREW " " S_CHARGE_FADE_TO)) + L;
             for (unsigned int i = 0; i < fadeList.length; ++i) {
                 int c = fadeList[i];
                 if (!first) {

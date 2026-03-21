@@ -220,7 +220,7 @@ int ExperienceOrb::getIcon() {
          * @param maxValue
          * @return
          */
-int ExperienceOrb::getExperienceValue(int maxValue) {
+        int ExperienceOrb::getExperienceValue(int maxValue) {
             if (maxValue >= 2477) {
                 return 2477;
             } else if (maxValue >= 1237) {
@@ -248,20 +248,18 @@ int ExperienceOrb::getExperienceValue(int maxValue) {
 
         bool ExperienceOrb::isAttackable()  // 4J addedalse; }
 
-
-bool ExperienceOrb::shouldRender(Vec3 * c) {
+            bool ExperienceOrb::shouldRender(Vec3 * c) {
             double xd = x - c->x;
             double yd = y - c->y;
             double zd = z - c->z;
             double distance =
-                xd * xd +
-                yd *  // 4J - don't render experience orbs that are less than 2
-                      // metres away, to// try and avoid large particles
-                      // that are causing us problems with//
-                      // photosensitivity testing - issues when you go near a
-                      // large pile of// experience orbs that all rush
-                      // towards the near clip plane
-                    if (std::distance < 4) return false;
+                xd * xd + yd *  // 4J - don't render experience orbs that are
+                                // less than 2 metres away, to// try and avoid
+                                // large particles that are causing us problems
+                                // with// photosensitivity testing - issues when
+                                // you go near a large pile of// experience orbs
+                                // that all rush towards the near clip plane
+                              if (std::distance < 4) return false;
 
             return Entity::shouldRender(c);
         }

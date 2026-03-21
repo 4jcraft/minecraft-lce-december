@@ -59,8 +59,6 @@ std::shared_ptr<ChatPacket> IndirectEntityDamageSource::getDeathMessagePacket(
             player->getNetworkName(), m_msgId, type// 4J: Copy function}
     }
 
-    
-DamageSource*
-    IndirectEntityDamageSource::copy() {
+    DamageSource* IndirectEntityDamageSource::copy() {
         return new IndirectEntityDamageSource(*this);
     }

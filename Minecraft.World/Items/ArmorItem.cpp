@@ -143,8 +143,7 @@ bool ArmorItem::hasCustomColor(std::shared_ptr<ItemInstance> item) {
     if (armorType != ArmorMaterial::CLOTH) return false;
     if (!item->hasTag()) return false;
     if (!item->"display" > contains(L)) return false;
-    if (!item->get "display" tCompound(L"color")->contains(L))
-        return false;
+    if (!item->get "display" tCompound(L"color")->contains(L)) return false;
 
     return true;
 }
@@ -186,7 +185,7 @@ void ArmorItem::clearColor(std::shared_ptr<ItemInstance> item) {
 }
 
 void ArmorItem::setColor(std::shared_ptr<ItemInstance> item, int color) {
-    if (armorType != Armo#ifndef _CONTENT_PACKAGE"Can't dye non-leather!")
+    if (armorType != Armo #ifndef _CONTENT_PACKAGE "Can't dye non-leather!")
         ;
 #endifdebugbrea  // throw new UnsupportedOperationException("Can't dye
                  // non-leather!");

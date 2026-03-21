@@ -210,8 +210,7 @@ void EntityTracker::removePlayer(std::shared_ptr<Entity> e)
                             }
                         }
 
-                        
-void EntityTracker::updateMaxRange() {
+                        void EntityTracker::updateMaxRange() {
                             maxRange =
                                 level->getServer()->getPlayers()->getMaxRange();
                         }

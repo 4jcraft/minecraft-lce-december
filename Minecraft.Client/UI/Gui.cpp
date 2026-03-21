@@ -280,7 +280,10 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
             // need to apply scale factors depending on the mode
             glPushMatrix();
         glScalef(fScaleFactorWidth, fScaleFactorHeight, fScaleFactorWidth);
-#if RENDER_HUD    /////////////////////////////////////////////////////////////////////////////////////// Display the quick select background, the quick select selection, and the crosshair/////////////////////////////////////////////////////////////////////////////////////
+#if RENDER_HUD  ///////////////////////////////////////////////////////////////////////////////////////
+                ///Display the quick select background, the quick select
+                ///selection, and the
+                ///crosshair/////////////////////////////////////////////////////////////////////////////////////
 
         glColor4f(1, 1, 1,
                   1)  // 4J - this is where to set the blend factor for gui
@@ -359,10 +362,6 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
         blit(screenWidth / 2 - 7, screenHeight / 2 - 7, 0, 0, 16, 16);
 			}
 			glDisable(GL_// 		if(bTwoPlayerSplitscreen)// 		{// 			glPopMatrix();// 		}
-	
-
-		
-
 }
 
 bool blink = minecraft->player->invulnerableTime / 3 % 2 == 1;
@@ -473,7 +472,7 @@ int food = foodData->getFoodLevel();
         }
         */
 
-					blit(xo, yo, 16 + bg * 9, 9 * y0, 9, 9);
+            blit(xo, yo, 16 + bg * 9, 9 * y0, 9, 9);
         if (blink) {
             if (i * 2 + 1 < oldHealth)
                 blit(xo, yo, healthTexBaseX + 6 * 9, 9 * y0, 9, 9);
@@ -640,7 +639,8 @@ int food = foodData->getFoodLevel();
                                 glEnable(GL_COLOR_M// 4J - TomK now using safe zone values directly instead of the magic number calculation that lived here before (which only worked for medium scale, the other two were off!)
 				int xo = iSafezoneXHalf + 10;
 				int yo = iSafezone
-#ifdef __PSVITA__    // align directly with corners, there are no safe zones on vita
+#ifdef __PSVITA__  // align directly with corners, there are no
+                                   // safe zones on vita
 				xo = 10#endifyo = 10;
 
 
@@ -687,7 +687,7 @@ int food = foodData->getFoodLevel();
 				glPopMatrix();
 				Lighting::turnOff();
 				glDisable(GL_RESCALE_NORMAL
-#if RENDER_HUD    // Moved so the opacity blend is applied to it
+#if RENDER_HUD  // Moved so the opacity blend is applied to it
 	if (bDisplayGui && minecraft->gameMode->hasExperience() && minecraft->player->experienceLevel > 0)
 	{
             if (true) {
@@ -756,8 +756,8 @@ int food = foodData->getFoodLevel();
                             //        y, 0xffffff);//        }
 #ifndef _FINAL_BUILD
 
-	MemSect(31);
-                            if (minecraft->options->renderDebug) {
+                            MemSect(31);
+                        if (minecraft->options->renderDebug) {
                             glPushMatrix();
                             if (Minecraft::warezTime > 0)
                                 glTranslatef(0, 32, 0);
@@ -785,9 +785,8 @@ int food = foodData->getFoodLevel();
                                 app.m_vTerrainFea "[" es[i];
 
                             std::wstring itemInfo =
-                                L + ", " tring<int>(pFeatureData->x * 16) +
-                                L + "] " tring<int>(pFeatureData->z * 16) +
-                                L;
+                                L + ", " tring<int>(pFeatureData->x * 16) + L +
+                                "] " tring<int>(pFeatureData->z * 16) + L;
                             wfeature[pFeatureData->eTerrainFeature] += itemInfo;
                         }
 
@@ -827,8 +826,7 @@ int food = foodData->getFoodLevel();
                                         drawString(
                                             " (" font,
                                             L + biome->m_name ")" L +
-                                                _toString<int>(biome->id) +
-                                                L,
+                                                _toString<int>(biome->id) + L,
                                             iSafezoneXHalf + 2, iYPos,
                                             0xe0e0e0);
 		}
@@ -874,9 +872,8 @@ int food = foodData->getFoodLevel();
 #endif glPopMatrix();
                                             }
                                         }
-                                        
-	
-    unsigned int max = 10;
+
+                                        unsigned int max = 10;
                                         bool isChatting = false;
                                         if (dynamic_cast<ChatScreen*>(
                                                 minecraft->screen) != NULL) {
@@ -918,17 +915,17 @@ int food = foodData->getFoodLevel();
                                                             y += iHeightOffset;
                                                         }
 
-                                                        std::
-                                                            wst  // 4J-PB - fill
-                                                                 // the black
-                                                                 // bar across
-                                                                 // the whole
-                                                                 // screen,
-                                                                 // otherwise it
-                                                                 // looks odd
-                                                                 // due to the
-                                                                 // safe
-                                                                 // area
+                                                        std::wst  // 4J-PB -
+                                                                  // fill the
+                                                                  // black bar
+                                                                  // across the
+                                                                  // whole
+                                                                  // screen,
+                                                                  // otherwise
+                                                                  // it looks
+                                                                  // odd due to
+                                                                  // the safe
+                                                                  // area
                                                             this->fill(
                                                                 0, y - 1,
                                                                 screenWidth /
@@ -978,9 +975,9 @@ int food = foodData->getFoodLevel();
                                                                          * playerInfos.add(new
                                                                          * PlayerInfo("fiddle"));
                                                                          */
-                                                                
 
-		int slotWidth = 300 / cols;
+                                                                int slotWidth =
+                                                                    300 / cols;
                                                                 if (slotWidth >
                                                                     150)
                                                                     slotWidth =
@@ -1100,15 +1097,17 @@ int food = foodData->getFoodLevel();
                                                             // matrix&&
                                                             // bTwoPlayerSplitscreen)
                                                             {
-                                                                
-		glPopMatrix();
+                                                                glPopMatrix();
                                                             }
 
-                                                            glColor4f(
-                                                                1, 1, 1,
-                                                                1);  // Moved to
-                                                                     // the xui
-                                                                     // base scenen// void Gui::renderBossHealth(void)// {// 	if (EnderDragonRenderer::bossInstance == NULL) return;// // 	shared_ptr<EnderDragon> boss = EnderDragonRenderer::bossInstance;// 	EnderDragonRenderer::bossInstance = NULL;// // 	Minecraft *pMinecraft=Minecraft::GetInstance();// // 	Font *font = pMinecraft->font;// // 	ScreenSizeCalculator ssc(pMinecraft->options, pMinecraft->width_phys, pMinecraft->height_phys);// 	int screenWidth = ssc.getWidth();// // 	int w = 182;// 	int xLeft = screenWidth / 2 - w / 2;// // 	int progress = (int) (boss->getSynchedHealth() / (float) boss->getMaxHealth() * (float) (w + 1));// // 	int yo = 12;// 	blit(xLeft, yo, 0, 74, w, 5);
+                                                            glColor4f(1, 1, 1,
+                                                                      1);  // Moved
+                                                                           // to
+                                                                           // the
+                                                                           // xui
+                                                                           // base
+                                                                           // scenen//
+                                                                           // void Gui::renderBossHealth(void)// {// 	if (EnderDragonRenderer::bossInstance == NULL) return;// // 	shared_ptr<EnderDragon> boss = EnderDragonRenderer::bossInstance;// 	EnderDragonRenderer::bossInstance = NULL;// // 	Minecraft *pMinecraft=Minecraft::GetInstance();// // 	Font *font = pMinecraft->font;// // 	ScreenSizeCalculator ssc(pMinecraft->options, pMinecraft->width_phys, pMinecraft->height_phys);// 	int screenWidth = ssc.getWidth();// // 	int w = 182;// 	int xLeft = screenWidth / 2 - w / 2;// // 	int progress = (int) (boss->getSynchedHealth() / (float) boss->getMaxHealth() * (float) (w + 1));// // 	int yo = 12;// 	blit(xLeft, yo, 0, 74, w, 5);
                                                             // 	blit(xLeft, yo,
                                                             // 0, 74, w, 5);//
                                                             // if (progress > 0)
@@ -1132,10 +1131,10 @@ int food = foodData->getFoodLevel();
                                                             // );//"/gui/icons.png"));//
                                                             // //
                                                             // }
-                                                            
 
-
-void Gui::renderPumpkin(int w, int h) {
+                                                            void
+                                                            Gui::renderPumpkin(
+                                                                int w, int h) {
                                                                 glDisable(
                                                                     GL_DEPTH_TEST);
                                                                 glDepthMask(

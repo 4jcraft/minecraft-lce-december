@@ -146,7 +146,7 @@ void Particle::render(Tesselator* t, float a, float xa, float ya, float za,
     float br = 1.  // 4J - change brought forward from 1.8.2
         if (!SharedConstants::TEXTURE_LIGHTING) {
         br = getBrightne
-#ifdef __PSVITA__    // AP - this will set up the 4 vertices in half the time.
+#ifdef __PSVITA__  // AP - this will set up the 4 vertices in half the time.
                  t->tileParticleQuad(
                      (float)(x - xa * r - xa2 * r), (float)(y - ya * r),
                      (float)(z - za * r - za2 * r), (float)(u1), (float)(v1),
@@ -157,8 +157,8 @@ void Particle::render(Tesselator* t, float a, float xa, float ya, float za,
                      (float)(x + xa * r - xa2 * r), (float)(y - ya * r),
                      (float)(z + za * r - za2 * r), (float)(u0), (float)(v1),
                      rCol * br, gCol * br, bCol * br #elseha);
-        
-    t->color(rCol * br, gCol * br, bCol * br, alpha);
+
+        t->color(rCol * br, gCol * br, bCol * br, alpha);
 
         t->vertexUV((float)(x - xa * r - xa2 * r), (float)(y - ya * r),
                     (float)(z - za * r - za2 * r), (float)(u1), (float)(v1));
@@ -168,9 +168,6 @@ void Particle::render(Tesselator* t, float a, float xa, float ya, float za,
                     (float)(z + za * r + za2 * r), (float)(u0), (float)(v0));
         t->vertexUV((float)(x + xa * r - xa2 * r), (float)(y - ya * r),
                     (float)(z + za * r - za2 * r), (float)(u0), (floa #endif));
-        
-
-    
     }
 
     int Particle::getParticleTexture() { return ParticleEngine::MISC_TEXTURE; }
@@ -185,7 +182,8 @@ void Particle::render(Tesselator* t, float a, float xa, float ya, float za,
         } else if (getParticleTexture() == ParticleEngine::ITEM_TEXTURE) {
             tex = icon;
         }
-#ifndef _CONTENT_PACKAGE"Invalid call to Particle.setTex, use coordinate methods\n");
+#ifndef _CONTENT_PACKAGE \
+    "Invalid call to Particle.setTex, use coordinate methods\n");
         __debu #endif();  // throw new RuntimeException("Invalid call to
                           // Particle.setTex, use coordinate
                           // methods");
@@ -193,13 +191,13 @@ void Particle::render(Tesselator* t, float a, float xa, float ya, float za,
 }
 
 void Particle::setMiscTex(int slotIndex) {
-    if (getParticleTexture() != ParticleEngine::MISC_TEXTURE && getParticleTexture() != ParticleEngine::DRAGON_BREATH_TE#ifndef _CONTENT_PACKAGE"Invalid call to Particle.setMixTex\n")
+    if (getParticleTexture() != ParticleEngine::MISC_TEXTURE &&
+        getParticleTexture() !=
+            ParticleEngine::DRAGON_BREATH_TE #ifndef _CONTENT_PACKAGE
+            "Invalid call to Particle.setMixTex\n")
         ;
     __debugb  // throw new RuntimeException("Invalid call to
               // Particle.setMiscTex");#endif
-
-	
-
 }
 texX = slotIndex % 16;
 texY = slotIndex / 16;
@@ -209,6 +207,8 @@ void Particle::setNextMiscAnimTex() { texX++; }
 
 bool Particle::isAttackable() {
     return  //@Override
-        std::wstring Particle::toString() {
-        "A particle"    //getClass()->getSimpleName() + ", Pos (" + x + "," + y + "," + z + "), RGBA (" + rCol + "," + gCol + "," + bCol + "," + alpha + "), Age " + age;
-    }
+        std::wstring Particle::toString(){
+            "A particle"  // getClass()->getSimpleName() + ", Pos (" + x + "," +
+                          // y + "," + z + "), RGBA (" + rCol + "," + gCol + ","
+                          // + bCol + "," + alpha + "), Age " + age;
+        }

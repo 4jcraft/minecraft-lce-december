@@ -177,8 +177,8 @@ void PlayerRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, do
                 // dependent)
                 std::vector<ModelPart*>*
                     pAdditionalModelPart  // turn them ontionalModelParts();
-	
-	if (pAdditionalModelParts != NULL) {
+
+                    if (pAdditionalModelParts != NULL) {
                     for (AUTO_VAR(it, pAdditionalModelParts->begin());
                          it != pAdditionalModelParts->end(); ++it) {
                         ModelPart* pModelPart = *it;
@@ -189,8 +189,8 @@ void PlayerRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, do
 
                 LivingEntityRenderer  // turn them off again, rot, a);
 
-	
-	if (pAdditionalModelParts && pAdditionalModelParts->size() != 0) {
+                    if (pAdditionalModelParts &&
+                        pAdditionalModelParts->size() != 0) {
                     for (AUTO_VAR(it, pAdditionalModelParts->begin());
                          it != pAdditionalModelParts->end(); ++it) {
                         ModelPart* pModelPart = *it;
@@ -222,8 +222,8 @@ void PlayerRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, do
 
                 std::shared_ptr<ItemInstance> headGear =
                     mob->inventory -  // don't render the pumpkin for the skins{
-		
-		unsigned int uiAnimOverrideBitmask =
+
+                    unsigned int uiAnimOverrideBitmask =
                         mob->getSkinAnimOverrideBitmask(mob->getCustomSkin());
 
                 if ((uiAnimOverrideBitmask &
@@ -338,8 +338,8 @@ void PlayerRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, do
                                 }
 
                                 UseAnim anim = UseAnim_none;
-                                
-		if (mob->getUseItemDuration() > 0) {
+
+                                if (mob->getUseItemDuration() > 0) {
                                     anim = item->getUseAnimation();
                                 }
 
@@ -428,8 +428,7 @@ void PlayerRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, do
                             std::shared_ptr<LivingEntity> player, double x,
                             double #if 0ouble z, std::wstring msg, float scale,
                             double dist) {
-                            
-    if (dist < 10 * 10) {
+                            if (dist < 10 * 10) {
                                 Scoreboard* scoreboard =
                                     player->getScoreboard();
                                 Objective* objective =
@@ -443,14 +442,14 @@ void PlayerRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, do
                                     if (player->isSleeping())
                                         " " renderNameTag(
                                             player,
-                                            score->getScore() +  +
-                                                objective->getDisplayName(),
+                                            score->getScore() +
+                                                +objective->getDisplayName(),
                                             x, y - 1.5f, z, 64);
                                 } else
                                     " " renderNameTag(
                                         player,
-                                        score->getScore() +  +
-                                            objective->getDisplayName(),
+                                        score->getScore() +
+                                            +objective->getDisplayName(),
                                         x, y, z, 64);
                             }
 #endifetFont()->lineHeight * 1.15f * scale;
@@ -519,9 +518,9 @@ void PlayerRenderer::setupRotations(std::shar// 4J - dynamic cast required becau
                 // 4J Added override to stop rendering shadow if player is
                 // invisible
 
-                
-void PlayerRenderer::renderShadow(std::shared_ptr<Entity> e, double x, double y,
-                                  double z, float pow, float a) {
+                void PlayerRenderer::renderShadow(std::shared_ptr<Entity> e,
+                                                  double x, double y, double z,
+                                                  float pow, float a) {
                     if (app.GetGameHostOption(
                             eGameHostOption_HostCanBeInvisible) > 0) {
                         std::shared_ptr<Player> player =
@@ -531,8 +530,8 @@ void PlayerRenderer::renderShadow(std::shared_ptr<Entity> e, double x, double y,
                     EntityRenderer::renderShadow(e, x, y, z, pow, a);
                 }
 
-                
-void PlayerRenderer::bindTexture(std::shared_ptr<Entity> entity) {
+                void PlayerRenderer::bindTexture(
+                    std::shared_ptr<Entity> entity) {
                     std::shared_ptr<Player> player =
                         dynamic_pointer_cast<Player>(entity);
                     bindTexture(player->customTextureUrl, player->getTexture());

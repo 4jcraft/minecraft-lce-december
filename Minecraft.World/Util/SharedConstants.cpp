@@ -28,7 +28,6 @@ std::wstring SharedConstants::readAcceptableChars() {
     }
     //} catch (Exception e) {// TODO 4J Stu - Exception
     // handling?//}#endif
-    
 
     return result;
 }
@@ -48,6 +47,5 @@ const wchar_t
     SharedConstants::ILLEGAL_FILE_CHARACTERS[ILLEGAL_FILE_CHARACTERS_LENGT// 4J-PB  - corrected'/'
 '\n'   '\r', '\t', '\0', '\f', '`','?', L, '*',
 '\\'   '<', '>', '|',  '\"',  ':',  L, L
-
 }
 ;

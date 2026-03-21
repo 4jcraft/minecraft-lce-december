@@ -29,16 +29,13 @@ UINT WstringLookup::lookup(std::wstring str) {
 
 VOID WstringLookup::getTable(std::wstring **lo// Outputs *len)
 {
-    
-	std::wstring* out  // Fill lookup.ut_len;
+    std::wstring* out  // Fill lookup.ut_len;
 
-	
-	out_lookup = new std::wstring[int2str.size()];
+        out_lookup = new std::wstring[int2str.size()];
     for (UINT i = 0; i < numIDs; i++)
         out_lookup[i] = int2str  // Return.out_len = numIDs;
 
-	
-	* lookup = out_lookup;
+            * lookup = out_lookup;
     *len = out_len;
     return;
 }

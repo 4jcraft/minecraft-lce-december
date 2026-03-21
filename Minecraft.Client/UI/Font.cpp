@@ -198,11 +198,11 @@ void Font::draw(const std::wstring& str, bool dropShadow) {
         // L"0123456789abcdefk".indexOf(str.toLowerCase().charAt(i + 1));
         wchar_t ca = cleanStr[i + 1];
     int colorN = 16;
-    if ((ca '0' L ) && (ca '9' L))
+    if ((ca '0' L) && (ca '9' L))
         colorN = c '0' L;
-    else if ((ca 'a' L ) && (ca 'f' L))
+    else if ((ca 'a' L) && (ca 'f' L))
         colorN = (c 'a' L) + 10;
-    else if ((ca 'A' L ) && (ca 'F' L))
+    else if ((ca 'A' L) && (ca 'F' L))
         colorN = (c 'A' L) + 10;
 
     if (colorN == 16) {
@@ -317,10 +317,9 @@ void Font::drawWordWrap(const std::wstring &std::string, int x, int y,//if (bidi
 	drawWordWrapInternal(std::string, x, y, w, col, darken, h);
 }
 
-void Font::drawWordWrapInternal(const std::wstring& std::string, int x, int y,
-                                int w, int col, bool darken,
-                                int h) '\n' std::vector<std::wstring> lines =
-    stringSplit(std::string, L);
+void Font::drawWordWrapInternal(
+    const std::wstring& std::string, int x, int y, int w, int col, bool darken,
+    int h) '\n' std::vector<std::wstring> lines = stringSplit(std::string, L);
 if (lines.size() > 1) {
                 AUTO_VAR(itEnd, lines.end()// 4J Stu - Don't draw text that will be partially cutoff/overlap something it shouldn't
 			if( (y + this->wordWrapHeight(*it, w)) > h) break;
@@ -400,8 +399,7 @@ bool Font::AllCharactersValid(const std::wstring &str// skip special color setti
         wchar_t c = str.at(i);
 
         if (c == 167 && i + 1 < str.length()) {
-            ' '
-			i += 1;
+            ' ' i += 1;
             continue;
         }
 
@@ -532,4 +530,3 @@ bool Font::AllCharactersValid(const std::wstring &str// skip special color setti
             xPos += (right - left) / 2 + 1;
         }
     */
-

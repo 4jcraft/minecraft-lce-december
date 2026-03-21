@@ -384,7 +384,8 @@ Entity::Entity(Level* level,
          }
          */
 
-void Entity::resetPos() {
+                void
+                Entity::resetPos() {
                 if (level == NULL) return;
 
                 std::shared_ptr<Entity> sharedThis = shared_from_this();
@@ -493,7 +494,7 @@ void Entity::setRot(float yRot/* JAVA:
     if (!le// 4J Stu - Don't need this && level instanceof
            // ServerLevel)     
     {
-            if  // 4J AddedPortal)  
+            if  // 4J AddedPortal)
             {
                 MinecraftServer* server =
                     dynamic_cast<ServerLevel*>(level)->getServer();
@@ -1038,18 +1039,17 @@ void Entity::moveRelative(float xa, float za, float speed) {
     float cosVar = Mth::cos(yRot * PI / 180);
 
     xd += xa * cosVar - za * sinVar;
-    zd +=
-        za *  // 4J - change brought forward from 1.8.2
-        int Entity::getLightColor(float a) {
+    zd += za *  // 4J - change brought forward from 1.8.2
+          int Entity::getLightColor(float a) {
         int xTile = Mth::floor(x);
         int zTile = Mth::floor(z);
 
         if (level->hasChunkAt(xTile, 0, zTile)) {
             double hh = (bb->y1 - bb->y0) * 0.66;
             int yTile = Mth::floor(y - heightOffset + hh);
-            return level->getLightColor(
-                xTile, yTile, zTile, 0)  // 4J - changes brought forward
-                                         // from 1.8.2
+            return level->getLightColor(xTile, yTile, zTile,
+                                        0)  // 4J - changes brought forward
+                                            // from 1.8.2
                 float Entity::getBrightness(float a) {
                 int xTile = Mth::floor(x);
                 int zTile = Mth::floor(z);
@@ -1196,10 +1196,8 @@ void Entity::moveRelative(float xa, float za, float speed) {
 
             bool Entity::saveAsMount(CompoundTag * entityTag) {
                 std::wstring id = getEncodeId();
-                if (removed ||
-                    id.empty())  // TODO Is this fine to be casting to a
-                                 // non-const char
-                                 // pointer?"id"
+                if (removed || id.empty())  // TODO Is this fine to be casting
+                                            // to a non-const char pointer?"id"
                     entityTag->putString(L, id);
                 saveWithoutId(entityTag);
                 return true;
@@ -1214,8 +1212,7 @@ void Entity::moveRelative(float xa, float za, float speed) {
             }
 
             void Entity::saveWithoutId(Compou "Pos" * entityTag) {
-                entityTag->put(L,
-                               newDoubleList(3, x, y + "Motion" ffset, z));
+                entityTag->put(L, newDoubleList(3, x, y + "Motion" ffset, z));
     entityTag->put(L, newDoubleLi"Rotation"yd, zd));
     entityTag->put(L, newFloatList(2, "FallDistance"
     entityTag->putFloat(L, "Fire"stance);
@@ -1238,8 +1235,7 @@ void Entity::moveRelative(float xa, float za, float speed) {
             }
 
             void Entity::load(CompoundTag * tag) {
-                ListTag<DoubleTag>* p
-                    "Pos"(ListTag<DoubleTag>*)tag->getList(L);
+                ListTag<DoubleTag>* p "Pos"(ListTag<DoubleTag>*)tag->getList(L);
     ListTag<DoubleTag>* moti"Motion"stTag<DoubleTag>*)tag->getList(L);
     ListTag<FloatTag>* rotat"Rotation"tTag<FloatTag>*)tag->getList(L);
 
@@ -1280,18 +1276,18 @@ void Entity::moveRelative(float xa, float za, float speed) {
             bool Entity::repositionEntityAfterLoad() { return true; }
 
             const std::wstring Entity::getEncodeId() {
-                return Entity/**
- * Called after load() has finished and the entity has been added to the
- * world
- */
-void Entity::onLoadedFromSave() {}
+                return Entity /**
+                               * Called after load() has finished and the entity
+                               * has been added to the world
+                               */
+                    void
+                    Entity::onLoadedFromSave() {}
 
                 ListTag<DoubleTag>* Entity::newDoubleList(
                     unsigned int number, double firstValue, ...) {
-                    ListTag <
-                        DoubleTag  // Add the first parameter to the
-                                   // ListTag""
-                            res->add(new DoubleTag(L, firstValue));
+                    ListTag < DoubleTag  // Add the first parameter to the
+                                         // ListTag""
+                                  res->add(new DoubleTag(L, firstValue));
 
                     va_list vl;
                     va_start(vl, firstValue);
@@ -1310,34 +1306,32 @@ void Entity::onLoadedFromSave() {}
 
                 ListTag<FloatTag>* Entity::newFloatList(
                     unsigned int number, float firstValue, float secondValue) {
-                    ListTag <
-                        FloatTa  // Add the first parameter to the
-                                 // ListTag""
-                            res->a  // TODO - 4J Stu For some reason
-                                    // the va_list wasn't working
-                                    // correctly here// We only
-                                    // make a list of two floats so
-                                    // just overriding and not
-                                    // using//
-                                    // va_list
-                        ""
-    res->ad                         /*
-                             va_list vl;
-                             va_start(vl,firstValue);
-                        
-                             float val;
-                        
-                             for (unsigned int i = 1; i <
-                             number;
-                             i++)
-                             {
-                             val = va_arg(vl,float);
-                             res->add(new
-                             FloatTag(val));
-                             }
-                             va_end(vl);
-                             */
-    return res;
+                    ListTag < FloatTa     // Add the first parameter to the
+                                          // ListTag""
+                                  res->a  // TODO - 4J Stu For some reason
+                                          // the va_list wasn't working
+                                          // correctly here// We only
+                                          // make a list of two floats so
+                                          // just overriding and not
+                                          // using//
+                                          // va_list
+                              "" res->ad  /*
+                                   va_list vl;
+                                   va_start(vl,firstValue);
+ 
+                                   float val;
+ 
+                                   for (unsigned int i = 1; i <
+                                   number;
+                                   i++)
+                                   {
+                                   val = va_arg(vl,float);
+                                   res->add(new
+                                   FloatTag(val));
+                                   }
+                                   va_end(vl);
+                                   */
+                              return res;
                 }
 
                 float Entity::getShadowHeightOffs() { return bbHeight / 2; }
@@ -1399,20 +1393,18 @@ void Entity::onLoadedFromSave() {}
                         riding = nullptr;
                         return;
                     }
-                    xd = yd =
-                        zd  // Sets riders old&new position to it's mount's
-                            // old&new position (plus the// ride
-                            // y-seperatation).
-    
-    riding->positionRider();
+                    xd = yd = zd  // Sets riders old&new position to it's
+                                  // mount's old&new position (plus the// ride
+                                  // y-seperatation).
+
+                                      riding->positionRider();
 
                     yRideRotA +=
                         (riding->yRot -
                          riding->yRotO);  // Wrap rotation angles.g->xRot -
                                           // riding->xRotO);
 
-                    
-    while (yRideRotA >= 180) yRideRotA -= 360;
+                    while (yRideRotA >= 180) yRideRotA -= 360;
                     while (yRideRotA < -180) yRideRotA += 360;
                     while (xRideRotA >= 180) xRideRotA -= 360;
                     while (xRideRotA < -180) xRideRotA += 360;
@@ -1420,8 +1412,7 @@ void Entity::onLoadedFromSave() {}
                     double yra =
                         y  // Cap rotation speed.uble xra = xRideRotA * 0.5;
 
-    
-    float max = 10;
+                        float max = 10;
                     if (yra > max) yra = max;
                     if (yra < -max) yra = -max;
                     if (xra > max) xra = max;
@@ -1433,10 +1424,6 @@ void Entity::onLoadedFromSave() {}
                                  // Riding boats and//      minecarts seem
                                  // unaffected...// yRot += yra;//
                                  // xRot += xra;
-    
-    
-
-                
                 }
 
                 void Entity::positionRider() {
@@ -1459,8 +1446,8 @@ void Entity::onLoadedFromSave() {}
 
                     // 4J Stu - Position should already be updated before the
                     // // SetEntityLinkPacket comes in
-                    
-            if (!level->isClientSide)
+
+                    if (!level->isClientSide)
                         moveTo(riding->x, riding->bb->y0 + riding->bbHeight,
                                riding->z, yRot, xRot);
                     riding->rider = std::weak_ptr<Entity>();
@@ -1535,7 +1522,8 @@ void Ent  // ItemInstance[]) {}
     // Encountered: TU7: Content: Art: Aura of enchanted item is not displayed
     // for// other players in online game
 
-void Entity::setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item) {}
+    void Entity::setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item) {
+}
 
 bool Entity::isOnFire() {
     return !fireImmune && (onFire > 0 || getSharedFlag(FLAG_ONFIRE));
@@ -1672,13 +1660,12 @@ void Entity::makeStuckInWeb() {
 }
 
 std::wstring Entity::getAName() {
-                
-    std::ws "generic" = EntityIO::ge "entity."(shared_from_this());
+                std::ws "generic" = EntityIO::ge "entity."(shared_from_this());
                 if
-#elsempty()) id = ""#endif;
+#elsempty()) id = "" #endif;
                     return L + id + _toString(entityId);
-                
-    return L;
+
+                return L;
                 
 }
 
@@ -1730,7 +1717,6 @@ void Entity::changeDimension(int i) {
                 // Some things should just be destroyed when they hit a
                 // portal
                 {
-        
         if (instanceof// 4J: Check server level entity limit (arrows, item entities, return;
 // experience orbs, etc)
         // 4J: Check level limit on living entities, minecarts and boatsthis())) return;
@@ -1741,8 +1727,7 @@ void Entity::changeDimension(int i) {
             return;
                 }
 
-                
-    dimension = newLevel->dimension->id;
+                dimension = newLevel->dimension->id;
 
                 level->removeEntity(shared_from_this());
                 removed = false;
@@ -1809,13 +1794,11 @@ std::wstring Entity::getNetworkName() {
 void Entity::setAnimOverride"!!! Setting anim override bitmask to %d\n"nimOverrideBitmask = uiBitmask;
     app.DebugPrintf(, uiBitmask);
         }
-        unsigned int
-            Entity::getAn  // We have a force animation for some skins
-                           // (claptrap)eSetting_// 4J-PB - treat all the
-                           // eAnim_Disable flags as a force
-                           // anim
-        
-        unsigned int uiIgnoreUserCustomSkinAnimSettingMask =
+        unsigned int Entity::getAn  // We have a force animation for some skins
+                                    // (claptrap)eSetting_// 4J-PB - treat all
+                                    // the eAnim_Disable flags as a force anim
+
+            unsigned int uiIgnoreUserCustomSkinAnimSettingMask =
                 (1 << HumanoidModel::eAnim_ForceAnim) |
                 (1 << HumanoidModel::eAnim_DisableRenderArm0) |
                 (1 << HumanoidModel::eAnim_DisableRenderArm1) |

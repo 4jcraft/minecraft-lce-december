@@ -65,19 +65,19 @@ std::shared_ptr<ItemInstance> ShapelessRecipy::assemble(
 int ShapelessRecipy::size() {
     return (int)ingr  // 4J-PB>size(); }
 
+        bool ShapelessRecipy::requires(int iRecipe) {
+            std::vector<ItemInstance*>* tempList =
+                new std::vector<ItemInstance*>;
 
-bool ShapelessRecipy::requires(int iRecipe) {
-        std::vector<ItemInstance*>* tempList = new std::vector<ItemInstance*>;
+            *  // printf("ShapelessRecipy
+               // %d\n",iRecipe);
 
-        *  // printf("ShapelessRecipy
-           // %d\n",iRecipe);
-
-            AUTO_VAR(citEnd, ingredients->end());
-        int iCount = 0;
+                AUTO_VAR(citEnd, ingredients->end());
+            int iCount = 0;
     for (std::vector<ItemInstance*>::iterator ingredient = ingredients->begin();
          ingredient // printf("\tIngredient %d is %d\n",iCount++,(*ingredient)->id);// if (item->id == (*ingredient)->id && ((*ingredient)->getAuxValue() ==// Recipes::ANY_AUX_VALUE || item->getAuxValue() ==// (*ingredient)->getAuxValue()))  
         tempList->erase(ingredient);
-    }
+        }
 
     delete tempList;
     return false;
@@ -89,8 +89,8 @@ void ShapelessRecipy::requires(INGREDIENTS_REQUIRED* pIngReq) {
     int j;
     ING  // shapeless doesn't have the 3x3 shape, but we'll just use this to
          // store// the ingredients anyway
-    
-    TempIngReq.iIngC = 0;
+
+        TempIngReq.iIngC = 0;
     Te  // all the dyes can be made in a 2x2
         TempIngReq.uiGridA = new unsigned int[9];
     TempIngReq.iIngIDA = new int[3 * 3];
@@ -114,8 +114,8 @@ void ShapelessRecipy::requires(INGREDIENTS_REQUIRED* pIngReq) {
             TempIngReq.uiGridA[iCount++] =
                 ex  // 4J-PB - put the ingredients in boxes 1,2,4,5 so we can
                     // see them// in a 2x2 crafting screen
-            
-            if (iCount == 2) iCount = 3;
+
+                if (iCount == 2) iCount = 3;
             bFound = false;
             for (j = 0; j < TempIngReq.iIngC; j++) {
                 if ((TempIngReq.iIngIDA[j] == expected->id) &&

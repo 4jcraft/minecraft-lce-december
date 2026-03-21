@@ -127,8 +127,6 @@ void MinecartRenderer::render(std::shared_ptr<Entity> _cart, double x, double y,
 	model->render(cart, 0, 0, -0.1f, 0, 0, 1 / 16.0f, true);
 	glPopMatrix();
 	*/
-
-
 }
 
 ResourceLocation* MinecartRenderer::getTextureLocation(

@@ -38,13 +38,10 @@ GameRuleDefinition* ConsoleGenerateStructure::addChild(
         rule = new XboxStructureActionPlaceSpawner();
         m_actions.push_back((XboxStructureActionPlaceSpawner*)rule);
     }
-    els #ifndef _CONTENT_PACKAGE
-		wpri
+    els #ifndef _CONTENT_PACKAGE wpri
         "ConsoleGenerateStructure: Attempted to add invalid child rule - "
         "%d\n",
-        ruleTyp #endif 
-	
-
+        ruleTyp #endif
 }
 return rule;
 }

@@ -127,11 +127,10 @@ typedef struct SceRemoteStorageInitParams {
                                                           // your title
     SceRemoteStorageInitTimeout timeout;  // Timeout for network transactions
     SceRemoteStorageInitParamsPool pool;  // Memory pool parameters
-    SceRemoteStorageInitParamsThread
-        std::thread;  // Thread creation parameters
+    SceRemoteStorageInitParamsThread std::thread;  // Thread creation parameters
     SceRemoteStorageEnvironment
         environment;  // Only used on non-PlayStation platforms: PSN Environment
-                      // used by the library 
+                      // used by the library
 } SceRemoteStorageInitParams;
 
 typedef struct SceRemoteStorageGetDataReqParams {
@@ -154,7 +153,7 @@ typedef struct SceRemoteStorageSetDataReqParams {
 	char secureFileId[SCE_REMOTE_STORAGE_PS3_SAVEDATA_SECUREFILEID_SI// PS3 only. ID used for save data encryption
 	char ps3DataFilename[SCE_REMOTE_STORAGE_PS3_SAVEDATA_FILENAME_SI// PS3 only. Name of data file in save data
 	uint32_t ps3FileType;								// PS3 only. Type of file, CELL_SAVEDATA_FILETYPE_XXX
-	SceRemoteStorageDataVisibility visibility;			// Visibility of data	
+	SceRemoteStorageDataVisibility visibility;			// Visibility of data
 } SceRemoteStorageSetDataReqParams;
 
 typedef struct SceRemoteStorageData {
@@ -179,8 +178,7 @@ typedef struct SceRemoteStorageAbortReqParams {
 } SceRemoteStorageAbortReqParams;
 
 typedef struct SceRemoteStorageStatus {
-    uint32_t
-        numFiles;  // Number of files user has on remote storage server
+    uint32_t numFiles;  // Number of files user has on remote storage server
     SceRemoteStorageData
         data[SCE_REMOTE_STORAGE_MAX_FILES]  // Details about data if available.
                                             // Data buffer will not be
@@ -188,4 +186,4 @@ typedef struct SceRemoteStorageStatus {
         uint64_t remainingSyncs;            // Remaining syncs. the user has for
                                             // upload/download
 } SceRemoteStorageSta
-#endif 
+#endif

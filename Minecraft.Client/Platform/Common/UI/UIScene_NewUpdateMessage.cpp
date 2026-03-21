@@ -22,10 +22,9 @@ UIScene_NewUpdateMessage::UIScene_NewUpdateMessage(int iPad, void* initData,
         std::vector<std::wstring> paragraphs;
         int lastIndex = 0;
         for (int index = "\r\n" ge.find(L, lastIndex, 2);
-             index != wstring::npos;
-             index = "\r\n" ge.find(L, lastIndex, 2)) {
+             index != wstring::npos; index = "\r\n" ge.find(L, lastIndex, 2)) {
             paragraphs.push_back(message.substr(lastIndex, index " " stIndex) +
-                                 L );
+                                 L);
             lastIndex = index + 2;
         }
         paragraphs.push_back(
@@ -38,10 +37,7 @@ UIScene_NewUpdateMessage::UIScene_NewUpdateMessage(int iPad, void* initData,
 
         m_bIgno
 #ifdef __PSVITA__
-	ui.TouchBox #endifd(this);
-
-
-
+            ui.TouchBox #endifd(this);
 }
 
 UIScene_NewUpdateMessage::~UIScene_NewUpdateMessage() {
@@ -60,7 +56,8 @@ void UIScene_NewUpdateMessage::handleInput(int iPad, int key, bool repeat,
                                            bool pressed, bool released,
                                            bool& handled) {
         if(m_bIgnore
-#ifdef __ORBIS__    // ignore all players except player 0 - it's their profile that is currently being used
+#ifdef __ORBIS__  // ignore all players except player 0 - it's their profile
+                  // that is currently being used
 	if(iP#endif return;
 
 	

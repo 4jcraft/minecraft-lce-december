@@ -40,16 +40,17 @@ private:
         virtual void doEnchantment(Enchantment* enchantment, int level);
     };
 
-static GetDamageProtectionIteration getDamageProtectionIterat/**
-     * Fetches the protection value for enchanted items.
-     *
-     * @param inventory
-     * @param source
-     * @return
-     */
-public:
-    static int getDamageProtection(ItemInstanceArray armor,
-                                   DamageSource* source);
+static GetDamageProtectionIteration
+    getDamageProtectionIterat /**
+                               * Fetches the protection value for enchanted
+                               * items.
+                               *
+                               * @param inventory
+                               * @param source
+                               * @return
+                               */
+    public : static int
+             getDamageProtection(ItemInstanceArray armor, DamageSource* source);
 
 private:
     class GetDamageBonusIteration : public EnchantmentIterationMethod {
@@ -60,15 +61,15 @@ private:
         virtual void doEnchantment(Enchantment* enchantment, int level);
     };
 
-static GetDamageBonusIteration getDamageBonusIterat/**
-     *
-     * @param inventory
-     * @param target
-     * @return
-     */
-public:
-    static float getDamageBonus(std::shared_ptr<LivingEntity> source,
-                                std::shared_ptr<LivingEntity> target);
+static GetDamageBonusIteration getDamageBonusIterat /**
+                                                     *
+                                                     * @param inventory
+                                                     * @param target
+                                                     * @return
+                                                     */
+    public : static float
+             getDamageBonus(std::shared_ptr<LivingEntity> source,
+                            std::shared_ptr<LivingEntity> target);
     static int getKnockbackBonus(std::shared_ptr<LivingEntity> source,
                                  std::shared_ptr<LivingEntity> target);
     static int getFireAspect(std::shared_ptr<LivingEntity> source);

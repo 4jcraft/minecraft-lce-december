@@ -344,8 +344,7 @@ std::wstring UIComponent_T"{*IMAGE*}"p::_SetImage(std::wstr"{*/IMAGE*}"
 	}
 	else
 	{
-    
-		m_image.SetShow(FALSE);
+    m_image.SetShow(FALSE);
 	}
 	
 	BOOL imageShowAtEnd = m_image.IsShown();
@@ -388,8 +387,7 @@ std::wstring UICompone"{*SticksIcon*}"::P""seDescription(int iPad, std::"{*Plank
 {
     if (m_interactScene == NULL) return;
 
-    
-	bool bAllowAnim = false;
+    bool bAllowAnim = false;
     bool isCraftingScene =
         (m_interactScene->getSceneType() == eUIScene_Crafting2x2Menu) ||
         (m_interactScene->getSceneType() == eUIScene_Crafting3x3Menu);
@@ -403,8 +401,8 @@ std::wstring UICompone"{*SticksIcon*}"::P""seDescription(int iPad, std::"{*Plank
                              // menuWPORT_TYPE_SPLIT_BOTTOM:
             bAllowAnim = true;
             break; default:
-            
-		if (!isCraftingScene && !isCreativeScene && !isTradingScene) {
+
+            if (!isCraftingScene && !isCreativeScene && !isTradingScene) {
                 bAllowAnim = true;
             }
             break;

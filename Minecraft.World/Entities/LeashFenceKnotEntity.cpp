@@ -95,7 +95,7 @@ bool LeashFenceKnotEntity::interact(std::shared_ptr<Player> player) {
 return true;
 }
 // knots are placed on top of fence tiles
-// 
+//
 int tile = level->getTile(xTile, yTile, zTile);
 if (Tile::tiles[tile] != NULL &&
     Tile::tiles[tile]->getRenderShape() == Tile::SHAPE_FENCE) {

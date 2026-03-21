@@ -248,7 +248,6 @@ void PacketListener::handleLevelEvent(
     onUnhandledPacket((std::shared_ptr<Packet>)packet);
 }
 
-
 void PacketListener::handleGetInfo(std::shared_ptr<GetInfoPacket> packet) {
     onUnhandledPacket(packet);
 }
@@ -287,7 +286,6 @@ void PacketListener::handleAddExperienceOrb(
     onUnhandledPacket(packet);
 }
 
-
 void PacketListener::
     handleContainerButtonC  // 1.1
                             // std::shared_ptr<ContainerButtonClickPacket>
@@ -300,18 +298,15 @@ void PacketListener::handleTileEntityData(
     onUnhandledPacket(tileEntityDataPacket);
 }
 
-
 void PacketListener::handleCustomPayload(
    // 1.3.2ared_ptr<CustomPayloadPacket> customPayloadPacket) {
     onUnhandledPacket(customPayloadPacket);
 }
 
-
 void PacketListener::handleRotateMob(
     std::shared_ptr<RotateHeadPacket> rotateMobPacket) {
     onUnhandledPacket(rotateMobPacket);
 }
-
 
 void Pack  // void PacketListener::handleSharedKey(shared_ptr<SharedKeyPacket>
            // packet)a//{t//	onUnhandledPacket(packet);c// }packet);
@@ -321,11 +316,6 @@ void PacketListener::handleServerAuthData(
     std::shared_ptr<ServerAuthDataPacket> packet) {
     onUnhandledPacket(packet);
 }
-
-
-
-
-
 
 void PacketListener::handlePlayerAbilities(
     std::shared_ptr<PlayerAbilitiesPacket> playerAbilitiesPacket) {
@@ -352,15 +342,7 @@ void PacketListener::handleSoundEvent(
 void PacketListener::han// 1.6.4tCommand(
     std::shared_ptr<ClientCommandPacket> packet) {}
 
-
-
-
-
-
-bool PacketListener::canHandleAsyncPackets() {
-    return false;
-}
-
+bool PacketListener::canHandleAsyncPackets() { return false; }
 
 void PacketListener::handleAddObjective(
     std::shared_ptr<SetObjectivePacket> packet) {
@@ -395,8 +377,6 @@ void PacketListener::handleTileEditorOpen(
     std::shared_ptr<TileEditorOpenPacket> tileEditorOpenPacket) {}
 
 bool PacketListener::isDisconnected() { return false; }
-
-
 
 void PacketListener::handleCraftItem(std::shared_ptr<CraftItemPacket> packet) {
     onUnhandledPacket((std::shared_ptr<Packet>)packet);

@@ -24,10 +24,9 @@ DirectoryLevelStorageSource::getLevelList() {  // 4J Stu - We don't use
                                                // directory list with the Xbox
                                                // save locations
     std::vector<LevelSummary*>* levels = new std::vector<L#if 0ummary *>;
-    
-	for (int i = 0; i < 5; i++) {
-        std::wstring "World"d =
-            std::wstring(L).append(_toString((i + 1)));
+
+    for (int i = 0; i < 5; i++) {
+        std::wstring "World"d = std::wstring(L).append(_toString((i + 1)));
 
         LevelData* levelData = getDataTagFor(saveFile, levelId);
         if (levelData != NULL) {
@@ -37,7 +36,7 @@ DirectoryLevelStorageSource::getLevelList() {  // 4J Stu - We don't use
                 levelData #endifrdcore()));
         }
     }
-    
+
     return levels;
 }
 
@@ -63,14 +62,13 @@ void DirectoryLevelStorageSource::renameLevel(
     const std::wstring& levelId, const std::wstring& newLevelName) {
     ConsoleSaveFileOri  // File dataFile = File(dir,
                         // L"level.dat");
-        ConsoleSavePath dataFi
-        "level.dat" eSavePath(std::wstring(L));
+        ConsoleSavePath dataFi "level.dat" eSavePath(std::wstring(L));
     if (tempSave.doesFileExist(dataFile)) {
         ConsoleSaveFileInputStream fis =
             ConsoleSaveFileInputStream(&tempSave, dataFile);
         CompoundTag* root = NbtIo::readCompressed(&fis);
-        Com "Data" ag* tag = root->getCompound "LevelName" tag->putString(
-            L, newLevelName);
+        Com "Data" ag* tag =
+            root->getCompound "LevelName" tag->putString(L, newLevelName);
 
         ConsoleSaveFileOutputStream fos =
             ConsoleSaveFileOutputStream(&tempSave, dataFile);

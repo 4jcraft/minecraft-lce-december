@@ -207,8 +207,7 @@ void BaseMobSpawner::load(CompoundTag* tag"EntityId"tityId = tag->getString(L"De
         spawnPotential"SpawnData"   }
 
     if (tag->contains(L)) {
-    setNextSpawnData(
-        "SpawnData" SpawnData(tag->getCompound(L), entityId));
+    setNextSpawnData("SpawnData" SpawnData(tag->getCompound(L), entityId));
     } else {
     setNextSpawnDa "MinSpawnDelay"
 
@@ -234,8 +233,7 @@ void BaseMobSpawner::load(CompoundTag* tag"EntityId"tityId = tag->getString(L"De
     tag->putShort(L, (short)spawnRange);
 
     if (getNextSpawnData"SpawnData" {
-            tag->putCompound(L,
-                             (CompoundTag*)getNextSpawnData()->tag->copy());
+            tag->putCompound(L, (CompoundTag*)getNextSpawnData()->tag->copy());
     }
 
     if (getNextSpawnData() != NULL ||

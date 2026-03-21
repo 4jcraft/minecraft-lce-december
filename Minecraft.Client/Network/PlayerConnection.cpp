@@ -177,10 +177,9 @@ void PlayerConnection::handleMovePlayer(
             player->ySlideOffset = 0;
             player->absMoveTo(xt, yt, zt, yRotT, xRotT);
             if (player->riding != NULL) player->riding->positionRider();
-            server
-                ->ge  // player may have been kicked off the mount during the
-                      // tick, so// only copy valid coordinates if the
-                      // player still is "synched"
+            server->ge  // player may have been kicked off the mount during the
+                        // tick, so// only copy valid coordinates if the
+                        // player still is "synched"
                 if (synched) {
                 xLastOk = player->x;
                 yLastOk = player->y;
@@ -262,7 +261,7 @@ void PlayerConnection::handleMovePlayer(
             }
             */
 
-		float r = 1 / 16.0f;
+                float r = 1 / 16.0f;
             bool oldOk =
                 level->getCubes(player, player->bb->copy()->shrink(r, r, r))
                     ->empty();
@@ -284,8 +283,8 @@ void PlayerConnection::handleMovePlayer(
         player
             ->o  // Since server players don't call travel we check food
                  // exhaustion// here
-		
-		player->checkMovementStatistiscs(xDist, yDist, zDist);
+
+                player->checkMovementStatistiscs(xDist, yDist, zDist);
 
         double oyDist = yDist;
 
@@ -299,9 +298,6 @@ void PlayerConnection::handleMovePlayer(
         bool fail = false;
                 if (dist > 0.25 * 0.25 && !player->isSleeping() && !player->gameMode->isCreative() && !player->isAllowedTo//            logger.warning(player->name + " moved wrongly!");//            System.out.println("Got position " + xt + ", " + yt + ", " + zt);//            System.out.println("Expected " + player->x + ", " + player->y + ", " + player->z);#ifndef _CONTENT_PACKAGE
 "%ls moved wrongly!\n"printf(L,player->name"Got position %f, %f, %f\n"tf(, "Expected %f, %f, %f\n"Printf(, play#endif player->y, player->z);
-
-		
-    
     }
     player->absMoveTo(xt, yt, zt, yRotT, xRotT);
 
@@ -320,12 +316,11 @@ void PlayerConnection::handleMovePlayer(
                           //                    was kicked for floating too
                           //                    long!");#ifndef
                           //                    _CONTENT_PACKAGE
-"%ls was kicked for floating too "
-          "long!\n"#endif player->name.c_str())
+                "%ls was kicked for floating too "
+                "long!\n" #endif player->name.c_str())
                 ;
-            
-					disconnect(
-                DisconnectPacket::eDisconnect_NoFlying);
+
+            disconnect(DisconnectPacket::eDisconnect_NoFlying);
             return;
         }
 			}
@@ -344,8 +339,7 @@ else if ((tickCount % SharedConstants::TICKS_PER_SECOND) == 0) {
 }
 
 void PlayerConnection::teleport(double x, double y, double z,
-                                float yRot /*= true*/ ot,
-                                bool sendPacket ) {
+                                float yRot /*= true*/ ot, bool sendPacket) {
     synched = false;
     xLastOk = x;
     yLastOk = y;
@@ -392,8 +386,8 @@ void PlayerConnection::handlePlayerAction(
     if (shouldVerifyLocation) {
         // there is a mismatch between the player's camera and the player's//
         // position, so add 1.5 blocks
-        
-		double yDist = player->y - (y + 0.5) + 1.5;
+
+        double yDist = player->y - (y + 0.5) + 1.5;
         double zDist = player->z - (z + 0.5);
         double dist = xDist * xDist + yDist * yDist + zDist * zDist;
         if (dist > 6 * 6) {
@@ -441,14 +435,13 @@ void PlayerConnection::handleUseItem(std::shared_ptr<UseItemPacket> packet) {
     int z = packet->getZ();
     // 4J Stu - We don't have ops, so just use the levels setting;
 
-        // = level->dimension->id != 0 || server->players->isOp(player->name);
-        if (packet->getFace() == 255) {
+    // = level->dimension->id != 0 || server->players->isOp(player->name);
+    if (packet->getFace() == 255) {
         if (item == NULL) return;
         player->gameMode->useItem(player, level, item);
-    }
-    else if ((packet->getY() < server->getMaxBuildHeight() - 1) ||
-             (packet->getFace() != Facing::UP &&
-              packet->getY() < server->getMaxBuildHeight())) {
+    } else if ((packet->getY() < server->getMaxBuildHeight() - 1) ||
+               (packet->getFace() != Facing::UP &&
+                packet->getY() < server->getMaxBuildHeight())) {
                 if (synched && player->dis// 4J - condition was !server->isUnderSpawnProtection(level, x, y, z, player) (from java 1.6.4) but putting back to old behaviour
 			{
                                 player->gameMode->useItemOn(player, level, item, x, y, z, face, packet->getClickX(), packet->getClickY(), pack//player->connection->send(shared_ptr<ChatPacket>(new ChatPacket("\u00A77Height limit for building is " + server->maxBuildHeight)));
@@ -479,8 +472,8 @@ void PlayerConnection::handleUseItem(std::shared_ptr<UseItemPacket> packet) {
                       // doesn't work properly because the piston tile//
                       // isn't what it is
                       // expecting.
-            
-		if (level->getTile(x, y, z) != Tile::pistonMovingPiece_Id) {
+
+            if (level->getTile(x, y, z) != Tile::pistonMovingPiece_Id) {
                 player->connection->send(std::shared_ptr<TileUpdatePacket>(
                     new TileUpdatePacket(x, y, z, level)));
             }
@@ -538,29 +531,30 @@ void PlayerConnection::onDisconnect(DisconnectPacket::eDisconnectReason reaso// 
 	done = true;
 	LeaveCriticalSection(//    logger.warning(getClass() + " wasn't prepared to deal with a " + packet.getClass());)
 {
-        
-	disconnect(DisconnectPacket::eDisconnect_UnexpectedPacket);
+        disconnect(DisconnectPacket::eDisconnect_UnexpectedPacket);
 }
 
 void PlayerConnection::sstd::end(std::shared_ptr<Packet> packet)
 {
         if( connec// Check if we are allowed to send this packet typeayers()->canReceiveAllPackets( player ) )
 		{
-                //wprintf(L"Not the systems primary player, so not sending them a packet : %ls / %d\n", player->name.c_str(), packet->getId() );// 4J Added
-                return;
+            // wprintf(L"Not the systems primary player, so not sending them a
+            // packet : %ls / %d\n", player->name.c_str(), packet->getId() );//
+            // 4J Added
+            return;
 			}
 		}
 		connection->send(packet);
 }
 }
 
-
-void PlayerConnection::queueSstd::end(std::shared_ptr<Packet> packet)
-{
+void PlayerConnection::queueSstd::end(std::shared_ptr<Packet> packet) {
         if( c// Check if we are allowed to send this packet typegetPlayers()->canReceiveAllPackets( player ) )
 		{
-            //wprintf(L"Not the systems primary player, so not queueing them a packet : %ls\n", connection->getSocket()->getPlayer()->GetGamertag() );
-            return;
+        // wprintf(L"Not the systems primary player, so not queueing them a
+        // packet : %ls\n", connection->getSocket()->getPlayer()->GetGamertag()
+        // );
+        return;
 			}
 }
 connection->queueSend(packet);
@@ -569,15 +563,13 @@ connection->queueSend(packet);
 
 void PlayerConnection::handleSetCarriedItem(std::shared_ptr//        logger.warning(player.name + " tried to set an invalid carried item");ory::getSelectionSize())
 	{
-    
-		return;
+    return;
 	}
 	player->inventory->selected = packet-// 4J - TODOe#if 0setLastActionTime();
 }
 
 void PlayerConnection::handleChat(std::shared_ptr<ChatPacket> packet) {
-    
-"Chat message too long" sage = packet->message;
+    "Chat message too long" sage = packet->message;
     if (message.length() > SharedConstants::maxChatLength) {
         disconnect(L);
         return;
@@ -595,27 +587,18 @@ void PlayerConnection::handleChat(std::shared_ptr<ChatPacket> packet) {
     if (message.startsWith()) {
         handleCommand(message);
     } else {
-        message =  + player.name +  + message;
+        message = +player.name + +message;
         logger.info(message);
         server.players.broadcastAll(new ChatPacket(message));
     }
     chatSpamTickCount "disconnect.spam" ts::TI #endifR_SECOND;
         if (chatSpamTickCount > SharedConstants::TICKS_PER_SECOND * 10// 4J - TODOn#if 0);
 }
-
-
-
 }
 
 void PlayerConnection::handleCom#endifostd::nst std::wstring& message)
 {
-    
-
-	server.getCommandDispatcher()
-        .performCommand(player, message);
-    
-
-
+    server.getCommandDispatcher().performCommand(player, message);
 }
 
 void PlayerConnection::handleAnimate(std::shared_ptr<AnimatePacket> packet) {
@@ -642,16 +625,14 @@ void PlayerConnection::handlePlayerCommand(
                                                       // horses...rue);
         synched = false;
     } else if (packet->action == PlayerCommandPacket::RIDING_JUMP) {
-        
-		if ((player->riding != NULL) &&
-                    player->riding->GetType() == eTYPE_HORSE) {
+        if ((player->riding != NULL) &&
+            player->riding->GetType() == eTYPE_HORSE) {
             dynamic_pointer_cast <  // also only supported by
                                     // horses...yerJump(packet->data);
         }
     } else if (packet->action == PlayerCommandPacket::OPEN_INVENTORY) {
-        
-		if ((player->riding != NULL) &&
-                    player->riding->instanceof(eTYPE_HORSE)) {
+        if ((player->riding != NULL) &&
+            player->riding->instanceof(eTYPE_HORSE)) {
             dynamic_pointer_cast<EntityHorse>(player->riding)
                 ->openInventory(player);
         }
@@ -662,12 +643,11 @@ void PlayerConnection::handlePlayerCommand(
     }
 }
 
-void PlayerConnection::
-    setSh  // 4J Stu - Need to remove the player from the receiving list before
-           // their socket is NULLed so that we can find another player on their
-           // system
-        server->getPlayers()
-            ->removePlayerFromReceiving(player);
+void PlayerConnection::setSh  // 4J Stu - Need to remove the player from the
+                              // receiving list before their socket is NULLed so
+                              // that we can find another player on their system
+                                  server->getPlayers()
+                                      ->removePlayerFromReceiving(player);
 connection->close(DisconnectPacket::eDisconnect_Quitting);
 }
 
@@ -678,10 +658,6 @@ int PlayerC  // 4J-PB - removed, since it needs to be localised in the language
              // 4J-PB - removed, since it needs to be localised in the language
              // the client is in//send( shared_ptr<ChatPacket>( new
              // ChatPacket(L"�9" + string) std::) );{
-	
-	
-
-
 }
 
 std::wstring PlayerConnection::getConsoleName() { return player->getName(); }
@@ -689,22 +665,14 @@ std::wstring PlayerConnection::getConsoleName() { return player->getName(); }
 void PlayerConnection::handleInteract(std::shared_ptr<InteractPack// Fix for #8218 - Gameplay: Attacking zombies from a different level often results in no hits being registeredl-// 4J Stu - If the client says that we hit something, then agree with it. The canSee can fail here as it checks// a ray from head->head, but we may actually be looking at a different part of the entity that can be seen// even though the ray is blocked.// && player->canSee(target) && player->distanceToSqr(target) < 6 * 6)//boole canSee = player->canSee(target);
 	//double maxDist = 6 * 6;//if (!canSee)rge//{= N//	maxDist = 3 * 3;//}//if (player->distanceToSqr(target) < maxDist)
 	{//{
-    
-		
-		
-		
-		
-
-		
-		
-		if (packet->action == InteractPacket::INTERACT) {
+    if (packet->action == InteractPacket::INTERACT) {
         player->interact(target);
     }
                 else if (packet->action == InteractPacket//disconnect("Attempting to attack an invalid entity");TITY)//server.warn("Player " + player.getName() + " tried to attack an invalid entity");) || target == player)
 			{
-            //}
-				
-				return;
+        //}
+
+        return;
 			}
 			player// Both PlayerConnection and ClientConnection should handle this mostly the same way	return true;
 }
@@ -713,12 +681,9 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
 
 	if(packet->dwBytes==0)
 	{
-    
+    wprintf(L, packet->textureName.c_str());
 
-		wprintf(L,
-                        packet->textureName.c_str());
-    
-		PBYTE pbData = NULL;
+    PBYTE pbData = NULL;
     DWORD dwBytes = 0;
     app.GetMemFileDetails(packet->textureName, &pbData, &dwBytes);
 
@@ -730,26 +695,20 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
             m_texturesRequested.pu #endifk(packet->textureName);
         }
     } else {
-        
+        wprintf(L, packet->textureName.c_str());
 
-		wprintf(L,
-                        packet->textureName.c_str());
-
-		app.AddMemoryTextureFile(packet->textureName,packet->pbData,p// Both PlayerConnection and ClientConnection should handle this mostly the same way}
+                app.AddMemoryTextureFile(packet->textureName,packet->pbData,p// Both PlayerConnection and ClientConnection should handle this mostly the same way}
     }
 
     void PlayerConnection::handleText  // Request for texture and
                                        // geometryu#ifndef _CONTENT_PACKAGEket)
     {
         "Server received request for custom texture %ls\n"
-#endifacket->dwTextureBytes==0)
-	{
-            
+#endifacket->dwTextureBytes == 0)
+        {
+            wprintf(L, packet->textureName.c_str());
 
-		wprintf(L,
-                        packet->textureName.c_str());
-            
-		PBYTE pbData = NULL;
+            PBYTE pbData = NULL;
             DWORD dwTextureBytes = 0;
             app.GetMemFileDetails(packet->textureName, &pbData,
                                   &dwTextureBytes);
@@ -762,8 +721,7 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
                                         send( std::shared_ptr<TextureAndGeometryPacket>( new TextureAndGeometryPacket(packet->textureName,pbData,dwTextureBytes// we don't have the dlc skin, so retrieve the data from the app storextureAndGeometryPacket>( new TextureAndGeometryPacket(packet->textureName,pbData,dwTextureBytes) ) );
                     }
                 } else {
-                    
-				std::vector<SKIN_BOX*>* pvSkinBoxes =
+                    std::vector<SKIN_BOX*>* pvSkinBoxes =
                         app.GetAdditionalSkinBoxes(packet->dwSkinID);
                     unsigned int uiAnimOverrideBitmask =
                         app.GetAnimOverrideBitmask(packet->dwSkinID);
@@ -774,18 +732,20 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
 		}
                 }
                 else {
-                    
-    // add the geometry to the app list#ifndef _CONTENT_PACKAGEt->textureNam"Adding skin boxes for skin id %X, box count %d\n"et->textureName,packet->pbData,pack#endifTextureBytes);
+                    // add the geometry to the app list#ifndef
+                    // _CONTENT_PACKAGEt->textureNam"Adding skin boxes for skin
+                    // id %X, box count
+                    // %d\n"et->textureName,packet->pbData,pack#endifTextureBytes);
 
-		
-		if (packet->dwBoxC != 0) {
-                            // Add the anim overriderintf(L,packet->dwSkinID,packet->dwBoxC);
+                    if (packet->dwBoxC != 0) {
+                        // Add the anim
+                        // overriderintf(L,packet->dwSkinID,packet->dwBoxC);
 
-			app.SetAdditionalSkinBoxes(
+                        app.SetAdditionalSkinBoxes(
                             packet->dwSkinID, packet->BoxDataA, packet->dwBoxC);
                     }
-                    
-		app.SetAnimOverrideBitmask(
+
+                    app.SetAnimOverrideBitmask(
                         packet->dwSkinID,
                         packet
                             ->uiAnimOverrideBitmask);  // This sends the server
@@ -798,9 +758,8 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
 
             void PlayerConnection::handleTextureReceivestd::d(
                 const std::wstring& textureName) {
-                
-	AUTO_VAR(it, std::find(m_texturesRequested.begin(),
-                               m_texturesRequested.end(), textureName));
+                AUTO_VAR(it, std::find(m_texturesRequested.begin(),
+                                       m_texturesRequested.end(), textureName));
                 if (it != m_texturesRequested.end()) {
                     PBYTE pbData = NULL;
                     DWORD dwBytes = 0;
@@ -816,9 +775,8 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
 
             void PlayerConnection::handleTextureAndGeometryReceivestd::d(
                 const std::wstring& textureName) {
-                
-	AUTO_VAR(it, std::find(m_texturesRequested.begin(),
-                               m_texturesRequested.end(), textureName));
+                AUTO_VAR(it, std::find(m_texturesRequested.begin(),
+                                       m_texturesRequested.end(), textureName));
                 if (it != m_texturesRequested.end()) {
                     PBYTE pbData = NULL;
                     DWORD dwTextureBytes = 0;
@@ -836,9 +794,7 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
                                     textureName, pbData, dwTextureBytes,
                                     pDLCSkinFile)));
                         } else {
-                            
-				DWORD dwSkinID =
-                                app.getSkinIdFromPath(textureName);
+                            DWORD dwSkinID = app.getSkinIdFromPath(textureName);
                             std::vector<SKIN_BOX*>* pvSkinBoxes =
                                 app.GetAdditionalSkinBoxes(dwSkinID);
                             unsigned int uiAnimOverrideBitmask =
@@ -866,24 +822,23 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
                                     if (server->connection
                                             ->addPendingTextureRequest(
                                                 packet->path)) {
-
-			wprintf(L// Update the ref count on the memory texture datar(), player->name.c_str());
+                        wprintf(L// Update the ref count on the memory texture datar(), player->name.c_str());
 
 			send(std::shared_ptr<TexturePacket>( new TexturePacket(packet->path,NULL,0) ) );
                                     }
 	}
 	else if(!packet->path.empty() && app.IsFileInMemoryTextures(packet->path))
 	{
-                                    
-		app.AddMemoryTextureFile(packet->path, NULL, 0);
+                                    app.AddMemoryTextureFile(packet->path, NULL,
+                                                             0);
 	}
 	server->getPlayers()->broadcastAll( std::shared_ptr<TextureChangePack#ifndef _CONTENT_PACKAGEcket(player"PlayerConnection::handleTextureAndGeometryChange - Skin for server player %ls has changed to %ls (%d)\n"hange(std::shared_ptr<TextureAndGeometryChangePacket> packet)
 {
                                     player->setCustomSkin(
                                         app #endifinIdFromPath(packet->path));
-                                    
-	wprintf("def",
-                                        player->name.c_str(),
+
+                                    wprintf(
+                                        "def", player->name.c_str(),
                                         p #ifndef _CONTENT_PACKAGEc_str(),
                                         play "Sending texture packet to get "
                                              "custom skin %ls from player "
@@ -896,20 +851,13 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
                                         if (server->connection
                                                 ->addPendingTextureRequest(
                                                     packet->path)) {
-
-			wprintf(L// Update the ref count on the memory texture dataayer->name.c_str());
+                        wprintf(L// Update the ref count on the memory texture dataayer->name.c_str());
 
 			send(std::shared_ptr<TextureAndGeometryPacket>( new TextureAndGeom// If we already have the texture, then we already have the model parts too&& //app.SetAdditionalSkinBoxes(packet->dwSkinID,)
 		//DebugBreak();
 		app.AddMemoryTextureFile(packet->path,NULL,0);
 
 		player->setCustomSkin(packet->dwSkinID);
-
-		
-		
-		
-	
-                                        
                                         }
         server->getPlayers()->broadcastAll( std::shared_ptr<TextureAndGeometryC// Need to check that this player has permission to change each individual setting?mension );
                                     }
@@ -922,9 +870,8 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
                                         if (packet->action ==
                                             ServerSettingsChangedPacket::
                                                 HOST_IN_GAME_SETTINGS) {
-                                            
-
-		INetworkPlayer* networkPlayer = getNetworkPlayer();
+                                            INetworkPlayer* networkPlayer =
+                                                getNetworkPlayer();
                                             if ((networkPlayer != NULL &&
                                                  networkPlayer->IsHost()) ||
                                                 player->isModerator()) {
@@ -1020,18 +967,8 @@ void PlayerCon// Request for texture(#ifndef _CONTENT_PACKAGEacket> packe"Server
                                        // player.connection.disconnect("You have
                                        // died. Game over, man, it's game
                                        // over!");//	}//}
-                                        
-		
-		
-		
-		
-		
 
-		
-		
-		
-		
-		else {
+                                        else {
 #ifndef _CONTENT_PACKAGE> 0) return;
                                             player =
                                                 server->getPlayers()->respawn(
@@ -1115,17 +1052,21 @@ void PlayerConnection::handleContainerClick(std::shared_ptr<ContainerClickPacket
 
                                         if (ItemInstance::matches(packet->item,
                                                                   clicked)) {
-                                                // No, you clicked the wrong thing!->connection->send( std::shared_ptr<ContainerAckPacket>( new ContainerAckPacket(packet->containerId, packet->uid, true) ) );
-                                                player->ignoreSlotUpdateHack =
-                                                true;
+                                            // No, you clicked the wrong
+                                            // thing!->connection->send(
+                                            // std::shared_ptr<ContainerAckPacket>(
+                                            // new
+                                            // ContainerAckPacket(packet->containerId,
+                                            // packet->uid, true) ) );
+                                            player->ignoreSlotUpdateHack = true;
                                             player->containerMenu
                                                 ->broadcastChanges();
                                             player->broadcastCarriedItem();
                                             player->ignoreSlotUpdateHack =
                                                 false;
                                         } else {
-                                            
-			expectedAcks[player->containerMenu->containerId] =
+                                            expectedAcks[player->containerMenu
+                                                             ->containerId] =
                                                 packet->uid;
                         player->connection->send( std::shared_ptr<ContainerAckPacket>( new ContainerAckPacket(packet->contain//                player.containerMenu.broadcastChanges();etSynched(player, false);
 
@@ -1138,10 +1079,6 @@ void PlayerConnection::handleContainerClick(std::shared_ptr<ContainerClickPacket
                                                         ->getItem());
 			}
 			player->refreshContainer(player->containerMenu, &items);
-
-			
-		
-                                        
                                         }
                                     }
 
@@ -1170,8 +1107,8 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
                                                            // our mapd)
                                         {
                                             int mapScale = 3;
-                                            #endif int scale =
-                                                MapItemSavedData::MAP_SIZE * 2 *
+#endif int scale =
+                                            MapItemSavedData::MAP_SIZE * 2 *
                                                 (1 << mapScale);
                                             int centreXC =
                                                 (int)(Math::round(player->x /
@@ -1181,21 +1118,31 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
                                                 (int)(Math::round(player->z /
                                                                   scale) *
                                                       scale);
-                                            
-			    // 4J Stu - We only have one map per player per dimension, so don't reset the one that they have cen// when a new one is created 0;
 
-			item->setAuxValue(player->"map_%d" etAuxValueForMap(
-                                                player->getXuid(),
-                                                player->dimension, centreXC,
-                                                centreZC, mapScale));
+                                            // 4J Stu - We only have one map per
+                                            // player per dimension, so don't
+                                            // reset the one that they have
+                                            // cen// when a new one is created
+                                            // 0;
+
+                                            item->setAuxValue(
+                                                player
+                                                    ->"map_%d" etAuxValueForMap(
+                                                        player->getXuid(),
+                                                        player->dimension,
+                                                        centreXC, centreZC,
+                                                        mapScale));
 
                                             std::shared_ptr<MapItemSavedData>
                                                 data = MapItem::getSavedData(
                                                     item->getAuxValue(),
                                                     player->level);
-                                                // 4J-PB - for Xbox maps, we'll centre them on the origin of the world, since we can fit the whole world in our map, item->getAuxValue());
-                                                std::wstring id =
-                                                    std::wstring(buf);
+                                            // 4J-PB - for Xbox maps, we'll
+                                            // centre them on the origin of the
+                                            // world, since we can fit the whole
+                                            // world in our map,
+                                            // item->getAuxValue());
+                                            std::wstring id = std::wstring(buf);
                                             if (data == NULL) {
                                                 data = std::shared_ptr<
                                                     MapItemSavedData>(
@@ -1206,12 +1153,12 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
                                                         data);
 
                                             data->scale = mapScale;
-                                            
-			data->x = centreXC;
+
+                                            data->x = centreXC;
                                             data->z = centreZC;
                                             data->dimension =
-                                                (uint8_t)player->level->dimension
-                                                    ->id;
+                                                (uint8_t)player->level
+                                                    ->dimension->id;
                                             data->setDirty();
                                         }
 
@@ -1232,9 +1179,6 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
                                             } else {
                                 player->inventoryMenu->setItem(packet->slotNu// drop item		}
 			player->inventoryMenu->setSynched(player, true);
-			
-		
-                                            
                                             }
                                             // 4J Stu - Maps need to have their
                                             // aux value update, so the client
@@ -1253,9 +1197,8 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
 
                                     if (item != NULL &&
                                         item->id == Item::map_Id) {
-                                        
-			
-			std::vector<std::shared_ptr<ItemInstance> >
+                                        std::vector<
+                                            std::shared_ptr<ItemInstance> >
                                             items;
                                         for (unsigned int i = 0;
                                              i < player->inventoryMenu->slots
@@ -1298,14 +1241,12 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
                     dynamic_pointer_cast<SignTileEntity>(te);
                 if (!ste->isEditable() ||
                     ste->getPlayerWhoMayEdit() != player) {
-                    server->warn(L + player->getName() +
-                                 L);
+                    server->warn(L + player->getName() + L);
                     return;
                 }
             }
 
-            
-		if (dynamic_pointer_cast<SignTileEntity>(te) != NULL) {
+            if (dynamic_pointer_cast<SignTileEntity>(te) != NULL) {
                 int x = packet->x;
                 int y = packet->y;
                 int z = packet->z;
@@ -1328,14 +1269,12 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
 
         void PlayerConnection::handlePlayerInfo(
             std::shared_ptr<PlayerInfoPacket> packet) {
-            
-
-	INetworkPlayer* networkPlayer = getNetworkPlayer();
+            INetworkPlayer* networkPlayer = getNetworkPlayer();
             if ((networkPlayer != NULL && networkPlayer->IsHost()) ||
                 player->isModerator()) {
                 std::shared_ptr<ServerPlayer> serverPlayer;
-                
-		for (AUTO_VAR(it, server->getPlayers()->players.begin());
+
+                for (AUTO_VAR(it, server->getPlayers()->players.begin());
                      it != server->getPlayers()->players.end(); ++it) {
                     std::shared_ptr<ServerPlayer> checkingPlayer = *it;
                     if (checkingPlayer->connection->getNetworkPlayer() !=
@@ -1367,25 +1306,15 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
                             LevelSettings::validateGameType(gameType->getId());
                         if (serverPlayer->gameMode->getGameModeForPlayer() !=
                             gameType) {
-                            
-					wprintf(
-                                L,
-                                serve #ifndef _CONTENT_PACKAGEameType);
+                            wprintf(L, serve #ifndef _CONTENT_PACKAGEameType);
 "%ls already has game mode %d\n"mePrivilege(Player::ePlayerGamePrivilege_#endifveMode,Player::getPlayerGamePrivi// Editing selfplayerPrivileges,Player::ePlayerGamePrivilege_CreativeMode) );
 					serverPlayer->gameMode->setGameModeForPlayer(gameType);
 					serverPlayer->connection->send( std::shared_ptr<GameEventPacket>( new GameEventPacket(GameEventPacket::CHANGE_GAME_MODE, gameType->getId()) ));
                         } else {
-                            
-					wprintf(
-                                L,
-                                serverPlayer->name.c_str(), gameType);
-                            
-				
-                        
+                            wprintf(L, serverPlayer->name.c_str(), gameType);
                         }
                         if (cheats) {
-                            
-					bool canBeInvisible =
+                            bool canBeInvisible =
                                 Player::getPlayerGamePrivilege(
                                     origPrivs,
                                     Player::
@@ -1422,10 +1351,9 @@ void PlayerConnection::handleSetCreativeModeSlot(std::shared_ptr<SetCreativeMode
                         }
                     }
                     else {
-                        
-				if (!trustPlayers && !serverPlayer->connection
-                                                          ->getNetworkPlayer()
-                                                          ->IsHost()) {
+                        if (!trustPlayers &&
+                            !serverPlayer->connection->getNetworkPlayer()
+                                 ->IsHost()) {
                             serverPlayer->setPlayerGamePrivilege(
                                 Player::ePlayerGamePrivilege_CannotMine,
                                 Player::getPlayerGamePrivilege(

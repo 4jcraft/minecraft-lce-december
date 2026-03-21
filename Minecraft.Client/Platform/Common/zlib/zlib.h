@@ -276,31 +276,31 @@ ZEXTERN int ZEXPORT deflate OF((z_streamp strm, int flush));
   maximize compression.
 
     If the parameter flush is set to Z_SYNC_FLUSH, all pending output is
-  flushed to the output buffer and the output is aligned on a uint8_t boundary, so
-  that the decompressor can get all input data available so far.  (In
+  flushed to the output buffer and the output is aligned on a uint8_t boundary,
+  so that the decompressor can get all input data available so far.  (In
   particular avail_in is zero after the call if enough output space has been
   provided before the call.) Flushing may degrade compression for some
   compression algorithms and so it should be used only when necessary.  This
   completes the current deflate block and follows it with an empty stored block
-  that is three bits plus filler bits to the next uint8_t, followed by four bytes
-  (00 00 ff ff).
+  that is three bits plus filler bits to the next uint8_t, followed by four
+  bytes (00 00 ff ff).
 
     If flush is set to Z_PARTIAL_FLUSH, all pending output is flushed to the
-  output buffer, but the output is not aligned to a uint8_t boundary.  All of the
-  input data so far will be available to the decompressor, as for Z_SYNC_FLUSH.
-  This completes the current deflate block and follows it with an empty fixed
-  codes block that is 10 bits long.  This assures that enough bytes are output
-  in order for the decompressor to finish the block before the empty fixed code
-  block.
+  output buffer, but the output is not aligned to a uint8_t boundary.  All of
+  the input data so far will be available to the decompressor, as for
+  Z_SYNC_FLUSH. This completes the current deflate block and follows it with an
+  empty fixed codes block that is 10 bits long.  This assures that enough bytes
+  are output in order for the decompressor to finish the block before the empty
+  fixed code block.
 
     If flush is set to Z_BLOCK, a deflate block is completed and emitted, as
-  for Z_SYNC_FLUSH, but the output is not aligned on a uint8_t boundary, and up to
-  seven bits of the current block are held to be written as the next uint8_t after
-  the next deflate block is completed.  In this case, the decompressor may not
-  be provided enough bits at this point in order to complete decompression of
-  the data provided so far to the compressor.  It may need to wait for the next
-  block to be emitted.  This is for advanced applications that need to control
-  the emission of deflate blocks.
+  for Z_SYNC_FLUSH, but the output is not aligned on a uint8_t boundary, and up
+  to seven bits of the current block are held to be written as the next uint8_t
+  after the next deflate block is completed.  In this case, the decompressor may
+  not be provided enough bits at this point in order to complete decompression
+  of the data provided so far to the compressor.  It may need to wait for the
+  next block to be emitted.  This is for advanced applications that need to
+  control the emission of deflate blocks.
 
     If flush is set to Z_FULL_FLUSH, all output is flushed as with
   Z_SYNC_FLUSH, and the compression state is reset so that decompression can
@@ -427,11 +427,11 @@ ZEXTERN int ZEXPORT inflate OF((z_streamp strm, int flush));
   number of unused bits in the last uint8_t taken from strm->next_in, plus 64 if
   inflate() is currently decoding the last block in the deflate stream, plus
   128 if inflate() returned immediately after decoding an end-of-block code or
-  decoding the complete header up to just before the first uint8_t of the deflate
-  stream.  The end-of-block will not be indicated until all of the uncompressed
-  data from that block has been written to strm->next_out.  The number of
-  unused bits may in general be greater than seven, except when bit 7 of
-  data_type is set, in which case the number of unused bits will be less than
+  decoding the complete header up to just before the first uint8_t of the
+  deflate stream.  The end-of-block will not be indicated until all of the
+  uncompressed data from that block has been written to strm->next_out.  The
+  number of unused bits may in general be greater than seven, except when bit 7
+  of data_type is set, in which case the number of unused bits will be less than
   eight.  data_type is set as noted here every time inflate() returns for all
   flush options, and so can be used to determine the amount of currently
   consumed input in bits.
@@ -592,11 +592,11 @@ ZEXTERN int ZEXPORT deflateSetDictionary OF((z_streamp strm,
    compressor and decompressor must use exactly the same dictionary (see
    inflateSetDictionary).
 
-     The dictionary should consist of strings (uint8_t sequences) that are likely
-   to be encountered later in the data to be compressed, with the most commonly
-   used strings preferably put towards the end of the dictionary.  Using a
-   dictionary is most useful when the data to be compressed is short and can be
-   predicted with good accuracy; the data can then be compressed better than
+     The dictionary should consist of strings (uint8_t sequences) that are
+   likely to be encountered later in the data to be compressed, with the most
+   commonly used strings preferably put towards the end of the dictionary. Using
+   a dictionary is most useful when the data to be compressed is short and can
+   be predicted with good accuracy; the data can then be compressed better than
    with the default empty dictionary.
 
      Depending on the size of the compression data structures selected by
@@ -803,16 +803,16 @@ ZEXTERN int ZEXPORT inflateSetDictionary OF((z_streamp strm,
                                              const Bytef* dictionary,
                                              uInt dictLength));
 /*
-     Initializes the decompression dictionary from the given uncompressed uint8_t
-   sequence.  This function must be called immediately after a call of inflate,
-   if that call returned Z_NEED_DICT.  The dictionary chosen by the compressor
-   can be determined from the adler32 value returned by that call of inflate.
-   The compressor and decompressor must use exactly the same dictionary (see
-   deflateSetDictionary).  For raw inflate, this function can be called at any
-   time to set the dictionary.  If the provided dictionary is smaller than the
-   window and there is already data in the window, then the provided dictionary
-   will amend what's there.  The application must insure that the dictionary
-   that was used for compression is provided.
+     Initializes the decompression dictionary from the given uncompressed
+   uint8_t sequence.  This function must be called immediately after a call of
+   inflate, if that call returned Z_NEED_DICT.  The dictionary chosen by the
+   compressor can be determined from the adler32 value returned by that call of
+   inflate. The compressor and decompressor must use exactly the same dictionary
+   (see deflateSetDictionary).  For raw inflate, this function can be called at
+   any time to set the dictionary.  If the provided dictionary is smaller than
+   the window and there is already data in the window, then the provided
+   dictionary will amend what's there.  The application must insure that the
+   dictionary that was used for compression is provided.
 
      inflateSetDictionary returns Z_OK if success, Z_STREAM_ERROR if a
    parameter is invalid (e.g.  dictionary being Z_NULL) or the stream state is
@@ -895,8 +895,8 @@ ZEXTERN int ZEXPORT inflatePrime OF((z_streamp strm, int bits, int value));
 /*
      This function inserts bits in the inflate input stream.  The intent is
    that this function is used to start inflating at a bit position in the
-   middle of a uint8_t.  The provided bits will be used before any bytes are used
-   from next_in.  This function should only be used with raw inflate, and
+   middle of a uint8_t.  The provided bits will be used before any bytes are
+   used from next_in.  This function should only be used with raw inflate, and
    should be used before the first inflate() call after inflateInit2() or
    inflateReset().  bits must be less than or equal to 16, and that many of the
    least significant bits of value will be inserted in the input.
@@ -1138,8 +1138,8 @@ ZEXTERN int ZEXPORT compress OF((Bytef * dest, uLongf* destLen,
                                  const Bytef* source, uLong sourceLen));
 /*
      Compresses the source buffer into the destination buffer.  sourceLen is
-   the uint8_t length of the source buffer.  Upon entry, destLen is the total size
-   of the destination buffer, which must be at least the value returned by
+   the uint8_t length of the source buffer.  Upon entry, destLen is the total
+   size of the destination buffer, which must be at least the value returned by
    compressBound(sourceLen).  Upon exit, destLen is the actual size of the
    compressed buffer.
 
@@ -1175,8 +1175,8 @@ ZEXTERN int ZEXPORT uncompress OF((Bytef * dest, uLongf* destLen,
                                    const Bytef* source, uLong sourceLen));
 /*
      Decompresses the source buffer into the destination buffer.  sourceLen is
-   the uint8_t length of the source buffer.  Upon entry, destLen is the total size
-   of the destination buffer, which must be large enough to hold the entire
+   the uint8_t length of the source buffer.  Upon entry, destLen is the total
+   size of the destination buffer, which must be large enough to hold the entire
    uncompressed data.  (The size of the uncompressed data must have been saved
    previously by the compressor and transmitted to the decompressor by some
    mechanism outside the scope of this compression library.) Upon exit, destLen
@@ -1366,10 +1366,10 @@ ZEXTERN int ZEXPORT gzputc OF((gzFile file, int c));
 
 ZEXTERN int ZEXPORT gzgetc OF((gzFile file));
 /*
-     Reads one uint8_t from the compressed file.  gzgetc returns this uint8_t or -1
-   in case of end of file or error.  This is implemented as a macro for speed.
-   As such, it does not do all of the checking the other functions do.  I.e.
-   it does not check to see if file is NULL, nor whether the structure file
+     Reads one uint8_t from the compressed file.  gzgetc returns this uint8_t or
+   -1 in case of end of file or error.  This is implemented as a macro for
+   speed. As such, it does not do all of the checking the other functions do.
+   I.e. it does not check to see if file is NULL, nor whether the structure file
    points to has been clobbered or not.
 */
 

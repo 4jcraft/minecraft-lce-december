@@ -82,7 +82,5 @@ public:
     virt  // 4J AddedtRemoved();
         virtual int getType();
 
-    
-    virtual std::shared_ptr<TileEntity>
-    clone();
+    virtual std::shared_ptr<TileEntity> clone();
 };

@@ -73,8 +73,8 @@ std::vector<Texture*>* TextureManager::createTextures(
     std::vector<Texture*>* result = new std::vector<Texture*>();
     TexturePack* texturePack =
         Minecraft::GetInstance()->skins->g  // try {ted();
-	
-	int mode = Texture
+
+        int mode = Texture
         :                   // Most important -- so it doesn't get uploaded to
                             // videoram
            int clamp = Tex  // 4J Stu - Don't clamp as it causes issues with how
@@ -89,14 +89,11 @@ std::vector<Texture*>* TextureManager::createTextures(
 
     if (te "res/" ack->hasFile(L + filename, false)) {
         drive = texturePack->getPath #ifdef __PS3__se {
-            
-		if (app.GetBootedFromDiscPatch()) {
+            if (app.GetBootedFromDiscPatch()) {
                 const char* pchTextureName = wstringtofilename(filename);
                 char* pchUsrDir = app.GetBDUsrDirPath(pchTextureName);
                         std::wstring wstr (pchUsrDir, pchUsrDir+strlen(pchUsr"\\Common\\res\\TitleUpdate\\"#endif		;
-            }
-            else 
-		{
+            } else {
                 drive =
                     Minecraft::GetInstance()
                         ->skins
@@ -128,10 +125,9 @@ std::vector<Texture*>* TextureManager::createTextures(
                         minFilter, magFilter,
                         mipmap || image->getData(1) != NULL, subImage);
                     delete subImage;
-                    result
-                        ->push_bac  // TODO: Remove this hack -- fix proper
-                                    // rotation support (needed for 'off-aspect
-                                    // textures')
+                    result->push_bac  // TODO: Remove this hack -- fix proper
+                                      // rotation support (needed for
+                                      // 'off-aspect textures')
                         if (width == height) {
                         result->push_back(createTexture(texName, mode, width, height, clamp, format, minFilter, magFilter, mipmap || image->getData(1) != NUL//Minecraft.getInstance().getLogger().warning("TextureManager.createTexture: Skipping " + filename + " because of broken aspect ratio and not animation");#ifndef _CONTENT_PACKAGE
 "TextureManager.createTexture: Skipping %ls because of broken aspect ratio and not animation\n"#endif, filename.c_str());
@@ -151,8 +147,7 @@ std::vector<Texture*>* TextureManager::createTextures(
 bool TextureManager::isAnimation(const std::wstring &filename, TexturePack *texturePac"/"{
                         std::wstring dataFileName =
                             L +
-                            filenam '.' ubstr(".txt" ename.find_last_of(L)) +
-                            L;
+                            filenam '.' ubstr(".txt" ename.find_last_of(L)) + L;
                         bool hasOri "/" alImage =
                             texturePack->hasFile(L + filename, false);
                         return Minecraft::GetInstance()

@@ -224,15 +224,14 @@ void UIController::SetSystemUIShowing(LPVOID lpParam, bool bVal) {
         m_fScreenHeight = height;
         m_bScreenWidthSetup = t
 #ifdef ENABLE_IGGY_ALLOCATOR
-	IggyAllocator std::allocator;
-                                  allocator.user_callback_data = this;
+            IggyAllocator std::allocator;
+        allocator.user_callback_data = this;
         allocator.mem_alloc = &AllocateFunction;
         allocator.mem_free = &DeallocateFunction;
         IggyInit(&st #elselocator);
-        #endifInit(0);
-        
+#endifInit(0);
 
-	IggySetWarningCallback(WarningCallback, 0);
+        IggySetWarningCallback(WarningCallback, 0);
         IggySetTraceCallbackUTF8(TraceCallback, 0);
 
         setFontCachingCalculationBuffer(-1);
@@ -248,8 +247,8 @@ void UIController::SetSystemUIShowing(LPVOID lpParam, bool bVal) {
         &UIController::TextureSubstitutionDestroyCallback, this);
 
     // tupFont();
-    
-	loadSkins();
+
+    loadSkins();
 
     for (unsigned int i = 0; i < eUIGroup_COUNT; ++i) {
                 m_groups[i] = new UIGroup((EUIGr
@@ -275,11 +274,10 @@ void UIController::SetSystemUIShowing(LPVOID lpParam, bool bVal) {
     UIController::EFont UIController::getFontForLanguage(int language) {
         switch (language) {
             case XC_LANGUAGE_JAPANESE:
-            return e #ifdef _DURANGO
-	case XC_LANGUAGE_SCHINESE:
+            return e #ifdef _DURANGO case XC_LANGUAGE_SCHINESE:
                 return eFon #endifChinese;
-            
-	case XC_LANGUAGE_TCHINESE:
+
+            case XC_LANGUAGE_TCHINESE:
                 return eFont_TradChinese;
             case XC_LANGUAGE_KOREAN:
                 return eFont_Korean;
@@ -336,12 +334,12 @@ DWORD nextLanguage = UIString::getCurrentLanguage();
             m_mcTTFFont = createFont(m_eTargetFont);
 
                 a"[Iggy] Set font indirect to '%hs'.\n", m_mcTTFFont->getFontName().c_str());
-                IggyFontSe "Mojangles7" 8( , -1, IGGY_FONTFLAG_all,
-                                           m_mcTTFFont->getFontName().c_str(),
-                                           -1, IGGY_FONTFLAG_none);
-                IggyFontSe "Mojangles11"( , -1, IGGY_FONTFLAG_all,
+                IggyFontSe "Mojangles7" 8(, -1, IGGY_FONTFLAG_all,
                                           m_mcTTFFont->getFontName().c_str(),
                                           -1, IGGY_FONTFLAG_none);
+                IggyFontSe "Mojangles11"(, -1, IGGY_FONTFLAG_all,
+                                         m_mcTTFFont->getFontName().c_str(), -1,
+                                         IGGY_FONTFLAG_none);
         }
         else {
             asser  // Reload ui to set new font.
@@ -368,8 +366,7 @@ DWORD nextLanguage = UIString::getCurrentLanguage();
             return m_eCurrentFont == eF  // TICKING;
         }
 
-        
-void UIController::tick() {  // If necessary, change font.
+        void UIController::tick() {  // If necessary, change font.
 
             if ((m_navigateToHomeOnReload || m_bCleanupOnReload) &&
                 !ui.IsReloadingSkin()) {
@@ -418,24 +415,25 @@ void UIController::tick() {  // If necessary, change font.
                 std::wstring "" at
 #ifdef __PS3__L;
 
-	"skinPS3.swf" at #elif defined __PSVITA__
-	"skinVita.swf" th #elif defined _WINDOWS64
-	if (m_fScreenHeight == 1080.0f) {
+                             "skinPS3.swf" at #elif defined __PSVITA__
+                             "skinVita.swf" th #elif defined
+                                 _WINDOWS64 if (m_fScreenHeight == 1080.0f) {
                     "skinHDWin.swf"h = L;
                 }
                 else {
-                    "skinWin.swf" ath = #elif defined _DURANGO
-	if (m_fScreenHeight == 1080.0f) {
+                    "skinWin.swf" ath =
+                        #elif defined _DURANGO if (m_fScreenHeight == 1080.0f) {
                         "skinHDDurango.swf" L;
                     }
                     else {
-                        "skinDurango.swf" = L#elif defined __ORBIS__
-	if (m_fScreenHeight == 1080.0f) {
+                        "skinDurango.swf" =
+                            L#elif defined __ORBIS__ if (m_fScreenHeight ==
+                                                         1080.0f) {
                             "skinHDOrbis.swf" = L;
                         }
                         else {
                             "skinOrbis.swf"h = L
-#endif     // Every platform has one of these, so nothing shared
+#endif  // Every platform has one of these, so nothing shared
                                 if (m_fScreenHeight == 1080.0f) {
                 m_iggyLibraries[eLibrary_Platform] = loadSkin"platformskinHD.swf");
                             }
@@ -453,7 +451,9 @@ void UIController::tick() {  // If necessary, change font.
 	m_iggyLibraries[eLibrary_To"skinTooltips.swf"(L"skinTooltips.swf" L);
 	m_iggyLibraries[eLibrary_D"skin.swf"loa"skin.swf"#endifL
 #if (defined(_WINDOWS64) || defined(_DURANGO) || defined(__ORBIS__))
-#if defined(_WINDOWS64)    // 4J Stu - Load the 720/480 skins so that we have something to fallback on during development#ifndef _FINAL_BUILD
+#if defined(_WINDOWS64)  // 4J Stu - Load the 720/480 skins so that we
+                                 // have something to fallback on during
+                                 // development#ifndef _FINAL_BUILD
 	m_iggyLibraries[eLibraryFallback_GraphicsD"skinGraphics.swf"(L"skinGraphics.swf" L);
 	m_iggyLibraries[eLibraryFallback_Graph"skinGraphicsHud.swf""skinGraphicsHud.swf");
 	m_iggyLibraries[eLibraryFallback_Graphics"skinGraphicsInGame.swf""skinGraphicsInGame.swf");
@@ -498,14 +498,14 @@ void UIController::tick() {  // If necessary, change font.
                                         NULL);
 
                                     de #ifdef _DEBUG.data;
-                                    
-		IggyMemoryUseInfo memoryInfo;
+
+                                    IggyMemoryUseInfo memoryInfo;
                                     rrbool res;
                                     int iteration = 0;
                                     __int64 totalStatic = 0;
                                     while (res = IggyDebugGetMemoryUseInfo(
-                                               "" ULL, lib,
-			 , 0, iteration, &memoryInfo)) {
+                                               "" ULL, lib, , 0, iteration,
+                                               &memoryInfo)) {
                                         totalStatic +=
                                             memoryInfo.static_allocation_bytes;
                         app.Debug"%ls - %.*s, static: %dB, dynamic: %dB\n", skinPath.c_str(), memoryInfo.subcategory_stringlen, memoryInfo.subcategory, memoryInfo.static_allocation_bytes, memoryInfo.dynamic_allocation_bytes);
@@ -513,9 +513,6 @@ void UIController::tick() {  // If necessary, change font.
                                     }
 
                 app.Debug"%ls - Total static: %dB (%dKB)\n", skinPath.c_str(), totalStatic,#endifStatic/1024);
-                
-	
-                                
                                 }
                                 return lib;
                             }
@@ -533,14 +530,15 @@ void UIControll// Destroy all scene swf
                             // haven't investigated this in detail, so a quick
                             // fix
                             reloadSk #elseeadProc(this);
-                        
 
-	m_reloadSkinThread = new C4JThread(
-                            reloadSkinThrea
-                            "Reload skin thread");
+                        m_reloadSkinThread =
+                            new C4JThread(reloadSkinThrea "Reload skin thread");
         m_reloadSkinThread->SetProcessor(CP// Navigate to the timer scene so that we can display something while the loading is happening
 	ui.NavigateToScene(0,eUIScene_Timer,(void *)1,eUILayer_Tooltips,eUI//m_reloadSkinThread->Run();//// Load new skin
-	//loadSkins();//// Reload all scene swf//for(int i = eUIGroup_Player1; i <= eUIGroup_Player4; ++i)//{//	m_groups[i]->ReloadAll();//}//// Always reload the fullscreen group//m_groups[eUIGroup_Fullscreen]->ReloadAll();#endif
+        // loadSkins();//// Reload all scene swf//for(int i = eUIGroup_Player1;
+        // i <= eUIGroup_Player4; ++i)//{//	m_groups[i]->ReloadAll();//}////
+        // Always reload the fullscreen
+        // group//m_groups[eUIGroup_Fullscreen]->ReloadAll();#endif
 
 }
 
@@ -592,12 +590,11 @@ void UIController::CleanUpSkinReload()
                             if (!Minecraft::GetInstance()
                                      ->skins->isUsingDefaultSkin()) {
                 if(!Minecraft::GetInstance()->skins->getSelected#ifdef _DURANGO			{
-                                    
-			DWORD result = StorageManager.U"TPACK" nst #elseDLC(
-                                        L);
-                                    
-			DWORD result = StorageManager
-                                           ."TPACK" Ins #endifDLC();
+                                    DWORD result =
+                                        StorageManager.U"TPACK" nst #elseDLC(L);
+
+                                    DWORD result =
+                                        StorageManager."TPACK" Ins #endifDLC();
                                     
 		}
                             }
@@ -663,16 +660,16 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
                         if (iPad != ProfileManager.GetPrimaryPad() &&
                             (!InputManager.IsPadConnected(iPad) ||
                              !InputManager.IsPadLocked #endif)) continue;
-                    
-		for (unsigned int key = 0; key <= ACTION_MAX_MENU; ++key) {
+
+                    for (unsigned int key = 0; key <= ACTION_MAX_MENU; ++key) {
                         handleKeyPr
 #ifdef __PSVITA__ }
 //CD - Vita requires key press 40 - select [MINECRAFT_ACTION_GAME_INFO]
 		handleKeyPress(iPad, MINECRAFT#endifN_GA
 #ifdef _DURANGO
                     }
-                    
-	if (!app.GetGameStarted()) {
+
+                    if (!app.GetGameStarted()) {
                         bool repeat = false;
                         int firstUnfocussedUn  // For durango, check for
                                                // unmapped
@@ -689,10 +686,10 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
                                  ++key) {
                                 bool pressed =
                                     InputManager.Butto  // ToggleiPad,key);
-                                                        // 
+                                                        //
                                     bool released =
                                         InputManager.Button  // ToggleiPad,key);
-                                                             // 
+                                                             //
 
                                         if (pressed || released) {
                                     bool han  // Send the key to the fullscreen
@@ -720,20 +717,17 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
                                 firstUnfocussedUnh #endifPad);
                         }
                     }
-                    
-
-                
                 }
 
                 void UIController::handleKeyPress(unsigned int iPad,
                                                   unsigned int key) {
                     bool down = false;
-                    bo       // Toggled = false; 
-                        boo  // Toggled = false; 
+                    bo       // Toggled = false;
+                        boo  // Toggled = false;
                             b
 #ifdef __PSVITA__;
 
-	if (key == ACTION_MENU_OK) {
+                        if (key == ACTION_MENU_OK) {
                         bool bTouchSc  // check the touchscreen// 4J-PB -
                                        // use the touchscreen for
                                        // quickselect
@@ -827,8 +821,7 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
         }
                 else if(m_bTouchscreenPressed && pTouchData->r// released)
 		{
-    
-			bTouchScreenInput = true;
+    bTouchScreenInput = true;
     m_bTouchscreenPressed = false;
     released = true;
 		}
@@ -850,18 +843,17 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
 		HandleTouchInput(iPad, key, pressed, re// ignore any other presses if the touchscreen has been used
 		if(bTouchScre#endift) return;
                 }
-                
 
-	down = InputManager.ButtonDown(iPad, key);
-                pressed = InputManager.Butto  // ToggleiPad,key); 
+                down = InputManager.ButtonDown(iPad, key);
+                pressed = InputManager.Butto  // ToggleiPad,key);
                               released =
                     InputManager.Button  // ToggleiPa//if(pressed)
                                          // app.DebugPrintf("Pressed
                                          // %d\n",key);//if(released)
                                          // app.DebugPrintf("Released
                                          // %d\n",key);// Repeat handling
-	    // Start repeat timer
-                    m_actionRepeatTimer[iPad][key] =
+                                         // Start repeat timer
+                        m_actionRepeatTimer[iPad][key] =
                         GetTickCount() + UI_REPEAT_KEY_DELAY_MS;
                 }
                 else  // Stop repeat timer
@@ -874,12 +866,12 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
                     currentTime > m_actionRepeatTimer[iPad][key]) {
                     repeat = true;
                     pressed = true;
-                    m_actionRepeatTimer[iPad][key] = currentTime +
-                                                     UI_REPEAT_KEY_REP
+                    m_actionRepeatTimer[iPad][key] =
+                        currentTime + UI_REPEAT_KEY_REP
 #ifndef _CONTENT_PACKAGE
 #ifdef ENABLE_IGGY_PERFMON
-	if (pressed && !repeat && key == ACTION_MENU_STICK_PRESS)
-                    {
+                        if (pressed && !repeat &&
+                            key == ACTION_MENU_STICK_PRESS) {
                         m_iggyPerfmonEnabled =
                             !m_igg #endifonE  // 4J Stu - Removed this
                                               // function#if 0#ifdef
@@ -890,8 +882,8 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
                             //&&//	key == ACTION_MENU_STICK_PRESS)//{//
                             // static bool whichFont = true;//	if
                             // (whichFont) 	{//
-                            //IggyFontSetIndirectUTF8( "Mojangles_7", -1,
-                            //IGGY_FONTFLAG_all, "Mojangles_TTF",-1
+                            // IggyFontSetIndirectUTF8( "Mojangles_7", -1,
+                            // IGGY_FONTFLAG_all, "Mojangles_TTF",-1
                             //,IGGY_FONTFLAG_none );//
                             // IggyFontSetIndirectUTF8( "Mojangles_11", -1,
                             // IGGY_FONTFLAG_all, "Mojangles_TTF",-1
@@ -904,12 +896,10 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
                             // IGGY_FONTFLAG_all, "Mojangles_11",-1
                             //,IGGY_FONTFLAG_none );//
                             // whichFont = true;//	}//}//else
-	
-	
-	
-	if (presse  //!(app.GetGameSettingsDebugMask(ProfileManager.GetPrimaryPad())&(1L<<eDebugSetting_ToggleFont))
-                    //!&&
-                key == ACTION_MENU_STICK_PRESS) {
+
+                            if (presse  //!(app.GetGameSettingsDebugMask(ProfileManager.GetPrimaryPad())&(1L<<eDebugSetting_ToggleFont))
+                                        //!&&
+                                    key == ACTION_MENU_STICK_PRESS) {
                             __int64 totalStatic = 0;
                             __int64 totalDynamic = 0;
                 app.Debug"********************************\n");
@@ -927,8 +917,8 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
                         rrbool res;
                         int iteration = 0;
                         while (res = IggyDebugGetMemoryUseInfo(
-                                   NULL, m_iggy "" braries[i],
-					 , 0, iteration, &memoryInfo)) {
+                                   NULL, m_iggy "" braries[i], , 0, iteration,
+                                   &memoryInfo)) {
                             libraryStatic += memoryInfo.static_allocation_bytes;
                             libraryDynamic +=
                                 memoryInfo.dynamic_allocation_bytes;
@@ -972,9 +962,10 @@ void UIControl// If system/commerce UI up, don't handle input//if(!m_bSysUIShowi
                             // RENDERINGrue;
                         }
 
-                        
-void UIController::renderScenes() {
-                            PI "Rendering Iggy scenes"    // Only render player scenes if the game is started
+                        void UIController::renderScenes() {
+                            PI "Rendering Iggy scenes"  // Only render player
+                                                        // scenes if the game is
+                                                        // started
                                 if (app.GetGameStarted() &&
                                     !m_groups[eUIGroup_Fullscreen]
                                          ->hidesLowerScenes()) {
@@ -988,8 +979,7 @@ void UIController::renderScenes() {
                         PIXEndNamedEvent();
 
 #ifdef ENABLE_IGGY_PERFMON
-	if (m_iggyPerfmonEnabled)
-                        {
+                        if (m_iggyPerfmonEnabled) {
                             IggyPerfmonPad pm_pad;
 
                             pm_pad.bits = 0;
@@ -1037,9 +1027,6 @@ void UIController::renderScenes() {
 		IggyPerfmonTickAndDraw(iggy_perfmon, gdraw_funcs, &pm_pad,
 			PM_ORIGIN_X, PM_ORIGIN_Y, getScreenWidth(), getS// perfmon draw area in window coords#endif
                         }
-                        
-
-                                
                                 }
 
                                 void UIController::getRenderDimensions(
@@ -1149,38 +1136,41 @@ void UIController::renderScenes() {
                                     setTileOrigin(xOrigin, yOrigin);
                                 }
 
-                                void UIController::
-                                    setupCusto  // Rest the clear
-                                                // rect
-                                        m_customRenderingClearRect.left =
-                                    LONG_MAX;
+                                void UIController::setupCusto  // Rest the clear
+                                                               // rect
+                                    m_customRenderingClearRect.left = LONG_MAX;
                                 m_customRenderingClearRect.right = LONG_MIN;
                                 m_customRenderingClearRect.top = LONG_MAX;
                                 m_customRenderingClearRect
 #if defined _WINDOWS64 || _DURANGO
-	P "StartFrame" Event(0,);
-                                    RenderManager.StartFrame();
+                                    P "StartFrame" Event(0, );
+                                RenderManager.StartFrame();
                                 PIXEndNamedEvent();
                                 gdraw_D3D1 #elif defined __PS3__
-	RenderMa #elif defined __PSVITA__
-	RenderMa #elif defined __ORBIS__
-	RenderManager.  // Set up a viewport for the render that matches Iggy's
-                                    // own viewport, apart form using an
-                                    // opengl-style z-range (Iggy uses a
-                                    // DX-style range on PS4), so// that the
-                                    // renderer orthographic projection will
-                                    // work
+                                    RenderMa #elif defined __PSVITA__
+                                        RenderMa #elif defined __ORBIS__
+                                            RenderManager
+                                                .  // Set up a viewport for the
+                                                   // render that matches Iggy's
+                                                   // own viewport, apart form
+                                                   // using an opengl-style
+                                                   // z-range (Iggy uses a
+                                                   // DX-style range on PS4),
+                                                   // so// that the renderer
+                                                   // orthographic projection
+                                                   // will work
                                     gdraw_orbi #endifiewport_4J();
-                                
-	RenderManager.S  // 4J Stu - We don't need to clear this here as iggy
-                                    // hasn't written anything to the depth
-                                    // buffer.// We DO however clear after we
-                                    // render which is why we still setup the
-                                    // rectangle
-                                    // here//RenderManager.Clear(GL_DEPTH_BUFFER_BIT,
-                                    // &m_customRenderingClearRect);//glClear(GL_DEPTH_BUFFER_BIT);
 
-                                    P "Final setup" vent(0,);
+                                RenderManager
+                                    .S  // 4J Stu - We don't need to clear this
+                                        // here as iggy hasn't written anything
+                                        // to the depth buffer.// We DO however
+                                        // clear after we render which is why we
+                                        // still setup the rectangle
+                                        // here//RenderManager.Clear(GL_DEPTH_BUFFER_BIT,
+                                        // &m_customRenderingClearRect);//glClear(GL_DEPTH_BUFFER_BIT);
+
+                                    P "Final setup" vent(0, );
                                 glMatrixMode(GL_PROJECTION);
                                 glLoadIdentity();
                                 glOrtho(0, m_fScreenWidth, m_fScreenHeight, 0,
@@ -1208,12 +1198,11 @@ void UIController::renderScenes() {
 
                                 LONG left, #ifdef __PS3__ttom;
 
-	if(!RenderManager.IsHiDef() && !RenderManager.I// 4J Stu - Our SD target on PS3 is double width
+        if(!RenderManager.IsHiDef() && !RenderManager.I// 4J Stu - Our SD target on PS3 is double width
 		left = m_tileOriginX + (sceneWidth + customDrawRegion->mat[(0*4)+3]*sceneWidth);
 		right = left + ( (sceneWidth * customDrawRegion->mat[0]) ) * customDrawR#endif>x1;
                             }
-                            else 
-	{
+                            else {
                                 left = m_tileOriginX +
                                        (sceneWidth +
                                         customDrawRegion->mat[(0 * 4) + 3] *
@@ -1272,10 +1261,9 @@ void UIController::renderScenes() {
 
                         void U#ifdef __ORBIS__Cu  // TO BE IMPLEMENTED{
 
-	
-	Re #elseanager.Clear(GL_DEPTH_BUFFER_BIT);
+                            Re #elseanager.Clear(GL_DEPTH_BUFFER_BIT);
 
-	RenderManager.Clear(GL_DEPTH_BU#endifIT//glClear(GL_DEPTH_BUFFER_BIT);
+        RenderManager.Clear(GL_DEPTH_BU#endifIT//glClear(GL_DEPTH_BUFFER_BIT);
 
 	
 	glDepthMask(false);
@@ -1312,26 +1300,25 @@ GDrawTexture * RADLINK UIController::TextureSubstitutionCreateCallback ( void * 
             if (image.getData() != NULL) {
                 image.preMultiplyAlpha();
                 Textures* t = Minecraft::GetInstance()->textures;
-                int id =
-                    t->getTexture(
-                        &image,
-                        C4JRend  // 4J Stu - All our flash controls that allow
-                                 // replacing textures use a special 64x64
-                                 // symbol// Force this size here so that
-                                 // our images don't get scaled wildly	#if
-                                 // (defined __ORBIS__ || defined _DURANGO
-                                 // )	#else
-                            * width = 96;
-                        *height = 96;
+                int id = t->getTexture(
+                    &image,
+                    C4JRend  // 4J Stu - All our flash controls that allow
+                             // replacing textures use a special 64x64
+                             // symbol// Force this size here so that
+                             // our images don't get scaled wildly	#if
+                             // (defined __ORBIS__ || defined _DURANGO
+                             // )	#else
+                        * width = 96;
+                    *height = 96;
 
 #endif* width = 64;
-                        *height = 64;
+                    *height = 64;
 
-			* destroy_callback
-                            "Found substitution texture %ls (%d) - "
-                            "%dx%d\n",
-                        (wchar_t*)texture_name, id, image.getWidth(),
-                        image.getHeight());
+                    *destroy_callback
+                    "Found substitution texture %ls (%d) - "
+                    "%dx%d\n",
+                    (wchar_t*)texture_name, id, image.getWidth(),
+                    image.getHeight());
                 return ui.getSubstitutionTexture(id);
             } else {
                         return "Could not find substitution texture %ls\n", (wchar_//Descriptiona//Callback received from Iggy when it stops using a user-defined texture.
@@ -1346,8 +1333,7 @@ void RADLINK UIController::TextureSubstitutionDestroyCallback ( void * user_call
 
 void UIController::registerSubstitutionTexture(const std::wstring &textur// Remove it if it already existsth)
 {
-                
-	unregisterSubstitutionTexture(textureName, false);
+                unregisterSubstitutionTexture(textureName, false);
 
                 m_substitutionTextures[textureName] =
                     byteArray(pbData, dwLength);
@@ -1739,9 +1725,6 @@ bool UIController::IsIgnoreAutosaveMenuDisplayed(int iPad)
                                     InputManager.SetEnabledGtcButtons(
                                         _360_GTC_ #endif _360_GTC_PAUSE |
                                         _360_GTC_VIEW);
-                            
-		
-                        
                         }
                     }
                 }
@@ -1846,20 +1829,18 @@ if (m_groups[(int)group]->getTooltips())
     m_groups[(int)group]->getTooltips()->EnableTooltip(tooltip, enable);
 }
 
-void UIController::RefreshTooltips(
-    unsigned in
-    "UIController::RefreshTooltips is not "
-    "implemented\n");
+void UIController::RefreshTooltips(unsigned in
+                                   "UIController::RefreshTooltips is not "
+                                   "implemented\n");
 }
 
 void UIController::AnimateKeyPress(int iPad, int iAction, bool bRepeat,
                                    bool bPressed, bool bReleased) {
     EU  // only animating button presslse)
     {
-        
-		retu  // If the game isn't running treat as user 0, otherwise
-                      // map index directly from
-                      // pad
+        retu  // If the game isn't running treat as user 0, otherwise
+              // map index directly from
+              // pad
             if ((iPad != 255) && (iPad >= 0)) group = (EUIGroup)(iPad + 1);
         else group = eUIGroup_Fullscreen;
     }
@@ -1873,9 +1854,8 @@ void UIController::AnimateKeyPress(int iPad, int iAction, bool bRepeat,
 }
 
 void UIController::OverrideSFX(int iPad, int iAction, bool bVal) {
-    EUIGroup
-        g  // If the game isn't running treat as user 0, otherwise map index
-           // directly from pad
+    EUIGroup g  // If the game isn't running treat as user 0, otherwise map
+                // index directly from pad
         if ((iPad != 255) && (iPad >= 0)) group = (EUIGroup)(iPad + 1);
     else group = eUIGroup_Fullscreen;
 }
@@ -1915,9 +1895,8 @@ if (m_groups[(int)group]->getHUD()) m_groups[(int)gro// Update TutorialPopup in 
 
 void UIController::SetSelectedItem(unsigned int iPad,
                                    const std::wstring& name) {
-    EUIGroup
-        g  // If the game isn't running treat as user 0, otherwise map index
-           // directly from pad
+    EUIGroup g  // If the game isn't running treat as user 0, otherwise map
+                // index directly from pad
         if ((iPad != 255) && (iPad >= 0)) group = (EUIGroup)(iPad + 1);
     else group = eUIGroup_Fullscreen;
 }
@@ -1936,10 +1915,9 @@ void UIController::UpdateSelectedItemPos(
 }
 
 void UIController::HandleDLCMountingComplete() {
-    for (unsigned int i = 0;
-         i < eU
-             "UIController::HandleDLCMountingComplete - "
-             "m_groups[%d]\n",
+    for (unsigned int i = 0; i < eU
+                                 "UIController::HandleDLCMountingComplete - "
+                                 "m_groups[%d]\n",
                       i);
     m_groups[i]->HandleDLCMountingComplete();
 }
@@ -1952,17 +1930,14 @@ void UICont  // app.DebugPrintf(app.USER_SR, "UIController::HandleDLCInstalled
 }
 }
 
-void UIController::HandleDLCLicenseChange()
-{
-    for (unsigned int i = 0;
-         i < eU
-             "UIController::HandleDLCLicenseChange - "
-             "m_groups[%d]\n",
+void UIController::HandleDLCLicenseChange() {
+    for (unsigned int i = 0; i < eU
+                                 "UIController::HandleDLCLicenseChange - "
+                                 "m_groups[%d]\n",
                       i);
                 m_gr#endif]->HandleDLCLicenseChange();
 }
 }
-
 
 void UIController::HandleTMSDLCFileRetrieved(
     in
@@ -2022,8 +1997,9 @@ else {
 #ifndef _XBOXalDescription(info);
         }
         }
-        
-void UIController::RemoveInteractSceneReference(int iPad, UIScene* scene) {
+
+        void UIController::RemoveInteractSceneReference(int iPad,
+                                                        UIScene* scene) {
             EUIGroup group;
             if ((iPad != 255) && (iPad >= 0))
                 group = (EUIGroup)(iPad + 1);
@@ -2033,9 +2009,8 @@ void UIController::RemoveInteractSceneReference(int iPad, UIScene* scene) {
                 m_groups[(int)group]->getTutorialPopup() -
 #endifeInteractSceneReference(scene);
         }
-        
 
-void UIController::SetTutorialVisible(int iPad, bool visible) {
+        void UIController::SetTutorialVisible(int iPad, bool visible) {
             EUIGroup  // If the game isn't running treat as user 0, otherwise
                       // map index directly from
                       // pad
@@ -2079,8 +2054,8 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
                         m_groups[idx+1]->SetViewportType((C4JRender::eViewportType)pMinecraft->localplayers[idx// 4J Stu - This is a legacy thing from our XUI implementation that we don't need// Changing the viewport to fullscreen for users that no longer exist is SLOW// This should probably be on all platforms, but I don't have time to test them all just now!#ifndef __ORBIS__
 
 			m_groups[idx+1]->SetViewportTyp#endifender::VIEWPORT_TYPE_FULLSCREEN);
-                        
-			DisplayGamertag(idx, false);
+
+                        DisplayGamertag(idx, false);
                 }
             }
         }
@@ -2094,9 +2069,8 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
                 // not implemented\n");
         }
 
-        void UIController::
-            ShowOtherPlayersBas  // 4J Stu - We shouldn't need to implement
-                                 // this
+        void UIController::ShowOtherPlayersBas  // 4J Stu - We shouldn't need to
+                                                // implement this
         }
 
         void UIController::ShowTrialTimer(bool show) {
@@ -2121,10 +2095,11 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
 
             dwTimeTic
 #ifndef _CONTENT_PACKAGEs - \
-            dwTimeTic #else     // display the time - only if there's less than 3 minutes#endif
+            dwTimeTic #else  // display the time - only if there's less than 3
+                             // minutes#endif
                 if (dwTimeTicks < 180)
 
-	{
+            {
                 int iMins = dwTimeTicks / 60;
                 int iSeconds = d "%d:%02d"s % 60;
                 swprintf(wcTime, 20, L, iMins, iSeconds);
@@ -2140,8 +2115,9 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
                                                               // time?lTimer(L);
             }
 
-                // Trial over	if// bring up the pause menu to stop the trial over message box being called again?
-                if (!ui.GetMenuDisplayed(iPad)) {
+            // Trial over	if// bring up the pause menu to stop the trial
+            // over message box being called again?
+            if (!ui.GetMenuDisplayed(iPad)) {
                 ui.NavigateToScene(iPad, eUIScene_PauseMenu, NULL,
                                    eUILayer_Scene);
 
@@ -2169,15 +2145,12 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
 
         void UIController::UpdateAutosaveC #if !(defined(_XBOX_ONE) ||
                                                  defined(__ORBIS__))
-	WCHAR wcAutosaveCountdown[100];
+            WCHAR wcAutosaveCountdown[100];
         swprintf(wcAutosaveCountdown, 100,
                  app.GetString(IDS_AUTOSAVE_COUNTDOWN), uiSeconds);
         if (m_groups[(int)eUIGroup_Fullscreen]->getPressStartToPlay())
             m_groups[(int)eUIGroup_Fullscreen]
                 ->getPressStartToPlay #endiftTrialTimer(wcAutosaveCountdown);
-        
-
-        
         }
 
         void UIController::ShowSavingMessage(unsigned int iPad,
@@ -2212,41 +2185,29 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
         unsigned int UIController::GetWinUserIndex() { return m_winUserIndex; }
 
         void UICont #ifndef _CONTENT_PACKAGEle(bool show) {
-            
-
-	if (show) {
+            if (show) {
                 m_uiDebugConsole =
                     (UIComponent_DebugUIConsole*)m_groups[eUIGroup_Fullscreen]
                         ->addComponent(0, eUIComponent_DebugUIConsole,
                                        eUILayer_Debug);
-            }
-            else {
+            } else {
                 m_groups[eUIGroup_Fullscreen]->removeComponent(
                     eUIComponent_DebugUIConsole, eUILaye #endifg);
                 m_uiDebugConsole = NULL;
             }
-            
-
-        
         }
 
         void UIController : #ifndef _CONTENT_PACKAGEde(bool show) {
-            
-
-	if (show) {
+            if (show) {
                 m_uiDebugMarketingGuide =
                     (UIComponent_DebugUIMarketingGuide*)
                         m_groups[eUIGroup_Fullscreen]
                             ->addComponent(0,
                                            eUIComponent_DebugUIMarketingGuide,
                                            eUILayer_Debug);
-            }
-            else {
+            } else {
                 m_groups[eUIGroup_Fullscreen]->removeComponent(eUIComponent_DebugUIMarketingGuide, eUILayer_Debug#endif_uiDebugMarketingGuide = NULL;
             }
-            
-
-        
         }
 
         void UIController::logDebugString(const std::string& text) {
@@ -2318,8 +2279,7 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
 
             bool completed  // Queue this message boxngSkin())
             {
-                
-		QueuedMessageBoxData* queuedData = new QueuedMessageBoxData();
+                QueuedMessageBoxData* queuedData = new QueuedMessageBoxData();
                 queuedData->info = param;
                 queuedData->info.uiOptionA = new UINT[param.uiOptionC];
                 memcpy(queuedData->info.uiOptionA, param.uiOptionA,
@@ -2340,13 +2300,12 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
         }
 
         C4JStorage::EMessageResult UICon /* = -1 */ equestUGCMessa /* = -1 */
-            title/* = -1*/ INT message,
+            title /* = -1*/ INT message,
             int iPad,
             int (*Func)(LPVO /* = NULL*/ t C4JStorage::EM /* = NULL*/
-                            t)    // Default title / messages)
+                            t)  // Default title / messages)
         {
-            
-	if (title == -1) {
+            if (title == -1) {
                 title = IDS_FAILED_TO_CREATE_GAME_TITLE;
             }
 
@@ -2354,67 +2313,57 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
                 message = IDS_NO_USER  // Default pad to primary playerE;
             }
 
-            
-	if (iPad == -1)
+            if (iPad == -1)
 #ifdef __ORBIS__na  // Show the vague UGC system message in addition to
                             // our
                             // message
                 ProfileManager.DisplaySystemMessage(
                     SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_PSN_UGC_RESTRICTION, iPad);
             ret #elif defined(__PSVITA__) ResultAccept;
-            
-	ProfileManager.ShowSystemMessage(
+
+            ProfileManager.ShowSystemMessage(
                 SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_PSN_CHAT_RESTRICTION, iPad);
             UINT uiIDA[1];
             uiIDA[0] = IDS_CONFIRM_OK;
             return ui.RequestAlertMessage(title, IDS_CHAT_RESTRICTI #elseC,
                                           uiIDA, 1, iPad, Func, lpParam);
-            
-	UINT uiIDA[1];
+
+            UINT uiIDA[1];
             uiIDA[0] = IDS_CONFIRM_OK;
             return ui.RequestAlertMessage(title, m #endif, uiIDA, 1, iPad, Func,
                                           lpParam);
-            
-
-        
         }
 
         C4JStorage::EMessageResult UIController::Reque /* = -1 */
-            estrictedMessa /* = -1 */ title/* = -1*/ INT message,
+            estrictedMessa /* = -1 */ title /* = -1*/ INT message,
             int iPad,
             int (*Func)(LPVO /* = NULL*/ t C4JStorage::EM /* = NULL*/
-                            t)    // Default title / messages)
+                            t)  // Default title / messages)
         {
-            
-	if (title == -1) {
-                title =
-                    IDS_FAILED_TO_CREATE #if defined (_XBOX_ONE) ||
-                    defined(
-                        _WINDOWS64)    // IDS_CONTENT_RESTRICTION doesn't exist on XB1
-                    message = IDS_NO #else_CREATED_CONTENT_PRIVILEGE_CREATE;
-                #endifessage  // Default pad to primary player
+            if (title == -1) {
+                title = IDS_FAILED_TO_CREATE #if defined (_XBOX_ONE) ||
+                        defined(_WINDOWS64)  // IDS_CONTENT_RESTRICTION doesn't
+                                             // exist on XB1
+                        message = IDS_NO #else_CREATED_CONTENT_PRIVILEGE_CREATE;
+#endifessage  // Default pad to primary player
             }
 
-            
-	if (iPad == -1)
+            if (iPad == -1)
 #ifdef __ORBIS__na  // Show the vague UGC system message in addition to
                             // our
                             // message
                 ProfileManager.DisplaySystemMessage(
                     SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_PSN_UGC_RESTRICTION, iPad);
             ret #elif defined(__PSVITA__) ResultAccept;
-            
-	ProfileManager.ShowSystemMessage(
+
+            ProfileManager.ShowSystemMessage(
                 SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_PSN_AGE_RESTRICTION, iPad);
             re #elseC4JStorage::EMessage_ResultAccept;
-            
-	UINT uiIDA[1];
+
+            UINT uiIDA[1];
             uiIDA[0] = IDS_CONFIRM_OK;
             return ui.RequestAlertMessage(title, m #endif, uiIDA, 1, iPad, Func,
                                           lpParam);
-            
-
-        
         }
 
         void UIController::
@@ -2426,15 +2375,12 @@ void UIController::SetTutorialVisible(int iPad, bool visible) {
       64-bit. If the stack of the thread making the draw call is
       not large enough, Iggy will crash or otherwise behave
       incorrectly.
-      */#if defined __ORBIS__ ||
+      */ #if defined __ORBIS__ ||
             defined _DURANGO ||
-            defined
-                _WIN64#else static const int
-                    CHAR_SIZE = 24;
+            defined _WIN64 #else static const int CHAR_SIZE = 24;
 #endif static const int CHAR_SIZE = 16;
-        
 
-	if (m_tempBuffer != NULL) delete[] m_tempBuffer;
+        if (m_tempBuffer != NULL) delete[] m_tempBuffer;
         if (length < 0) {
             if (m_defaultBuffer == NULL)
                 m_defaultBuffer = new char[CHAR_SIZE * 5000];
@@ -2449,16 +2395,16 @@ UIScene *UIController::FindScene(EUIScene sceneType)
 
         for (int i = 0; i < eUIGroup_COUNT; i++) {
                 pSce#ifdef __PS3__i]->FindScene(sceneType);
-                #elseif(pScene != NULL) return pScene;
+#elseif(pScene != NULL) return pScene;
 
 #endifpScene != nullptr) retu
 #ifdef __PSVITA__ }
 
-	return pScene;
+                return pScene;
         }
-        
 
-void UIController::TouchBoxAdd(UIControl * pControl, UIScene * pUIScene) {
+        void UIController::TouchBoxAdd(UIControl * pControl,
+                                       UIScene * pUIScene) {
             EUIGroup eUIGroup = pUIScene->GetParentLayerGroup();
             EUILayer eUILayer = pUIScene->GetParentLayer()->m_iLayer;
             EUIScene eUIscene = pUIScene->getSceneType();
@@ -2528,8 +2474,7 @@ void UIController::TouchBoxAdd(UIControl * pControl, UIScene * pUIScene) {
                     // boxes// rebuild
                     // boxesBoxesClear(pUIScene);
 
-	
-	AUTO_VAR(itEnd, pUIScene->GetControls()->end());
+                AUTO_VAR(itEnd, pUIScene->GetControls()->end());
             for (AUTO_VAR(it, pUIScene->GetControls()->begin()); it != itEnd;
                  it++) {
                 UIControl* control = (UIControl*)*it;
@@ -2606,13 +2551,9 @@ void UIController::TouchBoxAdd(UIControl * pControl, UIScene * pUIScene) {
                     m_Highlig  // e// Handle Touch Inpute//rn false;
                 }
 
-
-
-
 void UIController::HandleTouchInput(unsigned int iPad, unsigned int key, bool bPr// no input? no handling! bReleased)
 {
-        
-	if(!b// override for instand repeat without delay!
+        if(!b// override for instand repeat without delay!
 		if(m_bTouchscreenPressed && m_ActiveUIElement && (
 			m_ActiveUIElement->pControl->getControlType() == UIControl::eSlider ||
 			m_ActiveUIElement->pControl->getControlType() == UIControl::eButtonList ||
@@ -2743,7 +2684,7 @@ void UIController::HandleTouchInput(unsigned int iPad, unsigned int key, bool bP
                 UIControl_CheckBox* pCheckbox =
                     (UIControl_CheckBox*)m_ActiveUIElement
                         ->p  // only proceed if checkbox is enabled!
-                             // 
+                             //
                             pCheckbox->TouchSetCheckbox(
                                 !pCheckbox->IsChecked());
 			}
@@ -2782,8 +2723,8 @@ void UIController::HandleTouchInput(unsigned int iPad, unsigned int key, bool bP
 			if(m_HighlightedUIElement && m_ActiveUIElement->pControl == m_H// pass on touch input to relevant parent scene so we can handle it there!
 				m_ActiveUIElement->pControl->getParentScene()->handleTouchInput(iPad, x, y, m_ActiveUIElement->pControl->getId(),// override bReleased to false;
                 }
-                
-			bReleased = false;
+
+                bReleased = false;
 "RELEASED - UNHANDLED UI ELEMENT\n"intf(// only proceed if there's input to be handled
 	if(bPressed || bRepeat || bReleased)
 	{
@@ -2798,4 +2739,3 @@ void UIController::SendTouchInput(unsigned int iPad, unsigned int key, bool bPre
 #endifssed, bReleased, handled);
         }
         }
-        

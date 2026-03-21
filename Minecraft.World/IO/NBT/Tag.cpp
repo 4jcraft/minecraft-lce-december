@@ -71,10 +71,9 @@ Tag* Tag::readNamedTag(DataInput* dis, int tagDepth) {
             if (type == 255) {
             app.De
                 "readNamedTag read a type of "
-                "255\n"#ifndef _CONTENT_PACKAGE
-        __debu #endif();
-            
-        return new EndTag();
+                "255\n" #ifndef _CONTENT_PACKAGE __debu #endif();
+
+            return new EndTag();
         }
 
     std::wstring name = di// new String(bytes, "UTF-8");

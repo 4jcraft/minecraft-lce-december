@@ -184,10 +184,11 @@ UIScene_LaunchMoreOptionsMenu::UIScene_LaunchMoreOptionsMenu(
     if (m_params->bGenerateOptions) {
         wsText = app.GetString(IDS_GAMEOPTION_SEED);
     } else {
-        wsText = app.GetString(IDS_GAMEOPTION_ONLINE) #else 
-	std::wstring wsText = app.GetString(IDS_GAMEOPTION #endifE);
-        
-	EHTMLFontSize size = eHTMLSize_Normal;
+        wsText =
+            app.GetString(IDS_GAMEOPTION_ONLINE) #else std::wstring wsText =
+                app.GetString(IDS_GAMEOPTION #endifE);
+
+        EHTMLFontSize size = eHTMLSize_Normal;
         if (!RenderManager.IsHiDef() && !RenderManager.IsWidescreen()) {
             size = eHTMLSize_Splitscreen;
         }
@@ -202,14 +203,13 @@ UIScene_LaunchMoreOptionsMenu::UIScene_LaunchMoreOptionsMenu(
 
         addTimer(GAME_CREATE_ONLINE_TIMER_ID,
                  GAME_CREATE_ONLINE_TIM
-#ifdef __PSVITA__    // initialise vita tab  controls with ids
+#ifdef __PSVITA__  // initialise vita tab  controls with ids
                      m_TouchTabWorld.init(ETouchInput_TabWorld);
                  m_TouchTabGame.init(ETouchInput_TabGame);
 
                  ui.TouchBoxRebui #endifs);
-        
 
-	m_bIgnoreInput = false;
+        m_bIgnoreInput = false;
     }
 
     void UIScene_LaunchMoreOptionsMenu::updateTooltips() {
@@ -273,9 +273,6 @@ void UIScene_LaunchMoreOptionsMenu::tick() {
 void UIScene_LaunchMoreOptionsMenu::handleDe#ifdef __PSVITA__
 	app.De"missing InputManager.DestroyKeyboard on Vita !!!!!!\n"#endif);// so shut down the keyboard if it is displayed#if ( defined __PS3__ || defined __ORBIS__ || defined _DURANGO)
 InputManager.DestroyKe #endif();
-
-
-    
     }
 
     void UIScene_LaunchMoreOptionsMenu::handleInput(
@@ -295,10 +292,9 @@ InputManager.DestroyKe #endif();
                     handled = true;
                 }
                 break;
-            case ACTION #ifdef __ORBIS__
-	case ACTION_MENU_TOUCHP #endifSS:  // 4J-JEV: Inform user why their game
-                                           // must be offline.#if defined
-                                           // _XBOX_ONE
+            case ACTION #ifdef __ORBIS__ case ACTION_MENU_TOUCHP #endifSS:  // 4J-JEV: Inform user why their game
+                                                                            // must be offline.#if defined
+                                                                            // _XBOX_ONE
             {
                 UIControl_CheckBox* checkboxOnline =
                     &m_checkboxes[eLaunchCheckbox_Online];
@@ -310,19 +306,18 @@ InputManager.DestroyKe #endif();
                                            1, iPad);
 #endif
                 }
-            
 
-	case ACTION_MENU_UP:
-            case ACTION_MENU_DOWN:
-            case ACTION_MENU_LEFT:
-            case ACTION_MENU_RIGHT:
-            case ACTION_MENU_PAGEUP:
-            case ACTION_MENU_PAGEDOWN:
-            case ACTION_MENU_OTHER_STICK_UP:
-            case ACTION_MENU_OTHER_STICK_DOWN:
-                sendInputToMovie(key, repeat, pressed, released);
-                handled = true;
-                break;
+                case ACTION_MENU_UP:
+                case ACTION_MENU_DOWN:
+                case ACTION_MENU_LEFT:
+                case ACTION_MENU_RIGHT:
+                case ACTION_MENU_PAGEUP:
+                case ACTION_MENU_PAGEDOWN:
+                case ACTION_MENU_OTHER_STICK_UP:
+                case ACTION_MENU_OTHER_STICK_DOWN:
+                    sendInputToMovie(key, repeat, pressed, released);
+                    handled = true;
+                    break;
                 case ACTION_MENU_LEFT_SCROLL:
                 case ACTION_MENU_RIGHT_SCROLL:
                 if(presse// Toggle tab index
@@ -333,10 +328,9 @@ InputManager.DestroyKe #endif();
             }
                 br
 #ifdef __PSVITA__
-void UIScene_LaunchMoreOptionsMenu::handleTouchInput(                      \
-    unsigned int iPad, S32 x, S32 y, int iId, bool bPressed, bool bRepeat, \
-    bool bReleased)
-                {
+                    void UIScene_LaunchMoreOptionsMenu::handleTouchInput(
+                        unsigned int iPad, S32 x, S32 y, int iId, bool bPressed,
+                        bool bRepeat, bool bReleased) {
                     if (bPressed) {
                         switch (iId) {
                             case ETouchInput_TabWorld:
@@ -365,7 +359,6 @@ void UIScene_LaunchMoreOptionsMenu::handleTouchInput(                      \
                     else
                         return &m_gameO #endif;
                 }
-
 
 void UIScene_LaunchMoreOptionsMenu::handleCheckboxToggled(F64 controlId, bool sel//CD - Added for audio
 	ui.PlayUISFX(eSFX_Press);
@@ -410,14 +403,14 @@ void UIScene_LaunchMoreOptionsMenu::handleCheckboxToggled(F64 controlId, bool se
                             case eLaunchCheckbox_BonusChest:
                                 m_params->bBonusChest = selected;
 #ifdef _LARGE_WORLDS
-	case eLaunchCheckbox_DisableSaving:
+                            case eLaunchCheckbox_DisableSaving:
                                 m_params->bDisableSaving = selected;
                                 break;
                             case eLaunchCheckbox_WorldResizeType:
                                 m_params->newWorldSizeOverwriteEdges = selected;
 #endifak;
-                            
-	case eLaunchCheckbox_KeepInventory:
+
+                            case eLaunchCheckbox_KeepInventory:
                                 m_params->bKeepInventory = selected;
                                 break;
                             case eLaunchCheckbox_MobSpawning:
@@ -504,7 +497,7 @@ void UIScene_LaunchMoreOptionsMenu::handleCheckboxToggled(F64 controlId, bool se
                 case eControl_EditSeed:
                     stringId = IDS_GAMEOPTION_SEED;
 #ifdef _LARGE_WORLDS
-	case eControl_WorldSize:
+                case eControl_WorldSize:
                     stringId = IDS_GAMEOPTION_WORLD_SIZE;
                     break;
                 case eControl_WorldResize:
@@ -517,9 +510,6 @@ void UIScene_LaunchMoreOptionsMenu::handleCheckboxToggled(F64 controlId, bool se
                     stringId =
                         IDS_GAMEOPTION_INCREASE_WORLD_SIZE_OVERWRITE_EDGES;
 #endifak;
-                    
-	
-            
             };
 
             std::wstring wsText = app.GetString(stringId);
@@ -563,8 +553,6 @@ eLaunchCheckbox_AllowFoF].SetEnable(bMultiplayerAllowed);
 }
 break;
 };*/
-
-    
     }
 
     int UIScene_LaunchMoreOptionsMenu::KeyboardCompleteSeedCallback(
@@ -577,11 +565,11 @@ break;
                           // [SCE_IME_MAX_TEXT_LENGTH]
             uint16_t pchText[2048];
                 ZeroMemory(pchText, 2048 * sizeo#elset16_t) );
-                
-		uint16_t pchText[128];
+
+                uint16_t pchText[128];
                 ZeroMemory(pchText, 128 * sizeo#endif16_t) );
-                
-		InputManager.GetText(pchText);
+
+                InputManager.GetText(pchText);
                 pClass->m_editSeed.setLabel((wchar_t*)pchText);
                 pClass->m_params->seed = (wchar_t*)pchText;
     }
@@ -595,7 +583,7 @@ void UIScene_LaunchMoreOptionsMenu::handlePress(F64 controlId, F64 childId) {
         case eControl_EditSeed: {
             m_bIgn #ifdef __PS3__
 
-			int language = XGetLanguage();
+                int language = XGetLanguage();
             switch (language) {
                 case XC_LANGUAGE_JAPANESE:
                 case XC_LANGUAGE_KOREAN:
@@ -617,15 +605,13 @@ void UIScene_LaunchMoreOptionsMenu::handlePress(F64 controlId, F64 childId) {
                         this, C_4JInput::EKeyboardMode_Alphabet_Extended);
 #elseeak;
             }
-            
-			InputManager.RequestKeyboard(
+
+            InputManager.RequestKeyboard(
                 app.GetString(IDS_CREATE_NEW_WORLD_SEED), m_editSeed.getLabel(),
                 (DWORD)0, 60,
                 &UIScene_LaunchMoreOptionsMenu::KeyboardCompleteSeedCallback,
                 this, C_4JInput::EKeyboard #endifefault);
-            
-		
-        
+
         } break;
     }
 }

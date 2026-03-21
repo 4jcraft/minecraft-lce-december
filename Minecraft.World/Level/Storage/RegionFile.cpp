@@ -255,8 +255,8 @@ DataInputStream* RegionFile::getChunkDataInputStream(
     DataInputStream* ret = new DataInputStream(
         new ByteArrayInputStream(byteArray(decomp, readDecompLength)));
     return ret;
-//    } catch (IOException e) {//        debugln("READ", x, z,
-//    "exception");//        return null;//    }
+    //    } catch (IOException e) {//        debugln("READ", x, z,
+    //    "exception");//        return null;//    }
 }
 
 DataOutputStream* RegionFile::getChunkDataOutputStream(int x, int z) {// 4J - was DeflatorOutputStream in here too, but we've already compressed
@@ -286,64 +286,82 @@ void RegionFile::write(int x, int z, uint8_t* data,
             int sectorNumber = offset >> 8;
             int sectorsAllocated = offset & 0
 #ifndef _CONTENT_PACKAGE
-        if (sectorNumber < 0) {
-                                   __debugbreak();
-#endif 
+                                   if (sectorNumber < 0) {
+                __debugbreak();
+#endif
 
-        if (sectorNumber != 0 && sectorsAllocated == sectorsNeeded) {
-            /* we can simply overwrite the old sectors */    //        debug("SAVE", x, z, length, "rewrite");#ifndef _CONTENT_PACKAGE
-                // wprintf(L"Writing chunk (%d,%d) in %ls from current sector %d
-                // to %d\n", x,z, fileEntry->data.filename, sectorNumber,
-                // sectorNumber
-                // + sectorsNeeded - 1);#endif
-                write(sectorNumber, compData, length, compLength);
-        } else {
-            /* we need to allocate new sectors */
+                if (sectorNumber != 0 && sectorsAllocated == sectorsNeeded) {
+                    /* we can simply overwrite the old sectors */  //        debug("SAVE",
+                                                                   //        x,
+                                                                   //        z,
+                                                                   //        length,
+                                                                   //        "rewrite");#ifndef
+                                                                   //        _CONTENT_PACKAGE
+                                                                   // wprintf(L"Writing
+                                                                   // chunk
+                                                                   // (%d,%d) in
+                                                                   // %ls from
+                                                                   // current
+                                                                   // sector %d
+                                                                   // to %d\n",
+                                                                   // x,z,
+                                                                   // fileEntry->data.filename,
+                                                                   // sectorNumber,
+                                                                   // sectorNumber
+                                                                   // +
+                                                                   // sectorsNeeded
+                                                                   // -
+                                                                   // 1);#endif
+                    write(sectorNumber, compData, length, compLength);
+                } else {
+                    /* we need to allocate new sectors */
 
-       /* mark the sectors previously used for this chunk as free */
-            for (int i = 0; i < sectorsAllocated; ++i) {
-                sectorFree->at(sectorNumber + i) = true;
-            }
-            // 4J added - zero this now unused region of the file, so it can
-            // be better compressed until it is reused
-            zero(sectorNumber, SECTOR_BYTES * sectorsAllocated);
+                    /* mark the sectors previously used for this chunk as free
+                     */
+                    for (int i = 0; i < sectorsAllocated; ++i) {
+                        sectorFree->at(sectorNumber + i) = true;
+                    }
+                    // 4J added - zero this now unused region of the file, so it
+                    // can be better compressed until it is reused
+                    zero(sectorNumber, SECTOR_BYTES * sectorsAllocated);
 
             PIXBeginNamedEven"Scanning for free space\n");
-       /* scan for a free space large enough to store this chunk */
+            /* scan for a free space large enough to store this chunk */
             int runStart =
                 (int)(std::find(sectorFree->begin(), sectorFree->end(), true) -
                       sectorFree
                           ->b// 4J - was sectorFree.indexOf(true)
             int runLength = 0;
             if (runStart != -1) {
-                for (unsigned int i = runStart; i < sectorFree->size(); ++i) {
-                    if (runLength != 0) {
-                        if (sectorFree->at(i))
-                            runLength++;
-                        else
-                            runLength = 0;
-                    } else if (sectorFree->at(i)) {
-                        runStart = i;
-                        runLength = 1;
-                    }
-                    if (runLength >= sectorsNeeded) {
-                        break;
-                    }
-                }
+                        for (unsigned int i = runStart; i < sectorFree->size();
+                             ++i) {
+                            if (runLength != 0) {
+                                if (sectorFree->at(i))
+                                    runLength++;
+                                else
+                                    runLength = 0;
+                            } else if (sectorFree->at(i)) {
+                                runStart = i;
+                                runLength = 1;
+                            }
+                            if (runLength >= sectorsNeeded) {
+                                break;
+                            }
+                        }
             }
             PIXEndNamedEvent();
 
             if (runLength >= sectorsNeeded) {
-                /* we found a free space large enough */
-          //            debug("SAVE", x, z, length, "reuse");
-                    sectorNumber = runStart;
+                        /* we found a free space large enough */
+                        //            debug("SAVE", x, z, length, "reuse");
+                        sectorNumber = runStart;
                 setOffset(x, z, (sectorNumber << 8) | sector#ifndef _CONTENT_PACKAGE
       // wprintf(L"Writing chunk (%d,%d) in %ls from old sector %d to
       // %d\n", x,z, fileEntry->data.filename, sectorNumber,
       // sectorNumber + sectorsNeeded - 1);#endif
 
                 for (int i = 0; i < sectorsNeeded; ++i) {
-                    sectorFree->at(sectorNumber + i) = false;
+                            sectorFree->at(sectorNumber + i) = false;
                 }
                 write(sectorNumber, compData, length, compLength);
             } else {
@@ -353,17 +371,16 @@ void RegionFile::write(int x, int z, uint8_t* data,
                  * no free space large enough found -- we need to
                  * grow the file
                  */
-      //            debug("SAVE", x, z, length, "grow");
-      // SetFilePointer(file,0,0,FILE_END);
+                //            debug("SAVE", x, z, length, "grow");
+                // SetFilePointer(file,0,0,FILE_END);
                 m_saveFile->setFilePointer(fileEntry, 0, NULL, FILE_END);
 
                 sectorNumber = (int)sectorFree #ifndef _CONTENT_PACAKGE
-          // wprintf(L"Writing chunk (%d,%d) in %ls from new sector %d to
-                    // %d\n", x,z, fileEntry->data.filename,
-                    // sectorNumber, sectorNumber + sectorsNeeded -
-                    // 1);#endif
+                    // wprintf(L"Writing chunk (%d,%d) in %ls from new sector %d
+                    // to %d\n", x,z, fileEntry->data.filename, sectorNumber,
+                    // sectorNumber + sectorsNeeded - 1);#endif
 
-                DWORD numberOfBytesWritten = 0;
+                        DWORD numberOfBytesWritten = 0;
                 for (int i = 0; i < sectorsNeeded; ++i) {
                     // WriteFile(file,emptySector.data,SECTOR_BYTES,&numberOfBytesWritten,NULL);
                     m_saveFile->writeFile(fileEntry, emptySector.data,
@@ -376,12 +393,16 @@ void RegionFile::write(int x, int z, uint8_t* data,
                 setOffset(x, z, (sectorNumber << 8) | sectorsNeeded);
                 PIXEndNamedEvent();
             }
-        }
-        setTimestamp(x, z, (int)(System::currentTimeMillis() / 1000L));
-    }
-    m_saveFile->ReleaseSaveAcces//    } catch (IOException e) {//        e.printStackTrace();//    }   /* write a chunk data to the region file at specified sector number */
-void RegionFile::write(int sectorNumber, uint8_t* data, int length,
-                       unsigned int compLength) {
+                }
+                setTimestamp(x, z, (int)(System::currentTimeMillis() / 1000L));
+            }
+            m_saveFile
+                ->ReleaseSaveAcces  //    } catch (IOException e) {//
+                                    //    e.printStackTrace();//    }   /* write
+                                    //    a chunk data to the region file at
+                                    //    specified sector number */
+                void RegionFile::write(int sectorNumber, uint8_t* data,
+                                       int length, unsigned int compLength) {
     DWORD numberOfBytesWritten// SetFilePointer(file,sectorNumber * SECTOR_BYTES,0,FILE_BEGIN);
     m_saveFile->setFilePointer(fileEntry, sectorNumber * SECTOR_BYTES, NULL,
                                FILE_BEG// 4J - this differs a bit from the java file format. Java has length stored// as an int, then a type as a uint8_t, then length-1 bytes of data We store// length and decompression length as ints, then length bytes of xbox LZX// compressed data// 4J Stu - We need to do the compression at a level above this, where it is// checking for free space
@@ -395,30 +416,33 @@ void RegionFile::write(int sectorNumber, uint8_t* data, int length,
     m_saveFile->writeFile(fileEntry, &length, 4, &numberOfBytesWritten);
     m_saveFile->writeFile(fileEntry, data, compLength, &numberOfBytesWritten);
     delete[] data;
-}
+            }
 
-void RegionFile::zero(int sectorNumber, int length) {
-        DWORD numberOfBytesWritten  // SetFilePointer(file,sectorNumber *
-                                    // SECTOR_BYTES,0,FILE_BEGIN);
-            m_saveFile->setFilePointer(fileEntry, sectorNumber * SECTOR_BYTES,
-                                       NULL, FILE_BEGIN);
+            void RegionFile::zero(int sectorNumber, int length) {
+                DWORD numberOfBytesWritten  // SetFilePointer(file,sectorNumber
+                                            // * SECTOR_BYTES,0,FILE_BEGIN);
+                                                m_saveFile->setFilePointer(
+                                                    fileEntry,
+                                                    sectorNumber * SECTOR_BYTES,
+                                                    NULL, FILE_BEGIN);
     m_saveFile->zeroFile(fileEntry, length, &numberOfBytesWri/* is this an invalid chunk coordinate? */
 bool RegionFile::outOfBounds(int x, int z) {
-            return x < 0 || x >= 32 || z < 0 || z >= 32;
+                    return x < 0 || x >= 32 || z < 0 || z >= 32;
 }
 
 int RegionFile::getOffset(int x, int z) {
-            return offsets[x + z * 32]; }
+                    return offsets[x + z * 32]; }
 
 bool RegionFile::hasChunk(int x, int z) {
-            return getOffset(
-                x,
-                z)  // 4J added - write the initial two sectors that used to be
-                    // written in the ctor// when the file was empty
-                void RegionFile::insertInitialSectors() {
-                m_saveFile->setFilePointer(fileEntry, 0, NULL, FILE_BEGIN);
-                DWORD numberOfBytesWritten = 0;
-                uint8_t zeroBytes[SECTOR_BYTES];
+                    return getOffset(x,
+                                     z)  // 4J added - write the initial two
+                                         // sectors that used to be written in
+                                         // the ctor// when the file was empty
+                        void RegionFile::insertInitialSectors() {
+                        m_saveFile->setFilePointer(fileEntry, 0, NULL,
+                                                   FILE_BEGIN);
+                        DWORD numberOfBytesWritten = 0;
+                        uint8_t zeroBytes[SECTOR_BYTES];
     ZeroMemory(zeroBytes, SECTOR_BYT/* we need to write the chunk offset table */
     m_saveFile->writeFile(fileEntry, zeroBytes, SECTOR_BYTES,
                           &numberOfBytesWritt// write another sector for the timestamp info
@@ -426,35 +450,37 @@ bool RegionFile::hasChunk(int x, int z) {
                           &numberOfBytesWritten);
 
     m_bIsEmpty = false;
-            }
+                    }
 
-            void RegionFile::setOffset(int x, int z, int offset) {
-                if (m_bIsEmpty) {
-                    insertInitialSe  // 4J added
-                }
+                    void RegionFile::setOffset(int x, int z, int offset) {
+                        if (m_bIsEmpty) {
+                            insertInitialSe  // 4J added
+                        }
 
-                DWORD numberOfBytesWritten = 0;
-                offsets[x + z * 32] = offset;
-                m_saveFile->setFilePointer(fileEntry, (x + z * 32) * 4, NULL,
-                                           FILE_BEGIN);
+                        DWORD numberOfBytesWritten = 0;
+                        offsets[x + z * 32] = offset;
+                        m_saveFile->setFilePointer(fileEntry, (x + z * 32) * 4,
+                                                   NULL, FILE_BEGIN);
 
-                m_saveFile->writeFile(fileEntry, &offset, 4,
-                                      &numberOfBytesWritten);
-            }
+                        m_saveFile->writeFile(fileEntry, &offset, 4,
+                                              &numberOfBytesWritten);
+                    }
 
-            void RegionFile::setTimestamp(int x, int z, int value) {
-                if (m_bIsEmpty) {
-                    insertInitialSe  // 4J added
-                }
+                    void RegionFile::setTimestamp(int x, int z, int value) {
+                        if (m_bIsEmpty) {
+                            insertInitialSe  // 4J added
+                        }
 
-                DWORD numberOfBytesWritten = 0;
-                chunkTimestamps[x + z * 32] = value;
-                m_saveFile->setFilePointer(fileEntry,
-                                           SECTOR_BYTES + (x + z * 32) * 4,
-                                           NULL, FILE_BEGIN);
+                        DWORD numberOfBytesWritten = 0;
+                        chunkTimestamps[x + z * 32] = value;
+                        m_saveFile->setFilePointer(
+                            fileEntry, SECTOR_BYTES + (x + z * 32) * 4, NULL,
+                            FILE_BEGIN);
 
-                m_saveFile->writeFile(fileEntry, &value, 4,
-                                      &numberOfBytesWritten);
-            }
+                        m_saveFile->writeFile(fileEntry, &value, 4,
+                                              &numberOfBytesWritten);
+                    }
 
-            void RegionFile::close() { m_saveFile->closeHandle(fileEntry); }
+                    void RegionFile::close() {
+                        m_saveFile->closeHandle(fileEntry);
+                    }

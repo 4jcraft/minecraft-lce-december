@@ -22,21 +22,19 @@ CustomLevelSource::CustomLevelSource(Level* level, __int64 seed,
     m_heightmapOverride = byteArray((m_XZSize * 16) * (m_XZSize * 16));
 
 #ifdef _UNICODE
-    std::wstring pat
-        "GAME:\\GameRules\\heightmap.bin"
+    std::wstring pat "GAME:\\GameRules\\heightmap.bin"
 #else #ifdef _WINDOWS64
-    std::stri "GameRules\\heightmap.bin"#else ;
-    
-    std : "GAME:\\GameRules\\heightmap.bin"#endif #endif;
-    
+    std::stri "GameRules\\heightmap.bin" #else;
+
+std:
+    "GAME:\\GameRules\\heightmap.bin" #endif #endif;
 
     HANDLE file = CreateFile(path.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING,
                              FILE_ATTRIBUTE_NORMAL, NULL);
     if (file == INVALID_HANDLE_VALUE) {
         app.FatalLoadError();
         DWORD error = GetLastError();
-        assert(false) #ifdef _DURANGO
-        __  // TODOeak();  
+        assert(false) #ifdef _DURANGO __  // TODOeak();
             DWORD bytesRead,
             d #elseSize = 0;
 
@@ -45,14 +43,14 @@ CustomLevelSource::CustomLevelSource(Level* level, __int64 seed,
         if (dwFileSize > m_heightmapOverride.length) {
             a"Heightmap binary is too large!!\n");
             __debugbreak();
-}
-BOOL bSuccess =
-    ReadFile(file, m_heightmapOverride.data, dwFileSize, &bytesRead, NULL);
+        }
+        BOOL bSuccess = ReadFile(file, m_heightmapOverride.data, dwFileSize,
+                                 &bytesRead, NULL);
 
-if (bSuccess == FALSE) {
-    app.FatalLoadError();
-}
-CloseHandle(file);
+        if (bSuccess == FALSE) {
+            app.FatalLoadError();
+        }
+        CloseHandle(file);
     }
 
     m_waterheightOverride = byteArray((m_XZSize * 16) * (m_
@@ -74,15 +72,13 @@ CloseHandle(file);
         memset(m_waterheightOverride.data, level->seaLevel,
                m_waterheightO#ifdef _DURANGO;
     } else {
-            // TODO      __debugbreak();  
-            DWO #elsetesRead,
-            dwFileSize = 0;
-        
-        DWORD bytesRead,
-            dwFileSi #endifetFileSize(file, NULL);
+        // TODO      __debugbreak();
+        DWO #elsetesRead, dwFileSize = 0;
+
+        DWORD bytesRead, dwFileSi #endifetFileSize(file, NULL);
 
         if (dwFileSize > m_waterheightOverride.length) "waterheight binary is too large!!\n");
-__debugbreak();
+        __debugbreak();
         }
         BOOL bSuccess = ReadFile(file, m_waterheightOverride.data, dwFileSize,
                                  &bytesRead, NULL);
@@ -107,13 +103,9 @@ pprandom  // 4J - added, so that we can have a separate random for
           // doing// post-processing in parallel with
           // creation
     perlinNoise3 #endifPerlinNoise(random, 4);
-
-
-
 }
 
 CustomLevelS#ifdef _OVERRIDE_HEIGHTMAP) {
-    
     delete caveFeature;
     delete strongholdFeature;
     delete villageFeature;
@@ -123,14 +115,10 @@ CustomLevelS#ifdef _OVERRIDE_HEIGHTMAP) {
     this->level = level;
 
     delete ran #endif delete perlinNoise3;
-    
-
-
 }
 
 void CustomLevelSource::prepareHeights(int xOffs,
                                        i #ifdef _OVERRIDE_HEIGHTMAP) {
-    
     int xChunks = 16 / CHUNK_WIDTH;
     int yChunks = Level::maxBuildHeight / CHUNK_HEIGHT;
     int waterHeight = level->seaLevel;
@@ -171,21 +159,20 @@ void CustomLevelSource::prepareHeights(int xOffs,
                             const int falloffStart =
                                 // chunks away from edge were we
                                 // start doing
-                                // fall-off             
+                                // fall-off
                                 const float falloffMax =
                                     // max value we need to get to
                                     // falloff by
                                     // the edge of the map
-                                    // 
+                                    //
 
                                 int xxx =
                                     ((xOffs * 16) + x + (xc * CHUNK_WIDTH));
                             int zzz =
                                 ((zOffs * 16) + z +
-                                 (zc *
-                                  CHUNK_WIDTH));  // Get distance to edges of
-                                                  // world in
-                                                  // x
+                                 (zc * CHUNK_WIDTH));  // Get distance to edges
+                                                       // of world in
+                                                       // x
                             int xxx0 = xxx + (worldSize / 2);
                             if (xxx0 < 0) xxx0 = 0;
                             int xxx1 = ((worldSize / 2) - 1) - xxx;
@@ -214,12 +201,9 @@ void CustomLevelSource::prepareHeights(int xOffs,
                                        falloffMax;
                                 // 4J - end of extra code
                                 // ///////////////////////////////////////////////////////////////////
-                                int tileId =
-                                    0  // 4J - this comparison used to just be
-                                       // with
-                                       // 0.0f//
-                                       // but is now varied by block
-                                       // above
+                                int tileId = 0  // 4J - this comparison used to
+                                                // just be with 0.0f// but is
+                                                // now varied by block above
                                     if (yc * CHUNK_HEIGHT + y < mapHeight) {
                                     tileId = (uint8_t)Tile::stone_Id;
                                 }
@@ -232,14 +216,14 @@ void CustomLevelSource::prepareHeights(int xOffs,
                                    // match the infinite sea that continues on
                                    // after// the
                                    // edge of the world.
-                                   // 
+                                   //
 
                                 if (emin == 0) {
                                     // This matches code in
                                     // MultiPlayerChunkCache
                                     // that makes the geometry which continues
                                     // at the edge
-                                    // of the world 
+                                    // of the world
                                     if (yc * CHUNK_HEIGHT + y <=
                                         (level->getSeaLevel() - 10))
                                         tileId = Tile::stone_Id;
@@ -268,12 +252,9 @@ void CustomLevelSource::prepareHeights(int xOffs,
                         }
                     }
 #endif }
-                }
-            }
-            
-
-        
-        }
+}
+}
+}
 
 void CustomLevelSource::buildSurfaces(int xOffs, int zOffs, byteArray blocks,
 #ifdef _OVERRIDE_HEIGHTMAP) {
@@ -292,36 +273,36 @@ void CustomLevelSource::buildSurfaces(int xOffs, int zOffs, byteArray blocks,
                                           0, 16, 16, 1, s * 2, s * 2, s * 2);
 
     for (int x = 0; x < 16; x++) {
-            for (int z = 0; z < 16; z++) {
-                int mapIndex = (zMapStart * 16 + z) * (m_XZSize * 16) +
-                               (xMapStart * 16 + x);
-                waterHeight = m_waterheightOverride[mapIndex];
+    for (int z = 0; z < 16; z++) {
+        int mapIndex =
+            (zMapStart * 16 + z) * (m_XZSize * 16) + (xMapStart * 16 + x);
+        waterHeight = m_waterheightOverride[mapIndex];
 
-                Biome* b = biomes[z + x * 16];
-                float temp = b->getTemperature();
-                int runDepth = (int)(depthBuffer[x + z * 16] / 3 + 3 +
-                                     random->nextDouble() * 0.25);
+        Biome* b = biomes[z + x * 16];
+        float temp = b->getTemperature();
+        int runDepth = (int)(depthBuffer[x + z * 16] / 3 + 3 +
+                             random->nextDouble() * 0.25);
 
-                int run = -1;
+        int run = -1;
 
-                uint8_t top = b->topMaterial;
-                uint8_t material = b->material;
+        uint8_t top = b->topMaterial;
+        uint8_t material = b->material;
 
-                LevelGenerationOptions* lgo = app.getLevelGenerationOptions();
-                if (lgo != NULL) {
-                    lgo->getBiomeOverride(b->id, material, top);
-                }
+        LevelGenerationOptions* lgo = app.getLevelGenerationOptions();
+        if (lgo != NULL) {
+            lgo->getBiomeOverride(b->id, material, top);
+        }
 
-                for (int y = Level::maxBuildHeight - 1; y >= 0; y--) {
-                    int indexY = y;
-                    int offsAdjustment = 0;
-                    if (indexY >= Level::COMPRESSED_CHUNK_SECTION_HEIGHT) {
-                        indexY -= Level::COMPRESSED_CHUNK_SECTION_HEIGHT;
-                        offsAdjustment = Level::COMPRESSED_CHUNK_SECTION_TILES;
-                    }
-                    int offs = (x << Level::genDepthBitsPlusFour |
-                                z << Level::genDepthBits | indexY) +
-                               offsAdjustment;
+        for (int y = Level::maxBuildHeight - 1; y >= 0; y--) {
+            int indexY = y;
+            int offsAdjustment = 0;
+            if (indexY >= Level::COMPRESSED_CHUNK_SECTION_HEIGHT) {
+                indexY -= Level::COMPRESSED_CHUNK_SECTION_HEIGHT;
+                offsAdjustment = Level::COMPRESSED_CHUNK_SECTION_TILES;
+            }
+            int offs = (x << Level::genDepthBitsPlusFour |
+                        z << Level::genDepthBits | indexY) +
+                       offsAdjustment;
 
                 if (y <= 1 + random->nextInt(
         // 4J - changed to make the bedrock not
@@ -329,73 +310,62 @@ void CustomLevelSource::buildSurfaces(int xOffs, int zOffs, byteArray blocks,
         //                if (y <= 0 +
         //                random->nextInt(5))
                 {
-                        blocks[offs] = (uint8_t)Tile::unbreakable_Id;
+                blocks[offs] = (uint8_t)Tile::unbreakable_Id;
                 } else {
-                        int old = blocks[offs];
+                int old = blocks[offs];
 
-                        if (old == 0) {
-                            run = -1;
-                        } else if (old == Tile::stone_Id) {
-                            if (run == -1) {
-                                if (runDepth <= 0) {
-                                    top = 0;
-                                    material = (uint8_t)Tile::stone_Id;
-                                } else if (y >= waterHeight - 4 &&
-                                           y <= waterHeight + 1) {
-                                    top = b->topMaterial;
-                                    material = b->material;
-                                    if (lgo != NULL) {
-                                        lgo->getBiomeOverride(b->id, material,
-                                                              top);
-                                    }
-                                }
-
-                                if (y < waterHeight && top == 0) {
-                                    if (temp < 0.15f)
-                                        top = (uint8_t)Tile::ice_Id;
-                                    else
-                                        top = (uint8_t)Tile::calmWater_Id;
-                                }
-
-                                run = runDepth;
-                                if (y >= waterHeight - 1)
-                                    blocks[offs] = top;
-                                else
-                                    blocks[offs] = material;
-                            } else if (run > 0) {
-                                run--;
-                                blocks[offs] =
-                                    material;  // place a few sandstone blocks
-                                               // beneath
-                                               // sand//
-                                               // runs 
-                                if (run == 0 && material == Tile::sand_Id) {
-                                    run = random->nextInt(4);
-                                    material = (uint8_t)Tile::sandStone_Id;
-                                }
+                if (old == 0) {
+                    run = -1;
+                } else if (old == Tile::stone_Id) {
+                    if (run == -1) {
+                        if (runDepth <= 0) {
+                            top = 0;
+                            material = (uint8_t)Tile::stone_Id;
+                        } else if (y >= waterHeight - 4 &&
+                                   y <= waterHeight + 1) {
+                            top = b->topMaterial;
+                            material = b->material;
+                            if (lgo != NULL) {
+                                lgo->getBiomeOverride(b->id, material, top);
                             }
                         }
+
+                        if (y < waterHeight && top == 0) {
+                            if (temp < 0.15f)
+                                top = (uint8_t)Tile::ice_Id;
+                            else
+                                top = (uint8_t)Tile::calmWater_Id;
+                        }
+
+                        run = runDepth;
+                        if (y >= waterHeight - 1)
+                            blocks[offs] = top;
+                        else
+                            blocks[offs] = material;
+                    } else if (run > 0) {
+                        run--;
+                        blocks[offs] = material;  // place a few sandstone
+                                                  // blocks beneath sand// runs
+                        if (run == 0 && material == Tile::sand_Id) {
+                            run = random->nextInt(4);
+                            material = (uint8_t)Tile::sandStone_Id;
+                        }
+                    }
                 }
                 }
-            }
+        }
+    }
     }
 #endifete[] depthBuffer.data;
-
-
-    
-    }
-
-LevelChunk* CustomLevelS#ifdef _OVERRIDE_HEIGHTMAP) {
-#else  return getChunk(#endif
-
-    return NULL;
-
-
-
 }
 
-LevelChunk* CustomLevelSource::get#ifdef _OVERRIDE_HEIGHTMAP) {
+LevelChunk* CustomLevelS#ifdef _OVERRIDE_HEIGHTMAP) {
+#else return getChunk(#endif
 
+    return NULL;
+    }
+
+LevelChunk* CustomLevelSource::get#ifdef _OVERRIDE_HEIGHTMAP) {
     random->setSeed(xOffs * 341873128712l +// 4J - now allocating this with a physical alloc & bypassing general memory// management so that it will get cleanly freed
     int blocksSize = Level::maxBuildHeight * 16 * 16;
     uint8_t* tileData =
@@ -428,122 +398,101 @@ LevelChunk* CustomLevelSource::get#ifdef _OVERRIDE_HEIGHTMAP) {
 // 4J - removed & moved into its own method from getChunk, so we can call// recalcHeightmap after the chunk is added into the cache. Without doing this,// then loads of the lightgaps() calls will fail to add any lights, because// adding a light checks if the cache has this chunk in. lightgaps also does// light 1 block into the neighbouring chunks, and maybe that is somehow enough// to get lighting to propagate round the world, but this just doesn't seem// right - this isn't a new fault in the 360 version, have checked that java// does the same.
 
 void CustomLevelSource:#ifdef _OVERRIDE_HEIGHTMAP) {
-                #endif lc->recalcHeightmap();
-                
+#endif lc->recalcHeightmap();
 }
 
-bool CustomLevelSource::hasChunk(int x, int y) {
-                return true; }
+bool CustomLevelSource::hasChunk(int x, int y) { return true; }
 
-void CustomLevelSource::calcWaterDepths(ChunkSour#ifdef _OVERRIDE_HEIGHTMAP) {
-                
+void CustomLevelSource::calcWaterDepths(ChunkSour #ifdef _OVERRIDE_HEIGHTMAP) {
     int xo = xt * 16;
-                int zo = zt * 16;
-                for (int x = 0; x < 16; x++) {
-                    int y = level->getSeaLevel();
-                    for (int z = 0; z < 16; z++) {
-                        int xp = xo + x + 7;
-                        int zp = zo + z + 7;
-                        int h = level->getHeightmap(xp, zp);
-                        if (h <= 0) {
-                            if (level->getHeightmap(xp - 1, zp) > 0 ||
-                                level->getHeightmap(xp + 1, zp) > 0 ||
-                                level->getHeightmap(xp, zp - 1) > 0 ||
-                                level->getHeightmap(xp, zp + 1) > 0) {
-                                bool hadWater = false;
-                                if (hadWater ||
-                                    (level->getTile(xp - 1, y, zp) ==
-                                         Tile::calmWater_Id &&
-                                     level->getData(xp - 1, y, zp) < 7))
-                                    hadWater = true;
-                                if (hadWater ||
-                                    (level->getTile(xp + 1, y, zp) ==
-                                         Tile::calmWater_Id &&
-                                     level->getData(xp + 1, y, zp) < 7))
-                                    hadWater = true;
-                                if (hadWater ||
-                                    (level->getTile(xp, y, zp - 1) ==
-                                         Tile::calmWater_Id &&
-                                     level->getData(xp, y, zp - 1) < 7))
-                                    hadWater = true;
-                                if (hadWater ||
-                                    (level->getTile(xp, y, zp + 1) ==
-                                         Tile::calmWater_Id &&
-                                     level->getData(xp, y, zp + 1) < 7))
-                                    hadWater = true;
-                                if (hadWater) {
-                                    for (int x2 = -5; x2 <= 5; x2++) {
-                                        for (int z2 = -5; z2 <= 5; z2++) {
-                                            int d = (x2 > 0 ? x2 : -x2) +
-                                                    (z2 > 0 ? z2 : -z2);
+    int zo = zt * 16;
+    for (int x = 0; x < 16; x++) {
+        int y = level->getSeaLevel();
+        for (int z = 0; z < 16; z++) {
+            int xp = xo + x + 7;
+            int zp = zo + z + 7;
+            int h = level->getHeightmap(xp, zp);
+            if (h <= 0) {
+                if (level->getHeightmap(xp - 1, zp) > 0 ||
+                    level->getHeightmap(xp + 1, zp) > 0 ||
+                    level->getHeightmap(xp, zp - 1) > 0 ||
+                    level->getHeightmap(xp, zp + 1) > 0) {
+                    bool hadWater = false;
+                    if (hadWater ||
+                        (level->getTile(xp - 1, y, zp) == Tile::calmWater_Id &&
+                         level->getData(xp - 1, y, zp) < 7))
+                        hadWater = true;
+                    if (hadWater ||
+                        (level->getTile(xp + 1, y, zp) == Tile::calmWater_Id &&
+                         level->getData(xp + 1, y, zp) < 7))
+                        hadWater = true;
+                    if (hadWater ||
+                        (level->getTile(xp, y, zp - 1) == Tile::calmWater_Id &&
+                         level->getData(xp, y, zp - 1) < 7))
+                        hadWater = true;
+                    if (hadWater ||
+                        (level->getTile(xp, y, zp + 1) == Tile::calmWater_Id &&
+                         level->getData(xp, y, zp + 1) < 7))
+                        hadWater = true;
+                    if (hadWater) {
+                        for (int x2 = -5; x2 <= 5; x2++) {
+                            for (int z2 = -5; z2 <= 5; z2++) {
+                                int d =
+                                    (x2 > 0 ? x2 : -x2) + (z2 > 0 ? z2 : -z2);
 
-                                            if (d <= 5) {
-                                                d = 6 - d;
-                                                if (level->getTile(xp + x2, y,
-                                                                   zp + z2) ==
-                                                    Tile::calmWater_Id) {
-                                                    int od = level->getData(
-                                                        xp + x2, y, zp + z2);
-                                                    if (od < 7 && od < d) {
-                                                        level->setData(
-                                                            xp + x2, y, zp + z2,
-                                                            d,
-                                                            Tile::
-                                                                UPDATE_CLIENTS);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    if (hadWater) {
-                                        level->setTileAndData(
-                                            xp, y, zp, Tile::calmWater_Id, 7,
-                                            Tile::UPDATE_CLIENTS);
-                                        for (int y2 = 0; y2 < y; y2++) {
-                                            level->setTileAndData(
-                                                xp, y2, zp, Tile::calmWater_Id,
-                                                8, Tile::UPDATE_CLIENTS);
+                                if (d <= 5) {
+                                    d = 6 - d;
+                                    if (level->getTile(xp + x2, y, zp + z2) ==
+                                        Tile::calmWater_Id) {
+                                        int od =
+                                            level->getData(xp + x2, y, zp + z2);
+                                        if (od < 7 && od < d) {
+                                            level->setData(
+                                                xp + x2, y, zp + z2, d,
+                                                Tile::UPDATE_CLIENTS);
                                         }
                                     }
                                 }
                             }
+                        }
+                        if (hadWater) {
+                            level->setTileAndData(xp, y, zp, Tile::calmWater_Id,
+                                                  7, Tile::UPDATE_CLIENTS);
+                            for (int y2 = 0; y2 < y; y2++) {
+                                level->setTileAndData(xp, y2, zp,
+                                                      Tile::calmWater_Id, 8,
+                                                      Tile::UPDATE_CLIENTS);
+                            }
+                        }
+                    }
+                }
 #endif  // 4J - changed this to used pprandom rather than random, so that we can
         // run it// concurrently with getChunk
-                            
-void CustomLevelSource::postProcess(ChunkSour #ifdef _OVERRIDE_HEIGHTMAP) {
-                                
-    HeavyTile::instaFall = true;
-                                int xo = xt * 16;
-                                int zo = zt * 16;
 
-                                Biome* biome =
-                                    level->getBiome(xo + 16, zo + 16);
+        void CustomLevelSource::postProcess(
+            ChunkSour #ifdef _OVERRIDE_HEIGHTMAP) {
 
-                                if (CustomLevelSource::FLOATING_ISLANDS) {
-                                    calcWaterDepths(parent, xt, zt);
-                                }
+        HeavyTile::instaFall = true;
+        int xo = xt * 16;
+        int zo = zt * 16;
 
-                                pprandom->setSeed(level->getSeed());
-                                __int64 xScale =
-                                    pprandom->nextLong() / 2 * 2 + 1;
-                                __int64 zScale =
-                                    pprandom->nextLong() / 2 * 2 + 1;
-                                pprandom->setSeed(
-                                    ((xt * xScale) + (zt * zScale)) ^
-                                    level->getSeed());
+        Biome* biome = level->getBiome(xo + 16, zo + 16);
 
-                                bool hasVillage =
-                                    fals "Structure postprocessing"(
-                                        0, );
-                                if (generateStructures) {
-                                    mineShaftFeature->postProcess(
-                                        level, pprandom, xt, zt);
-                                    hasVillage = villageFeature->postProcess(
-                                        level, pprandom, xt, zt);
-                                    strongholdFeature->postProcess(
-                                        level, pprandom, xt, zt);
-                                    scatteredFeature->postProcess(level, random,
-                                                                  xt, zt);
+        if (CustomLevelSource::FLOATING_ISLANDS) {
+            calcWaterDepths(parent, xt, zt);
+        }
+
+        pprandom->setSeed(level->getSeed());
+        __int64 xScale = pprandom->nextLong() / 2 * 2 + 1;
+        __int64 zScale = pprandom->nextLong() / 2 * 2 + 1;
+        pprandom->setSeed(((xt * xScale) + (zt * zScale)) ^ level->getSeed());
+
+        bool hasVillage = fals "Structure postprocessing"(0, );
+        if (generateStructures) {
+            mineShaftFeature->postProcess(level, pprandom, xt, zt);
+            hasVillage = villageFeature->postProcess(level, pprandom, xt, zt);
+            strongholdFeature->postProcess(level, pprandom, xt, zt);
+            scatteredFeature->postProcess(level, random, xt, zt);
 
 #if 0 PIXEndNamedEvent(); "Lakes"
 	PIXBeginNamedEvent(0,);

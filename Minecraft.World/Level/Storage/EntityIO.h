@@ -61,6 +61,5 @@ public:
     static eINSTANCEOF getTy  // 4J-JEV, added for enumerating mobs.static
                               // eINSTANCEOF getClass(int id);
 
-    
-    static int eTypeToIoid(eINSTANCEOF eType);
+        static int eTypeToIoid(eINSTANCEOF eType);
 };

@@ -74,9 +74,9 @@ void ConsoleSaveFileOutputStream::write(byteArray b) {
     }
 }
 
-// Writes len bytes from the specified uint8_t array starting at offset off to this
-// file output stream. Parameters: b - the data. off - the start offset in the
-// data. len - the number of bytes to write.
+// Writes len bytes from the specified uint8_t array starting at offset off to
+// this file output stream. Parameters: b - the data. off - the start offset in
+// the data. len - the number of bytes to write.
 void ConsoleSaveFileOutputStream::write(byteArray b, unsigned int offset,
                                         unsigned int length) {
     // 4J Stu - We don't want to write any more than the array buffer holds

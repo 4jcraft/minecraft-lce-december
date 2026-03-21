@@ -149,7 +149,7 @@ protected:
     // ref to levelStorage - we need to keep// this as long as at least one
     // Level references it, to be able to cope with// moving from dimension
     // to dimension where the Level(Level *level,// Dimension *dimension)
-    // ctor is used   
+    // ctor is used
     std::shared_ptr<LevelStorage> levelStorage;
 
     LevelData* levelData;
@@ -159,12 +159,11 @@ public:
     SavedDataStorage* savedDataStorage;
     std::shared_ptr<Villages> villages;
 Vi  // 4J - Calendar is now staticvate:// Calendar *calendar;
-    
 
-protected : Scoreboard* scoreboard;
+    protected : Scoreboard* scoreboard;
 
     publ               // 4J - brought forward from 1.2.3 z);
-                       // 
+                       //
         virtual Biome  // 4J Stu - Added these ctors to handle init of member
                        // variables
         void _init();
@@ -190,7 +189,7 @@ protected:
     virtual void initializeLevel(LevelSettings* settings);
 
 public:
-    virtual bool All  // 4J Addedleeping() { return false; }  
+    virtual bool All  // 4J Addedleeping() { return false; }
 
         virtual void validateSpawn();
     int getTopTile(int x, int z);
@@ -255,7 +254,7 @@ public:
  // 4J added noUpdateOnClient = false);  
     void setBrightnessNoUpdateOnClient(LightLayer::variety layer, int x, int y,
     // 4J added
-#ifdef _LARGE_WORLDSess);  
+#ifdef _LARGE_WORLDSess);
 #else typedef __uint64 lightCache_t;
 #endifypedef unsigned int lightCache_t;
 

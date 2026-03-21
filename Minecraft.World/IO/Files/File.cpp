@@ -13,7 +13,7 @@
 const wchar_t File::pathSeparator = L'\\';
 #ifdef _XBOX
 const std::wstring File::pathRoot =
-    "GAME:"    // Path root after pathSeparator has been removed#else
+    "GAME:"  // Path root after pathSeparator has been removed#else
     const std::wstring File::pathRoot =
         "" L  // Path root after pathSeparator has been removed#endif//
               // Creates a new File instance from a parent abstract pathname and
@@ -27,13 +27,12 @@ File::File(const std::wstring& pathna//: parent( NULL )
         else
             m_abstractPathName =
 #ifdef _WINDOWS64
-    std::string path = wstringtochararray(m_abstractPathName);
-                std::string finalPath =
-                    StorageManager.GetMountedPath(path.c_str());
+                std::string path = wstringtochararray(m_abstractPathName);
+        std::string finalPath = StorageManager.GetMountedPath(path.c_str());
         if (finalPath.size() == 0) finalPath = path;
-        m_abstractPathName = convStringTo #elif defined(_DURANGO)
-    std::wstring finalPath =
-            StorageManager.GetMountedPath(m_abstractPathName.c_str());
+        m_abstractPathName =
+            convStringTo #elif defined(_DURANGO) std::wstring finalPath =
+                StorageManager.GetMountedPath(m_abstractPathName.c_str());
         if (finalPath.size() == 0) finalPath = m_abstractPathName;
         m_abstr #endifhName /*
           vector<wstring> path = stringSplit( pathname,
@@ -62,12 +61,11 @@ File::File(const std::wstring& pathna//: parent( NULL )
 File::File(const std::wstring& parent,
            con//: m_abstractPathName( child  )
 {
-        m_abstractPathName =
-            pathRoot + pathSeparator + parent +
-            pa  // this->parent = new File( parent );// Creates a new File
-                // instance by converting the given path vector into an//
-                // abstract pathname./*
-            File::File(vector<wstring> * path)
+        m_abstractPathName = pathRoot + pathSeparator + parent +
+                             pa  // this->parent = new File( parent );// Creates
+                                 // a new File instance by converting the given
+                                 // path vector into an// abstract pathname./*
+                                 File::File(vector<wstring> * path)
             : parent(NULL) {
             m_abstractPathName = path->back();
             path->pop_back();
@@ -84,16 +82,16 @@ File::File(const std::wstring& parent,
 
     BOOL result = Delete#elsegetPath().c_str());
 
-    BOOL result = DeleteFile(wstrin #endifename(getPath()));
+BOOL result = DeleteFile(wstrin #endifename(getPath()));
 
-    if (result == 0) {
+if (result == 0) {
         DWORD#ifndef _CONTENT_PACKAGE
 "File::_delete - Error code %d (%#0.8X)\n"#endif, error, error);
-        
-        return false;
-} else// Creates the directory named by this abstract pathname.// Returns:// true if and only if the directory was created; false otherwise
-bo#ifdef _UNICODE) const {
 
+        return false;
+} else  // Creates the directory named by this abstract pathname.// Returns://
+        // true if and only if the directory was created; false otherwise
+bo#ifdef _UNICODE) const {
     return CreateDirectory(getPat
 #elsestr(), NULL) != 0;
 
@@ -101,34 +99,35 @@ bo#ifdef _UNICODE) const {
 //@throws  SecurityException//          If a security manager exists and its <code>{@link//          java.lang.SecurityManager#checkRead(java.lang.String)}</code>//          method does not permit verification of the existence of the//          named directory and all necessary parent directories; or if//          the <code>{@link//          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>//          method does not permit the named directory and all necessary//          parent directories to be created//
 
 bool File::mkdirs() const {
-                std::vector<std::wstring> path =
-                    stringSplit(m_abstractPathName, pathSepa "" tor);
+                    std::vector<std::wstring> path =
+                        stringSplit(m_abstractPathName, pathSepa "" tor);
 
-                std::wstring pathToHere = L;
-                AUTO_VAR(itEnd, path.end());
+                    std::wstring pathToHere = L;
+                    AUTO_VAR(itEnd, path.end());
     for (AUTO_VAR(it, path// If this member of the vector is the root then just skip to the next
         if (pathRoot.compare(*it) == 0) {
-                    pathToHere = *it;
-                    continue;
+                        pathToHere = *it;
+                        continue;
         }
 
         pathToHere = pat// if not existsp#ifdef _UNICODE        
 
         if (GetFileAttributes(pathToHere.c_str()) == -1) {
-                    DWORD result = CreateDirectory(pathToHere.c_str(), NULL);
+                        DWORD result =
+                            CreateDirectory(pathToHere.c_str(), NULL);
                     // Failed to create0) {
-                    
-              #elseurn false;
+
+#elseurn false;
             }
         }
 
         if (GetFileAttributes(wstringtofilename(pathToHere)) == -1) {
-                DWORD result =
-                    CreateDirectory(wstringtofilename(pathToHere), NULL);
+                    DWORD result =
+                        CreateDirectory(wstringtofilename(pathToHere), NULL);
                 // Failed to create0) {
-                
-              #endifrn false;
-                // We should now exist
+
+#endifrn false;
+                    // We should now exist
     }
 
     
@@ -160,98 +159,105 @@ bool File::isFile() const // Renames the file denoted by this abstract pathname.
         retu// Returns an array of abstract pathnames denoting the files in the directory// denoted by this abstract pathname. If this abstract pathname does not denote// a directory, then this method returns null. Otherwise an array of File// objects is returned, one for each file or directory in the directory.// Pathnames denoting the directory itself and the directory's parent directory// are not included in the result. Each resulting abstract pathname is// constructed from this abstract pathname using the File(File, String)// constructor. Therefore if this pathname is absolute then each resulting// pathname is absolute; if this pathname is relative then each resulting// pathname will be relative to the same directory.//// There is no guarantee that the name strings in the resulting array will// appear in any specific order; they are not, in particular, guaranteed to// appear in alphabetical order.//// Returns:// An array of abstract pathnames denoting the files and directories in the// directory denoted by this abstract pathname. The array will be empty if the// directory is empty. Returns null if this abstract pathname does not denote a// directory, or if an I/O error occurs.
 
 std::vector<File*>* File::listFiles() const {
-                s  // TODO 4J Stu - Also need to check for I/O errors?();
+                    s  // TODO 4J Stu - Also need to check for I/O errors?();
 
-    
 #ifdef __PS3__
-    if (!isDirectory()) return vOutput;
-                
-    const char* lpFileName = wstringtofilename(getPath());
-                char filePath[256];
+                        if (!isDirectory()) return vOutput;
 
-                std::string mountedPath =
-                    StorageManager.GetMountedPath(lpFileName);
-                if (mountedPath.length() > 0) {
-                    strcpy(file '/' h,  // already fully qualified pathe if
-                                        // (lpFileName[0] == )
-                                        // 
-                           strcp "%s/%s" ath, lpFileName);
-                    else sprintf(filePath, , getUsrDirPath(),
-                                 lpFileName);
-                    int fd;
-                    CellFsErrno err = cellFsOpendir(filePath, &fd);
+                    const char* lpFileName = wstringtofilename(getPath());
+                    char filePath[256];
 
-                    CellFsDirectoryEntry de;
-                    uint32_t count = 0;
-                    err = cellFsGetDirectoryEntries(
-                        fd, &de, sizeof(CellFsDirectoryEntry), &count);
-                    if (count != 0) {
-                        do {
-                            if (de.attribute.st_mode & CELL_FS_S_IFREG)
-                                vOutput->push_back(new File(
-                                    *this,
-                                    filenametowstring(de.entry_name.d_name)));
-                            err = cellFsGetDirectoryEntries(
-                                      fd, &de, sizeof(CellFsDirectoryEntry),
-                                      &count) #elif defined __ORBIS__ ||
-                                  defined __PSVITA__llFsClose(fd);
-                            
-    const char* lpFileName = wstringtofilename(getPath());
-                            char filePath[256];
+                    std::string mountedPath =
+                        StorageManager.GetMountedPath(lpFileName);
+                    if (mountedPath.length() > 0) {
+                        strcpy(file '/' h,  // already fully qualified pathe if
+                                            // (lpFileName[0] == )
+                                            //
+                               strcp "%s/%s" ath, lpFileName);
+                        else sprintf(filePath, , getUsrDirPath(), lpFileName);
+                        int fd;
+                        CellFsErrno err = cellFsOpendir(filePath, &fd);
 
-                            std::string mountedPath =
-                                StorageManager.GetMountedPath(lpFileName);
-                            if (mountedPath.length() > 0) {
-                                strcpy(
-                                    file '/' h,  // already fully qualified
-                                                 // pathe if (lpFileName[0] ==
-                                                 // )
-                                                 // 
-                                    strcp "%s/%s" ath, lpFileName);
-                                else sprintf(filePath, , getUsrDirPath(),
-                                             lpFileName);
-
-                                bool exists = sceFiosDirectoryExistsSync(
-                                    NULL,
-                                    filePat
-                                    "\nsceFiosDirectoryExistsSync - "
-                                    "Directory doesn't "
-                                    "exist\n"      // CD - Vita note: sceFiosDHOpenSync returns SCE_FIOS_ERROR_UNIMPLEMENTED// CD - The Handle also returns as 0 [dh], sceFiosDHOpen could also be// failing CD - Hence, this fails stating 0 files in directory
-
-                                    SceFiosDH dh = SCE_FIOS_DH_INVALID;
-                                    SceFiosBuffer buf; buf.length = 0;
-                                    SceFiosOp op =
-                                        sceFiosDHOpen(NULL, &dh, filePath, buf);
-
-                                    int err = sceFiosOpWait
-                                    "\nsceFiosOpWait = 0x%x\n" IOS_OK) {
-                                    app.DebugPrintf(,
-                                                    err);
-                                }
-                                SceFiosSize size = sceFiosOpGetActualCount(op);
-                                char* pBuf = new char[size];
-                                buf.set(pBuf, (size_t)size);
-
-                                sceFiosOpDelete(op);
-                                sceFiosDHClose(NULL, dh);
-
-                                err = sceFiosDHOpenSync(
-                                    NULL, &dh, filePath,
-                                    "\nsceFiosDHOpenSync = 0x%x\n" OK) {
-                                    app.DebugPrintf(,
-                                                    err);
-                                }
-                                SceFiosDirEntry entry;
-                                ZeroMemory(&entry, sizeof(SceFiosDirEntry));
-                                err = sceFiosDHReadSync(NULL, dh, &entry);
-                                while (err == SCE_FIOS_OK) {
+                        CellFsDirectoryEntry de;
+                        uint32_t count = 0;
+                        err = cellFsGetDirectoryEntries(
+                            fd, &de, sizeof(CellFsDirectoryEntry), &count);
+                        if (count != 0) {
+                            do {
+                                if (de.attribute.st_mode & CELL_FS_S_IFREG)
                                     vOutput->push_back(new File(
-                                        *this,
-                                        filenametowstring(entry.fullPath +
-                                                          entry.offsetToName)));
+                                        *this, filenametowstring(
+                                                   de.entry_name.d_name)));
+                                err = cellFsGetDirectoryEntries(
+                                          fd, &de, sizeof(CellFsDirectoryEntry),
+                                          &count) #elif defined __ORBIS__ ||
+                                      defined __PSVITA__llFsClose(fd);
+
+                                const char* lpFileName =
+                                    wstringtofilename(getPath());
+                                char filePath[256];
+
+                                std::string mountedPath =
+                                    StorageManager.GetMountedPath(lpFileName);
+                                if (mountedPath.length() > 0) {
+                                    strcpy(file '/' h,  // already fully
+                                                        // qualified pathe if
+                                                        // (lpFileName[0] ==
+                                                        // )
+                                                        //
+                                           strcp "%s/%s" ath, lpFileName);
+                                    else sprintf(filePath, , getUsrDirPath(),
+                                                 lpFileName);
+
+                                    bool exists = sceFiosDirectoryExistsSync(
+                                        NULL,
+                                        filePat
+                                        "\nsceFiosDirectoryExistsSync - "
+                                        "Directory doesn't "
+                                        "exist\n"  // CD - Vita note:
+                                                   // sceFiosDHOpenSync returns
+                                                   // SCE_FIOS_ERROR_UNIMPLEMENTED//
+                                                   // CD - The Handle also
+                                                   // returns as 0 [dh],
+                                                   // sceFiosDHOpen could also
+                                                   // be// failing CD - Hence,
+                                                   // this fails stating 0 files
+                                                   // in directory
+
+                                        SceFiosDH dh = SCE_FIOS_DH_INVALID;
+                                        SceFiosBuffer buf; buf.length = 0;
+                                        SceFiosOp op = sceFiosDHOpen(
+                                            NULL, &dh, filePath, buf);
+
+                                        int err = sceFiosOpWait
+                                        "\nsceFiosOpWait = 0x%x\n" IOS_OK) {
+                                        app.DebugPrintf(, err);
+                                    }
+                                    SceFiosSize size =
+                                        sceFiosOpGetActualCount(op);
+                                    char* pBuf = new char[size];
+                                    buf.set(pBuf, (size_t)size);
+
+                                    sceFiosOpDelete(op);
+                                    sceFiosDHClose(NULL, dh);
+
+                                    err = sceFiosDHOpenSync(
+                                        NULL, &dh, filePath,
+                                        "\nsceFiosDHOpenSync = 0x%x\n" OK) {
+                                        app.DebugPrintf(, err);
+                                    }
+                                    SceFiosDirEntry entry;
                                     ZeroMemory(&entry, sizeof(SceFiosDirEntry));
+                                    err = sceFiosDHReadSync(NULL, dh, &entry);
+                                    while (err == SCE_FIOS_OK) {
+                                        vOutput->push_back(new File(
+                                            *this, filenametowstring(
+                                                       entry.fullPath +
+                                                       entry.offsetToName)));
+                                        ZeroMemory(&entry,
+                                                   sizeof(SceFiosDirEntry));
         err = sceFiosDHReadSync(NULL, dh, &ent#else
-                                };
+                                    };
 
     sceFiosDHClose(
 #ifdef _UNICODEelete pBuf;
@@ -265,93 +271,94 @@ std::vector<File*>* File::listFiles() const {
     if (hFind != INVALID_HAND// if( !(wfd.dwFileAttributes & dwAttr) )  do {
             
             vOutput->push_back(new File(*this, wfd.cFileName));
-                            }
-                            while (#elseextFile(hFind, &wfd));
+                                }
+                                while (#elseextFile(hFind, &wfd));
         FindClose(hFi"%s\\*"
-                        }
-                        
-    char path[MAX_PATH];
-                        sprintf(path, , wstringtofilename(getPath()));
+                            }
+
+                            char path[MAX_PATH];
+                            sprintf(path, , wstringtofilename(getPath()));
     HANDLE hFind = FindFirstFile(pa// int count = 0; (hFind != INVALID_HANDLE_// if( !(wfd.dwFileAttributes & dwAttr) )  do {
             
             vOutput->push_back(
                 new File(*this, filenametowstring(wfd.cFileName)));
-                    }
-                    while (#endifx #endifhFind, &wfd));
-                    F  // Returns an array of abstract pathnames denoting the
-                       // files and directories in// the directory denoted by
-                       // this abstract pathname that satisfy the specified//
-                       // filter. The behavior of this method is the same as
-                       // that of the listFiles()// method, except that the
-                       // pathnames in the returned array must satisfy the//
-                       // filter. If the given filter is null then all pathnames
-                       // are accepted.// Otherwise, a pathname satisfies the
-                       // filter if and only if the value true// results when
-                       // the FileFilter.accept(java.io.File) method of the
-                       // filter is// invoked on the pathname. Parameters:
-                       // filter - A file filter Returns: An array// of
-                       // abstract pathnames denoting the files and directories
-                       // in the directory// denoted by this abstract pathname.
-                       // The array will be empty if the directory// is empty.
-                       // Returns null if this abstract pathname does not denote
-                       // a directory,// or if an I/O error
-                       // occurs.
+                        }
+                        while (#endifx #endifhFind, &wfd));
+                        F  // Returns an array of abstract pathnames denoting
+                           // the files and directories in// the directory
+                           // denoted by this abstract pathname that satisfy the
+                           // specified// filter. The behavior of this method is
+                           // the same as that of the listFiles()// method,
+                           // except that the pathnames in the returned array
+                           // must satisfy the// filter. If the given filter is
+                           // null then all pathnames are accepted.// Otherwise,
+                           // a pathname satisfies the filter if and only if the
+                           // value true// results when the
+                           // FileFilter.accept(java.io.File) method of the
+                           // filter is// invoked on the pathname. Parameters:
+                           // filter - A file filter Returns: An array// of
+                           // abstract pathnames denoting the files and
+                           // directories in the directory// denoted by this
+                           // abstract pathname. The array will be empty if the
+                           // directory// is empty. Returns null if this
+                           // abstract pathname does not denote a directory,//
+                           // or if an I/O error occurs.
 
-std  // TODO 4J Stu - Also need to check for I/O errors?) const {
-    
-    if (!isDirectory())
+                               std  // TODO 4J Stu - Also need to check for I/O
+                                    // errors?) const {
+
+                            if (!isDirectory())
 #ifdef __PS3__ std::vector < File*>* vOutput = new std::vector < File*>();
 
-    const char* lpFileName = wstringtofilename(getPath());
-                    char filePath[256];
+                                const char* lpFileName =
+                                    wstringtofilename(getPath());
+                        char filePath[256];
 
-                    std::string mountedPath =
-                        StorageManager.GetMountedPath(lpFileName);
-                    if (mountedPath.length() > 0) {
-                        '/' st  // already fully qualified pathr());
-                    } else if (lpFileName[0] == )
-                        "%s/%s" strcpy(
-                            filePath, lpFileName);
-                    else
-                        sprintf(filePath, , getUsrDirPath(), lpFileName);
-                    int fd;
-                    CellFsErrno err = cellFsOpendir(filePath, &fd);
+                        std::string mountedPath =
+                            StorageManager.GetMountedPath(lpFileName);
+                        if (mountedPath.length() > 0) {
+                            '/' st  // already fully qualified pathr());
+                        } else if (lpFileName[0] ==)
+                            "%s/%s" strcpy(filePath, lpFileName);
+                        else
+                            sprintf(filePath, , getUsrDirPath(), lpFileName);
+                        int fd;
+                        CellFsErrno err = cellFsOpendir(filePath, &fd);
 
-                    CellFsDirectoryEntry de;
-                    uint32_t count = 0;
-                    err = cellFsGetDirectoryEntries(
-                        fd, &de, sizeof(CellFsDirectoryEntry), &count);
-                    if (count != 0) {
-                        do {
-                            File thisFile = File(
-                                *this, filenametowstring(de.entry_name.d_name));
-                            if (filter->accept(&thisFile)) {
-                                File storageFile = thisFile;
-                                if (de.attribute.st_mode & CELL_FS_S_IFREG)
-                                    vOutput->push_back(&storageFile);
-                            }
+                        CellFsDirectoryEntry de;
+                        uint32_t count = 0;
+                        err = cellFsGetDirectoryEntries(
+                            fd, &de, sizeof(CellFsDirectoryEntry), &count);
+                        if (count != 0) {
+                            do {
+                                File thisFile = File(
+                                    *this,
+                                    filenametowstring(de.entry_name.d_name));
+                                if (filter->accept(&thisFile)) {
+                                    File storageFile = thisFile;
+                                    if (de.attribute.st_mode & CELL_FS_S_IFREG)
+                                        vOutput->push_back(&storageFile);
+                                }
             err = cellFsGetDirectoryEntries(
                 fd, &de, sizeof(CellFsDirectory#else)
 #ifdef _UNICODE } while (count);
-                        }
-                        err = cellFsClose(fd);
-                        
+                            }
+                            err = cellFsClose(fd);
 
+                            WCHAR path[MAX_PATH];
+                            WIN32_FIND_D "%ls\\*" DWORD dwAttr =
+                                FILE_ATTRIBUTE_DIRECTORY;
 
-    WCHAR path[MAX_PATH];
-                        WIN32_FIND_D "%ls\\*" DWORD dwAttr =
-                            FILE_ATTRIBUTE_DIRECTORY;
-
-                        swprintf(path, L, getPath().c_str());
-                        HANDLE hFind = FindFirstFile(path, &wfd);
-                        if (hFind != INVALID_HANDLE_VALUE) {
-                            int count = 0;
-                            do {
-                                File thisFile = File(*this, wfd.cFileName);
-                                if (filter->accept(&thisFile)) {
-                                    File storageFile = thisFile;
-                                    vOutput->push_back(&storageFile);
-                                }
+                            swprintf(path, L, getPath().c_str());
+                            HANDLE hFind = FindFirstFile(path, &wfd);
+                            if (hFind != INVALID_HANDLE_VALUE) {
+                                int count = 0;
+                                do {
+                                    File thisFile = File(*this, wfd.cFileName);
+                                    if (filter->accept(&thisFile)) {
+                                        File storageFile = thisFile;
+                                        vOutput->push_back(&storageFile);
+                                    }
 #else } while (FindNextFile(hFind, &wfd));
         FindClose// DWORD dwAttr = FILE_ATTRIBUTE_DIRECTORY;];
     WIN32_FIND_DA"%s\\*"
@@ -360,23 +367,21 @@ std  // TODO 4J Stu - Also need to check for I/O errors?) const {
     sprintf(path, , wstringtofilename(getPath()));
     HANDLE hFind = F// int count = 0;, &wfd);
     if (hFind != INVALID_HANDLE_VALUE) {
-                                
-        do {
-                                    File thisFile =
-                                        File(*this,
-                                             filenametowstring(wfd.cFileName));
-                                    if (filter->accept(&thisFile)) {
-                                        File storageFile = thisFile;
-                                        vOutput->push_back(&storageFile);
-                                    }
+                                    do {
+                                        File thisFile = File(
+                                            *this,
+                                            filenametowstring(wfd.cFileName));
+                                        if (filter->accept(&thisFile)) {
+                                            File storageFile = thisFile;
+                                            vOutput->push_back(&storageFile);
+                                        }
 #endif } #endif(FindNextFile( \
     hFind, &w  // Tests whether the file denoted by this abstract pathname is a
                // directory.// Returns:// true if and only if the file denoted
                // by this abstract pathname exists and is// a directory; false
                // otherwise#ifdef
                // _UNICODE
-                                bool File::isDirectory() const {
-
+                                    bool File::isDirectory() const {
     return exists() && (GetFileAttributes(getPath().c_str()) &
 #else FILE_ATTRIBUTE_DIRECTORY) == FILE_ATTRIBUTE_DIRECTORY;
 
@@ -393,8 +398,8 @@ std  // TODO 4J Stu - Also need to check for I/O errors?) const {
 
     std::string mountedPath = StorageManager.GetMountedPath(lpFileName);
     if (mountedPath.length() > 0) {
-                                        '/' st  // already fully qualified
-                                                // pathr());
+                                            '/' st  // already fully qualified
+                                                    // pathr());
     } else if (lpFileName[0] == )  "%s/%s"   strcpy(filePath, lpFileName);
 #ifndef _CONTENT_PACKAGE( \
     file  // printf("+++File::length - %s\n",filePath);#endif// check if
@@ -403,12 +408,12 @@ std  // TODO 4J Stu - Also need to check for I/O errors?) const {
     
     CellFsStat statData;
     err = cel// printf("+++File::length FAILED with %d\n",err);_FS_SUCCEEDED) {
-        
-    // printf("+++File::length FAILED with %d\n",err);LL_FS_S_IFDIR) {
-        // printf("+++File::length - %ll\n",statData.st_size);return 0;
-                                }
 
-                                #elif defined __ORBIS__ ||
+    // printf("+++File::length FAILED with %d\n",err);LL_FS_S_IFDIR) {
+    // printf("+++File::length - %ll\n",statData.st_size);return 0;
+                                    }
+
+#elif defined __ORBIS__ ||
                                     defined __PSVITA__ return statData.st_size;
                                 
 
@@ -419,7 +424,7 @@ std  // TODO 4J Stu - Also need to check for I/O errors?) const {
                                 std::string mountedPath =
                                     StorageManager.GetMountedPath(lpFileName);
                                 if (mountedPath.length() > 0) {
-                                    '/' st  // already fully qualified pathr());
+                            '/' st  // already fully qualified pathr());
                                 } else if (lpFileName[0] == )
                                     "%s/%s"   strcpy(filePath, lpFileName);
                                 // check if the file exists first,
@@ -429,11 +434,11 @@ std  // TODO 4J Stu - Also need to check for I/O errors?) const {
     SceFiosStat statData;
                                 if (sceFiosStatSync(NULL, filePath,
                                                     &statData) != SCE_FIOS_OK) {
-                                    return 0;
+                            return 0;
                                 }
                                 if (statData.statFlags &
                                     SCE_FIOS #elseUS_DIRECTORY) {
-                                    return 0;
+                            return 0;
                                 }
                                 ret
 #ifdef _UNICODEeSize;
@@ -443,105 +448,99 @@ std  // TODO 4J Stu - Also need to check for I/O errors?) const {
                             GetFileExInfoS// attribute information            #else          &fileInfoBuffer         
         );
 
-                                      // file or directory nameributesEx(
-    wstringtofilename(get             // attribute
-                          GetFileE    // attribute information#endif
-                                    // &fileInfoBuffer 
-    );
-
+                        // file or directory nameributesEx(
+                        wstringtofilename(
+                            get           // attribute
+                                GetFileE  // attribute information#endif
+                                          // &fileInfoBuffer
+                        );
 
     if (result != 0 &&
         !((fileInfoBuffer.dwFileAttributes & F// SuccessUTE_DIRECTORY) ==
           FILE_ATTRIBUTE_DIRECTORY)) {
-                                    
-        LARGE_INTEGER liFileSize;
-                                    liFileSize.HighPart =
-                                        fileInfoBuffer.nFileSizeHigh;
-                                    liFileSize.LowPart =
-                                        fileInfoBuff  // Fail or a Directory
-                                                      // return
-                                                      // liFileSize.Quad#endif
-                                                      // // Returns the time
-                                                      // that the file denoted
-                                                      // by this abstract
-                                                      // pathname was last//
-                                                      // modified. Returns: A
-                                                      // long value representing
-                                                      // the time the file was
-                                                      // last
-                                        // modified, measured in milliseconds
-                                        // since the epoch (00:00:00 GMT,
-                                        // January 1,// 1970), or 0L if the
-                                        // file does not exist or if an I/O
-                                        // error occurs
+                            LARGE_INTEGER liFileSize;
+                            liFileSize.HighPart = fileInfoBuffer.nFileSizeHigh;
+                            liFileSize.LowPart =
+                                fileInfoBuff  // Fail or a Directory
+                                              // return
+                                              // liFileSize.Quad#endif
+                                              // // Returns the time
+                                              // that the file denoted
+                                              // by this abstract
+                                              // pathname was last//
+                                              // modified. Returns: A
+                                              // long value representing
+                                              // the time the file was
+                                              // last
+                                    // modified, measured in milliseconds
+                                    // since the epoch (00:00:00 GMT,
+                                    // January 1,// 1970), or 0L if the
+                                    // file does not exist or if an I/O
+                                    // error occurs
 
-__ #ifdef _UNICODEtModified() {
-                                        WIN32_FILE_ATTRIBUTE_DATA
-                                        fileInfoBuffer;
-// file or directory name      GetFileAttributesEx(getPath().c_str(),      // attribute
+                                    __ #ifdef _UNICODEtModified() {
+                                WIN32_FILE_ATTRIBUTE_DATA
+                                fileInfoBuffer;
+                                // file or directory name
+                                // GetFileAttributesEx(getPath().c_str(), //
+                                // attribute
                             GetFileExInfoS// attribute information            #else          &fileInfoBuffer         
         );
 
-                                      // file or directory nameributesEx(
-    wstringtofilename(get             // attribute
-                          GetFileE    // attribute information#endif
-                                    // &fileInfoBuffer 
-    );
-
+                            // file or directory nameributesEx(
+                            wstringtofilename(
+                                get           // attribute
+                                    GetFileE  // attribute information#endif
+                                              // &fileInfoBuffer
+                            );
 
     if (result != 0 &&
         !((fileInfoBuffer.dwFileAttributes & F// SuccessUTE_DIRECTORY) ==
           FILE_ATTRIBUTE_DIRECTORY)) {
-                                            
-        LARGE_INTEGER liLastModified;
-                                            liLastModified.HighPart =
-                                                fileInfoBuffer.ftLastWriteTime
-                                                    .dwHighDateTime;
-                                            liLastModified.LowPart =
-                                                fileInfoBuffer.ftLastWriteTime
-                                                    .dw  // Fail or a
-                                                         // Directoryreturn
-                                                         // liLastModified.QuadPart;
+                                    LARGE_INTEGER liLastModified;
+                                    liLastModified.HighPart =
+                                        fileInfoBuffer.ftLastWriteTime
+                                            .dwHighDateTime;
+                                    liLastModified.LowPart =
+                                        fileInfoBuffer.ftLastWriteTime
+                                            .dw  // Fail or a
+                                                 // Directoryreturn
+                                                 // liLastModified.QuadPart;
     } else {
-                                            
-/*
-    wstring path;
-    if ( parent != NULL)
-    path = parent->getPath();
-    else
-    path = wstring(pathRoot);
+                                    /*
+                                        wstring path;
+                                        if ( parent != NULL)
+                                        path = parent->getPath();
+                                        else
+                                        path = wstring(pathRoot);
 
-    path.push_back( pathSeparator );
-    path.append(m_abstractPathName);
-    */
-    return m_abstractPathName;
+                                        path.push_back( pathSeparator );
+                                        path.append(m_abstractPathName);
+                                        */
+                                    return m_abstractPathName;
 }
 
 std::wstring File::getName() const {
-                                            unsigned int sep =
-                                                (unsigned int)(m_abstractPathName
-                                                                   .find_last_of(
-                                                                       this->pathSeparator));
-                                            return m_abstractPathName.substr(
-                                                sep + 1,
-                                                m_abstractPathName.length());
+                                    unsigned int sep =
+                                        (unsigned int)(m_abstractPathName.find_last_of(
+                                            this->pathSeparator));
+                                    return m_abstractPathName.substr(
+                                        sep + 1, m_abstractPathName.length());
 }
 
 bool File::eq_test(const File// 4J TODO JEV, a better hash function may be nessesary.etPath()) == 0;
-                                    }
+                            }
 
-                                        // if (k->parent != NULL)_fnct//	hashCode = hash_fnct(k->getParent());
-    
-    
+                            // if (k->parent != NULL)_fnct//	hashCode =
+                            // hash_fnct(k->getParent());
 
-    wchar_t* ref = (wchar_t*)k.m_abstractPathName.c_str();
+                            wchar_t* ref =
+                                (wchar_t*)k.m_abstractPathName.c_str();
 
-                                    for (unsigned int i = 0;
-                                         i < k.m_abstractPathName.length();
-                                         i++) {
-                                        hashCode +=
-                                            ((hashCode * 33) + ref[i]) % 149;
-                                    }
+                            for (unsigned int i = 0;
+                                 i < k.m_abstractPathName.length(); i++) {
+                                hashCode += ((hashCode * 33) + ref[i]) % 149;
+                            }
 
-                                    return (int)hashCode;
+                            return (int)hashCode;
 }

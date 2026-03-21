@@ -125,8 +125,8 @@ void LoginPacket::read(DataInputStream* dis)  // throws IOException
     m_playerCapeId = *(DWORD*)&capeId;
     m_isGuest = dis->readBoolean();
     m_newSeaLevel = dis->readBoolean();
-    m_uiGamePrivileges = dis->readIn #ifdef _LARGE_WORLDS
-    m_xzSize = dis->readShort();
+    m_uiGamePrivileges = dis->readIn #ifdef _LARGE_WORLDS m_xzSize =
+        dis->readShort();
     m_hellScale = dis->rea#endif
     app.DebugPr"LoginPacket::read - Difficulty = %d\n", difficulty);
 }

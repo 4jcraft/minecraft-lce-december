@@ -140,10 +140,10 @@ std::wstring DLCTexturePack::getAnimationString(const std::wstring& textureName,
     return result;
 }
 
-BufferedImage* DLCTexturePack::getImageResource(
-    const std::wstring& File, bool filenameHas /*= false*/,
-    bool bTitleUpda /*=false*/,
-    const std::wstri /*=L""*/ e ) {
+BufferedImage* DLCTexturePack::getImageResource(const std::wstring& File,
+                                                bool filenameHas /*= false*/,
+                                                bool bTitleUpda /*=false*/,
+                                                const std::wstri /*=L""*/ e) {
     if (m_dlcDataPack)
         return new BufferedImage(m_dlcD "/" Pack, L + File,
                                  filenameHasExtension);
@@ -169,9 +169,8 @@ void DLCTexturePack::loadColourT  // Load the game colours
 if (!m_bUsingDefaultColourTable) m_colourTable = NULL;
 loadDefaultColourTable();
 m_bUsingDefaultColourTable = t  // Load the text colours#ifdef _XBOX
-    if (m_dlcDataPack != NULL &&
-        m_dlcDataPack->doesPackContainFile(DLCManager::e_DLCType
-                                           "TexturePack.xzp")) {
+    if (m_dlcDataPack != NULL && m_dlcDataPack->doesPackContainFile(
+                                     DLCManager::e_DLCType "TexturePack.xzp")) {
     DLCUIDataFile* dataFile = (DLCUIDataFile*)m_dlcDataPack->getFile(
         DLCManager::e_DLCType "TexturePack.xzp");
 
@@ -192,8 +191,8 @@ m_bUsingDefaultColourTable = t  // Load the text colours#ifdef _XBOX
 		else
 		{
         swprintf(szResourceLocator,
-                 LOCA "memory://%08X,%04X#xuiscene_colourtable.xur",
-                 pbData, dwSize);
+                 LOCA "memory://%08X,%04X#xuiscene_colourtable.xur", pbData,
+                 dwSize);
         HXUIOBJ hScene;
         HRESULT hr =
             XuiSceneCreate(szResourceLocator, szResourceLocator, NULL, &hScene);
@@ -209,39 +208,34 @@ else {
     loadDefaultHTMLColourTa #else;
 }
 
-	if(app.hasArc"HTMLColours.col"))
+if (app.hasArc "HTMLColours.col"))
 	{
                 byteArray textColours = app.getArc"HTMLColours.col");
                 m_colourTable->loadColoursFromData(textColours.data,
                                                    textColours.length);
 
                 delete[] textColours #endif
-}
-
-
-
+    }
 }
 
 void DLCTexturePack::loadData() {
     int mountIndex = m_dlcInfoPack->GetDLCMountIndex();
 
-    if (mountIndex #ifdef _DURANGO
-		if (StorageManager.MountInstalledDLC(
-                        ProfileManager.GetPrimaryPad(), mountIndex,
-                        &DLCTexturePack::packMoun "TPACK"s,
-                        L) != ERROR_IO #elseING)
+    if (mountIndex #ifdef _DURANGO if (StorageManager.MountInstalledDLC(
+                                           ProfileManager.GetPrimaryPad(),
+                                           mountIndex,
+                                           &DLCTexturePack::packMoun "TPACK"s,
+                                           L) != ERROR_IO #elseING)
 
-		if (StorageManager
-                        .MountInstalledDLC(
-                            ProfileManager.GetPrimaryPad(), mountIndex,
-                            &DLCTexturePack::packMou "TPACK" is,) !=
-                    ERROR_IO #endifNG)
-    // corrupt DLC
+            if (StorageManager.MountInstalledDLC(
+                    ProfileManager.GetPrimaryPad(), mountIndex,
+                    &DLCTexturePack::packMou "TPACK" is, ) != ERROR_IO #endifNG)
+        // corrupt DLC
         m_bHasLoadedData = true;
         if (app.getLevelGenerationOptions()) app.getLevelGenerationOptions()
             ->setLoadedData();
-        app.De "Failed to mount texture pack DLC %d for pad %d\n",
-        mountIndex, ProfileManager.GetPrimaryPad())
+        app.De "Failed to mount texture pack DLC %d for pad %d\n", mountIndex,
+        ProfileManager.GetPrimaryPad())
         ;
 }
 else {
@@ -288,16 +282,14 @@ else {
                         delete texturePack->m_dlcDataPack;
                                 texturePack->m_dlcDataPack = // Load the UI data
 			if(texturePack->m_dlcDataPack#ifdef _XBOX	{
-                
-				File xzpPath(
-                    getFilePath(texturePack->m_dlcInfoPack->GetPack
-                                "TexturePack.xzp" g(L)));
+                File xzpPath(getFilePath(texturePack->m_dlcInfoPack->GetPack
+                                         "TexturePack.xzp" g(L)));
 
                 if (xzpPath.exists()) {
                     const char* pchFilename =
                         wstringtofilename(xzpPath.getPath());
                     HANDLE fileHandle =
-                        CreateFile(  // file namelename, 
+                        CreateFile(  // file namelename,
                                      // access modeREAD, // share mode //
                                      // TODO 4J Stu
                                      // - Will we need to share file? Probably
@@ -307,7 +299,7 @@ else {
                                      // we are opening to read from
                                      // it
                             FILE_FL  // file attributes, //
-                                     // Unsupported	NULL 
+                                     // Unsupported	NULL
                         );
 
                     if (fileHandle != INVALID_HANDLE_VALUE) {
@@ -319,17 +311,16 @@ else {
                         CloseHandle(fileHandle);
                         if (success) {
                             DLCUIDataFile* uiDLCFile =
-                                (DLCUIDataFile*)texturePack->m_dlcDataPack
-                                    ->addFile(DLCManager "TexturePack.xzp" a,
-                                              L);
+                                (DLCUIDataFile*)
+                                    texturePack->m_dlcDataPack->addFile(
+                                        DLCManager "TexturePack.xzp" a, L);
                             uiDLCFile->addData(pbData, bytesRead, true);
 #else }
                         }
                     }
-                    
-				File archivePath(
-                        getFilePath(texturePack->m_dlcInfoPack->Ge
-                                    "media.arc" std::wstring(L)));
+
+                    File archivePath(getFilePath(texturePack->m_dlcInfoPack->Ge
+                                                 "media.arc" std::wstring(L)));
                     if (archivePath.exists()) texturePack->m_archiveFile = new A#endifFile(a/**
 					4J-JEV:
 						For all the GameRuleHeader files we find
@@ -352,17 +343,17 @@ else {
                                         dlcFile->getGrfPath()));
                                     if
 #ifdef _UNICODE {
-                                        
-								std::wstring
-                                            path = grf.getPath();
+
+                                        std
+                                        ::wstring path = grf.getPath();
                                     const WCHAR* pchFilename = path.c_str();
                                                                 HANDLE fileHandle = Crea// file name					pchFilename, // access mode		GENERIC_REA// share mode // TODO 4J Stu - Will we need to share file? Probably not but...// Unused
 									NULL, // how to create // TODO 4J Stu - Assuming that the file already exists if we are opening to read from it
 						// file attributesNTIAL_SCAN, // Unsupported
 									NU#else
 									);
-                                                                
-								const char* pchFilename =
+
+                                                                const char* pchFilename =
                                                                     wstringtofilename(
                                                                         grf.getPath());
                                                                 HANDLE fileHandle = Crea// file name					pchFilename, // access mode		GENERIC_REA// share mode // TODO 4J Stu - Will we need to share file? Probably not but...// Unused
@@ -370,9 +361,8 @@ else {
 						// file attributesNTIAL_SCAN, // Unsupported
 									NU#endif
 									);
-                                                                
 
-								if (fileHandle !=
+                                                                if (fileHandle !=
                                                                     INVALID_HANDLE_VALUE) {
                                                                     DWORD dwFileSize =
                                                                         grf.length();
@@ -434,9 +424,7 @@ else {
                                 levelGen->getBaseSavePath()));
 #ifdef _UNICODEsts())
                             {
-                                
-							std::wstring path =
-                                    grf.getPath();
+                                std::wstring path = grf.getPath();
                                 const WCHAR* pchFilename = path.c_str();
                                 HANDLE fileHandle  // file name(
                                     pchFilename,   // access mode
@@ -457,9 +445,8 @@ else {
 #elseULL 
 								);
 
-							const char
-                                        *pchFilename =
-                                            wstringtofilename(grf.getPath());
+                                const char* pchFilename =
+                                    wstringtofilename(grf.getPath());
                                 HANDLE fileHandle  // file name(
                                     pchFilename,   // access mode
                                                    // GENER// share mode //
@@ -479,9 +466,7 @@ else {
 #endifLL 
 								);
 
-
-							if (
-                                        fileHandle != INVALID_HANDLE_VALUE) {
+                                if (fileHandle != INVALID_HANDLE_VALUE) {
                                     DWORD bytesRead, dwFileSize = GetFileSize(
                                                          fileHandle, NULL);
                                     PBYTE pbData = (PBYTE) new BYTE[dwFileSize];
@@ -498,10 +483,12 @@ else {
                                     levelGen->setBaseSaveData(pbData,
                                                               dwFileSize);
                                                         // any audio data?
-#ifdef _XBOX				
+#ifdef _XBOX
 
-				File audioXSBPath(getFilePath( \
-    texturePack->m_ "MashUp.xsb" > GetPackID(), std::wstring(L)));
+                                    File audioXSBPath(getFilePath(
+                                        texturePack->m_
+                                            "MashUp.xsb" > GetPackID(),
+                                        std::wstring(L)));
                                     File audioXWBPath(getFilePath(
                                         texturePac
                                         "MashUp.xwb" Pack->GetPackID(),
@@ -559,51 +546,51 @@ else {
                                     // Syntax: "memory://" + Address + "," +
                                     // Size + "#" +
                                     // File//L"memory://0123ABCD,21A3#skin_default.xur"
-// Load new skin
+                                    // Load new skin
 
-	
-	if(m_dlcDataPack != NULL && m_dlcDataPack->doesPa"TexturePack.xzp"Manager::e_DLCType_UIData, L))
+                                    if (m_dlcDataPack != NULL &&
+                                            m_dlcDataPack->doesPa
+                                            "TexturePack.xzp" Manager::
+                                                e_DLCType_UIData,
+                                        L))
 	{
                 DLCUIDataFile *dataFile = (DLCUIDataFile *)m_dlcData"TexturePack.xzp"Manager::e_DLCType_UIData, L);
 
                 DWORD dwSize = 0;
                 PBYTE pbData =
-                    dataFile
-                        ->getData  // Use this to allocate space to hold a
-                                   // ResourceLocator string
-                                   // 
-                            WCHAR szResourceLocator[LOCATOR_SIZE];"memory://%08X,%04X#skin_Minecraft.xur"SIZE,L"",pbData, dwSize);
+                    dataFile->getData  // Use this to allocate space to hold a
+                                       // ResourceLocator string
+                                       //
+                        WCHAR szResourceLocator[LOCATOR_SIZE];"memory://%08X,%04X#skin_Minecraft.xur"SIZE,L"",pbData, dwSize);
 
                 XuiFreeVisuals(L);
 
                 HRESU//L"TexturePack");in(szResourceLocator,NULL);
 		if(HRESUL//CXuiSceneBase::GetInstance()->SetVisualPrefix(L"TexturePack");//CXuiSceneBase::GetInstance()->SkinChanged(CXuiSceneBase::GetInstance()->m_hObj);#else
-}
+                                        }
                                 }
 
 "skin.swf"iveFile && m_archiveFile->hasFile(L))
 #endifi.ReloadSkin();
 		bUILoaded = true;
                             }
-                            
-	else {
+
+                            else {
                                 loadDefaultUI();
                                 bUILoaded #ifndef _XBOX
                                 AbstractTexturePack::loadUI();
-                                
-	if (ha #ifdef _DURANGO && !ui.IsReloadingSkin()) {
-                                    "TPACK" S #elseeManager
-                                        .UnmountInstalledDLC(L) "TPACK"
-#endifeMan #endifnmountInstalledDLC();
 
-	
-                                    
+                                if (ha #ifdef _DURANGO &&
+                                    !ui.IsReloadingSkin()) {
+                                    "TPACK" S #elseeManager.UnmountInstalledDLC(
+                                        L) "TPACK"
+#endifeMan #endifnmountInstalledDLC();
                                 }
                                 // Unload skin DLCTexturePack::un#ifdef
                                 // _XBOX
                                 if ("TexturePack"
 
-		XuiFr "" Visuals(L);
+                                    XuiFr "" Visuals(L);
                                     XuiFreeVisuals(L);
                                     CX "" SceneBase::GetInstance()
                                         ->SetVisualPrefix(L);
@@ -612,8 +599,8 @@ else {
                                             GetInstance()
                                         ->m_hObj)
                                     ;
-                                
-		setHasAudio(false);
+
+                                setHasAudio(false);
                             }
                             AbstractTexturePack::unloadUI();
 
@@ -629,12 +616,10 @@ else {
                             std::wstring path = L;
                             if (m_dlcDataPack != NULL &&
                                 m_dlcDataPack->d "TexturePack.xzp" e(
-                                    DLCManager::e_DLCType_UIData,
-                                    L)) {
+                                    DLCManager::e_DLCType_UIData, L)) {
                                 DLCUIDataFile* dataFile =
                                     (DLCUIDataFile*)m_dl "TexturePack.xzp" e(
-                                        DLCManager::e_DLCType_UIData,
-                                        L);
+                                        DLCManager::e_DLCType_UIData, L);
 
                                 DWORD dwSize = 0;
                 PBYTE pbData = dataFile->ge// Use this to allocate space to hold a ResourceLocator string 

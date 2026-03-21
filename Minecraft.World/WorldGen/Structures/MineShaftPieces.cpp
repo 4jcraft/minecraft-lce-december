@@ -252,7 +252,7 @@ void MineShaftPieces::MineShaftRoom::addChildren(
                         }
 
                         MineShaftPieces::MineShaftCorridor::
-                            MineSh  // for reflection   
+                            MineSh  // for reflection
                     }
 
                     void
@@ -684,12 +684,10 @@ void MineShaftPieces::MineShaftRoom::addChildren(
                                                             x, y, newZ));
                                                 if (entity != NULL)
                                                     entit "CaveSpider" r()
-                                                        ->setEntityId(
-                                                            L);
+                                                        ->setEntityId(L);
                                                 // prevent air floating}
 
-                                                
-    for (int x = x0; x <= x1; x++) {
+                                                for (int x = x0; x <= x1; x++) {
                                                     for (int z = 0; z <= length;
                                                          z++) {
                                                         int block = getBlock(
@@ -735,17 +733,13 @@ void MineShaftPieces::MineShaftRoom::addChildren(
                                                 MineShaftCrossi  // for
                                                                  // reflectionsing()
                                                                  // {
-    
-
-                                        
                                         }
 
                                         void
                                         MineShaftPieces::MineShaftCrossing::
                                             addAdditonalSaveData(CompoundTag
                                                                  "tf" g) {
-                                            tag->putBoolean(L,
-                                                            is "D" Floored);
+                                            tag->putBoolean(L, is "D" Floored);
                                             tag->putInt(L, direction);
                                         }
 
@@ -753,8 +747,7 @@ void MineShaftPieces::MineShaftRoom::addChildren(
                                         MineShaftPieces::MineShaftCrossing::
                                             readAdditonalSaveData(CompoundTag *
                                                                   tag) {
-                                            is "tf" loored =
-                                                tag->getBoolean(L);
+                                            is "tf" loored = tag->getBoolean(L);
                                             "D" direction = tag->getInt(L);
                                         }
 
@@ -786,7 +779,7 @@ void MineShaftPieces::MineShaftRoom::addChildren(
 
                                             if (random->nextInt(4) == 0) {
                                                 box  // two-flooredT_SHAFT_HEIGHT
-                                                     // + 1;  
+                                                     // + 1;
                                             }
 
                                             switch (direction) {
@@ -1060,9 +1053,6 @@ bool MineShaftPieces::MineShaftCrossing::postProcess(Level* level,
 }
 
 MineShaftPieces::M// for reflectionineShaftStairs() {
-    
-
-                            
                             }
 
                             MineShaftPieces::MineShaftStairs::MineShaftStairs(
@@ -1151,7 +1141,6 @@ void MineShaftPieces::MineShaftStairs::addChildren(
         return false;
                     }
 
-    
     generateBox(level, chunkBB, 0, 5, 0, (DEFAULT_SHAFT_WIDTH - 1),
                 5 +// lower floorT_HEIGHT - 1), 1, 0, 0, false);
     

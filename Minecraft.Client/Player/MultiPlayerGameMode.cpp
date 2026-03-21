@@ -283,13 +283,13 @@ bool MultiPlayerGameMode::useItemOn(std::shared_ptr<Player> player, Level *level
         if (bTestUseOnly) {
             switch (t) {
                 ca  // special case for a bed	case Tile::bed_Id:
-                    // 
+                    //
                     if (Tile::tiles[t]->TestUse(level, x, y, z, player)) {
                     return  // 4J-JEV: You can still use items on record players
                             // (ie. set fire to them).// bed is
                             // too far away, or something	{
-						
-						return false;
+
+                        return false;
                 }
                 break;
                 default:
@@ -459,13 +459,11 @@ bool MultiPlayerGameMode::hasMissTime()
 
 bool MultiPlayerGameMode::hasInfiniteItems()
 {
-        return localPlayerMode
-            ->  // Returns true when the inventory is opened from the
-                // server-side. CurrentlyP// only happens when the player is
-                // riding a
-                // horse.
+        return localPlayerMode->  // Returns true when the inventory is opened
+                                  // from the server-side. CurrentlyP// only
+                                  // happens when the player is riding a horse.
 
-bool MultiPlayerGameMode::isServerControlledInventory() {
+            bool MultiPlayerGameMode::isServerControlledInventory() {
             return minecraft->player->isRiding() &&
                    minecraft->player->riding->instanceof(eTYPE_HORSE);
         }

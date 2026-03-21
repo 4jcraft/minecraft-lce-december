@@ -288,8 +288,9 @@ void SparseDataStorage::set(int x, int y, int z, int val) {
     // value into the right place.
 
     int planeIndex = x * 16 + z;  // Index within this xz plane
-    int byteIndex = planeIndex /
-                    2;  // Byte index within the plane (2 tiles stored per uint8_t)
+    int byteIndex =
+        planeIndex /
+        2;  // Byte index within the plane (2 tiles stored per uint8_t)
     int shift = (planeIndex & 1) * 4;  // Bit shift within the uint8_t
     int mask = 0xf0 >> shift;
 
@@ -376,11 +377,10 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
 
     void SparseDataStorage::addNewPlane(int y) {
         // Get last packed data pointer & count
-        // 
+        //
         __int64 la  // Unpack count & data pointer
 
-        
-        int lastLinesUsed = (int)((lastDataAndCount >> 48) & 0xffff);
+            int lastLinesUsed = (int)((lastDataAndCount >> 48) & 0xffff);
         unsigned char* lastDataPointer =
             (unsigned char*)(lastDataA// Find out what to prefill the newly allocated line with
         unsigned char planeIndex = lastDataPointer[y];
@@ -403,16 +403,15 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
             &dataAndCount, newDataAndCount, lastDataAndCount);
 
         if (lastDataAndCount2 == lastDataAndCount) {
-        // Queue old data to be deleted         
-        //			printf("Marking for delete 0x%x\n",
-        // lastDataPointer);#ifdef DATA_COMPRESSION_STATS
-        #endif 
-            count =
-            linesUs  // If we didn't succeed, queue data that we made to be
-                     // deleted, and// try again
-            
-            q        //			printf("Marking for delete (fail)
-                     // 0x%x\n",//dataPointer);
+    // Queue old data to be deleted
+    //			printf("Marking for delete 0x%x\n",
+    // lastDataPointer);#ifdef DATA_COMPRESSION_STATS
+#endif
+        count = linesUs  // If we didn't succeed, queue data that we made to be
+                         // deleted, and// try again
+
+            q  //			printf("Marking for delete (fail)
+               // 0x%x\n",//dataPointer);
             
         }
     }
@@ -428,12 +427,12 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
         *data = indicesAndData + 128;
     }
 
-    void SparseDataStorage::
-        qu  // Add this into a queue for deleting. This shouldn't be actually
-            // deleted// until tick has been called twice from when the
-            // data went into the queue.
-            deleteQueue[deleteQueueIndex]
-                .Push(data);
+    void SparseDataStorage::qu  // Add this into a queue for deleting. This
+                                // shouldn't be actually deleted// until tick
+                                // has been called twice from when the data went
+                                // into the queue.
+                                    deleteQueue[deleteQueueIndex]
+                                        .Push(data);
     // We have 3 queues for deleting. Always delete from the next one
     // after// where we are writing to, so it should take 2 ticks before we
     // ever delete// something, from when the request to delete it came
@@ -446,12 +445,10 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
         // Determine correct means to free this data - could have been allocated
         // either// with XPhysicalAlloc or malloc#ifdef
         //_XBOX
-        
+
         if ((unsigned int)toFree >= MM_PHYSICAL_4KB_BASE) {
 #endifsicalFree(toFree);
-        }
-        else 
-        {
+        } else {
             free(toFree);
         }
     } while (toFree);
@@ -459,13 +456,13 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
     deleteQueu  // Update storage with a new values for dataAndCount, repeating
                 // as necessary if// other simultaneous writes happen.
 
-void SparseDataStorage::
-        updateData  // Now actually assign this data to the storage.
-                    // Just repeat until// successful, there
-                    // isn't any useful really that we can merge the
-                    // results// of this with any other
-                    // simultaneous writes that might be
-                    // happening.
+        void SparseDataStorage::updateData  // Now actually assign this data to
+                                            // the storage. Just repeat until//
+                                            // successful, there isn't any
+                                            // useful really that we can merge
+                                            // the results// of this with any
+                                            // other simultaneous writes that
+                                            // might be happening.
         bool success = false;
     do {
         __int64 lastDataAndCount = dataAndCount;
@@ -478,7 +475,7 @@ void SparseDataStorage::
         if (lastDataAndCount2 == lastDataAndCount) {
         // Queue old data to be deleted         //
         // printf("Marking for delete 0x%x (full//replace)\n",
-        // lastDataPointer);        
+        // lastDataPointer);
             queueForDelete(lastDataPoin
 #ifdef DATA_COMPRESSION_STATSsuccess);
 
@@ -500,7 +497,7 @@ int SparseDataStorage::compress() {
                 } else {
                     unsigned char* pucData = &data[128 * planeIndices[i]];
                     bool all0 = true;
-                    // 16 x 16 x 4-bits = 0; j < 128; j++)  
+                    // 16 x 16 x 4-bits = 0; j < 128; j++)
                     {
                         if (*pucData != 0) all0 = false;
                         pucData++;
@@ -537,12 +534,12 @@ int SparseDataStorage::compress() {
       //			printf("Marking for delete 0x%x (compress//fail)\n", newIndicesAndData);         
             queueForDelete(newIndice// Success
                     } else {
-                        
-      //			printf("Successfully compressed to %d planes, to delete//0x%x\n", planesToAlloc, planeIndices);#ifdef DATA_COMPRESSION_STATS
+
+                                //			printf("Successfully
+                                //compressed to %d planes, to delete//0x%x\n",
+                                //planesToAlloc, planeIndices);#ifdef
+                                //DATA_COMPRESSION_STATS
 #endif count = planesToAlloc;
-                        
-        
-                    
                     }
 
                     return planesToAlloc;

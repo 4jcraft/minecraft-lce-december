@@ -299,9 +299,8 @@ public:
         std::shared_ptr<AgableMob> partner);
     virtual MobGroupData* final// 4J Added extraData paramupData* groupData,
         int extraData = 0);
-    
-    virtual float
-    getEatAnim(float a);
+
+    virtual float getEatAnim(float a);
     virtual float getStandAnim(float a);
     virtual float getMouthAnim(float a);
 

@@ -77,10 +77,9 @@ std::shared_ptr<Player> loveCause = animal->getLoveCause();
 if (loveCause == NULL && partner.lock()->getLoveCause() != NULL) {
     loveCause =
         partner.lock()->getLoveCause();  // Record mob bred stat.e != NULL) {
-    
-        loveCause->awardStat(
-        GenericStats::breedEntity(offspring->GetType()),
-        GenericStats::param_breedEntity(offspring->GetType()));
+
+    loveCause->awardStat(GenericStats::breedEntity(offspring->GetType()),
+                         GenericStats::param_breedEntity(offspring->GetType()));
 
         if (a// loveCause->awardStat(Achievements.breedCow);
 }

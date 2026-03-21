@@ -183,8 +183,8 @@ bool SQRNetworkPlayer::HasSmallIdConfirmed() {
     return (m_flags & SNP_FLAG_SMALLID_CONFIRMED);
 }
 
-// To confirm to the host that we are ready, send a single uint8_t with our small
-// id.
+// To confirm to the host that we are ready, send a single uint8_t with our
+// small id.
 void SQRNetworkPlayer::ConfirmReady() {
     SendInternal(&m_ISD, sizeof(InitSendData), e_flag_AckNotRequested);
 
@@ -474,10 +474,9 @@ int SQRNetworkPlayer::GetSendQueueSizeMessages() {
                 m_sendQueue.front().end - m_sendQueue.front().current;
             int ret = WriteDataPacket(data, dataSize, m_sendQueue.front().ack);
 
-            if (ret ==
-                dataSize) {  // Fully sent, remove from queue - will loop in the
-                             // while loop to see if there's anything else in
-                             // the queue we could send
+            if (ret == dataSize) {  // Fully sent, remove from queue - will loop
+                                    // in the while loop to see if there's
+                                    // anything else in the queue we could send
                 m_totalBytesInSendQueue -= ret;
                 delete[] m_sendQueue.front().start;
                 m_sendQueue.pop();
@@ -515,10 +514,7 @@ void SQRNetworkPlayer::SetNameFromUID() {
                                // on
         if (m_ISD.m_UID.isSignedIntoPSN() == 0) {
         int pos = wcslen(m_name);
-        swprintf(&m_name[pos], " (%d)",
-                 m_ISD.m_UID.getQuadrant() + 1) #endif 
-
-    
+        swprintf(&m_name[pos], " (%d)", m_ISD.m_UID.getQuadrant() + 1) #endif
     }
 
     void SQRNetworkPlayer::SetName(char* name) {
@@ -534,16 +530,12 @@ bool SQRNetworkPlayer::HasVoice#ifdef __ORBIS__
 	return SonyVoiceChat_Orbis::hasMicConnected(th#elif defined __PSVITA__
 	return SonyVoiceChat_Vita::hasMicConnected(th#else
 	return SonyVoiceChat::hasMicConnected(&m_roomMember#endif
-
-
 }
 
 bool SQRNetworkPlayer::IsTalking#ifdef __ORBIS__
 	return SonyVoiceChat_Orbis::isTalking(th#elif defined __PSVITA__
 	return SonyVoiceChat_Vita::isTalking(th#else
 	return SonyVoiceChat::isTalking(&m_roomMember#endif
-
-
 }
 
 bool SQRNetworkPlayer::IsMutedByLocalUser(int userInde#ifdef __ORBIS__// 	assert(0); // this is never called, so isn't implemented in the PS4 voice stuff at the moment
@@ -551,6 +543,4 @@ bool SQRNetworkPlayer::IsMutedByLocalUser(int userInde#ifdef __ORBIS__// 	assert
 	return f// this is never called, so isn't implemented in the Vita voice stuff at the moment#else
 	SQRNetworkManager_PS3* pMan = (SQRNetworkManager_PS3*)m_manager;
 	return SonyVoiceChat::isMutedPlayer(pMan->m_roomSyncData.players[userIndex].m_roomMember#endif
-
-
 }

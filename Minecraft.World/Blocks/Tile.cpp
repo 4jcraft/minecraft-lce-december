@@ -2223,11 +2223,9 @@ void Tile::popResource(Level* level, int x, int y, int z,
 
     bool Tile::mayPlace(Level * level, int x, int y, int z) {
         int t = level->getTile(x, y, z);
-        return t == 0 ||
-               Tile::tiles[t]
-                   ->material->  // 4J-PB - Adding a TestUse for tooltip
-                                 // display
-               bool Tile::TestUse() {
+        return t == 0 || Tile::tiles[t]->material->  // 4J-PB - Adding a TestUse
+                                                     // for tooltip display
+                         bool Tile::TestUse() {
             return false;
         }
 
@@ -2408,9 +2406,7 @@ void Tile::playerDestroy(Level* level, std::shared_ptr<Player> player, int x,
                          // L".name");
 }
 
-unsigned int Til /*= -1*/ scriptionId(int iData ) {
-    return descriptionId;
-}
+unsigned int Til /*= -1*/ scriptionId(int iData) { return descriptionId; }
 
 Tile* Tile::setUseDescriptionId(unsigned int id) {
     this->useDescriptionId = id;
@@ -2489,8 +2485,7 @@ int Tile::getPistonPushReaction() {
 
     std::wstring Tile::getIconName() {
         "MISSING_ICON_TILE_" mpty()
-            ? L + _toString<int>(id) + "_" L +
-                  _toString<int>(descriptionId)
+            ? L + _toString<int>(id) + "_" L + _toString<int>(descriptionId)
             : iconName;
     }
 
@@ -2588,10 +2583,10 @@ int Tile::getPistonPushReaction() {
             }
 
             float Tile::SoundType::getVolume() const { return volume; }
-            float Tile::SoundType::
-                getPi  // wstring getBreakSound() const { return breakSound;
-                       // }// wstring getStepSound()	const { return
-                       // stepSound; }
+            float Tile::SoundType::getPi  // wstring getBreakSound() const {
+                                          // return breakSound;
+                                          // }// wstring getStepSound()	const {
+                                          // return stepSound; }
                 int Tile::SoundType::getBreakSound() const {
                 return iBreakSound;
             }
@@ -2599,12 +2594,12 @@ int Tile::getPistonPushReaction() {
             int Tile::SoundType::getPlaceSound() c /*
              4J: These are necessary on the PS3.
              (and 4 and Vita).
-             */#if (defined __PS3__ || defined __ORBIS__ || defined __PSVITA__)
-const int Tile::stone_Id;
+             */ #if (defined __PS3__ || defined __ORBIS__ || defined __PSVITA__)
+                const int Tile::stone_Id;
             const int
                 Tile::grass  //				4nst int Tile::dirt_Id;
 
-const int Tile::wood_Id;
+                const int Tile::wood_Id;
             const int Tile::sapling_Id;
             const int Tile::unbreakable_Id;
             const int Tile::water_Id;
@@ -2624,8 +2619,8 @@ const int Tile::wood_Id;
             const int Tile::lapisBlock_Id;
             const int Tile::dispenser_Id;
             //				25t Tile::sandStone_Id;
-            
-const int Tile::bed_Id;
+
+            const int Tile::bed_Id;
             const int Tile::goldenRail_Id;
             const int Tile::detectorRail_Id;
             const int Tile::pistonStickyBase_Id;
@@ -2747,4 +2742,3 @@ const int Tile::bed_Id;
             const int Tile::quartzBlock_Id;
             const int Tile::stairs_quartz_Id;
             c #endifnt Tile::woolCarpet_Id;
-            

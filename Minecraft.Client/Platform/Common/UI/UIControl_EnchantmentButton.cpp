@@ -111,9 +111,9 @@ void UIControl_EnchantmentButton::render(IggyCustomDrawCallbackRegion* region) {
             }
             font->drawWordWrap(m_enchantmentString, 0, 0, (float)m_width / ss,
                                col, (float)m_height / ss);
-            font = pMinecraft
-                       ->font  // col = 0x80ff20;//font->drawShadow(line,
-                               // (bwidth - font->width(line))/ss, 7, col);
+            font =
+                pMinecraft->font  // col = 0x80ff20;//font->drawShadow(line,
+                                  // (bwidth - font->width(line))/ss, 7, col);
         }
         glDisable(GL_ALPHA_TEST);
     } else {

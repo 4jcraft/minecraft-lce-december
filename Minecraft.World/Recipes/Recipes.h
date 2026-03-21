@@ -33,47 +33,46 @@ class ShapedRecipy;
 class FireworksRecipe;
 
 typedef std::unordered_map<wchar_t, ItemInstance*> my
-#define ADD_OBJECT(a, b) \
-    a.push_back(new Object(b))
+#define ADD_OBJECT(a, b) a.push_back(new Object(b))
 
-class Object {
-    public : union {
-    Tile* tile;
-    FireTile* firetile;
-    Item* item;
-    MapItem* mapitem;
-    ItemInstance* iteminstance;
-};
+    class Object {
+public:
+    union {
+        Tile* tile;
+        FireTile* firetile;
+        Item* item;
+        MapItem* mapitem;
+        ItemInstance* iteminstance;
+    };
 
-Object() { eType = eTYPE_NOTSET; }
-Object(Tile* t) {
-    eType = eType_TILE;
-    tile = t;
-}
-Object(FireTile* t) {
-    eType = eType_FIRETILE;
-    firetile = t;
-}
-Object(Item* i) {
-    eType = eType_ITEM;
-    item = i;
-}
-Object(MapItem* i) {
-    eType = eType_MAPITEM;
-    mapitem = i;
-}
-Object(ItemInstance* i) {
-    eType = eType_ITEMINSTANCE;
-    iteminstance = i;
-}
+    Object() { eType = eTYPE_NOTSET; }
+    Object(Tile* t) {
+        eType = eType_TILE;
+        tile = t;
+    }
+    Object(FireTile* t) {
+        eType = eType_FIRETILE;
+        firetile = t;
+    }
+    Object(Item* i) {
+        eType = eType_ITEM;
+        item = i;
+    }
+    Object(MapItem* i) {
+        eType = eType_MAPITEM;
+        mapitem = i;
+    }
+    Object(ItemInstance* i) {
+        eType = eType_ITEMINSTANCE;
+        iteminstance = i;
+    }
 
-eINSTANCEOF instanceof() { return eType; }
-eINSTANCEOF GetType() { return eType; };
+    eINSTANCEOF instanceof() { return eType; }
+    eINSTANCEOF GetType() { return eType; };
 
 private:
-eINSTANCEOF eType;
-}
-;
+    eINSTANCEOF eType;
+};
 
 class Recipes {
 public:
@@ -91,7 +90,7 @@ public:
     static Recipes* getInstance() { return instance; }
 
 private:
-    void  // 4J add 
+    void  // 4J add
     Recipes();
 
 public:

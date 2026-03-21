@@ -303,8 +303,9 @@ void SparseLightStorage::set(int x, int y, int z, int val) {
     // value into the right place.
 
     int planeIndex = x * 16 + z;  // Index within this xz plane
-    int byteIndex = planeIndex /
-                    2;  // Byte index within the plane (2 tiles stored per uint8_t)
+    int byteIndex =
+        planeIndex /
+        2;  // Byte index within the plane (2 tiles stored per uint8_t)
     int shift = (planeIndex & 1) * 4;  // Bit shift within the uint8_t
     int mask = 0xf0 >> shift;
 
@@ -373,7 +374,7 @@ int SparseLightStorage::setDataRegion(byteArray dataIn, int x0, int y0, int z0,
         for (int x = x0; x < x1; x++) {
             for (int z = z0; z < z1; z++) {
                 // Emulate how data was extracted from DataLayer... see
-                // comment above  
+                // comment above
                 int yy0 = y0 & 0xfffffffe;
                 int len = (y1 - y0) / 2;
                 for (int i = 0; i < len; i++) {
@@ -391,10 +392,8 @@ int SparseLightStorage::setDataRegion(byteArray dataIn, int x0, int y0, int z0,
     }
 
     void SparseLightStorage::addNewPlane(int y) {
-        bool success =
-            fals  // Get last packed data pointer & count
-            __int64 lastDataAndCount =
-                dat  // Unpack count & data pointer
+        bool success = fals  // Get last packed data pointer & count
+            __int64 lastDataAndCount = dat  // Unpack count & data pointer
             int lastLinesUsed = (int)((lastDataAndCount >> 48) & 0xffff);
         unsigned char* lastDataPointer =
             (unsigned char*)(lastDataAndCount & 0x0000ffff// Find out what to prefill the newly allocated line with
@@ -422,7 +421,7 @@ int SparseLightStorage::setDataRegion(byteArray dataIn, int x0, int y0, int z0,
 #endif = linesUsed;
 
         }// If we didn't succeed, queue data that we made to be deleted, and// try again        
-            queueForDelete(dataPo//			printf("Marking for delete (fail) 0x%x\n",//dataPointer);     
+            queueForDelete(dataPo//			printf("Marking for delete (fail) 0x%x\n",//dataPointer);
     }
 }
 while (!success);
@@ -445,17 +444,15 @@ void SparseLightSt// We have 3 queues for deleting. Always delete from the next 
     int freeIndex = (deleteQueueI//	printf("Free queue: %d,//%d\n",deleteQueue[freeIndex].GetEntryCount(),deleteQueue[freeIndex].GetAllocated());
     unsigned char* toFree = NULL;
     do {
-    toFree =
-        deleteQueu  //		if( toFree ) printf("Deleting 0x%x\n",
-                    // toFree);// Determine correct means to free this data
-                    //- could have been allocated either// with
-                    // XPhysicalAlloc or malloc#ifdef _XBOX
+    toFree = deleteQueu  //		if( toFree ) printf("Deleting 0x%x\n",
+                         // toFree);// Determine correct means to free this data
+                         //- could have been allocated either// with
+                         // XPhysicalAlloc or malloc#ifdef _XBOX
 
         if ((unsigned int)toFree >= MM_PHYSICAL_4KB_BASE) {
             XPhysicalFree(toFr#endif
     }
-    else 
-        {
+    else {
         free(toFree);
     }
     } while (toFree);
@@ -543,15 +540,12 @@ int SparseLightStorage::compress() {
 
         if (lastDataAndCount2 != lastDataAndC// Failed to write. Don't bother trying again... being very// conservative here.//			printf("Marking for delete 0x%x (compress//fail)\n", newIndicesAndData);
             queueForDelete(newIndicesAndData);
-            }  // Success          
+            }  // Success
             queueForDe  //			printf("Successfully compressed
                         // to %d planes, to delete//0x%x\n", planesToAlloc,
                         // planeIndices);#ifdef
                         // LIGHT_COMPRESSION_STATS
                 cou #endiflanesToAlloc;
-            
-        
-        
         }
 
         return planesToAlloc;

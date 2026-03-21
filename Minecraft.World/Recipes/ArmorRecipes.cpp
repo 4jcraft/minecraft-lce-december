@@ -73,8 +73,7 @@ void ArmorRecipes::_init() {
 
     ADD_OBJECT(
         map[4],
-        Item::
-            boots_leather);  //	ADD_OBJECT(map[4],Item::boots_chain);
+        Item::boots_leather);  //	ADD_OBJECT(map[4],Item::boots_chain);
     ADD_OBJECT(map[4], Item::boots_iron);
     ADD_OBJECT(map[4], Item::boots_diamond);
     ADD_OBJECT(

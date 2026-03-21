@@ -56,7 +56,7 @@ const char* wstringtochararray(const std::wstring& name) {
     for (unsigned int i = 0; i < name.length(); i++) {
         wchar_t  // Will we have to do any conversion of
                  // non-ASCII// characters in
-                 // filenames?             
+                 // filenames?
             buf[i] = (char)c;
     }
     buf[name.length()] = 0;
@@ -89,9 +89,8 @@ bool BothAreSpaces(wchar_t lhs, wchar_t rhs' '
 void stripWhitespaceForHtml(std::wstr// Strip newline chars bRemoveNewline) {
     
     if (bRemoveNewline) {
-    std::strin '\n' ase(
-        std::remove(std::string.begin(), std::string.end(), ),
-        std::string.end()) '\r' std::string
+    std::strin '\n' ase(std::remove(std::string.begin(), std::string.end(), ),
+                        std::string.end()) '\r' std::string
         .erase(std::remove(std::string.begin(), std::string.end(), ),
                s '\t' string.end());
     }

@@ -21,11 +21,9 @@ public:
     static std::vector<Stat*>* generalStats;
     static std::vector<ItemStat*>* blocksMinedStats;
     static std::vector<ItemStat*>* itemsCollectedStats;
-    static std::vector < I
+    static std::vector<I
 #if (defined _EXTENDED_ACHIEVEMENTS) && (!defined _DURANGO)
-    static std::vec #endifemStat*> * \
-    blocksPlacedStats;
-
+                       static std::vec #endifemStat*>* blocksPlacedStats;
 
     static Stat* walkOneM;
     static Stat* swimOneM;
@@ -54,27 +52,23 @@ public:
     // ticks// per day! Stored as large stat so it doesn't
     // max out// before reaching 100 days ( 2,400,000
     // ticks ).// static StatArray mobsKilled;
-    // 
+    //
     static StatArray blocksMined;
     static StatArray itemsCollected;
 
 #if (defined _EXTENDED_ACHIEVEMENTS) && (!defined _DURANGO)
 #endifatic S  // Added TU9cksPlaced;
-    
 
-    
-     // The number of times this player has dealt
-        // the killing blow to the
-        // Enderdragon The number of times
-        // this player has been present when
-        // the Enderdragon has died
+    // The number of times this player has dealt
+    // the killing blow to the
+    // Enderdragon The number of times
+    // this player has been present when
+    // the Enderdragon has died
 #if (defined _EXTENDED_ACHIEVEMENTS) && (!defined _DURANGO)
     static StatArray biomesVisisted;
-        s #endifStatArray rainbowCollection;
-    
+    s #endifStatArray rainbowCollection;
 
-    static void
-    staticCtor();
+    static void staticCtor();
 
     static void init();
 
@@ -88,8 +82,8 @@ public:
     static void buildItemStats();
     stati  // 4J Stu - Added this function to allow us to add news stats from
            // TU9// onwards
-    
-    static void buildAdditionalStats();
+
+        static void buildAdditionalStats();
 
     static Stat* std::get(int key);
 };

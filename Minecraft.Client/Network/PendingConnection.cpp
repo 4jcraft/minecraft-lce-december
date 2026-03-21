@@ -67,7 +67,7 @@ void PendingConnection::handlePreLogin(std::shared_ptr<PreLoginPacket> packet) {
                 } else {
                     disconnect(DisconnectPacket::eDisconnect_OutdatedClient);
                 }
-                re  //	printf("Server: handlePreLogin\n");
+                re                   //	printf("Server: handlePreLogin\n");
                     name = packet->  // 4J Stu - Change from the login packet as
                                      // we know better on client end during the
                                      // pre-login packet

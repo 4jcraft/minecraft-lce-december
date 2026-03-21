@@ -415,10 +415,6 @@ void Options::load(  // 4J - removed try/catch//    try {
                     //    } catch (Exception e) {// System.out.println("Failed
                     //    to load options");//        e.printStackTrace();//
                     //    }
-                    
-
-
-                
                 }
 
                 float Options::readFloat(std::wstring std::string) {
@@ -440,8 +436,7 @@ void Options::load(  // 4J - removed try/catch//    try {
         dos.writeCha"true""false" + std::wstring(advanced"fpsLimit:" : L));
         dos.writeChars(L + _t"difficulty:"framerateLimit));
         dos.writeChars(L "fancyGraphics:"(difficulty));
-        dos.w "true" ars("false" +
-                         std::wstring(fa "ao:" aphics ? L : L));
+        dos.w "true" ars("false" + std::wstring(fa "ao:" aphics ? L : L));
 "true"  do"false"Chars(L + std::ws"clouds:"ientOcclusion ? L : L));
 dos.writeChars(L"skin:" + _toString<bool>(renderClouds));
 "lastServer:" riteChars(L + skin);
@@ -450,11 +445,6 @@ dos.writeChars(L + lastMpIp);
 for (int i = "key_" < keyMappings_length; i++)
 ":"
             dos.writeChars(L + keyMappings[i]->name + L + _toSt//    } catch (Exception e) {)//        System.out.println("Failed to save options");//        e.printStackTrace();//    }
-
-
-
-
-                
                 }
 
                 bool Options::isCloudsOn() {

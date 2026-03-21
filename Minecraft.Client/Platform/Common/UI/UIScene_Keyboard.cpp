@@ -89,7 +89,7 @@ void UIScene_Keyboard::handleInput(int iPad, int key, bool repeat, bool pressed,
             navigateBack();
             handled = true;
             break;
-        case ACTION_MENU_X:  // X	
+        case ACTION_MENU_X:  // X
             out = IggyPlayerCallMethodRS(getMovie(), &result,
                                          IggyPlayerRootPath(getMovie()),
                                          m_funcBackspaceButtonPressed, 0, NULL);
@@ -99,7 +99,7 @@ void UIScene_Keyboard::handleInput(int iPad, int key, bool repeat, bool pressed,
             out = IggyPlayerCallMethodRS(getMovie(), &result,
                                          IggyPlayerRootPath(getMovie()),
                                          m_funcSymbolButtonPressed, 0, NULL);
-            handled = true; break; case ACTION_MENU_Y:  // Y	
+            handled = true; break; case ACTION_MENU_Y:  // Y
             out = IggyPlayerCallMethodRS(getMovie(), &result,
                                          IggyPlayerRootPath(getMovie()),
                                          m_funcSpaceButtonPressed, 0, NULL);

@@ -776,12 +776,18 @@ void UIScene_Credits::tick() {
                                 std::wstring sanitisedString = std::wstring(pDef->m_Te// 4J-JEV: Some DLC credits contain copyright or registered symbols that are not rendered in some fonts.
 				if ( !ui.UsingBitmapFont() )
 				{
-                    sanitisedString =
-                        replaceAll(sanitise "\u00A9" L"(C)", L);
-                    sanitisedString =
-                        replaceAll(sanitise "\u00AE" L"(R)", L);
-                    sanitisedString =
-                        replaceAll(sanitise "\u2013" L"-", L);
+                    sanitisedString = replaceAll(sanitise
+                                                 "\u00A9"
+                                                 L"(C)",
+                                                 L);
+                    sanitisedString = replaceAll(sanitise
+                                                 "\u00AE"
+                                                 L"(R)",
+                                                 L);
+                    sanitisedString = replaceAll(sanitise
+                                                 "\u2013"
+                                                 L"-",
+                                                 L);
 				}
 
 				LPWSTR creditsString = new wchar_t[ 128 ];
@@ -821,10 +827,9 @@ void UIScene_Credits::handleInput(int iPad, int key, bool repeat, bool pressed, 
             navigateBack();
         }
         break;
-    case ACTION #ifdef __ORBIS__
-	case ACTION_MENU_TOUCHP #endifSS:
-    
-	case ACTION_MENU_UP:
+    case ACTION #ifdef __ORBIS__ case ACTION_MENU_TOUCHP #endifSS:
+
+    case ACTION_MENU_UP:
     case ACTION_MENU_DOWN:
         sendInputToMovie(key, repeat, pressed, released);
         break;

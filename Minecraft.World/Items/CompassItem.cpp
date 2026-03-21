@@ -6,24 +6,25 @@
 
 #ifdef __PSVITA__
 const std::wstring CompassItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {
-    "compassP0"#else 
-const std::wstring CompassItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {
-        "compassP0""compassP1""compassP2""compassP"
-                                                  "3"#endif 
+    "compassP0" #else const std::wstring
+        CompassItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {
+            "compassP0"
+            "compassP1"
+            "compassP2"
+            "compassP"
+            "3" #endif
 
-CompassItem::CompassItem(int id) : Item(id){icons = NULL  // 4J Added so that we
-                                                          // can override the
-                                                          // icon id used to
-                                                          // calculate the
-                                                          // texture// UV's for
-                                                          // each player
+            CompassItem::CompassItem(int id) :
+                Item(id){icons = NULL  // 4J Added so that we
+                                       // can override the
+                                       // icon id used to
+                                       // calculate the
+                                       // texture// UV's for
+                                       // each player
 
-                                                    Icon *
-                                                    CompassItem::getIcon(
-                                                        int auxValue){
-                                                        Icon* icon =
-                                                            Item::getIcon(
-                                                                auxValue);
+                                 Icon *
+                                 CompassItem::getIcon(int auxValue){
+                                     Icon* icon = Item::getIcon(auxValue);
 Minecraft* pMinecraft = Minecraft::GetInstance();
 
 if (pMinecraft->player != NULL && auxValue == 0) {

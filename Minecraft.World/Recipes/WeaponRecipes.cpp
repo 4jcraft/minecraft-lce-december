@@ -81,6 +81,4 @@ void WeaponRecipies::addRecipes(Recipes* r) {
                 L'#', Item::stick,
                 L'T');
                 */
-
-
 }

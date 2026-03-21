@@ -42,9 +42,7 @@ catch (Exception e) {
 }
 }
 }
-.star #endif 
-
-
+.star #endif
 }
 
 void ConnectScreen::tick() {

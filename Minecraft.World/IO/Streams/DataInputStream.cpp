@@ -9,8 +9,8 @@
 DataInputStream::DataInputStream(InputStream* in) : stream(in) {}
 
 // Reads the next uint8_t of data from this input stream. The value uint8_t is
-// returned as an int in the range 0 to 255. If no uint8_t is available because the
-// end of the stream has been reached, the value -1 is returned. This method
+// returned as an int in the range 0 to 255. If no uint8_t is available because
+// the end of the stream has been reached, the value -1 is returned. This method
 // blocks until input data is available, the end of the stream is detected, or
 // an exception is thrown. This method simply performs in.read() and returns the
 // result.
@@ -25,10 +25,11 @@ int DataInputStream::read() { return stream->read(); }
 // available because the stream is at end of file, the value -1 is returned;
 // otherwise, at least one uint8_t is read and stored into b.
 //
-// The first uint8_t read is stored into element b[0], the next one into b[1], and
-// so on. The number of bytes read is, at most, equal to the length of b. Let k
-// be the number of bytes actually read; these bytes will be stored in elements
-// b[0] through b[k-1], leaving elements b[k] through b[b.length-1] unaffected.
+// The first uint8_t read is stored into element b[0], the next one into b[1],
+// and so on. The number of bytes read is, at most, equal to the length of b.
+// Let k be the number of bytes actually read; these bytes will be stored in
+// elements b[0] through b[k-1], leaving elements b[k] through b[b.length-1]
+// unaffected.
 //
 // The read(b) method has the same effect as:
 //
@@ -50,9 +51,9 @@ int DataInputStream::read(byteArray b) { return read(b, 0, b.length); }
 // of file is detected, or an exception is thrown.
 //
 // If len is zero, then no bytes are read and 0 is returned; otherwise, there is
-// an attempt to read at least one uint8_t. If no uint8_t is available because the
-// stream is at end of file, the value -1 is returned; otherwise, at least one
-// uint8_t is read and stored into b.
+// an attempt to read at least one uint8_t. If no uint8_t is available because
+// the stream is at end of file, the value -1 is returned; otherwise, at least
+// one uint8_t is read and stored into b.
 //
 // The first uint8_t read is stored into element b[off], the next one into
 // b[off+1], and so on. The number of bytes read is, at most, equal to len. Let
@@ -81,13 +82,14 @@ int DataInputStream::read(byteArray b, unsigned int offset,
 // the stream. This method simply performs in.close()
 void DataInputStream::close() { stream->close(); }
 
-// Reads one input uint8_t and returns true if that uint8_t is nonzero, false if that
-// uint8_t is zero. This method is suitable for reading the uint8_t written by the
-// writeBoolean method of interface DataOutput. Returns: the boolean value read.
+// Reads one input uint8_t and returns true if that uint8_t is nonzero, false if
+// that uint8_t is zero. This method is suitable for reading the uint8_t written
+// by the writeBoolean method of interface DataOutput. Returns: the boolean
+// value read.
 bool DataInputStream::readBoolean() { return stream->read() != 0; }
 
-// Reads and returns one input uint8_t. The uint8_t is treated as a signed value in
-// the range -128 through 127, inclusive. This method is suitable for reading
+// Reads and returns one input uint8_t. The uint8_t is treated as a signed value
+// in the range -128 through 127, inclusive. This method is suitable for reading
 // the uint8_t written by the writeByte method of interface DataOutput. Returns:
 // the 8-bit value read.
 uint8_t DataInputStream::readByte() { return (uint8_t)stream->read(); }
@@ -96,9 +98,9 @@ unsigned char DataInputStream::readUnsignedByte() {
     return (unsigned char)stream->read();
 }
 
-// Reads two input bytes and returns a char value. Let a be the first uint8_t read
-// and b be the second uint8_t. The value returned is: (char)((a << 8) | (b &
-// 0xff))
+// Reads two input bytes and returns a char value. Let a be the first uint8_t
+// read and b be the second uint8_t. The value returned is: (char)((a << 8) | (b
+// & 0xff))
 //
 // This method is suitable for reading bytes written by the writeChar method of
 // interface DataOutput. Returns: the char value read.
@@ -116,10 +118,10 @@ wchar_t DataInputStream::readChar() {
 // made. End of file is detected, in which case an EOFException is thrown. An
 // I/O error occurs, in which case an IOException other than EOFException is
 // thrown. If b is null, a NullPointerException is thrown. If b.length is zero,
-// then no bytes are read. Otherwise, the first uint8_t read is stored into element
-// b[0], the next one into b[1], and so on. If an exception is thrown from this
-// method, then it may be that some but not all bytes of b have been updated
-// with data from the input stream.
+// then no bytes are read. Otherwise, the first uint8_t read is stored into
+// element b[0], the next one into b[1], and so on. If an exception is thrown
+// from this method, then it may be that some but not all bytes of b have been
+// updated with data from the input stream.
 //
 // Parameters:
 // b - the buffer into which the data is read.
@@ -231,9 +233,9 @@ __int64 DataInputStream::readLong() {
     return bits;
 }
 
-// Reads two input bytes and returns a short value. Let a be the first uint8_t read
-// and b be the second uint8_t. The value returned is: (short)((a << 8) | (b &
-// 0xff))
+// Reads two input bytes and returns a short value. Let a be the first uint8_t
+// read and b be the second uint8_t. The value returned is: (short)((a << 8) |
+// (b & 0xff))
 //
 // This method is suitable for reading the bytes written by the writeShort
 // method of interface DataOutput. Returns: the 16-bit value read.
@@ -257,27 +259,28 @@ unsigned short DataInputStream::readUnsignedShort() {
 // method . This integer value is called the UTF length and specifies the number
 // of additional bytes to be read. These bytes are then converted to characters
 // by considering them in groups. The length of each group is computed from the
-// value of the first uint8_t of the group. The uint8_t following a group, if any, is
-// the first uint8_t of the next group.
+// value of the first uint8_t of the group. The uint8_t following a group, if
+// any, is the first uint8_t of the next group.
 //
-// If the first uint8_t of a group matches the bit pattern 0xxxxxxx (where x means
-// "may be 0 or 1"), then the group consists of just that uint8_t. The uint8_t is
-// zero-extended to form a character.
+// If the first uint8_t of a group matches the bit pattern 0xxxxxxx (where x
+// means "may be 0 or 1"), then the group consists of just that uint8_t. The
+// uint8_t is zero-extended to form a character.
 //
-// If the first uint8_t of a group matches the bit pattern 110xxxxx, then the group
-// consists of that uint8_t a and a second uint8_t b. If there is no uint8_t b (because
-// uint8_t a was the last of the bytes to be read), or if uint8_t b does not match the
-// bit pattern 10xxxxxx, then a UTFDataFormatException is thrown. Otherwise, the
-// group is converted to the character:
+// If the first uint8_t of a group matches the bit pattern 110xxxxx, then the
+// group consists of that uint8_t a and a second uint8_t b. If there is no
+// uint8_t b (because uint8_t a was the last of the bytes to be read), or if
+// uint8_t b does not match the bit pattern 10xxxxxx, then a
+// UTFDataFormatException is thrown. Otherwise, the group is converted to the
+// character:
 //
 //(char)(((a& 0x1F) << 6) | (b & 0x3F))
 //
-// If the first uint8_t of a group matches the bit pattern 1110xxxx, then the group
-// consists of that uint8_t a and two more bytes b and c. If there is no uint8_t c
-// (because uint8_t a was one of the last two of the bytes to be read), or either
-// uint8_t b or uint8_t c does not match the bit pattern 10xxxxxx, then a
-// UTFDataFormatException is thrown. Otherwise, the group is converted to the
-// character:
+// If the first uint8_t of a group matches the bit pattern 1110xxxx, then the
+// group consists of that uint8_t a and two more bytes b and c. If there is no
+// uint8_t c (because uint8_t a was one of the last two of the bytes to be
+// read), or either uint8_t b or uint8_t c does not match the bit pattern
+// 10xxxxxx, then a UTFDataFormatException is thrown. Otherwise, the group is
+// converted to the character:
 //
 //  (char)(((a & 0x0F) << 12) | ((b & 0x3F) << 6) | (c & 0x3F))
 //
@@ -482,11 +485,10 @@ int DataInputStream::readUTFChar() {
     return returnValue  // 4J Added
         PlayerUID DataInputStream::readPlayerUID() {
         PlayerUID returnVa #if defined (__PS3__) || defined(__ORBIS__) ||
-            defined(__PSVITA__)
-    for (int idPos = 0; idPos < sizeof(PlayerUID);
-         idPos++)((char*)&returnValue)[idPos] = readByt #elif defined(_DURANGO)
-    returnValue = readUT #else 
-    returnValue = readLon #endif  // PS3
+            defined(__PSVITA__) for (int idPos = 0; idPos < sizeof(PlayerUID);
+                                     idPos++)((char*)&returnValue)[idPos] =
+            readByt #elif defined(_DURANGO) returnValue =
+                readUT #else returnValue = readLon #endif  // PS3
             return returnValue;
     }
 

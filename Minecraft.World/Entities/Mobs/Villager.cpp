@@ -495,16 +495,14 @@ void Villager::addOffers(int addCount) {
     // Item::goldIngot_Id, random, 1.0f);
 }
 
-
-    std::random_shuffle(newOffers->begin(), newOffers->end());
+std::random_shuffle(newOffers->begin(), newOffers->end());
 
 if (offers == NULL) {
     offers = new MerchantRecipeList();
 }
     for (int i = 0; i < ad// 4J Added so we can delete newOffers{
         if (offers->addIfNewOrBetter(newOffers->at(i))) {
-    
-            newOffers->erase(newOffers->begin() + i);
+    newOffers->erase(newOffers->begin() + i);
         }
     }
     delete newOffers;
@@ -584,9 +582,8 @@ if (offers == NULL) {
     MIN_MAX_PRICES[Item::arrow_Id] = std::pair<int, int>(-12, -8);
     }
 
-    
-void Villager::addItemForTradeIn(MerchantRecipeList* std::list, int itemId,
-                                 Random* random, float likelyHood) {
+    void Villager::addItemForTradeIn(MerchantRecipeList* std::list, int itemId,
+                                     Random* random, float likelyHood) {
         if (random->nextFloat() < likelyHood) {
             list->push_back(new MerchantRecipe(
                 getItemTradeInValue(itemId, random), Item::emerald));
@@ -615,9 +612,8 @@ void Villager::addItemForTradeIn(MerchantRecipeList* std::list, int itemId,
         return minMax.first + random->nextInt(minMax.second - minMax.first);
     }
 
-    
-void Villager::addItemForPurchase(MerchantRecipeList* std::list, int itemId,
-                                  Random* random, float likelyHood) {
+    void Villager::addItemForPurchase(MerchantRecipeList* std::list, int itemId,
+                                      Random* random, float likelyHood) {
         if (random->nextFloat() < likelyHood) {
             int purchaseCost = getPurchaseCost(itemId, random);
             std::shared_ptr<ItemInstance> rubyItem;
@@ -684,14 +680,12 @@ void Villager::setRewardPlayersInVillage() {
 
 std::shared_ptr<AgableMob> Villager::getBreedOffspring(
     std::shared_ptr<AgableMob> target) {
-        
-    if (level->canCreateMore(GetType(), Level::eSpawnType_Breed)) {
+        if (level->canCreateMore(GetType(), Level::eSpawnType_Breed)) {
             std::shared_ptr<Villager> villager =
                 std::shared_ptr<Villager>(new Villager(level));
             villager->finalizeMobSpawn(NULL);
             return villager;
-        }
-        else {
+        } else {
             return nullptr;
         }
 }

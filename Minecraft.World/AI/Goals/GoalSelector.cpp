@@ -52,8 +52,7 @@ void GoalSelector::removeGoal(Goal* toRemove) {
 void GoalSelector::tick() {
     std::vector<InternalGoal*> toStart;
 
-    if (tickCount++ % newGoalRate ==
-        0)  // for (InternalGoal ig : goals)
+    if (tickCount++ % newGoalRate == 0)  // for (InternalGoal ig : goals)
         for (AUTO_VAR(it, goals.begin()); it != goals.end(); ++it) {
             InternalGoal* ig = *it;
             // bool isUsing = usingGoals.contains(ig);

@@ -95,11 +95,10 @@ std::shared_ptr<ItemInstance> ArmorDyeRecipe::assembleDyedArmor(
     int blue = (colorTotals[2] / colourCounts);
 
     float averageIntensity = (float)intensityTotal / colourCounts;
-    float
-        resultI  //        System.out.println(averageIntensity + ", " +
-                 //        resultIntensity);
+    float resultI  //        System.out.println(averageIntensity + ", " +
+                   //        resultIntensity);
 
-            red = (int)((float)red * averageIntensity / resultIntensity);
+        red = (int)((float)red * averageIntensity / resultIntensity);
     green = (int)((float)green * averageIntensity / resultIntensity);
     blue = (int)((float)blue * averageIntensity / resultIntensity);
 
@@ -123,16 +122,16 @@ const ItemInstance* ArmorDyeRecipe::getResultItem() { return NULL; }
 const int
     ArmorDyeReci  // 4J-PBroup() { return ShapedRecipy::eGroupType_Armour; }
 
-
-bool ArmorDyeRecipe::requires(int iRecipe) { return false; }
+    bool ArmorDyeRecipe::requires(int iRecipe) { return false; }
 
 void Ar  // int iCount=0;quire// bool bFound;EQUIR// int j;eq) {
-    
-        // shapeless doesn't have the 3x3 shape, but we'll just use this to store// the ingredients anyway
-    
-    Tem  // all the dyes can be made in a 2x2ype = RECIPE_TYPE_2x2;
-         // 
-    TempIngReq.uiGridA = new unsigned int[9];
+
+    // shapeless doesn't have the 3x3 shape, but we'll just use this to store//
+    // the ingredients anyway
+
+        Tem  // all the dyes can be made in a 2x2ype = RECIPE_TYPE_2x2;
+             //
+            TempIngReq.uiGridA = new unsigned int[9];
 TempIngReq.iIngIDA = new int[3 * 3];
 TempIngReq.iIngValA = new int[3 * 3];
 TempIngReq.iIngAuxValA = new int[3 * 3];
@@ -143,7 +142,7 @@ memset(TempIngReq.iIngAuxValA, Recipes::ANY_AUX_VALUE, sizeof(int) * 9);
 
 #if 0Memory(TempIngReq.uiGridA, sizeof(unsigned int) * 9);
 
-	AUTO_VAR(citEnd, ingredients->end());
+AUTO_VAR(citEnd, ingredients->end());
 
 for (std::vector<ItemInstance*>::const_iterator ingredient =
          ingredients->begin();
@@ -151,12 +150,11 @@ for (std::vector<ItemInstance*>::const_iterator ingredient =
     ItemInstance* expected = *ingredient;
 
     if (expected != NULL) {
-        int iAuxVal =
-            (*ingredient)
-                ->getAuxValue()  // 4J-PB - put the ingredients in boxes 1,2,4,5
-                                 // so we can see them in a 2x2 crafting
-                                 // screen
-            if (iCount == 2) iCount = 3;
+        int iAuxVal = (*ingredient)
+                          ->getAuxValue()  // 4J-PB - put the ingredients in
+                                           // boxes 1,2,4,5 so we can see them
+                                           // in a 2x2 crafting screen
+                      if (iCount == 2) iCount = 3;
         bFound = false;
         for (j = 0; j < TempIngReq.iIngC; j++) {
             if ((TempIngReq.iIngIDA[j] == expected->id) &&
@@ -176,8 +174,7 @@ for (std::vector<ItemInstance*>::const_iterator ingredient =
     }
 }
 
-
-    pIngReq->iIngIDA = new int[TempIngReq.iIngC];
+pIngReq->iIngIDA = new int[TempIngReq.iIngC];
 pIngReq->iIngValA = new int[TempIngReq.iIngC];
 pIngReq->iIngAuxValA = new int[TempIngReq.iIngC];
 pIngReq->uiGridA = new unsigned int[9];

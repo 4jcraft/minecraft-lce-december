@@ -161,7 +161,7 @@ void Minimap::render(std::shared_ptr<Player> player, Textures* textures,
 
 #ifdef _LARGE_WORLDS
     std::vector<MapItemSavedData::MapDecoration*>
-        m_edgeIc #endif     // 4J-PB - stack the map icons
+        m_edgeIc #endif  // 4J-PB - stack the map icons
         float fIconZ =
             -0  // 4J - moved to -0.04 (was -0.02) to stop z fighting
             for (std::vector<MapItemSavedData::MapDecoration*>::iterator it =
@@ -172,7 +172,7 @@ void Minimap::render(std::shared_ptr<Player> player, Textures* textures,
         if (!dec->visible) continue;
 
         char imgIndex =
-#ifdef _LARGE_WORLDS    // For edge icons, use a different texture
+#ifdef _LARGE_WORLDS  // For edge icons, use a different texture
             if (imgIndex >= 16) {
             m_edgeIcons.push_back(dec);
             cont #endif
@@ -211,7 +211,7 @@ void Minimap::render(std::shared_ptr<Player> player, Textures* textures,
         glPopMatrix();
         fIconZ -=
             0.0
-#ifdef _LARGE_WORLDS    // For players on the edge of the world
+#ifdef _LARGE_WORLDS  // For players on the edge of the world
             textures->bind(textures->loadTexture(TN_MISC_ADDITIONALMAPICONS));
 
         fIco  // 4J - moved to -0.04 (was -0.02) to stop z fighting
@@ -252,9 +252,8 @@ void Minimap::render(std::shared_ptr<Player> player, Textures* textures,
             glPopMatrix();
             fIconZ -= 0.0 #endif
         }
-        
 
-    glPush  //        glRotatef(0, 1, 0, 0);
+        glPush  //        glRotatef(0, 1, 0, 0);
             glTranslatef(0, 0, -0.06f);
     glScalef(// 4J Stu - Don't render the text name, except in debug//#if 1//#ifdef _DEBUG//    font->draw(data->id, x, y, 0xff000000);//#else// 4J Stu - TU-1 hotfix// DCR: Render the players current position here instead
 	if(player != NULL)
@@ -264,8 +263,7 @@ void Minimap::render(std::shared_ptr<Player> player, Textures* textures,
             int posx = floor(player->x);
             int posy = floor(player->y);
             int posz = floor(player->z);
-            swprintf(playerPosT "X: %d, Y: %d, Z: %d", posx, posy,
-                     posz);
+            swprintf(playerPosT "X: %d, Y: %d, Z: %d", posx, posy, posz);
 
                 font->draw(playerPosText, x, y, Minecraft::GetInstance()->getColourTable()->getColour(eMinecraftColour_Map_T//#endif}
 

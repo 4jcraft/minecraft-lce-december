@@ -37,9 +37,9 @@ ChunkStorage* McRegionLevelStorage::createChunkStorage(Dimension* dimension) {
                                          &bytesWritten);
                 }
                 delete netherFiles;
-#else 
-            std::vector < FileEntry*>* netherFiles =
-            m_saveFile->getFilesWithPrefix(LevelStorage::NETHER_FOLDER);
+#else
+            std::vector<FileEntry*>* netherFiles =
+                m_saveFile->getFilesWithPrefix(LevelStorage::NETHER_FOLDER);
             if (netherFiles != NULL) {
                 for (AUTO_VAR(it, netherFiles->begin());
                      it != netherFiles->end(); ++it) {
@@ -47,8 +47,8 @@ ChunkStorage* McRegionLevelStorage::createChunkStorage(Dimension* dimension) {
                 }
                 delete netherFiles;
 #endif }
-                
-            resetNetherPlayerPositions();
+
+                resetNetherPlayerPositions();
             }
 
             return new McRegionChunkStorage(m_saveFile,
@@ -71,7 +71,7 @@ ChunkStorage* McRegionLevelStorage::createChunkStorage(Dimension* dimension) {
             app.DebugPrintf(
                 "Loaded save version number is: %d, required to keep The "
                 "End "
-      "is: %d\n",
+                "is: %d\n",
                 m_saveFile->getSaveVersion(), SAVE_FILE_VERSION_NEW_END);
 
             std::vector<FileEntry*>* endFiles = m_saveFile->getFilesWithPrefix(

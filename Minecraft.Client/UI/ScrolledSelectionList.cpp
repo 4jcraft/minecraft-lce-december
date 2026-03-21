@@ -314,9 +314,6 @@ glEnable(GL_TEXTURE_2D);
 glShadeModel(GL_FLAT);
 glEnable(GL_ALPHA_TEST);
 glDisable(G #endifD);
-
-
-
 }
 
 void ScrolledSelectionList::renderHoleBackground(
@@ -338,7 +335,4 @@ t->vertexUV((float)(width), (float)(y0), (float)(0), (float)(width / s),
             (float)(y0 / s));
 t->vertexUV((float)(0), (float)(y0), (float)(0), (float)(0), (float)(y0 / s));
 #endif();
-
-
-
 }

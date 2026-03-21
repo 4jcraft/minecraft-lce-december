@@ -199,18 +199,14 @@ void UIScene_DebugOverlay::handlePress(F64 controlId, F64 childId) {
         } break;
         case eControl_Schematic:
 #ifndef _CONTENT_PACKAGE
-			ui.NavigateToScene(ProfileManager.GetPrimaryPad(),
-            eUIScene_DebugCreateSchematic, NULL, eUILayer_Deb #endif 
-		
-    
+                        ui.NavigateToScene(ProfileManager.GetPrimaryPad(),
+            eUIScene_DebugCreateSchematic, NULL, eUILayer_Deb #endif
     }
     break;
     case eControl_SetCamera:
 #ifndef _CONTENT_PACKAGE
-			ui.NavigateToScene(ProfileManager.GetPrimaryPad(),
-        eUIScene_DebugSetCamera, NULL, eUILayer_Deb #endif 
-		
-
+                        ui.NavigateToScene(ProfileManager.GetPrimaryPad(),
+        eUIScene_DebugSetCamera, NULL, eUILayer_Deb #endif
 }
 break;
 case eControl_Rain:
@@ -272,4 +268,4 @@ case eControl_SetNight: {
                          (int)currentValue);
                 m_sliderFov.setLabel(TempString);
             } break;
-#endif 
+#endif

@@ -155,7 +155,7 @@ void EnderDragon::registerAttributes() {
 }
 
 void EnderDragon::defineSynchedData  // 4J Added for new dragon behaviour
-                                     // 
+                                     //
     entityData->define(DATA_ID_SYNCHED_ACTION,
                        e_EnderdragonAction_HoldingPattern);
 }
@@ -214,13 +214,12 @@ void EnderDragon::aiStep() {  // 4J Stu - If saved when dead we need to make
         }
     }
 
-    oFlapTime =
-        flapTim  //            level.addParticle("explode", x +
-                 //            random.nextFloat() *// bbWidth * 2 -
-                 //            bbWidth, y + random.nextFloat() *
-                 //            bbHeight,//            z +
-                 //            random.nextFloat() * bbWidth * 2 - bbWidth, 0, 0,
-                 //            0);
+    oFlapTime = flapTim  //            level.addParticle("explode", x +
+                         //            random.nextFloat() *// bbWidth * 2 -
+                         //            bbWidth, y + random.nextFloat() *
+                         //            bbHeight,//            z +
+                         //            random.nextFloat() * bbWidth * 2 -
+                         //            bbWidth, 0, 0, 0);
         float xo = (random->nextFloat() - 0.5f) * 8;
     float yo = (random->nextFloat() - 0.5f) * 4;
     float zo = (random->nextFloat() - 0.5f) * 8;
@@ -265,16 +264,15 @@ flapSpeed *= (float)pow(2.0, yd);
             double yt = y + (ly - y) / lSteps;
             double z  // 4J Stu - The movement is so small that this head
                       // animation// doesn't look good
-                // if( getSynchedAction() == e_EnderdragonAction_Sitting_Flaming
-                // )//{//	double yrd = lyr - (yRot
-                // + m_headYRot);//	while (yrd < -180)
-                //		yrd += 360;
-                //	while (yrd >= 180)
-                //		yrd -= 360;
-                //	m_headYRot += (yrd) / lSteps; //}//
-                // else
-            
-            
+            // if( getSynchedAction() == e_EnderdragonAction_Sitting_Flaming
+            // )//{//	double yrd = lyr - (yRot
+            // + m_headYRot);//	while (yrd < -180)
+            //		yrd += 360;
+            //	while (yrd >= 180)
+            //		yrd -= 360;
+            //	m_headYRot += (yrd) / lSteps; //}//
+            // else
+
             {
                 double yrd = Mth::wrapDegrees(lyr - yRot);
 
@@ -299,8 +297,6 @@ flapSpeed *= (float)pow(2.0, yd);
              * - bb.y0; setPos(xt, yt,
              * zt); }
              */
-        
-        
         }
 
         if (getSynchedAction() == e_EnderdragonAction_Landing ||
@@ -313,14 +309,14 @@ flapSpeed *= (float)pow(2.0, yd);
             // (%f,%f,%f) - lsteps %d\n", v->x,// v->y, v->z,
             // lSteps); unsigned int d = 0; for(unsigned int d =
             // 1;// d < 3; ++d)
-            
+
             {
                 Vec3* vN = v->normalize();
                 vN->yRot(-PI / 4);
                 for (unsigned int i = 0; i < 8; ++i) {
                     if (getSynchedAction() == e_EnderdragonAc// for(unsigned int j = 0; j < 6; ++j)  
                         {
-                    // - vN->x * d;          xP = head->x;  
+                    // - vN->x * d;          xP = head->x;
                     yP = head->bb->y0 +
                          head->bbHeight /
                              // - vN->y * d; //head->y +         2;
@@ -328,7 +324,7 @@ flapSpeed *= (float)pow(2.0, yd);
                              // 0.5f - v->y *
                              // d;
                              // - vN->z * d;          zP = head->z;
-                             // 
+                             //
                              xP += (level->random->nextBoolean() ? 1 : -1) *
                                    level->random->nextFloat() / 2;
                     yP += (level->random->nextBoolean() ? 1 : -1) *
@@ -345,7 +341,7 @@ flapSpeed *= (float)pow(2.0, yd);
                     double yVelocity = 0.6;
                     double xzVelocity = 0.08;
                     for (unsigned int j = 0; j < 6; ++j) {
-                        // - vN->x * d;          xP = head->x;  
+                        // - vN->x * d;          xP = head->x;
                         yP = head->bb->y0 +
                              head->bbHeight /
                                  // - vN->y * d; //head->y +         2;
@@ -353,7 +349,7 @@ flapSpeed *= (float)pow(2.0, yd);
                                  // 2 + 0.5f - v->y *
                                  // d;
                                  // - vN->z * d;          zP = head->z;
-                                 // 
+                                 //
                                  xP += (level->random->nextBoolean() ? 1 : -1) *
                                        level->random->nextFloat() / 2;
                         yP += (level->random->nextBoolean() ? 1 : -1) *
@@ -390,19 +386,15 @@ flapSpeed *= (float)pow(2.0, yd);
                         setSync #if PRINT_DRAGON_STATE_CHANGE_MESSAGES;
 "Dragon action is now: Takeoff\n"Pri#endif);
 
-                    newTarget = true;
+newTarget = true;
                     } else {
                         setSynchedAction(e_EnderdragonAction_Sitting_Scanning);
-                        attackTarget =
-                            level->getNearestPlayer(shared_from_this(),
-                                                    SITTING_ATTACK_VIEW_RANGE,
+                        attackTarget = level->getNearestPlayer(
+                            shared_from_this(), SITTING_ATTACK_VIEW_RANGE,
 #if PRINT_DRAGON_STATE_CHANGE_MESSAGES;
-"Dragon action is now: "
-                                    "SittingScanning"
-                                    "\n"#endif );
-                        
-                
-                    
+                            "Dragon action is now: "
+                            "SittingScanning"
+                            "\n" #endif);
                     }
                 }
             } else if (getSynchedAction() ==
@@ -415,18 +407,18 @@ flapSpeed *= (float)pow(2.0, yd);
                 if (attackTarget != NULL) {
                     if (m_actionTicks > SITTING_SCANNING_IDLE_TICKS / 4) {
                         setSynchedAction(#if PRINT_DRAGON_STATE_CHANGE_MESSAGES;
-"Dragon action is now: "
-                                    "SittingAttacking"
-                                    "\n"#endif );
-                        
-                    m_actionTicks = ATTACK_TICKS;
+                                         "Dragon action is now: "
+                                         "SittingAttacking"
+                                         "\n" #endif);
+
+                        m_actionTicks = ATTACK_TICKS;
                     }
                 } else {
                     if (m_actionTicks >= SITTING_SCANNING_IDLE_TICKS) {
                         setSync #if PRINT_DRAGON_STATE_CHANGE_MESSAGES;
 "Dragon action is now: Takeoff\n"Pri#endif);
 
-                    newTarget = true;
+newTarget = true;
                     }
                 }
             } else if (getSynchedAction() ==
@@ -435,15 +427,14 @@ flapSpeed *= (float)pow(2.0, yd);
                 if (m_actionTicks <= 0) {
                     ++m_flameAttacks;
                     setSynchedAction(e_EnderdragonAction_Sitting_Flaming);
-                    attackTarget =
-                        level->getNearestPlayer(shared_from_this(),
-                                                SITTING_ATTACK_VIEW_RANGE,
+                    attackTarget = level->getNearestPlayer(
+                        shared_from_this(), SITTING_ATTACK_VIEW_RANGE,
 #if PRINT_DRAGON_STATE_CHANGE_MESSAGES;
-"Dragon action is now: "
-                                "SittingFlaming"
-                                "\n"#endif );
-                    
-                m_actionTicks = FLAME_TICKS;
+                        "Dragon action is now: "
+                        "SittingFlaming"
+                        "\n" #endif);
+
+                    m_actionTicks = FLAME_TICKS;
                 }
             } else if (!newTarget &&
                        getSynchedAction() == e_EnderdragonAction_Takeoff) {
@@ -454,37 +445,33 @@ flapSpeed *= (float)pow(2.0, yd);
             if (dist > (10.0f * 10.0f)) {
             setSynchedActi #if PRINT_DRAGON_STATE_CHANGE_MESSAGES;
 "Dragon action is now: HoldingPattern\n"#endif);
-
             }
-            } else if (newTarget ||
-                       ((getSynchedAction() != e_EnderdragonAction_Landing &&
-                         dist < 10 * 10) ||
-                        dist < 1) ||
-                       dist > 150 * 150 || horizontalCollision ||
-                       verticalCollision) {
-                findNewTarget();
-            }
+        }
+        else if (newTarget ||
+                 ((getSynchedAction() != e_EnderdragonAction_Landing &&
+                   dist < 10 * 10) ||
+                  dist < 1) ||
+                 dist > 150 * 150 || horizontalCollision || verticalCollision) {
+            findNewTarget();
+        }
 
-            if (getSynchedAction() == e_EnderdragonAction_Sitting_Flaming ||
-                getSynchedAction() == e_EnderdragonAction_Landing) {
-                if (m_actionTicks < (FLAME_TICKS - 10)) {
-                    std::vector<std::shared_ptr<Entity> >* targets =
-                        level->getEntities(shared_from_this(), m_acidArea);
+        if (getSynchedAction() == e_EnderdragonAction_Sitting_Flaming ||
+            getSynchedAction() == e_EnderdragonAction_Landing) {
+            if (m_actionTicks < (FLAME_TICKS - 10)) {
+                std::vector<std::shared_ptr<Entity> >* targets =
+                    level->getEntities(shared_from_this(), m_acidArea);
 
-                    for (AUTO_VAR(it, targets->begin()); it != targets->end();
-                         ++it) {
+                for (AUTO_VAR(it, targets->begin()); it != targets->end();
+                     ++it) {
                     if ((*it)->instance// app.DebugPrintf("Attacking entity with acid\n");
                         std::shared_ptr<LivingEntity> e =
                             dynamic_pointer_cast<LivingEntity>(*it);
                         e->hurt(DamageSource::dragonbreath, 2);
-                    }
                 }
             }
         }
+        }
         if (getSynchedAction()// No movementgonAction_Sitting_Flaming) {
-            
-        
-        
         }
         else if (getSynchedAction() == e_EnderdragonAction_Sitting_Scanning) {
             if (attackTarget != NULL) {
@@ -503,8 +490,8 @@ flapSpeed *= (float)pow(2.0, yd);
                            // attackTarget->bbHeight / 2) - (head->y +
                            // head->bbHeight ///
                            // 2);
-                    
-                    double zdd = attackTarget->z - head->z;
+
+                        double zdd = attackTarget->z - head->z;
 
                     double yRotT = (180) - atan2(xdd, zdd) * 180 / PI;
                     double yRotD = Mth::wrapDegrees(yRotT - yRot);
@@ -522,13 +509,12 @@ flapSpeed *= (float)pow(2.0, yd);
                     yRotA += yRotD * ((0.7f / distToTarget) / rotSpeed);
                     yRot  // setSynchedAction(e_EnderdragonAction_Sitting_Flaming);#if
                           // PRINT_DRAGON_STATE_CHANGE_MESSAGES
-    // app.DebugPrintf("Dragon action is now :             // SittingFlaming\n");#endif
-                        // m_actionTicks = FLAME_TICKS;
-                    
-    // setSynchedAction(e_EnderdragonAction_Sitting_Flaming);// app.DebugPrintf("Dragon action is now : SittingFlaming\n");// m_actionTicks = 0;
-                
-            
-                
+                    // app.DebugPrintf("Dragon action is now :             //
+                    // SittingFlaming\n");#endif m_actionTicks = FLAME_TICKS;
+
+                    // setSynchedAction(e_EnderdragonAction_Sitting_Flaming);//
+                    // app.DebugPrintf("Dragon action is now :
+                    // SittingFlaming\n");// m_actionTicks = 0;
                 }
         } else if (getSynchedAction() ==
                    e_EnderdragonAc// 			double xTargetO = xTarget;  } else {
@@ -608,7 +594,7 @@ flapSpeed *= (float)pow(2.0, yd);
         }
 
         yB  // 4J Stu - Replaced what was "head" with "neck" //3;        1;
-            // 
+            //
             neck->bbWidth = neck->bbHeight = 3;
         tail1->bbWidth = tail1->bbHeight = 2;
         tail2->bbWidth = tail2->bbHeight = 2;
@@ -667,7 +653,6 @@ flapSpeed *= (float)pow(2.0, yd);
         m_acidArea->set(acidX - 5, acidY - 17, acidZ - 5, ac// app.DebugPrintf("\nDragon is %s, yRot = %f, yRotA = %f, ss = %f, cc =// %f, ccTilt = %f\n",level->isClientSide?"client":"server", yRot,// yRotA, ss, cc, ccTilt); app.DebugPrintf("Body (%f,%f,%f) to   // (%f,%f,%f)\n", body->bb->x0, body->bb->y0, body->bb->z0,      // body->bb->x1, body->bb->y1, body->bb->z1); app.DebugPrintf("Neck// (%f,%f,%f) to (%f,%f,%f)\n", neck->bb->x0, neck->bb->y0,      // neck->bb->z0, neck->bb->x1, neck->bb->y1, neck->bb->z1);      // app.DebugPrintf("Head (%f,%f,%f) to (%f,%f,%f)\n", head->bb->x0,// head->bb->y0, head->bb->z0, head->bb->x1, head->bb->y1,       // head->bb->z1); app.DebugPrintf("Acid (%f,%f,%f) to (%f,%f,%f)\n\n",// m_acidArea->x0, m_acidArea->y0, m_acidArea->z0, m_acidArea->x1,// m_acidArea->y1, m_acidArea->z1);// Curls/straightens the tail
     }
 
-    
     for (int i = 0; i < 3; i++) {
         std::shared_ptr<MultiEntityMobPart> part = nullptr;
 
@@ -691,7 +676,6 @@ flapSpeed *= (float)pow(2.0, yd);
         // 4J Stu - Fireball attack taken from GhastccTilt, 0, 0);
     }
 
-    
     if (!level->isClientSide) {
         double maxDist = 64.0f;
         if (getSynchedAction() == e_EnderdragonAction_StrafePlayer &&
@@ -737,8 +721,7 @@ flapSpeed *= (float)pow(2.0, yd);
                     level->addEntity(ie);
                     m_fi "Finding new target due to having fired a "
                          "fireball"
-                         "\n" f(
-                        );
+                         "\n" f();
                     if (m_currentPath != NULL) {
                         while (!m_currentPath->isDone()) {
                             m_currentPath->next();
@@ -753,7 +736,6 @@ flapSpeed *= (float)pow(2.0, yd);
         } else  // End fireball attackreballCharge > 0) m_fireballCharge--;
     }
     }
-    
 
     if (!level->isClientSide) {
         inWall =
@@ -782,8 +764,8 @@ flapSpeed *= (float)pow(2.0, yd);
 
             std::s  // for (Entity ec : crystals)al = nullptr;
                 double nearest = Double::MAX_VALUE;
-            
-        for (AUTO_VAR(it, crystals->begin()); it != crystals->end(); ++it) {
+
+            for (AUTO_VAR(it, crystals->begin()); it != crystals->end(); ++it) {
                 std::shared_ptr<EnderCrystal> ec =
                     dynamic_pointer_cast<EnderCrystal>(*it);
                 double dist = ec->distanceToSqr(shared_from_this());
@@ -800,9 +782,6 @@ flapSpeed *= (float)pow(2.0, yd);
             //            double y = (body.bb.y0 + body.bb.y1) / 2 -
             //            2;//            double z = (body.bb.z0 +
             //            body.bb.z1) / 2;
-            
-    
-        
         }
     }
 
@@ -812,7 +791,6 @@ flapSpeed *= (float)pow(2.0, yd);
     // for (Entity e : entities)
     double zm = (body->bb->z0 + body->bb->z1) / 2;
 
-    
     for (AUTO_V//(e instanceof Mob)in()); it != entities->end(); ++it) {
         if ((*it)->instanceof(eTYPE_LIVINGENTITY))  
         {
@@ -823,14 +801,12 @@ flapSpeed *= (float)pow(2.0, yd);
             e->push(xd / // for (int i = 0; i < entities->size(); i++)
 
 void EnderDragon::hurt(std::vector<std::shared_ptr<Entity> >* entities) {
-        
-    //(e instanceof Mob), entities->begin()); it != entities->end(); ++it) {
-            if ((*it)->instanceof(
-                    eTYPE_LIVINGENTITY))      // entities.get(i);     {
-            std::shared_ptr<LivingEntity>
-                e = dynamic_pointer_cast<LivingEntity>(*it);
-        
-            DamageSource* damageSource = DamageSource::mobAttack(
+        //(e instanceof Mob), entities->begin()); it != entities->end(); ++it) {
+        if ((*it)->instanceof(eTYPE_LIVINGENTITY))  // entities.get(i);     {
+            std::shared_ptr<LivingEntity> e =
+                dynamic_pointer_cast<LivingEntity>(*it);
+
+        DamageSource* damageSource = DamageSource::mobAttack(
             dynamic_pointer_cast<LivingEntity>(shared_from_this()));
         e->hurt(damageSource, 10);
         dele  // Update current action }
@@ -840,7 +816,6 @@ void EnderDragon::hurt(std::vector<std::shared_ptr<Entity> >* entities) {
 void EnderDragon::findNewTarget() {
     std::shared_ptr<Player> playerNearestToEgg = nullptr;
 
-    
     switch (getSynchedAction()) {
         case e_EnderdragonAction_Takeoff:
         case e_EnderdragonActi// Distance is 64, which is the radius of the circle_currentPath != NULL &&
@@ -857,9 +832,8 @@ void EnderDragon::findNewTarget() {
                     dist = playerNearestToEgg->distanceToSqr(// app.DebugPrintf("Adjusted dist is %f\n", dist);PODIUM_Z_POS);
                     dist /= (8 * 8 * 8);
                 }
-                
 
-         #if PRINT_DRAGON_STATE_CHANGE_MESSAGESCrystalsCount + 3) == 0) {
+#if PRINT_DRAGON_STATE_CHANGE_MESSAGESCrystalsCount + 3) == 0) {
           "Dragon action is now: LandingApproach\n"cti#endifdingApproach);
 // More likely to strafe a player if they are close to the egg,// or there are not many crystals remaining
                 
@@ -872,63 +846,61 @@ void EnderDragon::findNewTarget() {
                     app.DebugPrintf(// Always return to the holding pattern after strafing        }
         } break;
         case e_EnderdragonAction_StrafePlayer:
-            
-            if (m_currentPath#if PRINT_DRAGON_STATE_CHANGE_MESSAGESPath->isDone() && newTarget)) {
- "Dragon action is now: HoldingPattern\n"rag#endifon_HoldingPattern);
- 
-                app
-     .DebugPrin  //		setSynchedAction(e_EnderdragonAction_Sitting_Flaming);
-                 //}
-                 // #if PRINT_DRAGON_STATE_CHANGE_MESSAGESAction_Landin//
-                 // app.DebugPrintf("Dragon action is
-                 // now://SittingFlaming\n"); #endif
-                 // m_actionTicks = FLAME_TICKS;
-            
-            
 
-            m_flameAttacks = 0;
+            if (m_currentPath #if PRINT_DRAGON_STATE_CHANGE_MESSAGESPath
+                    ->isDone() &&
+                newTarget)) {
+ "Dragon action is now: HoldingPattern\n"rag#endifon_HoldingPattern);
+
+ app.DebugPrin  //		setSynchedAction(e_EnderdragonAction_Sitting_Flaming);
+                //}
+                // #if PRINT_DRAGON_STATE_CHANGE_MESSAGESAction_Landin//
+                // app.DebugPrintf("Dragon action is
+                // now://SittingFlaming\n"); #endif
+                // m_actionTicks = FLAME_TICKS;
+
+     m_flameAttacks = 0;
  setSynchedAction(e_EnderdragonAction_Sitting_Scanning);
  attackTarget = level->getNearestPlayer(
      shared_from_this(),
 #if PRINT_DRAGON_STATE_CHANGE_MESSAGESG_ATTACK_VIEW_RANGE,
      "Dragon action is now: SittingScanning\n" S #endif_ATTACK_Y_VIEW_RANGE);
- 
-            app.DebugPrin  // if (random->nextInt(2) == 0 &&
-                           // level->players.size() > 0)      m_actionTicks = 0;
+
+ app.DebugPrin  // if (random->nextInt(2) == 0 &&
+                // level->players.size() > 0)      m_actionTicks = 0;
      break;
-            };
+                };
 
             newTarget = false;
 
-            
-    if (getSynchedAction() == e_EnderdragonAction_StrafePlayer &&
-        playerNearestToEgg != NULL) {
+            if (getSynchedAction() == e_EnderdragonAction_StrafePlayer &&
+                playerNearestToEgg != NULL) {
                 attackTar  // Generate a new path if we don't currently have
                            // one);
-            }
-            else if (getSynchedAction() ==
-                     e_EnderdragonAction_LandingApproach) {
-        // To get the angle to the player correct when landing, head to ane()) {
-     // node diametrically opposite the player, then swoop in to 4,4
-            
+            } else if (getSynchedAction() ==
+                       e_EnderdragonAction_LandingApproach) {
+                // To get the angle to the player correct when landing, head to
+                // ane()) {
+                // node diametrically opposite the player, then swoop in to 4,4
+
             int eggHei// level->getHeightmap(4,4);    level->seaLevel + 5,
                 level->getTopSolidBlock(
                     PODIUM_X_POS, PODIUM_Z_POS));
-        
-            playerNearestToEgg = level->getNearestPlayer(
-            PODIUM_X_POS, eggHeight, PODIUM_Z_POS, 128.0);
 
-        int targetNodeIndex = 0;
-        if (playerNearestToEgg != NULL) {
+            playerNearestToEgg = level->getNearestPlayer(
+                PODIUM_X_POS, eggHeight, PODIUM_Z_POS, 128.0);
+
+            int targetNodeIndex = 0;
+            if (playerNearestToEgg != NULL) {
                 Vec3* aim = Vec3::newTemp(playerNea// app.DebugPrintf("Final marker node near (%f,%d,%f)\n",  playerNearestTo// -aim->x*40,105,-aim->z*40 );         ->normalize();
                 
                 
                 targetNodeIndex =
                     findClosestNode(-aim->x * 40, 105.0, -aim->z * 40);
-        } else {
-            targetNodeIndex = findClosestNode(40.0, eggHeight, 0.0);
-        }
-        Node finalNode(PODIUM_X_POS, eggHeight, PODIUM_Z_POS);
+            } else {
+                targetNodeIndex = findClosestNode(40.0, eggHeight, 0.0);
+            }
+            Node finalNode(PODIUM_X_POS, eggHeight, PODIUM_Z_POS);
 
             if (m_currentPath // Always skip the first node (as that's where we are already)             findPath(currentNodeIndex, targetNodeIndex, &finalNode);
 
@@ -942,18 +914,13 @@ void EnderDragon::findNewTarget() {
                 NULL&& m_curren
                 "Dragon action is now: Landing\n" tSy #endifction(
                     e_EnderdragonAction_Landing);
-            
+
             app.DebugPrintf();
-            
-        
-    
     }
     } else if (getSynchedAction() == e_EnderdragonAction_Sitting_Flaming ||
                get// Does no movemente_EnderdragonAction_Si// Default is e_EnderdragonAction_HoldingPatternon() == e// Generate a new path if we don't currently have one
     }
     else {
-        
-        
         if (m_currentPath == NULL || // if(random->nextInt(4) == 0) m_holdingPatternClockwise =x = findClose// !m_holdingPatternClockwise;etNodeIndex = currentNodeIndex;
             
             
@@ -972,13 +939,13 @@ void EnderDragon::findNewTarget() {
             }
 
             if (m_remainingCrystalsCount <= 0) {
-            // 4J-RR - was %8, but that could create a result of -1          targetNodeIndex// here when targetNodeIndex was 11dex &
-            7;
-            // If crystals are left, navigate only between nodes 0-11
-            targetNodeIndex += 12;
+        // 4J-RR - was %8, but that could create a result of -1
+        // targetNodeIndex// here when targetNodeIndex was 11dex &
+        7;
+        // If crystals are left, navigate only between nodes 0-11
+        targetNodeIndex += 12;
             } else {
-        
-                targetNodeIndex = targetNodeIndex % 12;
+        targetNodeIndex = targetNodeIndex % 12;
         if (targetNodeIndex < 0) targetNodeIndex += 12;
             }
 
@@ -1014,15 +981,14 @@ void EnderDragon::findNewTarget() {
             // 4J Stu - Don't remove fire++) {
             for (int z = z0; z <= z1; z++) {
                 int t = level->getTile(x, y, z);
-                
-                if (t == 0 || t == Tile::fire_Id) {}
-                else if (t == Tile::obsidian_Id || t == Tile::endStone_Id ||
-                         t == Tile::unbreakable_Id ||
-                         !level->getGameRules()->getBoolean(
-                             GameRules::RULE_MOBGRIEFING)) {
+
+                if (t == 0 || t == Tile::fire_Id) {
+                } else if (t == Tile::obsidian_Id || t == Tile::endStone_Id ||
+                           t == Tile::unbreakable_Id ||
+                           !level->getGameRules()->getBoolean(
+                               GameRules::RULE_MOBGRIEFING)) {
                     hitWall = true;
-                }
-                else {
+                } else {
                     destroyedTile = level->removeTile(x, y, z) || destroyedTile;
                 }
             }
@@ -1062,10 +1028,10 @@ bool EnderDragon::hurt(std::shared_ptr<MultiEntityMobPart> MultiEntityMobPart// 
                     while (!m"Dragon should be dead, so landing.\n"   #if PRINT_DRAGON_STATE_CHANGE_MESSAGES
         }
     }"Dragon action is now: LandingApproach\n"#endif);
-    
-                app.DebugPrintf();
-    
-                findNewTarget();
+
+    app.DebugPrintf();
+
+    findNewTarget();
             }
 }
 
@@ -1078,11 +1044,8 @@ if (getSynchedAction() == e_EnderdragonAction_Sitting_Flaming ||
         (SITTING_ALLOWED_DAMAGE_PERCENTAGE * getMaxHealth()))
 #if PRINT_DRAGON_STATE_CHANGE_MESSAGESived = 0;
         setSync "Dragon action is now: Takeoff\n" eof #endif newTarget = true;
-    
-                app.DebugPrintf();
-    
-            
 
+    app.DebugPrintf();
 }
 }
 }
@@ -1138,9 +1101,9 @@ void EnderDragon::tickDeath() {
    // 4J-PB changed to center this between the pillars   if (random->nextInt(2) == 0) {// Mth::floor(x), Mth::floor(z));se {
             zo = 0;
         }
-        
+
         spawnExitPortal(0, 0);
-        
+
         std::remove();
     }
 }
@@ -1219,100 +1182,102 @@ int EnderDragon
     :  //"mob.enderdragon.hit"; return eSoundType_MOB_ENDERDRAGON_GROWL;
        // // 4J Added for new dragon behaviouretHurtSound() {
        return eSoundType_MOB_ENDERDRAGON_HIT;
-
-
-
 }
 
 float EnderDragon::ge /*= false*/ e() { return 5; }
 
 // Check if this is a valid state transitiontion(EEnderdragonAction action,
                                    bool force ) {
-    bool validTransition = false;
-    
-    switch (getSynchedAction()) {
-        case e_EnderdragonAction_HoldingPattern:
-            switch (action) {
-                case e_EnderdragonAction_StrafePlayer:
-                case e_EnderdragonAction_LandingApproach:
-                    validTransition = true;
-                    break;
-            };
-            break;
-        case e_EnderdragonAction_StrafePlayer:
-            switch (action) {
-                case e_EnderdragonAction_HoldingPattern:
-                case e_EnderdragonAction_LandingApproach:
-                    validTransition = true;
-                    break;
-            };
-            break;
-        case e_EnderdragonAction_LandingApproach:
-            switch (action) {
-                case e_EnderdragonAction_Landing:
-                    validTransition = true;
-                    break;
-            };
-            break;
-        case e_EnderdragonAction_Landing:
-            switch (action) {
-                case e_EnderdragonAction_Sitting_Flaming:
-                case e_EnderdragonAction_Sitting_Scanning:
-                    validTransition = true;
-                    break;
-            };
-            break;
-        case e_EnderdragonAction_Takeoff:
-            switch (action) {
-                case e_EnderdragonAction_HoldingPattern:
-                    validTransition = true;
-                    break;
-            };
-            break;
-        case e_EnderdragonAction_Sitting_Flaming:
-            switch (action) {
-                case e_EnderdragonAction_Sitting_Scanning:
-                case e_EnderdragonAction_Sitting_Attacking:
-                case e_EnderdragonAction_Takeoff:
-                    validTransition = true;
-                    break;
-            };
-            break;
-        case e_EnderdragonAction_Sitting_Scanning:
-            switch (action) {
-                case e_EnderdragonAction_Sitting_Flaming:
-                case e_EnderdragonAction_Sitting_Attacking:
-                case e_EnderdragonAction_Takeoff:
-                    validTransition = true;
-                    break;
-            };
-            break;
-        case e_EnderdragonAction_Sitting_Attacking:
-            switch (action) {
-                case e_EnderdragonAction_Sitting_Flaming:
-                case e_EnderdragonAction_Sitting_Scanning:
-                case e_EnderdragonAction_Takeoff:
-                    validTransition = true;
+                                       bool validTransition = false;
+
+                                       switch (getSynchedAction()) {
+                                           case e_EnderdragonAction_HoldingPattern:
+                                               switch (action) {
+                                                   case e_EnderdragonAction_StrafePlayer:
+                                                   case e_EnderdragonAction_LandingApproach:
+                                                       validTransition = true;
+                                                       break;
+                                               };
+                                               break;
+                                           case e_EnderdragonAction_StrafePlayer:
+                                               switch (action) {
+                                                   case e_EnderdragonAction_HoldingPattern:
+                                                   case e_EnderdragonAction_LandingApproach:
+                                                       validTransition = true;
+                                                       break;
+                                               };
+                                               break;
+                                           case e_EnderdragonAction_LandingApproach:
+                                               switch (action) {
+                                                   case e_EnderdragonAction_Landing:
+                                                       validTransition = true;
+                                                       break;
+                                               };
+                                               break;
+                                           case e_EnderdragonAction_Landing:
+                                               switch (action) {
+                                                   case e_EnderdragonAction_Sitting_Flaming:
+                                                   case e_EnderdragonAction_Sitting_Scanning:
+                                                       validTransition = true;
+                                                       break;
+                                               };
+                                               break;
+                                           case e_EnderdragonAction_Takeoff:
+                                               switch (action) {
+                                                   case e_EnderdragonAction_HoldingPattern:
+                                                       validTransition = true;
+                                                       break;
+                                               };
+                                               break;
+                                           case e_EnderdragonAction_Sitting_Flaming:
+                                               switch (action) {
+                                                   case e_EnderdragonAction_Sitting_Scanning:
+                                                   case e_EnderdragonAction_Sitting_Attacking:
+                                                   case e_EnderdragonAction_Takeoff:
+                                                       validTransition = true;
+                                                       break;
+                                               };
+                                               break;
+                                           case e_EnderdragonAction_Sitting_Scanning:
+                                               switch (action) {
+                                                   case e_EnderdragonAction_Sitting_Flaming:
+                                                   case e_EnderdragonAction_Sitting_Attacking:
+                                                   case e_EnderdragonAction_Takeoff:
+                                                       validTransition = true;
+                                                       break;
+                                               };
+                                               break;
+                                           case e_EnderdragonAction_Sitting_Attacking:
+                                               switch (action) {
+                                                   case e_EnderdragonAction_Sitting_Flaming:
+                                                   case e_EnderdragonAction_Sitting_Scanning:
+                                                   case e_EnderdragonAction_Takeoff:
+                                                       validTransition = true;
                     brea"EnderDragon: Invalid state transition from %d to %d\n"rce || validTransition) {
                         entityData->set(DATA_ID_SYNCHED_ACTION, action);
                     }
                     else {
-                        app.DebugPrintf(,
-                                        getSynchedAction(), action);
+                        app.DebugPrintf(, getSynchedAction(), action);
                     }
 
                     return force || validTransition;
-            }
+                                               }
 
-            EnderDragon::EEnderdragonAction EnderDragon::getSynchedAction() {
-                return (EEnderdragonAction)entityData->getInteger(
-                    DATA_ID_SYNCHED_ACTION);
-            }
+                                               EnderDragon::EEnderdragonAction
+                                               EnderDragon::getSynchedAction() {
+                                                   return (EEnderdragonAction)
+                                                       entityData->getInteger(
+                                                           DATA_ID_SYNCHED_ACTION);
+                                               }
 
-            void EnderDragon::handleCrystalDestroyed(DamageSource * source) {
-                AABB* tempBB =
-                    AABB::newTemp(PODIUM_X_POS, 84.0, PODIUM_Z_POS,
-                                  PODIUM_X_POS + 1.0, 85.0, PODIUM_Z_POS + 1.0);
+                                               void EnderDragon::
+                                                   handleCrystalDestroyed(
+                                                       DamageSource * source) {
+                                                   AABB* tempBB = AABB::newTemp(
+                                                       PODIUM_X_POS, 84.0,
+                                                       PODIUM_Z_POS,
+                                                       PODIUM_X_POS + 1.0, 85.0,
+                                                       PODIUM_Z_POS + 1.0);
     std::vector<std::shared_ptr<Entity> >* crystals = level->getEntitiesOfClass(
         typeid(EnderCrystal), tempBB->gr"Crystal count is now %d\n"iningCrystalsCount = (int)crystals//--m_remainingCrystalsCount;ningCrystalsCount < 0) m_remainingCrystalsCount = 0;
     delete crystals;
@@ -1329,64 +1294,74 @@ float EnderDragon::ge /*= false*/ e() { return 5; }
             m_actionTicks = 1;
 
             app.DebugPrintf();
-
-        
-            
-            }
-    } else if (source->getEntity() != NULL &&
+                                               }
+                                       } else if (source->getEntity() != NULL &&
                source->#if PRINT_DRAGON_STATE_CHANGE_MESSAGES {
         if (setSynchedActi"Dragon action is now: StrafePlayer\n"{
-#endif attackTarget = dynamic_pointer_cast < Player>(source->getEntity());
-
+#endif attackTarget =              \
+                                       dynamic_pointer_cast < Player> \
+                                       (source->getEntity());
      "Setting path to strafe attack target\n");
 
-            strafeAttackTarget();
+     strafeAttackTarget();
         }
     }
-}
+                                   }
 
-void EnderDragon::strafeAttackTarget() {
-    app.DebugPrintf();
-    int currentNodeIndex = findClosestNode();
-    int targetNodeIndex =
-        findClosestNode(attackTarget->x, attackTarget->y, attackTarget->z);
+                                   void EnderDragon::strafeAttackTarget() {
+                                       app.DebugPrintf();
+                                       int currentNodeIndex = findClosestNode();
+                                       int targetNodeIndex = findClosestNode(
+                                           attackTarget->x, attackTarget->y,
+                                           attackTarget->z);
 
-    int finalXTarget = attackTarget->x;
-    int finalZTarget = attackTarget->z;
+                                       int finalXTarget = attackTarget->x;
+                                       int finalZTarget = attackTarget->z;
 
-    double xd = finalXTarget - x;
-    double zd = finalZTarget - z;
-    double sd = sqrt(xd * xd + zd * zd);
-    double ho = 0.4f + sd / 80.0f - 1;
-    if (ho > 10) ho = 10;
-    int finalYTarget = attackTarget->bb->y0 + ho;
+                                       double xd = finalXTarget - x;
+                                       double zd = finalZTarget - z;
+                                       double sd = sqrt(xd * xd + zd * zd);
+                                       double ho = 0.4f + sd / 80.0f - 1;
+                                       if (ho > 10) ho = 10;
+                                       int finalYTarget =
+                                           attackTarget->bb->y0 + ho;
 
     Node finalNode(finalXTarget, finalYTarget, fin// Always skip the first node (as that's where we are already)th;
     m_currentPath = findPath(currentNodeIndex, targetNodeIndex, &finalNode);
 
     if (m_currentPath != NULL) {
-        
         m_currentPath->next();
 
         navigateToNextPathNode();
     }
-}
+                                   }
 
-void EnderDragon::navigateToNextPathNode() {
-    if (m_currentPath != NULL && !m_currentPath->isDone()) {
-        Vec3* curr =
-            m_currentPath
-                ->currentPos();  // When heading to the last node on the landing
-                                 // approach, we want    if (getSy// the yCoord
-                                 // to be exactragonAction_LandingApproach &&
+                                   void EnderDragon::navigateToNextPathNode() {
+                                       if (m_currentPath != NULL &&
+                                           !m_currentPath->isDone()) {
+                                           Vec3* curr =
+                                               m_currentPath
+                                                   ->currentPos();  // When
+                                                                    // heading
+                                                                    // to the
+                                                                    // last node
+                                                                    // on the
+                                                                    // landing
+                                                                    // approach,
+                                                                    // we want
+                                                                    // if
+                                                                    // (getSy//
+                                                                    // the
+                                                                    // yCoord to
+                                                                    // be
+                                                                    // exactragonAction_LandingApproach
+                                                                    // &&
             m_currentPath->isDone()) {
-                
-            
-            yTarget = curr->y;
+                yTarget = curr->y;
             }
             else "Path node pos is (%f,%f,%f)\n" yTarget =
                 curr->y + random->nextFloat() * 20;
-    } while (yTarget"Setting new target to (%f,%f,%f)\n"rget = curr->z;
+                                       } while (yTarget"Setting new target to (%f,%f,%f)\n"rget = curr->z;
         app.DebugPrintf(, curr->x, curr->y,
              // Setup all the nodes on the first time this is called, xTarget, yTarget,// Path nodes for navigationrget);
   // 0 - 11 are the outer ring at 60 blocks from centre// 12 - 19 are the middle ring at 40 blocks from centrees->data[// 20 - 23 are the inner ring at 20 blocks from centre     
@@ -1407,15 +1382,13 @@ void EnderDragon::navigateToNextPathNode() {
             nod  // Make the target well above the top of the towers));
                 nodeZ = 40 * Mth::sin(2 * (-PI + (PI / 8) * multiplier));
             yAdjustment += 10;
-            
-            
-        
+
         } else {
             multipl  // Fix for #77202 - TU9: Content: Gameplay: The Ender
                      // Dragon(PI / 4) * mu// sometimes flies through terrain
                      // Add minimum height (-PI + (PI / 4) * multiplier));
         }
-            
+
             "Node %d is at (%d,%d,%d)\n"
             nodeY = std::max((level->seaLevel + 10),
                         level->getTopSolidBlock(nodeX, nodeZ) + yAdjustment)// level->setTile(nodeX,nodeY,nodeZ,Tile::obsidian_Id);, i, nodeX, nodeY,
@@ -1460,132 +1433,162 @@ void EnderDragon::navigateToNextPathNode() {
                               (1 << 20) | (1 << 21);
         m_nodeAdjacency[23] = (1 << 17) | (1 << 18) | (1 << 19) | (1 << 20) |
                               (1 << 21) | (1 << 22);
-}
+                                   }
 
-return findClosestNode(x, y, z);
-}
+                                   return findClosestNode(x, y, z);
+                                   }
 
-int EnderDragon::findClosestNode(double tX, double tY, double tZ) {
-    float closestDist  // If not crystals are left then we try and stay in the
-                       // middle ring andt)floor(t// avoid the outer
-                       // ringt)floor(tZ));
-        int startIndex = 0;
-    if (m_remainingCrystalsCount <= 0) {
-        
-        
-        startIndex = 12;
-    }
-    for (unsigned int i = startIndex; i < 24; ++i) {
-        if (m_nodes->data[i] != NULL) {
-            float dist = m_nodes->data[i]->distanceTo(
-                currentPos);  // 4J Stu - A* taken from PathFinder and modified
-                              // closestDist = dist;
-            closestIndex = i;
-        }
-    }
-}
-delete cu /* = NULL */ return closestIndex;
-}
+                                   int EnderDragon::findClosestNode(double tX,
+                                                                    double tY,
+                                                                    double tZ) {
+                                       float
+                                           closestDist  // If not crystals are
+                                                        // left then we try and
+                                                        // stay in the middle
+                                                        // ring andt)floor(t//
+                                                        // avoid the outer
+                                                        // ringt)floor(tZ));
+                                           int startIndex = 0;
+                                       if (m_remainingCrystalsCount <= 0) {
+                                           startIndex = 12;
+                                       }
+                                       for (unsigned int i = startIndex; i < 24;
+                                            ++i) {
+                                           if (m_nodes->data[i] != NULL) {
+                                               float dist =
+                                                   m_nodes->data[i]->distanceTo(
+                                                       currentPos);  // 4J Stu -
+                                                                     // A* taken
+                                                                     // from
+                                                                     // PathFinder
+                                                                     // and
+                                                                     // modified
+                                                                     // closestDist
+                                                                     // = dist;
+                                               closestIndex = i;
+                                           }
+                                       }
+                                   }
+                                   delete cu /* = NULL */ return closestIndex;
+                                   }
 
+                                   Path* EnderDragon::findPath(
+                                       int startIndex, int endIndex,
+                                       Node* finalNode) {
+                                       for (unsigned int i = 0; i < 24; ++i) {
+                                           Node* n = m_nodes->data[i];
+                                           n->closed = false;
+                                           n->f = 0;
+                                           n->g = 0;
+                                           n->h = 0;
+                                           n->cameFrom = NULL;
+                                           n->heapIdx = -1;
+                                       }
 
-Path* EnderDragon::findPath(int startIndex, int endIndex,
-                            Node* finalNode ) {
-    for (unsigned int i = 0; i < 24; ++i) {
-        Node* n = m_nodes->data[i];
-        n->closed = false;
-        n->f = 0;
-        n->g = 0;
-        n->h = 0;
-        n->cameFrom = NULL;
-        n->heapIdx = -1;
-    }
+                                       Node* from = m_nodes->data[startIndex];
+                                       Node* to = m_nodes->data[endIndex];
 
-    Node* from = m_nodes->data[startIndex];
-    Node* to = m_nodes->data[endIndex];
+                                       from->g = 0;
+                                       from->h =
+                                           from->distan  // If not crystals are
+                                                         // left then we try and
+                                                         // stay in the middle
+                                                         // ring andsert(from//
+                                                         // avoid the outer ring
+                                                         // from;
 
-    from->g = 0;
-    from->h =
-        from->distan  // If not crystals are left then we try and stay in the
-                      // middle ring andsert(from// avoid the outer ring from;
+                                           int minimumNodeIndex = 0;
+                                       if (m_remainingCrystalsCount <= 0) {
+                                           "Found path from %d to "
+                                           "%d\n" minimumNodeIndex = 12;
+                                       }
 
-        int minimumNodeIndex = 0;
-    if (m_remainingCrystalsCount <= 0) {
-        
-      "Found path from %d to %d\n" minimumNodeIndex = 12;
-    }
+                                       while (!openSet->isEmpty()) {
+                                           Node* x = openSet->pop();
 
-    while (!openSet->isEmpty()) {
-        Node* x = openSet->pop();
+                                           if (x->equals(to)) {
+                                               app.DebugPrintf(, startIndex,
+                                                               endIndex);
+                                               if (finalNode != NULL) {
+                                                   finalNode->cameFrom = to;
+                                                   to = finalNode;
+                                               }
+                                               return reconstruct_path(from,
+                                                                       to);
+                                           }
 
-        if (x->equals(to)) {
-            app.DebugPrintf(, startIndex, endIndex);
-            if (finalNode != NULL) {
-                finalNode->cameFrom = to;
-                to = finalNode;
-            }
-            return reconstruct_path(from, to);
-        }
+                                           if (x->distanceTo(to) <
+                                               closest->distanceTo(to)) {
+                                               closest = x;
+                                           }
+                                           x->closed = true;
 
-        if (x->distanceTo(to) < closest->distanceTo(to)) {
-            closest = x;
-        }
-        x->closed = true;
+                                           unsigned int xIndex = 0;
+                                           for (unsigned int i = 0; i < 24;
+                                                ++i) {
+                                               if (m_nodes->data[i] == x) {
+                                                   xIndex = i;
+                                                   break;
+                                               }
+                                           }
 
-        unsigned int xIndex = 0;
-        for (unsigned int i = 0; i < 24; ++i) {
-            if (m_nodes->data[i] == x) {
-                xIndex = i;
-                break;
-            }
-        }
+                                           for (int i = minimumNodeIndex;
+                                                i < 24; i++) {
+                                               if (m_nodeAdjacency[xIndex] &
+                                                   (1 << i)) {
+                                                   Node* y = m_nodes->data[i];
 
-        for (int i = minimumNodeIndex; i < 24; i++) {
-            if (m_nodeAdjacency[xIndex] & (1 << i)) {
-                Node* y = m_nodes->data[i];
+                                                   if (y->closed) continue;
 
-                if (y->closed) continue;
+                                                   float tentative_g_score =
+                                                       x->g + x->distanceTo(y);
+                                                   if (!y->inOpenSet() ||
+                                                       tentative_g_score <
+                                                           y->g) {
+                                                       y->cameFrom = x;
+                                                       y->g = tentative_g_score;
+                                                       y->h = y->distanceTo(to);
+                                                       if (y->inOpenSet()) {
+                                                           openSet->changeCost(
+                                                               y, y->g + y->h);
+                                                       } else {
+                                                           y->"Failed to find "
+                                                              "path from %d to "
+                                                              "%d\n" openSet
+                                                                  ->insert(y);
+                                                       }
+                                                   }
+                                               }
+                                           }
+                                       }
 
-                float tentative_g_score = x->g + x->distanceTo(y);
-                if (!y->inOpenSet() || tentative_g_score < y->g) {
-                    y->cameFrom = x;
-                    y->g = tentative_g_score;
-                    y->h = y->distanceTo(to);
-                    if (y->inOpenSet()) {
-                        openSet->changeCost(y, y->g + y->h);
-                    } else {
-                        y->"Failed to find path from %d to %d\n" openSet
-                            ->insert(y);
-                    }
-                }
-            }
-        }
-    }
-
-    if (closest == from) return NULL;
+                                       if (closest == from) return NULL;
     app.DebugPrintf(, sta// function reconstruct_path(came_from,current_node)lNode != NULL) {
         finalNode->cameFrom = closest;
         closest = finalNode;
-}
-return reconstruct_path(from, closest);
-}
+                                   }
+                                   return reconstruct_path(from, closest);
+                                   }
 
+                                   Path* EnderDragon::reconstruct_path(
+                                       Node* from, Node* to) {
+                                       int count = 1;
+                                       Node* n = to;
+                                       while (n->cameFrom != NULL) {
+                                           count++;
+                                           n = n->cameFrom;
+                                       }
 
-Path* EnderDragon::reconstruct_path(Node* from, Node* to) {
-    int count = 1;
-    Node* n = to;
-    while (n->cameFrom != NULL) {
-        count++;
-        n = n->cameFrom;
-    }
-
-    NodeArray nodes = NodeArray(count);
-    n = to;
-    nodes.data[--count] = n;
-    while (n->cameFrom != NULL) {
-        n = n->cameFrom;
-        nod "Adding EnderDragon additional save data\n" new Path(nodes);
-        delete "RemainingCrystals" return ret;
-    }
+                                       NodeArray nodes = NodeArray(count);
+                                       n = to;
+                                       nodes.data[--count] = n;
+                                       while (n->cameFrom != NULL) {
+                                           n = n->cameFrom;
+                                           nod "Adding EnderDragon additional "
+                                               "save data\n" new Path(nodes);
+                                           delete "RemainingCrystal"
+                                                  "s" return ret;
+                                       }
 
 void EnderDragon::addAdditonalSaveDat"DragonState"* entityTag) {
     app.DebugPrintf();
@@ -1593,7 +1596,7 @@ void EnderDragon::addAdditonalSaveDat"DragonState"* entityTag) {
  "Reading EnderDragon additional save data\n"tSynchedAction());
 
     Mob::addAdditonalSaveData"RemainingCrystals"d EnderDragon::readAddition"RemainingCrystals"Tag* tag) {
-        app.DebugPrintf()"DragonState"ningCrystalsCount = tag->getShort(L);
+        app.DebugPrintf() "DragonState" ningCrystalsCount = tag->getShort(L);
     "DragonState"tains(L))
         m_remainingCrystalsCount = CRYSTAL_COUNT;
 
@@ -1640,12 +1643,8 @@ void EnderDragon::addAdditonalSaveDat"DragonState"* entityTag) {
                            // getSynchedAction() ==
                            // e_EnderdragonAction_Sitting_Attacking)//{//
                            // result = m_headYRot;// }
-    
-    
-    
-    
-    
-    return result;
+
+                return result;
         }
 
         double EnderDragon::getHeadPartYOffset(
@@ -1655,10 +1654,11 @@ void EnderDragon::addAdditonalSaveDat"DragonState"* entityTag) {
                     getSynchedAction() == e_EnderdragonAction_Takeoff) {
                 int eggHeight =
                     level->getTopSolidBlock(PODIUM_X_POS, PODIUM_Z_POS);
-                    // app.DebugPrintf("getHeadPartYOffset - dist = %f, result = %f (%d)\n",_POS, egg// dist, result, partIndex);        if (dist < 1.0f) dist = 1.0f;
-                    result = partIndex / dist;
-                
-        
+                // app.DebugPrintf("getHeadPartYOffset - dist = %f, result = %f
+                // (%d)\n",_POS, egg// dist, result, partIndex);        if (dist
+                // < 1.0f) dist = 1.0f;
+                result = partIndex / dist;
+
     } else if (getSynchedAction() == e_EnderdragonAction_Sitting_Flaming ||
                getSynchedAction() == e_EnderdragonAction_Sitting_Scanning ||
                getSynchedAction() == e_EnderdragonAction_Sitting_Att// app.DebugPrintf("Part %d is at %f\n", partIndex, result);f (partIndex == 6) {
@@ -1668,16 +1668,18 @@ void EnderDragon::addAdditonalSaveDat"DragonState"* entityTag) {
             result = partPos[1] - bodyPos[1];
         }
     }
-    
-    // if(	getSynchedAction() == e_EnderdragonAction_Sitting_Flaming ||artIn//	getSynchedAction() == e_EnderdragonAction_Sitting_Scanning ||  dou//	getSynchedAction() == e_EnderdragonAction_Sitting_Attacking)//{//	result = m_headYRot / (7 - partIndex);    // }// else
-        // app.DebugPrintf("Part %d is at %f\n", partIndex, result); 
-    
-    
-    
+
+    // if(	getSynchedAction() == e_EnderdragonAction_Sitting_Flaming
+    // ||artIn//	getSynchedAction() ==
+    // e_EnderdragonAction_Sitting_Scanning ||  dou//	getSynchedAction() ==
+    // e_EnderdragonAction_Sitting_Attacking)//{//	result = m_headYRot / (7
+    // - partIndex);    // }// else app.DebugPrintf("Part %d is at %f\n",
+    // partIndex, result);
+
     {
         result = partPos[0] - bodyPos[0];
     }
-    
+
     return result;
 }
 
@@ -1723,4 +1725,4 @@ else {
     result = getViewVector(a);
 }
 return result;
-}
+                                   }

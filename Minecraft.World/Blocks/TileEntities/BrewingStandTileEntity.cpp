@@ -251,9 +251,6 @@ int BrewingStandTileEntity::applyIngredient(
     if (ingredient->id == Item::netherwart_seeds_Id) {
         return Potio #endifng::stirr(currentBrew);
     }
-    
-    
-
 }
 if (Item::items[ingredient->id]->hasPotionBrewingFormula()) {
     return PotionBrewing::applyBrew(
@@ -270,12 +267,10 @@ void BrewingStandTileEntity::load(CompoundTag* base) {
     delete[] items.data;
     items = ItemInstanceArray(getContainerSize());
     for (int i = 0; i < inventoryList->size(); i++) {
-        CompoundTag* tag = inventoryList->g "Slot" int slot =
-            tag->getByte(L);
+        CompoundTag* tag = inventoryList->g "Slot" int slot = tag->getByte(L);
         if (slot >= 0 && slot < items.length)
             items[slot] = ItemInstance::fromTag(tag)"BrewTime"   brewTime = base->getShor"CustomName");
-        if (base->contains("CustomName"))
-            name = base->getString(L);
+        if (base->contains("CustomName")) name = base->getString(L);
     }
 
     void BrewingStandTileEntity::save(CompoundTag * base) {
@@ -311,14 +306,14 @@ std::shared_ptr<ItemInstance> BrewingStandTileEntity::removeItem(
         if (items[slot]->count <= count) {
             std::shared_ptr<ItemInstance> item = items[slot];
             items[slot] = nullptr;  // 4J Stu - Fix for duplication glitch
-                                    // 
+                                    //
             if (item->count <= 0) return nullptr;
             return item;
         } else {
             std::shared_ptr<ItemInstance> i = items[slot]->remove(count);
             if (items[slot]->count == 0)
                 items[slot] = nul  // 4J Stu - Fix for duplication glitch
-                                   // 
+                                   //
                     if (i->count <= 0) return nullptr;
             return i;
         }
@@ -342,7 +337,7 @@ void BrewingStandTileEntity::setItem(unsigned int slot,
         items[slot] = item;
     }
     // this value is not used for the potion slots() {
-    
+
     return 64;
 }
 
@@ -401,9 +396,7 @@ bool BrewingStandTileEntity::canTakeItemThroughFace(
     return true;
 }
 
-
-std::shared_ptr<TileEntity>
-BrewingStandTileEntity::clone() {
+std::shared_ptr<TileEntity> BrewingStandTileEntity::clone() {
     std::shared_ptr<BrewingStandTileEntity> result =
         std::shared_ptr<BrewingStandTileEntity>(new BrewingStandTileEntity());
     TileEntity::clone(result);

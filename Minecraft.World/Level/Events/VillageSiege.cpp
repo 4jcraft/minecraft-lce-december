@@ -76,8 +76,7 @@ bool VillageSiege::tryToSetupSiege() {
         if (_village == NULL) continue;
         if (_village->getDoorCount() < 10) continue;
         if (_village->getStableAge() < 20) continue;
-        if (_village->getPopulationSize() < 20)
-            continue;  // setup siege origin
+        if (_village->getPopulationSize() < 20) continue;  // setup siege origin
         Pos* center = _village->getCenter();
         float radius = _village->getRadius();
 
@@ -120,7 +119,7 @@ bool VillageSiege::trySpawn() {
     Vec3* spawnPos = findRandomSpawnPos(spawnX, spawnY, spawnZ);
     if (spawnPos == NULL) return false;
     std::shared_ptr < Zo  // trymob;
-    
+
     {
         mob = std::shared_ptr<Zombie>(new Zombie(level));
         mob->finalizeMobSpawn(NULL);

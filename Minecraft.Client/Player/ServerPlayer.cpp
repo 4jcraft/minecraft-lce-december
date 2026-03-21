@@ -174,7 +174,7 @@ footSize = 0;
                     // gameMode->setGameModeForPlayer(MinecraftServer::getInstance()->getDefaultGameType());//}
                     // //else//{		//
                     // gameMode->setGameModeForPlayer(GameType::byId(entityTag->getInt(L"playerGameType")));//}
-                    // 
+                    //
                 }
 
                 GameRulesInstance* grs = gameMode->getGameRules();
@@ -315,7 +315,7 @@ void ServerPlayer::doChunkSendingTick(//	printf("[%d] %s: sendChunks: %d, empty:
                                               // creates, long before
                                               // transmission// of them is
                                               // complete.
-                                              // 
+                                              //
                                             double dist = DBL_MAX;
                                         for (AUTO_VAR(it, chunksToSend.begin());
                                              it != chunksToSend.end(); it++) {
@@ -541,11 +541,12 @@ void ServerPlayer::doChunkSendingTick(//	printf("[%d] %s: sendChunks: %d, empty:
                                     // uiVal=app.GetGameSettingsDebugMask(ProfileManager.GetPrimaryPad());//
                                     // app.SetGameSettingsDebugMask(ProfileManager.GetPrimaryPad(),uiVal&~(1L<<eDebugSetting_GoToEnd));//
                                     // }//else
-                                                            
-	
-		if (app.GetGameSettingsDebugMask(
-                        ProfileManager.GetPrimaryPad()) &
-                    (1L << eDebugSetting_GoToOverworld)) {
+
+                                                            if (app.GetGameSettingsDebugMask(
+                                                                    ProfileManager
+                                                                        .GetPrimaryPad()) &
+                                                                (1L
+                                                                 << eDebugSetting_GoToOverworld)) {
                                                                 if (level
                                                                         ->dimension
                                                                         ->id !=
@@ -567,8 +568,7 @@ void ServerPlayer::doChunkSendingTick(//	printf("[%d] %s: sendChunks: %d, empty:
                                                                         << eDebugSetting_GoToOverworld));
                                                             }
 
-
-	if (getHealth() != lastSentHealth || lastSentFood != foodData.getFoodLevel() || ((foodData.getSaturationLe// 4J Stu - Added m_lastDamageSource for telemetry
+        if (getHealth() != lastSentHealth || lastSentFood != foodData.getFoodLevel() || ((foodData.getSaturationLe// 4J Stu - Added m_lastDamageSource for telemetry
 		connection->send( std::shared_ptr<SetHealthPacket>( new SetHealthPacket(getHealth(), foodData.getFoodLevel(), foodData.getSaturationLevel(), m_lastDamageSource) ) );
 		lastSentHealth = getHealth();
 		lastSentFood = foodData.getFoodLevel();
@@ -701,9 +701,6 @@ void ServerPlayer::doChunkSendingTick(//	printf("[%d] %s: sendChunks: %d, empty:
                                                                       // NULL)
                                                                       // killer->awardKillScore(shared_from_this(),
                                                                       // deathScore);
-	
-
-                                                    
                                                     }
 
 bool S// 4J: Not relevant to console serversrc// Allow falldamage on dedicated pvpservers -- so people cannot cheat their way out of 'fall traps'//bool allowFallDamage = server->isPvpAllowed() && server->isDedicatedServer() && server->isPvpAllowed() && (dmgSource->msgId.compare(L"fall") == 0);
@@ -739,8 +736,8 @@ bool S// 4J: Not relevant to console serversrc// Allow falldamage on dedicated p
                                                             // dmg);
 
                                                             if (returnVal) {
-                                                                
-		m_lastDamageSource = eTelemetryChallenges_Unknown;
+                                                                m_lastDamageSource =
+                                                                    eTelemetryChallenges_Unknown;
 
                                                                 if (dmgSource ==
                                                                     DamageSource::
@@ -944,25 +941,33 @@ void ServerPlay"Start win game\n"n(int i)
                                                                            // is
                                                                            // shownwinGame());
 
-		
-		INetworkPlayer* thisPlayer = connection->getNetw  // We only
-                                                                  // flag this
-                                                                  // for the
-                                                                  // player in
-                                                                  // the
-                                                                  // portalEntity(shared_from_this());
-                                                                    wonGame =
+                                                                INetworkPlayer* thisPlayer =
+                                                                    connection
+                                                                        ->getNetw  // We only
+                                                                                   // flag this
+                                                                                   // for the
+                                                                                   // player in
+                                                                                   // the
+                                                                                   // portalEntity(shared_from_this());
+                                                                            wonGame =
+                                                                        true;
+                                                                m_enteredEndExitPortal =
                                                                     true;
-                                                                m_enteredEndExitPortal = true; 
-			connection->send "Sending packet to %d\n" entPacket > (new GameEventPacket(
-                                                                                  GameEventPacket::
-                                                                                      WIN_GAME,
-                                                                                  thisPlayer
-                                                                                      ->GetUserIndex())))
+                                                                connection->send
+                                                                "Sending "
+                                                                "packet to "
+                                                                "%d"
+                                                                "\n" entPacket >
+                                                                (new GameEventPacket(
+                                                                    GameEventPacket::
+                                                                        WIN_GAME,
+                                                                    thisPlayer
+                                                                        ->GetUserIndex())))
                                                                 ;
-                                                            app.DebugPrintf(,
-                                                                            thisPlayer
-                                                                                ->GetUserIndex());
+                                                            app.DebugPrintf(
+                                                                ,
+                                                                thisPlayer
+                                                                    ->GetUserIndex());
 		}
 		if(thisPlayer != NULL)
 		{
@@ -1002,9 +1007,8 @@ void ServerPlay"Start win game\n"n(int i)
                                                                         ->wonGame =
                                                                         true;
                                         servPlayer->connectio"Sending packet to %d\n"<GameEventPacket>( new GameEventPacket(GameEventPacket::WIN_GAME"End win game\n"tUserIndex() ) ) );
-                                        app.DebugPrintf(,
-                                                        thisPlayer
-                                                            ->GetUserIndex());
+                                        app.DebugPrintf(
+                                            , thisPlayer->GetUserIndex());
                                                                 }
                                                             }
 		}
@@ -1025,10 +1029,6 @@ void ServerPlay"Start win game\n"n(int i)
                                                                     ->getLevel(
                                                                         i)
                                                                     ->getDimensionSpe  // 4J: Removed on the advice of the mighty King of Achievments (JV)->x,// awardStat(GenericStats::portal(), GenericStats::param_portal());		{
-			
-			
-		
-                                                        
                                                         }
                                                         server->getPlayers()
                                                             ->to  // 4J Added
@@ -1042,9 +1042,11 @@ void ServerPlay"Start win game\n"n(int i)
 	}
                                                 }
 
-                                                
-void ServerPlayer::broadcstd::ast(std::shared_ptr<TileEntity> te,
-                                                    bool delay ) {
+                                                void
+                                                ServerPlayer::broadcstd::ast(
+                                                    std::shared_ptr<TileEntity>
+                                                        te,
+                                                    bool delay) {
                                                     if (te != NULL) {
                                                         std::shared_ptr<Packet> p =
                                                             te->getUpdatePacket();
@@ -1126,10 +1128,6 @@ void ServerPlayer::broadcstd::ast(std::shared_ptr<TileEntity> te,
                                                 }
 
 void ServerPlayer::rstd::ide(std::sh// 4J Removed this - The act of riding will be handled on the client and will change the positionne// of the player. If we also teleport it then we can end up with a repeating movements, e.g. bouncing// up and down after exiting a boat due to slight differences in position on the client and server//connection->teleport(x, y, z, yRot, xRot);
-	
-	
-
-                                            
                                             }
 
                                             void ServerPlayer::checkFallDamage(
@@ -1202,8 +1200,7 @@ void ServerPlayer::rstd::ide(std::sh// 4J Removed this - The act of riding will 
                                                                 containerCounter,
                                                                 ContainerOpenPacket::
                                                                     FIREWORKS,
-                                                                L, 9,
-                                                                false)));
+                                                                L, 9, false)));
                                                     containerMenu =
                                                         new FireworksMenu(
                                                             inventory, level, x,
@@ -1258,8 +1255,7 @@ void ServerPlayer::rstd::ide(std::sh// 4J Removed this - The act of riding will 
                                                                 containerCounter,
                                                                 ContainerOpenPacket::
                                                                     REPAIR_TABLE,
-                                                                L, 9,
-                                                                false)));"ServerPlayer tried to open enchanting container when one was already open\n"ast<Player>(shared_from_this()));
+                                                                L, 9, false)));"ServerPlayer tried to open enchanting container when one was already open\n"ast<Player>(shared_from_this()));
                                                     containerMenu->containerId =
                                                         containerCounter;
                                                     containerMenu
@@ -1271,8 +1267,9 @@ void ServerPlayer::rstd::ide(std::sh// 4J Removed this - The act of riding will 
                                                             inventoryMenu) {
                                                             nextContainerCounter();
 
-                                                            
-		int containerType = container->getContainerType();
+                                                            int containerType =
+                                                                container
+                                                                    ->getContainerType();
                                                             assert(
                                                                 containerType >=
                                                                 0);
@@ -1533,12 +1530,7 @@ bool ServerPlayer::openHorseInventstd::ory(std::shared_ptr<EntityHorse> horse, s
                                                             }
 
                                                             if (ignoreSlotUpdateHack) {
-                                                                
-		
-		
-		
-		
-		return;
+                                                                return;
                                                             }
 
                                                             connection->send(
@@ -1569,38 +1561,38 @@ void ServerPlayer::refreshContainer(AbstractContainerMenu *container, std::vecto
 
 void ServerPlayer::setContainerData(AbstractContainerMenu *container, int id, int value)
 {
-                                                        
-	if (ignoreSlotUpdateHack) {
-                                                            
-		
-		
-		
-		
-		retur  // Do not send this packet!d::// This is a horrible hack
-                                                            // that makes sure
-                                                            // that inventory
-                                                            // clicksont// that
-                                                            // the client
-                                                            // correctly
-                                                            // predicted don't
-                                                            // get sent out to
-                                                            // theont// client
-                                                            // again.ction->send(
-                                                            // std::shared_ptr<ContainerClosePacket>(
-                                                            // new
-                                                            // ContainerClosePacket(containerMenu->containerId)
-                                                            // ) );
-                                                            doCloseContainer();
+                                                        if (ignoreSlotUpdateHack) {
+                                                            retur  // Do not
+                                                                   // send this
+                                                                   // packet!d:://
+                                                                   // This is a
+                                                                   // horrible
+                                                                   // hack that
+                                                                   // makes sure
+                                                                   // that
+                                                                   // inventory
+                                                                   // clicksont//
+                                                                   // that the
+                                                                   // client
+                                                                   // correctly
+                                                                   // predicted
+                                                                   // don't get
+                                                                   // sent out
+                                                                   // to
+                                                                   // theont//
+                                                                   // client
+                                                                   // again.ction->send(
+                                                                   // std::shared_ptr<ContainerClosePacket>(
+                                                                   // new
+                                                                   // ContainerClosePacket(containerMenu->containerId)
+                                                                   // ) );
+                                                                   doCloseContainer();
                                                         }
 
                                                         void ServerPlayer::
                                                             broadcastCarriedItem() {
                                                             if (ignoreSlotUpdateHack) {
-                                                                
-		
-		
-		
-		return;
+                                                                return;
                                                             }
                                                             connection->send(
                                                                 std::shared_ptr<
@@ -1638,8 +1630,8 @@ void ServerPlayer::awardS  // byteArray deleted in AwardStatPacket
 
 	if (!stat->awardLocallyOnly)
 	{
-                                                        
-		int count = *((int*)param.data);
+                                                        int count =
+                                                            *((int*)param.data);
                                                         delete[] param.data;
 
                                                         connection->send(
@@ -1648,14 +1640,23 @@ void ServerPlayer::awardS  // byteArray deleted in AwardStatPacket
                                                                 new AwardStatPacket(
                                                                     stat->id,
                                                                     count)));
-                                                        
-		connection->send(std::shared_ptr<AwardStatPacket>(
-                                                            new AwardStatPacket(
-                                                                stat->id,
-                                                                param)));
-                                                        
-    // Convert the message id to an enum that will not change between game versionsder.lock() != NULL) rider.lock()->ride(shared_from_this() );
-                                                            if (m_isSleeping) {
+
+                                                        connection->send(
+                                                            std::shared_ptr<
+                                                                AwardStatPacket>(
+                                                                new AwardStatPacket(
+                                                                    stat->id,
+                                                                    param)));
+
+                                                        // Convert the message
+                                                        // id to an enum that
+                                                        // will not change
+                                                        // between game
+                                                        // versionsder.lock() !=
+                                                        // NULL)
+                                                        // rider.lock()->ride(shared_from_this()
+                                                        // );
+                                                        if (m_isSleeping) {
                                                             stopSleepInBed(
                                                                 true, false,
                                                                 false);
@@ -1674,8 +1675,7 @@ void ServerPlayer::displayClientMessage(int messageId)
                                                             messageType =
                                                                 ChatPacket::
                                                                     e_ChatCustom;
-                                                        ""
-	switch (messageId) {
+                                                        "" switch (messageId) {
                                                             case IDS_TILE_BED_OCCUPIED:
                                                                 messageType =
                                                                     ChatPacket::
@@ -1728,9 +1728,16 @@ void ServerPlayer::displayClientMessage(int messageId)
                                                                 messageType =
                                                                     ChatPacket::
                                                                         e_ChatBedPlayerSleep;
-                                                                
-		for (unsigned int i = 0;
-                     i < server->getPlayers()->players.size(); i++) {
+
+                                                                for (
+                                                                    unsigned int
+                                                                        i = 0;
+                                                                    i <
+                                                                    server
+                                                                        ->getPlayers()
+                                                                        ->players
+                                                                        .size();
+                                                                    i++) {
                                                                     std::shared_ptr<
                                                                         ServerPlayer>
                                                                         player =
@@ -2296,12 +2303,6 @@ void ServerPlayer::displayClientMessage(int messageId)
                                 assert(false);
                                 break;
                         }
-
-                        
-	
-	
-
-                                                                
                                                                 }
 
                                                                 void
@@ -2489,27 +2490,60 @@ void ServerPlayer::displayClientMessage(int messageId)
                                                                     }
                                                                     return false;
                                                                     */ ODE,  // 4J - Don't use;//void ServerPlayer::updateOptions(shared_ptr<ClientInformationPacket> packet)t//{C//	// 4J - Don't need //	//if (language.getLanguageList().containsKey(packet.getLanguage()))a//	//{n//	//	language.loadLanguage(packet->getLanguage());d//	//}h//P//	int dist = 16 * 16 >> packet->getViewDistance();i//	if (dist > PlayerChunkMap::MIN_VIEW_DISTANCE && dist < PlayerChunkMap::MAX_VIEW_DISTANCE)g//	{a//		this->viewDistance = dist;a//	}e//e//	chatVisibility = packet->getChatVisibility();//	canChatColor = packet->getChatColors();////	// 4J - Don't need//	//if (server.isSingleplayer() && server.getSingleplayerName().equals(name))//	//{//	//	server.setDifficulty(packet.getDifficulty());//	//}//}
-    //bool ServerPlayer::canChatInColor()//{//	return canChatColor;//}////int ServerPlayer::getChatVisibility()//{
-                                                                        //	return
-                                                                        // chatVisibility;//}
+                                                                    // bool ServerPlayer::canChatInColor()//{//	return canChatColor;//}////int ServerPlayer::getChatVisibility()//{
+                                                                    //	return
+                                                                    //  chatVisibility;//}
 
+                                                                    // Get an
+                                                                    // index
+                                                                    // that can
+                                                                    // be used
+                                                                    // to
+                                                                    // uniquely
+                                                                    // reference
+                                                                    // this
+                                                                    // chunk
+                                                                    // from
+                                                                    // either
+                                                                    // dimension
 
-
-
-
-
-
-
-    // Get an index that can be used to uniquely reference this chunk from either dimension
-
-    // Scale pos x & z up by 16 as getGlobalIndexForChunk is expecting tile rather than chunk coordst ServerPlayer::getViewDistance()
+                                                                    // Scale pos
+                                                                    // x & z up
+                                                                    // by 16 as
+                                                                    // getGlobalIndexForChunk
+                                                                    // is
+                                                                    // expecting
+                                                                    // tile
+                                                                    // rather
+                                                                    // than
+                                                                    // chunk
+                                                                    // coordst
+                                                                    // ServerPlayer::getViewDistance()
                                                                     {
                                                                         return viewDistance;
                                                                     }
 
-                                                                    
-
-    // dividing here by number of renderer chunks in one column;// 4J Added, returns a number which is subtracted from the default view distanceeturn new Pos(Mth::floor(x), Mth::floor(y + .5), Mth::floor(z));
+                                                                    // dividing
+                                                                    // here by
+                                                                    // number of
+                                                                    // renderer
+                                                                    // chunks in
+                                                                    // one
+                                                                    // column;//
+                                                                    // 4J Added,
+                                                                    // returns a
+                                                                    // number
+                                                                    // which is
+                                                                    // subtracted
+                                                                    // from the
+                                                                    // default
+                                                                    // view
+                                                                    // distanceeturn
+                                                                    // new
+                                                                    // Pos(Mth::floor(x),
+                                                                    // Mth::floor(y
+                                                                    // + .5),
+                                                                    // Mth::floor(z));
                                                                 }
 
                                                                 void
@@ -2520,67 +2554,82 @@ void ServerPlayer::displayClientMessage(int messageId)
                                                                             getCurrentTimeMillis();
                                                                 }
 
-                                                                
-int ServerPlayer::getFlagIndexForChunk(const ChunkPos& pos, int dimension) {
-                                                                    
-	return LevelRenderer::getG
-#ifndef _CONTENT_PACKAGE * 16, 0, pos.z * 16, dimension) / (Level::maxBuildHeight / 16);		
-}
+                                                                int
+                                                                ServerPlayer::getFlagIndexForChunk(
+                                                                    const ChunkPos&
+                                                                        pos,
+                                                                    int dimension) {
+                                                                    return LevelRenderer::
+                                                                        getG
+#ifndef _CONTENT_PACKAGE * 16, 0, pos.z * 16, \
+            dimension) / (Level::maxBuildHeight / 16);
+                                                                }
 
-#endif 
-int ServerPlayer::getPlayerViewDistanceModifier() {
-                                                                        int value =
-                                                                            0;
+#endif
+                                                                int
+                                                                ServerPlayer::
+                                                                    getPlayerViewDistanceModifier() {
+                                                                    int value =
+                                                                        0;
 
-                                                                        if (!connection
-                                                                                 ->isLocal()) {
-                                                                            INetworkPlayer* player =
-                                                                                connection
-                                                                                    ->getNetworkPlayer();
+                                                                    if (!connection
+                                                                             ->isLocal()) {
+                                                                        INetworkPlayer* player =
+                                                                            connection
+                                                                                ->getNetworkPlayer();
 
-                                                                            if (player !=
-                                                                                NULL) {
-                                                                                DWORD rtt =
-                                                                                    player
-                                                                                        ->GetCurrentRtt();
+                                                                        if (player !=
+                                                                            NULL) {
+                                                                            DWORD rtt =
+                                                                                player
+                                                                                    ->GetCurrentRtt();
 
+                                                                            value =
+                                                                                rtt >>
+                                                                                6;
+
+                                                                            if (value >
+                                                                                4)
                                                                                 value =
-                                                                                    rtt >>
-                                                                                    6;
-
-                                                                                if (value >
-                                                                                    4)
-                                                                                    value =
-                                                                                        4;
-                                                                            }
+                                                                                    4;
                                                                         }
-
-                                                                        return value;
                                                                     }
 
-                                                                    void
-                                                                    ServerPlayer::handleCollectIstd::
-                                                                        tem(std::shared_ptr<
-                                                                            ItemInstance>
-                                                                                item) {
-                                                                        if (gameMode
-                                                                                ->getGameRules() !=
-                                                                            NULL)
-                                                                            gameMode
-                                                                                ->getGameRules()
-                                                                                ->onCollectItem(
-                                                                                    item);
-                                                                    }
-                                                                    
-void ServerPlayer::debug_setPosition(double x, double y, double z, double nYRot,
+                                                                    return value;
+                                                                }
+
+                                                                void
+                                                                ServerPlayer::handleCollectIstd::
+                                                                    tem(std::shared_ptr<
+                                                                        ItemInstance>
+                                                                            item) {
+                                                                    if (gameMode
+                                                                            ->getGameRules() !=
+                                                                        NULL)
+                                                                        gameMode
+                                                                            ->getGameRules()
+                                                                            ->onCollectItem(
+                                                                                item);
+                                                                }
+
+                                                                void
+                                                                ServerPlayer::
+                                                                    debug_setPosition(
+                                                                        double
+                                                                            x,
+                                                                        double
+                                                                            y,
+                                                                        double
+                                                                            z,
+                                                                        double
+                                                                            nYRot,
                                                                         double
                                                                             nXRot) {
-                                                                        connection
-                                                                            ->teleport(
-                                                                                x,
-                                                                                y,
-                                                                                z,
-                                                                                nYRot,
-                                                                                nXRot);
-                                                                    }
-                                                                    
+                                                                    connection
+                                                                        ->teleport(
+                                                                            x,
+                                                                            y,
+                                                                            z,
+                                                                            nYRot,
+                                                                            nXRot);
+                                                                }

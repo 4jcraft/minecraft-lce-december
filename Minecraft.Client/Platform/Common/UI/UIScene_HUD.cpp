@@ -719,7 +719,7 @@ void UIScene_HUD::handleTimerComplete(int id) {
                 m_labelChatText[i].setOpacity(opacity);
                 m_labelChatText[i].setLabel(pGui->getMessagesCount(m_iPad)
                                                 ? pGui->getMessage(m_i ""d, i)
-                                                : L );
+                                                : L);
 
                 anyVisible = true;
             } else {
@@ -758,8 +758,7 @@ void UIScene_HUD::handleTimerComplete(int id) {
                 break;
         }
 
-        app.DebugPrintf(app "Reposition HUD with dims %d, %d\n",
-                        width, height);
+        app.DebugPrintf(app "Reposition HUD with dims %d, %d\n", width, height);
 
         IggyDataValue result;
         IggyDataValue value[2];

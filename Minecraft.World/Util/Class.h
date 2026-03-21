@@ -388,167 +388,183 @@ public:
     }
 
     bool justFlag() { return (m_id & 0xF000
-#define SUBCLASS(x) \
-    (new SubClass(#x, x))
+#define SUBCLASS(x) (new SubClass(#x, x))
 
     static void     \
     checkDerivations() {
-        std::vector<SubClass*>* classes = new std::vector<SubClass*>();
+            std::vector<SubClass*>* classes = new std::vector<SubClass*>();
 
-        classes->push_back(SUBCLASS(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
-        classes->push_back(SUBCLASS(eTYPE_ENEMY));
-        classes->push_back(SUBCLASS(eTYPE_PROJECTILE));
+            classes->push_back(SUBCLASS(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(SUBCLASS(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
+            classes->push_back(SUBCLASS(eTYPE_ENEMY));
+            classes->push_back(SUBCLASS(eTYPE_PROJECTILE));
 
-        classes->push_back(SUBCLASS(eTYPE_ENTITY));
-        classes->push_back(
-            SUBCLASS(eTYPE_LIVINGENTITY)->addParent(eTYPE_ENTITY));
-        classes->push_back(SUBCLASS(eTYPE_MOB)->addParent(eTYPE_LIVINGENTITY));
-        classes->push_back(
-            SUBCLASS(eTYPE_PATHFINDER_MOB)->addParent(eTYPE_MOB));
-        classes->push_back(
-            SUBCLASS(eTYPE_AGABLE_MOB)->addParent(eTYPE_PATHFINDER_MOB));
-        classes->push_back(
-            SUBCLASS(eTYPE_VILLAGER)->addParent(eTYPE_AGABLE_MOB));
-        classes->push_back(SUBCLASS(eTYPE_ANIMAL)->addParent(eTYPE_AGABLE_MOB));
-        classes->push_back(
-            SUBCLASS(eTYPE_TAMABLE_ANIMAL)->addParent(eTYPE_ANIMAL));
-        classes->push_back(SUBCLASS(eTYPE_OCELOT)
-                               ->addParent(eTYPE_TAMABLE_ANIMAL)
-                               ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
-        classes->push_back(
-            SUBCLASS(eTYPE_WOLF)->addParent(eTYPE_TAMABLE_ANIMAL));
-        classes->push_back(SUBCLASS(eTYPE_HORSE)
-                               ->addParent(eTYPE_ANIMAL)
-                               ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
-        classes->push_back(SUBCLASS(eTYPE_SHEEP)
-                               ->addParent(eTYPE_ANIMAL)
-                               ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
-        classes->push_back(SUBCLASS(eTYPE_PIG)
-                               ->addParent(eTYPE_ANIMAL)
-                               ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
-        classes->push_back(SUBCLASS(eTYPE_CHICKEN)->addParent(eTYPE_ANIMAL));
-        classes->push_back(SUBCLASS(eTYPE_COW)
-                               ->addParent(eTYPE_ANIMAL)
-                               ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
-        classes->push_back(SUBCLASS(eTYPE_MUSHROOMCOW)->addParent(eTYPE_COW));
-        classes->push_back(
-            SUBCLASS(eTYPE_WATERANIMAL)->addParent(eTYPE_PATHFINDER_MOB));
-        classes->push_back(SUBCLASS(eTYPE_SQUID)->addParent(eTYPE_WATERANIMAL));
-        classes->push_back(
-            SUBCLASS(eTYPE_GOLEM)->addParent(eTYPE_PATHFINDER_MOB));
-        classes->push_back(SUBCLASS(eTYPE_SNOWMAN)
-                               ->addParent(eTYPE_GOLEM)
-                               ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
-        classes->push_back(
-            SUBCLASS(eTYPE_VILLAGERGOLEM)->addParent(eTYPE_GOLEM));
-        classes->push_back(SUBCLASS(eTYPE_MONSTER)
-                               ->addParent(eTYPE_ENEMY)
-                               ->addParent(eTYPE_PATHFINDER_MOB));
-        classes->push_back(SUBCLASS(eTYPE_SPIDER)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_CAVESPIDER)->addParent(eTYPE_SPIDER));
-        classes->push_back(SUBCLASS(eTYPE_ZOMBIE)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_PIGZOMBIE)->addParent(eTYPE_ZOMBIE));
-        classes->push_back(SUBCLASS(eTYPE_CREEPER)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_GIANT)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_SKELETON)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_ENDERMAN)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_SILVERFISH)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_BLAZE)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_WITCH)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_WITHERBOSS)
-                               ->addParent(eTYPE_MONSTER)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_AMBIENT)->addParent(eTYPE_MOB));
-        classes->push_back(SUBCLASS(eTYPE_BAT)
-                               ->addParent(eTYPE_AMBIENT)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
-        classes->push_back(SUBCLASS(eTYPE_FLYING_MOB)->addParent(eTYPE_MOB));
-        classes->push_back(SUBCLASS(eTYPE_GHAST)
-                               ->addParent(eTYPE_FLYING_MOB)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG)
-                               ->addParent(eTYPE_ENEMY));
-        classes->push_back(SUBCLASS(eTYPE_SLIME)
-                               ->addParent(eTYPE_MOB)
-                               ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG)
-                               ->addParent(eTYPE_ENEMY));
-        classes->push_back(SUBCLASS(eTYPE_LAVASLIME)->addParent(eTYPE_SLIME));
-        classes->push_back(SUBCLASS(eTYPE_ENDERDRAGON)->addParent(eTYPE_MOB));
-        classes->push_back(
-            SUBCLASS(eTYPE_PLAYER)->addParent(eTYPE_LIVINGENTITY));
-        classes->push_back(
-            SUBCLASS(eTYPE_SERVERPLAYER)->addParent(eTYPE_PLAYER));
-        classes->push_back(
-            SUBCLASS(eTYPE_REMOTEPLAYER)->addParent(eTYPE_PLAYER));
-        classes->push_back(
-            SUBCLASS(eTYPE_LOCALPLAYER)->addParent(eTYPE_PLAYER));
-        classes->push_back(SUBCLASS(eTYPE_MINECART)->addParent(eTYPE_ENTITY));
-        classes->push_back(
-            SUBCLASS(eTYPE_MINECART_RIDEABLE)->addParent(eTYPE_MINECART));
-        classes->push_back(
-            SUBCLASS(eTYPE_MINECART_SPAWNER)->addParent(eTYPE_MINECART));
-        classes->push_back(
-            SUBCLASS(eTYPE_MINECART_FURNACE)->addParent(eTYPE_MINECART));
-        classes->push_back(
-            SUBCLASS(eTYPE_MINECART_TNT)->addParent(eTYPE_MINECART));
-        classes->push_back(
-            SUBCLASS(eTYPE_MINECART_CONTAINER)->addParent(eTYPE_MINECART));
-        classes->push_back(SUBCLASS(eTYPE_MINECART_CHEST)
-                               ->addParent(eTYPE_MINECART_CONTAINER));
-        classes->push_back(SUBCLASS(eTYPE_MINECART_HOPPER)
-                               ->addParent(eTYPE_MINECART_CONTAINER));
-        classes->push_back(SUBCLASS(eTYPE_FIREBALL)
-                               ->addParent(eTYPE_ENTITY)
-                               ->addParent(eTYPE_PROJECTILE));
-        classes->push_back(
-            SUBCLASS(eTYPE_DRAGON_FIREBALL)->addParent(eTYPE_FIREBALL));
-        classes->push_back(
-            SUBCLASS(eTYPE_WITHER_SKULL)->addParent(eTYPE_FIREBALL));
-        classes->push_back(
-            SUBCLASS(eTYPE_LARGE_FIREBALL)->addParent(eTYPE_FIREBALL));
-        classes->push_back(
-            SUBCLASS(eTYPE_SMALL_FIREBALL)->addParent(eTYPE_FIREBALL));
-        classes->push_back(SUBCLASS(eTYPE_THROWABLE)
-                               ->addParent(eTYPE_ENTITY)
-                               ->addParent(eTYPE_PROJECTILE));
-        classes->push_back(
-            SUBCLASS(eTYPE_SNOWBALL)->addParent(eTYPE_THROWABLE));
-        classes->push_back(
-            SUBCLASS(eTYPE_THROWNEGG)->addParent(eTYPE_THROWABLE));
-        classes->push_back(
-            SUBCLASS(eTYPE_THROWNENDERPEARL)->addParent(eTYPE_THROWABLE));
-        classes->push_back(
-            SUBCLASS(eTYPE_THROWNPOTION)->addParent(eTYPE_THROWABLE));
-        classes->push_back(
-            SUBCLASS(eTYPE_THROWNEXPBOTTLE)->addParent(eTYPE_THROWABLE));
-        classes->push_back(
-            SUBCLASS(eTYPE_HANGING_ENTITY)->addParent(eTYPE_ENTITY));
-        classes->push_back(
-            SUBCLASS(eTYPE_PAINTING)->addParent(eTYPE_HANGING_ENTITY));
-        classes->push_back(
-            SUBCLASS(eTYPE_ITEM_FRAME)->addParent(eTYPE_HANGING_ENTITY));
-        classes->push_back(
-            SUBCLASS(eTYPE_LEASHFENCEKNOT)->addParent(eTYPE_HANGING_ENTITY));
-        classes->push_back(
-            SUBCLASS(eTYPE_GLOBAL_ENTITY)->addParent(eTYPE_ENTITY));
+            classes->push_back(SUBCLASS(eTYPE_ENTITY));
+            classes->push_back(
+                SUBCLASS(eTYPE_LIVINGENTITY)->addParent(eTYPE_ENTITY));
+            classes->push_back(
+                SUBCLASS(eTYPE_MOB)->addParent(eTYPE_LIVINGENTITY));
+            classes->push_back(
+                SUBCLASS(eTYPE_PATHFINDER_MOB)->addParent(eTYPE_MOB));
+            classes->push_back(
+                SUBCLASS(eTYPE_AGABLE_MOB)->addParent(eTYPE_PATHFINDER_MOB));
+            classes->push_back(
+                SUBCLASS(eTYPE_VILLAGER)->addParent(eTYPE_AGABLE_MOB));
+            classes->push_back(
+                SUBCLASS(eTYPE_ANIMAL)->addParent(eTYPE_AGABLE_MOB));
+            classes->push_back(
+                SUBCLASS(eTYPE_TAMABLE_ANIMAL)->addParent(eTYPE_ANIMAL));
+            classes->push_back(
+                SUBCLASS(eTYPE_OCELOT)
+                    ->addParent(eTYPE_TAMABLE_ANIMAL)
+                    ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
+            classes->push_back(
+                SUBCLASS(eTYPE_WOLF)->addParent(eTYPE_TAMABLE_ANIMAL));
+            classes->push_back(
+                SUBCLASS(eTYPE_HORSE)
+                    ->addParent(eTYPE_ANIMAL)
+                    ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
+            classes->push_back(
+                SUBCLASS(eTYPE_SHEEP)
+                    ->addParent(eTYPE_ANIMAL)
+                    ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
+            classes->push_back(
+                SUBCLASS(eTYPE_PIG)
+                    ->addParent(eTYPE_ANIMAL)
+                    ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
+            classes->push_back(
+                SUBCLASS(eTYPE_CHICKEN)->addParent(eTYPE_ANIMAL));
+            classes->push_back(
+                SUBCLASS(eTYPE_COW)
+                    ->addParent(eTYPE_ANIMAL)
+                    ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
+            classes->push_back(
+                SUBCLASS(eTYPE_MUSHROOMCOW)->addParent(eTYPE_COW));
+            classes->push_back(
+                SUBCLASS(eTYPE_WATERANIMAL)->addParent(eTYPE_PATHFINDER_MOB));
+            classes->push_back(
+                SUBCLASS(eTYPE_SQUID)->addParent(eTYPE_WATERANIMAL));
+            classes->push_back(
+                SUBCLASS(eTYPE_GOLEM)->addParent(eTYPE_PATHFINDER_MOB));
+            classes->push_back(
+                SUBCLASS(eTYPE_SNOWMAN)
+                    ->addParent(eTYPE_GOLEM)
+                    ->addParent(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
+            classes->push_back(
+                SUBCLASS(eTYPE_VILLAGERGOLEM)->addParent(eTYPE_GOLEM));
+            classes->push_back(SUBCLASS(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_ENEMY)
+                                   ->addParent(eTYPE_PATHFINDER_MOB));
+            classes->push_back(SUBCLASS(eTYPE_SPIDER)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(
+                SUBCLASS(eTYPE_CAVESPIDER)->addParent(eTYPE_SPIDER));
+            classes->push_back(SUBCLASS(eTYPE_ZOMBIE)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(
+                SUBCLASS(eTYPE_PIGZOMBIE)->addParent(eTYPE_ZOMBIE));
+            classes->push_back(SUBCLASS(eTYPE_CREEPER)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(SUBCLASS(eTYPE_GIANT)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(SUBCLASS(eTYPE_SKELETON)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(SUBCLASS(eTYPE_ENDERMAN)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(SUBCLASS(eTYPE_SILVERFISH)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(SUBCLASS(eTYPE_BLAZE)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(SUBCLASS(eTYPE_WITCH)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(SUBCLASS(eTYPE_WITHERBOSS)
+                                   ->addParent(eTYPE_MONSTER)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(SUBCLASS(eTYPE_AMBIENT)->addParent(eTYPE_MOB));
+            classes->push_back(SUBCLASS(eTYPE_BAT)
+                                   ->addParent(eTYPE_AMBIENT)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG));
+            classes->push_back(
+                SUBCLASS(eTYPE_FLYING_MOB)->addParent(eTYPE_MOB));
+            classes->push_back(SUBCLASS(eTYPE_GHAST)
+                                   ->addParent(eTYPE_FLYING_MOB)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG)
+                                   ->addParent(eTYPE_ENEMY));
+            classes->push_back(SUBCLASS(eTYPE_SLIME)
+                                   ->addParent(eTYPE_MOB)
+                                   ->addParent(eTYPE_VALID_IN_SPAWNER_FLAG)
+                                   ->addParent(eTYPE_ENEMY));
+            classes->push_back(
+                SUBCLASS(eTYPE_LAVASLIME)->addParent(eTYPE_SLIME));
+            classes->push_back(
+                SUBCLASS(eTYPE_ENDERDRAGON)->addParent(eTYPE_MOB));
+            classes->push_back(
+                SUBCLASS(eTYPE_PLAYER)->addParent(eTYPE_LIVINGENTITY));
+            classes->push_back(
+                SUBCLASS(eTYPE_SERVERPLAYER)->addParent(eTYPE_PLAYER));
+            classes->push_back(
+                SUBCLASS(eTYPE_REMOTEPLAYER)->addParent(eTYPE_PLAYER));
+            classes->push_back(
+                SUBCLASS(eTYPE_LOCALPLAYER)->addParent(eTYPE_PLAYER));
+            classes->push_back(
+                SUBCLASS(eTYPE_MINECART)->addParent(eTYPE_ENTITY));
+            classes->push_back(
+                SUBCLASS(eTYPE_MINECART_RIDEABLE)->addParent(eTYPE_MINECART));
+            classes->push_back(
+                SUBCLASS(eTYPE_MINECART_SPAWNER)->addParent(eTYPE_MINECART));
+            classes->push_back(
+                SUBCLASS(eTYPE_MINECART_FURNACE)->addParent(eTYPE_MINECART));
+            classes->push_back(
+                SUBCLASS(eTYPE_MINECART_TNT)->addParent(eTYPE_MINECART));
+            classes->push_back(
+                SUBCLASS(eTYPE_MINECART_CONTAINER)->addParent(eTYPE_MINECART));
+            classes->push_back(SUBCLASS(eTYPE_MINECART_CHEST)
+                                   ->addParent(eTYPE_MINECART_CONTAINER));
+            classes->push_back(SUBCLASS(eTYPE_MINECART_HOPPER)
+                                   ->addParent(eTYPE_MINECART_CONTAINER));
+            classes->push_back(SUBCLASS(eTYPE_FIREBALL)
+                                   ->addParent(eTYPE_ENTITY)
+                                   ->addParent(eTYPE_PROJECTILE));
+            classes->push_back(
+                SUBCLASS(eTYPE_DRAGON_FIREBALL)->addParent(eTYPE_FIREBALL));
+            classes->push_back(
+                SUBCLASS(eTYPE_WITHER_SKULL)->addParent(eTYPE_FIREBALL));
+            classes->push_back(
+                SUBCLASS(eTYPE_LARGE_FIREBALL)->addParent(eTYPE_FIREBALL));
+            classes->push_back(
+                SUBCLASS(eTYPE_SMALL_FIREBALL)->addParent(eTYPE_FIREBALL));
+            classes->push_back(SUBCLASS(eTYPE_THROWABLE)
+                                   ->addParent(eTYPE_ENTITY)
+                                   ->addParent(eTYPE_PROJECTILE));
+            classes->push_back(
+                SUBCLASS(eTYPE_SNOWBALL)->addParent(eTYPE_THROWABLE));
+            classes->push_back(
+                SUBCLASS(eTYPE_THROWNEGG)->addParent(eTYPE_THROWABLE));
+            classes->push_back(
+                SUBCLASS(eTYPE_THROWNENDERPEARL)->addParent(eTYPE_THROWABLE));
+            classes->push_back(
+                SUBCLASS(eTYPE_THROWNPOTION)->addParent(eTYPE_THROWABLE));
+            classes->push_back(
+                SUBCLASS(eTYPE_THROWNEXPBOTTLE)->addParent(eTYPE_THROWABLE));
+            classes->push_back(
+                SUBCLASS(eTYPE_HANGING_ENTITY)->addParent(eTYPE_ENTITY));
+            classes->push_back(
+                SUBCLASS(eTYPE_PAINTING)->addParent(eTYPE_HANGING_ENTITY));
+            classes->push_back(
+                SUBCLASS(eTYPE_ITEM_FRAME)->addParent(eTYPE_HANGING_ENTITY));
+            classes->push_back(SUBCLASS(eTYPE_LEASHFENCEKNOT)
+                                   ->addParent(eTYPE_HANGING_ENTITY));
+            classes->push_back(
+                SUBCLASS(eTYPE_GLOBAL_ENTITY)->addParent(eTYPE_ENTITY));
         classes->push_back(
             SUBCLASS(eTYPE_LIGHTNINGBOLT)->addParent(eTYPE_G// classes->push_back( SUBCLASS(eTYPE_OTHER_ENTITIES )->addParent(// eTYPE_ENTITY ) );     
         classes->push_back(
@@ -692,43 +708,44 @@ public:
 
         std::vector<SubClass*>::iterator it1;
         for (it1 = classes->begin(); it1 != classes->end(); it1++) {
-            // if ( current->justFlag() ) continue;
-            // 
+                // if ( current->justFlag() ) continue;
+                //
 
-            std::vector<SubClass*>::iterator it2;
-            for (it2 = classes->begin(); it2 != classes->end(); it2++) {
-                // if ( comparing->justFlag() ) continue;              // We
-                // shouldn't be comparing to leaf classes anyway.
-                // // if ( comparing->m_isTerminal ) continue;
-                // 
+                std::vector<SubClass*>::iterator it2;
+                for (it2 = classes->begin(); it2 != classes->end(); it2++) {
+                    // if ( comparing->justFlag() ) continue;              // We
+                    // shouldn't be comparing to leaf classes anyway.
+                    // // if ( comparing->m_isTerminal ) continue;
+                    //
 
-                eINSTANCEOF typeCurr, typeComp;
-                typeCurr = current->m_id;
-                typeComp = comparing->m_id;
+                    eINSTANCEOF typeCurr, typeComp;
+                    typeCurr = current->m_id;
+                    typeComp = comparing->m_id;
 
-                bool shouldDerive, doesDerive;
+                    bool shouldDerive, doesDerive;
 
-                {
-                    std::vector<eINSTANCEOF>::iterator it3;
-                    it3 = std::find(current->m_parents.begin(),
-                                    current->m_parents.end(), typeComp);
-                    shouldDerive = (typeComp == typeCurr) ||
-                                   (it3 != current->m_parents.end());
+                    {
+                        std::vector<eINSTANCEOF>::iterator it3;
+                        it3 = std::find(current->m_parents.begin(),
+                                        current->m_parents.end(), typeComp);
+                        shouldDerive = (typeComp == typeCurr) ||
+                                       (it3 != current->m_parents.end());
+                    }
+
+                    doesDerive = eTYPE_DERIVED_FROM(typeComp, typeCurr);
+
+                    if (shouldDerive != doesDerive) {
+                        std::vector<std::pair<SubClass*, SubClass*> >*
+                            errorArray;
+                        if (shouldDerive)
+                            errorArray = &m_falseNegatives;
+                        else
+                            errorArray = &m_falsePositives;
+
+                        errorArray->push_back(std::pair<SubClass*, SubClass*>(
+                            comparing, current));
+                    }
                 }
-
-                doesDerive = eTYPE_DERIVED_FROM(typeComp, typeCurr);
-
-                if (shouldDerive != doesDerive) {
-                    std::vector<std::pair<SubClass*, SubClass*> >* errorArray;
-                    if (shouldDerive)
-                        errorArray = &m_falseNegatives;
-                    else
-                        errorArray = &m_falsePositives;
-
-                    errorArray->push_back(
-                        std::pair<SubClass*, SubClass*>(comparing, current));
-                }
-            }
         }
 
         std::vector<std::pair<SubClass*, SubClass*> >::iterator itrErr;
@@ -742,7 +759,7 @@ public:
         "[Class.h] Error: '%s' doesn't derive '%s'.\n" * super = itrErr->second;
     printf(, sub->m_name.c_str(),
            super->m_name.c_str());
-        }
+    }
 
         if ((m_falsePositives.size(
 #endif || (m_falseNegatives.size() > 0)) {

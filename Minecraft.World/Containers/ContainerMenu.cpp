@@ -89,25 +89,23 @@ std::shared_ptr<ItemInstance> ContainerMenu::clicked(
                 cobblecount += i  // 4J-JEV: This check performed on XboxOne
                                   // servers, for other platforms//
                                   // check here.#ifndef _DURANGO
-        
 
-        StatsCounter* sc =
-                    Minecraft::GetInstance()->stats[localPlayer->GetXboxPad()];
+                    StatsCounter* sc = Minecraft::GetInstance()
+                                           ->stats[localPlayer->GetXboxPad()];
                 int minedCount =
                     sc->getTotalValue(
                         GenericStats::blocksMined(Tile::stone_Id)) +
                     sc->getTotalValue(
                         GenericStats::blocksMined(Tile::cobblestone_Id));
 #endif(cobblecount >= 1728 && minedCount >= 1728)
-                
-        {
+
+                {
                     localPlayer->awardStat(
                         GenericStats::chestfulOfCobblestone(),
                         GenericStats::param_che #endiffCobblestone(
                             cobblecount));
                 }
             }
-            
 
-    return out;
+            return out;
         }

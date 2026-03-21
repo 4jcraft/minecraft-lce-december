@@ -41,30 +41,30 @@
 // full 8 bits per tile. In a worst-case scenario, all planes would be 256 bytes
 // and we'd have to store offsets of up to 32704 ( 64 x 511). This would require
 // 15 bits per offset to store, but since in all cases the data can be stored
-// with a 2 uint8_t alignment, we can store offsets divided by 2, freeing up 2 bits
-// to store the type of index for each plane. This allows us to encode 4 types,
-// but we really have 5 types (0, 1, 2, 4 or 8 bits per tile). Since the 8-bit
-// per tile planes are likely to be very rare, we can free up an extra bit in
-// those by making their offset 4-uint8_t aligned, and then use the extra bit to
-// determine whether its a 0 or 8-bit per tile index. In the 0 bit case, we can
-// use the bits used for the offset to store the actual tile value represented
-// throughout the plane. (2) The compression is done per 4x4x4 block rather than
-// planes like the lighting, as that gives many more regions that have a small
-// number of tile types than per plane, and can therefore be compressed using
-// less bits per tile. This is at the expense of a larger index, and more
-// overhead from storing the tile types in each block (since there are more
-// blocks than planes). However on balance this still was found to give much
-// better compression - around 12.5% vs 19% by doing things per plane. (3)
-// Another compromise is being made on how the memory is allocated. This is all
-// currently done with physical allocations to bypass the general heap manager,
-// in particular to allow the freeing of memory to actually free whole memory
-// pages cleanly rather than leaving them as managed by the heap manager. The
-// downside to this is that all storage is done in whole 4K pages. Annoyingly,
-// a lot of our compressed chunks are just on the edge of fitting in 4K, so an
-// awful lot of them end up being 8K when they are just a small amount over.
-// However, in testing absolutely no chunks were seen that got close to going
-// over 8K compressed, so doing things this way then we at least know that we
-// are reliably getting 25% compression, and freeing things up cleanly. Note:
+// with a 2 uint8_t alignment, we can store offsets divided by 2, freeing up 2
+// bits to store the type of index for each plane. This allows us to encode 4
+// types, but we really have 5 types (0, 1, 2, 4 or 8 bits per tile). Since the
+// 8-bit per tile planes are likely to be very rare, we can free up an extra bit
+// in those by making their offset 4-uint8_t aligned, and then use the extra bit
+// to determine whether its a 0 or 8-bit per tile index. In the 0 bit case, we
+// can use the bits used for the offset to store the actual tile value
+// represented throughout the plane. (2) The compression is done per 4x4x4 block
+// rather than planes like the lighting, as that gives many more regions that
+// have a small number of tile types than per plane, and can therefore be
+// compressed using less bits per tile. This is at the expense of a larger
+// index, and more overhead from storing the tile types in each block (since
+// there are more blocks than planes). However on balance this still was found
+// to give much better compression - around 12.5% vs 19% by doing things per
+// plane. (3) Another compromise is being made on how the memory is allocated.
+// This is all currently done with physical allocations to bypass the general
+// heap manager, in particular to allow the freeing of memory to actually free
+// whole memory pages cleanly rather than leaving them as managed by the heap
+// manager. The downside to this is that all storage is done in whole 4K pages.
+// Annoyingly, a lot of our compressed chunks are just on the edge of fitting in
+// 4K, so an awful lot of them end up being 8K when they are just a small amount
+// over. However, in testing absolutely no chunks were seen that got close to
+// going over 8K compressed, so doing things this way then we at least know that
+// we are reliably getting 25% compression, and freeing things up cleanly. Note:
 // see the comments on the getIndex and getBlockAndTile for an explanation of
 // how the blocks themselves are organised in terms of mapping a chunk-wide
 // x/y/z into a block and tile index.

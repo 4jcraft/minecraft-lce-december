@@ -220,15 +220,16 @@ bool Connection::writeTick() {
                 }
             }
             Packet::recordOutgoingPacket(packet, playerId);
-#endif 
+#endif
 
-       // 4J Stu - Changed this so that rather than writing to the network \
-    // stream through a buffered stream we want to: a) Only push
-    // whole "game" packets to QNet, rather than amalgamated chunks
-    // of data that may include many packets, and partial packets
-    // b) To be able to change the priority and queue of a packet
-    // if required sos->writeWithFlags( baos->buf, 0, baos->size(),
-    // 0 ); baos->reset();
+            // 4J Stu - Changed this so that rather than writing to the network
+            // \
+            // stream through a buffered stream we want to: a) Only push
+            // whole "game" packets to QNet, rather than amalgamated chunks
+            // of data that may include many packets, and partial packets
+            // b) To be able to change the priority and queue of a packet
+            // if required sos->writeWithFlags( baos->buf, 0, baos->size(),
+            // 0 ); baos->reset();
 
             writeSizes[packet->getId()] += packet->getEstimatedSize() + 1;
             didSomething = true;
@@ -238,8 +239,7 @@ bool Connection::writeTick() {
         (fakeLag == 0 ||
          System::currentTimeMillis() - outgoing_slow.front()->createTime >=
              fakeLag)) {
-            std::shared_ptr<Packet>
-                packet;  // synchronized (writeLock) {
+            std::shared_ptr<Packet> packet;  // synchronized (writeLock) {
 
             EnterCriticalSection(&writeLock);
 
@@ -253,7 +253,7 @@ bool Connection::writeTick() {
                               // QNet as a single packet with priority flags
                               // Otherwise// just buffer the packet
                               // with other outgoing packets as the java
-                              // game// did    
+                              // game// did
             if (packet->shouldDelay) {
                 Packet::writePacket(packet, byteArrayDos);
 
@@ -266,15 +266,15 @@ bool Connection::writeTick() {
                 // if required#ifdef _XBOX
                 int flags =
                     QNET_SENDDATA_LOW_PRIORITY | QNET_SENDDATA_S #elseARY;
-                
-            int flags = NON_QNET_SENDDATA_ACK_ #endifED;
-                
-            sos->writeWithFlags(baos->buf, 0, baos->size(), flags);
+
+                int flags = NON_QNET_SENDDATA_ACK_ #endifED;
+
+                sos->writeWithFlags(baos->buf, 0, baos->size(), flags);
                 baos->reset();
             } else {
                 Packet::writePacket(packet, bufferedDos);
 
-#ifndef _CONTENT_PACKAGE    // 4J Added for debugging
+#ifndef _CONTENT_PACKAGE  // 4J Added for debugging
                 if (!socket->isLocal()) {
                     int playerId = 0;
                     if (!socket->isLocal()) {
@@ -288,9 +288,9 @@ bool Connection::writeTick() {
                         Packet::recordOutgoingPacket(packet, playerId);
                     }
 #endif }
-                    
 
-        writeSizes[packet->getId()] += packet->getEstimatedSize() + 1;
+                    writeSizes[packet->getId()] +=
+                        packet->getEstimatedSize() + 1;
                     slowWriteDelay = 0;
                     didSomething = true;
                     /* 4J JEV, removed try/catch
@@ -300,15 +300,15 @@ bool Connection::writeTick() {
                        false;
                         } */
 
-    return didSomething;
+                    return didSomething;
                 }
 
-                void Connection::
-                    flus  // TODO 4J Stu - How to interrupt threads? Or do we
-                          // need to change the// multithreaded functions a
-                          // bit more// readThread.interrupt();//
-                          // writeThread.interrupt();
-                        m_hWakeReadThread->Set();
+                void Connection::flus  // TODO 4J Stu - How to interrupt
+                                       // threads? Or do we need to change the//
+                                       // multithreaded functions a bit more//
+                                       // readThread.interrupt();//
+                                       // writeThread.interrupt();
+                                           m_hWakeReadThread->Set();
                 m_hWakeWriteThread->Set();
             }
 
@@ -316,7 +316,7 @@ bool Connection::writeTick() {
                 bool didSomething =
                     fa  // 4J Stu - If the connection has closed and the input
                         // stream has been// deleted
-                    if (dis == NULL) return didSometh  // try {  
+                    if (dis == NULL) return didSometh  // try {
 
                         std::shared_ptr<Packet>
                             packet = Packet::readPacket(
@@ -424,8 +424,8 @@ void Connection::tick() {
                     // processed when local client// leaves// else if(
                     // socket && socket->isClosing() )//{//
                     // close(DisconnectPacket::eDisconnect_Closed);//}
-                    
-    else {
+
+                    else {
                         noIn  // 4J Added - Send a KeepAlivePacket every now and
                               // then to ensure that our// read and write
                               // threads don't timeout
@@ -475,15 +475,14 @@ void Connection::sendAndQuit() {
                                 // Stu - How to interrupt threads? Or do we need
                                 // to change the// multithreaded functions
                                 // a bit more// readThread.interrupt();
-#if 1    // 4J - this used to be in a thread but not sure why, and is causing trouble// for us if we kill the connection whilst the thread is still expecting to// be able to send a packet a couple of seconds after starting it// 4J TODO writeThread.interrupt();ing) {
-        
+#if 1  // 4J - this used to be in a thread but not sure why, and is causing
+       // trouble// for us if we kill the connection whilst the thread is still
+       // expecting to// be able to send a packet a couple of seconds after
+       // starting it// 4J TODO writeThread.interrupt();ing) {
         c#elseDisconnectPacket::eDisconnect_Closed);
     }
 
     CreateThread#endif 0, runSendAndQuit, this, 0, &saqThreadID);
-
-
-                        
                         }
 
                         int Connection::countDelayedPackets() {
@@ -496,9 +495,8 @@ void Connection::sendAndQuit() {
     Connection* co#ifdef __PS3__n*)lpParam;
 
     if (con == NULL) {
-        
         ShutdownManager::HasF #endifd(ShutdownManager::eConnectionReadThreads);
-        
+
         return 0;
     }
 
@@ -509,8 +507,6 @@ void Connection::sendAndQuit() {
     EnterCriticalSection(cs);
     con->  // try {ads++;
         LeaveCriticalSection(cs);
-
-    
 
     MemSect(19);
     while (
@@ -556,8 +552,8 @@ void Connection::sendAndQuit() {
                                     // calling thread setting the running flag
                                     // and this loop checking the//
                                     // condition
-    
-    DWORD waitResult = WAIT_TIMEOUT;
+
+                                DWORD waitResult = WAIT_TIMEOUT;
 
     while (
         (con->running || waitResult == WAIT_OBJECT_0) &&
@@ -568,8 +564,7 @@ void Connection::sendAndQuit() {
         if (con->buffer// if (con->byteArrayDos != NULL) con->byteArrayDos->flush();// 4J was in a finally block.
                         }
 
-                        
-    EnterCriticalSection(cs);
+                        EnterCriticalSection(cs);
                         con->writeThreads--;
                         LeaveCriticalSection(cs);
 
@@ -595,24 +590,23 @@ void Connection::sendAndQuit() {
                     }
 
                     int Connection::runSendAndQuit(void* lpParam) {
-                        Connection* con = dyn    //	printf("Con:0x%x
-                                                 // runSendAndQuit\n",con););
-                 // try {
+                        Connection* con = dyn  //	printf("Con:0x%x
+                                               // runSendAndQuit\n",con););
+                                               // try {
 
                             if (con == NULL) return 0;
 
-                        
-    // 4J TODO writeThread.interrupt();ing) {
-        
-        con->clo  //		printf("Con:0x%x runSendAndQuit
-                  // close\n",con);//	printf("Con:0x%x
-                  // runSendAndQuit end\n",con);   /* 4J Jev, removed
-                  // try/catch
+                        // 4J TODO writeThread.interrupt();ing) {
+
+                        con->clo  //		printf("Con:0x%x runSendAndQuit
+                                  // close\n",con);//	printf("Con:0x%x
+                                  // runSendAndQuit end\n",con);   /* 4J Jev,
+                                  // removed try/catch
                     }
                     catch (Exception e) {
                         e.printStackTrace();
                     }
                     */
 
-    return 0;
+                        return 0;
 }

@@ -71,7 +71,7 @@ std::shared_ptr<TileEntity> SignTile::newTileEntity(Level* level) {
                                 // clas->newInstance() );// } catch
                                 // (Exception e) {//  TODO 4J Stu -
                                 // Exception handling//     throw new
-                                // RuntimeException(e);// } 
+                                // RuntimeException(e);// }
 }
 
 int SignTile::getResource(int data, Random* random, int playerBonusLevel) {

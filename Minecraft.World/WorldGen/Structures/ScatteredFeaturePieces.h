@@ -86,7 +86,7 @@ public:
         class MossStoneSelector : public BlockSelector {
         public:
             void next(Random* random, int worldX, int worldY, int worldZ,
-                           bool isEdge);
+                      bool isEdge);
         };
 
         static MossStoneSelector stoneSelector;

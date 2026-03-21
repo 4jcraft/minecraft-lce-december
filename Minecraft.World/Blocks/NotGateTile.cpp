@@ -7,14 +7,13 @@
 
 std::unordered_map<Level*, std::deque<NotGateTile::Toggle>*>
     NotGateTile::recentToggles = std::unordered_map < Level *,
-    std::deque <
-        NotGate  // 4J - added, to tie in with other changes brought forward
-                 // from 1.3.2 to// associate toggles with a level. In addition
-                 // to what the java version does, we// are also removing any
-                 // references to levels that we are storing when they hit//
-                 // their dtor.
+    std::deque < NotGate  // 4J - added, to tie in with other changes brought
+                          // forward from 1.3.2 to// associate toggles with a
+                          // level. In addition to what the java version does,
+                          // we// are also removing any references to levels
+                          // that we are storing when they hit// their dtor.
 
-void NotGateTile::removeLevelReferences(Level* level) {
+        void NotGateTile::removeLevelReferences(Level* level) {
     if (recentToggles.find(level) != recentToggles.end()) {
         delete recentToggles[level];
         recentToggles.erase(level);
