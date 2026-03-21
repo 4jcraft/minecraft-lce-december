@@ -9,6 +9,6 @@
   ],
 
   "moves": [
-    { "from": "*Command.*", "to": "Commands" }
+    { "from": "StructureFeatureSavedData.*", "to": "WorldGen/" }
   ]
 }

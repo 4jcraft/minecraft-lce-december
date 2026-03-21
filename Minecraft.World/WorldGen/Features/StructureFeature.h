@@ -1,6 +1,6 @@
 #pragma once
 #include "LargeFeature.h"
-#include "../../StructureFeatureSavedData.h"
+#include "../StructureFeatureSavedData.h"
 
 class StructureStart;
 
