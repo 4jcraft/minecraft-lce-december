@@ -9,6 +9,6 @@
   ],
 
   "moves": [
-    { "from": "*Item.*", "to": "Items" }
+    { "from": "*Command.*", "to": "Commands" }
   ]
 }
