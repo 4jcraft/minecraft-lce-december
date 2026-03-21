@@ -9,6 +9,6 @@
   ],
 
   "moves": [
-    {"from": "*TileItem.*", "to": "Items/TileItems"}
+    {"from": "*MobEffect.*", "to": "Entities"}
   ]
 }
