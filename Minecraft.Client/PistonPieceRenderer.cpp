@@ -15,7 +15,7 @@ PistonPieceRenderer::PistonPieceRenderer()
 	tileRenderer = NULL;
 }
 
-void PistonPieceRenderer::render(shared_ptr<TileEntity> _entity, double x, double y, double z, float a, bool setColor, float alpha, bool useCompiled)
+void PistonPieceRenderer::render(std::shared_ptr<TileEntity> _entity, double x, double y, double z, float a, bool setColor, float alpha, bool useCompiled)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<PistonPieceEntity> entity = dynamic_pointer_cast<PistonPieceEntity>(_entity);

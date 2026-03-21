@@ -8,7 +8,7 @@ SnowItem::SnowItem(int id, Tile *parentTile) : AuxDataTileItem(id, parentTile)
 {
 }
 
-bool SnowItem::useOn(shared_ptr<ItemInstance> instance, shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
+bool SnowItem::useOn(std::shared_ptr<ItemInstance> instance, std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
 {
 	if (instance->count == 0) return false;
 	if (!player->mayUseItemAt(x, y, z, face, instance)) return false;

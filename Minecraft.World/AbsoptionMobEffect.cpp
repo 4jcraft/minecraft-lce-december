@@ -7,13 +7,13 @@ AbsoptionMobEffect::AbsoptionMobEffect(int id, bool isHarmful, eMinecraftColour 
 {
 }
 
-void AbsoptionMobEffect::removeAttributeModifiers(shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
+void AbsoptionMobEffect::removeAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
 {
 	entity->setAbsorptionAmount(entity->getAbsorptionAmount() - 4 * (amplifier + 1));
 	MobEffect::removeAttributeModifiers(entity, attributes, amplifier);
 }
 
-void AbsoptionMobEffect::addAttributeModifiers(shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
+void AbsoptionMobEffect::addAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
 {
 	entity->setAbsorptionAmount(entity->getAbsorptionAmount() + 4 * (amplifier + 1));
 	MobEffect::addAttributeModifiers(entity, attributes, amplifier);

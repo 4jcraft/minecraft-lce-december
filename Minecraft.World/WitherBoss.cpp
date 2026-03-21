@@ -18,7 +18,7 @@
 
 #include "WitherBoss.h"
 
-bool LivingEntitySelector::matches(shared_ptr<Entity> entity) const
+bool LivingEntitySelector::matches(std::shared_ptr<Entity> entity) const
 {
 	if ( entity->instanceof(eTYPE_LIVINGENTITY) )
 	{
@@ -420,7 +420,7 @@ float WitherBoss::rotlerp(float a, float b, float max)
 	return a + diff;
 }
 
-void WitherBoss::performRangedAttack(int head, shared_ptr<LivingEntity> target)
+void WitherBoss::performRangedAttack(int head, std::shared_ptr<LivingEntity> target)
 {
 	performRangedAttack(head, target->x, target->y + target->getHeadHeight() * .5, target->z, head == 0 && random->nextFloat() < 0.001f);
 }
@@ -445,7 +445,7 @@ void WitherBoss::performRangedAttack(int head, double tx, double ty, double tz, 
 	level->addEntity(ie);
 }
 
-void WitherBoss::performRangedAttack(shared_ptr<LivingEntity> target, float power)
+void WitherBoss::performRangedAttack(std::shared_ptr<LivingEntity> target, float power)
 {
 	performRangedAttack(0, target);
 }
@@ -578,7 +578,7 @@ MobType WitherBoss::getMobType()
 	return UNDEAD;
 }
 
-void WitherBoss::ride(shared_ptr<Entity> e)
+void WitherBoss::ride(std::shared_ptr<Entity> e)
 {
 	riding = nullptr;
 }

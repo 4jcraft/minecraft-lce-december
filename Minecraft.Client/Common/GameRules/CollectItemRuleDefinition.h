@@ -21,7 +21,7 @@ public:
 	ConsoleGameRules::EGameRuleType getActionType() { return ConsoleGameRules::eGameRuleType_CollectItemRule; }
 
 	virtual void writeAttributes(DataOutputStream *, UINT numAttributes);
-	virtual void addAttribute(const wstring &attributeName, const wstring &attributeValue);
+	virtual void addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue);
 
 	virtual int getGoal();
 	virtual int getProgress(GameRule *rule);
@@ -33,7 +33,7 @@ public:
 
 	bool onCollectItem(GameRule *rule, shared_ptr<ItemInstance> item);
 
-	static wstring generateXml(shared_ptr<ItemInstance> item);
+	static std::wstring generateXml(shared_ptr<ItemInstance> item);
 
 private:	
 	//static wstring generateXml(CollectItemRuleDefinition *ruleDef);

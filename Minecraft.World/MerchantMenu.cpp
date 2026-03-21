@@ -5,7 +5,7 @@
 #include "net.minecraft.world.level.h"
 #include "MerchantMenu.h"
 
-MerchantMenu::MerchantMenu(shared_ptr<Inventory> inventory, shared_ptr<Merchant> merchant, Level *level)
+MerchantMenu::MerchantMenu(std::shared_ptr<Inventory> inventory, std::shared_ptr<Merchant> merchant, Level *level)
 {
 	trader = merchant;
 	this->level = level;
@@ -28,7 +28,7 @@ MerchantMenu::MerchantMenu(shared_ptr<Inventory> inventory, shared_ptr<Merchant>
 	}
 }
 
-shared_ptr<MerchantContainer> MerchantMenu::getTradeContainer()
+std::shared_ptr<MerchantContainer> MerchantMenu::getTradeContainer()
 {
 	return tradeContainer;
 }
@@ -59,12 +59,12 @@ void MerchantMenu::setData(int id, int value)
 {
 }
 
-bool MerchantMenu::stillValid(shared_ptr<Player> player)
+bool MerchantMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return trader->getTradingPlayer() == player;
 }
 
-shared_ptr<ItemInstance> MerchantMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> MerchantMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = NULL;
@@ -124,7 +124,7 @@ shared_ptr<ItemInstance> MerchantMenu::quickMoveStack(shared_ptr<Player> player,
 	return clicked;
 }
 
-void MerchantMenu::removed(shared_ptr<Player> player)
+void MerchantMenu::removed(std::shared_ptr<Player> player)
 {
 	AbstractContainerMenu::removed(player);
 	trader->setTradingPlayer(nullptr);
@@ -144,7 +144,7 @@ void MerchantMenu::removed(shared_ptr<Player> player)
 	}
 }
 
-shared_ptr<Merchant> MerchantMenu::getMerchant()
+std::shared_ptr<Merchant> MerchantMenu::getMerchant()
 {
 	return trader;
 }

@@ -11,9 +11,9 @@ private:
 
 public:
 	OcelotRenderer(Model *model, float shadow);
-	virtual void render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
+	virtual void render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
 
 protected:
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> entity);
-	virtual void scale(shared_ptr<LivingEntity> _mob, float a);	
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> entity);
+	virtual void scale(std::shared_ptr<LivingEntity> _mob, float a);	
 };

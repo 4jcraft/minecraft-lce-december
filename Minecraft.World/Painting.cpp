@@ -104,7 +104,7 @@ void Painting::PaintingPostConstructor(int dir, int motive)
 	}
 }
 
-Painting::Painting(Level *level, int x, int y, int z, int dir, wstring motiveName) : HangingEntity( level , x, y, z, dir )
+Painting::Painting(Level *level, int x, int y, int z, int dir, std::wstring motiveName) : HangingEntity( level , x, y, z, dir )
 {
 	_init(level);
 
@@ -153,7 +153,7 @@ int Painting::getHeight()
 	return motive->h;
 }
 
-void Painting::dropItem(shared_ptr<Entity> causedBy) 
+void Painting::dropItem(std::shared_ptr<Entity> causedBy) 
 {
 	if ( (causedBy != NULL) && causedBy->instanceof(eTYPE_PLAYER) )
 	{

@@ -13,6 +13,6 @@ public:
 	CaveSpiderRenderer();
 
 protected:
-    virtual void scale(shared_ptr<LivingEntity> mob, float a);
-    virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
+    virtual void scale(std::shared_ptr<LivingEntity> mob, float a);
+    virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
 };

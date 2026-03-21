@@ -78,7 +78,7 @@ void IUIScene_HUD::updateFrameTick()
 	else
 	{
 		//SetRidingHorse(false, 0);
-		shared_ptr<Entity> riding = pMinecraft->localplayers[iPad]->riding;
+		std::shared_ptr<Entity> riding = pMinecraft->localplayers[iPad]->riding;
 		if(riding == NULL)
 		{
 			SetRidingHorse(false, false, 0);
@@ -217,7 +217,7 @@ void IUIScene_HUD::renderPlayerHealth()
 		ShowArmour(false);
 	}
 
-	shared_ptr<Entity> riding = pMinecraft->localplayers[iPad]->riding;
+	std::shared_ptr<Entity> riding = pMinecraft->localplayers[iPad]->riding;
 
 	if(riding == NULL || riding && !riding->instanceof(eTYPE_LIVINGENTITY))
 	{
@@ -253,7 +253,7 @@ void IUIScene_HUD::renderPlayerHealth()
 	}
 	else if(riding->instanceof(eTYPE_LIVINGENTITY) )
 	{
-		shared_ptr<LivingEntity> living = dynamic_pointer_cast<LivingEntity>(riding);
+		std::shared_ptr<LivingEntity> living = dynamic_pointer_cast<LivingEntity>(riding);
 		int riderCurrentHealth = (int) ceil(living->getHealth());
 		float maxRiderHealth = living->getMaxHealth();
 

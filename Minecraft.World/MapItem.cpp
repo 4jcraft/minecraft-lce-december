@@ -19,7 +19,7 @@ MapItem::MapItem(int id) : ComplexItem(id)
 	setStackedByData(true);
 }
 
-shared_ptr<MapItemSavedData> MapItem::getSavedData(short idNum, Level *level)
+std::shared_ptr<MapItemSavedData> MapItem::getSavedData(short idNum, Level *level)
 {	
 	std::wstring id = wstring( L"map_" ) + _toString(idNum);
 	shared_ptr<MapItemSavedData> mapItemSavedData = dynamic_pointer_cast<MapItemSavedData>(level->getSavedData(typeid(MapItemSavedData), id));
@@ -40,7 +40,7 @@ shared_ptr<MapItemSavedData> MapItem::getSavedData(short idNum, Level *level)
 	return mapItemSavedData;
 }
 
-shared_ptr<MapItemSavedData> MapItem::getSavedData(shared_ptr<ItemInstance> itemInstance, Level *level)
+std::shared_ptr<MapItemSavedData> MapItem::getSavedData(std::shared_ptr<ItemInstance> itemInstance, Level *level)
 {
 	MemSect(31);
 	std::wstring id = wstring( L"map_" ) + _toString(itemInstance->getAuxValue() );
@@ -84,7 +84,7 @@ shared_ptr<MapItemSavedData> MapItem::getSavedData(shared_ptr<ItemInstance> item
 	return mapItemSavedData;
 }
 
-void MapItem::update(Level *level, shared_ptr<Entity> player, shared_ptr<MapItemSavedData> data)
+void MapItem::update(Level *level, std::shared_ptr<Entity> player, std::shared_ptr<MapItemSavedData> data)
 {
 	if ( (level->dimension->id != data->dimension) || !player->instanceof(eTYPE_PLAYER) ) 
 	{
@@ -252,7 +252,7 @@ void MapItem::update(Level *level, shared_ptr<Entity> player, shared_ptr<MapItem
 	}
 }
 
-void MapItem::inventoryTick(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Entity> owner, int slot, bool selected)
+void MapItem::inventoryTick(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Entity> owner, int slot, bool selected)
 {
 	if (level->isClientSide) return;
 
@@ -291,7 +291,7 @@ void MapItem::inventoryTick(shared_ptr<ItemInstance> itemInstance, Level *level,
 	}
 }
 
-shared_ptr<Packet> MapItem::getUpdatePacket(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player) 
+std::shared_ptr<Packet> MapItem::getUpdatePacket(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player) 
 {
 	charArray data = MapItem::getSavedData(itemInstance, level)->getUpdatePacket(itemInstance, level, player);
 
@@ -302,7 +302,7 @@ shared_ptr<Packet> MapItem::getUpdatePacket(shared_ptr<ItemInstance> itemInstanc
 	return retval;
 }
 
-void MapItem::onCraftedBy(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player) 
+void MapItem::onCraftedBy(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player) 
 {
 	wchar_t buf[64];
 

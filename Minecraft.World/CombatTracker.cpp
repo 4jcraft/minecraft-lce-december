@@ -56,7 +56,7 @@ void CombatTracker::recordDamage(DamageSource *source, float health, float damag
 	inCombat |= entry->isCombatRelated();
 }
 
-shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket()
+std::shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket()
 {
 	if (entries.size() == 0) return shared_ptr<ChatPacket>(new ChatPacket(mob->getNetworkName()));
 
@@ -131,7 +131,7 @@ shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket()
 	return result;
 }
 
-shared_ptr<LivingEntity> CombatTracker::getKiller()
+std::shared_ptr<LivingEntity> CombatTracker::getKiller()
 {
 	shared_ptr<LivingEntity> bestMob = nullptr;
 	shared_ptr<Player> bestPlayer = nullptr;

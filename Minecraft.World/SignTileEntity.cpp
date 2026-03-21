@@ -86,7 +86,7 @@ void SignTileEntity::load(CompoundTag *tag)
 	setChanged();
 }
 
-shared_ptr<Packet> SignTileEntity::getUpdatePacket()
+std::shared_ptr<Packet> SignTileEntity::getUpdatePacket()
 {
 	wstring copy[MAX_SIGN_LINES];
 	for (int i = 0; i < MAX_SIGN_LINES; i++) 
@@ -110,12 +110,12 @@ void SignTileEntity::setEditable(bool isEditable)
 	}
 }
 
-void SignTileEntity::setAllowedPlayerEditor(shared_ptr<Player> player)
+void SignTileEntity::setAllowedPlayerEditor(std::shared_ptr<Player> player)
 {
 	playerWhoMayEdit = player;
 }
 
-shared_ptr<Player> SignTileEntity::getPlayerWhoMayEdit()
+std::shared_ptr<Player> SignTileEntity::getPlayerWhoMayEdit()
 {
 	return playerWhoMayEdit;
 }
@@ -165,7 +165,7 @@ void SignTileEntity::setChanged()
 }
 
 
-void SignTileEntity::SetMessage(int iIndex,wstring &wsText) 
+void SignTileEntity::SetMessage(int iIndex,std::wstring &wsText) 
 { 
 	m_wsmessages[iIndex]=wsText;
 
@@ -199,7 +199,7 @@ int SignTileEntity::StringVerifyCallback(LPVOID lpParam,STRING_VERIFY_RESPONSE *
 }
 
 // 4J Added
-shared_ptr<TileEntity> SignTileEntity::clone()
+std::shared_ptr<TileEntity> SignTileEntity::clone()
 {
 	shared_ptr<SignTileEntity> result = shared_ptr<SignTileEntity>( new SignTileEntity() );
 	TileEntity::clone(result);

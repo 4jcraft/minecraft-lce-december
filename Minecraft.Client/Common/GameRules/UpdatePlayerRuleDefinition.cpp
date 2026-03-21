@@ -80,7 +80,7 @@ GameRuleDefinition *UpdatePlayerRuleDefinition::addChild(ConsoleGameRules::EGame
 	return rule;
 }
 
-void UpdatePlayerRuleDefinition::addAttribute(const wstring &attributeName, const wstring &attributeValue)
+void UpdatePlayerRuleDefinition::addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue)
 {
 	if(attributeName.compare(L"spawnX") == 0)
 	{

@@ -205,7 +205,7 @@ void PistonPieceEntity::save(CompoundTag *tag)
 }
 
 // 4J Added
-shared_ptr<TileEntity> PistonPieceEntity::clone()
+std::shared_ptr<TileEntity> PistonPieceEntity::clone()
 {
 	shared_ptr<PistonPieceEntity> result = shared_ptr<PistonPieceEntity>( new PistonPieceEntity() );
 	TileEntity::clone(result);

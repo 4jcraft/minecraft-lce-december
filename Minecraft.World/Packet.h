@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 class Packet;
 class PacketListener;
@@ -10,7 +10,7 @@ class DataOutputStream;
 
 class Packet;
 
-typedef shared_ptr<Packet> (*packetCreateFn)();
+typedef std::shared_ptr<Packet> (*packetCreateFn)();
 
 class Packet
 {
@@ -55,17 +55,17 @@ public:
 
 	// 4J Stu - Added the sendToAnyClient param so we can limit some packets to be only sent to one player on a system
 	// 4J Stu - Added renderStats param for use in debugging
-	static void map(int id, bool receiveOnClient, bool receiveOnServer, bool sendToAnyClient, bool renderStats, const type_info& clazz, packetCreateFn );
+	static void map(int id, bool receiveOnClient, bool receiveOnServer, bool sendToAnyClient, bool renderStats, const std::type_info& clazz, packetCreateFn );
 
 public:
 	const __int64 createTime;
 
 	Packet();
 
-	static shared_ptr<Packet> getPacket(int id);
+	static std::shared_ptr<Packet> getPacket(int id);
 
 	// 4J Added
-	static bool canSendToAnyClient(shared_ptr<Packet> packet);
+	static bool canSendToAnyClient(std::shared_ptr<Packet> packet);
 
 	static void writeBytes(DataOutputStream *dataoutputstream, byteArray bytes);
 	static byteArray readBytes(DataInputStream *datainputstream);
@@ -80,28 +80,28 @@ private:
 	static vector<PacketStatistics *> renderableStats;
 	static int renderPos;
 public:
-	static void recordOutgoingPacket(shared_ptr<Packet> packet, int playerIndex);
+	static void recordOutgoingPacket(std::shared_ptr<Packet> packet, int playerIndex);
 	static void updatePacketStatsPIX();
 private :
 	static unordered_map<int, PacketStatistics *> statistics;
 	//static int nextPrint;
 
 public:
-	static shared_ptr<Packet> readPacket(DataInputStream *dis, bool isServer);
-	static void writePacket(shared_ptr<Packet> packet, DataOutputStream *dos);
-	static void writeUtf(const wstring& value, DataOutputStream *dos);
-	static wstring readUtf(DataInputStream *dis, int maxLength);
+	static std::shared_ptr<Packet> readPacket(DataInputStream *dis, bool isServer);
+	static void writePacket(std::shared_ptr<Packet> packet, DataOutputStream *dos);
+	static void writeUtf(const std::wstring& value, DataOutputStream *dos);
+	static std::wstring readUtf(DataInputStream *dis, int maxLength);
 	virtual void read(DataInputStream *dis) = 0; // throws IOException = 0; TODO 4J JEV, should this declare a throws?
 	virtual void write(DataOutputStream *dos) = 0; // throws IOException = 0; TODO 4J JEV, should this declare a throws?
 	virtual void handle(PacketListener *listener) = 0;
 	virtual int getEstimatedSize() = 0;
 	virtual bool canBeInvalidated();
-	virtual bool isInvalidatedBy(shared_ptr<Packet> packet);
+	virtual bool isInvalidatedBy(std::shared_ptr<Packet> packet);
 	virtual bool isAync();
 
 	// 4J Stu - Brought these functions forward for enchanting/game rules
-	static shared_ptr<ItemInstance> readItem(DataInputStream *dis);
-	static void writeItem(shared_ptr<ItemInstance> item, DataOutputStream *dos);
+	static std::shared_ptr<ItemInstance> readItem(DataInputStream *dis);
+	static void writeItem(std::shared_ptr<ItemInstance> item, DataOutputStream *dos);
 	static CompoundTag *readNbt(DataInputStream *dis);
 
 protected:

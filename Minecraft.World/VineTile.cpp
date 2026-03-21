@@ -33,7 +33,7 @@ bool VineTile::isCubeShaped()
 	return false;
 }
 
-void VineTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void VineTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	const float thickness = 1.0f / 16.0f;
 
@@ -369,7 +369,7 @@ int VineTile::getResourceCount(Random *random)
 	return 0;
 }
 
-void VineTile::playerDestroy(Level *level, shared_ptr<Player>player, int x, int y, int z, int data)
+void VineTile::playerDestroy(Level *level, std::shared_ptr<Player>player, int x, int y, int z, int data)
 {
 	if (!level->isClientSide && player->getSelectedItem() != NULL && player->getSelectedItem()->id == Item::shears->id)
 	{

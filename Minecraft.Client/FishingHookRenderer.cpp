@@ -10,7 +10,7 @@
 
 ResourceLocation FishingHookRenderer::PARTICLE_LOCATION = ResourceLocation(TN_PARTICLES);
 
-void FishingHookRenderer::render(shared_ptr<Entity> _hook, double x, double y, double z, float rot, float a)
+void FishingHookRenderer::render(std::shared_ptr<Entity> _hook, double x, double y, double z, float rot, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<FishingHook> hook = dynamic_pointer_cast<FishingHook>(_hook);
@@ -102,7 +102,7 @@ void FishingHookRenderer::render(shared_ptr<Entity> _hook, double x, double y, d
     }
 }
 
-ResourceLocation *FishingHookRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *FishingHookRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &PARTICLE_LOCATION;
 }

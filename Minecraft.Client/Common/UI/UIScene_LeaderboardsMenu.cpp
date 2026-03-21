@@ -150,7 +150,7 @@ void UIScene_LeaderboardsMenu::updateComponents()
 	m_parentLayer->showComponent(m_iPad,eUIComponent_Logo,false);
 }
 
-wstring UIScene_LeaderboardsMenu::getMoviePath()
+std::wstring UIScene_LeaderboardsMenu::getMoviePath()
 {
 	return L"LeaderboardMenu";
 }

@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "LevelSource.h"
 #include "Mob.h"
@@ -50,7 +49,7 @@ public:
 	static const int BIOME_COUNT = 23; // 4J Stu added
 
 public:
-	wstring m_name;
+	std::wstring m_name;
 	int color;
 	byte topMaterial;
 	byte material;
@@ -123,7 +122,7 @@ public:
 
 protected:
 	Biome *setSnowCovered();
-	Biome *setName(const wstring &name);
+	Biome *setName(const std::wstring &name);
 	Biome *setLeafColor(int leafColor);
 	Biome *setColor(int color);
 

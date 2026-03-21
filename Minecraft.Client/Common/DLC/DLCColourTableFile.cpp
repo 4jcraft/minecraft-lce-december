@@ -5,7 +5,7 @@
 #include "..\..\TexturePackRepository.h"
 #include "..\..\TexturePack.h"
 
-DLCColourTableFile::DLCColourTableFile(const wstring &path) : DLCFile(DLCManager::e_DLCType_ColourTable,path)
+DLCColourTableFile::DLCColourTableFile(const std::wstring &path) : DLCFile(DLCManager::e_DLCType_ColourTable,path)
 {	
 	m_colourTable = NULL;
 }

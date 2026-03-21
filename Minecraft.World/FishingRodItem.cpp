@@ -30,7 +30,7 @@ bool FishingRodItem::isMirroredArt()
 	return true;
 }
 
-shared_ptr<ItemInstance> FishingRodItem::use(shared_ptr<ItemInstance> instance, Level *level, shared_ptr<Player> player) 
+std::shared_ptr<ItemInstance> FishingRodItem::use(std::shared_ptr<ItemInstance> instance, Level *level, std::shared_ptr<Player> player) 
 {
 	if (player->fishing != NULL) 
 	{

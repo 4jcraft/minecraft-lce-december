@@ -13,7 +13,7 @@ FallingTileRenderer::FallingTileRenderer() : EntityRenderer()
 	this->shadowRadius = 0.5f;
 }
 
-void FallingTileRenderer::render(shared_ptr<Entity> _tile, double x, double y, double z, float rot, float a)
+void FallingTileRenderer::render(std::shared_ptr<Entity> _tile, double x, double y, double z, float rot, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<FallingTile> tile = dynamic_pointer_cast<FallingTile>(_tile);
@@ -61,7 +61,7 @@ void FallingTileRenderer::render(shared_ptr<Entity> _tile, double x, double y, d
 	}
 }
 
-ResourceLocation *FallingTileRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *FallingTileRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &TextureAtlas::LOCATION_BLOCKS;
 }

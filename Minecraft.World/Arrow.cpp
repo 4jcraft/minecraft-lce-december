@@ -56,7 +56,7 @@ Arrow::Arrow(Level *level) : Entity( level )
 	setSize(0.5f, 0.5f);
 }
 
-Arrow::Arrow(Level *level, shared_ptr<LivingEntity> mob, shared_ptr<LivingEntity> target, float power, float uncertainty) : Entity( level )
+Arrow::Arrow(Level *level, std::shared_ptr<LivingEntity> mob, std::shared_ptr<LivingEntity> target, float power, float uncertainty) : Entity( level )
 {
 	_init();
 	
@@ -95,7 +95,7 @@ Arrow::Arrow(Level *level, double x, double y, double z) : Entity( level )
 	heightOffset = 0;
 }
  
-Arrow::Arrow(Level *level, shared_ptr<LivingEntity> mob, float power) : Entity( level )
+Arrow::Arrow(Level *level, std::shared_ptr<LivingEntity> mob, float power) : Entity( level )
 {
 	_init();
 
@@ -493,7 +493,7 @@ void Arrow::readAdditionalSaveData(CompoundTag *tag)
 	}
 }
 
-void Arrow::playerTouch(shared_ptr<Player> player)
+void Arrow::playerTouch(std::shared_ptr<Player> player)
 {
 	if (level->isClientSide || !inGround || shakeTime > 0) return;
 

@@ -22,12 +22,12 @@ TitleScreen::TitleScreen()
 
     splash = L"missingno";
 //    try {	// 4J - removed try/catch
-    vector<wstring> splashes;
+    std::vector<std::wstring> splashes;
 
 	/*
     BufferedReader *br = new BufferedReader(new InputStreamReader(InputStream::getResourceAsStream(L"res\\title\\splashes.txt"))); //, Charset.forName("UTF-8")
 		
-    wstring line = L"";
+    std::wstring line = L"";
     while ( !(line = br->readLine()).empty() )
 	{
         line = trimString( line );
@@ -152,7 +152,7 @@ void TitleScreen::render(int xm, int ym, float a)
     glPopMatrix();
 
     drawString(font, ClientConstants::VERSION_STRING, 2, 2, 0x505050);
-    wstring msg = L"Copyright Mojang AB. Do not distribute.";
+    std::wstring msg = L"Copyright Mojang AB. Do not distribute.";
     drawString(font, msg, width - font->width(msg) - 2, height - 10, 0xffffff);
 
     Screen::render(xm, ym, a);

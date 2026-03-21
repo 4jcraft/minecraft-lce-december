@@ -8,7 +8,7 @@
 #include "net.minecraft.world.h"
 #include "net.minecraft.h"
 
-const wstring DoorTile::TEXTURES[] = { L"doorWood_lower", L"doorWood_upper", L"doorIron_lower", L"doorIron_upper" };
+const std::wstring DoorTile::TEXTURES[] = { L"doorWood_lower", L"doorWood_upper", L"doorIron_lower", L"doorIron_upper" };
 
 DoorTile::DoorTile(int id, Material *material) : Tile(id, material,isSolidRender())
 {
@@ -109,7 +109,7 @@ AABB *DoorTile::getAABB(Level *level, int x, int y, int z)
 	return retval;
 }
 
-void DoorTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void DoorTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	setShape(getCompositeData(level,x, y, z));
 }
@@ -169,7 +169,7 @@ void DoorTile::setShape(int compositeData)
 	}
 }
 
-void DoorTile::attack(Level *level, int x, int y, int z, shared_ptr<Player> player)
+void DoorTile::attack(Level *level, int x, int y, int z, std::shared_ptr<Player> player)
 {
 	// Fix for #92957 - TU11: Content: Multiplayer: Wooden Doors splits in half and glitch in open / close motion while being mined.
 	// In lastest PC version this is commented out, so do that now to fix bug above
@@ -182,7 +182,7 @@ bool DoorTile::TestUse()
 	return id == Tile::door_wood_Id;
 }
 
-bool DoorTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool DoorTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if (soundOnly)
 	{
@@ -342,7 +342,7 @@ int DoorTile::cloneTileId(Level *level, int x, int y, int z)
 	return material == Material::metal ? Item::door_iron_Id : Item::door_wood_Id;
 }
 
-void DoorTile::playerWillDestroy(Level *level, int x, int y, int z, int data, shared_ptr<Player> player)
+void DoorTile::playerWillDestroy(Level *level, int x, int y, int z, int data, std::shared_ptr<Player> player)
 {
 	if (player->abilities.instabuild)
 	{

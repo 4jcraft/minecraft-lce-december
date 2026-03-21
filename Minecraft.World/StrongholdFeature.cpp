@@ -8,9 +8,9 @@
 #include "FileHeader.h"
 #include "JavaMath.h"
 
-const wstring StrongholdFeature::OPTION_DISTANCE = L"distance";
-const wstring StrongholdFeature::OPTION_COUNT = L"count";
-const wstring StrongholdFeature::OPTION_SPREAD = L"spread";
+const std::wstring StrongholdFeature::OPTION_DISTANCE = L"distance";
+const std::wstring StrongholdFeature::OPTION_COUNT = L"count";
+const std::wstring StrongholdFeature::OPTION_SPREAD = L"spread";
 
 vector<Biome *> StrongholdFeature::allowedBiomes;
 
@@ -80,7 +80,7 @@ StrongholdFeature::~StrongholdFeature()
 	}
 }
 
-wstring StrongholdFeature::getFeatureName()
+std::wstring StrongholdFeature::getFeatureName()
 {
 	return LargeFeature::STRONGHOLD;
 }

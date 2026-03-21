@@ -57,7 +57,7 @@ void TopSnowTile::updateDefaultShape()
 	updateShape(0);
 }
 
-void TopSnowTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void TopSnowTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	updateShape(level->getData(x, y, z));
 }
@@ -96,7 +96,7 @@ bool TopSnowTile::checkCanSurvive(Level *level, int x, int y, int z)
 	return true;
 }
 
-void TopSnowTile::playerDestroy(Level *level, shared_ptr<Player> player, int x, int y, int z, int data)
+void TopSnowTile::playerDestroy(Level *level, std::shared_ptr<Player> player, int x, int y, int z, int data)
 {
 	int type = Item::snowBall->id;
 	int height = data & HEIGHT_MASK;

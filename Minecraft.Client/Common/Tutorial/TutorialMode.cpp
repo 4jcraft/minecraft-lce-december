@@ -110,7 +110,7 @@ bool TutorialMode::useItemOn(shared_ptr<Player> player, Level *level, shared_ptr
 	return result;
 }
 
-void TutorialMode::attack(shared_ptr<Player> player, shared_ptr<Entity> entity)
+void TutorialMode::attack(shared_ptr<Player> player, std::shared_ptr<Entity> entity)
 {
 	if(!tutorial->m_allTutorialsComplete)
 		tutorial->attack(player, entity);

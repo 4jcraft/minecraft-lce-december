@@ -15,7 +15,7 @@ private:
 
 public:
 	AvoidPlayerGoalEntitySelector(AvoidPlayerGoal *parent);
-	bool matches(shared_ptr<Entity> entity) const;
+	bool matches(std::shared_ptr<Entity> entity) const;
 };
 
 class AvoidPlayerGoal : public Goal
@@ -28,11 +28,11 @@ private:
 	float maxDist;
 	Path *path;
 	PathNavigation *pathNav;
-	const type_info& avoidType;
+	const std::type_info& avoidType;
 	EntitySelector *entitySelector;
 
 public:
-	AvoidPlayerGoal(PathfinderMob *mob, const type_info& avoidType, float maxDist, double walkSpeedModifier, double sprintSpeedModifier);
+	AvoidPlayerGoal(PathfinderMob *mob, const std::type_info& avoidType, float maxDist, double walkSpeedModifier, double sprintSpeedModifier);
 	~AvoidPlayerGoal();
 
 	virtual bool canUse();

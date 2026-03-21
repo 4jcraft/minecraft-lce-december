@@ -14,7 +14,7 @@ LeashKnotRenderer::~LeashKnotRenderer()
 	delete model;
 }
 
-void LeashKnotRenderer::render(shared_ptr<Entity> entity, double x, double y, double z, float rot, float a)
+void LeashKnotRenderer::render(std::shared_ptr<Entity> entity, double x, double y, double z, float rot, float a)
 {
     glPushMatrix();
     glDisable(GL_CULL_FACE);
@@ -33,7 +33,7 @@ void LeashKnotRenderer::render(shared_ptr<Entity> entity, double x, double y, do
     glPopMatrix();
 }
 
-ResourceLocation *LeashKnotRenderer::getTextureLocation(shared_ptr<Entity> entity)
+ResourceLocation *LeashKnotRenderer::getTextureLocation(std::shared_ptr<Entity> entity)
 {
     return &KNOT_LOCATION;
 }

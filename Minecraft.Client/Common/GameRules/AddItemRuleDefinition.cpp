@@ -56,7 +56,7 @@ GameRuleDefinition *AddItemRuleDefinition::addChild(ConsoleGameRules::EGameRuleT
 	return rule;
 }
 
-void AddItemRuleDefinition::addAttribute(const wstring &attributeName, const wstring &attributeValue)
+void AddItemRuleDefinition::addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue)
 {
 	if(attributeName.compare(L"itemId") == 0)
 	{

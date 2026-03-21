@@ -12,7 +12,7 @@ public:
 	int getSectionStartOffset(ESceneSection eSection);
 	virtual void handleOtherClicked(int iPad, ESceneSection eSection, int buttonNum, bool quickKey);
 	virtual bool IsSectionSlotList( ESceneSection eSection );
-	virtual vector<HtmlString> *GetSectionHoverText(ESceneSection eSection);
+	virtual std::vector<HtmlString> *GetSectionHoverText(ESceneSection eSection);
 	bool IsVisible( ESceneSection eSection );
 
 protected:
@@ -25,7 +25,7 @@ protected:
 	virtual bool IsPowerButtonSelected(ESceneSection eSection) = 0;
 	virtual void SetPowerButtonSelected(ESceneSection eSection) = 0;
 
-	shared_ptr<BeaconTileEntity> m_beacon;
+	std::shared_ptr<BeaconTileEntity> m_beacon;
 	bool m_initPowerButtons;
 };
 

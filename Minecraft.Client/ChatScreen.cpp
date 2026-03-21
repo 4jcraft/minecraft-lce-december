@@ -4,7 +4,7 @@
 #include "..\Minecraft.World\SharedConstants.h"
 #include "..\Minecraft.World\StringHelpers.h"
 
-const wstring ChatScreen::allowedChars = SharedConstants::acceptableLetters;
+const std::wstring ChatScreen::allowedChars = SharedConstants::acceptableLetters;
 
 ChatScreen::ChatScreen()
 {

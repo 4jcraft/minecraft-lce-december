@@ -26,7 +26,7 @@ void ItemFrameRenderer::registerTerrainTextures(IconRegister *iconRegister)
 	backTexture = iconRegister->registerIcon(L"itemframe_back");
 }
 
-void ItemFrameRenderer::render(shared_ptr<Entity>  _itemframe, double x, double y, double z, float rot, float a) 
+void ItemFrameRenderer::render(std::shared_ptr<Entity>  _itemframe, double x, double y, double z, float rot, float a) 
 {
 	// 4J - original version used generics and thus had an input parameter of type EnderCrystal rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead

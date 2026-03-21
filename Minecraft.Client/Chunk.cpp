@@ -934,7 +934,7 @@ void Chunk::rebuild_SPU()
 #endif // _PS3_
 
 
-float Chunk::distanceToSqr(shared_ptr<Entity> player) const
+float Chunk::distanceToSqr(std::shared_ptr<Entity> player) const
 {
 	float xd = (float) (player->x - xm);
 	float yd = (float) (player->y - ym);
@@ -942,7 +942,7 @@ float Chunk::distanceToSqr(shared_ptr<Entity> player) const
 	return xd * xd + yd * yd + zd * zd;
 }
 
-float Chunk::squishedDistanceToSqr(shared_ptr<Entity> player)
+float Chunk::squishedDistanceToSqr(std::shared_ptr<Entity> player)
 {
 	float xd = (float) (player->x - xm);
 	float yd = (float) (player->y - ym) * 2;

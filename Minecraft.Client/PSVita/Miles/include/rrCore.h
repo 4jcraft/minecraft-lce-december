@@ -1388,7 +1388,7 @@
 
 //--------------------------------------------------
 
-// RR_LINESTRING is the current line number as a string
+// RR_LINESTRING is the current line number as a std::string
 #define RR_STRINGIZE( L )         #L
 #define RR_DO_MACRO( M, X )       M(X)
 #define RR_STRINGIZE_DELAY( X )   RR_DO_MACRO( RR_STRINGIZE, X )
@@ -1464,7 +1464,7 @@
   #elif defined(__RADLINUX__)
     #define RR_MEMBER_OFFSET(type,member) (offsetof(type, member))
   #else
-    #define RR_MEMBER_OFFSET(type,member)  ( (size_t) (UINTa) &(((type *)0)->member) )
+    #define RR_MEMBER_OFFSET(type,member)  ( (std::size_t) (UINTa) &(((type *)0)->member) )
   #endif
 
   // MEMBER_SIZE tells you the size of a member in a type

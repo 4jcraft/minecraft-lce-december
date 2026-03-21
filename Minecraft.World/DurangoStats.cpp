@@ -29,13 +29,13 @@
   // Ds Item Event //
  ///////////////////
 
-string DsItemEvent::nameMethods[] = {
+std::string DsItemEvent::nameMethods[] = {
 	"NONE", "itemPickedUp", "itemCrafted",
 	"itemTakenFromChest", "itemTakenFromEnderchest",
 	"itemBought", "itemSmithed", "blockMined", "blockPlaced", "MAX"
 };
 
-DsItemEvent::DsItemEvent(int id, const wstring &name) : Stat(id,name) {}
+DsItemEvent::DsItemEvent(int id, const std::wstring &name) : Stat(id,name) {}
 
 bool DsItemEvent::onLeaderboard(ELeaderboardId leaderboard, eAcquisitionMethod methodId, Param *param)
 {
@@ -203,7 +203,7 @@ byteArray DsItemEvent::createParamBlob(eAcquisitionMethod eMethod, int itemId, i
   // Ds Mob Killed //
  ///////////////////
 
-DsMobKilled::DsMobKilled(int id, const wstring &name) : Stat(id,name) {}
+DsMobKilled::DsMobKilled(int id, const std::wstring &name) : Stat(id,name) {}
 
 void DsMobKilled::handleParamBlob(shared_ptr<LocalPlayer> player, byteArray paramBlob)
 {
@@ -262,7 +262,7 @@ void DsMobKilled::handleParamBlob(shared_ptr<LocalPlayer> player, byteArray para
 	}
 }
 
-byteArray DsMobKilled::createParamBlob(shared_ptr<Player> player, shared_ptr<Mob> mob, DamageSource *dmgSrc)
+byteArray DsMobKilled::createParamBlob(std::shared_ptr<Player> player, std::shared_ptr<Mob> mob, DamageSource *dmgSrc)
 {
 	// 4J-JEV: Get the id we use for Durango Server Stats.
 	int mob_networking_id;
@@ -317,11 +317,11 @@ byteArray DsMobKilled::createParamBlob(shared_ptr<Player> player, shared_ptr<Mob
   // Ds Mob Interact //
  /////////////////////
 
-string DsMobInteract::nameInteract[] = {
+std::string DsMobInteract::nameInteract[] = {
 	"unknownMobInteraction", "mobBred", "mobTamed", "mobCured", "mobCrafted", "mobSheared"
 };
 
-DsMobInteract::DsMobInteract(int id, const wstring &name) : Stat(id,name) {}
+DsMobInteract::DsMobInteract(int id, const std::wstring &name) : Stat(id,name) {}
 
 void DsMobInteract::handleParamBlob(shared_ptr<LocalPlayer> player, byteArray paramBlob)
 {
@@ -356,7 +356,7 @@ byteArray DsMobInteract::createParamBlob(eInteract interactionId, int entityId)
   // Ds Travel //
  ///////////////
 
-string DsTravel::nameMethods[eMethod_MAX] =
+std::string DsTravel::nameMethods[eMethod_MAX] =
 	{
 		"Walk", "Swim", "Fall", "Climb", "Cart", "Boat", "Pig", "Time"
 	};
@@ -373,7 +373,7 @@ unsigned int DsTravel::CACHE_SIZES[eMethod_MAX] =
 		20*60*5,	//  TIME - GameTicks (20*60*5 ~ 5 mins)
 	};
 
-DsTravel::DsTravel(int id, const wstring &name) : Stat(id,name)
+DsTravel::DsTravel(int id, const std::wstring &name) : Stat(id,name)
 {
 	ZeroMemory(&param_cache, sizeof(unsigned int)*eMethod_MAX*MAX_LOCAL_PLAYERS);
 }
@@ -475,7 +475,7 @@ void DsTravel::write(shared_ptr<LocalPlayer> player, eMethod method, int distanc
   // Ds Item Used //
  //////////////////
 
-DsItemUsed::DsItemUsed(int id, const wstring &name) : Stat(id,name) {}
+DsItemUsed::DsItemUsed(int id, const std::wstring &name) : Stat(id,name) {}
 
 void DsItemUsed::handleParamBlob(shared_ptr<LocalPlayer> player, byteArray paramBlob)
 {
@@ -518,7 +518,7 @@ byteArray DsItemUsed::createParamBlob(int itemId, int aux, int count, int health
   // Ds Achievement //
  ////////////////////
 
-DsAchievement::DsAchievement(int id, const wstring &name) : Stat(id,name) {}
+DsAchievement::DsAchievement(int id, const std::wstring &name) : Stat(id,name) {}
 
 void DsAchievement::handleParamBlob(shared_ptr<LocalPlayer> player, byteArray paramBlob)
 {
@@ -614,7 +614,7 @@ byteArray DsAchievement::createLargeParamBlob(eAward award, int count)
   // Ds Changed Dimension //
  //////////////////////////
 
-DsChangedDimension::DsChangedDimension(int id, const wstring &name) : Stat(id,name) {}
+DsChangedDimension::DsChangedDimension(int id, const std::wstring &name) : Stat(id,name) {}
 
 void DsChangedDimension::handleParamBlob(shared_ptr<LocalPlayer> player, byteArray paramBlob)
 {
@@ -642,7 +642,7 @@ byteArray DsChangedDimension::createParamBlob(int fromDimId, int toDimId)
   // Ds Entered Biome //
  //////////////////////
 
-DsEnteredBiome::DsEnteredBiome(int id, const wstring &name) : Stat(id,name) {}
+DsEnteredBiome::DsEnteredBiome(int id, const std::wstring &name) : Stat(id,name) {}
 
 void DsEnteredBiome::handleParamBlob(shared_ptr<LocalPlayer> player, byteArray paramBlob)
 {
@@ -953,7 +953,7 @@ byteArray DurangoStats::getParam_itemsCrafted(int id, int aux, int count)
 	return DsItemEvent::createParamBlob(DsItemEvent::eAcquisitionMethod_Crafted, id, aux, count);
 }
 
-byteArray DurangoStats::getParam_itemsUsed(shared_ptr<Player> player, shared_ptr<ItemInstance> itm)
+byteArray DurangoStats::getParam_itemsUsed(std::shared_ptr<Player> player, std::shared_ptr<ItemInstance> itm)
 {
 	return DsItemUsed::createParamBlob(
 		itm->getItem()->id, itm->getAuxValue(), itm->GetCount(), 
@@ -966,7 +966,7 @@ byteArray DurangoStats::getParam_itemsBought(int id, int aux, int count)
 	return DsItemEvent::createParamBlob(DsItemEvent::eAcquisitionMethod_Bought, id, aux, count);
 }
 
-byteArray DurangoStats::getParam_mobKill(shared_ptr<Player> player, shared_ptr<Mob> mob, DamageSource *dmgSrc)
+byteArray DurangoStats::getParam_mobKill(std::shared_ptr<Player> player, std::shared_ptr<Mob> mob, DamageSource *dmgSrc)
 {
 	return DsMobKilled::createParamBlob(player,mob,dmgSrc);
 }
@@ -1128,7 +1128,7 @@ LPCWSTR DurangoStats::getUserId(int iPad)
 	return cache.c_str();
 }
 
-void DurangoStats::playerSessionStart(PlayerUID uid, shared_ptr<Player> plr)
+void DurangoStats::playerSessionStart(PlayerUID uid, std::shared_ptr<Player> plr)
 {
 	if (plr != NULL && plr->level != NULL && plr->level->getLevelData() != NULL)
 	{

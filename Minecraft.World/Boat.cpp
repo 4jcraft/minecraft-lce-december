@@ -56,7 +56,7 @@ void Boat::defineSynchedData()
 }
 
 
-AABB *Boat::getCollideAgainstBox(shared_ptr<Entity> entity)
+AABB *Boat::getCollideAgainstBox(std::shared_ptr<Entity> entity)
 {
 	return entity->bb;
 }
@@ -470,12 +470,12 @@ float Boat::getShadowHeightOffs()
 	return 0;
 }
 
-wstring Boat::getName()
+std::wstring Boat::getName()
 {
 	return L"Boat";
 }
 
-bool Boat::interact(shared_ptr<Player> player)
+bool Boat::interact(std::shared_ptr<Player> player)
 {
 	if ( (rider.lock() != NULL) && rider.lock()->instanceof(eTYPE_PLAYER) && (rider.lock() != player) ) return true;
 	if (!level->isClientSide)

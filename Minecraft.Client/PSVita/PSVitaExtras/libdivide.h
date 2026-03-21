@@ -1120,7 +1120,7 @@ __m128i libdivide_s64_do_vector_alg4(__m128i numers, const struct libdivide_s64_
 
 /* The C++ template design here is a total mess.  This needs to be fixed by someone better at templates than I.  The current design is:
 
-- The base is a template divider_base that takes the integer type, the libdivide struct, a generating function, a get algorithm function, a do function, and either a do vector function or a dummy int.
+- The base is a template divider_base that takes the integer type, the libdivide struct, a generating function, a get algorithm function, a do function, and either a do std::vector function or a dummy int.
 - The base has storage for the libdivide struct.  This is the only storage (so the C++ class should be no larger than the libdivide struct).
 
 - Above that, there's divider_mid.  This is an empty struct by default, but it is specialized against our four int types.  divider_mid contains a template struct algo, that contains a typedef for a specialization of divider_base.  struct algo is specialized to take an "algorithm number," where -1 means to use the general algorithm.
@@ -1261,7 +1261,7 @@ class divider
     T perform_divide(T val) const { return sub.perform_divide(val); }
     
 #if LIBDIVIDE_USE_SSE2
-    /* Treats the vector as either two or four packed values (depending on the size), and divides each of them by the divisor, returning the packed quotients. */
+    /* Treats the std::vector as either two or four packed values (depending on the size), and divides each of them by the divisor, returning the packed quotients. */
     __m128i perform_divide_vector(__m128i val) const { return sub.perform_divide_vector(val); } 
 #endif
 
@@ -1285,7 +1285,7 @@ int_type operator/(int_type numer, const divider<int_type, ALGO> & denom) {
 }
 
 #if  LIBDIVIDE_USE_SSE2
-/* Overload of the / operator for vector division. */
+/* Overload of the / operator for std::vector division. */
 template<typename int_type, int ALGO>
 __m128i operator/(__m128i numer, const divider<int_type, ALGO> & denom) {
     return denom.perform_divide_vector(numer);

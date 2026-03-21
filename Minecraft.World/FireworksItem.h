@@ -5,15 +5,15 @@
 class FireworksItem : public Item
 {
 public:
-	static const wstring TAG_FIREWORKS;
-	static const wstring TAG_EXPLOSION;
-	static const wstring TAG_EXPLOSIONS;
-	static const wstring TAG_FLIGHT;
-	static const wstring TAG_E_TYPE;
-	static const wstring TAG_E_TRAIL;
-	static const wstring TAG_E_FLICKER;
-	static const wstring TAG_E_COLORS;
-	static const wstring TAG_E_FADECOLORS;
+	static const std::wstring TAG_FIREWORKS;
+	static const std::wstring TAG_EXPLOSION;
+	static const std::wstring TAG_EXPLOSIONS;
+	static const std::wstring TAG_FLIGHT;
+	static const std::wstring TAG_E_TYPE;
+	static const std::wstring TAG_E_TRAIL;
+	static const std::wstring TAG_E_FLICKER;
+	static const std::wstring TAG_E_COLORS;
+	static const std::wstring TAG_E_FADECOLORS;
 
 	static const byte TYPE_SMALL = 0;
 	static const byte TYPE_BIG = 1;
@@ -26,6 +26,6 @@ public:
 
 	FireworksItem(int id);
 
-	bool useOn(shared_ptr<ItemInstance> instance, shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly=false);
-	void appendHoverText(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced);
+	bool useOn(std::shared_ptr<ItemInstance> instance, std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly=false);
+	void appendHoverText(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced);
 };

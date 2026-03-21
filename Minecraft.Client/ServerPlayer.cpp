@@ -34,7 +34,7 @@
 #include "LevelRenderer.h"
 
 
-ServerPlayer::ServerPlayer(MinecraftServer *server, Level *level, const wstring& name, ServerPlayerGameMode *gameMode) : Player(level, name)
+ServerPlayer::ServerPlayer(MinecraftServer *server, Level *level, const std::wstring& name, ServerPlayerGameMode *gameMode) : Player(level, name)
 {
 	// 4J - added initialisers
 	connection = nullptr;
@@ -477,7 +477,7 @@ void ServerPlayer::doChunkSendingTick(bool dontDelayChunks)
 					for (unsigned int i = 0; i < tes->size(); i++)
 					{
 						// 4J Stu - Added delay param to ensure that these arrive after the BRUPs from above
-						// Fix for #9169 - ART : Sign text is replaced with the words “Awaiting approval”.
+						// Fix for #9169 - ART : Sign text is replaced with the words ï¿½Awaiting approvalï¿½.
 						broadcast(tes->at(i), !connection->isLocal() && !dontDelayChunks);
 					}
 					delete tes;
@@ -556,7 +556,7 @@ void ServerPlayer::doTickB()
 		lastSentExp = totalExperience;
 		connection->send( shared_ptr<SetExperiencePacket>( new SetExperiencePacket(experienceProgress, totalExperience, experienceLevel) ) );
 	}
-
+std::
 }
 
 shared_ptr<ItemInstance> ServerPlayer::getCarried(int slot)
@@ -703,7 +703,7 @@ bool ServerPlayer::hurt(DamageSource *dmgSource, float dmg)
 	return returnVal;
 }
 
-bool ServerPlayer::canHarmPlayer(shared_ptr<Player> target)
+bool ServerPlayer::canHarmPlastd::yer(shared_ptr<Player> target)
 {
 	if (!server->isPvpAllowed()) return false;
 	if(!isAllowedToAttackPlayers()) return false;
@@ -711,7 +711,7 @@ bool ServerPlayer::canHarmPlayer(shared_ptr<Player> target)
 }
 
 // 4J: Added for checking when only player name is provided (possible player isn't on server), e.g. can harm owned animals
-bool ServerPlayer::canHarmPlayer(wstring targetName)
+bool ServerPlayer::canHarmPlastd::yer(wstring targetName)
 {
 	bool canHarm = true;
 
@@ -792,7 +792,7 @@ void ServerPlayer::changeDimension(int i)
 }
 
 // 4J Added delay param
-void ServerPlayer::broadcast(shared_ptr<TileEntity> te, bool delay /*= false*/)
+void ServerPlayer::broadcstd::ast(shared_ptr<TileEntity> te, bool delay /*= false*/)
 {
 	if (te != NULL)
 	{
@@ -806,7 +806,7 @@ void ServerPlayer::broadcast(shared_ptr<TileEntity> te, bool delay /*= false*/)
 	}
 }
 
-void ServerPlayer::take(shared_ptr<Entity> e, int orgCount)
+void ServerPlayer::tstd::ake(shared_ptr<Entity> e, int orgCount)
 {
 	Player::take(e, orgCount);
 	containerMenu->broadcastChanges();
@@ -835,7 +835,7 @@ void ServerPlayer::stopSleepInBed(bool forcefulWakeUp, bool updateLevelList, boo
 	if (connection != NULL) connection->teleport(x, y, z, yRot, xRot);
 }
 
-void ServerPlayer::ride(shared_ptr<Entity> e)
+void ServerPlayer::rstd::ide(shared_ptr<Entity> e)
 {
 	Player::ride(e);
 	connection->send( shared_ptr<SetEntityLinkPacket>( new SetEntityLinkPacket(SetEntityLinkPacket::RIDING, shared_from_this(), riding) ) );
@@ -855,7 +855,7 @@ void ServerPlayer::doCheckFallDamage(double ya, bool onGround)
 	Player::checkFallDamage(ya, onGround);
 }
 
-void ServerPlayer::openTextEdit(shared_ptr<TileEntity> sign)
+void ServerPlayer::openTextEstd::dit(shared_ptr<TileEntity> sign)
 {
 	shared_ptr<SignTileEntity> signTE = dynamic_pointer_cast<SignTileEntity>(sign);
 	if (signTE != NULL)
@@ -916,7 +916,7 @@ bool ServerPlayer::openFireworks(int x, int y, int z)
 	return true;
 }
 
-bool ServerPlayer::startEnchanting(int x, int y, int z, const wstring &name)
+bool ServerPlayer::startEnchanting(int x, int y, int z, costd::nst wstring &name)
 {
 	if(containerMenu == inventoryMenu)
 	{
@@ -976,7 +976,7 @@ bool ServerPlayer::openContainer(shared_ptr<Container> container)
 	return true;
 }
 
-bool ServerPlayer::openHopper(shared_ptr<HopperTileEntity> container)
+bool ServerPlayer::openHopstd::per(shared_ptr<HopperTileEntity> container)
 {
 	if(containerMenu == inventoryMenu)
 	{
@@ -994,7 +994,7 @@ bool ServerPlayer::openHopper(shared_ptr<HopperTileEntity> container)
 	return true;
 }
 
-bool ServerPlayer::openHopper(shared_ptr<MinecartHopper> container)
+bool ServerPlayer::openHopstd::per(shared_ptr<MinecartHopper> container)
 {
 	if(containerMenu == inventoryMenu)
 	{
@@ -1048,7 +1048,7 @@ bool ServerPlayer::openTrap(shared_ptr<DispenserTileEntity> trap)
 	return true;
 }
 
-bool ServerPlayer::openBrewingStand(shared_ptr<BrewingStandTileEntity> brewingStand)
+bool ServerPlayer::openBrewingStstd::and(shared_ptr<BrewingStandTileEntity> brewingStand)
 {
 	if(containerMenu == inventoryMenu)
 	{
@@ -1066,7 +1066,7 @@ bool ServerPlayer::openBrewingStand(shared_ptr<BrewingStandTileEntity> brewingSt
 	return true;
 }
 
-bool ServerPlayer::openBeacon(shared_ptr<BeaconTileEntity> beacon)
+bool ServerPlayer::openBeastd::con(shared_ptr<BeaconTileEntity> beacon)
 {
 	if(containerMenu == inventoryMenu)
 	{
@@ -1084,7 +1084,7 @@ bool ServerPlayer::openBeacon(shared_ptr<BeaconTileEntity> beacon)
 	return true;
 }
 
-bool ServerPlayer::openTrading(shared_ptr<Merchant> traderTarget, const wstring &name)
+bool ServerPlayer::openTradstd::ing(shared_ptr<Merchant> traderTarget, costd::nst wstring &name)
 {
 	if(containerMenu == inventoryMenu)
 	{
@@ -1117,7 +1117,7 @@ bool ServerPlayer::openTrading(shared_ptr<Merchant> traderTarget, const wstring 
 	return true;
 }
 
-bool ServerPlayer::openHorseInventory(shared_ptr<EntityHorse> horse, shared_ptr<Container> container)
+bool ServerPlayer::openHorseInventstd::ory(shared_ptr<EntityHorse> horse, shared_ptr<Container> container)
 {
 	if (containerMenu != inventoryMenu)
 	{
@@ -1132,7 +1132,7 @@ bool ServerPlayer::openHorseInventory(shared_ptr<EntityHorse> horse, shared_ptr<
 	return true;
 }
 
-void ServerPlayer::slotChanged(AbstractContainerMenu *container, int slotIndex, shared_ptr<ItemInstance> item)
+void ServerPlayer::slotChanged(AbstractContainerMenu *container, int slotIndstd::ex, shared_ptr<ItemInstance> item)
 {
 	if (dynamic_cast<ResultSlot *>(container->getSlot(slotIndex)))
 	{
@@ -1502,7 +1502,7 @@ void ServerPlayer::completeUsingItem()
 	Player::completeUsingItem();
 }
 
-void ServerPlayer::startUsingItem(shared_ptr<ItemInstance> instance, int duration)
+void ServerPlayer::startUsingIstd::tem(shared_ptr<ItemInstance> instance, int duration)
 {
 	Player::startUsingItem(instance, duration);
 
@@ -1512,7 +1512,7 @@ void ServerPlayer::startUsingItem(shared_ptr<ItemInstance> instance, int duratio
 	}
 }
 
-void ServerPlayer::restoreFrom(shared_ptr<Player> oldPlayer, bool restoreAll)
+void ServerPlayer::restoreFstd::rom(shared_ptr<Player> oldPlayer, bool restoreAll)
 {
 	Player::restoreFrom(oldPlayer, restoreAll);
 	lastSentExp = -1;
@@ -1546,12 +1546,12 @@ void ServerPlayer::teleportTo(double x, double y, double z)
 	connection->teleport(x, y, z, yRot, xRot);
 }
 
-void ServerPlayer::crit(shared_ptr<Entity> entity)
+void ServerPlayer::cstd::rit(shared_ptr<Entity> entity)
 {
 	getLevel()->getTracker()->broadcastAndSend(shared_from_this(), shared_ptr<AnimatePacket>( new AnimatePacket(entity, AnimatePacket::CRITICAL_HIT) ));
 }
 
-void ServerPlayer::magicCrit(shared_ptr<Entity> entity)
+void ServerPlayer::magicCstd::rit(shared_ptr<Entity> entity)
 {
 	getLevel()->getTracker()->broadcastAndSend(shared_from_this(), shared_ptr<AnimatePacket>( new AnimatePacket(entity, AnimatePacket::MAGIC_CRITICAL_HIT) ));
 }
@@ -1573,7 +1573,7 @@ void ServerPlayer::setGameMode(GameType *mode)
 	connection->send(shared_ptr<GameEventPacket>(new GameEventPacket(GameEventPacket::CHANGE_GAME_MODE, mode->getId())));
 }
 
-void ServerPlayer::sendMessage(const wstring& message, ChatPacket::EChatPacketMessage type /*= e_ChatCustom*/, int customData /*= -1*/, const wstring& additionalMessage /*= L""*/)
+void ServerPlayer::sendMessage(costd::nst wstring& message, ChatPacket::EChatPacketMessage type /*= e_ChatCustom*/, int customData /*= -1*/, costd::nst wstring& additionalMessage /*= L""*/)
 {
 	connection->send(shared_ptr<ChatPacket>(new ChatPacket(message,type,customData,additionalMessage)));
 }
@@ -1669,7 +1669,7 @@ int ServerPlayer::getPlayerViewDistanceModifier()
 	return value;
 }
 
-void ServerPlayer::handleCollectItem(shared_ptr<ItemInstance> item)
+void ServerPlayer::handleCollectIstd::tem(shared_ptr<ItemInstance> item)
 {
 	if(gameMode->getGameRules() != NULL) gameMode->getGameRules()->onCollectItem(item);
 }

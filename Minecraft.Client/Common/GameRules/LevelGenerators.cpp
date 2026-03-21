@@ -7,7 +7,7 @@ LevelGenerators::LevelGenerators()
 {
 }
 
-void LevelGenerators::addLevelGenerator(const wstring &displayName, LevelGenerationOptions *generator)
+void LevelGenerators::addLevelGenerator(const std::wstring &displayName, LevelGenerationOptions *generator)
 {
 	if(!displayName.empty()) generator->setDisplayName(displayName);
 	m_levelGenerators.push_back(generator);

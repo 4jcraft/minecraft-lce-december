@@ -4,12 +4,12 @@
 #include "net.minecraft.world.h"
 #include "FenceTile.h"
 
-FenceTile::FenceTile(int id, const wstring &texture, Material *material) : Tile( id, material, isSolidRender())
+FenceTile::FenceTile(int id, const std::wstring &texture, Material *material) : Tile( id, material, isSolidRender())
 {
 	this->texture = texture;
 }
 
-void FenceTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, shared_ptr<Entity> source)
+void FenceTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, std::shared_ptr<Entity> source)
 {
 	bool n = connectsTo(level, x, y, z - 1);
 	bool s = connectsTo(level, x, y, z + 1);
@@ -62,7 +62,7 @@ void FenceTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList 
 	setShape(west, 0, north, east, 1.0f, south);
 }
 
-void FenceTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void FenceTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	bool n = connectsTo(level, x, y, z - 1);
 	bool s = connectsTo(level, x, y, z + 1);
@@ -147,7 +147,7 @@ bool FenceTile::shouldRenderFace(LevelSource *level, int x, int y, int z, int fa
 	return true;
 }
 
-bool FenceTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
+bool FenceTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
 {
 	if (level->isClientSide) return true;
 	if (LeashItem::bindPlayerMobs(player, level, x, y, z))

@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 class LivingEntity;
 class Entity;
@@ -29,13 +29,13 @@ public:
 	static DamageSource *anvil;
 	static DamageSource *fallingBlock;
 
-	static DamageSource *mobAttack(shared_ptr<LivingEntity> mob);
-	static DamageSource *playerAttack(shared_ptr<Player> player);
-	static DamageSource *arrow(shared_ptr<Arrow> arrow, shared_ptr<Entity> owner);
-	static DamageSource *fireball(shared_ptr<Fireball> fireball, shared_ptr<Entity> owner);
-	static DamageSource *thrown(shared_ptr<Entity> entity, shared_ptr<Entity> owner);
-	static DamageSource *indirectMagic(shared_ptr<Entity> entity, shared_ptr<Entity> owner);
-	static DamageSource *thorns(shared_ptr<Entity> source);
+	static DamageSource *mobAttack(std::shared_ptr<LivingEntity> mob);
+	static DamageSource *playerAttack(std::shared_ptr<Player> player);
+	static DamageSource *arrow(std::shared_ptr<Arrow> arrow, std::shared_ptr<Entity> owner);
+	static DamageSource *fireball(std::shared_ptr<Fireball> fireball, std::shared_ptr<Entity> owner);
+	static DamageSource *thrown(std::shared_ptr<Entity> entity, std::shared_ptr<Entity> owner);
+	static DamageSource *indirectMagic(std::shared_ptr<Entity> entity, std::shared_ptr<Entity> owner);
+	static DamageSource *thorns(std::shared_ptr<Entity> source);
 	static DamageSource *explosion(Explosion *explosion);
 private:
 	bool _bypassArmor;
@@ -58,19 +58,19 @@ public:
 	float getFoodExhaustion();
 	bool isBypassInvul();
 
-	//wstring msgId;
+	//std::wstring msgId;
 	ChatPacket::EChatPacketMessage m_msgId; // 4J Made int so we can localise
 	ChatPacket::EChatPacketMessage m_msgWithItemId; // 4J: Renamed from m_msgWithSourceId (it was already renamed in places, just made consistent)
 
 protected:
-	//DamageSource(const wstring &msgId);
+	//DamageSource(const std::wstring &msgId);
 	DamageSource(ChatPacket::EChatPacketMessage msgId, ChatPacket::EChatPacketMessage msgWithItemId = ChatPacket::e_ChatCustom);
 
 public:
 	virtual ~DamageSource() {}
 
-	virtual shared_ptr<Entity> getDirectEntity();
-	virtual shared_ptr<Entity> getEntity();
+	virtual std::shared_ptr<Entity> getDirectEntity();
+	virtual std::shared_ptr<Entity> getEntity();
 
 protected:
 	DamageSource *bypassArmor();
@@ -85,8 +85,8 @@ public:
 	DamageSource *setMagic();
 
 	// 4J Stu - Made return a packet
-	//virtual wstring getLocalizedDeathMessage(shared_ptr<Player> player);
-	virtual shared_ptr<ChatPacket> getDeathMessagePacket(shared_ptr<LivingEntity> player);
+	//virtual std::wstring getLocalizedDeathMessage(std::shared_ptr<Player> player);
+	virtual std::shared_ptr<ChatPacket> getDeathMessagePacket(std::shared_ptr<LivingEntity> player);
 
 	bool isFire();
 	ChatPacket::EChatPacketMessage getMsgId(); // 4J Stu - Used to return String

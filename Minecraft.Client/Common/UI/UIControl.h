@@ -48,7 +48,7 @@ public:
 protected:
 	IggyValuePath m_iggyPath;
 	UIScene *m_parentScene;
-	string m_controlName;
+	std::string m_controlName;
 
 	IggyName m_nameXPos, m_nameYPos, m_nameWidth, m_nameHeight;
 	IggyName m_funcSetAlpha, m_nameVisible;
@@ -60,7 +60,7 @@ protected:
 public:
 	UIControl();
 
-	virtual bool setupControl(UIScene *scene, IggyValuePath *parent, const string &controlName);
+	virtual bool setupControl(UIScene *scene, IggyValuePath *parent, const std::string &controlName);
 #ifdef __PSVITA__
 	void UpdateControl();
 	void setHidden(bool bHidden) {m_bHidden=bHidden;}
@@ -69,7 +69,7 @@ public:
 
 	IggyValuePath *getIggyValuePath();
 
-	string getControlName() { return m_controlName; }
+	std::string getControlName() { return m_controlName; }
 
 	virtual void tick() {}
 	virtual void ReInit();
@@ -89,5 +89,5 @@ public:
 	virtual bool hasFocus() { return false; }
 
 protected:
-	IggyName registerFastName(const wstring &name);
+	IggyName registerFastName(const std::wstring &name);
 };

@@ -34,7 +34,7 @@ UIScene_FireworksMenu::UIScene_FireworksMenu(int iPad, void *_initData, UILayer 
 	delete initData;
 }
 
-wstring UIScene_FireworksMenu::getMoviePath()
+std::wstring UIScene_FireworksMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

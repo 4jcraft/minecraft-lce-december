@@ -9,7 +9,7 @@ public:
 	static TileEntity *create() { return new ComparatorTileEntity(); }
 
 	// 4J Added
-	virtual shared_ptr<TileEntity> clone();
+	virtual std::shared_ptr<TileEntity> clone();
 
 private:
 	int output;

@@ -15,6 +15,6 @@ protected:
 	void registerAttributes();
 
 public:
-	virtual bool doHurtTarget(shared_ptr<Entity> target);
+	virtual bool doHurtTarget(std::shared_ptr<Entity> target);
 	MobGroupData *finalizeMobSpawn(MobGroupData *groupData, int extraData = 0); // 4J Added extraData param
 };

@@ -211,7 +211,7 @@ void Zombie::tick()
 	Monster::tick();
 }
 
-bool Zombie::doHurtTarget(shared_ptr<Entity> target)
+bool Zombie::doHurtTarget(std::shared_ptr<Entity> target)
 {
 	bool result = Monster::doHurtTarget(target);
 
@@ -308,7 +308,7 @@ void Zombie::readAdditionalSaveData(CompoundTag *tag)
 	if (tag->contains(L"ConversionTime") && tag->getInt(L"ConversionTime") > -1) startConverting(tag->getInt(L"ConversionTime"));
 }
 
-void Zombie::killed(shared_ptr<LivingEntity> mob)
+void Zombie::killed(std::shared_ptr<LivingEntity> mob)
 {
 	Monster::killed(mob);
 
@@ -385,7 +385,7 @@ MobGroupData *Zombie::finalizeMobSpawn(MobGroupData *groupData, int extraData /*
 	return groupData;
 }
 
-bool Zombie::mobInteract(shared_ptr<Player> player)
+bool Zombie::mobInteract(std::shared_ptr<Player> player)
 {
 	shared_ptr<ItemInstance> item = player->getSelectedItem();
 

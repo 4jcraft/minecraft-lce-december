@@ -13,7 +13,7 @@ public:
 
 	LargeFireball(Level *level);
 	LargeFireball(Level *level, double x, double y, double z, double xa, double ya, double za);
-	LargeFireball(Level *level, shared_ptr<LivingEntity> mob, double xa, double ya, double za);
+	LargeFireball(Level *level, std::shared_ptr<LivingEntity> mob, double xa, double ya, double za);
 
 protected:
 	void onHit(HitResult *res);

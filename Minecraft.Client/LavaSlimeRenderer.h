@@ -9,8 +9,8 @@ private:
 
 public:
 	LavaSlimeRenderer();
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);	
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);	
 
 protected:
-	virtual void scale(shared_ptr<LivingEntity> _slime, float a);
+	virtual void scale(std::shared_ptr<LivingEntity> _slime, float a);
 };

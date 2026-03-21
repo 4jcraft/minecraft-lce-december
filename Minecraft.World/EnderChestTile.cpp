@@ -48,7 +48,7 @@ bool EnderChestTile::isSilkTouchable()
 	return true;
 }
 
-void EnderChestTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void EnderChestTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	int facing = 0;
 	int dir = (Mth::floor(by->yRot * 4 / (360) + 0.5f)) & 3;
@@ -61,7 +61,7 @@ void EnderChestTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<L
 	level->setData(x, y, z, facing, Tile::UPDATE_CLIENTS);
 }
 
-bool EnderChestTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
+bool EnderChestTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
 {
 	shared_ptr<PlayerEnderChestContainer> container = player->getEnderChestInventory();
 	shared_ptr<EnderChestTileEntity> enderChest = dynamic_pointer_cast<EnderChestTileEntity>(level->getTileEntity(x, y, z));
@@ -80,7 +80,7 @@ bool EnderChestTile::use(Level *level, int x, int y, int z, shared_ptr<Player> p
 	return true;
 }
 
-shared_ptr<TileEntity> EnderChestTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> EnderChestTile::newTileEntity(Level *level)
 {
 	return shared_ptr<EnderChestTileEntity>(new EnderChestTileEntity());
 }

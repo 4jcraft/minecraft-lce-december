@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 #include "Tag.h"
 
 template <class T> class ListTag : public Tag
@@ -10,7 +9,7 @@ private:
 
 public:
 	ListTag() : Tag(L"") {}
-	ListTag(const wstring &name) : Tag(name) {}
+	ListTag(const std::wstring &name) : Tag(name) {}
 
 	void write(DataOutput *dos)
 	{
@@ -49,14 +48,14 @@ public:
 
 	byte getId() { return TAG_List; }
 
-	wstring toString()
+	std::wstring toString()
 	{
 		static wchar_t buf[64];
 		swprintf(buf,64,L"%d entries of type %ls",list.size(),Tag::getTagName(type));
 		return wstring( buf );
 	}
 
-	void print(char *prefix, ostream out)
+	void print(char *prefix, std::ostream out)
 	{
 		Tag::print(prefix, out);
 

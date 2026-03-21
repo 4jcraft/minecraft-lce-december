@@ -25,7 +25,7 @@ void CaveSpider::registerAttributes()
 	getAttribute(SharedMonsterAttributes::MAX_HEALTH)->setBaseValue(12);
 }
 
-bool CaveSpider::doHurtTarget(shared_ptr<Entity> target)
+bool CaveSpider::doHurtTarget(std::shared_ptr<Entity> target)
 {
 	if (Spider::doHurtTarget(target))
 	{

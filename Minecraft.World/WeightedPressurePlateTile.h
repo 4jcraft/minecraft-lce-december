@@ -8,7 +8,7 @@ private:
 	int maxWeight;
 
 public:
-	WeightedPressurePlateTile(int id, const wstring &tex, Material *material, int maxWeight);
+	WeightedPressurePlateTile(int id, const std::wstring &tex, Material *material, int maxWeight);
 
 protected:
 	virtual int getSignalStrength(Level *level, int x, int y, int z);

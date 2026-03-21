@@ -3,10 +3,10 @@
 #include "InputOutputStream.h"
 #include "SharedConstants.h"
 
-const wstring SharedConstants::VERSION_STRING = L"1.6.4";
+const std::wstring SharedConstants::VERSION_STRING = L"1.6.4";
 const bool SharedConstants::TEXTURE_LIGHTING = true;
 
-wstring SharedConstants::readAcceptableChars()
+std::wstring SharedConstants::readAcceptableChars()
 {
 	// 4J-PB - I've added ã in (for Portuguese in bed string) and added the character at the same place in the default.png font
 	wstring result = L" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~ ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»ã";
@@ -37,7 +37,7 @@ bool SharedConstants::isAllowedChatCharacter(char ch)
 	return true;
 }
 
-wstring SharedConstants::acceptableLetters;
+std::wstring SharedConstants::acceptableLetters;
 
 void SharedConstants::staticCtor()
 {

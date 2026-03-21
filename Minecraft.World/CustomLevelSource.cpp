@@ -613,7 +613,7 @@ bool CustomLevelSource::shouldSave()
 	return true;
 }
 
-wstring CustomLevelSource::gatherStats()
+std::wstring CustomLevelSource::gatherStats()
 {
 	return L"CustomLevelSource";
 }
@@ -636,7 +636,7 @@ vector<Biome::MobSpawnerData *> *CustomLevelSource::getMobsAt(MobCategory *mobCa
 #endif
 }
 
-TilePos *CustomLevelSource::findNearestMapFeature(Level *level, const wstring& featureName, int x, int y, int z)
+TilePos *CustomLevelSource::findNearestMapFeature(Level *level, const std::wstring& featureName, int x, int y, int z)
 {
 #ifdef _OVERRIDE_HEIGHTMAP
 	if (LargeFeature::STRONGHOLD == featureName && strongholdFeature != NULL)

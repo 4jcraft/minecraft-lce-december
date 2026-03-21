@@ -8,7 +8,7 @@
 #include "FurnaceMenu.h"
 #include "FurnaceRecipes.h"
 
-FurnaceMenu::FurnaceMenu(shared_ptr<Inventory> inventory, shared_ptr<FurnaceTileEntity> furnace) : AbstractContainerMenu()
+FurnaceMenu::FurnaceMenu(std::shared_ptr<Inventory> inventory, std::shared_ptr<FurnaceTileEntity> furnace) : AbstractContainerMenu()
 {
 	tc = 0;
 	lt = 0;
@@ -75,12 +75,12 @@ void FurnaceMenu::setData(int id, int value)
 	if (id == 2) furnace->litDuration = value;
 }
 
-bool FurnaceMenu::stillValid(shared_ptr<Player> player)
+bool FurnaceMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return furnace->stillValid(player);
 }
 
-shared_ptr<ItemInstance> FurnaceMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> FurnaceMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);
@@ -160,7 +160,7 @@ shared_ptr<ItemInstance> FurnaceMenu::quickMoveStack(shared_ptr<Player> player, 
 	return clicked;
 }
 
-shared_ptr<ItemInstance> FurnaceMenu::clicked(int slotIndex, int buttonNum, int clickType, shared_ptr<Player> player, bool looped) // 4J Added looped param
+std::shared_ptr<ItemInstance> FurnaceMenu::clicked(int slotIndex, int buttonNum, int clickType, std::shared_ptr<Player> player, bool looped) // 4J Added looped param
 {
 	bool charcoalUsed = furnace->wasCharcoalUsed();
 

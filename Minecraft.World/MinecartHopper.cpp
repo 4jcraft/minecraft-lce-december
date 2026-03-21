@@ -50,7 +50,7 @@ unsigned int MinecartHopper::getContainerSize()
 	return 5;
 }
 
-bool MinecartHopper::interact(shared_ptr<Player> player)
+bool MinecartHopper::interact(std::shared_ptr<Player> player)
 {
 	if (!level->isClientSide)
 	{

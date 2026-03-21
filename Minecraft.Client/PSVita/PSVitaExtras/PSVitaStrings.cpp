@@ -5,7 +5,7 @@
 uint8_t *mallocAndCreateUTF8ArrayFromString(int iID)
 {
 	LPCWSTR wchString=app.GetString(iID);
-	size_t src_len,dst_len;
+	std::size_t src_len,dst_len;
 	int iLen=wcslen(wchString);
 	src_len=sizeof(WCHAR)*(iLen);
 

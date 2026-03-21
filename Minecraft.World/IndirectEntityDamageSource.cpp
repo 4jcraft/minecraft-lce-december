@@ -5,18 +5,18 @@
 #include "net.minecraft.network.packet.h"
 
 //IndirectEntityDamageSource::IndirectEntityDamageSource(const wstring &msgId, shared_ptr<Entity> entity, shared_ptr<Entity> owner) : EntityDamageSource(msgId, entity)
-IndirectEntityDamageSource::IndirectEntityDamageSource(ChatPacket::EChatPacketMessage msgId, ChatPacket::EChatPacketMessage msgWithItemId, shared_ptr<Entity> entity, shared_ptr<Entity> owner) : EntityDamageSource(msgId, msgWithItemId, entity)
+IndirectEntityDamageSource::IndirectEntityDamageSource(ChatPacket::EChatPacketMessage msgId, ChatPacket::EChatPacketMessage msgWithItemId, std::shared_ptr<Entity> entity, std::shared_ptr<Entity> owner) : EntityDamageSource(msgId, msgWithItemId, entity)
 {
 	this->owner = owner;
 }
 
 // 4J Stu - Brought forward from 1.2.3 to fix #46422
-shared_ptr<Entity> IndirectEntityDamageSource::getDirectEntity()
+std::shared_ptr<Entity> IndirectEntityDamageSource::getDirectEntity()
 {
 	return entity;
 }
 
-shared_ptr<Entity> IndirectEntityDamageSource::getEntity()
+std::shared_ptr<Entity> IndirectEntityDamageSource::getEntity()
 {
 	return owner;
 }
@@ -27,7 +27,7 @@ shared_ptr<Entity> IndirectEntityDamageSource::getEntity()
 //	//return I18n.get("death." + msgId, player.name, owner.getAName());
 //}
 
-shared_ptr<ChatPacket> IndirectEntityDamageSource::getDeathMessagePacket(shared_ptr<LivingEntity> player)
+std::shared_ptr<ChatPacket> IndirectEntityDamageSource::getDeathMessagePacket(std::shared_ptr<LivingEntity> player)
 {
 	shared_ptr<ItemInstance> held = entity->instanceof(eTYPE_LIVINGENTITY) ? dynamic_pointer_cast<LivingEntity>(entity)->getCarriedItem() : nullptr;
 	wstring additional = L"";

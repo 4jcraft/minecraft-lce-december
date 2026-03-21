@@ -9,12 +9,12 @@ CaveSpiderRenderer::CaveSpiderRenderer() : SpiderRenderer()
     shadowRadius *= s_scale;
 }
 
-void CaveSpiderRenderer::scale(shared_ptr<LivingEntity> mob, float a)
+void CaveSpiderRenderer::scale(std::shared_ptr<LivingEntity> mob, float a)
 {
     glScalef(s_scale, s_scale, s_scale);
 }
 
-ResourceLocation *CaveSpiderRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *CaveSpiderRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &CAVE_SPIDER_LOCATION;
 }

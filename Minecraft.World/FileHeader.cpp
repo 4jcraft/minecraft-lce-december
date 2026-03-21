@@ -22,7 +22,7 @@ FileHeader::~FileHeader()
 	}
 }
 
-FileEntry *FileHeader::AddFile( const wstring &name, unsigned int length /* = 0 */ )
+FileEntry *FileHeader::AddFile( const std::wstring &name, unsigned int length /* = 0 */ )
 {
 	assert( name.length() < 64 );
 	
@@ -349,7 +349,7 @@ void FileHeader::AdjustStartOffsets(FileEntry *file, DWORD nNumberOfBytesToWrite
 	}
 }
 
-bool FileHeader::fileExists( const wstring &name )
+bool FileHeader::fileExists( const std::wstring &name )
 {
 	for( unsigned int i = 0; i < fileTable.size(); ++i )
 	{
@@ -362,7 +362,7 @@ bool FileHeader::fileExists( const wstring &name )
 	return false;
 }
 
-vector<FileEntry *> *FileHeader::getFilesWithPrefix(const wstring &prefix)
+vector<FileEntry *> *FileHeader::getFilesWithPrefix(const std::wstring &prefix)
 {
 	vector<FileEntry *> *files = NULL;
 

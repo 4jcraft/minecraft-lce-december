@@ -28,18 +28,18 @@ public:
 
 protected:
 	virtual void createArmorParts();
-	virtual int prepareArmor(shared_ptr<LivingEntity> _mob, int layer, float a);
+	virtual int prepareArmor(std::shared_ptr<LivingEntity> _mob, int layer, float a);
 
 public:
-	virtual void render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> entity);
+	virtual void render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> entity);
 
 protected:
-	virtual void additionalRendering(shared_ptr<LivingEntity> _mob, float a);
+	virtual void additionalRendering(std::shared_ptr<LivingEntity> _mob, float a);
 
 private:
-	virtual void swapArmor(shared_ptr<Zombie> mob);
+	virtual void swapArmor(std::shared_ptr<Zombie> mob);
 
 protected:
-	virtual void setupRotations(shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a);
+	virtual void setupRotations(std::shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a);
 };

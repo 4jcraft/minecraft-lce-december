@@ -2,7 +2,6 @@
 
 // 4J ADDED PACKET
 
-using namespace std;
 
 #include "Packet.h"
 
@@ -25,7 +24,7 @@ public:
 	virtual int getEstimatedSize();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new TradeItemPacket()); }
+	static std::shared_ptr<Packet> create() { return shared_ptr<Packet>(new TradeItemPacket()); }
 	virtual int getId() { return 151; }
 };
 

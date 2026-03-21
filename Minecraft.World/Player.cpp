@@ -110,7 +110,7 @@ void Player::_init()
 	m_bAwardedOnARail=false;
 }
 
-Player::Player(Level *level, const wstring &name) : LivingEntity( level )
+Player::Player(Level *level, const std::wstring &name) : LivingEntity( level )
 {
 	// 4J Stu - This function call had to be moved here from the Entity ctor to ensure that
 	// the derived version of the function is called
@@ -180,7 +180,7 @@ void Player::defineSynchedData()
 	entityData->define(DATA_SCORE_ID, (int) 0);
 }
 
-shared_ptr<ItemInstance> Player::getUseItem()
+std::shared_ptr<ItemInstance> Player::getUseItem()
 {
 	return useItem;
 }
@@ -543,7 +543,7 @@ void Player::playSound(int iSound, float volume, float pitch)
 	level->playPlayerSound(dynamic_pointer_cast<Player>(shared_from_this()), iSound, volume, pitch);
 }
 
-void Player::spawnEatParticles(shared_ptr<ItemInstance> useItem, int count)
+void Player::spawnEatParticles(std::shared_ptr<ItemInstance> useItem, int count)
 {
 	if (useItem->getUseAnimation() == UseAnim_drink)
 	{
@@ -613,7 +613,7 @@ void Player::closeContainer()
 	containerMenu = inventoryMenu;
 }
 
-void Player::ride(shared_ptr<Entity> e)
+void Player::ride(std::shared_ptr<Entity> e)
 {
 	if (riding != NULL && e == NULL)
 	{
@@ -819,7 +819,7 @@ void Player::setCustomCape(DWORD capeId)
 	}
 }
 
-DWORD Player::getCapeIdFromPath(const wstring &cape)
+DWORD Player::getCapeIdFromPath(const std::wstring &cape)
 {
 	bool dlcCape = false; 
 	unsigned int capeId = 0;
@@ -845,7 +845,7 @@ DWORD Player::getCapeIdFromPath(const wstring &cape)
 	return capeId;
 }
 
-wstring Player::getCapePathFromId(DWORD capeId)
+std::wstring Player::getCapePathFromId(DWORD capeId)
 {
 	// 4J Stu - This function maps the encoded DWORD we store in the player profile
 	// to a filename that is stored as a memory texture and shared between systems in game
@@ -1067,7 +1067,7 @@ void Player::aiStep()
 }
 
 
-void Player::touch(shared_ptr<Entity> entity)
+void Player::touch(std::shared_ptr<Entity> entity)
 {
 	entity->playerTouch( dynamic_pointer_cast<Player>( shared_from_this() ) );
 }
@@ -1117,7 +1117,7 @@ void Player::die(DamageSource *source)
 	heightOffset = 0.1f;
 }
 
-void Player::awardKillScore(shared_ptr<Entity> victim, int awardPoints)
+void Player::awardKillScore(std::shared_ptr<Entity> victim, int awardPoints)
 {
 	increaseScore(awardPoints);
 	vector<Objective *> *objectives = getScoreboard()->findObjectiveFor(ObjectiveCriteria::KILL_COUNT_ALL);
@@ -1153,17 +1153,17 @@ bool Player::isCreativeModeAllowed()
 	return true;
 }
 
-shared_ptr<ItemEntity> Player::drop(bool all)
+std::shared_ptr<ItemEntity> Player::drop(bool all)
 {
 	return drop(inventory->removeItem(inventory->selected, all && inventory->getSelected() != NULL ? inventory->getSelected()->count : 1), false);
 }
 
-shared_ptr<ItemEntity> Player::drop(shared_ptr<ItemInstance> item)
+std::shared_ptr<ItemEntity> Player::drop(std::shared_ptr<ItemInstance> item)
 {
 	return drop(item, false);
 }
 
-shared_ptr<ItemEntity> Player::drop(shared_ptr<ItemInstance> item, bool randomly)
+std::shared_ptr<ItemEntity> Player::drop(std::shared_ptr<ItemInstance> item, bool randomly)
 {
 	if (item == NULL) return nullptr;
 	if (item->count == 0) return nullptr;
@@ -1204,7 +1204,7 @@ shared_ptr<ItemEntity> Player::drop(shared_ptr<ItemInstance> item, bool randomly
 }
 
 
-void Player::reallyDrop(shared_ptr<ItemEntity> thrownItem)
+void Player::reallyDrop(std::shared_ptr<ItemEntity> thrownItem)
 {
 	level->addEntity(thrownItem);
 }
@@ -1328,27 +1328,27 @@ void Player::addAdditonalSaveData(CompoundTag *entityTag)
 
 }
 
-bool Player::openContainer(shared_ptr<Container> container)
+bool Player::openContainer(std::shared_ptr<Container> container)
 {
 	return true;
 }
 
-bool Player::openHopper(shared_ptr<HopperTileEntity> container)
+bool Player::openHopper(std::shared_ptr<HopperTileEntity> container)
 {
 	return true;
 }
 
-bool Player::openHopper(shared_ptr<MinecartHopper> container)
+bool Player::openHopper(std::shared_ptr<MinecartHopper> container)
 {
 	return true;
 }
 
-bool Player::openHorseInventory(shared_ptr<EntityHorse> horse, shared_ptr<Container> container)
+bool Player::openHorseInventory(std::shared_ptr<EntityHorse> horse, std::shared_ptr<Container> container)
 {
 	return true;
 }
 
-bool Player::startEnchanting(int x, int y, int z, const wstring &name)
+bool Player::startEnchanting(int x, int y, int z, const std::wstring &name)
 {
 	return true;
 }
@@ -1417,7 +1417,7 @@ bool Player::hurt(DamageSource *source, float dmg)
 	return LivingEntity::hurt(source, dmg);
 }
 
-bool Player::canHarmPlayer(shared_ptr<Player> target)
+bool Player::canHarmPlayer(std::shared_ptr<Player> target)
 {
 	Team *team = getTeam();
 	Team *otherTeam = target->getTeam();
@@ -1433,7 +1433,7 @@ bool Player::canHarmPlayer(shared_ptr<Player> target)
 	return team->isAllowFriendlyFire();
 }
 
-bool Player::canHarmPlayer(wstring targetName)
+bool Player::canHarmPlayer(std::wstring targetName)
 {
 	return true;
 }
@@ -1481,31 +1481,31 @@ void Player::actuallyHurt(DamageSource *source, float dmg)
 	getCombatTracker()->recordDamage(source, oldHealth, dmg);
 }
 
-bool Player::openFurnace(shared_ptr<FurnaceTileEntity> container)
+bool Player::openFurnace(std::shared_ptr<FurnaceTileEntity> container)
 {
 	return true;
 }
 
-bool Player::openTrap(shared_ptr<DispenserTileEntity> container)
+bool Player::openTrap(std::shared_ptr<DispenserTileEntity> container)
 {
 	return true;
 }
 
-void Player::openTextEdit(shared_ptr<TileEntity> sign)
+void Player::openTextEdit(std::shared_ptr<TileEntity> sign)
 {
 }
 
-bool Player::openBrewingStand(shared_ptr<BrewingStandTileEntity> brewingStand)
-{
-	return true;
-}
-
-bool Player::openBeacon(shared_ptr<BeaconTileEntity> beacon)
+bool Player::openBrewingStand(std::shared_ptr<BrewingStandTileEntity> brewingStand)
 {
 	return true;
 }
 
-bool Player::openTrading(shared_ptr<Merchant> traderTarget, const wstring &name)
+bool Player::openBeacon(std::shared_ptr<BeaconTileEntity> beacon)
+{
+	return true;
+}
+
+bool Player::openTrading(std::shared_ptr<Merchant> traderTarget, const std::wstring &name)
 {
 	return true;
 }
@@ -1515,11 +1515,11 @@ bool Player::openTrading(shared_ptr<Merchant> traderTarget, const wstring &name)
 *
 * @param itemInstance
 */
-void Player::openItemInstanceGui(shared_ptr<ItemInstance> itemInstance)
+void Player::openItemInstanceGui(std::shared_ptr<ItemInstance> itemInstance)
 {
 }
 
-bool Player::interact(shared_ptr<Entity> entity)
+bool Player::interact(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<Player> thisPlayer = dynamic_pointer_cast<Player>(shared_from_this());
 
@@ -1565,7 +1565,7 @@ bool Player::interact(shared_ptr<Entity> entity)
 	return false;
 }
 
-shared_ptr<ItemInstance> Player::getSelectedItem()
+std::shared_ptr<ItemInstance> Player::getSelectedItem()
 {
 	return inventory->getSelected();
 }
@@ -1580,7 +1580,7 @@ double Player::getRidingHeight()
 	return heightOffset - 0.5f;
 }
 
-void Player::attack(shared_ptr<Entity> entity)
+void Player::attack(std::shared_ptr<Entity> entity)
 {
 	if (!entity->isAttackable())
 	{
@@ -1705,11 +1705,11 @@ void Player::attack(shared_ptr<Entity> entity)
 	// }
 }
 
-void Player::crit(shared_ptr<Entity> entity)
+void Player::crit(std::shared_ptr<Entity> entity)
 {
 }
 
-void Player::magicCrit(shared_ptr<Entity> entity)
+void Player::magicCrit(std::shared_ptr<Entity> entity)
 {
 }
 
@@ -1719,7 +1719,7 @@ void Player::respawn()
 }
 
 
-void Player::animateRespawn(shared_ptr<Player> player, Level *level)
+void Player::animateRespawn(std::shared_ptr<Player> player, Level *level)
 {
 
 	for (int i = 0; i < 45; i++)
@@ -2288,7 +2288,7 @@ void Player::causeFallDamage(float distance)
 }
 
 
-void Player::killed(shared_ptr<LivingEntity> mob)
+void Player::killed(std::shared_ptr<LivingEntity> mob)
 {
 	// 4J-PB - added the lavaslime enemy - fix for #64007 - TU7: Code: Achievements: TCR#073: Killing Magma Cubes doesn't unlock "Monster Hunter" Achievement.
 	if( mob->instanceof(eTYPE_ENEMY) || mob->GetType() == eTYPE_GHAST || mob->GetType() == eTYPE_SLIME || mob->GetType() == eTYPE_LAVASLIME || mob->GetType() == eTYPE_ENDERDRAGON)
@@ -2343,7 +2343,7 @@ void Player::makeStuckInWeb()
 	if (!abilities.flying) LivingEntity::makeStuckInWeb();
 }
 
-Icon *Player::getItemInHandIcon(shared_ptr<ItemInstance> item, int layer)
+Icon *Player::getItemInHandIcon(std::shared_ptr<ItemInstance> item, int layer)
 {
 	Icon *icon = LivingEntity::getItemInHandIcon(item, layer);
 	if (item->id == Item::fishingRod->id && fishing != NULL)
@@ -2373,7 +2373,7 @@ Icon *Player::getItemInHandIcon(shared_ptr<ItemInstance> item, int layer)
 	return icon;
 }
 
-shared_ptr<ItemInstance> Player::getArmor(int pos)
+std::shared_ptr<ItemInstance> Player::getArmor(int pos)
 {
 	return inventory->getArmor(pos);
 }
@@ -2466,7 +2466,7 @@ bool Player::isHurt()
 	return getHealth() > 0 && getHealth() < getMaxHealth();
 }
 
-void Player::startUsingItem(shared_ptr<ItemInstance> instance, int duration)
+void Player::startUsingItem(std::shared_ptr<ItemInstance> instance, int duration)
 {
 	if (instance == useItem) return;
 	useItem = instance;
@@ -2513,7 +2513,7 @@ bool Player::mayDestroyBlockAt(int x, int y, int z)
 	return false;
 }
 
-bool Player::mayUseItemAt(int x, int y, int z, int face, shared_ptr<ItemInstance> item)
+bool Player::mayUseItemAt(int x, int y, int z, int face, std::shared_ptr<ItemInstance> item)
 {
 	if (abilities.mayBuild)
 	{
@@ -2526,7 +2526,7 @@ bool Player::mayUseItemAt(int x, int y, int z, int face, shared_ptr<ItemInstance
 	return false;
 }
 
-int Player::getExperienceReward(shared_ptr<Player> killedBy)
+int Player::getExperienceReward(std::shared_ptr<Player> killedBy)
 {
 	if (level->getGameRules()->getBoolean(GameRules::RULE_KEEPINVENTORY)) return 0;
 	int reward = experienceLevel * 7;
@@ -2543,7 +2543,7 @@ bool Player::isAlwaysExperienceDropper()
 	return true;
 }
 
-wstring Player::getAName()
+std::wstring Player::getAName()
 {
 	return name;
 }
@@ -2553,7 +2553,7 @@ bool Player::shouldShowName()
 	return true;
 }
 
-void Player::restoreFrom(shared_ptr<Player> oldPlayer, bool restoreAll)
+void Player::restoreFrom(std::shared_ptr<Player> oldPlayer, bool restoreAll)
 {
 	if(restoreAll)
 	{
@@ -2594,12 +2594,12 @@ void Player::setGameMode(GameType *mode)
 {
 }
 
-wstring Player::getName()
+std::wstring Player::getName()
 {
 	return name;
 }
 
-wstring Player::getDisplayName()
+std::wstring Player::getDisplayName()
 {
 	//PlayerTeam.formatNameForTeam(getTeam(), name);
 
@@ -2607,7 +2607,7 @@ wstring Player::getDisplayName()
 	return m_displayName.size() > 0 ? m_displayName : name;
 }
 
-wstring Player::getNetworkName()
+std::wstring Player::getNetworkName()
 {
 	// 4J: We can only transmit gamertag in network packets
 	return name;
@@ -2618,28 +2618,28 @@ Level *Player::getCommandSenderWorld()
 	return level;
 }
 
-shared_ptr<PlayerEnderChestContainer> Player::getEnderChestInventory()
+std::shared_ptr<PlayerEnderChestContainer> Player::getEnderChestInventory()
 {
 	return enderChestInventory;
 }
 
-shared_ptr<ItemInstance> Player::getCarried(int slot)
+std::shared_ptr<ItemInstance> Player::getCarried(int slot)
 {
 	if (slot == 0) return inventory->getSelected();
 	return inventory->armor[slot - 1];
 }
 
-shared_ptr<ItemInstance> Player::getCarriedItem()
+std::shared_ptr<ItemInstance> Player::getCarriedItem()
 {
 	return inventory->getSelected();
 }
 
-void Player::setEquippedSlot(int slot, shared_ptr<ItemInstance> item)
+void Player::setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item)
 {
 	inventory->armor[slot] = item;
 }
 
-bool Player::isInvisibleTo(shared_ptr<Player> player)
+bool Player::isInvisibleTo(std::shared_ptr<Player> player)
 {
 	return isInvisible();
 }
@@ -2706,7 +2706,7 @@ int Player::getTexture()
 	}
 }
 
-int Player::hash_fnct(const shared_ptr<Player> k)
+int Player::hash_fnct(const std::shared_ptr<Player> k)
 {
 	// TODO 4J Stu - Should we just be using the pointers and hashing them?
 #ifdef __PS3__
@@ -2716,7 +2716,7 @@ int Player::hash_fnct(const shared_ptr<Player> k)
 #endif //__PS3__
 }
 
-bool Player::eq_test(const shared_ptr<Player> x, const shared_ptr<Player> y)
+bool Player::eq_test(const std::shared_ptr<Player> x, const std::shared_ptr<Player> y)
 {
 	// TODO 4J Stu - Should we just be using the pointers and comparing them for equality?
 	return x->name.compare( y->name ) == 0; // 4J Stu - Names are completely unique?
@@ -2872,7 +2872,7 @@ bool Player::isAllowedToUse(Tile *tile)
 	return allowed;
 }
 
-bool Player::isAllowedToUse(shared_ptr<ItemInstance> item)
+bool Player::isAllowedToUse(std::shared_ptr<ItemInstance> item)
 {
 	bool allowed = true;
 	if(item != NULL && app.GetGameHostOption(eGameHostOption_TrustPlayers) == 0)
@@ -2916,7 +2916,7 @@ bool Player::isAllowedToUse(shared_ptr<ItemInstance> item)
 	return allowed;
 }
 
-bool Player::isAllowedToInteract(shared_ptr<Entity> target)
+bool Player::isAllowedToInteract(std::shared_ptr<Entity> target)
 {
 	bool allowed = true;
 	if(app.GetGameHostOption(eGameHostOption_TrustPlayers) == 0)
@@ -2981,7 +2981,7 @@ bool Player::isAllowedToAttackAnimals()
 	return allowed;
 }
 
-bool Player::isAllowedToHurtEntity(shared_ptr<Entity> target)
+bool Player::isAllowedToHurtEntity(std::shared_ptr<Entity> target)
 {
 	bool allowed = true;
 

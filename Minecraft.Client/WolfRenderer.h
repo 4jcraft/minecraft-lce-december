@@ -13,7 +13,7 @@ public:
 	WolfRenderer(Model *model, Model *armor, float shadow);
 
 protected:
-	virtual float getBob(shared_ptr<LivingEntity> _mob, float a);
-	virtual int prepareArmor(shared_ptr<LivingEntity> mob, int layer, float a);
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
+	virtual float getBob(std::shared_ptr<LivingEntity> _mob, float a);
+	virtual int prepareArmor(std::shared_ptr<LivingEntity> mob, int layer, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
 };

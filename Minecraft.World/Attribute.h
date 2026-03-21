@@ -25,7 +25,7 @@ public:
 	static const int MAX_NAME_LENGTH = 64;
 
 	/**
-	* 4J: Changed this from a string name to an ID
+	* 4J: Changed this from a std::string name to an ID
 	* Gets the ID of this attribute, for serialization.
 	*
 	* @return Name of this attribute.
@@ -57,7 +57,7 @@ public:
 	*/
 	virtual bool isClientSyncable() = 0;
 
-	// 4J: Added to retrieve string ID for attribute
+	// 4J: Added to retrieve std::string ID for attribute
 	static int getName(eATTRIBUTE_ID id);
 
 protected:

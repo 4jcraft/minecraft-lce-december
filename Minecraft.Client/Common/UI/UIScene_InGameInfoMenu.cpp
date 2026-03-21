@@ -65,7 +65,7 @@ UIScene_InGameInfoMenu::~UIScene_InGameInfoMenu()
 	for (int i = 0; i < m_players.size(); i++) { delete m_players[i]; }
 }
 
-wstring UIScene_InGameInfoMenu::getMoviePath()
+std::wstring UIScene_InGameInfoMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

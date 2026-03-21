@@ -10,14 +10,14 @@ public:
 	static const int METHOD_CHANGE = 0;
 	static const int METHOD_REMOVE = 1;
 
-	wstring owner;
-	wstring objectiveName;
+	std::wstring owner;
+	std::wstring objectiveName;
 	int score;
 	int method;
 
 	SetScorePacket();
 	SetScorePacket(Score *score, int method);
-	SetScorePacket(const wstring &owner);
+	SetScorePacket(const std::wstring &owner);
 
 	void read(DataInputStream *dis);
 	void write(DataOutputStream *dos);
@@ -25,6 +25,6 @@ public:
 	int getEstimatedSize();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new SetScorePacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new SetScorePacket()); }
 	virtual int getId() { return 207; }
 };

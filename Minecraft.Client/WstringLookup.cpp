@@ -8,7 +8,7 @@ WstringLookup::WstringLookup()
 	numIDs = 0;
 }
 
-wstring WstringLookup::lookup(UINT id)
+std::wstring WstringLookup::lookup(UINT id)
 {
 	// TODO
 	//if (id > currentMaxID)
@@ -17,7 +17,7 @@ wstring WstringLookup::lookup(UINT id)
 	return int2str.at(id);
 }
 	
-UINT WstringLookup::lookup(wstring str)
+UINT WstringLookup::lookup(std::wstring str)
 {
 	if (str2int.find(str) == str2int.end())
 	{
@@ -35,7 +35,7 @@ UINT WstringLookup::lookup(wstring str)
 	}
 }
 
-VOID WstringLookup::getTable(wstring **lookup, UINT *len)
+VOID WstringLookup::getTable(std::wstring **lookup, UINT *len)
 {
 	// Outputs
 	wstring *out_lookup; UINT out_len;

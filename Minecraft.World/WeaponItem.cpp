@@ -20,7 +20,7 @@ float WeaponItem::getTierDamage()
 	return tier->getAttackDamageBonus();
 }
 
-float WeaponItem::getDestroySpeed(shared_ptr<ItemInstance> itemInstance, Tile *tile)
+float WeaponItem::getDestroySpeed(std::shared_ptr<ItemInstance> itemInstance, Tile *tile)
 {
 	if (tile->id == Tile::web_Id)
 	{
@@ -37,13 +37,13 @@ float WeaponItem::getDestroySpeed(shared_ptr<ItemInstance> itemInstance, Tile *t
 	return 1.0f;
 }
 
-bool WeaponItem::hurtEnemy(shared_ptr<ItemInstance> itemInstance, shared_ptr<LivingEntity> mob, shared_ptr<LivingEntity> attacker) 
+bool WeaponItem::hurtEnemy(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<LivingEntity> mob, std::shared_ptr<LivingEntity> attacker) 
 {
 	itemInstance->hurtAndBreak(1, attacker);
 	return true;
 }
 
-bool WeaponItem::mineBlock(shared_ptr<ItemInstance> itemInstance, Level *level, int tile, int x, int y, int z, shared_ptr<LivingEntity> owner)
+bool WeaponItem::mineBlock(std::shared_ptr<ItemInstance> itemInstance, Level *level, int tile, int x, int y, int z, std::shared_ptr<LivingEntity> owner)
 {
 	// Don't damage weapons if the tile can be destroyed in one hit.
 	if (Tile::tiles[tile]->getDestroySpeed(level, x, y, z) != 0.0) itemInstance->hurtAndBreak(2, owner);
@@ -55,17 +55,17 @@ bool WeaponItem::isHandEquipped()
 	return true;
 }
 
-UseAnim WeaponItem::getUseAnimation(shared_ptr<ItemInstance> itemInstance)
+UseAnim WeaponItem::getUseAnimation(std::shared_ptr<ItemInstance> itemInstance)
 {
 	return UseAnim_block;
 }    
 
-int WeaponItem::getUseDuration(shared_ptr<ItemInstance> itemInstance)
+int WeaponItem::getUseDuration(std::shared_ptr<ItemInstance> itemInstance)
 {
 	return 20 * 60 * 60; // Block for a maximum of one hour!
 }
 
-shared_ptr<ItemInstance> WeaponItem::use(shared_ptr<ItemInstance> instance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> WeaponItem::use(std::shared_ptr<ItemInstance> instance, Level *level, std::shared_ptr<Player> player)
 {
 	player->startUsingItem(instance, getUseDuration(instance));
 	return instance;
@@ -86,7 +86,7 @@ const Item::Tier *WeaponItem::getTier()
 	return tier;
 }
 
-bool WeaponItem::isValidRepairItem(shared_ptr<ItemInstance> source, shared_ptr<ItemInstance> repairItem)
+bool WeaponItem::isValidRepairItem(std::shared_ptr<ItemInstance> source, std::shared_ptr<ItemInstance> repairItem)
 {
 	if (tier->getTierItemId() == repairItem->id)
 	{

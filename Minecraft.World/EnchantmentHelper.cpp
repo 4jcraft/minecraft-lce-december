@@ -9,7 +9,7 @@
 
 Random EnchantmentHelper::random;
 
-int EnchantmentHelper::getEnchantmentLevel(int enchantmentId, shared_ptr<ItemInstance> piece)
+int EnchantmentHelper::getEnchantmentLevel(int enchantmentId, std::shared_ptr<ItemInstance> piece)
 {
 	if (piece == NULL)
 	{
@@ -33,7 +33,7 @@ int EnchantmentHelper::getEnchantmentLevel(int enchantmentId, shared_ptr<ItemIns
 	return 0;
 }
 
-unordered_map<int, int> *EnchantmentHelper::getEnchantments(shared_ptr<ItemInstance> item)
+unordered_map<int, int> *EnchantmentHelper::getEnchantments(std::shared_ptr<ItemInstance> item)
 {
 	unordered_map<int, int> *result = new unordered_map<int, int>();
 	ListTag<CompoundTag> *list = item->id == Item::enchantedBook_Id ? Item::enchantedBook->getEnchantments(item) : item->getEnchantmentTags();
@@ -52,7 +52,7 @@ unordered_map<int, int> *EnchantmentHelper::getEnchantments(shared_ptr<ItemInsta
 	return result;
 }
 
-void EnchantmentHelper::setEnchantments(unordered_map<int, int> *enchantments, shared_ptr<ItemInstance> item)
+void EnchantmentHelper::setEnchantments(unordered_map<int, int> *enchantments, std::shared_ptr<ItemInstance> item)
 {
 	ListTag<CompoundTag> *list = new ListTag<CompoundTag>();
 
@@ -102,7 +102,7 @@ int EnchantmentHelper::getEnchantmentLevel(int enchantmentId, ItemInstanceArray 
 	return bestLevel;
 }
 
-void EnchantmentHelper::runIterationOnItem(EnchantmentIterationMethod &method, shared_ptr<ItemInstance> piece)
+void EnchantmentHelper::runIterationOnItem(EnchantmentIterationMethod &method, std::shared_ptr<ItemInstance> piece)
 {
 	if (piece == NULL)
 	{
@@ -178,7 +178,7 @@ EnchantmentHelper::GetDamageBonusIteration EnchantmentHelper::getDamageBonusIter
 * @param target
 * @return
 */
-float EnchantmentHelper::getDamageBonus(shared_ptr<LivingEntity> source, shared_ptr<LivingEntity> target)
+float EnchantmentHelper::getDamageBonus(std::shared_ptr<LivingEntity> source, std::shared_ptr<LivingEntity> target)
 {
 
 	getDamageBonusIteration.sum = 0;
@@ -189,57 +189,57 @@ float EnchantmentHelper::getDamageBonus(shared_ptr<LivingEntity> source, shared_
 	return getDamageBonusIteration.sum;
 }
 
-int EnchantmentHelper::getKnockbackBonus(shared_ptr<LivingEntity> source, shared_ptr<LivingEntity> target)
+int EnchantmentHelper::getKnockbackBonus(std::shared_ptr<LivingEntity> source, std::shared_ptr<LivingEntity> target)
 {
 	return getEnchantmentLevel(Enchantment::knockback->id, source->getCarriedItem() );
 }
 
-int EnchantmentHelper::getFireAspect(shared_ptr<LivingEntity> source)
+int EnchantmentHelper::getFireAspect(std::shared_ptr<LivingEntity> source)
 {
 	return getEnchantmentLevel(Enchantment::fireAspect->id, source->getCarriedItem());
 }
 
-int EnchantmentHelper::getOxygenBonus(shared_ptr<LivingEntity> source)
+int EnchantmentHelper::getOxygenBonus(std::shared_ptr<LivingEntity> source)
 {
 	return getEnchantmentLevel(Enchantment::drownProtection->id, source->getEquipmentSlots() );
 }
 
-int EnchantmentHelper::getDiggingBonus(shared_ptr<LivingEntity> source)
+int EnchantmentHelper::getDiggingBonus(std::shared_ptr<LivingEntity> source)
 {
 	return getEnchantmentLevel(Enchantment::diggingBonus->id, source->getCarriedItem() );
 }
 
-int EnchantmentHelper::getDigDurability(shared_ptr<LivingEntity> source)
+int EnchantmentHelper::getDigDurability(std::shared_ptr<LivingEntity> source)
 {
 	return getEnchantmentLevel(Enchantment::digDurability->id, source->getCarriedItem() );
 }
 
-bool EnchantmentHelper::hasSilkTouch(shared_ptr<LivingEntity> source)
+bool EnchantmentHelper::hasSilkTouch(std::shared_ptr<LivingEntity> source)
 {
 	return getEnchantmentLevel(Enchantment::untouching->id, source->getCarriedItem() ) > 0;
 }
 
-int EnchantmentHelper::getDiggingLootBonus(shared_ptr<LivingEntity> source)
+int EnchantmentHelper::getDiggingLootBonus(std::shared_ptr<LivingEntity> source)
 {
 	return getEnchantmentLevel(Enchantment::resourceBonus->id, source->getCarriedItem() );
 }
 
-int EnchantmentHelper::getKillingLootBonus(shared_ptr<LivingEntity> source)
+int EnchantmentHelper::getKillingLootBonus(std::shared_ptr<LivingEntity> source)
 {
 	return getEnchantmentLevel(Enchantment::lootBonus->id, source->getCarriedItem() );
 }
 
-bool EnchantmentHelper::hasWaterWorkerBonus(shared_ptr<LivingEntity> source)
+bool EnchantmentHelper::hasWaterWorkerBonus(std::shared_ptr<LivingEntity> source)
 {
 	return getEnchantmentLevel(Enchantment::waterWorker->id, source->getEquipmentSlots() ) > 0;
 }
 
-int EnchantmentHelper::getArmorThorns(shared_ptr<LivingEntity> source)
+int EnchantmentHelper::getArmorThorns(std::shared_ptr<LivingEntity> source)
 {
 	return getEnchantmentLevel(Enchantment::thorns->id, source->getEquipmentSlots());
 }
 
-shared_ptr<ItemInstance> EnchantmentHelper::getRandomItemWith(Enchantment *enchantment, shared_ptr<LivingEntity> source)
+std::shared_ptr<ItemInstance> EnchantmentHelper::getRandomItemWith(Enchantment *enchantment, std::shared_ptr<LivingEntity> source)
 {
 	ItemInstanceArray items = source->getEquipmentSlots();
 	for(unsigned int i = 0; i < items.length; ++i)
@@ -265,7 +265,7 @@ shared_ptr<ItemInstance> EnchantmentHelper::getRandomItemWith(Enchantment *encha
 *            Which item that is being enchanted.
 * @return The enchantment cost, 0 means unchantable, 50 is max.
 */
-int EnchantmentHelper::getEnchantmentCost(Random *random, int slot, int bookcases, shared_ptr<ItemInstance> itemInstance)
+int EnchantmentHelper::getEnchantmentCost(Random *random, int slot, int bookcases, std::shared_ptr<ItemInstance> itemInstance)
 {
 	Item *item = itemInstance->getItem();
 	int itemValue = item->getEnchantmentValue();
@@ -294,7 +294,7 @@ int EnchantmentHelper::getEnchantmentCost(Random *random, int slot, int bookcase
 	return selected;
 }
 
-shared_ptr<ItemInstance> EnchantmentHelper::enchantItem(Random *random, shared_ptr<ItemInstance> itemInstance, int enchantmentCost)
+std::shared_ptr<ItemInstance> EnchantmentHelper::enchantItem(Random *random, std::shared_ptr<ItemInstance> itemInstance, int enchantmentCost)
 {
 	vector<EnchantmentInstance *> *newEnchantment = EnchantmentHelper::selectEnchantment(random, itemInstance, enchantmentCost);
 	bool isBook = itemInstance->id == Item::book_Id;
@@ -328,7 +328,7 @@ shared_ptr<ItemInstance> EnchantmentHelper::enchantItem(Random *random, shared_p
 * @param enchantmentCost
 * @return
 */
-vector<EnchantmentInstance *> *EnchantmentHelper::selectEnchantment(Random *random, shared_ptr<ItemInstance> itemInstance, int enchantmentCost)
+vector<EnchantmentInstance *> *EnchantmentHelper::selectEnchantment(Random *random, std::shared_ptr<ItemInstance> itemInstance, int enchantmentCost)
 {
 	// withdraw bonus from item
 	Item *item = itemInstance->getItem();
@@ -430,7 +430,7 @@ vector<EnchantmentInstance *> *EnchantmentHelper::selectEnchantment(Random *rand
 	return results;
 }
 
-unordered_map<int, EnchantmentInstance *> *EnchantmentHelper::getAvailableEnchantmentResults(int value, shared_ptr<ItemInstance> itemInstance)
+unordered_map<int, EnchantmentInstance *> *EnchantmentHelper::getAvailableEnchantmentResults(int value, std::shared_ptr<ItemInstance> itemInstance)
 {
 	Item *item = itemInstance->getItem();
 	unordered_map<int, EnchantmentInstance *> *results = NULL;

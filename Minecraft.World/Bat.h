@@ -29,7 +29,7 @@ public:
 	virtual bool isPushable();
 
 protected:
-	virtual void doPush(shared_ptr<Entity> e);
+	virtual void doPush(std::shared_ptr<Entity> e);
 	virtual void pushEntities();
 	virtual void registerAttributes();
 

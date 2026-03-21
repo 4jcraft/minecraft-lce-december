@@ -47,7 +47,7 @@ unsigned int PlayerRenderer::getNametagColour(int index)
 	return 0xFF000000;
 }
 
-int PlayerRenderer::prepareArmor(shared_ptr<LivingEntity> _player, int layer, float a)
+int PlayerRenderer::prepareArmor(std::shared_ptr<LivingEntity> _player, int layer, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Player> player = dynamic_pointer_cast<Player>(_player);
@@ -109,7 +109,7 @@ int PlayerRenderer::prepareArmor(shared_ptr<LivingEntity> _player, int layer, fl
 
 }
 
-void PlayerRenderer::prepareSecondPassArmor(shared_ptr<LivingEntity> _player, int layer, float a)
+void PlayerRenderer::prepareSecondPassArmor(std::shared_ptr<LivingEntity> _player, int layer, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Player> player = dynamic_pointer_cast<Player>(_player);
@@ -128,7 +128,7 @@ void PlayerRenderer::prepareSecondPassArmor(shared_ptr<LivingEntity> _player, in
 	}
 }
 
-void PlayerRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
+void PlayerRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Player> mob = dynamic_pointer_cast<Player>(_mob);
@@ -229,7 +229,7 @@ void PlayerRenderer::render(shared_ptr<Entity> _mob, double x, double y, double 
 
 }
 
-void PlayerRenderer::additionalRendering(shared_ptr<LivingEntity> _mob, float a)
+void PlayerRenderer::additionalRendering(std::shared_ptr<LivingEntity> _mob, float a)
 {
 	float brightness = SharedConstants::TEXTURE_LIGHTING ? 1 : _mob->getBrightness(a);
     glColor3f(brightness, brightness, brightness);
@@ -445,7 +445,7 @@ void PlayerRenderer::additionalRendering(shared_ptr<LivingEntity> _mob, float a)
 	}
 }
 
-void PlayerRenderer::renderNameTags(shared_ptr<LivingEntity> player, double x, double y, double z, wstring msg, float scale, double dist)
+void PlayerRenderer::renderNameTags(std::shared_ptr<LivingEntity> player, double x, double y, double z, std::wstring msg, float scale, double dist)
 {
 #if 0
     if (dist < 10 * 10)
@@ -474,7 +474,7 @@ void PlayerRenderer::renderNameTags(shared_ptr<LivingEntity> player, double x, d
     LivingEntityRenderer::renderNameTags(player, x, y, z, msg, scale, dist);
 }
 
-void PlayerRenderer::scale(shared_ptr<LivingEntity> player, float a)
+void PlayerRenderer::scale(std::shared_ptr<LivingEntity> player, float a)
 {
     float s = 15 / 16.0f;
     glScalef(s, s, s);
@@ -496,7 +496,7 @@ void PlayerRenderer::renderHand()
 	}
 }
 
-void PlayerRenderer::setupPosition(shared_ptr<LivingEntity> _mob, double x, double y, double z)
+void PlayerRenderer::setupPosition(std::shared_ptr<LivingEntity> _mob, double x, double y, double z)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Player> mob = dynamic_pointer_cast<Player>(_mob);
@@ -516,7 +516,7 @@ void PlayerRenderer::setupPosition(shared_ptr<LivingEntity> _mob, double x, doub
     }
 }
 
-void PlayerRenderer::setupRotations(shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a)
+void PlayerRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Player> mob = dynamic_pointer_cast<Player>(_mob);
@@ -534,7 +534,7 @@ void PlayerRenderer::setupRotations(shared_ptr<LivingEntity> _mob, float bob, fl
 }
 
 // 4J Added override to stop rendering shadow if player is invisible
-void PlayerRenderer::renderShadow(shared_ptr<Entity> e, double x, double y, double z, float pow, float a)
+void PlayerRenderer::renderShadow(std::shared_ptr<Entity> e, double x, double y, double z, float pow, float a)
 {
 	if(app.GetGameHostOption(eGameHostOption_HostCanBeInvisible) > 0)
 	{
@@ -545,13 +545,13 @@ void PlayerRenderer::renderShadow(shared_ptr<Entity> e, double x, double y, doub
 }
 
 // 4J Added override
-void PlayerRenderer::bindTexture(shared_ptr<Entity> entity)
+void PlayerRenderer::bindTexture(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
 	bindTexture(player->customTextureUrl, player->getTexture());
 }
 
-ResourceLocation *PlayerRenderer::getTextureLocation(shared_ptr<Entity> entity)
+ResourceLocation *PlayerRenderer::getTextureLocation(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
 	return new ResourceLocation((_TEXTURE_NAME)player->getTexture());

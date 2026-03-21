@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 #include "SynchedEntityData.h"
@@ -10,21 +10,21 @@ public:
 	int id;
 
 private:
-	vector<shared_ptr<SynchedEntityData::DataItem> > *packedItems;
+	vector<std::shared_ptr<SynchedEntityData::DataItem> > *packedItems;
 
 public:
 	SetEntityDataPacket();
 	~SetEntityDataPacket();
-	SetEntityDataPacket(int id, shared_ptr<SynchedEntityData>, bool notJustDirty);
+	SetEntityDataPacket(int id, std::shared_ptr<SynchedEntityData>, bool notJustDirty);
 
 	virtual void read(DataInputStream *dis);
 	virtual void write(DataOutputStream *dos);
 	virtual void handle(PacketListener *listener);
 	virtual int getEstimatedSize();
 
-	vector<shared_ptr<SynchedEntityData::DataItem> > *getUnpackedData();
+	vector<std::shared_ptr<SynchedEntityData::DataItem> > *getUnpackedData();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new SetEntityDataPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new SetEntityDataPacket()); }
 	virtual int getId() { return 40; }
 };

@@ -22,7 +22,7 @@ Stat** StatsCounter::LARGE_STATS[] = {
 	&Stats::timePlayed
 };
 
-unordered_map<Stat*, int> StatsCounter::statBoards;
+std::unordered_map<Stat*, int> StatsCounter::statBoards;
 
 StatsCounter::StatsCounter()
 {
@@ -64,7 +64,7 @@ void StatsCounter::award(Stat* stat, unsigned int difficulty, unsigned int count
 	requiresSave = true;
 
 	//If this stat is on a leaderboard, mark that leaderboard as needing updated
-	unordered_map<Stat*, int>::iterator leaderboardEntry = statBoards.find(stat);
+	std::unordered_map<Stat*, int>::iterator leaderboardEntry = statBoards.find(stat);
 	if( leaderboardEntry != statBoards.end() )
 	{
 		app.DebugPrintf("[StatsCounter] award(): %X\n", leaderboardEntry->second << difficulty);
@@ -150,8 +150,8 @@ void StatsCounter::parse(void* data)
 	StatContainer newVal;
 
 	//For each stat
-	vector<Stat *>::iterator end = Stats::all->end();
-	for( vector<Stat *>::iterator iter = Stats::all->begin() ; iter != end ; ++iter )
+	std::vector<Stat *>::iterator end = Stats::all->end();
+	for( std::vector<Stat *>::iterator iter = Stats::all->begin() ; iter != end ; ++iter )
 	{
 		if( !(*iter)->isAchievement() )
 		{
@@ -230,8 +230,8 @@ void StatsCounter::save(int player, bool force)
 
 	//For each stat
 	StatsMap::iterator val;
-	vector<Stat *>::iterator end = Stats::all->end();
-	for( vector<Stat *>::iterator iter = Stats::all->begin() ; iter != end ; ++iter )
+	std::vector<Stat *>::iterator end = Stats::all->end();
+	for( std::vector<Stat *>::iterator iter = Stats::all->begin() ; iter != end ; ++iter )
 	{
 		//If the stat is in the map write out it's value
 		val = stats.find(*iter);
@@ -1287,8 +1287,8 @@ bool StatsCounter::isLargeStat(Stat* stat)
 
 void StatsCounter::dumpStatsToTTY()
 {
-	vector<Stat*>::iterator statsEnd = Stats::all->end();
-	for( vector<Stat*>::iterator statsIter = Stats::all->begin() ; statsIter!=statsEnd ; ++statsIter )
+	std::vector<Stat*>::iterator statsEnd = Stats::all->end();
+	for( std::vector<Stat*>::iterator statsIter = Stats::all->begin() ; statsIter!=statsEnd ; ++statsIter )
 	{
 		app.DebugPrintf("%ls\t\t%u\t%u\t%u\t%u\n",
 			(*statsIter)->name.c_str(),

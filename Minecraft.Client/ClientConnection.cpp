@@ -60,7 +60,7 @@
 #include "..\Minecraft.World\GenericStats.h"
 #endif
 
-ClientConnection::ClientConnection(Minecraft *minecraft, const wstring& ip, int port)
+ClientConnection::ClientConnection(Minecraft *minecraft, const std::wstring& ip, int port)
 {
 	// 4J Stu - No longer used as we use the socket version below.
 	assert(FALSE);
@@ -2388,7 +2388,7 @@ void ClientConnection::handleEntityEvent(shared_ptr<EntityEventPacket> packet)
 	if (e != NULL) e->handleEntityEvent(packet->eventId);
 }
 
-shared_ptr<Entity> ClientConnection::getEntity(int entityId)
+std::shared_ptr<Entity> ClientConnection::getEntity(int entityId)
 {
 	//if (entityId == minecraft->player->entityId)
 	if(entityId == minecraft->localplayers[m_userIndex]->entityId)
@@ -3362,7 +3362,7 @@ void ClientConnection::handlePlayerInfo(shared_ptr<PlayerInfoPacket> packet)
 }
 
 
-void ClientConnection::displayPrivilegeChanges(shared_ptr<MultiplayerLocalPlayer> player, unsigned int oldPrivileges)
+void ClientConnection::displayPrivilegeChanges(std::shared_ptr<MultiplayerLocalPlayer> player, unsigned int oldPrivileges)
 {
 	int userIndex = player->GetXboxPad();
 	unsigned int newPrivileges = player->getAllPlayerGamePrivileges();
@@ -3670,7 +3670,7 @@ int ClientConnection::ExitGameAndSaveReturned(void *pParam,int iPad,C4JStorage::
 }
 
 // 
-wstring ClientConnection::GetDisplayNameByGamertag(wstring gamertag)
+std::wstring ClientConnection::GetDisplayNameByGamertag(std::wstring gamertag)
 {
 #ifdef _DURANGO
 	wstring displayName = g_NetworkManager.GetDisplayNameByGamertag(gamertag);

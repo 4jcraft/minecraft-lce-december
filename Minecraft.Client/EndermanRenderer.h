@@ -15,10 +15,10 @@ private:
 public:
 	EndermanRenderer();
 
-	void render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
-	ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
-	void additionalRendering(shared_ptr<LivingEntity> _mob, float a);
+	void render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
+	ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
+	void additionalRendering(std::shared_ptr<LivingEntity> _mob, float a);
 
 protected:
-	int prepareArmor(shared_ptr<LivingEntity> _mob, int layer, float a);
+	int prepareArmor(std::shared_ptr<LivingEntity> _mob, int layer, float a);
 };

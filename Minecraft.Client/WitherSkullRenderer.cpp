@@ -11,7 +11,7 @@ WitherSkullRenderer::WitherSkullRenderer()
 	model = new SkeletonHeadModel();
 }
 
-void WitherSkullRenderer::render(shared_ptr<Entity> entity, double x, double y, double z, float rot, float a)
+void WitherSkullRenderer::render(std::shared_ptr<Entity> entity, double x, double y, double z, float rot, float a)
 {
 	glPushMatrix();
 	glDisable(GL_CULL_FACE);
@@ -34,7 +34,7 @@ void WitherSkullRenderer::render(shared_ptr<Entity> entity, double x, double y, 
 	glPopMatrix();
 }
 
-ResourceLocation *WitherSkullRenderer::getTextureLocation(shared_ptr<Entity> entity)
+ResourceLocation *WitherSkullRenderer::getTextureLocation(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<WitherSkull> mob = dynamic_pointer_cast<WitherSkull>(entity);
 

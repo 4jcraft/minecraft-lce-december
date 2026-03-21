@@ -12,5 +12,5 @@ public:
 	virtual bool canBeLeashed();
 
 protected:
-	virtual bool mobInteract(shared_ptr<Player> player);
+	virtual bool mobInteract(std::shared_ptr<Player> player);
 };

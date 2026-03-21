@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 #include "Entity.h"
 
 class Level;
@@ -11,7 +10,7 @@ public:
 	eINSTANCEOF GetType() { return eTYPE_MULTIENTITY_MOB_PART; };
 public:
 	weak_ptr<MultiEntityMob> parentMob;
-	const wstring id;
+	const std::wstring id;
 
 	MultiEntityMobPart(shared_ptr<MultiEntityMob> parentMob, const wstring &id, float w, float h);
 

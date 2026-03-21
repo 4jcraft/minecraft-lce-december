@@ -10,17 +10,17 @@ ExperienceItem::ExperienceItem(int id) : Item(id)
 {
 }
 
-bool ExperienceItem::isFoil(shared_ptr<ItemInstance> itemInstance)
+bool ExperienceItem::isFoil(std::shared_ptr<ItemInstance> itemInstance)
 {
 	return true;
 }
 
-bool ExperienceItem::TestUse(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+bool ExperienceItem::TestUse(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	return true;
 }
 
-shared_ptr<ItemInstance> ExperienceItem::use(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> ExperienceItem::use(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	if (!player->abilities.instabuild)
 	{

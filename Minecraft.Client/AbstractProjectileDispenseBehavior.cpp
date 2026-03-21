@@ -5,13 +5,13 @@
 #include "..\Minecraft.World\net.minecraft.world.level.h"
 #include "AbstractProjectileDispenseBehavior.h"
 
-shared_ptr<ItemInstance> AbstractProjectileDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed)
+std::shared_ptr<ItemInstance> AbstractProjectileDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed)
 {
 	Level *world = source->getWorld();
 	Position position = DispenserTile::getDispensePosition(source);
 	FacingEnum *facing = DispenserTile::getFacing(source->getData());
 
-	shared_ptr<Projectile> arrow = getProjectile(world, position);
+	std::shared_ptr<Projectile> arrow = getProjectile(world, position);
 	arrow->shoot(facing->getStepX(), facing->getStepY() + .1f, facing->getStepZ(), getPower(), getUncertainty());
 	world->addEntity(arrow);
 

@@ -11,7 +11,7 @@ bool AmbientCreature::canBeLeashed()
 	return false;
 }
 
-bool AmbientCreature::mobInteract(shared_ptr<Player> player)
+bool AmbientCreature::mobInteract(std::shared_ptr<Player> player)
 {
 	return false;
 }

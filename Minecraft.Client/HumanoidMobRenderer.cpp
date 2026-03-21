@@ -10,7 +10,7 @@
 #include "..\Minecraft.World\net.minecraft.world.entity.monster.h"
 #include "..\Minecraft.World\net.minecraft.h"
 
-const wstring HumanoidMobRenderer::MATERIAL_NAMES[5] = { L"cloth", L"chain", L"iron", L"diamond", L"gold" };
+const std::wstring HumanoidMobRenderer::MATERIAL_NAMES[5] = { L"cloth", L"chain", L"iron", L"diamond", L"gold" };
 std::map<wstring, ResourceLocation> HumanoidMobRenderer::ARMOR_LOCATION_CACHE;
 
 void HumanoidMobRenderer::_init(HumanoidModel *humanoidModel, float scale)
@@ -73,7 +73,7 @@ ResourceLocation *HumanoidMobRenderer::getArmorLocation(ArmorItem *armorItem, in
 	return location;
 }
 
-void HumanoidMobRenderer::prepareSecondPassArmor(shared_ptr<LivingEntity> mob, int layer, float a)
+void HumanoidMobRenderer::prepareSecondPassArmor(std::shared_ptr<LivingEntity> mob, int layer, float a)
 {        
 	shared_ptr<ItemInstance> itemInstance = mob->getArmor(3 - layer);
 	if (itemInstance != NULL) {
@@ -94,7 +94,7 @@ void HumanoidMobRenderer::createArmorParts()
 	armorParts2 = new HumanoidModel(0.5f);
 }
 
-int HumanoidMobRenderer::prepareArmor(shared_ptr<LivingEntity> _mob, int layer, float a)
+int HumanoidMobRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob, int layer, float a)
 {
 	shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
 
@@ -148,7 +148,7 @@ int HumanoidMobRenderer::prepareArmor(shared_ptr<LivingEntity> _mob, int layer, 
 	return -1;
 }
 
-void HumanoidMobRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
+void HumanoidMobRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
 {
 	shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
 
@@ -168,19 +168,19 @@ void HumanoidMobRenderer::render(shared_ptr<Entity> _mob, double x, double y, do
 	armorParts1->holdingRightHand = armorParts2->holdingRightHand = humanoidModel->holdingRightHand = 0;
 }
 
-ResourceLocation *HumanoidMobRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *HumanoidMobRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
 	// TODO -- Figure out of we need some data in here
 	return NULL;
 }
 
-void HumanoidMobRenderer::prepareCarriedItem(shared_ptr<Entity> mob, shared_ptr<ItemInstance> item)
+void HumanoidMobRenderer::prepareCarriedItem(std::shared_ptr<Entity> mob, std::shared_ptr<ItemInstance> item)
 {
 	armorParts1->holdingRightHand = armorParts2->holdingRightHand = humanoidModel->holdingRightHand = item != NULL ? 1 : 0;
 	armorParts1->sneaking = armorParts2->sneaking = humanoidModel->sneaking = mob->isSneaking();
 }
 
-void HumanoidMobRenderer::additionalRendering(shared_ptr<LivingEntity> mob, float a)
+void HumanoidMobRenderer::additionalRendering(std::shared_ptr<LivingEntity> mob, float a)
 {
 	float brightness = SharedConstants::TEXTURE_LIGHTING ? 1 : mob->getBrightness(a);
 	glColor3f(brightness, brightness, brightness);
@@ -288,7 +288,7 @@ void HumanoidMobRenderer::additionalRendering(shared_ptr<LivingEntity> mob, floa
 
 }
 
-void HumanoidMobRenderer::scale(shared_ptr<LivingEntity> mob, float a)
+void HumanoidMobRenderer::scale(std::shared_ptr<LivingEntity> mob, float a)
 {
 	glScalef(_scale, _scale, _scale);
 }

@@ -3,5 +3,5 @@
 class EntityTile
 {
 public:
-	virtual shared_ptr<TileEntity> newTileEntity(Level *level) = 0;
+	virtual std::shared_ptr<TileEntity> newTileEntity(Level *level) = 0;
 };

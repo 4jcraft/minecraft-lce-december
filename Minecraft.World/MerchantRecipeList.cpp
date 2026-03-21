@@ -19,7 +19,7 @@ MerchantRecipeList::~MerchantRecipeList()
 	}
 }
 
-MerchantRecipe *MerchantRecipeList::getRecipeFor(shared_ptr<ItemInstance> buyA, shared_ptr<ItemInstance> buyB, int selectionHint)
+MerchantRecipe *MerchantRecipeList::getRecipeFor(std::shared_ptr<ItemInstance> buyA, std::shared_ptr<ItemInstance> buyB, int selectionHint)
 {
 	if (selectionHint > 0 && selectionHint < m_recipes.size())
 	{
@@ -67,7 +67,7 @@ bool MerchantRecipeList::addIfNewOrBetter(MerchantRecipe *recipe)
 	return true;
 }
 
-MerchantRecipe *MerchantRecipeList::getMatchingRecipeFor(shared_ptr<ItemInstance> buy, shared_ptr<ItemInstance> buyB, shared_ptr<ItemInstance> sell)
+MerchantRecipe *MerchantRecipeList::getMatchingRecipeFor(std::shared_ptr<ItemInstance> buy, std::shared_ptr<ItemInstance> buyB, std::shared_ptr<ItemInstance> sell)
 {
 	for (int i = 0; i < m_recipes.size(); i++)
 	{
@@ -164,7 +164,7 @@ void MerchantRecipeList::push_back(MerchantRecipe *recipe)
 	m_recipes.push_back(recipe);
 }
 
-MerchantRecipe *MerchantRecipeList::at(size_t index)
+MerchantRecipe *MerchantRecipeList::at(std::size_t index)
 {
 	return m_recipes.at(index);
 }
@@ -184,7 +184,7 @@ std::vector<MerchantRecipe *>::iterator MerchantRecipeList::erase(std::vector<Me
 	return m_recipes.erase(it);
 }
 
-size_t MerchantRecipeList::size()
+std::size_t MerchantRecipeList::size()
 {
 	return m_recipes.size();
 }

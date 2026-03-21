@@ -14,7 +14,7 @@
 #include "ItemInstance.h"
 #include "HtmlString.h"
 
-const wstring ItemInstance::ATTRIBUTE_MODIFIER_FORMAT = L"#.###";
+const std::wstring ItemInstance::ATTRIBUTE_MODIFIER_FORMAT = L"#.###";
 
 const wchar_t *ItemInstance::TAG_ENCH_ID = L"id";
 const wchar_t *ItemInstance::TAG_ENCH_LEVEL = L"lvl";
@@ -77,7 +77,7 @@ ItemInstance::ItemInstance(int id, int count, int damage)
 	}
 }
 
-shared_ptr<ItemInstance> ItemInstance::fromTag(CompoundTag *itemTag)
+std::shared_ptr<ItemInstance> ItemInstance::fromTag(CompoundTag *itemTag)
 {
 	shared_ptr<ItemInstance> itemInstance = shared_ptr<ItemInstance>(new ItemInstance());
 	itemInstance->load(itemTag);
@@ -89,7 +89,7 @@ ItemInstance::~ItemInstance()
 	if(tag != NULL) delete tag;
 }
 
-shared_ptr<ItemInstance> ItemInstance::remove(int count) 
+std::shared_ptr<ItemInstance> ItemInstance::remove(int count) 
 {
 	shared_ptr<ItemInstance> ii = shared_ptr<ItemInstance>( new ItemInstance(id, count, auxValue) );
 	if (tag != NULL) ii->tag = (CompoundTag *) tag->copy();
@@ -118,7 +118,7 @@ int ItemInstance::getIconType()
 	return getItem()->getIconType();
 }
 
-bool ItemInstance::useOn(shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
+bool ItemInstance::useOn(std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
 {
 	return getItem()->useOn(shared_from_this(), player, level, x, y, z, face, clickX, clickY, clickZ, bTestUseOnOnly);
 }
@@ -128,17 +128,17 @@ float ItemInstance::getDestroySpeed(Tile *tile)
 	return getItem()->getDestroySpeed(shared_from_this(), tile);
 }
 
-bool ItemInstance::TestUse(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player) 
+bool ItemInstance::TestUse(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player) 
 {
 	return getItem()->TestUse( itemInstance, level, player);
 }
 
-shared_ptr<ItemInstance> ItemInstance::use(Level *level, shared_ptr<Player> player) 
+std::shared_ptr<ItemInstance> ItemInstance::use(Level *level, std::shared_ptr<Player> player) 
 {
 	return getItem()->use(shared_from_this(), level, player);
 }
 
-shared_ptr<ItemInstance> ItemInstance::useTimeDepleted(Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> ItemInstance::useTimeDepleted(Level *level, std::shared_ptr<Player> player)
 {
 	return getItem()->useTimeDepleted(shared_from_this(), level, player);
 }
@@ -254,7 +254,7 @@ bool ItemInstance::hurt(int dmg, Random *random)
 	return auxValue > getMaxDamage();
 }
 
-void ItemInstance::hurtAndBreak(int dmg, shared_ptr<LivingEntity> owner)
+void ItemInstance::hurtAndBreak(int dmg, std::shared_ptr<LivingEntity> owner)
 {
 	shared_ptr<Player> player = dynamic_pointer_cast<Player>(owner);
 	if (player != NULL && player->abilities.instabuild) return;
@@ -278,13 +278,13 @@ void ItemInstance::hurtAndBreak(int dmg, shared_ptr<LivingEntity> owner)
 	}
 }
 
-void ItemInstance::hurtEnemy(shared_ptr<LivingEntity> mob, shared_ptr<Player> attacker)
+void ItemInstance::hurtEnemy(std::shared_ptr<LivingEntity> mob, std::shared_ptr<Player> attacker)
 {
 	//bool used = 
 	Item::items[id]->hurtEnemy(shared_from_this(), mob, attacker);
 }
 
-void ItemInstance::mineBlock(Level *level, int tile, int x, int y, int z, shared_ptr<Player> owner) 
+void ItemInstance::mineBlock(Level *level, int tile, int x, int y, int z, std::shared_ptr<Player> owner) 
 {
 	//bool used = 
 	Item::items[id]->mineBlock( shared_from_this(), level, tile, x, y, z, owner);
@@ -295,12 +295,12 @@ bool ItemInstance::canDestroySpecial(Tile *tile)
 	return Item::items[id]->canDestroySpecial(tile);
 }
 
-bool ItemInstance::interactEnemy(shared_ptr<Player> player, shared_ptr<LivingEntity> mob)
+bool ItemInstance::interactEnemy(std::shared_ptr<Player> player, std::shared_ptr<LivingEntity> mob)
 {
 	return Item::items[id]->interactEnemy(shared_from_this(), player, mob);
 }
 
-shared_ptr<ItemInstance> ItemInstance::copy() const
+std::shared_ptr<ItemInstance> ItemInstance::copy() const
 {
 	shared_ptr<ItemInstance> copy = shared_ptr<ItemInstance>( new ItemInstance(id, count, auxValue) );
 	if (tag != NULL)
@@ -326,7 +326,7 @@ ItemInstance *ItemInstance::copy_not_shared() const
 }
 
 // 4J Brought forward from 1.2
-bool ItemInstance::tagMatches(shared_ptr<ItemInstance> a, shared_ptr<ItemInstance> b)
+bool ItemInstance::tagMatches(std::shared_ptr<ItemInstance> a, std::shared_ptr<ItemInstance> b)
 {
 	if (a == NULL && b == NULL) return true;
 	if (a == NULL || b == NULL) return false;
@@ -342,14 +342,14 @@ bool ItemInstance::tagMatches(shared_ptr<ItemInstance> a, shared_ptr<ItemInstanc
 	return true;
 }
 
-bool ItemInstance::matches(shared_ptr<ItemInstance> a, shared_ptr<ItemInstance> b) 
+bool ItemInstance::matches(std::shared_ptr<ItemInstance> a, std::shared_ptr<ItemInstance> b) 
 {
 	if (a == NULL && b == NULL) return true;
 	if (a == NULL || b == NULL) return false;
 	return a->matches(b);
 }
 
-bool ItemInstance::matches(shared_ptr<ItemInstance> b)
+bool ItemInstance::matches(std::shared_ptr<ItemInstance> b)
 {
 	if (count != b->count) return false;
 	if (id != b->id) return false;
@@ -372,12 +372,12 @@ bool ItemInstance::matches(shared_ptr<ItemInstance> b)
 * @param b
 * @return
 */
-bool ItemInstance::sameItem(shared_ptr<ItemInstance> b)
+bool ItemInstance::sameItem(std::shared_ptr<ItemInstance> b)
 {
 	return id == b->id && auxValue == b->auxValue;
 }
 
-bool ItemInstance::sameItemWithTags(shared_ptr<ItemInstance> b)
+bool ItemInstance::sameItemWithTags(std::shared_ptr<ItemInstance> b)
 {
 	if (id != b->id) return false;
 	if (auxValue != b->auxValue) return false;
@@ -415,12 +415,12 @@ ItemInstance *ItemInstance::setDescriptionId(unsigned int id)
 	return this;
 }
 
-shared_ptr<ItemInstance> ItemInstance::clone(shared_ptr<ItemInstance> item)
+std::shared_ptr<ItemInstance> ItemInstance::clone(std::shared_ptr<ItemInstance> item)
 {
 	return item == NULL ? nullptr : item->copy();
 }
 
-wstring ItemInstance::toString() 
+std::wstring ItemInstance::toString() 
 {
 	//return count + "x" + Item::items[id]->getDescriptionId() + "@" + auxValue;
 
@@ -437,13 +437,13 @@ wstring ItemInstance::toString()
 	return oss.str();
 }
 
-void ItemInstance::inventoryTick(Level *level, shared_ptr<Entity> owner, int slot, bool selected)
+void ItemInstance::inventoryTick(Level *level, std::shared_ptr<Entity> owner, int slot, bool selected)
 {
 	if (popTime > 0) popTime--;
 	Item::items[id]->inventoryTick(shared_from_this(), level, owner, slot, selected);
 }
 
-void ItemInstance::onCraftedBy(Level *level, shared_ptr<Player> player, int craftCount)
+void ItemInstance::onCraftedBy(Level *level, std::shared_ptr<Player> player, int craftCount)
 {
 	// 4J Stu Added for tutorial callback
 	player->onCrafted(shared_from_this());
@@ -456,7 +456,7 @@ void ItemInstance::onCraftedBy(Level *level, shared_ptr<Player> player, int craf
 	Item::items[id]->onCraftedBy(shared_from_this(), level, player);
 }
 
-bool ItemInstance::equals(shared_ptr<ItemInstance> ii)
+bool ItemInstance::equals(std::shared_ptr<ItemInstance> ii)
 {
 	return id == ii->id && count == ii->count && auxValue == ii->auxValue;
 }
@@ -471,7 +471,7 @@ UseAnim ItemInstance::getUseAnimation()
 	return getItem()->getUseAnimation(shared_from_this());
 }
 
-void ItemInstance::releaseUsing(Level *level, shared_ptr<Player> player, int durationLeft)
+void ItemInstance::releaseUsing(Level *level, std::shared_ptr<Player> player, int durationLeft)
 {
 	getItem()->releaseUsing(shared_from_this(), level, player, durationLeft);
 }
@@ -502,7 +502,7 @@ void ItemInstance::setTag(CompoundTag *tag)
 	this->tag = tag;
 }
 
-wstring ItemInstance::getHoverName()
+std::wstring ItemInstance::getHoverName()
 {
 	wstring title = getItem()->getHoverName(shared_from_this());
 
@@ -519,7 +519,7 @@ wstring ItemInstance::getHoverName()
 	return title;
 }
 
-void ItemInstance::setHoverName(const wstring &name)
+void ItemInstance::setHoverName(const std::wstring &name)
 {
 	if (tag == NULL) tag = new CompoundTag();
 	if (!tag->contains(L"display")) tag->putCompound(L"display", new CompoundTag());
@@ -551,7 +551,7 @@ bool ItemInstance::hasCustomHoverName()
 	return tag->getCompound(L"display")->contains(L"Name");
 }
 
-vector<HtmlString> *ItemInstance::getHoverText(shared_ptr<Player> player, bool advanced)
+vector<HtmlString> *ItemInstance::getHoverText(std::shared_ptr<Player> player, bool advanced)
 {
 	vector<HtmlString> *lines = new vector<HtmlString>();
 	Item *item = Item::items[id];
@@ -683,7 +683,7 @@ vector<HtmlString> *ItemInstance::getHoverText(shared_ptr<Player> player, bool a
 }
 
 // 4J Added
-vector<HtmlString> *ItemInstance::getHoverTextOnly(shared_ptr<Player> player, bool advanced)
+vector<HtmlString> *ItemInstance::getHoverTextOnly(std::shared_ptr<Player> player, bool advanced)
 {
 	vector<HtmlString> *lines = new vector<HtmlString>();
 	Item *item = Item::items[id];
@@ -746,7 +746,7 @@ bool ItemInstance::isEnchanted()
 	return false;
 }
 
-void ItemInstance::addTagElement(wstring name, Tag *tag)
+void ItemInstance::addTagElement(std::wstring name, Tag *tag)
 {
 	if (this->tag == NULL)
 	{
@@ -765,12 +765,12 @@ bool ItemInstance::isFramed()
 	return frame != NULL;
 }
 
-void ItemInstance::setFramed(shared_ptr<ItemFrame> frame) 
+void ItemInstance::setFramed(std::shared_ptr<ItemFrame> frame) 
 {
 	this->frame = frame;
 }
 
-shared_ptr<ItemFrame> ItemInstance::getFrame() 
+std::shared_ptr<ItemFrame> ItemInstance::getFrame() 
 {
 	return frame;
 }

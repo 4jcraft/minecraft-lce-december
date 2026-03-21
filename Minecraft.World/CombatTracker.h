@@ -29,7 +29,7 @@ private:
 	int lastDamageTime;
 	bool inCombat;
 	bool takingDamage;
-	eLOCATION nextLocation; // 4J: Location is now an enum, not a string
+	eLOCATION nextLocation; // 4J: Location is now an enum, not a std::string
 
 public:
 	CombatTracker(LivingEntity *mob);
@@ -37,8 +37,8 @@ public:
 
 	void prepareForDamage();
 	void recordDamage(DamageSource *source, float health, float damage);
-	shared_ptr<ChatPacket> getDeathMessagePacket(); // 4J: Changed this to return a chat packet
-	shared_ptr<LivingEntity> getKiller();
+	std::shared_ptr<ChatPacket> getDeathMessagePacket(); // 4J: Changed this to return a chat packet
+	std::shared_ptr<LivingEntity> getKiller();
 
 private:
 	CombatEntry *getMostSignificantFall();

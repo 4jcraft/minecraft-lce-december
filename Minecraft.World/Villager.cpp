@@ -150,7 +150,7 @@ void Villager::serverAiMobStep()
 	AgableMob::serverAiMobStep();
 }
 
-bool Villager::mobInteract(shared_ptr<Player> player)
+bool Villager::mobInteract(std::shared_ptr<Player> player)
 {
 	// [EB]: Truly dislike this code but I don't see another easy way
 	shared_ptr<ItemInstance> item = player->inventory->getSelected();
@@ -255,7 +255,7 @@ bool Villager::isChasing()
 	return chasing;
 }
 
-void Villager::setLastHurtByMob(shared_ptr<LivingEntity> mob)
+void Villager::setLastHurtByMob(std::shared_ptr<LivingEntity> mob)
 {
 	AgableMob::setLastHurtByMob(mob);
 	shared_ptr<Village> _village = village.lock();
@@ -311,12 +311,12 @@ void Villager::die(DamageSource *source)
 	AgableMob::die(source);
 }
 
-void Villager::setTradingPlayer(shared_ptr<Player> player)
+void Villager::setTradingPlayer(std::shared_ptr<Player> player)
 {
 	tradingPlayer = weak_ptr<Player>(player);
 }
 
-shared_ptr<Player> Villager::getTradingPlayer()
+std::shared_ptr<Player> Villager::getTradingPlayer()
 {
 	return tradingPlayer.lock();
 }
@@ -353,7 +353,7 @@ void Villager::notifyTrade(MerchantRecipe *activeRecipe)
 	}
 }
 
-void Villager::notifyTradeUpdated(shared_ptr<ItemInstance> item)
+void Villager::notifyTradeUpdated(std::shared_ptr<ItemInstance> item)
 {
 	if (!level->isClientSide && (ambientSoundTime > (-getAmbientSoundInterval() + SharedConstants::TICKS_PER_SECOND)))
 	{
@@ -369,7 +369,7 @@ void Villager::notifyTradeUpdated(shared_ptr<ItemInstance> item)
 	}
 }
 
-MerchantRecipeList *Villager::getOffers(shared_ptr<Player> forPlayer)
+MerchantRecipeList *Villager::getOffers(std::shared_ptr<Player> forPlayer)
 {
 	if (offers == NULL)
 	{
@@ -608,7 +608,7 @@ void Villager::addItemForTradeIn(MerchantRecipeList *list, int itemId, Random *r
 	}
 }
 
-shared_ptr<ItemInstance> Villager::getItemTradeInValue(int itemId, Random *random)
+std::shared_ptr<ItemInstance> Villager::getItemTradeInValue(int itemId, Random *random)
 {
 	return shared_ptr<ItemInstance>(new ItemInstance(itemId, getTradeInValue(itemId, random), 0));
 }
@@ -718,7 +718,7 @@ void Villager::setRewardPlayersInVillage()
 	rewardPlayersOnFirstVillage = true;
 }
 
-shared_ptr<AgableMob> Villager::getBreedOffspring(shared_ptr<AgableMob> target)
+std::shared_ptr<AgableMob> Villager::getBreedOffspring(std::shared_ptr<AgableMob> target)
 {
 	// 4J - added limit to villagers that can be bred
 	if(level->canCreateMore(GetType(), Level::eSpawnType_Breed) )
@@ -738,7 +738,7 @@ bool Villager::canBeLeashed()
 	return false;
 }
 
-wstring Villager::getDisplayName()
+std::wstring Villager::getDisplayName()
 {
 	if (hasCustomName()) return getCustomName();
 

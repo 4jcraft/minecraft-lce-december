@@ -105,7 +105,7 @@ UIScene_EndPoem::UIScene_EndPoem(int iPad, void *initData, UILayer *parentLayer)
 	m_requestedLabel = 0;
 }
 
-wstring UIScene_EndPoem::getMoviePath()
+std::wstring UIScene_EndPoem::getMoviePath()
 {
 	return L"EndPoem";
 }

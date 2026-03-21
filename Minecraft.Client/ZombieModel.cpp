@@ -15,7 +15,7 @@ ZombieModel::ZombieModel(float g, bool isArmor) : HumanoidModel(g, 0, 64, isArmo
 {
 }
 
-void ZombieModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void ZombieModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
     HumanoidModel::setupAnim(time, r, bob, yRot, xRot, scale, entity, uiBitmaskOverrideAnim);
         

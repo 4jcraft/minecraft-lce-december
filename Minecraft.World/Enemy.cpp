@@ -3,7 +3,7 @@
 
 EntitySelector *Enemy::ENEMY_SELECTOR = new Enemy::EnemyEntitySelector();
 
-bool Enemy::EnemyEntitySelector::matches(shared_ptr<Entity> entity) const
+bool Enemy::EnemyEntitySelector::matches(std::shared_ptr<Entity> entity) const
 {
 	return (entity != NULL) && entity->instanceof(eTYPE_ENEMY);
 }

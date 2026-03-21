@@ -33,7 +33,7 @@ bool FlowerPotTile::isCubeShaped()
 	return false;
 }
 
-bool FlowerPotTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
+bool FlowerPotTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
 {
 	shared_ptr<ItemInstance> item = player->inventory->getSelected();
 	if (item == NULL) return false;
@@ -122,7 +122,7 @@ int FlowerPotTile::getResource(int data, Random *random, int playerBonusLevel)
 	return Item::flowerPot_Id;
 }
 
-shared_ptr<ItemInstance> FlowerPotTile::getItemFromType(int type)
+std::shared_ptr<ItemInstance> FlowerPotTile::getItemFromType(int type)
 {
 	switch (type)
 	{
@@ -153,7 +153,7 @@ shared_ptr<ItemInstance> FlowerPotTile::getItemFromType(int type)
 	return nullptr;
 }
 
-int FlowerPotTile::getTypeFromItem(shared_ptr<ItemInstance> item)
+int FlowerPotTile::getTypeFromItem(std::shared_ptr<ItemInstance> item)
 {
 	int id = item->getItem()->id;
 

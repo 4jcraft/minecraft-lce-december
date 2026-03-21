@@ -27,7 +27,7 @@ PrimedTnt::PrimedTnt(Level *level) : Entity( level )
 	_init();
 }
 
-PrimedTnt::PrimedTnt(Level *level, double x, double y, double z, shared_ptr<LivingEntity> owner) : Entity( level )
+PrimedTnt::PrimedTnt(Level *level, double x, double y, double z, std::shared_ptr<LivingEntity> owner) : Entity( level )
 {
 	_init();
 
@@ -118,7 +118,7 @@ float PrimedTnt::getShadowHeightOffs()
 	return 0;
 }
 
-shared_ptr<LivingEntity> PrimedTnt::getOwner()
+std::shared_ptr<LivingEntity> PrimedTnt::getOwner()
 {
 	return owner.lock();
 }

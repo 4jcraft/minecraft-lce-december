@@ -15,9 +15,9 @@
 #include "TexturePackRepository.h"
 #include "TextureMap.h"
 
-const wstring TextureMap::NAME_MISSING_TEXTURE = L"missingno";
+const std::wstring TextureMap::NAME_MISSING_TEXTURE = L"missingno";
 
-TextureMap::TextureMap(int type, const wstring &name, const wstring &path, BufferedImage *missingTexture, bool mipmap) : iconType(type), name(name), path(path), extension(L".png")
+TextureMap::TextureMap(int type, const std::wstring &name, const std::wstring &path, BufferedImage *missingTexture, bool mipmap) : iconType(type), name(name), path(path), extension(L".png")
 {
 	this->missingTexture = missingTexture;
 
@@ -189,7 +189,7 @@ void TextureMap::stitch()
 	stitchResult->updateOnGPU();
 }
 
-StitchedTexture *TextureMap::getTexture(const wstring &name)
+StitchedTexture *TextureMap::getTexture(const std::wstring &name)
 {
 	StitchedTexture *result = texturesByName.find(name)->second;
 	if (result == NULL) result = missingPosition;
@@ -212,7 +212,7 @@ Texture *TextureMap::getStitchedTexture()
 }
 
 // 4J Stu - register is a reserved keyword in C++
-Icon *TextureMap::registerIcon(const wstring &name)
+Icon *TextureMap::registerIcon(const std::wstring &name)
 {
 	if (name.empty())
 	{

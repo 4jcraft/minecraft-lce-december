@@ -621,7 +621,7 @@ void LocalPlayer::openTextEdit(shared_ptr<TileEntity> tileEntity)
 	//minecraft->setScreen(new TextEditScreen(sign));
 }
 
-bool LocalPlayer::openContainer(shared_ptr<Container> container)
+bool LocalPlayer::openContainer(std::shared_ptr<Container> container)
 {
 	bool success = app.LoadContainerMenu(GetXboxPad(), inventory, container );
 	if( success ) ui.PlayUISFX(eSFX_Press);
@@ -645,7 +645,7 @@ bool LocalPlayer::openHopper(shared_ptr<MinecartHopper> container)
 	return success;
 }
 
-bool LocalPlayer::openHorseInventory(shared_ptr<EntityHorse> horse, shared_ptr<Container> container)
+bool LocalPlayer::openHorseInventory(shared_ptr<EntityHorse> horse, std::shared_ptr<Container> container)
 {
 	//minecraft->setScreen(new HorseInventoryScreen(inventory, container, horse));
 	bool success = app.LoadHorseMenu(GetXboxPad(), inventory, container, horse);
@@ -669,7 +669,7 @@ bool LocalPlayer::openFireworks(int x, int y, int z)
 	return success;
 }
 
-bool LocalPlayer::startEnchanting(int x, int y, int z, const wstring &name)
+bool LocalPlayer::startEnchanting(int x, int y, int z, const std::wstring &name)
 {
 	bool success = app.LoadEnchantingMenu(GetXboxPad(), inventory, x, y, z, level, name);
 	if( success ) ui.PlayUISFX(eSFX_Press);
@@ -685,7 +685,7 @@ bool LocalPlayer::startRepairing(int x, int y, int z)
 	return success;
 }
 
-bool LocalPlayer::openFurnace(shared_ptr<FurnaceTileEntity> furnace)
+bool LocalPlayer::openFurnace(std::shared_ptr<FurnaceTileEntity> furnace)
 {
 	bool success = app.LoadFurnaceMenu(GetXboxPad(),inventory, furnace);
 	if( success ) ui.PlayUISFX(eSFX_Press);
@@ -709,7 +709,7 @@ bool LocalPlayer::openBeacon(shared_ptr<BeaconTileEntity> beacon)
 	return success;
 }
 
-bool LocalPlayer::openTrap(shared_ptr<DispenserTileEntity> trap)
+bool LocalPlayer::openTrap(std::shared_ptr<DispenserTileEntity> trap)
 {
 	bool success = app.LoadTrapMenu(GetXboxPad(),inventory, trap);
 	if( success ) ui.PlayUISFX(eSFX_Press);
@@ -717,7 +717,7 @@ bool LocalPlayer::openTrap(shared_ptr<DispenserTileEntity> trap)
 	return success;
 }
 
-bool LocalPlayer::openTrading(shared_ptr<Merchant> traderTarget, const wstring &name)
+bool LocalPlayer::openTrading(shared_ptr<Merchant> traderTarget, const std::wstring &name)
 {
 	bool success = app.LoadTradingMenu(GetXboxPad(),inventory, traderTarget, level, name);
 	if( success ) ui.PlayUISFX(eSFX_Press);
@@ -725,26 +725,26 @@ bool LocalPlayer::openTrading(shared_ptr<Merchant> traderTarget, const wstring &
 	return success;
 }
 
-void LocalPlayer::crit(shared_ptr<Entity> e)
+void LocalPlayer::crit(std::shared_ptr<Entity> e)
 {
 	shared_ptr<CritParticle> critParticle = shared_ptr<CritParticle>( new CritParticle((Level *)minecraft->level, e) );
 	critParticle->CritParticlePostConstructor();
 	minecraft->particleEngine->add(critParticle);
 }
 
-void LocalPlayer::magicCrit(shared_ptr<Entity> e)
+void LocalPlayer::magicCrit(std::shared_ptr<Entity> e)
 {
 	shared_ptr<CritParticle> critParticle = shared_ptr<CritParticle>( new CritParticle((Level *)minecraft->level, e, eParticleType_magicCrit) );
 	critParticle->CritParticlePostConstructor();
 	minecraft->particleEngine->add(critParticle);
 }
 
-void LocalPlayer::take(shared_ptr<Entity> e, int orgCount)
+void LocalPlayer::take(std::shared_ptr<Entity> e, int orgCount)
 {
 	minecraft->particleEngine->add( shared_ptr<TakeAnimationParticle>( new TakeAnimationParticle((Level *)minecraft->level, e, shared_from_this(), -0.5f) ) );
 }
 
-void LocalPlayer::chat(const wstring& message)
+void LocalPlayer::chat(const std::wstring& message)
 {
 }
 
@@ -1206,7 +1206,7 @@ Pos LocalPlayer::getCommandSenderWorldPosition()
 	return new Pos(floor(x + .5), floor(y + .5), floor(z + .5));
 }
 
-shared_ptr<ItemInstance> LocalPlayer::getCarriedItem()
+std::shared_ptr<ItemInstance> LocalPlayer::getCarriedItem()
 {
 	return inventory->getSelected();
 }
@@ -1235,7 +1235,7 @@ bool LocalPlayer::hasPermission(EGameCommand command)
 	return level->getLevelData()->getAllowCommands();
 }
 
-void LocalPlayer::onCrafted(shared_ptr<ItemInstance> item)
+void LocalPlayer::onCrafted(std::shared_ptr<ItemInstance> item)
 {
 	if( minecraft->localgameModes[m_iPad] != NULL )
 	{
@@ -1680,7 +1680,7 @@ float LocalPlayer::getAndResetChangeDimensionTimer()
 	return returnVal;
 }
 
-void LocalPlayer::handleCollectItem(shared_ptr<ItemInstance> item)
+void LocalPlayer::handleCollectItem(std::shared_ptr<ItemInstance> item)
 {
 	if(item != NULL)
 	{

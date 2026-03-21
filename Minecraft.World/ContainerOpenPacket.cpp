@@ -4,7 +4,7 @@
 #include "PacketListener.h"
 #include "ContainerOpenPacket.h"
 
-void ContainerOpenPacket::_init(int containerId, int type, const wstring &title, int size, bool customName, int entityId)
+void ContainerOpenPacket::_init(int containerId, int type, const std::wstring &title, int size, bool customName, int entityId)
 {
 	this->containerId = containerId;
 	this->type = type;
@@ -20,12 +20,12 @@ ContainerOpenPacket::ContainerOpenPacket()
 
 }
 
-ContainerOpenPacket::ContainerOpenPacket(int containerId, int type, const wstring &title, int size, bool customName) 
+ContainerOpenPacket::ContainerOpenPacket(int containerId, int type, const std::wstring &title, int size, bool customName) 
 {
 	_init(containerId, type, title, size, customName, 0);
 }
 
-ContainerOpenPacket::ContainerOpenPacket(int containerId, int type, const wstring &title, int size, bool customName, int entityId)
+ContainerOpenPacket::ContainerOpenPacket(int containerId, int type, const std::wstring &title, int size, bool customName, int entityId)
 {
 	_init(containerId, type, title, size, customName, entityId);
 }

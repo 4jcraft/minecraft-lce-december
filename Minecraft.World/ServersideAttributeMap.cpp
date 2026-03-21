@@ -45,7 +45,7 @@ AttributeInstance *ServersideAttributeMap::registerAttribute(Attribute *attribut
 	/*RangedAttribute *rangedAttribute = dynamic_cast<RangedAttribute*>(attribute);
 	if (rangedAttribute != NULL && rangedAttribute->getImportLegacyName() != L"")
 	{
-		attributesByLegacy.insert(std::pair<wstring, AttributeInstance*>(rangedAttribute->getImportLegacyName(), instance));
+		attributesByLegacy.insert(std::pair<std::wstring, AttributeInstance*>(rangedAttribute->getImportLegacyName(), instance));
 	}*/
 
 	return instance;

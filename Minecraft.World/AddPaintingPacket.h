@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 
@@ -11,17 +11,17 @@ public:
 	int id;
     int x, y, z;
     int dir;
-    wstring motive;
+    std::wstring motive;
 
 public:
 	AddPaintingPacket();
-	AddPaintingPacket(shared_ptr<Painting> e);
+	AddPaintingPacket(std::shared_ptr<Painting> e);
 
 	virtual void read(DataInputStream *dis);
 	virtual void write(DataOutputStream *dos);
 	virtual void handle(PacketListener *listener);
 	virtual int getEstimatedSize();
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new AddPaintingPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new AddPaintingPacket()); }
 	virtual int getId() { return 25; }
 };

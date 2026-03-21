@@ -78,7 +78,7 @@ public:
 	virtual int getCatType();
 	virtual void setCatType(int type);
 	virtual bool canSpawn();
-	virtual wstring getAName();
+	virtual std::wstring getAName();
 	virtual MobGroupData *finalizeMobSpawn(MobGroupData *groupData, int extraData = 0); // 4J Added extraData param
 
 

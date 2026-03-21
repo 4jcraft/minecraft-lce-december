@@ -13,23 +13,23 @@ public:
 	static const int METHOD_JOIN = 3;
 	static const int METHOD_LEAVE = 4;
 
-	wstring name;
-	wstring displayName;
-	wstring prefix;
-	wstring suffix;
-	vector<wstring> players;
+	std::wstring name;
+	std::wstring displayName;
+	std::wstring prefix;
+	std::wstring suffix;
+	vector<std::wstring> players;
 	int method;
 	int options;
 
 	SetPlayerTeamPacket();
 	SetPlayerTeamPacket(PlayerTeam *team, int method);
-	SetPlayerTeamPacket(PlayerTeam *team, vector<wstring> *players, int method);
+	SetPlayerTeamPacket(PlayerTeam *team, vector<std::wstring> *players, int method);
 	void read(DataInputStream *dis);
 	void write(DataOutputStream *dos);
 	void handle(PacketListener *listener);
 	int getEstimatedSize();
 	
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new SetPlayerTeamPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new SetPlayerTeamPacket()); }
 	virtual int getId() { return 209; }
 };

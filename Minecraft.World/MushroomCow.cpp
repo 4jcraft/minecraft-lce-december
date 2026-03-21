@@ -21,7 +21,7 @@ MushroomCow::MushroomCow(Level *level) : Cow(level)
 	this->setSize(0.9f, 1.3f);
 }
 
-bool MushroomCow::mobInteract(shared_ptr<Player> player)
+bool MushroomCow::mobInteract(std::shared_ptr<Player> player)
 {
 	shared_ptr<ItemInstance> item = player->inventory->getSelected();
 	if (item != NULL && item->id == Item::bowl_Id && getAge() >= 0)
@@ -71,7 +71,7 @@ bool MushroomCow::canSpawn()
 	return ( level->getTile(xt, yt - 1, zt) == Tile::grass_Id || level->getTile(xt, yt - 1, zt) == Tile::mycel_Id ) && level->getDaytimeRawBrightness(xt, yt, zt) > 8 && PathfinderMob::canSpawn();
 }
 
-shared_ptr<AgableMob> MushroomCow::getBreedOffspring(shared_ptr<AgableMob> target)
+std::shared_ptr<AgableMob> MushroomCow::getBreedOffspring(std::shared_ptr<AgableMob> target)
 {
 	// 4J - added limit to number of animals that can be bred
 	if( level->canCreateMore( GetType(), Level::eSpawnType_Breed) )

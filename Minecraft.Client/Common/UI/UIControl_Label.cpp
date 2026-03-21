@@ -8,7 +8,7 @@ UIControl_Label::UIControl_Label()
 	m_reinitEnabled = true;
 }
 
-bool UIControl_Label::setupControl(UIScene *scene, IggyValuePath *parent, const string &controlName)
+bool UIControl_Label::setupControl(UIScene *scene, IggyValuePath *parent, const std::string &controlName)
 {
 	UIControl::setControlType(UIControl::eLabel);
 	bool success = UIControl_Base::setupControl(scene,parent,controlName);

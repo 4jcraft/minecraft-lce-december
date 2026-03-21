@@ -1,7 +1,7 @@
 #pragma once
 #include "LivingEntityRenderer.h"
 class Mob;
-using namespace std;
+
 
 // This was used in MobRenderer but lots of code moved to LivingEntity and I haven't put this back yet
 /*#define PLAYER_NAME_READABLE_FULLSCREEN 16
@@ -13,11 +13,11 @@ class MobRenderer : public LivingEntityRenderer
 {
 public:
 	MobRenderer(Model *model, float shadow);
-    virtual void render(shared_ptr<Entity> mob, double x, double y, double z, float rot, float a);
+    virtual void render(std::shared_ptr<Entity> mob, double x, double y, double z, float rot, float a);
 
 protected:	
-	virtual bool shouldShowName(shared_ptr<LivingEntity> mob);
-	virtual void renderLeash(shared_ptr<Mob> entity, double x, double y, double z, float rot, float a);
+	virtual bool shouldShowName(std::shared_ptr<LivingEntity> mob);
+	virtual void renderLeash(std::shared_ptr<Mob> entity, double x, double y, double z, float rot, float a);
 
 private:
 	double lerp(double prev, double next, double a);

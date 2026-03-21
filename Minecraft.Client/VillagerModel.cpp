@@ -55,7 +55,7 @@ VillagerModel::VillagerModel(float g, float yOffset, int xTexSize, int yTexSize)
 	_init(g, yOffset, xTexSize, yTexSize);
 }
 
-void VillagerModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled) 
+void VillagerModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled) 
 {
 	setupAnim(time, r, bob, yRot, xRot, scale, entity);
 
@@ -66,7 +66,7 @@ void VillagerModel::render(shared_ptr<Entity> entity, float time, float r, float
 	arms->render(scale,usecompiled);
 }
 
-void VillagerModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void VillagerModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	head->yRot = yRot / (float) (180 / PI);
 	head->xRot = xRot / (float) (180 / PI);

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TexturePack.h"
 
-wstring TexturePack::getPath(bool bTitleUpdateTexture /*= false*/,const char *pchBDPatchFileName /*= NULL*/)
+std::wstring TexturePack::getPath(bool bTitleUpdateTexture /*= false*/,const char *pchBDPatchFileName /*= NULL*/)
 {
 	wstring wDrive;
 #ifdef _XBOX

@@ -45,7 +45,7 @@ UIScene_LanguageSelector::UIScene_LanguageSelector(int iPad, void *initData, UIL
 	}
 }
 
-wstring UIScene_LanguageSelector::getMoviePath()
+std::wstring UIScene_LanguageSelector::getMoviePath()
 {
 	if (app.GetLocalPlayerCount() > 1)	return L"LanguagesMenuSplit";
 	else								return L"LanguagesMenu";

@@ -20,13 +20,13 @@ const int InventoryMenu::INV_SLOT_END = InventoryMenu::INV_SLOT_START + 9 * 3;
 const int InventoryMenu::USE_ROW_SLOT_START = InventoryMenu::INV_SLOT_END;
 const int InventoryMenu::USE_ROW_SLOT_END = InventoryMenu::USE_ROW_SLOT_START + 9;
 
-InventoryMenu::InventoryMenu(shared_ptr<Inventory> inventory, bool active, Player *player) : AbstractContainerMenu()
+InventoryMenu::InventoryMenu(std::shared_ptr<Inventory> inventory, bool active, Player *player) : AbstractContainerMenu()
 {
 	owner = player;
 	_init( inventory, active );
 }
 
-void InventoryMenu::_init(shared_ptr<Inventory> inventory, bool active)
+void InventoryMenu::_init(std::shared_ptr<Inventory> inventory, bool active)
 {
 	craftSlots = shared_ptr<CraftingContainer>( new CraftingContainer(this, 2, 2) );
 	resultSlots = shared_ptr<ResultContainer>( new ResultContainer() );
@@ -71,7 +71,7 @@ void InventoryMenu::slotsChanged()  // 4J used to take a shared_ptr<Container> b
 	MemSect(0);
 }
 
-void InventoryMenu::removed(shared_ptr<Player> player)
+void InventoryMenu::removed(std::shared_ptr<Player> player)
 {
 	AbstractContainerMenu::removed(player);
 	for (int i = 0; i < 4; i++)
@@ -86,12 +86,12 @@ void InventoryMenu::removed(shared_ptr<Player> player)
 	resultSlots->setItem(0, nullptr);
 }
 
-bool InventoryMenu::stillValid(shared_ptr<Player> player)
+bool InventoryMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return true;
 }
 
-shared_ptr<ItemInstance> InventoryMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> InventoryMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);
@@ -220,18 +220,18 @@ shared_ptr<ItemInstance> InventoryMenu::quickMoveStack(shared_ptr<Player> player
 	return clicked;
 }
 
-bool InventoryMenu::mayCombine(Slot *slot, shared_ptr<ItemInstance> item)
+bool InventoryMenu::mayCombine(Slot *slot, std::shared_ptr<ItemInstance> item)
 {
 	return slot->mayCombine(item);
 }
 
-bool InventoryMenu::canTakeItemForPickAll(shared_ptr<ItemInstance> carried, Slot *target)
+bool InventoryMenu::canTakeItemForPickAll(std::shared_ptr<ItemInstance> carried, Slot *target)
 {
 	return target->container != resultSlots && AbstractContainerMenu::canTakeItemForPickAll(carried, target);
 }
 
 // 4J-JEV: Added for achievement 'Iron Man'.
-shared_ptr<ItemInstance> InventoryMenu::clicked(int slotIndex, int buttonNum, int clickType, shared_ptr<Player> player, bool looped) // 4J Added looped param
+std::shared_ptr<ItemInstance> InventoryMenu::clicked(int slotIndex, int buttonNum, int clickType, std::shared_ptr<Player> player, bool looped) // 4J Added looped param
 {
 	shared_ptr<ItemInstance> out = AbstractContainerMenu::clicked(slotIndex, buttonNum, clickType, player, looped);
 

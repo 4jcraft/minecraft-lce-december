@@ -70,7 +70,7 @@ void TripWireTile::neighborChanged(Level *level, int x, int y, int z, int type)
 	}
 }
 
-void TripWireTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity)
+void TripWireTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity)
 {
 	int data = level->getData(x, y, z);
 	bool attached = (data & MASK_ATTACHED) == MASK_ATTACHED;
@@ -102,7 +102,7 @@ void TripWireTile::onRemove(Level *level, int x, int y, int z, int id, int data)
 	updateSource(level, x, y, z, data | MASK_POWERED);
 }
 
-void TripWireTile::playerWillDestroy(Level *level, int x, int y, int z, int data, shared_ptr<Player> player)
+void TripWireTile::playerWillDestroy(Level *level, int x, int y, int z, int data, std::shared_ptr<Player> player)
 {
 	if (level->isClientSide) return;
 
@@ -141,7 +141,7 @@ void TripWireTile::updateSource(Level *level, int x, int y, int z, int data)
 	}
 }
 
-void TripWireTile::entityInside(Level *level, int x, int y, int z, shared_ptr<Entity> entity)
+void TripWireTile::entityInside(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity)
 {
 	if (level->isClientSide) return;
 

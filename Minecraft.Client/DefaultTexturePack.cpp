@@ -45,7 +45,7 @@ void DefaultTexturePack::loadName()
 	texname = L"Minecraft";
 }
 
-bool DefaultTexturePack::hasFile(const wstring &name)
+bool DefaultTexturePack::hasFile(const std::wstring &name)
 {
 //	return DefaultTexturePack::class->getResourceAsStream(name) != null;
 	return true;
@@ -56,7 +56,7 @@ bool DefaultTexturePack::isTerrainUpdateCompatible()
 	return true;
 }
 
-InputStream *DefaultTexturePack::getResourceImplementation(const wstring &name)// throws FileNotFoundException
+InputStream *DefaultTexturePack::getResourceImplementation(const std::wstring &name)// throws FileNotFoundException
 {
 	wstring wDrive = L"";
 	// Make the content package point to to the UPDATE: drive is needed

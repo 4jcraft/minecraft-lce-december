@@ -7,7 +7,7 @@
 #include "net.minecraft.world.h"
 #include "BasePressurePlateTile.h"
 
-BasePressurePlateTile::BasePressurePlateTile(int id, const wstring &tex, Material *material) : Tile(id, material, isSolidRender())
+BasePressurePlateTile::BasePressurePlateTile(int id, const std::wstring &tex, Material *material) : Tile(id, material, isSolidRender())
 {
 	texture = tex;
 	setTicking(true);
@@ -16,7 +16,7 @@ BasePressurePlateTile::BasePressurePlateTile(int id, const wstring &tex, Materia
 	//updateShape(getDataForSignal(Redstone::SIGNAL_MAX));
 }
 
-void BasePressurePlateTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity)
+void BasePressurePlateTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity)
 {
 	updateShape(level->getData(x, y, z));
 }
@@ -91,7 +91,7 @@ void BasePressurePlateTile::tick(Level *level, int x, int y, int z, Random *rand
 	if (signal > Redstone::SIGNAL_NONE) checkPressed(level, x, y, z, signal);
 }
 
-void BasePressurePlateTile::entityInside(Level *level, int x, int y, int z, shared_ptr<Entity> entity)
+void BasePressurePlateTile::entityInside(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity)
 {
 	if (level->isClientSide) return;
 	int signal = getSignalForData(level->getData(x, y, z));

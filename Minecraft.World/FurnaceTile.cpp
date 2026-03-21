@@ -108,7 +108,7 @@ bool FurnaceTile::TestUse()
 	return true;
 }
 
-bool FurnaceTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool FurnaceTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if( soundOnly) return false;
 
@@ -139,12 +139,12 @@ void FurnaceTile::setLit(bool lit, Level *level, int x, int y, int z)
 	}
 }
 
-shared_ptr<TileEntity> FurnaceTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> FurnaceTile::newTileEntity(Level *level)
 {
 	return shared_ptr<FurnaceTileEntity>( new FurnaceTileEntity() );
 }
 
-void FurnaceTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void FurnaceTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	int dir = (Mth::floor(by->yRot * 4 / (360) + 0.5)) & 3;
 

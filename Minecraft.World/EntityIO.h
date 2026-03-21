@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "Entity.h"
 #include "JavaIntHash.h"
@@ -39,21 +38,21 @@ public:
 	static unordered_map<int, SpawnableMobInfo *> idsSpawnableInCreative;
 
 private:
-	static void setId(entityCreateFn createFn, eINSTANCEOF clas, const wstring &id, int idNum);
-	static void setId(entityCreateFn createFn, eINSTANCEOF clas, const wstring &id, int idNum, eMinecraftColour color1, eMinecraftColour color2, int nameId);
+	static void setId(entityCreateFn createFn, eINSTANCEOF clas, const std::wstring &id, int idNum);
+	static void setId(entityCreateFn createFn, eINSTANCEOF clas, const std::wstring &id, int idNum, eMinecraftColour color1, eMinecraftColour color2, int nameId);
 
 public:
 	static void staticCtor();
-	static shared_ptr<Entity> newEntity(const wstring& id, Level *level);
+	static shared_ptr<Entity> newEntity(const std::wstring& id, Level *level);
 	static shared_ptr<Entity> loadStatic(CompoundTag *tag, Level *level);
 	static shared_ptr<Entity> newById(int id, Level *level);
 	static shared_ptr<Entity> newByEnumType(eINSTANCEOF eType, Level *level);
 	static int getId(shared_ptr<Entity> entity);
-	static wstring getEncodeId(shared_ptr<Entity> entity);
-	static int getId(const wstring &encodeId);
-	static wstring getEncodeId(int entityIoValue);
+	static std::wstring getEncodeId(shared_ptr<Entity> entity);
+	static int getId(const std::wstring &encodeId);
+	static std::wstring getEncodeId(int entityIoValue);
 	static int getNameId(int entityIoValue);
-	static eINSTANCEOF getType(const wstring &idString);
+	static eINSTANCEOF getType(const std::wstring &idString);
 	static eINSTANCEOF getClass(int id);
 
 	// 4J-JEV, added for enumerating mobs.

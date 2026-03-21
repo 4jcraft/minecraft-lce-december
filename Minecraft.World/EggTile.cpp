@@ -46,7 +46,7 @@ void EggTile::checkSlide(Level *level, int x, int y, int z)
 	}
 }
 
-bool EggTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool EggTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if(soundOnly) return false;
 
@@ -54,7 +54,7 @@ bool EggTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, 
 	return true;
 }
 
-void EggTile::attack(Level *level, int x, int y, int z, shared_ptr<Player> player)
+void EggTile::attack(Level *level, int x, int y, int z, std::shared_ptr<Player> player)
 {
 	teleport(level, x, y, z);
 }

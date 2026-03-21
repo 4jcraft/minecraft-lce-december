@@ -114,8 +114,8 @@ std::vector<HeapInspectorServer::HeapInfo> GetHeapInfo()
 	return result;
 }
 
-extern "C" void* __real__malloc_init(size_t a_Boundary, size_t a_Size);
-extern "C" void* __wrap__malloc_init(size_t a_Boundary, size_t a_Size)
+extern "C" void* __real__malloc_init(std::size_t a_Boundary, std::size_t a_Size);
+extern "C" void* __wrap__malloc_init(std::size_t a_Boundary, std::size_t a_Size)
 {
 	void* result = __real__malloc_init(a_Boundary, a_Size);
 	HeapInspectorServer::Initialise(GetHeapInfo(), 3000, HeapInspectorServer::WaitForConnection_Enabled);
@@ -598,7 +598,7 @@ int main()
 	// register the awards
 	RegisterAwardsWithProfileManager();
 
-	// register the get string function with the profile lib, so it can be called within the lib
+	// register the get std::string function with the profile lib, so it can be called within the lib
 	ProfileManager.SetGetStringFunc(&CConsoleMinecraftApp::GetString);
 	ProfileManager.SetPlayerListTitleID(IDS_PLAYER_LIST_TITLE);
 
@@ -707,7 +707,7 @@ int main()
 	// load any skins
 	//app.AddSkinsToMemoryTextureFiles();
 
-	// set the achievement text for a trial achievement, now we have the string table loaded
+	// set the achievement text for a trial achievement, now we have the std::string table loaded
 	//Chris TODO
 	//ProfileManager.SetTrialTextStringTable(app.GetStringTable(),IDS_CONFIRM_OK, IDS_CONFIRM_CANCEL);
 	ProfileManager.SetTrialAwardText(eAwardType_Achievement,IDS_UNLOCK_TITLE,IDS_UNLOCK_ACHIEVEMENT_TEXT);
@@ -1060,7 +1060,7 @@ int main()
 	ShutdownManager::MainThreadHandleShutdown();
 }
 
-vector<uint8_t *> vRichPresenceStrings;
+std::vector<uint8_t *> vRichPresenceStrings;
 uint8_t * AddRichPresenceString(int iID)
 {
 	uint8_t *strUtf8 = mallocAndCreateUTF8ArrayFromString(iID);

@@ -19,7 +19,7 @@ public:
 private:
 	int reqId;
 	void * psnTicket;
-	size_t psnTicketSize;
+	std::size_t psnTicketSize;
 	bool m_waitingForTicket;
 	bool initialized;
 	SceRemoteStorageStatus* outputGetStatus;

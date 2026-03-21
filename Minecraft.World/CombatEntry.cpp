@@ -59,7 +59,7 @@ CombatTracker::eLOCATION CombatEntry::getLocation()
 	return location;
 }
 
-wstring CombatEntry::getAttackerName()
+std::wstring CombatEntry::getAttackerName()
 {
 	return getSource()->getEntity() == NULL ? L"" : getSource()->getEntity()->getNetworkName();
 }

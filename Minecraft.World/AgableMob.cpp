@@ -13,7 +13,7 @@ AgableMob::AgableMob(Level *level) : PathfinderMob(level)
 	registeredBBHeight = 0;
 }
 
-bool AgableMob::mobInteract(shared_ptr<Player> player)
+bool AgableMob::mobInteract(std::shared_ptr<Player> player)
 {
 	shared_ptr<ItemInstance> item = player->inventory->getSelected();
 

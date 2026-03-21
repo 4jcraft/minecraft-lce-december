@@ -7,7 +7,7 @@
 #include "net.minecraft.world.item.enchantment.h"
 #include "EnchantmentMenu.h"
 
-EnchantmentMenu::EnchantmentMenu(shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt)
+EnchantmentMenu::EnchantmentMenu(std::shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt)
 {
 	enchantSlots = shared_ptr<EnchantmentContainer>( new EnchantmentContainer(this) );
 
@@ -150,7 +150,7 @@ void EnchantmentMenu::slotsChanged() // 4J used to take a shared_ptr<Container> 
 	}
 }
 
-bool EnchantmentMenu::clickMenuButton(shared_ptr<Player> player, int i)
+bool EnchantmentMenu::clickMenuButton(std::shared_ptr<Player> player, int i)
 {
 	shared_ptr<ItemInstance> item = enchantSlots->getItem(0);
 	if (costs[i] > 0 && item != NULL && (player->experienceLevel >= costs[i] || player->abilities.instabuild) )
@@ -194,7 +194,7 @@ bool EnchantmentMenu::clickMenuButton(shared_ptr<Player> player, int i)
 }
 
 
-void EnchantmentMenu::removed(shared_ptr<Player> player)
+void EnchantmentMenu::removed(std::shared_ptr<Player> player)
 {
 	AbstractContainerMenu::removed(player);
 	if (level->isClientSide) return;
@@ -206,14 +206,14 @@ void EnchantmentMenu::removed(shared_ptr<Player> player)
 	}
 }
 
-bool EnchantmentMenu::stillValid(shared_ptr<Player> player) 
+bool EnchantmentMenu::stillValid(std::shared_ptr<Player> player) 
 {
 	if (level->getTile(x, y, z) != Tile::enchantTable_Id) return false;
 	if (player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 8 * 8) return false;
 	return true;
 }
 
-shared_ptr<ItemInstance> EnchantmentMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> EnchantmentMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);

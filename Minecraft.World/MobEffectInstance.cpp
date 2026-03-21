@@ -100,7 +100,7 @@ bool MobEffectInstance::isAmbient()
 * @param target
 * @return True if the effect is still active.
 */
-bool MobEffectInstance::tick(shared_ptr<LivingEntity> target)
+bool MobEffectInstance::tick(std::shared_ptr<LivingEntity> target)
 {
 	if (duration > 0)
 	{
@@ -118,7 +118,7 @@ int MobEffectInstance::tickDownDuration()
 	return --duration;
 }
 
-void MobEffectInstance::applyEffect(shared_ptr<LivingEntity> mob)
+void MobEffectInstance::applyEffect(std::shared_ptr<LivingEntity> mob)
 {
 	if (duration > 0)
 	{
@@ -145,7 +145,7 @@ int MobEffectInstance::hashCode()
 	return (id & 0xff) | ( (amplifier & 0xff) << 8) | ( (duration & 0xffff) << 16);
 }
 
-wstring MobEffectInstance::toString()
+std::wstring MobEffectInstance::toString()
 {
 	wstring result = L"MobEffectInstance::toString - NON IMPLEMENTED OR LOCALISED FUNCTION";
 	//wstring result = "";

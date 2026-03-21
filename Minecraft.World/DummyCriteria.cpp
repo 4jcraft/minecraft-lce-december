@@ -2,13 +2,13 @@
 
 #include "DummyCriteria.h"
 
-DummyCriteria::DummyCriteria(const wstring &name)
+DummyCriteria::DummyCriteria(const std::wstring &name)
 {
 	this->name = name;
 	ObjectiveCriteria::CRITERIA_BY_NAME[name] = this;
 }
 
-wstring DummyCriteria::getName()
+std::wstring DummyCriteria::getName()
 {
 	return name;
 }

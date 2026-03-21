@@ -6,7 +6,7 @@ NameTagItem::NameTagItem(int id) : Item(id)
 {
 }
 
-bool NameTagItem::interactEnemy(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, shared_ptr<LivingEntity> target)
+bool NameTagItem::interactEnemy(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, std::shared_ptr<LivingEntity> target)
 {
 	if (!itemInstance->hasCustomHoverName()) return false;
 

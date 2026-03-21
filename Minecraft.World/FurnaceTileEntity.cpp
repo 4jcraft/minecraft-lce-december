@@ -43,13 +43,13 @@ unsigned int FurnaceTileEntity::getContainerSize()
 }
 
 
-shared_ptr<ItemInstance> FurnaceTileEntity::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> FurnaceTileEntity::getItem(unsigned int slot)
 {
 	return items[slot];
 }
 
 
-shared_ptr<ItemInstance> FurnaceTileEntity::removeItem(unsigned int slot, int count)
+std::shared_ptr<ItemInstance> FurnaceTileEntity::removeItem(unsigned int slot, int count)
 {
 	m_charcoalUsed = false;
 
@@ -75,7 +75,7 @@ shared_ptr<ItemInstance> FurnaceTileEntity::removeItem(unsigned int slot, int co
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> FurnaceTileEntity::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> FurnaceTileEntity::removeItemNoUpdate(int slot)
 {
 	m_charcoalUsed = false;
 
@@ -89,19 +89,19 @@ shared_ptr<ItemInstance> FurnaceTileEntity::removeItemNoUpdate(int slot)
 }
 
 
-void FurnaceTileEntity::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void FurnaceTileEntity::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	items[slot] = item;
 	if (item != NULL && item->count > getMaxStackSize()) item->count = getMaxStackSize();
 }
 
 
-wstring FurnaceTileEntity::getName()
+std::wstring FurnaceTileEntity::getName()
 {
 	return hasCustomName() ? name : app.GetString(IDS_TILE_FURNACE);
 }
 
-wstring FurnaceTileEntity::getCustomName()
+std::wstring FurnaceTileEntity::getCustomName()
 {
 	return hasCustomName() ? name : L"";
 }
@@ -111,7 +111,7 @@ bool FurnaceTileEntity::hasCustomName()
 	return !name.empty();
 }
 
-void FurnaceTileEntity::setCustomName(const wstring &name)
+void FurnaceTileEntity::setCustomName(const std::wstring &name)
 {
 	this->name = name;
 }
@@ -273,7 +273,7 @@ void FurnaceTileEntity::burn()
 }
 
 
-int FurnaceTileEntity::getBurnDuration(shared_ptr<ItemInstance> itemInstance)
+int FurnaceTileEntity::getBurnDuration(std::shared_ptr<ItemInstance> itemInstance)
 {
 	if (itemInstance == NULL) return 0;
 	int id = itemInstance->getItem()->id;
@@ -329,12 +329,12 @@ int FurnaceTileEntity::getBurnDuration(shared_ptr<ItemInstance> itemInstance)
 	return 0;
 }
 
-bool FurnaceTileEntity::isFuel(shared_ptr<ItemInstance> item)
+bool FurnaceTileEntity::isFuel(std::shared_ptr<ItemInstance> item)
 {
 	return getBurnDuration(item) > 0;
 }
 
-bool FurnaceTileEntity::stillValid(shared_ptr<Player> player)
+bool FurnaceTileEntity::stillValid(std::shared_ptr<Player> player)
 {
 	if (level->getTileEntity(x, y, z) != shared_from_this() ) return false;
 	if (player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 8 * 8) return false;
@@ -354,7 +354,7 @@ void FurnaceTileEntity::stopOpen()
 {
 }
 
-bool FurnaceTileEntity::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool FurnaceTileEntity::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	if (slot == SLOT_RESULT) return false;
 	if (slot == SLOT_FUEL) return isFuel(item);
@@ -377,13 +377,13 @@ intArray FurnaceTileEntity::getSlotsForFace(int face)
 	}
 }
 
-bool FurnaceTileEntity::canPlaceItemThroughFace(int slot, shared_ptr<ItemInstance> item, int face)
+bool FurnaceTileEntity::canPlaceItemThroughFace(int slot, std::shared_ptr<ItemInstance> item, int face)
 {
 	return canPlaceItem(slot, item);
 
 }
 
-bool FurnaceTileEntity::canTakeItemThroughFace(int slot, shared_ptr<ItemInstance> item, int face)
+bool FurnaceTileEntity::canTakeItemThroughFace(int slot, std::shared_ptr<ItemInstance> item, int face)
 {
 	if (face == Facing::DOWN && slot == SLOT_FUEL)
 	{
@@ -394,7 +394,7 @@ bool FurnaceTileEntity::canTakeItemThroughFace(int slot, shared_ptr<ItemInstance
 }
 
 // 4J Added
-shared_ptr<TileEntity> FurnaceTileEntity::clone()
+std::shared_ptr<TileEntity> FurnaceTileEntity::clone()
 {
 	shared_ptr<FurnaceTileEntity> result = shared_ptr<FurnaceTileEntity>( new FurnaceTileEntity() );
 	TileEntity::clone(result);

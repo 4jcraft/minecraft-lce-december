@@ -5,7 +5,7 @@
 class HopperMenu : public AbstractContainerMenu
 {
 private:
-	shared_ptr<Container> hopper;
+	std::shared_ptr<Container> hopper;
 
 public:
 	static const int CONTENTS_SLOT_START = 0;
@@ -15,10 +15,10 @@ public:
 	static const int USE_ROW_SLOT_END = USE_ROW_SLOT_START + 9;
 
 public:
-	HopperMenu(shared_ptr<Container> inventory, shared_ptr<Container> hopper);
+	HopperMenu(std::shared_ptr<Container> inventory, std::shared_ptr<Container> hopper);
 
-	bool stillValid(shared_ptr<Player> player);
-	shared_ptr<ItemInstance> quickMoveStack(shared_ptr<Player> player, int slotIndex);
-	void removed(shared_ptr<Player> player);
-	shared_ptr<Container> getContainer();
+	bool stillValid(std::shared_ptr<Player> player);
+	std::shared_ptr<ItemInstance> quickMoveStack(std::shared_ptr<Player> player, int slotIndex);
+	void removed(std::shared_ptr<Player> player);
+	std::shared_ptr<Container> getContainer();
 };

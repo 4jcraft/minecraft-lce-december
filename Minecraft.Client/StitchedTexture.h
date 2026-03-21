@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "..\Minecraft.World\Icon.h"
 class Texture;
@@ -7,17 +7,17 @@ class Texture;
 class StitchedTexture : public Icon
 {
 private:
-	const wstring name;
+	const std::wstring name;
 
 public:
-	wstring m_fileName;
+	std::wstring m_fileName;
 
 protected:
 	Texture *source;
-	vector<Texture *> *frames;
+	std::vector<Texture *> *frames;
 
 private:
-	typedef vector<pair<int, int> > intPairVector;
+	typedef std::vector<pair<int, int> > intPairVector;
 	intPairVector *frameOverride;
 	int flags;
 
@@ -44,15 +44,15 @@ protected:
 	int subFrame;
 
 public:
-	static StitchedTexture *create(const wstring &name);
+	static StitchedTexture *create(const std::wstring &name);
 	
 	~StitchedTexture();
 protected:
-	StitchedTexture(const wstring &name, const wstring &filename);
+	StitchedTexture(const std::wstring &name, const std::wstring &filename);
 
 public:
 	void initUVs(float U0, float V0, float U1, float V1);
-	void init(Texture *source, vector<Texture *> *frames, int x, int y, int width, int height, bool rotated);
+	void init(Texture *source, std::vector<Texture *> *frames, int x, int y, int width, int height, bool rotated);
 	void replaceWith(StitchedTexture *texture);
 	int getX() const;
 	int getY() const;
@@ -64,7 +64,7 @@ public:
 	float getV0(bool adjust = false) const;
 	float getV1(bool adjust = false) const;
 	float getV(double offset, bool adjust = false) const;
-	wstring getName() const;
+	std::wstring getName() const;
 	virtual int getSourceWidth() const;
 	virtual int getSourceHeight() const;
 	virtual void cycleFrames();
@@ -83,7 +83,7 @@ public:
 	* @param bufferedReader
 	*/
 	void loadAnimationFrames(BufferedReader *bufferedReader);
-	void loadAnimationFrames(const wstring &string); // 4J Added
+	void loadAnimationFrames(const std::wstring &std::string); // 4J Added
 
 	int getFlags() const ;			// 4J added
 	void setFlags(int flags);		// 4J added

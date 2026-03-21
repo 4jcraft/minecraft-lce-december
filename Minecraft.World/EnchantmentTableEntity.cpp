@@ -102,12 +102,12 @@ void EnchantmentTableEntity::tick()
 	flip = flip + flipA;
 }
 
-wstring EnchantmentTableEntity::getName()
+std::wstring EnchantmentTableEntity::getName()
 {
 	return hasCustomName() ? name : app.GetString(IDS_ENCHANT);
 }
 
-wstring EnchantmentTableEntity::getCustomName()
+std::wstring EnchantmentTableEntity::getCustomName()
 {
 	return hasCustomName() ? name : L"";
 }
@@ -117,12 +117,12 @@ bool EnchantmentTableEntity::hasCustomName()
 	return !name.empty();
 }
 
-void EnchantmentTableEntity::setCustomName(const wstring &name)
+void EnchantmentTableEntity::setCustomName(const std::wstring &name)
 {
 	this->name = name;
 }
 
-shared_ptr<TileEntity> EnchantmentTableEntity::clone()
+std::shared_ptr<TileEntity> EnchantmentTableEntity::clone()
 {
 	shared_ptr<EnchantmentTableEntity> result = shared_ptr<EnchantmentTableEntity>( new EnchantmentTableEntity() );
 	TileEntity::clone(result);

@@ -8,7 +8,7 @@ CommandBlock::CommandBlock(int id) : BaseEntityTile(id, Material::metal, isSolid
 {
 }
 
-shared_ptr<TileEntity> CommandBlock::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> CommandBlock::newTileEntity(Level *level)
 {
 	return shared_ptr<CommandBlockEntity>( new CommandBlockEntity() );
 }
@@ -51,7 +51,7 @@ int CommandBlock::getTickDelay(Level *level)
 	return 1;
 }
 
-bool CommandBlock::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
+bool CommandBlock::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
 {
 	shared_ptr<CommandBlockEntity> amce = dynamic_pointer_cast<CommandBlockEntity>( level->getTileEntity(x, y, z) );
 
@@ -80,7 +80,7 @@ int CommandBlock::getAnalogOutputSignal(Level *level, int x, int y, int z, int d
 	return Redstone::SIGNAL_NONE;
 }
 
-void CommandBlock::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void CommandBlock::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	shared_ptr<CommandBlockEntity> cblock = dynamic_pointer_cast<CommandBlockEntity>( level->getTileEntity(x, y, z) );
 

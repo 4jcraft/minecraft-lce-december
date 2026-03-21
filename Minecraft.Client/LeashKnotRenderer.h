@@ -12,8 +12,8 @@ private:
 public:
 	LeashKnotRenderer();
 	~LeashKnotRenderer();
-    virtual void render(shared_ptr<Entity> entity, double x, double y, double z, float rot, float a);
+    virtual void render(std::shared_ptr<Entity> entity, double x, double y, double z, float rot, float a);
 
 protected:
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> entity);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> entity);
 };

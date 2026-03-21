@@ -24,6 +24,6 @@ public :
 	virtual void onAttributeModified(ModifiableAttributeInstance *attributeInstance);
 
 	// 4J: Changed these into specialised functions for adding/removing the modifiers of an item (it's cleaner)
-	virtual void removeItemModifiers(shared_ptr<ItemInstance> item);
-	virtual void addItemModifiers(shared_ptr<ItemInstance> item);
+	virtual void removeItemModifiers(std::shared_ptr<ItemInstance> item);
+	virtual void addItemModifiers(std::shared_ptr<ItemInstance> item);
 };

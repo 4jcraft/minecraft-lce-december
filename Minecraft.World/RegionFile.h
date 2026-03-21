@@ -1,7 +1,7 @@
 #pragma once
 #include "compression.h"
 #include "InputOutputStream.h"
-using namespace std;
+
 
 class FileEntry;
 class ConsoleSaveFile;

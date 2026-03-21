@@ -56,7 +56,7 @@ UIScene_SignEntryMenu::~UIScene_SignEntryMenu()
 	m_parentLayer->removeComponent(eUIComponent_MenuBackground);
 }
 
-wstring UIScene_SignEntryMenu::getMoviePath()
+std::wstring UIScene_SignEntryMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

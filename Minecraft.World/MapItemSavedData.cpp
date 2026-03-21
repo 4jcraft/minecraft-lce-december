@@ -23,7 +23,7 @@ MapItemSavedData::MapDecoration::MapDecoration(char img, char x, char y, char ro
 	this->visible = visible;
 }
 
-MapItemSavedData::HoldingPlayer::HoldingPlayer(shared_ptr<Player> player, const MapItemSavedData *parent) : parent( parent ), player( player )
+MapItemSavedData::HoldingPlayer::HoldingPlayer(std::shared_ptr<Player> player, const MapItemSavedData *parent) : parent( parent ), player( player )
 {
 	// inited outside of ctor
 	rowsDirtyMin = intArray(MapItem::IMAGE_WIDTH);
@@ -50,7 +50,7 @@ MapItemSavedData::HoldingPlayer::~HoldingPlayer()
 	delete lastSentDecorations.data;
 }
 
-charArray MapItemSavedData::HoldingPlayer::nextUpdatePacket(shared_ptr<ItemInstance> itemInstance)
+charArray MapItemSavedData::HoldingPlayer::nextUpdatePacket(std::shared_ptr<ItemInstance> itemInstance)
 {
 	if (!hasSentInitial)
 	{
@@ -163,7 +163,7 @@ charArray MapItemSavedData::HoldingPlayer::nextUpdatePacket(shared_ptr<ItemInsta
 }
 
 
-MapItemSavedData::MapItemSavedData(const wstring& id) : SavedData( id )
+MapItemSavedData::MapItemSavedData(const std::wstring& id) : SavedData( id )
 {
 	x = z = 0;
 	dimension = 0;
@@ -232,7 +232,7 @@ void MapItemSavedData::save(CompoundTag *tag)
 	tag->putByteArray(L"colors", colors);
 }
 
-void MapItemSavedData::tickCarriedBy(shared_ptr<Player> player, shared_ptr<ItemInstance> item)
+void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player, std::shared_ptr<ItemInstance> item)
 {
 	if (carriedByPlayers.find(player) == carriedByPlayers.end())
 	{
@@ -479,7 +479,7 @@ void MapItemSavedData::tickCarriedBy(shared_ptr<Player> player, shared_ptr<ItemI
 	}
 }
 
-charArray MapItemSavedData::getUpdatePacket(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+charArray MapItemSavedData::getUpdatePacket(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	AUTO_VAR(it, carriedByPlayers.find(player));
 	if (it == carriedByPlayers.end() ) return charArray();
@@ -544,7 +544,7 @@ void MapItemSavedData::handleComplexItemData(charArray &data)
 	}
 }
 
-shared_ptr<MapItemSavedData::HoldingPlayer> MapItemSavedData::getHoldingPlayer(shared_ptr<Player> player)
+std::shared_ptr<MapItemSavedData::HoldingPlayer> MapItemSavedData::getHoldingPlayer(std::shared_ptr<Player> player)
 {
 	shared_ptr<HoldingPlayer> hp = nullptr;
 	AUTO_VAR(it,carriedByPlayers.find(player));
@@ -566,7 +566,7 @@ shared_ptr<MapItemSavedData::HoldingPlayer> MapItemSavedData::getHoldingPlayer(s
 // 4J Added
 // We only have one map per player per dimension, so if they pickup someone elses map we merge their map data with ours
 // so that we can see everything that they discovered but still only have one map data ourself
-void MapItemSavedData::mergeInMapData(shared_ptr<MapItemSavedData> dataToAdd)
+void MapItemSavedData::mergeInMapData(std::shared_ptr<MapItemSavedData> dataToAdd)
 {
 	int w = MapItem::IMAGE_WIDTH;
 	int h = MapItem::IMAGE_HEIGHT;
@@ -594,7 +594,7 @@ void MapItemSavedData::mergeInMapData(shared_ptr<MapItemSavedData> dataToAdd)
 	}
 }
 
-void MapItemSavedData::removeItemFrameDecoration(shared_ptr<ItemInstance> item)
+void MapItemSavedData::removeItemFrameDecoration(std::shared_ptr<ItemInstance> item)
 {
 	AUTO_VAR(frameDecoration, nonPlayerDecorations.find( item->getFrame()->entityId ) );
 	if ( frameDecoration != nonPlayerDecorations.end() )

@@ -10,11 +10,11 @@ class BatRenderer : public MobRenderer
 
 public:
 	BatRenderer();
-	virtual void render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
+	virtual void render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
 
 protected:
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
-	virtual void scale(shared_ptr<LivingEntity> mob, float a);
-	virtual void setupPosition(shared_ptr<LivingEntity> mob, double x, double y, double z);
-	virtual void setupRotations(shared_ptr<LivingEntity> mob, float bob, float bodyRot, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
+	virtual void scale(std::shared_ptr<LivingEntity> mob, float a);
+	virtual void setupPosition(std::shared_ptr<LivingEntity> mob, double x, double y, double z);
+	virtual void setupRotations(std::shared_ptr<LivingEntity> mob, float bob, float bodyRot, float a);
 };

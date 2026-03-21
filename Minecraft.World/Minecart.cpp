@@ -64,7 +64,7 @@ Minecart::~Minecart()
 	delete soundUpdater;
 }
 
-shared_ptr<Minecart> Minecart::createMinecart(Level *level, double x, double y, double z, int type)
+std::shared_ptr<Minecart> Minecart::createMinecart(Level *level, double x, double y, double z, int type)
 {
 	switch (type)
 	{
@@ -99,7 +99,7 @@ void Minecart::defineSynchedData()
 }
 
 
-AABB *Minecart::getCollideAgainstBox(shared_ptr<Entity> entity)
+AABB *Minecart::getCollideAgainstBox(std::shared_ptr<Entity> entity)
 {
 	if (entity->isPushable())
 	{
@@ -791,7 +791,7 @@ float Minecart::getShadowHeightOffs()
 	return 0;
 }
 
-void Minecart::push(shared_ptr<Entity> e)
+void Minecart::push(std::shared_ptr<Entity> e)
 {
 	if (level->isClientSide) return;
 
@@ -1020,12 +1020,12 @@ void Minecart::setCustomDisplay(bool value)
 	getEntityData()->set(DATA_ID_CUSTOM_DISPLAY, (byte) (value ? 1 : 0));
 }
 
-void Minecart::setCustomName(const wstring &name)
+void Minecart::setCustomName(const std::wstring &name)
 {
 	this->name = name;
 }
 
-wstring Minecart::getAName()
+std::wstring Minecart::getAName()
 {
 	if (!name.empty()) return name;
 	return Entity::getAName();
@@ -1036,7 +1036,7 @@ bool Minecart::hasCustomName()
 	return !name.empty();
 }
 
-wstring Minecart::getCustomName()
+std::wstring Minecart::getCustomName()
 {
 	return name;
 }

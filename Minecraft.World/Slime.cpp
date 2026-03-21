@@ -177,7 +177,7 @@ int Slime::getJumpDelay()
 	return random->nextInt(20) + 10;
 }
 
-shared_ptr<Slime> Slime::createChild()
+std::shared_ptr<Slime> Slime::createChild()
 {
 	return shared_ptr<Slime>( new Slime(level) );
 }
@@ -207,7 +207,7 @@ void Slime::remove()
 	Mob::remove();
 }
 
-void Slime::playerTouch(shared_ptr<Player> player)
+void Slime::playerTouch(std::shared_ptr<Player> player)
 {
 	if (isDealsDamage())
 	{

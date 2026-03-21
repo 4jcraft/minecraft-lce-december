@@ -12,7 +12,7 @@ MushroomCowRenderer::MushroomCowRenderer(Model *model, float shadow) : MobRender
 {
 }
 
-void MushroomCowRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
+void MushroomCowRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type MushroomCow rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead
@@ -22,7 +22,7 @@ void MushroomCowRenderer::render(shared_ptr<Entity> _mob, double x, double y, do
 	MobRenderer::render(_mob, x, y, z, rot, a);
 }
 
-void MushroomCowRenderer::additionalRendering(shared_ptr<LivingEntity> _mob, float a)
+void MushroomCowRenderer::additionalRendering(std::shared_ptr<LivingEntity> _mob, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type MushroomCow rather than shared_ptr<Mob>  we have here - 
 	// do some casting around instead
@@ -52,7 +52,7 @@ void MushroomCowRenderer::additionalRendering(shared_ptr<LivingEntity> _mob, flo
 	glDisable(GL_CULL_FACE);
 }
 
-ResourceLocation *MushroomCowRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *MushroomCowRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &MOOSHROOM_LOCATION;
 }

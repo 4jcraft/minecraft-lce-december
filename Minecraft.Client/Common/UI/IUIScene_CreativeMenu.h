@@ -79,21 +79,21 @@ public:
 	class ItemPickerMenu : public AbstractContainerMenu
 	{
 	protected:
-		shared_ptr<SimpleContainer> creativeContainer;
-		shared_ptr<Inventory> inventory;
+		std::shared_ptr<SimpleContainer> creativeContainer;
+		std::shared_ptr<Inventory> inventory;
 
 	public:
-		ItemPickerMenu(	shared_ptr<SimpleContainer> creativeContainer, shared_ptr<Inventory> inventory );
+		ItemPickerMenu(	std::shared_ptr<SimpleContainer> creativeContainer, std::shared_ptr<Inventory> inventory );
 
-		virtual bool stillValid(shared_ptr<Player> player);
+		virtual bool stillValid(std::shared_ptr<Player> player);
 		bool isOverrideResultClick(int slotNum, int buttonNum);
 	protected:
 		// 4J Stu - Brought forward from 1.2 to fix infinite recursion bug in creative
-		virtual void loopClick(int slotIndex, int buttonNum, bool quickKeyHeld, shared_ptr<Player> player) { } // do nothing
+		virtual void loopClick(int slotIndex, int buttonNum, bool quickKeyHeld, std::shared_ptr<Player> player) { } // do nothing
 	} *itemPickerMenu;
 
 protected:
-	static vector< shared_ptr<ItemInstance> > categoryGroups[eCreativeInventoryGroupsCount];
+	static std::vector< std::shared_ptr<ItemInstance> > categoryGroups[eCreativeInventoryGroupsCount];
 	// 4J JEV - Tabs
 	static TabSpec **specs;
 
@@ -118,14 +118,14 @@ protected:
 	virtual void handleOutsideClicked(int iPad, int buttonNum, BOOL quickKeyHeld);
 	virtual void handleAdditionalKeyPress(int iAction);
 	virtual void handleSlotListClicked(ESceneSection eSection, int buttonNum, BOOL quickKeyHeld);
-	bool getEmptyInventorySlot(shared_ptr<ItemInstance> item, int &slotX);
+	bool getEmptyInventorySlot(std::shared_ptr<ItemInstance> item, int &slotX);
 	int getSectionStartOffset(ESceneSection eSection);
 	virtual bool IsSectionSlotList( ESceneSection eSection );
 	virtual bool CanHaveFocus( ESceneSection eSection );
 
 	virtual bool overrideTooltips(
 		ESceneSection sectionUnderPointer,
-		shared_ptr<ItemInstance> itemUnderPointer,
+		std::shared_ptr<ItemInstance> itemUnderPointer,
 		bool bIsItemCarried,
 		bool bSlotHasItem,
 		bool bCarriedIsSameAsSlot,
@@ -137,5 +137,5 @@ protected:
 		EToolTipItem &buttonBack
 	);
 
-	static void BuildFirework(vector<shared_ptr<ItemInstance> > *list, byte type, int color, int sulphur, bool flicker, bool trail, int fadeColor = -1);
+	static void BuildFirework(std::vector<std::shared_ptr<ItemInstance> > *list, byte type, int color, int sulphur, bool flicker, bool trail, int fadeColor = -1);
 };

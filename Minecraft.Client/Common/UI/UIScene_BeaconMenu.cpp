@@ -46,7 +46,7 @@ UIScene_BeaconMenu::UIScene_BeaconMenu(int iPad, void *_initData, UILayer *paren
 	delete initData;
 }
 
-wstring UIScene_BeaconMenu::getMoviePath()
+std::wstring UIScene_BeaconMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 #include "TutorialEnum.h"
 
 class Level;
@@ -31,10 +31,10 @@ protected:
 protected:
 	bool bIsCompleted;
 	bool m_bShownForMinimumTime;
-	vector<TutorialConstraint *> constraints;
+	std::vector<TutorialConstraint *> constraints;
 	bool areConstraintsEnabled;
 public:
-	TutorialTask(Tutorial *tutorial, int descriptionId, bool enablePreCompletion, vector<TutorialConstraint *> *inConstraints, bool bShowMinimumTime=false,  bool bAllowFade=true, bool bTaskReminders=true );
+	TutorialTask(Tutorial *tutorial, int descriptionId, bool enablePreCompletion, std::vector<TutorialConstraint *> *inConstraints, bool bShowMinimumTime=false,  bool bAllowFade=true, bool bTaskReminders=true );
 	virtual ~TutorialTask();
 
 	virtual int getDescriptionId() { return descriptionId; }
@@ -53,15 +53,15 @@ public:
 	bool TaskReminders()	{ return m_bTaskReminders;}
 	virtual bool ShowMinimumTime()	{ return m_bShowMinimumTime;}
 
-	virtual void useItemOn(Level *level, shared_ptr<ItemInstance> item, int x, int y, int z, bool bTestUseOnly=false) { }
-	virtual void useItem(shared_ptr<ItemInstance> item,bool bTestUseOnly=false) { }
-	virtual void completeUsingItem(shared_ptr<ItemInstance> item) { }
+	virtual void useItemOn(Level *level, std::shared_ptr<ItemInstance> item, int x, int y, int z, bool bTestUseOnly=false) { }
+	virtual void useItem(std::shared_ptr<ItemInstance> item,bool bTestUseOnly=false) { }
+	virtual void completeUsingItem(std::shared_ptr<ItemInstance> item) { }
 	virtual void handleUIInput(int iAction) { }
-	virtual void onCrafted(shared_ptr<ItemInstance> item) { }
-	virtual void onTake(shared_ptr<ItemInstance> item, unsigned int invItemCountAnyAux, unsigned int invItemCountThisAux) { }
+	virtual void onCrafted(std::shared_ptr<ItemInstance> item) { }
+	virtual void onTake(std::shared_ptr<ItemInstance> item, unsigned int invItemCountAnyAux, unsigned int invItemCountThisAux) { }
 	virtual void onStateChange(eTutorial_State newState) { }
 	virtual void onEffectChanged(MobEffect *effect, bool bRemoved=false) { }
 
-	virtual void onLookAtEntity(shared_ptr<Entity> entity) { }
-	virtual void onRideEntity(shared_ptr<Entity> entity) { }
+	virtual void onLookAtEntity(std::shared_ptr<Entity> entity) { }
+	virtual void onRideEntity(std::shared_ptr<Entity> entity) { }
 };

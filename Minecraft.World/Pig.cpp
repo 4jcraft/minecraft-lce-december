@@ -105,7 +105,7 @@ void Pig::playStepSound(int xt, int yt, int zt, int t)
 	playSound(eSoundType_MOB_PIG_STEP, 0.15f, 1);
 }
 
-bool Pig::mobInteract(shared_ptr<Player> player)
+bool Pig::mobInteract(std::shared_ptr<Player> player)
 {
 	if(!Animal::mobInteract(player))
 	{
@@ -179,7 +179,7 @@ void Pig::causeFallDamage(float distance)
 	}
 }
 
-shared_ptr<AgableMob> Pig::getBreedOffspring(shared_ptr<AgableMob> target)
+std::shared_ptr<AgableMob> Pig::getBreedOffspring(std::shared_ptr<AgableMob> target)
 {
 	// 4J - added limit to number of animals that can be bred
 	if( level->canCreateMore( GetType(), Level::eSpawnType_Breed) )
@@ -192,7 +192,7 @@ shared_ptr<AgableMob> Pig::getBreedOffspring(shared_ptr<AgableMob> target)
 	}
 }
 
-bool Pig::isFood(shared_ptr<ItemInstance> itemInstance)
+bool Pig::isFood(std::shared_ptr<ItemInstance> itemInstance)
 {
 	return itemInstance != NULL && itemInstance->id == Item::carrots_Id;
 }

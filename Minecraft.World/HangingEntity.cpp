@@ -172,7 +172,7 @@ bool HangingEntity::isPickable()
 	return true;
 }
 
-bool HangingEntity::skipAttackInteraction(shared_ptr<Entity> source) 
+bool HangingEntity::skipAttackInteraction(std::shared_ptr<Entity> source) 
 {
 	if(source->GetType()==eTYPE_PLAYER)
 	{

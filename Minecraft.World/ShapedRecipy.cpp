@@ -33,7 +33,7 @@ const ItemInstance *ShapedRecipy::getResultItem()
 	return result;
 }
 
-bool ShapedRecipy::matches(shared_ptr<CraftingContainer> craftSlots, Level *level) 
+bool ShapedRecipy::matches(std::shared_ptr<CraftingContainer> craftSlots, Level *level) 
 {
 	for (int xOffs = 0; xOffs <= (3 - width); xOffs++) 
 	{
@@ -46,7 +46,7 @@ bool ShapedRecipy::matches(shared_ptr<CraftingContainer> craftSlots, Level *leve
 	return false;
 }
 
-bool ShapedRecipy::matches(shared_ptr<CraftingContainer> craftSlots, int xOffs, int yOffs, bool xFlip) 
+bool ShapedRecipy::matches(std::shared_ptr<CraftingContainer> craftSlots, int xOffs, int yOffs, bool xFlip) 
 {
 	for (int x = 0; x < 3; x++) {
 		for (int y = 0; y < 3; y++) {
@@ -80,7 +80,7 @@ bool ShapedRecipy::matches(shared_ptr<CraftingContainer> craftSlots, int xOffs, 
 	return true;
 }
 
-shared_ptr<ItemInstance> ShapedRecipy::assemble(shared_ptr<CraftingContainer> craftSlots) 
+std::shared_ptr<ItemInstance> ShapedRecipy::assemble(std::shared_ptr<CraftingContainer> craftSlots) 
 {
 	shared_ptr<ItemInstance> result = getResultItem()->copy();
 

@@ -9,10 +9,10 @@ private:
 public:
 	FireballRenderer(float scale);
 
-	virtual void render(shared_ptr<Entity> _fireball, double x, double y, double z, float rot, float a);
+	virtual void render(std::shared_ptr<Entity> _fireball, double x, double y, double z, float rot, float a);
 
 private:
 	// 4J Added override
-	virtual void renderFlame(shared_ptr<Entity> entity, double x, double y, double z, float a);
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
+	virtual void renderFlame(std::shared_ptr<Entity> entity, double x, double y, double z, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
 };

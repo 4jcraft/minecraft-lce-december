@@ -30,6 +30,6 @@ public:
 	int getYCenter();
 	int getZCenter();
 
-	wstring toString();
-	IntArrayTag *createTag(const wstring &name);
+	std::wstring toString();
+	IntArrayTag *createTag(const std::wstring &name);
 };

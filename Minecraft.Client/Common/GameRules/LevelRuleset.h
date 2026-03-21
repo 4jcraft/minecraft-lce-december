@@ -19,9 +19,9 @@ public:
 	virtual ConsoleGameRules::EGameRuleType getActionType() { return ConsoleGameRules::eGameRuleType_LevelRules; }
 
 	void loadStringTable(StringTable *table);
-	LPCWSTR getString(const wstring &key);
+	LPCWSTR getString(const std::wstring &key);
 
-	AABB *getNamedArea(const wstring &areaName);
+	AABB *getNamedArea(const std::wstring &areaName);
 
 	StringTable *getStringTable() { return m_stringTable; }
 };

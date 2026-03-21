@@ -2,7 +2,7 @@
 #include "net.minecraft.world.scores.h"
 #include "Objective.h"
 
-Objective::Objective(Scoreboard *scoreboard, const wstring &name, ObjectiveCriteria *criteria)
+Objective::Objective(Scoreboard *scoreboard, const std::wstring &name, ObjectiveCriteria *criteria)
 {
 	this->scoreboard = scoreboard;
 	this->name = name;
@@ -16,7 +16,7 @@ Scoreboard *Objective::getScoreboard()
 	return scoreboard;
 }
 
-wstring Objective::getName()
+std::wstring Objective::getName()
 {
 	return name;
 }
@@ -26,12 +26,12 @@ ObjectiveCriteria *Objective::getCriteria()
 	return criteria;
 }
 
-wstring Objective::getDisplayName()
+std::wstring Objective::getDisplayName()
 {
 	return displayName;
 }
 
-void Objective::setDisplayName(const wstring &name)
+void Objective::setDisplayName(const std::wstring &name)
 {
 	displayName = name;
 	scoreboard->onObjectiveChanged(this);

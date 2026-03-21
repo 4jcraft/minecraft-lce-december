@@ -14,10 +14,10 @@
 #include "IntBuffer.h"
 #include "..\Minecraft.Client\Tesselator.h"
 
-const wstring RedStoneDustTile::TEXTURE_CROSS = L"_cross";
-const wstring RedStoneDustTile::TEXTURE_LINE = L"_line";
-const wstring RedStoneDustTile::TEXTURE_CROSS_OVERLAY = L"_cross_overlay";
-const wstring RedStoneDustTile::TEXTURE_LINE_OVERLAY = L"_line_overlay";
+const std::wstring RedStoneDustTile::TEXTURE_CROSS = L"_cross";
+const std::wstring RedStoneDustTile::TEXTURE_LINE = L"_line";
+const std::wstring RedStoneDustTile::TEXTURE_CROSS_OVERLAY = L"_cross_overlay";
+const std::wstring RedStoneDustTile::TEXTURE_LINE_OVERLAY = L"_line_overlay";
 
 RedStoneDustTile::RedStoneDustTile(int id) : Tile(id, Material::decoration,isSolidRender())
 {
@@ -399,7 +399,7 @@ void RedStoneDustTile::registerIcons(IconRegister *iconRegister)
 	icon = iconCross;
 }
 
-Icon *RedStoneDustTile::getTexture(const wstring &name) 
+Icon *RedStoneDustTile::getTexture(const std::wstring &name) 
 {
 #ifdef __PSVITA__
 	// AP - alpha cut out is expensive on vita. Set the Alpha Cut out flag

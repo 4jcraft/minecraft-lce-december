@@ -2,7 +2,7 @@
 #include "net.minecraft.world.scores.h"
 #include "PlayerTeam.h"
 
-PlayerTeam::PlayerTeam(Scoreboard *scoreboard, const wstring &name)
+PlayerTeam::PlayerTeam(Scoreboard *scoreboard, const std::wstring &name)
 {
 	this->scoreboard = scoreboard;
 	this->name = name;
@@ -19,17 +19,17 @@ Scoreboard *PlayerTeam::getScoreboard()
 	return scoreboard;
 }
 
-wstring PlayerTeam::getName()
+std::wstring PlayerTeam::getName()
 {
 	return name;
 }
 
-wstring PlayerTeam::getDisplayName()
+std::wstring PlayerTeam::getDisplayName()
 {
 	return displayName;
 }
 
-void PlayerTeam::setDisplayName(const wstring &displayName)
+void PlayerTeam::setDisplayName(const std::wstring &displayName)
 {
 	//if (displayName == null) throw new IllegalArgumentException("Name cannot be null");
 	this->displayName = displayName;
@@ -41,41 +41,41 @@ unordered_set<wstring> *PlayerTeam::getPlayers()
 	return &players;
 }
 
-wstring PlayerTeam::getPrefix()
+std::wstring PlayerTeam::getPrefix()
 {
 	return prefix;
 }
 
-void PlayerTeam::setPrefix(const wstring &prefix)
+void PlayerTeam::setPrefix(const std::wstring &prefix)
 {
 	//if (prefix == null) throw new IllegalArgumentException("Prefix cannot be null");
 	this->prefix = prefix;
 	scoreboard->onTeamChanged(this);
 }
 
-wstring PlayerTeam::getSuffix()
+std::wstring PlayerTeam::getSuffix()
 {
 	return suffix;
 }
 
-void PlayerTeam::setSuffix(const wstring &suffix)
+void PlayerTeam::setSuffix(const std::wstring &suffix)
 {
 	//if (suffix == null) throw new IllegalArgumentException("Suffix cannot be null");
 	this->suffix = suffix;
 	scoreboard->onTeamChanged(this);
 }
 
-wstring PlayerTeam::getFormattedName(const wstring &teamMemberName)
+std::wstring PlayerTeam::getFormattedName(const std::wstring &teamMemberName)
 {
 	return getPrefix() + teamMemberName + getSuffix();
 }
 
-wstring PlayerTeam::formatNameForTeam(PlayerTeam *team)
+std::wstring PlayerTeam::formatNameForTeam(PlayerTeam *team)
 {
 	return formatNameForTeam(team, team->getDisplayName());
 }
 
-wstring PlayerTeam::formatNameForTeam(Team *team, const wstring &name)
+std::wstring PlayerTeam::formatNameForTeam(Team *team, const std::wstring &name)
 {
 	if (team == NULL) return name;
 	return team->getFormattedName(name);

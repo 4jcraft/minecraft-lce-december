@@ -125,7 +125,7 @@ int MobEffect::getId()
 * @param mob
 * @param amplification
 */
-void MobEffect::applyEffectTick(shared_ptr<LivingEntity> mob, int amplification)
+void MobEffect::applyEffectTick(std::shared_ptr<LivingEntity> mob, int amplification)
 {
 	// Maybe move this to separate class implementations in the future?
 	if (id == regeneration->id)
@@ -169,7 +169,7 @@ void MobEffect::applyEffectTick(shared_ptr<LivingEntity> mob, int amplification)
 	}
 }
 
-void MobEffect::applyInstantenousEffect(shared_ptr<LivingEntity> source, shared_ptr<LivingEntity> mob, int amplification, double scale)
+void MobEffect::applyInstantenousEffect(std::shared_ptr<LivingEntity> source, std::shared_ptr<LivingEntity> mob, int amplification, double scale)
 {
 	if ((id == heal->id && !mob->isInvertedHealAndHarm()) || (id == harm->id && mob->isInvertedHealAndHarm()))
 	{
@@ -285,7 +285,7 @@ bool MobEffect::isHarmful()
 	return _isHarmful;
 }
 
-wstring MobEffect::formatDuration(MobEffectInstance *instance)
+std::wstring MobEffect::formatDuration(MobEffectInstance *instance)
 {
 	if (instance->isNoCounter())
 	{
@@ -353,7 +353,7 @@ unordered_map<Attribute *, AttributeModifier *> *MobEffect::getAttributeModifier
 	return &attributeModifiers;
 }
 
-void MobEffect::removeAttributeModifiers(shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
+void MobEffect::removeAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
 {
 	for (AUTO_VAR(it, attributeModifiers.begin()); it != attributeModifiers.end(); ++it)
 	{
@@ -366,7 +366,7 @@ void MobEffect::removeAttributeModifiers(shared_ptr<LivingEntity> entity, BaseAt
 	}
 }
 
-void MobEffect::addAttributeModifiers(shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
+void MobEffect::addAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
 {
 	for (AUTO_VAR(it, attributeModifiers.begin()); it != attributeModifiers.end(); ++it)
 	{

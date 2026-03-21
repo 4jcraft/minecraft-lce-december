@@ -20,7 +20,7 @@ void DaylightDetectorTileEntity::tick()
 }
 
 // 4J Added
-shared_ptr<TileEntity> DaylightDetectorTileEntity::clone()
+std::shared_ptr<TileEntity> DaylightDetectorTileEntity::clone()
 {
 	shared_ptr<DaylightDetectorTileEntity> result = shared_ptr<DaylightDetectorTileEntity>( new DaylightDetectorTileEntity() );
 	TileEntity::clone(result);

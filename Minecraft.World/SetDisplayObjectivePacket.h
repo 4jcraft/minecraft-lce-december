@@ -8,7 +8,7 @@ class SetDisplayObjectivePacket : public Packet, public enable_shared_from_this<
 {
 public:
 	int slot;
-	wstring objectiveName;
+	std::wstring objectiveName;
 
 	SetDisplayObjectivePacket();
 	SetDisplayObjectivePacket(int slot, Objective *objective);
@@ -19,6 +19,6 @@ public:
 	int getEstimatedSize();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new SetDisplayObjectivePacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new SetDisplayObjectivePacket()); }
 	virtual int getId() { return 208; }
 };

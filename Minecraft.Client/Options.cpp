@@ -60,7 +60,7 @@ const Options::Option *Options::Option::getItem(int id)
 	return &options[id];
 }
 
-Options::Option::Option(const wstring& captionId, bool hasProgress, bool isBoolean) : _isProgress(hasProgress), _isBoolean(isBoolean), captionId(captionId)
+Options::Option::Option(const std::wstring& captionId, bool hasProgress, bool isBoolean) : _isProgress(hasProgress), _isBoolean(isBoolean), captionId(captionId)
 {
 }
 
@@ -79,29 +79,29 @@ int	Options::Option::getId() const
 	return (int)(this-options);
 }
 
-wstring Options::Option::getCaptionId() const
+std::wstring Options::Option::getCaptionId() const
 {
 	return captionId;
 }
 
-const wstring Options::RENDER_DISTANCE_NAMES[] =
+const std::wstring Options::RENDER_DISTANCE_NAMES[] =
 {
         L"options.renderDistance.far", L"options.renderDistance.normal", L"options.renderDistance.short", L"options.renderDistance.tiny"
 };
-const wstring Options::DIFFICULTY_NAMES[] =
+const std::wstring Options::DIFFICULTY_NAMES[] =
 {
         L"options.difficulty.peaceful", L"options.difficulty.easy", L"options.difficulty.normal", L"options.difficulty.hard"
 };
-const wstring Options::GUI_SCALE[] =
+const std::wstring Options::GUI_SCALE[] =
 {
         L"options.guiScale.auto", L"options.guiScale.small", L"options.guiScale.normal", L"options.guiScale.large"
 };
-const wstring Options::FRAMERATE_LIMITS[] =
+const std::wstring Options::FRAMERATE_LIMITS[] =
 {
         L"performance.max", L"performance.balanced", L"performance.powersaver"
 };
 
-const wstring Options::PARTICLES[] = {
+const std::wstring Options::PARTICLES[] = {
 	L"options.particles.all", L"options.particles.decreased", L"options.particles.minimal"
 };
 
@@ -184,13 +184,13 @@ Options::Options()
 	init();
 }
 
-wstring Options::getKeyDescription(int i)
+std::wstring Options::getKeyDescription(int i)
 {
     Language *language = Language::getInstance();
     return language->getElement(keyMappings[i]->name);
 }
 
-wstring Options::getKeyMessage(int i)
+std::wstring Options::getKeyMessage(int i)
 {
 	int key = keyMappings[i]->key;
 	if (key < 0) {
@@ -307,7 +307,7 @@ bool Options::getBooleanValue(const Options::Option *item)
 	return false;
 }
 
-wstring Options::getMessage(const Options::Option *item)
+std::wstring Options::getMessage(const Options::Option *item)
 {
 	// 4J TODO, should these wstrings append rather than add?
 
@@ -469,7 +469,7 @@ void Options::load()
 
 }
 
-float Options::readFloat(wstring string)
+float Options::readFloat(std::wstring string)
 {
     if (string == L"true") return 1;
     if (string == L"false") return 0;

@@ -280,7 +280,7 @@ vector<Biome::MobSpawnerData *> *MultiPlayerChunkCache::getMobsAt(MobCategory *m
 	return NULL;
 }
 
-TilePos *MultiPlayerChunkCache::findNearestMapFeature(Level *level, const wstring &featureName, int x, int y, int z)
+TilePos *MultiPlayerChunkCache::findNearestMapFeature(Level *level, const std::wstring &featureName, int x, int y, int z)
 {
 	return NULL;
 }
@@ -289,7 +289,7 @@ void MultiPlayerChunkCache::recreateLogicStructuresForChunk(int chunkX, int chun
 {
 }
 
-wstring MultiPlayerChunkCache::gatherStats()
+std::wstring MultiPlayerChunkCache::gatherStats()
 {
 	EnterCriticalSection(&m_csLoadCreate);
 	int size = (int)loadedChunkList.size();

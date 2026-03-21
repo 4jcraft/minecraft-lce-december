@@ -31,7 +31,7 @@ ParticleEngine::~ParticleEngine()
 	delete random;
 }
 
-void ParticleEngine::add(shared_ptr<Particle> p)
+void ParticleEngine::add(std::shared_ptr<Particle> p)
 {
     int t = p->getParticleTexture();
 	int l = p->level->dimension->id == 0 ? 0 : ( p->level->dimension->id == -1 ? 1 : 2);
@@ -81,7 +81,7 @@ void ParticleEngine::tick()
 	}
 }
 
-void ParticleEngine::render(shared_ptr<Entity> player, float a, int list)
+void ParticleEngine::render(std::shared_ptr<Entity> player, float a, int list)
 {
 	// 4J - change brought forward from 1.2.3
     float xa = Camera::xa;
@@ -149,7 +149,7 @@ void ParticleEngine::render(shared_ptr<Entity> player, float a, int list)
 	glAlphaFunc(GL_GREATER, .1f);
 }
 
-void ParticleEngine::renderLit(shared_ptr<Entity> player, float a, int list)
+void ParticleEngine::renderLit(std::shared_ptr<Entity> player, float a, int list)
 {
 	// 4J - added. We call this before ParticleEngine::render in the general render per player, so if we
 	// don't set this here then the offsets will be from the previous player - a single frame lag for the
@@ -241,17 +241,17 @@ void ParticleEngine::crack(int x, int y, int z, int face)
 
 }
 
-void ParticleEngine::markTranslucent(shared_ptr<Particle> particle)
+void ParticleEngine::markTranslucent(std::shared_ptr<Particle> particle)
 {
     moveParticleInList(particle, OPAQUE_LIST, TRANSLUCENT_LIST);
 }
 
-void ParticleEngine::markOpaque(shared_ptr<Particle> particle)
+void ParticleEngine::markOpaque(std::shared_ptr<Particle> particle)
 {
 	moveParticleInList(particle, TRANSLUCENT_LIST, OPAQUE_LIST);
 }
 
-void ParticleEngine::moveParticleInList(shared_ptr<Particle> particle, int source, int destination)
+void ParticleEngine::moveParticleInList(std::shared_ptr<Particle> particle, int source, int destination)
 {
 	int l = particle->level->dimension->id == 0 ? 0 : ( particle->level->dimension->id == -1 ? 1 : 2);
     for (int tt = 0; tt < TEXTURE_COUNT; tt++)
@@ -266,7 +266,7 @@ void ParticleEngine::moveParticleInList(shared_ptr<Particle> particle, int sourc
     }
 }
 
-wstring ParticleEngine::countParticles()
+std::wstring ParticleEngine::countParticles()
 {
 	int l = level->dimension->id == 0 ? 0 : (level->dimension->id == -1 ? 1 : 2 );
 	int total = 0;

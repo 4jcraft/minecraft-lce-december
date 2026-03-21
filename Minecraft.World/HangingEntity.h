@@ -32,7 +32,7 @@ private:
 public:
 	virtual void tick();
 	virtual bool isPickable();
-	virtual bool skipAttackInteraction(shared_ptr<Entity> source);
+	virtual bool skipAttackInteraction(std::shared_ptr<Entity> source);
 	virtual bool hurt(DamageSource *source, float damage);
 	virtual void move(double xa, double ya, double za, bool noEntityCubes=false);	// 4J - added noEntityCubes parameter
 	virtual void push(double xa, double ya, double za);
@@ -41,7 +41,7 @@ public:
 
 	virtual int getWidth()=0;
 	virtual int getHeight()=0;
-	virtual void dropItem(shared_ptr<Entity> causedBy)=0;
+	virtual void dropItem(std::shared_ptr<Entity> causedBy)=0;
 
 protected:
 	virtual bool repositionEntityAfterLoad();

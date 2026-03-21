@@ -526,7 +526,7 @@ bool HellRandomLevelSource::shouldSave()
 	return true;
 }
 
-wstring HellRandomLevelSource::gatherStats()
+std::wstring HellRandomLevelSource::gatherStats()
 {
 	return L"HellRandomLevelSource";
 }
@@ -554,7 +554,7 @@ vector<Biome::MobSpawnerData *> *HellRandomLevelSource::getMobsAt(MobCategory *m
 	return biome->getMobs(mobCategory);
 }
 
-TilePos *HellRandomLevelSource::findNearestMapFeature(Level *level, const wstring& featureName, int x, int y, int z)
+TilePos *HellRandomLevelSource::findNearestMapFeature(Level *level, const std::wstring& featureName, int x, int y, int z)
 {
 	return NULL;
 }

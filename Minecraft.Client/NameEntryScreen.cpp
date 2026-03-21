@@ -3,9 +3,9 @@
 #include "Button.h"
 #include "..\Minecraft.World\StringHelpers.h"
 
-const wstring NameEntryScreen::allowedChars = L"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ,.:-_'*!\"#%/()=+?[]{}<>";
+const std::wstring NameEntryScreen::allowedChars = L"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ,.:-_'*!\"#%/()=+?[]{}<>";
 
-NameEntryScreen::NameEntryScreen(Screen *lastScreen, const wstring& oldName, int slot)
+NameEntryScreen::NameEntryScreen(Screen *lastScreen, const std::wstring& oldName, int slot)
 {
 	frame = 0; // 4J added
 

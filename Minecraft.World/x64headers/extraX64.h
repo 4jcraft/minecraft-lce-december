@@ -86,7 +86,6 @@ typedef struct _XUIDC* HXUIDC;
 
 bool IsEqualXUID(PlayerUID a, PlayerUID b);
 
-using namespace std;
 
 // Temporary implementation of lock free stack with quite a bit more locking than you might expect
 template <typename T> class XLockFreeStack
@@ -127,9 +126,9 @@ private:
 	CRITICAL_SECTION m_cs;
 };
 
-void XMemCpy(void *a, const void *b, size_t s);
-void XMemSet(void *a, int t, size_t s);
-void XMemSet128(void *a, int t, size_t s);
+void XMemCpy(void *a, const void *b, std::size_t s);
+void XMemSet(void *a, int t, std::size_t s);
+void XMemSet128(void *a, int t, std::size_t s);
 void *XPhysicalAlloc(SIZE_T a, ULONG_PTR  b, ULONG_PTR c, DWORD d);
 void XPhysicalFree(void *a);
 

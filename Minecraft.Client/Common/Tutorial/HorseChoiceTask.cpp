@@ -33,11 +33,11 @@ int HorseChoiceTask::getDescriptionId()
 	return -1;
 }
 
-void HorseChoiceTask::onLookAtEntity(shared_ptr<Entity> entity)
+void HorseChoiceTask::onLookAtEntity(std::shared_ptr<Entity> entity)
 {
 	if ( (m_eHorseType < 0) && entity->instanceof(eTYPE_HORSE) )
 	{
-		shared_ptr<EntityHorse> horse = dynamic_pointer_cast<EntityHorse>(entity);
+		std::shared_ptr<EntityHorse> horse = dynamic_pointer_cast<EntityHorse>(entity);
 		if ( horse->isAdult() ) m_eHorseType = horse->getType();
 	}
 }

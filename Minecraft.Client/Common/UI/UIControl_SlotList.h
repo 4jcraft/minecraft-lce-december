@@ -13,7 +13,7 @@ private:
 public:
 	UIControl_SlotList();
 
-	virtual bool setupControl(UIScene *scene, IggyValuePath *parent, const string &controlName);
+	virtual bool setupControl(UIScene *scene, IggyValuePath *parent, const std::string &controlName);
 	
 	virtual void ReInit();
 

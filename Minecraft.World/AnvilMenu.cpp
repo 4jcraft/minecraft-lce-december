@@ -6,7 +6,7 @@
 #include "net.minecraft.world.item.enchantment.h"
 #include "AnvilMenu.h"
 
-AnvilMenu::AnvilMenu(shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt, shared_ptr<Player> player)
+AnvilMenu::AnvilMenu(std::shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt, std::shared_ptr<Player> player)
 {
 	resultSlots = shared_ptr<ResultContainer>( new ResultContainer() );
 	repairSlots = shared_ptr<RepairContainer>( new RepairContainer(this,IDS_REPAIR_AND_NAME, true, 2) );
@@ -38,7 +38,7 @@ AnvilMenu::AnvilMenu(shared_ptr<Inventory> inventory, Level *level, int xt, int 
 	}
 }
 
-void AnvilMenu::slotsChanged(shared_ptr<Container> container)
+void AnvilMenu::slotsChanged(std::shared_ptr<Container> container)
 {
 	AbstractContainerMenu::slotsChanged();
 
@@ -333,7 +333,7 @@ void AnvilMenu::setData(int id, int value)
 	if (id == DATA_TOTAL_COST) cost = value;
 }
 
-void AnvilMenu::removed(shared_ptr<Player> player)
+void AnvilMenu::removed(std::shared_ptr<Player> player)
 {
 	AbstractContainerMenu::removed(player);
 	if (level->isClientSide) return;
@@ -348,14 +348,14 @@ void AnvilMenu::removed(shared_ptr<Player> player)
 	}
 }
 
-bool AnvilMenu::stillValid(shared_ptr<Player> player)
+bool AnvilMenu::stillValid(std::shared_ptr<Player> player)
 {
 	if (level->getTile(x, y, z) != Tile::anvil_Id) return false;
 	if (player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 8 * 8) return false;
 	return true;
 }
 
-shared_ptr<ItemInstance> AnvilMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> AnvilMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);
@@ -406,7 +406,7 @@ shared_ptr<ItemInstance> AnvilMenu::quickMoveStack(shared_ptr<Player> player, in
 	return clicked;
 }
 
-void AnvilMenu::setItemName(const wstring &name)
+void AnvilMenu::setItemName(const std::wstring &name)
 {
 	itemName = name;
 	if (getSlot(RESULT_SLOT)->hasItem())

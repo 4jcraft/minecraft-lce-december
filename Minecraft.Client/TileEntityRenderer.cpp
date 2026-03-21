@@ -8,7 +8,7 @@ void TileEntityRenderer::bindTexture(ResourceLocation *location)
     if(t != NULL) t->bind(t->loadTexture(location->getTexture()));
 }
 
-void TileEntityRenderer::bindTexture(const wstring& urlTexture, ResourceLocation *location)
+void TileEntityRenderer::bindTexture(const std::wstring& urlTexture, ResourceLocation *location)
 {
     Textures *t = tileEntityRenderDispatcher->textures;
     if(t != NULL) t->bind(t->loadHttpTexture(urlTexture, location->getTexture()));

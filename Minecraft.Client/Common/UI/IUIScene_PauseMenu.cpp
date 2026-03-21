@@ -21,7 +21,7 @@ int IUIScene_PauseMenu::ExitGameDialogReturned(void *pParam,int iPad,C4JStorage:
 #ifdef _XBOX
 	IUIScene_PauseMenu *pScene = (IUIScene_PauseMenu *)pParam;
 #else
-	IUIScene_PauseMenu *pScene = dynamic_cast<IUIScene_PauseMenu *>(ui.GetSceneFromCallbackId((size_t)pParam));
+	IUIScene_PauseMenu *pScene = dynamic_cast<IUIScene_PauseMenu *>(ui.GetSceneFromCallbackId((std::size_t)pParam));
 #endif
 
 	// Results switched for this dialog
@@ -39,7 +39,7 @@ int IUIScene_PauseMenu::ExitGameSaveDialogReturned(void *pParam,int iPad,C4JStor
 #ifdef _XBOX
 	IUIScene_PauseMenu *pScene = (IUIScene_PauseMenu *)pParam;
 #else
-	IUIScene_PauseMenu *pScene = dynamic_cast<IUIScene_PauseMenu *>(ui.GetSceneFromCallbackId((size_t)pParam));
+	IUIScene_PauseMenu *pScene = dynamic_cast<IUIScene_PauseMenu *>(ui.GetSceneFromCallbackId((std::size_t)pParam));
 #endif
 
 	// Exit with or without saving
@@ -125,7 +125,7 @@ int IUIScene_PauseMenu::ExitGameAndSaveReturned(void *pParam,int iPad,C4JStorage
 #ifdef _XBOX
 	IUIScene_PauseMenu *pScene = (IUIScene_PauseMenu *)pParam;
 #else
-	IUIScene_PauseMenu *pScene = dynamic_cast<IUIScene_PauseMenu *>(ui.GetSceneFromCallbackId((size_t)pParam));
+	IUIScene_PauseMenu *pScene = dynamic_cast<IUIScene_PauseMenu *>(ui.GetSceneFromCallbackId((std::size_t)pParam));
 #endif
 
 	// results switched for this dialog
@@ -173,7 +173,7 @@ int IUIScene_PauseMenu::ExitGameDeclineSaveReturned(void *pParam,int iPad,C4JSto
 #ifdef _XBOX
 	IUIScene_PauseMenu *pScene = (IUIScene_PauseMenu *)pParam;
 #else
-	IUIScene_PauseMenu *pScene = dynamic_cast<IUIScene_PauseMenu *>(ui.GetSceneFromCallbackId((size_t)pParam));
+	IUIScene_PauseMenu *pScene = dynamic_cast<IUIScene_PauseMenu *>(ui.GetSceneFromCallbackId((std::size_t)pParam));
 #endif
 
 	// results switched for this dialog

@@ -32,7 +32,7 @@ UIScene_HopperMenu::UIScene_HopperMenu(int iPad, void *_initData, UILayer *paren
 	delete initData;
 }
 
-wstring UIScene_HopperMenu::getMoviePath()
+std::wstring UIScene_HopperMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

@@ -21,7 +21,7 @@ bool CarrotOnAStickItem::isMirroredArt()
 	return true;
 }
 
-shared_ptr<ItemInstance> CarrotOnAStickItem::use(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> CarrotOnAStickItem::use(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	if (player->isRiding())
 	{

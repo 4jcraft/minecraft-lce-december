@@ -5,7 +5,7 @@
 #include "ScatteredFeaturePieces.h"
 #include "RandomScatteredLargeFeature.h"
 
-const wstring RandomScatteredLargeFeature::OPTION_SPACING = L"distance";
+const std::wstring RandomScatteredLargeFeature::OPTION_SPACING = L"distance";
 vector<Biome *> RandomScatteredLargeFeature::allowedBiomes;
 
 void RandomScatteredLargeFeature::staticCtor()
@@ -43,7 +43,7 @@ RandomScatteredLargeFeature::RandomScatteredLargeFeature(unordered_map<wstring, 
 	}
 }
 
-wstring RandomScatteredLargeFeature::getFeatureName()
+std::wstring RandomScatteredLargeFeature::getFeatureName()
 {
 	return L"Temple";
 }

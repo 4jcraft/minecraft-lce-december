@@ -3,7 +3,7 @@
 #include "ContainerOpenPacket.h"
 #include "CompoundContainer.h"
 
-CompoundContainer::CompoundContainer(int name, shared_ptr<Container> c1, shared_ptr<Container> c2)
+CompoundContainer::CompoundContainer(int name, std::shared_ptr<Container> c1, std::shared_ptr<Container> c2)
 {
 	this->name = name;
 	if (c1 == NULL) c1 = c2;
@@ -22,19 +22,19 @@ unsigned int CompoundContainer::getContainerSize()
 	return c1->getContainerSize() + c2->getContainerSize();
 }
 
-bool CompoundContainer::contains(shared_ptr<Container> c)
+bool CompoundContainer::contains(std::shared_ptr<Container> c)
 {
 	return c1 == c || c2 == c;
 }
 
-wstring CompoundContainer::getName()
+std::wstring CompoundContainer::getName()
 {
 	if (c1->hasCustomName()) return c1->getName();
 	if (c2->hasCustomName()) return c2->getName();
 	return app.GetString(name);
 }
 
-wstring CompoundContainer::getCustomName()
+std::wstring CompoundContainer::getCustomName()
 {
 	if (c1->hasCustomName()) return c1->getName();
 	if (c2->hasCustomName()) return c2->getName();
@@ -46,25 +46,25 @@ bool CompoundContainer::hasCustomName()
 	return c1->hasCustomName() || c2->hasCustomName();
 }
 
-shared_ptr<ItemInstance> CompoundContainer::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> CompoundContainer::getItem(unsigned int slot)
 {
 	if (slot >= c1->getContainerSize()) return c2->getItem(slot - c1->getContainerSize());
 	else return c1->getItem(slot);
 }
 
-shared_ptr<ItemInstance> CompoundContainer::removeItem(unsigned int slot, int i)
+std::shared_ptr<ItemInstance> CompoundContainer::removeItem(unsigned int slot, int i)
 {
 	if (slot >= c1->getContainerSize()) return c2->removeItem(slot - c1->getContainerSize(), i);
 	else return c1->removeItem(slot, i);
 }
 
-shared_ptr<ItemInstance> CompoundContainer::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> CompoundContainer::removeItemNoUpdate(int slot)
 {
 	if (slot >= c1->getContainerSize()) return c2->removeItemNoUpdate(slot - c1->getContainerSize());
 	else return c1->removeItemNoUpdate(slot);
 }
 
-void CompoundContainer::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void CompoundContainer::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	if (slot >= c1->getContainerSize()) c2->setItem(slot - c1->getContainerSize(), item);
 	else c1->setItem(slot, item);
@@ -81,7 +81,7 @@ void CompoundContainer::setChanged()
 	c2->setChanged();
 }
 
-bool CompoundContainer::stillValid(shared_ptr<Player> player)
+bool CompoundContainer::stillValid(std::shared_ptr<Player> player)
 {
 	return c1->stillValid(player) && c2->stillValid(player);
 }
@@ -98,7 +98,7 @@ void CompoundContainer::stopOpen()
 	c2->stopOpen();
 }
 
-bool CompoundContainer::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool CompoundContainer::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }

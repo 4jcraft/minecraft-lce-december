@@ -271,8 +271,8 @@ private:
 	bool											RegisterCallbacks();
 	void											HandleMatchingContextStart();
 	// #ifdef __PS3__
-	// 	static void										DefaultRequestCallback(SceNpMatching2ContextId id, SceNpMatching2RequestId reqId, SceNpMatching2Event event, SceNpMatching2EventKey eventKey, int errorCode, size_t dataSize, void *arg);
-	// 	static void										RoomEventCallback(SceNpMatching2ContextId id, SceNpMatching2RoomId roomId, SceNpMatching2Event event, SceNpMatching2EventKey eventKey, int errorCode, size_t dataSize, void *arg);
+	// 	static void										DefaultRequestCallback(SceNpMatching2ContextId id, SceNpMatching2RequestId reqId, SceNpMatching2Event event, SceNpMatching2EventKey eventKey, int errorCode, std::size_t dataSize, void *arg);
+	// 	static void										RoomEventCallback(SceNpMatching2ContextId id, SceNpMatching2RoomId roomId, SceNpMatching2Event event, SceNpMatching2EventKey eventKey, int errorCode, std::size_t dataSize, void *arg);
 	// #else
 // 	static void										DefaultRequestCallback(SceNpMatching2ContextId id, SceNpMatching2RequestId reqId, SceNpMatching2Event event, int errorCode, const void *data, void *arg);
 // 	static void										RoomEventCallback(SceNpMatching2ContextId id, SceNpMatching2RoomId roomId, SceNpMatching2Event event, const void *data, void *arg);
@@ -291,7 +291,7 @@ private:
 
 	// Callbacks for rudp
 	static void										RudpContextCallback(int ctx_id, int event_id, int error_code, void *arg);
-	static int										RudpEventCallback(int event_id, int soc, uint8_t const *data, size_t datalen, struct SceNetSockaddr  const *addr, SceNetSocklen_t addrlen, void *arg);
+	static int										RudpEventCallback(int event_id, int soc, uint8_t const *data, std::size_t datalen, struct SceNetSockaddr  const *addr, SceNetSocklen_t addrlen, void *arg);
 
 	// Callback for netctl
 	static void										NetCtlCallback(int eventType, void *arg);

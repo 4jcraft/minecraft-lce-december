@@ -245,7 +245,7 @@ void Minecraft::clearConnectionFailed()
 	app.SetDisconnectReason(DisconnectPacket::eDisconnect_None);
 }
 
-void Minecraft::connectTo(const wstring& server, int port)
+void Minecraft::connectTo(const std::wstring& server, int port)
 {
 	connectToIp = server;
 	connectToPort = port;
@@ -577,7 +577,7 @@ void Minecraft::setScreen(Screen *screen)
 	}*/
 }
 
-void Minecraft::checkGlError(const wstring& string)
+void Minecraft::checkGlError(const std::wstring& string)
 {
 	// 4J - TODO
 }
@@ -971,7 +971,7 @@ void Minecraft::addPendingLocalConnection(int idx, ClientConnection *connection)
 	m_pendingLocalConnections[idx] = connection;
 }
 
-shared_ptr<MultiplayerLocalPlayer> Minecraft::createExtraLocalPlayer(int idx, const wstring& name, int iPad, int iDimension, ClientConnection *clientConnection /*= NULL*/,MultiPlayerLevel *levelpassedin)
+std::shared_ptr<MultiplayerLocalPlayer> Minecraft::createExtraLocalPlayer(int idx, const std::wstring& name, int iPad, int iDimension, ClientConnection *clientConnection /*= NULL*/,MultiPlayerLevel *levelpassedin)
 {
 	if( clientConnection == NULL) return nullptr;
 
@@ -3941,16 +3941,16 @@ bool Minecraft::isClientSide()
 	return level != NULL && level->isClientSide;
 }
 
-void Minecraft::selectLevel(ConsoleSaveFile *saveFile, const wstring& levelId, const wstring& levelName, LevelSettings *levelSettings)
+void Minecraft::selectLevel(ConsoleSaveFile *saveFile, const std::wstring& levelId, const std::wstring& levelName, LevelSettings *levelSettings)
 {
 	}
 
-bool Minecraft::saveSlot(int slot, const wstring& name)
+bool Minecraft::saveSlot(int slot, const std::wstring& name)
 {
 	return false;
 }
 
-bool Minecraft::loadSlot(const wstring& userName, int slot)
+bool Minecraft::loadSlot(const std::wstring& userName, int slot)
 {
 	return false;
 }
@@ -4007,7 +4007,7 @@ void Minecraft::forceaddLevel(MultiPlayerLevel *level)
 	else levels[0] = level;
 }
 
-void Minecraft::setLevel(MultiPlayerLevel *level, int message /*=-1*/, shared_ptr<Player> forceInsertPlayer /*=NULL*/, bool doForceStatsSave /*=true*/, bool bPrimaryPlayerSignedOut /*=false*/)
+void Minecraft::setLevel(MultiPlayerLevel *level, int message /*=-1*/, std::shared_ptr<Player> forceInsertPlayer /*=NULL*/, bool doForceStatsSave /*=true*/, bool bPrimaryPlayerSignedOut /*=false*/)
 {
 	EnterCriticalSection(&m_setLevelCS);
 	bool playerAdded = false;
@@ -4263,25 +4263,25 @@ void Minecraft::prepareLevel(int title)
 }
 }
 
-wstring Minecraft::gatherStats1()
+std::wstring Minecraft::gatherStats1()
 {
 	//return levelRenderer->gatherStats1();
 	return L"Time to autosave: " + _toString<unsigned int>( app.SecondsToAutosave() ) + L"s";
 }
 
-wstring Minecraft::gatherStats2()
+std::wstring Minecraft::gatherStats2()
 {
 	return g_NetworkManager.GatherStats();
 	//return levelRenderer->gatherStats2();
 }
 
-wstring Minecraft::gatherStats3()
+std::wstring Minecraft::gatherStats3()
 {
 	return g_NetworkManager.GatherRTTStats();
 	//return L"P: " + particleEngine->countParticles() + L". T: " + level->gatherStats();
 }
 
-wstring Minecraft::gatherStats4()
+std::wstring Minecraft::gatherStats4()
 {
 	return level->gatherChunkSourceStats();
 }
@@ -4388,12 +4388,12 @@ void Minecraft::respawnPlayer(int iPad, int dimension, int newEntityId)
 	gameRenderer->EnableUpdateThread();
 }
 
-void Minecraft::start(const wstring& name, const wstring& sid)
+void Minecraft::start(const std::wstring& name, const std::wstring& sid)
 {
 	startAndConnectTo(name, sid, L"");
 }
 
-void Minecraft::startAndConnectTo(const wstring& name, const wstring& sid, const wstring& url)
+void Minecraft::startAndConnectTo(const std::wstring& name, const std::wstring& sid, const std::wstring& url)
 {
 	bool fullScreen = false;
 	wstring userName = name;
@@ -4582,7 +4582,7 @@ bool Minecraft::renderDebug()
 	return (m_instance != NULL && m_instance->options->renderDebug);
 }
 
-bool Minecraft::handleClientSideCommand(const wstring& chatMessage)
+bool Minecraft::handleClientSideCommand(const std::wstring& chatMessage)
 {
 	return false;
 }
@@ -4938,7 +4938,7 @@ void Minecraft::tickAllConnections()
 	setLocalPlayerIdx(oldIdx);
 }
 
-bool Minecraft::addPendingClientTextureRequest(const wstring &textureName)
+bool Minecraft::addPendingClientTextureRequest(const std::wstring &textureName)
 {
 	AUTO_VAR(it, find( m_pendingTextureRequests.begin(), m_pendingTextureRequests.end(), textureName));
 	if( it == m_pendingTextureRequests.end() )
@@ -4949,7 +4949,7 @@ bool Minecraft::addPendingClientTextureRequest(const wstring &textureName)
 	return false;
 }
 
-void Minecraft::handleClientTextureReceived(const wstring &textureName)
+void Minecraft::handleClientTextureReceived(const std::wstring &textureName)
 {
 	AUTO_VAR(it, find( m_pendingTextureRequests.begin(), m_pendingTextureRequests.end(), textureName));
 	if( it != m_pendingTextureRequests.end() )

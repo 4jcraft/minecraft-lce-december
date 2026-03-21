@@ -30,7 +30,7 @@ public:
 	ItemInHandRenderer *itemInHandRenderer;
 private:
 	int _tick;
-    shared_ptr<Entity> hovered;
+    std::shared_ptr<Entity> hovered;
 
     // smooth camera movement
     SmoothFloat smoothTurnX;
@@ -116,7 +116,7 @@ public:
 private:
 	void tickLightTexture();
 	void updateLightTexture(float a);
-	float getNightVisionScale(shared_ptr<Player> player, float a);
+	float getNightVisionScale(std::shared_ptr<Player> player, float a);
 public:
 	void render(float a, bool bFirst);		// 4J added bFirst
     void renderLevel(float a);
@@ -165,10 +165,10 @@ public:
 	static bool			nearThingsToDo;
 	static bool			updateRunning;
 #endif
-	static vector<byte *> m_deleteStackByte;
-	static vector<SparseLightStorage *> m_deleteStackSparseLightStorage;
-	static vector<CompressedTileStorage *> m_deleteStackCompressedTileStorage;
-	static vector<SparseDataStorage *> m_deleteStackSparseDataStorage;
+	static std::vector<byte *> m_deleteStackByte;
+	static std::vector<SparseLightStorage *> m_deleteStackSparseLightStorage;
+	static std::vector<CompressedTileStorage *> m_deleteStackCompressedTileStorage;
+	static std::vector<SparseDataStorage *> m_deleteStackSparseDataStorage;
 	static CRITICAL_SECTION m_csDeleteStack;
 	static void         AddForDelete(byte *deleteThis);
 	static void         AddForDelete(SparseLightStorage *deleteThis);

@@ -40,7 +40,7 @@ void JukeboxTile::Entity::save(CompoundTag *tag)
 }
 
 // 4J Added
-shared_ptr<TileEntity> JukeboxTile::Entity::clone()
+std::shared_ptr<TileEntity> JukeboxTile::Entity::clone()
 {
 	shared_ptr<JukeboxTile::Entity> result = shared_ptr<JukeboxTile::Entity>( new JukeboxTile::Entity() );
 	TileEntity::clone(result);
@@ -50,12 +50,12 @@ shared_ptr<TileEntity> JukeboxTile::Entity::clone()
 	return result;
 }
 
-shared_ptr<ItemInstance> JukeboxTile::Entity::getRecord()
+std::shared_ptr<ItemInstance> JukeboxTile::Entity::getRecord()
 {
 	return record;
 }
 
-void JukeboxTile::Entity::setRecord(shared_ptr<ItemInstance> record)
+void JukeboxTile::Entity::setRecord(std::shared_ptr<ItemInstance> record)
 {
 	this->record = record;
 	setChanged();
@@ -76,14 +76,14 @@ Icon *JukeboxTile::getTexture(int face, int data)
 }
 
 // 4J-PB - Adding a TestUse for tooltip display
-bool JukeboxTile::TestUse(Level *level, int x, int y, int z, shared_ptr<Player> player)
+bool JukeboxTile::TestUse(Level *level, int x, int y, int z, std::shared_ptr<Player> player)
 {
 	// if the jukebox is empty, return true
 	if (level->getData(x, y, z) == 0) return false;
 	return true;
 }
 
-bool JukeboxTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool JukeboxTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if (soundOnly) return false;
 	if (level->getData(x, y, z) == 0) return false;
@@ -91,7 +91,7 @@ bool JukeboxTile::use(Level *level, int x, int y, int z, shared_ptr<Player> play
 	return true;
 }
 
-void JukeboxTile::setRecord(Level *level, int x, int y, int z, shared_ptr<ItemInstance> record)
+void JukeboxTile::setRecord(Level *level, int x, int y, int z, std::shared_ptr<ItemInstance> record)
 {
 	if (level->isClientSide) return;
 
@@ -144,7 +144,7 @@ void JukeboxTile::spawnResources(Level *level, int x, int y, int z, int data, fl
 	Tile::spawnResources(level, x, y, z, data, odds, 0);
 }
 
-shared_ptr<TileEntity> JukeboxTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> JukeboxTile::newTileEntity(Level *level)
 {
 	return shared_ptr<JukeboxTile::Entity>( new JukeboxTile::Entity() );
 }

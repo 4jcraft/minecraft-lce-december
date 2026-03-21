@@ -9,7 +9,7 @@
 
 /* Arrow */
 
-shared_ptr<Projectile> ArrowDispenseBehavior::getProjectile(Level *world, Position *position)
+std::shared_ptr<Projectile> ArrowDispenseBehavior::getProjectile(Level *world, Position *position)
 {
 	shared_ptr<Arrow> arrow = shared_ptr<Arrow>(new Arrow(world, position->getX(), position->getY(), position->getZ()));
 	arrow->pickup = Arrow::PICKUP_ALLOWED;
@@ -19,7 +19,7 @@ shared_ptr<Projectile> ArrowDispenseBehavior::getProjectile(Level *world, Positi
 
 /* ThrownEgg */
 
-shared_ptr<Projectile> EggDispenseBehavior::getProjectile(Level *world, Position *position)
+std::shared_ptr<Projectile> EggDispenseBehavior::getProjectile(Level *world, Position *position)
 {
 	return shared_ptr<Projectile>(new ThrownEgg(world, position->getX(), position->getY(), position->getZ()));
 }
@@ -27,7 +27,7 @@ shared_ptr<Projectile> EggDispenseBehavior::getProjectile(Level *world, Position
 
 /* Snowball */
 
-shared_ptr<Projectile> SnowballDispenseBehavior::getProjectile(Level *world, Position *position)
+std::shared_ptr<Projectile> SnowballDispenseBehavior::getProjectile(Level *world, Position *position)
 {
 	return shared_ptr<Projectile>(new Snowball(world, position->getX(), position->getY(), position->getZ()));
 }
@@ -35,7 +35,7 @@ shared_ptr<Projectile> SnowballDispenseBehavior::getProjectile(Level *world, Pos
 
 /* Exp Bottle */
 
-shared_ptr<Projectile> ExpBottleDispenseBehavior::getProjectile(Level *world, Position *position)
+std::shared_ptr<Projectile> ExpBottleDispenseBehavior::getProjectile(Level *world, Position *position)
 {
 	return shared_ptr<Projectile>(new ThrownExpBottle(world, position->getX(), position->getY(), position->getZ()));
 }
@@ -58,7 +58,7 @@ ThrownPotionDispenseBehavior::ThrownPotionDispenseBehavior(int potionValue)
 	m_potionValue = potionValue;
 }
 
-shared_ptr<Projectile> ThrownPotionDispenseBehavior::getProjectile(Level *world, Position *position)
+std::shared_ptr<Projectile> ThrownPotionDispenseBehavior::getProjectile(Level *world, Position *position)
 {
 	return shared_ptr<Projectile>(new ThrownPotion(world, position->getX(), position->getY(), position->getZ(), m_potionValue));
 }
@@ -76,7 +76,7 @@ float ThrownPotionDispenseBehavior::getPower()
 
 /* Potion */
 
-shared_ptr<ItemInstance> PotionDispenseBehavior::dispense(BlockSource *source, shared_ptr<ItemInstance> dispensed)
+std::shared_ptr<ItemInstance> PotionDispenseBehavior::dispense(BlockSource *source, std::shared_ptr<ItemInstance> dispensed)
 {
 	if (PotionItem::isThrowable(dispensed->getAuxValue()))
 	{
@@ -91,7 +91,7 @@ shared_ptr<ItemInstance> PotionDispenseBehavior::dispense(BlockSource *source, s
 
 /* SpawnEggItem */
 
-shared_ptr<ItemInstance> SpawnEggDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> SpawnEggDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	FacingEnum *facing = DispenserTile::getFacing(source->getData());
 
@@ -124,7 +124,7 @@ shared_ptr<ItemInstance> SpawnEggDispenseBehavior::execute(BlockSource *source, 
 
 /* Fireworks*/
 
-shared_ptr<ItemInstance> FireworksDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> FireworksDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	Level *world = source->getWorld();
 	if ( world->countInstanceOf(eTYPE_PROJECTILE,false) >= Level::MAX_DISPENSABLE_PROJECTILES )
@@ -159,7 +159,7 @@ void FireworksDispenseBehavior::playSound(BlockSource *source, eOUTCOME outcome)
 
 /* Fireballs */
 
-shared_ptr<ItemInstance> FireballDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> FireballDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	Level *world = source->getWorld();
 	if (world->countInstanceOf(eTYPE_SMALL_FIREBALL,true) >= Level::MAX_DISPENSABLE_FIREBALLS)
@@ -216,7 +216,7 @@ BoatDispenseBehavior::~BoatDispenseBehavior()
 	delete defaultDispenseItemBehavior;
 }
 
-shared_ptr<ItemInstance> BoatDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> BoatDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	FacingEnum *facing = DispenserTile::getFacing(source->getData());
 	Level *world = source->getWorld();
@@ -271,7 +271,7 @@ void BoatDispenseBehavior::playSound(BlockSource *source, eOUTCOME outcome)
 
 /* FilledBucket */
 
-shared_ptr<ItemInstance> FilledBucketDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> FilledBucketDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	BucketItem *bucket = (BucketItem *)dispensed->getItem();
 	int sourceX = source->getBlockX();
@@ -294,7 +294,7 @@ shared_ptr<ItemInstance> FilledBucketDispenseBehavior::execute(BlockSource *sour
 
 /* EmptyBucket */
 
-shared_ptr<ItemInstance> EmptyBucketDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> EmptyBucketDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	FacingEnum *facing = DispenserTile::getFacing(source->getData());
 	Level *world = source->getWorld();
@@ -338,7 +338,7 @@ shared_ptr<ItemInstance> EmptyBucketDispenseBehavior::execute(BlockSource *sourc
 
 /* Flint and Steel */
 
-shared_ptr<ItemInstance> FlintAndSteelDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> FlintAndSteelDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	outcome = ACTIVATED_ITEM;
 
@@ -386,7 +386,7 @@ void FlintAndSteelDispenseBehavior::playSound(BlockSource *source, eOUTCOME outc
 
 /* Dye */
 
-shared_ptr<ItemInstance> DyeDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> DyeDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	if (dispensed->getAuxValue() == DyePowderItem::WHITE)
 	{
@@ -431,7 +431,7 @@ void DyeDispenseBehavior::playSound(BlockSource *source, eOUTCOME outcome)
 
 /* TNT */
 
-shared_ptr<ItemInstance> TntDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> TntDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	FacingEnum *facing = DispenserTile::getFacing(source->getData());
 	Level *world = source->getWorld();

@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 
@@ -52,7 +52,7 @@ public:
 #endif
 	};
 
-	// 4J Stu - The reason was a string, but we need to send a non-locale specific reason
+	// 4J Stu - The reason was a std::string, but we need to send a non-locale specific reason
 	eDisconnectReason reason;
 
 	DisconnectPacket();
@@ -63,10 +63,10 @@ public:
 	virtual void handle(PacketListener *listener);
 	virtual int getEstimatedSize();
 	virtual bool canBeInvalidated();
-	virtual bool isInvalidatedBy(shared_ptr<Packet> packet);
+	virtual bool isInvalidatedBy(std::shared_ptr<Packet> packet);
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new DisconnectPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new DisconnectPacket()); }
 	virtual int getId() { return 255; }
 };
 

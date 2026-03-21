@@ -16,7 +16,7 @@ int GiveItemCommand::getPermissionLevel()
 	return LEVEL_GAMEMASTERS;
 }
 
-void GiveItemCommand::execute(shared_ptr<CommandSender> source, byteArray commandData)
+void GiveItemCommand::execute(std::shared_ptr<CommandSender> source, byteArray commandData)
 {
 	ByteArrayInputStream bais(commandData);
 	DataInputStream dis(&bais);
@@ -40,7 +40,7 @@ void GiveItemCommand::execute(shared_ptr<CommandSender> source, byteArray comman
 	}
 }
 
-shared_ptr<GameCommandPacket> GiveItemCommand::preparePacket(shared_ptr<Player> player, int item, int amount, int aux, const wstring &tag)
+std::shared_ptr<GameCommandPacket> GiveItemCommand::preparePacket(std::shared_ptr<Player> player, int item, int amount, int aux, const std::wstring &tag)
 {
 	if(player == NULL) return nullptr;
 

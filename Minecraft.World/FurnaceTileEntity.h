@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "FurnaceTile.h"
 #include "TileEntity.h"
@@ -39,7 +39,7 @@ public:
 
 private:
 
-	wstring name;
+	std::wstring name;
 
 public:
 	// 4J Stu - Need a ctor to initialise member variables
@@ -47,14 +47,14 @@ public:
 	virtual ~FurnaceTileEntity();
 
 	virtual unsigned int getContainerSize();
-	virtual shared_ptr<ItemInstance> getItem(unsigned int slot);
-	virtual shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
-	virtual shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
-	virtual void setItem(unsigned int slot, shared_ptr<ItemInstance> item);
-	virtual wstring getName();
-	virtual wstring getCustomName();
+	virtual std::shared_ptr<ItemInstance> getItem(unsigned int slot);
+	virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
+	virtual std::shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
+	virtual void setItem(unsigned int slot, std::shared_ptr<ItemInstance> item);
+	virtual std::wstring getName();
+	virtual std::wstring getCustomName();
 	virtual bool hasCustomName();
-	virtual void setCustomName(const wstring &name);
+	virtual void setCustomName(const std::wstring &name);
 	virtual void load(CompoundTag *base);
 	virtual void save(CompoundTag *base);
 	virtual int getMaxStackSize();
@@ -69,23 +69,23 @@ private:
 public:
 	void burn();
 
-	static int getBurnDuration(shared_ptr<ItemInstance> itemInstance);
-	static bool isFuel(shared_ptr<ItemInstance> item);
+	static int getBurnDuration(std::shared_ptr<ItemInstance> itemInstance);
+	static bool isFuel(std::shared_ptr<ItemInstance> item);
 
 public:
-	virtual bool stillValid(shared_ptr<Player> player);
+	virtual bool stillValid(std::shared_ptr<Player> player);
 	virtual void setChanged();
 
 	void startOpen();
 	void stopOpen();
 
-	virtual bool canPlaceItem(int slot, shared_ptr<ItemInstance> item);
+	virtual bool canPlaceItem(int slot, std::shared_ptr<ItemInstance> item);
 	virtual intArray getSlotsForFace(int face);
-	virtual bool canPlaceItemThroughFace(int slot, shared_ptr<ItemInstance> item, int face);
-	virtual bool canTakeItemThroughFace(int slot, shared_ptr<ItemInstance> item, int face);
+	virtual bool canPlaceItemThroughFace(int slot, std::shared_ptr<ItemInstance> item, int face);
+	virtual bool canTakeItemThroughFace(int slot, std::shared_ptr<ItemInstance> item, int face);
 
 	// 4J Added
-	virtual shared_ptr<TileEntity> clone();
+	virtual std::shared_ptr<TileEntity> clone();
 
 	// 4J-JEV: Added for 'Renewable Energy' achievement.
 	bool wasCharcoalUsed() { return m_charcoalUsed; }

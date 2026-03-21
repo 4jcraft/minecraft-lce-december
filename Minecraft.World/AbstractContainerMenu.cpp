@@ -115,12 +115,12 @@ bool AbstractContainerMenu::needsRendered()
 	return needsRendered;
 }
 
-bool AbstractContainerMenu::clickMenuButton(shared_ptr<Player> player, int buttonId)
+bool AbstractContainerMenu::clickMenuButton(std::shared_ptr<Player> player, int buttonId)
 {
 	return false;
 }
 
-Slot *AbstractContainerMenu::getSlotFor(shared_ptr<Container> c, int index)
+Slot *AbstractContainerMenu::getSlotFor(std::shared_ptr<Container> c, int index)
 {
 	AUTO_VAR(itEnd, slots.end());
 	for (AUTO_VAR(it, slots.begin()); it != itEnd; it++)
@@ -139,7 +139,7 @@ Slot *AbstractContainerMenu::getSlot(int index)
 	return slots.at(index);
 }
 
-shared_ptr<ItemInstance> AbstractContainerMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> AbstractContainerMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	Slot *slot = slots.at(slotIndex);
 	if (slot != NULL)
@@ -149,7 +149,7 @@ shared_ptr<ItemInstance> AbstractContainerMenu::quickMoveStack(shared_ptr<Player
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> AbstractContainerMenu::clicked(int slotIndex, int buttonNum, int clickType, shared_ptr<Player> player, bool looped) // 4J Added looped param
+std::shared_ptr<ItemInstance> AbstractContainerMenu::clicked(int slotIndex, int buttonNum, int clickType, std::shared_ptr<Player> player, bool looped) // 4J Added looped param
 {
 	shared_ptr<ItemInstance> clickedEntity = nullptr;
 	shared_ptr<Inventory> inventory = player->inventory;
@@ -512,25 +512,25 @@ shared_ptr<ItemInstance> AbstractContainerMenu::clicked(int slotIndex, int butto
 	return clickedEntity;
 }
 
-bool AbstractContainerMenu::canTakeItemForPickAll(shared_ptr<ItemInstance> carried, Slot *target)
+bool AbstractContainerMenu::canTakeItemForPickAll(std::shared_ptr<ItemInstance> carried, Slot *target)
 {
 	return true;
 }
 
 // 4J Stu - Brought forward from 1.2 to fix infinite recursion bug in creative
-void AbstractContainerMenu::loopClick(int slotIndex, int buttonNum, bool quickKeyHeld, shared_ptr<Player> player)
+void AbstractContainerMenu::loopClick(int slotIndex, int buttonNum, bool quickKeyHeld, std::shared_ptr<Player> player)
 {
 	while( clicked(slotIndex, buttonNum, CLICK_QUICK_MOVE, player, true) != NULL)
 	{
 	}
 }
 
-bool AbstractContainerMenu::mayCombine(Slot *slot, shared_ptr<ItemInstance> item)
+bool AbstractContainerMenu::mayCombine(Slot *slot, std::shared_ptr<ItemInstance> item)
 {
 	return false;
 }
 
-void AbstractContainerMenu::removed(shared_ptr<Player> player)
+void AbstractContainerMenu::removed(std::shared_ptr<Player> player)
 {
 	shared_ptr<Inventory> inventory = player->inventory;
 	if (inventory->getCarried() != NULL)
@@ -550,7 +550,7 @@ bool AbstractContainerMenu::isPauseScreen()
 	return false;
 }
 
-void AbstractContainerMenu::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void AbstractContainerMenu::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	getSlot(slot)->set(item);
 }
@@ -567,18 +567,18 @@ void AbstractContainerMenu::setData(int id, int value)
 {
 }
 
-short AbstractContainerMenu::backup(shared_ptr<Inventory> inventory)
+short AbstractContainerMenu::backup(std::shared_ptr<Inventory> inventory)
 {
 	changeUid++;
 	return changeUid;
 }
 
-bool AbstractContainerMenu::isSynched(shared_ptr<Player> player)
+bool AbstractContainerMenu::isSynched(std::shared_ptr<Player> player)
 {
 	return !(unSynchedPlayers.find(player) != unSynchedPlayers.end());
 }
 
-void AbstractContainerMenu::setSynched(shared_ptr<Player> player, bool synched)
+void AbstractContainerMenu::setSynched(std::shared_ptr<Player> player, bool synched)
 {
 	if (synched)
 	{
@@ -593,7 +593,7 @@ void AbstractContainerMenu::setSynched(shared_ptr<Player> player, bool synched)
 }
 
 // 4J Stu - Brought a few changes in this function forward from 1.2 to make it return a bool
-bool AbstractContainerMenu::moveItemStackTo(shared_ptr<ItemInstance> itemStack, int startSlot, int endSlot, bool backwards)
+bool AbstractContainerMenu::moveItemStackTo(std::shared_ptr<ItemInstance> itemStack, int startSlot, int endSlot, bool backwards)
 {
 	bool anythingChanged = false;
 
@@ -711,7 +711,7 @@ void AbstractContainerMenu::resetQuickCraft()
 	quickcraftSlots.clear();
 }
 
-bool AbstractContainerMenu::canItemQuickReplace(Slot *slot, shared_ptr<ItemInstance> item, bool ignoreSize)
+bool AbstractContainerMenu::canItemQuickReplace(Slot *slot, std::shared_ptr<ItemInstance> item, bool ignoreSize)
 {
 	bool canReplace = slot == NULL || !slot->hasItem();
 
@@ -723,7 +723,7 @@ bool AbstractContainerMenu::canItemQuickReplace(Slot *slot, shared_ptr<ItemInsta
 	return canReplace;
 }
 
-void AbstractContainerMenu::getQuickCraftSlotCount(unordered_set<Slot *> *quickCraftSlots, int quickCraftingType, shared_ptr<ItemInstance> item, int carry)
+void AbstractContainerMenu::getQuickCraftSlotCount(unordered_set<Slot *> *quickCraftSlots, int quickCraftingType, std::shared_ptr<ItemInstance> item, int carry)
 {
 	switch (quickCraftingType)
 	{
@@ -743,7 +743,7 @@ bool AbstractContainerMenu::canDragTo(Slot *slot)
 	return true;
 }
 
-int AbstractContainerMenu::getRedstoneSignalFromContainer(shared_ptr<Container> container)
+int AbstractContainerMenu::getRedstoneSignalFromContainer(std::shared_ptr<Container> container)
 {
 	if (container == NULL) return 0;
 	int count = 0;
@@ -765,7 +765,7 @@ int AbstractContainerMenu::getRedstoneSignalFromContainer(shared_ptr<Container> 
 }
 
 // 4J Added
-bool AbstractContainerMenu::isValidIngredient(shared_ptr<ItemInstance> item, int slotId)
+bool AbstractContainerMenu::isValidIngredient(std::shared_ptr<ItemInstance> item, int slotId)
 {
 	return true;
 }

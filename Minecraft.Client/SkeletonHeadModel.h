@@ -14,6 +14,6 @@ public:
 	SkeletonHeadModel();
 	SkeletonHeadModel(int u, int v, int tw, int th);
 
-	void render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled);
-	void setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim=0);
+	void render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled);
+	void setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim=0);
 };

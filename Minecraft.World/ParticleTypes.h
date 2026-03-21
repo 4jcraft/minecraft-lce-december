@@ -1,6 +1,6 @@
 #pragma once
 
-// 4J-PB added to avoid string compares on adding particles
+// 4J-PB added to avoid std::string compares on adding particles
 enum ePARTICLE_TYPE
 {
 	eParticleType_bubble,

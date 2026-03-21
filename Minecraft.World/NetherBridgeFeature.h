@@ -15,7 +15,7 @@ private:
 public:
 	NetherBridgeFeature();
 	~NetherBridgeFeature();
-	wstring getFeatureName();
+	std::wstring getFeatureName();
 	vector<Biome::MobSpawnerData *> *getBridgeEnemies();
 protected:
 	virtual bool isFeatureChunk(int x, int z, bool bIsSuperflat);

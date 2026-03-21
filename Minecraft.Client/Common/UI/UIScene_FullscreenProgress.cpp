@@ -86,7 +86,7 @@ UIScene_FullscreenProgress::~UIScene_FullscreenProgress()
 	delete m_CompletionData;
 }
 
-wstring UIScene_FullscreenProgress::getMoviePath()
+std::wstring UIScene_FullscreenProgress::getMoviePath()
 {
 	return L"FullscreenProgress";
 }

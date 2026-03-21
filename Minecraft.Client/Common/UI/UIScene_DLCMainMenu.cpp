@@ -76,7 +76,7 @@ UIScene_DLCMainMenu::~UIScene_DLCMainMenu()
 #endif
 }
 
-wstring UIScene_DLCMainMenu::getMoviePath()
+std::wstring UIScene_DLCMainMenu::getMoviePath()
 {
 	return L"DLCMainMenu";
 }

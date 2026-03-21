@@ -11,7 +11,7 @@ SetCreativeModeSlotPacket::SetCreativeModeSlotPacket()
 	this->item = nullptr;
 }
 
-SetCreativeModeSlotPacket::SetCreativeModeSlotPacket(int slotNum, shared_ptr<ItemInstance> item)
+SetCreativeModeSlotPacket::SetCreativeModeSlotPacket(int slotNum, std::shared_ptr<ItemInstance> item)
 {
 	this->slotNum = slotNum;
 	// 4J - take copy of item as we want our packets to have full ownership of any referenced data

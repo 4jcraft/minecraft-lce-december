@@ -12,12 +12,12 @@ int EffectCommand::getPermissionLevel()
 	return LEVEL_GAMEMASTERS;
 }
 
-wstring EffectCommand::getUsage(CommandSender *source)
+std::wstring EffectCommand::getUsage(CommandSender *source)
 {
 	return L"commands.effect.usage";
 }
 
-void EffectCommand::execute(shared_ptr<CommandSender> source, byteArray commandData)
+void EffectCommand::execute(std::shared_ptr<CommandSender> source, byteArray commandData)
 {
 	//if (args.length >= 2)
 	//{
@@ -75,12 +75,12 @@ void EffectCommand::execute(shared_ptr<CommandSender> source, byteArray commandD
 	//throw new UsageException("commands.effect.usage");
 }
 
-wstring EffectCommand::getPlayerNames()
+std::wstring EffectCommand::getPlayerNames()
 {
 	return L""; //MinecraftServer::getInstance()->getPlayerNames();
 }
 
-bool EffectCommand::isValidWildcardPlayerArgument(wstring args, int argumentIndex)
+bool EffectCommand::isValidWildcardPlayerArgument(std::wstring args, int argumentIndex)
 {
 	return argumentIndex == 0;
 }

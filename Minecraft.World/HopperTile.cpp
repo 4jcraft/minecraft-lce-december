@@ -8,20 +8,20 @@
 #include "net.minecraft.world.h"
 #include "HopperTile.h"
 
-const wstring HopperTile::TEXTURE_OUTSIDE = L"hopper_outside";
-const wstring HopperTile::TEXTURE_INSIDE = L"hopper_inside";
+const std::wstring HopperTile::TEXTURE_OUTSIDE = L"hopper_outside";
+const std::wstring HopperTile::TEXTURE_INSIDE = L"hopper_inside";
 
 HopperTile::HopperTile(int id) : BaseEntityTile(id, Material::metal, isSolidRender() )
 {
 	setShape(0, 0, 0, 1, 1, 1);
 }
 
-void HopperTile::updateShape(LevelSource *level, int x, int y, int z, int forceData , shared_ptr<TileEntity> forceEntity)
+void HopperTile::updateShape(LevelSource *level, int x, int y, int z, int forceData , std::shared_ptr<TileEntity> forceEntity)
 {
 	setShape(0, 0, 0, 1, 1, 1);
 }
 
-void HopperTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, shared_ptr<Entity> source)
+void HopperTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, std::shared_ptr<Entity> source)
 {
 	setShape(0, 0, 0, 1, 10.0f / 16.0f, 1);
 	BaseEntityTile::addAABBs(level, x, y, z, box, boxes, source);
@@ -45,12 +45,12 @@ int HopperTile::getPlacedOnFaceDataValue(Level *level, int x, int y, int z, int 
 	return attached;
 }
 
-shared_ptr<TileEntity> HopperTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> HopperTile::newTileEntity(Level *level)
 {
 	return shared_ptr<HopperTileEntity>( new HopperTileEntity() );
 }
 
-void HopperTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void HopperTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	BaseEntityTile::setPlacedBy(level, x, y, z, by, itemInstance);
 
@@ -67,7 +67,7 @@ void HopperTile::onPlace(Level *level, int x, int y, int z)
 	checkPoweredState(level, x, y, z);
 }
 
-bool HopperTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
+bool HopperTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
 {
 	if (level->isClientSide)
 	{
@@ -193,19 +193,19 @@ void HopperTile::registerIcons(IconRegister *iconRegister)
 	hopperInnerIcon = iconRegister->registerIcon(TEXTURE_INSIDE);
 }
 
-Icon *HopperTile::getTexture(const wstring &name)
+Icon *HopperTile::getTexture(const std::wstring &name)
 {
 	if (name.compare(TEXTURE_OUTSIDE) == 0) return Tile::hopper->hopperIcon;
 	if (name.compare(TEXTURE_INSIDE) == 0) return Tile::hopper->hopperInnerIcon;
 	return NULL;
 }
 
-wstring HopperTile::getTileItemIconName()
+std::wstring HopperTile::getTileItemIconName()
 {
 	return L"hopper";
 }
 
-shared_ptr<HopperTileEntity> HopperTile::getHopper(LevelSource *level, int x, int y, int z)
+std::shared_ptr<HopperTileEntity> HopperTile::getHopper(LevelSource *level, int x, int y, int z)
 {
 	return dynamic_pointer_cast<HopperTileEntity>( level->getTileEntity(x, y, z) );
 }

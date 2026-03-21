@@ -30,7 +30,7 @@ int BlazeModel::modelVersion()
     return 8;
 }
 
-void BlazeModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled) 
+void BlazeModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled) 
 {
     setupAnim(time, r, bob, yRot, xRot, scale, entity);
 
@@ -41,7 +41,7 @@ void BlazeModel::render(shared_ptr<Entity> entity, float time, float r, float bo
     }
 }
 
-void BlazeModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim) 
+void BlazeModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim) 
 {
     float angle = bob * PI * -.1f;
     for (int i = 0; i < 4; i++) 

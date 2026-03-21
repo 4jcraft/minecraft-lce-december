@@ -4,7 +4,7 @@
 #include "../Minecraft.World/net.minecraft.world.entity.item.h"
 #include "MobSpawnerRenderer.h"
 
-void MinecartSpawnerRenderer::renderMinecartContents(shared_ptr<MinecartSpawner> cart, float a, Tile *tile, int tileData)
+void MinecartSpawnerRenderer::renderMinecartContents(std::shared_ptr<MinecartSpawner> cart, float a, Tile *tile, int tileData)
 {
     MinecartRenderer::renderMinecartContents(cart, a, tile, tileData);
 

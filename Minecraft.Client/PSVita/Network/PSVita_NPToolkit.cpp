@@ -318,7 +318,7 @@ static uint8_t hexCharToUint(char ch)
 void hexStrToBin(
 	const char *pHexStr, 
 	uint8_t *pBinBuf, 
-	size_t binBufSize
+	std::size_t binBufSize
 	)
 {
 	uint8_t val = 0;

@@ -1,6 +1,5 @@
 #pragma once
 
-using namespace std;
 
 #include "TileEntity.h"
 #include "Container.h"
@@ -45,7 +44,7 @@ private:
 	int tickInterval;
 
 	int type;
-	wstring name;
+	std::wstring name;
 
 public:
 	virtual unsigned int getContainerSize();
@@ -53,10 +52,10 @@ public:
 	virtual shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
 	virtual shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
 	virtual void setItem(unsigned int slot, shared_ptr<ItemInstance> item);
-	virtual wstring getName();
-	virtual wstring getCustomName();
+	virtual std::wstring getName();
+	virtual std::wstring getCustomName();
 	virtual bool hasCustomName();
-	virtual void setCustomName(const wstring &name);
+	virtual void setCustomName(const std::wstring &name);
 	virtual void load(CompoundTag *base);
 	virtual void save(CompoundTag *base);
 	virtual int getMaxStackSize();

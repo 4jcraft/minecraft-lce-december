@@ -14,7 +14,7 @@ MinecartRenderer::MinecartRenderer()
 	renderer = new TileRenderer();
 }
 
-void MinecartRenderer::render(shared_ptr<Entity> _cart, double x, double y, double z, float rot, float a)
+void MinecartRenderer::render(std::shared_ptr<Entity> _cart, double x, double y, double z, float rot, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Minecart> cart = dynamic_pointer_cast<Minecart>(_cart);
@@ -136,12 +136,12 @@ void MinecartRenderer::render(shared_ptr<Entity> _cart, double x, double y, doub
 	*/
 }
 
-ResourceLocation *MinecartRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *MinecartRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
 	return &MINECART_LOCATION;
 }
 
-void MinecartRenderer::renderMinecartContents(shared_ptr<Minecart> cart, float a, Tile *tile, int tileData)
+void MinecartRenderer::renderMinecartContents(std::shared_ptr<Minecart> cart, float a, Tile *tile, int tileData)
 {
 	float brightness = cart->getBrightness(a);
 

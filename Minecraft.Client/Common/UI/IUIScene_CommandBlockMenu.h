@@ -9,8 +9,8 @@ public:
 protected:
 	void ConfirmButtonClicked();
 
-	virtual wstring GetCommand();
-	virtual void SetCommand(wstring command);
+	virtual std::wstring GetCommand();
+	virtual void SetCommand(std::wstring command);
 	virtual int GetPad();
 
 private:

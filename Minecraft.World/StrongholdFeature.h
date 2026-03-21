@@ -19,9 +19,9 @@ class Biome;
 class StrongholdFeature : public StructureFeature
 {
 public:
-	static const wstring OPTION_DISTANCE;
-	static const wstring OPTION_COUNT;
-	static const wstring OPTION_SPREAD;
+	static const std::wstring OPTION_DISTANCE;
+	static const std::wstring OPTION_COUNT;
+	static const std::wstring OPTION_SPREAD;
 
 public:
 	static void staticCtor();
@@ -41,7 +41,7 @@ public:
 	StrongholdFeature(unordered_map<wstring, wstring> options);
 	~StrongholdFeature();
 
-	wstring getFeatureName();
+	std::wstring getFeatureName();
 
 protected:
 	virtual bool isFeatureChunk(int x, int z, bool bIsSuperflat=false);

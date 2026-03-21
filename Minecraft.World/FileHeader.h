@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "System.h"
 
@@ -167,7 +166,7 @@ public:
 	~FileHeader();
 
 protected:
-	FileEntry *AddFile( const wstring &name, unsigned int length = 0 );
+	FileEntry *AddFile( const std::wstring &name, unsigned int length = 0 );
 	void RemoveFile( FileEntry * );
 	void WriteHeader( LPVOID saveMem );
 	void ReadHeader( LPVOID saveMem, ESavePlatform plat = SAVE_FILE_PLATFORM_LOCAL );
@@ -178,9 +177,9 @@ protected:
 
 	void AdjustStartOffsets(FileEntry *file, DWORD nNumberOfBytesToWrite, bool subtract = false);
 
-	bool fileExists( const wstring &name );
+	bool fileExists( const std::wstring &name );
 
-	vector<FileEntry *> *getFilesWithPrefix(const wstring &prefix);
+	vector<FileEntry *> *getFilesWithPrefix(const std::wstring &prefix);
 
 	vector<FileEntry *> *getValidPlayerDatFiles();
 

@@ -30,7 +30,7 @@ public:
 	static bool isSpawnPositionOk(MobCategory *category, Level *level, int x, int y, int z);
 
 public:
-	static bool attackSleepingPlayers(Level *level, vector<shared_ptr<Player> > *players);
+	static bool attackSleepingPlayers(Level *level, vector<std::shared_ptr<Player> > *players);
 
 	static void postProcessSpawnMobs(Level *level, Biome *biome, int xo, int zo, int cellWidth, int cellHeight, Random *random);
 };

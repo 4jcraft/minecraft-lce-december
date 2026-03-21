@@ -15,7 +15,7 @@ WitherSkull::WitherSkull(Level *level) : Fireball(level)
 	setSize(5 / 16.0f, 5 / 16.0f);
 }
 
-WitherSkull::WitherSkull(Level *level, shared_ptr<LivingEntity> mob, double xa, double ya, double za) : Fireball(level, mob, xa, ya, za)
+WitherSkull::WitherSkull(Level *level, std::shared_ptr<LivingEntity> mob, double xa, double ya, double za) : Fireball(level, mob, xa, ya, za)
 {
 	defineSynchedData();
 

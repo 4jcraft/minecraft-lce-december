@@ -24,7 +24,7 @@ NetherBridgeFeature::~NetherBridgeFeature()
 	if( netherFortressPos != NULL ) delete netherFortressPos;
 }
 
-wstring NetherBridgeFeature::getFeatureName()
+std::wstring NetherBridgeFeature::getFeatureName()
 {
 	return L"Fortress";
 }

@@ -24,7 +24,7 @@ unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq> *EntityIO:
 unordered_map<wstring, int> *EntityIO::idNumMap = new unordered_map<wstring, int>;
 unordered_map<int, EntityIO::SpawnableMobInfo *> EntityIO::idsSpawnableInCreative;
 
-void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas, const wstring &id, int idNum)
+void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas, const std::wstring &id, int idNum)
 {
 	idCreateMap->insert( unordered_map<wstring, entityCreateFn>::value_type(id, createFn) );
 	classIdMap->insert( unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>::value_type(clas,id ) );
@@ -34,7 +34,7 @@ void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas, const wstring &i
 	idNumMap->insert( unordered_map<wstring, int>::value_type(id, idNum) );
 }
 
-void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas, const wstring &id, int idNum, eMinecraftColour color1, eMinecraftColour color2, int nameId)
+void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas, const std::wstring &id, int idNum, eMinecraftColour color1, eMinecraftColour color2, int nameId)
 {
 	setId(createFn, clas, id, idNum);
 
@@ -127,7 +127,7 @@ void EntityIO::staticCtor()
 #endif
 }
 
-shared_ptr<Entity> EntityIO::newEntity(const wstring& id, Level *level)
+std::shared_ptr<Entity> EntityIO::newEntity(const std::wstring& id, Level *level)
 {
 	shared_ptr<Entity> entity;
 
@@ -145,7 +145,7 @@ shared_ptr<Entity> EntityIO::newEntity(const wstring& id, Level *level)
 	return entity;
 }
 
-shared_ptr<Entity> EntityIO::loadStatic(CompoundTag *tag, Level *level)
+std::shared_ptr<Entity> EntityIO::loadStatic(CompoundTag *tag, Level *level)
 {
 	shared_ptr<Entity> entity;
 
@@ -193,7 +193,7 @@ shared_ptr<Entity> EntityIO::loadStatic(CompoundTag *tag, Level *level)
 	return entity;
 }
 
-shared_ptr<Entity> EntityIO::newById(int id, Level *level)
+std::shared_ptr<Entity> EntityIO::newById(int id, Level *level)
 {
 	shared_ptr<Entity> entity;
 
@@ -218,7 +218,7 @@ shared_ptr<Entity> EntityIO::newById(int id, Level *level)
 	return entity;
 }
 
-shared_ptr<Entity> EntityIO::newByEnumType(eINSTANCEOF eType, Level *level)
+std::shared_ptr<Entity> EntityIO::newByEnumType(eINSTANCEOF eType, Level *level)
 {
 	shared_ptr<Entity> entity;
 
@@ -240,13 +240,13 @@ shared_ptr<Entity> EntityIO::newByEnumType(eINSTANCEOF eType, Level *level)
 	return entity;
 }
 
-int EntityIO::getId(shared_ptr<Entity> entity)
+int EntityIO::getId(std::shared_ptr<Entity> entity)
 {
 	unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>::iterator it = classNumMap->find( entity->GetType() );
 	return (*it).second;
 }
 
-wstring EntityIO::getEncodeId(shared_ptr<Entity> entity)
+std::wstring EntityIO::getEncodeId(std::shared_ptr<Entity> entity)
 {
 	unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>::iterator it = classIdMap->find( entity->GetType() );
 	if( it != classIdMap->end() )
@@ -255,7 +255,7 @@ wstring EntityIO::getEncodeId(shared_ptr<Entity> entity)
 		return L"";
 }
 
-int EntityIO::getId(const wstring &encodeId)
+int EntityIO::getId(const std::wstring &encodeId)
 {
 	AUTO_VAR(it, idNumMap->find(encodeId));
 	if (it == idNumMap->end())
@@ -266,7 +266,7 @@ int EntityIO::getId(const wstring &encodeId)
 	return it->second;
 }
 
-wstring EntityIO::getEncodeId(int entityIoValue)
+std::wstring EntityIO::getEncodeId(int entityIoValue)
 {
 	//Class<? extends Entity> class1 = numClassMap.get(entityIoValue);
 	//if (class1 != null)
@@ -300,7 +300,7 @@ int EntityIO::getNameId(int entityIoValue)
 	return id;
 }
 
-eINSTANCEOF EntityIO::getType(const wstring &idString)
+eINSTANCEOF EntityIO::getType(const std::wstring &idString)
 {
 	AUTO_VAR(it, numClassMap->find(getId(idString)));
 	if(it != numClassMap->end() )

@@ -3,22 +3,22 @@
 #include "net.minecraft.world.entity.animal.h"
 #include "HorseInventoryMenu.h"
 
-HorseSaddleSlot::HorseSaddleSlot( shared_ptr<Container> horseInventory ) : Slot(horseInventory, EntityHorse::INV_SLOT_SADDLE, 8, 18)
+HorseSaddleSlot::HorseSaddleSlot( std::shared_ptr<Container> horseInventory ) : Slot(horseInventory, EntityHorse::INV_SLOT_SADDLE, 8, 18)
 {
 }
 
-bool HorseSaddleSlot::mayPlace(shared_ptr<ItemInstance> item)
+bool HorseSaddleSlot::mayPlace(std::shared_ptr<ItemInstance> item)
 {
 	return Slot::mayPlace(item) && item->id == Item::saddle_Id && !hasItem();
 }
 
 
-HorseArmorSlot::HorseArmorSlot( HorseInventoryMenu *parent, shared_ptr<Container> horseInventory ) : Slot(horseInventory, EntityHorse::INV_SLOT_ARMOR, 8, 18 * 2)
+HorseArmorSlot::HorseArmorSlot( HorseInventoryMenu *parent, std::shared_ptr<Container> horseInventory ) : Slot(horseInventory, EntityHorse::INV_SLOT_ARMOR, 8, 18 * 2)
 {
 	m_parent = parent;
 }
 
-bool HorseArmorSlot::mayPlace(shared_ptr<ItemInstance> item)
+bool HorseArmorSlot::mayPlace(std::shared_ptr<ItemInstance> item)
 {
 	return Slot::mayPlace(item) && m_parent->horse->canWearArmor() && EntityHorse::isHorseArmor(item->id);
 }
@@ -29,7 +29,7 @@ bool HorseArmorSlot::isActive()
 }
 
 
-HorseInventoryMenu::HorseInventoryMenu(shared_ptr<Container> playerInventory, shared_ptr<Container> horseInventory, shared_ptr<EntityHorse> horse)
+HorseInventoryMenu::HorseInventoryMenu(std::shared_ptr<Container> playerInventory, std::shared_ptr<Container> horseInventory, std::shared_ptr<EntityHorse> horse)
 {
 	horseContainer = horseInventory;
 	this->horse = horse;
@@ -66,12 +66,12 @@ HorseInventoryMenu::HorseInventoryMenu(shared_ptr<Container> playerInventory, sh
 	}
 }
 
-bool HorseInventoryMenu::stillValid(shared_ptr<Player> player)
+bool HorseInventoryMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return horseContainer->stillValid(player) && horse->isAlive() && horse->distanceTo(player) < 8;
 }
 
-shared_ptr<ItemInstance> HorseInventoryMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> HorseInventoryMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);
@@ -120,13 +120,13 @@ shared_ptr<ItemInstance> HorseInventoryMenu::quickMoveStack(shared_ptr<Player> p
 	return clicked;
 }
 
-void HorseInventoryMenu::removed(shared_ptr<Player> player)
+void HorseInventoryMenu::removed(std::shared_ptr<Player> player)
 {
 	AbstractContainerMenu::removed(player);
 	horseContainer->stopOpen();
 }
 
-shared_ptr<Container> HorseInventoryMenu::getContainer()
+std::shared_ptr<Container> HorseInventoryMenu::getContainer()
 {
 	return horseContainer;
 }

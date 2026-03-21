@@ -36,8 +36,8 @@ private:
 public:
 	OcelotModel();
 
-	void render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled);
+	void render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled);
 	void render(OcelotModel *model, float scale, bool usecompiled);
-	void setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim=0);
-	void prepareMobModel(shared_ptr<LivingEntity> mob, float time, float r, float a);
+	void setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim=0);
+	void prepareMobModel(std::shared_ptr<LivingEntity> mob, float time, float r, float a);
 };

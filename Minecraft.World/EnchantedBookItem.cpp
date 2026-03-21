@@ -4,23 +4,23 @@
 #include "WeighedTreasure.h"
 #include "EnchantedBookItem.h"
 
-const wstring EnchantedBookItem::TAG_STORED_ENCHANTMENTS = L"StoredEnchantments";
+const std::wstring EnchantedBookItem::TAG_STORED_ENCHANTMENTS = L"StoredEnchantments";
 
 EnchantedBookItem::EnchantedBookItem(int id) : Item(id)
 {
 }
 
-bool EnchantedBookItem::isFoil(shared_ptr<ItemInstance> itemInstance)
+bool EnchantedBookItem::isFoil(std::shared_ptr<ItemInstance> itemInstance)
 {
 	return true;
 }
 
-bool EnchantedBookItem::isEnchantable(shared_ptr<ItemInstance> itemInstance)
+bool EnchantedBookItem::isEnchantable(std::shared_ptr<ItemInstance> itemInstance)
 {
 	return false;
 }
 
-const Rarity *EnchantedBookItem::getRarity(shared_ptr<ItemInstance> itemInstance)
+const Rarity *EnchantedBookItem::getRarity(std::shared_ptr<ItemInstance> itemInstance)
 {
 	ListTag<CompoundTag> *enchantments = getEnchantments(itemInstance);
 	if (enchantments && enchantments->size() > 0)
@@ -33,7 +33,7 @@ const Rarity *EnchantedBookItem::getRarity(shared_ptr<ItemInstance> itemInstance
 	}
 }
 
-ListTag<CompoundTag> *EnchantedBookItem::getEnchantments(shared_ptr<ItemInstance> item)
+ListTag<CompoundTag> *EnchantedBookItem::getEnchantments(std::shared_ptr<ItemInstance> item)
 {
 	if (item->tag == NULL || !item->tag->contains((wchar_t *)TAG_STORED_ENCHANTMENTS.c_str()))
 	{
@@ -43,7 +43,7 @@ ListTag<CompoundTag> *EnchantedBookItem::getEnchantments(shared_ptr<ItemInstance
 	return (ListTag<CompoundTag> *) item->tag->get((wchar_t *)TAG_STORED_ENCHANTMENTS.c_str());
 }
 
-void EnchantedBookItem::appendHoverText(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
+void EnchantedBookItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
 {
 	Item::appendHoverText(itemInstance, player, lines, advanced);
 
@@ -65,7 +65,7 @@ void EnchantedBookItem::appendHoverText(shared_ptr<ItemInstance> itemInstance, s
 	}
 }
 
-void EnchantedBookItem::addEnchantment(shared_ptr<ItemInstance> item, EnchantmentInstance *enchantment)
+void EnchantedBookItem::addEnchantment(std::shared_ptr<ItemInstance> item, EnchantmentInstance *enchantment)
 {
 	ListTag<CompoundTag> *enchantments = getEnchantments(item);
 	bool add = true;
@@ -100,7 +100,7 @@ void EnchantedBookItem::addEnchantment(shared_ptr<ItemInstance> item, Enchantmen
 	item->getTag()->put((wchar_t *)TAG_STORED_ENCHANTMENTS.c_str(), enchantments);
 }
 
-shared_ptr<ItemInstance> EnchantedBookItem::createForEnchantment(EnchantmentInstance *enchant)
+std::shared_ptr<ItemInstance> EnchantedBookItem::createForEnchantment(EnchantmentInstance *enchant)
 {
 	shared_ptr<ItemInstance> item = shared_ptr<ItemInstance>(new ItemInstance(this));
 	addEnchantment(item, enchant);
@@ -115,7 +115,7 @@ void EnchantedBookItem::createForEnchantment(Enchantment *enchant, vector<shared
 	}
 }
 
-shared_ptr<ItemInstance> EnchantedBookItem::createForRandomLoot(Random *random)
+std::shared_ptr<ItemInstance> EnchantedBookItem::createForRandomLoot(Random *random)
 {
 	Enchantment *enchantment = Enchantment::validEnchantments[random->nextInt(Enchantment::validEnchantments.size())];
 	shared_ptr<ItemInstance> book = shared_ptr<ItemInstance>(new ItemInstance(id, 1, 0));

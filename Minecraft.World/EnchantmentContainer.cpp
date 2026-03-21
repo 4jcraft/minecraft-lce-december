@@ -17,7 +17,7 @@ void EnchantmentContainer::setChanged()
 	m_menu->slotsChanged(); // Remove this param as it's not needed
 }
 
-bool EnchantmentContainer::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool EnchantmentContainer::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }

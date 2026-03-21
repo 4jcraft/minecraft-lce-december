@@ -7,7 +7,7 @@ EmptyMapItem::EmptyMapItem(int id) : ComplexItem(id)
 {
 }
 
-shared_ptr<ItemInstance> EmptyMapItem::use(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> EmptyMapItem::use(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	//shared_ptr<ItemInstance> map = shared_ptr<ItemInstance>( new ItemInstance(Item::map, 1, level->getFreeAuxValueFor(L"map")) );
 

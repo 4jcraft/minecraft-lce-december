@@ -8,12 +8,12 @@ GiantMobRenderer::GiantMobRenderer(Model *model, float shadow, float _scale) : M
 	this->_scale = _scale;
 }
 
-void GiantMobRenderer::scale(shared_ptr<LivingEntity> mob, float a)
+void GiantMobRenderer::scale(std::shared_ptr<LivingEntity> mob, float a)
 {
 	glScalef(_scale, _scale, _scale);
 }
 
-ResourceLocation *GiantMobRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *GiantMobRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &ZOMBIE_LOCATION;
 }

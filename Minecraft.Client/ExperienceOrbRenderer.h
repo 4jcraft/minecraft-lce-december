@@ -9,8 +9,8 @@ private:
 public:
 	ExperienceOrbRenderer();
 
-	virtual void render(shared_ptr<Entity> _orb, double x, double y, double z, float rot, float a);
+	virtual void render(std::shared_ptr<Entity> _orb, double x, double y, double z, float rot, float a);
 	void blit(int x, int y, int sx, int sy, int w, int h);
 
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
 };

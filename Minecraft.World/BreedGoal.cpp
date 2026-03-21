@@ -47,7 +47,7 @@ void BreedGoal::tick()
 	if (loveTime >= 20 * 3 && animal->distanceToSqr(partner.lock()) < 3*3) breed();
 }
 
-shared_ptr<Animal> BreedGoal::getFreePartner()
+std::shared_ptr<Animal> BreedGoal::getFreePartner()
 {
 	float r = 8;
 	vector<shared_ptr<Entity> > *others = level->getEntitiesOfClass(typeid(*animal), animal->bb->grow(r, r, r));

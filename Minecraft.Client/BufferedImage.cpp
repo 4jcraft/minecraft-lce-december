@@ -47,7 +47,7 @@ void BufferedImage::ByteFlip4(unsigned int &data)
 // Loads a bitmap into a buffered image - only currently supports the 2 types of 32-bit image that we've made so far
 // and determines which of these is which by the compression method. Compression method 3 is a 32-bit image with only
 // 24-bits used (ie no alpha channel) whereas method 0 is a full 32-bit image with a valid alpha channel. 
-BufferedImage::BufferedImage(const wstring& File, bool filenameHasExtension /*=false*/, bool bTitleUpdateTexture /*=false*/, const wstring &drive /*=L""*/)
+BufferedImage::BufferedImage(const std::wstring& File, bool filenameHasExtension /*=false*/, bool bTitleUpdateTexture /*=false*/, const std::wstring &drive /*=L""*/)
 {
 	HRESULT hr;
 	wstring wDrive;
@@ -189,7 +189,7 @@ BufferedImage::BufferedImage(const wstring& File, bool filenameHasExtension /*=f
 	}
 }
 
-BufferedImage::BufferedImage(DLCPack *dlcPack, const wstring& File, bool filenameHasExtension /*= false*/ )
+BufferedImage::BufferedImage(DLCPack *dlcPack, const std::wstring& File, bool filenameHasExtension /*= false*/ )
 {
 	HRESULT hr;
 	wstring filePath = File;

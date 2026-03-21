@@ -8,7 +8,7 @@ public:
 	eINSTANCEOF GetType() { return eTYPE_BEACONTILEENTITY; }
 	static TileEntity *create() { return new BeaconTileEntity(); }
 	// 4J Added
-	virtual shared_ptr<TileEntity> clone();
+	virtual std::shared_ptr<TileEntity> clone();
 
 private:
 	static const int SCALE_TIME = SharedConstants::TICKS_PER_SECOND * 2;
@@ -30,8 +30,8 @@ private:
 	int primaryPower;
 	int secondaryPower;
 
-	shared_ptr<ItemInstance> paymentItem;
-	wstring name;
+	std::shared_ptr<ItemInstance> paymentItem;
+	std::wstring name;
 
 public:
 	BeaconTileEntity();
@@ -51,24 +51,24 @@ public:
 	void setLevels(int levels);
 	void setPrimaryPower(int primaryPower);
 	void setSecondaryPower(int secondaryPower);
-	shared_ptr<Packet> getUpdatePacket();
+	std::shared_ptr<Packet> getUpdatePacket();
 	double getViewDistance();
 	void load(CompoundTag *tag);
 	void save(CompoundTag *tag);
 	unsigned int getContainerSize();
-	shared_ptr<ItemInstance> getItem(unsigned int slot);
-	shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
-	shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
-	void setItem(unsigned int slot, shared_ptr<ItemInstance> item);
-	wstring getName();
-	wstring getCustomName();
+	std::shared_ptr<ItemInstance> getItem(unsigned int slot);
+	std::shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
+	std::shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
+	void setItem(unsigned int slot, std::shared_ptr<ItemInstance> item);
+	std::wstring getName();
+	std::wstring getCustomName();
 	bool hasCustomName();
-	void setCustomName(const wstring &name);
+	void setCustomName(const std::wstring &name);
 	int getMaxStackSize();
-	bool stillValid(shared_ptr<Player> player);
+	bool stillValid(std::shared_ptr<Player> player);
 	void startOpen();
 	void stopOpen();
-	bool canPlaceItem(int slot, shared_ptr<ItemInstance> item);
+	bool canPlaceItem(int slot, std::shared_ptr<ItemInstance> item);
 
 	// 4J Stu - For container
 	virtual void setChanged() { TileEntity::setChanged(); }

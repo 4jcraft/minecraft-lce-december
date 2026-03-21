@@ -11,7 +11,7 @@ int McRegionChunkStorage::s_runningThreadCount = 0;
 C4JThread *McRegionChunkStorage::s_saveThreads[3];
 
 
-McRegionChunkStorage::McRegionChunkStorage(ConsoleSaveFile *saveFile, const wstring &prefix) : m_prefix( prefix )
+McRegionChunkStorage::McRegionChunkStorage(ConsoleSaveFile *saveFile, const std::wstring &prefix) : m_prefix( prefix )
 {
 	m_saveFile = saveFile;
 

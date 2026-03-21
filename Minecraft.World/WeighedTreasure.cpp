@@ -11,14 +11,14 @@ WeighedTreasure::WeighedTreasure(int itemId, int auxValue, int minCount, int max
 	this->maxCount = maxCount;
 }
 
-WeighedTreasure::WeighedTreasure(shared_ptr<ItemInstance> item, int minCount, int maxCount, int weight) : WeighedRandomItem(weight)
+WeighedTreasure::WeighedTreasure(std::shared_ptr<ItemInstance> item, int minCount, int maxCount, int weight) : WeighedRandomItem(weight)
 {
 	this->item = item;
 	this->minCount = minCount;
 	this->maxCount = maxCount;
 }
 
-void WeighedTreasure::addChestItems(Random *random, WeighedTreasureArray items, shared_ptr<Container> dest, int numRolls)
+void WeighedTreasure::addChestItems(Random *random, WeighedTreasureArray items, std::shared_ptr<Container> dest, int numRolls)
 {
 	for (int r = 0; r < numRolls; r++)
 	{
@@ -44,7 +44,7 @@ void WeighedTreasure::addChestItems(Random *random, WeighedTreasureArray items, 
 	}
 }
 
-void WeighedTreasure::addDispenserItems(Random *random, WeighedTreasureArray items, shared_ptr<DispenserTileEntity> dest, int numRolls)
+void WeighedTreasure::addDispenserItems(Random *random, WeighedTreasureArray items, std::shared_ptr<DispenserTileEntity> dest, int numRolls)
 {
 	for (int r = 0; r < numRolls; r++)
 	{

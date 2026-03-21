@@ -68,7 +68,7 @@ SpiderModel::SpiderModel() : Model()
     leg7->compile(1.0f/16.0f);
 }
 
-void SpiderModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void SpiderModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
     setupAnim(time, r, bob, yRot, xRot, scale, entity);
 
@@ -85,7 +85,7 @@ void SpiderModel::render(shared_ptr<Entity> entity, float time, float r, float b
     leg7->render(scale,usecompiled);
 }
 
-void SpiderModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void SpiderModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
     head->yRot = yRot / (float) (180 / PI);
     head->xRot = xRot / (float) (180 / PI);

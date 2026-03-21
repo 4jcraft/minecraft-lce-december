@@ -12,7 +12,7 @@ WitchRenderer::WitchRenderer() : MobRenderer(new WitchModel(0), 0.5f)
 	witchModel = dynamic_cast<WitchModel*>(model);
 }
 
-void WitchRenderer::render(shared_ptr<Entity> entity, double x, double y, double z, float rot, float a)
+void WitchRenderer::render(std::shared_ptr<Entity> entity, double x, double y, double z, float rot, float a)
 {
 	shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
 
@@ -22,12 +22,12 @@ void WitchRenderer::render(shared_ptr<Entity> entity, double x, double y, double
 	MobRenderer::render(mob, x, y, z, rot, a);
 }
 
-ResourceLocation *WitchRenderer::getTextureLocation(shared_ptr<Entity> entity)
+ResourceLocation *WitchRenderer::getTextureLocation(std::shared_ptr<Entity> entity)
 {
 	return &WITCH_LOCATION;
 }
 
-void WitchRenderer::additionalRendering(shared_ptr<LivingEntity> entity, float a)
+void WitchRenderer::additionalRendering(std::shared_ptr<LivingEntity> entity, float a)
 {
 	shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
 
@@ -111,7 +111,7 @@ void WitchRenderer::translateWeaponItem()
 	glTranslatef(0, 3 / 16.0f, 0);
 }
 
-void WitchRenderer::scale(shared_ptr<LivingEntity> mob, float a)
+void WitchRenderer::scale(std::shared_ptr<LivingEntity> mob, float a)
 {
 	float s = 15 / 16.0f;
 	glScalef(s, s, s);

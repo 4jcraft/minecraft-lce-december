@@ -58,7 +58,7 @@ void SynchedEntityData::define(int id, float value)
 	m_isEmpty = false;
 }
 
-void SynchedEntityData::define(int id, const wstring& value)
+void SynchedEntityData::define(int id, const std::wstring& value)
 {
 	MemSect(17);
 	checkId(id);
@@ -114,12 +114,12 @@ float SynchedEntityData::getFloat(int id)
 	return itemsById[id]->getValue_float();
 }
 
-wstring SynchedEntityData::getString(int id)
+std::wstring SynchedEntityData::getString(int id)
 {
 	return itemsById[id]->getValue_wstring();
 }
 
-shared_ptr<ItemInstance> SynchedEntityData::getItemInstance(int id)
+std::shared_ptr<ItemInstance> SynchedEntityData::getItemInstance(int id)
 {
 	//assert(false);	// 4J - not currently implemented
 	return itemsById[id]->getValue_itemInstance();
@@ -183,7 +183,7 @@ void SynchedEntityData::set(int id, float value)
 	}
 }
 
-void SynchedEntityData::set(int id, const wstring& value)
+void SynchedEntityData::set(int id, const std::wstring& value)
 {
 	shared_ptr<DataItem> dataItem = itemsById[id];
 
@@ -196,7 +196,7 @@ void SynchedEntityData::set(int id, const wstring& value)
 	}
 }
 
-void SynchedEntityData::set(int id, shared_ptr<ItemInstance> value)
+void SynchedEntityData::set(int id, std::shared_ptr<ItemInstance> value)
 {
 	shared_ptr<DataItem> dataItem = itemsById[id];
 
@@ -300,7 +300,7 @@ vector<shared_ptr<SynchedEntityData::DataItem> > *SynchedEntityData::getAll()
 }
 
 
-void SynchedEntityData::writeDataItem(DataOutputStream *output, shared_ptr<DataItem> dataItem) //throws IOException
+void SynchedEntityData::writeDataItem(DataOutputStream *output, std::shared_ptr<DataItem> dataItem) //throws IOException
 {
 	// pack type and id
 	int header = ((dataItem->getType() << TYPE_SHIFT) | (dataItem->getId() & MAX_ID_VALUE)) & 0xff;
@@ -533,13 +533,13 @@ SynchedEntityData::DataItem::DataItem(int type, int id, float value) : type( typ
 	this->dirty = true;
 }
 
-SynchedEntityData::DataItem::DataItem(int type, int id, const wstring& value) : type( type ), id( id )
+SynchedEntityData::DataItem::DataItem(int type, int id, const std::wstring& value) : type( type ), id( id )
 {
 	this->value_wstring = value;
 	this->dirty = true;
 }
 
-SynchedEntityData::DataItem::DataItem(int type, int id, shared_ptr<ItemInstance> itemInstance) : type( type ), id( id )
+SynchedEntityData::DataItem::DataItem(int type, int id, std::shared_ptr<ItemInstance> itemInstance) : type( type ), id( id )
 {
 	this->value_itemInstance = itemInstance;
 	this->dirty = true;
@@ -570,12 +570,12 @@ void SynchedEntityData::DataItem::setValue(float value)
 	this->value_float = value;
 }
 
-void SynchedEntityData::DataItem::setValue(const wstring& value)
+void SynchedEntityData::DataItem::setValue(const std::wstring& value)
 {
 	this->value_wstring = value;
 }
 
-void SynchedEntityData::DataItem::setValue(shared_ptr<ItemInstance> itemInstance)
+void SynchedEntityData::DataItem::setValue(std::shared_ptr<ItemInstance> itemInstance)
 {
 	this->value_itemInstance = itemInstance;
 }
@@ -600,12 +600,12 @@ byte SynchedEntityData::DataItem::getValue_byte()
 	return value_byte;
 }
 
-wstring SynchedEntityData::DataItem::getValue_wstring()
+std::wstring SynchedEntityData::DataItem::getValue_wstring()
 {
 	return value_wstring;
 }
 
-shared_ptr<ItemInstance> SynchedEntityData::DataItem::getValue_itemInstance()
+std::shared_ptr<ItemInstance> SynchedEntityData::DataItem::getValue_itemInstance()
 {
 	return value_itemInstance;
 }

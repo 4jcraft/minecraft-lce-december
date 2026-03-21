@@ -10,7 +10,7 @@ SkeletonRenderer::SkeletonRenderer() : HumanoidMobRenderer(new SkeletonModel(), 
 {
 }
 
-void SkeletonRenderer::scale(shared_ptr<LivingEntity> mob, float a)
+void SkeletonRenderer::scale(std::shared_ptr<LivingEntity> mob, float a)
 {
     if (dynamic_pointer_cast<Skeleton>(mob)->getSkeletonType() == Skeleton::TYPE_WITHER)
 	{
@@ -23,7 +23,7 @@ void SkeletonRenderer::translateWeaponItem()
     glTranslatef(1.5f / 16.0f, 3 / 16.0f, 0);
 }
 
-ResourceLocation *SkeletonRenderer::getTextureLocation(shared_ptr<Entity> entity)
+ResourceLocation *SkeletonRenderer::getTextureLocation(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<Skeleton> skeleton = dynamic_pointer_cast<Skeleton>(entity);
 

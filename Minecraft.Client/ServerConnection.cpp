@@ -30,12 +30,12 @@ void ServerConnection::NewIncomingSocket(Socket *socket)
 	handleConnection(unconnectedClient);	
 }
 
-void ServerConnection::addPlayerConnection(shared_ptr<PlayerConnection> uc)
+void ServerConnection::addPlayerConnection(std::shared_ptr<PlayerConnection> uc)
 {
 	players.push_back(uc);
 }
 
-void ServerConnection::handleConnection(shared_ptr<PendingConnection> uc)
+void ServerConnection::handleConnection(std::shared_ptr<PendingConnection> uc)
 {
 	EnterCriticalSection(&pending_cs);
 	pending.push_back(uc);
@@ -110,7 +110,7 @@ void ServerConnection::tick()
 
 }
 
-bool ServerConnection::addPendingTextureRequest(const wstring &textureName)
+bool ServerConnection::addPendingTextureRequest(const std::wstring &textureName)
 {
 	AUTO_VAR(it, find( m_pendingTextureRequests.begin(), m_pendingTextureRequests.end(), textureName));
 	if( it == m_pendingTextureRequests.end() )
@@ -125,7 +125,7 @@ bool ServerConnection::addPendingTextureRequest(const wstring &textureName)
 	return true;
 }
 
-void ServerConnection::handleTextureReceived(const wstring &textureName)
+void ServerConnection::handleTextureReceived(const std::wstring &textureName)
 {
 	AUTO_VAR(it, find( m_pendingTextureRequests.begin(), m_pendingTextureRequests.end(), textureName));
 	if( it != m_pendingTextureRequests.end() )
@@ -142,7 +142,7 @@ void ServerConnection::handleTextureReceived(const wstring &textureName)
     }
 }
 
-void ServerConnection::handleTextureAndGeometryReceived(const wstring &textureName)
+void ServerConnection::handleTextureAndGeometryReceived(const std::wstring &textureName)
 {
 	AUTO_VAR(it, find( m_pendingTextureRequests.begin(), m_pendingTextureRequests.end(), textureName));
 	if( it != m_pendingTextureRequests.end() )
@@ -159,7 +159,7 @@ void ServerConnection::handleTextureAndGeometryReceived(const wstring &textureNa
 	}
 }
 
-void ServerConnection::handleServerSettingsChanged(shared_ptr<ServerSettingsChangedPacket> packet)
+void ServerConnection::handleServerSettingsChanged(std::shared_ptr<ServerSettingsChangedPacket> packet)
 {
 	Minecraft *pMinecraft = Minecraft::GetInstance();
 

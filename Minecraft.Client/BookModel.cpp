@@ -33,7 +33,7 @@ BookModel::BookModel()
 
 }
 
-void BookModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled) 
+void BookModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled) 
 {
 	setupAnim(time, r, bob, yRot, xRot, scale, entity);
 
@@ -48,7 +48,7 @@ void BookModel::render(shared_ptr<Entity> entity, float time, float r, float bob
 	flipPage2->render(scale,usecompiled);
 }
 
-void BookModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void BookModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	float openness = (Mth::sin(time * 0.02f) * 0.10f + 1.25f) * yRot;
 

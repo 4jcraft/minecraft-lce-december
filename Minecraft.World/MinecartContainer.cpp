@@ -56,12 +56,12 @@ void MinecartContainer::destroy(DamageSource *source)
 	}
 }
 
-shared_ptr<ItemInstance> MinecartContainer::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> MinecartContainer::getItem(unsigned int slot)
 {
 	return items[slot];
 }
 
-shared_ptr<ItemInstance> MinecartContainer::removeItem(unsigned int slot, int count)
+std::shared_ptr<ItemInstance> MinecartContainer::removeItem(unsigned int slot, int count)
 {
 	if (items[slot] != NULL)
 	{
@@ -81,7 +81,7 @@ shared_ptr<ItemInstance> MinecartContainer::removeItem(unsigned int slot, int co
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> MinecartContainer::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> MinecartContainer::removeItemNoUpdate(int slot)
 {
 	if (items[slot] != NULL)
 	{
@@ -92,7 +92,7 @@ shared_ptr<ItemInstance> MinecartContainer::removeItemNoUpdate(int slot)
 	return nullptr;
 }
 
-void MinecartContainer::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void MinecartContainer::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	items[slot] = item;
 	if (item != NULL && item->count > getMaxStackSize()) item->count = getMaxStackSize();
@@ -102,7 +102,7 @@ void MinecartContainer::setChanged()
 {
 }
 
-bool MinecartContainer::stillValid(shared_ptr<Player> player)
+bool MinecartContainer::stillValid(std::shared_ptr<Player> player)
 {
 	if (removed) return false;
 	if (player->distanceToSqr(shared_from_this()) > 8 * 8) return false;
@@ -117,12 +117,12 @@ void MinecartContainer::stopOpen()
 {
 }
 
-bool MinecartContainer::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool MinecartContainer::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }
 
-wstring MinecartContainer::getName()
+std::wstring MinecartContainer::getName()
 {
 	return hasCustomName() ? getCustomName() : app.GetString(IDS_CONTAINER_MINECART);
 }
@@ -211,7 +211,7 @@ void MinecartContainer::readAdditionalSaveData(CompoundTag *base)
 	}
 }
 
-bool MinecartContainer::interact(shared_ptr<Player> player)
+bool MinecartContainer::interact(std::shared_ptr<Player> player)
 {
 	if (!level->isClientSide)
 	{

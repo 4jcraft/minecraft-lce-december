@@ -10,7 +10,7 @@ GhastRenderer::GhastRenderer() : MobRenderer(new GhastModel(), 0.5f)
 {
 }
 
-void GhastRenderer::scale(shared_ptr<LivingEntity> mob, float a)
+void GhastRenderer::scale(std::shared_ptr<LivingEntity> mob, float a)
 {
 	shared_ptr<Ghast> ghast = dynamic_pointer_cast<Ghast>(mob);
         
@@ -23,7 +23,7 @@ void GhastRenderer::scale(shared_ptr<LivingEntity> mob, float a)
 	glColor4f(1, 1, 1, 1);
 }
 
-ResourceLocation *GhastRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *GhastRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
 	shared_ptr<Ghast> ghast = dynamic_pointer_cast<Ghast>(mob);
 

@@ -35,7 +35,7 @@ float LivingEntityRenderer::rotlerp(float from, float to, float a)
 	return from + a * diff;
 }
 
-void LivingEntityRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
+void LivingEntityRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
 {
 	shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
 
@@ -230,7 +230,7 @@ void LivingEntityRenderer::render(shared_ptr<Entity> _mob, double x, double y, d
 	MemSect(0);
 }
 
-void LivingEntityRenderer::renderModel(shared_ptr<LivingEntity> mob, float wp, float ws, float bob, float headRotMinusBodyRot, float headRotx, float scale)
+void LivingEntityRenderer::renderModel(std::shared_ptr<LivingEntity> mob, float wp, float ws, float bob, float headRotMinusBodyRot, float headRotx, float scale)
 {
 	bindTexture(mob);
 	if (!mob->isInvisible())
@@ -257,12 +257,12 @@ void LivingEntityRenderer::renderModel(shared_ptr<LivingEntity> mob, float wp, f
 	}
 }
 
-void LivingEntityRenderer::setupPosition(shared_ptr<LivingEntity> mob, double x, double y, double z)
+void LivingEntityRenderer::setupPosition(std::shared_ptr<LivingEntity> mob, double x, double y, double z)
 {
 	glTranslatef((float) x, (float) y, (float) z);
 }
 
-void LivingEntityRenderer::setupRotations(shared_ptr<LivingEntity> mob, float bob, float bodyRot, float a)
+void LivingEntityRenderer::setupRotations(std::shared_ptr<LivingEntity> mob, float bob, float bodyRot, float a)
 {
 	glRotatef(180 - bodyRot, 0, 1, 0);
 	if (mob->deathTime > 0)
@@ -286,22 +286,22 @@ void LivingEntityRenderer::setupRotations(shared_ptr<LivingEntity> mob, float bo
 	}
 }
 
-float LivingEntityRenderer::getAttackAnim(shared_ptr<LivingEntity> mob, float a)
+float LivingEntityRenderer::getAttackAnim(std::shared_ptr<LivingEntity> mob, float a)
 {
 	return mob->getAttackAnim(a);
 }
 
-float LivingEntityRenderer::getBob(shared_ptr<LivingEntity> mob, float a)
+float LivingEntityRenderer::getBob(std::shared_ptr<LivingEntity> mob, float a)
 {
 	return (mob->tickCount + a);
 }
 
-void LivingEntityRenderer::additionalRendering(shared_ptr<LivingEntity> mob, float a)
+void LivingEntityRenderer::additionalRendering(std::shared_ptr<LivingEntity> mob, float a)
 {
 
 }
 
-void LivingEntityRenderer::renderArrows(shared_ptr<LivingEntity> mob, float a)
+void LivingEntityRenderer::renderArrows(std::shared_ptr<LivingEntity> mob, float a)
 {
 	int arrowCount = mob->getArrowCount();
 	if (arrowCount > 0)
@@ -345,35 +345,35 @@ void LivingEntityRenderer::renderArrows(shared_ptr<LivingEntity> mob, float a)
 	}
 }
 
-int LivingEntityRenderer::prepareArmorOverlay(shared_ptr<LivingEntity> mob, int layer, float a)
+int LivingEntityRenderer::prepareArmorOverlay(std::shared_ptr<LivingEntity> mob, int layer, float a)
 {
 	return prepareArmor(mob, layer, a);
 }
 
-int LivingEntityRenderer::prepareArmor(shared_ptr<LivingEntity> mob, int layer, float a) 
+int LivingEntityRenderer::prepareArmor(std::shared_ptr<LivingEntity> mob, int layer, float a) 
 {
 	return -1;
 }
 
-void LivingEntityRenderer::prepareSecondPassArmor(shared_ptr<LivingEntity> mob, int layer, float a)
+void LivingEntityRenderer::prepareSecondPassArmor(std::shared_ptr<LivingEntity> mob, int layer, float a)
 {
 }
 
-float LivingEntityRenderer::getFlipDegrees(shared_ptr<LivingEntity> mob)
+float LivingEntityRenderer::getFlipDegrees(std::shared_ptr<LivingEntity> mob)
 {
 	return 90;
 }
 
-int LivingEntityRenderer::getOverlayColor(shared_ptr<LivingEntity> mob, float br, float a)
+int LivingEntityRenderer::getOverlayColor(std::shared_ptr<LivingEntity> mob, float br, float a)
 {
 	return 0;
 }
 
-void LivingEntityRenderer::scale(shared_ptr<LivingEntity> mob, float a)
+void LivingEntityRenderer::scale(std::shared_ptr<LivingEntity> mob, float a)
 {
 }
 
-void LivingEntityRenderer::renderName(shared_ptr<LivingEntity> mob, double x, double y, double z)
+void LivingEntityRenderer::renderName(std::shared_ptr<LivingEntity> mob, double x, double y, double z)
 {
 	if (shouldShowName(mob) || Minecraft::renderDebug())
 	{
@@ -446,12 +446,12 @@ void LivingEntityRenderer::renderName(shared_ptr<LivingEntity> mob, double x, do
 	}
 }
 
-bool LivingEntityRenderer::shouldShowName(shared_ptr<LivingEntity> mob)
+bool LivingEntityRenderer::shouldShowName(std::shared_ptr<LivingEntity> mob)
 {
 	return Minecraft::renderNames() && mob != entityRenderDispatcher->cameraEntity && !mob->isInvisibleTo(Minecraft::GetInstance()->player) && mob->rider.lock() == NULL;
 }
 
-void LivingEntityRenderer::renderNameTags(shared_ptr<LivingEntity> mob, double x, double y, double z, const wstring &msg, float scale, double dist)
+void LivingEntityRenderer::renderNameTags(std::shared_ptr<LivingEntity> mob, double x, double y, double z, const std::wstring &msg, float scale, double dist)
 {
 	if (mob->isSleeping())
 	{
@@ -464,7 +464,7 @@ void LivingEntityRenderer::renderNameTags(shared_ptr<LivingEntity> mob, double x
 }
 
 // 4J Added parameter for color here so that we can colour players names
-void LivingEntityRenderer::renderNameTag(shared_ptr<LivingEntity> mob, const wstring &name, double x, double y, double z, int maxDist, int color /*= 0xff000000*/)
+void LivingEntityRenderer::renderNameTag(std::shared_ptr<LivingEntity> mob, const std::wstring &name, double x, double y, double z, int maxDist, int color /*= 0xff000000*/)
 {
 	if ( app.GetGameSettings(eGameSetting_DisplayHUD)==0 )
 	{

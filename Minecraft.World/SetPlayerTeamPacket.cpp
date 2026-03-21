@@ -28,12 +28,12 @@ SetPlayerTeamPacket::SetPlayerTeamPacket(PlayerTeam *team, int method)
 	}
 	if (method == METHOD_ADD)
 	{
-		unordered_set<wstring> *playerNames = team->getPlayers();
+		unordered_set<std::wstring> *playerNames = team->getPlayers();
 		players.insert(players.end(), playerNames->begin(), playerNames->end());
 	}
 }
 
-SetPlayerTeamPacket::SetPlayerTeamPacket(PlayerTeam *team, vector<wstring> *playerNames, int method)
+SetPlayerTeamPacket::SetPlayerTeamPacket(PlayerTeam *team, vector<std::wstring> *playerNames, int method)
 {
 	if (method != METHOD_JOIN && method != METHOD_LEAVE)
 	{

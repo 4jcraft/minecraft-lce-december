@@ -9,7 +9,7 @@ LeashItem::LeashItem(int id) : Item(id)
 {
 }
 
-bool LeashItem::useOn(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
+bool LeashItem::useOn(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
 {
 	int tile = level->getTile(x, y, z);
 	if (Tile::tiles[tile] != NULL && Tile::tiles[tile]->getRenderShape() == Tile::SHAPE_FENCE)
@@ -27,7 +27,7 @@ bool LeashItem::useOn(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> 
 	return false;
 }
 
-bool LeashItem::bindPlayerMobs(shared_ptr<Player> player, Level *level, int x, int y, int z)
+bool LeashItem::bindPlayerMobs(std::shared_ptr<Player> player, Level *level, int x, int y, int z)
 {
 	// check if there is a knot at the given coordinate
 	shared_ptr<LeashFenceKnotEntity> activeKnot = LeashFenceKnotEntity::findKnotAt(level, x, y, z);
@@ -56,7 +56,7 @@ bool LeashItem::bindPlayerMobs(shared_ptr<Player> player, Level *level, int x, i
 }
 
 // 4J-JEV: Similar to bindPlayerMobs, but doesn't actually bind mobs,
-bool LeashItem::bindPlayerMobsTest(shared_ptr<Player> player, Level *level, int x, int y, int z)
+bool LeashItem::bindPlayerMobsTest(std::shared_ptr<Player> player, Level *level, int x, int y, int z)
 {
 	// look for entities that can be attached to the fence
 	double range = 7;

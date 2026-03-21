@@ -124,7 +124,7 @@ StructureStart *StructureFeature::getStructureAt(int cellX, int cellY, int cellZ
 			if (pStructureStart->getBoundingBox()->intersects(cellX, cellZ, cellX, cellZ)) 
 			{
 				/*
-				Iterator<StructurePiece> it = structureStart.getPieces().iterator();
+				Iterator<StructurePiece> it = structureStart.getPieces().std::iterator();
 				while (it.hasNext()) {
 				StructurePiece next = it.next();
 				if (next.getBoundingBox().isInside(cellX, cellY, cellZ)) {
@@ -252,7 +252,7 @@ void StructureFeature::restoreSavedData(Level *level)
 
 		if (savedData == NULL)
 		{
-			savedData = shared_ptr<StructureFeatureSavedData>( new StructureFeatureSavedData(getFeatureName()) );
+			savedData = std::shared_ptr<StructureFeatureSavedData>( new StructureFeatureSavedData(getFeatureName()) );
 			level->setSavedData(getFeatureName(), savedData);
 		}
 		else

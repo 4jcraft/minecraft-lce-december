@@ -43,8 +43,8 @@ public:
 	virtual void stop();
 
 protected:
-	virtual bool canAttack(shared_ptr<LivingEntity> target, bool allowInvulnerable);
+	virtual bool canAttack(std::shared_ptr<LivingEntity> target, bool allowInvulnerable);
 
 private:
-	bool canReach(shared_ptr<LivingEntity> target);
+	bool canReach(std::shared_ptr<LivingEntity> target);
 };

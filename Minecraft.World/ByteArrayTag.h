@@ -8,8 +8,8 @@ public:
 	byteArray data;
 	bool m_ownData;
 	
-	ByteArrayTag(const wstring &name) : Tag(name) { m_ownData = false; }
-	ByteArrayTag(const wstring &name, byteArray data, bool ownData = false) : Tag(name) {this->data = data; m_ownData = ownData;}			// 4J - added ownData param
+	ByteArrayTag(const std::wstring &name) : Tag(name) { m_ownData = false; }
+	ByteArrayTag(const std::wstring &name, byteArray data, bool ownData = false) : Tag(name) {this->data = data; m_ownData = ownData;}			// 4J - added ownData param
 	~ByteArrayTag() { if(m_ownData) delete [] data.data; }
 	
 	void write(DataOutput *dos)
@@ -29,7 +29,7 @@ public:
 
 	byte getId() { return TAG_Byte_Array; }
 
-	wstring toString()
+	std::wstring toString()
 	{
 		static wchar_t buf[32];
 		swprintf(buf, 32, L"[%d bytes]",data.length);

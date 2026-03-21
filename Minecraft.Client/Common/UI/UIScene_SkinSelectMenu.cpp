@@ -143,7 +143,7 @@ void UIScene_SkinSelectMenu::updateComponents()
 	m_parentLayer->showComponent(m_iPad,eUIComponent_Logo,false);
 }
 
-wstring UIScene_SkinSelectMenu::getMoviePath()
+std::wstring UIScene_SkinSelectMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{
@@ -1243,7 +1243,7 @@ void UIScene_SkinSelectMenu::setCharacterLocked(bool locked)
 	IggyResult out = IggyPlayerCallMethodRS ( getMovie() , &result, IggyPlayerRootPath( getMovie() ), m_funcSetCharacterLocked , 1 , value );
 }
 
-void UIScene_SkinSelectMenu::setLeftLabel(const wstring &label)
+void UIScene_SkinSelectMenu::setLeftLabel(const std::wstring &label)
 {
 	if(label.compare(m_leftLabel) != 0)
 	{
@@ -1262,7 +1262,7 @@ void UIScene_SkinSelectMenu::setLeftLabel(const wstring &label)
 	}
 }
 
-void UIScene_SkinSelectMenu::setCentreLabel(const wstring &label)
+void UIScene_SkinSelectMenu::setCentreLabel(const std::wstring &label)
 {
 	if(label.compare(m_centreLabel) != 0)
 	{
@@ -1281,7 +1281,7 @@ void UIScene_SkinSelectMenu::setCentreLabel(const wstring &label)
 	}
 }
 
-void UIScene_SkinSelectMenu::setRightLabel(const wstring &label)
+void UIScene_SkinSelectMenu::setRightLabel(const std::wstring &label)
 {
 	if(label.compare(m_rightLabel) != 0)
 	{

@@ -25,12 +25,12 @@ BrewingStandTileEntity::~BrewingStandTileEntity()
 	delete [] items.data;
 }
 
-wstring BrewingStandTileEntity::getName()
+std::wstring BrewingStandTileEntity::getName()
 {
 	return hasCustomName() ? name : app.GetString(IDS_TILE_BREWINGSTAND);
 }
 
-wstring BrewingStandTileEntity::getCustomName()
+std::wstring BrewingStandTileEntity::getCustomName()
 {
 	return hasCustomName() ? name : L"";
 }
@@ -40,7 +40,7 @@ bool BrewingStandTileEntity::hasCustomName()
 	return !name.empty();
 }
 
-void BrewingStandTileEntity::setCustomName(const wstring &name)
+void BrewingStandTileEntity::setCustomName(const std::wstring &name)
 {
 	this->name = name;
 }
@@ -273,7 +273,7 @@ void BrewingStandTileEntity::doBrew()
 	}
 }
 
-int BrewingStandTileEntity::applyIngredient(int currentBrew, shared_ptr<ItemInstance> ingredient)
+int BrewingStandTileEntity::applyIngredient(int currentBrew, std::shared_ptr<ItemInstance> ingredient)
 {
 	if (ingredient == NULL)
 	{
@@ -339,7 +339,7 @@ void BrewingStandTileEntity::save(CompoundTag *base)
 	if (hasCustomName()) base->putString(L"CustomName", name);
 }
 
-shared_ptr<ItemInstance> BrewingStandTileEntity::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> BrewingStandTileEntity::getItem(unsigned int slot)
 {
 	if (slot >= 0 && slot < items.length)
 	{
@@ -348,7 +348,7 @@ shared_ptr<ItemInstance> BrewingStandTileEntity::getItem(unsigned int slot)
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> BrewingStandTileEntity::removeItem(unsigned int slot, int count)
+std::shared_ptr<ItemInstance> BrewingStandTileEntity::removeItem(unsigned int slot, int count)
 {
 	// 4J Stu - Changed the implementation of this function to be the same as ChestTileEntity to enable the "Pickup Half"
 	// option on the ingredients slot
@@ -378,7 +378,7 @@ shared_ptr<ItemInstance> BrewingStandTileEntity::removeItem(unsigned int slot, i
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> BrewingStandTileEntity::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> BrewingStandTileEntity::removeItemNoUpdate(int slot)
 {
 	if (slot >= 0 && slot < items.length)
 	{
@@ -389,7 +389,7 @@ shared_ptr<ItemInstance> BrewingStandTileEntity::removeItemNoUpdate(int slot)
 	return nullptr;
 }
 
-void BrewingStandTileEntity::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void BrewingStandTileEntity::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	if (slot >= 0 && slot < items.length)
 	{
@@ -403,7 +403,7 @@ int BrewingStandTileEntity::getMaxStackSize()
 	return 64;
 }
 
-bool BrewingStandTileEntity::stillValid(shared_ptr<Player> player)
+bool BrewingStandTileEntity::stillValid(std::shared_ptr<Player> player)
 {
 	if (level->getTileEntity(x, y, z) != shared_from_this()) return false;
 	if (player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 8 * 8) return false;
@@ -418,7 +418,7 @@ void BrewingStandTileEntity::stopOpen()
 {
 }
 
-bool BrewingStandTileEntity::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool BrewingStandTileEntity::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	if (slot == INGREDIENT_SLOT)
 	{
@@ -463,18 +463,18 @@ intArray BrewingStandTileEntity::getSlotsForFace(int face)
 	return SLOTS_FOR_OTHER_FACES;
 }
 
-bool BrewingStandTileEntity::canPlaceItemThroughFace(int slot, shared_ptr<ItemInstance> item, int face)
+bool BrewingStandTileEntity::canPlaceItemThroughFace(int slot, std::shared_ptr<ItemInstance> item, int face)
 {
 	return canPlaceItem(slot, item);
 }
 
-bool BrewingStandTileEntity::canTakeItemThroughFace(int slot, shared_ptr<ItemInstance> item, int face)
+bool BrewingStandTileEntity::canTakeItemThroughFace(int slot, std::shared_ptr<ItemInstance> item, int face)
 {
 	return true;
 }
 
 // 4J Added
-shared_ptr<TileEntity> BrewingStandTileEntity::clone()
+std::shared_ptr<TileEntity> BrewingStandTileEntity::clone()
 {
 	shared_ptr<BrewingStandTileEntity> result = shared_ptr<BrewingStandTileEntity>( new BrewingStandTileEntity() );
 	TileEntity::clone(result);

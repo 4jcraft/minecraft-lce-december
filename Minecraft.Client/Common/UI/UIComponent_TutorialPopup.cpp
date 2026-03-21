@@ -26,7 +26,7 @@ UIComponent_TutorialPopup::UIComponent_TutorialPopup(int iPad, void *initData, U
 	m_labelDescription.init(L"");
 }
 
-wstring UIComponent_TutorialPopup::getMoviePath()
+std::wstring UIComponent_TutorialPopup::getMoviePath()
 {
 	switch( m_parentLayer->getViewport() )
 	{
@@ -128,7 +128,7 @@ void UIComponent_TutorialPopup::handleTimerComplete(int id)
 	}
 }
 
-void UIComponent_TutorialPopup::_SetDescription(UIScene *interactScene, const wstring &desc, const wstring &title, bool allowFade, bool isReminder)
+void UIComponent_TutorialPopup::_SetDescription(UIScene *interactScene, const std::wstring &desc, const std::wstring &title, bool allowFade, bool isReminder)
 {	
 	m_interactScene = interactScene;
 	app.DebugPrintf("Setting m_interactScene to %08x\n", m_interactScene);
@@ -202,7 +202,7 @@ void UIComponent_TutorialPopup::_SetDescription(UIScene *interactScene, const ws
 	}
 }
 
-wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal, bool isFoil, LPCWSTR desc)
+std::wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal, bool isFoil, LPCWSTR desc)
 {
 	wstring temp(desc);
 
@@ -333,7 +333,7 @@ wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal, bool isFoil, 
 	return temp;
 }
 
-wstring UIComponent_TutorialPopup::_SetImage(wstring &desc)
+std::wstring UIComponent_TutorialPopup::_SetImage(std::wstring &desc)
 {
 	// 4J Stu - Unused
 #if 0
@@ -388,7 +388,7 @@ wstring UIComponent_TutorialPopup::_SetImage(wstring &desc)
 }
 
 
-wstring UIComponent_TutorialPopup::ParseDescription(int iPad, wstring &text)
+std::wstring UIComponent_TutorialPopup::ParseDescription(int iPad, std::wstring &text)
 {
 	text = replaceAll(text, L"{*CraftingTableIcon*}", L"");
 	text = replaceAll(text, L"{*SticksIcon*}", L"");

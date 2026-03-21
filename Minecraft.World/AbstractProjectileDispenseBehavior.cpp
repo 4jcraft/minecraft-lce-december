@@ -7,7 +7,7 @@
 #include "LevelEvent.h"
 #include "ItemInstance.h"
 
-shared_ptr<ItemInstance> AbstractProjectileDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> AbstractProjectileDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	Level *world = source->getWorld();
 	if ( world->countInstanceOf(eTYPE_PROJECTILE, false) >= Level::MAX_DISPENSABLE_PROJECTILES )

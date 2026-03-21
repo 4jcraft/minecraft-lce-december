@@ -12,5 +12,5 @@ private:
 public:
 	RepairContainer(AnvilMenu *menu, int name, bool customName, int size);
 	void setChanged();
-	bool canPlaceItem(int slot, shared_ptr<ItemInstance> item);
+	bool canPlaceItem(int slot, std::shared_ptr<ItemInstance> item);
 };

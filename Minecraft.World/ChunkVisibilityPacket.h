@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "Packet.h"
 
@@ -22,7 +21,7 @@ public:
 	virtual int getEstimatedSize();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new ChunkVisibilityPacket()); }
+	static std::shared_ptr<Packet> create() { return shared_ptr<Packet>(new ChunkVisibilityPacket()); }
 	virtual int getId() { return 50; }
 };
 

@@ -71,7 +71,7 @@ void TargetGoal::stop()
 	mob->setTarget(nullptr);
 }
 
-bool TargetGoal::canAttack(shared_ptr<LivingEntity> target, bool allowInvulnerable)
+bool TargetGoal::canAttack(std::shared_ptr<LivingEntity> target, bool allowInvulnerable)
 {
 	if (target == NULL) return false;
 	if (target == mob->shared_from_this()) return false;
@@ -113,7 +113,7 @@ bool TargetGoal::canAttack(shared_ptr<LivingEntity> target, bool allowInvulnerab
 	return true;
 }
 
-bool TargetGoal::canReach(shared_ptr<LivingEntity> target)
+bool TargetGoal::canReach(std::shared_ptr<LivingEntity> target)
 {
 	reachCacheTime = 10 + mob->getRandom()->nextInt(5);
 	Path *path = mob->getNavigation()->createPath(target);

@@ -143,7 +143,7 @@ UIScene_HowToPlay::UIScene_HowToPlay(int iPad, void *initData, UILayer *parentLa
 	StartPage( eStartPage );
 }
 
-wstring UIScene_HowToPlay::getMoviePath()
+std::wstring UIScene_HowToPlay::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

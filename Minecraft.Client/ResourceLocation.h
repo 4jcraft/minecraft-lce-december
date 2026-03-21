@@ -6,7 +6,7 @@ class ResourceLocation
 {
 private:
 	textureNameArray m_texture;
-	wstring m_path;
+	std::wstring m_path;
 	bool m_preloaded;
 
 public:
@@ -23,7 +23,7 @@ public:
 		m_preloaded = true;
 	}
 
-	ResourceLocation(wstring path)
+	ResourceLocation(std::wstring path)
 	{
 		m_path = path;
 		m_preloaded = false;
@@ -59,7 +59,7 @@ public:
 		return m_texture.length;
 	}
 
-	wstring getPath()
+	std::wstring getPath()
 	{
 		return m_path;
 	}

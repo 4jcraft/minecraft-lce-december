@@ -29,7 +29,7 @@ bool MakeLoveGoal::canUse()
 	if (village.lock() == NULL) return false;
 	if (!villageNeedsMoreVillagers()) return false;
 
-	shared_ptr<Entity> mate = level->getClosestEntityOfClass(typeid(Villager), villager->bb->grow(8, 3, 8), villager->shared_from_this());
+	std::shared_ptr<Entity> mate = level->getClosestEntityOfClass(typeid(Villager), villager->bb->grow(8, 3, 8), villager->shared_from_this());
 	if (mate == NULL) return false;
 
 	partner = weak_ptr<Villager>(dynamic_pointer_cast<Villager>(mate));
@@ -75,7 +75,7 @@ void MakeLoveGoal::tick()
 
 bool MakeLoveGoal::villageNeedsMoreVillagers()
 {
-	shared_ptr<Village> _village = village.lock();
+	std::shared_ptr<Village> _village = village.lock();
 	if( _village == NULL ) return false;
 
 	if (!_village->isBreedTimerOk())
@@ -98,7 +98,7 @@ void MakeLoveGoal::breed()
 	// 4J - added limit to number of animals that can be bred
 	if(level->canCreateMore( eTYPE_VILLAGER, Level::eSpawnType_Breed) )
 	{
-		shared_ptr<Villager> child = dynamic_pointer_cast<Villager>( villager->getBreedOffspring(partner.lock()) );
+		std::shared_ptr<Villager> child = dynamic_pointer_cast<Villager>( villager->getBreedOffspring(partner.lock()) );
 		child->setAge(-20 * 60 * 20);
 		child->moveTo(villager->x, villager->y, villager->z, 0, 0);
 		level->addEntity(child);

@@ -15,12 +15,12 @@ AvoidPlayerGoalEntitySelector::AvoidPlayerGoalEntitySelector(AvoidPlayerGoal *pa
 	m_parent = parent;
 }
 
-bool AvoidPlayerGoalEntitySelector::matches(shared_ptr<Entity> entity) const
+bool AvoidPlayerGoalEntitySelector::matches(std::shared_ptr<Entity> entity) const
 {
 	return entity->isAlive() && m_parent->mob->getSensing()->canSee(entity);
 }
 
-AvoidPlayerGoal::AvoidPlayerGoal(PathfinderMob *mob, const type_info& avoidType, float maxDist, double walkSpeedModifier, double sprintSpeedModifier) : avoidType(avoidType)
+AvoidPlayerGoal::AvoidPlayerGoal(PathfinderMob *mob, const std::type_info& avoidType, float maxDist, double walkSpeedModifier, double sprintSpeedModifier) : avoidType(avoidType)
 {
 	this->mob = mob;
 	//this->avoidType = avoidType;

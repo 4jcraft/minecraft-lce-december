@@ -5,12 +5,12 @@
 #include "net.minecraft.network.packet.h"
 
 //EntityDamageSource::EntityDamageSource(const wstring &msgId, shared_ptr<Entity> entity) : DamageSource(msgId)
-EntityDamageSource::EntityDamageSource(ChatPacket::EChatPacketMessage msgId, ChatPacket::EChatPacketMessage msgWithItemId, shared_ptr<Entity> entity) : DamageSource(msgId, msgWithItemId)
+EntityDamageSource::EntityDamageSource(ChatPacket::EChatPacketMessage msgId, ChatPacket::EChatPacketMessage msgWithItemId, std::shared_ptr<Entity> entity) : DamageSource(msgId, msgWithItemId)
 {
 	this->entity = entity;
 }
 
-shared_ptr<Entity> EntityDamageSource::getEntity()
+std::shared_ptr<Entity> EntityDamageSource::getEntity()
 {
 	return entity;
 }
@@ -21,7 +21,7 @@ shared_ptr<Entity> EntityDamageSource::getEntity()
 //	//return I18n.get("death." + msgId, player.name, entity.getAName());
 //}
 
-shared_ptr<ChatPacket> EntityDamageSource::getDeathMessagePacket(shared_ptr<LivingEntity> player)
+std::shared_ptr<ChatPacket> EntityDamageSource::getDeathMessagePacket(std::shared_ptr<LivingEntity> player)
 {
 	shared_ptr<ItemInstance> held = (entity != NULL) && entity->instanceof(eTYPE_LIVINGENTITY) ? dynamic_pointer_cast<LivingEntity>(entity)->getCarriedItem() : nullptr;
 	wstring additional = L"";

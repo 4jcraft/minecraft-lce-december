@@ -1,6 +1,5 @@
 #pragma once
 
-using namespace std;
 
 #include "TamableAnimal.h"
 class DamageSource;
@@ -71,7 +70,7 @@ public:
 	void setAngry(bool value);
 	int getCollarColor();
 	void setCollarColor(int color);
-	void tame(const wstring &wsOwnerUUID, bool bDisplayTamingParticles, bool bSetSitting);
+	void tame(const std::wstring &wsOwnerUUID, bool bDisplayTamingParticles, bool bSetSitting);
 
 	// For tooltips
 	int GetSynchedHealth();

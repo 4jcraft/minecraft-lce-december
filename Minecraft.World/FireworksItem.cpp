@@ -5,21 +5,21 @@
 #include "net.minecraft.world.level.h"
 #include "FireworksItem.h"
 
-const wstring FireworksItem::TAG_FIREWORKS = L"Fireworks";
-const wstring FireworksItem::TAG_EXPLOSION = L"Explosion";
-const wstring FireworksItem::TAG_EXPLOSIONS = L"Explosions";
-const wstring FireworksItem::TAG_FLIGHT = L"Flight";
-const wstring FireworksItem::TAG_E_TYPE = L"Type";
-const wstring FireworksItem::TAG_E_TRAIL = L"Trail";
-const wstring FireworksItem::TAG_E_FLICKER = L"Flicker";
-const wstring FireworksItem::TAG_E_COLORS = L"Colors";
-const wstring FireworksItem::TAG_E_FADECOLORS = L"FadeColors";
+const std::wstring FireworksItem::TAG_FIREWORKS = L"Fireworks";
+const std::wstring FireworksItem::TAG_EXPLOSION = L"Explosion";
+const std::wstring FireworksItem::TAG_EXPLOSIONS = L"Explosions";
+const std::wstring FireworksItem::TAG_FLIGHT = L"Flight";
+const std::wstring FireworksItem::TAG_E_TYPE = L"Type";
+const std::wstring FireworksItem::TAG_E_TRAIL = L"Trail";
+const std::wstring FireworksItem::TAG_E_FLICKER = L"Flicker";
+const std::wstring FireworksItem::TAG_E_COLORS = L"Colors";
+const std::wstring FireworksItem::TAG_E_FADECOLORS = L"FadeColors";
 
 FireworksItem::FireworksItem(int id) : Item(id)
 {
 }
 
-bool FireworksItem::useOn(shared_ptr<ItemInstance> instance, shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
+bool FireworksItem::useOn(std::shared_ptr<ItemInstance> instance, std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
 {
 	// 4J-JEV: Fix for xb1 #173493 - CU7: Content: UI: Missing tooltip for Firework Rocket.
 	if (bTestUseOnOnly) return true;
@@ -39,7 +39,7 @@ bool FireworksItem::useOn(shared_ptr<ItemInstance> instance, shared_ptr<Player> 
 	return false;
 }
 
-void FireworksItem::appendHoverText(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
+void FireworksItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
 {
 	if (!itemInstance->hasTag())
 	{

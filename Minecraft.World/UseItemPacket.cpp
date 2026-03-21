@@ -23,7 +23,7 @@ UseItemPacket::UseItemPacket()
 	clickZ = 0.0f;
 }
 
-UseItemPacket::UseItemPacket(int x, int y, int z, int face, shared_ptr<ItemInstance> item, float clickX, float clickY, float clickZ) 
+UseItemPacket::UseItemPacket(int x, int y, int z, int face, std::shared_ptr<ItemInstance> item, float clickX, float clickY, float clickZ) 
 {
 	this->x = x;
 	this->y = y;
@@ -91,7 +91,7 @@ int UseItemPacket::getFace()
 	return face;
 }
 
-shared_ptr<ItemInstance> UseItemPacket::getItem()
+std::shared_ptr<ItemInstance> UseItemPacket::getItem()
 {
 	return item;
 }

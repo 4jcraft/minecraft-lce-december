@@ -32,7 +32,7 @@ AddPlayerPacket::~AddPlayerPacket()
 	if(unpack != NULL) delete unpack;
 }
 
-AddPlayerPacket::AddPlayerPacket(shared_ptr<Player> player, PlayerUID xuid, PlayerUID OnlineXuid,int xp, int yp, int zp, int yRotp, int xRotp, int yHeadRotp) 
+AddPlayerPacket::AddPlayerPacket(std::shared_ptr<Player> player, PlayerUID xuid, PlayerUID OnlineXuid,int xp, int yp, int zp, int yRotp, int xRotp, int yHeadRotp) 
 {
 	id = player->entityId;
 	name = player->getName();

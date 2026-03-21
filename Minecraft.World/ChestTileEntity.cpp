@@ -58,12 +58,12 @@ unsigned int ChestTileEntity::getContainerSize()
 	return 9 * 3;
 }
 
-shared_ptr<ItemInstance> ChestTileEntity::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> ChestTileEntity::getItem(unsigned int slot)
 {
 	return items->data[slot];
 }
 
-shared_ptr<ItemInstance> ChestTileEntity::removeItem(unsigned int slot, int count) 
+std::shared_ptr<ItemInstance> ChestTileEntity::removeItem(unsigned int slot, int count) 
 {
 	if (items->data[slot] != NULL)
 	{
@@ -89,7 +89,7 @@ shared_ptr<ItemInstance> ChestTileEntity::removeItem(unsigned int slot, int coun
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> ChestTileEntity::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> ChestTileEntity::removeItemNoUpdate(int slot)
 {
 	if (items->data[slot] != NULL)
 	{
@@ -100,19 +100,19 @@ shared_ptr<ItemInstance> ChestTileEntity::removeItemNoUpdate(int slot)
 	return nullptr;
 }
 
-void ChestTileEntity::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void ChestTileEntity::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	items->data[slot] = item;
 	if (item != NULL && item->count > getMaxStackSize()) item->count = getMaxStackSize();
 	this->setChanged();
 }
 
-wstring ChestTileEntity::getName()
+std::wstring ChestTileEntity::getName()
 {
 	return hasCustomName() ? name : app.GetString(IDS_TILE_CHEST);
 }
 
-wstring ChestTileEntity::getCustomName()
+std::wstring ChestTileEntity::getCustomName()
 {
 	return hasCustomName() ? name : L"";
 }
@@ -122,7 +122,7 @@ bool ChestTileEntity::hasCustomName()
 	return !name.empty();
 }
 
-void ChestTileEntity::setCustomName(const wstring &name)
+void ChestTileEntity::setCustomName(const std::wstring &name)
 {
 	this->name = name;
 }
@@ -172,7 +172,7 @@ int ChestTileEntity::getMaxStackSize()
 	return Container::LARGE_MAX_STACK_SIZE;
 }
 
-bool ChestTileEntity::stillValid(shared_ptr<Player> player)
+bool ChestTileEntity::stillValid(std::shared_ptr<Player> player)
 {
 	if (level->getTileEntity(x, y, z) != shared_from_this() ) return false;
 	if (player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 8 * 8) return false;
@@ -190,7 +190,7 @@ void ChestTileEntity::clearCache()
 	hasCheckedNeighbors = false;
 }
 
-void ChestTileEntity::heyImYourNeighbor(shared_ptr<ChestTileEntity> neighbor, int from)
+void ChestTileEntity::heyImYourNeighbor(std::shared_ptr<ChestTileEntity> neighbor, int from)
 {
 	if (neighbor->isRemoved())
 	{
@@ -370,7 +370,7 @@ void ChestTileEntity::stopOpen()
 	level->updateNeighborsAt(x, y - 1, z, getTile()->id);
 }
 
-bool ChestTileEntity::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool ChestTileEntity::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }
@@ -400,7 +400,7 @@ int ChestTileEntity::getType()
 }
 
 // 4J Added
-shared_ptr<TileEntity> ChestTileEntity::clone()
+std::shared_ptr<TileEntity> ChestTileEntity::clone()
 {
 	shared_ptr<ChestTileEntity> result = shared_ptr<ChestTileEntity>( new ChestTileEntity() );
 	TileEntity::clone(result);

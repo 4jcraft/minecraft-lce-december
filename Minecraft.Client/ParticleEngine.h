@@ -1,12 +1,12 @@
 #pragma once
-using namespace std;
+
 
 class Particle;
 class Level;
 class Textures;
 class Entity;
 class Random;
-using namespace std;
+
 
 class ParticleEngine
 {
@@ -32,25 +32,25 @@ public:
 protected:
 	Level *level;
 private:
-	deque<shared_ptr<Particle> > particles[3][TEXTURE_COUNT][LIST_COUNT];		// 4J made three arrays to cope with simultaneous two dimensions
+	deque<std::shared_ptr<Particle> > particles[3][TEXTURE_COUNT][LIST_COUNT];		// 4J made three arrays to cope with simultaneous two dimensions
     Textures *textures;
     Random *random;
 
 public:
 	ParticleEngine(Level *level, Textures *textures);
 	~ParticleEngine();
-    void add(shared_ptr<Particle> p);
+    void add(std::shared_ptr<Particle> p);
     void tick();
-    void render(shared_ptr<Entity> player, float a, int list);
-    void renderLit(shared_ptr<Entity> player, float a, int list);
+    void render(std::shared_ptr<Entity> player, float a, int list);
+    void renderLit(std::shared_ptr<Entity> player, float a, int list);
     void setLevel(Level *level);
     void destroy(int x, int y, int z, int tid, int data);
     void crack(int x, int y, int z, int face);
 
 	// 4J - Brought forward from Java 1.8
-	void markTranslucent(shared_ptr<Particle> particle);
-	void markOpaque(shared_ptr<Particle> particle);
-	void moveParticleInList(shared_ptr<Particle> particle, int source, int destination);
+	void markTranslucent(std::shared_ptr<Particle> particle);
+	void markOpaque(std::shared_ptr<Particle> particle);
+	void moveParticleInList(std::shared_ptr<Particle> particle, int source, int destination);
 
-	wstring countParticles();
+	std::wstring countParticles();
 };

@@ -1248,7 +1248,7 @@ void Recipes::addShapelessRecipy(ItemInstance *result,... )
 	recipies->push_back(new ShapelessRecipy(result, ingredients, group));	
 }
 
-shared_ptr<ItemInstance> Recipes::getItemFor(shared_ptr<CraftingContainer> craftSlots, Level *level, Recipy *recipesClass /*= NULL*/) 
+std::shared_ptr<ItemInstance> Recipes::getItemFor(std::shared_ptr<CraftingContainer> craftSlots, Level *level, Recipy *recipesClass /*= NULL*/) 
 {
 	int count = 0;
 	shared_ptr<ItemInstance> first = nullptr;
@@ -1297,7 +1297,7 @@ vector <Recipy *> *Recipes::getRecipies()
 }
 
 // 4J-PB - added to deal with Xb0x 'crafting'
-shared_ptr<ItemInstance> Recipes::getItemForRecipe(Recipy *r) 
+std::shared_ptr<ItemInstance> Recipes::getItemForRecipe(Recipy *r) 
 {
 	return r->assemble(nullptr);
 }

@@ -6,7 +6,7 @@
 #include "Entity.h"
 #include "WeightedPressurePlateTile.h"
 
-WeightedPressurePlateTile::WeightedPressurePlateTile(int id, const wstring &tex, Material *material, int maxWeight) : BasePressurePlateTile(id, tex, material)
+WeightedPressurePlateTile::WeightedPressurePlateTile(int id, const std::wstring &tex, Material *material, int maxWeight) : BasePressurePlateTile(id, tex, material)
 {
 	this->maxWeight = maxWeight;
 

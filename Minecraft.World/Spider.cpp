@@ -54,7 +54,7 @@ void Spider::registerAttributes()
 	getAttribute(SharedMonsterAttributes::MOVEMENT_SPEED)->setBaseValue(0.8f);
 }
 
-shared_ptr<Entity> Spider::findAttackTarget()
+std::shared_ptr<Entity> Spider::findAttackTarget()
 {
 #ifndef _FINAL_BUILD
 #ifdef _DEBUG_MENUS_ENABLED
@@ -94,7 +94,7 @@ void Spider::playStepSound(int xt, int yt, int zt, int t)
 	playSound(eSoundType_MOB_SPIDER_STEP, 0.15f, 1);
 }
 
-void Spider::checkHurtTarget(shared_ptr<Entity> target, float d) 
+void Spider::checkHurtTarget(std::shared_ptr<Entity> target, float d) 
 {
 	float br = getBrightness(1);
 	if (br > 0.5f && random->nextInt(100) == 0)

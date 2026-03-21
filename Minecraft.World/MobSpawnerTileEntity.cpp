@@ -68,7 +68,7 @@ void MobSpawnerTileEntity::tick()
 	TileEntity::tick();
 }
 
-shared_ptr<Packet> MobSpawnerTileEntity::getUpdatePacket()
+std::shared_ptr<Packet> MobSpawnerTileEntity::getUpdatePacket()
 {
 	CompoundTag *tag = new CompoundTag();
 	save(tag);
@@ -88,7 +88,7 @@ BaseMobSpawner *MobSpawnerTileEntity::getSpawner()
 }
 
 // 4J Added
-shared_ptr<TileEntity> MobSpawnerTileEntity::clone()
+std::shared_ptr<TileEntity> MobSpawnerTileEntity::clone()
 {
 	shared_ptr<MobSpawnerTileEntity> result = shared_ptr<MobSpawnerTileEntity>( new MobSpawnerTileEntity() );
 	TileEntity::clone(result);
@@ -96,7 +96,7 @@ shared_ptr<TileEntity> MobSpawnerTileEntity::clone()
 	return result;
 }
 
-void MobSpawnerTileEntity::setEntityId(const wstring &id)
+void MobSpawnerTileEntity::setEntityId(const std::wstring &id)
 {
 	spawner->setEntityId(id);
 }

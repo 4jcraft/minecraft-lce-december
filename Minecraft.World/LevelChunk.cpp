@@ -1189,7 +1189,7 @@ int LevelChunk::getRawBrightness(int x, int y, int z, int skyDampen)
 	return light;
 }
 
-void LevelChunk::addEntity(shared_ptr<Entity> e)
+void LevelChunk::addEntity(std::shared_ptr<Entity> e)
 {
 	lastSaveHadEntities = true;
 
@@ -1223,12 +1223,12 @@ void LevelChunk::addEntity(shared_ptr<Entity> e)
 }
 
 
-void LevelChunk::removeEntity(shared_ptr<Entity> e)
+void LevelChunk::removeEntity(std::shared_ptr<Entity> e)
 {
 	removeEntity(e, e->yChunk);
 }
 
-void LevelChunk::removeEntity(shared_ptr<Entity> e, int yc)
+void LevelChunk::removeEntity(std::shared_ptr<Entity> e, int yc)
 {
 	if (yc < 0) yc = 0;
 	if (yc >= ENTITY_BLOCKS_LENGTH) yc = ENTITY_BLOCKS_LENGTH - 1;
@@ -1284,7 +1284,7 @@ void LevelChunk::skyBrightnessChanged()
 	level->setTilesDirty(x0, y0, z0, x1, y1, z1);
 }
 
-shared_ptr<TileEntity> LevelChunk::getTileEntity(int x, int y, int z)
+std::shared_ptr<TileEntity> LevelChunk::getTileEntity(int x, int y, int z)
 {
 	TilePos pos(x, y, z);
 
@@ -1343,7 +1343,7 @@ shared_ptr<TileEntity> LevelChunk::getTileEntity(int x, int y, int z)
 	return tileEntity;
 }
 
-void LevelChunk::addTileEntity(shared_ptr<TileEntity> te)
+void LevelChunk::addTileEntity(std::shared_ptr<TileEntity> te)
 {
 	int xx = (int)(te->x - this->x * 16);
 	int yy = (int)te->y;
@@ -1357,7 +1357,7 @@ void LevelChunk::addTileEntity(shared_ptr<TileEntity> te)
 	}
 }
 
-void LevelChunk::setTileEntity(int x, int y, int z, shared_ptr<TileEntity> tileEntity)
+void LevelChunk::setTileEntity(int x, int y, int z, std::shared_ptr<TileEntity> tileEntity)
 {
 	TilePos pos(x, y, z);
 
@@ -1617,7 +1617,7 @@ void LevelChunk::markUnsaved()
 }
 
 
-void LevelChunk::getEntities(shared_ptr<Entity> except, AABB *bb, vector<shared_ptr<Entity> > &es, const EntitySelector *selector)
+void LevelChunk::getEntities(std::shared_ptr<Entity> except, AABB *bb, vector<shared_ptr<Entity> > &es, const EntitySelector *selector)
 {
 	int yc0 = Mth::floor((bb->y0 - 2) / 16);
 	int yc1 = Mth::floor((bb->y1 + 2) / 16);
@@ -1659,7 +1659,7 @@ void LevelChunk::getEntities(shared_ptr<Entity> except, AABB *bb, vector<shared_
 #endif
 }
 
-void LevelChunk::getEntitiesOfClass(const type_info& ec, AABB *bb, vector<shared_ptr<Entity> > &es, const EntitySelector *selector)
+void LevelChunk::getEntitiesOfClass(const std::type_info& ec, AABB *bb, vector<shared_ptr<Entity> > &es, const EntitySelector *selector)
 {
 	int yc0 = Mth::floor((bb->y0 - 2) / 16);
 	int yc1 = Mth::floor((bb->y1 + 2) / 16);

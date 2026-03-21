@@ -25,9 +25,9 @@ public:
 
 	static const unsigned int TREE_NAMES[TREE_NAMES_LENGTH];
 
-	static const wstring TREE_STRING_NAMES[TREE_NAMES_LENGTH];
+	static const std::wstring TREE_STRING_NAMES[TREE_NAMES_LENGTH];
 
-	static const wstring TREE_TEXTURES[];
+	static const std::wstring TREE_TEXTURES[];
 
 private:
 	Icon *icons_side[TREE_NAMES_LENGTH];
@@ -51,5 +51,5 @@ public:
 	void registerIcons(IconRegister *iconRegister);
 
 protected:
-	virtual shared_ptr<ItemInstance> getSilkTouchItemInstance(int data);
+	virtual std::shared_ptr<ItemInstance> getSilkTouchItemInstance(int data);
 };

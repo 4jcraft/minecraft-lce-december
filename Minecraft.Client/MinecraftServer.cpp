@@ -165,7 +165,7 @@ bool MinecraftServer::initServer(__int64 seed, NetworkGameInitData *initData, DW
 	//localIp = settings->getString(L"server-ip", L"");
 	//onlineMode = settings->getBoolean(L"online-mode", true);
 	//motd = settings->getString(L"motd", L"A Minecraft Server");
-	//motd.replace('§', '$');
+	//motd.replace('ï¿½', '$');
 
 	setAnimals(settings->getBoolean(L"spawn-animals", true));
 	setNpcsEnabled(settings->getBoolean(L"spawn-npcs", true));
@@ -391,7 +391,7 @@ void MinecraftServer::postProcessTerminate(ProgressRenderer *mcprogress)
 	DeleteCriticalSection(&m_postProcessCS);
 }
 
-bool MinecraftServer::loadLevel(LevelStorageSource *storageSource, const wstring& name, __int64 levelSeed, LevelType *pLevelType, NetworkGameInitData *initData)
+bool MinecraftServer::loadLevel(LevelStorageSource *storageSource, consstd::t wstring& name, __int64 levelSeed, LevelType *pLevelType, NetworkGameInitData *initData)
 {
 	//	4J - TODO - do with new save stuff
 	//    if (storageSource->requiresConversion(name))
@@ -844,7 +844,7 @@ void MinecraftServer::overwriteHellBordersForNewWorldSize(ServerLevel* level, in
 
 #endif
 
-void MinecraftServer::setProgress(const wstring& status, int progress)
+void MinecraftServer::setProgress(consstd::t wstring& status, int progress)
 {
 	progressStatus = status;
 	this->progress = progress;
@@ -1175,7 +1175,7 @@ int MinecraftServer::getSpawnProtectionRadius()
 	return 16;
 }
 
-bool MinecraftServer::isUnderSpawnProtection(Level *level, int x, int y, int z, shared_ptr<Player> player)
+bool MinecraftServer::isUnderSpawnProtection(Level *level, int x, int y, int zstd::, shared_ptr<Player> player)
 {
 	if (level->dimension->id != 0) return false;
 	//if (getPlayers()->getOps()->empty()) return false;
@@ -1705,7 +1705,7 @@ void MinecraftServer::tick()
 	//    }
 }
 
-void MinecraftServer::handleConsoleInput(const wstring& msg, ConsoleInputSource *source)
+void MinecraftServer::handleConsoleInput(consstd::t wstring& msg, ConsoleInputSource *source)
 {
 	consoleInput.push_back(new ConsoleInput(msg, source));
 }
@@ -1743,18 +1743,18 @@ void MinecraftServer::HaltServer(bool bPrimaryPlayerSignedOut)
 	}
 }
 
-File *MinecraftServer::getFile(const wstring& name)
+File *MinecraftServer::getFile(consstd::t wstring& name)
 {
 	return new File(name);
 }
 
-void MinecraftServer::info(const wstring& string)
+void MinecraftServer::info(consstd::t wstring& string)
 {
 }
 
-void MinecraftServer::warn(const wstring& string)
+void MinecraftServer::warn(consstd::t wstring& string)
 {
-}
+}std::
 
 wstring MinecraftServer::getConsoleName()
 {

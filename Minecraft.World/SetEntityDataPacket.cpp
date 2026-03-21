@@ -18,7 +18,7 @@ SetEntityDataPacket::~SetEntityDataPacket()
 	delete packedItems;
 }
 
-SetEntityDataPacket::SetEntityDataPacket(int id, shared_ptr<SynchedEntityData> entityData, bool notJustDirty) 
+SetEntityDataPacket::SetEntityDataPacket(int id, std::shared_ptr<SynchedEntityData> entityData, bool notJustDirty) 
 {
 	this->id = id;
 	if(notJustDirty)

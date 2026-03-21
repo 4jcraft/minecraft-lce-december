@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 class TileEntity;
 #include "Player.h"
@@ -32,7 +31,7 @@ public:
 
 	virtual void skyColorChanged() = 0;
 
-	virtual void playStreamingMusic(const wstring& name, int x, int y, int z) = 0;
+	virtual void playStreamingMusic(const std::wstring& name, int x, int y, int z) = 0;
 	virtual void globalLevelEvent(int type, int sourceX, int sourceY, int sourceZ, int data) = 0;
 	virtual void levelEvent(shared_ptr<Player> source, int type, int x, int y, int z, int data) = 0;
 

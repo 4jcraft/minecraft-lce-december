@@ -12,7 +12,7 @@ CreeperRenderer::CreeperRenderer() : MobRenderer(new CreeperModel(), 0.5f)
 	armorModel = new CreeperModel(2);
 }
 
-void CreeperRenderer::scale(shared_ptr<LivingEntity> mob, float a)
+void CreeperRenderer::scale(std::shared_ptr<LivingEntity> mob, float a)
 {
     shared_ptr<Creeper> creeper = dynamic_pointer_cast<Creeper>(mob);
 
@@ -28,7 +28,7 @@ void CreeperRenderer::scale(shared_ptr<LivingEntity> mob, float a)
     glScalef(s, hs, s);
 }
 
-int CreeperRenderer::getOverlayColor(shared_ptr<LivingEntity> mob, float br, float a)
+int CreeperRenderer::getOverlayColor(std::shared_ptr<LivingEntity> mob, float br, float a)
 {
 	shared_ptr<Creeper> creeper = dynamic_pointer_cast<Creeper>(mob);
 
@@ -47,7 +47,7 @@ int CreeperRenderer::getOverlayColor(shared_ptr<LivingEntity> mob, float br, flo
     return (_a << 24) | (r << 16) | (g << 8) | b;
 }
 
-int CreeperRenderer::prepareArmor(shared_ptr<LivingEntity> _mob, int layer, float a)
+int CreeperRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob, int layer, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Creeper> mob = dynamic_pointer_cast<Creeper>(_mob);
@@ -87,12 +87,12 @@ int CreeperRenderer::prepareArmor(shared_ptr<LivingEntity> _mob, int layer, floa
 
 }
 
-int CreeperRenderer::prepareArmorOverlay(shared_ptr<LivingEntity> mob, int layer, float a)
+int CreeperRenderer::prepareArmorOverlay(std::shared_ptr<LivingEntity> mob, int layer, float a)
 {
 	return -1;
 }
 
-ResourceLocation *CreeperRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *CreeperRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &CREEPER_LOCATION;
 }

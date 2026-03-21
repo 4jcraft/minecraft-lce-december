@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "GameRuleDefinition.h"
 
@@ -27,7 +26,7 @@ public:
 	virtual GameRuleDefinition *addChild(ConsoleGameRules::EGameRuleType ruleType);
 
 	virtual void writeAttributes(DataOutputStream *dos, UINT numAttributes);
-	virtual void addAttribute(const wstring &attributeName, const wstring &attributeValue);
+	virtual void addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue);
 
 	virtual void postProcessPlayer(shared_ptr<Player> player);
 };

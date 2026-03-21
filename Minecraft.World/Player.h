@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "LivingEntity.h"
 #include "Definitions.h"
@@ -75,12 +74,12 @@ public:
 	BYTE userType;
 	float oBob, bob;
 
-	wstring name;
+	std::wstring name;
 	int takeXpDelay;
 
 	// 4J-PB - track custom skin
-	wstring customTextureUrl;
-	wstring customTextureUrl2;
+	std::wstring customTextureUrl;
+	std::wstring customTextureUrl2;
 	unsigned int m_uiPlayerCurrentSkin;
 	void ChangePlayerSkin();
 
@@ -90,7 +89,7 @@ public:
 	double xCloak, yCloak, zCloak;
 
 	// 4J-HG: store display name, added for Xbox One "game display name"
-	wstring m_displayName;
+	std::wstring m_displayName;
 
 protected:
 	// player sleeping in bed?
@@ -140,7 +139,7 @@ public:
 	// 4J Added to default init
 	void _init();
 
-	Player(Level *level, const wstring &name);
+	Player(Level *level, const std::wstring &name);
 	virtual ~Player();
 
 protected:
@@ -213,7 +212,7 @@ public:
 	virtual bool openHopper(shared_ptr<HopperTileEntity> container);
 	virtual bool openHopper(shared_ptr<MinecartHopper> container);
 	virtual bool openHorseInventory(shared_ptr<EntityHorse> horse, shared_ptr<Container> container);
-	virtual bool startEnchanting(int x, int y, int z, const wstring &name);				// 4J - added bool return
+	virtual bool startEnchanting(int x, int y, int z, const std::wstring &name);				// 4J - added bool return
 	virtual bool startRepairing(int x, int y, int z);				// 4J - added bool return
 	virtual bool startCrafting(int x, int y, int z);				// 4J - added bool return
 	virtual bool openFireworks(int x, int y, int z);				// 4J - added
@@ -231,7 +230,7 @@ public:
 
 	virtual bool hurt(DamageSource *source, float dmg);
 	virtual bool canHarmPlayer(shared_ptr<Player> target);
-	virtual bool canHarmPlayer(wstring targetName); // 4J: Added for ServerPlayer when only player name is provided
+	virtual bool canHarmPlayer(std::wstring targetName); // 4J: Added for ServerPlayer when only player name is provided
 
 protected:
 	virtual void hurtArmor(float damage);
@@ -251,7 +250,7 @@ public:
 	virtual void openTextEdit(shared_ptr<TileEntity> sign);
 	virtual bool openBrewingStand(shared_ptr<BrewingStandTileEntity> brewingStand); // 4J - added bool return
 	virtual bool openBeacon(shared_ptr<BeaconTileEntity> beacon);
-	virtual bool openTrading(shared_ptr<Merchant> traderTarget, const wstring &name); // 4J - added bool return
+	virtual bool openTrading(shared_ptr<Merchant> traderTarget, const std::wstring &name); // 4J - added bool return
 	virtual void openItemInstanceGui(shared_ptr<ItemInstance> itemInstance);
 	virtual bool interact(shared_ptr<Entity> entity);
 	virtual shared_ptr<ItemInstance> getSelectedItem();
@@ -360,7 +359,7 @@ protected:
 	virtual bool isAlwaysExperienceDropper();
 
 public:
-	virtual wstring getAName();
+	virtual std::wstring getAName();
 	virtual bool shouldShowName();
 	virtual void restoreFrom(shared_ptr<Player> oldPlayer, bool restoreAll);
 
@@ -370,9 +369,9 @@ protected:
 public:
 	void onUpdateAbilities();
 	void setGameMode(GameType *mode);
-	wstring getName();
-	virtual wstring getDisplayName();
-	virtual wstring getNetworkName(); // 4J: Added
+	std::wstring getName();
+	virtual std::wstring getDisplayName();
+	virtual std::wstring getNetworkName(); // 4J: Added
 
 	virtual Level *getCommandSenderWorld();
 
@@ -408,8 +407,8 @@ public:
 	virtual void setCustomCape(DWORD capeId);
 	DWORD getCustomCape()																	{return m_dwCapeId; }
 
-	static DWORD getCapeIdFromPath(const wstring &cape);
-	static wstring getCapePathFromId(DWORD capeId);
+	static DWORD getCapeIdFromPath(const std::wstring &cape);
+	static std::wstring getCapePathFromId(DWORD capeId);
 	static unsigned int getSkinAnimOverrideBitmask(DWORD skinId);
 
 	// 4J Added
@@ -427,7 +426,7 @@ public:
 	void setShowOnMaps(bool bVal)															{ m_bShownOnMaps = bVal; }
 	bool canShowOnMaps()																	{ return m_bShownOnMaps && !getPlayerGamePrivilege(ePlayerGamePrivilege_Invisible); }
 
-	virtual void sendMessage(const wstring& message, ChatPacket::EChatPacketMessage type = ChatPacket::e_ChatCustom, int customData = -1, const wstring& additionalMessage = L"") { }
+	virtual void sendMessage(const std::wstring& message, ChatPacket::EChatPacketMessage type = ChatPacket::e_ChatCustom, int customData = -1, const std::wstring& additionalMessage = L"") { }
 private:
 	PlayerUID m_xuid;
 	PlayerUID m_OnlineXuid;

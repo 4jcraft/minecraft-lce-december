@@ -5,25 +5,25 @@
 class ArrowDispenseBehavior : public AbstractProjectileDispenseBehavior
 {
 protected:
-	virtual shared_ptr<Projectile> getProjectile(Level *world, Position *position);
+	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
 };
 
 class EggDispenseBehavior : public AbstractProjectileDispenseBehavior
 {
 protected:
-	virtual shared_ptr<Projectile> getProjectile(Level *world, Position *position);
+	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
 };
 
 class SnowballDispenseBehavior : public AbstractProjectileDispenseBehavior
 {
 protected:
-	virtual shared_ptr<Projectile> getProjectile(Level *world, Position *position);
+	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
 };
 
 class ExpBottleDispenseBehavior : public AbstractProjectileDispenseBehavior
 {
 protected:
-	virtual shared_ptr<Projectile> getProjectile(Level *world, Position *position);
+	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
 	virtual float getUncertainty();
 	virtual float getPower();
 };
@@ -35,7 +35,7 @@ private:
 public:
 	ThrownPotionDispenseBehavior(int potionValue);
 protected:
-	virtual shared_ptr<Projectile> getProjectile(Level *world, Position *position);
+	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
 	virtual float getUncertainty();
 	virtual float getPower();
 };
@@ -43,19 +43,19 @@ protected:
 class PotionDispenseBehavior : public DefaultDispenseItemBehavior
 {
 public:
-	virtual	shared_ptr<ItemInstance> dispense(BlockSource *source, shared_ptr<ItemInstance> dispensed);
+	virtual	std::shared_ptr<ItemInstance> dispense(BlockSource *source, std::shared_ptr<ItemInstance> dispensed);
 };
 
 class SpawnEggDispenseBehavior : public DefaultDispenseItemBehavior
 {
 public:
-	virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 };
 
 class FireworksDispenseBehavior : public DefaultDispenseItemBehavior
 {
 public:
-	virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 protected:
 	virtual void playSound(BlockSource *source, eOUTCOME outcome);
 };
@@ -63,7 +63,7 @@ protected:
 class FireballDispenseBehavior : public DefaultDispenseItemBehavior
 {
 public:
-	virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 protected:
 	virtual void playSound(BlockSource *source, eOUTCOME outcome);
 };
@@ -73,7 +73,7 @@ class BoatDispenseBehavior : public DefaultDispenseItemBehavior
 public:
 	BoatDispenseBehavior();
 	virtual ~BoatDispenseBehavior();
-	virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 protected:
 	virtual void playSound(BlockSource *source, eOUTCOME outcome);
 private:
@@ -83,20 +83,20 @@ private:
 class FilledBucketDispenseBehavior : public DefaultDispenseItemBehavior
 {
 public:
-	virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 };
 
 class EmptyBucketDispenseBehavior : public DefaultDispenseItemBehavior
 {
 public:
-	virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 };
 
 class FlintAndSteelDispenseBehavior : public DefaultDispenseItemBehavior
 {
 	// bool success; // 4J-JEV: Removed because we have something cleaner for this now.
 public:
-	shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 protected:
 	virtual void playSound(BlockSource *source, eOUTCOME outcome);
 };
@@ -105,7 +105,7 @@ class DyeDispenseBehavior : public DefaultDispenseItemBehavior
 {
 	// bool success; // 4J-JEV: Removed because we have something cleaner for this now.
 public:
-	virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 protected:
 	virtual void playSound(BlockSource *source, eOUTCOME outcome);
 };
@@ -113,5 +113,5 @@ protected:
 class TntDispenseBehavior : public DefaultDispenseItemBehavior
 {
 protected:
-	virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 };

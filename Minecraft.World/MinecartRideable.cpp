@@ -21,7 +21,7 @@ MinecartRideable::MinecartRideable(Level *level, double x, double y, double z) :
 	this->defineSynchedData();
 }
 
-bool MinecartRideable::interact(shared_ptr<Player> player)
+bool MinecartRideable::interact(std::shared_ptr<Player> player)
 {
 	if (rider.lock() != NULL && rider.lock()->instanceof(eTYPE_PLAYER) && rider.lock() != player) return true;
 	if (rider.lock() != NULL && rider.lock() != player) return false;

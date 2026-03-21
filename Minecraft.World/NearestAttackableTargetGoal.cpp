@@ -15,7 +15,7 @@ SubselectEntitySelector::~SubselectEntitySelector()
 	delete m_subselector;
 }
 
-bool SubselectEntitySelector::matches(shared_ptr<Entity> entity) const
+bool SubselectEntitySelector::matches(std::shared_ptr<Entity> entity) const
 {
 	if (!entity->instanceof(eTYPE_LIVINGENTITY)) return false;
 	if (m_subselector != NULL && !m_subselector->matches(entity)) return false;
@@ -27,7 +27,7 @@ NearestAttackableTargetGoal::DistComp::DistComp(Entity *source)
 	this->source = source;
 }
 
-bool NearestAttackableTargetGoal::DistComp::operator() (shared_ptr<Entity> e1, shared_ptr<Entity> e2)
+bool NearestAttackableTargetGoal::DistComp::operator() (std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2)
 {
 	// Should return true if e1 comes before e2 in the sorted list
 	double distSqr1 = source->distanceToSqr(e1);
@@ -37,7 +37,7 @@ bool NearestAttackableTargetGoal::DistComp::operator() (shared_ptr<Entity> e1, s
 	return true;
 }
 
-NearestAttackableTargetGoal::NearestAttackableTargetGoal(PathfinderMob *mob, const type_info& targetType, int randomInterval, bool mustSee, bool mustReach /*= false*/, EntitySelector *entitySelector /* =NULL */)
+NearestAttackableTargetGoal::NearestAttackableTargetGoal(PathfinderMob *mob, const std::type_info& targetType, int randomInterval, bool mustSee, bool mustReach /*= false*/, EntitySelector *entitySelector /* =NULL */)
 	: TargetGoal(mob, mustSee, mustReach), targetType(targetType)
 {
 	this->randomInterval = randomInterval;

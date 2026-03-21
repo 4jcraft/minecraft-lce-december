@@ -21,14 +21,14 @@ public:
 	EnderDragonRenderer();
 
 protected:
-	virtual void setupRotations(shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a);
-	virtual void renderModel(shared_ptr<LivingEntity> _mob, float wp, float ws, float bob, float headRotMinusBodyRot, float headRotx, float scale);
+	virtual void setupRotations(std::shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a);
+	virtual void renderModel(std::shared_ptr<LivingEntity> _mob, float wp, float ws, float bob, float headRotMinusBodyRot, float headRotx, float scale);
 
 public:
-	virtual void render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
+	virtual void render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
 
 protected:
-	virtual void additionalRendering(shared_ptr<LivingEntity> _mob, float a);
-	virtual int prepareArmor(shared_ptr<LivingEntity> _mob, int layer, float a);
+	virtual void additionalRendering(std::shared_ptr<LivingEntity> _mob, float a);
+	virtual int prepareArmor(std::shared_ptr<LivingEntity> _mob, int layer, float a);
 };

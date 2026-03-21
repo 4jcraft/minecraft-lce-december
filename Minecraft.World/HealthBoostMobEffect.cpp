@@ -6,7 +6,7 @@ HealthBoostMobEffect::HealthBoostMobEffect(int id, bool isHarmful, eMinecraftCol
 {
 }
 
-void HealthBoostMobEffect::removeAttributeModifiers(shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
+void HealthBoostMobEffect::removeAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier)
 {
 	MobEffect::removeAttributeModifiers(entity, attributes, amplifier);
 	if (entity->getHealth() > entity->getMaxHealth())

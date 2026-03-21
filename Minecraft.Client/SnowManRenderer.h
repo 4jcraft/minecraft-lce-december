@@ -13,6 +13,6 @@ public:
 	SnowManRenderer();
 
 protected:
-	virtual void additionalRendering(shared_ptr<LivingEntity> _mob, float a);
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
+	virtual void additionalRendering(std::shared_ptr<LivingEntity> _mob, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
 };

@@ -3,7 +3,7 @@
 #include "net.minecraft.world.level.tile.entity.h"
 #include "BeaconMenu.h"
 
-BeaconMenu::BeaconMenu(shared_ptr<Container> inventory, shared_ptr<BeaconTileEntity> beacon)
+BeaconMenu::BeaconMenu(std::shared_ptr<Container> inventory, std::shared_ptr<BeaconTileEntity> beacon)
 {
 	this->beacon = beacon;
 
@@ -46,17 +46,17 @@ void BeaconMenu::setData(int id, int value)
 	if (id == 2) beacon->setSecondaryPower(value);
 }
 
-shared_ptr<BeaconTileEntity> BeaconMenu::getBeacon()
+std::shared_ptr<BeaconTileEntity> BeaconMenu::getBeacon()
 {
 	return beacon;
 }
 
-bool BeaconMenu::stillValid(shared_ptr<Player> player)
+bool BeaconMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return beacon->stillValid(player);
 }
 
-shared_ptr<ItemInstance> BeaconMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> BeaconMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);
@@ -121,11 +121,11 @@ shared_ptr<ItemInstance> BeaconMenu::quickMoveStack(shared_ptr<Player> player, i
 	return clicked;
 }
 
-BeaconMenu::PaymentSlot::PaymentSlot(shared_ptr<Container> container, int slot, int x, int y) : Slot(container, slot, x, y)
+BeaconMenu::PaymentSlot::PaymentSlot(std::shared_ptr<Container> container, int slot, int x, int y) : Slot(container, slot, x, y)
 {
 }
 
-bool BeaconMenu::PaymentSlot::mayPlace(shared_ptr<ItemInstance> item)
+bool BeaconMenu::PaymentSlot::mayPlace(std::shared_ptr<ItemInstance> item)
 {
 	if (item != NULL)
 	{

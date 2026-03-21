@@ -95,7 +95,7 @@ Tile *StoneMonsterTile::getHostBlockForData(int data)
 	}
 }
 
-shared_ptr<ItemInstance> StoneMonsterTile::getSilkTouchItemInstance(int data)
+std::shared_ptr<ItemInstance> StoneMonsterTile::getSilkTouchItemInstance(int data)
 {
 	Tile *tile = Tile::stone;
 	if (data == HOST_COBBLE)

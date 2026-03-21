@@ -62,7 +62,7 @@ Material *BlockSourceImpl::getMaterial()
 	return world->getMaterial(x, y, z);
 }
 
-shared_ptr<TileEntity> BlockSourceImpl::getEntity()
+std::shared_ptr<TileEntity> BlockSourceImpl::getEntity()
 {
 	return world->getTileEntity(x, y, z);
 }

@@ -11,7 +11,7 @@ private:
     static Random RANDOM;
 
 public:
-	virtual void render(shared_ptr<TileEntity> _table, double x, double y, double z, float a, bool setColor, float alpha=1.0f, bool useCompiled = true);
+	virtual void render(std::shared_ptr<TileEntity> _table, double x, double y, double z, float a, bool setColor, float alpha=1.0f, bool useCompiled = true);
 
 	FloatBuffer *lb;
 

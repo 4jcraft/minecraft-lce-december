@@ -8,7 +8,7 @@
 #include "net.minecraft.world.phys.h"
 #include "BeaconTileEntity.h"
 
-shared_ptr<TileEntity> BeaconTileEntity::clone()
+std::shared_ptr<TileEntity> BeaconTileEntity::clone()
 {
 	shared_ptr<BeaconTileEntity> result = shared_ptr<BeaconTileEntity>( new BeaconTileEntity() );
 	TileEntity::clone(result);
@@ -243,7 +243,7 @@ void BeaconTileEntity::setSecondaryPower(int secondaryPower)
 	}
 }
 
-shared_ptr<Packet> BeaconTileEntity::getUpdatePacket()
+std::shared_ptr<Packet> BeaconTileEntity::getUpdatePacket()
 {
 	CompoundTag *tag = new CompoundTag();
 	save(tag);
@@ -279,7 +279,7 @@ unsigned int BeaconTileEntity::getContainerSize()
 	return 1;
 }
 
-shared_ptr<ItemInstance> BeaconTileEntity::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> BeaconTileEntity::getItem(unsigned int slot)
 {
 	if (slot == 0)
 	{
@@ -288,7 +288,7 @@ shared_ptr<ItemInstance> BeaconTileEntity::getItem(unsigned int slot)
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> BeaconTileEntity::removeItem(unsigned int slot, int count)
+std::shared_ptr<ItemInstance> BeaconTileEntity::removeItem(unsigned int slot, int count)
 {
 	if (slot == 0 && paymentItem != NULL)
 	{
@@ -307,7 +307,7 @@ shared_ptr<ItemInstance> BeaconTileEntity::removeItem(unsigned int slot, int cou
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> BeaconTileEntity::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> BeaconTileEntity::removeItemNoUpdate(int slot)
 {
 	if (slot == 0 && paymentItem != NULL)
 	{
@@ -318,7 +318,7 @@ shared_ptr<ItemInstance> BeaconTileEntity::removeItemNoUpdate(int slot)
 	return nullptr;
 }
 
-void BeaconTileEntity::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void BeaconTileEntity::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	if (slot == 0)
 	{
@@ -326,12 +326,12 @@ void BeaconTileEntity::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
 	}
 }
 
-wstring BeaconTileEntity::getName()
+std::wstring BeaconTileEntity::getName()
 {
 	return hasCustomName() ? name : app.GetString(IDS_CONTAINER_BEACON);
 }
 
-wstring BeaconTileEntity::getCustomName()
+std::wstring BeaconTileEntity::getCustomName()
 {
 	return hasCustomName() ? name : L"";
 }
@@ -341,7 +341,7 @@ bool BeaconTileEntity::hasCustomName()
 	return !name.empty();
 }
 
-void BeaconTileEntity::setCustomName(const wstring &name)
+void BeaconTileEntity::setCustomName(const std::wstring &name)
 {
 	this->name = name;
 }
@@ -351,7 +351,7 @@ int BeaconTileEntity::getMaxStackSize()
 	return 1;
 }
 
-bool BeaconTileEntity::stillValid(shared_ptr<Player> player)
+bool BeaconTileEntity::stillValid(std::shared_ptr<Player> player)
 {
 	if (level->getTileEntity(x, y, z) != shared_from_this()) return false;
 	if (player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 8 * 8) return false;
@@ -366,7 +366,7 @@ void BeaconTileEntity::stopOpen()
 {
 }
 
-bool BeaconTileEntity::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool BeaconTileEntity::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return (item->id == Item::emerald_Id || item->id == Item::diamond_Id || item->id == Item::goldIngot_Id || item->id == Item::ironIngot_Id);
 }

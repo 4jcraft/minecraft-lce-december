@@ -136,12 +136,12 @@ int ComparatorTile::getInputSignal(Level *level, int x, int y, int z, int data)
 	return result;
 }
 
-shared_ptr<ComparatorTileEntity> ComparatorTile::getComparator(LevelSource *level, int x, int y, int z)
+std::shared_ptr<ComparatorTileEntity> ComparatorTile::getComparator(LevelSource *level, int x, int y, int z)
 {
 	return dynamic_pointer_cast<ComparatorTileEntity>( level->getTileEntity(x, y, z) );
 }
 
-bool ComparatorTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
+bool ComparatorTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
 {
 	int data = level->getData(x, y, z);
 	bool isOn = on || ( (data & BIT_IS_LIT) != 0 );
@@ -242,7 +242,7 @@ bool ComparatorTile::triggerEvent(Level *level, int x, int y, int z, int b0, int
 	return false;
 }
 
-shared_ptr<TileEntity> ComparatorTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> ComparatorTile::newTileEntity(Level *level)
 {
 	return shared_ptr<ComparatorTileEntity>( new ComparatorTileEntity() );
 }

@@ -44,7 +44,7 @@ UIScene_DebugOptionsMenu::UIScene_DebugOptionsMenu(int iPad, void *initData, UIL
 	}
 }
 
-wstring UIScene_DebugOptionsMenu::getMoviePath()
+std::wstring UIScene_DebugOptionsMenu::getMoviePath()
 {
 	return L"DebugOptionsMenu";
 }

@@ -175,9 +175,9 @@ bool IsEqualXUID(PlayerUID a, PlayerUID b)
 #endif
 }
 
-void XMemCpy(void *a, const void *b, size_t s) { memcpy(a, b, s); }
-void XMemSet(void *a, int t, size_t s) { memset(a, t, s); }
-void XMemSet128(void *a, int t, size_t s) { memset(a, t, s); }
+void XMemCpy(void *a, const void *b, std::size_t s) { memcpy(a, b, s); }
+void XMemSet(void *a, int t, std::size_t s) { memset(a, t, s); }
+void XMemSet128(void *a, int t, std::size_t s) { memset(a, t, s); }
 void *XPhysicalAlloc(SIZE_T a, ULONG_PTR  b, ULONG_PTR c, DWORD d) { return malloc(a); }
 void XPhysicalFree(void *a) { free(a); }
 

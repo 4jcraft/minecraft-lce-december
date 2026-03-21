@@ -8,12 +8,12 @@ class IntArrayTag : public Tag
 public:
 	intArray data;
 
-	IntArrayTag(const wstring &name) : Tag(name)
+	IntArrayTag(const std::wstring &name) : Tag(name)
 	{
 		data = intArray();
 	}
 
-	IntArrayTag(const wstring &name, intArray data) : Tag(name)
+	IntArrayTag(const std::wstring &name, intArray data) : Tag(name)
 	{
 		this->data = data;
 	}
@@ -46,7 +46,7 @@ public:
 
 	byte getId() { return TAG_Int_Array; }
 
-	wstring toString()
+	std::wstring toString()
 	{
 		static wchar_t buf[32];
 		swprintf(buf, 32, L"[%d bytes]",data.length);

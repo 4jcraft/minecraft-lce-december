@@ -56,7 +56,7 @@ CreeperModel::CreeperModel(float g) : Model()
 	_init(g);
 }
 
-void CreeperModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void CreeperModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
     setupAnim(time, r, bob, yRot, xRot, scale, entity);
 
@@ -68,7 +68,7 @@ void CreeperModel::render(shared_ptr<Entity> entity, float time, float r, float 
     leg3->render(scale, usecompiled);
 }
 
-void CreeperModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void CreeperModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
     head->yRot = yRot / (float) (180 / PI);
     head->xRot = xRot / (float) (180 / PI);

@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 
@@ -21,6 +21,6 @@ public:
 	bool isGlobalEvent();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new LevelEventPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new LevelEventPacket()); }
 	virtual int getId() { return 61; }
 };

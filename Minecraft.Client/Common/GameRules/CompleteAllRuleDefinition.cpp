@@ -56,7 +56,7 @@ void CompleteAllRuleDefinition::updateStatus(GameRule *rule)
 	app.DebugPrintf("Updated CompleteAllRule - Completed %d of %d\n", progress, goal);
 }
 
-wstring CompleteAllRuleDefinition::generateDescriptionString(const wstring &description, void *data, int dataLength)
+std::wstring CompleteAllRuleDefinition::generateDescriptionString(const std::wstring &description, void *data, int dataLength)
 {
 	PacketData *values = (PacketData *)data;
 	wstring newDesc = description;

@@ -24,7 +24,7 @@
 unsigned int ConsoleSaveFileOriginal::pagesCommitted = 0;
 void *ConsoleSaveFileOriginal::pvHeap = NULL;
 
-ConsoleSaveFileOriginal::ConsoleSaveFileOriginal(const wstring &fileName, LPVOID pvSaveData /*= NULL*/, DWORD dFileSize /*= 0*/, bool forceCleanSave /*= false*/, ESavePlatform plat /*= SAVE_FILE_PLATFORM_LOCAL*/)
+ConsoleSaveFileOriginal::ConsoleSaveFileOriginal(const std::wstring &fileName, LPVOID pvSaveData /*= NULL*/, DWORD dFileSize /*= 0*/, bool forceCleanSave /*= false*/, ESavePlatform plat /*= SAVE_FILE_PLATFORM_LOCAL*/)
 {
 	InitializeCriticalSectionAndSpinCount(&m_lock,5120);
 
@@ -905,12 +905,12 @@ unsigned int ConsoleSaveFileOriginal::getSizeOnDisk()
 	return header.GetFileSize();
 }
 
-wstring ConsoleSaveFileOriginal::getFilename()
+std::wstring ConsoleSaveFileOriginal::getFilename()
 {
 	return m_fileName;
 }
 
-vector<FileEntry *> *ConsoleSaveFileOriginal::getFilesWithPrefix(const wstring &prefix)
+vector<FileEntry *> *ConsoleSaveFileOriginal::getFilesWithPrefix(const std::wstring &prefix)
 {
 	return header.getFilesWithPrefix( prefix );
 }

@@ -142,7 +142,7 @@ bool ButtonTile::checkCanSurvive(Level *level, int x, int y, int z)
 	return true;
 }
 
-void ButtonTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void ButtonTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	int data = level->getData(x, y, z);
 	updateShape(data);
@@ -177,7 +177,7 @@ void ButtonTile::updateShape(int data)
 	}
 }
 
-void ButtonTile::attack(Level *level, int x, int y, int z, shared_ptr<Player> player)
+void ButtonTile::attack(Level *level, int x, int y, int z, std::shared_ptr<Player> player)
 {
 	//use(level, x, y, z, player, 0, 0, 0, 0);
 }
@@ -188,7 +188,7 @@ bool ButtonTile::TestUse()
 	return true;
 }
 
-bool ButtonTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool ButtonTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if (soundOnly)
 	{
@@ -281,7 +281,7 @@ void ButtonTile::updateDefaultShape()
 	setShape(0.5f - x, 0.5f - y, 0.5f - z, 0.5f + x, 0.5f + y, 0.5f + z);
 }
 
-void ButtonTile::entityInside(Level *level, int x, int y, int z, shared_ptr<Entity> entity)
+void ButtonTile::entityInside(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity)
 {
 	if (level->isClientSide) return;
 	if (!sensitive) return;

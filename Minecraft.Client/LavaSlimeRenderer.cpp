@@ -10,12 +10,12 @@ LavaSlimeRenderer::LavaSlimeRenderer() : MobRenderer(new LavaSlimeModel(), .25f)
 	this->modelVersion = ((LavaSlimeModel *) model)->getModelVersion();
 }
 
-ResourceLocation *LavaSlimeRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *LavaSlimeRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &MAGMACUBE_LOCATION;
 }
 
-void LavaSlimeRenderer::scale(shared_ptr<LivingEntity> _slime, float a)
+void LavaSlimeRenderer::scale(std::shared_ptr<LivingEntity> _slime, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type LavaSlime rather than shared_ptr<Mob>  we have here - 
 	// do some casting around instead

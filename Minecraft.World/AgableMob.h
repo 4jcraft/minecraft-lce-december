@@ -17,13 +17,13 @@ private:
 public:
 	AgableMob(Level *level);
 
-	virtual bool mobInteract(shared_ptr<Player> player);
+	virtual bool mobInteract(std::shared_ptr<Player> player);
 
 protected:
 	virtual void defineSynchedData();
 
 public:
-	virtual shared_ptr<AgableMob> getBreedOffspring(shared_ptr<AgableMob> target) = 0;
+	virtual std::shared_ptr<AgableMob> getBreedOffspring(std::shared_ptr<AgableMob> target) = 0;
 	virtual int getAge();
 	virtual void ageUp(int seconds);
 	virtual void setAge(int age);

@@ -32,7 +32,7 @@ void SkiModel::_init(bool leftSki)
     cubes[1]->setPos(0, 0, 0);
 }
 
-void SkiModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void SkiModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
     for (int i = 0; i < cubes.length; i++)
 	{
@@ -40,7 +40,7 @@ void SkiModel::render(shared_ptr<Entity> entity, float time, float r, float bob,
     }
 }
 
-void SkiModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity)
+void SkiModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity)
 {
     cubes[0]->y = 24.2f;
     cubes[0]->xRot = PI * .5f;

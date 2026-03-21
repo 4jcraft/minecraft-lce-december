@@ -15,7 +15,7 @@ private:
 public:
 	SubselectEntitySelector(NearestAttackableTargetGoal *parent, EntitySelector *subselector);
 	~SubselectEntitySelector();
-	bool matches(shared_ptr<Entity> entity) const;
+	bool matches(std::shared_ptr<Entity> entity) const;
 };
 
 class NearestAttackableTargetGoal : public TargetGoal
@@ -30,18 +30,18 @@ public:
 	public:
 		DistComp(Entity *source);
 
-		bool operator() (shared_ptr<Entity> e1, shared_ptr<Entity> e2);
+		bool operator() (std::shared_ptr<Entity> e1, std::shared_ptr<Entity> e2);
 	};
 
 private:
-	const type_info& targetType;
+	const std::type_info& targetType;
 	int randomInterval;
 	DistComp *distComp;
 	EntitySelector *selector;
 	weak_ptr<LivingEntity> target;
 
 public:
-	NearestAttackableTargetGoal(PathfinderMob *mob, const type_info& targetType, int randomInterval, bool mustSee, bool mustReach = false, EntitySelector *entitySelector = NULL);
+	NearestAttackableTargetGoal(PathfinderMob *mob, const std::type_info& targetType, int randomInterval, bool mustSee, bool mustReach = false, EntitySelector *entitySelector = NULL);
 
 	virtual ~NearestAttackableTargetGoal();
 

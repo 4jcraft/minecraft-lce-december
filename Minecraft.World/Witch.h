@@ -44,5 +44,5 @@ protected:
 	virtual void dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel);
 
 public:
-	virtual void performRangedAttack(shared_ptr<LivingEntity> target, float power);
+	virtual void performRangedAttack(std::shared_ptr<LivingEntity> target, float power);
 };

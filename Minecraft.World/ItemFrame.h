@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 #include "Entity.h"
 #include "HangingEntity.h"
 
@@ -31,18 +31,18 @@ public:
 	virtual int getWidth() {return 9;}
 	virtual int getHeight() {return 9;}
 	virtual bool shouldRenderAtSqrDistance(double distance);
-	virtual void dropItem(shared_ptr<Entity> causedBy);
+	virtual void dropItem(std::shared_ptr<Entity> causedBy);
 
 private:
-	void removeFramedMap(shared_ptr<ItemInstance> item);
+	void removeFramedMap(std::shared_ptr<ItemInstance> item);
 
 public:
-	shared_ptr<ItemInstance> getItem();
-	void setItem(shared_ptr<ItemInstance> item);
+	std::shared_ptr<ItemInstance> getItem();
+	void setItem(std::shared_ptr<ItemInstance> item);
 	int getRotation();
 	void setRotation(int rotation);
 
 	virtual void addAdditonalSaveData(CompoundTag *tag);
 	virtual void readAdditionalSaveData(CompoundTag *tag);
-	virtual bool interact(shared_ptr<Player> player);
+	virtual bool interact(std::shared_ptr<Player> player);
 };

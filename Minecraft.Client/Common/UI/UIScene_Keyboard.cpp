@@ -46,7 +46,7 @@ UIScene_Keyboard::~UIScene_Keyboard()
 	m_parentLayer->removeComponent(eUIComponent_MenuBackground);
 }
 
-wstring UIScene_Keyboard::getMoviePath()
+std::wstring UIScene_Keyboard::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1 && !m_parentLayer->IsFullscreenGroup())
 	{

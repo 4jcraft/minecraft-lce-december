@@ -1,6 +1,6 @@
 #pragma once
 
-using namespace std;
+
 
 #include "Audio/Consoles_SoundEngine.h"
 
@@ -75,11 +75,11 @@ public:
 	typedef std::vector <PNOTIFICATION> VNOTIFICATIONS;
 
 	// storing skin files
-	std::vector <wstring > vSkinNames;
+	std::vector <std::wstring > vSkinNames;
 	DLCManager m_dlcManager;
 
 	// storing credits text from the DLC
-	std::vector <wstring > m_vCreditText; // hold the credit text lines so we can avoid duplicating them
+	std::vector <std::wstring > m_vCreditText; // hold the credit text lines so we can avoid duplicating them
 
 
 	// In builds prior to TU5, the size of the GAME_SETTINGS struct was 204 bytes. We added a few new values to the internal struct in TU5, and even though we
@@ -130,25 +130,25 @@ public:
 	bool			GetGameStarted()																								{return m_bGameStarted;}
 	void			SetGameStarted(bool bVal)																						{ if(bVal) DebugPrintf("SetGameStarted - true\n"); else DebugPrintf("SetGameStarted - false\n"); m_bGameStarted = bVal; m_bIsAppPaused = !bVal;}
 	int				GetLocalPlayerCount(void);
-	bool			LoadInventoryMenu(int iPad,shared_ptr<LocalPlayer> player, bool bNavigateBack=false);
-	bool			LoadCreativeMenu(int iPad,shared_ptr<LocalPlayer> player,bool bNavigateBack=false);
-	bool			LoadEnchantingMenu(int iPad,shared_ptr<Inventory> inventory, int x, int y, int z, Level *level, const wstring &name);
-	bool			LoadFurnaceMenu(int iPad,shared_ptr<Inventory> inventory, shared_ptr<FurnaceTileEntity> furnace);
-	bool			LoadBrewingStandMenu(int iPad,shared_ptr<Inventory> inventory, shared_ptr<BrewingStandTileEntity> brewingStand);
-	bool			LoadContainerMenu(int iPad,shared_ptr<Container> inventory, shared_ptr<Container> container);
-	bool			LoadTrapMenu(int iPad,shared_ptr<Container> inventory, shared_ptr<DispenserTileEntity> trap);
-	bool			LoadCrafting2x2Menu(int iPad,shared_ptr<LocalPlayer> player);
-	bool			LoadCrafting3x3Menu(int iPad,shared_ptr<LocalPlayer> player, int x, int y, int z);
-	bool			LoadFireworksMenu(int iPad,shared_ptr<LocalPlayer> player, int x, int y, int z);
-	bool			LoadSignEntryMenu(int iPad,shared_ptr<SignTileEntity> sign);
-	bool			LoadRepairingMenu(int iPad,shared_ptr<Inventory> inventory, Level *level, int x, int y, int z);
-	bool			LoadTradingMenu(int iPad, shared_ptr<Inventory> inventory, shared_ptr<Merchant> trader, Level *level, const wstring &name);
+	bool			LoadInventoryMenu(int iPad,std::shared_ptr<LocalPlayer> player, bool bNavigateBack=false);
+	bool			LoadCreativeMenu(int iPad,std::shared_ptr<LocalPlayer> player,bool bNavigateBack=false);
+	bool			LoadEnchantingMenu(int iPad,std::shared_ptr<Inventory> inventory, int x, int y, int z, Level *level, const std::wstring &name);
+	bool			LoadFurnaceMenu(int iPad,std::shared_ptr<Inventory> inventory, std::shared_ptr<FurnaceTileEntity> furnace);
+	bool			LoadBrewingStandMenu(int iPad,std::shared_ptr<Inventory> inventory, std::shared_ptr<BrewingStandTileEntity> brewingStand);
+	bool			LoadContainerMenu(int iPad,std::shared_ptr<Container> inventory, std::shared_ptr<Container> container);
+	bool			LoadTrapMenu(int iPad,std::shared_ptr<Container> inventory, std::shared_ptr<DispenserTileEntity> trap);
+	bool			LoadCrafting2x2Menu(int iPad,std::shared_ptr<LocalPlayer> player);
+	bool			LoadCrafting3x3Menu(int iPad,std::shared_ptr<LocalPlayer> player, int x, int y, int z);
+	bool			LoadFireworksMenu(int iPad,std::shared_ptr<LocalPlayer> player, int x, int y, int z);
+	bool			LoadSignEntryMenu(int iPad,std::shared_ptr<SignTileEntity> sign);
+	bool			LoadRepairingMenu(int iPad,std::shared_ptr<Inventory> inventory, Level *level, int x, int y, int z);
+	bool			LoadTradingMenu(int iPad, std::shared_ptr<Inventory> inventory, std::shared_ptr<Merchant> trader, Level *level, const std::wstring &name);
 
-	bool			LoadCommandBlockMenu(int iPad, shared_ptr<CommandBlockEntity> commandBlock) { return false; }
-	bool			LoadHopperMenu(int iPad ,shared_ptr<Inventory> inventory, shared_ptr<HopperTileEntity> hopper);
-	bool			LoadHopperMenu(int iPad ,shared_ptr<Inventory> inventory, shared_ptr<MinecartHopper> hopper);
-	bool			LoadHorseMenu(int iPad ,shared_ptr<Inventory> inventory, shared_ptr<Container> container, shared_ptr<EntityHorse> horse);
-	bool			LoadBeaconMenu(int iPad ,shared_ptr<Inventory> inventory, shared_ptr<BeaconTileEntity> beacon);
+	bool			LoadCommandBlockMenu(int iPad, std::shared_ptr<CommandBlockEntity> commandBlock) { return false; }
+	bool			LoadHopperMenu(int iPad ,std::shared_ptr<Inventory> inventory, std::shared_ptr<HopperTileEntity> hopper);
+	bool			LoadHopperMenu(int iPad ,std::shared_ptr<Inventory> inventory, std::shared_ptr<MinecartHopper> hopper);
+	bool			LoadHorseMenu(int iPad ,std::shared_ptr<Inventory> inventory, std::shared_ptr<Container> container, std::shared_ptr<EntityHorse> horse);
+	bool			LoadBeaconMenu(int iPad ,std::shared_ptr<Inventory> inventory, std::shared_ptr<BeaconTileEntity> beacon);
 
 	bool			GetTutorialMode()																									{ return m_bTutorialMode;}
 	void			SetTutorialMode(bool bSet)																							{m_bTutorialMode=bSet;}
@@ -218,7 +218,7 @@ public:
 	static int		OldProfileVersionCallback(LPVOID pParam,unsigned char *pucData, const unsigned short usVersion, const int iPad);
 
 #if ( defined  __PS3__  || defined __ORBIS__ || defined _DURANGO || defined __PSVITA__ )
-	wstring			toStringOptionsStatus(const C4JStorage::eOptionsCallback &eStatus);
+	std::wstring			toStringOptionsStatus(const C4JStorage::eOptionsCallback &eStatus);
 	static int		DefaultOptionsCallback(LPVOID pParam,C4JStorage::PROFILESETTINGS *pSettings, const int iPad);
 	int				SetDefaultOptions(C4JStorage::PROFILESETTINGS *pSettings,const int iPad,bool bWriteProfile=true);
 #ifdef __ORBIS__
@@ -241,9 +241,9 @@ public:
 	void			SetGameSettings(int iPad,eGameSetting eVal,unsigned char ucVal);
 	unsigned char	GetGameSettings(int iPad,eGameSetting eVal);
 	unsigned char	GetGameSettings(eGameSetting eVal); // for the primary pad
-	void			SetPlayerSkin(int iPad,const wstring &name);
+	void			SetPlayerSkin(int iPad,const std::wstring &name);
 	void			SetPlayerSkin(int iPad,DWORD dwSkinId);
-	void			SetPlayerCape(int iPad,const wstring &name);
+	void			SetPlayerCape(int iPad,const std::wstring &name);
 	void			SetPlayerCape(int iPad,DWORD dwCapeId);
 	void			SetPlayerFavoriteSkin(int iPad, int iIndex,unsigned int uiSkinID);
 	unsigned int	GetPlayerFavoriteSkin(int iPad,int iIndex);
@@ -269,9 +269,9 @@ public:
 	void			TickOpacityTimer(int iPad)																						{ if(m_uiOpacityCountDown[iPad]>0) m_uiOpacityCountDown[iPad]--;}
 
 public:
-	wstring			GetPlayerSkinName(int iPad);
+	std::wstring			GetPlayerSkinName(int iPad);
 	DWORD			GetPlayerSkinId(int iPad);
-	wstring			GetPlayerCapeName(int iPad);
+	std::wstring			GetPlayerCapeName(int iPad);
 	DWORD			GetPlayerCapeId(int iPad);
 	DWORD			GetAdditionalModelParts(int iPad);
 	void			CheckGameSettingsChanged(bool bOverride5MinuteTimer=false, int iPad=XUSER_INDEX_ANY);
@@ -323,7 +323,7 @@ public:
 #endif
 	void			SetDebugSequence(const char *pchSeq);
 	static int		DebugInputCallback(LPVOID pParam);
-	//bool			UploadFileToGlobalStorage(int iQuadrant, C4JStorage::eGlobalStorage eStorageFacility, wstring *wsFile  );
+	//bool			UploadFileToGlobalStorage(int iQuadrant, C4JStorage::eGlobalStorage eStorageFacility, std::wstring *wsFile  );
 
 	// Installed DLC
 	bool StartInstallDLCProcess(int iPad);
@@ -338,7 +338,7 @@ public:
 	void ClearDLCInstalled()	{ m_bDLCInstallProcessCompleted=false;}
 	static int MarketplaceCountsCallback(LPVOID pParam,C4JStorage::DLC_TMS_DETAILS *,int iPad);
 
-	bool AlreadySeenCreditText(const wstring &wstemp);
+	bool AlreadySeenCreditText(const std::wstring &wstemp);
 
 	void ClearNewDLCAvailable(void)				{ m_bNewDLCAvailable=false; m_bSeenNewDLCTip=true;}
 	bool GetNewDLCAvailable()					{ return m_bNewDLCAvailable;}
@@ -352,10 +352,10 @@ public:
 	bool isXuidNotch(PlayerUID xuid);
 	bool isXuidDeadmau5(PlayerUID xuid);
 
-	void AddMemoryTextureFile(const wstring &wName, PBYTE pbData, DWORD dwBytes);
-	void RemoveMemoryTextureFile(const wstring &wName);
-	void GetMemFileDetails(const wstring &wName,PBYTE *ppbData,DWORD *pdwBytes);
-	bool IsFileInMemoryTextures(const wstring &wName);
+	void AddMemoryTextureFile(const std::wstring &wName, PBYTE pbData, DWORD dwBytes);
+	void RemoveMemoryTextureFile(const std::wstring &wName);
+	void GetMemFileDetails(const std::wstring &wName,PBYTE *ppbData,DWORD *pdwBytes);
+	bool IsFileInMemoryTextures(const std::wstring &wName);
 
 	// Texture Pack Data files (icon, banner, comparison shot & text)
 	void AddMemoryTPDFile(int iConfig,PBYTE pbData,DWORD dwBytes);
@@ -380,15 +380,15 @@ public:
 private:
 	PlayerUID m_xuidNotch;
 #ifdef _DURANGO
-	unordered_map<PlayerUID, PBYTE, PlayerUID::Hash> m_GTS_Files;
+	std::unordered_map<PlayerUID, PBYTE, PlayerUID::Hash> m_GTS_Files;
 #else
-	unordered_map<PlayerUID, PBYTE> m_GTS_Files;
+	std::unordered_map<PlayerUID, PBYTE> m_GTS_Files;
 #endif
 
 	// for storing memory textures - player skin
-	unordered_map<wstring, PMEMDATA> m_MEM_Files;
+	std::unordered_map<std::wstring, PMEMDATA> m_MEM_Files;
 	// for storing texture pack data files
-	unordered_map<int, PMEMDATA> m_MEM_TPD;
+	std::unordered_map<int, PMEMDATA> m_MEM_TPD;
 	CRITICAL_SECTION csMemFilesLock; // For locking access to the above map
 	CRITICAL_SECTION csMemTPDLock; // For locking access to the above map
 
@@ -435,9 +435,9 @@ protected:
 	StringTable *m_stringTable;
 
 public:
-	int getArchiveFileSize(const wstring &filename);
-	bool hasArchiveFile(const wstring &filename);
-	byteArray getArchiveFile(const wstring &filename);
+	int getArchiveFileSize(const std::wstring &filename);
+	bool hasArchiveFile(const std::wstring &filename);
+	byteArray getArchiveFile(const std::wstring &filename);
 
 private:
 
@@ -450,7 +450,7 @@ private:
 
 	bool m_bResourcesLoaded;
 
-	// Global string table for this application.
+	// Global std::string table for this application.
 	//CXuiStringTable StringTable;
 
 
@@ -564,10 +564,10 @@ public:
 	int GetHTMLColour(eMinecraftColour colour);
 	int GetHTMLColor(eMinecraftColour colour) { return GetHTMLColour(colour); }
 	int GetHTMLFontSize(EHTMLFontSize size);
-	wstring FormatHTMLString(int iPad, const wstring &desc, int shadowColour = 0xFFFFFFFF);
-	wstring GetActionReplacement(int iPad, unsigned char ucAction);
-	wstring GetVKReplacement(unsigned int uiVKey);
-	wstring GetIconReplacement(unsigned int uiIcon);
+	std::wstring FormatHTMLString(int iPad, const std::wstring &desc, int shadowColour = 0xFFFFFFFF);
+	std::wstring GetActionReplacement(int iPad, unsigned char ucAction);
+	std::wstring GetVKReplacement(unsigned int uiVKey);
+	std::wstring GetIconReplacement(unsigned int uiIcon);
 
 	float getAppTime() { return m_Time.fAppTime; }
 	void UpdateTrialPausedTimer() { mfTrialPausedTime+= m_Time.fElapsedTime;}
@@ -583,7 +583,7 @@ private:
 	// XML
 public:
 
-	// Hold a vector of terrain feature positions
+	// Hold a std::vector of terrain feature positions
 	void AddTerrainFeaturePosition(_eTerrainFeatureType,int,int);
 	void ClearTerrainFeaturePosition();
 	_eTerrainFeatureType IsTerrainFeature(int x,int z);
@@ -596,18 +596,18 @@ public:
 
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
 	HRESULT RegisterDLCData(char *pchDLCName, unsigned int uiSortIndex, char *pchImageURL);
-	bool GetDLCFullOfferIDForSkinID(const wstring &FirstSkin,ULONGLONG *pullVal);
+	bool GetDLCFullOfferIDForSkinID(const std::wstring &FirstSkin,ULONGLONG *pullVal);
 	DLC_INFO *GetDLCInfoForTrialOfferID(ULONGLONG ullOfferID_Trial);
 	DLC_INFO *GetDLCInfoForFullOfferID(ULONGLONG ullOfferID_Full);
 #elif defined(_XBOX_ONE)
 	static HRESULT RegisterDLCData(eDLCContentType, WCHAR *, WCHAR *, WCHAR *, WCHAR *, int, unsigned int);
-	//bool GetDLCFullOfferIDForSkinID(const wstring &FirstSkin,WCHAR *pwchProductId);
-	bool GetDLCFullOfferIDForSkinID(const wstring &FirstSkin,wstring &wsProductId);
+	//bool GetDLCFullOfferIDForSkinID(const std::wstring &FirstSkin,WCHAR *pwchProductId);
+	bool GetDLCFullOfferIDForSkinID(const std::wstring &FirstSkin,std::wstring &wsProductId);
 	DLC_INFO *GetDLCInfoForFullOfferID(WCHAR *pwchProductId);
 	DLC_INFO *GetDLCInfoForProductName(WCHAR *pwchProductName);
 #else
 	static HRESULT RegisterDLCData(WCHAR *, WCHAR *, int, __uint64, __uint64, WCHAR *, unsigned int, int, WCHAR *pDataFile);
-	bool GetDLCFullOfferIDForSkinID(const wstring &FirstSkin,ULONGLONG *pullVal);
+	bool GetDLCFullOfferIDForSkinID(const std::wstring &FirstSkin,ULONGLONG *pullVal);
 	DLC_INFO *GetDLCInfoForTrialOfferID(ULONGLONG ullOfferID_Trial);
 	DLC_INFO *GetDLCInfoForFullOfferID(ULONGLONG ullOfferID_Full);
 #endif
@@ -632,22 +632,22 @@ private:
 	std::vector <SCreditTextItemDef *> vDLCCredits;
 
 #if defined(__PS3__) || defined(__ORBIS__) || defined (__PSVITA__)
-	static unordered_map<PlayerUID,MOJANG_DATA *, PlayerUID::Hash > MojangData;
-	static unordered_map<int, char * >  DLCTextures_PackID; // for mash-up packs & texture packs
-	static unordered_map<string,DLC_INFO * > DLCInfo; 
-	static unordered_map<wstring, ULONGLONG >  DLCInfo_SkinName; // skin name, full offer id
+	static std::unordered_map<PlayerUID,MOJANG_DATA *, PlayerUID::Hash > MojangData;
+	static std::unordered_map<int, char * >  DLCTextures_PackID; // for mash-up packs & texture packs
+	static std::unordered_map<std::string,DLC_INFO * > DLCInfo; 
+	static std::unordered_map<std::wstring, ULONGLONG >  DLCInfo_SkinName; // skin name, full offer id
 #elif defined(_DURANGO)
-	static unordered_map<PlayerUID,MOJANG_DATA *, PlayerUID::Hash > MojangData;
-	static unordered_map<int, wstring >  DLCTextures_PackID; // for mash-up packs & texture packs
-	//static unordered_map<wstring,DLC_INFO * > DLCInfo_Trial; // full offerid, dlc_info
-	static unordered_map<wstring,DLC_INFO * > DLCInfo_Full; // full offerid, dlc_info
-	static unordered_map<wstring, wstring >  DLCInfo_SkinName; // skin name, full offer id
+	static std::unordered_map<PlayerUID,MOJANG_DATA *, PlayerUID::Hash > MojangData;
+	static std::unordered_map<int, std::wstring >  DLCTextures_PackID; // for mash-up packs & texture packs
+	//static std::unordered_map<std::wstring,DLC_INFO * > DLCInfo_Trial; // full offerid, dlc_info
+	static std::unordered_map<std::wstring,DLC_INFO * > DLCInfo_Full; // full offerid, dlc_info
+	static std::unordered_map<std::wstring, std::wstring >  DLCInfo_SkinName; // skin name, full offer id
 #else
-	static unordered_map<PlayerUID,MOJANG_DATA * > MojangData;
-	static unordered_map<int, ULONGLONG >  DLCTextures_PackID; // for mash-up packs & texture packs
-	static unordered_map<ULONGLONG,DLC_INFO * > DLCInfo_Trial; // full offerid, dlc_info
-	static unordered_map<ULONGLONG,DLC_INFO * > DLCInfo_Full; // full offerid, dlc_info
-	static unordered_map<wstring, ULONGLONG >  DLCInfo_SkinName; // skin name, full offer id
+	static std::unordered_map<PlayerUID,MOJANG_DATA * > MojangData;
+	static std::unordered_map<int, ULONGLONG >  DLCTextures_PackID; // for mash-up packs & texture packs
+	static std::unordered_map<ULONGLONG,DLC_INFO * > DLCInfo_Trial; // full offerid, dlc_info
+	static std::unordered_map<ULONGLONG,DLC_INFO * > DLCInfo_Full; // full offerid, dlc_info
+	static std::unordered_map<std::wstring, ULONGLONG >  DLCInfo_SkinName; // skin name, full offer id
 #endif
 	//	bool m_bRead_TMS_XUIDS_XML; // track whether we have already read the TMS xuids.xml file
 	//	bool m_bRead_TMS_DLCINFO_XML; // track whether we have already read the TMS DLC.xml file
@@ -738,11 +738,11 @@ public:
 	void processSchematics(LevelChunk *levelChunk);
 	void processSchematicsLighting(LevelChunk *levelChunk);
 	void loadDefaultGameRules();
-	vector<LevelGenerationOptions *> *getLevelGenerators() { return m_gameRules.getLevelGenerators(); }
+	std::vector<LevelGenerationOptions *> *getLevelGenerators() { return m_gameRules.getLevelGenerators(); }
 	void setLevelGenerationOptions(LevelGenerationOptions *levelGen);
 	LevelRuleset *getGameRuleDefinitions() { return m_gameRules.getGameRuleDefinitions(); }
 	LevelGenerationOptions *getLevelGenerationOptions() { return m_gameRules.getLevelGenerationOptions(); }
-	LPCWSTR	GetGameRulesString(const wstring &key);
+	LPCWSTR	GetGameRulesString(const std::wstring &key);
 
 private:
 	BYTE m_playerColours[MINECRAFT_NET_MAX_PLAYERS]; // An array of QNet small-id's
@@ -753,7 +753,7 @@ public:
 	short GetPlayerColour(BYTE networkSmallId);
 	unsigned int GetPlayerPrivileges(BYTE networkSmallId);
 
-	wstring getEntityName(eINSTANCEOF type);
+	std::wstring getEntityName(eINSTANCEOF type);
 
 
 
@@ -783,7 +783,7 @@ public:
 
 #ifdef _XBOX_ONE
 	static int		TMSPPFileReturned(LPVOID pParam,int iPad,int iUserData,LPVOID, WCHAR *wchFilename);
-	unordered_map<wstring,DLC_INFO * > *GetDLCInfo();
+	std::unordered_map<std::wstring,DLC_INFO * > *GetDLCInfo();
 #else
 	static int		TMSPPFileReturned(LPVOID pParam,int iPad,int iUserData,C4JStorage::PTMSPP_FILEDATA pFileData, LPCSTR szFilename);
 #endif
@@ -793,8 +793,8 @@ public:
 	int				GetDLCInfoTrialOffersCount();
 	int				GetDLCInfoFullOffersCount();
 #ifdef _XBOX_ONE
-	bool GetDLCFullOfferIDForPackID(const int iPackID,wstring &wsProductId);
-	wstring GetDLCInfoTexturesFullOffer(int iIndex);
+	bool GetDLCFullOfferIDForPackID(const int iPackID,std::wstring &wsProductId);
+	std::wstring GetDLCInfoTexturesFullOffer(int iIndex);
 
 #else
 	bool GetDLCFullOfferIDForPackID(const int iPackID,ULONGLONG *pullVal);
@@ -813,8 +813,8 @@ private:
 	// Download Status
 
 	//Request current_download;
-	vector<DLCRequest *> m_DLCDownloadQueue;
-	vector<TMSPPRequest *> m_TMSPPDownloadQueue;
+	std::vector<DLCRequest *> m_DLCDownloadQueue;
+	std::vector<TMSPPRequest *> m_TMSPPDownloadQueue;
 	static DWORD m_dwContentTypeA[e_Marketplace_MAX];
 	int m_iDLCOfferC;
 	bool m_bAllDLCContentRetrieved;
@@ -842,14 +842,14 @@ public:
 
 	// Storing additional model parts per skin texture
 	void SetAdditionalSkinBoxes(DWORD dwSkinID, SKIN_BOX *SkinBoxA, DWORD dwSkinBoxC);
-	vector<ModelPart *> * SetAdditionalSkinBoxes(DWORD dwSkinID, vector<SKIN_BOX *> *pvSkinBoxA);
-	vector<ModelPart *> *GetAdditionalModelParts(DWORD dwSkinID);
-	vector<SKIN_BOX *> *GetAdditionalSkinBoxes(DWORD dwSkinID);
+	std::vector<ModelPart *> * SetAdditionalSkinBoxes(DWORD dwSkinID, std::vector<SKIN_BOX *> *pvSkinBoxA);
+	std::vector<ModelPart *> *GetAdditionalModelParts(DWORD dwSkinID);
+	std::vector<SKIN_BOX *> *GetAdditionalSkinBoxes(DWORD dwSkinID);
 	void SetAnimOverrideBitmask(DWORD dwSkinID,unsigned int uiAnimOverrideBitmask);
 	unsigned int GetAnimOverrideBitmask(DWORD dwSkinID);
 
-	static DWORD getSkinIdFromPath(const wstring &skin);
-	static wstring getSkinPathFromId(DWORD skinId);
+	static DWORD getSkinIdFromPath(const std::wstring &skin);
+	static std::wstring getSkinPathFromId(DWORD skinId);
 
 	virtual int LoadLocalTMSFile(WCHAR *wchTMSFile)=0;
 	virtual int LoadLocalTMSFile(WCHAR *wchTMSFile, eFileExtensionType eExt)=0;
@@ -872,16 +872,16 @@ public:
 	//XTITLE_DEPLOYMENT_TYPE getDeploymentType() { return m_titleDeploymentType; }
 
 private:
-	// vector of additional skin model parts, indexed by the skin texture id
-	unordered_map<DWORD, vector<ModelPart *> *> m_AdditionalModelParts;
-	unordered_map<DWORD, vector<SKIN_BOX *> *> m_AdditionalSkinBoxes;
-	unordered_map<DWORD, unsigned int> m_AnimOverrides;
+	// std::vector of additional skin model parts, indexed by the skin texture id
+	std::unordered_map<DWORD, std::vector<ModelPart *> *> m_AdditionalModelParts;
+	std::unordered_map<DWORD, std::vector<SKIN_BOX *> *> m_AdditionalSkinBoxes;
+	std::unordered_map<DWORD, unsigned int> m_AnimOverrides;
 
 
 	bool m_bResetNether;
 	DWORD m_dwRequiredTexturePackID;
 #ifdef _XBOX_ONE
-	vector <PBYTE> m_vTMSPPData;
+	std::vector <PBYTE> m_vTMSPPData;
 #endif
 
 #if ( defined __PS3__ || defined __ORBIS__ || defined _DURANGO  || defined __PSVITA__)
@@ -897,19 +897,19 @@ private:
 public:
 
 	void LocaleAndLanguageInit();
-	void getLocale(vector<wstring> &vecWstrLocales);
+	void getLocale(std::vector<std::wstring> &vecWstrLocales);
 	DWORD get_eMCLang(WCHAR *pwchLocale);
 	DWORD get_xcLang(WCHAR *pwchLocale);
 
 	void SetTickTMSDLCFiles(bool bVal);
 
-	wstring getFilePath(DWORD packId, wstring filename, bool bAddDataFolder, wstring mountPoint = L"TPACK:");
+	std::wstring getFilePath(DWORD packId, std::wstring filename, bool bAddDataFolder, std::wstring mountPoint = L"TPACK:");
 
 private:
-	unordered_map<int, wstring>m_localeA;
-	unordered_map<wstring, int>m_eMCLangA;
-	unordered_map<wstring, int>m_xcLangA;
-	wstring getRootPath(DWORD packId, bool allowOverride, bool bAddDataFolder, wstring mountPoint);
+	std::unordered_map<int, std::wstring>m_localeA;
+	std::unordered_map<std::wstring, int>m_eMCLangA;
+	std::unordered_map<std::wstring, int>m_xcLangA;
+	std::wstring getRootPath(DWORD packId, bool allowOverride, bool bAddDataFolder, std::wstring mountPoint);
 public:
 
 #ifdef _XBOX

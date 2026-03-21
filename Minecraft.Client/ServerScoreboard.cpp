@@ -24,7 +24,7 @@ void ServerScoreboard::onScoreChanged(Score *score)
 	//setDirty();
 }
 
-void ServerScoreboard::onPlayerRemoved(const wstring &player)
+void ServerScoreboard::onPlayerRemoved(const std::wstring &player)
 {
 	//Scoreboard::onPlayerRemoved(player);
 	//server->getPlayers()->broadcastAll( shared_ptr<SetScorePacket>( new SetScorePacket(player)));
@@ -64,7 +64,7 @@ void ServerScoreboard::setDisplayObjective(int slot, Objective *objective)
 	//setDirty();
 }
 
-void ServerScoreboard::addPlayerToTeam(const wstring &player, PlayerTeam *team)
+void ServerScoreboard::addPlayerToTeam(const std::wstring &player, PlayerTeam *team)
 {
 	//Scoreboard::addPlayerToTeam(player, team);
 
@@ -73,7 +73,7 @@ void ServerScoreboard::addPlayerToTeam(const wstring &player, PlayerTeam *team)
 	//setDirty();
 }
 
-void ServerScoreboard::removePlayerFromTeam(const wstring &player, PlayerTeam *team)
+void ServerScoreboard::removePlayerFromTeam(const std::wstring &player, PlayerTeam *team)
 {
 	//Scoreboard::removePlayerFromTeam(player, team);
 

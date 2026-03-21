@@ -58,7 +58,7 @@ UIScene_HorseInventoryMenu::UIScene_HorseInventoryMenu(int iPad, void *_initData
 	//app.SetRichPresenceContext(iPad, CONTEXT_GAME_STATE_HORSE);
 }
 
-wstring UIScene_HorseInventoryMenu::getMoviePath()
+std::wstring UIScene_HorseInventoryMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

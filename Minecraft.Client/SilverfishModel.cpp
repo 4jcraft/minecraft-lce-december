@@ -82,7 +82,7 @@ int SilverfishModel::modelVersion()
 	return 38;
 }
 
-void SilverfishModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void SilverfishModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
 	setupAnim(time, r, bob, yRot, xRot, scale, entity);
 
@@ -96,7 +96,7 @@ void SilverfishModel::render(shared_ptr<Entity> entity, float time, float r, flo
 	}
 }
 
-void SilverfishModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void SilverfishModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	for (unsigned int i = 0; i < bodyParts.length; i++)
 	{

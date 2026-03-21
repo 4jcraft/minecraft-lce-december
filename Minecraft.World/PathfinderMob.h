@@ -21,7 +21,7 @@ private:
 	Path *path;
 
 protected:
-	shared_ptr<Entity> attackTarget;
+	std::shared_ptr<Entity> attackTarget;
 	bool holdGround;
 	int fleeTime;
 
@@ -35,20 +35,20 @@ protected:
 	virtual bool shouldHoldGround();
 	virtual void serverAiStep();
 	virtual void findRandomStrollLocation(int quadrant = -1);
-	virtual void checkHurtTarget(shared_ptr<Entity> target, float d);
+	virtual void checkHurtTarget(std::shared_ptr<Entity> target, float d);
 
 public:
 	virtual float getWalkTargetValue(int x, int y, int z);
 
 protected:
-	virtual shared_ptr<Entity> findAttackTarget();
+	virtual std::shared_ptr<Entity> findAttackTarget();
 
 public:
 	virtual bool canSpawn();
 	virtual bool isPathFinding();
 	virtual void setPath(Path *path);
-	virtual shared_ptr<Entity> getAttackTarget();
-	virtual void setAttackTarget(shared_ptr<Entity> attacker);
+	virtual std::shared_ptr<Entity> getAttackTarget();
+	virtual void setAttackTarget(std::shared_ptr<Entity> attacker);
 
 	// might move to navigation, might make area
 	virtual bool isWithinRestriction();

@@ -11,7 +11,7 @@ UIControl_BeaconEffectButton::UIControl_BeaconEffectButton()
 	m_focus = false;
 }
 
-bool UIControl_BeaconEffectButton::setupControl(UIScene *scene, IggyValuePath *parent, const string &controlName)
+bool UIControl_BeaconEffectButton::setupControl(UIScene *scene, IggyValuePath *parent, const std::string &controlName)
 {
 	bool success = UIControl::setupControl(scene,parent,controlName);
 

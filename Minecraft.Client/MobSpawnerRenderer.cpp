@@ -5,7 +5,7 @@
 #include "..\Minecraft.World\net.minecraft.world.level.tile.entity.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.h"
 
-void MobSpawnerRenderer::render(shared_ptr<TileEntity> _spawner, double x, double y, double z, float a, bool setColor, float alpha, bool useCompiled)
+void MobSpawnerRenderer::render(std::shared_ptr<TileEntity> _spawner, double x, double y, double z, float a, bool setColor, float alpha, bool useCompiled)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<MobSpawnerTileEntity> spawner = dynamic_pointer_cast<MobSpawnerTileEntity>(_spawner);

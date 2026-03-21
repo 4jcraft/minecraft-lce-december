@@ -13,7 +13,7 @@ EnderEyeItem::EnderEyeItem(int id) : Item(id)
 {
 }
 
-bool EnderEyeItem::useOn(shared_ptr<ItemInstance> instance, shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
+bool EnderEyeItem::useOn(std::shared_ptr<ItemInstance> instance, std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
 {
 	int targetType = level->getTile(x, y, z);
 	int targetData = level->getData(x, y, z);
@@ -133,7 +133,7 @@ bool EnderEyeItem::useOn(shared_ptr<ItemInstance> instance, shared_ptr<Player> p
 	return false;
 }
 
-bool EnderEyeItem::TestUse(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+bool EnderEyeItem::TestUse(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	HitResult *hr = getPlayerPOVHitResult(level, player, false);
 	if (hr != NULL && hr->type == HitResult::TILE)
@@ -186,7 +186,7 @@ bool EnderEyeItem::TestUse(shared_ptr<ItemInstance> itemInstance, Level *level, 
 	return false;
 }
 
-shared_ptr<ItemInstance> EnderEyeItem::use(shared_ptr<ItemInstance> instance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> EnderEyeItem::use(std::shared_ptr<ItemInstance> instance, Level *level, std::shared_ptr<Player> player)
 {
 	HitResult *hr = getPlayerPOVHitResult(level, player, false);
 	if (hr != NULL && hr->type == HitResult::TILE)

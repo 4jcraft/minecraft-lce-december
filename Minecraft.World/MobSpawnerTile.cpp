@@ -7,7 +7,7 @@ MobSpawnerTile::MobSpawnerTile(int id) : BaseEntityTile(id, Material::stone, isS
 {
 }
 
-shared_ptr<TileEntity> MobSpawnerTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> MobSpawnerTile::newTileEntity(Level *level)
 {
 	return shared_ptr<MobSpawnerTileEntity>( new MobSpawnerTileEntity() );
 }

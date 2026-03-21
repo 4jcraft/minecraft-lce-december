@@ -3,14 +3,14 @@
 class UITTFFont
 {
 private:
-	const string m_strFontName;
+	const std::string m_strFontName;
 
 	PBYTE pbData;
 	//DWORD dwDataSize;
 
 public:
-	UITTFFont(const string &name, const string &path, S32 fallbackCharacter);
+	UITTFFont(const std::string &name, const std::string &path, S32 fallbackCharacter);
 	~UITTFFont();
 
-	string getFontName();
+	std::string getFontName();
 };

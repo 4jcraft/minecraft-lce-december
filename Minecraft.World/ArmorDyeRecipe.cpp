@@ -5,7 +5,7 @@
 #include "net.minecraft.world.item.crafting.h"
 #include "ArmorDyeRecipe.h"
 
-bool ArmorDyeRecipe::matches(shared_ptr<CraftingContainer> craftSlots, Level *level)
+bool ArmorDyeRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots, Level *level)
 {
 	shared_ptr<ItemInstance> target = nullptr;
 	vector<shared_ptr<ItemInstance> > dyes;
@@ -40,7 +40,7 @@ bool ArmorDyeRecipe::matches(shared_ptr<CraftingContainer> craftSlots, Level *le
 	return target != NULL && !dyes.empty();
 }
 
-shared_ptr<ItemInstance> ArmorDyeRecipe::assembleDyedArmor(shared_ptr<CraftingContainer> craftSlots)
+std::shared_ptr<ItemInstance> ArmorDyeRecipe::assembleDyedArmor(std::shared_ptr<CraftingContainer> craftSlots)
 {
 	shared_ptr<ItemInstance> target = nullptr;
 	int colorTotals[3] = {0,0,0};
@@ -126,7 +126,7 @@ shared_ptr<ItemInstance> ArmorDyeRecipe::assembleDyedArmor(shared_ptr<CraftingCo
 	return target;
 }
 
-shared_ptr<ItemInstance> ArmorDyeRecipe::assemble(shared_ptr<CraftingContainer> craftSlots)
+std::shared_ptr<ItemInstance> ArmorDyeRecipe::assemble(std::shared_ptr<CraftingContainer> craftSlots)
 {
 	return ArmorDyeRecipe::assembleDyedArmor(craftSlots);
 }

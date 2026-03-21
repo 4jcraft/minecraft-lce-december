@@ -27,7 +27,7 @@ public:
 	void write(DataOutputStream *dos);
 	void handle(PacketListener *listener);
 	int getEstimatedSize();
-	//wstring getDebugInfo();
+	//std::wstring getDebugInfo();
 	bool isInvulnerable();
 	void setInvulnerable(bool invulnerable);
 	bool isFlying();
@@ -41,9 +41,9 @@ public:
 	float getWalkingSpeed();
 	void setWalkingSpeed(float walkingSpeed);
 	bool canBeInvalidated();
-	bool isInvalidatedBy(shared_ptr<Packet> packet);
+	bool isInvalidatedBy(std::shared_ptr<Packet> packet);
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new PlayerAbilitiesPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new PlayerAbilitiesPacket()); }
 	virtual int getId() { return 202; }
 };

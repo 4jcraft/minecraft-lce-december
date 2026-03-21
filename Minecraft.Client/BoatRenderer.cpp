@@ -12,7 +12,7 @@ BoatRenderer::BoatRenderer()  : EntityRenderer()
     model = new BoatModel();
 }
 
-void BoatRenderer::render(shared_ptr<Entity> _boat, double x, double y, double z, float rot, float a)
+void BoatRenderer::render(std::shared_ptr<Entity> _boat, double x, double y, double z, float rot, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type Boat rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead
@@ -41,7 +41,7 @@ void BoatRenderer::render(shared_ptr<Entity> _boat, double x, double y, double z
     glPopMatrix();
 }
 
-ResourceLocation *BoatRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *BoatRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &BOAT_LOCATION;
 }

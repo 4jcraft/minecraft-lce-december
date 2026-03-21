@@ -33,16 +33,16 @@ protected:
 	virtual void serverAiMobStep();
 	virtual void registerAttributes();
 	virtual int decreaseAirSupply(int currentSupply);
-	virtual void doPush(shared_ptr<Entity> e);
+	virtual void doPush(std::shared_ptr<Entity> e);
 
 public:
 	virtual void aiStep();
 	virtual bool canAttackType(eINSTANCEOF targetType);
 	virtual void addAdditonalSaveData(CompoundTag *tag);
 	virtual void readAdditionalSaveData(CompoundTag *tag);
-	virtual bool doHurtTarget(shared_ptr<Entity> target);
+	virtual bool doHurtTarget(std::shared_ptr<Entity> target);
 	virtual void handleEntityEvent(byte id);
-	virtual shared_ptr<Village> getVillage();
+	virtual std::shared_ptr<Village> getVillage();
 	virtual int getAttackAnimationTick();
 	virtual void offerFlower(bool offer);
 

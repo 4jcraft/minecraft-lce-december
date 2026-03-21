@@ -17,7 +17,7 @@ public:
 
 private:
 	Minecraft *minecraft;
-    shared_ptr<ItemInstance> selectedItem;
+    std::shared_ptr<ItemInstance> selectedItem;
     float height;
     float oHeight;
     TileRenderer *tileRenderer;
@@ -29,7 +29,7 @@ public:
 
 public:
 	ItemInHandRenderer(Minecraft *mc, bool optimisedMinimap = true); // 4J Added optimisedMinimap param
-    void renderItem(shared_ptr<LivingEntity> mob, shared_ptr<ItemInstance> item, int layer, bool setColor = true);	// 4J added setColor parameter
+    void renderItem(std::shared_ptr<LivingEntity> mob, std::shared_ptr<ItemInstance> item, int layer, bool setColor = true);	// 4J added setColor parameter
 	static void renderItem3D(Tesselator *t, float u0, float v0, float u1, float v1, int width, int height, float depth, bool isGlint, bool isTerrain);	// 4J added isGlint and isTerrain parameter
 public:
     void render(float a);

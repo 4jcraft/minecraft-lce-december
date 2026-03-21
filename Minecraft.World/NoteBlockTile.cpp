@@ -30,7 +30,7 @@ bool NoteBlockTile::TestUse()
 	return true;
 }
 
-bool NoteBlockTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool NoteBlockTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if (soundOnly) return false;
 	if (level->isClientSide) return true;
@@ -43,14 +43,14 @@ bool NoteBlockTile::use(Level *level, int x, int y, int z, shared_ptr<Player> pl
 	return true;
 }
 
-void NoteBlockTile::attack(Level *level, int x, int y, int z, shared_ptr<Player> player)
+void NoteBlockTile::attack(Level *level, int x, int y, int z, std::shared_ptr<Player> player)
 {
 	if (level->isClientSide) return;
 	shared_ptr<MusicTileEntity> mte = dynamic_pointer_cast<MusicTileEntity>( level->getTileEntity(x, y, z) );
 	if( mte != NULL ) mte->playNote(level, x, y, z);
 }
 
-shared_ptr<TileEntity> NoteBlockTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> NoteBlockTile::newTileEntity(Level *level)
 {
 	return shared_ptr<MusicTileEntity>( new MusicTileEntity() );
 }

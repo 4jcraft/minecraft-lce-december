@@ -15,16 +15,16 @@
 // 4J JEV - Images for each tab.
 IUIScene_CreativeMenu::TabSpec **IUIScene_CreativeMenu::specs = NULL;
 
-vector< shared_ptr<ItemInstance> > IUIScene_CreativeMenu::categoryGroups[eCreativeInventoryGroupsCount];
+std::vector< std::shared_ptr<ItemInstance> > IUIScene_CreativeMenu::categoryGroups[eCreativeInventoryGroupsCount];
 
-#define ITEM(id) list->push_back( shared_ptr<ItemInstance>(new ItemInstance(id, 1, 0)) );
-#define ITEM_AUX(id, aux) list->push_back( shared_ptr<ItemInstance>(new ItemInstance(id, 1, aux)) );
+#define ITEM(id) list->push_back( std::shared_ptr<ItemInstance>(new ItemInstance(id, 1, 0)) );
+#define ITEM_AUX(id, aux) list->push_back( std::shared_ptr<ItemInstance>(new ItemInstance(id, 1, aux)) );
 #define DEF(index) list = &categoryGroups[index];
 
 
 void IUIScene_CreativeMenu::staticCtor()
 {
-	vector< shared_ptr<ItemInstance> > *list;
+	std::vector< std::shared_ptr<ItemInstance> > *list;
 
 
 	// Building Blocks
@@ -531,7 +531,7 @@ void IUIScene_CreativeMenu::staticCtor()
 #ifndef _CONTENT_PACKAGE
 		if(app.DebugSettingsOn())
 		{
-			shared_ptr<ItemInstance> debugSword = shared_ptr<ItemInstance>(new ItemInstance(Item::sword_diamond_Id, 1, 0));
+			std::shared_ptr<ItemInstance> debugSword = std::shared_ptr<ItemInstance>(new ItemInstance(Item::sword_diamond_Id, 1, 0));
 			debugSword->enchant( Enchantment::damageBonus, 50 );
 			debugSword->setHoverName(L"Sword of Debug");
 			list->push_back(debugSword);
@@ -983,7 +983,7 @@ unsigned int IUIScene_CreativeMenu::TabSpec::getPageCount()
 
 
 // 4J JEV - Item Picker Menu
-IUIScene_CreativeMenu::ItemPickerMenu::ItemPickerMenu(	shared_ptr<SimpleContainer> smp, shared_ptr<Inventory> inv ) : AbstractContainerMenu()
+IUIScene_CreativeMenu::ItemPickerMenu::ItemPickerMenu(	std::shared_ptr<SimpleContainer> smp, std::shared_ptr<Inventory> inv ) : AbstractContainerMenu()
 {
 	inventory = inv;
 	creativeContainer = smp; 
@@ -1009,7 +1009,7 @@ IUIScene_CreativeMenu::ItemPickerMenu::ItemPickerMenu(	shared_ptr<SimpleContaine
 	containerId = CONTAINER_ID_CREATIVE;
 }
 
-bool IUIScene_CreativeMenu::ItemPickerMenu::stillValid(shared_ptr<Player> player)
+bool IUIScene_CreativeMenu::ItemPickerMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return true;
 }
@@ -1067,7 +1067,7 @@ bool IUIScene_CreativeMenu::handleValidKeyPress(int iPad, int buttonNum, BOOL qu
 		Minecraft *pMinecraft = Minecraft::GetInstance();
 		for(unsigned int i = TabSpec::MAX_SIZE; i < TabSpec::MAX_SIZE + 9; ++i)
 		{
-			shared_ptr<ItemInstance> newItem = m_menu->getSlot(i)->getItem();
+			std::shared_ptr<ItemInstance> newItem = m_menu->getSlot(i)->getItem();
 
 			if(newItem != NULL)
 			{
@@ -1086,7 +1086,7 @@ void IUIScene_CreativeMenu::handleOutsideClicked(int iPad, int buttonNum, BOOL q
 	// Drop items.
 	Minecraft *pMinecraft = Minecraft::GetInstance();
 
-	shared_ptr<Inventory> playerInventory = pMinecraft->localplayers[iPad]->inventory;
+	std::shared_ptr<Inventory> playerInventory = pMinecraft->localplayers[iPad]->inventory;
 	if (playerInventory->getCarried() != NULL)
 	{
 		if (buttonNum == 0)
@@ -1096,7 +1096,7 @@ void IUIScene_CreativeMenu::handleOutsideClicked(int iPad, int buttonNum, BOOL q
 		}
 		if (buttonNum == 1)
 		{
-			shared_ptr<ItemInstance> removedItem = playerInventory->getCarried()->remove(1);
+			std::shared_ptr<ItemInstance> removedItem = playerInventory->getCarried()->remove(1);
 			pMinecraft->localgameModes[iPad]->handleCreativeModeItemDrop(removedItem);
 			if (playerInventory->getCarried()->count == 0) playerInventory->setCarried(nullptr);
 		}
@@ -1167,9 +1167,9 @@ void IUIScene_CreativeMenu::handleSlotListClicked(ESceneSection eSection, int bu
 		if (buttonNum == 0)
 		{
 
-			shared_ptr<Inventory> playerInventory = pMinecraft->localplayers[getPad()]->inventory;
-			shared_ptr<ItemInstance> carried = playerInventory->getCarried();
-			shared_ptr<ItemInstance> clicked = m_menu->getSlot(currentIndex)->getItem();
+			std::shared_ptr<Inventory> playerInventory = pMinecraft->localplayers[getPad()]->inventory;
+			std::shared_ptr<ItemInstance> carried = playerInventory->getCarried();
+			std::shared_ptr<ItemInstance> clicked = m_menu->getSlot(currentIndex)->getItem();
 			if (clicked != NULL)
 			{
 				playerInventory->setCarried(ItemInstance::clone(clicked));
@@ -1201,7 +1201,7 @@ void IUIScene_CreativeMenu::handleSlotListClicked(ESceneSection eSection, int bu
 			quickKeyHeld = FALSE;
 		}
 		m_menu->clicked(currentIndex, buttonNum, quickKeyHeld?AbstractContainerMenu::CLICK_QUICK_MOVE:AbstractContainerMenu::CLICK_PICKUP, pMinecraft->localplayers[getPad()]);
-		shared_ptr<ItemInstance> newItem = m_menu->getSlot(currentIndex)->getItem();
+		std::shared_ptr<ItemInstance> newItem = m_menu->getSlot(currentIndex)->getItem();
 		// call this function to synchronize multiplayer item bar
 		pMinecraft->localgameModes[getPad()]->handleCreativeModeItemAdd(newItem, currentIndex - (int)m_menu->slots.size() + 9 + InventoryMenu::USE_ROW_SLOT_START);
 
@@ -1214,7 +1214,7 @@ void IUIScene_CreativeMenu::handleSlotListClicked(ESceneSection eSection, int bu
 			m_iCurrSlotX = m_creativeSlotX;
 			m_iCurrSlotY = m_creativeSlotY;
 
-			shared_ptr<Inventory> playerInventory = pMinecraft->localplayers[getPad()]->inventory;
+			std::shared_ptr<Inventory> playerInventory = pMinecraft->localplayers[getPad()]->inventory;
 			playerInventory->setCarried(nullptr);
 			m_bCarryingCreativeItem = false;
 		}
@@ -1243,14 +1243,14 @@ bool IUIScene_CreativeMenu::CanHaveFocus( ESceneSection eSection )
 	return false;
 }
 
-bool IUIScene_CreativeMenu::getEmptyInventorySlot(shared_ptr<ItemInstance> item, int &slotX)
+bool IUIScene_CreativeMenu::getEmptyInventorySlot(std::shared_ptr<ItemInstance> item, int &slotX)
 {
 	bool sameItemFound = false;
 	bool emptySlotFound = false;
 	// Jump to the slot with this item already on it, if we can stack more
 	for(unsigned int i = TabSpec::MAX_SIZE; i < TabSpec::MAX_SIZE + 9; ++i)
 	{
-		shared_ptr<ItemInstance> slotItem = m_menu->getSlot(i)->getItem();
+		std::shared_ptr<ItemInstance> slotItem = m_menu->getSlot(i)->getItem();
 		if( slotItem != NULL && slotItem->sameItemWithTags(item) && (slotItem->GetCount() + item->GetCount() <= item->getMaxStackSize() ))
 		{
 			sameItemFound = true;
@@ -1293,7 +1293,7 @@ int IUIScene_CreativeMenu::getSectionStartOffset(ESceneSection eSection)
 	return offset;
 }
 
-bool IUIScene_CreativeMenu::overrideTooltips(ESceneSection sectionUnderPointer, shared_ptr<ItemInstance> itemUnderPointer, bool bIsItemCarried, bool bSlotHasItem, bool bCarriedIsSameAsSlot, int iSlotStackSizeRemaining,
+bool IUIScene_CreativeMenu::overrideTooltips(ESceneSection sectionUnderPointer, std::shared_ptr<ItemInstance> itemUnderPointer, bool bIsItemCarried, bool bSlotHasItem, bool bCarriedIsSameAsSlot, int iSlotStackSizeRemaining,
 	EToolTipItem &buttonA, EToolTipItem &buttonX, EToolTipItem &buttonY, EToolTipItem &buttonRT, EToolTipItem &buttonBack)
 {
 	bool _override = false;
@@ -1324,7 +1324,7 @@ bool IUIScene_CreativeMenu::overrideTooltips(ESceneSection sectionUnderPointer, 
 	return _override;
 }
 
-void IUIScene_CreativeMenu::BuildFirework(vector<shared_ptr<ItemInstance> > *list, byte type, int color, int sulphur, bool flicker, bool trail, int fadeColor/*= -1*/)
+void IUIScene_CreativeMenu::BuildFirework(std::vector<std::shared_ptr<ItemInstance> > *list, byte type, int color, int sulphur, bool flicker, bool trail, int fadeColor/*= -1*/)
 {
 	/////////////////////////////////
 	// Create firecharge
@@ -1333,7 +1333,7 @@ void IUIScene_CreativeMenu::BuildFirework(vector<shared_ptr<ItemInstance> > *lis
 
 	CompoundTag *expTag = new CompoundTag(FireworksItem::TAG_EXPLOSION);
 
-	vector<int> colors;
+	std::vector<int> colors;
 
 	colors.push_back(DyePowderItem::COLOR_RGB[color]);
 
@@ -1359,7 +1359,7 @@ void IUIScene_CreativeMenu::BuildFirework(vector<shared_ptr<ItemInstance> > *lis
 		// Apply fade colors to firecharge
 		////////////////////////////////////
 
-		vector<int> colors;
+		std::vector<int> colors;
 		colors.push_back(DyePowderItem::COLOR_RGB[fadeColor]);
 
 		intArray colorArray(colors.size());
@@ -1374,10 +1374,10 @@ void IUIScene_CreativeMenu::BuildFirework(vector<shared_ptr<ItemInstance> > *lis
 	// Create fireworks
 	/////////////////////////////////
 
-	shared_ptr<ItemInstance> firework;
+	std::shared_ptr<ItemInstance> firework;
 
 	{
-		firework = shared_ptr<ItemInstance>( new ItemInstance(Item::fireworks) );
+		firework = std::shared_ptr<ItemInstance>( new ItemInstance(Item::fireworks) );
 		CompoundTag *itemTag = new CompoundTag();
 		CompoundTag *fireTag = new CompoundTag(FireworksItem::TAG_FIREWORKS);
 		ListTag<CompoundTag> *expTags = new ListTag<CompoundTag>(FireworksItem::TAG_EXPLOSIONS);

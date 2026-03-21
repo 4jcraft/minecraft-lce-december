@@ -120,7 +120,7 @@ void MinecartFurnace::applyNaturalSlowdown()
 	Minecart::applyNaturalSlowdown();
 }
 
-bool MinecartFurnace::interact(shared_ptr<Player> player)
+bool MinecartFurnace::interact(std::shared_ptr<Player> player)
 {
 	shared_ptr<ItemInstance> selected = player->inventory->getSelected();
 	if (selected != NULL && selected->id == Item::coal_Id)

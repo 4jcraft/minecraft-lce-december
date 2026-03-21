@@ -8,7 +8,7 @@
 #include "BasicTypeContainers.h"
 #include "Village.h"
 
-Village::Aggressor::Aggressor(shared_ptr<LivingEntity> mob, int timeStamp)
+Village::Aggressor::Aggressor(std::shared_ptr<LivingEntity> mob, int timeStamp)
 {
 	this->mob = mob;
 	this->timeStamp = timeStamp;
@@ -176,7 +176,7 @@ vector<shared_ptr<DoorInfo> > *Village::getDoorInfos()
 	return &doorInfos;
 }
 
-shared_ptr<DoorInfo> Village::getClosestDoorInfo(int x, int y, int z)
+std::shared_ptr<DoorInfo> Village::getClosestDoorInfo(int x, int y, int z)
 {
 	shared_ptr<DoorInfo> closest = nullptr;
 	int closestDistSqr = Integer::MAX_VALUE;
@@ -194,7 +194,7 @@ shared_ptr<DoorInfo> Village::getClosestDoorInfo(int x, int y, int z)
 	return closest;
 }
 
-shared_ptr<DoorInfo>Village::getBestDoorInfo(int x, int y, int z)
+std::shared_ptr<DoorInfo>Village::getBestDoorInfo(int x, int y, int z)
 {
 	shared_ptr<DoorInfo> closest = nullptr;
 	int closestDist = Integer::MAX_VALUE;
@@ -221,7 +221,7 @@ bool Village::hasDoorInfo(int x, int y, int z)
 	return getDoorInfo(x, y, z) != NULL;
 }
 
-shared_ptr<DoorInfo>Village::getDoorInfo(int x, int y, int z)
+std::shared_ptr<DoorInfo>Village::getDoorInfo(int x, int y, int z)
 {
 	if (center->distSqr(x, y, z) > radius * radius) return nullptr;
 	//for (DoorInfo di : doorInfos)
@@ -233,7 +233,7 @@ shared_ptr<DoorInfo>Village::getDoorInfo(int x, int y, int z)
 	return nullptr;
 }
 
-void Village::addDoorInfo(shared_ptr<DoorInfo> di)
+void Village::addDoorInfo(std::shared_ptr<DoorInfo> di)
 {
 	doorInfos.push_back(di);
 	accCenter->x += di->x;
@@ -248,7 +248,7 @@ bool Village::canRemove()
 	return doorInfos.empty();
 }
 
-void Village::addAggressor(shared_ptr<LivingEntity> mob)
+void Village::addAggressor(std::shared_ptr<LivingEntity> mob)
 {
 	//for (Aggressor a : aggressors)
 	for(AUTO_VAR(it, aggressors.begin()); it != aggressors.end(); ++it)
@@ -263,7 +263,7 @@ void Village::addAggressor(shared_ptr<LivingEntity> mob)
 	aggressors.push_back(new Aggressor(mob, _tick));
 }
 
-shared_ptr<LivingEntity> Village::getClosestAggressor(shared_ptr<LivingEntity> from)
+std::shared_ptr<LivingEntity> Village::getClosestAggressor(std::shared_ptr<LivingEntity> from)
 {
 	double closestSqr = Double::MAX_VALUE;
 	Aggressor *closest = NULL;
@@ -279,7 +279,7 @@ shared_ptr<LivingEntity> Village::getClosestAggressor(shared_ptr<LivingEntity> f
 	return closest != NULL ? closest->mob : nullptr;
 }
 
-shared_ptr<Player> Village::getClosestBadStandingPlayer(shared_ptr<LivingEntity> from)
+std::shared_ptr<Player> Village::getClosestBadStandingPlayer(std::shared_ptr<LivingEntity> from)
 {
 	double closestSqr = Double::MAX_VALUE;
 	shared_ptr<Player> closest = nullptr;
@@ -380,7 +380,7 @@ void Village::calcInfo()
 	radius = max(doorDist, (int) sqrt((float)maxRadiusSqr) + 1);
 }
 
-int Village::getStanding(const wstring &playerName)
+int Village::getStanding(const std::wstring &playerName)
 {
 	AUTO_VAR(it,playerStanding.find(playerName));
 	if (it != playerStanding.end())
@@ -390,7 +390,7 @@ int Village::getStanding(const wstring &playerName)
 	return 0;
 }
 
-int Village::modifyStanding(const wstring &playerName, int delta)
+int Village::modifyStanding(const std::wstring &playerName, int delta)
 {
 	int current = getStanding(playerName);
 	int newValue = Mth::clamp(current + delta, -30, 10);
@@ -398,17 +398,17 @@ int Village::modifyStanding(const wstring &playerName, int delta)
 	return newValue;
 }
 
-bool Village::isGoodStanding(const wstring &playerName)
+bool Village::isGoodStanding(const std::wstring &playerName)
 {
 	return getStanding(playerName) >= 0;
 }
 
-bool Village::isBadStanding(const wstring &playerName)
+bool Village::isBadStanding(const std::wstring &playerName)
 {
 	return getStanding(playerName) <= -5;
 }
 
-bool Village::isVeryBadStanding(const wstring playerName)
+bool Village::isVeryBadStanding(const std::wstring playerName)
 {
 	return getStanding(playerName) <= -15;
 }

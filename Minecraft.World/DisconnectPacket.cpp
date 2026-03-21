@@ -42,7 +42,7 @@ bool DisconnectPacket::canBeInvalidated()
 	return true;
 }
 
-bool DisconnectPacket::isInvalidatedBy(shared_ptr<Packet> packet)
+bool DisconnectPacket::isInvalidatedBy(std::shared_ptr<Packet> packet)
 {
 	return true;
 }

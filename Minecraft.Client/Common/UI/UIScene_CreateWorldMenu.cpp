@@ -263,7 +263,7 @@ void UIScene_CreateWorldMenu::updateComponents()
 	m_parentLayer->showComponent(m_iPad,eUIComponent_Logo,false);
 }
 
-wstring UIScene_CreateWorldMenu::getMoviePath()
+std::wstring UIScene_CreateWorldMenu::getMoviePath()
 {
 	return L"CreateWorldMenu";
 }

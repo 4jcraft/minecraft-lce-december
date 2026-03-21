@@ -17,7 +17,7 @@ const int CraftingMenu::INV_SLOT_END = CraftingMenu::INV_SLOT_START + 9 * 3;
 const int CraftingMenu::USE_ROW_SLOT_START = CraftingMenu::INV_SLOT_END;
 const int CraftingMenu::USE_ROW_SLOT_END = CraftingMenu::USE_ROW_SLOT_START + 9;
 
-CraftingMenu::CraftingMenu(shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt) : AbstractContainerMenu()
+CraftingMenu::CraftingMenu(std::shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt) : AbstractContainerMenu()
 {
 	craftSlots = shared_ptr<CraftingContainer>( new CraftingContainer(this, 3, 3) );
 	resultSlots = shared_ptr<ResultContainer>( new ResultContainer() );
@@ -56,7 +56,7 @@ void CraftingMenu::slotsChanged()  // 4J used to take a shared_ptr<Container> bu
 	resultSlots->setItem(0, Recipes::getInstance()->getItemFor(craftSlots, level));
 }
 
-void CraftingMenu::removed(shared_ptr<Player> player)
+void CraftingMenu::removed(std::shared_ptr<Player> player)
 {
 	AbstractContainerMenu::removed(player);
 	if (level->isClientSide) return;
@@ -71,14 +71,14 @@ void CraftingMenu::removed(shared_ptr<Player> player)
 	}
 }
 
-bool CraftingMenu::stillValid(shared_ptr<Player> player)
+bool CraftingMenu::stillValid(std::shared_ptr<Player> player)
 {
 	if (level->getTile(x, y, z) != Tile::workBench_Id) return false;
 	if (player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 8 * 8) return false;
 	return true;
 }
 
-shared_ptr<ItemInstance> CraftingMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> CraftingMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);
@@ -137,7 +137,7 @@ shared_ptr<ItemInstance> CraftingMenu::quickMoveStack(shared_ptr<Player> player,
 	return clicked;
 }
 
-bool CraftingMenu::canTakeItemForPickAll(shared_ptr<ItemInstance> carried, Slot *target)
+bool CraftingMenu::canTakeItemForPickAll(std::shared_ptr<ItemInstance> carried, Slot *target)
 {
 	return target->container != resultSlots && AbstractContainerMenu::canTakeItemForPickAll(carried, target);
 }

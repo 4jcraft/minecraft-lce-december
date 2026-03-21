@@ -18,7 +18,7 @@
 #include "TutorialConstraints.h"
 #include "TutorialHints.h"
 
-vector<int> Tutorial::s_completableTasks;
+std::vector<int> Tutorial::s_completableTasks;
 
 
 int Tutorial::m_iTutorialHintDelayTime = 14000;
@@ -1148,7 +1148,7 @@ Tutorial::~Tutorial()
 	{
 		delete (*it);
 	}
-	for(unordered_map<int, TutorialMessage *>::iterator it = messages.begin(); it != messages.end(); ++it)
+	for(std::unordered_map<int, TutorialMessage *>::iterator it = messages.begin(); it != messages.end(); ++it)
 	{
 		delete (*it).second;
 	}
@@ -1690,7 +1690,7 @@ bool Tutorial::setMessage(PopupMessageDetails *message)
 
 		if(!message->m_replaceCurrent) lastMessageTime = GetTickCount();
 
-		wstring text;
+		std::wstring text;
 		if(!message->m_messageString.empty())
 		{
 			text = message->m_messageString;
@@ -1701,7 +1701,7 @@ bool Tutorial::setMessage(PopupMessageDetails *message)
 			if( it != messages.end() && it->second != NULL )
 			{
 				TutorialMessage *messageString = it->second;
-				text = wstring( messageString->getMessageForDisplay() );
+				text = std::wstring( messageString->getMessageForDisplay() );
 
 				// 4J Stu - Quick fix for boat tutorial being incorrect
 				if(message->m_messageId == IDS_TUTORIAL_TASK_BOAT_OVERVIEW)
@@ -1711,7 +1711,7 @@ bool Tutorial::setMessage(PopupMessageDetails *message)
 			}
 			else
 			{
-				text = wstring( app.GetString(message->m_messageId) );
+				text = std::wstring( app.GetString(message->m_messageId) );
 
 				// 4J Stu - Quick fix for boat tutorial being incorrect
 				if(message->m_messageId == IDS_TUTORIAL_TASK_BOAT_OVERVIEW)
@@ -1735,7 +1735,7 @@ bool Tutorial::setMessage(PopupMessageDetails *message)
 			}
 		}
 
-		wstring title;
+		std::wstring title;
 		TutorialPopupInfo popupInfo;
 		popupInfo.interactScene = m_UIScene;
 		popupInfo.desc = text.c_str();
@@ -1746,7 +1746,7 @@ bool Tutorial::setMessage(PopupMessageDetails *message)
 		popupInfo.tutorial = this;
 		if( !message->m_titleString.empty() || message->m_titleId > 0 )
 		{
-			if(message->m_titleString.empty()) title = wstring( app.GetString(message->m_titleId) );
+			if(message->m_titleString.empty()) title = std::wstring( app.GetString(message->m_titleId) );
 			else title = message->m_titleString;
 
 			popupInfo.title = title.c_str();
@@ -1801,7 +1801,7 @@ bool Tutorial::setMessage(TutorialHint *hint, PopupMessageDetails *message)
 	return messageShown;
 }
 
-bool Tutorial::setMessage(const wstring &messageString, int icon, int auxValue)
+bool Tutorial::setMessage(const std::wstring &messageString, int icon, int auxValue)
 {
 	PopupMessageDetails *message = new PopupMessageDetails();
 	message->m_messageString = messageString;
@@ -1826,7 +1826,7 @@ void Tutorial::showTutorialPopup(bool show)
 	}
 }
 
-void Tutorial::useItemOn(Level *level, shared_ptr<ItemInstance> item, int x, int y, int z, bool bTestUseOnly)
+void Tutorial::useItemOn(Level *level, std::shared_ptr<ItemInstance> item, int x, int y, int z, bool bTestUseOnly)
 {
 	for(AUTO_VAR(it, activeTasks[m_CurrentState].begin()); it < activeTasks[m_CurrentState].end(); ++it)
 	{
@@ -1835,7 +1835,7 @@ void Tutorial::useItemOn(Level *level, shared_ptr<ItemInstance> item, int x, int
 	}
 }
 
-void Tutorial::useItemOn(shared_ptr<ItemInstance> item, bool bTestUseOnly)
+void Tutorial::useItemOn(std::shared_ptr<ItemInstance> item, bool bTestUseOnly)
 {
 	for(AUTO_VAR(it, activeTasks[m_CurrentState].begin()); it < activeTasks[m_CurrentState].end(); ++it)
 	{
@@ -1844,7 +1844,7 @@ void Tutorial::useItemOn(shared_ptr<ItemInstance> item, bool bTestUseOnly)
 	}
 }
 
-void Tutorial::completeUsingItem(shared_ptr<ItemInstance> item)
+void Tutorial::completeUsingItem(std::shared_ptr<ItemInstance> item)
 {
 	for(AUTO_VAR(it, activeTasks[m_CurrentState].begin()); it < activeTasks[m_CurrentState].end(); ++it)
 	{
@@ -1863,7 +1863,7 @@ void Tutorial::completeUsingItem(shared_ptr<ItemInstance> item)
 	}
 }
 
-void Tutorial::startDestroyBlock(shared_ptr<ItemInstance> item, Tile *tile)
+void Tutorial::startDestroyBlock(std::shared_ptr<ItemInstance> item, Tile *tile)
 {
 	int hintNeeded = -1;
 	for(AUTO_VAR(it, hints[m_CurrentState].begin()); it < hints[m_CurrentState].end(); ++it)
@@ -1899,7 +1899,7 @@ void Tutorial::destroyBlock(Tile *tile)
 	}
 }
 
-void Tutorial::attack(shared_ptr<Player> player, shared_ptr<Entity> entity)
+void Tutorial::attack(std::shared_ptr<Player> player, std::shared_ptr<Entity> entity)
 {
 	int hintNeeded = -1;
 	for(AUTO_VAR(it, hints[m_CurrentState].begin()); it < hints[m_CurrentState].end(); ++it)
@@ -1917,7 +1917,7 @@ void Tutorial::attack(shared_ptr<Player> player, shared_ptr<Entity> entity)
 	}
 }
 
-void Tutorial::itemDamaged(shared_ptr<ItemInstance> item)
+void Tutorial::itemDamaged(std::shared_ptr<ItemInstance> item)
 {
 	int hintNeeded = -1;
 	for(AUTO_VAR(it, hints[m_CurrentState].begin()); it < hints[m_CurrentState].end(); ++it)
@@ -1948,7 +1948,7 @@ void Tutorial::handleUIInput(int iAction)
 		currentTask[m_CurrentState]->handleUIInput(iAction);
 }
 
-void Tutorial::createItemSelected(shared_ptr<ItemInstance> item, bool canMake)
+void Tutorial::createItemSelected(std::shared_ptr<ItemInstance> item, bool canMake)
 {
 	int hintNeeded = -1;
 	for(AUTO_VAR(it, hints[m_CurrentState].begin()); it < hints[m_CurrentState].end(); ++it)
@@ -1966,7 +1966,7 @@ void Tutorial::createItemSelected(shared_ptr<ItemInstance> item, bool canMake)
 	}
 }
 
-void Tutorial::onCrafted(shared_ptr<ItemInstance> item)
+void Tutorial::onCrafted(std::shared_ptr<ItemInstance> item)
 {
 	for(unsigned int state = 0; state < e_Tutorial_State_Max; ++state)
 	{
@@ -1978,7 +1978,7 @@ void Tutorial::onCrafted(shared_ptr<ItemInstance> item)
 	}
 }
 
-void Tutorial::onTake(shared_ptr<ItemInstance> item, unsigned int invItemCountAnyAux, unsigned int invItemCountThisAux)
+void Tutorial::onTake(std::shared_ptr<ItemInstance> item, unsigned int invItemCountAnyAux, unsigned int invItemCountThisAux)
 {
 	if( !m_hintDisplayed )
 	{
@@ -2005,7 +2005,7 @@ void Tutorial::onTake(shared_ptr<ItemInstance> item, unsigned int invItemCountAn
 	}
 }
 
-void Tutorial::onSelectedItemChanged(shared_ptr<ItemInstance> item)
+void Tutorial::onSelectedItemChanged(std::shared_ptr<ItemInstance> item)
 {
 	// We only handle this if we are in a state that allows changing based on the selected item
 	// Menus and states like riding in a minecart will NOT allow this
@@ -2061,7 +2061,7 @@ void Tutorial::onLookAt(int id, int iData)
 	}
 }
 
-void Tutorial::onLookAtEntity(shared_ptr<Entity> entity)
+void Tutorial::onLookAtEntity(std::shared_ptr<Entity> entity)
 {
 	if( m_hintDisplayed ) return;
 
@@ -2087,7 +2087,7 @@ void Tutorial::onLookAtEntity(shared_ptr<Entity> entity)
 	}
 }
 
-void Tutorial::onRideEntity(shared_ptr<Entity> entity)
+void Tutorial::onRideEntity(std::shared_ptr<Entity> entity)
 {
 	if(m_CurrentState == e_Tutorial_State_Gameplay)
 	{
@@ -2148,7 +2148,7 @@ bool Tutorial::isInputAllowed(int mapping)
 	return allowed;
 }
 
-vector<TutorialTask *> *Tutorial::getTasks()
+std::vector<TutorialTask *> *Tutorial::getTasks()
 {
 	return &tasks;
 }

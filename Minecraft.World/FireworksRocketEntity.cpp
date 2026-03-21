@@ -23,7 +23,7 @@ bool FireworksRocketEntity::shouldRenderAtSqrDistance(double distance)
 	return distance < 64 * 64;
 }
 
-FireworksRocketEntity::FireworksRocketEntity(Level *level, double x, double y, double z, shared_ptr<ItemInstance> sourceItem) : Entity(level)
+FireworksRocketEntity::FireworksRocketEntity(Level *level, double x, double y, double z, std::shared_ptr<ItemInstance> sourceItem) : Entity(level)
 {
 	defineSynchedData();
 

@@ -93,7 +93,7 @@ int VillagerGolem::decreaseAirSupply(int currentSupply)
 	return currentSupply;
 }
 
-void VillagerGolem::doPush(shared_ptr<Entity> e)
+void VillagerGolem::doPush(std::shared_ptr<Entity> e)
 {
 	if ( e->instanceof(eTYPE_ENEMY) )
 	{
@@ -145,7 +145,7 @@ void VillagerGolem::readAdditionalSaveData(CompoundTag *tag)
 	setPlayerCreated(tag->getBoolean(L"PlayerCreated"));
 }
 
-bool VillagerGolem::doHurtTarget(shared_ptr<Entity> target)
+bool VillagerGolem::doHurtTarget(std::shared_ptr<Entity> target)
 {
 	attackAnimationTick = 10;
 	level->broadcastEntityEvent(shared_from_this(), EntityEvent::START_ATTACKING);
@@ -169,7 +169,7 @@ void VillagerGolem::handleEntityEvent(byte id)
 	else Golem::handleEntityEvent(id);
 }
 
-shared_ptr<Village> VillagerGolem::getVillage()
+std::shared_ptr<Village> VillagerGolem::getVillage()
 {
 	return village.lock();
 }

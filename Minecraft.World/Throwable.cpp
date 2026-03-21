@@ -39,7 +39,7 @@ bool Throwable::shouldRenderAtSqrDistance(double distance)
 	return distance < size * size;
 }
 
-Throwable::Throwable(Level *level, shared_ptr<LivingEntity> mob) : Entity(level)
+Throwable::Throwable(Level *level, std::shared_ptr<LivingEntity> mob) : Entity(level)
 {
 	_throwableInit();
 	owner = mob;
@@ -299,7 +299,7 @@ float Throwable::getShadowHeightOffs()
 	return 0;
 }
 
-shared_ptr<LivingEntity> Throwable::getOwner()
+std::shared_ptr<LivingEntity> Throwable::getOwner()
 {
 	if (owner == NULL && !ownerName.empty() )
 	{

@@ -132,12 +132,12 @@ Sensing *Mob::getSensing()
 	return sensing;
 }
 
-shared_ptr<LivingEntity> Mob::getTarget()
+std::shared_ptr<LivingEntity> Mob::getTarget()
 {
 	return target;
 }
 
-void Mob::setTarget(shared_ptr<LivingEntity> target)
+void Mob::setTarget(std::shared_ptr<LivingEntity> target)
 {
 	this->target = target;
 }
@@ -187,7 +187,7 @@ void Mob::baseTick()
 	}
 }
 
-int Mob::getExperienceReward(shared_ptr<Player> killedBy)
+int Mob::getExperienceReward(std::shared_ptr<Player> killedBy)
 {
 	if (xpReward > 0)
 	{
@@ -586,7 +586,7 @@ int Mob::getMaxHeadXRot()
 	return 40;
 }
 
-void Mob::lookAt(shared_ptr<Entity> e, float yMax, float xMax) 
+void Mob::lookAt(std::shared_ptr<Entity> e, float yMax, float xMax) 
 {
 	double xd = e->x - x;
 	double yd;
@@ -616,7 +616,7 @@ bool Mob::isLookingAtAnEntity()
 	return lookingAt != NULL;
 }
 
-shared_ptr<Entity> Mob::getLookingAt() 
+std::shared_ptr<Entity> Mob::getLookingAt() 
 {
 	return lookingAt;
 }
@@ -665,22 +665,22 @@ int Mob::getMaxFallDistance()
 	return sacrifice + 3;
 }
 
-shared_ptr<ItemInstance> Mob::getCarriedItem()
+std::shared_ptr<ItemInstance> Mob::getCarriedItem()
 {
 	return equipment[SLOT_WEAPON];
 }
 
-shared_ptr<ItemInstance> Mob::getCarried(int slot)
+std::shared_ptr<ItemInstance> Mob::getCarried(int slot)
 {
 	return equipment[slot];
 }
 
-shared_ptr<ItemInstance> Mob::getArmor(int pos)
+std::shared_ptr<ItemInstance> Mob::getArmor(int pos)
 {
 	return equipment[pos + 1];
 }
 
-void Mob::setEquippedSlot(int slot, shared_ptr<ItemInstance> item)
+void Mob::setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item)
 {
 	equipment[slot] = item;
 }
@@ -735,7 +735,7 @@ void Mob::populateDefaultEquipmentSlots()
 	}
 }
 
-int Mob::getEquipmentSlotForItem(shared_ptr<ItemInstance> item)
+int Mob::getEquipmentSlotForItem(std::shared_ptr<ItemInstance> item)
 {
 	if (item->id == Tile::pumpkin_Id || item->id == Item::skull_Id)
 	{
@@ -837,7 +837,7 @@ bool Mob::canBeControlledByRider()
 	return false;
 }
 
-wstring Mob::getAName()
+std::wstring Mob::getAName()
 {
 	if (hasCustomName()) return getCustomName();
 	return LivingEntity::getAName();
@@ -848,12 +848,12 @@ void Mob::setPersistenceRequired()
 	persistenceRequired = true;
 }
 
-void Mob::setCustomName(const wstring &name)
+void Mob::setCustomName(const std::wstring &name)
 {
 	entityData->set(DATA_CUSTOM_NAME, name);
 }
 
-wstring Mob::getCustomName()
+std::wstring Mob::getCustomName()
 {
 	return entityData->getString(DATA_CUSTOM_NAME);
 }
@@ -898,7 +898,7 @@ bool Mob::isPersistenceRequired()
 	return persistenceRequired;
 }
 
-bool Mob::interact(shared_ptr<Player> player)
+bool Mob::interact(std::shared_ptr<Player> player)
 {
 
 	if (isLeashed() && getLeashHolder() == player)
@@ -946,7 +946,7 @@ bool Mob::interact(shared_ptr<Player> player)
 	return LivingEntity::interact(player);
 }
 
-bool Mob::mobInteract(shared_ptr<Player> player)
+bool Mob::mobInteract(std::shared_ptr<Player> player)
 {
 	return false;
 }
@@ -998,12 +998,12 @@ bool Mob::isLeashed()
 	return _isLeashed;
 }
 
-shared_ptr<Entity> Mob::getLeashHolder()
+std::shared_ptr<Entity> Mob::getLeashHolder()
 {
 	return leashHolder;
 }
 
-void Mob::setLeashedTo(shared_ptr<Entity> holder, bool synch)
+void Mob::setLeashedTo(std::shared_ptr<Entity> holder, bool synch)
 {
 	_isLeashed = true;
 	leashHolder = holder;

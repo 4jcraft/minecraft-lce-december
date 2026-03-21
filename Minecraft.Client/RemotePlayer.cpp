@@ -3,7 +3,7 @@
 #include "..\Minecraft.World\net.minecraft.world.item.h"
 #include "..\Minecraft.World\Mth.h"
 
-RemotePlayer::RemotePlayer(Level *level, const wstring& name) : Player(level, name)
+RemotePlayer::RemotePlayer(Level *level, const std::wstring& name) : Player(level, name)
 {
 	// 4J - added initialisers
 	hasStartedUsingItem = false;

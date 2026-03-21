@@ -42,7 +42,7 @@ int WitherBossModel::modelVersion()
 	return 32;
 }
 
-void WitherBossModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void WitherBossModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
 	setupAnim(time, r, bob, yRot, xRot, scale, entity);
 
@@ -56,7 +56,7 @@ void WitherBossModel::render(shared_ptr<Entity> entity, float time, float r, flo
 	}
 }
 
-void WitherBossModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void WitherBossModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	float anim = cos(bob * .1f);
 	upperBodyParts[1]->xRot = (.065f + .05f * anim) * PI;
@@ -68,7 +68,7 @@ void WitherBossModel::setupAnim(float time, float r, float bob, float yRot, floa
 	heads[0]->xRot = xRot / (180 / PI);
 }
 
-void WitherBossModel::prepareMobModel(shared_ptr<LivingEntity> mob, float time, float r, float a)
+void WitherBossModel::prepareMobModel(std::shared_ptr<LivingEntity> mob, float time, float r, float a)
 {
 	shared_ptr<WitherBoss> boss = dynamic_pointer_cast<WitherBoss>(mob);
 

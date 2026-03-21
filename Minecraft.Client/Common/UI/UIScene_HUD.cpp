@@ -28,7 +28,7 @@ UIScene_HUD::UIScene_HUD(int iPad, void *initData, UILayer *parentLayer) : UISce
 	addTimer(0, 100);
 }
 
-wstring UIScene_HUD::getMoviePath()
+std::wstring UIScene_HUD::getMoviePath()
 {
 	switch( m_parentLayer->getViewport() )
 	{
@@ -550,7 +550,7 @@ void UIScene_HUD::SetDragonHealth(float health)
 	}
 }
 
-void UIScene_HUD::SetDragonLabel(const wstring &label)
+void UIScene_HUD::SetDragonLabel(const std::wstring &label)
 {
 	IggyDataValue result;
 	IggyDataValue value[1];
@@ -577,7 +577,7 @@ void UIScene_HUD::ShowDragonHealth(bool show)
 	}
 }
 
-void UIScene_HUD::SetSelectedLabel(const wstring &label)
+void UIScene_HUD::SetSelectedLabel(const std::wstring &label)
 {
 	// 4J Stu - Timing here is kept the same as on Xbox360, even though we do it differently now and do the fade out in Flash rather than directly setting opacity
 	if(!label.empty()) m_uiSelectedItemOpacityCountDown = SharedConstants::TICKS_PER_SECOND * 3;
@@ -821,7 +821,7 @@ void UIScene_HUD::ShowDisplayName(bool show)
 	m_labelDisplayName.setVisible(show);
 }
 
-void UIScene_HUD::SetDisplayName(const wstring &displayName)
+void UIScene_HUD::SetDisplayName(const std::wstring &displayName)
 {
 	if(displayName.compare(m_displayName) != 0)
 	{

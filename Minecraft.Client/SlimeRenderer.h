@@ -9,9 +9,9 @@ private:
 
 public:
 	SlimeRenderer(Model *model, Model *armor, float shadow);
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
 
 protected:
-	virtual int prepareArmor(shared_ptr<LivingEntity> _slime, int layer, float a);
-    virtual void scale(shared_ptr<LivingEntity> _slime, float a);
+	virtual int prepareArmor(std::shared_ptr<LivingEntity> _slime, int layer, float a);
+    virtual void scale(std::shared_ptr<LivingEntity> _slime, float a);
 };

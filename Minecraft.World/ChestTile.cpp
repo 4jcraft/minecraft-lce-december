@@ -39,7 +39,7 @@ int ChestTile::getRenderShape()
 	return Tile::SHAPE_ENTITYTILE_ANIMATED;
 }
 
-void ChestTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity)
+void ChestTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity)
 {
 	if (level->getTile(x, y, z - 1) == id)
 	{
@@ -78,7 +78,7 @@ void ChestTile::onPlace(Level *level, int x, int y, int z)
 	if (e == id) recalcLockDir(level, x + 1, y, z);
 }
 
-void ChestTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void ChestTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	int n = level->getTile(x, y, z - 1); // face = 2
 	int s = level->getTile(x, y, z + 1); // face = 3
@@ -262,7 +262,7 @@ bool ChestTile::TestUse()
 }
 
 // 4J-PB - changing to 1.5 equivalent
-bool ChestTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool ChestTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if( soundOnly ) return true;
 
@@ -280,7 +280,7 @@ bool ChestTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player
 	return true;
 }
 
-shared_ptr<Container> ChestTile::getContainer(Level *level, int x, int y, int z)
+std::shared_ptr<Container> ChestTile::getContainer(Level *level, int x, int y, int z)
 {
 	shared_ptr<Container> container = dynamic_pointer_cast<ChestTileEntity>( level->getTileEntity(x, y, z) );
 	if (container == NULL) return nullptr;
@@ -301,7 +301,7 @@ shared_ptr<Container> ChestTile::getContainer(Level *level, int x, int y, int z)
 	return container;
 }
 
-shared_ptr<TileEntity> ChestTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> ChestTile::newTileEntity(Level *level)
 {
 	MemSect(50);
 	shared_ptr<TileEntity> retval = shared_ptr<TileEntity>( new ChestTileEntity() );

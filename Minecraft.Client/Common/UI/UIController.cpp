@@ -582,7 +582,7 @@ void UIController::loadSkins()
 #endif // HD platforms
 }
 
-IggyLibrary UIController::loadSkin(const wstring &skinPath, const wstring &skinName)
+IggyLibrary UIController::loadSkin(const std::wstring &skinPath, const std::wstring &skinName)
 {
 	IggyLibrary lib = IGGY_INVALID_LIBRARY;
 	// 4J Stu - We need to load the platformskin before the normal skin, as the normal skin requires some elements from the platform skin
@@ -725,7 +725,7 @@ void UIController::CleanUpSkinReload()
 	m_queuedMessageBoxData.clear();
 }
 
-byteArray UIController::getMovieData(const wstring &filename)
+byteArray UIController::getMovieData(const std::wstring &filename)
 {
 	// Cache everything we load in the current tick
 	__int64 targetTime = System::currentTimeMillis() + (1000LL * 60);
@@ -1459,7 +1459,7 @@ void RADLINK UIController::TextureSubstitutionDestroyCallback ( void * user_call
 	t->releaseTexture( id );
 }
 
-void UIController::registerSubstitutionTexture(const wstring &textureName, PBYTE pbData, DWORD dwLength)
+void UIController::registerSubstitutionTexture(const std::wstring &textureName, PBYTE pbData, DWORD dwLength)
 {
 	// Remove it if it already exists
 	unregisterSubstitutionTexture(textureName,false);
@@ -1467,7 +1467,7 @@ void UIController::registerSubstitutionTexture(const wstring &textureName, PBYTE
 	m_substitutionTextures[textureName] = byteArray(pbData, dwLength);
 }
 
-void UIController::unregisterSubstitutionTexture(const wstring &textureName, bool deleteData)
+void UIController::unregisterSubstitutionTexture(const std::wstring &textureName, bool deleteData)
 {
 	AUTO_VAR(it,m_substitutionTextures.find(textureName));
 
@@ -1697,7 +1697,7 @@ UIScene *UIController::GetTopScene(int iPad, EUILayer layer, EUIGroup group)
 	return m_groups[(int)group]->GetTopScene(layer);
 }
 
-size_t UIController::RegisterForCallbackId(UIScene *scene)
+std::size_t UIController::RegisterForCallbackId(UIScene *scene)
 {
 	EnterCriticalSection(&m_registeredCallbackScenesCS);
 	size_t newId = GetTickCount();
@@ -1708,7 +1708,7 @@ size_t UIController::RegisterForCallbackId(UIScene *scene)
 	return newId;
 }
 
-void UIController::UnregisterCallbackId(size_t id)
+void UIController::UnregisterCallbackId(std::size_t id)
 {
 	EnterCriticalSection(&m_registeredCallbackScenesCS);
 	AUTO_VAR(it, m_registeredCallbackScenes.find(id) );
@@ -1719,7 +1719,7 @@ void UIController::UnregisterCallbackId(size_t id)
 	LeaveCriticalSection(&m_registeredCallbackScenesCS);
 }
 
-UIScene *UIController::GetSceneFromCallbackId(size_t id)
+UIScene *UIController::GetSceneFromCallbackId(std::size_t id)
 {
 	UIScene *scene = NULL;
 	AUTO_VAR(it, m_registeredCallbackScenes.find(id) );
@@ -2121,7 +2121,7 @@ void UIController::DisplayGamertag(unsigned int iPad, bool show)
 	}
 }
 
-void UIController::SetSelectedItem(unsigned int iPad, const wstring &name)
+void UIController::SetSelectedItem(unsigned int iPad, const std::wstring &name)
 {
 	EUIGroup group;
 
@@ -2477,7 +2477,7 @@ void UIController::ShowUIDebugMarketingGuide(bool show)
 #endif
 }
 
-void UIController::logDebugString(const string &text)
+void UIController::logDebugString(const std::string &text)
 {
 	if(m_uiDebugConsole) m_uiDebugConsole->addText(text);
 }

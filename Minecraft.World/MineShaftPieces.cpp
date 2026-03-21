@@ -436,7 +436,7 @@ bool MineShaftPieces::MineShaftCorridor::createChest(Level *level, BoundingBox *
 		if (level->getTile(worldX, worldY, worldZ) == 0)
 		{
 			level->setTileAndData(worldX, worldY, worldZ, Tile::rail_Id, getOrientationData(Tile::rail_Id, random->nextBoolean() ? RailTile::DIR_FLAT_X : RailTile::DIR_FLAT_Z), Tile::UPDATE_CLIENTS);
-			shared_ptr<MinecartChest> chest = shared_ptr<MinecartChest>( new MinecartChest(level, worldX + 0.5f, worldY + 0.5f, worldZ + 0.5f) );
+			std::shared_ptr<MinecartChest> chest = std::shared_ptr<MinecartChest>( new MinecartChest(level, worldX + 0.5f, worldY + 0.5f, worldZ + 0.5f) );
 			WeighedTreasure::addChestItems(random, treasure, chest, numRolls);
 			level->addEntity(chest);
 			return true;
@@ -516,7 +516,7 @@ bool MineShaftPieces::MineShaftCorridor::postProcess(Level *level, Random *rando
 			{
 				hasPlacedSpider = true;
 				level->setTileAndData(x, y, newZ, Tile::mobSpawner_Id, 0, Tile::UPDATE_CLIENTS);
-				shared_ptr<MobSpawnerTileEntity> entity = dynamic_pointer_cast<MobSpawnerTileEntity>( level->getTileEntity(x, y, newZ) );
+				std::shared_ptr<MobSpawnerTileEntity> entity = dynamic_pointer_cast<MobSpawnerTileEntity>( level->getTileEntity(x, y, newZ) );
 				if (entity != NULL) entity->getSpawner()->setEntityId(L"CaveSpider");
 			}
 		}

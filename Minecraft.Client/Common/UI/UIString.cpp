@@ -38,7 +38,7 @@ UIString::UIStringCore::UIStringCore(StringBuilder wstrBuilder)
 	update(true);
 }
 
-UIString::UIStringCore::UIStringCore(const wstring &str)
+UIString::UIStringCore::UIStringCore(const std::wstring &str)
 {
 	m_bIsConstant = true;
 	
@@ -48,7 +48,7 @@ UIString::UIStringCore::UIStringCore(const wstring &str)
 	m_wstrCache = str;
 }
 
-wstring &UIString::UIStringCore::getString()
+std::wstring &UIString::UIStringCore::getString()
 {
 	if (hasNewString()) update(true);
 	return m_wstrCache;
@@ -90,7 +90,7 @@ int UIString::s_currentLocale = -1;
 
 UIString::UIString()
 {
-	m_core = shared_ptr<UIStringCore>();
+	m_core = std::shared_ptr<UIStringCore>();
 }
 
 UIString::UIString(int ids)
@@ -101,33 +101,33 @@ UIString::UIString(int ids)
 	StringBuilder builder = [ids](){ return app.GetString(ids); };
 #endif
 	UIStringCore *core = new UIStringCore( builder );
-	m_core = shared_ptr<UIStringCore>(core);
+	m_core = std::shared_ptr<UIStringCore>(core);
 }
 
 UIString::UIString(StringBuilder wstrBuilder)
 {
 	UIStringCore *core = new UIStringCore(wstrBuilder);
-	m_core = shared_ptr<UIStringCore>(core);
+	m_core = std::shared_ptr<UIStringCore>(core);
 }
 
-UIString::UIString(const string &constant)
+UIString::UIString(const std::string &constant)
 {
-	wstring wstr = convStringToWstring(constant);
+	std::wstring wstr = convStringToWstring(constant);
 	UIStringCore *core = new UIStringCore( wstr );
-	m_core = shared_ptr<UIStringCore>(core);
+	m_core = std::shared_ptr<UIStringCore>(core);
 }
 
-UIString::UIString(const wstring &constant)
+UIString::UIString(const std::wstring &constant)
 {
 	UIStringCore *core = new UIStringCore(constant);
-	m_core = shared_ptr<UIStringCore>(core);
+	m_core = std::shared_ptr<UIStringCore>(core);
 }
 
 UIString::UIString(const wchar_t *constant)
 {
-	wstring str = wstring(constant);
+	std::wstring str = std::wstring(constant);
 	UIStringCore *core = new UIStringCore(str);
-	m_core = shared_ptr<UIStringCore>(core);
+	m_core = std::shared_ptr<UIStringCore>(core);
 }
 
 UIString::~UIString()
@@ -158,9 +158,9 @@ void UIString::setUpdated()
 	if (m_core != NULL)	m_core->setUpdated();
 }
 
-wstring &UIString::getString()
+std::wstring &UIString::getString()
 {
-	static wstring blank(L"");
+	static std::wstring blank(L"");
 	if (m_core != NULL) return m_core->getString();
 	else				return blank;
 }

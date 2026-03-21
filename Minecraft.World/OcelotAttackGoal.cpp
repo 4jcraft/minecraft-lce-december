@@ -20,7 +20,7 @@ OcelotAttackGoal::OcelotAttackGoal(Mob *mob)
 
 bool OcelotAttackGoal::canUse()
 {
-	shared_ptr<LivingEntity> bestTarget = mob->getTarget();
+	std::shared_ptr<LivingEntity> bestTarget = mob->getTarget();
 	if (bestTarget == NULL) return false;
 	target = weak_ptr<LivingEntity>(bestTarget);
 	return true;

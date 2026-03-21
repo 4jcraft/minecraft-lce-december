@@ -25,7 +25,7 @@ PortalForcer::~PortalForcer()
 	}
 }
 
-void PortalForcer::force(shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal)
+void PortalForcer::force(std::shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal)
 {
 	if (level->dimension->id == 1)
 	{
@@ -68,7 +68,7 @@ void PortalForcer::force(shared_ptr<Entity> e, double xOriginal, double yOrigina
 }
 
 
-bool PortalForcer::findPortal(shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal)
+bool PortalForcer::findPortal(std::shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal)
 {
 	// 4J Stu - Decrease the range at which we search for a portal in the nether given our smaller nether
 	int r = 16;//* 8;
@@ -257,7 +257,7 @@ bool PortalForcer::findPortal(shared_ptr<Entity> e, double xOriginal, double yOr
 }
 
 
-bool PortalForcer::createPortal(shared_ptr<Entity> e)
+bool PortalForcer::createPortal(std::shared_ptr<Entity> e)
 {
 	// 4J Stu - Increase the range at which we try and create a portal to stop creating them floating in mid air over lava
 	int r = 16 * 3;

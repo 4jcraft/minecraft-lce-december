@@ -25,5 +25,5 @@ public:
 	Tile *getType();
 	int getData();
 	Material *getMaterial();
-	shared_ptr<TileEntity> getEntity();
+	std::shared_ptr<TileEntity> getEntity();
 };

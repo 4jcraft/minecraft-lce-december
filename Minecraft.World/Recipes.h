@@ -18,7 +18,7 @@ import net.minecraft.world.level.tile.Tile;
 #include "Recipy.h"
 
 #pragma once
-using namespace std;
+
 
 class CraftingContainer;
 class FireTile;
@@ -90,11 +90,11 @@ public:
 	ShapedRecipy *addShapedRecipy(ItemInstance *, ... );
 	void addShapelessRecipy(ItemInstance *result,... ); 
 
-	shared_ptr<ItemInstance> getItemFor(shared_ptr<CraftingContainer> craftSlots, Level *level, Recipy *recipesClass = NULL); // 4J Added recipesClass param
+	std::shared_ptr<ItemInstance> getItemFor(std::shared_ptr<CraftingContainer> craftSlots, Level *level, Recipy *recipesClass = NULL); // 4J Added recipesClass param
 	vector <Recipy *> *getRecipies();
 
 	// 4J-PB - Added all below for new Xbox 'crafting'
-	shared_ptr<ItemInstance> getItemForRecipe(Recipy *r);
+	std::shared_ptr<ItemInstance> getItemForRecipe(Recipy *r);
 	Recipy::INGREDIENTS_REQUIRED *getRecipeIngredientsArray();
 
 private:

@@ -38,8 +38,8 @@ public:
 	float getMaxDist();
 	Path *createPath(double x, double y, double z);
 	bool moveTo(double x, double y, double z, double speedModifier);
-	Path *createPath(shared_ptr<Entity> target);
-	bool moveTo(shared_ptr<Entity> target, double speedModifier);
+	Path *createPath(std::shared_ptr<Entity> target);
+	bool moveTo(std::shared_ptr<Entity> target, double speedModifier);
 	bool moveTo(Path *newPath, double speedModifier);
 	Path *getPath();
 	void tick();

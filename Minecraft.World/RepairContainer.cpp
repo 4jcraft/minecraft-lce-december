@@ -13,7 +13,7 @@ void RepairContainer::setChanged()
 	m_menu->slotsChanged(shared_from_this());
 }
 
-bool RepairContainer::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool RepairContainer::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }

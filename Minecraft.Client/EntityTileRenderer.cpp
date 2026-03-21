@@ -8,9 +8,9 @@ EntityTileRenderer *EntityTileRenderer::instance = new EntityTileRenderer;
 
 EntityTileRenderer::EntityTileRenderer()
 {
-	chest = shared_ptr<ChestTileEntity>(new ChestTileEntity());
-	trappedChest = shared_ptr<ChestTileEntity>(new ChestTileEntity(ChestTile::TYPE_TRAP));
-	enderChest = shared_ptr<EnderChestTileEntity>(new EnderChestTileEntity());
+	chest = std::shared_ptr<ChestTileEntity>(new ChestTileEntity());
+	trappedChest = std::shared_ptr<ChestTileEntity>(new ChestTileEntity(ChestTile::TYPE_TRAP));
+	enderChest = std::shared_ptr<EnderChestTileEntity>(new EnderChestTileEntity());
 }
 
 void EntityTileRenderer::render(Tile *tile, int data, float brightness, float alpha, bool setColor, bool useCompiled)

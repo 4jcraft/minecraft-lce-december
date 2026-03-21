@@ -3,7 +3,7 @@
 #include "net.minecraft.world.scores.criteria.h"
 #include "Score.h"
 
-Score::Score(Scoreboard *scoreboard, Objective *objective, const wstring &owner)
+Score::Score(Scoreboard *scoreboard, Objective *objective, const std::wstring &owner)
 {
 	this->scoreboard = scoreboard;
 	this->objective = objective;
@@ -52,7 +52,7 @@ Objective *Score::getObjective()
 	return objective;
 }
 
-wstring Score::getOwner()
+std::wstring Score::getOwner()
 {
 	return owner;
 }

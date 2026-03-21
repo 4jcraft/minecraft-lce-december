@@ -68,7 +68,7 @@ bool UpdateMobEffectPacket::canBeInvalidated()
 	return true;
 }
 
-bool UpdateMobEffectPacket::isInvalidatedBy(shared_ptr<Packet> packet)
+bool UpdateMobEffectPacket::isInvalidatedBy(std::shared_ptr<Packet> packet)
 {
 	shared_ptr<UpdateMobEffectPacket> target = dynamic_pointer_cast<UpdateMobEffectPacket>(packet);
 	return target->entityId == entityId && target->effectId == effectId;

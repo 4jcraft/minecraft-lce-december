@@ -3,7 +3,7 @@
 #include "AttributeModifier.h"
 #include "HtmlString.h"
 
-void AttributeModifier::_init(eMODIFIER_ID id, const wstring name, double amount, int operation)
+void AttributeModifier::_init(eMODIFIER_ID id, const std::wstring name, double amount, int operation)
 {
 	assert(operation < TOTAL_OPERATIONS);
 	this->amount = amount;
@@ -32,7 +32,7 @@ eMODIFIER_ID AttributeModifier::getId()
 	return id;
 }
 
-wstring AttributeModifier::getName()
+std::wstring AttributeModifier::getName()
 {
 	return name;
 }
@@ -68,7 +68,7 @@ bool AttributeModifier::equals(AttributeModifier *modifier)
 	return true;
 }
 
-wstring AttributeModifier::toString()
+std::wstring AttributeModifier::toString()
 {
 	return L"";
 

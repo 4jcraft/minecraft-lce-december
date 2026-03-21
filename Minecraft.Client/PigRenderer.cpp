@@ -10,7 +10,7 @@ PigRenderer::PigRenderer(Model *model, Model *armor, float shadow) : MobRenderer
 	setArmor(armor);
 }
 
-int PigRenderer::prepareArmor(shared_ptr<LivingEntity> _pig, int layer, float a)
+int PigRenderer::prepareArmor(std::shared_ptr<LivingEntity> _pig, int layer, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(_pig);
@@ -27,12 +27,12 @@ int PigRenderer::prepareArmor(shared_ptr<LivingEntity> _pig, int layer, float a)
     return -1;
 }
 
-void PigRenderer::render(shared_ptr<Entity> mob, double x, double y, double z, float rot, float a)
+void PigRenderer::render(std::shared_ptr<Entity> mob, double x, double y, double z, float rot, float a)
 {
 	MobRenderer::render(mob, x, y, z, rot, a);
 } 
 
-ResourceLocation *PigRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *PigRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &PIG_LOCATION;
 }

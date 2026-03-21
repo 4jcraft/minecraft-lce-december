@@ -20,7 +20,7 @@ SheepModel::SheepModel() : QuadrupedModel(12, 0)
     body->compile(1.0f/16.0f);
 }
 
-void SheepModel::prepareMobModel(shared_ptr<LivingEntity> mob, float time, float r, float a)
+void SheepModel::prepareMobModel(std::shared_ptr<LivingEntity> mob, float time, float r, float a)
 {
 	QuadrupedModel::prepareMobModel(mob, time, r, a);
 
@@ -29,7 +29,7 @@ void SheepModel::prepareMobModel(shared_ptr<LivingEntity> mob, float time, float
 	headXRot = sheep->getHeadEatAngleScale(a);
 }
 
-void SheepModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void SheepModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	QuadrupedModel::setupAnim(time, r, bob, yRot, xRot, scale, entity);
 

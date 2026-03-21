@@ -35,7 +35,7 @@
 
 Random PlayerConnection::random;
 
-PlayerConnection::PlayerConnection(MinecraftServer *server, Connection *connection, shared_ptr<ServerPlayer> player)
+PlayerConnection::PlayerConnection(MinecraftServer *server, Connection *connection, std::shared_ptr<ServerPlayer> player)
 {
 	// 4J - added initialisers
 	done = false;
@@ -124,7 +124,7 @@ void PlayerConnection::disconnect(DisconnectPacket::eDisconnectReason reason)
 	send( shared_ptr<DisconnectPacket>( new DisconnectPacket(reason) ));
 	connection->sendAndQuit();
 	// 4J-PB - removed, since it needs to be localised in the language the client is in
-	//server->players->broadcastAll( shared_ptr<ChatPacket>( new ChatPacket(L"§e" + player->name + L" left the game.") ) );
+	//server->players->broadcastAll( shared_ptr<ChatPacket>( new ChatPacket(L"ï¿½e" + player->name + L" left the game.") ) );
 	if(getWasKicked())
 	{
 		server->getPlayers()->broadcastAll( shared_ptr<ChatPacket>( new ChatPacket(player->name, ChatPacket::e_ChatPlayerKickedFromGame) ) );
@@ -539,7 +539,7 @@ void PlayerConnection::onDisconnect(DisconnectPacket::eDisconnectReason reason, 
 	if( done ) return;
 	//    logger.info(player.name + " lost connection: " + reason);
 	// 4J-PB - removed, since it needs to be localised in the language the client is in
-	//server->players->broadcastAll( shared_ptr<ChatPacket>( new ChatPacket(L"§e" + player->name + L" left the game.") ) );
+	//server->players->broadcastAll( shared_ptr<ChatPacket>( new ChatPacket(L"ï¿½e" + player->name + L" left the game.") ) );
 	if(getWasKicked())
 	{
 		server->getPlayers()->broadcastAll( shared_ptr<ChatPacket>( new ChatPacket(player->name, ChatPacket::e_ChatPlayerKickedFromGame) ) );
@@ -553,13 +553,13 @@ void PlayerConnection::onDisconnect(DisconnectPacket::eDisconnectReason reason, 
 	LeaveCriticalSection(&done_cs);
 }
 
-void PlayerConnection::onUnhandledPacket(shared_ptr<Packet> packet)
+void PlayerConnection::onUnhandledPacstd::ket(shared_ptr<Packet> packet)
 {
 	//    logger.warning(getClass() + " wasn't prepared to deal with a " + packet.getClass());
 	disconnect(DisconnectPacket::eDisconnect_UnexpectedPacket);
 }
 
-void PlayerConnection::send(shared_ptr<Packet> packet)
+void PlayerConnection::sstd::end(shared_ptr<Packet> packet)
 {
 	if( connection->getSocket() != NULL )
 	{
@@ -577,7 +577,7 @@ void PlayerConnection::send(shared_ptr<Packet> packet)
 }
 
 // 4J Added
-void PlayerConnection::queueSend(shared_ptr<Packet> packet)
+void PlayerConnection::queueSstd::end(shared_ptr<Packet> packet)
 {
 	if( connection->getSocket() != NULL )
 	{
@@ -641,7 +641,7 @@ void PlayerConnection::handleChat(shared_ptr<ChatPacket> packet)
 #endif
 }
 
-void PlayerConnection::handleCommand(const wstring& message)
+void PlayerConnection::handleCommand(costd::nst wstring& message)
 {
 	// 4J - TODO
 #if 0
@@ -725,16 +725,16 @@ int PlayerConnection::countDelayedPackets()
 	return connection->countDelayedPackets();
 }
 
-void PlayerConnection::info(const wstring& string)
+void PlayerConnection::info(costd::nst wstring& string)
 {
 	// 4J-PB - removed, since it needs to be localised in the language the client is in
-	//send( shared_ptr<ChatPacket>( new ChatPacket(L"§7" + string) ) );
+	//send( shared_ptr<ChatPacket>( new ChatPacket(L"ï¿½7" + string) ) );
 }
 
-void PlayerConnection::warn(const wstring& string)
+void PlayerConnection::warn(std::const wstring& string)
 {
 	// 4J-PB - removed, since it needs to be localised in the language the client is in
-	//send( shared_ptr<ChatPacket>( new ChatPacket(L"§9" + string) ) );
+	//send( shared_ptr<ChatPacket>( new ChatPacket(L"ï¿½9" + string) std::) );
 }
 
 wstring PlayerConnection::getConsoleName()
@@ -889,7 +889,7 @@ void PlayerConnection::handleTextureAndGeometry(shared_ptr<TextureAndGeometryPac
 	}
 }
 
-void PlayerConnection::handleTextureReceived(const wstring &textureName)
+void PlayerConnection::handleTextureReceivestd::d(const wstring &textureName)
 {
 	// This sends the server received texture out to any other players waiting for the data
 	AUTO_VAR(it, find( m_texturesRequested.begin(), m_texturesRequested.end(), textureName ));
@@ -907,7 +907,7 @@ void PlayerConnection::handleTextureReceived(const wstring &textureName)
 	}
 }
 
-void PlayerConnection::handleTextureAndGeometryReceived(const wstring &textureName)
+void PlayerConnection::handleTextureAndGeometryReceivestd::d(const wstring &textureName)
 {
 	// This sends the server received texture out to any other players waiting for the data
 	AUTO_VAR(it, find( m_texturesRequested.begin(), m_texturesRequested.end(), textureName ));
@@ -1007,7 +1007,7 @@ void PlayerConnection::handleTextureAndGeometryChange(shared_ptr<TextureAndGeome
 	server->getPlayers()->broadcastAll( shared_ptr<TextureAndGeometryChangePacket>( new TextureAndGeometryChangePacket(player,packet->path) ), player->dimension );
 }
 
-void PlayerConnection::handleServerSettingsChanged(shared_ptr<ServerSettingsChangedPacket> packet)
+void PlayerConnection::handleServerSettingsstd::Changed(shared_ptr<ServerSettingsChangedPacket> packet)
 {
 	if(packet->action==ServerSettingsChangedPacket::HOST_IN_GAME_SETTINGS)
 	{

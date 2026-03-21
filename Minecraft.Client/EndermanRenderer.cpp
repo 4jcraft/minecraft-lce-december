@@ -14,7 +14,7 @@ EndermanRenderer::EndermanRenderer() : MobRenderer(new EndermanModel(), 0.5f)
 	this->setArmor(model);
 }
 
-void EndermanRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
+void EndermanRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type Boat rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead
@@ -33,12 +33,12 @@ void EndermanRenderer::render(shared_ptr<Entity> _mob, double x, double y, doubl
 	MobRenderer::render(mob, x, y, z, rot, a);
 }
 
-ResourceLocation *EndermanRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *EndermanRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &ENDERMAN_LOCATION;
 }
 
-void EndermanRenderer::additionalRendering(shared_ptr<LivingEntity> _mob, float a)
+void EndermanRenderer::additionalRendering(std::shared_ptr<LivingEntity> _mob, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type Boat rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead
@@ -77,7 +77,7 @@ void EndermanRenderer::additionalRendering(shared_ptr<LivingEntity> _mob, float 
 	}
 }
 
-int EndermanRenderer::prepareArmor(shared_ptr<LivingEntity> _mob, int layer, float a)
+int EndermanRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob, int layer, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type Boat rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead

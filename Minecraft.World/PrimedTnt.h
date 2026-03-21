@@ -16,7 +16,7 @@ public:
 	void _init();
 
 	PrimedTnt(Level *level);
-	PrimedTnt(Level *level, double x, double y, double z, shared_ptr<LivingEntity> owner);
+	PrimedTnt(Level *level, double x, double y, double z, std::shared_ptr<LivingEntity> owner);
 
 protected:
 	virtual void defineSynchedData();
@@ -35,5 +35,5 @@ protected:
 
 public:
 	virtual float getShadowHeightOffs();
-	virtual shared_ptr<LivingEntity> getOwner();
+	virtual std::shared_ptr<LivingEntity> getOwner();
 };

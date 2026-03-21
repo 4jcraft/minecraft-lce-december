@@ -37,7 +37,7 @@ protected:
 	void applyNaturalSlowdown();
 
 public:
-	bool interact(shared_ptr<Player> player);
+	bool interact(std::shared_ptr<Player> player);
 
 protected:
 	void addAdditonalSaveData(CompoundTag *base);

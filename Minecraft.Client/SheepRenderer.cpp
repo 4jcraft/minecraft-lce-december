@@ -11,7 +11,7 @@ SheepRenderer::SheepRenderer(Model *model, Model *armor, float shadow) : MobRend
 	setArmor(armor);
 }
 
-int SheepRenderer::prepareArmor(shared_ptr<LivingEntity> _sheep, int layer, float a)
+int SheepRenderer::prepareArmor(std::shared_ptr<LivingEntity> _sheep, int layer, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Sheep> sheep = dynamic_pointer_cast<Sheep>(_sheep);
@@ -51,12 +51,12 @@ int SheepRenderer::prepareArmor(shared_ptr<LivingEntity> _sheep, int layer, floa
     return -1;
 }
 
-void SheepRenderer::render(shared_ptr<Entity> mob, double x, double y, double z, float rot, float a)
+void SheepRenderer::render(std::shared_ptr<Entity> mob, double x, double y, double z, float rot, float a)
 {
 	MobRenderer::render(mob, x, y, z, rot, a);
 } 
 
-ResourceLocation *SheepRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *SheepRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &SHEEP_LOCATION;
 }

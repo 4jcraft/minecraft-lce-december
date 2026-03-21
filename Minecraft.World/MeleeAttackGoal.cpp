@@ -41,7 +41,7 @@ MeleeAttackGoal::~MeleeAttackGoal()
 
 bool MeleeAttackGoal::canUse()
 {
-	shared_ptr<LivingEntity> target = mob->getTarget();
+	std::shared_ptr<LivingEntity> target = mob->getTarget();
 	if (target == NULL) return false;
 	if (!target->isAlive()) return false;
 	if (attackType != NULL && !target->instanceof(attackType)) return false;
@@ -52,7 +52,7 @@ bool MeleeAttackGoal::canUse()
 
 bool MeleeAttackGoal::canContinueToUse()
 {
-	shared_ptr<LivingEntity> target = mob->getTarget();
+	std::shared_ptr<LivingEntity> target = mob->getTarget();
 	if (target == NULL) return false;
 	if (!target->isAlive()) return false;
 	if (!trackTarget) return !mob->getNavigation()->isDone();
@@ -74,7 +74,7 @@ void MeleeAttackGoal::stop()
 
 void MeleeAttackGoal::tick()
 {
-	shared_ptr<LivingEntity> target = mob->getTarget();
+	std::shared_ptr<LivingEntity> target = mob->getTarget();
 	mob->getLookControl()->setLookAt(target, 30, 30);
 	if (trackTarget || mob->getSensing()->canSee(target))
 	{

@@ -32,5 +32,5 @@ public:
 	virtual int getData() = 0;
 	virtual Material *getMaterial() = 0;
 
-	virtual shared_ptr<TileEntity> getEntity() = 0;
+	virtual std::shared_ptr<TileEntity> getEntity() = 0;
 };

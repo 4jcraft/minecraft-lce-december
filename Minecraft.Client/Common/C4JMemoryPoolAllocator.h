@@ -10,7 +10,7 @@ class C4JPoolAllocator
 {
 public:
     typedef T          value_type;
-    typedef size_t     size_type;
+    typedef std::size_t     size_type;
     typedef ptrdiff_t  difference_type;
  
     typedef T*         pointer;

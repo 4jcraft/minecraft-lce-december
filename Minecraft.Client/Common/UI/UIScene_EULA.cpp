@@ -92,7 +92,7 @@ UIScene_EULA::~UIScene_EULA()
 	m_parentLayer->removeComponent(eUIComponent_Logo);
 }
 
-wstring UIScene_EULA::getMoviePath()
+std::wstring UIScene_EULA::getMoviePath()
 {
 	return L"EULA";
 }

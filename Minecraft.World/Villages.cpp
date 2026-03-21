@@ -6,9 +6,9 @@
 #include "BasicTypeContainers.h"
 #include "Villages.h"
 
-const wstring Villages::VILLAGE_FILE_ID = L"villages";
+const std::wstring Villages::VILLAGE_FILE_ID = L"villages";
 
-Villages::Villages(const wstring &id) : SavedData(id)
+Villages::Villages(const std::wstring &id) : SavedData(id)
 {
 	_tick = 0;
 	level = NULL;
@@ -84,7 +84,7 @@ vector<shared_ptr<Village> > *Villages::getVillages()
 	return &villages;
 }
 
-shared_ptr<Village> Villages::getClosestVillage(int x, int y, int z, int maxDist)
+std::shared_ptr<Village> Villages::getClosestVillage(int x, int y, int z, int maxDist)
 {
 	shared_ptr<Village> closest = nullptr;
 	float closestDistSqr = Float::MAX_VALUE;
@@ -161,7 +161,7 @@ void Villages::addDoorInfos(Pos *pos)
 	}
 }
 
-shared_ptr<DoorInfo> Villages::getDoorInfo(int x, int y, int z)
+std::shared_ptr<DoorInfo> Villages::getDoorInfo(int x, int y, int z)
 {
 	//for (DoorInfo di : unclustered)
 	for(AUTO_VAR(it,unclustered.begin()); it != unclustered.end(); ++it)

@@ -23,7 +23,7 @@ public:
 	shared_ptr<LivingEntity> owner;
 
 private:
-	wstring ownerName;
+	std::wstring ownerName;
 	int life;
 	int flightTime;
 

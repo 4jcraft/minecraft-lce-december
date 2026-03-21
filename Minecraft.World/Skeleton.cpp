@@ -91,7 +91,7 @@ void Skeleton::playStepSound(int xt, int yt, int zt, int t)
 	playSound(eSoundType_MOB_SKELETON_STEP, 0.15f, 1);
 }
 
-bool Skeleton::doHurtTarget(shared_ptr<Entity> target)
+bool Skeleton::doHurtTarget(std::shared_ptr<Entity> target)
 {
 	if (Monster::doHurtTarget(target))
 	{
@@ -279,7 +279,7 @@ void Skeleton::reassessWeaponGoal()
 	}
 }
 
-void Skeleton::performRangedAttack(shared_ptr<LivingEntity> target, float power)
+void Skeleton::performRangedAttack(std::shared_ptr<LivingEntity> target, float power)
 {
 	shared_ptr<Arrow> arrow = shared_ptr<Arrow>( new Arrow(level, dynamic_pointer_cast<LivingEntity>(shared_from_this()), target, 1.60f, 14 - (level->difficulty * 4)) );
 	int damageBonus = EnchantmentHelper::getEnchantmentLevel(Enchantment::arrowBonus->id, getCarriedItem());
@@ -343,7 +343,7 @@ void Skeleton::addAdditonalSaveData(CompoundTag *entityTag)
 	entityTag->putByte(L"SkeletonType", (byte) getSkeletonType());
 }
 
-void Skeleton::setEquippedSlot(int slot, shared_ptr<ItemInstance> item)
+void Skeleton::setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item)
 {
 	Monster::setEquippedSlot(slot, item);
 

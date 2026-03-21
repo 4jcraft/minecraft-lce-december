@@ -20,7 +20,7 @@ SavedDataStorage::SavedDataStorage(LevelStorage *levelStorage)
     loadAuxValues();
 }
 
-shared_ptr<SavedData> SavedDataStorage::get(const type_info& clazz, const wstring& id)
+std::shared_ptr<SavedData> SavedDataStorage::get(const std::type_info& clazz, const std::wstring& id)
 {
 	AUTO_VAR(it, cache.find( id ));
 	if (it != cache.end()) return (*it).second;
@@ -69,7 +69,7 @@ shared_ptr<SavedData> SavedDataStorage::get(const type_info& clazz, const wstrin
     return data;
 }
 
-void SavedDataStorage::set(const wstring& id, shared_ptr<SavedData> data) 
+void SavedDataStorage::set(const std::wstring& id, std::shared_ptr<SavedData> data) 
 {
 	if (data == NULL)
 	{
@@ -104,7 +104,7 @@ void SavedDataStorage::save()
     }
 }
 
-void SavedDataStorage::save(shared_ptr<SavedData> data)
+void SavedDataStorage::save(std::shared_ptr<SavedData> data)
 {
     if (levelStorage == NULL) return;
     //File file = levelStorage->getDataFile(data->id);
@@ -158,7 +158,7 @@ void SavedDataStorage::loadAuxValues()
     }
 }
 
-int SavedDataStorage::getFreeAuxValueFor(const wstring& id)
+int SavedDataStorage::getFreeAuxValueFor(const std::wstring& id)
 {
 	AUTO_VAR(it, usedAuxIds.find( id ));
     short val = 0;

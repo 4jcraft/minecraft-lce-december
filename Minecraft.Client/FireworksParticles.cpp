@@ -189,7 +189,7 @@ void FireworksParticles::FireworksStarter::tick()
 			float r = (float) ((rgb & 0xff0000) >> 16) / 255.0f;
 			float g = (float) ((rgb & 0x00ff00) >> 8) / 255.0f;
 			float b = (float) ((rgb & 0x0000ff) >> 0) / 255.0f;
-			shared_ptr<FireworksOverlayParticle> fireworksOverlayParticle = shared_ptr<FireworksOverlayParticle>(new FireworksParticles::FireworksOverlayParticle(level, x, y, z));
+			std::shared_ptr<FireworksOverlayParticle> fireworksOverlayParticle = std::shared_ptr<FireworksOverlayParticle>(new FireworksParticles::FireworksOverlayParticle(level, x, y, z));
 			fireworksOverlayParticle->setColor(r, g, b);
 			fireworksOverlayParticle->setAlpha(0.99f);		// 4J added
 			engine->add(fireworksOverlayParticle);
@@ -224,7 +224,7 @@ bool FireworksParticles::FireworksStarter::isFarAwayFromCamera()
 
 void FireworksParticles::FireworksStarter::createParticle(double x, double y, double z, double xa, double ya, double za, intArray rgbColors, intArray fadeColors, bool trail, bool flicker)
 {
-	shared_ptr<FireworksSparkParticle> fireworksSparkParticle = shared_ptr<FireworksSparkParticle>(new FireworksSparkParticle(level, x, y, z, xa, ya, za, engine));
+	std::shared_ptr<FireworksSparkParticle> fireworksSparkParticle = std::shared_ptr<FireworksSparkParticle>(new FireworksSparkParticle(level, x, y, z, xa, ya, za, engine));
 	fireworksSparkParticle->setAlpha(0.99f);
 	fireworksSparkParticle->setTrail(trail);
 	fireworksSparkParticle->setFlicker(flicker);
@@ -433,7 +433,7 @@ void FireworksParticles::FireworksSparkParticle::tick()
 
 	if (trail && (age < lifetime / 2) && ((age + lifetime) % 2) == 0)
 	{
-		shared_ptr<FireworksSparkParticle> fireworksSparkParticle = shared_ptr<FireworksSparkParticle>(new FireworksParticles::FireworksSparkParticle(level, x, y, z, 0, 0, 0, engine));
+		std::shared_ptr<FireworksSparkParticle> fireworksSparkParticle = std::shared_ptr<FireworksSparkParticle>(new FireworksParticles::FireworksSparkParticle(level, x, y, z, 0, 0, 0, engine));
 		fireworksSparkParticle->setAlpha(0.99f);
 		fireworksSparkParticle->setColor(rCol, gCol, bCol);
 		fireworksSparkParticle->age = fireworksSparkParticle->lifetime / 2;

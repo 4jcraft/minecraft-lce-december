@@ -805,7 +805,7 @@ int SQRNetworkManager_AdHoc_Vita::BasicEventThreadProc( void *lpParameter )
 // 			// 			int iEvent;
 // 			// 			SceNpUserInfo from;
 // 			// 			uint8_t buffer[SCE_NP_BASIC_MAX_MESSAGE_SIZE]; 
-// 			// 			size_t bufferSize = SCE_NP_BASIC_MAX_MESSAGE_SIZE;
+// 			// 			std::size_t bufferSize = SCE_NP_BASIC_MAX_MESSAGE_SIZE;
 // 			// 			int ret = sceNpBasicGetEvent(&iEvent, &from, &buffer, &bufferSize);
 // 			// 			if( ret == 0 )
 // 			// 			{
@@ -2713,7 +2713,7 @@ void SQRNetworkManager_AdHoc_Vita::RudpContextCallback(int ctx_id, int event_id,
 	}
 }
 
-int SQRNetworkManager_AdHoc_Vita::RudpEventCallback(int event_id, int soc, uint8_t const *data, size_t datalen, struct SceNetSockaddr  const *addr, SceNetSocklen_t addrlen, void *arg)
+int SQRNetworkManager_AdHoc_Vita::RudpEventCallback(int event_id, int soc, uint8_t const *data, std::size_t datalen, struct SceNetSockaddr  const *addr, SceNetSocklen_t addrlen, void *arg)
 {
 	SQRNetworkManager_AdHoc_Vita *manager = (SQRNetworkManager_AdHoc_Vita *)arg;
 	if( event_id == SCE_RUDP_EVENT_SOCKET_RELEASED )

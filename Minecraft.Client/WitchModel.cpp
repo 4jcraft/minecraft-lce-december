@@ -48,7 +48,7 @@ WitchModel::WitchModel(float g) : VillagerModel(g, 0, 64, 128)
 	hat4->compile(1.0f/16.0f);
 }
 
-void WitchModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void WitchModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	VillagerModel::setupAnim(time, r, bob, yRot, xRot, scale, entity);
 

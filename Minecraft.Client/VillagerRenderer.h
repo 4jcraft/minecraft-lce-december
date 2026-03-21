@@ -18,11 +18,11 @@ protected:
 
 public:
 	VillagerRenderer();
-	virtual void render(shared_ptr<Entity> mob, double x, double y, double z, float rot, float a);
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> _mob);
+	virtual void render(std::shared_ptr<Entity> mob, double x, double y, double z, float rot, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> _mob);
 
 protected:	
-	virtual int prepareArmor(shared_ptr<LivingEntity> villager, int layer, float a);
-	virtual void additionalRendering(shared_ptr<LivingEntity> mob, float a);
-	virtual void scale(shared_ptr<LivingEntity> player, float a);
+	virtual int prepareArmor(std::shared_ptr<LivingEntity> villager, int layer, float a);
+	virtual void additionalRendering(std::shared_ptr<LivingEntity> mob, float a);
+	virtual void scale(std::shared_ptr<LivingEntity> player, float a);
 };

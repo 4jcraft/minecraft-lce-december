@@ -30,8 +30,8 @@ private:
 public:
 	shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
 	void setItem(unsigned int slot, shared_ptr<ItemInstance> item);
-	wstring getName();
-	wstring getCustomName();
+	std::wstring getName();
+	std::wstring getCustomName();
 	bool hasCustomName();
 	int getMaxStackSize();
 	bool stillValid(shared_ptr<Player> player);

@@ -25,7 +25,7 @@ bool DetectorRailTile::isSignalSource()
 	return true;
 }
 
-void DetectorRailTile::entityInside(Level *level, int x, int y, int z, shared_ptr<Entity> entity)
+void DetectorRailTile::entityInside(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity)
 {
 	if (level->isClientSide)
 	{

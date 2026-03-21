@@ -109,8 +109,8 @@ void UIScene_AbstractContainerMenu::PlatformInitialize(int iPad, int startIndex)
 #ifdef __ORBIS__
 	// we need to map the touchpad rectangle to the UI rectangle. While it works great for the creative menu, it is much too sensitive for the smaller menus.
 	//X coordinate of the touch point (0 to 1919)    
-	//Y coordinate of the touch point (0 to 941: DUALSHOCK®4 wireless controllers and the CUH-ZCT1J/CAP-ZCT1J/CAP-ZCT1U controllers for the PlayStation®4 development tool,    
-	//0 to 753: JDX-1000x series controllers for the PlayStation®4 development tool,)     
+	//Y coordinate of the touch point (0 to 941: DUALSHOCKï¿½4 wireless controllers and the CUH-ZCT1J/CAP-ZCT1J/CAP-ZCT1U controllers for the PlayStationï¿½4 development tool,    
+	//0 to 753: JDX-1000x series controllers for the PlayStationï¿½4 development tool,)     
 	m_fTouchPadMulX=fPanelWidth/1919.0f;
 	m_fTouchPadMulY=fPanelHeight/941.0f;
 	m_fTouchPadDeadZoneX=15.0f*m_fTouchPadMulX;
@@ -224,7 +224,7 @@ void UIScene_AbstractContainerMenu::customDraw(IggyCustomDrawCallbackRegion *reg
 	Minecraft *pMinecraft = Minecraft::GetInstance();
 	if(pMinecraft->localplayers[m_iPad] == NULL || pMinecraft->localgameModes[m_iPad] == NULL) return;
 
-	shared_ptr<ItemInstance> item = nullptr;
+	std::shared_ptr<ItemInstance> item = nullptr;
 	int slotId = -1;
 	if(wcscmp((wchar_t *)region->name,L"pointerIcon")==0)
 	{		
@@ -262,7 +262,7 @@ void UIScene_AbstractContainerMenu::handleInput(int iPad, int key, bool repeat, 
 	}
 }
 
-void UIScene_AbstractContainerMenu::SetPointerText(vector<HtmlString> *description, bool newSlot)
+void UIScene_AbstractContainerMenu::SetPointerText(std::vector<HtmlString> *description, bool newSlot)
 {
 	m_cursorPath.setLabel(HtmlString::Compose(description), false, newSlot);
 }
@@ -293,7 +293,7 @@ void UIScene_AbstractContainerMenu::setFocusToPointer(int iPad)
 	m_focusSection = eSectionNone;
 }
 
-shared_ptr<ItemInstance> UIScene_AbstractContainerMenu::getSlotItem(ESceneSection eSection, int iSlot)
+std::shared_ptr<ItemInstance> UIScene_AbstractContainerMenu::getSlotItem(ESceneSection eSection, int iSlot)
 {
 	Slot *slot = m_menu->getSlot( getSectionStartOffset(eSection) + iSlot );
 	if(slot) return slot->getItem();

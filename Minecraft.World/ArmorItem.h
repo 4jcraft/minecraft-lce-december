@@ -14,16 +14,16 @@ public:
 
 private:
 	static const int healthPerSlot[];
-	static const wstring LEATHER_OVERLAYS[] ;
+	static const std::wstring LEATHER_OVERLAYS[] ;
 
 public:
-	static const wstring TEXTURE_EMPTY_SLOTS[];
+	static const std::wstring TEXTURE_EMPTY_SLOTS[];
 
 private:
 	class ArmorDispenseItemBehavior : public DefaultDispenseItemBehavior
 	{
 	protected:
-		virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+		virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 	};
 
 public:
@@ -73,18 +73,18 @@ public:
 	ArmorItem(int id, const ArmorMaterial *armorType, int icon, int slot);
 
 
-	virtual int getColor(shared_ptr<ItemInstance> item, int spriteLayer);
+	virtual int getColor(std::shared_ptr<ItemInstance> item, int spriteLayer);
 	virtual bool hasMultipleSpriteLayers();
 	virtual int getEnchantmentValue();
 	virtual const ArmorMaterial *getMaterial();
-	virtual bool hasCustomColor(shared_ptr<ItemInstance> item);
-	virtual int getColor(shared_ptr<ItemInstance> item);
+	virtual bool hasCustomColor(std::shared_ptr<ItemInstance> item);
+	virtual int getColor(std::shared_ptr<ItemInstance> item);
 
 	virtual Icon *getLayerIcon(int auxValue, int spriteLayer);
-	virtual void clearColor(shared_ptr<ItemInstance> item);
-	virtual void setColor(shared_ptr<ItemInstance> item, int color);
+	virtual void clearColor(std::shared_ptr<ItemInstance> item);
+	virtual void setColor(std::shared_ptr<ItemInstance> item, int color);
 
-	virtual bool isValidRepairItem(shared_ptr<ItemInstance> source, shared_ptr<ItemInstance> repairItem);
+	virtual bool isValidRepairItem(std::shared_ptr<ItemInstance> source, std::shared_ptr<ItemInstance> repairItem);
 	virtual void registerIcons(IconRegister *iconRegister);
 
 	static Icon *getEmptyIcon(int slot);

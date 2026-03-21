@@ -155,7 +155,7 @@ void Creeper::die(DamageSource *source)
 	}
 }
 
-bool Creeper::doHurtTarget(shared_ptr<Entity> target)
+bool Creeper::doHurtTarget(std::shared_ptr<Entity> target)
 {
 	return true;
 }

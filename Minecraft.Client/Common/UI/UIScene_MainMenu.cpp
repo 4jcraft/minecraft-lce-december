@@ -225,7 +225,7 @@ void UIScene_MainMenu::handleGainFocus(bool navBack)
 	m_splash = m_splashes.at( splashIndex );
 }
 
-wstring UIScene_MainMenu::getMoviePath()
+std::wstring UIScene_MainMenu::getMoviePath()
 {
 	return L"MainMenu";
 }

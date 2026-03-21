@@ -29,7 +29,7 @@ public:
 	virtual void SetSocket(Socket *pSocket);
 	virtual Socket *GetSocket();
 	virtual const wchar_t *GetOnlineName();
-	virtual wstring GetDisplayName();
+	virtual std::wstring GetDisplayName();
 	virtual PlayerUID GetUID();
 
 	void SetUID(PlayerUID UID);

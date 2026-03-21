@@ -17,29 +17,29 @@ private:
 	static const int BIT_SEE_INVISIBLES = 1;
 
 	Scoreboard *scoreboard;
-	wstring name;
-	unordered_set<wstring> players;
-	wstring displayName;
-	wstring prefix;
-	wstring suffix;
+	std::wstring name;
+	unordered_set<std::wstring> players;
+	std::wstring displayName;
+	std::wstring prefix;
+	std::wstring suffix;
 	bool allowFriendlyFire;
 	bool seeFriendlyInvisibles;
 
 public:
-	PlayerTeam(Scoreboard *scoreboard, const wstring &name);
+	PlayerTeam(Scoreboard *scoreboard, const std::wstring &name);
 
 	Scoreboard *getScoreboard();
-	wstring getName();
-	wstring getDisplayName();
-	void setDisplayName(const wstring &displayName);
-	unordered_set<wstring> *getPlayers();
-	wstring getPrefix();
-	void setPrefix(const wstring &prefix);
-	wstring getSuffix();
-	void setSuffix(const wstring &suffix);
-	wstring getFormattedName(const wstring &teamMemberName);
-	static wstring formatNameForTeam(PlayerTeam *team);
-	static wstring formatNameForTeam(Team *team, const wstring &name);
+	std::wstring getName();
+	std::wstring getDisplayName();
+	void setDisplayName(const std::wstring &displayName);
+	unordered_set<std::wstring> *getPlayers();
+	std::wstring getPrefix();
+	void setPrefix(const std::wstring &prefix);
+	std::wstring getSuffix();
+	void setSuffix(const std::wstring &suffix);
+	std::wstring getFormattedName(const std::wstring &teamMemberName);
+	static std::wstring formatNameForTeam(PlayerTeam *team);
+	static std::wstring formatNameForTeam(Team *team, const std::wstring &name);
 	bool isAllowFriendlyFire();
 	void setAllowFriendlyFire(bool allowFriendlyFire);
 	bool canSeeFriendlyInvisibles();

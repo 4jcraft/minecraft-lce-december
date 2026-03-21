@@ -549,7 +549,7 @@ void UIScene_LoadOrJoinMenu::handleLoseFocus()
     killTimer(JOIN_LOAD_ONLINE_TIMER_ID);
 }
 
-wstring UIScene_LoadOrJoinMenu::getMoviePath()
+std::wstring UIScene_LoadOrJoinMenu::getMoviePath()
 {
     return L"LoadOrJoinMenu";
 }

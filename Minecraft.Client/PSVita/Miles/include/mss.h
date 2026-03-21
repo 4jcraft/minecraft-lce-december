@@ -1854,7 +1854,7 @@ typedef struct _S3DSTATE           // Portion of HSAMPLE that deals with 3D posi
 {
    MSSVECTOR3D   position;         // 3D position
    MSSVECTOR3D   face;             // 3D orientation
-   MSSVECTOR3D   up;               // 3D up-vector
+   MSSVECTOR3D   up;               // 3D up-std::vector
    MSSVECTOR3D   velocity;         // 3D velocity
 
    S32           doppler_valid;    // TRUE if OK to apply Doppler shift
@@ -2251,7 +2251,7 @@ typedef struct REVERB_SETTINGS
 
 typedef struct _MSS_RECEIVER_LIST
 {
-   MSSVECTOR3D direction;                      // Normalized direction vector from listener
+   MSSVECTOR3D direction;                      // Normalized direction std::vector from listener
 
    S32         speaker_index[MAX_SPEAKERS];    // List of speakers affected by sounds in this direction
    F32         speaker_level[MAX_SPEAKERS];    // Each speaker's degree of effect from this source
@@ -3964,7 +3964,7 @@ DXDEC  S32      AILCALL AIL_active_sample_count    (HDIGDRIVER dig);
 DXDEC  void     AILCALL AIL_digital_configuration  (HDIGDRIVER dig,
                                                       S32   *rate,
                                                       S32   *format,
-                                                      char  *string);
+                                                      char  *std::string);
 
 DXDEC S32     AILCALL AIL_platform_property (void                 *object,
                                        MSS_PLATFORM_PROPERTY property,
@@ -5652,7 +5652,7 @@ typedef S32 (*MilesResolveFunc)(void* context, char const* exp, S32 explen, EXPO
     Callback type for resolving variable expressions to values.
 
     $:context Value passed to AIL_resolve_raw_*_preset().
-    $:exp The string expression to resolve.
+    $:exp The std::string expression to resolve.
     $:explen Length of exp.
     $:output Pointer to the memory to receive the result value.
     $:isfloat nonzero if the output needs to be a float.
@@ -5867,7 +5867,7 @@ DXDEC HMSSEVENTCONSTRUCT AILCALL AIL_create_event(void);
 
         In = "HMSSEVENTCONSTRUCT", "i_Event", "The event to complete."
 
-        ReturnType = "char*", "An allocated event string that can be passed to AIL_next_event_step or enqueued in the
+        ReturnType = "char*", "An allocated event std::string that can be passed to AIL_next_event_step or enqueued in the
             MilesEvent system via AIL_enqueue_event."
 
         Discussion = "The returned pointer must be deleted via AIL_mem_free_lock(). Note that if the MilesEvent system
@@ -5928,9 +5928,9 @@ EXPTYPEEND
         In = "HMSSEVENTCONSTRUCT", "i_Event", "The event to add the step to."
         In = "const char*", "i_SoundNames", "The names and associated weights for the event step to choose from. 
             If there are multiple names listed, the sound will be chosen at random based on the given weights. This 
-            string is of the form 'BankName1/SoundName1:Weight1:BankName2/SoundName2:Weight2:' etc. The string must always
+            std::string is of the form 'BankName1/SoundName1:Weight1:BankName2/SoundName2:Weight2:' etc. The std::string must always
             terminate in a ':'. Weight must be between 0 and 200. To provide a null sound to randomly choose to not play anything, use 
-            an empty string as an entry."
+            an empty std::string as an entry."
 
         In = "const char*", "i_PresetName", "[optional] The name of the preset, of the form 'PresetList/PresetName'"
         In = "U8", "i_PresetIsDynamic", "Nonzero if the preset should poll the value of variables every frame, instead of only when applied."
@@ -6123,7 +6123,7 @@ DXDEC S32 AILCALL AIL_add_apply_environment_event_step(HMSSEVENTCONSTRUCT i_Even
         Name = "AIL_add_comment_event_step", "Adds a step that represents a comment to the user of the editing tool."
 
         In = "HMSSEVENTCONSTRUCT", "i_Event", "The event to add on to."
-        In = "const char*", "i_Comment", "A string to display in the editing tool."
+        In = "const char*", "i_Comment", "A std::string to display in the editing tool."
 
         ReturnType = "S32", "Returns 1 on success."
 
@@ -6217,7 +6217,7 @@ DXDEC EXPAPI S32 AILCALL AIL_add_setblend_event_step(HMSSEVENTCONSTRUCT i_Event,
         Name = "AIL_add_sound_limit_event_step", "Adds a step that defines the maximum number of playing sounds per label."
 
         In = "HMSSEVENTCONSTRUCT", "i_Event", "The event to add on to."
-        In = "const char*", "i_SoundLimits", "A string of the form `"label count:anotherlabel count`"."
+        In = "const char*", "i_SoundLimits", "A std::string of the form `"label count:anotherlabel count`"."
 
         ReturnType = "S32", "Returns 1 on success."
 
@@ -6268,7 +6268,7 @@ DXDEC EXPAPI S32 AILCALL AIL_get_event_contents(HMSOUNDBANK bank, char const * n
 
     $:bank Soundbank containing the event.
     $:name Name of the event to retrieve.
-    $:event Returns an output pointer to the event contents. Note that this string isn't null terminated, and
+    $:event Returns an output pointer to the event contents. Note that this std::string isn't null terminated, and
       thus shouldn't be checked via strlen, etc.
     $:return Returns 0 on fail.
 
@@ -6359,7 +6359,7 @@ enum EVENT_STEPTYPE
     EVENT_STEPTYPE_MOVEVAR
 };
 
-//! Represents an immutable string that is not null terminated, and shouldn't be deleted.
+//! Represents an immutable std::string that is not null terminated, and shouldn't be deleted.
 struct _MSSSTRINGC
 {
     const char* str;
@@ -6518,10 +6518,10 @@ struct EVENT_STEP_INFO
         In = "void*", "i_Buffer", "A working buffer for the function to use for parsing."
         In = "S32", "i_BufferSize", "The size in bytes of the working buffer."
 
-        ReturnType = "U8 char*", "Returns 0 on fail or when the event string has been exhausted of steps. Otherwise, returns
-            the string location of the next event step in the buffer."
+        ReturnType = "U8 char*", "Returns 0 on fail or when the event std::string has been exhausted of steps. Otherwise, returns
+            the std::string location of the next event step in the buffer."
 
-        Discussion = "This function parses the event string in to a struct for usage by the user. This function should only be
+        Discussion = "This function parses the event std::string in to a struct for usage by the user. This function should only be
             used by the MilesEvent system. It returns the pointer to the next step to be passed to this function to get the 
             next step. In this manner it can be used in a loop:
 
@@ -6540,7 +6540,7 @@ struct EVENT_STEP_INFO
                 pCurrentStep = AIL_next_event_step(pCurrentStep, &pStep, EventBuffer, 4096);
                 if (pStep == 0)
                 {
-                    // Error, or an empty event. If $AIL_last_error is an empty string, then it was an empty event.
+                    // Error, or an empty event. If $AIL_last_error is an empty std::string, then it was an empty event.
                     break;
                 }
 
@@ -6814,7 +6814,7 @@ DXDEC EXPAPI S32 AILCALL AIL_enqueue_event_velocity(S32* token, F32 vx, F32 vy, 
     $:token A token created with $AIL_enqueue_event_start.
     $:return 0 if the enqueue buffer is full
 
-    If the event queued starts a sound, the sound's velocity will be set to the given vector.
+    If the event queued starts a sound, the sound's velocity will be set to the given std::vector.
 
     Setting the velocity of a sample does NOT automatically enable 3D spatialization.
 */
@@ -6978,7 +6978,7 @@ DXDEC EXPAPI U64 AILCALL AIL_enqueue_event(U8 const * event_or_name, void* user_
     
     $:event_or_name Pointer to the event contents to queue, or the name of the event to find and queue. 
             If an event, the contents must be valid until the next call to $AIL_begin_event_queue_processing.
-            If a name, the string is copied internally and does not have any lifetime requirements, and MILES_ENQUEUE_BY_NAME must be present in enqueue_flags.
+            If a name, the std::string is copied internally and does not have any lifetime requirements, and MILES_ENQUEUE_BY_NAME must be present in enqueue_flags.
     $:user_buffer Pointer to a user buffer. Depending on $(AIL_enqueue_event::enqueue_flags), this pointer can be saved directly, or its contents copied into the sound instance. 
             This data is then accessible later, when enumerating the instances. 
     $:user_buffer_len Size of the buffer pointed to by user_buffer.
@@ -7035,7 +7035,7 @@ EXPTYPEEND
         is present, once the event completes $AIL_mem_free_lock will be called on the raw pointer passed in to $AIL_enqueue_event or
         $AIL_enqueue_event_system. This is rarely used.
 
-    $:MILESEVENT_ENQUEUE_BY_NAME The event passed in is actually a string. The event system will then look for this event
+    $:MILESEVENT_ENQUEUE_BY_NAME The event passed in is actually a std::string. The event system will then look for this event
         in the loaded sound banks during queue processing.
 */
 
@@ -7482,9 +7482,9 @@ DXDEC EXPAPI S32 AILCALL AIL_set_sound_label_limits(HEVENTSYSTEM system, char co
 /*
   Sets the maximum number of sounds that matches a particular label.
 
-  $:sound_limits A string that defines one or more limits on a label by label basis.  The string should
+  $:sound_limits A std::string that defines one or more limits on a label by label basis.  The std::string should
     be of the form "label1name label1count:label2name label2count".
-  $:return Returns 0 on failure (usually a bad limit string).
+  $:return Returns 0 on failure (usually a bad limit std::string).
 
   Every time an event triggers a sound to be played, the sound limits are checked, and, if exceeded, a sound is dropped (based
   on the settings in the event step).
@@ -7510,7 +7510,7 @@ DXDEC EXPAPI S32 AILCALL AIL_enumerate_preset_persists(HEVENTSYSTEM system, HMSS
 
 DXDEC EXPAPI char * AILCALL AIL_text_dump_event_system(void);
 /*
-    Returns a big string describing the current state of the event system.
+    Returns a big std::string describing the current state of the event system.
     
     $:return String description of current systems state. 
 
@@ -7927,7 +7927,7 @@ EXPAPI typedef void AILCALLBACK AILEVENTERRORCB(S64 i_RelevantId, char const* i_
   encounters an unrecoverable error.
 
   $:i_RelevantId The ID of the asset that encountered the error, as best known. EventID or SoundID.
-  $:i_Resource A string representing the name of the resource the error is in regards to, or 0 if unknown.
+  $:i_Resource A std::string representing the name of the resource the error is in regards to, or 0 if unknown.
 
   The error description can be retrieved via $AIL_last_error.
 */
@@ -7955,7 +7955,7 @@ DXDEC EXPAPI void AILCALL AIL_set_event_error_callback(AILEVENTERRORCB * i_Error
 
     The basic usage is to have the callback check $AIL_last_error() for the overall category of 
     failure. The parameter passed to the callback might provide some context, but it can and will
-    be zero on occasion. Generally it will represent the resource string that is being worked on when the error
+    be zero on occasion. Generally it will represent the resource std::string that is being worked on when the error
     occurred.
 
     Note that there are two out of memory errors - one is the event system ran out of memory - meaning
@@ -8262,14 +8262,14 @@ typedef struct EAX_REVERB
   F32 DecayLFRatio;            // low-frequency to mid-frequency decay time ratio
   S32 Reflections;             // early reflections level relative to room effect
   F32 ReflectionsDelay;        // initial reflection delay time
-  F32 ReflectionsPanX;         // early reflections panning vector
-  F32 ReflectionsPanY;         // early reflections panning vector
-  F32 ReflectionsPanZ;         // early reflections panning vector
+  F32 ReflectionsPanX;         // early reflections panning std::vector
+  F32 ReflectionsPanY;         // early reflections panning std::vector
+  F32 ReflectionsPanZ;         // early reflections panning std::vector
   S32 Reverb;                  // late reverberation level relative to room effect
   F32 ReverbDelay;             // late reverberation delay time relative to initial reflection
-  F32 ReverbPanX;              // late reverberation panning vector
-  F32 ReverbPanY;              // late reverberation panning vector
-  F32 ReverbPanZ;              // late reverberation panning vector
+  F32 ReverbPanX;              // late reverberation panning std::vector
+  F32 ReverbPanY;              // late reverberation panning std::vector
+  F32 ReverbPanZ;              // late reverberation panning std::vector
   F32 EchoTime;                // echo time
   F32 EchoDepth;               // echo depth
   F32 ModulationTime;          // modulation time

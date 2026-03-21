@@ -74,14 +74,14 @@ public:
 	virtual int getMinCost(int level);
 	virtual int getMaxCost(int level);
 	virtual int getDamageProtection(int level, DamageSource *source);
-	virtual float getDamageBonus(int level, shared_ptr<LivingEntity> target);
+	virtual float getDamageBonus(int level, std::shared_ptr<LivingEntity> target);
 	virtual bool isCompatibleWith(Enchantment *other) const;
 	virtual Enchantment *setDescriptionId(int id);
 	virtual int getDescriptionId();
 	virtual HtmlString getFullname(int level);
-	virtual bool canEnchant(shared_ptr<ItemInstance> item);
+	virtual bool canEnchant(std::shared_ptr<ItemInstance> item);
 
 private:
 	// 4J Added
-	wstring getLevelString(int level);
+	std::wstring getLevelString(int level);
 };

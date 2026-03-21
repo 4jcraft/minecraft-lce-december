@@ -16,7 +16,7 @@ Icon *FireworksChargeItem::getLayerIcon(int auxValue, int spriteLayer)
 	return Item::getLayerIcon(auxValue, spriteLayer);
 }
 
-int FireworksChargeItem::getColor(shared_ptr<ItemInstance> item, int spriteLayer)
+int FireworksChargeItem::getColor(std::shared_ptr<ItemInstance> item, int spriteLayer)
 {
 	if (spriteLayer == 1)
 	{
@@ -53,7 +53,7 @@ bool FireworksChargeItem::hasMultipleSpriteLayers()
 	return true;
 }
 
-Tag *FireworksChargeItem::getExplosionTagField(shared_ptr<ItemInstance> instance, const wstring &field)
+Tag *FireworksChargeItem::getExplosionTagField(std::shared_ptr<ItemInstance> instance, const std::wstring &field)
 {
 	if (instance->hasTag())
 	{
@@ -66,7 +66,7 @@ Tag *FireworksChargeItem::getExplosionTagField(shared_ptr<ItemInstance> instance
 	return NULL;
 }
 
-void FireworksChargeItem::appendHoverText(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
+void FireworksChargeItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
 {
 	if (itemInstance->hasTag())
 	{

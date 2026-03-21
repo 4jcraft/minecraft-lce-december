@@ -227,7 +227,7 @@ EUIScene UIScene_CraftingMenu::getSceneType()
 	}
 }
 
-wstring UIScene_CraftingMenu::getMoviePath()
+std::wstring UIScene_CraftingMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

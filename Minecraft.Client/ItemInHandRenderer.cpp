@@ -222,7 +222,7 @@ ItemInHandRenderer::ItemInHandRenderer(Minecraft *minecraft, bool optimisedMinim
 
 }
 
-void ItemInHandRenderer::renderItem(shared_ptr<LivingEntity> mob, shared_ptr<ItemInstance> item, int layer, bool setColor/* = true*/)
+void ItemInHandRenderer::renderItem(std::shared_ptr<LivingEntity> mob, std::shared_ptr<ItemInstance> item, int layer, bool setColor/* = true*/)
 {
 	// 4J - code borrowed from render method below, although not factoring in brightness as that should already be being taken into account
 	// by texture lighting. This is for colourising things held in 3rd person view.

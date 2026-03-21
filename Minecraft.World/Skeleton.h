@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Monster.h"
 #include "RangedAttackMob.h"
@@ -42,7 +42,7 @@ protected:
 	virtual void playStepSound(int xt, int yt, int zt, int t);
 
 public:
-	virtual bool doHurtTarget(shared_ptr<Entity> target);
+	virtual bool doHurtTarget(std::shared_ptr<Entity> target);
 
 public:
 	virtual MobType getMobType();
@@ -59,11 +59,11 @@ protected:
 public:
 	virtual MobGroupData *finalizeMobSpawn(MobGroupData *groupData, int extraData = 0); // 4J Added extraData param
 	virtual void reassessWeaponGoal();
-	virtual void performRangedAttack(shared_ptr<LivingEntity> target, float power);
+	virtual void performRangedAttack(std::shared_ptr<LivingEntity> target, float power);
 	virtual int getSkeletonType();
 	virtual void setSkeletonType(int type);
 	virtual void readAdditionalSaveData(CompoundTag *tag);
 	virtual void addAdditonalSaveData(CompoundTag *entityTag);
-	virtual void setEquippedSlot(int slot, shared_ptr<ItemInstance> item);
+	virtual void setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item);
 	virtual double getRidingHeight();
 };

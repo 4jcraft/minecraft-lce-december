@@ -10,7 +10,7 @@
 #include "RideEntityTask.h"
 
 RideEntityTask::RideEntityTask(const int eType, Tutorial *tutorial, int descriptionId,
-	bool enablePreCompletion, vector<TutorialConstraint *> *inConstraints, bool bShowMinimumTime, bool bAllowFade, bool bTaskReminders)
+	bool enablePreCompletion, std::vector<TutorialConstraint *> *inConstraints, bool bShowMinimumTime, bool bAllowFade, bool bTaskReminders)
 	: TutorialTask( tutorial, descriptionId, enablePreCompletion, inConstraints, bShowMinimumTime, bAllowFade, bTaskReminders ),
 	m_eType( eType )
 {
@@ -21,7 +21,7 @@ bool RideEntityTask::isCompleted()
 	return bIsCompleted;
 }
 
-void RideEntityTask::onRideEntity(shared_ptr<Entity> entity)
+void RideEntityTask::onRideEntity(std::shared_ptr<Entity> entity)
 {
 	if (entity->instanceof((eINSTANCEOF) m_eType))
 	{

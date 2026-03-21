@@ -240,7 +240,7 @@ ModelHorse::ModelHorse()
 }
 
 
-void ModelHorse::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
 	shared_ptr<EntityHorse> entityhorse = dynamic_pointer_cast<EntityHorse>(entity);
 
@@ -367,7 +367,7 @@ float ModelHorse::rotlerp(float from, float to, float a)
 	return from + a * diff;
 }
 
-void ModelHorse::prepareMobModel(shared_ptr<LivingEntity> mob, float wp, float ws, float a)
+void ModelHorse::prepareMobModel(std::shared_ptr<LivingEntity> mob, float wp, float ws, float a)
 {
 	Model::prepareMobModel(mob, wp, ws, a);
 

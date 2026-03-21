@@ -24,7 +24,7 @@ protected:
 public:
 	virtual bool shouldRenderAtSqrDistance(double distance);
 
-	FireworksRocketEntity(Level *level, double x, double y, double z, shared_ptr<ItemInstance> sourceItem);
+	FireworksRocketEntity(Level *level, double x, double y, double z, std::shared_ptr<ItemInstance> sourceItem);
 
 	virtual void lerpMotion(double xd, double yd, double zd);
 	virtual void tick();

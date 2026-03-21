@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "UseAnim.h"
 #include "com.mojang.nbt.h"
@@ -26,7 +25,7 @@ class HtmlString;
 class ItemInstance: public enable_shared_from_this<ItemInstance>
 {
 public:
-	static const wstring ATTRIBUTE_MODIFIER_FORMAT;
+	static const std::wstring ATTRIBUTE_MODIFIER_FORMAT;
 	static const wchar_t *TAG_ENCH_ID;
 	static const wchar_t *TAG_ENCH_LEVEL;
 
@@ -118,7 +117,7 @@ public:
 	virtual unsigned int getDescriptionId(int iData = -1);
 	virtual ItemInstance *setDescriptionId(unsigned int id);
 	static shared_ptr<ItemInstance> clone(shared_ptr<ItemInstance> item);
-	wstring toString();
+	std::wstring toString();
 	void inventoryTick(Level *level, shared_ptr<Entity> owner, int slot, bool selected);
 	void onCraftedBy(Level *level, shared_ptr<Player> player, int craftCount);
 	bool equals(shared_ptr<ItemInstance> ii);
@@ -132,8 +131,8 @@ public:
 	CompoundTag *getTag();
 	ListTag<CompoundTag> *getEnchantmentTags();
 	void setTag(CompoundTag *tag);
-	wstring getHoverName();
-	void setHoverName(const wstring &name);
+	std::wstring getHoverName();
+	void setHoverName(const std::wstring &name);
 	void resetHoverName();
 	bool hasCustomHoverName();
 	vector<HtmlString> *getHoverText(shared_ptr<Player> player, bool advanced);
@@ -143,7 +142,7 @@ public:
 	bool isEnchantable();
 	void enchant(const Enchantment *enchantment, int level);
 	bool isEnchanted();
-	void addTagElement(wstring name, Tag *tag);
+	void addTagElement(std::wstring name, Tag *tag);
 	bool mayBePlacedInAdventureMode();
 	bool isFramed();
 	void setFramed(shared_ptr<ItemFrame> frame);

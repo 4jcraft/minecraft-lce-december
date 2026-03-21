@@ -6,7 +6,7 @@ StringTable::StringTable(void)
 
 }
 
-// Load string table from a binary blob, filling out with the current localisation data only
+// Load std::string table from a binary blob, filling out with the current localisation data only
 StringTable::StringTable(PBYTE pbData, DWORD dwSize)
 {
 	src = byteArray(pbData, dwSize);
@@ -31,16 +31,16 @@ void StringTable::ProcessStringTableData(void)
 	int versionNumber = dis.readInt();
 	int languagesCount = dis.readInt();
 
-	vector< pair<wstring, int> > langSizeMap;
+	std::vector< pair<std::wstring, int> > langSizeMap;
 	for(int i = 0; i < languagesCount; ++i)
 	{
-		wstring langId = dis.readUTF();
+		std::wstring langId = dis.readUTF();
 		int langSize = dis.readInt();
 
-		langSizeMap.push_back( vector< pair<wstring, int> >::value_type(langId, langSize));
+		langSizeMap.push_back( std::vector< pair<std::wstring, int> >::value_type(langId, langSize));
 	}
 
-	vector<wstring> locales;
+	std::vector<std::wstring> locales;
 	app.getLocale(locales);
 
 	bool foundLang = false;
@@ -91,7 +91,7 @@ void StringTable::ProcessStringTableData(void)
 		if (langVersion > 0)  // integers rather than wstrings as keys.
 			isStatic = dis2.readBoolean();
 
-		wstring langId = dis2.readUTF();
+		std::wstring langId = dis2.readUTF();
 		int totalStrings = dis2.readInt();
 
 		app.DebugPrintf("IsStatic=%d totalStrings = %d\n",isStatic?1:0,totalStrings);
@@ -100,10 +100,10 @@ void StringTable::ProcessStringTableData(void)
 		{
 			for(int i = 0; i < totalStrings; ++i)
 			{
-				wstring stringId = dis2.readUTF();
-				wstring stringValue = dis2.readUTF();
+				std::wstring stringId = dis2.readUTF();
+				std::wstring stringValue = dis2.readUTF();
 
-				m_stringsMap.insert( unordered_map<wstring, wstring>::value_type(stringId, stringValue) );
+				m_stringsMap.insert( std::unordered_map<std::wstring, std::wstring>::value_type(stringId, stringValue) );
 			}
 		}
 		else
@@ -142,7 +142,7 @@ void StringTable::getData(PBYTE *ppData, UINT *pSize)
 	*pSize = src.length;
 }
 
-LPCWSTR StringTable::getString(const wstring &id)
+LPCWSTR StringTable::getString(const std::wstring &id)
 {
 #ifndef _CONTENT_PACKAGE
 	if (isStatic)

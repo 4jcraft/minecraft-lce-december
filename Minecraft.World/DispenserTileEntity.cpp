@@ -28,12 +28,12 @@ unsigned int DispenserTileEntity::getContainerSize()
 	return 9;
 }
 
-shared_ptr<ItemInstance> DispenserTileEntity::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> DispenserTileEntity::getItem(unsigned int slot)
 {
 	return items[slot];
 }
 
-shared_ptr<ItemInstance> DispenserTileEntity::removeItem(unsigned int slot, int count) 
+std::shared_ptr<ItemInstance> DispenserTileEntity::removeItem(unsigned int slot, int count) 
 {
 	if (items[slot] != NULL)
 	{
@@ -59,7 +59,7 @@ shared_ptr<ItemInstance> DispenserTileEntity::removeItem(unsigned int slot, int 
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> DispenserTileEntity::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> DispenserTileEntity::removeItemNoUpdate(int slot)
 {
 	if (items[slot] != NULL)
 	{
@@ -71,7 +71,7 @@ shared_ptr<ItemInstance> DispenserTileEntity::removeItemNoUpdate(int slot)
 }
 
 // 4J-PB added for spawn eggs not being useable due to limits, so add them in again
-void DispenserTileEntity::AddItemBack(shared_ptr<ItemInstance>item, unsigned int slot) 
+void DispenserTileEntity::AddItemBack(std::shared_ptr<ItemInstance>item, unsigned int slot) 
 {
 	if (items[slot] != NULL)
 	{
@@ -123,14 +123,14 @@ int DispenserTileEntity::getRandomSlot()
 	return replaceSlot;
 }
 
-void DispenserTileEntity::setItem(unsigned int slot, shared_ptr<ItemInstance> item) 
+void DispenserTileEntity::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item) 
 {
 	items[slot] = item;
 	if (item != NULL && item->count > getMaxStackSize()) item->count = getMaxStackSize();
 	setChanged();
 }
 
-int DispenserTileEntity::addItem(shared_ptr<ItemInstance> item)
+int DispenserTileEntity::addItem(std::shared_ptr<ItemInstance> item)
 {
 	for (int i = 0; i < items.length; i++)
 	{
@@ -144,17 +144,17 @@ int DispenserTileEntity::addItem(shared_ptr<ItemInstance> item)
 	return -1;
 }
 
-wstring DispenserTileEntity::getName() 
+std::wstring DispenserTileEntity::getName() 
 {
 	return hasCustomName() ? name : app.GetString(IDS_TILE_DISPENSER);
 }
 
-wstring DispenserTileEntity::getCustomName()
+std::wstring DispenserTileEntity::getCustomName()
 {
 	return hasCustomName() ? name : L"";
 }
 
-void DispenserTileEntity::setCustomName(const wstring &name)
+void DispenserTileEntity::setCustomName(const std::wstring &name)
 {
 	this->name = name;
 }
@@ -203,7 +203,7 @@ int DispenserTileEntity::getMaxStackSize()
 	return Container::LARGE_MAX_STACK_SIZE;
 }
 
-bool DispenserTileEntity::stillValid(shared_ptr<Player> player)
+bool DispenserTileEntity::stillValid(std::shared_ptr<Player> player)
 {
 	if (level->getTileEntity(x, y, z) != shared_from_this() ) return false;
 	if (player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 8 * 8) return false;
@@ -223,13 +223,13 @@ void DispenserTileEntity::stopOpen()
 {
 }
 
-bool DispenserTileEntity::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool DispenserTileEntity::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }
 
 // 4J Added
-shared_ptr<TileEntity> DispenserTileEntity::clone()
+std::shared_ptr<TileEntity> DispenserTileEntity::clone()
 {
 	shared_ptr<DispenserTileEntity> result = shared_ptr<DispenserTileEntity>( new DispenserTileEntity() );
 	TileEntity::clone(result);

@@ -416,7 +416,7 @@ void MultiPlayerLevel::setChunkVisible(int x, int z, bool visible)
 
 }
 
-bool MultiPlayerLevel::addEntity(shared_ptr<Entity> e)
+bool MultiPlayerLevel::addEntity(std::shared_ptr<Entity> e)
 {
 	bool ok = Level::addEntity(e);
 	forced.insert(e);
@@ -429,7 +429,7 @@ bool MultiPlayerLevel::addEntity(shared_ptr<Entity> e)
 	return ok;
 }
 
-void MultiPlayerLevel::removeEntity(shared_ptr<Entity> e)
+void MultiPlayerLevel::removeEntity(std::shared_ptr<Entity> e)
 {
 	// 4J Stu - Add this remove from the reEntries collection to stop us continually removing and re-adding things,
 	// in particular the MultiPlayerLocalPlayer when they die
@@ -443,7 +443,7 @@ void MultiPlayerLevel::removeEntity(shared_ptr<Entity> e)
 	forced.erase(e);
 }
 
-void MultiPlayerLevel::entityAdded(shared_ptr<Entity> e)
+void MultiPlayerLevel::entityAdded(std::shared_ptr<Entity> e)
 {
 	Level::entityAdded(e);
 	AUTO_VAR(it, reEntries.find(e));
@@ -453,7 +453,7 @@ void MultiPlayerLevel::entityAdded(shared_ptr<Entity> e)
 	}
 }
 
-void MultiPlayerLevel::entityRemoved(shared_ptr<Entity> e)
+void MultiPlayerLevel::entityRemoved(std::shared_ptr<Entity> e)
 {
 	Level::entityRemoved(e);
 	AUTO_VAR(it, forced.find(e));
@@ -463,7 +463,7 @@ void MultiPlayerLevel::entityRemoved(shared_ptr<Entity> e)
 	}
 }
 
-void MultiPlayerLevel::putEntity(int id, shared_ptr<Entity> e)
+void MultiPlayerLevel::putEntity(int id, std::shared_ptr<Entity> e)
 {
 	shared_ptr<Entity> old = getEntity(id);
 	if (old != NULL)
@@ -480,14 +480,14 @@ void MultiPlayerLevel::putEntity(int id, shared_ptr<Entity> e)
 	entitiesById[id] = e;
 }
 
-shared_ptr<Entity> MultiPlayerLevel::getEntity(int id)
+std::shared_ptr<Entity> MultiPlayerLevel::getEntity(int id)
 {
 	AUTO_VAR(it, entitiesById.find(id));
 	if( it == entitiesById.end() ) return nullptr;
 	return it->second;
 }
 
-shared_ptr<Entity> MultiPlayerLevel::removeEntity(int id)
+std::shared_ptr<Entity> MultiPlayerLevel::removeEntity(int id)
 {
 	shared_ptr<Entity> e;
 	AUTO_VAR(it, entitiesById.find(id));
@@ -738,7 +738,7 @@ void MultiPlayerLevel::animateTickDoWork()
 
 }
 
-void MultiPlayerLevel::playSound(shared_ptr<Entity> entity, int iSound, float volume, float pitch)
+void MultiPlayerLevel::playSound(std::shared_ptr<Entity> entity, int iSound, float volume, float pitch)
 {
 	playLocalSound(entity->x, entity->y - entity->heightOffset, entity->z, iSound, volume, pitch);
 }

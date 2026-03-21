@@ -947,7 +947,7 @@ void GameRenderer::updateLightTexture(float a)
 	}
 }
 
-float GameRenderer::getNightVisionScale(shared_ptr<Player> player, float a)
+float GameRenderer::getNightVisionScale(std::shared_ptr<Player> player, float a)
 {
 	int duration = player->getEffect(MobEffect::nightVision)->getDuration();
 	if (duration > (SharedConstants::TICKS_PER_SECOND * 10))

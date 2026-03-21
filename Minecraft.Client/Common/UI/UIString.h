@@ -6,22 +6,22 @@
 
 #ifndef __PS3__
 
-typedef function<wstring(void)> StringBuilder;
+typedef function<std::wstring(void)> StringBuilder;
 
 #else
 
 class StringBuilderCore
 {
 public:
-	virtual wstring getString() = 0;
+	virtual std::wstring getString() = 0;
 };
 
 struct StringBuilder
 {
-	shared_ptr<StringBuilderCore> m_coreBuilder;
-	virtual wstring operator()() { return m_coreBuilder->getString(); }
+	std::shared_ptr<StringBuilderCore> m_coreBuilder;
+	virtual std::wstring operator()() { return m_coreBuilder->getString(); }
 	StringBuilder() {}
-	StringBuilder(StringBuilderCore *core) { m_coreBuilder = shared_ptr<StringBuilderCore>(core); }
+	StringBuilder(StringBuilderCore *core) { m_coreBuilder = std::shared_ptr<StringBuilderCore>(core); }
 };
 
 class IdsStringBuilder : public StringBuilderCore
@@ -29,11 +29,11 @@ class IdsStringBuilder : public StringBuilderCore
 	const int m_ids;
 public:
 	IdsStringBuilder(int ids) : m_ids(ids) {}
-	virtual wstring getString(void) { return app.GetString(m_ids); }
+	virtual std::wstring getString(void) { return app.GetString(m_ids); }
 };
 #endif
 
-using namespace std;
+
 
 class UIString
 {
@@ -55,7 +55,7 @@ protected:
 		int				m_lastUpdatedLanguage;
 		int				m_lastUpdatedLocale;
 
-		wstring			m_wstrCache;
+		std::wstring			m_wstrCache;
 
 		bool			m_bIsConstant;
 
@@ -63,9 +63,9 @@ protected:
 		
 	public:
 		UIStringCore(StringBuilder wstrBuilder);
-		UIStringCore(const wstring &str);
+		UIStringCore(const std::wstring &str);
 
-		wstring &getString();
+		std::wstring &getString();
 
 		bool hasNewString();
 		bool update(bool force);
@@ -74,18 +74,18 @@ protected:
 		void setUpdated();
 	};	
 
-	shared_ptr<UIStringCore> m_core;
+	std::shared_ptr<UIStringCore> m_core;
 
 public:
 	UIString();
 	
-	UIString(int ids); // Create a dynamic UI string from a string id value.
+	UIString(int ids); // Create a dynamic UI std::string from a std::string id value.
 
-	UIString(StringBuilder wstrBuilder); // Create a dynamic UI string with a custom update function.
+	UIString(StringBuilder wstrBuilder); // Create a dynamic UI std::string with a custom update function.
 	
 	// Create a UIString with a constant value.
-	UIString(const  string &constant);
-	UIString(const wstring &constant); 
+	UIString(const  std::string &constant);
+	UIString(const std::wstring &constant); 
 	UIString(const wchar_t *constant);
 
 	~UIString();
@@ -96,7 +96,7 @@ public:
 	bool	needsUpdating();	// Language has been change since the last time setUpdated was called.
 	void	setUpdated();		// The new text has been used.
 
-	wstring	&getString();
+	std::wstring	&getString();
 
 	const wchar_t *c_str();
 	unsigned int length();

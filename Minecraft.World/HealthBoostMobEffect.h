@@ -10,5 +10,5 @@ class HealthBoostMobEffect : public MobEffect
 public:
 	HealthBoostMobEffect(int id, bool isHarmful, eMinecraftColour color);
 
-	void removeAttributeModifiers(shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier);
+	void removeAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier);
 };

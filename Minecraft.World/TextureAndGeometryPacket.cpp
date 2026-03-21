@@ -30,7 +30,7 @@ TextureAndGeometryPacket::~TextureAndGeometryPacket()
 // 	}
 }
 
-TextureAndGeometryPacket::TextureAndGeometryPacket(const wstring &textureName, PBYTE pbData, DWORD dwBytes) 
+TextureAndGeometryPacket::TextureAndGeometryPacket(const std::wstring &textureName, PBYTE pbData, DWORD dwBytes) 
 {
 	this->textureName = textureName;
 
@@ -47,7 +47,7 @@ TextureAndGeometryPacket::TextureAndGeometryPacket(const wstring &textureName, P
 	this->uiAnimOverrideBitmask=0;
 }
 
-TextureAndGeometryPacket::TextureAndGeometryPacket(const wstring &textureName, PBYTE pbData, DWORD dwBytes, DLCSkinFile *pDLCSkinFile) 
+TextureAndGeometryPacket::TextureAndGeometryPacket(const std::wstring &textureName, PBYTE pbData, DWORD dwBytes, DLCSkinFile *pDLCSkinFile) 
 {
 	this->textureName = textureName;
 
@@ -80,7 +80,7 @@ TextureAndGeometryPacket::TextureAndGeometryPacket(const wstring &textureName, P
 	}
 }
 
-TextureAndGeometryPacket::TextureAndGeometryPacket(const wstring &textureName, PBYTE pbData, DWORD dwBytes,vector<SKIN_BOX *> *pvSkinBoxes, unsigned int uiAnimOverrideBitmask) 
+TextureAndGeometryPacket::TextureAndGeometryPacket(const std::wstring &textureName, PBYTE pbData, DWORD dwBytes,vector<SKIN_BOX *> *pvSkinBoxes, unsigned int uiAnimOverrideBitmask) 
 {
 	this->textureName = textureName;
 

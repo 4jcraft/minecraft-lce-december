@@ -250,7 +250,7 @@ void UIScene_JoinMenu::updateComponents()
 	m_parentLayer->showComponent(m_iPad,eUIComponent_Logo,true);
 }
 
-wstring UIScene_JoinMenu::getMoviePath()
+std::wstring UIScene_JoinMenu::getMoviePath()
 {
 	return L"JoinMenu";
 }

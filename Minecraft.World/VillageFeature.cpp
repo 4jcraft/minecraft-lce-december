@@ -5,8 +5,8 @@
 #include "net.minecraft.world.level.biome.h"
 #include "net.minecraft.world.level.dimension.h"
 
-const wstring VillageFeature::OPTION_SIZE_MODIFIER = L"size";
-const wstring VillageFeature::OPTION_SPACING = L"distance";
+const std::wstring VillageFeature::OPTION_SIZE_MODIFIER = L"size";
+const std::wstring VillageFeature::OPTION_SPACING = L"distance";
 
 vector<Biome *> VillageFeature::allowedBiomes;
 
@@ -47,7 +47,7 @@ VillageFeature::VillageFeature(unordered_map<wstring, wstring> options, int iXZS
 	}
 }
 
-wstring VillageFeature::getFeatureName()
+std::wstring VillageFeature::getFeatureName()
 {
 	return L"Village";
 }

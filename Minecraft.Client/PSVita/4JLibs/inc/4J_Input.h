@@ -155,7 +155,7 @@ public:
 	// 		Requirement Any player-entered text visible to another player on Xbox LIVE must be verified using the Xbox LIVE service before being transmitted. Text that is rejected by the Xbox LIVE service must not be displayed.
 	// 
 	// 		Remarks
-	// 		This requirement applies to any player-entered string that can be exposed to other players on Xbox LIVE. It includes session names, content descriptions, text messages, tags, team names, mottos, comments, and so on.
+	// 		This requirement applies to any player-entered std::string that can be exposed to other players on Xbox LIVE. It includes session names, content descriptions, text messages, tags, team names, mottos, comments, and so on.
 	// 
 	// 		Games may decide to not send the text, blank it out, or use generic text if the text was rejected by the Xbox LIVE service.
 	// 

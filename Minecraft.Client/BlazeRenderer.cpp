@@ -10,7 +10,7 @@ BlazeRenderer::BlazeRenderer() : MobRenderer(new BlazeModel(), 0.5f)
 	modelVersion = ((BlazeModel *) model)->modelVersion();
 }
 
-void BlazeRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
+void BlazeRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type Blaze rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead
@@ -25,7 +25,7 @@ void BlazeRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z
 	MobRenderer::render(mob, x, y, z, rot, a);
 }
 
-ResourceLocation *BlazeRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *BlazeRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &BLAZE_LOCATION;
 }

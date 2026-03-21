@@ -27,7 +27,7 @@ int DamageEnchantment::getMaxLevel()
 	return 5;
 }
 
-float DamageEnchantment::getDamageBonus(int level, shared_ptr<LivingEntity> target)
+float DamageEnchantment::getDamageBonus(int level, std::shared_ptr<LivingEntity> target)
 {
 	if (type == ALL)
 	{
@@ -54,7 +54,7 @@ bool DamageEnchantment::isCompatibleWith(Enchantment *other) const
 	return dynamic_cast<DamageEnchantment *>(other) == NULL;
 }
 
-bool DamageEnchantment::canEnchant(shared_ptr<ItemInstance> item)
+bool DamageEnchantment::canEnchant(std::shared_ptr<ItemInstance> item)
 {
 	HatchetItem *hatchet = dynamic_cast<HatchetItem *>(item->getItem());
 	if (hatchet) return true;

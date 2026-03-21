@@ -41,14 +41,14 @@ SkeletonModel::SkeletonModel(float g) : ZombieModel(g, 0, 64, 32)
 	_init(g);
 }
 
-void SkeletonModel::prepareMobModel(shared_ptr<LivingEntity> mob, float time, float r, float a)
+void SkeletonModel::prepareMobModel(std::shared_ptr<LivingEntity> mob, float time, float r, float a)
 {
 	ZombieModel::prepareMobModel(mob, time, r, a);
 
 	bowAndArrow = dynamic_pointer_cast<Skeleton>(mob)->getSkeletonType() == Skeleton::TYPE_WITHER;
 }
 
-void SkeletonModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void SkeletonModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	bowAndArrow=true;
 	ZombieModel::setupAnim(time, r, bob, yRot, xRot, scale, entity, uiBitmaskOverrideAnim);

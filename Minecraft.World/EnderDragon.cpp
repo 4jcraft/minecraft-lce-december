@@ -1103,7 +1103,7 @@ bool EnderDragon::checkWalls(AABB *bb)
 	return hitWall;
 }
 
-bool EnderDragon::hurt(shared_ptr<MultiEntityMobPart> MultiEntityMobPart, DamageSource *source, float damage)
+bool EnderDragon::hurt(std::shared_ptr<MultiEntityMobPart> MultiEntityMobPart, DamageSource *source, float damage)
 {
 	if (MultiEntityMobPart != head)
 	{

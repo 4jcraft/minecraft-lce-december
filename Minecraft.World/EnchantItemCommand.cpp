@@ -15,7 +15,7 @@ int EnchantItemCommand::getPermissionLevel()
 	return LEVEL_GAMEMASTERS;
 }
 
-void EnchantItemCommand::execute(shared_ptr<CommandSender> source, byteArray commandData)
+void EnchantItemCommand::execute(std::shared_ptr<CommandSender> source, byteArray commandData)
 {
 	ByteArrayInputStream bais(commandData);
 	DataInputStream dis(&bais);
@@ -70,7 +70,7 @@ void EnchantItemCommand::execute(shared_ptr<CommandSender> source, byteArray com
 	logAdminAction(source, ChatPacket::e_ChatCustom, L"commands.enchant.success");
 }
 
-shared_ptr<GameCommandPacket> EnchantItemCommand::preparePacket(shared_ptr<Player> player, int enchantmentId, int enchantmentLevel)
+std::shared_ptr<GameCommandPacket> EnchantItemCommand::preparePacket(std::shared_ptr<Player> player, int enchantmentId, int enchantmentLevel)
 {
 	if(player == NULL) return nullptr;
 

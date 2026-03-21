@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Entity.h"
 #include "ParticleTypes.h"
@@ -21,7 +21,7 @@ private:
 	bool inGround;
 
 public:
-	shared_ptr<LivingEntity> owner;
+	std::shared_ptr<LivingEntity> owner;
 
 private:
 	int life;
@@ -42,7 +42,7 @@ public:
 	virtual bool shouldRenderAtSqrDistance(double distance);
 
 	Fireball(Level *level, double x, double y, double z, double xa, double ya, double za);
-	Fireball(Level *level, shared_ptr<LivingEntity> mob, double xa, double ya, double za);
+	Fireball(Level *level, std::shared_ptr<LivingEntity> mob, double xa, double ya, double za);
 
 public:
 	virtual void tick();

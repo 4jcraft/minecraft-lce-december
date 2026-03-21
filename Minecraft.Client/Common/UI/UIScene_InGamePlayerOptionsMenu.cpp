@@ -215,7 +215,7 @@ UIScene_InGamePlayerOptionsMenu::UIScene_InGamePlayerOptionsMenu(int iPad, void 
 #endif
 }
 
-wstring UIScene_InGamePlayerOptionsMenu::getMoviePath()
+std::wstring UIScene_InGamePlayerOptionsMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

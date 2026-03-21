@@ -3,7 +3,7 @@
 #include "MerchantMenu.h"
 #include "MerchantContainer.h"
 
-MerchantContainer::MerchantContainer(shared_ptr<Player> player, shared_ptr<Merchant> villager)
+MerchantContainer::MerchantContainer(std::shared_ptr<Player> player, std::shared_ptr<Merchant> villager)
 {
 	this->player = player;
 	merchant = villager;
@@ -25,12 +25,12 @@ unsigned int MerchantContainer::getContainerSize()
 	return items.length;
 }
 
-shared_ptr<ItemInstance> MerchantContainer::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> MerchantContainer::getItem(unsigned int slot)
 {
 	return items[slot];
 }
 
-shared_ptr<ItemInstance> MerchantContainer::removeItem(unsigned int slot, int count)
+std::shared_ptr<ItemInstance> MerchantContainer::removeItem(unsigned int slot, int count)
 {
 	if (items[slot] != NULL)
 	{
@@ -69,7 +69,7 @@ bool MerchantContainer::isPaymentSlot(int slot)
 	return slot == MerchantMenu::PAYMENT1_SLOT || slot == MerchantMenu::PAYMENT2_SLOT;
 }
 
-shared_ptr<ItemInstance> MerchantContainer::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> MerchantContainer::removeItemNoUpdate(int slot)
 {
 	if (items[slot] != NULL)
 	{
@@ -80,7 +80,7 @@ shared_ptr<ItemInstance> MerchantContainer::removeItemNoUpdate(int slot)
 	return nullptr;
 }
 
-void MerchantContainer::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void MerchantContainer::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	items[slot] = item;
 	if (item != NULL && item->count > getMaxStackSize()) item->count = getMaxStackSize();
@@ -90,12 +90,12 @@ void MerchantContainer::setItem(unsigned int slot, shared_ptr<ItemInstance> item
 	}
 }
 
-wstring MerchantContainer::getName()
+std::wstring MerchantContainer::getName()
 {
 	return merchant->getDisplayName();
 }
 
-wstring MerchantContainer::getCustomName()
+std::wstring MerchantContainer::getCustomName()
 {
 	return L"";
 }
@@ -110,7 +110,7 @@ int MerchantContainer::getMaxStackSize()
 	return Container::LARGE_MAX_STACK_SIZE;
 }
 
-bool MerchantContainer::stillValid(shared_ptr<Player> player)
+bool MerchantContainer::stillValid(std::shared_ptr<Player> player)
 {
 	return merchant->getTradingPlayer() == player;
 }
@@ -123,7 +123,7 @@ void MerchantContainer::stopOpen()
 {
 }
 
-bool MerchantContainer::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool MerchantContainer::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }

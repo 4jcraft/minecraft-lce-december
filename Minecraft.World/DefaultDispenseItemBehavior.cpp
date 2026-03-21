@@ -6,7 +6,7 @@
 #include "net.minecraft.world.entity.item.h"
 #include "DefaultDispenseItemBehavior.h"
 
-shared_ptr<ItemInstance> DefaultDispenseItemBehavior::dispense(BlockSource *source, shared_ptr<ItemInstance> dispensed)
+std::shared_ptr<ItemInstance> DefaultDispenseItemBehavior::dispense(BlockSource *source, std::shared_ptr<ItemInstance> dispensed)
 {
 	eOUTCOME outcome = DISPENCED_ITEM;
 	shared_ptr<ItemInstance> result = execute(source, dispensed, outcome);
@@ -17,7 +17,7 @@ shared_ptr<ItemInstance> DefaultDispenseItemBehavior::dispense(BlockSource *sour
 	return result;
 }
 
-shared_ptr<ItemInstance> DefaultDispenseItemBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> DefaultDispenseItemBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	FacingEnum *facing = DispenserTile::getFacing(source->getData());
 	Position *position = DispenserTile::getDispensePosition(source);
@@ -32,7 +32,7 @@ shared_ptr<ItemInstance> DefaultDispenseItemBehavior::execute(BlockSource *sourc
 	return dispensed;
 }
 
-void DefaultDispenseItemBehavior::spawnItem(Level *world, shared_ptr<ItemInstance> item, int accuracy, FacingEnum *facing, Position *position)
+void DefaultDispenseItemBehavior::spawnItem(Level *world, std::shared_ptr<ItemInstance> item, int accuracy, FacingEnum *facing, Position *position)
 {
 	double spawnX = position->getX();
 	double spawnY = position->getY();

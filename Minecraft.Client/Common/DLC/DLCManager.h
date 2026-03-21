@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 #include <vector>
 class DLCPack;
 class DLCSkinFile;
@@ -51,7 +50,7 @@ public:
 	static WCHAR *wchTypeNamesA[e_DLCParamType_Max];
 
 private:
-	vector<DLCPack *> m_packs;
+	std::vector<DLCPack *> m_packs;
 	//bool m_bNeedsUpdated;
 	bool m_bNeedsCorruptCheck;
 	DWORD m_dwUnnamedCorruptDLCCount;

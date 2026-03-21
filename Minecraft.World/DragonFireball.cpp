@@ -17,7 +17,7 @@ DragonFireball::DragonFireball(Level *level) : Fireball(level)
 	setSize(5 / 16.0f, 5 / 16.0f);
 }
 
-DragonFireball::DragonFireball(Level *level, shared_ptr<LivingEntity> mob, double xa, double ya, double za) : Fireball(level, mob, xa, ya, za)
+DragonFireball::DragonFireball(Level *level, std::shared_ptr<LivingEntity> mob, double xa, double ya, double za) : Fireball(level, mob, xa, ya, za)
 {
 	setSize(5 / 16.0f, 5 / 16.0f);
 }

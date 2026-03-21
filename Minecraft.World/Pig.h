@@ -1,6 +1,6 @@
 #pragma once
 
-using namespace std;
+
 
 #include "Animal.h"
 
@@ -43,7 +43,7 @@ protected:
 	virtual void playStepSound(int xt, int yt, int zt, int t);
 
 public:
-	virtual bool mobInteract(shared_ptr<Player> player);
+	virtual bool mobInteract(std::shared_ptr<Player> player);
 
 protected:
 	virtual int getDeathLoot();
@@ -58,7 +58,7 @@ protected:
 	virtual void causeFallDamage(float distance);
 
 public:
-	virtual shared_ptr<AgableMob> getBreedOffspring(shared_ptr<AgableMob> target);
-	bool isFood(shared_ptr<ItemInstance> itemInstance);
+	virtual std::shared_ptr<AgableMob> getBreedOffspring(std::shared_ptr<AgableMob> target);
+	bool isFood(std::shared_ptr<ItemInstance> itemInstance);
 	ControlledByPlayerGoal *getControlGoal();
 };

@@ -78,7 +78,7 @@ bool Wolf::useNewAi()
 	return true;
 }
 
-void Wolf::setTarget(shared_ptr<LivingEntity> target)
+void Wolf::setTarget(std::shared_ptr<LivingEntity> target)
 {
 	TamableAnimal::setTarget(target);
 	if ( target == NULL )
@@ -304,7 +304,7 @@ bool Wolf::hurt(DamageSource *source, float dmg)
 	return TamableAnimal::hurt(source, dmg);
 }
 
-bool Wolf::doHurtTarget(shared_ptr<Entity> target)
+bool Wolf::doHurtTarget(std::shared_ptr<Entity> target)
 {
 	int damage = isTame() ? 4 : 2;
 	return target->hurt(DamageSource::mobAttack(dynamic_pointer_cast<Mob>(shared_from_this())), damage);
@@ -324,7 +324,7 @@ void Wolf::setTame(bool value)
 	}
 }
 
-void Wolf::tame(const wstring &wsOwnerUUID, bool bDisplayTamingParticles, bool bSetSitting) 
+void Wolf::tame(const std::wstring &wsOwnerUUID, bool bDisplayTamingParticles, bool bSetSitting) 
 {
 	setTame(true);
 	setPath(NULL);
@@ -338,7 +338,7 @@ void Wolf::tame(const wstring &wsOwnerUUID, bool bDisplayTamingParticles, bool b
 	spawnTamingParticles(bDisplayTamingParticles);
 }
 
-bool Wolf::mobInteract(shared_ptr<Player> player) 
+bool Wolf::mobInteract(std::shared_ptr<Player> player) 
 {
 	shared_ptr<ItemInstance> item = player->inventory->getSelected();
 
@@ -465,7 +465,7 @@ float Wolf::getTailAngle()
 	return 0.20f * PI;
 }
 
-bool Wolf::isFood(shared_ptr<ItemInstance> item)
+bool Wolf::isFood(std::shared_ptr<ItemInstance> item)
 {
 	if (item == NULL) return false;
 	if (dynamic_cast<FoodItem *>(Item::items[item->id]) == NULL) return false;
@@ -512,7 +512,7 @@ int Wolf::GetSynchedHealth()
 	return getEntityData()->getInteger(DATA_HEALTH_ID);
 }	
 
-shared_ptr<AgableMob> Wolf::getBreedOffspring(shared_ptr<AgableMob> target)
+std::shared_ptr<AgableMob> Wolf::getBreedOffspring(std::shared_ptr<AgableMob> target)
 {
 	// 4J - added limit to wolves that can be bred
 	if( level->canCreateMore( GetType(), Level::eSpawnType_Breed) )
@@ -544,7 +544,7 @@ void Wolf::setIsInterested(bool value)
 	}
 }
 
-bool Wolf::canMate(shared_ptr<Animal> animal)
+bool Wolf::canMate(std::shared_ptr<Animal> animal)
 {
 	if (animal == shared_from_this()) return false;
 	if (!isTame()) return false;
@@ -569,7 +569,7 @@ bool Wolf::removeWhenFarAway()
 	return !isTame() && tickCount > SharedConstants::TICKS_PER_SECOND * 60 * 2;
 }
 
-bool Wolf::wantsToAttack(shared_ptr<LivingEntity> target, shared_ptr<LivingEntity> owner)
+bool Wolf::wantsToAttack(std::shared_ptr<LivingEntity> target, std::shared_ptr<LivingEntity> owner)
 {
 	// filter un-attackable mobs
 	if (target->GetType() == eTYPE_CREEPER || target->GetType() == eTYPE_GHAST)

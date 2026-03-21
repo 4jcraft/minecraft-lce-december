@@ -28,7 +28,7 @@ bool SkullTile::isCubeShaped()
 	return false;
 }
 
-void SkullTile::updateShape(LevelSource *level, int x, int y, int z, int forceData , shared_ptr<TileEntity> forceEntity)
+void SkullTile::updateShape(LevelSource *level, int x, int y, int z, int forceData , std::shared_ptr<TileEntity> forceEntity)
 {
 	int data = level->getData(x, y, z) & PLACEMENT_MASK;
 
@@ -59,13 +59,13 @@ AABB *SkullTile::getAABB(Level *level, int x, int y, int z)
 	return BaseEntityTile::getAABB(level, x, y, z);
 }
 
-void SkullTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by)
+void SkullTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by)
 {
 	int dir = Mth::floor(by->yRot * 4 / (360) + 2.5) & 3;
 	level->setData(x, y, z, dir, Tile::UPDATE_CLIENTS);
 }
 
-shared_ptr<TileEntity> SkullTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> SkullTile::newTileEntity(Level *level)
 {
 	return shared_ptr<SkullTileEntity>(new SkullTileEntity());
 }
@@ -97,7 +97,7 @@ void SkullTile::spawnResources(Level *level, int x, int y, int z, int data, floa
 	// ... because the tile entity is removed prior to spawnResources
 }
 
-void SkullTile::playerWillDestroy(Level *level, int x, int y, int z, int data, shared_ptr<Player> player)
+void SkullTile::playerWillDestroy(Level *level, int x, int y, int z, int data, std::shared_ptr<Player> player)
 {
 	if (player->abilities.instabuild)
 	{
@@ -132,7 +132,7 @@ int SkullTile::getResource(int data, Random *random, int playerBonusLevel)
 	return Item::skull_Id;
 }
 
-void SkullTile::checkMobSpawn(Level *level, int x, int y, int z, shared_ptr<SkullTileEntity> placedSkull)
+void SkullTile::checkMobSpawn(Level *level, int x, int y, int z, std::shared_ptr<SkullTileEntity> placedSkull)
 {
 	if (placedSkull->getSkullType() == SkullTileEntity::TYPE_WITHER && y >= 2 && level->difficulty > Difficulty::PEACEFUL && !level->isClientSide)
 	{
@@ -291,7 +291,7 @@ Icon *SkullTile::getTexture(int face, int data)
 	return Tile::soulsand->getTexture(face);
 }
 
-wstring SkullTile::getTileItemIconName()
+std::wstring SkullTile::getTileItemIconName()
 {
 	return getIconName() + L"_" + SkullItem::ICON_NAMES[0];
 }

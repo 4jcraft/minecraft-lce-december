@@ -129,7 +129,7 @@ int WoolTileItem::getLevelDataForAuxValue(int auxValue)
 	return auxValue;
 }
 
-unsigned int WoolTileItem::getDescriptionId(shared_ptr<ItemInstance> instance) 
+unsigned int WoolTileItem::getDescriptionId(std::shared_ptr<ItemInstance> instance) 
 {
 	int tileId = getTileId();
 	switch(getTileId())

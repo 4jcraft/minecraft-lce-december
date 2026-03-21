@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "Entity.h"
 
@@ -68,7 +67,7 @@ protected:
 
 public:
 	virtual float getShadowHeightOffs();
-	wstring getName();
+	std::wstring getName();
 	virtual bool interact(shared_ptr<Player> player);
 
 	virtual void setDamage(float damage);

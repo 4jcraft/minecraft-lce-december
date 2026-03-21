@@ -41,7 +41,7 @@ QuadrupedModel::QuadrupedModel(int legSize, float g) : Model()
     leg3->compile(1.0f/16.0f);
 }
 
-void QuadrupedModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void QuadrupedModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
     setupAnim(time, r, bob, yRot, xRot, scale, entity);
 
@@ -73,7 +73,7 @@ void QuadrupedModel::render(shared_ptr<Entity> entity, float time, float r, floa
 	}
 }
 
-void QuadrupedModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void QuadrupedModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	float rad = (float) (180 / PI);
     head->xRot = xRot / rad;

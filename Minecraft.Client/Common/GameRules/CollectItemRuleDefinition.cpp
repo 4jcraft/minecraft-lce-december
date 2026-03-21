@@ -31,7 +31,7 @@ void CollectItemRuleDefinition::writeAttributes(DataOutputStream *dos, UINT numA
 	dos->writeUTF( _toString( m_quantity ) );
 }
 
-void CollectItemRuleDefinition::addAttribute(const wstring &attributeName, const wstring &attributeValue)
+void CollectItemRuleDefinition::addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue)
 {
 	if(attributeName.compare(L"itemId") == 0)
 	{
@@ -102,7 +102,7 @@ bool CollectItemRuleDefinition::onCollectItem(GameRule *rule, shared_ptr<ItemIns
 	return statusChanged;
 }
 
-wstring CollectItemRuleDefinition::generateXml(shared_ptr<ItemInstance> item)
+std::wstring CollectItemRuleDefinition::generateXml(shared_ptr<ItemInstance> item)
 {
 	// 4J Stu - This should be kept in sync with the GameRulesDefinition.xsd
 	wstring xml = L"";

@@ -1,7 +1,7 @@
 /* 
    base64.cpp and base64.h
 
-   Copyright (C) 2004-2008 René Nyffenegger
+   Copyright (C) 2004-2008 Renï¿½ Nyffenegger
 
    This source code is provided 'as-is', without any express or implied
    warranty. In no event will the author be held liable for any damages
@@ -21,7 +21,7 @@
 
    3. This notice may not be removed or altered from any source distribution.
 
-   René Nyffenegger rene.nyffenegger@adp-gmbh.ch
+   Renï¿½ Nyffenegger rene.nyffenegger@adp-gmbh.ch
 
 */
 
@@ -30,7 +30,7 @@
 #include "base64.h"
 #include <iostream>
 
-static const std::string base64_chars = 
+static const sstd::td::string base64_chars = 
              "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
              "abcdefghijklmnopqrstuvwxyz"
              "0123456789+/";
@@ -41,12 +41,12 @@ static inline bool is_base64(unsigned char c) {
 }
 
 // 4J ADDED,
-std::string base64_encode(std::string str)
+sstd::td::string base64_encode(sstd::td::string str)
 {
 	return base64_encode( reinterpret_cast<const unsigned char*>(str.c_str()), str.length() );
 }
 
-std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_len) {
+sstd::td::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_len) {
   std::string ret;
   int i = 0;
   int j = 0;
@@ -89,7 +89,7 @@ std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_
 
 }
 
-std::string base64_decode(std::string const& encoded_string) {
+sstd::td::string base64_decode(sstd::td::string const& encoded_string) {
   int in_len = encoded_string.size();
   int i = 0;
   int j = 0;

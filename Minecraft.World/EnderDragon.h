@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 #include "BossMob.h"
 #include "MultiEntityMob.h"
 #include "Enemy.h"
@@ -183,7 +182,7 @@ public:
 	double getHeadPartYRotDiff(int partIndex, doubleArray bodyPos, doubleArray partPos);
 	Vec3 *getHeadLookVector(float a);
 
-	virtual wstring getAName() { return app.GetString(IDS_ENDERDRAGON); };
+	virtual std::wstring getAName() { return app.GetString(IDS_ENDERDRAGON); };
 	virtual float getHealth() { return LivingEntity::getHealth(); };
 	virtual float getMaxHealth() { return LivingEntity::getMaxHealth(); };
 };

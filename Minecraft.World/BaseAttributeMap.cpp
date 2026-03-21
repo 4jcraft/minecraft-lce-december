@@ -40,7 +40,7 @@ void BaseAttributeMap::onAttributeModified(ModifiableAttributeInstance *attribut
 {
 }
 
-void BaseAttributeMap::removeItemModifiers(shared_ptr<ItemInstance> item)
+void BaseAttributeMap::removeItemModifiers(std::shared_ptr<ItemInstance> item)
 {
 	attrAttrModMap *modifiers = item->getAttributeModifiers();
 
@@ -60,7 +60,7 @@ void BaseAttributeMap::removeItemModifiers(shared_ptr<ItemInstance> item)
 	delete modifiers;
 }
 
-void BaseAttributeMap::addItemModifiers(shared_ptr<ItemInstance> item)
+void BaseAttributeMap::addItemModifiers(std::shared_ptr<ItemInstance> item)
 {
 	attrAttrModMap *modifiers = item->getAttributeModifiers();
 

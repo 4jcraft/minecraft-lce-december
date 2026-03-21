@@ -37,7 +37,7 @@ LoginPacket::LoginPacket()
 }
 
 // Client -> Server
-LoginPacket::LoginPacket(const wstring& userName, int clientVersion, PlayerUID offlineXuid, PlayerUID onlineXuid,  bool friendsOnlyUGC, DWORD ugcPlayersVersion, DWORD skinId, DWORD capeId, bool isGuest)
+LoginPacket::LoginPacket(const std::wstring& userName, int clientVersion, PlayerUID offlineXuid, PlayerUID onlineXuid,  bool friendsOnlyUGC, DWORD ugcPlayersVersion, DWORD skinId, DWORD capeId, bool isGuest)
 {
 	this->userName = userName;
 	this->clientVersion = clientVersion;
@@ -66,7 +66,7 @@ LoginPacket::LoginPacket(const wstring& userName, int clientVersion, PlayerUID o
 }
 
 // Server -> Client
-LoginPacket::LoginPacket(const wstring& userName, int clientVersion, LevelType *pLevelType, __int64 seed, int gameType, char dimension, BYTE mapHeight, BYTE maxPlayers, char difficulty, INT multiplayerInstanceId, BYTE playerIndex, bool newSeaLevel, unsigned int uiGamePrivileges, int xzSize, int hellScale) 
+LoginPacket::LoginPacket(const std::wstring& userName, int clientVersion, LevelType *pLevelType, __int64 seed, int gameType, char dimension, BYTE mapHeight, BYTE maxPlayers, char difficulty, INT multiplayerInstanceId, BYTE playerIndex, bool newSeaLevel, unsigned int uiGamePrivileges, int xzSize, int hellScale) 
 {
 	this->userName = userName;
 	this->clientVersion = clientVersion;

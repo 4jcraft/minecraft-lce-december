@@ -6,7 +6,7 @@
 class RandomScatteredLargeFeature : public StructureFeature
 {
 public:
-	static const wstring OPTION_SPACING;
+	static const std::wstring OPTION_SPACING;
 
 	static void staticCtor();
 	static vector<Biome *> allowedBiomes;
@@ -22,7 +22,7 @@ public:
 	RandomScatteredLargeFeature();
 	RandomScatteredLargeFeature(unordered_map<wstring, wstring> options);
 
-	wstring getFeatureName();
+	std::wstring getFeatureName();
 
 protected:
 	virtual bool isFeatureChunk(int x, int z, bool bIsSuperflat=false);

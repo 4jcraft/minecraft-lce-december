@@ -29,7 +29,7 @@ EntityRenderer::~EntityRenderer()
 	delete tileRenderer;
 }
 
-void EntityRenderer::bindTexture(shared_ptr<Entity> entity)
+void EntityRenderer::bindTexture(std::shared_ptr<Entity> entity)
 {
 	bindTexture(getTextureLocation(entity));
 }
@@ -39,7 +39,7 @@ void EntityRenderer::bindTexture(ResourceLocation *location)
 	entityRenderDispatcher->textures->bindTexture(location);
 }
 
-bool EntityRenderer::bindTexture(const wstring& urlTexture, int backupTexture)
+bool EntityRenderer::bindTexture(const std::wstring& urlTexture, int backupTexture)
 {
     Textures *t = entityRenderDispatcher->textures;
 
@@ -60,7 +60,7 @@ bool EntityRenderer::bindTexture(const wstring& urlTexture, int backupTexture)
     }
 }
 
-bool EntityRenderer::bindTexture(const wstring& urlTexture, const wstring &backupTexture)
+bool EntityRenderer::bindTexture(const std::wstring& urlTexture, const std::wstring &backupTexture)
 {
 	Textures *t = entityRenderDispatcher->textures;
 
@@ -81,7 +81,7 @@ bool EntityRenderer::bindTexture(const wstring& urlTexture, const wstring &backu
 	}
 }
 
-void EntityRenderer::renderFlame(shared_ptr<Entity> e, double x, double y, double z, float a)
+void EntityRenderer::renderFlame(std::shared_ptr<Entity> e, double x, double y, double z, float a)
 {
 	glDisable(GL_LIGHTING);
 
@@ -149,7 +149,7 @@ void EntityRenderer::renderFlame(shared_ptr<Entity> e, double x, double y, doubl
 	glEnable(GL_LIGHTING);
 
 }
-void EntityRenderer::renderShadow(shared_ptr<Entity> e, double x, double y, double z, float pow, float a)
+void EntityRenderer::renderShadow(std::shared_ptr<Entity> e, double x, double y, double z, float pow, float a)
 {
 	glDisable(GL_LIGHTING);
 	glEnable(GL_BLEND);
@@ -378,7 +378,7 @@ void EntityRenderer::init(EntityRenderDispatcher *entityRenderDispatcher)
 	this->entityRenderDispatcher = entityRenderDispatcher;
 }
 
-void EntityRenderer::postRender(shared_ptr<Entity> entity, double x, double y, double z, float rot, float a, bool bRenderPlayerShadow)
+void EntityRenderer::postRender(std::shared_ptr<Entity> entity, double x, double y, double z, float rot, float a, bool bRenderPlayerShadow)
 {
 	if( !entityRenderDispatcher->isGuiRender )		// 4J - added, don't render shadow in gui as it uses its own blending, and we have globally enabled blending for interface opacity
 	{
@@ -404,7 +404,7 @@ void EntityRenderer::registerTerrainTextures(IconRegister *iconRegister)
 {
 }
 
-ResourceLocation *EntityRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *EntityRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
 	return NULL;
 }

@@ -5,7 +5,7 @@
 #include "Slot.h"
 #include "TrapMenu.h"
 
-TrapMenu::TrapMenu(shared_ptr<Container> inventory, shared_ptr<DispenserTileEntity> trap)
+TrapMenu::TrapMenu(std::shared_ptr<Container> inventory, std::shared_ptr<DispenserTileEntity> trap)
 {
 	this->trap = trap;
 
@@ -30,13 +30,13 @@ TrapMenu::TrapMenu(shared_ptr<Container> inventory, shared_ptr<DispenserTileEnti
 	}
 }
 
-bool TrapMenu::stillValid(shared_ptr<Player> player)
+bool TrapMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return trap->stillValid(player);
 }
 
 // 4J Stu - Brought forward from 1.2
-shared_ptr<ItemInstance> TrapMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> TrapMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);

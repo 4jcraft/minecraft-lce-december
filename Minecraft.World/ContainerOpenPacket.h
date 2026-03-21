@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 
@@ -29,16 +29,16 @@ public:
 	int type;
 	int size;
 	bool customName;
-	wstring title;
+	std::wstring title;
 	int entityId;
 
 private:
-	void _init(int containerId, int type, const wstring &title, int size, bool customName, int entityId);
+	void _init(int containerId, int type, const std::wstring &title, int size, bool customName, int entityId);
 
 public:
 	ContainerOpenPacket();
-	ContainerOpenPacket(int containerId, int type, const wstring &title, int size, bool customName);
-	ContainerOpenPacket(int containerId, int type, const wstring &title, int size, bool customName, int entityId);
+	ContainerOpenPacket(int containerId, int type, const std::wstring &title, int size, bool customName);
+	ContainerOpenPacket(int containerId, int type, const std::wstring &title, int size, bool customName, int entityId);
 
 	virtual void handle(PacketListener *listener);
 	virtual void read(DataInputStream *dis);
@@ -46,7 +46,7 @@ public:
 	virtual int getEstimatedSize();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new ContainerOpenPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new ContainerOpenPacket()); }
 	virtual int getId() { return 100; }
 };
 

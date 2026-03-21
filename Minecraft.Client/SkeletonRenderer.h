@@ -11,7 +11,7 @@ public:
 	SkeletonRenderer();
 
 protected:
-    virtual void scale(shared_ptr<LivingEntity> mob, float a);
+    virtual void scale(std::shared_ptr<LivingEntity> mob, float a);
     void translateWeaponItem();
-    virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> entity);
+    virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> entity);
 };

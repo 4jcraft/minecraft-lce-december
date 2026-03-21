@@ -11,11 +11,11 @@
 #include "LevelChunk.h"
 #include "Dimension.h"
 
-const wstring PistonBaseTile::EDGE_TEX = L"piston_side";
-const wstring PistonBaseTile::PLATFORM_TEX = L"piston_top";
-const wstring PistonBaseTile::PLATFORM_STICKY_TEX = L"piston_top_sticky";
-const wstring PistonBaseTile::BACK_TEX = L"piston_bottom";
-const wstring PistonBaseTile::INSIDE_TEX = L"piston_inner_top";
+const std::wstring PistonBaseTile::EDGE_TEX = L"piston_side";
+const std::wstring PistonBaseTile::PLATFORM_TEX = L"piston_top";
+const std::wstring PistonBaseTile::PLATFORM_STICKY_TEX = L"piston_top_sticky";
+const std::wstring PistonBaseTile::BACK_TEX = L"piston_bottom";
+const std::wstring PistonBaseTile::INSIDE_TEX = L"piston_inner_top";
 
 const float PistonBaseTile::PLATFORM_THICKNESS = 4.0f;
 
@@ -90,7 +90,7 @@ Icon *PistonBaseTile::getTexture(int face, int data)
 	return icon;
 }
 
-Icon *PistonBaseTile::getTexture(const wstring &name)
+Icon *PistonBaseTile::getTexture(const std::wstring &name)
 {
 	if (name.compare(EDGE_TEX) == 0) return Tile::pistonBase->icon;
 	if (name.compare(PLATFORM_TEX) == 0) return Tile::pistonBase->iconPlatform;
@@ -119,12 +119,12 @@ bool PistonBaseTile::isSolidRender(bool isServerLevel)
 	return false;
 }
 
-bool PistonBaseTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool PistonBaseTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	return false;
 }
 
-void PistonBaseTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void PistonBaseTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	int targetData = getNewFacing(level, x, y, z, dynamic_pointer_cast<Player>(by) );
 	level->setData(x, y, z, targetData, Tile::UPDATE_CLIENTS);
@@ -343,7 +343,7 @@ bool PistonBaseTile::triggerEvent(Level *level, int x, int y, int z, int param1,
 	return true;
 }
 
-void PistonBaseTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void PistonBaseTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	int data = (forceData == -1 ) ? level->getData(x, y, z) : forceData;
 
@@ -383,7 +383,7 @@ void PistonBaseTile::updateDefaultShape()
 	setShape(0, 0, 0, 1, 1, 1);
 }
 
-void PistonBaseTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, shared_ptr<Entity> source)
+void PistonBaseTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, std::shared_ptr<Entity> source)
 {
 	setShape(0, 0, 0, 1, 1, 1);
 	Tile::addAABBs(level, x, y, z, box, boxes, source);
@@ -410,7 +410,7 @@ bool PistonBaseTile::isExtended(int data)
 	return (data & EXTENDED_BIT) != 0;
 }
 
-int PistonBaseTile::getNewFacing(Level *level, int x, int y, int z, shared_ptr<LivingEntity> player)
+int PistonBaseTile::getNewFacing(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> player)
 {
 	if (Mth::abs((float) player->x - x) < 2 && Mth::abs((float) player->z - z) < 2) 
 	{

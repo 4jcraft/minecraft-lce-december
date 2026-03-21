@@ -218,7 +218,7 @@ void AbstractContainerScreen::removed()
     if (minecraft->player == NULL) return;
 }
 
-void AbstractContainerScreen::slotsChanged(shared_ptr<Container> container)
+void AbstractContainerScreen::slotsChanged(std::shared_ptr<Container> container)
 {
 }
 

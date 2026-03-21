@@ -61,7 +61,7 @@ void FlatLayerInfo::setStart(int start)
 	this->start = start;
 }
 
-wstring FlatLayerInfo::toString()
+std::wstring FlatLayerInfo::toString()
 {
 	wstring result = _toString<int>(id);
 

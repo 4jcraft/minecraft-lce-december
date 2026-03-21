@@ -96,7 +96,7 @@ bool DispenserTile::TestUse()
 	return true;
 }
 
-bool DispenserTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool DispenserTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if( soundOnly) return false;
 
@@ -136,7 +136,7 @@ void DispenserTile::dispenseFrom(Level *level, int x, int y, int z)
 	}
 }
 
-DispenseItemBehavior *DispenserTile::getDispenseMethod(shared_ptr<ItemInstance> item)
+DispenseItemBehavior *DispenserTile::getDispenseMethod(std::shared_ptr<ItemInstance> item)
 {
 	return REGISTRY.get(item->getItem());
 }
@@ -166,12 +166,12 @@ void DispenserTile::tick(Level *level, int x, int y, int z, Random *random)
 	}
 }
 
-shared_ptr<TileEntity> DispenserTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> DispenserTile::newTileEntity(Level *level)
 {
 	return shared_ptr<DispenserTileEntity>( new DispenserTileEntity() );
 }
 
-void DispenserTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void DispenserTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	int dir = PistonBaseTile::getNewFacing(level, x, y, z, by);
 

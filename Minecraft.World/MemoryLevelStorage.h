@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "LevelStorage.h"
 #include "PlayerIO.h"
@@ -24,8 +23,8 @@ public:
     virtual void saveLevelData(LevelData *levelData);
     virtual PlayerIO *getPlayerIO();
     virtual void closeAll();
-    virtual void save(shared_ptr<Player> player);
-    virtual bool load(shared_ptr<Player> player);
-    virtual CompoundTag *loadPlayerDataTag(const wstring& playerName);
-    virtual ConsoleSavePath getDataFile(const wstring& id);
+    virtual void save(std::shared_ptr<Player> player);
+    virtual bool load(std::shared_ptr<Player> player);
+    virtual CompoundTag *loadPlayerDataTag(const std::wstring& playerName);
+    virtual ConsoleSavePath getDataFile(const std::wstring& id);
 };

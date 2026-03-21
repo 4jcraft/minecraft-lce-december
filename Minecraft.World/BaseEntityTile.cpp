@@ -24,7 +24,7 @@ void BaseEntityTile::onRemove(Level *level, int x, int y, int z, int id, int dat
 bool BaseEntityTile::triggerEvent(Level *level, int x, int y, int z, int b0, int b1)
 {
 	Tile::triggerEvent(level, x, y, z, b0, b1);
-	shared_ptr<TileEntity> te = level->getTileEntity(x, y, z);
+	std::shared_ptr<TileEntity> te = level->getTileEntity(x, y, z);
 	if (te != NULL)
 	{
 		return te->triggerEvent(b0, b1);

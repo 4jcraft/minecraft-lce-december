@@ -140,7 +140,7 @@ HumanoidModel::HumanoidModel(float g, float yOffset, int texWidth, int texHeight
 	_init(g,yOffset,texWidth,texHeight);
 }
 
-void HumanoidModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void HumanoidModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {	
 	if(entity != NULL)
 	{
@@ -180,7 +180,7 @@ void HumanoidModel::render(shared_ptr<Entity> entity, float time, float r, float
 	}
 }
 
-void HumanoidModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void HumanoidModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	//bool bIsAttacking = (attackTime > -9990.0f);
 	

@@ -52,7 +52,7 @@ FishingHook::FishingHook(Level *level) : Entity( level )
 	_init();
 }
 
-FishingHook::FishingHook(Level *level, double x, double y, double z, shared_ptr<Player> owner) : Entity( level )
+FishingHook::FishingHook(Level *level, double x, double y, double z, std::shared_ptr<Player> owner) : Entity( level )
 {
 	_init();
 
@@ -63,7 +63,7 @@ FishingHook::FishingHook(Level *level, double x, double y, double z, shared_ptr<
 	setPos(x, y, z);
 }
 
-FishingHook::FishingHook(Level *level, shared_ptr<Player> mob) : Entity( level )
+FishingHook::FishingHook(Level *level, std::shared_ptr<Player> mob) : Entity( level )
 {
 	_init();
 

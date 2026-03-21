@@ -51,8 +51,8 @@ public:
 	virtual shared_ptr<ItemInstance> removeItem(unsigned int slot, int count) { return MinecartContainer::removeItem(slot, count); }
 	virtual shared_ptr<ItemInstance> removeItemNoUpdate(int slot) { return MinecartContainer::removeItemNoUpdate(slot); }
 	virtual void setItem(unsigned int slot, shared_ptr<ItemInstance> item) { MinecartContainer::setItem(slot, item); }
-	virtual wstring getName() { return MinecartContainer::getName(); }
-	virtual wstring getCustomName() { return MinecartContainer::getCustomName(); }
+	virtual std::wstring getName() { return MinecartContainer::getName(); }
+	virtual std::wstring getCustomName() { return MinecartContainer::getCustomName(); }
 	virtual bool hasCustomName() { return MinecartContainer::hasCustomName(); }
 	virtual int getMaxStackSize() { return MinecartContainer::getMaxStackSize(); }
 

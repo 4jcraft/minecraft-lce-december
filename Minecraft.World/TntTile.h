@@ -18,9 +18,9 @@ public:
 	virtual int getResourceCount(Random *random);
 	virtual void wasExploded(Level *level, int x, int y, int z, Explosion *explosion);
 	virtual void destroy(Level *level, int x, int y, int z, int data);
-	virtual void destroy(Level *level, int x, int y, int z, int data, shared_ptr<LivingEntity> source);
-	virtual bool use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly = false); // 4J added soundOnly param
-	virtual void entityInside(Level *level, int x, int y, int z, shared_ptr<Entity> entity);
+	virtual void destroy(Level *level, int x, int y, int z, int data, std::shared_ptr<LivingEntity> source);
+	virtual bool use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly = false); // 4J added soundOnly param
+	virtual void entityInside(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity);
 	virtual bool dropFromExplosion(Explosion *explosion);
 	virtual void registerIcons(IconRegister *iconRegister);
 };

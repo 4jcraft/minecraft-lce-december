@@ -45,7 +45,7 @@ protected:
 
 public:
 	virtual bool isSignalSource();
-	virtual void setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance);
+	virtual void setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance);
 	virtual void onPlace(Level *level, int x, int y, int z);
 
 protected:

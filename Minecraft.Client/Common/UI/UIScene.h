@@ -1,7 +1,6 @@
 #pragma once
 // 4J-PB - remove the inherits via dominance warnings
 #pragma warning( disable : 4250 )
-using namespace std;
 // A scene map directly to an Iggy movie (or more accurately a collection of different sized movies)
 
 #include "UIEnums.h"
@@ -67,7 +66,7 @@ private:
 	bool m_bCanHandleInput;
 	UIScene *m_backScene;
 
-	size_t m_callbackUniqueId;
+	std::size_t m_callbackUniqueId;
 
 public:
 	enum ESceneResolution
@@ -271,7 +270,7 @@ protected:
 	virtual long long getDefaultGtcButtons() { return _360_GTC_BACK; }
 #endif
 
-	size_t GetCallbackUniqueId();
+	std::size_t GetCallbackUniqueId();
 
 	virtual bool isReadyToDelete();
 };

@@ -5,12 +5,12 @@
 class DummyCriteria : public ObjectiveCriteria
 {
 private:
-	wstring name;
+	std::wstring name;
 
 public:
-	DummyCriteria(const wstring &name);
+	DummyCriteria(const std::wstring &name);
 
-	virtual wstring getName();
-	virtual int getScoreModifier(vector<shared_ptr<Player> > *players);
+	virtual std::wstring getName();
+	virtual int getScoreModifier(vector<std::shared_ptr<Player> > *players);
 	virtual bool isReadOnly();
 };

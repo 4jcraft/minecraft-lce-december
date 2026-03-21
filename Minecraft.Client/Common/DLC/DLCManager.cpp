@@ -39,7 +39,7 @@ DLCManager::~DLCManager()
 	}
 }
 
-DLCManager::EDLCParameterType DLCManager::getParameterType(const wstring &paramName)
+DLCManager::EDLCParameterType DLCManager::getParameterType(const std::wstring &paramName)
 {
 	EDLCParameterType type = e_DLCParamType_Invalid;
 
@@ -113,7 +113,7 @@ void DLCManager::LanguageChanged(void)
 
 }
 
-DLCPack *DLCManager::getPack(const wstring &name)
+DLCPack *DLCManager::getPack(const std::wstring &name)
 {
 	DLCPack *pack = NULL;
 	//DWORD currentIndex = 0;
@@ -121,7 +121,7 @@ DLCPack *DLCManager::getPack(const wstring &name)
 	for(AUTO_VAR(it, m_packs.begin()); it != m_packs.end(); ++it)
 	{
 		currentPack = *it;
-		wstring wsName=currentPack->getName();
+		std::wstring wsName=currentPack->getName();
 
 		if(wsName.compare(name) == 0)
 		{
@@ -133,7 +133,7 @@ DLCPack *DLCManager::getPack(const wstring &name)
 }
 
 #ifdef _XBOX_ONE
-DLCPack *DLCManager::getPackFromProductID(const wstring &productID)
+DLCPack *DLCManager::getPackFromProductID(const std::wstring &productID)
 {
 	DLCPack *pack = NULL;
 	//DWORD currentIndex = 0;
@@ -141,7 +141,7 @@ DLCPack *DLCManager::getPackFromProductID(const wstring &productID)
 	for(AUTO_VAR(it, m_packs.begin()); it != m_packs.end(); ++it)
 	{
 		currentPack = *it;
-		wstring wsName=currentPack->getPurchaseOfferId();
+		std::wstring wsName=currentPack->getPurchaseOfferId();
 
 		if(wsName.compare(productID) == 0)
 		{
@@ -233,7 +233,7 @@ DWORD DLCManager::getPackIndex(DLCPack *pack, bool &found, EDLCType type /*= e_D
 	return foundIndex;
 }
 
-DWORD DLCManager::getPackIndexContainingSkin(const wstring &path, bool &found)
+DWORD DLCManager::getPackIndexContainingSkin(const std::wstring &path, bool &found)
 {
 	DWORD foundIndex = 0;
 	found = false;
@@ -255,7 +255,7 @@ DWORD DLCManager::getPackIndexContainingSkin(const wstring &path, bool &found)
 	return foundIndex;
 }
 
-DLCPack *DLCManager::getPackContainingSkin(const wstring &path)
+DLCPack *DLCManager::getPackContainingSkin(const std::wstring &path)
 {
 	DLCPack *foundPack = NULL;
 	for(AUTO_VAR(it, m_packs.begin()); it != m_packs.end(); ++it)
@@ -273,7 +273,7 @@ DLCPack *DLCManager::getPackContainingSkin(const wstring &path)
 	return foundPack;
 }
 
-DLCSkinFile *DLCManager::getSkinFile(const wstring &path)
+DLCSkinFile *DLCManager::getSkinFile(const std::wstring &path)
 {
 	DLCSkinFile *foundSkinfile = NULL;
 	for(AUTO_VAR(it, m_packs.begin()); it != m_packs.end(); ++it)
@@ -310,7 +310,7 @@ DWORD DLCManager::checkForCorruptDLCAndAlert(bool showMessage /*= true*/)
 		uiIDA[0]=IDS_CONFIRM_OK;
 		if(corruptDLCCount == 1 && firstCorruptPack != NULL)
 		{
-			// pass in the pack format string
+			// pass in the pack format std::string
 			WCHAR wchFormat[132];
 			swprintf(wchFormat, 132, L"%ls\n\n%%ls", firstCorruptPack->getName().c_str());
 
@@ -328,15 +328,15 @@ DWORD DLCManager::checkForCorruptDLCAndAlert(bool showMessage /*= true*/)
 	return corruptDLCCount;
 }
 
-bool DLCManager::readDLCDataFile(DWORD &dwFilesProcessed, const wstring &path, DLCPack *pack, bool fromArchive)
+bool DLCManager::readDLCDataFile(DWORD &dwFilesProcessed, const std::wstring &path, DLCPack *pack, bool fromArchive)
 {
 	return readDLCDataFile( dwFilesProcessed, wstringtofilename(path), pack, fromArchive);
 }
 
 
-bool DLCManager::readDLCDataFile(DWORD &dwFilesProcessed, const string &path, DLCPack *pack, bool fromArchive)
+bool DLCManager::readDLCDataFile(DWORD &dwFilesProcessed, const std::string &path, DLCPack *pack, bool fromArchive)
 {
-	wstring wPath = convStringToWstring(path);
+	std::wstring wPath = convStringToWstring(path);
 	if (fromArchive && app.getArchiveFileSize(wPath) >= 0)
 	{
 		byteArray bytes = app.getArchiveFile(wPath);
@@ -345,11 +345,11 @@ bool DLCManager::readDLCDataFile(DWORD &dwFilesProcessed, const string &path, DL
 	else if (fromArchive) return false;
 
 #ifdef _WINDOWS64
-	string finalPath = StorageManager.GetMountedPath(path.c_str());
+	std::string finalPath = StorageManager.GetMountedPath(path.c_str());
 	if(finalPath.size() == 0) finalPath = path;
 	HANDLE file = CreateFile(finalPath.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 #elif defined(_DURANGO)
-	wstring finalPath = StorageManager.GetMountedPath(wPath.c_str());
+	std::wstring finalPath = StorageManager.GetMountedPath(wPath.c_str());
 	if(finalPath.size() == 0) finalPath = wPath;
 	HANDLE file = CreateFile(finalPath.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 #else
@@ -389,7 +389,7 @@ bool DLCManager::readDLCDataFile(DWORD &dwFilesProcessed, const string &path, DL
 
 bool DLCManager::processDLCDataFile(DWORD &dwFilesProcessed, PBYTE pbData, DWORD dwLength, DLCPack *pack)
 {
-	unordered_map<int, DLCManager::EDLCParameterType> parameterMapping;
+	std::unordered_map<int, DLCManager::EDLCParameterType> parameterMapping;
 	unsigned int uiCurrentByte=0;
 
 	// File format defined in the DLC_Creator
@@ -420,7 +420,7 @@ bool DLCManager::processDLCDataFile(DWORD &dwFilesProcessed, PBYTE pbData, DWORD
 	for(unsigned int i=0;i<uiParameterCount;i++)
 	{
 		// Map DLC strings to application strings, then store the DLC index mapping to application index
-		wstring parameterName((WCHAR *)pParams->wchData);
+		std::wstring parameterName((WCHAR *)pParams->wchData);
 		DLCManager::EDLCParameterType type = DLCManager::getParameterType(parameterName);
 		if( type != DLCManager::e_DLCParamType_Invalid )
 		{
@@ -513,7 +513,7 @@ bool DLCManager::processDLCDataFile(DWORD &dwFilesProcessed, PBYTE pbData, DWORD
 			// Data
 			dlcFile->addData(pbTemp,pFile->uiFileSize);
 
-			// TODO - 4J Stu Remove the need for this vSkinNames vector, or manage it differently
+			// TODO - 4J Stu Remove the need for this vSkinNames std::vector, or manage it differently
 			switch(pFile->dwType)
 			{
 			case DLCManager::e_DLCType_Skin:
@@ -546,17 +546,17 @@ bool DLCManager::processDLCDataFile(DWORD &dwFilesProcessed, PBYTE pbData, DWORD
 	return true;
 }
 
-DWORD DLCManager::retrievePackIDFromDLCDataFile(const string &path, DLCPack *pack)
+DWORD DLCManager::retrievePackIDFromDLCDataFile(const std::string &path, DLCPack *pack)
 {
 	DWORD packId = 0;
-	wstring wPath = convStringToWstring(path);
+	std::wstring wPath = convStringToWstring(path);
 
 #ifdef _WINDOWS64
-	string finalPath = StorageManager.GetMountedPath(path.c_str());
+	std::string finalPath = StorageManager.GetMountedPath(path.c_str());
 	if(finalPath.size() == 0) finalPath = path;
 	HANDLE file = CreateFile(finalPath.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 #elif defined(_DURANGO)
-	wstring finalPath = StorageManager.GetMountedPath(wPath.c_str());
+	std::wstring finalPath = StorageManager.GetMountedPath(wPath.c_str());
 	if(finalPath.size() == 0) finalPath = wPath;
 	HANDLE file = CreateFile(finalPath.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 #else
@@ -596,7 +596,7 @@ DWORD DLCManager::retrievePackID(PBYTE pbData, DWORD dwLength, DLCPack *pack)
 {
 	DWORD packId=0;
 	bool bPackIDSet=false;
-	unordered_map<int, DLCManager::EDLCParameterType> parameterMapping;
+	std::unordered_map<int, DLCManager::EDLCParameterType> parameterMapping;
 	unsigned int uiCurrentByte=0;
 
 	// File format defined in the DLC_Creator
@@ -625,7 +625,7 @@ DWORD DLCManager::retrievePackID(PBYTE pbData, DWORD dwLength, DLCPack *pack)
 	for(unsigned int i=0;i<uiParameterCount;i++)
 	{
 		// Map DLC strings to application strings, then store the DLC index mapping to application index
-		wstring parameterName((WCHAR *)pParams->wchData);
+		std::wstring parameterName((WCHAR *)pParams->wchData);
 		DLCManager::EDLCParameterType type = DLCManager::getParameterType(parameterName);
 		if( type != DLCManager::e_DLCParamType_Invalid )
 		{
@@ -666,7 +666,7 @@ DWORD DLCManager::retrievePackID(PBYTE pbData, DWORD dwLength, DLCPack *pack)
 				{
 					if(it->second==e_DLCParamType_PackId)
 					{				
-						wstring wsTemp=(WCHAR *)pParams->wchData;
+						std::wstring wsTemp=(WCHAR *)pParams->wchData;
 						std::wstringstream ss;
 						// 4J Stu - numbered using decimal to make it easier for artists/people to number manually
 						ss << std::dec << wsTemp.c_str();

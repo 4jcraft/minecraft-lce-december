@@ -11,11 +11,11 @@ private:
 
 public:	
 	WitchRenderer();
-	virtual void render(shared_ptr<Entity> entity, double x, double y, double z, float rot, float a);
+	virtual void render(std::shared_ptr<Entity> entity, double x, double y, double z, float rot, float a);
 
 protected:
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> entity);
-	virtual void additionalRendering(shared_ptr<LivingEntity> mob, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> entity);
+	virtual void additionalRendering(std::shared_ptr<LivingEntity> mob, float a);
 	virtual void translateWeaponItem();
-	virtual void scale(shared_ptr<LivingEntity> mob, float a);
+	virtual void scale(std::shared_ptr<LivingEntity> mob, float a);
 };

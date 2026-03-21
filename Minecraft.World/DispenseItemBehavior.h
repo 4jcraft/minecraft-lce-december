@@ -19,11 +19,11 @@ public:
 	* @param dispensed The ItemInstance which is being dispensed
 	* @return The ItemInstance that should is 'left over'
 	*/
-	virtual shared_ptr<ItemInstance> dispense(BlockSource *source, shared_ptr<ItemInstance> dispensed) = 0;
+	virtual std::shared_ptr<ItemInstance> dispense(BlockSource *source, std::shared_ptr<ItemInstance> dispensed) = 0;
 };
 
 class NoOpDispenseItemBehavior : public DispenseItemBehavior
 {
 public:
-	shared_ptr<ItemInstance> dispense(BlockSource *source, shared_ptr<ItemInstance> dispensed);
+	std::shared_ptr<ItemInstance> dispense(BlockSource *source, std::shared_ptr<ItemInstance> dispensed);
 };

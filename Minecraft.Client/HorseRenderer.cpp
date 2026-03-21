@@ -16,12 +16,12 @@ HorseRenderer::HorseRenderer(Model *model, float f) : MobRenderer(model, f)
 {
 }
 
-void HorseRenderer::adjustHeight(shared_ptr<PathfinderMob> mob, float FHeight)
+void HorseRenderer::adjustHeight(std::shared_ptr<PathfinderMob> mob, float FHeight)
 {
     glTranslatef(0.0F, FHeight, 0.0F);
 }
 
-void HorseRenderer::scale(shared_ptr<LivingEntity> entityliving, float f)
+void HorseRenderer::scale(std::shared_ptr<LivingEntity> entityliving, float f)
 {
     float sizeFactor = 1.0f;
 
@@ -38,7 +38,7 @@ void HorseRenderer::scale(shared_ptr<LivingEntity> entityliving, float f)
     MobRenderer::scale(entityliving, f);
 }
 
-void HorseRenderer::renderModel(shared_ptr<LivingEntity> mob, float wp, float ws, float bob, float headRotMinusBodyRot, float headRotx, float scale)
+void HorseRenderer::renderModel(std::shared_ptr<LivingEntity> mob, float wp, float ws, float bob, float headRotMinusBodyRot, float headRotx, float scale)
 {
     if (mob->isInvisible())
 	{
@@ -59,7 +59,7 @@ void HorseRenderer::bindTexture(ResourceLocation *location)
 	entityRenderDispatcher->textures->bindTextureLayers(location);
 }
 
-ResourceLocation *HorseRenderer::getTextureLocation(shared_ptr<Entity> entity)
+ResourceLocation *HorseRenderer::getTextureLocation(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<EntityHorse> horse = dynamic_pointer_cast<EntityHorse>(entity);
 
@@ -79,7 +79,7 @@ ResourceLocation *HorseRenderer::getTextureLocation(shared_ptr<Entity> entity)
     return getOrCreateLayeredTextureLocation(horse);
 }
 
-ResourceLocation *HorseRenderer::getOrCreateLayeredTextureLocation(shared_ptr<EntityHorse> horse)
+ResourceLocation *HorseRenderer::getOrCreateLayeredTextureLocation(std::shared_ptr<EntityHorse> horse)
 {
     wstring textureName = horse->getLayeredTextureHashName();
 

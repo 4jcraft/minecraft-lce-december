@@ -1,13 +1,13 @@
 #include "stdafx.h"
 
-wstring toLower(const wstring& a)
+std::wstring toLower(const std::wstring& a)
 {
 	wstring out = wstring(a);
 	std::transform(out.begin(), out.end(), out.begin(), ::tolower);
 	return out;
 }
 
-wstring trimString(const wstring& a)
+std::wstring trimString(const std::wstring& a)
 {
 	wstring b;
 	int start = (int)a.find_first_not_of(L" \t\n\r");
@@ -18,7 +18,7 @@ wstring trimString(const wstring& a)
 	return b;
 }
 
-wstring replaceAll(const wstring& in, const wstring& replace, const wstring& with)
+std::wstring replaceAll(const std::wstring& in, const std::wstring& replace, const std::wstring& with)
 {
 	wstring out = in;
 	size_t pos = 0;
@@ -30,7 +30,7 @@ wstring replaceAll(const wstring& in, const wstring& replace, const wstring& wit
 	return out;
 }
 
-bool equalsIgnoreCase(const wstring& a, const wstring& b)
+bool equalsIgnoreCase(const std::wstring& a, const std::wstring& b)
 {
 	bool out;
 	wstring c = toLower(a);
@@ -39,7 +39,7 @@ bool equalsIgnoreCase(const wstring& a, const wstring& b)
 	return out;
 }
 
-wstring convStringToWstring(const string& converting)
+std::wstring convStringToWstring(const std::string& converting)
 {
 	wstring converted(converting.length(), L' ');
 	copy(converting.begin(), converting.end(), converted.begin());
@@ -49,7 +49,7 @@ wstring convStringToWstring(const string& converting)
 // Convert for filename wstrings to a straight character pointer for Xbox APIs. The returned string is only valid until
 // this function is called again, and it isn't thread-safe etc. as I'm just storing the returned name in a local static
 // to save having to clear it up everywhere this is used.
-const char *wstringtofilename(const wstring& name)
+const char *wstringtofilename(const std::wstring& name)
 {
 	static char buf[256];
 	assert(name.length()<256);
@@ -68,7 +68,7 @@ const char *wstringtofilename(const wstring& name)
 	return buf;
 }
 
-const char *wstringtochararray(const wstring& name)
+const char *wstringtochararray(const std::wstring& name)
 {
 	static char buf[256];
 	assert(name.length()<256);
@@ -82,7 +82,7 @@ const char *wstringtochararray(const wstring& name)
 	return buf;
 }
 
-wstring filenametowstring(const char *name)
+std::wstring filenametowstring(const char *name)
 {
 	return convStringToWstring(name);
 }
@@ -107,7 +107,7 @@ std::vector<std::wstring> stringSplit(const std::wstring &s, wchar_t delim)
 
 bool BothAreSpaces(wchar_t lhs, wchar_t rhs) { return (lhs == rhs) && (lhs == L' '); }
 
-void stripWhitespaceForHtml(wstring &string, bool bRemoveNewline)
+void stripWhitespaceForHtml(std::wstring &string, bool bRemoveNewline)
 {
 	// Strip newline chars
 	if(bRemoveNewline)
@@ -124,7 +124,7 @@ void stripWhitespaceForHtml(wstring &string, bool bRemoveNewline)
 	string = trimString(string);
 }
 
-wstring escapeXML(const wstring &in)
+std::wstring escapeXML(const std::wstring &in)
 {
 	wstring out = in;
 	out = replaceAll(out, L"&", L"&amp;");
@@ -135,7 +135,7 @@ wstring escapeXML(const wstring &in)
 	return out;
 }
 
-wstring parseXMLSpecials(const wstring &in)
+std::wstring parseXMLSpecials(const std::wstring &in)
 {
 	wstring out = in;
 	out = replaceAll(out, L"&amp;", L"&");

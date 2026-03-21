@@ -16,7 +16,7 @@ ExperienceOrbRenderer::ExperienceOrbRenderer()
 	shadowStrength = 0.75f;
 }
 
-void ExperienceOrbRenderer::render(shared_ptr<Entity> _orb, double x, double y, double z, float rot, float a)
+void ExperienceOrbRenderer::render(std::shared_ptr<Entity> _orb, double x, double y, double z, float rot, float a)
 {
 	shared_ptr<ExperienceOrb> orb = dynamic_pointer_cast<ExperienceOrb>(_orb);
 	glPushMatrix();
@@ -73,7 +73,7 @@ void ExperienceOrbRenderer::render(shared_ptr<Entity> _orb, double x, double y, 
 	glPopMatrix();
 }
 
-ResourceLocation *ExperienceOrbRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *ExperienceOrbRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &XP_ORB_LOCATION;
 }

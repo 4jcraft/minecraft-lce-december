@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 #include "Container.h"
 #include "ListTag.h"
 #include "ItemInstance.h"
@@ -78,8 +77,8 @@ public:
 	void load(ListTag<CompoundTag> *inventoryList);
 	unsigned int getContainerSize();
 	shared_ptr<ItemInstance> getItem(unsigned int slot);
-	wstring getName();
-	wstring getCustomName();
+	std::wstring getName();
+	std::wstring getCustomName();
 	bool hasCustomName();
 	int getMaxStackSize();
 	bool canDestroy(Tile *tile);

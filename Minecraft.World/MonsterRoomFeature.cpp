@@ -131,7 +131,7 @@ bool MonsterRoomFeature::place(Level *level, Random *random, int x, int y, int z
 
 }
 
-wstring MonsterRoomFeature::randomEntityId(Random *random)
+std::wstring MonsterRoomFeature::randomEntityId(Random *random)
 {
 	int id = random->nextInt(4);
 	if (id == 0) return wstring(L"Skeleton");

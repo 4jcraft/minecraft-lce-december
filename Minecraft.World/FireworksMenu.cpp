@@ -9,7 +9,7 @@
 #include "ResultSlot.h"
 #include "FireworksMenu.h"
 
-FireworksMenu::FireworksMenu(shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt) : AbstractContainerMenu()
+FireworksMenu::FireworksMenu(std::shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt) : AbstractContainerMenu()
 {
 	m_canMakeFireworks = false;
 	m_canMakeCharge = false;
@@ -53,7 +53,7 @@ void FireworksMenu::slotsChanged()  // 4J used to take a shared_ptr<Container> b
 	resultSlots->setItem(0, Recipes::getInstance()->getItemFor(craftSlots, level, Recipes::pFireworksRecipes));
 }
 
-void FireworksMenu::removed(shared_ptr<Player> player)
+void FireworksMenu::removed(std::shared_ptr<Player> player)
 {
 	AbstractContainerMenu::removed(player);
 	if (level->isClientSide) return;
@@ -68,12 +68,12 @@ void FireworksMenu::removed(shared_ptr<Player> player)
 	}
 }
 
-bool FireworksMenu::stillValid(shared_ptr<Player> player)
+bool FireworksMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return true;
 }
 
-shared_ptr<ItemInstance> FireworksMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> FireworksMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);
@@ -138,12 +138,12 @@ shared_ptr<ItemInstance> FireworksMenu::quickMoveStack(shared_ptr<Player> player
 	return clicked;
 }
 
-bool FireworksMenu::canTakeItemForPickAll(shared_ptr<ItemInstance> carried, Slot *target)
+bool FireworksMenu::canTakeItemForPickAll(std::shared_ptr<ItemInstance> carried, Slot *target)
 {
 	return target->container != resultSlots && AbstractContainerMenu::canTakeItemForPickAll(carried, target);
 }
 
-bool FireworksMenu::isValidIngredient(shared_ptr<ItemInstance> item, int slotId)
+bool FireworksMenu::isValidIngredient(std::shared_ptr<ItemInstance> item, int slotId)
 {
 	if(item == NULL || slotId == RESULT_SLOT) return true;
 	return FireworksRecipe::isValidIngredient(item, m_canMakeFireworks, m_canMakeCharge, m_canMakeFade);

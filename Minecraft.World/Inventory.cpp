@@ -35,7 +35,7 @@ Inventory::~Inventory()
 	delete [] armor.data;
 }
 
-shared_ptr<ItemInstance> Inventory::getSelected()
+std::shared_ptr<ItemInstance> Inventory::getSelected()
 {
 	// sanity checking to prevent exploits
 	if (selected < SELECTION_SIZE && selected >= 0)
@@ -83,7 +83,7 @@ int Inventory::getSlot(int tileId, int data)
 	return -1;
 }
 
-int Inventory::getSlotWithRemainingSpace(shared_ptr<ItemInstance> item)
+int Inventory::getSlotWithRemainingSpace(std::shared_ptr<ItemInstance> item)
 {
 	for (unsigned int i = 0; i < items.length; i++)
 	{
@@ -215,7 +215,7 @@ void Inventory::replaceSlot(Item *item, int data)
 }
 
 
-int Inventory::addResource(shared_ptr<ItemInstance> itemInstance)
+int Inventory::addResource(std::shared_ptr<ItemInstance> itemInstance)
 {
 
 	int type = itemInstance->id;
@@ -297,7 +297,7 @@ bool Inventory::removeResource(int type,int iAuxVal)
 	return true;
 }
 
-void Inventory::removeResources(shared_ptr<ItemInstance> item)
+void Inventory::removeResources(std::shared_ptr<ItemInstance> item)
 {
 	if(item == NULL) return; 
 
@@ -321,14 +321,14 @@ void Inventory::removeResources(shared_ptr<ItemInstance> item)
 	}
 }
 
-shared_ptr<ItemInstance> Inventory::getResourceItem(int type)
+std::shared_ptr<ItemInstance> Inventory::getResourceItem(int type)
 {
 	int slot = getSlot(type);
 	if (slot < 0) return nullptr;
 	return getItem( slot );
 }
 
-shared_ptr<ItemInstance> Inventory::getResourceItem(int type,int iAuxVal)
+std::shared_ptr<ItemInstance> Inventory::getResourceItem(int type,int iAuxVal)
 {
 	int slot = getSlot(type,iAuxVal);
 	if (slot < 0) return nullptr;
@@ -350,7 +350,7 @@ void Inventory::swapSlots(int from, int to)
 	items[from] = tmp;
 }
 
-bool Inventory::add(shared_ptr<ItemInstance> item)
+bool Inventory::add(std::shared_ptr<ItemInstance> item)
 {
 	if (item == NULL) return false;
 	if (item->count == 0) return false;
@@ -405,7 +405,7 @@ bool Inventory::add(shared_ptr<ItemInstance> item)
 	return false;
 }
 
-shared_ptr<ItemInstance> Inventory::removeItem(unsigned int slot, int count)
+std::shared_ptr<ItemInstance> Inventory::removeItem(unsigned int slot, int count)
 {
 
 	ItemInstanceArray pile = items;
@@ -433,7 +433,7 @@ shared_ptr<ItemInstance> Inventory::removeItem(unsigned int slot, int count)
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> Inventory::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> Inventory::removeItemNoUpdate(int slot)
 {
 	ItemInstanceArray pile = items;
 	if (slot >= items.length)
@@ -451,7 +451,7 @@ shared_ptr<ItemInstance> Inventory::removeItemNoUpdate(int slot)
 	return nullptr;
 }
 
-void Inventory::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void Inventory::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 #ifdef _DEBUG
 	if(item!=NULL)
@@ -554,7 +554,7 @@ unsigned int Inventory::getContainerSize()
 	return items.length + 4;
 }
 
-shared_ptr<ItemInstance> Inventory::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> Inventory::getItem(unsigned int slot)
 {
 	// 4J Stu - Changed this a little from the Java so it's less funny
 	if( slot >= items.length )
@@ -577,12 +577,12 @@ shared_ptr<ItemInstance> Inventory::getItem(unsigned int slot)
 	*/
 }
 
-wstring Inventory::getName()
+std::wstring Inventory::getName()
 {
 	return app.GetString(IDS_INVENTORY);
 }
 
-wstring Inventory::getCustomName()
+std::wstring Inventory::getCustomName()
 {
 	return L"";
 }
@@ -606,7 +606,7 @@ bool Inventory::canDestroy(Tile *tile)
 	return false;
 }
 
-shared_ptr<ItemInstance> Inventory::getArmor(int layer)
+std::shared_ptr<ItemInstance> Inventory::getArmor(int layer)
 {
 	return armor[layer];
 }
@@ -671,7 +671,7 @@ void Inventory::setChanged()
 	changed = true;
 }
 
-bool Inventory::isSame(shared_ptr<Inventory> copy)
+bool Inventory::isSame(std::shared_ptr<Inventory> copy)
 {
 	for (unsigned int i = 0; i < items.length; i++)
 	{
@@ -685,7 +685,7 @@ bool Inventory::isSame(shared_ptr<Inventory> copy)
 }
 
 
-bool Inventory::isSame(shared_ptr<ItemInstance> a, shared_ptr<ItemInstance> b)
+bool Inventory::isSame(std::shared_ptr<ItemInstance> a, std::shared_ptr<ItemInstance> b)
 {
 	if (a == NULL && b == NULL) return true;
 	if (a == NULL || b == NULL) return false;
@@ -694,7 +694,7 @@ bool Inventory::isSame(shared_ptr<ItemInstance> a, shared_ptr<ItemInstance> b)
 }
 
 
-shared_ptr<Inventory> Inventory::copy()
+std::shared_ptr<Inventory> Inventory::copy()
 {
 	shared_ptr<Inventory> copy = shared_ptr<Inventory>( new Inventory(NULL) );
 	for (unsigned int i = 0; i < items.length; i++)
@@ -708,25 +708,25 @@ shared_ptr<Inventory> Inventory::copy()
 	return copy;
 }
 
-void Inventory::setCarried(shared_ptr<ItemInstance> carried)
+void Inventory::setCarried(std::shared_ptr<ItemInstance> carried)
 {
 	this->carried = carried;
 	player->handleCollectItem(carried);
 }
 
-shared_ptr<ItemInstance> Inventory::getCarried()
+std::shared_ptr<ItemInstance> Inventory::getCarried()
 {
 	return carried;
 }
 
-bool Inventory::stillValid(shared_ptr<Player> player)
+bool Inventory::stillValid(std::shared_ptr<Player> player)
 {
 	if (this->player->removed) return false;
 	if (player->distanceToSqr(this->player->shared_from_this()) > 8 * 8) return false;
 	return true;
 }
 
-bool Inventory::contains(shared_ptr<ItemInstance> itemInstance)
+bool Inventory::contains(std::shared_ptr<ItemInstance> itemInstance)
 {
 	for (unsigned int i = 0; i < armor.length; i++)
 	{
@@ -749,12 +749,12 @@ void Inventory::stopOpen()
 	// TODO Auto-generated method stub
 }
 
-bool Inventory::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool Inventory::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }
 
-void Inventory::replaceWith(shared_ptr<Inventory> other)
+void Inventory::replaceWith(std::shared_ptr<Inventory> other)
 {
 	for (int i = 0; i < items.length; i++)
 	{
@@ -768,7 +768,7 @@ void Inventory::replaceWith(shared_ptr<Inventory> other)
 	selected = other->selected;
 }
 
-int Inventory::countMatches(shared_ptr<ItemInstance> itemInstance)
+int Inventory::countMatches(std::shared_ptr<ItemInstance> itemInstance)
 {
 	if(itemInstance == NULL) return 0;
 	int count = 0;

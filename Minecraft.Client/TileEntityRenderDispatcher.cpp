@@ -82,18 +82,18 @@ TileEntityRenderer *TileEntityRenderDispatcher::getRenderer(eINSTANCEOF e)
 	return it->second;
 }
 
-bool TileEntityRenderDispatcher::hasRenderer(shared_ptr<TileEntity> e)
+bool TileEntityRenderDispatcher::hasRenderer(std::shared_ptr<TileEntity> e)
 {
 	return getRenderer(e) != NULL;
 }
 
-TileEntityRenderer *TileEntityRenderDispatcher::getRenderer(shared_ptr<TileEntity> e)
+TileEntityRenderer *TileEntityRenderDispatcher::getRenderer(std::shared_ptr<TileEntity> e)
 {
 	if (e == NULL) return NULL;
 	return getRenderer(e->GetType());
 }
 
-void TileEntityRenderDispatcher::prepare(Level *level, Textures *textures, Font *font, shared_ptr<LivingEntity> player, float a)
+void TileEntityRenderDispatcher::prepare(Level *level, Textures *textures, Font *font, std::shared_ptr<LivingEntity> player, float a)
 {
 	if( this->level != level )
 	{
@@ -111,7 +111,7 @@ void TileEntityRenderDispatcher::prepare(Level *level, Textures *textures, Font 
 	zPlayer = player->zOld + (player->z - player->zOld) * a;
 }
 
-void TileEntityRenderDispatcher::render(shared_ptr<TileEntity> e, float a, bool setColor/*=true*/)
+void TileEntityRenderDispatcher::render(std::shared_ptr<TileEntity> e, float a, bool setColor/*=true*/)
 {
 	if (e->distanceToSqr(xPlayer, yPlayer, zPlayer) < e->getViewDistance())
 	{
@@ -133,7 +133,7 @@ void TileEntityRenderDispatcher::render(shared_ptr<TileEntity> e, float a, bool 
 	}
 }
 
-void TileEntityRenderDispatcher::render(shared_ptr<TileEntity> entity, double x, double y, double z, float a, bool setColor/*=true*/, float alpha, bool useCompiled)
+void TileEntityRenderDispatcher::render(std::shared_ptr<TileEntity> entity, double x, double y, double z, float a, bool setColor/*=true*/, float alpha, bool useCompiled)
 {
 	TileEntityRenderer *renderer = getRenderer(entity);
 	if (renderer != NULL)

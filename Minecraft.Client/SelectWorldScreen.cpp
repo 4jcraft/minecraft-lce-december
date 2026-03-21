@@ -48,12 +48,12 @@ void SelectWorldScreen::loadLevelList()
 	selectedWorld = -1;
 }
 
-wstring SelectWorldScreen::getWorldId(int id)
+std::wstring SelectWorldScreen::getWorldId(int id)
 {
 	return levelList->at(id)->getLevelId();
 }
 
-wstring SelectWorldScreen::getWorldName(int id)
+std::wstring SelectWorldScreen::getWorldName(int id)
 {
     wstring levelName = levelList->at(id)->getLevelName();
 

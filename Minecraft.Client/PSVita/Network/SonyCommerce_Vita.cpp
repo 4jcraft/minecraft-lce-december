@@ -228,7 +228,7 @@ void SonyCommerce_Vita::copyProductList(std::vector<ProductInfo>* pProductList, 
 		strncpy(tempInfo.price, npInfo.price, SCE_TOOLKIT_NP_SKU_PRICE_LEN);
 		tempProductVec.push_back(tempInfo);
 	}
-	pNPProductList->clear();	// clear the vector now we're done, this doesn't happen automatically for the next query
+	pNPProductList->clear();	// clear the std::vector now we're done, this doesn't happen automatically for the next query
 
 	// Set our result
 	*pProductList = tempProductVec;

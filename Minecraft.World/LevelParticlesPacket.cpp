@@ -15,7 +15,7 @@ LevelParticlesPacket::LevelParticlesPacket()
 	this->count = 0;
 }
 
-LevelParticlesPacket::LevelParticlesPacket(const wstring &name, float x, float y, float z, float xDist, float yDist, float zDist, float maxSpeed, int count)
+LevelParticlesPacket::LevelParticlesPacket(const std::wstring &name, float x, float y, float z, float xDist, float yDist, float zDist, float maxSpeed, int count)
 {
 	this->name = name;
 	this->x = x;
@@ -54,7 +54,7 @@ void LevelParticlesPacket::write(DataOutputStream *dos)
 	dos->writeInt(count);
 }
 
-wstring LevelParticlesPacket::getName()
+std::wstring LevelParticlesPacket::getName()
 {
 	return name;
 }

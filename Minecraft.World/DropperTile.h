@@ -13,10 +13,10 @@ public:
 	virtual void registerIcons(IconRegister *iconRegister);
 
 protected:
-	virtual DispenseItemBehavior *getDispenseMethod(shared_ptr<ItemInstance> item);
+	virtual DispenseItemBehavior *getDispenseMethod(std::shared_ptr<ItemInstance> item);
 
 public:
-	virtual shared_ptr<TileEntity> newTileEntity(Level *level);
+	virtual std::shared_ptr<TileEntity> newTileEntity(Level *level);
 
 protected:
 	virtual void dispenseFrom(Level *level, int x, int y, int z);

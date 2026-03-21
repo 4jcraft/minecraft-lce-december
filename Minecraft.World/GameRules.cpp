@@ -62,12 +62,12 @@ bool GameRules::getBoolean(const int rule)
 }
 
 /*
-void GameRules::registerRule(const wstring &name, const wstring &startValue)
+void GameRules::registerRule(const std::wstring &name, const std::wstring &startValue)
 {
 	rules[name] = new GameRule(startValue);
 }
 
-void GameRules::set(const wstring &ruleName, const wstring &newValue)
+void GameRules::set(const std::wstring &ruleName, const std::wstring &newValue)
 {
 	AUTO_VAR(it, rules.find(ruleName));
 	if(it != rules.end() )
@@ -81,7 +81,7 @@ void GameRules::set(const wstring &ruleName, const wstring &newValue)
 	}
 }
 
-wstring GameRules::get(const wstring &ruleName)
+std::wstring GameRules::get(const std::wstring &ruleName)
 {
 	AUTO_VAR(it, rules.find(ruleName));
 	if(it != rules.end() )
@@ -92,7 +92,7 @@ wstring GameRules::get(const wstring &ruleName)
 	return L"";
 }
 
-int GameRules::getInt(const wstring &ruleName)
+int GameRules::getInt(const std::wstring &ruleName)
 {
 	AUTO_VAR(it, rules.find(ruleName));
 	if(it != rules.end() )
@@ -103,7 +103,7 @@ int GameRules::getInt(const wstring &ruleName)
 	return 0;
 }
 
-double GameRules::getDouble(const wstring &ruleName)
+double GameRules::getDouble(const std::wstring &ruleName)
 {
 	AUTO_VAR(it, rules.find(ruleName));
 	if(it != rules.end() )
@@ -133,8 +133,8 @@ void GameRules::loadFromTag(CompoundTag *tag)
 	for (AUTO_VAR(it, allTags->begin()); it != allTags->end(); ++it)
 	{
 		Tag *ruleTag = *it;
-		wstring ruleName = ruleTag->getName();
-		wstring value = tag->getString(ruleTag->getName());
+		std::wstring ruleName = ruleTag->getName();
+		std::wstring value = tag->getString(ruleTag->getName());
 
 		set(ruleName, value);
 	}
@@ -142,20 +142,20 @@ void GameRules::loadFromTag(CompoundTag *tag)
 }
 
 // Need to delete returned vector.
-vector<wstring> *GameRules::getRuleNames()
+vector<std::wstring> *GameRules::getRuleNames()
 {
-	vector<wstring> *out = new vector<wstring>();
+	vector<std::wstring> *out = new vector<std::wstring>();
 	for (AUTO_VAR(it, rules.begin()); it != rules.end(); it++) out->push_back(it->first);
 	return out;
 }
 
-bool GameRules::contains(const wstring &rule)
+bool GameRules::contains(const std::wstring &rule)
 {
 	AUTO_VAR(it, rules.find(rule));
 	return it != rules.end();
 }
 
-GameRules::GameRule::GameRule(const wstring &startValue)
+GameRules::GameRule::GameRule(const std::wstring &startValue)
 {
 	value = L"";
 	booleanValue = false;
@@ -164,7 +164,7 @@ GameRules::GameRule::GameRule(const wstring &startValue)
 	set(startValue);
 }
 
-void GameRules::GameRule::set(const wstring &newValue)
+void GameRules::GameRule::set(const std::wstring &newValue)
 {
 	value = newValue;
 	booleanValue = _fromString<bool>(newValue);
@@ -172,7 +172,7 @@ void GameRules::GameRule::set(const wstring &newValue)
 	doubleValue = _fromString<double>(newValue);
 }
 
-wstring GameRules::GameRule::get()
+std::wstring GameRules::GameRule::get()
 {
 	return value;
 }

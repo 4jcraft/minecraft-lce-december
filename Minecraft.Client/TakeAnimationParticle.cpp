@@ -5,7 +5,7 @@
 #include "..\Minecraft.World\net.minecraft.world.level.h"
 #include "..\Minecraft.World\Mth.h"
 
-TakeAnimationParticle::TakeAnimationParticle(Level *level, shared_ptr<Entity> item, shared_ptr<Entity> target, float yOffs) : Particle(level, item->x, item->y, item->z, item->xd, item->yd, item->zd)
+TakeAnimationParticle::TakeAnimationParticle(Level *level, std::shared_ptr<Entity> item, std::shared_ptr<Entity> target, float yOffs) : Particle(level, item->x, item->y, item->z, item->xd, item->yd, item->zd)
 {
 	// 4J - added initialisers
 	life = 0;

@@ -160,7 +160,7 @@ public:
 	bool DLCAlreadyPurchased(char *pchTitle);
 	char *GetSkuIDFromProductList();
 	void GetDLCSkuIDFromProductList(char *,char *);
-	unordered_map<wstring, SONYDLC *>* GetSonyDLCMap() { return &m_SONYDLCMap; }
+	std::unordered_map<std::wstring, SONYDLC *>* GetSonyDLCMap() { return &m_SONYDLCMap; }
 	static void CommerceInitCallback(LPVOID lpParam,int err);
 	static void CommerceGetCategoriesCallback(LPVOID lpParam,int err);
 	static void CommerceGetProductListCallback(LPVOID lpParam,int err);
@@ -231,7 +231,7 @@ private:
 	//	SonyCommerce::ProductInfoDetailed m_ProductInfoDetailed;
 
 	PRODUCTCODES ProductCodes;
-	unordered_map<wstring, SONYDLC *> m_SONYDLCMap;
+	std::unordered_map<std::wstring, SONYDLC *> m_SONYDLCMap;
 
 
 	bool m_bVoiceChatAndUGCRestricted;

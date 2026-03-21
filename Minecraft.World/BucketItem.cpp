@@ -24,7 +24,7 @@ BucketItem::BucketItem(int id, int content) : Item( id )
 	this->content = content;
 }
 
-bool BucketItem::TestUse(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+bool BucketItem::TestUse(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	bool pickLiquid = content == 0;
 	HitResult *hr = getPlayerPOVHitResult(level, player, pickLiquid);
@@ -95,7 +95,7 @@ bool BucketItem::TestUse(shared_ptr<ItemInstance> itemInstance, Level *level, sh
 	return false;
 }
 
-shared_ptr<ItemInstance> BucketItem::use(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> BucketItem::use(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	float a = 1;
 

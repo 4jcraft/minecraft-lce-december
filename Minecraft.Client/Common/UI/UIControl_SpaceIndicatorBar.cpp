@@ -11,7 +11,7 @@ UIControl_SpaceIndicatorBar::UIControl_SpaceIndicatorBar()
 	m_currentOffset = 0.0f;
 }
 
-bool UIControl_SpaceIndicatorBar::setupControl(UIScene *scene, IggyValuePath *parent, const string &controlName)
+bool UIControl_SpaceIndicatorBar::setupControl(UIScene *scene, IggyValuePath *parent, const std::string &controlName)
 {
 	UIControl::setControlType(UIControl::eProgress);
 	bool success = UIControl_Base::setupControl(scene,parent,controlName);

@@ -3,6 +3,6 @@
 class OwnableEntity
 {
 public:
-	virtual wstring getOwnerUUID() = 0;
-	virtual shared_ptr<Entity> getOwner() = 0;
+	virtual std::wstring getOwnerUUID() = 0;
+	virtual std::shared_ptr<Entity> getOwner() = 0;
 };

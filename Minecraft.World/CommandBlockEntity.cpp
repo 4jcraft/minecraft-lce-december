@@ -12,13 +12,13 @@ CommandBlockEntity::CommandBlockEntity()
 	name = L"@";
 }
 
-void CommandBlockEntity::setCommand(const wstring &command)
+void CommandBlockEntity::setCommand(const std::wstring &command)
 {
 	this->command = command;
 	setChanged();
 }
 
-wstring CommandBlockEntity::getCommand()
+std::wstring CommandBlockEntity::getCommand()
 {
 	return command;
 }
@@ -45,17 +45,17 @@ int CommandBlockEntity::performCommand(Level *level)
 #endif
 }
 
-wstring CommandBlockEntity::getName()
+std::wstring CommandBlockEntity::getName()
 {
 	return name;
 }
 
-void CommandBlockEntity::setName(const wstring &name)
+void CommandBlockEntity::setName(const std::wstring &name)
 {
 	this->name = name;
 }
 
-void CommandBlockEntity::sendMessage(const wstring& message, ChatPacket::EChatPacketMessage type, int customData , const wstring& additionalMessage)
+void CommandBlockEntity::sendMessage(const std::wstring& message, ChatPacket::EChatPacketMessage type, int customData , const std::wstring& additionalMessage)
 {
 }
 
@@ -90,7 +90,7 @@ Level *CommandBlockEntity::getCommandSenderWorld()
 	return getLevel();
 }
 
-shared_ptr<Packet> CommandBlockEntity::getUpdatePacket()
+std::shared_ptr<Packet> CommandBlockEntity::getUpdatePacket()
 {
 	CompoundTag *tag = new CompoundTag();
 	save(tag);
@@ -108,7 +108,7 @@ void CommandBlockEntity::setSuccessCount(int successCount)
 }
 
 // 4J Added
-shared_ptr<TileEntity> CommandBlockEntity::clone()
+std::shared_ptr<TileEntity> CommandBlockEntity::clone()
 {
 	shared_ptr<CommandBlockEntity> result = shared_ptr<CommandBlockEntity>( new CommandBlockEntity() );
 	TileEntity::clone(result);

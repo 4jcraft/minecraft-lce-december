@@ -16,7 +16,7 @@ EnchantTableRenderer::~EnchantTableRenderer()
 	delete bookModel;
 }
 
-void EnchantTableRenderer::render(shared_ptr<TileEntity> _table, double x, double y, double z, float a, bool setColor, float alpha, bool useCompiled)
+void EnchantTableRenderer::render(std::shared_ptr<TileEntity> _table, double x, double y, double z, float a, bool setColor, float alpha, bool useCompiled)
 {
 	// 4J Convert as we aren't using a templated class
 	shared_ptr<EnchantmentTableEntity> table = dynamic_pointer_cast<EnchantmentTableEntity>(_table);

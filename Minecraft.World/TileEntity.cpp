@@ -34,7 +34,7 @@ void TileEntity::staticCtor()
 	TileEntity::setId(ComparatorTileEntity::create, eTYPE_COMPARATORTILEENTITY, L"Comparator");
 }
 
-void TileEntity::setId(tileEntityCreateFn createFn, eINSTANCEOF clas, wstring id)
+void TileEntity::setId(tileEntityCreateFn createFn, eINSTANCEOF clas, std::wstring id)
 {
 	// 4J Stu - Java has classIdMap.containsKey(id) which would never work as id is not of the type of the key in classIdMap
 	// I have changed to use idClassMap instead so that we can still search from the string key
@@ -95,7 +95,7 @@ void TileEntity::tick()
 {
 }
 
-shared_ptr<TileEntity> TileEntity::loadStatic(CompoundTag *tag)
+std::shared_ptr<TileEntity> TileEntity::loadStatic(CompoundTag *tag)
 {
 	shared_ptr<TileEntity> entity = nullptr;
 
@@ -164,7 +164,7 @@ Tile *TileEntity::getTile()
 	return tile;
 }
 
-shared_ptr<Packet> TileEntity::getUpdatePacket()
+std::shared_ptr<Packet> TileEntity::getUpdatePacket()
 {
 	return nullptr;
 }
@@ -214,7 +214,7 @@ void TileEntity::upgradeRenderRemoveStage()
 }
 
 // 4J Added
-void TileEntity::clone(shared_ptr<TileEntity> tileEntity)
+void TileEntity::clone(std::shared_ptr<TileEntity> tileEntity)
 {
 	tileEntity->level = this->level;
 	tileEntity->x = this->x;

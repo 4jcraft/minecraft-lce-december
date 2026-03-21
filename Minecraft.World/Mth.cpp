@@ -178,7 +178,7 @@ double Mth::wrapDegrees(double input)
 	return input;
 }
 
-int Mth::getInt(const wstring &input, int def)
+int Mth::getInt(const std::wstring &input, int def)
 {
 	int result = def;
 
@@ -187,7 +187,7 @@ int Mth::getInt(const wstring &input, int def)
 	return result;
 }
 
-int Mth::getInt(const wstring &input, int def, int min)
+int Mth::getInt(const std::wstring &input, int def, int min)
 {
 	int result = def;
 
@@ -197,7 +197,7 @@ int Mth::getInt(const wstring &input, int def, int min)
 	return result;
 }
 
-double Mth::getDouble(const wstring &input, double def)
+double Mth::getDouble(const std::wstring &input, double def)
 {
 	double result = def;
 
@@ -206,7 +206,7 @@ double Mth::getDouble(const wstring &input, double def)
 	return result;
 }
 
-double Mth::getDouble(const wstring &input, double def, double min)
+double Mth::getDouble(const std::wstring &input, double def, double min)
 {
 	double result = def;
 
@@ -217,7 +217,7 @@ double Mth::getDouble(const wstring &input, double def, double min)
 }
 
 // 4J Changed this to remove the use of the actuall UUID type
-wstring Mth::createInsecureUUID(Random *random)
+std::wstring Mth::createInsecureUUID(Random *random)
 {
 	wchar_t output[33];
 	output[32] = 0;

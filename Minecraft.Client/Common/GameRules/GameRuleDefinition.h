@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 #include <unordered_map>
 #include <string>
 
@@ -21,8 +20,8 @@ private:
 
 protected:
 	// These attributes should map to those in the XSD GameRuleType
-	wstring m_descriptionId;
-	wstring m_promptId;
+	std::wstring m_descriptionId;
+	std::wstring m_promptId;
 	int m_4JDataValue;
 
 public:
@@ -38,7 +37,7 @@ public:
 	virtual void getChildren(vector<GameRuleDefinition *> *);
 
 	virtual GameRuleDefinition *addChild(ConsoleGameRules::EGameRuleType ruleType);
-	virtual void addAttribute(const wstring &attributeName, const wstring &attributeValue);
+	virtual void addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue);
 	
 	virtual void populateGameRule(GameRulesInstance::EGameRulesInstanceType type, GameRule *rule);
 
@@ -61,6 +60,6 @@ public:
 
 	// Static functions
 	static GameRulesInstance *generateNewGameRulesInstance(GameRulesInstance::EGameRulesInstanceType type, LevelRuleset *rules, Connection *connection);
-	static wstring generateDescriptionString(ConsoleGameRules::EGameRuleType defType, const wstring &description, void *data = NULL, int dataLength = 0);
+	static std::wstring generateDescriptionString(ConsoleGameRules::EGameRuleType defType, const std::wstring &description, void *data = NULL, int dataLength = 0);
 
 };

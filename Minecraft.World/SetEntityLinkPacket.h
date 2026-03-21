@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 
@@ -13,17 +13,17 @@ public:
 	int sourceId, destId;
 
 	SetEntityLinkPacket();
-	SetEntityLinkPacket(int linkType, shared_ptr<Entity> sourceEntity, shared_ptr<Entity> destEntity);
+	SetEntityLinkPacket(int linkType, std::shared_ptr<Entity> sourceEntity, std::shared_ptr<Entity> destEntity);
 
 	virtual int getEstimatedSize();
 	virtual void read(DataInputStream *dis);
 	virtual void write(DataOutputStream *dos);
 	virtual void handle(PacketListener *listener);
 	virtual bool canBeInvalidated();
-    virtual bool isInvalidatedBy(shared_ptr<Packet> packet);
+    virtual bool isInvalidatedBy(std::shared_ptr<Packet> packet);
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new SetEntityLinkPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new SetEntityLinkPacket()); }
 	virtual int getId() { return 39; }
 
 };

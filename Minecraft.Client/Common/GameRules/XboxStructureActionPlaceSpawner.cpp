@@ -23,7 +23,7 @@ void XboxStructureActionPlaceSpawner::writeAttributes(DataOutputStream *dos, UIN
 	dos->writeUTF(m_entityId);
 }
 
-void XboxStructureActionPlaceSpawner::addAttribute(const wstring &attributeName, const wstring &attributeValue)
+void XboxStructureActionPlaceSpawner::addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue)
 {
 	if(attributeName.compare(L"entity") == 0)
 	{

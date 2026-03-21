@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Player.h"
 #include "net.minecraft.world.inventory.ContainerListener.h"
@@ -35,7 +35,7 @@ public:
 	static const int CONTAINER_ID_INVENTORY = 0;
 	static const int CONTAINER_ID_CREATIVE = -2;
 
-	vector<shared_ptr<ItemInstance> > lastSlots;
+	vector<std::shared_ptr<ItemInstance> > lastSlots;
 	vector<Slot *> slots;
 	int containerId;
 
@@ -62,37 +62,37 @@ public:
 	virtual ~AbstractContainerMenu();
 	virtual void addSlotListener(ContainerListener *listener);
 	virtual void removeSlotListener(ContainerListener *listener);
-	virtual vector<shared_ptr<ItemInstance> > *getItems();
+	virtual vector<std::shared_ptr<ItemInstance> > *getItems();
 	virtual void sendData(int id, int value);
 	virtual void broadcastChanges();
 	virtual bool needsRendered();
-	virtual bool clickMenuButton(shared_ptr<Player> player, int buttonId);
-	virtual Slot *getSlotFor(shared_ptr<Container> c, int index);
+	virtual bool clickMenuButton(std::shared_ptr<Player> player, int buttonId);
+	virtual Slot *getSlotFor(std::shared_ptr<Container> c, int index);
 	virtual Slot *getSlot(int index);
-	virtual shared_ptr<ItemInstance> quickMoveStack(shared_ptr<Player> player, int slotIndex);
-	virtual shared_ptr<ItemInstance> clicked(int slotIndex, int buttonNum, int clickType, shared_ptr<Player> player, bool looped = false); // 4J added looped param
-	virtual bool mayCombine(Slot *slot, shared_ptr<ItemInstance> item);
-	virtual bool canTakeItemForPickAll(shared_ptr<ItemInstance> carried, Slot *target);
+	virtual std::shared_ptr<ItemInstance> quickMoveStack(std::shared_ptr<Player> player, int slotIndex);
+	virtual std::shared_ptr<ItemInstance> clicked(int slotIndex, int buttonNum, int clickType, std::shared_ptr<Player> player, bool looped = false); // 4J added looped param
+	virtual bool mayCombine(Slot *slot, std::shared_ptr<ItemInstance> item);
+	virtual bool canTakeItemForPickAll(std::shared_ptr<ItemInstance> carried, Slot *target);
 
 protected:
-	virtual void loopClick(int slotIndex, int buttonNum, bool quickKeyHeld, shared_ptr<Player> player);
+	virtual void loopClick(int slotIndex, int buttonNum, bool quickKeyHeld, std::shared_ptr<Player> player);
 
 public:
-	virtual void removed(shared_ptr<Player> player);
-	virtual void slotsChanged();// 4J used to take a shared_ptr<Container> container but wasn't using it, so removed to simplify things
+	virtual void removed(std::shared_ptr<Player> player);
+	virtual void slotsChanged();// 4J used to take a std::shared_ptr<Container> container but wasn't using it, so removed to simplify things
 	bool isPauseScreen();
-	void setItem(unsigned int slot, shared_ptr<ItemInstance> item);
+	void setItem(unsigned int slot, std::shared_ptr<ItemInstance> item);
 	void setAll(ItemInstanceArray *items);
 	virtual void setData(int id, int value);
-	short backup(shared_ptr<Inventory> inventory);
+	short backup(std::shared_ptr<Inventory> inventory);
 
 private:
-	unordered_set<shared_ptr<Player> , PlayerKeyHash, PlayerKeyEq> unSynchedPlayers;
+	unordered_set<std::shared_ptr<Player> , PlayerKeyHash, PlayerKeyEq> unSynchedPlayers;
 
 public:
-	bool isSynched(shared_ptr<Player> player);
-	void setSynched(shared_ptr<Player> player, bool synched);
-	virtual bool stillValid(shared_ptr<Player> player) = 0;
+	bool isSynched(std::shared_ptr<Player> player);
+	void setSynched(std::shared_ptr<Player> player, bool synched);
+	virtual bool stillValid(std::shared_ptr<Player> player) = 0;
 
 	// 4J Stu Added for UI
 	unsigned int getSize() { return (unsigned int)slots.size(); }
@@ -100,7 +100,7 @@ public:
 
 protected:
 	// 4J Stu - Changes to return bool brought forward from 1.2
-	bool moveItemStackTo(shared_ptr<ItemInstance> itemStack, int startSlot, int endSlot, bool backwards);
+	bool moveItemStackTo(std::shared_ptr<ItemInstance> itemStack, int startSlot, int endSlot, bool backwards);
 
 public:
 	virtual bool isOverrideResultClick(int slotNum, int buttonNum);
@@ -114,11 +114,11 @@ protected:
 	void resetQuickCraft();
 
 public:
-	static bool canItemQuickReplace(Slot *slot, shared_ptr<ItemInstance> item, bool ignoreSize);
-	static void getQuickCraftSlotCount(unordered_set<Slot *> *quickCraftSlots, int quickCraftingType, shared_ptr<ItemInstance> item, int carry);
+	static bool canItemQuickReplace(Slot *slot, std::shared_ptr<ItemInstance> item, bool ignoreSize);
+	static void getQuickCraftSlotCount(unordered_set<Slot *> *quickCraftSlots, int quickCraftingType, std::shared_ptr<ItemInstance> item, int carry);
 	bool canDragTo(Slot *slot);
-	static int getRedstoneSignalFromContainer(shared_ptr<Container> container);
+	static int getRedstoneSignalFromContainer(std::shared_ptr<Container> container);
 
 	// 4J Added
-	virtual bool isValidIngredient(shared_ptr<ItemInstance> item, int slotId);
+	virtual bool isValidIngredient(std::shared_ptr<ItemInstance> item, int slotId);
 };

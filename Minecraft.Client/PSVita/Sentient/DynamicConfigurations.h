@@ -48,9 +48,9 @@ private:
 	static bool s_bFirstUpdateStarted;
 	static bool s_bUpdatedConfigs[eDynamic_Config_Max];
 	static EDynamic_Configs s_eCurrentConfig;
-	static size_t s_currentConfigSize;
+	static std::size_t s_currentConfigSize;
 
-	static size_t s_dataWrittenSize;
+	static std::size_t s_dataWrittenSize;
 	static byte *s_dataWritten;
 
 public:

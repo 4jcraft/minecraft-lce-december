@@ -10,7 +10,7 @@ private:
 	int time;
 	float damage;
 	float health;
-	CombatTracker::eLOCATION location; // 4J: Location is now an enum, not a string
+	CombatTracker::eLOCATION location; // 4J: Location is now an enum, not a std::string
 	float fallDistance;
 
 public:
@@ -24,6 +24,6 @@ public:
 	float getHealthAfterDamage();
 	bool isCombatRelated();
 	CombatTracker::eLOCATION getLocation();
-	wstring getAttackerName();
+	std::wstring getAttackerName();
 	float getFallDistance();
 };

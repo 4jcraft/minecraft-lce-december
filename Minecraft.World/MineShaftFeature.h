@@ -5,7 +5,7 @@
 class MineShaftFeature : public StructureFeature
 {
 public:
-	static const wstring OPTION_CHANCE;
+	static const std::wstring OPTION_CHANCE;
 
 private:
 	double chance;
@@ -13,7 +13,7 @@ private:
 public:
 	MineShaftFeature();
 
-	wstring getFeatureName();
+	std::wstring getFeatureName();
 
 	MineShaftFeature(unordered_map<wstring, wstring> options);
 

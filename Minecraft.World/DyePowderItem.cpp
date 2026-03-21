@@ -1,4 +1,3 @@
-using namespace std;
 
 #include "stdafx.h"
 #include "com.mojang.nbt.h"
@@ -61,7 +60,7 @@ const unsigned int DyePowderItem::COLOR_USE_DESCS[] =
 	IDS_DESC_DYE_WHITE
 };
 
-const wstring DyePowderItem::COLOR_TEXTURES[] =
+const std::wstring DyePowderItem::COLOR_TEXTURES[] =
 { L"black", L"red", L"green", L"brown", L"blue", L"purple", L"cyan", L"silver", L"gray", L"pink",
 L"lime", L"yellow", L"light_blue", L"magenta", L"orange", L"white"};
 
@@ -108,18 +107,18 @@ Icon *DyePowderItem::getIcon(int itemAuxValue)
 	return icons[colorValue];
 }
 
-unsigned int DyePowderItem::getDescriptionId(shared_ptr<ItemInstance> itemInstance) 
+unsigned int DyePowderItem::getDescriptionId(std::shared_ptr<ItemInstance> itemInstance) 
 {
 	int colorValue = Mth::clamp(itemInstance->getAuxValue(), 0, 15);
 	return COLOR_DESCS[colorValue];
 }
 
-unsigned int DyePowderItem::getUseDescriptionId(shared_ptr<ItemInstance> itemInstance) 
+unsigned int DyePowderItem::getUseDescriptionId(std::shared_ptr<ItemInstance> itemInstance) 
 {
 	return COLOR_USE_DESCS[itemInstance->getAuxValue()];
 }
 
-bool DyePowderItem::useOn(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly) 
+bool DyePowderItem::useOn(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly) 
 {
 	if (!player->mayUseItemAt(x, y, z, face, itemInstance)) return false;
 
@@ -168,7 +167,7 @@ bool DyePowderItem::useOn(shared_ptr<ItemInstance> itemInstance, shared_ptr<Play
 	return false;
 }
 
-bool DyePowderItem::growCrop(shared_ptr<ItemInstance> itemInstance, Level *level, int x, int y, int z, bool bTestUseOnOnly)
+bool DyePowderItem::growCrop(std::shared_ptr<ItemInstance> itemInstance, Level *level, int x, int y, int z, bool bTestUseOnOnly)
 {
 	int tile = level->getTile(x, y, z);
 	if (tile == Tile::sapling_Id) 
@@ -320,7 +319,7 @@ void DyePowderItem::addGrowthParticles(Level *level, int x, int y, int z, int co
     }
 }
 
-bool DyePowderItem::interactEnemy(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, shared_ptr<LivingEntity> mob) 
+bool DyePowderItem::interactEnemy(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, std::shared_ptr<LivingEntity> mob) 
 {
 	if (dynamic_pointer_cast<Sheep>( mob ) != NULL) 
 	{

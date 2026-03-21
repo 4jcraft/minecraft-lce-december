@@ -154,7 +154,7 @@ void SonyLeaderboardManager::scoreboardThreadInternal()
 		// The following NP call should be reserved for asynchronous multiplayer modes that require PS Plus to be accessed. 
 		//
 		//	Note 2: 
-		// The message is not displayed with a user without PlayStation®Plus subscription and they are able to access the Leaderboards.
+		// The message is not displayed with a user without PlayStationï¿½Plus subscription and they are able to access the Leaderboards.
 
 		// NotifyAsyncPlusFeature();
 
@@ -926,14 +926,14 @@ void SonyLeaderboardManager::convertToOutput(unsigned int &num, ReadScore *out, 
 
 void SonyLeaderboardManager::toBinary(void *out, SceNpScoreComment *in)
 {
-	string decoded = base64_decode( string((char*)in) );
+	std::string decoded = base64_decode( std::string((char*)in) );
 	memcpy(out, decoded.c_str(), RECORD_SIZE);
 }
 
 void SonyLeaderboardManager::fromBinary(SceNpScoreComment **out, void *in)
 {
 	*out = (SceNpScoreComment *) new unsigned char[SCE_NP_SCORE_COMMENT_MAXLEN + 1];
-	string encoded = base64_encode((unsigned char const *) in, RECORD_SIZE);
+	std::string encoded = base64_encode((unsigned char const *) in, RECORD_SIZE);
 	memcpy(out, encoded.c_str(), SCE_NP_SCORE_COMMENT_MAXLEN);
 }
 
@@ -1031,7 +1031,7 @@ void SonyLeaderboardManager::fromSymbols(char *str)
 	}
 }
 
-bool SonyLeaderboardManager::test_string(string testing)
+bool SonyLeaderboardManager::test_string(std::string testing)
 {
 #ifndef _CONTENT_PACKAGE
 	static SceNpScoreComment comment;
@@ -1073,8 +1073,8 @@ void SonyLeaderboardManager::initReadScoreStruct(ReadScore &out, SceNpScoreRankD
 	out.m_uid.setOnlineID( rankData.npId.handle, true );
 	out.m_rank = rankData.rank;
 
-	// Convert to wstring and copy name.
-	wstring wstrName = convStringToWstring( string(rankData.npId.handle.data) ).c_str();
+	// Convert to std::wstring and copy name.
+	std::wstring wstrName = convStringToWstring( std::string(rankData.npId.handle.data) ).c_str();
 	//memcpy(&out.m_name, wstrName.c_str(), XUSER_NAME_SIZE);
 	out.m_name=wstrName;
 }

@@ -8,7 +8,7 @@ class C4JMemoryPool
 {
 public:
 	unsigned int Align(unsigned int val, unsigned int align) { 		return int((val+(align-1))/align) * align; }
-	virtual void* Alloc(size_t size) = 0;
+	virtual void* Alloc(std::size_t size) = 0;
 	virtual void Free(void* ptr) = 0;
 };
 
@@ -78,7 +78,7 @@ public:
 		return (((uint)(p - m_memStart)) / m_sizeOfEachBlock);
 	}
 
-	virtual void* Alloc(size_t size)
+	virtual void* Alloc(std::size_t size)
 	{
 		if(size > m_sizeOfEachBlock)
 			return ::malloc(size);
@@ -151,7 +151,7 @@ public:
 		m_numAllocations = 0;
 	}
 
-	virtual void* Alloc(size_t size)
+	virtual void* Alloc(std::size_t size)
 	{
 		size = Align(size, 4);								// 4 byte align the memory
 		assert((m_currentOffset + size) < m_totalSize);		// make sure we haven't ran out of space

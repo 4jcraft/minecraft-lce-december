@@ -13,7 +13,7 @@ int PlayerEnderChestContainer::getContainerType()
 	return ContainerOpenPacket::ENDER_CHEST;
 }
 
-void PlayerEnderChestContainer::setActiveChest(shared_ptr<EnderChestTileEntity> activeChest)
+void PlayerEnderChestContainer::setActiveChest(std::shared_ptr<EnderChestTileEntity> activeChest)
 {
 	this->activeChest = activeChest;
 }
@@ -49,7 +49,7 @@ ListTag<CompoundTag> *PlayerEnderChestContainer::createTag()
 	return items;
 }
 
-bool PlayerEnderChestContainer::stillValid(shared_ptr<Player> player)
+bool PlayerEnderChestContainer::stillValid(std::shared_ptr<Player> player)
 {
 	if (activeChest != NULL && !activeChest->stillValid(player))
 	{
@@ -77,7 +77,7 @@ void PlayerEnderChestContainer::stopOpen()
 	activeChest = nullptr;
 }
 
-bool PlayerEnderChestContainer::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool PlayerEnderChestContainer::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }

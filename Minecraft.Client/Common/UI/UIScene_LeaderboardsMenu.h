@@ -51,7 +51,7 @@ private:
 
 	struct Leaderboard {
 		DWORD						m_totalEntryCount;		//Either total number of entries in leaderboard, or total number of results for a friends query
-		vector<LeaderboardEntry>	m_entries;
+		std::vector<LeaderboardEntry>	m_entries;
 		DWORD						m_numColumns;
 	};
 
@@ -105,7 +105,7 @@ private:
 	int GetEntryStartIndex();
 
 protected:
-	virtual wstring getMoviePath();
+	virtual std::wstring getMoviePath();
 
 public:
 	virtual void tick();

@@ -42,7 +42,7 @@ unsigned int MultiTextureTileItem::getDescriptionId(int iData)
 	return nameExtensions[iData];
 }
 
-unsigned int MultiTextureTileItem::getDescriptionId(shared_ptr<ItemInstance> instance) 
+unsigned int MultiTextureTileItem::getDescriptionId(std::shared_ptr<ItemInstance> instance) 
 {
 	int auxValue = instance->getAuxValue();
 	if (auxValue == Recipes::ANY_AUX_VALUE || auxValue < 0 || auxValue >= m_iNameExtensionsLength) 

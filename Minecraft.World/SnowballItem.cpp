@@ -11,7 +11,7 @@ SnowballItem::SnowballItem(int id) : Item(id)
 	this->maxStackSize = 16;
 }
 
-shared_ptr<ItemInstance> SnowballItem::use(shared_ptr<ItemInstance> instance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> SnowballItem::use(std::shared_ptr<ItemInstance> instance, Level *level, std::shared_ptr<Player> player)
 {
 	if (!player->abilities.instabuild)
 	{

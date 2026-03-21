@@ -24,7 +24,7 @@ public:
 	virtual ConsoleGameRules::EGameRuleType getActionType() { return ConsoleGameRules::eGameRuleType_AddItem; }
 
 	virtual GameRuleDefinition *addChild(ConsoleGameRules::EGameRuleType ruleType);
-	virtual void addAttribute(const wstring &attributeName, const wstring &attributeValue);
+	virtual void addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue);
 
 	bool addItemToContainer(shared_ptr<Container> container, int slotId);
 };

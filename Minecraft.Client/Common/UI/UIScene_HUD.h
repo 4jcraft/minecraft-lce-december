@@ -100,7 +100,7 @@ public:
 
 protected:
 	// TODO: This should be pure virtual in this class
-	virtual wstring getMoviePath();
+	virtual std::wstring getMoviePath();
 
 public:
 	virtual EUIScene getSceneType() { return eUIScene_HUD;}
@@ -144,12 +144,12 @@ private:
 	void SetFoodSaturationLevel(int iSaturation);
 
 	void SetDragonHealth(float health);
-	void SetDragonLabel(const wstring &label);
+	void SetDragonLabel(const std::wstring &label);
 	void ShowDragonHealth(bool show);
 
 	void HideSelectedLabel();
 
-	void SetDisplayName(const wstring &displayName);
+	void SetDisplayName(const std::wstring &displayName);
 
 	void SetTooltipsEnabled(bool bEnabled);
 
@@ -160,7 +160,7 @@ private:
 	void SetHealthAbsorb(int healthAbsorb);
 
 public:
-	void SetSelectedLabel(const wstring &label);
+	void SetSelectedLabel(const std::wstring &label);
 	void ShowDisplayName(bool show);
 
 	void handleGameTick();

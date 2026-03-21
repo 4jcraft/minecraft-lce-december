@@ -387,7 +387,7 @@ void UIScene::loadMovie()
 
 }
 
-void UIScene::getDebugMemoryUseRecursive(const wstring &moviePath, IggyMemoryUseInfo &memoryInfo)
+void UIScene::getDebugMemoryUseRecursive(const std::wstring &moviePath, IggyMemoryUseInfo &memoryInfo)
 {
 	rrbool res;
 	IggyMemoryUseInfo internalMemoryInfo;
@@ -498,7 +498,7 @@ void UIScene::tickTimers()
 	}
 }
 
-IggyName UIScene::registerFastName(const wstring &name)
+IggyName UIScene::registerFastName(const std::wstring &name)
 {
 	IggyName var;
 	AUTO_VAR(it,m_fastNames.find(name));
@@ -1177,13 +1177,13 @@ void UIScene::externalCallback(IggyExternalFunctionCallUTF16 * call)
 	}
 }
 
-void UIScene::registerSubstitutionTexture(const wstring &textureName, PBYTE pbData, DWORD dwLength, bool deleteData)
+void UIScene::registerSubstitutionTexture(const std::wstring &textureName, PBYTE pbData, DWORD dwLength, bool deleteData)
 {
 	m_registeredTextures[textureName] = deleteData;;
 	ui.registerSubstitutionTexture(textureName, pbData, dwLength);
 }
 
-bool UIScene::hasRegisteredSubstitutionTexture(const wstring &textureName)
+bool UIScene::hasRegisteredSubstitutionTexture(const std::wstring &textureName)
 {
 	AUTO_VAR(it, m_registeredTextures.find( textureName ) );
 
@@ -1253,7 +1253,7 @@ void UIScene::HandleMessage(EUIMessage message, void *data)
 {
 }
 
-size_t UIScene::GetCallbackUniqueId()
+std::size_t UIScene::GetCallbackUniqueId()
 {
 	if( m_callbackUniqueId == 0)
 	{

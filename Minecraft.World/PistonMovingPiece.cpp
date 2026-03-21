@@ -11,7 +11,7 @@ PistonMovingPiece::PistonMovingPiece(int id) : BaseEntityTile(id, Material::pist
 	setDestroyTime(INDESTRUCTIBLE_DESTROY_TIME);
 }
 
-shared_ptr<TileEntity> PistonMovingPiece::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> PistonMovingPiece::newTileEntity(Level *level)
 {
 	return nullptr;
 }
@@ -58,7 +58,7 @@ bool PistonMovingPiece::isCubeShaped()
 	return false;
 }
 
-bool PistonMovingPiece::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool PistonMovingPiece::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if( soundOnly) return false;
 	// this is a special case in order to help removing invisible, unbreakable, blocks in the world
@@ -97,7 +97,7 @@ void PistonMovingPiece::neighborChanged(Level *level, int x, int y, int z, int t
 	}
 }
 
-shared_ptr<TileEntity> PistonMovingPiece::newMovingPieceEntity(int block, int data, int facing, bool extending, bool isSourcePiston)
+std::shared_ptr<TileEntity> PistonMovingPiece::newMovingPieceEntity(int block, int data, int facing, bool extending, bool isSourcePiston)
 {
 	return shared_ptr<TileEntity>(new PistonPieceEntity(block, data, facing, extending, isSourcePiston));
 }
@@ -119,7 +119,7 @@ AABB *PistonMovingPiece::getAABB(Level *level, int x, int y, int z)
 	return getAABB(level, x, y, z, entity->getId(), progress, entity->getFacing());
 }
 
-void PistonMovingPiece::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void PistonMovingPiece::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	shared_ptr<PistonPieceEntity> entity = dynamic_pointer_cast<PistonPieceEntity>(forceEntity);
 	if( entity == NULL ) entity = getEntity(level, x, y, z);
@@ -189,7 +189,7 @@ AABB *PistonMovingPiece::getAABB(Level *level, int x, int y, int z, int tile, fl
 	return aabb;
 }
 
-shared_ptr<PistonPieceEntity> PistonMovingPiece::getEntity(LevelSource *level, int x, int y, int z)
+std::shared_ptr<PistonPieceEntity> PistonMovingPiece::getEntity(LevelSource *level, int x, int y, int z)
 {
 	shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
 	if (tileEntity != NULL && dynamic_pointer_cast<PistonPieceEntity>(tileEntity) != NULL)

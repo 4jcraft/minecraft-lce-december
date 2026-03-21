@@ -63,7 +63,7 @@ bool Bat::isPushable()
 	return false;
 }
 
-void Bat::doPush(shared_ptr<Entity> e)
+void Bat::doPush(std::shared_ptr<Entity> e)
 {
 	// bats don't push other mobs
 }

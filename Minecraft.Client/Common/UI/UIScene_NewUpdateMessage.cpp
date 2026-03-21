@@ -48,7 +48,7 @@ UIScene_NewUpdateMessage::~UIScene_NewUpdateMessage()
 	m_parentLayer->removeComponent(eUIComponent_Logo);
 }
 
-wstring UIScene_NewUpdateMessage::getMoviePath()
+std::wstring UIScene_NewUpdateMessage::getMoviePath()
 {
 	return L"EULA";
 }

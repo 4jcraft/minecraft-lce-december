@@ -15,7 +15,7 @@ WitherBossRenderer::WitherBossRenderer() : MobRenderer(new WitherBossModel(), 1.
 	modelVersion = dynamic_cast<WitherBossModel*>(model)->modelVersion();
 }
 
-void WitherBossRenderer::render(shared_ptr<Entity> entity, double x, double y, double z, float rot, float a)
+void WitherBossRenderer::render(std::shared_ptr<Entity> entity, double x, double y, double z, float rot, float a)
 {
 	shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(entity);
 
@@ -30,7 +30,7 @@ void WitherBossRenderer::render(shared_ptr<Entity> entity, double x, double y, d
 	MobRenderer::render(entity, x, y, z, rot, a);
 }
 
-ResourceLocation *WitherBossRenderer::getTextureLocation(shared_ptr<Entity> entity)
+ResourceLocation *WitherBossRenderer::getTextureLocation(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(entity);
 
@@ -42,7 +42,7 @@ ResourceLocation *WitherBossRenderer::getTextureLocation(shared_ptr<Entity> enti
 	return &WITHER_INVULERABLE_LOCATION;
 }
 
-void WitherBossRenderer::scale(shared_ptr<LivingEntity> _mob, float a)
+void WitherBossRenderer::scale(std::shared_ptr<LivingEntity> _mob, float a)
 {
 	shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(_mob);
 	int inTicks = mob->getInvulnerableTicks();
@@ -57,7 +57,7 @@ void WitherBossRenderer::scale(shared_ptr<LivingEntity> _mob, float a)
 	}
 }
 
-int WitherBossRenderer::prepareArmor(shared_ptr<LivingEntity> entity, int layer, float a)
+int WitherBossRenderer::prepareArmor(std::shared_ptr<LivingEntity> entity, int layer, float a)
 {
 	shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(entity);
 
@@ -104,7 +104,7 @@ int WitherBossRenderer::prepareArmor(shared_ptr<LivingEntity> entity, int layer,
 	return -1;
 }
 
-int WitherBossRenderer::prepareArmorOverlay(shared_ptr<LivingEntity> entity, int layer, float a)
+int WitherBossRenderer::prepareArmorOverlay(std::shared_ptr<LivingEntity> entity, int layer, float a)
 {
 	return -1;
 }

@@ -13,8 +13,8 @@ private:
 
 public:
 	WitherSkullRenderer();
-	void render(shared_ptr<Entity> entity, double x, double y, double z, float rot, float a);
-	ResourceLocation *getTextureLocation(shared_ptr<Entity> entity);
+	void render(std::shared_ptr<Entity> entity, double x, double y, double z, float rot, float a);
+	ResourceLocation *getTextureLocation(std::shared_ptr<Entity> entity);
 
 private:
 	float rotlerp(float from, float to, float a);	

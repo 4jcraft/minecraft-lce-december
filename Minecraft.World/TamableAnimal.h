@@ -32,8 +32,8 @@ public:
 	virtual void setTame(bool value);
 	virtual bool isSitting();
 	virtual void setSitting(bool value);
-	virtual wstring getOwnerUUID();
-	virtual void setOwnerUUID(const wstring &name);
+	virtual std::wstring getOwnerUUID();
+	virtual void setOwnerUUID(const std::wstring &name);
 	virtual shared_ptr<Entity> getOwner();
 	virtual SitGoal *getSitGoal();
 	bool wantsToAttack(shared_ptr<LivingEntity> target, shared_ptr<LivingEntity> owner);

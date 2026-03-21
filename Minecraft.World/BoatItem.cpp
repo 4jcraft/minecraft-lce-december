@@ -12,7 +12,7 @@ BoatItem::BoatItem(int id) : Item( id )
 	maxStackSize = 1;
 }
 
-bool BoatItem::TestUse(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+bool BoatItem::TestUse(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	// 4J-PB - added for tooltips to test use
 	// 4J TODO really we should have the crosshair hitresult telling us if it hit water, and at what distance, so we don't need to do this again
@@ -49,7 +49,7 @@ bool BoatItem::TestUse(shared_ptr<ItemInstance> itemInstance, Level *level, shar
 	delete hr;
 	return false;
 }
-shared_ptr<ItemInstance> BoatItem::use(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> BoatItem::use(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	float a = 1;
 

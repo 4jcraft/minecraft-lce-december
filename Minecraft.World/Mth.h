@@ -41,11 +41,11 @@ public :
 	static double nextDouble(Random *random, double min, double max);
 	static float wrapDegrees(float input);
 	static double wrapDegrees(double input);
-	static wstring createInsecureUUID(Random *random);
-	static int getInt(const wstring &input, int def);
-	static int getInt(const wstring &input, int def, int min);
-	static double getDouble(const wstring &input, double def);
-	static double getDouble(const wstring &input, double def, double min);
+	static std::wstring createInsecureUUID(Random *random);
+	static int getInt(const std::wstring &input, int def);
+	static int getInt(const std::wstring &input, int def, int min);
+	static double getDouble(const std::wstring &input, double def);
+	static double getDouble(const std::wstring &input, double def, double min);
 
 	// 4J Added
 	static bool almostEquals( double double1, double double2, double precision);

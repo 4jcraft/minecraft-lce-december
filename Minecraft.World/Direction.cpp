@@ -12,7 +12,7 @@ const int Direction::STEP_Z[] =
 	1, 0, -1, 0
 };
 
-const wstring Direction::NAMES[] = {L"SOUTH", L"WEST", L"NORTH", L"EAST" };
+const std::wstring Direction::NAMES[] = {L"SOUTH", L"WEST", L"NORTH", L"EAST" };
 
 // for [direction] it gives [tile-face]
 int Direction::DIRECTION_FACING[4] =

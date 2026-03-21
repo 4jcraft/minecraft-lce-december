@@ -4,8 +4,8 @@
 #include "..\Minecraft.World\ByteBuffer.h"
 #include "..\Minecraft.World\FloatBuffer.h"
 
-unordered_map<int,int> MemoryTracker::GL_LIST_IDS;
-vector<int> MemoryTracker::TEXTURE_IDS;
+std::unordered_map<int,int> MemoryTracker::GL_LIST_IDS;
+std::vector<int> MemoryTracker::TEXTURE_IDS;
 
 int MemoryTracker::genLists(int count)
 {

@@ -53,7 +53,7 @@ GameRuleDefinition *GameRuleDefinition::addChild(ConsoleGameRules::EGameRuleType
 	return NULL;
 }
 
-void GameRuleDefinition::addAttribute(const wstring &attributeName, const wstring &attributeValue)
+void GameRuleDefinition::addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue)
 {
 	if(attributeName.compare(L"descriptionName") == 0)
 	{
@@ -136,7 +136,7 @@ GameRulesInstance *GameRuleDefinition::generateNewGameRulesInstance(GameRulesIns
 	return manager;
 }
 
-wstring GameRuleDefinition::generateDescriptionString(ConsoleGameRules::EGameRuleType defType, const wstring &description, void *data, int dataLength)
+std::wstring GameRuleDefinition::generateDescriptionString(ConsoleGameRules::EGameRuleType defType, const std::wstring &description, void *data, int dataLength)
 {
 	wstring formatted = description;
 	switch(defType)

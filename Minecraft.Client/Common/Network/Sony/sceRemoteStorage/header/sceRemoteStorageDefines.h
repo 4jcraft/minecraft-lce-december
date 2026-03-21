@@ -89,7 +89,7 @@ typedef struct SceRemoteStorageInitParamsThread
 typedef struct SceRemoteStorageInitParamsPool
 {
 	void * memPoolBuffer;				// Memory pool used by sceRemoteStorage library
-	size_t memPoolSize;					// Size of memPoolBuffer
+	std::size_t memPoolSize;					// Size of memPoolBuffer
 } SceRemoteStorageInitParamsPool;
 
 typedef struct SceRemoteStorageInitTimeout
@@ -109,7 +109,7 @@ typedef struct SceRemoteStorageInitParams
 	int32_t httpContextId;													// PS4 only: Http context ID that was returned from sceHttpInit()
 	int32_t userId;															// PS4 only: Current user, see SceUserServiceUserId
 	void * psnTicket;														// PS3 only: The PSN ticket used to authenticate the user
-	size_t psnTicketSize;													// PS3 only: The size of the PSN ticket in bytes
+	std::size_t psnTicketSize;													// PS3 only: The size of the PSN ticket in bytes
 	char clientId[SCE_REMOTE_STORAGE_CLIENT_ID_MAX_LEN];					// This represents your application on PSN, used to sign PSN user in for your title
 	SceRemoteStorageInitTimeout timeout;									// Timeout for network transactions
 	SceRemoteStorageInitParamsPool pool;									// Memory pool parameters
@@ -142,7 +142,7 @@ typedef struct SceRemoteStorageData
 {
 	char fileName[SCE_REMOTE_STORAGE_DATA_NAME_MAX_LEN];					// Name of file on remote storage server
 	char fileDescription[SCE_REMOTE_STORAGE_DATA_DESCRIPTION_MAX_LEN];		// Description of file on remote storage server
-	size_t fileSize;														// Size of file in bytes
+	std::size_t fileSize;														// Size of file in bytes
 	char md5Checksum[SCE_REMOTE_STORAGE_MD5_STRING_LENGTH];					// File MD5 checksum
 	char timeStamp[SCE_REMOTE_STORAGE_RFC2822_LENGTH];						// Time that data was written on the server. Format is RFC2822
 	SceRemoteStorageDataVisibility visibility;								// Visibility of data

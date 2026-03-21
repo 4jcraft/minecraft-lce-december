@@ -68,7 +68,7 @@ void TntTile::destroy(Level *level, int x, int y, int z, int data)
 	destroy(level, x, y, z, data, nullptr);
 }
 
-void TntTile::destroy(Level *level, int x, int y, int z, int data, shared_ptr<LivingEntity> source)
+void TntTile::destroy(Level *level, int x, int y, int z, int data, std::shared_ptr<LivingEntity> source)
 {
 	if (level->isClientSide) return;
 
@@ -84,7 +84,7 @@ void TntTile::destroy(Level *level, int x, int y, int z, int data, shared_ptr<Li
 	}
 }
 
-bool TntTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool TntTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if (soundOnly) return false;
 	if (player->getSelectedItem() != NULL && player->getSelectedItem()->id == Item::flintAndSteel_Id)
@@ -97,7 +97,7 @@ bool TntTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, 
 	return Tile::use(level, x, y, z, player, clickedFace, clickX, clickY, clickZ);
 }
 
-void TntTile::entityInside(Level *level, int x, int y, int z, shared_ptr<Entity> entity)
+void TntTile::entityInside(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity)
 {
 	if (entity->GetType() == eTYPE_ARROW && !level->isClientSide)
 	{

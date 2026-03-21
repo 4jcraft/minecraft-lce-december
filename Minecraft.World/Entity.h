@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 #include "ListTag.h"
 #include "DoubleTag.h"
 #include "FloatTag.h"
@@ -43,7 +42,7 @@ public:
 	inline static bool instanceof(eINSTANCEOF type, eINSTANCEOF super) { return eTYPE_DERIVED_FROM(super, type); }
 
 public:
-	static const wstring RIDING_TAG;
+	static const std::wstring RIDING_TAG;
 	static const short TOTAL_AIR_SUPPLY = 20 * 15;
 
 private:
@@ -158,7 +157,7 @@ protected:
 
 private:
 	bool invulnerable;
-	wstring uuid;
+	std::wstring uuid;
 
 protected:
 	// 4J Added so that client side simulations on the host are not affected by zero-lag
@@ -292,7 +291,7 @@ public:
 
 protected:
 	virtual bool repositionEntityAfterLoad();
-	const wstring getEncodeId();
+	const std::wstring getEncodeId();
 
 public:
 	virtual void readAdditionalSaveData(CompoundTag *tag) = 0;
@@ -369,7 +368,7 @@ protected:
 public:
 	virtual void makeStuckInWeb();
 
-	virtual wstring getAName();
+	virtual std::wstring getAName();
 
 	// 4J - added to manage allocation of small ids
 private:
@@ -413,11 +412,11 @@ public:
 	virtual int getPortalEntranceDir();
 	virtual bool isIgnoringTileTriggers();
 	virtual bool displayFireAnimation();
-	virtual void setUUID(const wstring &UUID);
-	virtual wstring getUUID();
+	virtual void setUUID(const std::wstring &UUID);
+	virtual std::wstring getUUID();
 	virtual bool isPushedByWater();
-	virtual wstring getDisplayName();
-	virtual wstring getNetworkName(); // 4J: Added
+	virtual std::wstring getDisplayName();
+	virtual std::wstring getNetworkName(); // 4J: Added
 
 private:
 	unsigned int m_uiAnimOverrideBitmask;

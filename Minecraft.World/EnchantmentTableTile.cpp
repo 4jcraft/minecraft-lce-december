@@ -5,9 +5,9 @@
 #include "net.minecraft.h"
 #include "net.minecraft.world.h"
 
-const wstring EnchantmentTableTile::TEXTURE_SIDE = L"enchantment_side";
-const wstring EnchantmentTableTile::TEXTURE_TOP = L"enchantment_top";
-const wstring EnchantmentTableTile::TEXTURE_BOTTOM = L"enchantment_bottom";
+const std::wstring EnchantmentTableTile::TEXTURE_SIDE = L"enchantment_side";
+const std::wstring EnchantmentTableTile::TEXTURE_TOP = L"enchantment_top";
+const std::wstring EnchantmentTableTile::TEXTURE_BOTTOM = L"enchantment_bottom";
 
 EnchantmentTableTile::EnchantmentTableTile(int id) : BaseEntityTile(id, Material::stone, isSolidRender())
 {
@@ -67,12 +67,12 @@ Icon *EnchantmentTableTile::getTexture(int face, int data)
 	return icon;
 }
 
-shared_ptr<TileEntity> EnchantmentTableTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> EnchantmentTableTile::newTileEntity(Level *level)
 {
 	return shared_ptr<TileEntity>(new EnchantmentTableEntity());
 }
 
-bool EnchantmentTableTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool EnchantmentTableTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if(soundOnly) return false;
 
@@ -85,7 +85,7 @@ bool EnchantmentTableTile::use(Level *level, int x, int y, int z, shared_ptr<Pla
 	return true;
 }
 
-void EnchantmentTableTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void EnchantmentTableTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	BaseEntityTile::setPlacedBy(level, x, y, z, by, itemInstance);
 	if (itemInstance->hasCustomHoverName())

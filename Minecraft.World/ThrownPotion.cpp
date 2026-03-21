@@ -27,14 +27,14 @@ ThrownPotion::ThrownPotion(Level *level) : Throwable(level)
 	_init();
 }
 
-ThrownPotion::ThrownPotion(Level *level, shared_ptr<LivingEntity> mob, int potionValue) : Throwable(level,mob)
+ThrownPotion::ThrownPotion(Level *level, std::shared_ptr<LivingEntity> mob, int potionValue) : Throwable(level,mob)
 {
 	_init();
 
 	potionItem = shared_ptr<ItemInstance>( new ItemInstance(Item::potion, 1, potionValue));
 }
 
-ThrownPotion::ThrownPotion(Level *level, shared_ptr<LivingEntity> mob, shared_ptr<ItemInstance> potion) : Throwable(level, mob)
+ThrownPotion::ThrownPotion(Level *level, std::shared_ptr<LivingEntity> mob, std::shared_ptr<ItemInstance> potion) : Throwable(level, mob)
 {
 	_init();
 
@@ -48,7 +48,7 @@ ThrownPotion::ThrownPotion(Level *level, double x, double y, double z, int potio
 	potionItem = shared_ptr<ItemInstance>( new ItemInstance(Item::potion, 1, potionValue));
 }
 
-ThrownPotion::ThrownPotion(Level *level, double x, double y, double z, shared_ptr<ItemInstance> potion) : Throwable(level, x, y, z)
+ThrownPotion::ThrownPotion(Level *level, double x, double y, double z, std::shared_ptr<ItemInstance> potion) : Throwable(level, x, y, z)
 {
 	_init();
 

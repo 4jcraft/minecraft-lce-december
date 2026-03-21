@@ -11,7 +11,7 @@ public:
 	static const int MASK_ATTACHED = 0x4;
 	static const int MASK_POWERED = 0x8;
 	static const int WIRE_DIST_MIN = 1;
-	static const int WIRE_DIST_MAX = 2 + 40; // 2 hooks + x string
+	static const int WIRE_DIST_MAX = 2 + 40; // 2 hooks + x std::string
 
 	TripWireSourceTile(int id);
 
@@ -35,7 +35,7 @@ private:
 	bool checkCanSurvive(Level *level, int x, int y, int z);
 
 public:
-	void updateShape(LevelSource *level, int x, int y, int z, int forceData = -1, shared_ptr<TileEntity> forceEntity = shared_ptr<TileEntity>());
+	void updateShape(LevelSource *level, int x, int y, int z, int forceData = -1, std::shared_ptr<TileEntity> forceEntity = std::shared_ptr<TileEntity>());
 	void onRemove(Level *level, int x, int y, int z, int id, int data);
 	virtual int getSignal(LevelSource *level, int x, int y, int z, int dir);
 	virtual int getDirectSignal(LevelSource *level, int x, int y, int z, int dir);

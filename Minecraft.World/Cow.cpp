@@ -103,7 +103,7 @@ void Cow::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel)
 	}
 }
 
-bool Cow::mobInteract(shared_ptr<Player> player) 
+bool Cow::mobInteract(std::shared_ptr<Player> player) 
 {
 	shared_ptr<ItemInstance> item = player->inventory->getSelected();
 	if (item != NULL && item->id == Item::bucket_empty->id && !player->abilities.instabuild) 
@@ -124,7 +124,7 @@ bool Cow::mobInteract(shared_ptr<Player> player)
 	return Animal::mobInteract(player);
 }
 
-shared_ptr<AgableMob> Cow::getBreedOffspring(shared_ptr<AgableMob> target)
+std::shared_ptr<AgableMob> Cow::getBreedOffspring(std::shared_ptr<AgableMob> target)
 {
 	// 4J - added limit to number of animals that can be bred
 	if( level->canCreateMore( GetType(), Level::eSpawnType_Breed) )

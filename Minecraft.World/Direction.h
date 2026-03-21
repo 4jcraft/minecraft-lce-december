@@ -12,7 +12,7 @@ public:
 	static const int STEP_X[];
 	static const int STEP_Z[];
 
-	static const wstring NAMES[];;
+	static const std::wstring NAMES[];;
 
 	// for [direction] it gives [tile-face]
 	static int DIRECTION_FACING[];

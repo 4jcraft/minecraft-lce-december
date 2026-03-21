@@ -18,7 +18,7 @@ GameRule::~GameRule()
 	}
 }
 
-GameRule::ValueType GameRule::getParameter(const wstring &parameterName)
+GameRule::ValueType GameRule::getParameter(const std::wstring &parameterName)
 {
 	if(m_parameters.find(parameterName) == m_parameters.end())
 	{
@@ -30,7 +30,7 @@ GameRule::ValueType GameRule::getParameter(const wstring &parameterName)
 	return m_parameters[parameterName];
 }
 
-void GameRule::setParameter(const wstring &parameterName,ValueType value)
+void GameRule::setParameter(const std::wstring &parameterName,ValueType value)
 {
 	if(m_parameters.find(parameterName) == m_parameters.end())
 	{

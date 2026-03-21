@@ -67,7 +67,7 @@ void HeavyTile::checkSlide(Level *level, int x, int y, int z)
 	}
 }
 
-void HeavyTile::falling(shared_ptr<FallingTile> entity)
+void HeavyTile::falling(std::shared_ptr<FallingTile> entity)
 {
 }
 

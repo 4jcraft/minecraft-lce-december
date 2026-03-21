@@ -255,6 +255,6 @@ enum EUIMessage
 	eUIMessage_COUNT,
 };
 
-#define NO_TRANSLATED_STRING	( -1 )			// String ID used to indicate that we are using non localised string.
+#define NO_TRANSLATED_STRING	( -1 )			// String ID used to indicate that we are using non localised std::string.
 
 #define CONNECTING_PROGRESS_CHECK_TIME 500

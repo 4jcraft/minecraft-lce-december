@@ -30,7 +30,7 @@ private:
 public:
 	UIControl_BeaconEffectButton();
 
-	virtual bool setupControl(UIScene *scene, IggyValuePath *parent, const string &controlName);
+	virtual bool setupControl(UIScene *scene, IggyValuePath *parent, const std::string &controlName);
 
 	void SetData(int data, int icon, bool active, bool selected);
 	int GetData();

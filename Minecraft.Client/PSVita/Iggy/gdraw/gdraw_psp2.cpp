@@ -481,7 +481,7 @@ static void *alloc_dynamic(U32 size, U32 align)
    return ptr;
 }
 
-static void *alloc_and_set_fragment_uniforms(SceGxmContext *gxm, U32 slot, size_t size)
+static void *alloc_and_set_fragment_uniforms(SceGxmContext *gxm, U32 slot, std::size_t size)
 {
    void *ptr = alloc_dynamic(size, sizeof(U32));
    if (ptr)
@@ -489,7 +489,7 @@ static void *alloc_and_set_fragment_uniforms(SceGxmContext *gxm, U32 slot, size_
    return ptr;
 }
 
-static void *alloc_and_set_vertex_uniforms(SceGxmContext *gxm, U32 slot, size_t size)
+static void *alloc_and_set_vertex_uniforms(SceGxmContext *gxm, U32 slot, std::size_t size)
 {
    void *ptr = alloc_dynamic(size, sizeof(U32));
    if (ptr)

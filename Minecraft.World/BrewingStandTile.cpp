@@ -28,7 +28,7 @@ int BrewingStandTile::getRenderShape()
 	return SHAPE_BREWING_STAND;
 }
 
-shared_ptr<TileEntity> BrewingStandTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> BrewingStandTile::newTileEntity(Level *level)
 {
 	return shared_ptr<TileEntity>(new BrewingStandTileEntity());
 }
@@ -38,7 +38,7 @@ bool BrewingStandTile::isCubeShaped()
 	return false;
 }
 
-void BrewingStandTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, shared_ptr<Entity> source)
+void BrewingStandTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, std::shared_ptr<Entity> source)
 {
 	setShape(7.0f / 16.0f, 0, 7.0f / 16.0f, 9.0f / 16.0f, 14.0f / 16.0f, 9.0f / 16.0f);
 	BaseEntityTile::addAABBs(level, x, y, z, box, boxes, source);
@@ -51,7 +51,7 @@ void BrewingStandTile::updateDefaultShape()
 	setShape(0, 0, 0, 1, 2.0f / 16.0f, 1);
 }
 
-bool BrewingStandTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool BrewingStandTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if(soundOnly) return false;
 
@@ -65,7 +65,7 @@ bool BrewingStandTile::use(Level *level, int x, int y, int z, shared_ptr<Player>
 	return true;
 }
 
-void BrewingStandTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void BrewingStandTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	if (itemInstance->hasCustomHoverName())
 	{

@@ -6,7 +6,7 @@
 #include "..\Minecraft.World\net.minecraft.world.level.h"
 #include "..\Minecraft.World\net.minecraft.world.level.storage.h"
 
-RenameWorldScreen::RenameWorldScreen(Screen *lastScreen, const wstring& levelId)
+RenameWorldScreen::RenameWorldScreen(Screen *lastScreen, const std::wstring& levelId)
 {
 	nameEdit = NULL;
     this->lastScreen = lastScreen;

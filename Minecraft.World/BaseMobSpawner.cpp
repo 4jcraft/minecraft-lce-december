@@ -35,7 +35,7 @@ BaseMobSpawner::~BaseMobSpawner()
 	}
 }
 
-wstring BaseMobSpawner::getEntityId()
+std::wstring BaseMobSpawner::getEntityId()
 {
 	if (getNextSpawnData() == NULL)
 	{
@@ -51,7 +51,7 @@ wstring BaseMobSpawner::getEntityId()
 	}
 }
 
-void BaseMobSpawner::setEntityId(const wstring &entityId)
+void BaseMobSpawner::setEntityId(const std::wstring &entityId)
 {
 	this->entityId = entityId;
 }
@@ -129,7 +129,7 @@ void BaseMobSpawner::tick()
 	}
 }
 
-shared_ptr<Entity> BaseMobSpawner::loadDataAndAddEntity(shared_ptr<Entity> entity)
+std::shared_ptr<Entity> BaseMobSpawner::loadDataAndAddEntity(std::shared_ptr<Entity> entity)
 {
 	if (getNextSpawnData() != NULL)
 	{
@@ -291,7 +291,7 @@ void BaseMobSpawner::save(CompoundTag *tag)
 	}
 }
 
-shared_ptr<Entity> BaseMobSpawner::getDisplayEntity()
+std::shared_ptr<Entity> BaseMobSpawner::getDisplayEntity()
 {
 	if (displayEntity == NULL)
 	{
@@ -355,7 +355,7 @@ BaseMobSpawner::SpawnData::SpawnData(CompoundTag *base) : WeighedRandomItem(base
 	this->type = _type;
 }
 
-BaseMobSpawner::SpawnData::SpawnData(CompoundTag *tag, wstring _type) : WeighedRandomItem(1)
+BaseMobSpawner::SpawnData::SpawnData(CompoundTag *tag, std::wstring _type) : WeighedRandomItem(1)
 {
 	if (_type.compare(L"Minecart") == 0)
 	{

@@ -12,7 +12,7 @@
 #include "ListTag.h"
 #include "CompoundTag.h"
 
-Tag::Tag(const wstring &name)
+Tag::Tag(const std::wstring &name)
 {
 	if (name.empty())
 	{
@@ -47,12 +47,12 @@ bool Tag::equals(Tag *obj)
 	return true;
 }
 
-void Tag::print(ostream out)
+void Tag::print(std::ostream out)
 {
 	out << "";
 }
 
-void Tag::print(char *prefix, wostream out)
+void Tag::print(char *prefix, std::wostream out)
 {
 	wstring name = getName();
 
@@ -66,12 +66,12 @@ void Tag::print(char *prefix, wostream out)
 	out << toString() << endl;
 }
 
-wstring Tag::getName()
+std::wstring Tag::getName()
 {
 	return name;
 }
 
-Tag *Tag::setName(const wstring& name)
+Tag *Tag::setName(const std::wstring& name)
 {
 	this->name = name;
 	return this;
@@ -121,7 +121,7 @@ void Tag::writeNamedTag(Tag *tag, DataOutput *dos)
 	tag->write(dos);
 }
 
-Tag *Tag::newTag(byte type, const wstring &name)
+Tag *Tag::newTag(byte type, const std::wstring &name)
 {
 	switch (type)
 	{

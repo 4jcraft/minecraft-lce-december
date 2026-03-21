@@ -160,7 +160,7 @@ float Sheep::getHeadEatAngleScale(float a)
 	return ((xRot / (180.0f / PI)));
 }
 
-bool Sheep::mobInteract(shared_ptr<Player> player)
+bool Sheep::mobInteract(std::shared_ptr<Player> player)
 {
 	shared_ptr<ItemInstance> item = player->inventory->getSelected();
 
@@ -278,7 +278,7 @@ int Sheep::getSheepColor(Random *random)
 	return 0; // white
 }
 
-shared_ptr<AgableMob> Sheep::getBreedOffspring(shared_ptr<AgableMob> target)
+std::shared_ptr<AgableMob> Sheep::getBreedOffspring(std::shared_ptr<AgableMob> target)
 {
 	// 4J - added limit to number of animals that can be bred
 	if( level->canCreateMore( GetType(), Level::eSpawnType_Breed) )
@@ -313,7 +313,7 @@ MobGroupData *Sheep::finalizeMobSpawn(MobGroupData *groupData, int extraData /*=
 	return groupData;
 }
 
-int Sheep::getOffspringColor(shared_ptr<Animal> animal, shared_ptr<Animal> partner)
+int Sheep::getOffspringColor(std::shared_ptr<Animal> animal, std::shared_ptr<Animal> partner)
 {
 	int parent1DyeColor = getDyeColor(animal);
 	int parent2DyeColor = getDyeColor(partner);
@@ -335,7 +335,7 @@ int Sheep::getOffspringColor(shared_ptr<Animal> animal, shared_ptr<Animal> partn
 	return color;
 }
 
-int Sheep::getDyeColor(shared_ptr<Animal> animal)
+int Sheep::getDyeColor(std::shared_ptr<Animal> animal)
 {
 	return 15 - dynamic_pointer_cast<Sheep>(animal)->getColor();
 }

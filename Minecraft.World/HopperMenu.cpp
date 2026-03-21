@@ -2,7 +2,7 @@
 #include "net.minecraft.world.inventory.h"
 #include "HopperMenu.h"
 
-HopperMenu::HopperMenu(shared_ptr<Container> inventory, shared_ptr<Container> hopper)
+HopperMenu::HopperMenu(std::shared_ptr<Container> inventory, std::shared_ptr<Container> hopper)
 {
 	this->hopper = hopper;
 	hopper->startOpen();
@@ -26,12 +26,12 @@ HopperMenu::HopperMenu(shared_ptr<Container> inventory, shared_ptr<Container> ho
 	}
 }
 
-bool HopperMenu::stillValid(shared_ptr<Player> player)
+bool HopperMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return hopper->stillValid(player);
 }
 
-shared_ptr<ItemInstance> HopperMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> HopperMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);
@@ -64,13 +64,13 @@ shared_ptr<ItemInstance> HopperMenu::quickMoveStack(shared_ptr<Player> player, i
 	return clicked;
 }
 
-void HopperMenu::removed(shared_ptr<Player> player)
+void HopperMenu::removed(std::shared_ptr<Player> player)
 {
 	AbstractContainerMenu::removed(player);
 	hopper->stopOpen();
 }
 
-shared_ptr<Container> HopperMenu::getContainer()
+std::shared_ptr<Container> HopperMenu::getContainer()
 {
 	return hopper;
 }

@@ -23,8 +23,8 @@ public:
 	virtual int getMinCost(int level);
 	virtual int getMaxCost(int level);
 	virtual int getMaxLevel();
-	virtual float getDamageBonus(int level, shared_ptr<LivingEntity> target);
+	virtual float getDamageBonus(int level, std::shared_ptr<LivingEntity> target);
 	virtual int getDescriptionId();
 	virtual bool isCompatibleWith(Enchantment *other) const;
-	virtual bool canEnchant(shared_ptr<ItemInstance> item);
+	virtual bool canEnchant(std::shared_ptr<ItemInstance> item);
 };

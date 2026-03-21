@@ -4,7 +4,7 @@
 #include "..\Minecraft.World\InputOutputStream.h"
 #include "..\Minecraft.World\StringHelpers.h"
 
-AbstractTexturePack::AbstractTexturePack(DWORD id, File *file, const wstring &name, TexturePack *fallback) : id(id), name(name)
+AbstractTexturePack::AbstractTexturePack(DWORD id, File *file, const std::wstring &name, TexturePack *fallback) : id(id), name(name)
 {
 	// 4J init
 	textureId = -1;
@@ -25,7 +25,7 @@ AbstractTexturePack::AbstractTexturePack(DWORD id, File *file, const wstring &na
 	//loadDescription();
 }
 
-wstring AbstractTexturePack::trim(wstring line)
+std::wstring AbstractTexturePack::trim(std::wstring line)
 {
 	if (!line.empty() && line.length() > 34)
 	{
@@ -101,7 +101,7 @@ void AbstractTexturePack::loadName()
 {
 }
 
-InputStream *AbstractTexturePack::getResource(const wstring &name, bool allowFallback) //throws IOException
+InputStream *AbstractTexturePack::getResource(const std::wstring &name, bool allowFallback) //throws IOException
 {
 	app.DebugPrintf("texture - %ls\n",name.c_str());
 	InputStream *is = getResourceImplementation(name);
@@ -145,7 +145,7 @@ void AbstractTexturePack::load(Textures *textures)
 	}
 }
 
-bool AbstractTexturePack::hasFile(const wstring &name, bool allowFallback)
+bool AbstractTexturePack::hasFile(const std::wstring &name, bool allowFallback)
 {
 	bool hasFile = this->hasFile(name);
 
@@ -157,32 +157,32 @@ DWORD AbstractTexturePack::getId()
 	return id;
 }
 
-wstring AbstractTexturePack::getName()
+std::wstring AbstractTexturePack::getName()
 {
 	return texname;
 }
 
-wstring AbstractTexturePack::getWorldName()
+std::wstring AbstractTexturePack::getWorldName()
 {
 	return m_wsWorldName;
 }
 
-wstring AbstractTexturePack::getDesc1()
+std::wstring AbstractTexturePack::getDesc1()
 {
 	return desc1;
 }
 
-wstring AbstractTexturePack::getDesc2()
+std::wstring AbstractTexturePack::getDesc2()
 {
 	return desc2;
 }
 
-wstring AbstractTexturePack::getAnimationString(const wstring &textureName, const wstring &path, bool allowFallback)
+std::wstring AbstractTexturePack::getAnimationString(const std::wstring &textureName, const std::wstring &path, bool allowFallback)
 {
 	return getAnimationString(textureName, path);
 }
 
-wstring AbstractTexturePack::getAnimationString(const wstring &textureName, const wstring &path)
+std::wstring AbstractTexturePack::getAnimationString(const std::wstring &textureName, const std::wstring &path)
 {
 	wstring animationDefinitionFile = textureName + L".txt";
 
@@ -219,7 +219,7 @@ wstring AbstractTexturePack::getAnimationString(const wstring &textureName, cons
 	return result;
 }
 
-BufferedImage *AbstractTexturePack::getImageResource(const wstring& File, bool filenameHasExtension /*= false*/, bool bTitleUpdateTexture /*=false*/, const wstring &drive /*=L""*/)
+BufferedImage *AbstractTexturePack::getImageResource(const std::wstring& File, bool filenameHasExtension /*= false*/, bool bTitleUpdateTexture /*=false*/, const std::wstring &drive /*=L""*/)
 {
 	const char *pchTexture=wstringtofilename(File);
 	app.DebugPrintf("AbstractTexturePack::getImageResource - %s, drive is %s\n",pchTexture, wstringtofilename(drive));
@@ -372,7 +372,7 @@ void AbstractTexturePack::unloadUI()
 	// Do nothing
 }
 
-wstring AbstractTexturePack::getXuiRootPath()
+std::wstring AbstractTexturePack::getXuiRootPath()
 {
 	const ULONG_PTR c_ModuleHandle = (ULONG_PTR)GetModuleHandle(NULL);
 

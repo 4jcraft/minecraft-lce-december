@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "DirectoryLevelStorageSource.h"
 #include "FileFilter.h"
@@ -14,13 +13,13 @@ public:
 	class ChunkFile;
 
 	McRegionLevelStorageSource(File dir);
-    virtual wstring getName();
+    virtual std::wstring getName();
     virtual vector<LevelSummary *> *getLevelList();
     virtual void clearAll();
-    virtual shared_ptr<LevelStorage> selectLevel(ConsoleSaveFile *saveFile, const wstring& levelId, bool createPlayerDir);
-    virtual bool isConvertible(ConsoleSaveFile *saveFile, const wstring& levelId);
-    virtual bool requiresConversion(ConsoleSaveFile *saveFile, const wstring& levelId);
-    virtual bool convertLevel(ConsoleSaveFile *saveFile, const wstring& levelId, ProgressListener *progress);
+    virtual std::shared_ptr<LevelStorage> selectLevel(ConsoleSaveFile *saveFile, const std::wstring& levelId, bool createPlayerDir);
+    virtual bool isConvertible(ConsoleSaveFile *saveFile, const std::wstring& levelId);
+    virtual bool requiresConversion(ConsoleSaveFile *saveFile, const std::wstring& levelId);
+    virtual bool convertLevel(ConsoleSaveFile *saveFile, const std::wstring& levelId, ProgressListener *progress);
 
 private:
 #if 0

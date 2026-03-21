@@ -57,8 +57,8 @@ private:
 
 public:
 	ModelHorse();
-	void prepareMobModel(shared_ptr<LivingEntity> mob, float wp, float ws, float a);
-	virtual void render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled);
+	void prepareMobModel(std::shared_ptr<LivingEntity> mob, float wp, float ws, float a);
+	virtual void render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled);
 
 private:
 	void setRotation(ModelPart *model, float x, float y, float z);

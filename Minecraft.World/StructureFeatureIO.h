@@ -74,20 +74,20 @@ enum EStructurePiece
 class StructureFeatureIO
 {
 private:
-	static unordered_map<wstring, structureStartCreateFn> startIdClassMap;
-	static unordered_map<unsigned int, wstring> startClassIdMap;
+	static unordered_map<std::wstring, structureStartCreateFn> startIdClassMap;
+	static unordered_map<unsigned int, std::wstring> startClassIdMap;
 
-	static unordered_map<wstring, structurePieceCreateFn> pieceIdClassMap;
-	static unordered_map<unsigned int, wstring> pieceClassIdMap;
+	static unordered_map<std::wstring, structurePieceCreateFn> pieceIdClassMap;
+	static unordered_map<unsigned int, std::wstring> pieceClassIdMap;
 
 public:
-	static void setStartId(EStructureStart clas, structureStartCreateFn createFn, const wstring &id);
-	static void setPieceId(EStructurePiece clas, structurePieceCreateFn createFn, const wstring &id);
+	static void setStartId(EStructureStart clas, structureStartCreateFn createFn, const std::wstring &id);
+	static void setPieceId(EStructurePiece clas, structurePieceCreateFn createFn, const std::wstring &id);
 
 public:
 	static void staticCtor();
-	static wstring getEncodeId(StructureStart *start);
-	static wstring getEncodeId(StructurePiece *piece);
+	static std::wstring getEncodeId(StructureStart *start);
+	static std::wstring getEncodeId(StructurePiece *piece);
 	static StructureStart *loadStaticStart(CompoundTag *tag, Level *level);
 	static StructurePiece *loadStaticPiece(CompoundTag *tag, Level *level);
 };

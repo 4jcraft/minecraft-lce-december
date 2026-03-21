@@ -12,7 +12,7 @@
 #include "DirectoryLevelStorage.h"
 #include "ConsoleSaveFileIO.h"
 
-const wstring DirectoryLevelStorage::sc_szPlayerDir(L"players/");
+const std::wstring DirectoryLevelStorage::sc_szPlayerDir(L"players/");
 
 _MapDataMappings::_MapDataMappings()
 {
@@ -159,7 +159,7 @@ void DirectoryLevelStorage::PlayerMappings::readMappings(DataInputStream *dis)
 }
 #endif
 
-DirectoryLevelStorage::DirectoryLevelStorage(ConsoleSaveFile *saveFile, const File dir, const wstring& levelId, bool createPlayerDir) : sessionId( System::currentTimeMillis() ),
+DirectoryLevelStorage::DirectoryLevelStorage(ConsoleSaveFile *saveFile, const File dir, const std::wstring& levelId, bool createPlayerDir) : sessionId( System::currentTimeMillis() ),
 	dir( L"" ), playerDir( sc_szPlayerDir ), dataDir( wstring(L"data/") ), levelId(levelId)
 {
 	m_saveFile = saveFile;
@@ -381,7 +381,7 @@ void DirectoryLevelStorage::saveLevelData(LevelData *levelData)
 	delete root;
 }
 
-void DirectoryLevelStorage::save(shared_ptr<Player> player)
+void DirectoryLevelStorage::save(std::shared_ptr<Player> player)
 {
 	// 4J Jev, removed try/catch.
 	PlayerUID playerXuid = player->getXuid();
@@ -429,7 +429,7 @@ void DirectoryLevelStorage::save(shared_ptr<Player> player)
 }
 
 // 4J Changed return val to bool to check if new player or loaded player
-CompoundTag *DirectoryLevelStorage::load(shared_ptr<Player> player) 
+CompoundTag *DirectoryLevelStorage::load(std::shared_ptr<Player> player) 
 {
 	CompoundTag *tag = loadPlayerDataTag( player->getXuid() );
 	if (tag != NULL)
@@ -529,12 +529,12 @@ void DirectoryLevelStorage::closeAll()
 {
 }
 
-ConsoleSavePath DirectoryLevelStorage::getDataFile(const wstring& id)
+ConsoleSavePath DirectoryLevelStorage::getDataFile(const std::wstring& id)
 {
 	return ConsoleSavePath( dataDir.getName() + id + L".dat" );
 }
 
-wstring DirectoryLevelStorage::getLevelId()
+std::wstring DirectoryLevelStorage::getLevelId()
 {
 	return levelId;
 }
@@ -735,7 +735,7 @@ void DirectoryLevelStorage::dontSaveMapMappingForPlayer(PlayerUID xuid)
 #endif
 }
 
-void DirectoryLevelStorage::deleteMapFilesForPlayer(shared_ptr<Player> player)
+void DirectoryLevelStorage::deleteMapFilesForPlayer(std::shared_ptr<Player> player)
 {
 	PlayerUID playerXuid = player->getXuid();
 	if(playerXuid != INVALID_XUID) deleteMapFilesForPlayer(playerXuid);

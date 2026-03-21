@@ -46,7 +46,7 @@ bool LeashFenceKnotEntity::shouldRenderAtSqrDistance(double distance)
 	return distance < 32 * 32;
 }
 
-void LeashFenceKnotEntity::dropItem(shared_ptr<Entity> causedBy)
+void LeashFenceKnotEntity::dropItem(std::shared_ptr<Entity> causedBy)
 {
 
 }
@@ -65,7 +65,7 @@ void LeashFenceKnotEntity::readAdditionalSaveData(CompoundTag *tag)
 {
 }
 
-bool LeashFenceKnotEntity::interact(shared_ptr<Player> player)
+bool LeashFenceKnotEntity::interact(std::shared_ptr<Player> player)
 {
 	shared_ptr<ItemInstance> item = player->getCarriedItem();
 
@@ -129,7 +129,7 @@ bool LeashFenceKnotEntity::survives()
 	return false;
 }
 
-shared_ptr<LeashFenceKnotEntity> LeashFenceKnotEntity::createAndAddKnot(Level *level, int x, int y, int z)
+std::shared_ptr<LeashFenceKnotEntity> LeashFenceKnotEntity::createAndAddKnot(Level *level, int x, int y, int z)
 {
 	shared_ptr<LeashFenceKnotEntity> knot = shared_ptr<LeashFenceKnotEntity>( new LeashFenceKnotEntity(level, x, y, z) );
 	knot->forcedLoading = true;
@@ -137,7 +137,7 @@ shared_ptr<LeashFenceKnotEntity> LeashFenceKnotEntity::createAndAddKnot(Level *l
 	return knot;
 }
 
-shared_ptr<LeashFenceKnotEntity> LeashFenceKnotEntity::findKnotAt(Level *level, int x, int y, int z)
+std::shared_ptr<LeashFenceKnotEntity> LeashFenceKnotEntity::findKnotAt(Level *level, int x, int y, int z)
 {
 	vector<shared_ptr<Entity> > *knots = level->getEntitiesOfClass(typeid(LeashFenceKnotEntity), AABB::newTemp(x - 1.0, y - 1.0, z - 1.0, x + 1.0, y + 1.0, z + 1.0));
 	if (knots != NULL)

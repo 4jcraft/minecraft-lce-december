@@ -8,8 +8,8 @@
 #include "SnowMan.h"
 #include "MobCategory.h"
 
-const wstring PumpkinTile::TEXTURE_FACE = L"pumpkin_face";
-const wstring PumpkinTile::TEXTURE_LANTERN = L"pumpkin_jack";
+const std::wstring PumpkinTile::TEXTURE_FACE = L"pumpkin_face";
+const std::wstring PumpkinTile::TEXTURE_LANTERN = L"pumpkin_jack";
 
 PumpkinTile::PumpkinTile(int id, bool lit) : DirectionalTile(id, Material::vegetable, isSolidRender() )
 {
@@ -155,7 +155,7 @@ bool PumpkinTile::mayPlace(Level *level, int x, int y, int z)
 
 }
 
-void PumpkinTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void PumpkinTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	int dir = Mth::floor(by->yRot * 4 / (360) + 2.5) & 3;
 	level->setData(x, y, z, dir, Tile::UPDATE_CLIENTS);

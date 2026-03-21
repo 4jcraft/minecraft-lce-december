@@ -55,7 +55,7 @@ IDOC typedef struct gswf_matrix
           F32 m11; // Alternate name for m[1][1], for coding convenience
       };
    };
-   F32 trans[2]; // 2D translation vector (the affine component of the matrix)
+   F32 trans[2]; // 2D translation std::vector (the affine component of the matrix)
 } gswf_matrix;
 /* A 2D transform matrix plus a translation offset. */
 
@@ -501,7 +501,7 @@ IDOC typedef struct gswf_vertex_xyoffs
    S16 dx, dy; // Vector offset from the position, used for anti-aliasing (signed 11.5 fixed point)
    S16 unused;
 } gswf_vertex_xyoffs;
-/* A 2D point with floating-point position, additional integer parameter, and integer anti-aliasing offset vector. */
+/* A 2D point with floating-point position, additional integer parameter, and integer anti-aliasing offset std::vector. */
 
 IDOC typedef struct gswf_vertex_xyst
 {

@@ -9,7 +9,7 @@ SaddleItem::SaddleItem(int id) : Item(id)
 	maxStackSize = 1;
 }
 
-bool SaddleItem::interactEnemy(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, shared_ptr<LivingEntity> mob) 
+bool SaddleItem::interactEnemy(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, std::shared_ptr<LivingEntity> mob) 
 {
 	if ( (mob != NULL) && mob->instanceof(eTYPE_PIG) )
 	{
@@ -24,7 +24,7 @@ bool SaddleItem::interactEnemy(shared_ptr<ItemInstance> itemInstance, shared_ptr
 	return false;
 }
 
-bool SaddleItem::hurtEnemy(shared_ptr<ItemInstance> itemInstance, shared_ptr<LivingEntity> mob, shared_ptr<LivingEntity> attacker) 
+bool SaddleItem::hurtEnemy(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<LivingEntity> mob, std::shared_ptr<LivingEntity> attacker) 
 {
 	interactEnemy(itemInstance, nullptr, mob);
 	return true;

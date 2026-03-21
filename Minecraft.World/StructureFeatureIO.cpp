@@ -8,13 +8,13 @@ unordered_map<unsigned int, wstring> StructureFeatureIO::startClassIdMap;
 unordered_map<wstring, structurePieceCreateFn> StructureFeatureIO::pieceIdClassMap;
 unordered_map<unsigned int, wstring> StructureFeatureIO::pieceClassIdMap;
 
-void StructureFeatureIO::setStartId(EStructureStart clas, structureStartCreateFn createFn, const wstring &id)
+void StructureFeatureIO::setStartId(EStructureStart clas, structureStartCreateFn createFn, const std::wstring &id)
 {
 	startIdClassMap[id] = createFn;
 	startClassIdMap[clas] = id;
 }
 
-void StructureFeatureIO::setPieceId(EStructurePiece clas, structurePieceCreateFn createFn, const wstring &id)
+void StructureFeatureIO::setPieceId(EStructurePiece clas, structurePieceCreateFn createFn, const std::wstring &id)
 {
 	pieceIdClassMap[id] = createFn;
 	pieceClassIdMap[clas] = id;
@@ -35,7 +35,7 @@ void StructureFeatureIO::staticCtor()
 	ScatteredFeaturePieces::loadStatic();
 }
 
-wstring StructureFeatureIO::getEncodeId(StructureStart *start)
+std::wstring StructureFeatureIO::getEncodeId(StructureStart *start)
 {
 	AUTO_VAR(it, startClassIdMap.find( start->GetType() ) );
 	if(it != startClassIdMap.end())
@@ -48,7 +48,7 @@ wstring StructureFeatureIO::getEncodeId(StructureStart *start)
 	}
 }
 
-wstring StructureFeatureIO::getEncodeId(StructurePiece *piece)
+std::wstring StructureFeatureIO::getEncodeId(StructurePiece *piece)
 {
 	AUTO_VAR(it, pieceClassIdMap.find( piece->GetType() ) );
 	if(it != pieceClassIdMap.end())

@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 
@@ -10,12 +10,12 @@ public:
     int slotNum;
     int buttonNum;
     short uid;
-    shared_ptr<ItemInstance> item;
+    std::shared_ptr<ItemInstance> item;
     int clickType;
 
 	ContainerClickPacket();
 	~ContainerClickPacket();
-    ContainerClickPacket(int containerId, int slotNum, int buttonNum, int clickType, shared_ptr<ItemInstance> item, short uid);
+    ContainerClickPacket(int containerId, int slotNum, int buttonNum, int clickType, std::shared_ptr<ItemInstance> item, short uid);
 
 	virtual void handle(PacketListener *listener);
 	virtual void read(DataInputStream *dis);
@@ -23,7 +23,7 @@ public:
 	virtual int getEstimatedSize();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new ContainerClickPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new ContainerClickPacket()); }
 	virtual int getId() { return 102; }
 };
 

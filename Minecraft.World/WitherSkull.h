@@ -13,7 +13,7 @@ private:
 
 public:
 	WitherSkull(Level *level);
-	WitherSkull(Level *level, shared_ptr<LivingEntity> mob, double xa, double ya, double za);
+	WitherSkull(Level *level, std::shared_ptr<LivingEntity> mob, double xa, double ya, double za);
 
 protected:
 	virtual float getInertia();

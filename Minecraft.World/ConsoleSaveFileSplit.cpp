@@ -379,7 +379,7 @@ FileEntry *ConsoleSaveFileSplit::GetRegionFileEntry(unsigned int regionIndex)
 	return newRef->fileEntry;
 }
 
-ConsoleSaveFileSplit::ConsoleSaveFileSplit(const wstring &fileName, LPVOID pvSaveData /*= NULL*/, DWORD dFileSize /*= 0*/, bool forceCleanSave /*= false*/, ESavePlatform plat /*= SAVE_FILE_PLATFORM_LOCAL*/)
+ConsoleSaveFileSplit::ConsoleSaveFileSplit(const std::wstring &fileName, LPVOID pvSaveData /*= NULL*/, DWORD dFileSize /*= 0*/, bool forceCleanSave /*= false*/, ESavePlatform plat /*= SAVE_FILE_PLATFORM_LOCAL*/)
 {
 	DWORD fileSize = dFileSize;
 
@@ -437,7 +437,7 @@ ConsoleSaveFileSplit::ConsoleSaveFileSplit(ConsoleSaveFile *sourceSave, bool alr
 	}
 }
 
-void ConsoleSaveFileSplit::_init(const wstring &fileName, LPVOID pvSaveData, DWORD fileSize, ESavePlatform plat)
+void ConsoleSaveFileSplit::_init(const std::wstring &fileName, LPVOID pvSaveData, DWORD fileSize, ESavePlatform plat)
 {
 	InitializeCriticalSectionAndSpinCount(&m_lock,5120);
 
@@ -1187,7 +1187,7 @@ void ConsoleSaveFileSplit::MoveDataBeyond(FileEntry *file, DWORD nNumberOfBytesT
 // DIM-1r.x.z.mcr		00 01 xx zz
 // DIM1/r.x.z.mcr		00 02 xx zz
 
-bool ConsoleSaveFileSplit::GetNumericIdentifierFromName(const wstring &fileName, unsigned int *idOut)
+bool ConsoleSaveFileSplit::GetNumericIdentifierFromName(const std::wstring &fileName, unsigned int *idOut)
 {
 	// Determine whether it is one of our region file names if the file extension is ".mbr"
 	if( fileName.length() < 4 ) return false;
@@ -1231,7 +1231,7 @@ bool ConsoleSaveFileSplit::GetNumericIdentifierFromName(const wstring &fileName,
 
 // Convert a numeric file identifier (for region files) back into a normal filename. See comment above.
 
-wstring ConsoleSaveFileSplit::GetNameFromNumericIdentifier(unsigned int idIn)
+std::wstring ConsoleSaveFileSplit::GetNameFromNumericIdentifier(unsigned int idIn)
 {
 	wstring prefix;
 
@@ -1542,12 +1542,12 @@ unsigned int ConsoleSaveFileSplit::getSizeOnDisk()
 	return header.GetFileSize();
 }
 
-wstring ConsoleSaveFileSplit::getFilename()
+std::wstring ConsoleSaveFileSplit::getFilename()
 {
 	return m_fileName;
 }
 
-vector<FileEntry *> *ConsoleSaveFileSplit::getFilesWithPrefix(const wstring &prefix)
+vector<FileEntry *> *ConsoleSaveFileSplit::getFilesWithPrefix(const std::wstring &prefix)
 {
 	return header.getFilesWithPrefix( prefix );
 }

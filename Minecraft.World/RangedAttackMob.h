@@ -3,5 +3,5 @@
 class RangedAttackMob
 {
 public:
-	virtual void performRangedAttack(shared_ptr<LivingEntity> target, float power) = 0;
+	virtual void performRangedAttack(std::shared_ptr<LivingEntity> target, float power) = 0;
 };

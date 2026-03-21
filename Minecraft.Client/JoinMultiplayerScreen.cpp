@@ -86,7 +86,7 @@ void JoinMultiplayerScreen::buttonClicked(Button *button)
     }
 }
 
-int  JoinMultiplayerScreen::parseInt(const wstring& str, int def)
+int  JoinMultiplayerScreen::parseInt(const std::wstring& str, int def)
 {
 	return _fromString<int>(str);
 }

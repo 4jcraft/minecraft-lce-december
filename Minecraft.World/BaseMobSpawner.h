@@ -9,10 +9,10 @@ public:
 	{
 	public:
 		CompoundTag *tag;
-		wstring type;
+		std::wstring type;
 
 		SpawnData(CompoundTag *base);
-		SpawnData(CompoundTag *tag, wstring type);
+		SpawnData(CompoundTag *tag, std::wstring type);
 		~SpawnData();
 
 		virtual CompoundTag *save();
@@ -25,7 +25,7 @@ public:
 	int spawnDelay;
 
 private:
-	wstring entityId;
+	std::wstring entityId;
 	vector<SpawnData *> *spawnPotentials;
 	SpawnData *nextSpawnData;
 
@@ -36,7 +36,7 @@ private:
 	int minSpawnDelay;
 	int maxSpawnDelay;
 	int spawnCount;
-	shared_ptr<Entity> displayEntity;
+	std::shared_ptr<Entity> displayEntity;
 	int maxNearbyEntities;
 	int requiredPlayerRange;
 	int spawnRange;
@@ -45,11 +45,11 @@ public:
 	BaseMobSpawner();
 	~BaseMobSpawner();
 
-	virtual wstring getEntityId();
-	virtual void setEntityId(const wstring &entityId);
+	virtual std::wstring getEntityId();
+	virtual void setEntityId(const std::wstring &entityId);
 	virtual bool isNearPlayer();
 	virtual void tick();
-	virtual shared_ptr<Entity> loadDataAndAddEntity(shared_ptr<Entity> entity);
+	virtual std::shared_ptr<Entity> loadDataAndAddEntity(std::shared_ptr<Entity> entity);
 
 private:
 	virtual void delay();
@@ -57,7 +57,7 @@ private:
 public:
 	virtual void load(CompoundTag *tag);
 	virtual void save(CompoundTag *tag);
-	virtual shared_ptr<Entity> getDisplayEntity();
+	virtual std::shared_ptr<Entity> getDisplayEntity();
 	virtual bool onEventTriggered(int id);
 	virtual SpawnData *getNextSpawnData();
 	virtual void setNextSpawnData(SpawnData *nextSpawnData);

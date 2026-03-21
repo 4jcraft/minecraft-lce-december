@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 #include "LevelSource.h"
 #include "LightLayer.h"
 #include "ChunkPos.h"
@@ -97,22 +97,22 @@ public:
 public:
 	CRITICAL_SECTION				m_entitiesCS;		// 4J added
 
-	vector<shared_ptr<Entity> > entities;
+	vector<std::shared_ptr<Entity> > entities;
 
 protected:
-	vector<shared_ptr<Entity> > entitiesToRemove;
+	vector<std::shared_ptr<Entity> > entitiesToRemove;
 public:
 	bool							hasEntitiesToRemove();	// 4J added
 	bool							m_bDisableAddNewTileEntities; // 4J Added
 	CRITICAL_SECTION				m_tileEntityListCS;		// 4J added
-	vector<shared_ptr<TileEntity> > tileEntityList;
+	vector<std::shared_ptr<TileEntity> > tileEntityList;
 private:
-	vector<shared_ptr<TileEntity> > pendingTileEntities;
-	vector<shared_ptr<TileEntity> > tileEntitiesToUnload;
+	vector<std::shared_ptr<TileEntity> > pendingTileEntities;
+	vector<std::shared_ptr<TileEntity> > tileEntitiesToUnload;
 	bool updatingTileEntities;
 public:
-	vector<shared_ptr<Player> > players;
-	vector<shared_ptr<Entity> > globalEntities;
+	vector<std::shared_ptr<Player> > players;
+	vector<std::shared_ptr<Entity> > globalEntities;
 
 private:
 	int cloudColor;
@@ -144,16 +144,16 @@ protected:
 public:
 	ChunkSource *chunkSource;		// 4J - changed to public
 protected:
-	// This is the only shared_ptr ref to levelStorage - we need to keep this as long as at least one Level references it,
+	// This is the only std::shared_ptr ref to levelStorage - we need to keep this as long as at least one Level references it,
 	// to be able to cope with moving from dimension to dimension where the Level(Level *level, Dimension *dimension) ctor is used
-	shared_ptr<LevelStorage> levelStorage;
+	std::shared_ptr<LevelStorage> levelStorage;
 
 	LevelData *levelData;
 
 public:
 	bool isFindingSpawn;
 	SavedDataStorage *savedDataStorage;
-	shared_ptr<Villages> villages;
+	std::shared_ptr<Villages> villages;
 	VillageSiege *villageSiege;
 
 private:
@@ -171,12 +171,12 @@ private:
 
 	// 4J Stu - Added these ctors to handle init of member variables
 	void _init();
-	void _init(shared_ptr<LevelStorage>levelStorage, const wstring& levelName, LevelSettings *levelSettings, Dimension *fixedDimension, bool doCreateChunkSource = true);
+	void _init(std::shared_ptr<LevelStorage>levelStorage, const std::wstring& levelName, LevelSettings *levelSettings, Dimension *fixedDimension, bool doCreateChunkSource = true);
 
 public:
-	Level(shared_ptr<LevelStorage>levelStorage, const wstring& name, Dimension *dimension, LevelSettings *levelSettings, bool doCreateChunkSource = true);
-	Level(shared_ptr<LevelStorage>levelStorage, const wstring& levelName, LevelSettings *levelSettings);
-	Level(shared_ptr<LevelStorage>levelStorage, const wstring& levelName, LevelSettings *levelSettings, Dimension *fixedDimension, bool doCreateChunkSource = true);
+	Level(std::shared_ptr<LevelStorage>levelStorage, const std::wstring& name, Dimension *dimension, LevelSettings *levelSettings, bool doCreateChunkSource = true);
+	Level(std::shared_ptr<LevelStorage>levelStorage, const std::wstring& levelName, LevelSettings *levelSettings);
+	Level(std::shared_ptr<LevelStorage>levelStorage, const std::wstring& levelName, LevelSettings *levelSettings, Dimension *fixedDimension, bool doCreateChunkSource = true);
 
 	virtual ~Level();
 
@@ -285,27 +285,27 @@ public:
 	HitResult *clip(Vec3 *a, Vec3 *b, bool liquid);
 	HitResult *clip(Vec3 *a, Vec3 *b, bool liquid, bool solidOnly);
 
-	virtual void playEntitySound(shared_ptr<Entity> entity, int iSound, float volume, float pitch);
-	virtual void playPlayerSound(shared_ptr<Player> entity, int iSound, float volume, float pitch);
+	virtual void playEntitySound(std::shared_ptr<Entity> entity, int iSound, float volume, float pitch);
+	virtual void playPlayerSound(std::shared_ptr<Player> entity, int iSound, float volume, float pitch);
 	virtual void playSound(double x, double y, double z, int iSound, float volume, float pitch, float fClipSoundDist=16.0f);
 
 	virtual void playLocalSound(double x, double y, double z, int iSound, float volume, float pitch, bool distanceDelay, float fClipSoundDist=16.0f);
 
-	void playStreamingMusic(const wstring& name, int x, int y, int z);
-	void playMusic(double x, double y, double z, const wstring& string, float volume);
-	// 4J removed - void addParticle(const wstring& id, double x, double y, double z, double xd, double yd, double zd);
+	void playStreamingMusic(const std::wstring& name, int x, int y, int z);
+	void playMusic(double x, double y, double z, const std::wstring& std::string, float volume);
+	// 4J removed - void addParticle(const std::wstring& id, double x, double y, double z, double xd, double yd, double zd);
 	void addParticle(ePARTICLE_TYPE id, double x, double y, double z, double xd, double yd, double zd); // 4J added
-	virtual bool addGlobalEntity(shared_ptr<Entity> e);
-	virtual bool addEntity(shared_ptr<Entity> e);
+	virtual bool addGlobalEntity(std::shared_ptr<Entity> e);
+	virtual bool addEntity(std::shared_ptr<Entity> e);
 
 protected:
-	virtual void entityAdded(shared_ptr<Entity> e);
-	virtual void entityRemoved(shared_ptr<Entity> e);
-	virtual void playerRemoved(shared_ptr<Entity> e);	// 4J added
+	virtual void entityAdded(std::shared_ptr<Entity> e);
+	virtual void entityRemoved(std::shared_ptr<Entity> e);
+	virtual void playerRemoved(std::shared_ptr<Entity> e);	// 4J added
 
 public:
-	virtual void removeEntity(shared_ptr<Entity> e);
-	void removeEntityImmediately(shared_ptr<Entity> e);
+	virtual void removeEntity(std::shared_ptr<Entity> e);
+	void removeEntityImmediately(std::shared_ptr<Entity> e);
 	void addListener(LevelListener *listener);
 	void removeListener(LevelListener *listener);
 
@@ -313,11 +313,11 @@ private:
 	AABBList boxes;
 
 public:
-	AABBList *getCubes(shared_ptr<Entity> source, AABB *box, bool noEntities = false, bool blockAtEdge = false); // 4J: Added noEntities & blockAtEdge parameters
+	AABBList *getCubes(std::shared_ptr<Entity> source, AABB *box, bool noEntities = false, bool blockAtEdge = false); // 4J: Added noEntities & blockAtEdge parameters
 	AABBList *getTileCubes(AABB *box, bool blockAtEdge = false); // 4J: Added noEntities & blockAtEdge parameters
 	int getOldSkyDarken(float a);		// 4J - change brought forward from 1.8.2
 	float getSkyDarken(float a);		// 4J - change brought forward from 1.8.2
-	Vec3 *getSkyColor(shared_ptr<Entity> source, float a);
+	Vec3 *getSkyColor(std::shared_ptr<Entity> source, float a);
 	float getTimeOfDay(float a);
 	int getMoonPhase();
 	float getMoonBrightness();
@@ -334,29 +334,29 @@ public:
 	virtual void addToTickNextTick(int x, int y, int z, int tileId, int tickDelay, int priorityTilt);
 	virtual void forceAddTileTick(int x, int y, int z, int tileId, int tickDelay, int prioTilt);
 	virtual void tickEntities();
-	void addAllPendingTileEntities(vector< shared_ptr<TileEntity> >& entities);
-	void tick(shared_ptr<Entity> e);
-	virtual void tick(shared_ptr<Entity> e, bool actual);
+	void addAllPendingTileEntities(vector< std::shared_ptr<TileEntity> >& entities);
+	void tick(std::shared_ptr<Entity> e);
+	virtual void tick(std::shared_ptr<Entity> e, bool actual);
 	bool isUnobstructed(AABB *aabb);
-	bool isUnobstructed(AABB *aabb, shared_ptr<Entity> ignore);
+	bool isUnobstructed(AABB *aabb, std::shared_ptr<Entity> ignore);
 	bool containsAnyBlocks(AABB *box);
 	bool containsAnyLiquid(AABB *box);
 	bool containsAnyLiquid_NoLoad(AABB *box);	// 4J added
 	bool containsFireTile(AABB *box);
-	bool checkAndHandleWater(AABB *box, Material *material, shared_ptr<Entity> e);
+	bool checkAndHandleWater(AABB *box, Material *material, std::shared_ptr<Entity> e);
 	bool containsMaterial(AABB *box, Material *material);
 	bool containsLiquid(AABB *box, Material *material);
 	// 4J Stu - destroyBlocks param brought forward as part of fix for tnt cannons
-	shared_ptr<Explosion> explode(shared_ptr<Entity> source, double x, double y, double z, float r, bool destroyBlocks);
-	virtual shared_ptr<Explosion> explode(shared_ptr<Entity> source, double x, double y, double z, float r, bool fire, bool destroyBlocks);
+	std::shared_ptr<Explosion> explode(std::shared_ptr<Entity> source, double x, double y, double z, float r, bool destroyBlocks);
+	virtual std::shared_ptr<Explosion> explode(std::shared_ptr<Entity> source, double x, double y, double z, float r, bool fire, bool destroyBlocks);
 	float getSeenPercent(Vec3 *center, AABB *bb);
-	bool extinguishFire(shared_ptr<Player> player, int x, int y, int z, int face);
-	wstring gatherStats();
-	wstring gatherChunkSourceStats();
-	virtual shared_ptr<TileEntity> getTileEntity(int x, int y, int z);
-	void setTileEntity(int x, int y, int z, shared_ptr<TileEntity> tileEntity);
+	bool extinguishFire(std::shared_ptr<Player> player, int x, int y, int z, int face);
+	std::wstring gatherStats();
+	std::wstring gatherChunkSourceStats();
+	virtual std::shared_ptr<TileEntity> getTileEntity(int x, int y, int z);
+	void setTileEntity(int x, int y, int z, std::shared_ptr<TileEntity> tileEntity);
 	void removeTileEntity(int x, int y, int z);
-	void markForRemoval(shared_ptr<TileEntity> entity);
+	void markForRemoval(std::shared_ptr<TileEntity> entity);
 	virtual bool isSolidRenderTile(int x, int y, int z);
 	virtual bool isSolidBlockingTile(int x, int y, int z);
 	bool isSolidBlockingTileInLoadedChunk(int x, int y, int z, bool valueIfNotLoaded);
@@ -424,28 +424,28 @@ public:
 	virtual vector<TickNextTickData> *fetchTicksInChunk(LevelChunk *chunk, bool remove);
 
 private:
-	vector<shared_ptr<Entity> > es;
+	vector<std::shared_ptr<Entity> > es;
 
 public:
 	bool isClientSide;
 
-	vector<shared_ptr<Entity> > *getEntities(shared_ptr<Entity> except, AABB *bb);
-	vector<shared_ptr<Entity> > *getEntities(shared_ptr<Entity> except, AABB *bb, const EntitySelector *selector);
-	vector<shared_ptr<Entity> > *getEntitiesOfClass(const type_info& baseClass, AABB *bb);
-	vector<shared_ptr<Entity> > *getEntitiesOfClass(const type_info& baseClass, AABB *bb, const EntitySelector *selector);
-	shared_ptr<Entity> getClosestEntityOfClass(const type_info& baseClass, AABB *bb, shared_ptr<Entity> source);
-	virtual shared_ptr<Entity> getEntity(int entityId) = 0;
-	vector<shared_ptr<Entity> > getAllEntities();
-	void tileEntityChanged(int x, int y, int z, shared_ptr<TileEntity> te);
+	vector<std::shared_ptr<Entity> > *getEntities(std::shared_ptr<Entity> except, AABB *bb);
+	vector<std::shared_ptr<Entity> > *getEntities(std::shared_ptr<Entity> except, AABB *bb, const EntitySelector *selector);
+	vector<std::shared_ptr<Entity> > *getEntitiesOfClass(const std::type_info& baseClass, AABB *bb);
+	vector<std::shared_ptr<Entity> > *getEntitiesOfClass(const std::type_info& baseClass, AABB *bb, const EntitySelector *selector);
+	std::shared_ptr<Entity> getClosestEntityOfClass(const std::type_info& baseClass, AABB *bb, std::shared_ptr<Entity> source);
+	virtual std::shared_ptr<Entity> getEntity(int entityId) = 0;
+	vector<std::shared_ptr<Entity> > getAllEntities();
+	void tileEntityChanged(int x, int y, int z, std::shared_ptr<TileEntity> te);
 	//	unsigned int countInstanceOf(BaseObject::Class *clas);
 	unsigned int countInstanceOf(eINSTANCEOF clas, bool singleType, unsigned int *protectedCount = NULL, unsigned int *couldWanderCount = NULL);			// 4J added
 	unsigned int countInstanceOfInRange(eINSTANCEOF clas, bool singleType, int range, int x, int y, int z);													// 4J Added
-	void addEntities(vector<shared_ptr<Entity> > *list);
-	virtual void removeEntities(vector<shared_ptr<Entity> > *list);
-	bool mayPlace(int tileId, int x, int y, int z, bool ignoreEntities, int face, shared_ptr<Entity> ignoreEntity, shared_ptr<ItemInstance> item);
+	void addEntities(vector<std::shared_ptr<Entity> > *list);
+	virtual void removeEntities(vector<std::shared_ptr<Entity> > *list);
+	bool mayPlace(int tileId, int x, int y, int z, bool ignoreEntities, int face, std::shared_ptr<Entity> ignoreEntity, std::shared_ptr<ItemInstance> item);
 	int getSeaLevel();
-	Path *findPath(shared_ptr<Entity> from, shared_ptr<Entity> to, float maxDist, bool canPassDoors, bool canOpenDoors, bool avoidWater, bool canFloat);
-	Path *findPath(shared_ptr<Entity> from, int xBest, int yBest, int zBest, float maxDist, bool canPassDoors, bool canOpenDoors, bool avoidWater, bool canFloat);
+	Path *findPath(std::shared_ptr<Entity> from, std::shared_ptr<Entity> to, float maxDist, bool canPassDoors, bool canOpenDoors, bool avoidWater, bool canFloat);
+	Path *findPath(std::shared_ptr<Entity> from, int xBest, int yBest, int zBest, float maxDist, bool canPassDoors, bool canOpenDoors, bool avoidWater, bool canFloat);
 	int getDirectSignal(int x, int y, int z, int dir);
 	int getDirectSignalTo(int x, int y, int z);
 	bool hasSignal(int x, int y, int z, int dir);
@@ -453,14 +453,14 @@ public:
 	bool hasNeighborSignal(int x, int y, int z);
 	int getBestNeighborSignal(int x, int y, int z);
 	// 4J Added maxYDist param
-	shared_ptr<Player> getNearestPlayer(shared_ptr<Entity> source, double maxDist, double maxYDist = -1);
-	shared_ptr<Player> getNearestPlayer(double x, double y, double z, double maxDist, double maxYDist = -1);
-	shared_ptr<Player> getNearestPlayer(double x, double z, double maxDist);
-	shared_ptr<Player> getNearestAttackablePlayer(shared_ptr<Entity> source, double maxDist);
-	shared_ptr<Player> getNearestAttackablePlayer(double x, double y, double z, double maxDist);
+	std::shared_ptr<Player> getNearestPlayer(std::shared_ptr<Entity> source, double maxDist, double maxYDist = -1);
+	std::shared_ptr<Player> getNearestPlayer(double x, double y, double z, double maxDist, double maxYDist = -1);
+	std::shared_ptr<Player> getNearestPlayer(double x, double z, double maxDist);
+	std::shared_ptr<Player> getNearestAttackablePlayer(std::shared_ptr<Entity> source, double maxDist);
+	std::shared_ptr<Player> getNearestAttackablePlayer(double x, double y, double z, double maxDist);
 
-	shared_ptr<Player> getPlayerByName(const wstring& name);
-	shared_ptr<Player> getPlayerByUUID(const wstring& name); // 4J Added
+	std::shared_ptr<Player> getPlayerByName(const std::wstring& name);
+	std::shared_ptr<Player> getPlayerByUUID(const std::wstring& name); // 4J Added
 	byteArray getBlocksAndData(int x, int y, int z, int xs, int ys, int zs, bool includeLighting = true);
 	void setBlocksAndData(int x, int y, int z, int xs, int ys, int zs, byteArray data, bool includeLighting = true);
 	virtual void disconnect(bool sendDisconnect = true);
@@ -473,9 +473,9 @@ public:
 	Pos *getSharedSpawnPos();
 	void setSpawnPos(int x, int y, int z);
 	void setSpawnPos(Pos *spawnPos);
-	void ensureAdded(shared_ptr<Entity> entity);
-	virtual bool mayInteract(shared_ptr<Player> player, int xt, int yt, int zt, int content);
-	virtual void broadcastEntityEvent(shared_ptr<Entity> e, byte event);
+	void ensureAdded(std::shared_ptr<Entity> entity);
+	virtual bool mayInteract(std::shared_ptr<Player> player, int xt, int yt, int zt, int content);
+	virtual void broadcastEntityEvent(std::shared_ptr<Entity> e, byte event);
 	ChunkSource *getChunkSource();
 	virtual void tileEvent(int x, int y, int z, int tile, int b0, int b1);
 	LevelStorage *getLevelStorage();
@@ -494,15 +494,15 @@ public:
 	bool isRaining();
 	bool isRainingAt(int x, int y, int z);
 	bool isHumidAt(int x, int y, int z);
-	void setSavedData(const wstring& id, shared_ptr<SavedData> data);
-	shared_ptr<SavedData> getSavedData(const type_info& clazz, const wstring& id);
-	int getFreeAuxValueFor(const wstring& id);
+	void setSavedData(const std::wstring& id, std::shared_ptr<SavedData> data);
+	std::shared_ptr<SavedData> getSavedData(const std::type_info& clazz, const std::wstring& id);
+	int getFreeAuxValueFor(const std::wstring& id);
 	void globalLevelEvent(int type, int sourceX, int sourceY, int sourceZ, int data);
 	void levelEvent(int type, int x, int y, int z, int data);
-	void levelEvent(shared_ptr<Player> source, int type, int x, int y, int z, int data);
+	void levelEvent(std::shared_ptr<Player> source, int type, int x, int y, int z, int data);
 	int getMaxBuildHeight();
 	int getHeight();
-	virtual Tickable *makeSoundUpdater(shared_ptr<Minecart> minecart);
+	virtual Tickable *makeSoundUpdater(std::shared_ptr<Minecart> minecart);
 	Random *getRandomFor(int x, int z, int blend);
 	virtual bool isAllEmpty();
 	double getHorizonHeight() ;
@@ -513,7 +513,7 @@ public:
 	virtual void updateNeighbourForOutputSignal(int x, int y, int z, int source);
 	virtual float getDifficulty(double x, double y, double z);
 	virtual float getDifficulty(int x, int y, int z);
-	TilePos *findNearestMapFeature(const wstring& featureName, int x, int y, int z);
+	TilePos *findNearestMapFeature(const std::wstring& featureName, int x, int y, int z);
 
 	// 4J Added
 	int getAuxValueForMap(PlayerUID xuid, int dimension, int centreXC, int centreZC, int scale);

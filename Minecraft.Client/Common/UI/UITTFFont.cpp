@@ -4,7 +4,7 @@
 #include "..\..\..\Minecraft.World\File.h"
 #include "UITTFFont.h"
 
-UITTFFont::UITTFFont(const string &name, const string &path, S32 fallbackCharacter) 
+UITTFFont::UITTFFont(const std::string &name, const std::string &path, S32 fallbackCharacter) 
 	: m_strFontName(name)
 {
 	app.DebugPrintf("UITTFFont opening %s\n",path.c_str());
@@ -52,7 +52,7 @@ UITTFFont::~UITTFFont()
 }
 
 
-string UITTFFont::getFontName()
+std::string UITTFFont::getFontName()
 {
 	return m_strFontName;
 }

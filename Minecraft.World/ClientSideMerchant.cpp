@@ -3,7 +3,7 @@
 #include "net.minecraft.world.inventory.h"
 #include "ClientSideMerchant.h"
 
-ClientSideMerchant::ClientSideMerchant(shared_ptr<Player> source, const wstring &name)
+ClientSideMerchant::ClientSideMerchant(std::shared_ptr<Player> source, const std::wstring &name)
 {
 	this->source = source;
 	// 4J Stu - Need to do this after creating as a shared_ptr
@@ -28,17 +28,17 @@ Container *ClientSideMerchant::getContainer()
 	return container;
 }
 
-shared_ptr<Player> ClientSideMerchant::getTradingPlayer()
+std::shared_ptr<Player> ClientSideMerchant::getTradingPlayer()
 {
 	return source;
 }
 
-void ClientSideMerchant::setTradingPlayer(shared_ptr<Player> player)
+void ClientSideMerchant::setTradingPlayer(std::shared_ptr<Player> player)
 {
 
 }
 
-MerchantRecipeList *ClientSideMerchant::getOffers(shared_ptr<Player> forPlayer)
+MerchantRecipeList *ClientSideMerchant::getOffers(std::shared_ptr<Player> forPlayer)
 {
 	return currentOffers;
 }
@@ -54,11 +54,11 @@ void ClientSideMerchant::notifyTrade(MerchantRecipe *activeRecipe)
 	activeRecipe->increaseUses();
 }
 
-void ClientSideMerchant::notifyTradeUpdated(shared_ptr<ItemInstance> item)
+void ClientSideMerchant::notifyTradeUpdated(std::shared_ptr<ItemInstance> item)
 {
 }
 
-wstring ClientSideMerchant::getDisplayName()
+std::wstring ClientSideMerchant::getDisplayName()
 {
 	return m_name;
 }

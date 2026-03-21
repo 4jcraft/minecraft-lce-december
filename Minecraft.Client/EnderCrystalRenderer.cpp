@@ -11,7 +11,7 @@ EnderCrystalRenderer::EnderCrystalRenderer()
 	this->shadowRadius = 0.5f;
 }
 
-void EnderCrystalRenderer::render(shared_ptr<Entity> _crystal, double x, double y, double z, float rot, float a)
+void EnderCrystalRenderer::render(std::shared_ptr<Entity> _crystal, double x, double y, double z, float rot, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type EnderCrystal rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead
@@ -34,7 +34,7 @@ void EnderCrystalRenderer::render(shared_ptr<Entity> _crystal, double x, double 
 	glPopMatrix();
 }
 
-ResourceLocation *EnderCrystalRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *EnderCrystalRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &ENDER_CRYSTAL_LOCATION;
 }

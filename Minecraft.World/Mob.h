@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include "LivingEntity.h"
 #include "MobType.h"
@@ -184,10 +183,10 @@ public:
 	virtual MobGroupData *finalizeMobSpawn(MobGroupData *groupData, int extraData = 0); // 4J Added extraData param
 	virtual void finalizeSpawnEggSpawn(int extraData); // 4J Added
 	virtual bool canBeControlledByRider();
-	virtual wstring getAName();
+	virtual std::wstring getAName();
 	virtual void setPersistenceRequired();
-	virtual void setCustomName(const wstring &name);
-	virtual wstring getCustomName();
+	virtual void setCustomName(const std::wstring &name);
+	virtual std::wstring getCustomName();
 	virtual bool hasCustomName();
 	virtual void setCustomNameVisible(bool visible);
 	virtual bool isCustomNameVisible();

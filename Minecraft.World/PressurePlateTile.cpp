@@ -3,7 +3,7 @@
 #include "net.minecraft.world.level.redstone.h"
 #include "PressurePlateTile.h"
 
-PressurePlateTile::PressurePlateTile(int id, const wstring &tex, Material *material, Sensitivity sensitivity) : BasePressurePlateTile(id, tex, material)
+PressurePlateTile::PressurePlateTile(int id, const std::wstring &tex, Material *material, Sensitivity sensitivity) : BasePressurePlateTile(id, tex, material)
 {
 	this->sensitivity = sensitivity;
 

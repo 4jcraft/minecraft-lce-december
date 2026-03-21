@@ -7,7 +7,7 @@
 #include "..\Minecraft.Client\Common\Colours\ColourTable.h"
 #include "StemTile.h"
 
-const wstring StemTile::TEXTURE_ANGLED = L"stem_bent";
+const std::wstring StemTile::TEXTURE_ANGLED = L"stem_bent";
 
 StemTile::StemTile(int id, Tile *fruit) : Bush(id)
 {
@@ -147,7 +147,7 @@ void StemTile::updateDefaultShape()
 	setShape(0.5f - ss, 0, 0.5f - ss, 0.5f + ss, 0.25f, 0.5f + ss);
 }
 
-void StemTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void StemTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	ThreadStorage *tls = (ThreadStorage *)TlsGetValue(Tile::tlsIdxShape);
 	tls->yy1 = (level->getData(x, y, z) * 2 + 2) / 16.0f;

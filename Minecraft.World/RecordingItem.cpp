@@ -10,7 +10,7 @@
 
 unordered_map<wstring, RecordingItem *> RecordingItem::BY_NAME;
 
-RecordingItem::RecordingItem(int id, const wstring& recording) : Item(id), recording( recording )
+RecordingItem::RecordingItem(int id, const std::wstring& recording) : Item(id), recording( recording )
 {
 	this->maxStackSize = 1;
 	BY_NAME[recording] = this;
@@ -21,7 +21,7 @@ Icon *RecordingItem::getIcon(int auxValue)
 	return icon;
 }
 
-bool RecordingItem::useOn(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
+bool RecordingItem::useOn(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
 {
 	// 4J-PB - Adding a test only version to allow tooltips to be displayed
 	if (level->getTile(x, y, z) == Tile::jukebox_Id && level->getData(x, y, z) == 0)
@@ -44,7 +44,7 @@ bool RecordingItem::useOn(shared_ptr<ItemInstance> itemInstance, shared_ptr<Play
 	return false;
 }
 
-void RecordingItem::appendHoverText(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
+void RecordingItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
 {
 	eMinecraftColour color = getRarity(shared_ptr<ItemInstance>())->color;
 
@@ -54,7 +54,7 @@ void RecordingItem::appendHoverText(shared_ptr<ItemInstance> itemInstance, share
 	lines->push_back(HtmlString(text, color));
 }
 
-const Rarity *RecordingItem::getRarity(shared_ptr<ItemInstance> itemInstance)
+const Rarity *RecordingItem::getRarity(std::shared_ptr<ItemInstance> itemInstance)
 {
 	return (Rarity *)Rarity::rare;
 }
@@ -64,7 +64,7 @@ void RecordingItem::registerIcons(IconRegister *iconRegister)
 	icon = iconRegister->registerIcon(L"record_" + recording);
 }
 
-RecordingItem *RecordingItem::getByName(const wstring &name)
+RecordingItem *RecordingItem::getByName(const std::wstring &name)
 {
 	AUTO_VAR(it,BY_NAME.find(name));
 	if(it != BY_NAME.end())

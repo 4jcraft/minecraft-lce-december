@@ -6,16 +6,16 @@ private:
 	class GameRule
 	{
 	private:
-		wstring value;
+		std::wstring value;
 		bool booleanValue;
 		int intValue;
 		double doubleValue;
 
 	public:
-		GameRule(const wstring &startValue);
+		GameRule(const std::wstring &startValue);
 
-		void set(const wstring &newValue);
-		wstring get();
+		void set(const std::wstring &newValue);
+		std::wstring get();
 		bool getBoolean();
 		int getInt();
 		double getDouble();
@@ -35,7 +35,7 @@ public:
 	static const int RULE_DAYLIGHT;
 
 private:
-	unordered_map<wstring, GameRule *> rules;
+	unordered_map<std::wstring, GameRule *> rules;
 
 public:
 	GameRules();
@@ -44,13 +44,13 @@ public:
 	bool getBoolean(const int rule);
 
 	// 4J: Removed unused functions
-	/*void set(const wstring &ruleName, const wstring &newValue);
-	void registerRule(const wstring &name, const wstring &startValue);
-	wstring get(const wstring &ruleName);
-	int getInt(const wstring &ruleName);
-	double getDouble(const wstring &ruleName);
+	/*void set(const std::wstring &ruleName, const std::wstring &newValue);
+	void registerRule(const std::wstring &name, const std::wstring &startValue);
+	std::wstring get(const std::wstring &ruleName);
+	int getInt(const std::wstring &ruleName);
+	double getDouble(const std::wstring &ruleName);
 	CompoundTag *createTag();
 	void loadFromTag(CompoundTag *tag);
-	vector<wstring> *getRuleNames();
-	bool contains(const wstring &rule);*/
+	vector<std::wstring> *getRuleNames();
+	bool contains(const std::wstring &rule);*/
 };

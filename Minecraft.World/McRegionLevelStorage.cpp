@@ -7,7 +7,7 @@
 #include "File.h"
 #include "McRegionLevelStorage.h"
 
-McRegionLevelStorage::McRegionLevelStorage(ConsoleSaveFile *saveFile, File dir, const wstring& levelName, bool createPlayerDir)
+McRegionLevelStorage::McRegionLevelStorage(ConsoleSaveFile *saveFile, File dir, const std::wstring& levelName, bool createPlayerDir)
 	: DirectoryLevelStorage(saveFile, dir, levelName, createPlayerDir)
 {
 	RegionFileCache::clear();

@@ -69,12 +69,12 @@ unsigned int HopperTileEntity::getContainerSize()
 	return items.length;
 }
 
-shared_ptr<ItemInstance> HopperTileEntity::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> HopperTileEntity::getItem(unsigned int slot)
 {
 	return items[slot];
 }
 
-shared_ptr<ItemInstance> HopperTileEntity::removeItem(unsigned int slot, int count)
+std::shared_ptr<ItemInstance> HopperTileEntity::removeItem(unsigned int slot, int count)
 {
 	if (items[slot] != NULL)
 	{
@@ -94,7 +94,7 @@ shared_ptr<ItemInstance> HopperTileEntity::removeItem(unsigned int slot, int cou
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> HopperTileEntity::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> HopperTileEntity::removeItemNoUpdate(int slot)
 {
 	if (items[slot] != NULL)
 	{
@@ -105,18 +105,18 @@ shared_ptr<ItemInstance> HopperTileEntity::removeItemNoUpdate(int slot)
 	return nullptr;
 }
 
-void HopperTileEntity::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void HopperTileEntity::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	items[slot] = item;
 	if (item != NULL && item->count > getMaxStackSize()) item->count = getMaxStackSize();
 }
 
-wstring HopperTileEntity::getName()
+std::wstring HopperTileEntity::getName()
 {
 	return hasCustomName() ? name : app.GetString(IDS_CONTAINER_HOPPER);
 }
 
-wstring HopperTileEntity::getCustomName()
+std::wstring HopperTileEntity::getCustomName()
 {
 	return hasCustomName() ? name : L"";
 }
@@ -126,7 +126,7 @@ bool HopperTileEntity::hasCustomName()
 	return !name.empty();
 }
 
-void HopperTileEntity::setCustomName(const wstring &name)
+void HopperTileEntity::setCustomName(const std::wstring &name)
 {
 	this->name = name;
 }
@@ -136,7 +136,7 @@ int HopperTileEntity::getMaxStackSize()
 	return Container::LARGE_MAX_STACK_SIZE;
 }
 
-bool HopperTileEntity::stillValid(shared_ptr<Player> player)
+bool HopperTileEntity::stillValid(std::shared_ptr<Player> player)
 {
 	if (level->getTileEntity(x, y, z) != shared_from_this()) return false;
 	if (player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 8 * 8) return false;
@@ -151,7 +151,7 @@ void HopperTileEntity::stopOpen()
 {
 }
 
-bool HopperTileEntity::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool HopperTileEntity::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }
@@ -281,7 +281,7 @@ bool HopperTileEntity::tryTakeInItemFromSlot(Hopper *hopper, Container *containe
 	return false;
 }
 
-bool HopperTileEntity::addItem(Container *container, shared_ptr<ItemEntity> item)
+bool HopperTileEntity::addItem(Container *container, std::shared_ptr<ItemEntity> item)
 {
 	bool changed = false;
 	if (item == NULL) return false;
@@ -303,7 +303,7 @@ bool HopperTileEntity::addItem(Container *container, shared_ptr<ItemEntity> item
 	return changed;
 }
 
-shared_ptr<ItemInstance> HopperTileEntity::addItem(Container *container, shared_ptr<ItemInstance> item, int face)
+std::shared_ptr<ItemInstance> HopperTileEntity::addItem(Container *container, std::shared_ptr<ItemInstance> item, int face)
 {
 	if (dynamic_cast<WorldlyContainer *>( container ) != NULL && face > -1)
 	{
@@ -332,20 +332,20 @@ shared_ptr<ItemInstance> HopperTileEntity::addItem(Container *container, shared_
 	return item;
 }
 
-bool HopperTileEntity::canPlaceItemInContainer(Container *container, shared_ptr<ItemInstance> item, int slot, int face)
+bool HopperTileEntity::canPlaceItemInContainer(Container *container, std::shared_ptr<ItemInstance> item, int slot, int face)
 {
 	if (!container->canPlaceItem(slot, item)) return false;
 	if ( dynamic_cast<WorldlyContainer *>( container ) != NULL && !dynamic_cast<WorldlyContainer *>( container )->canPlaceItemThroughFace(slot, item, face)) return false;
 	return true;
 }
 
-bool HopperTileEntity::canTakeItemFromContainer(Container *container, shared_ptr<ItemInstance> item, int slot, int face)
+bool HopperTileEntity::canTakeItemFromContainer(Container *container, std::shared_ptr<ItemInstance> item, int slot, int face)
 {
 	if (dynamic_cast<WorldlyContainer *>( container ) != NULL && !dynamic_cast<WorldlyContainer *>( container )->canTakeItemThroughFace(slot, item, face)) return false;
 	return true;
 }
 
-shared_ptr<ItemInstance> HopperTileEntity::tryMoveInItem(Container *container, shared_ptr<ItemInstance> item, int slot, int face)
+std::shared_ptr<ItemInstance> HopperTileEntity::tryMoveInItem(Container *container, std::shared_ptr<ItemInstance> item, int slot, int face)
 {
 	shared_ptr<ItemInstance> current = container->getItem(slot);
 
@@ -381,18 +381,18 @@ shared_ptr<ItemInstance> HopperTileEntity::tryMoveInItem(Container *container, s
 	return item;
 }
 
-shared_ptr<Container> HopperTileEntity::getAttachedContainer()
+std::shared_ptr<Container> HopperTileEntity::getAttachedContainer()
 {
 	int face = HopperTile::getAttachedFace(getData());
 	return getContainerAt(getLevel(), x + Facing::STEP_X[face], y + Facing::STEP_Y[face], z + Facing::STEP_Z[face]);
 }
 
-shared_ptr<Container> HopperTileEntity::getSourceContainer(Hopper *hopper)
+std::shared_ptr<Container> HopperTileEntity::getSourceContainer(Hopper *hopper)
 {
 	return getContainerAt(hopper->getLevel(), hopper->getLevelX(), hopper->getLevelY() + 1, hopper->getLevelZ());
 }
 
-shared_ptr<ItemEntity> HopperTileEntity::getItemAt(Level *level, double xt, double yt, double zt)
+std::shared_ptr<ItemEntity> HopperTileEntity::getItemAt(Level *level, double xt, double yt, double zt)
 {
 	vector<shared_ptr<Entity> > *entities = level->getEntitiesOfClass(typeid(ItemEntity), AABB::newTemp(xt, yt, zt, xt + 1, yt + 1, zt + 1), EntitySelector::ENTITY_STILL_ALIVE);
 
@@ -409,7 +409,7 @@ shared_ptr<ItemEntity> HopperTileEntity::getItemAt(Level *level, double xt, doub
 	}
 }
 
-shared_ptr<Container> HopperTileEntity::getContainerAt(Level *level, double x, double y, double z)
+std::shared_ptr<Container> HopperTileEntity::getContainerAt(Level *level, double x, double y, double z)
 {
 	shared_ptr<Container> result = nullptr;
 
@@ -447,7 +447,7 @@ shared_ptr<Container> HopperTileEntity::getContainerAt(Level *level, double x, d
 	return result;
 }
 
-bool HopperTileEntity::canMergeItems(shared_ptr<ItemInstance> a, shared_ptr<ItemInstance> b)
+bool HopperTileEntity::canMergeItems(std::shared_ptr<ItemInstance> a, std::shared_ptr<ItemInstance> b)
 {
 	if (a->id != b->id) return false;
 	if (a->getAuxValue() != b->getAuxValue()) return false;
@@ -487,7 +487,7 @@ bool HopperTileEntity::isOnCooldown()
 }
 
 // 4J Added
-shared_ptr<TileEntity> HopperTileEntity::clone()
+std::shared_ptr<TileEntity> HopperTileEntity::clone()
 {
 	shared_ptr<HopperTileEntity> result = shared_ptr<HopperTileEntity>( new HopperTileEntity() );
 	TileEntity::clone(result);

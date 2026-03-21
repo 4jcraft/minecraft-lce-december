@@ -4,14 +4,14 @@
 #include "net.minecraft.world.level.tile.h"
 #include "FlatGeneratorInfo.h"
 
-const wstring FlatGeneratorInfo::STRUCTURE_VILLAGE = L"village";
-const wstring FlatGeneratorInfo::STRUCTURE_BIOME_SPECIFIC = L"biome_1";
-const wstring FlatGeneratorInfo::STRUCTURE_STRONGHOLD = L"stronghold";
-const wstring FlatGeneratorInfo::STRUCTURE_MINESHAFT = L"mineshaft";
-const wstring FlatGeneratorInfo::STRUCTURE_BIOME_DECORATION = L"decoration";
-const wstring FlatGeneratorInfo::STRUCTURE_LAKE = L"lake";
-const wstring FlatGeneratorInfo::STRUCTURE_LAVA_LAKE = L"lava_lake";
-const wstring FlatGeneratorInfo::STRUCTURE_DUNGEON = L"dungeon";
+const std::wstring FlatGeneratorInfo::STRUCTURE_VILLAGE = L"village";
+const std::wstring FlatGeneratorInfo::STRUCTURE_BIOME_SPECIFIC = L"biome_1";
+const std::wstring FlatGeneratorInfo::STRUCTURE_STRONGHOLD = L"stronghold";
+const std::wstring FlatGeneratorInfo::STRUCTURE_MINESHAFT = L"mineshaft";
+const std::wstring FlatGeneratorInfo::STRUCTURE_BIOME_DECORATION = L"decoration";
+const std::wstring FlatGeneratorInfo::STRUCTURE_LAKE = L"lake";
+const std::wstring FlatGeneratorInfo::STRUCTURE_LAVA_LAKE = L"lava_lake";
+const std::wstring FlatGeneratorInfo::STRUCTURE_DUNGEON = L"dungeon";
 
 FlatGeneratorInfo::FlatGeneratorInfo()
 {
@@ -58,7 +58,7 @@ void FlatGeneratorInfo::updateLayers()
 	}
 }
 
-wstring FlatGeneratorInfo::toString()
+std::wstring FlatGeneratorInfo::toString()
 {
 	return L"";
 #if 0
@@ -113,7 +113,7 @@ wstring FlatGeneratorInfo::toString()
 #endif
 }
 
-FlatLayerInfo *FlatGeneratorInfo::getLayerFromString(const wstring &input, int yOffset) 
+FlatLayerInfo *FlatGeneratorInfo::getLayerFromString(const std::wstring &input, int yOffset) 
 {
 	return NULL;
 #if 0
@@ -150,7 +150,7 @@ FlatLayerInfo *FlatGeneratorInfo::getLayerFromString(const wstring &input, int y
 #endif
 }
 
-vector<FlatLayerInfo *> *FlatGeneratorInfo::getLayersFromString(const wstring &input)
+vector<FlatLayerInfo *> *FlatGeneratorInfo::getLayersFromString(const std::wstring &input)
 {
 	if (input.empty()) return NULL;
 
@@ -170,7 +170,7 @@ vector<FlatLayerInfo *> *FlatGeneratorInfo::getLayersFromString(const wstring &i
 	return result;
 }
 
-FlatGeneratorInfo *FlatGeneratorInfo::fromValue(const wstring &input)
+FlatGeneratorInfo *FlatGeneratorInfo::fromValue(const std::wstring &input)
 {
 	return getDefault();
 

@@ -94,7 +94,7 @@ void ServerLevel::staticCtor()
 
 };
 
-ServerLevel::ServerLevel(MinecraftServer *server, shared_ptr<LevelStorage>levelStorage, const wstring& levelName, int dimension, LevelSettings *levelSettings) : Level(levelStorage, levelName, levelSettings, Dimension::getNew(dimension), false)
+ServerLevel::ServerLevel(MinecraftServer *server, shared_ptr<LevelStorage>levelStorage, const std::wstring& levelName, int dimension, LevelSettings *levelSettings) : Level(levelStorage, levelName, levelSettings, Dimension::getNew(dimension), false)
 {
 	InitializeCriticalSection(&m_limiterCS);	
 	InitializeCriticalSection(&m_tickNextTickCS);	
@@ -775,7 +775,7 @@ vector<TickNextTickData> *ServerLevel::fetchTicksInChunk(LevelChunk *chunk, bool
 	return results;
 }
 
-void ServerLevel::tick(shared_ptr<Entity> e, bool actual)
+void ServerLevel::tick(std::shared_ptr<Entity> e, bool actual)
 {
 	if ( !server->isAnimals() && (e->instanceof(eTYPE_ANIMAL) || e->instanceof(eTYPE_WATERANIMAL)) )
 	{
@@ -788,7 +788,7 @@ void ServerLevel::tick(shared_ptr<Entity> e, bool actual)
 	Level::tick(e, actual);
 }
 
-void ServerLevel::forceTick(shared_ptr<Entity> e, bool actual)
+void ServerLevel::forceTick(std::shared_ptr<Entity> e, bool actual)
 {
 	Level::tick(e, actual);
 }
@@ -814,7 +814,7 @@ vector<shared_ptr<TileEntity> > *ServerLevel::getTileEntitiesInRegion(int x0, in
 	return result;
 }
 
-bool ServerLevel::mayInteract(shared_ptr<Player> player, int xt, int yt, int zt, int content)
+bool ServerLevel::mayInteract(std::shared_ptr<Player> player, int xt, int yt, int zt, int content)
 {
 	// 4J-PB - This will look like a bug to players, and we really should have a message to explain why we're not allowing lava to be placed at or near a spawn point
 	// We'll need to do this in a future update
@@ -1052,7 +1052,7 @@ void ServerLevel::saveLevelData()
 	savedDataStorage->save();
 }
 
-void ServerLevel::entityAdded(shared_ptr<Entity> e)
+void ServerLevel::entityAdded(std::shared_ptr<Entity> e)
 {
 	Level::entityAdded(e);
 	entitiesById[e->entityId] = e;
@@ -1068,7 +1068,7 @@ void ServerLevel::entityAdded(shared_ptr<Entity> e)
 	entityAddedExtra(e);	// 4J added
 }
 
-void ServerLevel::entityRemoved(shared_ptr<Entity> e)
+void ServerLevel::entityRemoved(std::shared_ptr<Entity> e)
 {
 	Level::entityRemoved(e);
 	entitiesById.erase(e->entityId);
@@ -1084,12 +1084,12 @@ void ServerLevel::entityRemoved(shared_ptr<Entity> e)
 	entityRemovedExtra(e);		// 4J added
 }
 
-shared_ptr<Entity> ServerLevel::getEntity(int id)
+std::shared_ptr<Entity> ServerLevel::getEntity(int id)
 {
 	return entitiesById[id];
 }
 
-bool ServerLevel::addGlobalEntity(shared_ptr<Entity> e)
+bool ServerLevel::addGlobalEntity(std::shared_ptr<Entity> e)
 {
 	if (Level::addGlobalEntity(e))
 	{
@@ -1099,13 +1099,13 @@ bool ServerLevel::addGlobalEntity(shared_ptr<Entity> e)
 	return false;
 }
 
-void ServerLevel::broadcastEntityEvent(shared_ptr<Entity> e, byte event)
+void ServerLevel::broadcastEntityEvent(std::shared_ptr<Entity> e, byte event)
 {
 	shared_ptr<Packet> p = shared_ptr<EntityEventPacket>( new EntityEventPacket(e->entityId, event) );
 	server->getLevel(dimension->id)->getTracker()->broadcastAndSend(e, p);
 }
 
-shared_ptr<Explosion> ServerLevel::explode(shared_ptr<Entity> source, double x, double y, double z, float r, bool fire, bool destroyBlocks)
+shared_ptr<Explosion> ServerLevel::explode(std::shared_ptr<Entity> source, double x, double y, double z, float r, bool fire, bool destroyBlocks)
 {
 	// instead of calling super, we run the same explosion code here except
 	// we don't generate any particles
@@ -1271,12 +1271,12 @@ PortalForcer *ServerLevel::getPortalForcer()
 	return portalForcer;
 }
 
-void ServerLevel::sendParticles(const wstring &name, double x, double y, double z, int count)
+void ServerLevel::sendParticles(const std::wstring &name, double x, double y, double z, int count)
 {
 	sendParticles(name, x + 0.5f, y + 0.5f, z + 0.5f, count, 0.5f, 0.5f, 0.5f, 0.02f);
 }
 
-void ServerLevel::sendParticles(const wstring &name, double x, double y, double z, int count, double xDist, double yDist, double zDist, double speed)
+void ServerLevel::sendParticles(const std::wstring &name, double x, double y, double z, int count, double xDist, double yDist, double zDist, double speed)
 {
 	shared_ptr<Packet> packet = shared_ptr<LevelParticlesPacket>( new LevelParticlesPacket(name, (float) x, (float) y, (float) z, (float) xDist, (float) yDist, (float) zDist, (float) speed, count) );
 
@@ -1310,7 +1310,7 @@ void ServerLevel::runQueuedSendTileUpdates()
 }
 
 // 4J - added special versions of addEntity and extra processing on entity removed and added so we can limit the number of itementities created
-bool ServerLevel::addEntity(shared_ptr<Entity> e)
+bool ServerLevel::addEntity(std::shared_ptr<Entity> e)
 {
 	// If its an item entity, and we've got to our capacity, delete the oldest
 	if( e->instanceof(eTYPE_ITEMENTITY) )
@@ -1369,7 +1369,7 @@ bool ServerLevel::addEntity(shared_ptr<Entity> e)
 }
 
 // 4J: Returns true if the level is at its limit for this type of entity (only checks arrows, hanging, item and experience orbs)
-bool ServerLevel::atEntityLimit(shared_ptr<Entity> e)
+bool ServerLevel::atEntityLimit(std::shared_ptr<Entity> e)
 {
 	// TODO: This duplicates code from addEntity above, fix
 
@@ -1404,7 +1404,7 @@ bool ServerLevel::atEntityLimit(shared_ptr<Entity> e)
 }
 
 // Maintain a cound of primed tnt & falling tiles in this level
-void ServerLevel::entityAddedExtra(shared_ptr<Entity> e)
+void ServerLevel::entityAddedExtra(std::shared_ptr<Entity> e)
 {
 	if( e->instanceof(eTYPE_ITEMENTITY) )
 	{
@@ -1449,7 +1449,7 @@ void ServerLevel::entityAddedExtra(shared_ptr<Entity> e)
 }
 
 // Maintain a cound of primed tnt & falling tiles in this level, and remove any item entities from our list
-void ServerLevel::entityRemovedExtra(shared_ptr<Entity> e)
+void ServerLevel::entityRemovedExtra(std::shared_ptr<Entity> e)
 {
 	if( e->instanceof(eTYPE_ITEMENTITY) )
 	{

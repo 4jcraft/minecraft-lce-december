@@ -20,7 +20,7 @@ SetScorePacket::SetScorePacket(Score *score, int method)
 	this->method = method;
 }
 
-SetScorePacket::SetScorePacket(const wstring &owner)
+SetScorePacket::SetScorePacket(const std::wstring &owner)
 {
 	this->owner = owner;
 	objectiveName = L"";

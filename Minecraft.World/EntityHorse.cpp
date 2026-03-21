@@ -18,27 +18,27 @@
 #include "BasicTypeContainers.h"
 #include "EntityHorse.h"
 
-const wstring EntityHorse::TEX_FOLDER = L"mob/horse/";
+const std::wstring EntityHorse::TEX_FOLDER = L"mob/horse/";
 
 const EntitySelector *EntityHorse::PARENT_HORSE_SELECTOR = new HorseEntitySelector();
 
 Attribute *EntityHorse::JUMP_STRENGTH = (new RangedAttribute(eAttributeId_HORSE_JUMPSTRENGTH, .7, 0, 2.0))->setSyncable(true);
 
-wstring EntityHorse::ARMOR_TEXTURES[EntityHorse::ARMORS] = {L"", L"armor/horse_armor_iron.png", L"armor/horse_armor_gold.png", L"armor/horse_armor_diamond.png"};
+std::wstring EntityHorse::ARMOR_TEXTURES[EntityHorse::ARMORS] = {L"", L"armor/horse_armor_iron.png", L"armor/horse_armor_gold.png", L"armor/horse_armor_diamond.png"};
 int EntityHorse::ARMOR_TEXTURES_ID[EntityHorse::ARMORS] = {-1, TN_MOB_HORSE_ARMOR_IRON, TN_MOB_HORSE_ARMOR_GOLD, TN_MOB_HORSE_ARMOR_DIAMOND };
-wstring EntityHorse::ARMOR_HASHES[EntityHorse::ARMORS] = {L"", L"meo", L"goo", L"dio"};
+std::wstring EntityHorse::ARMOR_HASHES[EntityHorse::ARMORS] = {L"", L"meo", L"goo", L"dio"};
 int EntityHorse::ARMOR_PROTECTION[EntityHorse::ARMORS] = {0, 5, 7, 11};
 
-wstring EntityHorse::VARIANT_TEXTURES[EntityHorse::VARIANTS] = {L"horse_white.png", L"horse_creamy.png", L"horse_chestnut.png", L"horse_brown.png",  L"horse_black.png", L"horse_gray.png", L"horse_darkbrown.png"};
+std::wstring EntityHorse::VARIANT_TEXTURES[EntityHorse::VARIANTS] = {L"horse_white.png", L"horse_creamy.png", L"horse_chestnut.png", L"horse_brown.png",  L"horse_black.png", L"horse_gray.png", L"horse_darkbrown.png"};
 int EntityHorse::VARIANT_TEXTURES_ID[EntityHorse::VARIANTS] = {TN_MOB_HORSE_WHITE, TN_MOB_HORSE_CREAMY, TN_MOB_HORSE_CHESTNUT, TN_MOB_HORSE_BROWN,  TN_MOB_HORSE_BLACK, TN_MOB_HORSE_GRAY, TN_MOB_HORSE_DARKBROWN};
 
-wstring EntityHorse::VARIANT_HASHES[EntityHorse::VARIANTS] = {L"hwh", L"hcr", L"hch", L"hbr", L"hbl", L"hgr", L"hdb"};
+std::wstring EntityHorse::VARIANT_HASHES[EntityHorse::VARIANTS] = {L"hwh", L"hcr", L"hch", L"hbr", L"hbl", L"hgr", L"hdb"};
 
-wstring EntityHorse::MARKING_TEXTURES[EntityHorse::MARKINGS] = {L"", L"horse_markings_white.png", L"horse_markings_whitefield.png", L"horse_markings_whitedots.png", L"horse_markings_blackdots.png"};
+std::wstring EntityHorse::MARKING_TEXTURES[EntityHorse::MARKINGS] = {L"", L"horse_markings_white.png", L"horse_markings_whitefield.png", L"horse_markings_whitedots.png", L"horse_markings_blackdots.png"};
 int EntityHorse::MARKING_TEXTURES_ID[EntityHorse::MARKINGS] = {-1, TN_MOB_HORSE_MARKINGS_WHITE, TN_MOB_HORSE_MARKINGS_WHITEFIELD, TN_MOB_HORSE_MARKINGS_WHITEDOTS, TN_MOB_HORSE_MARKINGS_BLACKDOTS};
-wstring EntityHorse::MARKING_HASHES[EntityHorse::MARKINGS] = {L"", L"wo_", L"wmo", L"wdo", L"bdo"};
+std::wstring EntityHorse::MARKING_HASHES[EntityHorse::MARKINGS] = {L"", L"wo_", L"wmo", L"wdo", L"bdo"};
 
-bool HorseEntitySelector::matches(shared_ptr<Entity> entity) const
+bool HorseEntitySelector::matches(std::shared_ptr<Entity> entity) const
 {
 	return entity->instanceof(eTYPE_HORSE) && dynamic_pointer_cast<EntityHorse>(entity)->isBred();
 }
@@ -128,7 +128,7 @@ int EntityHorse::getVariant()
 	return entityData->getInteger(DATA_ID_TYPE_VARIANT);
 }
 
-wstring EntityHorse::getAName()
+std::wstring EntityHorse::getAName()
 {
 	if (hasCustomName()) return getCustomName();
 #ifdef _DEBUG
@@ -185,12 +185,12 @@ bool EntityHorse::isRidable()
 	return isAdult();
 }
 
-wstring EntityHorse::getOwnerName()
+std::wstring EntityHorse::getOwnerName()
 {
 	return entityData->getString(DATA_ID_OWNER_NAME);
 }
 
-void EntityHorse::setOwner(const wstring &par1Str)
+void EntityHorse::setOwner(const std::wstring &par1Str)
 {
 	entityData->set(DATA_ID_OWNER_NAME, par1Str);
 }
@@ -257,7 +257,7 @@ int EntityHorse::getArmorType()
 	return entityData->getInteger(DATA_ID_ARMOR);
 }
 
-int EntityHorse::getArmorTypeForItem(shared_ptr<ItemInstance> armorItem)
+int EntityHorse::getArmorTypeForItem(std::shared_ptr<ItemInstance> armorItem)
 {
 	if (armorItem == NULL)
 	{
@@ -516,7 +516,7 @@ bool EntityHorse::canSpawn()
 }
 
 
-shared_ptr<EntityHorse> EntityHorse::getClosestMommy(shared_ptr<Entity> baby, double searchRadius)
+std::shared_ptr<EntityHorse> EntityHorse::getClosestMommy(std::shared_ptr<Entity> baby, double searchRadius)
 {
 	double closestDistance = Double::MAX_VALUE;
 
@@ -776,7 +776,7 @@ void EntityHorse::rebuildLayeredTextureInfo()
 	layerTextureHashName += ARMOR_HASHES[armor];
 }
 
-wstring EntityHorse::getLayeredTextureHashName()
+std::wstring EntityHorse::getLayeredTextureHashName()
 {
 	if (layerTextureHashName.empty())
 	{
@@ -794,7 +794,7 @@ intArray EntityHorse::getLayeredTextureLayers()
 	return layerTextureLayers;
 }
 
-void EntityHorse::openInventory(shared_ptr<Player> player)
+void EntityHorse::openInventory(std::shared_ptr<Player> player)
 {
 	if (!level->isClientSide && (rider.lock() == NULL || rider.lock() == player) && isTamed())
 	{
@@ -803,7 +803,7 @@ void EntityHorse::openInventory(shared_ptr<Player> player)
 	}
 }
 
-bool EntityHorse::mobInteract(shared_ptr<Player> player)
+bool EntityHorse::mobInteract(std::shared_ptr<Player> player)
 {
 	shared_ptr<ItemInstance> itemstack = player->inventory->getSelected();
 
@@ -1006,7 +1006,7 @@ bool EntityHorse::mobInteract(shared_ptr<Player> player)
 	}
 }
 
-void EntityHorse::doPlayerRide(shared_ptr<Player> player)
+void EntityHorse::doPlayerRide(std::shared_ptr<Player> player)
 {
 	player->yRot = yRot;
 	player->xRot = xRot;
@@ -1080,7 +1080,7 @@ bool EntityHorse::isSterile()
 }
 
 
-bool EntityHorse::isFood(shared_ptr<ItemInstance> itemInstance)
+bool EntityHorse::isFood(std::shared_ptr<ItemInstance> itemInstance)
 {
 	// horses have their own food behaviors in mobInterract
 	return false;
@@ -1319,7 +1319,7 @@ void EntityHorse::dropMyStuff()
 	dropBags();
 }
 
-void EntityHorse::dropInventory(shared_ptr<Entity> entity, shared_ptr<AnimalChest> animalchest)
+void EntityHorse::dropInventory(std::shared_ptr<Entity> entity, std::shared_ptr<AnimalChest> animalchest)
 {
 	if (animalchest == NULL || level->isClientSide) return;
 
@@ -1335,7 +1335,7 @@ void EntityHorse::dropInventory(shared_ptr<Entity> entity, shared_ptr<AnimalChes
 
 }
 
-bool EntityHorse::tameWithName(shared_ptr<Player> player)
+bool EntityHorse::tameWithName(std::shared_ptr<Player> player)
 {
 	setOwner(player->getName());
 	setTamed(true);
@@ -1546,7 +1546,7 @@ void EntityHorse::readAdditionalSaveData(CompoundTag *tag)
 }
 
 
-bool EntityHorse::canMate(shared_ptr<Animal> partner)
+bool EntityHorse::canMate(std::shared_ptr<Animal> partner)
 {
 	if (partner == shared_from_this()) return false;
 	if (partner->GetType() != GetType()) return false;
@@ -1564,7 +1564,7 @@ bool EntityHorse::canMate(shared_ptr<Animal> partner)
 }
 
 
-shared_ptr<AgableMob> EntityHorse::getBreedOffspring(shared_ptr<AgableMob> partner)
+std::shared_ptr<AgableMob> EntityHorse::getBreedOffspring(std::shared_ptr<AgableMob> partner)
 {
 	shared_ptr<EntityHorse> horsePartner = dynamic_pointer_cast<EntityHorse>(partner);
 	shared_ptr<EntityHorse> baby = shared_ptr<EntityHorse>( new EntityHorse(level) );
@@ -1835,7 +1835,7 @@ bool EntityHorse::onLadder()
 	return false;
 }
 
-shared_ptr<Player> EntityHorse::getOwner()
+std::shared_ptr<Player> EntityHorse::getOwner()
 {
 	return level->getPlayerByUUID(getOwnerName());
 }

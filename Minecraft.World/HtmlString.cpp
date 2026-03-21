@@ -2,7 +2,7 @@
 #include "HtmlString.h"
 #include <iomanip>
 
-HtmlString::HtmlString(wstring text, eMinecraftColour hexColor, bool italics, bool indent)
+HtmlString::HtmlString(std::wstring text, eMinecraftColour hexColor, bool italics, bool indent)
 {
 	this->text = escapeXML(text);
 	this->color = hexColor;
@@ -10,7 +10,7 @@ HtmlString::HtmlString(wstring text, eMinecraftColour hexColor, bool italics, bo
 	this->indent = indent;
 }
 
-wstring HtmlString::ToString()
+std::wstring HtmlString::ToString()
 {
 	std::wstringstream ss;
 
@@ -36,7 +36,7 @@ wstring HtmlString::ToString()
 	return ss.str();
 }
 
-wstring HtmlString::Compose(vector<HtmlString> *strings)
+std::wstring HtmlString::Compose(vector<HtmlString> *strings)
 {
 	if (strings == NULL) return L"";
 

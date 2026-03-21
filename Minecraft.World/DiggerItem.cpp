@@ -16,20 +16,20 @@ DiggerItem::DiggerItem(int id, float attackDamage, const Tier *tier, TileArray *
 	this->attackDamage = attackDamage + tier->getAttackDamageBonus();
 }
 
-float DiggerItem::getDestroySpeed(shared_ptr<ItemInstance> itemInstance, Tile *tile)
+float DiggerItem::getDestroySpeed(std::shared_ptr<ItemInstance> itemInstance, Tile *tile)
 {
 	for (unsigned int i = 0; i < tiles->length; i++)
 		if ( (*tiles)[i] == tile) return speed;
 	return 1;
 }
 
-bool DiggerItem::hurtEnemy(shared_ptr<ItemInstance> itemInstance, shared_ptr<LivingEntity> mob, shared_ptr<LivingEntity> attacker)
+bool DiggerItem::hurtEnemy(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<LivingEntity> mob, std::shared_ptr<LivingEntity> attacker)
 {
 	itemInstance->hurtAndBreak(2, attacker);
 	return true;
 }
 
-bool DiggerItem::mineBlock(shared_ptr<ItemInstance> itemInstance, Level *level, int tile, int x, int y, int z, shared_ptr<LivingEntity> owner)
+bool DiggerItem::mineBlock(std::shared_ptr<ItemInstance> itemInstance, Level *level, int tile, int x, int y, int z, std::shared_ptr<LivingEntity> owner)
 {
 	// Don't damage tools if the tile can be destroyed in one hit.
 	if (Tile::tiles[tile]->getDestroySpeed(level, x, y, z) != 0.0) itemInstance->hurtAndBreak(1, owner);
@@ -51,7 +51,7 @@ const Item::Tier *DiggerItem::getTier()
 	return tier;
 }
 
-bool DiggerItem::isValidRepairItem(shared_ptr<ItemInstance> source, shared_ptr<ItemInstance> repairItem)
+bool DiggerItem::isValidRepairItem(std::shared_ptr<ItemInstance> source, std::shared_ptr<ItemInstance> repairItem)
 {
 	if (tier->getTierItemId() == repairItem->id)
 	{

@@ -619,7 +619,7 @@ BiomeSource *Level::getBiomeSource()
 	return dimension->biomeSource;
 }
 
-Level::Level(shared_ptr<LevelStorage> levelStorage, const wstring& name, Dimension *dimension, LevelSettings *levelSettings, bool doCreateChunkSource)
+Level::Level(std::shared_ptr<LevelStorage> levelStorage, const std::wstring& name, Dimension *dimension, LevelSettings *levelSettings, bool doCreateChunkSource)
 	: seaLevel(constSeaLevel)
 {
 	_init();
@@ -648,20 +648,20 @@ Level::Level(shared_ptr<LevelStorage> levelStorage, const wstring& name, Dimensi
 	prepareWeather();
 }
 
-Level::Level(shared_ptr<LevelStorage>levelStorage, const wstring& levelName, LevelSettings *levelSettings)
+Level::Level(std::shared_ptr<LevelStorage>levelStorage, const std::wstring& levelName, LevelSettings *levelSettings)
 	: seaLevel( constSeaLevel )
 {
 	_init(levelStorage, levelName, levelSettings, NULL, true);
 }
 
 
-Level::Level(shared_ptr<LevelStorage>levelStorage, const wstring& levelName, LevelSettings *levelSettings, Dimension *fixedDimension, bool doCreateChunkSource)
+Level::Level(std::shared_ptr<LevelStorage>levelStorage, const std::wstring& levelName, LevelSettings *levelSettings, Dimension *fixedDimension, bool doCreateChunkSource)
 	: seaLevel( constSeaLevel )
 {
 	_init( levelStorage, levelName, levelSettings, fixedDimension, doCreateChunkSource );
 }
 
-void Level::_init(shared_ptr<LevelStorage>levelStorage, const wstring& levelName, LevelSettings *levelSettings, Dimension *fixedDimension, bool doCreateChunkSource)
+void Level::_init(std::shared_ptr<LevelStorage>levelStorage, const std::wstring& levelName, LevelSettings *levelSettings, Dimension *fixedDimension, bool doCreateChunkSource)
 {
 	_init();
 	this->levelStorage = levelStorage;//shared_ptr<LevelStorage>(levelStorage);
@@ -1634,7 +1634,7 @@ HitResult *Level::clip(Vec3 *a, Vec3 *b, bool liquid, bool solidOnly)
 }
 
 
-void Level::playEntitySound(shared_ptr<Entity> entity, int iSound, float volume, float pitch)
+void Level::playEntitySound(std::shared_ptr<Entity> entity, int iSound, float volume, float pitch)
 {
 	if(entity == NULL) return;
 	AUTO_VAR(itEnd, listeners.end());
@@ -1654,7 +1654,7 @@ void Level::playEntitySound(shared_ptr<Entity> entity, int iSound, float volume,
 	}
 }
 
-void Level::playPlayerSound(shared_ptr<Player> entity, int iSound, float volume, float pitch)
+void Level::playPlayerSound(std::shared_ptr<Player> entity, int iSound, float volume, float pitch)
 {
 	if (entity == NULL) return;
 	AUTO_VAR(itEnd, listeners.end());
@@ -1678,7 +1678,7 @@ void Level::playLocalSound(double x, double y, double z, int iSound, float volum
 {
 }
 
-void Level::playStreamingMusic(const wstring& name, int x, int y, int z)
+void Level::playStreamingMusic(const std::wstring& name, int x, int y, int z)
 {
 	AUTO_VAR(itEnd, listeners.end());
 	for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++)
@@ -1688,7 +1688,7 @@ void Level::playStreamingMusic(const wstring& name, int x, int y, int z)
 }
 
 
-void Level::playMusic(double x, double y, double z, const wstring& string, float volume)
+void Level::playMusic(double x, double y, double z, const std::wstring& string, float volume)
 {
 }
 
@@ -1710,7 +1710,7 @@ void Level::addParticle(ePARTICLE_TYPE id, double x, double y, double z, double 
 		(*it)->addParticle(id, x, y, z, xd, yd, zd);
 }
 
-bool Level::addGlobalEntity(shared_ptr<Entity> e)
+bool Level::addGlobalEntity(std::shared_ptr<Entity> e)
 {
 	globalEntities.push_back(e);
 	return true;
@@ -1718,7 +1718,7 @@ bool Level::addGlobalEntity(shared_ptr<Entity> e)
 
 #pragma optimize( "", off )
 
-bool Level::addEntity(shared_ptr<Entity> e)
+bool Level::addEntity(std::shared_ptr<Entity> e)
 {
 	int xc = Mth::floor(e->x / 16);
 	int zc = Mth::floor(e->z / 16);
@@ -1766,7 +1766,7 @@ bool Level::addEntity(shared_ptr<Entity> e)
 
 #pragma optimize( "", on )
 
-void Level::entityAdded(shared_ptr<Entity> e)
+void Level::entityAdded(std::shared_ptr<Entity> e)
 {
 	AUTO_VAR(itEnd, listeners.end());
 	for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++)
@@ -1776,7 +1776,7 @@ void Level::entityAdded(shared_ptr<Entity> e)
 }
 
 
-void Level::entityRemoved(shared_ptr<Entity> e)
+void Level::entityRemoved(std::shared_ptr<Entity> e)
 {
 	AUTO_VAR(itEnd, listeners.end());
 	for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++)
@@ -1786,7 +1786,7 @@ void Level::entityRemoved(shared_ptr<Entity> e)
 }
 
 // 4J added
-void Level::playerRemoved(shared_ptr<Entity> e)
+void Level::playerRemoved(std::shared_ptr<Entity> e)
 {
 	AUTO_VAR(itEnd, listeners.end());
 	for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++)
@@ -1795,7 +1795,7 @@ void Level::playerRemoved(shared_ptr<Entity> e)
 	}
 }
 
-void Level::removeEntity(shared_ptr<Entity> e)
+void Level::removeEntity(std::shared_ptr<Entity> e)
 {
 	if (e->rider.lock() != NULL)
 	{
@@ -1824,7 +1824,7 @@ void Level::removeEntity(shared_ptr<Entity> e)
 }
 
 
-void Level::removeEntityImmediately(shared_ptr<Entity> e)
+void Level::removeEntityImmediately(std::shared_ptr<Entity> e)
 {
 	e->remove();
 
@@ -1885,7 +1885,7 @@ void Level::removeListener(LevelListener *listener)
 
 
 // 4J - added noEntities and blockAtEdge parameter
-AABBList *Level::getCubes(shared_ptr<Entity> source, AABB *box, bool noEntities/* = false*/, bool blockAtEdge/* = false*/)
+AABBList *Level::getCubes(std::shared_ptr<Entity> source, AABB *box, bool noEntities/* = false*/, bool blockAtEdge/* = false*/)
 {
 	boxes.clear();
 	int x0 = Mth::floor(box->x0);
@@ -2048,7 +2048,7 @@ float Level::getSkyDarken(float a)
 
 
 
-Vec3 *Level::getSkyColor(shared_ptr<Entity> source, float a)
+Vec3 *Level::getSkyColor(std::shared_ptr<Entity> source, float a)
 {
 	float td = getTimeOfDay(a);
 
@@ -2496,13 +2496,13 @@ void Level::addAllPendingTileEntities(vector< shared_ptr<TileEntity> >& entities
 	LeaveCriticalSection(&m_tileEntityListCS);
 }
 
-void Level::tick(shared_ptr<Entity> e)
+void Level::tick(std::shared_ptr<Entity> e)
 {
 	tick(e, true);
 }
 
 
-void Level::tick(shared_ptr<Entity> e, bool actual)
+void Level::tick(std::shared_ptr<Entity> e, bool actual)
 {
 	int xc = Mth::floor(e->x);
 	int zc = Mth::floor(e->z);
@@ -2599,7 +2599,7 @@ bool Level::isUnobstructed(AABB *aabb)
 	return isUnobstructed(aabb, nullptr);
 }
 
-bool Level::isUnobstructed(AABB *aabb, shared_ptr<Entity> ignore)
+bool Level::isUnobstructed(AABB *aabb, std::shared_ptr<Entity> ignore)
 {
 	vector<shared_ptr<Entity> > *ents = getEntities(nullptr, aabb);
 	AUTO_VAR(itEnd, ents->end());
@@ -2720,7 +2720,7 @@ bool Level::containsFireTile(AABB *box)
 }
 
 
-bool Level::checkAndHandleWater(AABB *box, Material *material, shared_ptr<Entity> e)
+bool Level::checkAndHandleWater(AABB *box, Material *material, std::shared_ptr<Entity> e)
 {
 	int x0 = Mth::floor(box->x0);
 	int x1 = Mth::floor(box->x1 + 1);
@@ -2832,13 +2832,13 @@ bool Level::containsLiquid(AABB *box, Material *material)
 }
 
 
-shared_ptr<Explosion> Level::explode(shared_ptr<Entity> source, double x, double y, double z, float r, bool destroyBlocks)
+std::shared_ptr<Explosion> Level::explode(std::shared_ptr<Entity> source, double x, double y, double z, float r, bool destroyBlocks)
 {
 	return explode(source, x, y, z, r, false, destroyBlocks);
 }
 
 
-shared_ptr<Explosion> Level::explode(shared_ptr<Entity> source, double x, double y, double z, float r, bool fire, bool destroyBlocks)
+std::shared_ptr<Explosion> Level::explode(std::shared_ptr<Entity> source, double x, double y, double z, float r, bool fire, bool destroyBlocks)
 {
 	shared_ptr<Explosion> explosion = shared_ptr<Explosion>( new Explosion(this, source, x, y, z, r) );
 	explosion->fire = fire;	
@@ -2873,7 +2873,7 @@ float Level::getSeenPercent(Vec3 *center, AABB *bb)
 }
 
 
-bool Level::extinguishFire(shared_ptr<Player> player, int x, int y, int z, int face)
+bool Level::extinguishFire(std::shared_ptr<Player> player, int x, int y, int z, int face)
 {
 	if (face == 0) y--;
 	if (face == 1) y++;
@@ -2899,7 +2899,7 @@ return shared_ptr<Entity>();
 */
 
 
-wstring Level::gatherStats()
+std::wstring Level::gatherStats()
 {
 	wchar_t buf[64];
 	EnterCriticalSection(&m_entitiesCS);
@@ -2909,13 +2909,13 @@ wstring Level::gatherStats()
 }
 
 
-wstring Level::gatherChunkSourceStats()
+std::wstring Level::gatherChunkSourceStats()
 {
 	return chunkSource->gatherStats();
 }
 
 
-shared_ptr<TileEntity> Level::getTileEntity(int x, int y, int z)
+std::shared_ptr<TileEntity> Level::getTileEntity(int x, int y, int z)
 {
 	if (y < minBuildHeight || y >= maxBuildHeight)
 	{
@@ -2966,7 +2966,7 @@ shared_ptr<TileEntity> Level::getTileEntity(int x, int y, int z)
 }
 
 
-void Level::setTileEntity(int x, int y, int z, shared_ptr<TileEntity> tileEntity)
+void Level::setTileEntity(int x, int y, int z, std::shared_ptr<TileEntity> tileEntity)
 {
 	if (tileEntity != NULL && !tileEntity->isRemoved())
 	{
@@ -3039,7 +3039,7 @@ void Level::removeTileEntity(int x, int y, int z)
 	LeaveCriticalSection(&m_tileEntityListCS);
 }
 
-void Level::markForRemoval(shared_ptr<TileEntity> entity)
+void Level::markForRemoval(std::shared_ptr<TileEntity> entity)
 {
 	tileEntitiesToUnload.push_back(entity);
 }
@@ -3708,12 +3708,12 @@ vector<TickNextTickData> *Level::fetchTicksInChunk(LevelChunk *chunk, bool remov
 }
 
 
-vector<shared_ptr<Entity> > *Level::getEntities(shared_ptr<Entity> except, AABB *bb)
+vector<shared_ptr<Entity> > *Level::getEntities(std::shared_ptr<Entity> except, AABB *bb)
 {
 	return getEntities(except, bb, NULL);
 }
 
-vector<shared_ptr<Entity> > *Level::getEntities(shared_ptr<Entity> except, AABB *bb, const EntitySelector *selector)
+vector<shared_ptr<Entity> > *Level::getEntities(std::shared_ptr<Entity> except, AABB *bb, const EntitySelector *selector)
 {
 	MemSect(40);
 	es.clear();
@@ -3752,12 +3752,12 @@ vector<shared_ptr<Entity> > *Level::getEntities(shared_ptr<Entity> except, AABB 
 		return &es;
 }
 
-vector<shared_ptr<Entity> > *Level::getEntitiesOfClass(const type_info& baseClass, AABB *bb)
+vector<shared_ptr<Entity> > *Level::getEntitiesOfClass(const std::type_info& baseClass, AABB *bb)
 {
 	return getEntitiesOfClass(baseClass, bb, NULL);
 }
 
-vector<shared_ptr<Entity> > *Level::getEntitiesOfClass(const type_info& baseClass, AABB *bb, const EntitySelector *selector)
+vector<shared_ptr<Entity> > *Level::getEntitiesOfClass(const std::type_info& baseClass, AABB *bb, const EntitySelector *selector)
 {
 	int xc0 = Mth::floor((bb->x0 - 2) / 16);
 	int xc1 = Mth::floor((bb->x1 + 2) / 16);
@@ -3796,7 +3796,7 @@ vector<shared_ptr<Entity> > *Level::getEntitiesOfClass(const type_info& baseClas
 	return es;
 }
 
-shared_ptr<Entity> Level::getClosestEntityOfClass(const type_info& baseClass, AABB *bb, shared_ptr<Entity> source)
+std::shared_ptr<Entity> Level::getClosestEntityOfClass(const std::type_info& baseClass, AABB *bb, std::shared_ptr<Entity> source)
 {
 	vector<shared_ptr<Entity> > *entities = getEntitiesOfClass(baseClass, bb);
 	shared_ptr<Entity> closest = nullptr;
@@ -3824,7 +3824,7 @@ vector<shared_ptr<Entity> > Level::getAllEntities()
 }
 
 
-void Level::tileEntityChanged(int x, int y, int z, shared_ptr<TileEntity> te)
+void Level::tileEntityChanged(int x, int y, int z, std::shared_ptr<TileEntity> te)
 {
 	if (this->hasChunkAt(x, y, z))
 	{
@@ -3967,7 +3967,7 @@ void Level::removeEntities(vector<shared_ptr<Entity> > *list)
 	entitiesToRemove.insert(entitiesToRemove.end(), list->begin(), list->end());
 }
 
-bool Level::mayPlace(int tileId, int x, int y, int z, bool ignoreEntities, int face, shared_ptr<Entity> ignoreEntity, shared_ptr<ItemInstance> item)
+bool Level::mayPlace(int tileId, int x, int y, int z, bool ignoreEntities, int face, std::shared_ptr<Entity> ignoreEntity, std::shared_ptr<ItemInstance> item)
 {
 	int targetType = getTile(x, y, z);
 	Tile *targetTile = Tile::tiles[targetType];
@@ -4001,7 +4001,7 @@ int Level::getSeaLevel()
 }
 
 
-Path *Level::findPath(shared_ptr<Entity> from, shared_ptr<Entity> to, float maxDist, bool canPassDoors, bool canOpenDoors, bool avoidWater, bool canFloat)
+Path *Level::findPath(std::shared_ptr<Entity> from, std::shared_ptr<Entity> to, float maxDist, bool canPassDoors, bool canOpenDoors, bool avoidWater, bool canFloat)
 {
 	int x = Mth::floor(from->x);
 	int y = Mth::floor(from->y + 1);
@@ -4020,7 +4020,7 @@ Path *Level::findPath(shared_ptr<Entity> from, shared_ptr<Entity> to, float maxD
 }
 
 
-Path *Level::findPath(shared_ptr<Entity> from, int xBest, int yBest, int zBest, float maxDist, bool canPassDoors, bool canOpenDoors, bool avoidWater, bool canFloat)
+Path *Level::findPath(std::shared_ptr<Entity> from, int xBest, int yBest, int zBest, float maxDist, bool canPassDoors, bool canOpenDoors, bool avoidWater, bool canFloat)
 {
 	int x = Mth::floor(from->x);
 	int y = Mth::floor(from->y);
@@ -4107,13 +4107,13 @@ int Level::getBestNeighborSignal(int x, int y, int z)
 }
 
 // 4J Stu - Added maxYDist param
-shared_ptr<Player> Level::getNearestPlayer(shared_ptr<Entity> source, double maxDist, double maxYDist /*= -1*/)
+std::shared_ptr<Player> Level::getNearestPlayer(std::shared_ptr<Entity> source, double maxDist, double maxYDist /*= -1*/)
 {
 	return getNearestPlayer(source->x, source->y, source->z, maxDist, maxYDist);
 }
 
 // 4J Stu - Added maxYDist param
-shared_ptr<Player> Level::getNearestPlayer(double x, double y, double z, double maxDist, double maxYDist /*= -1*/)
+std::shared_ptr<Player> Level::getNearestPlayer(double x, double y, double z, double maxDist, double maxYDist /*= -1*/)
 {
 	MemSect(21);
 	double best = -1;
@@ -4138,7 +4138,7 @@ shared_ptr<Player> Level::getNearestPlayer(double x, double y, double z, double 
 	return result;
 }
 
-shared_ptr<Player> Level::getNearestPlayer(double x, double z, double maxDist)
+std::shared_ptr<Player> Level::getNearestPlayer(double x, double z, double maxDist)
 {
 	double best = -1;
 	shared_ptr<Player> result = nullptr;
@@ -4156,12 +4156,12 @@ shared_ptr<Player> Level::getNearestPlayer(double x, double z, double maxDist)
 	return result;
 }
 
-shared_ptr<Player> Level::getNearestAttackablePlayer(shared_ptr<Entity> source, double maxDist)
+std::shared_ptr<Player> Level::getNearestAttackablePlayer(std::shared_ptr<Entity> source, double maxDist)
 {
 	return getNearestAttackablePlayer(source->x, source->y, source->z, maxDist);
 }
 
-shared_ptr<Player> Level::getNearestAttackablePlayer(double x, double y, double z, double maxDist)
+std::shared_ptr<Player> Level::getNearestAttackablePlayer(double x, double y, double z, double maxDist)
 {
 	double best = -1;
 
@@ -4205,7 +4205,7 @@ shared_ptr<Player> Level::getNearestAttackablePlayer(double x, double y, double 
 	return result;
 }
 
-shared_ptr<Player> Level::getPlayerByName(const wstring& name)
+std::shared_ptr<Player> Level::getPlayerByName(const std::wstring& name)
 {
 	AUTO_VAR(itEnd, players.end());
 	for (AUTO_VAR(it, players.begin()); it != itEnd; it++)
@@ -4218,7 +4218,7 @@ shared_ptr<Player> Level::getPlayerByName(const wstring& name)
 	return shared_ptr<Player>();
 }
 
-shared_ptr<Player> Level::getPlayerByUUID(const wstring& name)
+std::shared_ptr<Player> Level::getPlayerByUUID(const std::wstring& name)
 {
 	AUTO_VAR(itEnd, players.end());
 	for (AUTO_VAR(it, players.begin()); it != itEnd; it++)
@@ -4401,7 +4401,7 @@ void Level::setSpawnPos(Pos *spawnPos)
 	setSpawnPos(spawnPos->x, spawnPos->y, spawnPos->z);
 }
 
-void Level::ensureAdded(shared_ptr<Entity> entity)
+void Level::ensureAdded(std::shared_ptr<Entity> entity)
 {
 	int xc = Mth::floor(entity->x / 16);
 	int zc = Mth::floor(entity->z / 16);
@@ -4424,13 +4424,13 @@ void Level::ensureAdded(shared_ptr<Entity> entity)
 }
 
 
-bool Level::mayInteract(shared_ptr<Player> player, int xt, int yt, int zt, int content)
+bool Level::mayInteract(std::shared_ptr<Player> player, int xt, int yt, int zt, int content)
 {
 	return true;
 }
 
 
-void Level::broadcastEntityEvent(shared_ptr<Entity> e, byte event)
+void Level::broadcastEntityEvent(std::shared_ptr<Entity> e, byte event)
 {
 }
 
@@ -4515,19 +4515,19 @@ bool Level::isHumidAt(int x, int y, int z)
 }
 
 
-void Level::setSavedData(const wstring& id, shared_ptr<SavedData> data)
+void Level::setSavedData(const std::wstring& id, std::shared_ptr<SavedData> data)
 {
 	savedDataStorage->set(id, data);
 }
 
 
-shared_ptr<SavedData> Level::getSavedData(const type_info& clazz, const wstring& id)
+std::shared_ptr<SavedData> Level::getSavedData(const std::type_info& clazz, const std::wstring& id)
 {
 	return savedDataStorage->get(clazz, id);
 }
 
 
-int Level::getFreeAuxValueFor(const wstring& id)
+int Level::getFreeAuxValueFor(const std::wstring& id)
 {
 	return savedDataStorage->getFreeAuxValueFor(id);
 }
@@ -4553,7 +4553,7 @@ void Level::levelEvent(int type, int x, int y, int z, int data)
 }
 
 
-void Level::levelEvent(shared_ptr<Player> source, int type, int x, int y, int z, int data)
+void Level::levelEvent(std::shared_ptr<Player> source, int type, int x, int y, int z, int data)
 {
 	AUTO_VAR(itEnd, listeners.end());
 	for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++)
@@ -4572,7 +4572,7 @@ int Level::getHeight()
 	return dimension->hasCeiling ? genDepth : maxBuildHeight;
 }
 
-Tickable *Level::makeSoundUpdater(shared_ptr<Minecart> minecart)
+Tickable *Level::makeSoundUpdater(std::shared_ptr<Minecart> minecart)
 {
 	return NULL;
 }
@@ -4584,7 +4584,7 @@ Random *Level::getRandomFor(int x, int z, int blend)
 	return random;
 }
 
-TilePos *Level::findNearestMapFeature(const wstring& featureName, int x, int y, int z)
+TilePos *Level::findNearestMapFeature(const std::wstring& featureName, int x, int y, int z)
 {
 	return getChunkSource()->findNearestMapFeature(this, featureName, x, y, z);
 }

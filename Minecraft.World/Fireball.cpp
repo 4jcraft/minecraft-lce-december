@@ -84,7 +84,7 @@ Fireball::Fireball(Level *level, double x, double y, double z, double xa, double
 	}
 }
 
-Fireball::Fireball(Level *level, shared_ptr<LivingEntity> mob, double xa, double ya, double za) : Entity ( level )
+Fireball::Fireball(Level *level, std::shared_ptr<LivingEntity> mob, double xa, double ya, double za) : Entity ( level )
 {
 	// 4J Stu - This function call had to be moved here from the Entity ctor to ensure that
 	// the derived version of the function is called

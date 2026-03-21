@@ -87,7 +87,7 @@ void PigZombie::readAdditionalSaveData(CompoundTag *tag)
 	angerTime = tag->getShort(L"Anger");
 }
 
-shared_ptr<Entity> PigZombie::findAttackTarget()
+std::shared_ptr<Entity> PigZombie::findAttackTarget()
 {
 #ifndef _FINAL_BUILD
 #ifdef _DEBUG_MENUS_ENABLED
@@ -123,7 +123,7 @@ bool PigZombie::hurt(DamageSource *source, float dmg)
 	return Zombie::hurt(source, dmg);
 }
 
-void PigZombie::alert(shared_ptr<Entity> target)
+void PigZombie::alert(std::shared_ptr<Entity> target)
 {
 	attackTarget = target;
 	angerTime = 20 * 20 + random->nextInt(20 * 20);
@@ -159,7 +159,7 @@ void PigZombie::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel)
 	}
 }
 
-bool PigZombie::mobInteract(shared_ptr<Player> player)
+bool PigZombie::mobInteract(std::shared_ptr<Player> player)
 {
 	return false;
 }

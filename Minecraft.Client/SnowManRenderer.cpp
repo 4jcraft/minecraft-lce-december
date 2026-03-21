@@ -15,7 +15,7 @@ SnowManRenderer::SnowManRenderer() : MobRenderer(new SnowManModel(), 0.5f)
 	this->setArmor(model);
 }
 
-void SnowManRenderer::additionalRendering(shared_ptr<LivingEntity> _mob, float a)
+void SnowManRenderer::additionalRendering(std::shared_ptr<LivingEntity> _mob, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type SnowMan rather than shared_ptr<Mob>  we have here - 
 	// do some casting around instead
@@ -42,7 +42,7 @@ void SnowManRenderer::additionalRendering(shared_ptr<LivingEntity> _mob, float a
 	}
 }
 
-ResourceLocation *SnowManRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *SnowManRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
 	return &SNOWMAN_LOCATION;
 }

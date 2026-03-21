@@ -6,8 +6,8 @@ class Biome;
 class VillageFeature : public StructureFeature
 {
 public:
-	static const wstring OPTION_SIZE_MODIFIER;
-	static const wstring OPTION_SPACING;
+	static const std::wstring OPTION_SIZE_MODIFIER;
+	static const std::wstring OPTION_SPACING;
 
 private:
 	int villageSizeModifier;
@@ -20,7 +20,7 @@ public:
 	static vector<Biome *> allowedBiomes;
 	VillageFeature(int iXZSize);
 	VillageFeature(unordered_map<wstring, wstring> options, int iXZSize);
-	wstring getFeatureName();
+	std::wstring getFeatureName();
 
 protected:
 	virtual bool isFeatureChunk(int x, int z, bool bIsSuperflat=false);

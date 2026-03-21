@@ -20,7 +20,7 @@
 
 Random *PendingConnection::random = new Random();
 
-PendingConnection::PendingConnection(MinecraftServer *server, Socket *socket, const wstring& id)
+PendingConnection::PendingConnection(MinecraftServer *server, Socket *socket, const std::wstring& id)
 {
 	// 4J - added initialisers
 	done = false;
@@ -137,7 +137,7 @@ void PendingConnection::sendPreLoginResponse()
 	}
 }
 
-void PendingConnection::handleLogin(shared_ptr<LoginPacket> packet)
+void PendingConnection::handleLogin(std::shared_ptr<LoginPacket> packet)
 {
 	//	printf("Server: handleLogin\n");
 	//name = packet->userName;
@@ -198,7 +198,7 @@ void PendingConnection::handleLogin(shared_ptr<LoginPacket> packet)
 
 }
 
-void PendingConnection::handleAcceptedLogin(shared_ptr<LoginPacket> packet)
+void PendingConnection::handleAcceptedLogin(std::shared_ptr<LoginPacket> packet)
 {
 	if(packet->m_ugcPlayersVersion != server->m_ugcPlayersVersion)
 	{
@@ -230,7 +230,7 @@ void PendingConnection::onDisconnect(DisconnectPacket::eDisconnectReason reason,
 void PendingConnection::handleGetInfo(shared_ptr<GetInfoPacket> packet)
 {
 	//try {
-	//String message = server->motd + "§" + server->players->getPlayerCount() + "§" + server->players->getMaxPlayers();
+	//String message = server->motd + "ï¿½" + server->players->getPlayerCount() + "ï¿½" + server->players->getMaxPlayers();
 	//connection->send(new DisconnectPacket(message));
 	connection->send(shared_ptr<DisconnectPacket>(new DisconnectPacket(DisconnectPacket::eDisconnect_ServerFull) ) );
 	connection->sendAndQuit();
@@ -246,14 +246,14 @@ void PendingConnection::handleKeepAlive(shared_ptr<KeepAlivePacket> packet)
 	// Ignore
 }
 
-void PendingConnection::onUnhandledPacket(shared_ptr<Packet> packet)
+void PendingConnection::onUnhandledPacstd::ket(shared_ptr<Packet> packet)
 {
 	disconnect(DisconnectPacket::eDisconnect_UnexpectedPacket);
 }
 
-void PendingConnection::send(shared_ptr<Packet> packet)
+void PendingConnection::sstd::end(shared_ptr<Packet> packet)
 {
-	connection->send(packet);
+	connection->send(packet);std::
 }
 
 wstring PendingConnection::getName()

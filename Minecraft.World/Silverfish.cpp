@@ -37,7 +37,7 @@ bool Silverfish::makeStepSound()
 	return false;
 }
 
-shared_ptr<Entity> Silverfish::findAttackTarget()
+std::shared_ptr<Entity> Silverfish::findAttackTarget()
 {
 #ifndef _FINAL_BUILD
 	if(app.GetMobsDontAttackEnabled())
@@ -80,7 +80,7 @@ bool Silverfish::hurt(DamageSource *source, float dmg)
 	return Monster::hurt(source, dmg);
 }
 
-void Silverfish::checkHurtTarget(shared_ptr<Entity> target, float d)
+void Silverfish::checkHurtTarget(std::shared_ptr<Entity> target, float d)
 {
 
 	//        super.checkHurtTarget(target, d);

@@ -11,8 +11,8 @@ public:
 	static const int METHOD_REMOVE = 1;
 	static const int METHOD_CHANGE = 2;
 
-	wstring objectiveName;
-	wstring displayName;
+	std::wstring objectiveName;
+	std::wstring displayName;
 	int method;
 
 	SetObjectivePacket();
@@ -23,6 +23,6 @@ public:
 	int getEstimatedSize();
 	
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new SetObjectivePacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new SetObjectivePacket()); }
 	virtual int getId() { return 206; }
 };

@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Entity.h"
 #include "Projectile.h"
@@ -37,7 +37,7 @@ private:
 public:
 	int pickup;
 	int shakeTime;
-	shared_ptr<Entity> owner;
+	std::shared_ptr<Entity> owner;
 
 private:
 	double baseDamage;
@@ -53,9 +53,9 @@ private:
 
 public:
 	Arrow(Level *level);
-	Arrow(Level *level, shared_ptr<LivingEntity> mob, shared_ptr<LivingEntity> target, float power, float uncertainty);
+	Arrow(Level *level, std::shared_ptr<LivingEntity> mob, std::shared_ptr<LivingEntity> target, float power, float uncertainty);
 	Arrow(Level *level, double x, double y, double z);
-	Arrow(Level *level, shared_ptr<LivingEntity> mob, float power);
+	Arrow(Level *level, std::shared_ptr<LivingEntity> mob, float power);
 
 protected:
 	virtual void defineSynchedData();
@@ -67,7 +67,7 @@ public:
 	virtual void tick();
 	virtual void addAdditonalSaveData(CompoundTag *tag);
 	virtual void readAdditionalSaveData(CompoundTag *tag);
-	virtual void playerTouch(shared_ptr<Player> player);
+	virtual void playerTouch(std::shared_ptr<Player> player);
 
 protected:
 	virtual bool makeStepSound();

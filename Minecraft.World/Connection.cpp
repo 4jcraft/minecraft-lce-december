@@ -74,7 +74,7 @@ Connection::~Connection()
 	dis = NULL;
 }
 
-Connection::Connection(Socket *socket, const wstring& id, PacketListener *packetListener) // throws IOException
+Connection::Connection(Socket *socket, const std::wstring& id, PacketListener *packetListener) // throws IOException
 {
 	_init();
 
@@ -145,7 +145,7 @@ void Connection::setListener(PacketListener *packetListener)
 	this->packetListener = packetListener;
 }
 
-void Connection::send(shared_ptr<Packet> packet)
+void Connection::send(std::shared_ptr<Packet> packet)
 {
 	if (quitting) 	return;
 
@@ -171,7 +171,7 @@ void Connection::send(shared_ptr<Packet> packet)
 }
 
 
-void Connection::queueSend(shared_ptr<Packet> packet)
+void Connection::queueSend(std::shared_ptr<Packet> packet)
 {
 	if (quitting) return;
 	EnterCriticalSection(&writeLock);
@@ -341,7 +341,7 @@ bool Connection::readTick()
 //		printf("Con:0x%x readTick close EOS\n",this);
 
 		// 4J Stu - Remove this line
-		// Fix for #10410 - UI: If the player is removed from a splitscreened host’s game, the next game that player joins will produce a message stating that the host has left.
+		// Fix for #10410 - UI: If the player is removed from a splitscreened hostï¿½s game, the next game that player joins will produce a message stating that the host has left.
 		//close(DisconnectPacket::eDisconnect_EndOfStream);
 	}
 

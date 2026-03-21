@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Monster.h"
 #include "SharedConstants.h"
@@ -59,7 +59,7 @@ public:
 	virtual void aiStep();
 	virtual bool hurt(DamageSource *source, float dmg);
 	virtual void tick();
-	virtual bool doHurtTarget(shared_ptr<Entity> target);
+	virtual bool doHurtTarget(std::shared_ptr<Entity> target);
 
 protected:
 	virtual int getAmbientSound();
@@ -78,9 +78,9 @@ protected:
 public:
 	virtual void addAdditonalSaveData(CompoundTag *tag);
 	virtual void readAdditionalSaveData(CompoundTag *tag);
-	virtual void killed(shared_ptr<LivingEntity> mob);
+	virtual void killed(std::shared_ptr<LivingEntity> mob);
 	virtual MobGroupData *finalizeMobSpawn(MobGroupData *groupData, int extraData = 0); // 4J Added extraData param
-	virtual bool mobInteract(shared_ptr<Player> player);
+	virtual bool mobInteract(std::shared_ptr<Player> player);
 
 protected:
 	virtual void startConverting(int time);

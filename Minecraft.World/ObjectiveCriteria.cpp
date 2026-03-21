@@ -3,7 +3,7 @@
 #include "ObjectiveCriteria.h"
 
 
-unordered_map<wstring, ObjectiveCriteria *> ObjectiveCriteria::CRITERIA_BY_NAME;
+unordered_map<std::wstring, ObjectiveCriteria *> ObjectiveCriteria::CRITERIA_BY_NAME;
 
 ObjectiveCriteria *ObjectiveCriteria::DUMMY = new DummyCriteria(L"dummy");
 ObjectiveCriteria *ObjectiveCriteria::DEATH_COUNT = new DummyCriteria(L"deathCount");

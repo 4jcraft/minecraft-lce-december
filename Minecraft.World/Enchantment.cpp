@@ -130,7 +130,7 @@ int Enchantment::getDamageProtection(int level, DamageSource *source)
 	return 0;
 }
 
-float Enchantment::getDamageBonus(int level, shared_ptr<LivingEntity> target)
+float Enchantment::getDamageBonus(int level, std::shared_ptr<LivingEntity> target)
 {
 	return 0.0f;
 }
@@ -159,13 +159,13 @@ HtmlString Enchantment::getFullname(int level)
 	return HtmlString(formatted, eHTMLColor_f);
 }
 
-bool Enchantment::canEnchant(shared_ptr<ItemInstance> item)
+bool Enchantment::canEnchant(std::shared_ptr<ItemInstance> item)
 {
 	return category->canEnchant(item->getItem());
 }
 
 // 4J Added
-wstring Enchantment::getLevelString(int level)
+std::wstring Enchantment::getLevelString(int level)
 {
 	int stringId = IDS_ENCHANTMENT_LEVEL_1;
 	switch(level)

@@ -703,7 +703,7 @@ int SQRNetworkManager_Vita::BasicEventThreadProc( void *lpParameter )
 	// 			// 			int iEvent;
 	// 			// 			SceNpUserInfo from;
 	// 			// 			uint8_t buffer[SCE_NP_BASIC_MAX_MESSAGE_SIZE]; 
-	// 			// 			size_t bufferSize = SCE_NP_BASIC_MAX_MESSAGE_SIZE;
+	// 			// 			std::size_t bufferSize = SCE_NP_BASIC_MAX_MESSAGE_SIZE;
 	// 			// 			int ret = sceNpBasicGetEvent(&iEvent, &from, &buffer, &bufferSize);
 	// 			// 			if( ret == 0 )
 	// 			// 			{
@@ -1546,7 +1546,7 @@ bool SQRNetworkManager_Vita::UpdateInviteData(SQRNetworkManager_Vita::PresenceSy
 	PSVITA_STUBBED;
 	return false;
 
-	// 	size_t dataSize = sizeof(SQRNetworkManager_Vita::PresenceSyncInfo);
+	// 	std::size_t dataSize = sizeof(SQRNetworkManager_Vita::PresenceSyncInfo);
 	// 	int ret = sceNpBasicRecvMessageAttachmentLoad(s_lastInviteIdToRetry, invite, &dataSize);
 	// 	return (ret == 0);
 }
@@ -3628,9 +3628,9 @@ void SQRNetworkManager_Vita::RudpContextCallback(int ctx_id, int event_id, int e
 
 // Implementation of CellRudpEventHandler
 #ifdef __PS3__
-int SQRNetworkManager_Vita::RudpEventCallback(int event_id, int soc, uint8_t const *data, size_t datalen, struct sockaddr const *addr, socklen_t addrlen, void *arg)
+int SQRNetworkManager_Vita::RudpEventCallback(int event_id, int soc, uint8_t const *data, std::size_t datalen, struct sockaddr const *addr, socklen_t addrlen, void *arg)
 #else
-int SQRNetworkManager_Vita::RudpEventCallback(int event_id, int soc, uint8_t const *data, size_t datalen, struct SceNetSockaddr  const *addr, SceNetSocklen_t addrlen, void *arg)
+int SQRNetworkManager_Vita::RudpEventCallback(int event_id, int soc, uint8_t const *data, std::size_t datalen, struct SceNetSockaddr  const *addr, SceNetSocklen_t addrlen, void *arg)
 #endif
 {
 	SQRNetworkManager_Vita *manager = (SQRNetworkManager_Vita *)arg;

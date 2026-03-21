@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 class InputStream;
 
 // This file aims to provide functionality to mimic the subset of java's Class class that we require. Classes that require this
@@ -150,7 +150,7 @@ enum eINSTANCEOF
 						eTYPE_VILLAGERGOLEM	= eTYPE_GOLEM  									| 0x2, //0x1000,
 
 
-					// 4J Stu - If you add new hostile mobs here you should also update the string lookup function at CConsoleMinecraftApp::getEntityName
+					// 4J Stu - If you add new hostile mobs here you should also update the std::string lookup function at CConsoleMinecraftApp::getEntityName
 					eTYPE_MONSTER     =	eTYPE_ENEMY | eTYPE_PATHFINDER_MOB | BIT_MONSTER,
 
 						eTYPE_SPIDER			= eTYPE_MONSTER | eTYPE_VALID_IN_SPAWNER_FLAG | BIT_SPIDER,
@@ -351,13 +351,13 @@ class SubClass
 {
 public:
 	bool				m_isTerminal;
-	const string		m_name;
+	const std::string		m_name;
 	const eINSTANCEOF	m_id;
 	vector<eINSTANCEOF> m_parents;
 
 	static unordered_map<eINSTANCEOF, SubClass*> s_ids;
 
-	SubClass(const string &name, eINSTANCEOF id)
+	SubClass(const std::string &name, eINSTANCEOF id)
 		: m_name(name), m_id(id)
 	{
 		s_ids.insert( pair<eINSTANCEOF,SubClass*>(id,this) );

@@ -626,12 +626,12 @@ void LevelRenderer::renderEntities(Vec3 *cam, Culler *culler, float a)
 	mc->gameRenderer->turnOffLightLayer(a);		// 4J - brought forward from 1.8.2
 }
 
-wstring LevelRenderer::gatherStats1()
+std::wstring LevelRenderer::gatherStats1()
 {
 	return L"C: " + _toString<int>(renderedChunks) + L"/" + _toString<int>(totalChunks) + L". F: " + _toString<int>(offscreenChunks) + L", O: " + _toString<int>(occludedChunks) + L", E: " + _toString<int>(emptyChunks);
 }
 
-wstring LevelRenderer::gatherStats2()
+std::wstring LevelRenderer::gatherStats2()
 {
 	return L"E: " + _toString<int>(renderedEntities) + L"/" + _toString<int>(totalEntities) + L". B: " + _toString<int>(culledEntities) + L", I: " + _toString<int>((totalEntities - culledEntities) - renderedEntities);
 }
@@ -692,7 +692,7 @@ void LevelRenderer::resortChunks(int xc, int yc, int zc)
 	LeaveCriticalSection(&m_csDirtyChunks);
 }
 
-int LevelRenderer::render(shared_ptr<LivingEntity> player, int layer, double alpha, bool updateChunks)
+int LevelRenderer::render(std::shared_ptr<LivingEntity> player, int layer, double alpha, bool updateChunks)
 {
 	int playerIndex = mc->player->GetXboxPad();
 
@@ -2183,7 +2183,7 @@ bool LevelRenderer::updateDirtyChunks()
 	return false;
 }
 
-void LevelRenderer::renderHit(shared_ptr<Player> player, HitResult *h, int mode, shared_ptr<ItemInstance> inventoryItem, float a)
+void LevelRenderer::renderHit(std::shared_ptr<Player> player, HitResult *h, int mode, std::shared_ptr<ItemInstance> inventoryItem, float a)
 {
 	Tesselator *t = Tesselator::getInstance();
 	glEnable(GL_BLEND);
@@ -2202,7 +2202,7 @@ void LevelRenderer::renderHit(shared_ptr<Player> player, HitResult *h, int mode,
 	glDisable(GL_ALPHA_TEST);
 }
 
-void LevelRenderer::renderDestroyAnimation(Tesselator *t, shared_ptr<Player> player, float a)
+void LevelRenderer::renderDestroyAnimation(Tesselator *t, std::shared_ptr<Player> player, float a)
 {
 	double xo = player->xOld + (player->x - player->xOld) * a;
 	double yo = player->yOld + (player->y - player->yOld) * a;
@@ -2268,7 +2268,7 @@ void LevelRenderer::renderDestroyAnimation(Tesselator *t, shared_ptr<Player> pla
 	}
 }
 
-void LevelRenderer::renderHitOutline(shared_ptr<Player> player, HitResult *h, int mode, float a)
+void LevelRenderer::renderHitOutline(std::shared_ptr<Player> player, HitResult *h, int mode, float a)
 {
 
 	if (mode == 0 && h->type == HitResult::TILE)
@@ -2572,7 +2572,7 @@ void LevelRenderer::cull(Culler *culler, float a)
 	}
 }
 
-void LevelRenderer::playStreamingMusic(const wstring& name, int x, int y, int z)
+void LevelRenderer::playStreamingMusic(const std::wstring& name, int x, int y, int z)
 {
 	if (name != L"")
 	{
@@ -2608,11 +2608,11 @@ void LevelRenderer::playSound(int iSound, double x, double y, double z, float vo
 	}	*/
 }
 
-void LevelRenderer::playSound(shared_ptr<Entity> entity,int iSound, double x, double y, double z, float volume, float pitch, float fSoundClipDist)
+void LevelRenderer::playSound(std::shared_ptr<Entity> entity,int iSound, double x, double y, double z, float volume, float pitch, float fSoundClipDist)
 {
 }
 
-void LevelRenderer::playSoundExceptPlayer(shared_ptr<Player> player, int iSound, double x, double y, double z, float volume, float pitch, float fSoundClipDist)
+void LevelRenderer::playSoundExceptPlayer(std::shared_ptr<Player> player, int iSound, double x, double y, double z, float volume, float pitch, float fSoundClipDist)
 {
 }
 
@@ -2655,7 +2655,7 @@ void LevelRenderer::addParticle(ePARTICLE_TYPE eParticleType, double x, double y
 	addParticleInternal( eParticleType, x, y, z, xa, ya, za );
 }
 
-shared_ptr<Particle> LevelRenderer::addParticleInternal(ePARTICLE_TYPE eParticleType, double x, double y, double z, double xa, double ya, double za)
+std::shared_ptr<Particle> LevelRenderer::addParticleInternal(ePARTICLE_TYPE eParticleType, double x, double y, double z, double xa, double ya, double za)
 {
 	if (mc == NULL || mc->cameraTargetPlayer == NULL || mc->particleEngine == NULL)
 	{
@@ -2918,7 +2918,7 @@ shared_ptr<Particle> LevelRenderer::addParticleInternal(ePARTICLE_TYPE eParticle
 	return particle;
 }
 
-void LevelRenderer::entityAdded(shared_ptr<Entity> entity)
+void LevelRenderer::entityAdded(std::shared_ptr<Entity> entity)
 {
 	if(entity->instanceof(eTYPE_PLAYER))
 	{
@@ -2937,7 +2937,7 @@ void LevelRenderer::entityAdded(shared_ptr<Entity> entity)
 	}
 }
 
-void LevelRenderer::entityRemoved(shared_ptr<Entity> entity)
+void LevelRenderer::entityRemoved(std::shared_ptr<Entity> entity)
 {
 	if(entity->instanceof(eTYPE_PLAYER))
 	{
@@ -3017,7 +3017,7 @@ void LevelRenderer::globalLevelEvent(int type, int sourceX, int sourceY, int sou
 	}
 }
 
-void LevelRenderer::levelEvent(shared_ptr<Player> source, int type, int x, int y, int z, int data)
+void LevelRenderer::levelEvent(std::shared_ptr<Player> source, int type, int x, int y, int z, int data)
 {
 	int playerIndex = mc->player->GetXboxPad();	// 4J added
 	Random *random = level[playerIndex]->random;

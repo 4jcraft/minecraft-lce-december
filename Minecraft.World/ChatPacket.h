@@ -1,21 +1,21 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 
 class ChatPacket : public Packet, public enable_shared_from_this<ChatPacket>
 {
-	// longest allowed string is "<" + name + "> " + message
+	// longest allowed std::string is "<" + name + "> " + message
 private:
 	static const unsigned int MAX_LENGTH;
 
 public:
 	// 4J - We want to be able to localise the messages sent. The enum also allows for the posibility that there
-	// may be different versions playing the game, so the enum should map to a string id which may be different on
+	// may be different versions playing the game, so the enum should map to a std::string id which may be different on
 	// different versions
 	enum EChatPacketMessage
 	{
-		e_ChatCustom = 0, // No localised string, only the text passed in
+		e_ChatCustom = 0, // No localised std::string, only the text passed in
 		e_ChatBedOccupied,
 		e_ChatBedNoSleep,
 		e_ChatBedNotValid,
@@ -101,7 +101,7 @@ public:
 	};
 
 public:
-	vector<wstring> m_stringArgs;
+	vector<std::wstring> m_stringArgs;
 	vector<int> m_intArgs;
 	EChatPacketMessage m_messageType;
 
@@ -109,9 +109,9 @@ public:
 
 	// 4J: Seperated the one convoluted ctor into three more readable ctors. The last two ctors are only used for death messages and I'd really
 	// like to consolodate them and/or the logic that uses them at some point.
-	ChatPacket(const wstring& message, EChatPacketMessage type = e_ChatCustom, int customData = -1);
-	ChatPacket(const wstring& message, EChatPacketMessage type, int sourceEntityType, const wstring& sourceName); 
-	ChatPacket(const wstring& message, EChatPacketMessage type, int sourceEntityType, const wstring& sourceName, const wstring& itemName);
+	ChatPacket(const std::wstring& message, EChatPacketMessage type = e_ChatCustom, int customData = -1);
+	ChatPacket(const std::wstring& message, EChatPacketMessage type, int sourceEntityType, const std::wstring& sourceName); 
+	ChatPacket(const std::wstring& message, EChatPacketMessage type, int sourceEntityType, const std::wstring& sourceName, const std::wstring& itemName);
 
 	virtual void read(DataInputStream *dis);
 	virtual void write(DataOutputStream *dos);
@@ -119,7 +119,7 @@ public:
 	virtual int getEstimatedSize();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new ChatPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new ChatPacket()); }
 	virtual int getId() { return 3; }
 };
 

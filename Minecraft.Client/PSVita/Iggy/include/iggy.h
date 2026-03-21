@@ -3,7 +3,7 @@
 #ifndef __RAD_INCLUDE_IGGY_H__
 #define __RAD_INCLUDE_IGGY_H__
 
-#include <stdlib.h> // size_t
+#include <stdlib.h> // std::size_t
 
 #define IggyVersion "1.2.30"
 #define IggyFlashVersion "9,1,2,30"
@@ -113,14 +113,14 @@ typedef unsigned short IggyUTF16;
 
 typedef struct IggyStringUTF16
 {
-   IggyUTF16 *string; // Null-terminated, UTF16-encoded characters
-   S32  length; // Count of 16-bit characters in <tt>string</tt>, not including the null terminator
+   IggyUTF16 *std::string; // Null-terminated, UTF16-encoded characters
+   S32  length; // Count of 16-bit characters in <tt>std::string</tt>, not including the null terminator
 } IggyStringUTF16;
 
 typedef struct IggyStringUTF8
 {
-   char *string; // Null-terminated, UTF8-encoded characters
-   S32  length; // Count of 8-bit bytes in <tt>string</tt>, not including the null terminator
+   char *std::string; // Null-terminated, UTF8-encoded characters
+   S32  length; // Count of 8-bit bytes in <tt>std::string</tt>, not including the null terminator
 } IggyStringUTF8;
 
 typedef UINTa IggyName;
@@ -136,8 +136,8 @@ typedef struct IggyDataValue
    #endif
    IggyTempRef temp_ref;  // An opaque temporary reference which you can efficiently turn into an $IggyValueRef; this is written by Iggy on callbacks but never read by Iggy
    union {
-      IggyStringUTF16 string16; // A UTF16 string, valid if type = $(IggyDatatype::IGGY_DATATYPE_string_UTF16)
-      IggyStringUTF8  string8;  // A UTF8 string, valid if type = $(IggyDatatype::IGGY_DATATYPE_string_UTF8)
+      IggyStringUTF16 string16; // A UTF16 std::string, valid if type = $(IggyDatatype::IGGY_DATATYPE_string_UTF16)
+      IggyStringUTF8  string8;  // A UTF8 std::string, valid if type = $(IggyDatatype::IGGY_DATATYPE_string_UTF8)
       F64             number;   // A 64-bit floating point number (a double); valid if type = $(IggyDatatype::IGGY_DATATYPE_number)
       rrbool          boolval;  // A boolean value, valid if type = $(IggyDatatype::IGGY_DATATYPE_boolean)
       IggyName        fastname; // A fast name, valid if type = $(IggyDatatype::IGGY_DATATYPE_fastname); this is only an "in" type; Iggy will never define these itself
@@ -163,7 +163,7 @@ typedef struct IggyExternalFunctionCallUTF8
    IggyDataValue arguments[1]; // The argument types, assumed to contain <tt>num_arguments</tt> elements
 } IggyExternalFunctionCallUTF8;
 
-typedef void * RADLINK Iggy_AllocateFunction(void *alloc_callback_user_data, size_t size_requested, size_t *size_returned);
+typedef void * RADLINK Iggy_AllocateFunction(void *alloc_callback_user_data, std::size_t size_requested, std::size_t *size_returned);
 typedef void   RADLINK Iggy_DeallocateFunction(void *alloc_callback_user_data, void *ptr);
 
 typedef struct IggyAllocator
@@ -1148,8 +1148,8 @@ RADEXPFUNC void RADEXPLINK IggySetDoubleClickTime(S32 time_in_ms_from_first_down
 RADEXPFUNC void RADEXPLINK IggySetTextCursorFlash(U32 cycle_time_in_ms, U32 visible_time_in_ms);
 
 RADEXPFUNC rrbool RADEXPLINK IggyPlayerHasFocusedEditableTextfield(Iggy *f);
-RADEXPFUNC rrbool RADEXPLINK IggyPlayerPasteUTF16(Iggy *f, U16 *string, S32 stringlen);
-RADEXPFUNC rrbool RADEXPLINK IggyPlayerPasteUTF8(Iggy *f, char *string, S32 stringlen);
+RADEXPFUNC rrbool RADEXPLINK IggyPlayerPasteUTF16(Iggy *f, U16 *std::string, S32 stringlen);
+RADEXPFUNC rrbool RADEXPLINK IggyPlayerPasteUTF8(Iggy *f, char *std::string, S32 stringlen);
 RADEXPFUNC rrbool RADEXPLINK IggyPlayerCut(Iggy *f);
 
 #define IGGY_PLAYER_COPY_no_focused_textfield       -1

@@ -18,8 +18,8 @@ public:
 	static const int USE_ROW_SLOT_END = USE_ROW_SLOT_START + 9;
 
 public:
-	shared_ptr<CraftingContainer> craftSlots;
-	shared_ptr<Container> resultSlots;
+	std::shared_ptr<CraftingContainer> craftSlots;
+	std::shared_ptr<Container> resultSlots;
 
 private:
 	Level *level;
@@ -30,14 +30,14 @@ private:
 	bool m_canMakeFade;
 
 public:
-	FireworksMenu(shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt);
+	FireworksMenu(std::shared_ptr<Inventory> inventory, Level *level, int xt, int yt, int zt);
 
-	virtual void slotsChanged();// 4J used to take a shared_ptr<Container> but wasn't using it, so removed to simplify things
-	virtual void removed(shared_ptr<Player> player);
-	virtual bool stillValid(shared_ptr<Player> player);
-	virtual shared_ptr<ItemInstance> quickMoveStack(shared_ptr<Player> player, int slotIndex);
-	virtual bool canTakeItemForPickAll(shared_ptr<ItemInstance> carried, Slot *target);
+	virtual void slotsChanged();// 4J used to take a std::shared_ptr<Container> but wasn't using it, so removed to simplify things
+	virtual void removed(std::shared_ptr<Player> player);
+	virtual bool stillValid(std::shared_ptr<Player> player);
+	virtual std::shared_ptr<ItemInstance> quickMoveStack(std::shared_ptr<Player> player, int slotIndex);
+	virtual bool canTakeItemForPickAll(std::shared_ptr<ItemInstance> carried, Slot *target);
 
 	// 4J Added
-	virtual bool isValidIngredient(shared_ptr<ItemInstance> item, int slotId);
+	virtual bool isValidIngredient(std::shared_ptr<ItemInstance> item, int slotId);
 };

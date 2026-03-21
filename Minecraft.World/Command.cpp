@@ -12,17 +12,17 @@ int Command::getPermissionLevel()
 	return LEVEL_OWNERS;
 }
 
-bool Command::canExecute(shared_ptr<CommandSender> source)
+bool Command::canExecute(std::shared_ptr<CommandSender> source)
 {
 	return source->hasPermission(getId());
 }
 
-void Command::logAdminAction(shared_ptr<CommandSender> source, ChatPacket::EChatPacketMessage messageType, const wstring& message, int customData, const wstring& additionalMessage)
+void Command::logAdminAction(std::shared_ptr<CommandSender> source, ChatPacket::EChatPacketMessage messageType, const std::wstring& message, int customData, const std::wstring& additionalMessage)
 {
 	logAdminAction(source, 0, messageType, message, customData, additionalMessage);
 }
 
-void Command::logAdminAction(shared_ptr<CommandSender> source, int type, ChatPacket::EChatPacketMessage messageType, const wstring& message, int customData, const wstring& additionalMessage)
+void Command::logAdminAction(std::shared_ptr<CommandSender> source, int type, ChatPacket::EChatPacketMessage messageType, const std::wstring& message, int customData, const std::wstring& additionalMessage)
 {
 	if (logger != NULL)
 	{
@@ -35,7 +35,7 @@ void Command::setLogger(AdminLogCommand *logger)
 	Command::logger = logger;
 }
 
-shared_ptr<ServerPlayer> Command::getPlayer(PlayerUID playerId)
+std::shared_ptr<ServerPlayer> Command::getPlayer(PlayerUID playerId)
 {
 	shared_ptr<ServerPlayer> player = MinecraftServer::getInstance()->getPlayers()->getPlayer(playerId);
 

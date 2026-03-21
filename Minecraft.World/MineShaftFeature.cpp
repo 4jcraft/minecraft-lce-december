@@ -3,14 +3,14 @@
 #include "JavaMath.h"
 #include "Mth.h"
 
-const wstring MineShaftFeature::OPTION_CHANCE = L"chance";
+const std::wstring MineShaftFeature::OPTION_CHANCE = L"chance";
 
 MineShaftFeature::MineShaftFeature()
 {
 	chance = 0.01;
 }
 
-wstring MineShaftFeature::getFeatureName()
+std::wstring MineShaftFeature::getFeatureName()
 {
 	return L"Mineshaft";
 }

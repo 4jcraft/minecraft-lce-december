@@ -34,7 +34,7 @@ public:
 	bool containsPlayer(); // 4J added
 	void markUnsaved();
 	void getEntities(shared_ptr<Entity> except, AABB bb, vector<shared_ptr<Entity> > &es);
-	void getEntitiesOfClass(const type_info& ec, AABB bb, vector<shared_ptr<Entity> > &es);
+	void getEntitiesOfClass(const std::type_info& ec, AABB bb, vector<shared_ptr<Entity> > &es);
 	int countEntities();
 	bool shouldSave(bool force);
 	void setBlocks(byteArray newBlocks, int sub);

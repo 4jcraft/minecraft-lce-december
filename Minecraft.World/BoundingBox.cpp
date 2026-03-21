@@ -173,12 +173,12 @@ int BoundingBox::getZCenter()
 	return z0 + (z1 - z0 + 1) / 2;
 }
 
-wstring BoundingBox::toString()
+std::wstring BoundingBox::toString()
 {
 	return L"(" + _toString<int>(x0) + L", " + _toString<int>(y0) + L", " + _toString<int>(z0) + L"; " + _toString<int>(x1) + L", " + _toString<int>(y1) + L", " + _toString<int>(z1) + L")";
 }
 
-IntArrayTag *BoundingBox::createTag(const wstring &name)
+IntArrayTag *BoundingBox::createTag(const std::wstring &name)
 {
 	// 4J-JEV: If somebody knows a better way to do this, please tell me.
 	int *data = new int[6]();

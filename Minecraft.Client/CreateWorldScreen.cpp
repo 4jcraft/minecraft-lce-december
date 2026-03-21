@@ -65,7 +65,7 @@ void CreateWorldScreen::updateResultFolder()
 
 }
 
-wstring CreateWorldScreen::findAvailableFolderName(LevelStorageSource *levelSource, const wstring& folder)
+std::wstring CreateWorldScreen::findAvailableFolderName(LevelStorageSource *levelSource, const std::wstring& folder)
 {
 	wstring folder2 = folder;	// 4J - copy input as it is const
 

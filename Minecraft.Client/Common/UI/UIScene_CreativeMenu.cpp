@@ -63,7 +63,7 @@ UIScene_CreativeMenu::UIScene_CreativeMenu(int iPad, void *_initData, UILayer *p
 #endif
 }
 
-wstring UIScene_CreativeMenu::getMoviePath()
+std::wstring UIScene_CreativeMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

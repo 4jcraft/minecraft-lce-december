@@ -10,7 +10,7 @@ private:
 public:
 	UIControl_Label();
 
-	virtual bool setupControl(UIScene *scene, IggyValuePath *parent, const string &controlName);
+	virtual bool setupControl(UIScene *scene, IggyValuePath *parent, const std::string &controlName);
 
 	void init(UIString label);
 	virtual void ReInit();

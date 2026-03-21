@@ -48,7 +48,7 @@ ItemEntity::ItemEntity(Level *level, double x, double y, double z) : Entity(leve
 	_init(level,x,y,z);
 }
 
-ItemEntity::ItemEntity(Level *level, double x, double y, double z, shared_ptr<ItemInstance> item) : Entity( level )
+ItemEntity::ItemEntity(Level *level, double x, double y, double z, std::shared_ptr<ItemInstance> item) : Entity( level )
 {
 	_init(level,x,y,z);
 	setItem(item);
@@ -143,7 +143,7 @@ void ItemEntity::mergeWithNeighbours()
 	delete neighbours;
 }
 
-bool ItemEntity::merge(shared_ptr<ItemEntity> target)
+bool ItemEntity::merge(std::shared_ptr<ItemEntity> target)
 {
 	if (target == shared_from_this()) return false;
 	if (!target->isAlive() || !this->isAlive()) return false;
@@ -218,7 +218,7 @@ void ItemEntity::readAdditionalSaveData(CompoundTag *tag)
 	if (getItem() == NULL) remove();
 }
 
-void ItemEntity::playerTouch(shared_ptr<Player> player)
+void ItemEntity::playerTouch(std::shared_ptr<Player> player)
 {
 	if (level->isClientSide) return;
 
@@ -263,7 +263,7 @@ void ItemEntity::playerTouch(shared_ptr<Player> player)
 	}
 }
 
-wstring ItemEntity::getAName()
+std::wstring ItemEntity::getAName()
 {
 	return L"";//L"item." + getItem()->getDescriptionId();
 	//return I18n.get("item." + item.getDescriptionId());
@@ -276,7 +276,7 @@ void ItemEntity::changeDimension(int i)
 	if (!level->isClientSide) mergeWithNeighbours();
 }
 
-shared_ptr<ItemInstance> ItemEntity::getItem()
+std::shared_ptr<ItemInstance> ItemEntity::getItem()
 {
 	shared_ptr<ItemInstance> result = getEntityData()->getItemInstance(DATA_ITEM);
 
@@ -293,7 +293,7 @@ shared_ptr<ItemInstance> ItemEntity::getItem()
 	return result;
 }
 
-void ItemEntity::setItem(shared_ptr<ItemInstance> item)
+void ItemEntity::setItem(std::shared_ptr<ItemInstance> item)
 {
 	getEntityData()->set(DATA_ITEM, item);
 	getEntityData()->markDirty(DATA_ITEM);
@@ -304,12 +304,12 @@ bool ItemEntity::isAttackable()
 	return false;
 }
 
-void ItemEntity::setThrower(const wstring &thrower)
+void ItemEntity::setThrower(const std::wstring &thrower)
 {
 	this->thrower = thrower;
 }
 
-wstring ItemEntity::getThrower()
+std::wstring ItemEntity::getThrower()
 {
 	return this->thrower;
 }

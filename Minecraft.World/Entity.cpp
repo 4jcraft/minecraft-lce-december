@@ -25,7 +25,7 @@
 #include "..\Minecraft.Client\ServerLevel.h"
 #include "..\Minecraft.Client\PlayerList.h"
 
-const wstring Entity::RIDING_TAG = L"Riding";
+const std::wstring Entity::RIDING_TAG = L"Riding";
 
 int Entity::entityCounter = 2048;		// 4J - changed initialiser to 2048, as we are using range 0 - 2047 as special unique smaller ids for things that need network tracked
 DWORD Entity::tlsIdx = TlsAlloc();
@@ -378,7 +378,7 @@ Entity::~Entity()
 	delete bb;
 }
 
-shared_ptr<SynchedEntityData> Entity::getEntityData()
+std::shared_ptr<SynchedEntityData> Entity::getEntityData()
 {
 	return entityData;
 }
@@ -1211,7 +1211,7 @@ void Entity::moveTo(double x, double y, double z, float yRot, float xRot)
 	setPos(this->x, this->y, this->z);
 }
 
-float Entity::distanceTo(shared_ptr<Entity> e)
+float Entity::distanceTo(std::shared_ptr<Entity> e)
 {
 	float xd = (float) (x - e->x);
 	float yd = (float) (y - e->y);
@@ -1235,7 +1235,7 @@ double Entity::distanceTo(double x2, double y2, double z2)
 	return sqrt(xd * xd + yd * yd + zd * zd);
 }
 
-double Entity::distanceToSqr(shared_ptr<Entity> e)
+double Entity::distanceToSqr(std::shared_ptr<Entity> e)
 {
 	double xd = x - e->x;
 	double yd = y - e->y;
@@ -1243,11 +1243,11 @@ double Entity::distanceToSqr(shared_ptr<Entity> e)
 	return xd * xd + yd * yd + zd * zd;
 }
 
-void Entity::playerTouch(shared_ptr<Player> player)
+void Entity::playerTouch(std::shared_ptr<Player> player)
 {
 }
 
-void Entity::push(shared_ptr<Entity> e)
+void Entity::push(std::shared_ptr<Entity> e)
 {
 	if (e->rider.lock().get() == this || e->riding.get() == this) return;
 
@@ -1318,7 +1318,7 @@ bool Entity::isShootable()
 	return false;
 }
 
-void Entity::awardKillScore(shared_ptr<Entity> victim, int score)
+void Entity::awardKillScore(std::shared_ptr<Entity> victim, int score)
 {
 }
 
@@ -1454,7 +1454,7 @@ bool Entity::repositionEntityAfterLoad()
 	return true;
 }
 
-const wstring Entity::getEncodeId()
+const std::wstring Entity::getEncodeId()
 {
 	return EntityIO::getEncodeId( shared_from_this() );
 }
@@ -1523,17 +1523,17 @@ float Entity::getShadowHeightOffs()
 	return bbHeight / 2;
 }
 
-shared_ptr<ItemEntity> Entity::spawnAtLocation(int resource, int count)
+std::shared_ptr<ItemEntity> Entity::spawnAtLocation(int resource, int count)
 {
 	return spawnAtLocation(resource, count, 0);
 }
 
-shared_ptr<ItemEntity> Entity::spawnAtLocation(int resource, int count, float yOffs)
+std::shared_ptr<ItemEntity> Entity::spawnAtLocation(int resource, int count, float yOffs)
 {
 	return spawnAtLocation(shared_ptr<ItemInstance>( new ItemInstance(resource, count, 0) ), yOffs);
 }
 
-shared_ptr<ItemEntity> Entity::spawnAtLocation(shared_ptr<ItemInstance> itemInstance, float yOffs)
+std::shared_ptr<ItemEntity> Entity::spawnAtLocation(std::shared_ptr<ItemInstance> itemInstance, float yOffs)
 {
 	if (itemInstance->count == 0)
 	{
@@ -1568,12 +1568,12 @@ bool Entity::isInWall()
 	return false;
 }
 
-bool Entity::interact(shared_ptr<Player> player)
+bool Entity::interact(std::shared_ptr<Player> player)
 {
 	return false;
 }
 
-AABB *Entity::getCollideAgainstBox(shared_ptr<Entity> entity) 
+AABB *Entity::getCollideAgainstBox(std::shared_ptr<Entity> entity) 
 {
 	return NULL;
 }
@@ -1641,7 +1641,7 @@ double Entity::getRideHeight()
 	return bbHeight * .75;
 }
 
-void Entity::ride(shared_ptr<Entity> e)
+void Entity::ride(std::shared_ptr<Entity> e)
 {
 	xRideRotA = 0;
 	yRideRotA = 0;
@@ -1746,7 +1746,7 @@ ItemInstanceArray Entity::getEquipmentSlots() // ItemInstance[]
 }
 
 // 4J Stu - Brought forward change from 1.3 to fix #64688 - Customer Encountered: TU7: Content: Art: Aura of enchanted item is not displayed for other players in online game
-void Entity::setEquippedSlot(int slot, shared_ptr<ItemInstance> item)
+void Entity::setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item)
 {
 }
 
@@ -1795,7 +1795,7 @@ bool Entity::isInvisible()
 	return getSharedFlag(FLAG_INVISIBLE);
 }
 
-bool Entity::isInvisibleTo(shared_ptr<Player> plr)
+bool Entity::isInvisibleTo(std::shared_ptr<Player> plr)
 {
 	return isInvisible();
 }
@@ -1872,7 +1872,7 @@ void Entity::thunderHit(const LightningBolt *lightningBolt)
 	if (onFire == 0) setOnFire(8);
 }
 
-void Entity::killed(shared_ptr<LivingEntity> mob)
+void Entity::killed(std::shared_ptr<LivingEntity> mob)
 {
 }
 
@@ -1945,7 +1945,7 @@ void Entity::makeStuckInWeb()
 	fallDistance = 0;
 }
 
-wstring Entity::getAName()
+std::wstring Entity::getAName()
 {
 #ifdef _DEBUG
 	wstring id = EntityIO::getEncodeId(shared_from_this());
@@ -1961,7 +1961,7 @@ vector<shared_ptr<Entity> > *Entity::getSubEntities()
 	return NULL;
 }
 
-bool Entity::is(shared_ptr<Entity> other)
+bool Entity::is(std::shared_ptr<Entity> other)
 {
 	return shared_from_this() == other;
 }
@@ -1980,7 +1980,7 @@ bool Entity::isAttackable()
 	return true;
 }
 
-bool Entity::skipAttackInteraction(shared_ptr<Entity> source)
+bool Entity::skipAttackInteraction(std::shared_ptr<Entity> source)
 {
 	return false;
 }
@@ -1990,12 +1990,12 @@ bool Entity::isInvulnerable()
 	return invulnerable;
 }
 
-void Entity::copyPosition(shared_ptr<Entity> target)
+void Entity::copyPosition(std::shared_ptr<Entity> target)
 {
 	moveTo(target->x, target->y, target->z, target->yRot, target->xRot);
 }
 
-void Entity::restoreFrom(shared_ptr<Entity> oldEntity, bool teleporting)
+void Entity::restoreFrom(std::shared_ptr<Entity> oldEntity, bool teleporting)
 {
 	CompoundTag *tag = new CompoundTag();
 	oldEntity->saveWithoutId(tag);
@@ -2095,12 +2095,12 @@ bool Entity::displayFireAnimation()
 	return isOnFire();
 }
 
-void Entity::setUUID(const wstring &UUID)
+void Entity::setUUID(const std::wstring &UUID)
 {
 	uuid = UUID;
 }
 
-wstring Entity::getUUID()
+std::wstring Entity::getUUID()
 {
 	return uuid;
 }
@@ -2110,13 +2110,13 @@ bool Entity::isPushedByWater()
 	return true;
 }
 
-wstring Entity::getDisplayName()
+std::wstring Entity::getDisplayName()
 {
 	return getAName();
 }
 
 // 4J: Added to retrieve name that should be sent in ChatPackets (important on Xbox One for players)
-wstring Entity::getNetworkName()
+std::wstring Entity::getNetworkName()
 {
 	return getDisplayName();
 }

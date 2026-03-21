@@ -34,7 +34,7 @@ void FireworksRecipe::ReleaseThreadStorage()
 	delete tls;
 }
 
-void FireworksRecipe::setResultItem(shared_ptr<ItemInstance> item)
+void FireworksRecipe::setResultItem(std::shared_ptr<ItemInstance> item)
 {
 	ThreadStorage *tls = (ThreadStorage *)TlsGetValue(tlsIdx);
 	tls->resultItem = item;
@@ -45,7 +45,7 @@ FireworksRecipe::FireworksRecipe()
 	//resultItem = nullptr;
 }
 
-bool FireworksRecipe::matches(shared_ptr<CraftingContainer> craftSlots, Level *level)
+bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots, Level *level)
 {
 	shared_ptr<ItemInstance> resultItem = nullptr;
 
@@ -266,7 +266,7 @@ bool FireworksRecipe::matches(shared_ptr<CraftingContainer> craftSlots, Level *l
 	return false;
 }
 
-shared_ptr<ItemInstance> FireworksRecipe::assemble(shared_ptr<CraftingContainer> craftSlots)
+std::shared_ptr<ItemInstance> FireworksRecipe::assemble(std::shared_ptr<CraftingContainer> craftSlots)
 {
 	ThreadStorage *tls = (ThreadStorage *)TlsGetValue(tlsIdx);
 	return tls->resultItem->copy();
@@ -285,7 +285,7 @@ const ItemInstance *FireworksRecipe::getResultItem()
 	//return resultItem.get();
 }
 
-void FireworksRecipe::updatePossibleRecipes(shared_ptr<CraftingContainer> craftSlots, bool *firework, bool *charge, bool *fade)
+void FireworksRecipe::updatePossibleRecipes(std::shared_ptr<CraftingContainer> craftSlots, bool *firework, bool *charge, bool *fade)
 {
 	*firework = false;
 	*charge = false;
@@ -378,7 +378,7 @@ void FireworksRecipe::updatePossibleRecipes(shared_ptr<CraftingContainer> craftS
 	}
 }
 
-bool FireworksRecipe::isValidIngredient(shared_ptr<ItemInstance> item, bool firework, bool charge, bool fade)
+bool FireworksRecipe::isValidIngredient(std::shared_ptr<ItemInstance> item, bool firework, bool charge, bool fade)
 {
 	bool valid = false;
 	switch(item->id)

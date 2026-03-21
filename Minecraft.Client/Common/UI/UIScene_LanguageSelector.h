@@ -98,7 +98,7 @@ public:
 	virtual void handleReload();
 protected:
 	// TODO: This should be pure virtual in this class
-	virtual wstring getMoviePath();
+	virtual std::wstring getMoviePath();
 
 public:
 	// INPUT

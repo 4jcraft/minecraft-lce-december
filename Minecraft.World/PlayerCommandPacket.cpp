@@ -25,14 +25,14 @@ PlayerCommandPacket::PlayerCommandPacket()
 	data = 0;
 }
 
-PlayerCommandPacket::PlayerCommandPacket(shared_ptr<Entity> e, int action)
+PlayerCommandPacket::PlayerCommandPacket(std::shared_ptr<Entity> e, int action)
 {
 	id = e->entityId;
 	this->action = action;
 	this->data = 0;
 }
 
-PlayerCommandPacket::PlayerCommandPacket(shared_ptr<Entity> e, int action, int data)
+PlayerCommandPacket::PlayerCommandPacket(std::shared_ptr<Entity> e, int action, int data)
 {
 	id = e->entityId;
 	this->action = action;

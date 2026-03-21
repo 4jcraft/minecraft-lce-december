@@ -11,12 +11,12 @@ SpiderRenderer::SpiderRenderer() : MobRenderer(new SpiderModel(), 1.0f)
 	this->setArmor(new SpiderModel());
 }
 
-float SpiderRenderer::getFlipDegrees(shared_ptr<LivingEntity> spider)
+float SpiderRenderer::getFlipDegrees(std::shared_ptr<LivingEntity> spider)
 {
 	return 180;
 }
 
-int SpiderRenderer::prepareArmor(shared_ptr<LivingEntity> _spider, int layer, float a)
+int SpiderRenderer::prepareArmor(std::shared_ptr<LivingEntity> _spider, int layer, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Spider> spider = dynamic_pointer_cast<Spider>(_spider);
@@ -55,7 +55,7 @@ int SpiderRenderer::prepareArmor(shared_ptr<LivingEntity> _spider, int layer, fl
 	return 1;
 }
 
-ResourceLocation *SpiderRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *SpiderRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
 	return &SPIDER_LOCATION;
 }

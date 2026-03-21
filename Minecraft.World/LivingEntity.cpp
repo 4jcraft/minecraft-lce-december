@@ -197,7 +197,7 @@ void LivingEntity::baseTick()
 	}
 
 	if (isFireImmune() || level->isClientSide) clearFire();
-	shared_ptr<Player> thisPlayer = dynamic_pointer_cast<Player>(shared_from_this());
+	std::shared_ptr<Player> thisPlayer = dynamic_pointer_cast<Player>(shared_from_this());
 	bool isInvulnerable = (thisPlayer != NULL && thisPlayer->abilities.invulnerable);
 
 	if (isAlive() && isUnderLiquid(Material::water))
@@ -246,7 +246,7 @@ void LivingEntity::baseTick()
 	if (lastHurtByPlayerTime > 0) lastHurtByPlayerTime--;
 	else
 	{
-		// Note - this used to just set to nullptr, but that has to create a new shared_ptr and free an old one, when generally this won't be doing anything at all. This
+		// Note - this used to just set to nullptr, but that has to create a new std::shared_ptr and free an old one, when generally this won't be doing anything at all. This
 		// is the lightweight but ugly alternative
 		if( lastHurtByPlayer )
 		{
@@ -295,7 +295,7 @@ void LivingEntity::tickDeath()
 				{
 					int newCount = ExperienceOrb::getExperienceValue(xpCount);
 					xpCount -= newCount;
-					level->addEntity(shared_ptr<ExperienceOrb>( new ExperienceOrb(level, x, y, z, newCount) ) );
+					level->addEntity(std::shared_ptr<ExperienceOrb>( new ExperienceOrb(level, x, y, z, newCount) ) );
 				}
 			}
 		}
@@ -329,7 +329,7 @@ int LivingEntity::decreaseAirSupply(int currentSupply)
 	return currentSupply - 1;
 }
 
-int LivingEntity::getExperienceReward(shared_ptr<Player> killedBy)
+int LivingEntity::getExperienceReward(std::shared_ptr<Player> killedBy)
 {
 	return 0;
 }
@@ -344,7 +344,7 @@ Random *LivingEntity::getRandom()
 	return random;
 }
 
-shared_ptr<LivingEntity> LivingEntity::getLastHurtByMob()
+std::shared_ptr<LivingEntity> LivingEntity::getLastHurtByMob()
 {
 	return lastHurtByMob;
 }
@@ -354,13 +354,13 @@ int LivingEntity::getLastHurtByMobTimestamp()
 	return lastHurtByMobTimestamp;
 }
 
-void LivingEntity::setLastHurtByMob(shared_ptr<LivingEntity> target)
+void LivingEntity::setLastHurtByMob(std::shared_ptr<LivingEntity> target)
 {
 	lastHurtByMob = target;
 	lastHurtByMobTimestamp = tickCount;
 }
 
-shared_ptr<LivingEntity> LivingEntity::getLastHurtMob()
+std::shared_ptr<LivingEntity> LivingEntity::getLastHurtMob()
 {
 	return lastHurtMob;
 }
@@ -370,7 +370,7 @@ int LivingEntity::getLastHurtMobTimestamp()
 	return lastHurtMobTimestamp;
 }
 
-void LivingEntity::setLastHurtMob(shared_ptr<Entity> target)
+void LivingEntity::setLastHurtMob(std::shared_ptr<Entity> target)
 {
 	if ( target->instanceof(eTYPE_LIVINGENTITY) )
 	{
@@ -400,7 +400,7 @@ void LivingEntity::addAdditonalSaveData(CompoundTag *entityTag)
 	ItemInstanceArray items = getEquipmentSlots();
 	for (unsigned int i = 0; i < items.length; ++i)
 	{
-		shared_ptr<ItemInstance> item = items[i];
+		std::shared_ptr<ItemInstance> item = items[i];
 		if (item != NULL)
 		{
 			attributes->removeItemModifiers(item);
@@ -411,7 +411,7 @@ void LivingEntity::addAdditonalSaveData(CompoundTag *entityTag)
 
 	for (unsigned int i = 0; i < items.length; ++i)
 	{
-		shared_ptr<ItemInstance> item = items[i];
+		std::shared_ptr<ItemInstance> item = items[i];
 		if (item != NULL)
 		{
 			attributes->addItemModifiers(item);
@@ -570,7 +570,7 @@ void LivingEntity::tickEffects()
 
 void LivingEntity::removeAllEffects()
 {
-	//Iterator<Integer> effectIdIterator = activeEffects.keySet().iterator();
+	//Iterator<Integer> effectIdIterator = activeEffects.keySet().std::iterator();
 	//while (effectIdIterator.hasNext())
 	for(AUTO_VAR(it, activeEffects.begin()); it != activeEffects.end(); )
 	{
@@ -771,7 +771,7 @@ bool LivingEntity::hurt(DamageSource *source, float dmg)
 		// 4J-JEV, for new achievement Stayin'Frosty, TODO merge with Java version.
 		if ( this->instanceof(eTYPE_PLAYER) && (source == DamageSource::lava) ) // Only award when in lava (not any fire).
 		{
-			shared_ptr<Player> plr = dynamic_pointer_cast<Player>(shared_from_this());
+			std::shared_ptr<Player> plr = dynamic_pointer_cast<Player>(shared_from_this());
 			plr->awardStat(GenericStats::stayinFrosty(),GenericStats::param_stayinFrosty());
 		}
 		return false;
@@ -804,7 +804,7 @@ bool LivingEntity::hurt(DamageSource *source, float dmg)
 
 	hurtDir = 0;
 
-	shared_ptr<Entity> sourceEntity = source->getEntity();
+	std::shared_ptr<Entity> sourceEntity = source->getEntity();
 	if (sourceEntity != NULL)
 	{
 		if ( sourceEntity->instanceof(eTYPE_LIVINGENTITY) )
@@ -819,7 +819,7 @@ bool LivingEntity::hurt(DamageSource *source, float dmg)
 		}
 		else if ( sourceEntity->instanceof(eTYPE_WOLF) )
 		{
-			shared_ptr<Wolf> w = dynamic_pointer_cast<Wolf>(sourceEntity);
+			std::shared_ptr<Wolf> w = dynamic_pointer_cast<Wolf>(sourceEntity);
 			if (w->isTame())
 			{
 				lastHurtByPlayerTime = PLAYER_HURT_EXPERIENCE_TIME;
@@ -870,7 +870,7 @@ bool LivingEntity::hurt(DamageSource *source, float dmg)
 	return true;
 }
 
-void LivingEntity::breakItem(shared_ptr<ItemInstance> itemInstance)
+void LivingEntity::breakItem(std::shared_ptr<ItemInstance> itemInstance)
 {
 	playSound(eSoundType_RANDOM_BREAK, 0.8f, 0.8f + level->random->nextFloat() * 0.4f);
 
@@ -890,8 +890,8 @@ void LivingEntity::breakItem(shared_ptr<ItemInstance> itemInstance)
 
 void LivingEntity::die(DamageSource *source) 
 {
-	shared_ptr<Entity> sourceEntity = source->getEntity();
-	shared_ptr<LivingEntity> killer = getKillCredit();
+	std::shared_ptr<Entity> sourceEntity = source->getEntity();
+	std::shared_ptr<LivingEntity> killer = getKillCredit();
 	if (deathScore >= 0 && killer != NULL) killer->awardKillScore(shared_from_this(), deathScore);
 
 	if (sourceEntity != NULL) sourceEntity->killed( dynamic_pointer_cast<LivingEntity>( shared_from_this() ) );
@@ -902,7 +902,7 @@ void LivingEntity::die(DamageSource *source)
 	{
 		int playerBonus = 0;
 
-		shared_ptr<Player> player = nullptr; 
+		std::shared_ptr<Player> player = nullptr; 
 		if ( (sourceEntity != NULL) && sourceEntity->instanceof(eTYPE_PLAYER) )
 		{
 			player = dynamic_pointer_cast<Player>(sourceEntity);
@@ -937,7 +937,7 @@ void LivingEntity::dropEquipment(bool byPlayer, int playerBonusLevel)
 {
 }
 
-void LivingEntity::knockback(shared_ptr<Entity> source, float dmg, double xd, double zd) 
+void LivingEntity::knockback(std::shared_ptr<Entity> source, float dmg, double xd, double zd) 
 {
 	if (random->nextDouble() < getAttribute(SharedMonsterAttributes::KNOCKBACK_RESISTANCE)->getValue())
 	{
@@ -1053,7 +1053,7 @@ int LivingEntity::getArmorValue()
 	ItemInstanceArray items = getEquipmentSlots();
 	for (unsigned int i = 0; i < items.length; ++i)
 	{
-		shared_ptr<ItemInstance> item = items[i];
+		std::shared_ptr<ItemInstance> item = items[i];
 		if (item != NULL && dynamic_cast<ArmorItem *>(item->getItem()) != NULL)
 		{
 			int baseProtection = ((ArmorItem *) item->getItem())->defense;
@@ -1133,7 +1133,7 @@ CombatTracker *LivingEntity::getCombatTracker()
 	return combatTracker;
 }
 
-shared_ptr<LivingEntity> LivingEntity::getKillCredit()
+std::shared_ptr<LivingEntity> LivingEntity::getKillCredit()
 {
 	if (combatTracker->getKiller() != NULL) return combatTracker->getKiller();
 	if (lastHurtByPlayer != NULL) return lastHurtByPlayer;
@@ -1178,7 +1178,7 @@ void LivingEntity::swing()
 
 		if (dynamic_cast<ServerLevel *>(level) != NULL)
 		{
-			((ServerLevel *) level)->getTracker()->broadcast(shared_from_this(), shared_ptr<AnimatePacket>( new AnimatePacket(shared_from_this(), AnimatePacket::SWING)));
+			((ServerLevel *) level)->getTracker()->broadcast(shared_from_this(), std::shared_ptr<AnimatePacket>( new AnimatePacket(shared_from_this(), AnimatePacket::SWING)));
 		}
 	}
 }
@@ -1307,7 +1307,7 @@ void LivingEntity::teleportTo(double x, double y, double z)
 	moveTo(x, y, z, yRot, xRot);
 }
 
-void LivingEntity::findStandUpPosition(shared_ptr<Entity> vehicle)
+void LivingEntity::findStandUpPosition(std::shared_ptr<Entity> vehicle)
 {
 	AABB *boundingBox;
 	double fallbackX = vehicle->x;
@@ -1352,7 +1352,7 @@ bool LivingEntity::shouldShowName()
 	return false;
 }
 
-Icon *LivingEntity::getItemInHandIcon(shared_ptr<ItemInstance> item, int layer) 
+Icon *LivingEntity::getItemInHandIcon(std::shared_ptr<ItemInstance> item, int layer) 
 {
 	return item->getIcon();
 }
@@ -1384,7 +1384,7 @@ void LivingEntity::travel(float xa, float ya)
 		thisPlayer = (Player*) this;
 	}
 #else
-	shared_ptr<Player> thisPlayer = dynamic_pointer_cast<Player>(shared_from_this());
+	std::shared_ptr<Player> thisPlayer = dynamic_pointer_cast<Player>(shared_from_this());
 #endif
 	if (isInWater() && !(thisPlayer && thisPlayer->abilities.flying) ) 
 	{
@@ -1564,7 +1564,7 @@ void LivingEntity::setSpeed(float speed)
 	this->speed = speed;
 }
 
-bool LivingEntity::doHurtTarget(shared_ptr<Entity> target)
+bool LivingEntity::doHurtTarget(std::shared_ptr<Entity> target)
 {
 	setLastHurtMob(target);
 	return false;
@@ -1597,12 +1597,12 @@ void LivingEntity::tick()
 
 		for (int i = 0; i < 5; i++)
 		{
-			shared_ptr<ItemInstance> previous = lastEquipment[i];
-			shared_ptr<ItemInstance> current = getCarried(i);
+			std::shared_ptr<ItemInstance> previous = lastEquipment[i];
+			std::shared_ptr<ItemInstance> current = getCarried(i);
 
 			if (!ItemInstance::matches(current, previous))
 			{
-				((ServerLevel *) level)->getTracker()->broadcast(shared_from_this(), shared_ptr<SetEquippedItemPacket>( new SetEquippedItemPacket(entityId, i, current)));
+				((ServerLevel *) level)->getTracker()->broadcast(shared_from_this(), std::shared_ptr<SetEquippedItemPacket>( new SetEquippedItemPacket(entityId, i, current)));
 				if (previous != NULL) attributes->removeItemModifiers(previous);
 				if (current != NULL) attributes->addItemModifiers(current);
 				lastEquipment[i] = current == NULL ? nullptr : current->copy();
@@ -1805,19 +1805,19 @@ void LivingEntity::newServerAiStep()
 void LivingEntity::pushEntities()
 {
 
-	vector<shared_ptr<Entity> > *entities = level->getEntities(shared_from_this(), this->bb->grow(0.2f, 0, 0.2f));
+	vector<std::shared_ptr<Entity> > *entities = level->getEntities(shared_from_this(), this->bb->grow(0.2f, 0, 0.2f));
 	if (entities != NULL && !entities->empty()) 
 	{
 		AUTO_VAR(itEnd, entities->end());
 		for (AUTO_VAR(it, entities->begin()); it != itEnd; it++)
 		{
-			shared_ptr<Entity> e = *it; //entities->at(i);
+			std::shared_ptr<Entity> e = *it; //entities->at(i);
 			if (e->isPushable()) e->push(shared_from_this());
 		}
 	}
 }
 
-void LivingEntity::doPush(shared_ptr<Entity> e)
+void LivingEntity::doPush(std::shared_ptr<Entity> e)
 {
 	e->push(shared_from_this());
 }
@@ -1856,27 +1856,27 @@ void LivingEntity::setJumping(bool jump)
 	jumping = jump;
 }
 
-void LivingEntity::take(shared_ptr<Entity> e, int orgCount)
+void LivingEntity::take(std::shared_ptr<Entity> e, int orgCount)
 {
 	if (!e->removed && !level->isClientSide)
 	{
 		EntityTracker *entityTracker = ((ServerLevel *) level)->getTracker();
 		if ( e->instanceof(eTYPE_ITEMENTITY) )
 		{
-			entityTracker->broadcast(e, shared_ptr<TakeItemEntityPacket>( new TakeItemEntityPacket(e->entityId, entityId)));
+			entityTracker->broadcast(e, std::shared_ptr<TakeItemEntityPacket>( new TakeItemEntityPacket(e->entityId, entityId)));
 		}
 		else if ( e->instanceof(eTYPE_ARROW) )
 		{
-			entityTracker->broadcast(e, shared_ptr<TakeItemEntityPacket>( new TakeItemEntityPacket(e->entityId, entityId)));
+			entityTracker->broadcast(e, std::shared_ptr<TakeItemEntityPacket>( new TakeItemEntityPacket(e->entityId, entityId)));
 		}
 		else if ( e->instanceof(eTYPE_EXPERIENCEORB) )
 		{
-			entityTracker->broadcast(e, shared_ptr<TakeItemEntityPacket>( new TakeItemEntityPacket(e->entityId, entityId)));
+			entityTracker->broadcast(e, std::shared_ptr<TakeItemEntityPacket>( new TakeItemEntityPacket(e->entityId, entityId)));
 		}
 	}
 }
 
-bool LivingEntity::canSee(shared_ptr<Entity> target) 
+bool LivingEntity::canSee(std::shared_ptr<Entity> target) 
 {
 	HitResult *hres = level->clip(Vec3::newTemp(x, y + getHeadHeight(), z), Vec3::newTemp(target->x, target->y + target->getHeadHeight(), target->z));
 	bool retVal = (hres == NULL);
@@ -1990,7 +1990,7 @@ Team *LivingEntity::getTeam()
 	return NULL;
 }
 
-bool LivingEntity::isAlliedTo(shared_ptr<LivingEntity> other)
+bool LivingEntity::isAlliedTo(std::shared_ptr<LivingEntity> other)
 {
 	return isAlliedTo(other->getTeam());
 }

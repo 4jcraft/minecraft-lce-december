@@ -20,10 +20,10 @@ public:
 
 	MinecraftServer *getServer();
 	void onScoreChanged(Score *score);
-	void onPlayerRemoved(const wstring &player);
+	void onPlayerRemoved(const std::wstring &player);
 	void setDisplayObjective(int slot, Objective *objective);
-	void addPlayerToTeam(const wstring &player, PlayerTeam *team);
-	void removePlayerFromTeam(const wstring &player, PlayerTeam *team);
+	void addPlayerToTeam(const std::wstring &player, PlayerTeam *team);
+	void removePlayerFromTeam(const std::wstring &player, PlayerTeam *team);
 	void onObjectiveAdded(Objective *objective);
 	void onObjectiveChanged(Objective *objective);
 	void onObjectiveRemoved(Objective *objective);
@@ -36,9 +36,9 @@ protected:
 	void setDirty();
 
 public:
-	vector<shared_ptr<Packet> > *getStartTrackingPackets(Objective *objective);
+	std::vector<std::shared_ptr<Packet> > *getStartTrackingPackets(Objective *objective);
 	void startTrackingObjective(Objective *objective);
-	vector<shared_ptr<Packet> > *getStopTrackingPackets(Objective *objective);
+	std::vector<std::shared_ptr<Packet> > *getStopTrackingPackets(Objective *objective);
 	void stopTrackingObjective(Objective *objective);
 	int getObjectiveDisplaySlotCount(Objective *objective);
 };

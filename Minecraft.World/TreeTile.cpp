@@ -13,9 +13,9 @@ const unsigned int TreeTile::TREE_NAMES[ TreeTile::TREE_NAMES_LENGTH] = {	IDS_TI
 													IDS_TILE_LOG_JUNGLE
 												};
 
-const wstring  TreeTile::TREE_STRING_NAMES[ TreeTile::TREE_NAMES_LENGTH] = {L"oak", L"spruce", L"birch", L"jungle"};
+const std::wstring  TreeTile::TREE_STRING_NAMES[ TreeTile::TREE_NAMES_LENGTH] = {L"oak", L"spruce", L"birch", L"jungle"};
 
-const wstring TreeTile::TREE_TEXTURES[] = {L"tree_side", L"tree_spruce", L"tree_birch", L"tree_jungle"};
+const std::wstring TreeTile::TREE_TEXTURES[] = {L"tree_side", L"tree_spruce", L"tree_birch", L"tree_jungle"};
 
 TreeTile::TreeTile(int id) : RotatedPillarTile(id, Material::wood)
 {
@@ -78,7 +78,7 @@ int TreeTile::getWoodType(int data)
 	return data & MASK_TYPE;
 }
 
-shared_ptr<ItemInstance> TreeTile::getSilkTouchItemInstance(int data)
+std::shared_ptr<ItemInstance> TreeTile::getSilkTouchItemInstance(int data)
 {
 	// fix to avoid getting silktouched sideways logs
 	return shared_ptr<ItemInstance>(new ItemInstance(id, 1, getWoodType(data)));

@@ -1276,7 +1276,7 @@ void Gui::clearMessages(int iPad)
 }
 
 
-void Gui::addMessage(const wstring& _string,int iPad,bool bIsDeathMessage)
+void Gui::addMessage(const std::wstring& _string,int iPad,bool bIsDeathMessage)
 {
 	wstring string = _string;	// 4J - Take copy of input as it is const
 	//int iScale=1;
@@ -1439,7 +1439,7 @@ float Gui::getJukeboxOpacity(int iPad)
 	return alpha;
 }
 
-void Gui::setNowPlaying(const wstring& string)
+void Gui::setNowPlaying(const std::wstring& string)
 {
 //	overlayMessageString = L"Now playing: " + string;
 	overlayMessageString = app.GetString(IDS_NOWPLAYING) + string;

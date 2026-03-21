@@ -9,7 +9,7 @@ SlimeRenderer::SlimeRenderer(Model *model, Model *armor, float shadow) : MobRend
 	this->armor = armor;
 }
 
-int SlimeRenderer::prepareArmor(shared_ptr<LivingEntity> _slime, int layer, float a)
+int SlimeRenderer::prepareArmor(std::shared_ptr<LivingEntity> _slime, int layer, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Slime> slime = dynamic_pointer_cast<Slime>(_slime);
@@ -36,7 +36,7 @@ int SlimeRenderer::prepareArmor(shared_ptr<LivingEntity> _slime, int layer, floa
     return -1;
 }
 
-void SlimeRenderer::scale(shared_ptr<LivingEntity> _slime, float a)
+void SlimeRenderer::scale(std::shared_ptr<LivingEntity> _slime, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Slime> slime = dynamic_pointer_cast<Slime>(_slime);
@@ -47,7 +47,7 @@ void SlimeRenderer::scale(shared_ptr<LivingEntity> _slime, float a)
     glScalef(w * size, 1 / w * size, w * size);
 }
 
-ResourceLocation *SlimeRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *SlimeRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
     return &SLIME_LOCATION;
 }

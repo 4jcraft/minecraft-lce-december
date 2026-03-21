@@ -2,9 +2,9 @@
 
 #include "StructureFeatureSavedData.h"
 
-wstring StructureFeatureSavedData::TAG_FEATURES = L"Features";
+std::wstring StructureFeatureSavedData::TAG_FEATURES = L"Features";
 
-StructureFeatureSavedData::StructureFeatureSavedData(const wstring &idName) : SavedData(idName)
+StructureFeatureSavedData::StructureFeatureSavedData(const std::wstring &idName) : SavedData(idName)
 {
 	this->pieceTags = new CompoundTag(TAG_FEATURES);
 }
@@ -36,7 +36,7 @@ void StructureFeatureSavedData::putFeatureTag(CompoundTag *tag, int chunkX, int 
 	pieceTags->put(name, tag);
 }
 
-wstring StructureFeatureSavedData::createFeatureTagId(int chunkX, int chunkZ)
+std::wstring StructureFeatureSavedData::createFeatureTagId(int chunkX, int chunkZ)
 {
 	return L"[" + _toString<int>(chunkX) + L"," + _toString<int>(chunkZ) + L"]";
 }

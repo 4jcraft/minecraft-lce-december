@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "TileEntity.h"
 #include "BaseMobSpawner.h"
@@ -39,11 +39,11 @@ public:
 	virtual void load(CompoundTag *tag);
 	virtual void save(CompoundTag *tag);
 	virtual void tick();
-	virtual shared_ptr<Packet> getUpdatePacket();
+	virtual std::shared_ptr<Packet> getUpdatePacket();
 	virtual bool triggerEvent(int b0, int b1);
 	virtual BaseMobSpawner *getSpawner();
 
 	// 4J Added
-	virtual shared_ptr<TileEntity> clone();
-	void setEntityId(const wstring &id);
+	virtual std::shared_ptr<TileEntity> clone();
+	void setEntityId(const std::wstring &id);
 };

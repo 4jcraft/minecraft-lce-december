@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 class Pos;
 
@@ -21,16 +21,16 @@ public:
 			short	value_short;
 			float   value_float;
 		};
-		wstring	value_wstring;
-		shared_ptr<ItemInstance> value_itemInstance;
+		std::wstring	value_wstring;
+		std::shared_ptr<ItemInstance> value_itemInstance;
 		bool dirty;
 
 	public:
 		// There was one type here that took a generic Object type, using overloading here instead
 		DataItem(int type, int id, byte value);
 		DataItem(int type, int id, int value);
-		DataItem(int type, int id, const wstring& value);
-		DataItem(int type, int id, shared_ptr<ItemInstance> itemInstance);
+		DataItem(int type, int id, const std::wstring& value);
+		DataItem(int type, int id, std::shared_ptr<ItemInstance> itemInstance);
 		DataItem(int type, int id, short value);
 		DataItem(int type, int id, float value);
 
@@ -39,14 +39,14 @@ public:
 		void setValue(int value);
 		void setValue(short value);
 		void setValue(float value);
-		void setValue(const wstring& value);
-		void setValue(shared_ptr<ItemInstance> value);
+		void setValue(const std::wstring& value);
+		void setValue(std::shared_ptr<ItemInstance> value);
 		byte getValue_byte();
 		int getValue_int();
 		short getValue_short();
 		float getValue_float();
-		wstring getValue_wstring();
-		shared_ptr<ItemInstance> getValue_itemInstance();
+		std::wstring getValue_wstring();
+		std::shared_ptr<ItemInstance> getValue_itemInstance();
 		int getType();
 		bool isDirty();
 		void setDirty(bool dirty);
@@ -76,7 +76,7 @@ private:
 	// the id value must fit in the remaining bits
 	static const int MAX_ID_VALUE = ~TYPE_MASK & 0xff;
 
-	shared_ptr<DataItem> itemsById[MAX_ID_VALUE+1];
+	std::shared_ptr<DataItem> itemsById[MAX_ID_VALUE+1];
 	bool m_isDirty;
 
 public:
@@ -85,7 +85,7 @@ public:
 	// 4J - this function used to be a template, but there's only 3 varieties of use I've found so just hard-coding now, as
 	// the original had some automatic Class to type sort of conversion that's a real pain for us to actually do
 	void define(int id, byte value);
-	void define(int id, const wstring& value);
+	void define(int id, const std::wstring& value);
 	void define(int id, int value);
 	void define(int id, short value);
 	void define(int id, float value);
@@ -96,29 +96,29 @@ public:
 	short getShort(int id);
 	int getInteger(int id);
 	float getFloat(int id);
-	wstring getString(int id);
-	shared_ptr<ItemInstance> getItemInstance(int id);
+	std::wstring getString(int id);
+	std::shared_ptr<ItemInstance> getItemInstance(int id);
 	Pos *getPos(int id);
 	// 4J - using overloads rather than template here
 	void set(int id, byte value);
 	void set(int id, int value);
 	void set(int id, short value);
 	void set(int id, float value);
-	void set(int id, const wstring& value);
-	void set(int id, shared_ptr<ItemInstance>);
+	void set(int id, const std::wstring& value);
+	void set(int id, std::shared_ptr<ItemInstance>);
 	void markDirty(int id);
 	bool isDirty();
-	static void pack(vector<shared_ptr<DataItem> > *items, DataOutputStream *output); // TODO throws IOException
-	vector<shared_ptr<DataItem> > *packDirty();
+	static void pack(vector<std::shared_ptr<DataItem> > *items, DataOutputStream *output); // TODO throws IOException
+	vector<std::shared_ptr<DataItem> > *packDirty();
 	void packAll(DataOutputStream *output); // throws IOException
-	vector<shared_ptr<DataItem> > *getAll();
+	vector<std::shared_ptr<DataItem> > *getAll();
 
 private:
-	static void writeDataItem(DataOutputStream *output, shared_ptr<DataItem> dataItem); //throws IOException
+	static void writeDataItem(DataOutputStream *output, std::shared_ptr<DataItem> dataItem); //throws IOException
 
 
 public:
-	static vector<shared_ptr<DataItem> > *unpack(DataInputStream *input); // throws IOException
+	static vector<std::shared_ptr<DataItem> > *unpack(DataInputStream *input); // throws IOException
 
 	/**
 	* Assigns values from a list of data items.
@@ -126,7 +126,7 @@ public:
 	* @param items
 	*/
 public:
-	void assignValues(vector<shared_ptr<DataItem> > *items);
+	void assignValues(vector<std::shared_ptr<DataItem> > *items);
 	bool isEmpty();
 	void clearDirty();
 

@@ -101,7 +101,7 @@ void DLCTexturePack::loadDescription()
 	}
 }
 
-wstring DLCTexturePack::getResource(const wstring& name)
+std::wstring DLCTexturePack::getResource(const std::wstring& name)
 {
 	// 4J Stu - We should never call this function
 #ifndef __CONTENT_PACKAGE
@@ -110,7 +110,7 @@ wstring DLCTexturePack::getResource(const wstring& name)
 	return L"";
 }
 
-InputStream *DLCTexturePack::getResourceImplementation(const wstring &name) //throws IOException
+InputStream *DLCTexturePack::getResourceImplementation(const std::wstring &name) //throws IOException
 {
 	// 4J Stu - We should never call this function
 #ifndef _CONTENT_PACKAGE
@@ -120,7 +120,7 @@ InputStream *DLCTexturePack::getResourceImplementation(const wstring &name) //th
 	return NULL; //resource;
 }
 
-bool DLCTexturePack::hasFile(const wstring &name)
+bool DLCTexturePack::hasFile(const std::wstring &name)
 {
 	bool hasFile = false;
 	if(m_dlcDataPack != NULL) hasFile = m_dlcDataPack->doesPackContainFile(DLCManager::e_DLCType_Texture, name);
@@ -132,12 +132,12 @@ bool DLCTexturePack::isTerrainUpdateCompatible()
 	return true;
 }
 
-wstring DLCTexturePack::getPath(bool bTitleUpdateTexture /*= false*/, const char *pchBDPatchFilename)
+std::wstring DLCTexturePack::getPath(bool bTitleUpdateTexture /*= false*/, const char *pchBDPatchFilename)
 {
 	return L"";
 }
 
-wstring DLCTexturePack::getAnimationString(const wstring &textureName, const wstring &path)
+std::wstring DLCTexturePack::getAnimationString(const std::wstring &textureName, const std::wstring &path)
 {
 	wstring result = L"";
 
@@ -150,7 +150,7 @@ wstring DLCTexturePack::getAnimationString(const wstring &textureName, const wst
 	return result;
 }
 
-BufferedImage *DLCTexturePack::getImageResource(const wstring& File, bool filenameHasExtension /*= false*/, bool bTitleUpdateTexture /*=false*/, const wstring &drive /*=L""*/)
+BufferedImage *DLCTexturePack::getImageResource(const std::wstring& File, bool filenameHasExtension /*= false*/, bool bTitleUpdateTexture /*=false*/, const std::wstring &drive /*=L""*/)
 {
 	if(m_dlcDataPack) return new BufferedImage(m_dlcDataPack, L"/" + File, filenameHasExtension);
 	else return fallback->getImageResource(File, filenameHasExtension, bTitleUpdateTexture, drive);
@@ -267,7 +267,7 @@ void DLCTexturePack::loadData()
 
 
 
-wstring DLCTexturePack::getFilePath(DWORD packId, wstring filename, bool bAddDataFolder)
+std::wstring DLCTexturePack::getFilePath(DWORD packId, std::wstring filename, bool bAddDataFolder)
 {
 	return app.getFilePath(packId,filename,bAddDataFolder);
 }
@@ -584,7 +584,7 @@ void DLCTexturePack::unloadUI()
 	bUILoaded = false;
 }
 
-wstring DLCTexturePack::getXuiRootPath()
+std::wstring DLCTexturePack::getXuiRootPath()
 {
 	wstring path = L"";
 	if(m_dlcDataPack != NULL && m_dlcDataPack->doesPackContainFile(DLCManager::e_DLCType_UIData, L"TexturePack.xzp"))

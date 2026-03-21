@@ -10,7 +10,7 @@ BatRenderer::BatRenderer() : MobRenderer(new BatModel(), 0.25f)
 	modelVersion = ((BatModel *)model)->modelVersion();
 }
 
-void BatRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
+void BatRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
 {
 	int modelVersion = (dynamic_cast<BatModel*>(model))->modelVersion();
 	if (modelVersion != this->modelVersion) {
@@ -20,22 +20,22 @@ void BatRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, 
 	MobRenderer::render(_mob, x, y, z, rot, a);
 }
 
-ResourceLocation *BatRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *BatRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
 	return &BAT_LOCATION;
 }
 
-void BatRenderer::scale(shared_ptr<LivingEntity> mob, float a)
+void BatRenderer::scale(std::shared_ptr<LivingEntity> mob, float a)
 {
 	glScalef(.35f, .35f, .35f);
 }
 
-void BatRenderer::setupPosition(shared_ptr<LivingEntity> mob, double x, double y, double z)
+void BatRenderer::setupPosition(std::shared_ptr<LivingEntity> mob, double x, double y, double z)
 {
 	MobRenderer::setupPosition(mob, x, y, z);
 }
 
-void BatRenderer::setupRotations(shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a)
+void BatRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a)
 {
 	shared_ptr<Bat> mob = dynamic_pointer_cast<Bat>(_mob);
 	if (!mob->isResting())

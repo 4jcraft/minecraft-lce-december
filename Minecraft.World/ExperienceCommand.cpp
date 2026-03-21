@@ -15,7 +15,7 @@ int ExperienceCommand::getPermissionLevel()
 	return LEVEL_GAMEMASTERS;
 }
 
-void ExperienceCommand::execute(shared_ptr<CommandSender> source, byteArray commandData)
+void ExperienceCommand::execute(std::shared_ptr<CommandSender> source, byteArray commandData)
 {
 //	if (args.length > 0) {
 //		Player player;

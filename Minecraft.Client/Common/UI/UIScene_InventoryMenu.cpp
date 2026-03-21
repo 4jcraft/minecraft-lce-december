@@ -52,7 +52,7 @@ UIScene_InventoryMenu::UIScene_InventoryMenu(int iPad, void *_initData, UILayer 
 	addTimer(INVENTORY_UPDATE_EFFECTS_TIMER_ID,INVENTORY_UPDATE_EFFECTS_TIMER_TIME);
 }
 
-wstring UIScene_InventoryMenu::getMoviePath()
+std::wstring UIScene_InventoryMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

@@ -31,5 +31,5 @@ public:
 	virtual int getType(int data);
 
 protected:
-	virtual shared_ptr<ItemInstance> getSilkTouchItemInstance(int data);
+	virtual std::shared_ptr<ItemInstance> getSilkTouchItemInstance(int data);
 };

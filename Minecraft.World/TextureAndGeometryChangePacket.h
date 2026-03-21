@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 
@@ -8,11 +8,11 @@ class TextureAndGeometryChangePacket : public Packet, public enable_shared_from_
 public:
 
     int id;
-	wstring path;
+	std::wstring path;
 	DWORD dwSkinID;
 
 	TextureAndGeometryChangePacket();
-	TextureAndGeometryChangePacket(shared_ptr<Entity> e, const wstring &path);
+	TextureAndGeometryChangePacket(std::shared_ptr<Entity> e, const std::wstring &path);
 
 	virtual void read(DataInputStream *dis);
 	virtual void write(DataOutputStream *dos);
@@ -20,6 +20,6 @@ public:
 	virtual int getEstimatedSize();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new TextureAndGeometryChangePacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new TextureAndGeometryChangePacket()); }
 	virtual int getId() { return 161; }
 };

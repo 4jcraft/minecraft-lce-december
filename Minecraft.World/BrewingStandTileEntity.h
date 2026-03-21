@@ -18,15 +18,15 @@ private:
 	int brewTime;
 	int lastPotionCount;
 	int ingredientId;
-	wstring name;
+	std::wstring name;
 
 public:
 	BrewingStandTileEntity();
 	~BrewingStandTileEntity();
-	virtual wstring getName();
-	virtual wstring getCustomName();
+	virtual std::wstring getName();
+	virtual std::wstring getCustomName();
 	virtual bool hasCustomName();
-	virtual void setCustomName(const wstring &name);
+	virtual void setCustomName(const std::wstring &name);
 	virtual unsigned int getContainerSize();
 	virtual void tick();
 
@@ -36,27 +36,27 @@ private:
 	bool isBrewable();
 	void doBrew();
 
-	int applyIngredient(int currentBrew, shared_ptr<ItemInstance> ingredient);
+	int applyIngredient(int currentBrew, std::shared_ptr<ItemInstance> ingredient);
    
 public:
 	virtual void load(CompoundTag *base);
 	virtual void save(CompoundTag *base);
-	virtual shared_ptr<ItemInstance> getItem(unsigned int slot);
-	virtual shared_ptr<ItemInstance> removeItem(unsigned int slot, int i);
-	virtual shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
-	virtual void setItem(unsigned int slot, shared_ptr<ItemInstance> item);
+	virtual std::shared_ptr<ItemInstance> getItem(unsigned int slot);
+	virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot, int i);
+	virtual std::shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
+	virtual void setItem(unsigned int slot, std::shared_ptr<ItemInstance> item);
 	virtual int getMaxStackSize();
-	virtual bool stillValid(shared_ptr<Player> player);
+	virtual bool stillValid(std::shared_ptr<Player> player);
 	virtual void startOpen();
 	virtual void stopOpen();
-	virtual bool canPlaceItem(int slot, shared_ptr<ItemInstance> item);
+	virtual bool canPlaceItem(int slot, std::shared_ptr<ItemInstance> item);
 	virtual void setBrewTime(int value);
 	virtual void setChanged() { TileEntity::setChanged(); } // 4J added
 	int getPotionBits();
 	virtual intArray getSlotsForFace(int face);
-	virtual bool canPlaceItemThroughFace(int slot, shared_ptr<ItemInstance> item, int face);
-	virtual bool canTakeItemThroughFace(int slot, shared_ptr<ItemInstance> item, int face);
+	virtual bool canPlaceItemThroughFace(int slot, std::shared_ptr<ItemInstance> item, int face);
+	virtual bool canTakeItemThroughFace(int slot, std::shared_ptr<ItemInstance> item, int face);
 
 	// 4J Added
-	virtual shared_ptr<TileEntity> clone();
+	virtual std::shared_ptr<TileEntity> clone();
 };

@@ -13,7 +13,7 @@ MobRenderer::MobRenderer(Model *model, float shadow) : LivingEntityRenderer(mode
 {
 }
 
-void MobRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
+void MobRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
 {
 	shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(_mob);
 
@@ -21,12 +21,12 @@ void MobRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, 
 	renderLeash(mob, x, y, z, rot, a);
 }
 
-bool MobRenderer::shouldShowName(shared_ptr<LivingEntity> mob)
+bool MobRenderer::shouldShowName(std::shared_ptr<LivingEntity> mob)
 {
     return LivingEntityRenderer::shouldShowName(mob) && (mob->shouldShowName() || dynamic_pointer_cast<Mob>(mob)->hasCustomName() && mob == entityRenderDispatcher->crosshairPickMob);
 }
 
-void MobRenderer::renderLeash(shared_ptr<Mob> entity, double x, double y, double z, float rot, float a)
+void MobRenderer::renderLeash(std::shared_ptr<Mob> entity, double x, double y, double z, float rot, float a)
 {
     shared_ptr<Entity> roper = entity->getLeashHolder();
     // roper = entityRenderDispatcher.cameraEntity;

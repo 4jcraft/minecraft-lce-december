@@ -19,9 +19,9 @@
 #include "CompassTexture.h"
 #include "ClockTexture.h"
 
-const wstring PreStitchedTextureMap::NAME_MISSING_TEXTURE = L"missingno";
+const std::wstring PreStitchedTextureMap::NAME_MISSING_TEXTURE = L"missingno";
 
-PreStitchedTextureMap::PreStitchedTextureMap(int type, const wstring &name, const wstring &path, BufferedImage *missingTexture, bool mipmap) : iconType(type), name(name), path(path), extension(L".png")
+PreStitchedTextureMap::PreStitchedTextureMap(int type, const std::wstring &name, const std::wstring &path, BufferedImage *missingTexture, bool mipmap) : iconType(type), name(name), path(path), extension(L".png")
 {
 	this->missingTexture = missingTexture;
 
@@ -243,7 +243,7 @@ void PreStitchedTextureMap::makeTextureAnimated(TexturePack *texturePack, Stitch
 	}
 }
 
-StitchedTexture *PreStitchedTextureMap::getTexture(const wstring &name)
+StitchedTexture *PreStitchedTextureMap::getTexture(const std::wstring &name)
 {
 #ifndef _CONTENT_PACKAGE
 	app.DebugPrintf("Not implemented!\n");
@@ -273,7 +273,7 @@ Texture *PreStitchedTextureMap::getStitchedTexture()
 }
 
 // 4J Stu - register is a reserved keyword in C++
-Icon *PreStitchedTextureMap::registerIcon(const wstring &name)
+Icon *PreStitchedTextureMap::registerIcon(const std::wstring &name)
 {
 	Icon *result = NULL;
 	if (name.empty())

@@ -222,7 +222,7 @@ void IUIScene_BeaconMenu::handleOtherClicked(int iPad, ESceneSection eSection, i
 			dos.writeInt(m_beacon->getPrimaryPower());
 			dos.writeInt(m_beacon->getSecondaryPower());
 
-			Minecraft::GetInstance()->localplayers[getPad()]->connection->send(shared_ptr<CustomPayloadPacket>(new CustomPayloadPacket(CustomPayloadPacket::SET_BEACON_PACKET, baos.toByteArray())));
+			Minecraft::GetInstance()->localplayers[getPad()]->connection->send(std::shared_ptr<CustomPayloadPacket>(new CustomPayloadPacket(CustomPayloadPacket::SET_BEACON_PACKET, baos.toByteArray())));
 
 			if (m_beacon->getPrimaryPower() > 0)
 			{
@@ -363,9 +363,9 @@ int IUIScene_BeaconMenu::GetId(int tier, int effectId)
 	return (tier << 8) | effectId;
 }
 
-vector<HtmlString> *IUIScene_BeaconMenu::GetSectionHoverText(ESceneSection eSection)
+std::vector<HtmlString> *IUIScene_BeaconMenu::GetSectionHoverText(ESceneSection eSection)
 {
-	vector<HtmlString> *desc = NULL;
+	std::vector<HtmlString> *desc = NULL;
 	switch(eSection)
 	{
 	case eSectionBeaconSecondaryTwo:
@@ -385,10 +385,10 @@ vector<HtmlString> *IUIScene_BeaconMenu::GetSectionHoverText(ESceneSection eSect
 			int id = GetPowerButtonId(eSection);
 			int effectId = (id & 0xff);
 
-			desc = new vector<HtmlString>();
+			desc = new std::vector<HtmlString>();
 
-			HtmlString string( app.GetString(MobEffect::effects[effectId]->getDescriptionId()), eHTMLColor_White );
-			desc->push_back( string );
+			HtmlString std::string( app.GetString(MobEffect::effects[effectId]->getDescriptionId()), eHTMLColor_White );
+			desc->push_back( std::string );
 		}
 		break;
 	}

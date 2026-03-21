@@ -9,12 +9,12 @@ BeaconTile::BeaconTile(int id) : BaseEntityTile(id, Material::glass, isSolidRend
 	setDestroyTime(3.0f);
 }
 
-shared_ptr<TileEntity> BeaconTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> BeaconTile::newTileEntity(Level *level)
 {
 	return shared_ptr<BeaconTileEntity>( new BeaconTileEntity() );
 }
 
-bool BeaconTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
+bool BeaconTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
 {
 	if (level->isClientSide) return true;
 
@@ -49,7 +49,7 @@ void BeaconTile::registerIcons(IconRegister *iconRegister)
 	BaseEntityTile::registerIcons(iconRegister);
 }
 
-void BeaconTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void BeaconTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	BaseEntityTile::setPlacedBy(level, x, y, z, by, itemInstance);
 	if (itemInstance->hasCustomHoverName())

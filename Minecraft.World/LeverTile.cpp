@@ -88,7 +88,7 @@ int LeverTile::getPlacedOnFaceDataValue(Level *level, int x, int y, int z, int f
 	return dir + oldFlip;
 }
 
-void LeverTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void LeverTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	int data = level->getData(x, y, z);
 	int dir = data & 7;
@@ -174,7 +174,7 @@ bool LeverTile::checkCanSurvive(Level *level, int x, int y, int z)
 	return true;
 }
 
-void LeverTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void LeverTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	int dir = level->getData(x, y, z) & 7;
 	float r = 3 / 16.0f;
@@ -212,7 +212,7 @@ bool LeverTile::TestUse()
 	return true;
 }
 
-bool LeverTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool LeverTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if( soundOnly )
 	{

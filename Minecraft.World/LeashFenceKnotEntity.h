@@ -25,12 +25,12 @@ public:
 	int getWidth();
 	int getHeight();
 	bool shouldRenderAtSqrDistance(double distance);
-	void dropItem(shared_ptr<Entity> causedBy);
+	void dropItem(std::shared_ptr<Entity> causedBy);
 	bool save(CompoundTag *entityTag);
 	void addAdditonalSaveData(CompoundTag *tag);
 	void readAdditionalSaveData(CompoundTag *tag);
-	bool interact(shared_ptr<Player> player);
+	bool interact(std::shared_ptr<Player> player);
 	virtual bool survives();
-	static shared_ptr<LeashFenceKnotEntity> createAndAddKnot(Level *level, int x, int y, int z);
-	static shared_ptr<LeashFenceKnotEntity> findKnotAt(Level *level, int x, int y, int z);
+	static std::shared_ptr<LeashFenceKnotEntity> createAndAddKnot(Level *level, int x, int y, int z);
+	static std::shared_ptr<LeashFenceKnotEntity> findKnotAt(Level *level, int x, int y, int z);
 };

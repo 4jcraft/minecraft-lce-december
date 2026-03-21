@@ -5,7 +5,7 @@
 #include "net.minecraft.world.h"
 #include "Facing.h"
 
-const wstring TheEndPortalFrameTile::TEXTURE_EYE = L"endframe_eye";
+const std::wstring TheEndPortalFrameTile::TEXTURE_EYE = L"endframe_eye";
 
 TheEndPortalFrameTile::TheEndPortalFrameTile(int id) : Tile(id, Material::glass, isSolidRender() )
 {
@@ -53,7 +53,7 @@ void TheEndPortalFrameTile::updateDefaultShape()
 	setShape(0, 0, 0, 1, 13.0f / 16.0f, 1);
 }
 
-void TheEndPortalFrameTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, shared_ptr<Entity> source)
+void TheEndPortalFrameTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, std::shared_ptr<Entity> source)
 {
 	setShape(0, 0, 0, 1, 13.0f / 16.0f, 1);
 	Tile::addAABBs(level, x, y, z, box, boxes, source);
@@ -77,7 +77,7 @@ int TheEndPortalFrameTile::getResource(int data, Random *random, int playerBonus
 	return 0;
 }
 
-void TheEndPortalFrameTile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void TheEndPortalFrameTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 	int dir = (((Mth::floor(by->yRot * 4 / (360) + 0.5)) & 3) + 2) % 4;
 	level->setData(x, y, z, dir, Tile::UPDATE_CLIENTS);

@@ -36,7 +36,7 @@ void Monster::tick()
 	if (!level->isClientSide && (level->difficulty == Difficulty::PEACEFUL || Minecraft::GetInstance()->isTutorial() ) ) remove();
 }
 
-shared_ptr<Entity> Monster::findAttackTarget()
+std::shared_ptr<Entity> Monster::findAttackTarget()
 {
 #ifndef _FINAL_BUILD
 	if(app.GetMobsDontAttackEnabled())
@@ -73,7 +73,7 @@ bool Monster::hurt(DamageSource *source, float dmg)
 * @param target
 * @return
 */
-bool Monster::doHurtTarget(shared_ptr<Entity> target)
+bool Monster::doHurtTarget(std::shared_ptr<Entity> target)
 {
 	float dmg = (float) getAttribute(SharedMonsterAttributes::ATTACK_DAMAGE)->getValue();
 	int knockback = 0;
@@ -113,7 +113,7 @@ bool Monster::doHurtTarget(shared_ptr<Entity> target)
 	return wasHurt;
 }
 
-void Monster::checkHurtTarget(shared_ptr<Entity> target, float distance)
+void Monster::checkHurtTarget(std::shared_ptr<Entity> target, float distance)
 {
 	if (attackTime <= 0 && distance < 2.0f && target->bb->y1 > bb->y0 && target->bb->y0 < bb->y1)
 	{

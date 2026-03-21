@@ -18,7 +18,7 @@ void DaylightDetectorTile::updateDefaultShape()
 	setShape(0, 0, 0, 1, 6.0f / 16.0f, 1);
 }
 
-void DaylightDetectorTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity)
+void DaylightDetectorTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity)
 {
 	setShape(0, 0, 0, 1, 6.0f / 16.0f, 1);
 }
@@ -93,7 +93,7 @@ bool DaylightDetectorTile::isSignalSource()
 	return true;
 }
 
-shared_ptr<TileEntity> DaylightDetectorTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> DaylightDetectorTile::newTileEntity(Level *level)
 {
 	return shared_ptr<DaylightDetectorTileEntity>( new DaylightDetectorTileEntity() );
 }

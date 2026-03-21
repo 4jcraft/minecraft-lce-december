@@ -8,8 +8,8 @@
 #include "net.minecraft.world.h"
 #include "..\Minecraft.Client\ServerPlayer.h"
 
-const wstring CauldronTile::TEXTURE_INSIDE = L"cauldron_inner";
-const wstring CauldronTile::TEXTURE_BOTTOM = L"cauldron_bottom";
+const std::wstring CauldronTile::TEXTURE_INSIDE = L"cauldron_inner";
+const std::wstring CauldronTile::TEXTURE_BOTTOM = L"cauldron_bottom";
 
 CauldronTile::CauldronTile(int id) : Tile(id, Material::metal, isSolidRender())
 {
@@ -39,14 +39,14 @@ void CauldronTile::registerIcons(IconRegister *iconRegister)
 	icon = iconRegister->registerIcon(L"cauldron_side");
 }
 
-Icon *CauldronTile::getTexture(const wstring &name)
+Icon *CauldronTile::getTexture(const std::wstring &name)
 {
 	if (name.compare(TEXTURE_INSIDE) == 0) return Tile::cauldron->iconInner;
 	if (name.compare(TEXTURE_BOTTOM) == 0) return Tile::cauldron->iconBottom;
 	return NULL;
 }
 
-void CauldronTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, shared_ptr<Entity> source)
+void CauldronTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, std::shared_ptr<Entity> source)
 {
 	setShape(0, 0, 0, 1, 5.0f / 16.0f, 1);
 	Tile::addAABBs(level, x, y, z, box, boxes, source);
@@ -83,7 +83,7 @@ bool CauldronTile::isCubeShaped()
 	return false;
 }
 
-bool CauldronTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool CauldronTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	if(soundOnly) return false;
 

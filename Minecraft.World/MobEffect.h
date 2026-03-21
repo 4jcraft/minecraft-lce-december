@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "AttributeModifier.h"
 
@@ -95,8 +95,8 @@ protected:
 
 public:
 	virtual int getId();
-	virtual void applyEffectTick(shared_ptr<LivingEntity> mob, int amplification);
-	virtual void applyInstantenousEffect(shared_ptr<LivingEntity> source, shared_ptr<LivingEntity> mob, int amplification, double scale);
+	virtual void applyEffectTick(std::shared_ptr<LivingEntity> mob, int amplification);
+	virtual void applyInstantenousEffect(std::shared_ptr<LivingEntity> source, std::shared_ptr<LivingEntity> mob, int amplification, double scale);
 	virtual bool isInstantenous();
 	virtual bool isDurationEffectTick(int remainingDuration, int amplification);
 
@@ -110,7 +110,7 @@ public:
 	bool hasIcon();
 	EMobEffectIcon getIcon(); // 4J changed return type
 	bool isHarmful();
-	static wstring formatDuration(MobEffectInstance *instance);
+	static std::wstring formatDuration(MobEffectInstance *instance);
 
 protected:
 	MobEffect *setDurationModifier(double durationModifier);
@@ -123,7 +123,7 @@ public:
 
 	virtual MobEffect *addAttributeModifier(Attribute *attribute, eMODIFIER_ID id, double amount, int operation);
 	virtual unordered_map<Attribute *, AttributeModifier *> *getAttributeModifiers();
-	virtual void removeAttributeModifiers(shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier);
-	virtual void addAttributeModifiers(shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier);
+	virtual void removeAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier);
+	virtual void addAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier);
 	virtual double getAttributeModifierValue(int amplifier, AttributeModifier *original);
 };

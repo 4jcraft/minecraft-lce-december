@@ -15,7 +15,7 @@ public:
 	float rot, oRot, tRot;
 private:
 	Random *random;
-	wstring name;
+	std::wstring name;
 
 public:
 	EnchantmentTableEntity();
@@ -24,11 +24,11 @@ public:
 	virtual void save(CompoundTag *base);
 	virtual void load(CompoundTag *base);
 	virtual void tick();
-	virtual wstring getName();
-	virtual wstring getCustomName();
+	virtual std::wstring getName();
+	virtual std::wstring getCustomName();
 	virtual bool hasCustomName();
-	virtual void setCustomName(const wstring &name);
+	virtual void setCustomName(const std::wstring &name);
 
 	// 4J Added
-	virtual shared_ptr<TileEntity> clone();
+	virtual std::shared_ptr<TileEntity> clone();
 };

@@ -19,7 +19,7 @@ SpawnEggItem::SpawnEggItem(int id) : Item(id)
 	overlay = NULL;
 }
 
-wstring SpawnEggItem::getHoverName(shared_ptr<ItemInstance> itemInstance)
+std::wstring SpawnEggItem::getHoverName(std::shared_ptr<ItemInstance> itemInstance)
 {
 	wstring elementName = getDescription();
 
@@ -37,7 +37,7 @@ wstring SpawnEggItem::getHoverName(shared_ptr<ItemInstance> itemInstance)
 	return elementName;
 }
 
-int SpawnEggItem::getColor(shared_ptr<ItemInstance> item, int spriteLayer)
+int SpawnEggItem::getColor(std::shared_ptr<ItemInstance> item, int spriteLayer)
 {
 	AUTO_VAR(it, EntityIO::idsSpawnableInCreative.find(item->getAuxValue()));
 	if (it != EntityIO::idsSpawnableInCreative.end())
@@ -66,7 +66,7 @@ Icon *SpawnEggItem::getLayerIcon(int auxValue, int spriteLayer)
 }
 
 // 4J-PB - added for dispenser
-shared_ptr<Entity> SpawnEggItem::canSpawn(int iAuxVal, Level *level, int *piResult)
+std::shared_ptr<Entity> SpawnEggItem::canSpawn(int iAuxVal, Level *level, int *piResult)
 {
 	shared_ptr<Entity> newEntity = EntityIO::newById(iAuxVal, level);
 	if (newEntity != NULL)
@@ -184,7 +184,7 @@ shared_ptr<Entity> SpawnEggItem::canSpawn(int iAuxVal, Level *level, int *piResu
 	return nullptr;
 }
 
-bool SpawnEggItem::useOn(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
+bool SpawnEggItem::useOn(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
 {
 	if (level->isClientSide)
 	{
@@ -247,7 +247,7 @@ bool SpawnEggItem::useOn(shared_ptr<ItemInstance> itemInstance, shared_ptr<Playe
 	return true;
 }
 
-shared_ptr<ItemInstance> SpawnEggItem::use(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> SpawnEggItem::use(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	if (level->isClientSide) return itemInstance;
 
@@ -296,7 +296,7 @@ shared_ptr<ItemInstance> SpawnEggItem::use(shared_ptr<ItemInstance> itemInstance
 	return itemInstance;
 }
 
-shared_ptr<Entity> SpawnEggItem::spawnMobAt(Level *level, int auxVal, double x, double y, double z, int *piResult)
+std::shared_ptr<Entity> SpawnEggItem::spawnMobAt(Level *level, int auxVal, double x, double y, double z, int *piResult)
 {
 	int mobId = auxVal;
 	int extraData = 0;
@@ -340,7 +340,7 @@ void SpawnEggItem::registerIcons(IconRegister *iconRegister)
 	overlay = iconRegister->registerIcon(getIconName() + L"_overlay");
 }
 
-void SpawnEggItem::DisplaySpawnError(shared_ptr<Player> player, int result)
+void SpawnEggItem::DisplaySpawnError(std::shared_ptr<Player> player, int result)
 {
 	// some negative sound effect?
 	//level->levelEvent(LevelEvent::SOUND_CLICK_FAIL, x, y, z, 0);

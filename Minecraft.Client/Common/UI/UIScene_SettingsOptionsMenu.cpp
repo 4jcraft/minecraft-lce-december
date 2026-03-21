@@ -177,7 +177,7 @@ void UIScene_SettingsOptionsMenu::tick()
 	}
 }
 
-wstring UIScene_SettingsOptionsMenu::getMoviePath()
+std::wstring UIScene_SettingsOptionsMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

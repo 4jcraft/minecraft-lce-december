@@ -8,7 +8,7 @@
 #include "..\Minecraft.Client\LocalPlayer.h"
 #include "ContainerMenu.h"
 
-ContainerMenu::ContainerMenu(shared_ptr<Container> inventory, shared_ptr<Container> container) : AbstractContainerMenu()
+ContainerMenu::ContainerMenu(std::shared_ptr<Container> inventory, std::shared_ptr<Container> container) : AbstractContainerMenu()
 {
 	this->container = container;
 	containerRows = container->getContainerSize() / 9;
@@ -37,12 +37,12 @@ ContainerMenu::ContainerMenu(shared_ptr<Container> inventory, shared_ptr<Contain
 	}
 }
 
-bool ContainerMenu::stillValid(shared_ptr<Player> player)
+bool ContainerMenu::stillValid(std::shared_ptr<Player> player)
 {
 	return container->stillValid(player);
 }
 
-shared_ptr<ItemInstance> ContainerMenu::quickMoveStack(shared_ptr<Player> player, int slotIndex)
+std::shared_ptr<ItemInstance> ContainerMenu::quickMoveStack(std::shared_ptr<Player> player, int slotIndex)
 {
 	shared_ptr<ItemInstance> clicked = nullptr;
 	Slot *slot = slots.at(slotIndex);
@@ -79,18 +79,18 @@ shared_ptr<ItemInstance> ContainerMenu::quickMoveStack(shared_ptr<Player> player
 	return clicked;
 }
 
-void ContainerMenu::removed(shared_ptr<Player> player)
+void ContainerMenu::removed(std::shared_ptr<Player> player)
 {
 	AbstractContainerMenu::removed(player);
 	container->stopOpen();
 }
 
-shared_ptr<Container> ContainerMenu::getContainer()
+std::shared_ptr<Container> ContainerMenu::getContainer()
 {
 	return container;
 }
 
-shared_ptr<ItemInstance> ContainerMenu::clicked(int slotIndex, int buttonNum, int clickType, shared_ptr<Player> player, bool looped) // 4J Added looped param
+std::shared_ptr<ItemInstance> ContainerMenu::clicked(int slotIndex, int buttonNum, int clickType, std::shared_ptr<Player> player, bool looped) // 4J Added looped param
 {
 	shared_ptr<ItemInstance> out = AbstractContainerMenu::clicked(slotIndex, buttonNum, clickType, player, looped);
 

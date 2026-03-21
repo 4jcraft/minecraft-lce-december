@@ -17,7 +17,7 @@
 #include "net.minecraft.h"
 #include "Tile.h"
 
-wstring Tile::TILE_DESCRIPTION_PREFIX = L"Tile."; 
+std::wstring Tile::TILE_DESCRIPTION_PREFIX = L"Tile."; 
 
 const float Tile::INDESTRUCTIBLE_DESTROY_TIME = -1.0f;
 
@@ -819,7 +819,7 @@ AABB *Tile::getTileAABB(Level *level, int x, int y, int z)
 	return AABB::newTemp(x + tls->xx0, y + tls->yy0, z + tls->zz0, x + tls->xx1, y + tls->yy1, z + tls->zz1);
 }
 
-void Tile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, shared_ptr<Entity> source) 
+void Tile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, std::shared_ptr<Entity> source) 
 {
 	AABB *aabb = getAABB(level, x, y, z);
 	if (aabb != NULL && box->intersects(aabb)) boxes->push_back(aabb);
@@ -891,7 +891,7 @@ int Tile::getResource(int data, Random *random, int playerBonusLevel)
 	return id;
 }
 
-float Tile::getDestroyProgress(shared_ptr<Player> player, Level *level, int x, int y, int z)
+float Tile::getDestroyProgress(std::shared_ptr<Player> player, Level *level, int x, int y, int z)
 {
 	float destroySpeed = getDestroySpeed(level, x, y, z);
 	if (destroySpeed < 0) return 0;
@@ -921,7 +921,7 @@ void Tile::spawnResources(Level *level, int x, int y, int z, int data, float odd
 	}
 }
 
-void Tile::popResource(Level *level, int x, int y, int z, shared_ptr<ItemInstance> itemInstance)
+void Tile::popResource(Level *level, int x, int y, int z, std::shared_ptr<ItemInstance> itemInstance)
 {
 	if( level->isClientSide || !level->getGameRules()->getBoolean(GameRules::RULE_DOTILEDROPS) ) return;
 
@@ -953,7 +953,7 @@ int Tile::getSpawnResourcesAuxValue(int data)
 	return 0;
 }
 
-float Tile::getExplosionResistance(shared_ptr<Entity> source)
+float Tile::getExplosionResistance(std::shared_ptr<Entity> source)
 {
 	return explosionResistance / 5.0f;
 }
@@ -1032,7 +1032,7 @@ void Tile::wasExploded(Level *level, int x, int y, int z, Explosion *explosion)
 {
 }
 
-bool Tile::mayPlace(Level *level, int x, int y, int z, int face, shared_ptr<ItemInstance> item)
+bool Tile::mayPlace(Level *level, int x, int y, int z, int face, std::shared_ptr<ItemInstance> item)
 {
 	return mayPlace(level, x, y, z, face);
 }
@@ -1059,17 +1059,17 @@ bool Tile::TestUse()
 	return false;
 }
 
-bool Tile::TestUse(Level *level, int x, int y, int z, shared_ptr<Player> player)
+bool Tile::TestUse(Level *level, int x, int y, int z, std::shared_ptr<Player> player)
 {
 	return false;
 }
 
-bool Tile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
+bool Tile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly/*=false*/) // 4J added soundOnly param
 {
 	return false;
 }
 
-void Tile::stepOn(Level *level, int x, int y, int z, shared_ptr<Entity> entity)
+void Tile::stepOn(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity)
 {
 }
 
@@ -1082,15 +1082,15 @@ void Tile::prepareRender(Level *level, int x, int y, int z)
 {
 }
 
-void Tile::attack(Level *level, int x, int y, int z, shared_ptr<Player> player)
+void Tile::attack(Level *level, int x, int y, int z, std::shared_ptr<Player> player)
 {
 }
 
-void Tile::handleEntityInside(Level *level, int x, int y, int z, shared_ptr<Entity> e, Vec3 *current)
+void Tile::handleEntityInside(Level *level, int x, int y, int z, std::shared_ptr<Entity> e, Vec3 *current)
 {
 }
 
-void Tile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void Tile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	ThreadStorage *tls = (ThreadStorage *)TlsGetValue(Tile::tlsIdxShape);
 	// 4J Stu - Added this so that the TLS shape is correct for this tile
@@ -1175,7 +1175,7 @@ bool Tile::isSignalSource()
 	return false;
 }
 
-void Tile::entityInside(Level *level, int x, int y, int z, shared_ptr<Entity> entity)
+void Tile::entityInside(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity)
 {
 }
 
@@ -1189,7 +1189,7 @@ void Tile::updateDefaultShape()
 	setShape(0,0,0,1,1,1);
 }
 
-void Tile::playerDestroy(Level *level, shared_ptr<Player> player, int x, int y, int z, int data)
+void Tile::playerDestroy(Level *level, std::shared_ptr<Player> player, int x, int y, int z, int data)
 {
 	// 4J Stu - Special case - only record a crop destroy if is fully grown
 	if( id==Tile::wheat_Id )
@@ -1250,7 +1250,7 @@ bool Tile::isSilkTouchable()
 	return isCubeShaped() && !_isEntityTile;
 }
 
-shared_ptr<ItemInstance> Tile::getSilkTouchItemInstance(int data)
+std::shared_ptr<ItemInstance> Tile::getSilkTouchItemInstance(int data)
 {
 	int popData = 0;
 	if (id >= 0 && id < Item::items.length && Item::items[id]->isStackedByData())
@@ -1270,7 +1270,7 @@ bool Tile::canSurvive(Level *level, int x, int y, int z)
 	return true;
 }
 
-void Tile::setPlacedBy(Level *level, int x, int y, int z, shared_ptr<LivingEntity> by, shared_ptr<ItemInstance> itemInstance)
+void Tile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
 {
 }
 
@@ -1284,7 +1284,7 @@ Tile *Tile::setDescriptionId(unsigned int id)
 	return this;
 }
 
-wstring Tile::getName()
+std::wstring Tile::getName()
 {
 	return L"";//I18n::get(getDescriptionId() + L".name");
 }
@@ -1332,7 +1332,7 @@ float Tile::getShadeBrightness(LevelSource *level, int x, int y, int z)
 	return level->isSolidBlockingTile(x, y, z) ? 0.2f : 1.0f;
 }
 
-void Tile::fallOn(Level *level, int x, int y, int z, shared_ptr<Entity> entity, float fallDistance)
+void Tile::fallOn(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity, float fallDistance)
 {
 }
 
@@ -1346,7 +1346,7 @@ int Tile::cloneTileData(Level *level, int x, int y, int z)
 	return getSpawnResourcesAuxValue(level->getData(x, y, z));
 }
 
-void Tile::playerWillDestroy(Level *level, int x, int y, int z, int data, shared_ptr<Player> player)
+void Tile::playerWillDestroy(Level *level, int x, int y, int z, int data, std::shared_ptr<Player> player)
 {
 }
 
@@ -1405,13 +1405,13 @@ int Tile::getAnalogOutputSignal(Level *level, int x, int y, int z, int dir)
 	return Redstone::SIGNAL_NONE;
 }
 
-Tile *Tile::setIconName(const wstring &iconName)
+Tile *Tile::setIconName(const std::wstring &iconName)
 {
 	this->iconName = iconName;
 	return this;
 }
 
-wstring Tile::getIconName()
+std::wstring Tile::getIconName()
 {
 	return iconName.empty() ? L"MISSING_ICON_TILE_" + _toString<int>(id) + L"_" + _toString<int>(descriptionId) : iconName;
 }
@@ -1421,7 +1421,7 @@ void Tile::registerIcons(IconRegister *iconRegister)
 	icon = iconRegister->registerIcon(getIconName());
 }
 
-wstring Tile::getTileItemIconName()
+std::wstring Tile::getTileItemIconName()
 {
 	return L"";
 }

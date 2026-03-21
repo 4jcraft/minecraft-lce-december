@@ -5,7 +5,7 @@
 #include "net.minecraft.world.entity.player.h"
 #include "RepairResultSlot.h"
 
-RepairResultSlot::RepairResultSlot(AnvilMenu *menu, int xt, int yt, int zt, shared_ptr<Container> container, int slot, int x, int y) : Slot(container, slot, x, y)
+RepairResultSlot::RepairResultSlot(AnvilMenu *menu, int xt, int yt, int zt, std::shared_ptr<Container> container, int slot, int x, int y) : Slot(container, slot, x, y)
 {
 	m_menu = menu;
 	this->xt = xt;
@@ -13,17 +13,17 @@ RepairResultSlot::RepairResultSlot(AnvilMenu *menu, int xt, int yt, int zt, shar
 	this->zt = zt;
 }
 
-bool RepairResultSlot::mayPlace(shared_ptr<ItemInstance> item)
+bool RepairResultSlot::mayPlace(std::shared_ptr<ItemInstance> item)
 {
 	return false;
 }
 
-bool RepairResultSlot::mayPickup(shared_ptr<Player> player)
+bool RepairResultSlot::mayPickup(std::shared_ptr<Player> player)
 {
 	return (player->abilities.instabuild || player->experienceLevel >= m_menu->cost) && (m_menu->cost > 0 && hasItem());
 }
 
-void RepairResultSlot::onTake(shared_ptr<Player> player, shared_ptr<ItemInstance> carried)
+void RepairResultSlot::onTake(std::shared_ptr<Player> player, std::shared_ptr<ItemInstance> carried)
 {
 	if (!player->abilities.instabuild) player->giveExperienceLevels(-m_menu->cost);
 	m_menu->repairSlots->setItem(AnvilMenu::INPUT_SLOT, nullptr);
@@ -69,7 +69,7 @@ void RepairResultSlot::onTake(shared_ptr<Player> player, shared_ptr<ItemInstance
 	}
 }
 
-bool RepairResultSlot::mayCombine(shared_ptr<ItemInstance> second)
+bool RepairResultSlot::mayCombine(std::shared_ptr<ItemInstance> second)
 {
 	return false;
 }

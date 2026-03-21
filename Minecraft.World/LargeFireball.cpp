@@ -14,7 +14,7 @@ LargeFireball::LargeFireball(Level *level, double x, double y, double z, double 
 	explosionPower = 1;
 }
 
-LargeFireball::LargeFireball(Level *level, shared_ptr<LivingEntity> mob, double xa, double ya, double za) : Fireball(level, mob, xa, ya, za)
+LargeFireball::LargeFireball(Level *level, std::shared_ptr<LivingEntity> mob, double xa, double ya, double za) : Fireball(level, mob, xa, ya, za)
 {
 	explosionPower = 1;
 }

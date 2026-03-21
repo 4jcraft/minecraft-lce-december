@@ -6,5 +6,5 @@ class MinecartSpawner;
 class MinecartSpawnerRenderer : public MinecartRenderer
 {
 protected:
-    void renderMinecartContents(shared_ptr<MinecartSpawner> cart, float a, Tile *tile, int tileData);
+    void renderMinecartContents(std::shared_ptr<MinecartSpawner> cart, float a, Tile *tile, int tileData);
 };

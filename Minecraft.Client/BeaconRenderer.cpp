@@ -6,7 +6,7 @@
 
 ResourceLocation BeaconRenderer::BEAM_LOCATION = ResourceLocation(TN_MISC_BEACON_BEAM);
 
-void BeaconRenderer::render(shared_ptr<TileEntity> _beacon, double x, double y, double z, float a, bool setColor, float alpha, bool useCompiled)
+void BeaconRenderer::render(std::shared_ptr<TileEntity> _beacon, double x, double y, double z, float a, bool setColor, float alpha, bool useCompiled)
 {
 	shared_ptr<BeaconTileEntity> beacon = dynamic_pointer_cast<BeaconTileEntity>(_beacon);
 

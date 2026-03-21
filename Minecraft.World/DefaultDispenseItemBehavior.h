@@ -22,14 +22,14 @@ protected:
 public:
 	DefaultDispenseItemBehavior() {};
 	virtual ~DefaultDispenseItemBehavior() {};
-	virtual shared_ptr<ItemInstance> dispense(BlockSource *source, shared_ptr<ItemInstance> dispensed);
+	virtual std::shared_ptr<ItemInstance> dispense(BlockSource *source, std::shared_ptr<ItemInstance> dispensed);
 
 protected:
 	// 4J-JEV: Added value used to play FAILED sound effect upon reaching spawn limits.
-	virtual shared_ptr<ItemInstance> execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
 
 public:
-	static void spawnItem(Level *world, shared_ptr<ItemInstance> item, int accuracy, FacingEnum *facing, Position *position);
+	static void spawnItem(Level *world, std::shared_ptr<ItemInstance> item, int accuracy, FacingEnum *facing, Position *position);
 
 protected:
 	virtual void playSound(BlockSource *source, eOUTCOME outcome);

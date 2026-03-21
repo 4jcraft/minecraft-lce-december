@@ -32,7 +32,7 @@ public:
 	StructureFeature();
 	~StructureFeature();
 
-	virtual wstring getFeatureName() = 0;
+	virtual std::wstring getFeatureName() = 0;
 
 	virtual void addFeature(Level *level, int x, int z, int xOffs, int zOffs, byteArray blocks);
 

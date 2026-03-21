@@ -2,7 +2,7 @@
 #include "net.minecraft.world.entity.player.h"
 #include "HealthCriteria.h"
 
-HealthCriteria::HealthCriteria(const wstring &id) : DummyCriteria(id)
+HealthCriteria::HealthCriteria(const std::wstring &id) : DummyCriteria(id)
 {
 }
 

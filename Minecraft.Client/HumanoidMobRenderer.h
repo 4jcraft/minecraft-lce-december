@@ -8,8 +8,8 @@ class ArmorItem;
 class HumanoidMobRenderer : public MobRenderer
 {
 private:
-	static const wstring MATERIAL_NAMES[5];
-	static std::map<wstring, ResourceLocation> ARMOR_LOCATION_CACHE;
+	static const std::wstring MATERIAL_NAMES[5];
+	static std::map<std::wstring, ResourceLocation> ARMOR_LOCATION_CACHE;
 
 protected:
 	HumanoidModel *humanoidModel;
@@ -25,14 +25,14 @@ public:
 	HumanoidMobRenderer(HumanoidModel *humanoidModel, float shadow);
 	HumanoidMobRenderer(HumanoidModel *humanoidModel, float shadow, float scale);
 
-	virtual void prepareSecondPassArmor(shared_ptr<LivingEntity> mob, int layer, float a);
+	virtual void prepareSecondPassArmor(std::shared_ptr<LivingEntity> mob, int layer, float a);
 
 protected:
 	virtual void createArmorParts();
-	virtual int prepareArmor(shared_ptr<LivingEntity> _mob, int layer, float a);
-	virtual void render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
-	virtual void prepareCarriedItem(shared_ptr<Entity> mob, shared_ptr<ItemInstance> item);
-	virtual void additionalRendering(shared_ptr<LivingEntity> mob, float a);
-	virtual void scale(shared_ptr<LivingEntity> mob, float a);	
+	virtual int prepareArmor(std::shared_ptr<LivingEntity> _mob, int layer, float a);
+	virtual void render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
+	virtual void prepareCarriedItem(std::shared_ptr<Entity> mob, std::shared_ptr<ItemInstance> item);
+	virtual void additionalRendering(std::shared_ptr<LivingEntity> mob, float a);
+	virtual void scale(std::shared_ptr<LivingEntity> mob, float a);	
 };

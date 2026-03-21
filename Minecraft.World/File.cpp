@@ -14,17 +14,17 @@ const wchar_t File::pathSeparator = L'\\';
 #ifdef _XBOX
 const wstring File::pathRoot = L"GAME:"; // Path root after pathSeparator has been removed
 #else
-const wstring File::pathRoot = L""; // Path root after pathSeparator has been removed
+const std::wstring File::pathRoot = L""; // Path root after pathSeparator has been removed
 #endif
 
 //Creates a new File instance from a parent abstract pathname and a child pathname string.
-File::File( const File &parent, const wstring& child )
+File::File( const File &parent, const std::wstring& child )
 {
 	m_abstractPathName = parent.getPath() + pathSeparator + child;
 }
 
 //Creates a new File instance by converting the given pathname string into an abstract pathname.
-File::File( const wstring& pathname ) //: parent( NULL )
+File::File( const std::wstring& pathname ) //: parent( NULL )
 {
 	// #ifndef _CONTENT_PACKAGE
 	// 	char buf[256];
@@ -67,7 +67,7 @@ File::File( const wstring& pathname ) //: parent( NULL )
 	*/
 }
 
-File::File( const wstring& parent, const wstring& child  ) //: m_abstractPathName( child  )
+File::File( const std::wstring& parent, const std::wstring& child  ) //: m_abstractPathName( child  )
 {
 	m_abstractPathName = pathRoot + pathSeparator + parent + pathSeparator + child;
 	//this->parent = new File( parent );
@@ -657,7 +657,7 @@ __int64 File::lastModified()
 	}
 }
 
-const wstring File::getPath() const
+const std::wstring File::getPath() const
 {
 	/*
 	wstring path;
@@ -672,7 +672,7 @@ const wstring File::getPath() const
 	return m_abstractPathName;
 }
 
-wstring File::getName() const
+std::wstring File::getName() const
 {
 	unsigned int sep = (unsigned int )(m_abstractPathName.find_last_of( this->pathSeparator ));
 	return m_abstractPathName.substr( sep + 1, m_abstractPathName.length() );

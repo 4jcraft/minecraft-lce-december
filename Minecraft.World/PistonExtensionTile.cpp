@@ -23,7 +23,7 @@ void PistonExtensionTile::clearOverrideTopTexture()
 	this->overrideTopTexture = NULL;
 }
 
-void PistonExtensionTile::playerWillDestroy(Level *level, int x, int y, int z, int data, shared_ptr<Player> player)
+void PistonExtensionTile::playerWillDestroy(Level *level, int x, int y, int z, int data, std::shared_ptr<Player> player)
 {
 	if (player->abilities.instabuild)
 	{
@@ -117,7 +117,7 @@ int PistonExtensionTile::getResourceCount(Random *random)
 	return 0;
 }
 
-void PistonExtensionTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, shared_ptr<Entity> source)
+void PistonExtensionTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, std::shared_ptr<Entity> source)
 {
 	int data = level->getData(x, y, z);
 
@@ -170,7 +170,7 @@ void PistonExtensionTile::addAABBs(Level *level, int x, int y, int z, AABB *box,
 
 }
 
-void PistonExtensionTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
+void PistonExtensionTile::updateShape(LevelSource *level, int x, int y, int z, int forceData, std::shared_ptr<TileEntity> forceEntity) // 4J added forceData, forceEntity param
 {
 	int data = (forceData == -1 ) ? level->getData(x, y, z) : forceData;
 

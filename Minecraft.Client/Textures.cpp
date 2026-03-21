@@ -292,7 +292,7 @@ void Textures::loadIndexedTextures()
 	}
 }
 
-intArray Textures::loadTexturePixels(TEXTURE_NAME texId, const wstring& resourceName)
+intArray Textures::loadTexturePixels(TEXTURE_NAME texId, const std::wstring& resourceName)
 {
     TexturePack *skin = skins->getSelected();
 
@@ -371,7 +371,7 @@ int Textures::loadTexture(int idx)
 
 // 4J added - textures default to standard 32-bit RGBA format, but where we can, use an 8-bit format. There's 3 different varieties of these currently
 // in the renderer that map the single 8-bit channel to RGBA differently.
-void Textures::setTextureFormat(const wstring& resourceName)
+void Textures::setTextureFormat(const std::wstring& resourceName)
 {
 	// 4J Stu - These texture formats are not currently in the render header
 #ifdef _XBOX
@@ -402,7 +402,7 @@ void Textures::setTextureFormat(const wstring& resourceName)
 	}
 }
 
-void Textures::bindTexture(const wstring &resourceName)
+void Textures::bindTexture(const std::wstring &resourceName)
 {
 	bind(loadTexture(TN_COUNT,resourceName));
 }
@@ -442,7 +442,7 @@ void Textures::bind(int id)
 	}
 }
 
-ResourceLocation *Textures::getTextureLocation(shared_ptr<Entity> entity)
+ResourceLocation *Textures::getTextureLocation(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<ItemEntity> item = dynamic_pointer_cast<ItemEntity>(entity);
 	int iconType = item->getItem()->getIconType();
@@ -467,7 +467,7 @@ void Textures::clearLastBoundId()
 	lastBoundId = -1;
 }
 
-int Textures::loadTexture(TEXTURE_NAME texId, const wstring& resourceName)
+int Textures::loadTexture(TEXTURE_NAME texId, const std::wstring& resourceName)
 {
 // 	char buf[256];
 // 	wcstombs(buf, resourceName.c_str(), 256);
@@ -904,7 +904,7 @@ void Textures::releaseTexture(int id)
     glDeleteTextures(id);
 }
 
-int Textures::loadHttpTexture(const wstring& url, const wstring& backup)
+int Textures::loadHttpTexture(const std::wstring& url, const std::wstring& backup)
 {
     HttpTexture *texture = httpTextures[url];
     if (texture != NULL)
@@ -930,7 +930,7 @@ int Textures::loadHttpTexture(const wstring& url, const wstring& backup)
     return texture->id;
 }
 
-int Textures::loadHttpTexture(const wstring& url, int backup)
+int Textures::loadHttpTexture(const std::wstring& url, int backup)
 {
     HttpTexture *texture = httpTextures[url];
     if (texture != NULL)
@@ -955,12 +955,12 @@ int Textures::loadHttpTexture(const wstring& url, int backup)
     return texture->id;
 }
 
-bool Textures::hasHttpTexture(const wstring &url)
+bool Textures::hasHttpTexture(const std::wstring &url)
 {
 	return httpTextures.find(url) != httpTextures.end();
 }
 
-HttpTexture *Textures::addHttpTexture(const wstring& url, HttpTextureProcessor *processor)
+HttpTexture *Textures::addHttpTexture(const std::wstring& url, HttpTextureProcessor *processor)
 {
     HttpTexture *texture = httpTextures[url];
     if (texture == NULL)
@@ -974,7 +974,7 @@ HttpTexture *Textures::addHttpTexture(const wstring& url, HttpTextureProcessor *
     return texture;
 }
 
-void Textures::removeHttpTexture(const wstring& url)
+void Textures::removeHttpTexture(const std::wstring& url)
 {
     HttpTexture *texture = httpTextures[url];
     if (texture != NULL)
@@ -989,7 +989,7 @@ void Textures::removeHttpTexture(const wstring& url)
 }
 
 // 4J-PB - adding for texture in memory (from global title storage)
-int Textures::loadMemTexture(const wstring& url, const wstring& backup)
+int Textures::loadMemTexture(const std::wstring& url, const std::wstring& backup)
 {
 	MemTexture *texture = NULL;
 	AUTO_VAR(it, memTextures.find(url) );
@@ -1033,7 +1033,7 @@ int Textures::loadMemTexture(const wstring& url, const wstring& backup)
 	return texture->id;
 }
 
-int Textures::loadMemTexture(const wstring& url, int backup)
+int Textures::loadMemTexture(const std::wstring& url, int backup)
 {
 	MemTexture *texture = NULL;
 	AUTO_VAR(it, memTextures.find(url) );
@@ -1076,7 +1076,7 @@ int Textures::loadMemTexture(const wstring& url, int backup)
 	return texture->id;
 }
 
-MemTexture *Textures::addMemTexture(const wstring& name,MemTextureProcessor *processor)
+MemTexture *Textures::addMemTexture(const std::wstring& name,MemTextureProcessor *processor)
 {
 	MemTexture *texture = NULL;
 	AUTO_VAR(it, memTextures.find(name) );
@@ -1122,7 +1122,7 @@ MemTexture *Textures::addMemTexture(const wstring& name,MemTextureProcessor *pro
 // 	return texture;
 // }
 
-void Textures::removeMemTexture(const wstring& url)
+void Textures::removeMemTexture(const std::wstring& url)
 {
 	MemTexture *texture = NULL;
 	AUTO_VAR(it, memTextures.find(url) );
@@ -1286,7 +1286,7 @@ Icon *Textures::getMissingIcon(int type)
 	}
 }
 
-BufferedImage *Textures::readImage(TEXTURE_NAME texId, const wstring& name)	// 4J was InputStream *in
+BufferedImage *Textures::readImage(TEXTURE_NAME texId, const std::wstring& name)	// 4J was InputStream *in
 {
 	BufferedImage *img=NULL;
 	MemSect(32);
@@ -1445,7 +1445,7 @@ wchar_t *TUImagePaths[] =
 	NULL
 };
 
-bool Textures::IsTUImage(TEXTURE_NAME texId, const wstring& name)
+bool Textures::IsTUImage(TEXTURE_NAME texId, const std::wstring& name)
 {
 	int i = 0;
 	if(texId < TN_COUNT)
@@ -1494,7 +1494,7 @@ wchar_t *OriginalImagesPaths[] =
 	NULL
 };
 
-bool Textures::IsOriginalImage(TEXTURE_NAME texId, const wstring& name)
+bool Textures::IsOriginalImage(TEXTURE_NAME texId, const std::wstring& name)
 {
 	int i = 0;
 	if(texId < TN_COUNT)

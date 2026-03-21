@@ -18,7 +18,7 @@ private:
 
 public:
 	CompoundTag() : Tag(L"") {}
-	CompoundTag(const wstring &name) : Tag(name) {}
+	CompoundTag(const std::wstring &name) : Tag(name) {}
 
 	void write(DataOutput *dos)
 	{
@@ -68,157 +68,157 @@ public:
 		return TAG_Compound;
 	}
 
-	void put(const wstring &name, Tag *tag)
+	void put(const std::wstring &name, Tag *tag)
 	{
 		tags[name] = tag->setName(name);
 	}
 
-	void putByte(const wstring &name, byte value)
+	void putByte(const std::wstring &name, byte value)
 	{
 		tags[name] = (new ByteTag(name,value));
 	}
 
-	void putShort(const wstring &name, short value)
+	void putShort(const std::wstring &name, short value)
 	{
 		tags[name] = (new ShortTag(name,value));
 	}
 
-	void putInt(const wstring &name, int value)
+	void putInt(const std::wstring &name, int value)
 	{
 		tags[name] = (new IntTag(name,value));
 	}
 
-	void putLong(const wstring &name, __int64 value)
+	void putLong(const std::wstring &name, __int64 value)
 	{
 		tags[name] = (new LongTag(name,value));
 	}
 
-	void putFloat(const wstring &name, float value)
+	void putFloat(const std::wstring &name, float value)
 	{
 		tags[name] = (new FloatTag(name,value));
 	}
 
-	void putDouble(const wstring &name, double value)
+	void putDouble(const std::wstring &name, double value)
 	{
 		tags[name] = (new DoubleTag(name,value));
 	}
 
-	void putString(const wstring &name, const wstring& value)
+	void putString(const std::wstring &name, const std::wstring& value)
 	{
 		tags[name] = (new StringTag(name,value));
 	}
 
-	void putByteArray(const wstring &name, byteArray value)
+	void putByteArray(const std::wstring &name, byteArray value)
 	{
 		tags[name] = (new ByteArrayTag(name,value));
 	}
 
-	void putIntArray(const wstring &name, intArray value)
+	void putIntArray(const std::wstring &name, intArray value)
 	{
 		tags[name] = (new IntArrayTag(name, value));
 	}
 
-	void putCompound(const wstring &name, CompoundTag *value)
+	void putCompound(const std::wstring &name, CompoundTag *value)
 	{
 		tags[name] = value->setName( wstring( name ) );
 	}
 
-	void putBoolean(const wstring &name, bool val)
+	void putBoolean(const std::wstring &name, bool val)
 	{
 		putByte(name, val?(byte)1:0);
 	}
 
-	Tag *get(const wstring &name)
+	Tag *get(const std::wstring &name)
 	{
 		AUTO_VAR(it, tags.find(name));
 		if(it != tags.end()) return it->second;
 		return NULL;
 	}
 
-	bool contains(const wstring &name)
+	bool contains(const std::wstring &name)
 	{
 		return tags.find(name) != tags.end();
 	}
 
-	byte getByte(const wstring &name)
+	byte getByte(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return (byte)0;
 		return ((ByteTag *) tags[name])->data;
 	}
 
-	short getShort(const wstring &name)
+	short getShort(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return (short)0;
 		return ((ShortTag *) tags[name])->data;
 	}
 
-	int getInt(const wstring &name)
+	int getInt(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return (int)0;
 		return ((IntTag *) tags[name])->data;
 	}
 
-	__int64 getLong(const wstring &name)
+	__int64 getLong(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return (__int64)0;
 		return ((LongTag *) tags[name])->data;
 	}
 
-	float getFloat(const wstring &name)
+	float getFloat(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return (float)0;
 		return ((FloatTag *) tags[name])->data;
 	}
 
-	double getDouble(const wstring &name)
+	double getDouble(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return (double)0;
 		return ((DoubleTag *) tags[name])->data;
 	}
 
-	wstring getString(const wstring &name)
+	std::wstring getString(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return wstring( L"" );
 		return ((StringTag *) tags[name])->data;
 	}
 
-	byteArray getByteArray(const wstring &name)
+	byteArray getByteArray(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return byteArray();
 		return ((ByteArrayTag *) tags[name])->data;
 	}
 
-	intArray getIntArray(const wstring &name)
+	intArray getIntArray(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return intArray();
 		return ((IntArrayTag *) tags[name])->data;
 	}
 
-	CompoundTag *getCompound(const wstring &name)
+	CompoundTag *getCompound(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return new CompoundTag(name);
 		return (CompoundTag *) tags[name];
 	}
 
-	ListTag<Tag> *getList(const wstring &name)
+	ListTag<Tag> *getList(const std::wstring &name)
 	{
 		if (tags.find(name) == tags.end()) return new ListTag<Tag>(name);
 		return (ListTag<Tag> *) tags[name];
 	}
 
-	bool getBoolean(const wstring &string)
+	bool getBoolean(const std::wstring &string)
 	{
 		return getByte(string)!=0;
 	}
 
-	void remove(const wstring &name)
+	void remove(const std::wstring &name)
 	{
 		AUTO_VAR(it, tags.find(name));
 		if(it != tags.end()) tags.erase(it);
 		//tags.remove(name);
 	}
 
-	wstring toString()
+	std::wstring toString()
 	{
 		static const int bufSize = 32;
 		static wchar_t buf[bufSize];
@@ -226,7 +226,7 @@ public:
 		return wstring( buf );
 	}
 
-	void print(char *prefix, ostream out)
+	void print(char *prefix, std::ostream out)
 	{
 		/*
 		Tag::print(prefix, out);

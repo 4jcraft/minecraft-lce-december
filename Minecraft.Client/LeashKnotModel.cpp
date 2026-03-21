@@ -21,14 +21,14 @@ void LeashKnotModel::_init(int u, int v, int tw, int th)
     knot->setPos(0, 0, 0);
 }
 
-void LeashKnotModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void LeashKnotModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
     setupAnim(time, r, bob, yRot, xRot, scale, entity);
 
     knot->render(scale, usecompiled);
 }
 
-void LeashKnotModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void LeashKnotModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
     Model::setupAnim(time, r, bob, yRot, xRot, scale, entity);
 

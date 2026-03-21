@@ -10,12 +10,12 @@ EnderpearlItem::EnderpearlItem(int id) : Item(id)
 	maxStackSize = 16;
 }
 
-bool EnderpearlItem::TestUse(shared_ptr<ItemInstance> itemInstance, Level *level, shared_ptr<Player> player)
+bool EnderpearlItem::TestUse(std::shared_ptr<ItemInstance> itemInstance, Level *level, std::shared_ptr<Player> player)
 {
 	return true;
 }
 
-shared_ptr<ItemInstance> EnderpearlItem::use(shared_ptr<ItemInstance> instance, Level *level, shared_ptr<Player> player)
+std::shared_ptr<ItemInstance> EnderpearlItem::use(std::shared_ptr<ItemInstance> instance, Level *level, std::shared_ptr<Player> player)
 {
 	// 4J-PB - Not sure why this was disabled for creative mode, so commenting out
 	//if (player->abilities.instabuild) return instance;

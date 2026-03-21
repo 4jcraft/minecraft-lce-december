@@ -20,12 +20,12 @@ void DropperTile::registerIcons(IconRegister *iconRegister)
 	iconFrontVertical = iconRegister->registerIcon(getIconName() + L"_front_vertical");
 }
 
-DispenseItemBehavior *DropperTile::getDispenseMethod(shared_ptr<ItemInstance> item)
+DispenseItemBehavior *DropperTile::getDispenseMethod(std::shared_ptr<ItemInstance> item)
 {
 	return DISPENSE_BEHAVIOUR;
 }
 
-shared_ptr<TileEntity> DropperTile::newTileEntity(Level *level)
+std::shared_ptr<TileEntity> DropperTile::newTileEntity(Level *level)
 {
 	return shared_ptr<DropperTileEntity>( new DropperTileEntity() );
 }

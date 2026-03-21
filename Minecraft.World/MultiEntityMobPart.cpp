@@ -3,7 +3,7 @@
 #include "MultiEntityMob.h"
 #include "MultiEntityMobPart.h"
 
-MultiEntityMobPart::MultiEntityMobPart(shared_ptr<MultiEntityMob>parentMob, const wstring &id, float w, float h) : Entity(parentMob->getLevel()), parentMob( parentMob ), id( id )
+MultiEntityMobPart::MultiEntityMobPart(std::shared_ptr<MultiEntityMob>parentMob, const std::wstring &id, float w, float h) : Entity(parentMob->getLevel()), parentMob( parentMob ), id( id )
 {
 	// 4J Stu - This function call had to be moved here from the Entity ctor to ensure that
 	// the derived version of the function is called
@@ -36,7 +36,7 @@ bool MultiEntityMobPart::hurt(DamageSource *source, float damage)
 	return parentMob.lock()->hurt( dynamic_pointer_cast<MultiEntityMobPart>( shared_from_this() ), source, damage);
 }
 
-bool MultiEntityMobPart::is(shared_ptr<Entity> other)
+bool MultiEntityMobPart::is(std::shared_ptr<Entity> other)
 {
 	return shared_from_this() == other || parentMob.lock() == dynamic_pointer_cast<MultiEntityMob>(other);
 }

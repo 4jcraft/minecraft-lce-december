@@ -526,7 +526,7 @@ void StatsScreen::ItemStatisticsList::renderItem(int i, int x, int y, int h, Tes
     renderStat((ItemStat *) stat, x + ROW_COL_3, y, i % 2 == 0);*/
 }
 
-wstring StatsScreen::ItemStatisticsList::getHeaderDescriptionId(int column)
+std::wstring StatsScreen::ItemStatisticsList::getHeaderDescriptionId(int column)
 {
 	if (column == COLUMN_CRAFTED)
 	{
@@ -653,7 +653,7 @@ void StatsScreen::BlockStatisticsList::renderItem(int i, int x, int y, int h, Te
     renderStat((ItemStat *) mineCount, x + ROW_COL_3, y, i % 2 == 0);*/
 }
 
-wstring StatsScreen::BlockStatisticsList::getHeaderDescriptionId(int column)
+std::wstring StatsScreen::BlockStatisticsList::getHeaderDescriptionId(int column)
 {
 	if (column == COLUMN_CRAFTED)
 	{

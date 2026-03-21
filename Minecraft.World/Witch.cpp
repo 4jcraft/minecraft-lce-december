@@ -194,7 +194,7 @@ void Witch::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel)
 	}
 }
 
-void Witch::performRangedAttack(shared_ptr<LivingEntity> target, float power)
+void Witch::performRangedAttack(std::shared_ptr<LivingEntity> target, float power)
 {
 	if (isUsingItem()) return;
 

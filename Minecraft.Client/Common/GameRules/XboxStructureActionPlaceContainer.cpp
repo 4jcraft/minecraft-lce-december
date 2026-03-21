@@ -48,7 +48,7 @@ GameRuleDefinition *XboxStructureActionPlaceContainer::addChild(ConsoleGameRules
 	return rule;
 }
 
-void XboxStructureActionPlaceContainer::addAttribute(const wstring &attributeName, const wstring &attributeValue)
+void XboxStructureActionPlaceContainer::addAttribute(const std::wstring &attributeName, const std::wstring &attributeValue)
 {
 	if(attributeName.compare(L"facing") == 0)
 	{

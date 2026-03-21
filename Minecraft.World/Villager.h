@@ -39,7 +39,7 @@ private:
 	int updateMerchantTimer;
 	bool addRecipeOnUpdate;
 	int riches;
-	wstring lastPlayerTradeName;
+	std::wstring lastPlayerTradeName;
 
 	bool rewardPlayersOnFirstVillage;
 
@@ -146,5 +146,5 @@ public:
 	virtual void setRewardPlayersInVillage();
 	virtual shared_ptr<AgableMob> getBreedOffspring(shared_ptr<AgableMob> target);
 	virtual bool canBeLeashed();
-	virtual wstring getDisplayName();
+	virtual std::wstring getDisplayName();
 };

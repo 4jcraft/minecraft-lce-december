@@ -1,6 +1,5 @@
 #pragma once
 
-using namespace std;
 
 #include "com.mojang.nbt.h"
 #include "TileEntity.h"
@@ -25,7 +24,7 @@ private:
 	Random *random;
 
 protected:
-	wstring name;
+	std::wstring name;
 
 public:
 	DispenserTileEntity();
@@ -39,9 +38,9 @@ public:
 	virtual int getRandomSlot();
 	virtual void setItem(unsigned int slot, shared_ptr<ItemInstance> item);
 	virtual int addItem(shared_ptr<ItemInstance> item);
-	virtual wstring getName();
-	virtual wstring getCustomName();
-	virtual void setCustomName(const wstring &name);
+	virtual std::wstring getName();
+	virtual std::wstring getCustomName();
+	virtual void setCustomName(const std::wstring &name);
 	virtual bool hasCustomName();
 	virtual void load(CompoundTag *base);
 	virtual void save(CompoundTag *base);

@@ -78,7 +78,7 @@ OcelotModel::OcelotModel()
 	backLegR->compile(1.0f/16.0f);
 }
 
-void OcelotModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void OcelotModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
 	setupAnim(time, r, bob, yRot, xRot, scale, entity);
 	if (young)
@@ -147,7 +147,7 @@ void OcelotModel::render(OcelotModel *model, float scale, bool usecompiled)
 	body->render(scale, usecompiled);
 }
 
-void OcelotModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void OcelotModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	head->xRot = xRot / (float) (180 / PI);
 	head->yRot = yRot / (float) (180 / PI);
@@ -180,7 +180,7 @@ void OcelotModel::setupAnim(float time, float r, float bob, float yRot, float xR
 	}
 }
 
-void OcelotModel::prepareMobModel(shared_ptr<LivingEntity> mob, float time, float r, float a)
+void OcelotModel::prepareMobModel(std::shared_ptr<LivingEntity> mob, float time, float r, float a)
 {
 	shared_ptr<Ocelot> ozelot = dynamic_pointer_cast<Ocelot>(mob);
 

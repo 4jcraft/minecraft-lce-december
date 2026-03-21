@@ -190,7 +190,7 @@ Biome *Biome::setSnowCovered()
 	return this;
 }
 
-Biome *Biome::setName(const wstring &name)
+Biome *Biome::setName(const std::wstring &name)
 {
 	this->m_name = name;
 	return this;

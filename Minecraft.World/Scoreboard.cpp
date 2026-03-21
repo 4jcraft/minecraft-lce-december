@@ -2,13 +2,13 @@
 
 #include "Scoreboard.h"
 
-Objective *Scoreboard::getObjective(const wstring &name)
+Objective *Scoreboard::getObjective(const std::wstring &name)
 {
 	return NULL;
 	//return objectivesByName.find(name)->second;
 }
 
-Objective *Scoreboard::addObjective(const wstring &name, ObjectiveCriteria *criteria)
+Objective *Scoreboard::addObjective(const std::wstring &name, ObjectiveCriteria *criteria)
 {
 	return NULL;
 //	Objective *objective = getObjective(name);
@@ -45,7 +45,7 @@ vector<Objective *> *Scoreboard::findObjectiveFor(ObjectiveCriteria *criteria)
 	//return objectives == NULL ? new vector<Objective *>() : new vector<Objective *>(objectives);
 }
 
-Score *Scoreboard::getPlayerScore(const wstring &name, Objective *objective)
+Score *Scoreboard::getPlayerScore(const std::wstring &name, Objective *objective)
 {
 	return NULL;
 	//unordered_map<Objective *, Score *> *scores = playerScores.find(name)->it;
@@ -95,7 +95,7 @@ vector<wstring> *Scoreboard::getTrackedPlayers()
 	//return playerScores.keySet();
 }
 
-void Scoreboard::resetPlayerScore(const wstring &player)
+void Scoreboard::resetPlayerScore(const std::wstring &player)
 {
 	//unordered_map<Objective *, Score *> *removed = playerScores.remove(player);
 
@@ -133,7 +133,7 @@ vector<Score *> *Scoreboard::getScores(Objective *objective)
 	//return result;
 }
 
-unordered_map<Objective *, Score *> *Scoreboard::getPlayerScores(const wstring &player)
+unordered_map<Objective *, Score *> *Scoreboard::getPlayerScores(const std::wstring &player)
 {
 	return NULL;
 	//Map<Objective, Score> result = playerScores.get(player);
@@ -170,13 +170,13 @@ Objective *Scoreboard::getDisplayObjective(int slot)
 	//return displayObjectives[slot];
 }
 
-PlayerTeam *Scoreboard::getPlayerTeam(const wstring &name)
+PlayerTeam *Scoreboard::getPlayerTeam(const std::wstring &name)
 {
 	return NULL;
 	//return teamsByName.get(name);
 }
 
-PlayerTeam *Scoreboard::addPlayerTeam(const wstring &name)
+PlayerTeam *Scoreboard::addPlayerTeam(const std::wstring &name)
 {
 	return NULL;
 	//PlayerTeam team = getPlayerTeam(name);
@@ -202,7 +202,7 @@ void Scoreboard::removePlayerTeam(PlayerTeam *team)
 	//onTeamRemoved(team);
 }
 
-void Scoreboard::addPlayerToTeam(const wstring &player, PlayerTeam *team)
+void Scoreboard::addPlayerToTeam(const std::wstring &player, PlayerTeam *team)
 {
 	//if (getPlayersTeam(player) != null) {
 	//	removePlayerFromTeam(player);
@@ -212,7 +212,7 @@ void Scoreboard::addPlayerToTeam(const wstring &player, PlayerTeam *team)
 	//team.getPlayers().add(player);
 }
 
-bool Scoreboard::removePlayerFromTeam(const wstring &player)
+bool Scoreboard::removePlayerFromTeam(const std::wstring &player)
 {
 	return false;
 	//PlayerTeam team = getPlayersTeam(player);
@@ -225,7 +225,7 @@ bool Scoreboard::removePlayerFromTeam(const wstring &player)
 	//}
 }
 
-void Scoreboard::removePlayerFromTeam(const wstring &player, PlayerTeam *team)
+void Scoreboard::removePlayerFromTeam(const std::wstring &player, PlayerTeam *team)
 {
 	//if (getPlayersTeam(player) != team) {
 	//	throw new IllegalStateException("Player is either on another team or not on any team. Cannot remove from team '" + team.getName() + "'.");
@@ -247,13 +247,13 @@ vector<PlayerTeam *> *Scoreboard::getPlayerTeams()
 	//return teamsByName.values();
 }
 
-shared_ptr<Player> Scoreboard::getPlayer(const wstring &name)
+std::shared_ptr<Player> Scoreboard::getPlayer(const std::wstring &name)
 {
 	return nullptr;
 	//return MinecraftServer.getInstance().getPlayers().getPlayer(name);
 }
 
-PlayerTeam *Scoreboard::getPlayersTeam(const wstring &name)
+PlayerTeam *Scoreboard::getPlayersTeam(const std::wstring &name)
 {
 	return NULL;
 	//return teamsByPlayer.get(name);
@@ -275,7 +275,7 @@ void Scoreboard::onScoreChanged(Score *score)
 {
 }
 
-void Scoreboard::onPlayerRemoved(const wstring &player)
+void Scoreboard::onPlayerRemoved(const std::wstring &player)
 {
 }
 
@@ -291,7 +291,7 @@ void Scoreboard::onTeamRemoved(PlayerTeam *team)
 {
 }
 
-wstring Scoreboard::getDisplaySlotName(int slot)
+std::wstring Scoreboard::getDisplaySlotName(int slot)
 {
 	switch (slot)
 	{
@@ -306,7 +306,7 @@ wstring Scoreboard::getDisplaySlotName(int slot)
 	}
 }
 
-int Scoreboard::getDisplaySlotByName(const wstring &name)
+int Scoreboard::getDisplaySlotByName(const std::wstring &name)
 {
 	return -1;
 	//if (name.equalsIgnoreCase("list"))

@@ -49,7 +49,7 @@ ChickenModel::ChickenModel() : Model()
     wing1->compile(1.0f/16.0f);
 }
 
-void ChickenModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void ChickenModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
     setupAnim(time, r, bob, yRot, xRot, scale, entity);
 	if (young) 
@@ -84,7 +84,7 @@ void ChickenModel::render(shared_ptr<Entity> entity, float time, float r, float 
 	}
 }
 
-void ChickenModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
+void ChickenModel::setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim)
 {
 	head->xRot = xRot / (float) (180 / PI);
 	head->yRot = yRot / (float) (180 / PI);

@@ -13,7 +13,7 @@ private:
 	Sensitivity sensitivity;
 
 public:
-	PressurePlateTile(int id, const wstring &tex, Material *material, Sensitivity sensitivity);
+	PressurePlateTile(int id, const std::wstring &tex, Material *material, Sensitivity sensitivity);
 
 protected:
 	virtual int getDataForSignal(int signal);

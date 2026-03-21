@@ -113,7 +113,7 @@ void Blaze::aiStep()
 	Monster::aiStep();
 }
 
-void Blaze::checkHurtTarget(shared_ptr<Entity> target, float d)
+void Blaze::checkHurtTarget(std::shared_ptr<Entity> target, float d)
 {
 	if (attackTime <= 0 && d < 2.0f && target->bb->y1 > bb->y0 && target->bb->y0 < bb->y1)
 	{

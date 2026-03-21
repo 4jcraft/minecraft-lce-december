@@ -11,16 +11,16 @@ public:
 
 private:
 	Scoreboard *scoreboard;
-	wstring name;
+	std::wstring name;
 	ObjectiveCriteria *criteria;
-	wstring displayName;
+	std::wstring displayName;
 
 public:
-	Objective(Scoreboard *scoreboard, const wstring &name, ObjectiveCriteria *criteria);
+	Objective(Scoreboard *scoreboard, const std::wstring &name, ObjectiveCriteria *criteria);
 
 	Scoreboard *getScoreboard();
-	wstring getName();
+	std::wstring getName();
 	ObjectiveCriteria *getCriteria();
-	wstring getDisplayName();
-	void setDisplayName(const wstring &name);
+	std::wstring getDisplayName();
+	void setDisplayName(const std::wstring &name);
 };

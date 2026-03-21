@@ -6,7 +6,7 @@
 #include "net.minecraft.world.item.crafting.h"
 #include "ArmorSlot.h"
 
-ArmorSlot::ArmorSlot(int slotNum, shared_ptr<Container> container, int id, int x, int y)
+ArmorSlot::ArmorSlot(int slotNum, std::shared_ptr<Container> container, int id, int x, int y)
 	: Slot( container, id, x, y ),
 	slotNum( slotNum )
 {
@@ -17,7 +17,7 @@ int ArmorSlot::getMaxStackSize()
 	return 1;
 }
 
-bool ArmorSlot::mayPlace(shared_ptr<ItemInstance> item)
+bool ArmorSlot::mayPlace(std::shared_ptr<ItemInstance> item)
 {
 	if (item == NULL)
 	{

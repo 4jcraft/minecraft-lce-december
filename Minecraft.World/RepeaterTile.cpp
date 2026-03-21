@@ -12,7 +12,7 @@ RepeaterTile::RepeaterTile(int id, bool on) : DiodeTile(id, on)
 {
 }
 
-bool RepeaterTile::use(Level *level, int x, int y, int z, shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
+bool RepeaterTile::use(Level *level, int x, int y, int z, std::shared_ptr<Player> player, int clickedFace, float clickX, float clickY, float clickZ, bool soundOnly)
 {
 	if (soundOnly)	return false;
 

@@ -33,18 +33,18 @@ public:
 	void setSplash(bool splash);
 	bool isAmbient();
 
-	bool tick(shared_ptr<LivingEntity> target);
+	bool tick(std::shared_ptr<LivingEntity> target);
 
 private:
 	int tickDownDuration();
 
 public:
-	void applyEffect(shared_ptr<LivingEntity> mob);
+	void applyEffect(std::shared_ptr<LivingEntity> mob);
 	int getDescriptionId();
 	int getPostfixDescriptionId(); // 4J Added
 	int hashCode();
 
-	wstring toString();
+	std::wstring toString();
 
 	// Was bool equals(Object obj)
 	bool equals(MobEffectInstance *obj);

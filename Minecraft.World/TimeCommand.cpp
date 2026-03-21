@@ -15,7 +15,7 @@ int TimeCommand::getPermissionLevel()
 	return LEVEL_GAMEMASTERS;
 }
 
-void TimeCommand::execute(shared_ptr<CommandSender> source, byteArray commandData)
+void TimeCommand::execute(std::shared_ptr<CommandSender> source, byteArray commandData)
 {
 	ByteArrayInputStream bais(commandData);
 	DataInputStream dis(&bais);
@@ -57,7 +57,7 @@ void TimeCommand::execute(shared_ptr<CommandSender> source, byteArray commandDat
 	//throw new UsageException("commands.time.usage");
 }
 
-void TimeCommand::doSetTime(shared_ptr<CommandSender> source, int value)
+void TimeCommand::doSetTime(std::shared_ptr<CommandSender> source, int value)
 {
 	for (int i = 0; i < MinecraftServer::getInstance()->levels.length; i++)
 	{
@@ -65,7 +65,7 @@ void TimeCommand::doSetTime(shared_ptr<CommandSender> source, int value)
 	}
 }
 
-void TimeCommand::doAddTime(shared_ptr<CommandSender> source, int value)
+void TimeCommand::doAddTime(std::shared_ptr<CommandSender> source, int value)
 {
 	for (int i = 0; i < MinecraftServer::getInstance()->levels.length; i++)
 	{
@@ -74,7 +74,7 @@ void TimeCommand::doAddTime(shared_ptr<CommandSender> source, int value)
 	}
 }
 
-shared_ptr<GameCommandPacket> TimeCommand::preparePacket(bool night)
+std::shared_ptr<GameCommandPacket> TimeCommand::preparePacket(bool night)
 {
 	ByteArrayOutputStream baos;
 	DataOutputStream dos(&baos);

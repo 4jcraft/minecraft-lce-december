@@ -7,7 +7,7 @@
 #include "MinecartItem.h"
 
 
-shared_ptr<ItemInstance> MinecartItem::MinecartDispenseBehavior::execute(BlockSource *source, shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
+std::shared_ptr<ItemInstance> MinecartItem::MinecartDispenseBehavior::execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome)
 {
 	FacingEnum *facing = DispenserTile::getFacing(source->getData());
 	Level *world = source->getWorld();
@@ -70,7 +70,7 @@ MinecartItem::MinecartItem(int id, int type) : Item(id)
 	DispenserTile::REGISTRY.add(this, new MinecartDispenseBehavior());
 }
 
-bool MinecartItem::useOn(shared_ptr<ItemInstance> instance, shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
+bool MinecartItem::useOn(std::shared_ptr<ItemInstance> instance, std::shared_ptr<Player> player, Level *level, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly)
 {
 	// 4J-PB - Adding a test only version to allow tooltips to be displayed
 	int targetType = level->getTile(x, y, z);

@@ -214,30 +214,30 @@ bool	CGameNetworkManager::StartNetworkGame(Minecraft *minecraft, LPVOID lpParame
 					{
 #ifdef _XBOX
 #ifdef _TU_BUILD
-						wstring fileRoot = L"UPDATE:\\res\\GameRules\\" + param->levelGen->getBaseSavePath();
+						std::wstring fileRoot = L"UPDATE:\\res\\GameRules\\" + param->levelGen->getBaseSavePath();
 #else
-						wstring fileRoot = L"GAME:\\res\\TitleUpdate\\GameRules\\" + param->levelGen->getBaseSavePath();
+						std::wstring fileRoot = L"GAME:\\res\\TitleUpdate\\GameRules\\" + param->levelGen->getBaseSavePath();
 #endif
 #else
 #ifdef _WINDOWS64
-						wstring fileRoot = L"Windows64Media\\Tutorial\\" + param->levelGen->getBaseSavePath();
+						std::wstring fileRoot = L"Windows64Media\\Tutorial\\" + param->levelGen->getBaseSavePath();
 						File root(fileRoot);
 						if(!root.exists()) fileRoot = L"Windows64\\Tutorial\\" + param->levelGen->getBaseSavePath();
 #elif defined(__ORBIS__)
-						wstring fileRoot = L"/app0/orbis/Tutorial/" + param->levelGen->getBaseSavePath();
+						std::wstring fileRoot = L"/app0/orbis/Tutorial/" + param->levelGen->getBaseSavePath();
 #elif defined(__PSVITA__)
-						wstring fileRoot = L"PSVita/Tutorial/" + param->levelGen->getBaseSavePath();
+						std::wstring fileRoot = L"PSVita/Tutorial/" + param->levelGen->getBaseSavePath();
 #elif defined(__PS3__)
-						wstring fileRoot = L"PS3/Tutorial/" + param->levelGen->getBaseSavePath();
+						std::wstring fileRoot = L"PS3/Tutorial/" + param->levelGen->getBaseSavePath();
 #else
-						wstring fileRoot = L"Tutorial\\" + param->levelGen->getBaseSavePath();
+						std::wstring fileRoot = L"Tutorial\\" + param->levelGen->getBaseSavePath();
 #endif
 #endif
 						File grf(fileRoot);
 						if (grf.exists())
 						{
 #ifdef _UNICODE
-							wstring path = grf.getPath();
+							std::wstring path = grf.getPath();
 							const WCHAR *pchFilename=path.c_str();
 							HANDLE fileHandle = CreateFile(
 								pchFilename, // file name
@@ -348,7 +348,7 @@ bool	CGameNetworkManager::StartNetworkGame(Minecraft *minecraft, LPVOID lpParame
 
 	// PRIMARY PLAYER
 
-	vector<ClientConnection *> createdConnections;
+	std::vector<ClientConnection *> createdConnections;
 	ClientConnection *connection;
 
 	if( g_NetworkManager.IsHost() )
@@ -389,7 +389,7 @@ bool	CGameNetworkManager::StartNetworkGame(Minecraft *minecraft, LPVOID lpParame
 		return false;
 	}
 
-	connection->send( shared_ptr<PreLoginPacket>( new PreLoginPacket(minecraft->user->name) ) );
+	connection->send( std::shared_ptr<PreLoginPacket>( new PreLoginPacket(minecraft->user->name) ) );
 
 	// Tick connection until we're ready to go. The stages involved in this are:
 	// (1) Creating the ClientConnection sends a prelogin packet to the server
@@ -476,7 +476,7 @@ bool	CGameNetworkManager::StartNetworkGame(Minecraft *minecraft, LPVOID lpParame
 			// Open the socket on the server end to accept incoming data
 			Socket::addIncomingSocket(socket);
 
-			connection->send( shared_ptr<PreLoginPacket>( new PreLoginPacket(convStringToWstring( ProfileManager.GetGamertag(idx) )) ) );
+			connection->send( std::shared_ptr<PreLoginPacket>( new PreLoginPacket(convStringToWstring( ProfileManager.GetGamertag(idx) )) ) );
 
 			createdConnections.push_back( connection );
 
@@ -505,7 +505,7 @@ bool	CGameNetworkManager::StartNetworkGame(Minecraft *minecraft, LPVOID lpParame
 
 			// 4J Stu - Fix for #11279 - CRASH: TCR 001: BAS Game Stability: Signing out of game will cause title to crash
 			// We need to break out of the above loop if m_bLeavingGame is set, and stop creating new connections
-			// The connections in the createdConnections vector get closed at the end of the thread
+			// The connections in the createdConnections std::vector get closed at the end of the thread
 			if( g_NetworkManager.IsLeavingGame() || !IsInSession() ) break;
 
 			if( ProfileManager.IsSignedIn(idx) && !connection->isClosed() )
@@ -601,7 +601,7 @@ INetworkPlayer *CGameNetworkManager::GetPlayerBySmallId(unsigned char smallId)
 }
 
 #ifdef _DURANGO
-wstring CGameNetworkManager::GetDisplayNameByGamertag(wstring gamertag)
+std::wstring CGameNetworkManager::GetDisplayNameByGamertag(std::wstring gamertag)
 {
 	return s_pPlatformNetworkManager->GetDisplayNameByGamertag(gamertag);
 }
@@ -695,7 +695,7 @@ bool CGameNetworkManager::SessionHasSpace(unsigned int spaceRequired)
 	return s_pPlatformNetworkManager->SessionHasSpace( spaceRequired );
 }
 
-vector<FriendSessionInfo *>	*CGameNetworkManager::GetSessionList(int iPad, int localPlayers, bool partyOnly)
+std::vector<FriendSessionInfo *>	*CGameNetworkManager::GetSessionList(int iPad, int localPlayers, bool partyOnly)
 {
 	return s_pPlatformNetworkManager->GetSessionList( iPad, localPlayers, partyOnly );
 }
@@ -1215,7 +1215,7 @@ int CGameNetworkManager::ChangeSessionTypeThreadProc( void* lpParam )
 		PlayerList *players = pServer->getPlayers();
 		for(AUTO_VAR(it, players->players.begin()); it < players->players.end(); ++it)
 		{
-			shared_ptr<ServerPlayer> servPlayer = *it;
+			std::shared_ptr<ServerPlayer> servPlayer = *it;
 			if( servPlayer->connection->isLocal() && !servPlayer->connection->isGuest() )
 			{
 				servPlayer->connection->connection->getSocket()->setPlayer(NULL);
@@ -1283,7 +1283,7 @@ int CGameNetworkManager::ChangeSessionTypeThreadProc( void* lpParam )
 				PlayerList *players = pServer->getPlayers();
 				for(AUTO_VAR(it, players->players.begin()); it < players->players.end(); ++it)
 				{
-					shared_ptr<ServerPlayer> servPlayer = *it;
+					std::shared_ptr<ServerPlayer> servPlayer = *it;
 					if( servPlayer->getXuid() == localPlayerXuid )
 					{
 						servPlayer->connection->connection->getSocket()->setPlayer( g_NetworkManager.GetLocalPlayerByUserIndex(index) );
@@ -1347,7 +1347,7 @@ bool CGameNetworkManager::SystemFlagGet(INetworkPlayer *pNetworkPlayer, int inde
 	return s_pPlatformNetworkManager->SystemFlagGet( pNetworkPlayer, index );
 }
 
-wstring CGameNetworkManager::GatherStats()
+std::wstring CGameNetworkManager::GatherStats()
 {
 	return s_pPlatformNetworkManager->GatherStats();
 }
@@ -1365,7 +1365,7 @@ void CGameNetworkManager::renderQueueMeter()
 #endif
 }
 
-wstring CGameNetworkManager::GatherRTTStats()
+std::wstring CGameNetworkManager::GatherRTTStats()
 {
 	return s_pPlatformNetworkManager->GatherRTTStats();
 }
@@ -1479,7 +1479,7 @@ void CGameNetworkManager::CreateSocket( INetworkPlayer *pNetworkPlayer, bool loc
 	Minecraft *pMinecraft = Minecraft::GetInstance();
 
 	Socket *socket = NULL;
-	shared_ptr<MultiplayerLocalPlayer> mpPlayer = pMinecraft->localplayers[pNetworkPlayer->GetUserIndex()];
+	std::shared_ptr<MultiplayerLocalPlayer> mpPlayer = pMinecraft->localplayers[pNetworkPlayer->GetUserIndex()];
 	if( localPlayer && mpPlayer != NULL && mpPlayer->connection != NULL)
 	{
 		// If we already have a MultiplayerLocalPlayer here then we are doing a session type change
@@ -1516,7 +1516,7 @@ void CGameNetworkManager::CreateSocket( INetworkPlayer *pNetworkPlayer, bool loc
 
 			if( connection->createdOk )
 			{
-				connection->send( shared_ptr<PreLoginPacket>( new PreLoginPacket( pNetworkPlayer->GetOnlineName() ) ) );
+				connection->send( std::shared_ptr<PreLoginPacket>( new PreLoginPacket( pNetworkPlayer->GetOnlineName() ) ) );
 				pMinecraft->addPendingLocalConnection(idx, connection);
 			}
 			else

@@ -34,7 +34,7 @@ UIComponent_Tooltips::UIComponent_Tooltips(int iPad, void *initData, UILayer *pa
 #endif
 }
 
-wstring UIComponent_Tooltips::getMoviePath()
+std::wstring UIComponent_Tooltips::getMoviePath()
 {
 	switch( m_parentLayer->getViewport() )
 	{

@@ -93,7 +93,7 @@ UIScene_TeleportMenu::UIScene_TeleportMenu(int iPad, void *initData, UILayer *pa
 	ui.HidePressStart();
 }
 
-wstring UIScene_TeleportMenu::getMoviePath()
+std::wstring UIScene_TeleportMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

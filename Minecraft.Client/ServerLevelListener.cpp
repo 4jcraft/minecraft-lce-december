@@ -33,20 +33,20 @@ void ServerLevelListener::allChanged()
 {
 }
 
-void ServerLevelListener::entityAdded(shared_ptr<Entity> entity)
+void ServerLevelListener::entityAdded(std::shared_ptr<Entity> entity)
 {
 	MemSect(10);
 	level->getTracker()->addEntity(entity);
 	MemSect(0);
 }
 
-void ServerLevelListener::entityRemoved(shared_ptr<Entity> entity)
+void ServerLevelListener::entityRemoved(std::shared_ptr<Entity> entity)
 {
 	level->getTracker()->removeEntity(entity);
 }
 
 // 4J added
-void ServerLevelListener::playerRemoved(shared_ptr<Entity> entity)
+void ServerLevelListener::playerRemoved(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<ServerPlayer> player = dynamic_pointer_cast<ServerPlayer>(entity);
 	player->getLevel()->getTracker()->removePlayer(entity);
@@ -66,7 +66,7 @@ void ServerLevelListener::playSound(int iSound, double x, double y, double z, fl
 	}
 }
 
-void ServerLevelListener::playSoundExceptPlayer(shared_ptr<Player> player, int iSound, double x, double y, double z, float volume, float pitch, float fSoundClipDist)
+void ServerLevelListener::playSoundExceptPlayer(std::shared_ptr<Player> player, int iSound, double x, double y, double z, float volume, float pitch, float fSoundClipDist)
 {
 	if(iSound < 0)
 	{
@@ -97,11 +97,11 @@ void ServerLevelListener::tileLightChanged(int x, int y, int z)
 {
 }
 
-void ServerLevelListener::playStreamingMusic(const wstring& name, int x, int y, int z)
+void ServerLevelListener::playStreamingMusic(const std::wstring& name, int x, int y, int z)
 {
 }
 
-void ServerLevelListener::levelEvent(shared_ptr<Player> source, int type, int x, int y, int z, int data)
+void ServerLevelListener::levelEvent(std::shared_ptr<Player> source, int type, int x, int y, int z, int data)
 {
 	server->getPlayers()->broadcast(source, x, y, z, 64, level->dimension->id, shared_ptr<LevelEventPacket>( new LevelEventPacket(type, x, y, z, data, false) ) );
 }

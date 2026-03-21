@@ -101,7 +101,7 @@ protected:
 	void toSymbols(char *);
 	void fromSymbols(char *);
 
-	bool test_string(string);
+	bool test_string(std::string);
 
 	void initReadScoreStruct(ReadScore &out, SceNpScoreRankData &);
 	void fillReadScoreStruct(ReadScore &out, SceNpScoreComment &comment);

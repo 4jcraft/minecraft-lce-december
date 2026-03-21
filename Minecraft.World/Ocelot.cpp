@@ -168,7 +168,7 @@ int Ocelot::getDeathLoot()
 	return Item::leather_Id;
 }
 
-bool Ocelot::doHurtTarget(shared_ptr<Entity> target)
+bool Ocelot::doHurtTarget(std::shared_ptr<Entity> target)
 {
 	return target->hurt(DamageSource::mobAttack(dynamic_pointer_cast<Mob>(shared_from_this())), 3);
 }
@@ -184,7 +184,7 @@ void Ocelot::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel)
 {
 }
 
-bool Ocelot::mobInteract(shared_ptr<Player> player)
+bool Ocelot::mobInteract(std::shared_ptr<Player> player)
 {
 	shared_ptr<ItemInstance> item = player->inventory->getSelected();
 	if (isTame())
@@ -235,7 +235,7 @@ bool Ocelot::mobInteract(shared_ptr<Player> player)
 	return TamableAnimal::mobInteract(player);
 }
 
-shared_ptr<AgableMob> Ocelot::getBreedOffspring(shared_ptr<AgableMob> target)
+std::shared_ptr<AgableMob> Ocelot::getBreedOffspring(std::shared_ptr<AgableMob> target)
 {
 	// 4J - added limit to number of animals that can be bred
 	if( level->canCreateMore( GetType(), Level::eSpawnType_Breed) )
@@ -255,12 +255,12 @@ shared_ptr<AgableMob> Ocelot::getBreedOffspring(shared_ptr<AgableMob> target)
 	}
 }
 
-bool Ocelot::isFood(shared_ptr<ItemInstance> itemInstance)
+bool Ocelot::isFood(std::shared_ptr<ItemInstance> itemInstance)
 {
 	return itemInstance != NULL && itemInstance->id == Item::fish_raw_Id;
 }
 
-bool Ocelot::canMate(shared_ptr<Animal> animal)
+bool Ocelot::canMate(std::shared_ptr<Animal> animal)
 {
 	if (animal == shared_from_this()) return false;
 	if (!isTame()) return false;
@@ -308,7 +308,7 @@ bool Ocelot::canSpawn()
 	return false;
 }
 
-wstring Ocelot::getAName()
+std::wstring Ocelot::getAName()
 {
 	if (hasCustomName()) return getCustomName();
 #ifdef _DEBUG

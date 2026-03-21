@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 class DataLayer;
 class TileEntity;
@@ -209,7 +208,7 @@ public:
 #endif
 	virtual void markUnsaved();
 	virtual void getEntities(shared_ptr<Entity> except, AABB *bb, vector<shared_ptr<Entity> > &es, const EntitySelector *selector);
-	virtual void getEntitiesOfClass(const type_info& ec, AABB *bb, vector<shared_ptr<Entity> > &es, const EntitySelector *selector);
+	virtual void getEntitiesOfClass(const std::type_info& ec, AABB *bb, vector<shared_ptr<Entity> > &es, const EntitySelector *selector);
 	virtual int countEntities();
 	virtual bool shouldSave(bool force);
 	virtual int getBlocksAndData(byteArray *data, int x0, int y0, int z0, int x1, int y1, int z1, int p, bool includeLighting = true);	// 4J - added includeLighting parameter

@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "ChoiceTask.h"
 
@@ -19,5 +19,5 @@ public:
 
 	virtual int getDescriptionId();
 
-	virtual void onLookAtEntity(shared_ptr<Entity> entity);
+	virtual void onLookAtEntity(std::shared_ptr<Entity> entity);
 };

@@ -11,12 +11,12 @@ OcelotRenderer::OcelotRenderer(Model *model, float shadow) : MobRenderer(model, 
 {
 }
 
-void OcelotRenderer::render(shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
+void OcelotRenderer::render(std::shared_ptr<Entity> _mob, double x, double y, double z, float rot, float a)
 {
 	MobRenderer::render(_mob, x, y, z, rot, a);
 }
 
-ResourceLocation *OcelotRenderer::getTextureLocation(shared_ptr<Entity> entity)
+ResourceLocation *OcelotRenderer::getTextureLocation(std::shared_ptr<Entity> entity)
 {
 	shared_ptr<Ocelot> cat = dynamic_pointer_cast<Ocelot>(entity);
 
@@ -30,7 +30,7 @@ ResourceLocation *OcelotRenderer::getTextureLocation(shared_ptr<Entity> entity)
     }
 }
 
-void OcelotRenderer::scale(shared_ptr<LivingEntity> _mob, float a)
+void OcelotRenderer::scale(std::shared_ptr<LivingEntity> _mob, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type Blaze rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead

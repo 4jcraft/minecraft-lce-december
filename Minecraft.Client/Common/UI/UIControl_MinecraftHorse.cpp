@@ -51,7 +51,7 @@ void UIControl_MinecraftHorse::render(IggyCustomDrawCallbackRegion *region)
 	//UIScene_InventoryMenu *containerMenu = (UIScene_InventoryMenu *)m_parentScene;
 	UIScene_HorseInventoryMenu *containerMenu = (UIScene_HorseInventoryMenu *)m_parentScene;
 
-	shared_ptr<LivingEntity> entityHorse = containerMenu->m_horse;
+	std::shared_ptr<LivingEntity> entityHorse = containerMenu->m_horse;
 
 	// Base scale on height of this control
 	// Potentially we might want separate x & y scales here

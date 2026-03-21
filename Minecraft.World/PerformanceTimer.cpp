@@ -20,7 +20,7 @@ void PerformanceTimer::Reset()
 #endif
 }
 
-void PerformanceTimer::PrintElapsedTime(const wstring &description)
+void PerformanceTimer::PrintElapsedTime(const std::wstring &description)
 {
 #ifndef _CONTENT_PACKAGE
 	LARGE_INTEGER qwNewTime, qwDeltaTime;

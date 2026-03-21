@@ -14,7 +14,7 @@ SetEntityLinkPacket::SetEntityLinkPacket()
 	type = -1;
 }
 
-SetEntityLinkPacket::SetEntityLinkPacket(int linkType, shared_ptr<Entity> sourceEntity, shared_ptr<Entity> destEntity)
+SetEntityLinkPacket::SetEntityLinkPacket(int linkType, std::shared_ptr<Entity> sourceEntity, std::shared_ptr<Entity> destEntity)
 {
 	type = linkType;
 	this->sourceId = sourceEntity->entityId;
@@ -50,7 +50,7 @@ bool SetEntityLinkPacket::canBeInvalidated()
 	return true;
 }
 
-bool SetEntityLinkPacket::isInvalidatedBy(shared_ptr<Packet> packet)
+bool SetEntityLinkPacket::isInvalidatedBy(std::shared_ptr<Packet> packet)
 {
 	shared_ptr<SetEntityLinkPacket> target = dynamic_pointer_cast<SetEntityLinkPacket>(packet);
 	return target->sourceId == sourceId;

@@ -154,8 +154,8 @@ int SonyCommerce::getProductList(std::vector<ProductInfo>* productList, char *ca
 {
 	int											ret = 0;
 	uint32_t									requestId;
-	size_t										bufSize = sizeof(m_commercebuffer);
-	size_t										fillSize = 0;
+	std::size_t										bufSize = sizeof(m_commercebuffer);
+	std::size_t										fillSize = 0;
 	SceNpCommerce2GetCategoryContentsResult		result;
 	SceNpCommerce2CategoryInfo					categoryInfo;
 	SceNpCommerce2ContentInfo					contentInfo;
@@ -324,8 +324,8 @@ int SonyCommerce::getCategoryInfo(CategoryInfo *pInfo, char *categoryId)
 {
 	int											ret = 0;
 	uint32_t									requestId;
-	size_t										bufSize = sizeof(m_commercebuffer);
-	size_t										fillSize = 0;
+	std::size_t										bufSize = sizeof(m_commercebuffer);
+	std::size_t										fillSize = 0;
 	SceNpCommerce2GetCategoryContentsResult		result;
 	SceNpCommerce2CategoryInfo					categoryInfo;
 	SceNpCommerce2ContentInfo					contentInfo;
@@ -463,8 +463,8 @@ int SonyCommerce::getDetailedProductInfo(ProductInfoDetailed *pInfo, const char 
 {
 	int													ret = 0;
 	uint32_t											requestId;
-	size_t												bufSize = sizeof(m_commercebuffer);
-	size_t												fillSize = 0;
+	std::size_t												bufSize = sizeof(m_commercebuffer);
+	std::size_t												fillSize = 0;
 	std::list<SceNpCommerce2ContentRatingDescriptor>	ratingDescList;
 	SceNpCommerce2GetProductInfoResult					result;
 	SceNpCommerce2ContentRatingInfo						ratingInfo;
@@ -599,8 +599,8 @@ int SonyCommerce::addDetailedProductInfo(ProductInfo *info, const char *productI
 {
 	int													ret = 0;
 	uint32_t											requestId;
-	size_t												bufSize = sizeof(m_commercebuffer);
-	size_t												fillSize = 0;
+	std::size_t												bufSize = sizeof(m_commercebuffer);
+	std::size_t												fillSize = 0;
 	std::list<SceNpCommerce2ContentRatingDescriptor>	ratingDescList;
 	SceNpCommerce2GetProductInfoResult					result;
 	SceNpCommerce2ContentRatingInfo						ratingInfo;

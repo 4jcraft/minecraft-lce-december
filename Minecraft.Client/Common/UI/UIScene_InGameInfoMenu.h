@@ -16,16 +16,16 @@ private:
 		byte m_smallId;
 		char m_voiceStatus;
 		short m_colorState;
-		wstring m_name;
+		std::wstring m_name;
 
 	} PlayerInfo;
 	
 	bool m_isHostPlayer;
 	//int m_playersCount;
-	vector<PlayerInfo *> m_players; // A vector of player info structs
+	std::vector<PlayerInfo *> m_players; // A std::vector of player info structs
 	//char m_playersVoiceState[MINECRAFT_NET_MAX_PLAYERS];
 	//short m_playersColourState[MINECRAFT_NET_MAX_PLAYERS];
-	//wstring m_playerNames[MINECRAFT_NET_MAX_PLAYERS];
+	//std::wstring m_playerNames[MINECRAFT_NET_MAX_PLAYERS];
 
 	UIControl_Button m_buttonGameOptions;
 	UIControl_PlayerList m_playerList;
@@ -48,7 +48,7 @@ public:
 
 protected:
 	// TODO: This should be pure virtual in this class
-	virtual wstring getMoviePath();
+	virtual std::wstring getMoviePath();
 
 public:
 	// INPUT

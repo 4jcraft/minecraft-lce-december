@@ -6,7 +6,7 @@
 #include "StitchedTexture.h"
 #include "TextureManager.h"
 
-StitchedTexture *StitchedTexture::create(const wstring &name)
+StitchedTexture *StitchedTexture::create(const std::wstring &name)
 {
 	// TODO: Generalize?
 	if (name.compare(L"clock") == 0)
@@ -23,7 +23,7 @@ StitchedTexture *StitchedTexture::create(const wstring &name)
 	}
 }
 
-StitchedTexture::StitchedTexture(const wstring &name, const wstring &filename) : name(name)
+StitchedTexture::StitchedTexture(const std::wstring &name, const std::wstring &filename) : name(name)
 {
 	// 4J Initialisers
 	source = NULL;
@@ -171,7 +171,7 @@ float StitchedTexture::getV(double offset, bool adjust/*=false*/) const
 	return getV0(adjust) + (diff * ((float) offset / SharedConstants::WORLD_RESOLUTION));
 }
 
-wstring StitchedTexture::getName() const
+std::wstring StitchedTexture::getName() const
 {
 	return name;
 }
@@ -298,7 +298,7 @@ void StitchedTexture::loadAnimationFrames(BufferedReader *bufferedReader)
 	}
 }
 
-void StitchedTexture::loadAnimationFrames(const wstring &string)
+void StitchedTexture::loadAnimationFrames(const std::wstring &string)
 {
 	if(frameOverride != NULL)
 	{

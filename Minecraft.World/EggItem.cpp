@@ -1,4 +1,3 @@
-using namespace std;
 
 #include "stdafx.h"
 #include "com.mojang.nbt.h"
@@ -19,7 +18,7 @@ EggItem::EggItem(int id) : Item( id )
 	maxStackSize = 16;
 }
 
-shared_ptr<ItemInstance> EggItem::use(shared_ptr<ItemInstance> instance, Level *level, shared_ptr<Player> player) 
+std::shared_ptr<ItemInstance> EggItem::use(std::shared_ptr<ItemInstance> instance, Level *level, std::shared_ptr<Player> player) 
 {
 	if (!player->abilities.instabuild)
 	{

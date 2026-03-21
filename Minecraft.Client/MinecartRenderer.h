@@ -14,9 +14,9 @@ protected:
 
 public:
 	MinecartRenderer();
-	virtual void render(shared_ptr<Entity> _cart, double x, double y, double z, float rot, float a);
-	virtual ResourceLocation *getTextureLocation(shared_ptr<Entity> mob);
+	virtual void render(std::shared_ptr<Entity> _cart, double x, double y, double z, float rot, float a);
+	virtual ResourceLocation *getTextureLocation(std::shared_ptr<Entity> mob);
 
 protected:
-	virtual void renderMinecartContents(shared_ptr<Minecart> cart, float a, Tile *tile, int tileData);
+	virtual void renderMinecartContents(std::shared_ptr<Minecart> cart, float a, Tile *tile, int tileData);
 };

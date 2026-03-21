@@ -23,8 +23,8 @@ public:
 	PortalForcer(ServerLevel *level);
 	~PortalForcer();
 
-	void force(shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal);
-	bool findPortal(shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal);
-	bool createPortal(shared_ptr<Entity> e);
+	void force(std::shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal);
+	bool findPortal(std::shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal);
+	bool createPortal(std::shared_ptr<Entity> e);
 	void tick(__int64 time);
 };

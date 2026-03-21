@@ -315,7 +315,7 @@ bool ServerPlayerGameMode::destroyBlock(int x, int y, int z)
 
 }
 
-bool ServerPlayerGameMode::useItem(shared_ptr<Player> player, Level *level, shared_ptr<ItemInstance> item, bool bTestUseOnly)
+bool ServerPlayerGameMode::useItem(std::shared_ptr<Player> player, Level *level, std::shared_ptr<ItemInstance> item, bool bTestUseOnly)
 {
 	if(!player->isAllowedToUse(item)) return false;
 
@@ -344,7 +344,7 @@ bool ServerPlayerGameMode::useItem(shared_ptr<Player> player, Level *level, shar
 
 }
 
-bool ServerPlayerGameMode::useItemOn(shared_ptr<Player> player, Level *level, shared_ptr<ItemInstance> item, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly, bool *pbUsedItem)
+bool ServerPlayerGameMode::useItemOn(std::shared_ptr<Player> player, Level *level, std::shared_ptr<ItemInstance> item, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly, bool *pbUsedItem)
 {
 	// 4J-PB - Adding a test only version to allow tooltips to be displayed
 	int t = level->getTile(x, y, z);

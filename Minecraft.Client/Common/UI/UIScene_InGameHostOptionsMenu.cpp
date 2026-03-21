@@ -49,7 +49,7 @@ UIScene_InGameHostOptionsMenu::UIScene_InGameHostOptionsMenu(int iPad, void *ini
 	}
 }
 
-wstring UIScene_InGameHostOptionsMenu::getMoviePath()
+std::wstring UIScene_InGameHostOptionsMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{

@@ -25,11 +25,11 @@ public:
 	DLCTexturePack(DWORD id, DLCPack *pack, TexturePack *fallback);
 	~DLCTexturePack();
 
-	virtual wstring getResource(const wstring& name);
+	virtual std::wstring getResource(const std::wstring& name);
 	virtual DLCPack * getDLCPack();
-	virtual wstring getDesc1() {return m_stringTable->getString(L"IDS_TP_DESCRIPTION");}
-	virtual wstring getName()	{return m_stringTable->getString(L"IDS_DISPLAY_NAME");}
-	virtual wstring getWorldName() { return m_stringTable->getString(L"IDS_WORLD_NAME");}
+	virtual std::wstring getDesc1() {return m_stringTable->getString(L"IDS_TP_DESCRIPTION");}
+	virtual std::wstring getName()	{return m_stringTable->getString(L"IDS_DISPLAY_NAME");}
+	virtual std::wstring getWorldName() { return m_stringTable->getString(L"IDS_WORLD_NAME");}
 
 	// Added for sound banks with MashUp packs
 #ifdef _XBOX
@@ -42,31 +42,31 @@ protected:
 	void loadComparison();
 	void loadName();
 	void loadDescription();
-	InputStream *getResourceImplementation(const wstring &name); //throws IOException
+	InputStream *getResourceImplementation(const std::wstring &name); //throws IOException
 
 public:
 	//@Override
-	bool hasFile(const wstring &name);
+	bool hasFile(const std::wstring &name);
 	bool isTerrainUpdateCompatible();
 
 	// 4J Added
-	virtual wstring getPath(bool bTitleUpdateTexture = false, const char *pchBDPatchFilename=NULL);
-	virtual wstring getAnimationString(const wstring &textureName, const wstring &path);
-	virtual BufferedImage *getImageResource(const wstring& File, bool filenameHasExtension = false, bool bTitleUpdateTexture=false, const wstring &drive =L"");
+	virtual std::wstring getPath(bool bTitleUpdateTexture = false, const char *pchBDPatchFilename=NULL);
+	virtual std::wstring getAnimationString(const std::wstring &textureName, const std::wstring &path);
+	virtual BufferedImage *getImageResource(const std::wstring& File, bool filenameHasExtension = false, bool bTitleUpdateTexture=false, const std::wstring &drive =L"");
 	virtual void loadColourTable();
 	virtual bool hasData() { return m_bHasLoadedData; }
 	virtual bool isLoadingData() { return m_bLoadingData; }
 
 private:
-	static wstring getRootPath(DWORD packId, bool allowOverride, bool bAddDataFolder);
-	static wstring getFilePath(DWORD packId, wstring filename, bool bAddDataFolder=true);
+	static std::wstring getRootPath(DWORD packId, bool allowOverride, bool bAddDataFolder);
+	static std::wstring getFilePath(DWORD packId, std::wstring filename, bool bAddDataFolder=true);
 
 public:
 	static int packMounted(LPVOID pParam,int iPad,DWORD dwErr,DWORD dwLicenceMask);
 	virtual void loadData();
 	virtual void loadUI();
 	virtual void unloadUI();
-	virtual wstring getXuiRootPath();
+	virtual std::wstring getXuiRootPath();
 	virtual ArchiveFile *getArchiveFile() { return m_archiveFile; }
 
 	virtual unsigned int getDLCParentPackId();

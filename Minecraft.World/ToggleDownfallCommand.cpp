@@ -17,7 +17,7 @@ int ToggleDownfallCommand::getPermissionLevel()
 	return LEVEL_GAMEMASTERS;
 }
 
-void ToggleDownfallCommand::execute(shared_ptr<CommandSender> source, byteArray commandData)
+void ToggleDownfallCommand::execute(std::shared_ptr<CommandSender> source, byteArray commandData)
 {
 	doToggleDownfall();
 	logAdminAction(source, ChatPacket::e_ChatCustom, L"commands.downfall.success");
@@ -29,7 +29,7 @@ void ToggleDownfallCommand::doToggleDownfall()
 	MinecraftServer::getInstance()->levels[0]->getLevelData()->setThundering(true);
 }
 
-shared_ptr<GameCommandPacket> ToggleDownfallCommand::preparePacket()
+std::shared_ptr<GameCommandPacket> ToggleDownfallCommand::preparePacket()
 {
 	return shared_ptr<GameCommandPacket>( new GameCommandPacket(eGameCommand_ToggleDownfall, byteArray() ));
 }

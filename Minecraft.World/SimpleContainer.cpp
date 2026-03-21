@@ -5,7 +5,7 @@
 
 #include "SimpleContainer.h"
 
-SimpleContainer::SimpleContainer(int name, wstring stringName, bool customName, int size)
+SimpleContainer::SimpleContainer(int name, std::wstring stringName, bool customName, int size)
 {
 	this->name = name;
 	this->stringName = stringName;
@@ -36,12 +36,12 @@ void SimpleContainer::removeListener(net_minecraft_world::ContainerListener *lis
 		listeners->erase( it );
 }
 
-shared_ptr<ItemInstance> SimpleContainer::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> SimpleContainer::getItem(unsigned int slot)
 {
 	return (*items)[slot];
 }
 
-shared_ptr<ItemInstance> SimpleContainer::removeItem(unsigned int slot, int count)
+std::shared_ptr<ItemInstance> SimpleContainer::removeItem(unsigned int slot, int count)
 {
 	if ((*items)[slot] != NULL) {
 		if ((*items)[slot]->count <= count)
@@ -62,7 +62,7 @@ shared_ptr<ItemInstance> SimpleContainer::removeItem(unsigned int slot, int coun
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> SimpleContainer::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> SimpleContainer::removeItemNoUpdate(int slot)
 {
 	if ((*items)[slot] != NULL)
 	{
@@ -73,7 +73,7 @@ shared_ptr<ItemInstance> SimpleContainer::removeItemNoUpdate(int slot)
 	return nullptr;
 }
 
-void SimpleContainer::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void SimpleContainer::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	(*items)[slot] = item;
 	if (item != NULL && item->count > getMaxStackSize()) item->count = getMaxStackSize();
@@ -85,12 +85,12 @@ unsigned int SimpleContainer::getContainerSize()
 	return size;
 }
 
-wstring SimpleContainer::getName()
+std::wstring SimpleContainer::getName()
 {
 	return stringName.empty() ? app.GetString(name) : stringName;
 }
 
-wstring SimpleContainer::getCustomName()
+std::wstring SimpleContainer::getCustomName()
 {
 	return hasCustomName() ? stringName : L"";
 }
@@ -100,7 +100,7 @@ bool SimpleContainer::hasCustomName()
 	return customName;
 }
 
-void SimpleContainer::setCustomName(const wstring &name)
+void SimpleContainer::setCustomName(const std::wstring &name)
 {
 	customName = true;
 	this->stringName = name;
@@ -119,12 +119,12 @@ void SimpleContainer::setChanged()
 	}
 }
 
-bool SimpleContainer::stillValid(shared_ptr<Player> player)
+bool SimpleContainer::stillValid(std::shared_ptr<Player> player)
 {
 	return true;
 }
 
-bool SimpleContainer::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool SimpleContainer::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }

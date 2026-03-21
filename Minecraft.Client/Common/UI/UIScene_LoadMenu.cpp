@@ -395,7 +395,7 @@ void UIScene_LoadMenu::updateComponents()
 	}
 }
 
-wstring UIScene_LoadMenu::getMoviePath()
+std::wstring UIScene_LoadMenu::getMoviePath()
 {
 	return L"LoadMenu";
 }

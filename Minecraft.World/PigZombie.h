@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Zombie.h"
 
@@ -17,7 +17,7 @@ private:
 
 	int angerTime;
 	int playAngrySoundIn;
-	shared_ptr<Entity> lastAttackTarget;
+	std::shared_ptr<Entity> lastAttackTarget;
 
 	void _init();
 
@@ -35,13 +35,13 @@ public:
 	virtual void readAdditionalSaveData(CompoundTag *tag);
 
 protected:
-	virtual shared_ptr<Entity> findAttackTarget();
+	virtual std::shared_ptr<Entity> findAttackTarget();
 
 public:
 	virtual bool hurt(DamageSource *source, float dmg);
 
 private:
-	void alert(shared_ptr<Entity> target);
+	void alert(std::shared_ptr<Entity> target);
 
 protected:
 	virtual int getAmbientSound();
@@ -50,7 +50,7 @@ protected:
 	virtual void dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel);
 
 public:
-	virtual bool mobInteract(shared_ptr<Player> player);
+	virtual bool mobInteract(std::shared_ptr<Player> player);
 
 protected:
 	virtual void dropRareDeathLoot(int rareLootLevel);

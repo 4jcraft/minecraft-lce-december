@@ -13,12 +13,12 @@ VillagerGolemRenderer::VillagerGolemRenderer() : MobRenderer(new VillagerGolemMo
 	golemModel = (VillagerGolemModel *) model;
 }
 
-void VillagerGolemRenderer::render(shared_ptr<Entity> mob, double x, double y, double z, float rot, float a)
+void VillagerGolemRenderer::render(std::shared_ptr<Entity> mob, double x, double y, double z, float rot, float a)
 {
 	MobRenderer::render(mob, x, y, z, rot, a);
 }
 
-void VillagerGolemRenderer::setupRotations(shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a)
+void VillagerGolemRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob, float bob, float bodyRot, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type Blaze rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead
@@ -32,12 +32,12 @@ void VillagerGolemRenderer::setupRotations(shared_ptr<LivingEntity> _mob, float 
 	glRotatef(6.5f * triangleWave, 0, 0, 1);
 }
 
-ResourceLocation *VillagerGolemRenderer::getTextureLocation(shared_ptr<Entity> mob)
+ResourceLocation *VillagerGolemRenderer::getTextureLocation(std::shared_ptr<Entity> mob)
 {
 	return &GOLEM_LOCATION;
 }
 
-void VillagerGolemRenderer::additionalRendering(shared_ptr<LivingEntity> _mob, float a)
+void VillagerGolemRenderer::additionalRendering(std::shared_ptr<LivingEntity> _mob, float a)
 {
 	// 4J - original version used generics and thus had an input parameter of type Blaze rather than shared_ptr<Entity>  we have here - 
 	// do some casting around instead

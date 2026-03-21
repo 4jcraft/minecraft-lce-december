@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "HashExtension.h"
 #include "..\Minecraft.World\JavaIntHash.h"
@@ -16,11 +16,11 @@ public:
 	static void staticCtor();
 	virtual eINSTANCEOF GetType() { return eTYPE_TILEENTITY; }
 private:
-	typedef unordered_map<wstring, tileEntityCreateFn> idToCreateMapType;
-	typedef unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq> classToIdMapType;
+	typedef unordered_map<std::wstring, tileEntityCreateFn> idToCreateMapType;
+	typedef unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq> classToIdMapType;
 	static idToCreateMapType idCreateMap;
 	static classToIdMapType classIdMap;
-	static void setId(tileEntityCreateFn createFn, eINSTANCEOF clas, wstring id);
+	static void setId(tileEntityCreateFn createFn, eINSTANCEOF clas, std::wstring id);
 	bool remove;
 	unsigned char renderRemoveStage;	// 4J added
 
@@ -54,14 +54,14 @@ public:
 	virtual void load(CompoundTag *tag);
 	virtual void save(CompoundTag *tag);
 	virtual void tick();
-	static shared_ptr<TileEntity> loadStatic(CompoundTag *tag);
+	static std::shared_ptr<TileEntity> loadStatic(CompoundTag *tag);
 	virtual int getData();
 	virtual void setData(int data, int updateFlags);
 	virtual void setChanged();
 	virtual double distanceToSqr(double xPlayer, double yPlayer, double zPlayer);
 	virtual double getViewDistance();
 	virtual Tile *getTile();
-	virtual shared_ptr<Packet> getUpdatePacket();
+	virtual std::shared_ptr<Packet> getUpdatePacket();
 	virtual bool isRemoved();
 	virtual void setRemoved();
 	virtual void clearRemoved();
@@ -69,7 +69,7 @@ public:
 	virtual void clearCache();
 
 	// 4J Added
-	virtual shared_ptr<TileEntity> clone() = 0;
+	virtual std::shared_ptr<TileEntity> clone() = 0;
 protected:
-	void clone(shared_ptr<TileEntity> tileEntity);
+	void clone(std::shared_ptr<TileEntity> tileEntity);
 };

@@ -22,7 +22,7 @@ unsigned int CraftingContainer::getContainerSize()
 	return items->length;
 }
 
-shared_ptr<ItemInstance> CraftingContainer::getItem(unsigned int slot)
+std::shared_ptr<ItemInstance> CraftingContainer::getItem(unsigned int slot)
 {
 	if (slot >= getContainerSize())
 	{
@@ -31,7 +31,7 @@ shared_ptr<ItemInstance> CraftingContainer::getItem(unsigned int slot)
 	return (*items)[slot];
 }
 
-shared_ptr<ItemInstance> CraftingContainer::getItem(unsigned int x, unsigned int y)
+std::shared_ptr<ItemInstance> CraftingContainer::getItem(unsigned int x, unsigned int y)
 {
 	if (x < 0 || x >= width)
 	{
@@ -41,12 +41,12 @@ shared_ptr<ItemInstance> CraftingContainer::getItem(unsigned int x, unsigned int
 	return getItem(pos);
 }
 
-wstring CraftingContainer::getName()
+std::wstring CraftingContainer::getName()
 {
 	return L"";
 }
 
-wstring CraftingContainer::getCustomName()
+std::wstring CraftingContainer::getCustomName()
 {
 	return L"";
 }
@@ -56,7 +56,7 @@ bool CraftingContainer::hasCustomName()
 	return false;
 }
 
-shared_ptr<ItemInstance> CraftingContainer::removeItemNoUpdate(int slot)
+std::shared_ptr<ItemInstance> CraftingContainer::removeItemNoUpdate(int slot)
 {
 	if ((*items)[slot] != NULL)
 	{
@@ -67,7 +67,7 @@ shared_ptr<ItemInstance> CraftingContainer::removeItemNoUpdate(int slot)
 	return nullptr;
 }
 
-shared_ptr<ItemInstance> CraftingContainer::removeItem(unsigned int slot, int count)
+std::shared_ptr<ItemInstance> CraftingContainer::removeItem(unsigned int slot, int count)
 {
 	if ((*items)[slot] != NULL)
 	{
@@ -89,7 +89,7 @@ shared_ptr<ItemInstance> CraftingContainer::removeItem(unsigned int slot, int co
 	return nullptr;
 }
 
-void CraftingContainer::setItem(unsigned int slot, shared_ptr<ItemInstance> item)
+void CraftingContainer::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item)
 {
 	(*items)[slot] = item;
 	if(menu) menu->slotsChanged();
@@ -104,12 +104,12 @@ void CraftingContainer::setChanged()
 {
 }
 
-bool CraftingContainer::stillValid(shared_ptr<Player> player)
+bool CraftingContainer::stillValid(std::shared_ptr<Player> player)
 {
 	return true;
 }
 
-bool CraftingContainer::canPlaceItem(int slot, shared_ptr<ItemInstance> item)
+bool CraftingContainer::canPlaceItem(int slot, std::shared_ptr<ItemInstance> item)
 {
 	return true;
 }

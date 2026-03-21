@@ -82,7 +82,7 @@ void MoveThroughVillageGoal::stop()
 	}
 }
 
-shared_ptr<DoorInfo> MoveThroughVillageGoal::getNextDoorInfo(shared_ptr<Village> village)
+std::shared_ptr<DoorInfo> MoveThroughVillageGoal::getNextDoorInfo(std::shared_ptr<Village> village)
 {
 	shared_ptr<DoorInfo> closest = nullptr;
 	int closestDistSqr = Integer::MAX_VALUE;
@@ -102,7 +102,7 @@ shared_ptr<DoorInfo> MoveThroughVillageGoal::getNextDoorInfo(shared_ptr<Village>
 	return closest;
 }
 
-bool MoveThroughVillageGoal::hasVisited(shared_ptr<DoorInfo>di)
+bool MoveThroughVillageGoal::hasVisited(std::shared_ptr<DoorInfo>di)
 {
 	//for (DoorInfo di2 : visited)
 	for(AUTO_VAR(it, visited.begin()); it != visited.end(); )

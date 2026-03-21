@@ -21,7 +21,7 @@
 #include "PlayerChunkMap.h"
 #include <qnet.h>
 
-TrackedEntity::TrackedEntity(shared_ptr<Entity> e, int range, int updateInterval, bool trackDelta)
+TrackedEntity::TrackedEntity(std::shared_ptr<Entity> e, int range, int updateInterval, bool trackDelta)
 {
 	// 4J added initialisers
 	xap = yap = zap = 0;
@@ -347,7 +347,7 @@ void TrackedEntity::sendDirtyEntityData()
 	}
 }
 
-void TrackedEntity::broadcast(shared_ptr<Packet> packet)
+void TrackedEntity::broadcast(std::shared_ptr<Packet> packet)
 {
 	if( Packet::canSendToAnyClient( packet ) )
 	{
@@ -412,7 +412,7 @@ void TrackedEntity::broadcast(shared_ptr<Packet> packet)
 	}
 }
 
-void TrackedEntity::broadcastAndSend(shared_ptr<Packet> packet)
+void TrackedEntity::broadcastAndSend(std::shared_ptr<Packet> packet)
 {
 	vector< shared_ptr<ServerPlayer> > sentTo;
 	broadcast(packet);
@@ -431,7 +431,7 @@ void TrackedEntity::broadcastRemoved()
 	}
 }
 
-void TrackedEntity::removePlayer(shared_ptr<ServerPlayer> sp)
+void TrackedEntity::removePlayer(std::shared_ptr<ServerPlayer> sp)
 {
 	AUTO_VAR(it, seenBy.find( sp ));
 	if( it != seenBy.end() )
@@ -442,7 +442,7 @@ void TrackedEntity::removePlayer(shared_ptr<ServerPlayer> sp)
 }
 
 // 4J-JEV: Added for code reuse.
-TrackedEntity::eVisibility TrackedEntity::isVisible(EntityTracker *tracker, shared_ptr<ServerPlayer> sp, bool forRider)
+TrackedEntity::eVisibility TrackedEntity::isVisible(EntityTracker *tracker, std::shared_ptr<ServerPlayer> sp, bool forRider)
 {
 	// 4J Stu - We call update players when the entity has moved more than a certain amount at the start of it's tick
 	// Before this call we set xpu, ypu and zpu to the entities new position, but xp,yp and zp are the old position until later in the tick.
@@ -515,7 +515,7 @@ TrackedEntity::eVisibility TrackedEntity::isVisible(EntityTracker *tracker, shar
 	else								return eVisibility_NotVisible;
 }
 
-void TrackedEntity::updatePlayer(EntityTracker *tracker, shared_ptr<ServerPlayer> sp)
+void TrackedEntity::updatePlayer(EntityTracker *tracker, std::shared_ptr<ServerPlayer> sp)
 {
 	if (sp == e) return;
 
@@ -619,7 +619,7 @@ void TrackedEntity::updatePlayer(EntityTracker *tracker, shared_ptr<ServerPlayer
 
 }
 
-bool TrackedEntity::canBySeenBy(shared_ptr<ServerPlayer> player)
+bool TrackedEntity::canBySeenBy(std::shared_ptr<ServerPlayer> player)
 {
 	// 4J - for some reason this isn't currently working, and is causing players to not appear until we are really close to them. Not sure
 	// what the conflict is between the java & our version, but removing for now as it is causing issues and we shouldn't *really* need it
@@ -637,7 +637,7 @@ void TrackedEntity::updatePlayers(EntityTracker *tracker, vector<shared_ptr<Play
 	}
 }
 
-shared_ptr<Packet> TrackedEntity::getAddEntityPacket()
+std::shared_ptr<Packet> TrackedEntity::getAddEntityPacket()
 {
 	if (e->removed)
 	{
@@ -810,7 +810,7 @@ shared_ptr<Packet> TrackedEntity::getAddEntityPacket()
 	return nullptr;
 }
 
-void TrackedEntity::clear(shared_ptr<ServerPlayer> sp)
+void TrackedEntity::clear(std::shared_ptr<ServerPlayer> sp)
 {
 	AUTO_VAR(it, seenBy.find(sp));
 	if (it != seenBy.end())

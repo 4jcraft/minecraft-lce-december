@@ -63,7 +63,7 @@ void Animal::aiStep()
 	updateDespawnProtectedState();		// 4J added
 }
 
-void Animal::checkHurtTarget(shared_ptr<Entity> target, float d)
+void Animal::checkHurtTarget(std::shared_ptr<Entity> target, float d)
 {
 	// 4J-JEV: Changed from dynamic cast to use eINSTANCEOF
 	if ( target->instanceof(eTYPE_PLAYER) )
@@ -123,7 +123,7 @@ void Animal::checkHurtTarget(shared_ptr<Entity> target, float d)
 }
 
 
-void Animal::breedWith(shared_ptr<Animal> target)
+void Animal::breedWith(std::shared_ptr<Animal> target)
 {
 	shared_ptr<AgableMob> offspring = getBreedOffspring(target);
 
@@ -221,7 +221,7 @@ void Animal::readAdditionalSaveData(CompoundTag *tag)
 	setDespawnProtected();
 }
 
-shared_ptr<Entity> Animal::findAttackTarget()
+std::shared_ptr<Entity> Animal::findAttackTarget()
 {
 	if (fleeTime > 0) return nullptr;
 
@@ -297,17 +297,17 @@ bool Animal::removeWhenFarAway()
 	return !isDespawnProtected();	// 4J changed - was false
 }
 
-int Animal::getExperienceReward(shared_ptr<Player> killedBy)
+int Animal::getExperienceReward(std::shared_ptr<Player> killedBy)
 {
 	return 1 + level->random->nextInt(3);
 }
 
-bool Animal::isFood(shared_ptr<ItemInstance> itemInstance)
+bool Animal::isFood(std::shared_ptr<ItemInstance> itemInstance)
 {
 	return itemInstance->id == Item::wheat_Id;
 }
 
-bool Animal::mobInteract(shared_ptr<Player> player)
+bool Animal::mobInteract(std::shared_ptr<Player> player)
 {
 	shared_ptr<ItemInstance> item = player->inventory->getSelected();
 	if (item != NULL && isFood(item) && getAge() == 0 && getInLoveValue() <= 0)
@@ -385,13 +385,13 @@ void Animal::setInLoveValue(int value)
 }
 
 // 4J added
-void Animal::setInLove(shared_ptr<Player> player)
+void Animal::setInLove(std::shared_ptr<Player> player)
 {
 	loveCause = player;
 	setInLoveValue(20*30);
 }
 
-shared_ptr<Player> Animal::getLoveCause()
+std::shared_ptr<Player> Animal::getLoveCause()
 {
 	return loveCause.lock();
 }
@@ -413,7 +413,7 @@ void Animal::resetLove() {
 	entityData->set(DATA_IN_LOVE, 0);
 }
 
-bool Animal::canMate(shared_ptr<Animal> partner)
+bool Animal::canMate(std::shared_ptr<Animal> partner)
 {
 	if (partner == shared_from_this()) return false;
 	if (typeid(*partner) != typeid(*this)) return false;

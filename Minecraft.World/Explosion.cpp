@@ -10,7 +10,7 @@
 #include "Explosion.h"
 #include "SoundTypes.h"
 
-Explosion::Explosion(Level *level, shared_ptr<Entity> source, double x, double y, double z, float r)
+Explosion::Explosion(Level *level, std::shared_ptr<Entity> source, double x, double y, double z, float r)
 {
 	fire = false;
 	random = new Random();
@@ -274,7 +274,7 @@ Explosion::playerVec3Map *Explosion::getHitPlayers()
 	return &hitPlayers;
 }
 
-Vec3 *Explosion::getHitPlayerKnockback( shared_ptr<Player> player )
+Vec3 *Explosion::getHitPlayerKnockback( std::shared_ptr<Player> player )
 {
 	AUTO_VAR(it, hitPlayers.find(player));
 
@@ -283,7 +283,7 @@ Vec3 *Explosion::getHitPlayerKnockback( shared_ptr<Player> player )
 	return it->second;
 }
 
-shared_ptr<LivingEntity> Explosion::getSourceMob()
+std::shared_ptr<LivingEntity> Explosion::getSourceMob()
 {
 	if (source == NULL) return nullptr;
 	if (source->instanceof(eTYPE_PRIMEDTNT)) return dynamic_pointer_cast<PrimedTnt>(source)->getOwner();

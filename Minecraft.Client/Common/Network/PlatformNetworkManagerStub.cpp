@@ -417,7 +417,7 @@ void CPlatformNetworkManagerStub::SystemFlagAddPlayer(INetworkPlayer *pNetworkPl
 	m_playerFlags.push_back(newPlayerFlags);
 }
 
-// Remove a player from the per system flag storage - just maintains the m_playerFlags vector without any gaps in it
+// Remove a player from the per system flag storage - just maintains the m_playerFlags std::vector without any gaps in it
 void CPlatformNetworkManagerStub::SystemFlagRemovePlayer(INetworkPlayer *pNetworkPlayer)
 {
 	for( unsigned int i = 0; i < m_playerFlags.size(); i++ )
@@ -476,14 +476,14 @@ bool CPlatformNetworkManagerStub::SystemFlagGet(INetworkPlayer *pNetworkPlayer, 
 	return false;
 }
 
-wstring CPlatformNetworkManagerStub::GatherStats()
+std::wstring CPlatformNetworkManagerStub::GatherStats()
 {
 	return L"";
 }
 
-wstring CPlatformNetworkManagerStub::GatherRTTStats()
+std::wstring CPlatformNetworkManagerStub::GatherRTTStats()
 {
-	wstring stats(L"Rtt: ");
+	std::wstring stats(L"Rtt: ");
 
 	wchar_t stat[32];
 
@@ -520,9 +520,9 @@ void CPlatformNetworkManagerStub::SetSearchResultsReady(int resultCount)
 	m_searchResultsCount[m_lastSearchPad] = resultCount;
 }
 
-vector<FriendSessionInfo *> *CPlatformNetworkManagerStub::GetSessionList(int iPad, int localPlayers, bool partyOnly)
+std::vector<FriendSessionInfo *> *CPlatformNetworkManagerStub::GetSessionList(int iPad, int localPlayers, bool partyOnly)
 {
-	vector<FriendSessionInfo *> *filteredList = new vector<FriendSessionInfo *>();;
+	std::vector<FriendSessionInfo *> *filteredList = new std::vector<FriendSessionInfo *>();;
 	return filteredList;
 }
 

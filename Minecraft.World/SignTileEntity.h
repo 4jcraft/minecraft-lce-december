@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "TileEntity.h"
 
@@ -16,9 +16,9 @@ public:
 public:
 	SignTileEntity();
 	virtual ~SignTileEntity();
-	wstring GetMessage(int i)								{ return m_wsmessages[i];}
-	wstring *GetMessages()									{ return m_wsmessages;}
-	void SetMessage(int iIndex,wstring &wsText);
+	std::wstring GetMessage(int i)								{ return m_wsmessages[i];}
+	std::wstring *GetMessages()									{ return m_wsmessages;}
+	void SetMessage(int iIndex,std::wstring &wsText);
 	int GetSelectedLine()									{return m_iSelectedLine;}
 	void SetSelectedLine(int iLine)							{m_iSelectedLine=iLine;}
 	bool IsVerified()										{return m_bVerified;}
@@ -28,25 +28,25 @@ public:
 public:
 
 private:
-	shared_ptr<Player> playerWhoMayEdit;
+	std::shared_ptr<Player> playerWhoMayEdit;
 	bool _isEditable;
 	bool m_bVerified;
 	bool m_bCensored;
 	int m_iSelectedLine;
 
-	wstring m_wsmessages[MAX_SIGN_LINES];
+	std::wstring m_wsmessages[MAX_SIGN_LINES];
 
 public:
 	virtual void save(CompoundTag *tag);
 	virtual void load(CompoundTag *tag);
-	virtual shared_ptr<Packet> getUpdatePacket();
+	virtual std::shared_ptr<Packet> getUpdatePacket();
 	bool isEditable();
 	void setEditable(bool isEditable);
-	void setAllowedPlayerEditor(shared_ptr<Player> player);
-	shared_ptr<Player> getPlayerWhoMayEdit();
+	void setAllowedPlayerEditor(std::shared_ptr<Player> player);
+	std::shared_ptr<Player> getPlayerWhoMayEdit();
 	virtual void setChanged();
 	static int StringVerifyCallback(LPVOID lpParam,STRING_VERIFY_RESPONSE *pResults);
 
 	// 4J Added
-	virtual shared_ptr<TileEntity> clone();
+	virtual std::shared_ptr<TileEntity> clone();
 };

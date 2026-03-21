@@ -138,7 +138,7 @@ void FallingTile::tick()
 					}
 					if (tileData != NULL && Tile::tiles[tile]->isEntityTile())
 					{
-						shared_ptr<TileEntity> tileEntity = level->getTileEntity(xt, yt, zt);
+						std::shared_ptr<TileEntity> tileEntity = level->getTileEntity(xt, yt, zt);
 
 						if (tileEntity != NULL)
 						{
@@ -159,13 +159,13 @@ void FallingTile::tick()
 				}
 				else
 				{
-					if(dropItem && !cancelDrop) spawnAtLocation( shared_ptr<ItemInstance>(new ItemInstance(tile, 1, Tile::tiles[tile]->getSpawnResourcesAuxValue(data))), 0);
+					if(dropItem && !cancelDrop) spawnAtLocation( std::shared_ptr<ItemInstance>(new ItemInstance(tile, 1, Tile::tiles[tile]->getSpawnResourcesAuxValue(data))), 0);
 				}
 			}
 		}
 		else if ( (time > 20 * 5 && !level->isClientSide && (yt < 1 || yt > Level::maxBuildHeight)) || (time > 20 * 30))
 		{
-			if(dropItem) spawnAtLocation( shared_ptr<ItemInstance>( new ItemInstance(tile, 1, Tile::tiles[tile]->getSpawnResourcesAuxValue(data) )), 0);
+			if(dropItem) spawnAtLocation( std::shared_ptr<ItemInstance>( new ItemInstance(tile, 1, Tile::tiles[tile]->getSpawnResourcesAuxValue(data) )), 0);
 			remove();
 		}
 	}
@@ -178,8 +178,8 @@ void FallingTile::causeFallDamage(float distance)
 		int dmg = Mth::ceil(distance - 1);
 		if (dmg > 0)
 		{
-			// 4J: Copy vector since it might be modified when we hurt the entities (invalidating our iterator)
-			vector<shared_ptr<Entity> > *entities = new vector<shared_ptr<Entity> >(*level->getEntities(shared_from_this(), bb));
+			// 4J: Copy vector since it might be modified when we hurt the entities (invalidating our std::iterator)
+			vector<std::shared_ptr<Entity> > *entities = new vector<std::shared_ptr<Entity> >(*level->getEntities(shared_from_this(), bb));
 			DamageSource *source = tile == Tile::anvil_Id ? DamageSource::anvil : DamageSource::fallingBlock;
 			//for (Entity entity : entities)
 			for(AUTO_VAR(it, entities->begin()); it != entities->end(); ++it)

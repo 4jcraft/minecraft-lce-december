@@ -1,10 +1,10 @@
 #pragma once
-using namespace std;
+
 
 class GuiMessage
 {
 public:
-	wstring string;
+	std::wstring std::string;
 	int ticks;
-	GuiMessage(const wstring& string);
+	GuiMessage(const std::wstring& std::string);
 };

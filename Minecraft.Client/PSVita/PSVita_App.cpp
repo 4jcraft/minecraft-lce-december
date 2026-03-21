@@ -94,7 +94,7 @@ bool CConsoleMinecraftApp::IsAmericanSKU()
 
 SONYDLC *CConsoleMinecraftApp::GetSONYDLCInfo(char *pchTitle)
 {
-	wstring wstrTemp=convStringToWstring(pchTitle);
+	std::wstring wstrTemp=convStringToWstring(pchTitle);
 
 	AUTO_VAR(it, m_SONYDLCMap.find(wstrTemp));
 	if(it == m_SONYDLCMap.end())
@@ -105,7 +105,7 @@ SONYDLC *CConsoleMinecraftApp::GetSONYDLCInfo(char *pchTitle)
 	}
 	return it->second;
 
-	/*wstring wstrTemp=convStringToWstring(pchTitle);
+	/*std::wstring wstrTemp=convStringToWstring(pchTitle);
 	SONYDLC *pTemp=m_SONYDLCMap.at(wstrTemp);
 
 	return pTemp;*/
@@ -181,9 +181,9 @@ BOOL CConsoleMinecraftApp::ReadProductCodes()
 			WRAPPED_READFILE(file,&pDLCInfo->iFirstSkin,sizeof(int),&bytesRead,NULL);
 			WRAPPED_READFILE(file,&pDLCInfo->iConfig,sizeof(int),&bytesRead,NULL);
 
-			// push this into a vector
+			// push this into a std::vector
 
-			wstring wstrTemp=convStringToWstring(chDLCTitle);
+			std::wstring wstrTemp=convStringToWstring(chDLCTitle);
 			m_SONYDLCMap[wstrTemp]=pDLCInfo;
 		}
 		CloseHandle(file);
@@ -315,7 +315,7 @@ void CConsoleMinecraftApp::TemporaryCreateGameStart()
 	////////////////////////////////////////////////////////////////////////////////////////////// From CScene_MultiGameCreate::CreateGame
 
 	app.ClearTerrainFeaturePosition();
-	wstring wWorldName = L"TestWorld";
+	std::wstring wWorldName = L"TestWorld";
 
 	bool isFlat = false;
 	__int64 seedValue = 0;//BiomeSource::findSeed(isFlat?LevelType::lvl_flat:LevelType::lvl_normal);	// 4J - was (new Random())->nextLong() - now trying to actually find a seed to suit our requirements
@@ -1108,7 +1108,7 @@ bool CConsoleMinecraftApp::CheckForEmptyStore(int iPad)
 void printSaveState()
 {
 #ifndef _CONTENT_PACKAGE
-	string strState;
+	std::string strState;
 	switch (StorageManager.GetSaveState())
 	{
 	case C4JStorage::ESaveGame_Idle:								strState = "ESaveGame_Idle"; break;
@@ -1599,7 +1599,7 @@ void CConsoleMinecraftApp::getSaveDataDeleteDialogParam(SceSaveDataDialogParam *
 	ZeroMemory(&listParam, sizeof(SceSaveDataDialogListParam));
 
 	{
-		vector<const SceAppUtilSaveDataSlot> slots;
+		std::vector<const SceAppUtilSaveDataSlot> slots;
 		for (unsigned int i = 2; i < SCE_APPUTIL_SAVEDATA_SLOT_MAX; i++)
 		{
 			SceAppUtilSaveDataSlotParam slotParam;
@@ -1622,7 +1622,7 @@ void CConsoleMinecraftApp::getSaveDataDeleteDialogParam(SceSaveDataDialogParam *
 
 		int slotIndex = 0;
 
-		vector<const SceAppUtilSaveDataSlot>::iterator itr;
+		std::vector<const SceAppUtilSaveDataSlot>::iterator itr;
 		for (itr = slots.begin(); itr != slots.end(); itr++)
 		{
 			pSavesList[slotIndex] = *itr;

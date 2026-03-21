@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+
 
 #include "Packet.h"
 
@@ -27,6 +27,6 @@ public:
 	bool isSneaking();
 
 public:
-	static shared_ptr<Packet> create() { return shared_ptr<Packet>(new PlayerInputPacket()); }
+	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new PlayerInputPacket()); }
 	virtual int getId() { return 27; }
 };

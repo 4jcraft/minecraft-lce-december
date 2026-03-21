@@ -202,7 +202,7 @@ void UIScene_LaunchMoreOptionsMenu::updateComponents()
 //#endif
 }
 
-wstring UIScene_LaunchMoreOptionsMenu::getMoviePath()
+std::wstring UIScene_LaunchMoreOptionsMenu::getMoviePath()
 {
 	return L"LaunchMoreOptionsMenu";
 }

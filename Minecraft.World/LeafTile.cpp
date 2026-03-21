@@ -13,7 +13,7 @@ const unsigned int LeafTile::LEAF_NAMES[LEAF_NAMES_LENGTH] = {	IDS_TILE_LEAVES_O
 	IDS_TILE_LEAVES_JUNGLE,
 };
 
-const wstring LeafTile::TEXTURES[2][4] = { {L"leaves", L"leaves_spruce", L"leaves", L"leaves_jungle"}, {L"leaves_opaque", L"leaves_spruce_opaque", L"leaves_opaque", L"leaves_jungle_opaque"},};
+const std::wstring LeafTile::TEXTURES[2][4] = { {L"leaves", L"leaves_spruce", L"leaves", L"leaves_jungle"}, {L"leaves_opaque", L"leaves_spruce_opaque", L"leaves_opaque", L"leaves_jungle_opaque"},};
 
 LeafTile::LeafTile(int id) : TransparentTile(id, Material::leaves, false, isSolidRender())
 {
@@ -268,7 +268,7 @@ void LeafTile::spawnResources(Level *level, int x, int y, int z, int data, float
 	}
 }
 
-void LeafTile::playerDestroy(Level *level, shared_ptr<Player> player, int x, int y, int z, int data)
+void LeafTile::playerDestroy(Level *level, std::shared_ptr<Player> player, int x, int y, int z, int data)
 {
 	if (!level->isClientSide && player->getSelectedItem() != NULL && player->getSelectedItem()->id == Item::shears->id)
 	{
@@ -322,12 +322,12 @@ void LeafTile::setFancy(bool fancyGraphics)
 	fancyTextureSet = (fancyGraphics ? 0 : 1);
 }
 
-shared_ptr<ItemInstance> LeafTile::getSilkTouchItemInstance(int data)
+std::shared_ptr<ItemInstance> LeafTile::getSilkTouchItemInstance(int data)
 {
 	return shared_ptr<ItemInstance>( new ItemInstance(id, 1, data & LEAF_TYPE_MASK) );
 }
 
-void LeafTile::stepOn(Level *level, int x, int y, int z, shared_ptr<Entity> entity)
+void LeafTile::stepOn(Level *level, int x, int y, int z, std::shared_ptr<Entity> entity)
 {
 	TransparentTile::stepOn(level, x, y, z, entity);
 }

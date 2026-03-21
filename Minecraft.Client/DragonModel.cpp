@@ -106,12 +106,12 @@ DragonModel::DragonModel(float g) : Model()
 	rearFoot->compile(1.0f/16.0f);
 }
 
-void DragonModel::prepareMobModel(shared_ptr<LivingEntity> mob, float time, float r, float a) 
+void DragonModel::prepareMobModel(std::shared_ptr<LivingEntity> mob, float time, float r, float a) 
 {
 	this->a = a;
 }
 
-void DragonModel::render(shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
+void DragonModel::render(std::shared_ptr<Entity> entity, float time, float r, float bob, float yRot, float xRot, float scale, bool usecompiled)
 {
 	glPushMatrix();
 	shared_ptr<EnderDragon> dragon = dynamic_pointer_cast<EnderDragon>(entity);

@@ -2,7 +2,7 @@
 #include "ColourTable.h"
 #include "..\..\..\Minecraft.World\StringHelpers.h"
 
-unordered_map<wstring,eMinecraftColour> ColourTable::s_colourNamesMap;
+std::unordered_map<std::wstring,eMinecraftColour> ColourTable::s_colourNamesMap;
 
 wchar_t *ColourTable::ColourTableElements[eMinecraftColour_COUNT] =
 {
@@ -325,7 +325,7 @@ void ColourTable::staticCtor()
 {
 	for(unsigned int i = eMinecraftColour_NOT_SET; i < eMinecraftColour_COUNT; ++i)
 	{
-		s_colourNamesMap.insert( unordered_map<wstring,eMinecraftColour>::value_type( ColourTableElements[i], (eMinecraftColour)i) );
+		s_colourNamesMap.insert( std::unordered_map<std::wstring,eMinecraftColour>::value_type( ColourTableElements[i], (eMinecraftColour)i) );
 	}
 }
 
@@ -352,7 +352,7 @@ void ColourTable::loadColoursFromData(PBYTE pbData, DWORD dwLength)
 
 	for(int i = 0; i < coloursCount; ++i)
 	{
-		wstring colourId = dis.readUTF();
+		std::wstring colourId = dis.readUTF();
 		int colourValue = dis.readInt();
 		setColour(colourId, colourValue);
 		AUTO_VAR(it,s_colourNamesMap.find(colourId));
@@ -361,7 +361,7 @@ void ColourTable::loadColoursFromData(PBYTE pbData, DWORD dwLength)
 	bais.reset();
 }
 
-void ColourTable::setColour(const wstring &colourName, int value)
+void ColourTable::setColour(const std::wstring &colourName, int value)
 {
 	AUTO_VAR(it,s_colourNamesMap.find(colourName));
 	if(it != s_colourNamesMap.end())
@@ -370,7 +370,7 @@ void ColourTable::setColour(const wstring &colourName, int value)
 	}
 }
 
-void ColourTable::setColour(const wstring &colourName, const wstring &value)
+void ColourTable::setColour(const std::wstring &colourName, const std::wstring &value)
 {
 	setColour(colourName, _fromHEXString<int>(value));
 }

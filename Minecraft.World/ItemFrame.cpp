@@ -48,7 +48,7 @@ bool ItemFrame::shouldRenderAtSqrDistance(double distance)
 	return distance < size * size;
 }
 
-void ItemFrame::dropItem(shared_ptr<Entity> causedBy) 
+void ItemFrame::dropItem(std::shared_ptr<Entity> causedBy) 
 {
 	shared_ptr<ItemInstance> item = getItem();
 
@@ -70,7 +70,7 @@ void ItemFrame::dropItem(shared_ptr<Entity> causedBy)
 	}
 }
 
-void ItemFrame::removeFramedMap(shared_ptr<ItemInstance> item)
+void ItemFrame::removeFramedMap(std::shared_ptr<ItemInstance> item)
 {
 	if (item == NULL) return;
 	if (item->id == Item::map_Id)
@@ -82,12 +82,12 @@ void ItemFrame::removeFramedMap(shared_ptr<ItemInstance> item)
 	item->setFramed(nullptr);
 }
 
-shared_ptr<ItemInstance> ItemFrame::getItem() 
+std::shared_ptr<ItemInstance> ItemFrame::getItem() 
 {
 	return getEntityData()->getItemInstance(DATA_ITEM);
 }
 
-void ItemFrame::setItem(shared_ptr<ItemInstance> item) 
+void ItemFrame::setItem(std::shared_ptr<ItemInstance> item) 
 {
 	if(item != NULL)
 	{
@@ -134,7 +134,7 @@ void ItemFrame::readAdditionalSaveData(CompoundTag *tag)
 	HangingEntity::readAdditionalSaveData(tag);
 }
 
-bool ItemFrame::interact(shared_ptr<Player> player) 
+bool ItemFrame::interact(std::shared_ptr<Player> player) 
 {
 	if(!player->isAllowedToInteract(shared_from_this()))
 	{

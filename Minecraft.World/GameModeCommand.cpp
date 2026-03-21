@@ -12,7 +12,7 @@ int GameModeCommand::getPermissionLevel()
 	return LEVEL_GAMEMASTERS;
 }
 
-void GameModeCommand::execute(shared_ptr<CommandSender> source, byteArray commandData)
+void GameModeCommand::execute(std::shared_ptr<CommandSender> source, byteArray commandData)
 {
 	//if (args.length > 0) {
 	//	GameType newMode = getModeForString(source, args[0]);
@@ -35,7 +35,7 @@ void GameModeCommand::execute(shared_ptr<CommandSender> source, byteArray comman
 	//throw new UsageException("commands.gamemode.usage");
 }
 
-GameType *GameModeCommand::getModeForString(shared_ptr<CommandSender> source, const wstring &name)
+GameType *GameModeCommand::getModeForString(std::shared_ptr<CommandSender> source, const std::wstring &name)
 {
 	return NULL;
 	//if (name.equalsIgnoreCase(GameType.SURVIVAL.getName()) || name.equalsIgnoreCase("s")) {

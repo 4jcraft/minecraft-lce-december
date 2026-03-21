@@ -13,7 +13,7 @@ WolfRenderer::WolfRenderer(Model *model, Model *armor, float shadow) : MobRender
 	setArmor(armor);
 }
 
-float WolfRenderer::getBob(shared_ptr<LivingEntity> _mob, float a)
+float WolfRenderer::getBob(std::shared_ptr<LivingEntity> _mob, float a)
 {
 	// 4J - dynamic cast required because we aren't using templates/generics in our version
 	shared_ptr<Wolf> mob = dynamic_pointer_cast<Wolf>(_mob);
@@ -21,7 +21,7 @@ float WolfRenderer::getBob(shared_ptr<LivingEntity> _mob, float a)
 	return mob->getTailAngle();
 }
 
-int WolfRenderer::prepareArmor(shared_ptr<LivingEntity> mob, int layer, float a)
+int WolfRenderer::prepareArmor(std::shared_ptr<LivingEntity> mob, int layer, float a)
 {
 	if (mob->isInvisibleTo(Minecraft::GetInstance()->player)) return -1; // 4J-JEV: Todo, merge with java fix in '1.7.5'.
 
@@ -46,7 +46,7 @@ int WolfRenderer::prepareArmor(shared_ptr<LivingEntity> mob, int layer, float a)
 	return -1;
 }
 
-ResourceLocation *WolfRenderer::getTextureLocation(shared_ptr<Entity> _mob)
+ResourceLocation *WolfRenderer::getTextureLocation(std::shared_ptr<Entity> _mob)
 {
 	shared_ptr<Wolf> mob = dynamic_pointer_cast<Wolf>(_mob);
 	if (mob->isTame())

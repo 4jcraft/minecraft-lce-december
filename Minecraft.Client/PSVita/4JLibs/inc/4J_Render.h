@@ -210,11 +210,11 @@ public:
 	void BeginEvent(LPCWSTR eventName);
 	void EndEvent();
 
-	void* allocGPURWMem(const size_t size,const size_t alignment = 16);
+	void* allocGPURWMem(const std::size_t size,const std::size_t alignment = 16);
 	void freeGPURWMem(void* mem);
-	void* allocGPUROMem(const size_t size,const size_t alignment = 16);
+	void* allocGPUROMem(const std::size_t size,const std::size_t alignment = 16);
 	void freeGPUROMem(void* mem);
-	void* allocGPUCDMem(const size_t size,const size_t alignment = 16);
+	void* allocGPUCDMem(const std::size_t size,const std::size_t alignment = 16);
 	void freeGPUCDMem(void* mem);
 	int getDisplayBufferCount();
 	volatile uint32_t *getNotificationRegion();

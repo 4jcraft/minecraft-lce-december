@@ -17,7 +17,7 @@ HangingEntityItem::HangingEntityItem(int id, eINSTANCEOF eClassType) : Item(id)
 	this->eType=eClassType;
 }
 
-bool HangingEntityItem::useOn(shared_ptr<ItemInstance> instance, shared_ptr<Player> player, Level *level, int xt, int yt, int zt, int face, float clickX, float clickY, float clickZ, bool bTestOnly)
+bool HangingEntityItem::useOn(std::shared_ptr<ItemInstance> instance, std::shared_ptr<Player> player, Level *level, int xt, int yt, int zt, int face, float clickX, float clickY, float clickZ, bool bTestOnly)
 {
 	if (face == Facing::DOWN) return false;
 	if (face == Facing::UP) return false;
@@ -62,7 +62,7 @@ bool HangingEntityItem::useOn(shared_ptr<ItemInstance> instance, shared_ptr<Play
 }
 
 
-shared_ptr<HangingEntity> HangingEntityItem::createEntity(Level *level, int x, int y, int z, int dir, int auxValue)  // 4J added auxValue
+std::shared_ptr<HangingEntity> HangingEntityItem::createEntity(Level *level, int x, int y, int z, int dir, int auxValue)  // 4J added auxValue
 {
 	if (eType == eTYPE_PAINTING) 
 	{
@@ -94,7 +94,7 @@ shared_ptr<HangingEntity> HangingEntityItem::createEntity(Level *level, int x, i
 }
 
 // 4J Adding overrides for art tools
-void HangingEntityItem::appendHoverText(shared_ptr<ItemInstance> itemInstance, shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
+void HangingEntityItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced)
 {
 #ifndef _CONTENT_PACKAGE
 	if (eType == eTYPE_PAINTING && app.DebugArtToolsOn() && itemInstance->getAuxValue() > 0 ) 

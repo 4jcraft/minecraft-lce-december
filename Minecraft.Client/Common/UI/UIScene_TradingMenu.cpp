@@ -66,7 +66,7 @@ UIScene_TradingMenu::UIScene_TradingMenu(int iPad, void *_initData, UILayer *par
 	app.SetRichPresenceContext(iPad, CONTEXT_GAME_STATE_TRADING);
 }
 
-wstring UIScene_TradingMenu::getMoviePath()
+std::wstring UIScene_TradingMenu::getMoviePath()
 {
 	if(app.GetLocalPlayerCount() > 1)
 	{
@@ -233,17 +233,17 @@ void UIScene_TradingMenu::moveSelector(bool right)
 	IggyResult out = IggyPlayerCallMethodRS ( getMovie() , &result, IggyPlayerRootPath( getMovie() ), m_funcMoveSelector , 1 , value );
 }
 
-void UIScene_TradingMenu::setTitle(const wstring &name)
+void UIScene_TradingMenu::setTitle(const std::wstring &name)
 {
 	m_labelTrading.setLabel(name);
 }
 
-void UIScene_TradingMenu::setRequest1Name(const wstring &name)
+void UIScene_TradingMenu::setRequest1Name(const std::wstring &name)
 {
 	m_labelRequest1.setLabel(name);
 }
 
-void UIScene_TradingMenu::setRequest2Name(const wstring &name)
+void UIScene_TradingMenu::setRequest2Name(const std::wstring &name)
 {
 	m_labelRequest2.setLabel(name);
 }

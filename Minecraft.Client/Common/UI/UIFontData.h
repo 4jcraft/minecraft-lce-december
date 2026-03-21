@@ -2,7 +2,6 @@
 
 #include <unordered_map>
 
-using namespace std;
 
 #define _DEBUG_BLOCK_CHARS 0
 
@@ -82,7 +81,7 @@ protected:
 	SFontData			*m_sFontData;
 
 	// Map Unicodepoints to glyph ids.
-	unordered_map<unsigned int, unsigned short> m_unicodeMap;
+	std::unordered_map<unsigned int, unsigned short> m_unicodeMap;
 
 	// Kerning value for each glyph.
 	unsigned short		*m_kerningTable;

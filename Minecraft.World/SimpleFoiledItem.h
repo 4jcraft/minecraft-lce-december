@@ -7,5 +7,5 @@ class SimpleFoiledItem : public Item
 public:
 	SimpleFoiledItem(int id);
 
-	bool isFoil(shared_ptr<ItemInstance> itemInstance);
+	bool isFoil(std::shared_ptr<ItemInstance> itemInstance);
 };
