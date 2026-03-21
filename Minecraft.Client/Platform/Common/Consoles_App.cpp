@@ -3460,7 +3460,8 @@ void CMinecraftApp::HandleXuiActions(void) {
                     pStats->clear();
 
                     // 4J-PB - the libs will display the Returned to Title
-                    // screen 					UINT uiIDA[1]; 					uiIDA[0]=IDS_CONFIRM_OK;
+                    // screen 					UINT uiIDA[1];
+                    // uiIDA[0]=IDS_CONFIRM_OK;
                     //
                     // 					ui.RequestMessageBox(IDS_RETURNEDTOMENU_TITLE,
                     // IDS_RETURNEDTOTITLESCREEN_TEXT, uiIDA, 1,
@@ -3504,8 +3505,8 @@ void CMinecraftApp::HandleXuiActions(void) {
                                        !g_NetworkManager.IsInGameplay()) {
                                 // There are two cases here, either:
                                 //	 1. We're early enough in the
-                                //create/load game that we can do a really
-                                //minimal shutdown or
+                                // create/load game that we can do a really
+                                // minimal shutdown or
                                 //   2. We're far enough in (game has started
                                 //   but the actual game started flag hasn't
                                 //   been set) that we should just wait until
@@ -5770,7 +5771,8 @@ int CMinecraftApp::DLCMountedCallback(LPVOID pParam, int iPad, DWORD dwErr,
 // 			 BYTE *pBuffer=NULL;
 // 			 DWORD dwSize=0;
 // 			 // 4J-PB - out for now for DaveK so he doesn't get the
-// birthday cape #ifdef _CONTENT_PACKAGE 			 C4JStorage::ETMSStatus eTMSStatus;
+// birthday cape #ifdef _CONTENT_PACKAGE
+// C4JStorage::ETMSStatus eTMSStatus;
 // 			 eTMSStatus=StorageManager.ReadTMSFile(ProfileManager.GetPrimaryPad(),C4JStorage::eGlobalStorage_Title,C4JStorage::eTMS_FileType_Graphic,
 // L"Default_Cape.png",&pBuffer, &dwSize);
 // 			 if(eTMSStatus==C4JStorage::ETMSStatus_Idle)
@@ -9670,9 +9672,9 @@ bool CMinecraftApp::IsLocalMultiplayerAvailable() {
     // Found this in GameNetworkManager?
     // #ifdef _DURANGO
     //		iOtherConnectedControllers =
-    //InputManager.GetConnectedGamepadCount();
+    // InputManager.GetConnectedGamepadCount();
     //		if((InputManager.IsPadConnected(userIndex) ||
-    //ProfileManager.IsSignedIn(userIndex)))
+    // ProfileManager.IsSignedIn(userIndex)))
     //		{
     //			--iOtherConnectedControllers;
     //		}
@@ -9680,7 +9682,7 @@ bool CMinecraftApp::IsLocalMultiplayerAvailable() {
     //		for(unsigned int i = 0; i < XUSER_MAX_COUNT; ++i)
     //		{
     //			if( (i!=userIndex) && (InputManager.IsPadConnected(i) ||
-    //ProfileManager.IsSignedIn(i)) )
+    // ProfileManager.IsSignedIn(i)) )
     //			{
     //				iOtherConnectedControllers++;
     //			}

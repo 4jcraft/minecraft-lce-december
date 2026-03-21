@@ -725,7 +725,8 @@ bool Mob::hasCustomName() {
 }
 
 void Mob::setCustomNameVisible(bool visible) {
-    entityData->set(DATA_CUSTOM_NAME_VISIBLE, visible ? (uint8_t)1 : (uint8_t)0);
+    entityData->set(DATA_CUSTOM_NAME_VISIBLE,
+                    visible ? (uint8_t)1 : (uint8_t)0);
 }
 
 bool Mob::isCustomNameVisible() {

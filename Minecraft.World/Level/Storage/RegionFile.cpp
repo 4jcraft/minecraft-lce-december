@@ -281,10 +281,10 @@ void RegionFile::write(int x, int z, uint8_t* data,
     // 4J Stu - Do the compression here so that we know how much space we need
     // to store the compressed data
     uint8_t* compData =
-        new uint8_t[length + 2048];  // presuming compression is going to make this
-                                  // smaller...	UPDATE - for some really small
-                                  // things this isn't the case. Added 2K on
-                                  // here to cover those.
+        new uint8_t[length + 2048];  // presuming compression is going to make
+                                     // this smaller...	UPDATE - for some really
+                                     // small things this isn't the case. Added
+                                     // 2K on here to cover those.
     unsigned int compLength = length;
     Compression::getCompression()->CompressLZXRLE(compData, &compLength, data,
                                                   length);

@@ -96,8 +96,8 @@ LevelChunk* HellFlatLevelSource::getChunk(int xOffs, int zOffs) {
     // 4J - now allocating this with a physical alloc & bypassing general memory
     // management so that it will get cleanly freed
     int chunksSize = Level::genDepth * 16 * 16;
-    uint8_t* tileData =
-        (uint8_t*)XPhysicalAlloc(chunksSize, MAXULONG_PTR, 4096, PAGE_READWRITE);
+    uint8_t* tileData = (uint8_t*)XPhysicalAlloc(chunksSize, MAXULONG_PTR, 4096,
+                                                 PAGE_READWRITE);
     XMemSet128(tileData, 0, chunksSize);
     byteArray blocks = byteArray(tileData, chunksSize);
     //    byteArray blocks = byteArray(16 * level->depth * 16);

@@ -165,7 +165,8 @@ void TrackedEntity::tick(EntityTracker* tracker,
                     teleportDelay = 0;
                     packet = std::shared_ptr<TeleportEntityPacket>(
                         new TeleportEntityPacket(e->entityId, xn, yn, zn,
-                                                 (uint8_t)yRotn, (uint8_t)xRotn));
+                                                 (uint8_t)yRotn,
+                                                 (uint8_t)xRotn));
                     //			printf("%d: New teleport rot
                     //%d\n",e->entityId,yRotn);
                     yRotp = yRotn;

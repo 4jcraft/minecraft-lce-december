@@ -175,8 +175,8 @@ LevelChunk* TheEndLevelRandomLevelSource::getChunk(int xOffs, int zOffs) {
     // 4J - now allocating this with a physical alloc & bypassing general memory
     // management so that it will get cleanly freed
     unsigned int blocksSize = Level::genDepth * 16 * 16;
-    uint8_t* tileData =
-        (uint8_t*)XPhysicalAlloc(blocksSize, MAXULONG_PTR, 4096, PAGE_READWRITE);
+    uint8_t* tileData = (uint8_t*)XPhysicalAlloc(blocksSize, MAXULONG_PTR, 4096,
+                                                 PAGE_READWRITE);
     XMemSet128(tileData, 0, blocksSize);
     byteArray blocks = byteArray(tileData, blocksSize);
     //    byteArray blocks = byteArray(16 * level->depth * 16);

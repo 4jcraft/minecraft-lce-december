@@ -21,8 +21,8 @@ ChunkTilesUpdatePacket::ChunkTilesUpdatePacket() {
 }
 
 ChunkTilesUpdatePacket::ChunkTilesUpdatePacket(int xc, int zc,
-                                               shortArray positions, uint8_t count,
-                                               Level* level) {
+                                               shortArray positions,
+                                               uint8_t count, Level* level) {
     shouldDelay = true;
     this->xc = xc;
     this->zc = zc;

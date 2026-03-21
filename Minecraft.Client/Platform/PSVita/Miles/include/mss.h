@@ -2320,12 +2320,12 @@ typedef struct _D3DSTATE {
     S32 n_directional_channels;
 
     MSS_RECEIVER_LIST
-        receiver_specifications[MAX_RECEIVER_SPECS];  // Constellation of
-                                                      // receiver vectors
+    receiver_specifications[MAX_RECEIVER_SPECS];  // Constellation of
+                                                  // receiver vectors
     S32 n_receiver_specs;
 
     MSSVECTOR3D
-        speaker_positions[MAX_SPEAKERS];  // Listener-relative speaker locations
+    speaker_positions[MAX_SPEAKERS];  // Listener-relative speaker locations
 
     F32 speaker_wet_reverb_response[MAX_SPEAKERS];  // Reverb sensitivity of
                                                     // each speaker
@@ -2415,7 +2415,7 @@ typedef struct _DIG_DRIVER  // Handle to digital audio driver
     SINTa system_data[8];  // Miscellaneous system data
 
     HSAMPLE
-        bus_samples[MAX_BUSSES];  // Sample handles the bus will route through.
+    bus_samples[MAX_BUSSES];  // Sample handles the bus will route through.
     S32 bus_active_count[MAX_BUSSES];  // Number of samples mixed on the bus
                                        // last mix.
     void* bus_ptrs[MAX_BUSSES];        // Buffers for each bus to mix in to.

@@ -127,8 +127,8 @@ void BasicTree::prepare() {
     //    clusterCount);
 }
 
-void BasicTree::crossection(int x, int y, int z, float radius, uint8_t direction,
-                            int material) {
+void BasicTree::crossection(int x, int y, int z, float radius,
+                            uint8_t direction, int material) {
     PIXBeginNamedEvent(0, "BasicTree crossection");
     // Create a circular cross section.
     //

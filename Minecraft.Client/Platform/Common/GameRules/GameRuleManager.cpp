@@ -140,7 +140,8 @@ void GameRuleManager::loadGameRules(DLCPack* pack) {
     }
 }
 
-LevelGenerationOptions* GameRuleManager::loadGameRules(uint8_t* dIn, UINT dSize) {
+LevelGenerationOptions* GameRuleManager::loadGameRules(uint8_t* dIn,
+                                                       UINT dSize) {
     LevelGenerationOptions* lgo = new LevelGenerationOptions();
     lgo->setGrSource(new JustGrSource());
     lgo->setSrc(LevelGenerationOptions::eSrc_fromSave);

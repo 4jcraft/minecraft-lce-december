@@ -357,8 +357,8 @@ void RedStoneDustTile::animateTick(Level* level, int x, int y, int z,
                 (((maxColour >> 8) & 0xFF - (minColour >> 8) & 0xFF) *
                  ((data - 1) / 14.0f));
             uint8_t blueComponent = ((minColour) & 0xFF) +
-                                 (((maxColour) & 0xFF - (minColour) & 0xFF) *
-                                  ((data - 1) / 14.0f));
+                                    (((maxColour) & 0xFF - (minColour) & 0xFF) *
+                                     ((data - 1) / 14.0f));
 
             colour = redComponent << 16 | greenComponent << 8 | blueComponent;
         }

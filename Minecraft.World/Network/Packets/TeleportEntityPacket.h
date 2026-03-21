@@ -12,7 +12,8 @@ public:
 
     TeleportEntityPacket();
     TeleportEntityPacket(std::shared_ptr<Entity> e);
-    TeleportEntityPacket(int id, int x, int y, int z, uint8_t yRot, uint8_t xRot);
+    TeleportEntityPacket(int id, int x, int y, int z, uint8_t yRot,
+                         uint8_t xRot);
 
     virtual void read(DataInputStream* dis);
     virtual void write(DataOutputStream* dos);

@@ -1921,8 +1921,9 @@ void CGameNetworkManager::GameInviteReceived(int userIndex,
 
             // 			JoinFromInviteData *joinData = new
             // JoinFromInviteData(); 			joinData->dwUserIndex =
-            // dwUserIndex; 			joinData->dwLocalUsersMask = dwLocalUsersMask;
-            // 			joinData->pInviteInfo = pInviteInfo;
+            // dwUserIndex; 			joinData->dwLocalUsersMask =
+            // dwLocalUsersMask; 			joinData->pInviteInfo =
+            // pInviteInfo;
 
             // tell the app to process this
 #ifdef __PSVITA__

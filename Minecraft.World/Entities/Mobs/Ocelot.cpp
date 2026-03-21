@@ -231,7 +231,9 @@ bool Ocelot::canMate(std::shared_ptr<Animal> animal) {
 
 int Ocelot::getCatType() { return entityData->getByte(DATA_TYPE_ID); }
 
-void Ocelot::setCatType(int type) { entityData->set(DATA_TYPE_ID, (uint8_t)type); }
+void Ocelot::setCatType(int type) {
+    entityData->set(DATA_TYPE_ID, (uint8_t)type);
+}
 
 bool Ocelot::canSpawn() {
     // artificially make ozelots more rare
@@ -296,8 +298,8 @@ MobGroupData* Ocelot::finalizeMobSpawn(
 
 void Ocelot::setSittingOnTile(bool val) {
     uint8_t current = entityData->getByte(DATA_FLAGS_ID);
-    entityData->set(DATA_FLAGS_ID,
-                    val ? (uint8_t)(current | 0x02) : (uint8_t)(current & ~0x02));
+    entityData->set(DATA_FLAGS_ID, val ? (uint8_t)(current | 0x02)
+                                       : (uint8_t)(current & ~0x02));
 }
 
 bool Ocelot::isSittingOnTile() {

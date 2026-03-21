@@ -392,7 +392,7 @@ void LevelRenderer::setLevel(int playerIndex, MultiPlayerLevel* level) {
             //			delete sortedChunks[playerIndex];	// 4J -
             // removed - not sorting our chunks anymore
             // sortedChunks[playerIndex] = NULL;	// 4J - removed - not
-            //sorting our chunks anymore
+            // sorting our chunks anymore
         }
 
         // 4J Stu - If we do this for splitscreen players leaving, then all the

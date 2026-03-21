@@ -996,7 +996,8 @@ void SonyCommerce_Vita::processMessage() {
             // 		{
             // 			ret = productBrowse(*(ProductBrowseParams
             // *)msg.inputArgs); 			if (ret < 0) {
-            // m_event = e_event_commerceError; 				m_errorCode = ret;
+            // m_event = e_event_commerceError;
+            // m_errorCode = ret;
             // 			}
             // 			_TOOLKIT_NP_DEL (ProductBrowseParams
             // *)msg.inputArgs; 			break;
@@ -1016,7 +1017,8 @@ void SonyCommerce_Vita::processMessage() {
             // 		{
             // 			ret = voucherCodeInput(*(VoucherInputParams
             // *)msg.inputArgs); 			if (ret < 0) {
-            // m_event = e_event_commerceError; 				m_errorCode = ret;
+            // m_event = e_event_commerceError;
+            // m_errorCode = ret;
             // 			}
             // 			_TOOLKIT_NP_DEL (VoucherInputParams
             // *)msg.inputArgs; 			break;
@@ -1033,11 +1035,11 @@ void SonyCommerce_Vita::processMessage() {
             //
             // 			// We don't want to process this if we are
             // offline 			if (ret < 0 || state !=
-            // SCE_NP_MANAGER_STATUS_ONLINE) { 				m_event = e_event_commerceError;
-            // 				reply.returnCode =
-            // SCE_TOOLKIT_NP_OFFLINE;
-            // tmpJob.setError(SCE_TOOLKIT_NP_OFFLINE); 			} else {
-            // 				getEntitlementList(&tmpJob);
+            // SCE_NP_MANAGER_STATUS_ONLINE) { 				m_event
+            // = e_event_commerceError;
+            // reply.returnCode = SCE_TOOLKIT_NP_OFFLINE;
+            // tmpJob.setError(SCE_TOOLKIT_NP_OFFLINE);
+            // } else { getEntitlementList(&tmpJob);
             // 			}
             // 			break;
             // 		}
@@ -1049,14 +1051,16 @@ void SonyCommerce_Vita::processMessage() {
             //
             // 			// We don't want to process this if we are
             // offline 			if (ret < 0 || state !=
-            // SCE_NP_MANAGER_STATUS_ONLINE) { 				m_event = e_event_commerceError;
-            // 				reply.returnCode =
-            // SCE_TOOLKIT_NP_OFFLINE; 			} else {
+            // SCE_NP_MANAGER_STATUS_ONLINE) { 				m_event
+            // = e_event_commerceError;
+            // reply.returnCode = SCE_TOOLKIT_NP_OFFLINE;
+            // } else {
             //
             // 				ret =
             // consumeEntitlement(*(EntitlementToConsume *)msg.inputArgs);
             // if (ret < 0) { 					m_event =
-            // e_event_commerceError; m_errorCode = ret; 				} else { 					m_event =
+            // e_event_commerceError; m_errorCode = ret;
+            // } else { 					m_event =
             // e_event_commerceConsumedEntitlement;
             // 				}
             // 			}

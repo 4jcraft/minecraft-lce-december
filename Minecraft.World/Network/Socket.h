@@ -109,7 +109,7 @@ private:
     static SocketInputStreamLocal* s_hostInStream[2];
 
     // For network connections
-    std::queue<uint8_t> m_queueNetwork[2];      // For input data
+    std::queue<uint8_t> m_queueNetwork[2];   // For input data
     CRITICAL_SECTION m_queueLockNetwork[2];  // For input data
     SocketInputStreamNetwork* m_inputStream[2];
     SocketOutputStreamNetwork* m_outputStream[2];
