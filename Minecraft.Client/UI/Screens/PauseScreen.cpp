@@ -8,7 +8,7 @@
 #include "../../../Minecraft.World/Headers/net.minecraft.locale.h"
 #include "../../../Minecraft.World/Headers/net.minecraft.world.level.h"
 #include "../../../Minecraft.World/Headers/net.minecraft.stats.h"
-#include "../Minecraft.Client/LocalPlayer.h"
+#include "../../Player/LocalPlayer.h"
 
 PauseScreen::PauseScreen() {
     saveStep = 0;

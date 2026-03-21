@@ -2,7 +2,7 @@
 #include "../Minecraft.h"
 #include "../../Minecraft.World/Headers/net.minecraft.world.level.h"
 #include "../../Minecraft.World/Headers/net.minecraft.world.level.dimension.h"
-#include "MultiplayerLocalPlayer.h"
+#include "../Player/MultiPlayerLocalPlayer.h"
 #include "../../Minecraft.World/Util/JavaMath.h"
 #include "Texture.h"
 #include "ClockTexture.h"

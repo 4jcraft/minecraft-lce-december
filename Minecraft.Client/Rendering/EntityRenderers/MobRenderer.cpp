@@ -7,7 +7,7 @@
 #include "../../../Minecraft.World/Headers/net.minecraft.world.entity.projectile.h"
 #include "../../../Minecraft.World/Util/StringHelpers.h"
 #include "../../../Minecraft.World/Util/Mth.h"
-#include "entityRenderDispatcher.h"
+#include "EntityRenderDispatcher.h"
 
 MobRenderer::MobRenderer(Model* model, float shadow)
     : LivingEntityRenderer(model, shadow) {}

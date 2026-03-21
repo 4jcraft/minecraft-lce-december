@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
 #include "InventoryScreen.h"
-#include "MultiplayerLocalPlayer.h"
+#include "../../Player/MultiPlayerLocalPlayer.h"
 #include "../Font.h"
 #include "../../Rendering/EntityRenderers/EntityRenderDispatcher.h"
 #include "../../Rendering/Lighting.h"

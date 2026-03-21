@@ -56,7 +56,7 @@
 #include "../../Minecraft.World/Headers/net.minecraft.world.level.chunk.h"
 #include "../../Minecraft.World/Headers/net.minecraft.world.entity.projectile.h"
 #include "../../Minecraft.World/Headers/net.minecraft.world.h"
-#include "MultiplayerLocalPlayer.h"
+#include "../Player/MultiPlayerLocalPlayer.h"
 #include "../Level/MultiPlayerLevel.h"
 #include "../../Minecraft.World/Util/SoundTypes.h"
 #include "FrustumCuller.h"

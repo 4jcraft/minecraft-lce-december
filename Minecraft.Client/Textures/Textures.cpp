@@ -8,7 +8,7 @@
 #include "../../Minecraft.World/IO/Streams/ByteBuffer.h"
 #include "Packs/TexturePack.h"
 #include "../GameState/Options.h"
-#include "../Minecraft.Client/MemTextureProcessor.h"
+#include "MemTextureProcessor.h"
 #include "MobSkinMemTextureProcessor.h"
 #include "Stitching/PreStitchedTextureMap.h"
 #include "Stitching/StitchedTexture.h"

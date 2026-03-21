@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "InBedChatScreen.h"
 #include "../Button.h"
-#include "MultiplayerLocalPlayer.h"
+#include "../../Player/MultiPlayerLocalPlayer.h"
 #include "../../../Minecraft.World/Headers/net.minecraft.locale.h"
 #include "../../../Minecraft.World/Util/StringHelpers.h"
 

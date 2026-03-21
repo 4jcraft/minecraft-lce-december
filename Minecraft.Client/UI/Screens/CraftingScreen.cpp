@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "CraftingScreen.h"
 #include "../../Textures/Textures.h"
-#include "MultiplayerLocalPlayer.h"
+#include "../../Player/MultiPlayerLocalPlayer.h"
 #include "../../../Minecraft.World/Headers/net.minecraft.world.inventory.h"
 
 CraftingScreen::CraftingScreen(std::shared_ptr<Inventory> inventory,

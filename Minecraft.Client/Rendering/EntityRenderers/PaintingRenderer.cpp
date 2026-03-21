@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
 #include "PaintingRenderer.h"
-#include "entityRenderDispatcher.h"
+#include "EntityRenderDispatcher.h"
 #include "../../../Minecraft.World/Headers/net.minecraft.world.entity.h"
 #include "../../../Minecraft.World/Headers/net.minecraft.world.level.h"
 #include "../../../Minecraft.World/Util/Random.h"

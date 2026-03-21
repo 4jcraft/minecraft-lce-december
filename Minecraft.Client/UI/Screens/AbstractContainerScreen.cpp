@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "AbstractContainerScreen.h"
 #include "../../Rendering/EntityRenderers/ItemRenderer.h"
-#include "MultiplayerLocalPlayer.h"
+#include "../../Player/MultiPlayerLocalPlayer.h"
 #include "../../Rendering/Lighting.h"
 #include "../../GameState/GameMode.h"
 #include "../../Input/KeyMapping.h"

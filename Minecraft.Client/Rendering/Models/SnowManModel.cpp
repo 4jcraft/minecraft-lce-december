@@ -1,5 +1,5 @@
 #include "../../Platform/stdafx.h"
-#include "SnowmanModel.h"
+#include "SnowManModel.h"
 #include "../../../Minecraft.World/Util/Mth.h"
 #include "ModelPart.h"
 
