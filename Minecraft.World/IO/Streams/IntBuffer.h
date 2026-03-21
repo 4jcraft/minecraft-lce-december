@@ -12,7 +12,7 @@ public:
     virtual ~IntBuffer();
 
     virtual IntBuffer* flip();
-    int std::get(unsigned int index);
+    int get(unsigned int index);
     int* getBuffer();
     IntBuffer* put(intArray* inputArray, unsigned int offset,
                    unsigned int length);

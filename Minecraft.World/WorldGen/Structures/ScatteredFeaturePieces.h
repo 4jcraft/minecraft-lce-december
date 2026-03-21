@@ -85,7 +85,7 @@ public:
     private:
         class MossStoneSelector : public BlockSelector {
         public:
-            void std::next(Random* random, int worldX, int worldY, int worldZ,
+            void next(Random* random, int worldX, int worldY, int worldZ,
                            bool isEdge);
         };
 

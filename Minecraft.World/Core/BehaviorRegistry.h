@@ -11,6 +11,6 @@ public:
     BehaviorRegistry(DispenseItemBehavior* defaultValue);
     ~BehaviorRegistry();
 
-    DispenseItemBehavior* std::get(Item* key);
+    DispenseItemBehavior* get(Item* key);
     void add(Item* key, DispenseItemBehavior* value);
 };

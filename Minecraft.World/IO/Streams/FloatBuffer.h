@@ -12,6 +12,6 @@ public:
 
     FloatBuffer* flip();
     FloatBuffer* put(float f);
-    void std::get(floatArray* dst);
+    void get(floatArray* dst);
     float* _getDataPointer() { return buffer; }
 };

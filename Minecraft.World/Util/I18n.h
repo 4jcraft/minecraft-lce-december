@@ -8,6 +8,6 @@ private:
     static Language* lang;
 
 public:
-    static std::wstring std::get(const std::wstring& id, ...);
-    static std::wstring std::get(const std::wstring& id, va_list args);
+    static std::wstring get(const std::wstring& id, ...);
+    static std::wstring get(const std::wstring& id, va_list args);
 };

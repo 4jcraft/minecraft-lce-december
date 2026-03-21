@@ -6,6 +6,6 @@ private:
     T* obj;
 
 public:
-    T* std::get() { return obj; }
+    T* get() { return obj; }
     Reference(T* i) { obj = i; }
 };
