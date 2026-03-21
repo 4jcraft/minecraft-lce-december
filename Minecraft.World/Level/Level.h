@@ -388,7 +388,7 @@ public:
     void tick(std::shared_ptr<Entity> e);
     virtual void tick(std::shared_ptr<Entity> e, bool actual);
     bool isUnobstructed(AABB* aabb);
-    bool isUnobstructed(AABB* aabb, std::shared_ptr<Entity> std::ignore);
+    bool isUnobstructed(AABB* aabb, std::shared_ptr<Entity> ignore);
     bool containsAnyBlocks(AABB* box);
     bool containsAnyLiquid(AABB* box);
     bool containsAnyLiquid_NoLoad(AABB* box);  // 4J added

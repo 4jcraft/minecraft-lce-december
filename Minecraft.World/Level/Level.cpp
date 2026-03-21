@@ -2358,12 +2358,12 @@ void Level::tick(std::shared_ptr<Entity> e, bool actual) {
 
 bool Level::isUnobstructed(AABB* aabb) { return isUnobstructed(aabb, nullptr); }
 
-bool Level::isUnobstructed(AABB* aabb, std::shared_ptr<Entity> std::ignore) {
+bool Level::isUnobstructed(AABB* aabb, std::shared_ptr<Entity> ignore) {
     std::vector<std::shared_ptr<Entity> >* ents = getEntities(nullptr, aabb);
     AUTO_VAR(itEnd, ents->end());
     for (AUTO_VAR(it, ents->begin()); it != itEnd; it++) {
         std::shared_ptr<Entity> e = *it;
-        if (!e->removed && e->blocksBuilding && e != std::ignore) return false;
+        if (!e->removed && e->blocksBuilding && e != ignore) return false;
     }
     return true;
 }
