@@ -637,7 +637,7 @@ int DirectoryLevelStorage::getAuxValueForMap(PlayerUID xuid, int dimension,
         ConsoleSavePath file = getDataFile(id);
 
         if (m_saveFile->doesFileExist(file)) {
-            AUTO_VAR(it, std::find(m_mapFilesToDelete.begin(),
+            AUTO_VAR(it, find(m_mapFilesToDelete.begin(),
                                    m_mapFilesToDelete.end(), mapId));
             if (it != m_mapFilesToDelete.end()) m_mapFilesToDelete.erase(it);
 

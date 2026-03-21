@@ -251,7 +251,7 @@ bool BiomeSource::containsOnly(int x, int z, int r,
     intArray biomes = layer->getArea(x0, z0, w, h);
     for (int i = 0; i < w * h; i++) {
         Biome* b = Biome::biomes[biomes[i]];
-        if (std::find(allowed.begin(), allowed.end(), b) == allowed.end())
+        if (find(allowed.begin(), allowed.end(), b) == allowed.end())
             return false;
     }
 
@@ -343,7 +343,7 @@ TilePos* BiomeSource::findBiome(int x, int z, int r,
         int xx = (x0 + i % w) << 2;
         int zz = (z0 + i / w) << 2;
         Biome* b = Biome::biomes[biomes[i]];
-        if (std::find(allowed.begin(), allowed.end(), b) != allowed.end()) {
+        if (find(allowed.begin(), allowed.end(), b) != allowed.end()) {
             if (res == NULL || random->nextInt(found + 1) == 0) {
                 delete res;
                 res = new TilePos(xx, 0, zz);

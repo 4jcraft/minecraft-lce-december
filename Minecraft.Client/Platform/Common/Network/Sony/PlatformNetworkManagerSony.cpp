@@ -255,7 +255,7 @@ void CPlatformNetworkManagerSony::HandlePlayerLeaving(
                         break;
                     }
                 }
-                AUTO_VAR(it, std::find(m_machineSQRPrimaryPlayers.begin(),
+                AUTO_VAR(it, find(m_machineSQRPrimaryPlayers.begin(),
                                        m_machineSQRPrimaryPlayers.end(),
                                        pSQRPlayer));
                 if (it != m_machineSQRPrimaryPlayers.end()) {

@@ -334,7 +334,7 @@ void RegionFile::write(int x, int z, uint8_t* data,
             PIXBeginNamedEvent(0, "Scanning for free space\n");
             /* scan for a free space large enough to store this chunk */
             int runStart =
-                (int)(std::find(sectorFree->begin(), sectorFree->end(), true) -
+                (int)(find(sectorFree->begin(), sectorFree->end(), true) -
                       sectorFree
                           ->begin());  // 4J - was sectorFree.indexOf(true)
             int runLength = 0;

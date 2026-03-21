@@ -556,7 +556,7 @@ void Chunk::rebuild() {
             // Now go through the current list. If these are already in the
             // list, then unflag the remove flag. If they aren't, then add
             for (int i = 0; i < renderableTileEntities.size(); i++) {
-                AUTO_VAR(it2, std::find(it->second.begin(), it->second.end(),
+                AUTO_VAR(it2, find(it->second.begin(), it->second.end(),
                                         renderableTileEntities[i]));
                 if (it2 == it->second.end()) {
                     (*globalRenderableTileEntities)[key].push_back(
@@ -880,7 +880,7 @@ void Chunk::rebuild_SPU() {
             // Now go through the current list. If these are already in the
             // list, then unflag the remove flag. If they aren't, then add
             for (int i = 0; i < renderableTileEntities.size(); i++) {
-                AUTO_VAR(it2, std::find(it->second.begin(), it->second.end(),
+                AUTO_VAR(it2, find(it->second.begin(), it->second.end(),
                                         renderableTileEntities[i]));
                 if (it2 == it->second.end()) {
                     (*globalRenderableTileEntities)[key].push_back(

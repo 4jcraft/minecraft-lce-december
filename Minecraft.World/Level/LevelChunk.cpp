@@ -1319,7 +1319,7 @@ void LevelChunk::removeEntity(std::shared_ptr<Entity> e, int yc) {
 
     // 4J - was entityBlocks[yc]->remove(e);
     AUTO_VAR(it,
-             std::find(entityBlocks[yc]->begin(), entityBlocks[yc]->end(), e));
+             find(entityBlocks[yc]->begin(), entityBlocks[yc]->end(), e));
     if (it != entityBlocks[yc]->end()) {
         entityBlocks[yc]->erase(it);
         // 4J - we don't want storage creeping up here as thinkgs move round the

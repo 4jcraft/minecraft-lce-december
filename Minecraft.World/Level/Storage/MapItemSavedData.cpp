@@ -255,7 +255,7 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                 carriedByPlayers.erase(it2);
             }
             it = carriedBy.erase(
-                std::find(carriedBy.begin(), carriedBy.end(), hp));
+                find(carriedBy.begin(), carriedBy.end(), hp));
         } else {
             ++it;
 

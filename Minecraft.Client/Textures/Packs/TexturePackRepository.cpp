@@ -388,7 +388,7 @@ void TexturePackRepository::removeTexturePackById(DWORD id) {
     if (it != cacheById.end()) {
         TexturePack* oldPack = it->second;
 
-        AUTO_VAR(it2, std::find(texturePacks->begin(), texturePacks->end(),
+        AUTO_VAR(it2, find(texturePacks->begin(), texturePacks->end(),
                                 oldPack));
         if (it2 != texturePacks->end()) {
             texturePacks->erase(it2);

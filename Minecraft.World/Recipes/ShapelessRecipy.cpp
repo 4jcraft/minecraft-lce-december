@@ -40,7 +40,7 @@ bool ShapelessRecipy::matches(std::shared_ptr<CraftingContainer> craftSlots,
                         (ingredient->getAuxValue() == Recipes::ANY_AUX_VALUE ||
                          item->getAuxValue() == ingredient->getAuxValue())) {
                         found = true;
-                        AUTO_VAR(it, std::find(tempList.begin(), tempList.end(),
+                        AUTO_VAR(it, find(tempList.begin(), tempList.end(),
                                                ingredient));
                         if (it != tempList.end()) tempList.erase(it);
                         break;

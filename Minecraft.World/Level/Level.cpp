@@ -1619,7 +1619,7 @@ bool Level::addEntity(std::shared_ptr<Entity> e) {
 
             // 4J Stu - Added so we don't continually add the player to the
             // players list while they are dead
-            if (std::find(players.begin(), players.end(), e) == players.end()) {
+            if (find(players.begin(), players.end(), e) == players.end()) {
                 players.push_back(player);
             }
 
@@ -2166,7 +2166,7 @@ void Level::tickEntities() {
 
             // 4J Find the entity again before deleting, as things might have
             // moved in the entity array eg from the explosion created by tnt
-            AUTO_VAR(it, std::find(entities.begin(), entities.end(), e));
+            AUTO_VAR(it, find(entities.begin(), entities.end(), e));
             if (it != entities.end()) {
                 entities.erase(it);
             }
@@ -2241,7 +2241,7 @@ void Level::tickEntities() {
              it != pendingTileEntities.end(); it++) {
             std::shared_ptr<TileEntity> e = *it;
             if (!e->isRemoved()) {
-                if (std::find(tileEntityList.begin(), tileEntityList.end(),
+                if (find(tileEntityList.begin(), tileEntityList.end(),
                               e) == tileEntityList.end()) {
                     tileEntityList.push_back(e);
                 }
@@ -2712,19 +2712,19 @@ void Level::removeTileEntity(int x, int y, int z) {
     std::shared_ptr<TileEntity> te = getTileEntity(x, y, z);
     if (te != NULL && updatingTileEntities) {
         te->setRemoved();
-        AUTO_VAR(it, std::find(pendingTileEntities.begin(),
+        AUTO_VAR(it, find(pendingTileEntities.begin(),
                                pendingTileEntities.end(), te));
         if (it != pendingTileEntities.end()) {
             pendingTileEntities.erase(it);
         }
     } else {
         if (te != NULL) {
-            AUTO_VAR(it, std::find(pendingTileEntities.begin(),
+            AUTO_VAR(it, find(pendingTileEntities.begin(),
                                    pendingTileEntities.end(), te));
             if (it != pendingTileEntities.end()) {
                 pendingTileEntities.erase(it);
             }
-            AUTO_VAR(it2, std::find(tileEntityList.begin(),
+            AUTO_VAR(it2, find(tileEntityList.begin(),
                                     tileEntityList.end(), te));
             if (it2 != tileEntityList.end()) {
                 tileEntityList.erase(it2);
@@ -4071,7 +4071,7 @@ void Level::ensureAdded(std::shared_ptr<Entity> entity) {
 
     // if (!entities.contains(entity))
     EnterCriticalSection(&m_entitiesCS);
-    if (std::find(entities.begin(), entities.end(), entity) == entities.end()) {
+    if (find(entities.begin(), entities.end(), entity) == entities.end()) {
         entities.push_back(entity);
     }
     LeaveCriticalSection(&m_entitiesCS);

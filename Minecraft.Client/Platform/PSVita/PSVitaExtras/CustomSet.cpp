@@ -49,7 +49,7 @@ ChunkPos CustomSet::get(int index) { return m_NodePool[index]->key; }
 
 void CustomSet::insert(const ChunkPos& Key) {
     // see if this key already exists
-    SCustomSetNode* Node = std::find(Key);
+    SCustomSetNode* Node = find(Key);
 
     if (!Node) {
         // do we have any space in the pool

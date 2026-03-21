@@ -42,7 +42,7 @@ void AbstractContainerMenu::addSlotListener(ContainerListener* listener) {
 }
 
 void AbstractContainerMenu::removeSlotListener(ContainerListener* listener) {
-    AUTO_VAR(it, std::find(containerListeners.begin(), containerListeners.end(),
+    AUTO_VAR(it, find(containerListeners.begin(), containerListeners.end(),
                            listener));
     if (it != containerListeners.end()) containerListeners.erase(it);
 }
