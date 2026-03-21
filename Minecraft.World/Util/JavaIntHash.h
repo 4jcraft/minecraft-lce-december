@@ -38,14 +38,14 @@ typedef struct {
 // so that we can use a standard std hashmap with this hash rather than
 // implement the class itself
 typedef struct {
-    int std::hash(const int& k) const {
+    int hash(const int& k) const {
         unsigned int h = (unsigned int)k;
         h ^= (h >> 20) ^ (h >> 12);
         return (int)(h ^ (h >> 7) ^ (h >> 4));
     }
 
     int operator()(const __int64& k) const {
-        return std::hash((int)(k ^ (((__uint64)k) >> 32)));
+        return hash((int)(k ^ (((__uint64)k) >> 32)));
     }
 } LongKeyHash;
 

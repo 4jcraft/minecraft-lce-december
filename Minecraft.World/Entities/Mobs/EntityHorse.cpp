@@ -1324,11 +1324,11 @@ bool Enti/**
                 int mark = random->nextInt(MARKINGS);
                 variant = skin | (mark << 8);
             }
-            groupData = new HorseGroupData(type, std::variant);
+            groupData = new HorseGroupData(type, variant);
         }
 
         setType(type);
-        setVariant(std::variant);
+        setVariant(variant);
 
         if (random->nextInt(5) == 0) {
             setAge(AgableMob::BABY_START_AGE);
@@ -1459,9 +1459,9 @@ bool Enti/**
         return speed;
     }
 
-    EntityHorse::HorseGroupData::HorseGroupData(int type, int std::variant) {
+    EntityHorse::HorseGroupData::HorseGroupData(int type, int variant) {
         horseType = type;
-        horseVariant = std::variant;
+        horseVariant = variant;
     }
 
     bool EntityHorse::isHorseArmor(int itemId) {

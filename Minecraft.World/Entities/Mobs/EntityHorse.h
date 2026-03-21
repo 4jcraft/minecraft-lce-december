@@ -330,7 +330,7 @@ public:
         int horseType;
         int horseVariant;
 
-        HorseGroupData(int type, int std::variant);
+        HorseGroupData(int type, int variant);
     };
 
     static bool isHorseArmor(int itemId);

@@ -10,7 +10,7 @@ public:
     const int x, y, z;
 
 private:
-    const int std::hash;
+    const int hash;
 
 protected:
     int heapIdx;
@@ -24,7 +24,7 @@ public:
     eINSTANCEOF GetType() { return eType_NODE; }
 
     Node()
-        : std::hash(0),
+        : hash(0),
           x(0),
           y(0),
           // 4J - added default constructor so we can make an empty of

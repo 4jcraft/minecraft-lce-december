@@ -5,9 +5,12 @@ namespace std {
 namespace tr1 {
 
 template <class T>
-class std::hash<std::shared_ptr<T> > {
+class hash<std::shared_ptr<T> > {
 public:
     std::size_t operator()(const std::shared_ptr<T>& key) const {
         return (std::size_t)key.get();
     }
-}  // namespace tr1// namespace std#endif
+}
+}
+}// namespace tr1// namespace std
+#endif

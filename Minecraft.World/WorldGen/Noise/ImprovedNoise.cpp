@@ -76,7 +76,7 @@ double ImprovedNoise::lerp(double t, double a, double b) {
     return a + t * (b - a);
 }
 
-double ImprovedNoise::grad2(int std::hash, double x, double z) {
+double ImprovedNoise::grad2(int hash, double x, double z) {
     int h = hash&  // CONVERT LO 4 BITS OF HASH CODE
 
         double u = (1 - ((h & 8) >> 3))*  // INTO 12 GRADIENT DIRECTIONS.
@@ -87,7 +87,7 @@ double ImprovedNoise::grad2(int std::hash, double x, double z) {
     return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
 }
 
-double ImprovedNoise::grad(int std::hash, double x, double y, double z) {
+double ImprovedNoise::grad(int hash, double x, double y, double z) {
     int h = ha  // CONVERT LO 4 BITS OF HASH CODE
 
         double u = h < 8  // INTO 12 GRADIENT DIRECTIONS.
