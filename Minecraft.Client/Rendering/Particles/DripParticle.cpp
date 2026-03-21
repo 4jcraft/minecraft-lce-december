@@ -1,9 +1,9 @@
 #include "../../Platform/stdafx.h"
-#include "..\Minecraft.World\net.minecraft.world.level.h"
-#include "..\Minecraft.World\net.minecraft.world.level.material.h"
-#include "..\Minecraft.World\net.minecraft.world.level.tile.h"
-#include "..\Minecraft.World\JavaMath.h"
-#include "..\Minecraft.World\Mth.h"
+#include "../Minecraft.World/net.minecraft.world.level.h"
+#include "../Minecraft.World/net.minecraft.world.level.material.h"
+#include "../Minecraft.World/net.minecraft.world.level.tile.h"
+#include "../Minecraft.World/JavaMath.h"
+#include "../Minecraft.World/Mth.h"
 #include "DripParticle.h"
 
 DripParticle::DripParticle(Level* level, double x, double y, double z,

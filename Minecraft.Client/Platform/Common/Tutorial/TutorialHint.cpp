@@ -1,11 +1,11 @@
 #include "../../stdafx.h"
-#include "..\..\..\Minecraft.World\net.minecraft.world.level.h"
-#include "..\..\..\Minecraft.World\net.minecraft.world.level.tile.h"
-#include "..\..\..\Minecraft.World\net.minecraft.world.item.h"
+#include "../../../Minecraft.World/net.minecraft.world.level.h"
+#include "../../../Minecraft.World/net.minecraft.world.level.tile.h"
+#include "../../../Minecraft.World/net.minecraft.world.item.h"
 #include "Tutorial.h"
 #include "TutorialHint.h"
-#include "..\..\Minecraft.h"
-#include "..\..\MultiplayerLocalPlayer.h"
+#include "../../Minecraft.h"
+#include "../../MultiplayerLocalPlayer.h"
 
 TutorialHint::TutorialHint(eTutorial_Hint id, Tutorial* tutorial,
                            int descriptionId, eHintType type,

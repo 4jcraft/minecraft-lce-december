@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\..\MultiPlayerGameMode.h"
+#include "../../MultiPlayerGameMode.h"
 #include "Tutorial.h"
 
 class TutorialMode : public MultiPlayerGameMode {

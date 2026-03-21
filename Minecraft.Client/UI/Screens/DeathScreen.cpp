@@ -1,5 +1,5 @@
 #include "../../Platform/stdafx.h"
-#include "..\Minecraft.World\StringHelpers.h"
+#include "../Minecraft.World/StringHelpers.h"
 #include "DeathScreen.h"
 #include "../Button.h"
 #include "MultiplayerLocalPlayer.h"

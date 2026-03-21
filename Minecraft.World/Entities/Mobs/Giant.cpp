@@ -3,7 +3,7 @@
 #include "../../Headers/net.minecraft.world.entity.ai.attributes.h"
 #include "../../Headers/net.minecraft.world.entity.monster.h"
 #include "Giant.h"
-#include "..\Minecraft.Client\Textures.h"
+#include "../Minecraft.Client/Textures.h"
 
 Giant::Giant(Level* level) : Monster(level) {
     // 4J Stu - This function call had to be moved here from the Entity ctor to

@@ -1,8 +1,8 @@
 #include "../../Platform/stdafx.h"
 #include "BoatRenderer.h"
 #include "../Models/BoatModel.h"
-#include "..\Minecraft.World\net.minecraft.world.entity.item.h"
-#include "..\Minecraft.World\Mth.h"
+#include "../Minecraft.World/net.minecraft.world.entity.item.h"
+#include "../Minecraft.World/Mth.h"
 
 ResourceLocation BoatRenderer::BOAT_LOCATION = ResourceLocation(TN_ITEM_BOAT);
 

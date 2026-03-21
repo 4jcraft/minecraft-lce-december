@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "HugeExplosionSeedParticle.h"
-#include "..\Minecraft.World\Random.h"
-#include "..\Minecraft.World\net.minecraft.world.level.h"
+#include "../Minecraft.World/Random.h"
+#include "../Minecraft.World/net.minecraft.world.level.h"
 
 HugeExplosionSeedParticle::HugeExplosionSeedParticle(Level* level, double x,
                                                      double y, double z,

@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
 #include "SilverfishRenderer.h"
-#include "..\Minecraft.World\net.minecraft.world.entity.monster.h"
+#include "../Minecraft.World/net.minecraft.world.entity.monster.h"
 #include "../Models/SilverfishModel.h"
 
 ResourceLocation SilverfishRenderer::SILVERFISH_LOCATION(TN_MOB_SILVERFISH);

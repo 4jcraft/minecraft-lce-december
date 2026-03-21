@@ -1,7 +1,7 @@
 #pragma once
 #include "../../Textures/ResourceLocation.h"
 #include "EntityRenderer.h"
-#include "..\Minecraft.World\LivingEntity.h"
+#include "../Minecraft.World/LivingEntity.h"
 
 class LivingEntity;
 

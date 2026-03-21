@@ -1,8 +1,8 @@
 #include "../../Platform/stdafx.h"
 #include "EntityTileRenderer.h"
 #include "TileEntityRenderDispatcher.h"
-#include "..\Minecraft.World\net.minecraft.world.level.tile.h"
-#include "..\Minecraft.World\net.minecraft.world.level.tile.entity.h"
+#include "../Minecraft.World/net.minecraft.world.level.tile.h"
+#include "../Minecraft.World/net.minecraft.world.level.tile.entity.h"
 
 EntityTileRenderer* EntityTileRenderer::instance = new EntityTileRenderer;
 

@@ -1,9 +1,9 @@
 #include "../../Platform/stdafx.h"
 #include "TerrainParticle.h"
 #include "../Tesselator.h"
-#include "..\Minecraft.World\net.minecraft.world.level.tile.h"
-#include "..\Minecraft.World\net.minecraft.world.level.h"
-#include "..\Minecraft.World\net.minecraft.world.h"
+#include "../Minecraft.World/net.minecraft.world.level.tile.h"
+#include "../Minecraft.World/net.minecraft.world.level.h"
+#include "../Minecraft.World/net.minecraft.world.h"
 
 TerrainParticle::TerrainParticle(Level* level, double x, double y, double z,
                                  double xa, double ya, double za, Tile* tile,

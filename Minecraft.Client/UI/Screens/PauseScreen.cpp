@@ -5,10 +5,10 @@
 #include "OptionsScreen.h"
 #include "TitleScreen.h"
 #include "../../Level/MultiPlayerLevel.h"
-#include "..\Minecraft.World\net.minecraft.locale.h"
-#include "..\Minecraft.World\net.minecraft.world.level.h"
-#include "..\Minecraft.World\net.minecraft.stats.h"
-#include "..\Minecraft.Client\LocalPlayer.h"
+#include "../Minecraft.World/net.minecraft.locale.h"
+#include "../Minecraft.World/net.minecraft.world.level.h"
+#include "../Minecraft.World/net.minecraft.stats.h"
+#include "../Minecraft.Client/LocalPlayer.h"
 
 PauseScreen::PauseScreen() {
     saveStep = 0;

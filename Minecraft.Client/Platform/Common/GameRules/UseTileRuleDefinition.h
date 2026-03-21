@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GameRuleDefinition.h"
-#include "..\..\..\Minecraft.World\Pos.h"
+#include "../../../Minecraft.World/Pos.h"
 
 class UseTileRuleDefinition : public GameRuleDefinition {
 private:

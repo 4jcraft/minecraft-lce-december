@@ -3,7 +3,7 @@
 #define XBOX_SCHEMATIC_ORIGINAL_VERSION 1
 #define XBOX_SCHEMATIC_CURRENT_VERSION 2
 
-#include "..\..\..\Minecraft.World\ArrayWithLength.h"
+#include "../../../Minecraft.World/ArrayWithLength.h"
 
 class Level;
 class DataOutputStream;

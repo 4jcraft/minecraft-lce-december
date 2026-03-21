@@ -1,7 +1,7 @@
 #include "../../stdafx.h"
 #include "DLCManager.h"
 #include "DLCLocalisationFile.h"
-#include "..\..\StringTable.h"
+#include "../../StringTable.h"
 
 DLCLocalisationFile::DLCLocalisationFile(const std::wstring& path)
     : DLCFile(DLCManager::e_DLCType_LocalisationData, path) {

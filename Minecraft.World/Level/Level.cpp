@@ -29,16 +29,16 @@
 
 #include "../IO/Files/ConsoleSaveFile.h"
 #include <xuiapp.h>
-#include "..\Minecraft.Client\Minecraft.h"
-#include "..\Minecraft.Client\LevelRenderer.h"
+#include "../Minecraft.Client/Minecraft.h"
+#include "../Minecraft.Client/LevelRenderer.h"
 #include "../Util/SoundTypes.h"
 #include "Storage/SparseLightStorage.h"
-#include "..\Minecraft.Client\Textures.h"
-#include "..\Minecraft.Client\TexturePackRepository.h"
-#include "..\Minecraft.Client\DLCTexturePack.h"
-#include "..\Minecraft.Client\Common\DLC\DLCPack.h"
-#include "..\Minecraft.Client\PS3\PS3Extras\ShutdownManager.h"
-#include "..\Minecraft.Client\MinecraftServer.h"
+#include "../Minecraft.Client/Textures.h"
+#include "../Minecraft.Client/TexturePackRepository.h"
+#include "../Minecraft.Client/DLCTexturePack.h"
+#include "../Minecraft.Client/Common/DLC/DLCPack.h"
+#include "../Minecraft.Client/PS3/PS3Extras/ShutdownManager.h"
+#include "../Minecraft.Client/MinecraftServer.h"
 
 DWORD Level::tlsIdx = TlsAlloc();
 DWORD Level::tlsIdxLightCache = TlsAlloc();

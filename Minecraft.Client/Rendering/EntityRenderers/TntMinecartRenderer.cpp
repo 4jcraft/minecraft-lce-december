@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "TntMinecartRenderer.h"
-#include "..\Minecraft.World\net.minecraft.world.entity.item.h"
-#include "..\Minecraft.World\net.minecraft.world.level.tile.h"
+#include "../Minecraft.World/net.minecraft.world.entity.item.h"
+#include "../Minecraft.World/net.minecraft.world.level.tile.h"
 
 void TntMinecartRenderer::renderMinecartContents(
     std::shared_ptr<Minecart> _cart, float a, Tile* tile, int tileData) {

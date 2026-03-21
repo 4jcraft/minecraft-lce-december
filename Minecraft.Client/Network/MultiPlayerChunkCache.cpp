@@ -1,14 +1,14 @@
 #include "../Platform/stdafx.h"
 #include "MultiPlayerChunkCache.h"
 #include "ServerChunkCache.h"
-#include "..\Minecraft.World\net.minecraft.world.level.chunk.h"
-#include "..\Minecraft.World\net.minecraft.world.level.dimension.h"
-#include "..\Minecraft.World\Arrays.h"
-#include "..\Minecraft.World\StringHelpers.h"
+#include "../Minecraft.World/net.minecraft.world.level.chunk.h"
+#include "../Minecraft.World/net.minecraft.world.level.dimension.h"
+#include "../Minecraft.World/Arrays.h"
+#include "../Minecraft.World/StringHelpers.h"
 #include "../MinecraftServer.h"
 #include "../Level/ServerLevel.h"
-#include "..\Minecraft.World\Tile.h"
-#include "..\Minecraft.World\WaterLevelChunk.h"
+#include "../Minecraft.World/Tile.h"
+#include "../Minecraft.World/WaterLevelChunk.h"
 
 MultiPlayerChunkCache::MultiPlayerChunkCache(Level* level) {
     XZSIZE = level->dimension->getXZSize();  // 4J Added

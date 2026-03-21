@@ -1,13 +1,13 @@
 #include "../../stdafx.h"
 
 #include "Tutorial.h"
-#include "..\..\Minecraft.h"
-#include "..\..\MultiplayerLocalPlayer.h"
-#include "..\..\..\Minecraft.World\net.minecraft.world.level.h"
+#include "../../Minecraft.h"
+#include "../../MultiplayerLocalPlayer.h"
+#include "../../../Minecraft.World/net.minecraft.world.level.h"
 #include "ChangeStateConstraint.h"
-#include "..\..\..\Minecraft.World\AABB.h"
-#include "..\..\ClientConnection.h"
-#include "..\..\..\Minecraft.World\net.minecraft.network.packet.h"
+#include "../../../Minecraft.World/AABB.h"
+#include "../../ClientConnection.h"
+#include "../../../Minecraft.World/net.minecraft.network.packet.h"
 
 ChangeStateConstraint::ChangeStateConstraint(
     Tutorial* tutorial, eTutorial_State targetState,

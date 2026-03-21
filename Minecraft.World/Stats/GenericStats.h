@@ -5,7 +5,7 @@
 
 // #include "../Util/DamageSource.h"
 
-// #include "..\Minecraft.Client\Common\Console_Awards_enum.h"
+// #include "../Minecraft.Client/Common/Console_Awards_enum.h"
 
 /**
         4J-JEV:

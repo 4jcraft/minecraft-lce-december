@@ -1,5 +1,5 @@
 #include "../Platform/stdafx.h"
-#include "..\Minecraft.Client\Minecraft.h"
+#include "../Minecraft.Client/Minecraft.h"
 #include "RedStoneDustTile.h"
 #include "../Headers/net.minecraft.world.item.h"
 #include "../Headers/net.minecraft.world.level.h"
@@ -12,7 +12,7 @@
 
 // AP - added for Vita to set Alpha Cut out
 #include "../IO/Streams/IntBuffer.h"
-#include "..\Minecraft.Client\Tesselator.h"
+#include "../Minecraft.Client/Tesselator.h"
 
 const std::wstring RedStoneDustTile::TEXTURE_CROSS = L"_cross";
 const std::wstring RedStoneDustTile::TEXTURE_LINE = L"_line";
