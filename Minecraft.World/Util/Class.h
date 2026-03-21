@@ -716,7 +716,7 @@ public:
                 {
                     std::vector<eINSTANCEOF>::iterator it3;
                     it3 = find(current->m_parents.begin(),
-                                    current->m_parents.end(), typeComp);
+                               current->m_parents.end(), typeComp);
                     shouldDerive = (typeComp == typeCurr) ||
                                    (it3 != current->m_parents.end());
                 }

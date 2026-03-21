@@ -255,9 +255,9 @@ void CPlatformNetworkManagerSony::HandlePlayerLeaving(
                         break;
                     }
                 }
-                AUTO_VAR(it, find(m_machineSQRPrimaryPlayers.begin(),
-                                       m_machineSQRPrimaryPlayers.end(),
-                                       pSQRPlayer));
+                AUTO_VAR(it,
+                         find(m_machineSQRPrimaryPlayers.begin(),
+                              m_machineSQRPrimaryPlayers.end(), pSQRPlayer));
                 if (it != m_machineSQRPrimaryPlayers.end()) {
                     m_machineSQRPrimaryPlayers.erase(it);
                 }

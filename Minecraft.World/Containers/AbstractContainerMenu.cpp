@@ -43,7 +43,7 @@ void AbstractContainerMenu::addSlotListener(ContainerListener* listener) {
 
 void AbstractContainerMenu::removeSlotListener(ContainerListener* listener) {
     AUTO_VAR(it, find(containerListeners.begin(), containerListeners.end(),
-                           listener));
+                      listener));
     if (it != containerListeners.end()) containerListeners.erase(it);
 }
 
@@ -438,9 +438,9 @@ std::shared_ptr<ItemInstance> AbstractContainerMenu::clicked(
                             target->getItem()->count ==
                                 target->getItem()->getMaxStackSize())
                             continue;
-                        int count =
-                            min(carried->getMaxStackSize() - carried->count,
-                                target->getItem()->count);
+                        int count = std::min(
+                            carried->getMaxStackSize() - carried->count,
+                            target->getItem()->count);
                         std::shared_ptr<ItemInstance> removed =
                             target->remove(count);
                         carried->count += count;
@@ -668,8 +668,9 @@ int AbstractContainerMenu::getRedstoneSignalFromContainer(
         std::shared_ptr<ItemInstance> item = container->getItem(i);
 
         if (item != NULL) {
-            totalPct += item->count / (float)min(container->getMaxStackSize(),
-                                                 item->getMaxStackSize());
+            totalPct +=
+                item->count / (float)std::min(container->getMaxStackSize(),
+                                              item->getMaxStackSize());
             count++;
         }
     }

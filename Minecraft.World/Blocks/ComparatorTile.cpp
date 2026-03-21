@@ -59,9 +59,9 @@ int ComparatorTile::calculateOutputSignal(Level* level, int x, int y, int z,
     if (!isReversedOutputSignal(data)) {
         return getInputSignal(level, x, y, z, data);
     } else {
-        return max(getInputSignal(level, x, y, z, data) -
-                       getAlternateSignal(level, x, y, z, data),
-                   Redstone::SIGNAL_NONE);
+        return std::max(getInputSignal(level, x, y, z, data) -
+                            getAlternateSignal(level, x, y, z, data),
+                        Redstone::SIGNAL_NONE);
     }
 }
 

@@ -44,7 +44,7 @@ float WitherSkull::getTileExplosionResistance(Explosion* explosion,
 
     if (isDangerous() && tile != Tile::unbreakable &&
         tile != Tile::endPortalTile && tile != Tile::endPortalFrameTile) {
-        result = min(0.8f, result);
+        result = std::min(0.8f, result);
     }
 
     return result;

@@ -39,7 +39,7 @@ BOOL PSVitaTLSStorage::Free(DWORD dwTlsIndex) {
     // remove from the active infos
     std::vector<TLSArray*>::iterator iter =
         find(PSVitaTLSStorage_ActiveInfos.begin(),
-                  PSVitaTLSStorage_ActiveInfos.end(), (TLSArray*)dwTlsIndex);
+             PSVitaTLSStorage_ActiveInfos.end(), (TLSArray*)dwTlsIndex);
     PSVitaTLSStorage_ActiveInfos.erase(iter);
 
     delete[] ((TLSInfo*)dwTlsIndex);

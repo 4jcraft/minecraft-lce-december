@@ -372,7 +372,8 @@ void EntityHorse::createInventory() {
     if (old != NULL) {
         old->removeListener(this);
 
-        int max = min(old->getContainerSize(), inventory->getContainerSize());
+        int max =
+            std::min(old->getContainerSize(), inventory->getContainerSize());
         for (int slot = 0; slot < max; slot++) {
             std::shared_ptr<ItemInstance> item = old->getItem(slot);
             if (item != NULL) {

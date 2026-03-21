@@ -83,8 +83,8 @@ void AnvilMenu::createResult() {
 
             if (result->isDamageableItem() &&
                 Item::items[result->id]->isValidRepairItem(input, addition)) {
-                int repairAmount =
-                    min(result->getDamageValue(), result->getMaxDamage() / 4);
+                int repairAmount = std::min(result->getDamageValue(),
+                                            result->getMaxDamage() / 4);
                 if (repairAmount <= 0) {
                     resultSlots->setItem(0, nullptr);
                     cost = 0;
@@ -95,11 +95,11 @@ void AnvilMenu::createResult() {
                         int resultDamage =
                             result->getDamageValue() - repairAmount;
                         result->setAuxValue(resultDamage);
-                        price +=
-                            max(1, repairAmount / 100) + enchantments->size();
+                        price += std::max(1, repairAmount / 100) +
+                                 enchantments->size();
 
-                        repairAmount = min(result->getDamageValue(),
-                                           result->getMaxDamage() / 4);
+                        repairAmount = std::min(result->getDamageValue(),
+                                                result->getMaxDamage() / 4);
                         count++;
                     }
                     repairItemCountCost = count;
@@ -123,11 +123,11 @@ void AnvilMenu::createResult() {
 
                     if (resultDamage < result->getAuxValue()) {
                         result->setAuxValue(resultDamage);
-                        price += max(1, additional / 100);
+                        price += std::max(1, additional / 100);
                         if (DEBUG_COST) {
                             app.DebugPrintf(
                                 "Repairing; price is now %d (went up by %d)\n",
-                                price, max(1, additional / 100));
+                                price, std::max(1, additional / 100));
                         }
                     }
                 }
@@ -143,8 +143,8 @@ void AnvilMenu::createResult() {
                     int current =
                         localIt != enchantments->end() ? localIt->second : 0;
                     int level = it->second;
-                    level =
-                        (current == level) ? level += 1 : max(level, current);
+                    level = (current == level) ? level += 1
+                                               : std::max(level, current);
                     int extra = level - current;
                     bool compatible = enchantment->canEnchant(input);
 
@@ -191,7 +191,7 @@ void AnvilMenu::createResult() {
                             break;
                     }
 
-                    if (usingBook) fee = max(1, fee / 2);
+                    if (usingBook) fee = std::max(1, fee / 2);
 
                     price += fee * extra;
                     if (DEBUG_COST) {
@@ -266,7 +266,7 @@ void AnvilMenu::createResult() {
                     break;
             }
 
-            if (usingBook) fee = max(1, fee / 2);
+            if (usingBook) fee = std::max(1, fee / 2);
 
             tax += count + level * fee;
             if (DEBUG_COST) {
@@ -276,7 +276,7 @@ void AnvilMenu::createResult() {
             }
         }
 
-        if (usingBook) tax = max(1, tax / 2);
+        if (usingBook) tax = std::max(1, tax / 2);
 
         cost = tax + price;
         if (price <= 0) {

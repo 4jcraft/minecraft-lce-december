@@ -51,7 +51,7 @@ void OcelotAttackGoal::tick() {
 
     mob->getNavigation()->moveTo(target.lock(), speedModifier);
 
-    attackTime = max(attackTime - 1, 0);
+    attackTime = std::max(attackTime - 1, 0);
 
     if (distSqr > meleeRadiusSqr) return;
     if (attackTime > 0) return;

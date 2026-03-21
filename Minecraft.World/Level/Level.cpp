@@ -2241,8 +2241,8 @@ void Level::tickEntities() {
              it != pendingTileEntities.end(); it++) {
             std::shared_ptr<TileEntity> e = *it;
             if (!e->isRemoved()) {
-                if (find(tileEntityList.begin(), tileEntityList.end(),
-                              e) == tileEntityList.end()) {
+                if (find(tileEntityList.begin(), tileEntityList.end(), e) ==
+                    tileEntityList.end()) {
                     tileEntityList.push_back(e);
                 }
                 if (hasChunk(e->x >> 4, e->z >> 4)) {
@@ -2713,19 +2713,19 @@ void Level::removeTileEntity(int x, int y, int z) {
     if (te != NULL && updatingTileEntities) {
         te->setRemoved();
         AUTO_VAR(it, find(pendingTileEntities.begin(),
-                               pendingTileEntities.end(), te));
+                          pendingTileEntities.end(), te));
         if (it != pendingTileEntities.end()) {
             pendingTileEntities.erase(it);
         }
     } else {
         if (te != NULL) {
             AUTO_VAR(it, find(pendingTileEntities.begin(),
-                                   pendingTileEntities.end(), te));
+                              pendingTileEntities.end(), te));
             if (it != pendingTileEntities.end()) {
                 pendingTileEntities.erase(it);
             }
-            AUTO_VAR(it2, find(tileEntityList.begin(),
-                                    tileEntityList.end(), te));
+            AUTO_VAR(it2,
+                     find(tileEntityList.begin(), tileEntityList.end(), te));
             if (it2 != tileEntityList.end()) {
                 tileEntityList.erase(it2);
             }
@@ -3261,7 +3261,7 @@ void Level::checkLight(LightLayer::variety layer, int xc, int yc, int zc,
 
                                     // 4J - some changes here brought forward
                                     // from 1.2.3
-                                    int block = max(
+                                    int block = std::max(
                                         1, getBlockingCached(cache, layer, NULL,
                                                              xx, yy, zz));
                                     current = getBrightnessCached(cache, layer,
@@ -3743,17 +3743,17 @@ int Level::getDirectSignal(int x, int y, int z, int dir) {
 
 int Level::getDirectSignalTo(int x, int y, int z) {
     int result = Redstone::SIGNAL_NONE;
-    result = max(result, getDirectSignal(x, y - 1, z, 0));
+    result = std::max(result, getDirectSignal(x, y - 1, z, 0));
     if (result >= Redstone::SIGNAL_MAX) return result;
-    result = max(result, getDirectSignal(x, y + 1, z, 1));
+    result = std::max(result, getDirectSignal(x, y + 1, z, 1));
     if (result >= Redstone::SIGNAL_MAX) return result;
-    result = max(result, getDirectSignal(x, y, z - 1, 2));
+    result = std::max(result, getDirectSignal(x, y, z - 1, 2));
     if (result >= Redstone::SIGNAL_MAX) return result;
-    result = max(result, getDirectSignal(x, y, z + 1, 3));
+    result = std::max(result, getDirectSignal(x, y, z + 1, 3));
     if (result >= Redstone::SIGNAL_MAX) return result;
-    result = max(result, getDirectSignal(x - 1, y, z, 4));
+    result = std::max(result, getDirectSignal(x - 1, y, z, 4));
     if (result >= Redstone::SIGNAL_MAX) return result;
-    result = max(result, getDirectSignal(x + 1, y, z, 5));
+    result = std::max(result, getDirectSignal(x + 1, y, z, 5));
     if (result >= Redstone::SIGNAL_MAX) return result;
     return result;
 }

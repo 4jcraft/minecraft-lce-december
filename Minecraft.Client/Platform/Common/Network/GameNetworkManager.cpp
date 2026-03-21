@@ -571,7 +571,7 @@ bool CGameNetworkManager::StartNetworkGame(Minecraft* minecraft,
             } else {
                 connection->close();
                 AUTO_VAR(it, find(createdConnections.begin(),
-                                       createdConnections.end(), connection));
+                                  createdConnections.end(), connection));
                 if (it != createdConnections.end())
                     createdConnections.erase(it);
             }

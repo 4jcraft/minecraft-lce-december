@@ -1454,7 +1454,7 @@ int IUIScene_AbstractContainerMenu::GetEmptyStackSpace(Slot* slot) {
         if (item->isStackable()) {
             int iCount = item->GetCount();
             int iMaxStackSize =
-                min(item->getMaxStackSize(), slot->getMaxStackSize());
+                std::min(item->getMaxStackSize(), slot->getMaxStackSize());
 
             iResult = iMaxStackSize - iCount;
 

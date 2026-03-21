@@ -883,8 +883,8 @@ void PlayerConnection::handleTextureReceivestd::d(
     const std::wstring& textureName) {
     // This sends the server received texture out to any other players waiting
     // for the data
-    AUTO_VAR(it, find(m_texturesRequested.begin(),
-                           m_texturesRequested.end(), textureName));
+    AUTO_VAR(it, find(m_texturesRequested.begin(), m_texturesRequested.end(),
+                      textureName));
     if (it != m_texturesRequested.end()) {
         PBYTE pbData = NULL;
         DWORD dwBytes = 0;
@@ -902,8 +902,8 @@ void PlayerConnection::handleTextureAndGeometryReceivestd::d(
     const std::wstring& textureName) {
     // This sends the server received texture out to any other players waiting
     // for the data
-    AUTO_VAR(it, find(m_texturesRequested.begin(),
-                           m_texturesRequested.end(), textureName));
+    AUTO_VAR(it, find(m_texturesRequested.begin(), m_texturesRequested.end(),
+                      textureName));
     if (it != m_texturesRequested.end()) {
         PBYTE pbData = NULL;
         DWORD dwTextureBytes = 0;

@@ -78,8 +78,7 @@ void SavedDataStorage::set(const std::wstring& id,
     }
     AUTO_VAR(it, cache.find(id));
     if (it != cache.end()) {
-        AUTO_VAR(it2,
-                 find(savedDatas.begin(), savedDatas.end(), it->second));
+        AUTO_VAR(it2, find(savedDatas.begin(), savedDatas.end(), it->second));
         if (it2 != savedDatas.end()) {
             savedDatas.erase(it2);
         }

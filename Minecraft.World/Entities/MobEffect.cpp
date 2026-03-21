@@ -264,7 +264,7 @@ void MobEffect::applyEffectTick(std::shared_ptr<LivingEntity> mob,
         }
     } else if ((id == heal->id && !mob->isInvertedHealAndHarm()) ||
                (id == harm->id && mob->isInvertedHealAndHarm())) {
-        mob->heal(max(4 << amplification, 0));
+        mob->heal(std::max(4 << amplification, 0));
     } else if ((id == harm->id && !mob->isInvertedHealAndHarm()) ||
                (id == heal->id && mob->isInvertedHealAndHarm())) {
         mob->hurt(DamageSource::magic, 6 << amplification);

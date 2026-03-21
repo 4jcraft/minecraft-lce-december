@@ -573,7 +573,7 @@ void Mob::dropEquipment(bool byPlayer, int playerBonusLevel) {
             random->nextFloat() - playerBonusLevel * 0.01f <
                 dropChances[slot]) {
             if (!preserve && item->isDamageableItem()) {
-                int _max = max(item->getMaxDamage() - 25, 1);
+                int _max = std::max(item->getMaxDamage() - 25, 1);
                 int damage = item->getMaxDamage() -
                              random->nextInt(random->nextInt(_max) + 1);
                 if (damage > _max) damage = _max;

@@ -1319,7 +1319,7 @@ void Player::actuallyHurt(DamageSource* source, float dmg) {
     dmg = getDamageAfterMagicAbsorb(source, dmg);
 
     float originalDamage = dmg;
-    dmg = max(dmg - getAbsorptionAmount(), 0.0f);
+    dmg = std::max(dmg - getAbsorptionAmount(), 0.0f);
     setAbsorptionAmount(getAbsorptionAmount() - (originalDamage - dmg));
     if (dmg == 0) return;
 

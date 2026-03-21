@@ -452,14 +452,14 @@ void ModelHorse::prepareMobModel(std::shared_ptr<LivingEntity> mob, float wp,
         // TODO: Magic numbers
         Head->xRot = standing * ((15 * Mth::DEGRAD) + (HeadXRot)) +
                      eating * 2.18166f +
-                     (1.0f - max(standing, eating)) * Head->xRot;
+                     (1.0f - std::max(standing, eating)) * Head->xRot;
         Head->yRot = standing * (headRotMinusBodyRot / 57.29578f) +
-                     (1.0f - max(standing, eating)) * Head->yRot;
+                     (1.0f - std::max(standing, eating)) * Head->yRot;
 
         Head->y = standing * -6.f + eating * 11.0f +
-                  (1.0f - max(standing, eating)) * Head->y;
+                  (1.0f - std::max(standing, eating)) * Head->y;
         Head->z = standing * -1.f + eating * -10.f +
-                  (1.0f - max(standing, eating)) * Head->z;
+                  (1.0f - std::max(standing, eating)) * Head->z;
 
         TailA->y = standing * 9.f + iStanding * TailA->y;
         TailB->z = standing * 18.f + iStanding * TailB->z;
@@ -554,27 +554,29 @@ void ModelHorse::prepareMobModel(std::shared_ptr<LivingEntity> mob, float wp,
         Leg1A->xRot = standAngle + (-legAnim1 * 0.5f * ws) * iStanding;
         Leg1B->xRot =
             (-5 * Mth::DEGRAD) * standing +
-            ((-legAnim1 * 0.5f * ws) - max(0.0f, legAnim1 * .5f * ws)) *
+            ((-legAnim1 * 0.5f * ws) - std::max(0.0f, legAnim1 * .5f * ws)) *
                 iStanding;
         Leg1C->xRot = Leg1B->xRot;
 
         Leg2A->xRot = standAngle + (legAnim1 * 0.5f * ws) * iStanding;
         Leg2B->xRot =
             (-5 * Mth::DEGRAD) * standing +
-            ((legAnim1 * 0.5f * ws) - max(0.0f, -legAnim1 * .5f * ws)) *
+            ((legAnim1 * 0.5f * ws) - std::max(0.0f, -legAnim1 * .5f * ws)) *
                 iStanding;
         Leg2C->xRot = Leg2B->xRot;
 
         Leg3A->xRot = rlegRot;
         Leg3B->xRot =
-            (Leg3A->xRot + PI * max(0.0f, (.2f + bobValue * .2f))) * standing +
-            (legXRotAnim + max(0.0f, legAnim1 * 0.5f * ws)) * iStanding;
+            (Leg3A->xRot + PI * std::max(0.0f, (.2f + bobValue * .2f))) *
+                standing +
+            (legXRotAnim + std::max(0.0f, legAnim1 * 0.5f * ws)) * iStanding;
         Leg3C->xRot = Leg3B->xRot;
 
         Leg4A->xRot = llegRot;
         Leg4B->xRot =
-            (Leg4A->xRot + PI * max(0.0f, (.2f - bobValue * .2f))) * standing +
-            (-legXRotAnim + max(0.0f, -legAnim1 * 0.5f * ws)) * iStanding;
+            (Leg4A->xRot + PI * std::max(0.0f, (.2f - bobValue * .2f))) *
+                standing +
+            (-legXRotAnim + std::max(0.0f, -legAnim1 * 0.5f * ws)) * iStanding;
         Leg4C->xRot = Leg4B->xRot;
     }
 

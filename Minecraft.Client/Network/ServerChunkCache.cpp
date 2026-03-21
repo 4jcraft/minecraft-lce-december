@@ -1020,7 +1020,7 @@ bool ServerChunkCache::tick() {
                         // loadedChunks.remove(cp);
                         // loadedChunkList.remove(chunk);
                         AUTO_VAR(it, find(m_loadedChunkList.begin(),
-                                               m_loadedChunkList.end(), chunk));
+                                          m_loadedChunkList.end(), chunk));
                         if (it != m_loadedChunkList.end())
                             m_loadedChunkList.erase(it);
 

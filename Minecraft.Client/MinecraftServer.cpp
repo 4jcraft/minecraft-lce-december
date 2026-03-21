@@ -1191,7 +1191,7 @@ bool MinecraftServer::isUnderSpawnProtection(Level* level, int x, int y,
     Pos* spawnPos = level->getSharedSpawnPos();
     int xd = Mth::abs(x - spawnPos->x);
     int zd = Mth::abs(z - spawnPos->z);
-    int dist = max(xd, zd);
+    int dist = std::max(xd, zd);
 
     return dist <= getSpawnProtectionRadius();
 }

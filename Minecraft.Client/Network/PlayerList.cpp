@@ -1521,7 +1521,7 @@ void PlayerList::removePlayerFromRecestd::iving(
     bool playerRemoved = false;
 
     AUTO_VAR(it, find(receiveAllPlayers[dimIndex].begin(),
-                           receiveAllPlayers[dimIndex].end(), player));
+                      receiveAllPlayers[dimIndex].end(), player));
     if (it != receiveAllPlayers[dimIndex].end()) {
 #ifndef _CONTENT_PACKAGE
         app.DebugPrintf(

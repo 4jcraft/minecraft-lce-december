@@ -608,7 +608,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
                     int baseHealth = 0;
 
                     while (hearts > 0) {
-                        int rowHearts = min(hearts, 10);
+                        int rowHearts = std::min(hearts, 10);
                         hearts -= rowHearts;
 
                         for (int i = 0; i < rowHearts; i++) {

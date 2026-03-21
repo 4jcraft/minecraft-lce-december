@@ -223,8 +223,8 @@ bool MineShaftPieces::MineShaftRoom::postProcess(Level* level, Random* random,
     // room air
     generateBox(level, chunkBB, boundingBox->x0, boundingBox->y0 + 1,
                 boundingBox->z0, boundingBox->x1,
-                min(boundingBox->y0 + 3, boundingBox->y1), boundingBox->z1, 0,
-                0, false);
+                std::min(boundingBox->y0 + 3, boundingBox->y1), boundingBox->z1,
+                0, 0, false);
     for (AUTO_VAR(it, childEntranceBoxes.begin());
          it != childEntranceBoxes.end(); ++it) {
         BoundingBox* entranceBox = *it;

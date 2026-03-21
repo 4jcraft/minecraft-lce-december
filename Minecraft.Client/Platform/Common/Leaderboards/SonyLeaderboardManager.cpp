@@ -353,7 +353,7 @@ bool SonyLeaderboardManager::getScoreByIds() {
         }
 
 #ifdef __ORBIS__
-        int tmpNum = min(num - batch, (unsigned int)100);
+        int tmpNum = std::min(num - batch, (unsigned int)100);
         app.DebugPrintf(
             "[SonyLeaderboardManager]\t Requesting ids %i-%i of %i.\n", batch,
             batch + tmpNum, num);

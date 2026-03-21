@@ -42,7 +42,7 @@ void TextureHolder::setForcedScale(int targetSize) {
         return;
     }
 
-    scale = (float)targetSize / min(width, height);
+    scale = (float)targetSize / std::min(width, height);
 }
 
 //@Override

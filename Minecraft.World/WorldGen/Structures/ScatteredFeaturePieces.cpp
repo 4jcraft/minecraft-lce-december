@@ -89,8 +89,8 @@ bool ScatteredFeaturePieces::ScatteredFeaturePiece::updateAverageGroundHeight(
     for (int z = boundingBox->z0; z <= boundingBox->z1; z++) {
         for (int x = boundingBox->x0; x <= boundingBox->x1; x++) {
             if (chunkBB->isInside(x, 64, z)) {
-                total += max(level->getTopSolidBlock(x, z),
-                             level->dimension->getSpawnYPosition());
+                total += std::max(level->getTopSolidBlock(x, z),
+                                  level->dimension->getSpawnYPosition());
                 count++;
             }
         }

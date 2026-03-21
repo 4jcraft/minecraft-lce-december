@@ -420,7 +420,7 @@ void Zombie::startConverting(int time) {
 
     removeEffect(MobEffect::weakness->id);
     addEffect(new MobEffectInstance(MobEffect::damageBoost->id, time,
-                                    min(level->difficulty - 1, 0)));
+                                    std::min(level->difficulty - 1, 0)));
 
     level->broadcastEntityEvent(shared_from_this(),
                                 EntityEvent::ZOMBIE_CONVERTING);

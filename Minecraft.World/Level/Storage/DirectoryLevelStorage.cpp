@@ -638,7 +638,7 @@ int DirectoryLevelStorage::getAuxValueForMap(PlayerUID xuid, int dimension,
 
         if (m_saveFile->doesFileExist(file)) {
             AUTO_VAR(it, find(m_mapFilesToDelete.begin(),
-                                   m_mapFilesToDelete.end(), mapId));
+                              m_mapFilesToDelete.end(), mapId));
             if (it != m_mapFilesToDelete.end()) m_mapFilesToDelete.erase(it);
 
             m_saveFile->deleteFile(m_saveFile->createFile(file));

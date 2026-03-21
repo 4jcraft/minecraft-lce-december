@@ -2067,8 +2067,8 @@ void Tutorial::setHintCompleted(TutorialHint* hint) {
 
     if (hintId != e_Tutorial_Hint_Always_On) {
         setHintCompleted(hint->getId());
-        hints[m_CurrentState].erase(find(
-            hints[m_CurrentState].begin(), hints[m_CurrentState].end(), hint));
+        hints[m_CurrentState].erase(find(hints[m_CurrentState].begin(),
+                                         hints[m_CurrentState].end(), hint));
         delete hint;
     }
     // 	else
@@ -2102,8 +2102,8 @@ void Tutorial::tick() {
             ++(*it).second;
             if ((*it).second > m_iTutorialConstraintDelayRemoveTicks) {
                 TutorialConstraint* c = (*it).first;
-                constraints[state].erase(find(
-                    constraints[state].begin(), constraints[state].end(), c));
+                constraints[state].erase(find(constraints[state].begin(),
+                                              constraints[state].end(), c));
                 c->setQueuedForRemoval(false);
                 it = constraintsToRemove[state].erase(it);
 
@@ -2940,19 +2940,19 @@ void Tutorial::RemoveConstraint(TutorialConstraint* c,
         }
 
         AUTO_VAR(it, find(constraints[m_CurrentState].begin(),
-                               constraints[m_CurrentState].end(), c));
+                          constraints[m_CurrentState].end(), c));
         if (it != constraints[m_CurrentState].end())
             constraints[m_CurrentState].erase(
                 find(constraints[m_CurrentState].begin(),
-                          constraints[m_CurrentState].end(), c));
+                     constraints[m_CurrentState].end(), c));
 
         // It may be in the gameplay list, so remove it from there if it is
         it = find(constraints[e_Tutorial_State_Gameplay].begin(),
-                       constraints[e_Tutorial_State_Gameplay].end(), c);
+                  constraints[e_Tutorial_State_Gameplay].end(), c);
         if (it != constraints[e_Tutorial_State_Gameplay].end())
             constraints[e_Tutorial_State_Gameplay].erase(
                 find(constraints[e_Tutorial_State_Gameplay].begin(),
-                          constraints[e_Tutorial_State_Gameplay].end(), c));
+                     constraints[e_Tutorial_State_Gameplay].end(), c));
     }
 }
 
@@ -3013,8 +3013,8 @@ void Tutorial::changeTutorialState(eTutorial_State newState,
             currentTask[m_CurrentState]->isCompleted()) {
             activeTasks[m_CurrentState].erase(
                 find(activeTasks[m_CurrentState].begin(),
-                          activeTasks[m_CurrentState].end(),
-                          currentTask[m_CurrentState]));
+                     activeTasks[m_CurrentState].end(),
+                     currentTask[m_CurrentState]));
 
             if (activeTasks[m_CurrentState].size() > 0) {
                 currentTask[m_CurrentState] = activeTasks[m_CurrentState][0];

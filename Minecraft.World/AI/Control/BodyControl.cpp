@@ -35,7 +35,7 @@ void BodyControl::clientTick() {
         static const int timeStillBeforeTurn = 10;
         if (timeStill > timeStillBeforeTurn)
             clampAngle =
-                max(1 - (timeStill - timeStillBeforeTurn) / 10.f, 0.0f) *
+                std::max(1 - (timeStill - timeStillBeforeTurn) / 10.f, 0.0f) *
                 maxClampAngle;
     }
 

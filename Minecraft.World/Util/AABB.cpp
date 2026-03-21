@@ -106,12 +106,12 @@ AABB* AABB::grow(double xa, double ya, double za) {
 }
 
 AABB* AABB::minmax(AABB* other) {
-    double _x0 = min(x0, other->x0);
-    double _y0 = min(y0, other->y0);
-    double _z0 = min(z0, other->z0);
-    double _x1 = max(x1, other->x1);
-    double _y1 = max(y1, other->y1);
-    double _z1 = max(z1, other->z1);
+    double _x0 = std::min(x0, other->x0);
+    double _y0 = std::min(y0, other->y0);
+    double _z0 = std::min(z0, other->z0);
+    double _x1 = std::max(x1, other->x1);
+    double _y1 = std::max(y1, other->y1);
+    double _z1 = std::max(z1, other->z1);
 
     return newTemp(_x0, _y0, _z0, _x1, _y1, _z1);
 }

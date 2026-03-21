@@ -105,7 +105,7 @@ void PlayerChunkMap::PlayerChunk::remove(std::shared_ptr<ServerPlayer> player) {
             LevelChunk* chunk = parent->level->getChunk(pos.x, pos.z);
             updateInhabitedTime(chunk);
             AUTO_VAR(it, find(parent->knownChunks.begin(),
-                                   parent->knownChunks.end(), this));
+                              parent->knownChunks.end(), this));
             if (it != parent->knownChunks.end()) parent->knownChunks.erase(it);
         }
         __int64 id = (pos.x + 0x7fffffffLL) | ((pos.z + 0x7fffffffLL) << 32);
@@ -117,7 +117,7 @@ void PlayerChunkMap::PlayerChunk::remove(std::shared_ptr<ServerPlayer> player) {
         }
         if (changes > 0) {
             AUTO_VAR(it, find(parent->changedChunks.begin(),
-                                   parent->changedChunks.end(), this));
+                              parent->changedChunks.end(), this));
             parent->changedChunks.erase(it);
         }
         parent->getLevel()->cache->drop(pos.x, pos.z);
@@ -764,10 +764,10 @@ bool PlayerChunkMap::isPlayerIn(std::shared_ptr<ServerPlayer> player,
     if (chunk == NULL) {
         return false;
     } else {
-        AUTO_VAR(it1, find(chunk->players.begin(), chunk->players.end(),
-                                player));
+        AUTO_VAR(it1,
+                 find(chunk->players.begin(), chunk->players.end(), player));
         AUTO_VAR(it2, find(player->chunksToSend.begin(),
-                                player->chunksToSend.end(), chunk->pos));
+                           player->chunksToSend.end(), chunk->pos));
         return it1 != chunk->players.end() && it2 == player->chunksToSend.end();
     }
 
