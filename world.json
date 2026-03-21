@@ -9,10 +9,13 @@
   ],
 
   "moves": [
-    { "from": "AnimalChest.*", "to": "Containers" },
-    { "from": "BeaconMenu.*", "to": "Containers" },
-    { "from": "AnvilMenu.*", "to": "Containers" },
-    { "from": "FireworksMenu.*", "to": "Containers" },
-    { "from": "HopperMenu.*", "to": "Containers" }
+
+    { "from": "Objective.*", "to": "Scores" },
+    { "from": "PlayerTeam.*", "to": "Scores" },
+    { "from": "Score.*", "to": "Scores" },
+    { "from": "Scoreboard.*", "to": "Scores" },
+    { "from": "ScoreboardSaveData.*", "to": "Scores" },
+    { "from": "ScoreHolder.*", "to": "Scores" },
+    { "from": "Team.*", "to": "Scores" }
   ]
 }

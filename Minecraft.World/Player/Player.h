@@ -6,7 +6,7 @@
 #include "FoodData.h"
 #include "PlayerEnderChestContainer.h"
 #include "../Commands/CommandSender.h"
-#include "../ScoreHolder.h"
+#include "../Scores/ScoreHolder.h"
 
 class AbstractContainerMenu;
 class Stats;
