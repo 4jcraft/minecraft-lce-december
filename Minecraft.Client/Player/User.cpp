@@ -1,6 +1,6 @@
 #include "../Platform/stdafx.h"
 #include "User.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
 
 std::vector<Tile*> User::allowedTiles;
 

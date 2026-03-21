@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
 #include "DragonModel.h"
-#include "../Minecraft.World/Mth.h"
+#include "../../../Minecraft.World/Util/Mth.h"
 #include "../Minecraft.World/Enderdragon.h"
 
 DragonModel::DragonModel(float g) : Model() {

@@ -6,7 +6,7 @@
 #include "../../Headers/net.minecraft.world.entity.ai.attributes.h"
 #include "../../Headers/net.minecraft.world.entity.monster.h"
 #include "../../Headers/net.minecraft.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "Silverfish.h"
 #include "../../Util/SoundTypes.h"
 

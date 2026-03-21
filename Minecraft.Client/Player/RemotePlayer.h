@@ -1,6 +1,6 @@
 #pragma once
-#include "../Minecraft.World/SmoothFloat.h"
-#include "../Minecraft.World/net.minecraft.world.entity.player.h"
+#include "../../Minecraft.World/Util/SmoothFloat.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.entity.player.h"
 
 class Input;
 

@@ -2,9 +2,9 @@
 
 #include <string>
 
-#include "../../../Minecraft.World/File.h"
-#include "../../../Minecraft.World/StringHelpers.h"
-#include "../../../Minecraft.World/InputOutputStream.h"
+#include "../../../../Minecraft.World/IO/Files/File.h"
+#include "../../../../Minecraft.World/Util/StringHelpers.h"
+#include "../../../../Minecraft.World/IO/Streams/InputOutputStream.h"
 
 #include "DLCManager.h"
 #include "DLCGameRulesHeader.h"

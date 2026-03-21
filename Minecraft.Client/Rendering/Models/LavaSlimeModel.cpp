@@ -1,8 +1,8 @@
 #include "../../Platform/stdafx.h"
-#include "../Minecraft.World/Mth.h"
+#include "../../../Minecraft.World/Util/Mth.h"
 #include "LavaSlimeModel.h"
 #include "ModelPart.h"
-#include "../Minecraft.World/LavaSlime.h"
+#include "../../../Minecraft.World/Entities/Mobs/LavaSlime.h"
 
 LavaSlimeModel::LavaSlimeModel() {
     for (int i = 0; i < BODYCUBESLENGTH; i++) {

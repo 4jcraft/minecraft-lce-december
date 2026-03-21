@@ -5,8 +5,8 @@
 #include "../../Headers/net.minecraft.world.level.newbiome.layer.h"
 #include "../../Platform/System.h"
 #include "BiomeSource.h"
-#include "../Minecraft.Client/Minecraft.h"
-#include "../Minecraft.Client/ProgressRenderer.h"
+#include "../../../Minecraft.Client/Minecraft.h"
+#include "../../../Minecraft.Client/Rendering/EntityRenderers/ProgressRenderer.h"
 
 // 4J - removal of separate temperature & downfall layers brought forward
 // from 1.2.3

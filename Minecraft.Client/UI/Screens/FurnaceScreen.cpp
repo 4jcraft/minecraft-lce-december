@@ -3,8 +3,8 @@
 #include "../../Textures/Textures.h"
 #include "../../Player/LocalPlayer.h"
 #include "../Font.h"
-#include "../Minecraft.World/net.minecraft.world.inventory.h"
-#include "../Minecraft.World/FurnaceTileEntity.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.inventory.h"
+#include "../../../Minecraft.World/Blocks/TileEntities/FurnaceTileEntity.h"
 
 FurnaceScreen::FurnaceScreen(std::shared_ptr<Inventory> inventory,
                              std::shared_ptr<FurnaceTileEntity> furnace)

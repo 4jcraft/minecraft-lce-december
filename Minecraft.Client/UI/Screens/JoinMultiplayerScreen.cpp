@@ -3,7 +3,7 @@
 #include "../Button.h"
 #include "../EditBox.h"
 #include "../../GameState/Options.h"
-#include "../Minecraft.World/net.minecraft.locale.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.locale.h"
 
 JoinMultiplayerScreen::JoinMultiplayerScreen(Screen* lastScreen) {
     ipEdit = NULL;

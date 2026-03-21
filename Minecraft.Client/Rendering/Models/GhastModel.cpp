@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
-#include "../Minecraft.World/Random.h"
-#include "../Minecraft.World/Mth.h"
+#include "../../../Minecraft.World/Util/Random.h"
+#include "../../../Minecraft.World/Util/Mth.h"
 #include "GhastModel.h"
 #include "ModelPart.h"
 

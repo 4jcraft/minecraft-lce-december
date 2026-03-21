@@ -1,7 +1,7 @@
 #pragma once
 #include "Culling/AllowAllCuller.h"
 #include "Tesselator.h"
-#include "../Minecraft.World/ArrayWithLength.h"
+#include "../../Minecraft.World/Util/ArrayWithLength.h"
 #include "LevelRenderer.h"
 
 class Level;

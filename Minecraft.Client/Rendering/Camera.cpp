@@ -1,10 +1,10 @@
 #include "../Platform/stdafx.h"
 #include "Camera.h"
 #include "../Utils/MemoryTracker.h"
-#include "../Minecraft.World/net.minecraft.world.entity.player.h"
-#include "../Minecraft.World/net.minecraft.world.level.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
-#include "../Minecraft.World/TilePos.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.entity.player.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
+#include "../../Minecraft.World/Level/TilePos.h"
 
 float Camera::xPlayerOffs = 0.0f;
 float Camera::yPlayerOffs = 0.0f;

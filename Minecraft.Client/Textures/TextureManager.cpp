@@ -5,7 +5,7 @@
 #include "Packs/TexturePackRepository.h"
 #include "../Minecraft.h"
 #include "TextureManager.h"
-#include "../Minecraft.World/StringHelpers.h"
+#include "../../Minecraft.World/Util/StringHelpers.h"
 
 TextureManager* TextureManager::instance = NULL;
 

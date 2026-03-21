@@ -3,8 +3,8 @@
 #include <vector>
 #include <unordered_map>
 
-#include "../Minecraft.World/File.h"
-#include "../Minecraft.World/ArrayWithLength.h"
+#include "../../Minecraft.World/IO/Files/File.h"
+#include "../../Minecraft.World/Util/ArrayWithLength.h"
 
 class ArchiveFile {
 protected:

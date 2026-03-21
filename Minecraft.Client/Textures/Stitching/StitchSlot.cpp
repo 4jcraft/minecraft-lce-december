@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
 #include "../TextureHolder.h"
-#include "../Minecraft.World/StringHelpers.h"
+#include "../../../Minecraft.World/Util/StringHelpers.h"
 #include "StitchSlot.h"
 
 StitchSlot::StitchSlot(int originX, int originY, int width, int height)

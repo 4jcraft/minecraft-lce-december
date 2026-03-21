@@ -1,8 +1,8 @@
 #include "../../Platform/stdafx.h"
 #include "CreeperRenderer.h"
 #include "../Models/CreeperModel.h"
-#include "../Minecraft.World/net.minecraft.world.entity.monster.h"
-#include "../Minecraft.World/Mth.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.monster.h"
+#include "../../../Minecraft.World/Util/Mth.h"
 
 ResourceLocation CreeperRenderer::POWER_LOCATION =
     ResourceLocation(TN_POWERED_CREEPER);

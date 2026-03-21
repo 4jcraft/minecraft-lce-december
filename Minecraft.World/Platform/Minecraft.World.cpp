@@ -15,7 +15,7 @@
 #include "../Headers/net.minecraft.world.effect.h"
 
 #include "Minecraft.World.h"
-#include "../Minecraft.Client/ServerLevel.h"
+#include "../../Minecraft.Client/Level/ServerLevel.h"
 
 #ifdef _DURANGO
 #include "../Stats/DurangoStats.h"

@@ -1,6 +1,6 @@
 #include "../Platform/stdafx.h"
 
-#include "../Minecraft.World/StringHelpers.h"
+#include "../../Minecraft.World/Util/StringHelpers.h"
 #include "../Minecraft.World/compression.h"
 
 #include "ArchiveFile.h"

@@ -4,7 +4,7 @@
 #include "../Rendering/Particles/GuiParticles.h"
 #include "../Rendering/Tesselator.h"
 #include "../Textures/Textures.h"
-#include "../Minecraft.World/SoundTypes.h"
+#include "../../Minecraft.World/Util/SoundTypes.h"
 
 Screen::Screen()  // 4J added
 {

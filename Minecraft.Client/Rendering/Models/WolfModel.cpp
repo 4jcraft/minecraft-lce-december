@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "WolfModel.h"
-#include "../Minecraft.World/Wolf.h"
-#include "../Minecraft.World/Mth.h"
+#include "../../../Minecraft.World/Entities/Mobs/Wolf.h"
+#include "../../../Minecraft.World/Util/Mth.h"
 #include "ModelPart.h"
 
 WolfModel::WolfModel() {

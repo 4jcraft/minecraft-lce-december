@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
 #include "VillagerModel.h"
-#include "../Minecraft.World/Mth.h"
+#include "../../../Minecraft.World/Util/Mth.h"
 #include "ModelPart.h"
 
 void VillagerModel::_init(float g, float yOffset, int xTexSize, int yTexSize) {

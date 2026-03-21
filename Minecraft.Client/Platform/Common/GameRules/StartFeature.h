@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GameRuleDefinition.h"
-#include "../../../Minecraft.World/StructureFeature.h"
+#include "../../../../Minecraft.World/WorldGen/Features/StructureFeature.h"
 
 class StartFeature : public GameRuleDefinition {
 private:

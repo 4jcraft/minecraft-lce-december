@@ -11,12 +11,12 @@
 #include "MultiplayerLocalPlayer.h"
 #include "../Minimap.h"
 #include "../../Level/MultiPlayerLevel.h"
-#include "../Minecraft.World/net.minecraft.world.item.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
-#include "../Minecraft.World/net.minecraft.world.entity.h"
-#include "../Minecraft.World/net.minecraft.world.entity.player.h"
-#include "../Minecraft.World/net.minecraft.world.level.h"
-#include "../Minecraft.World/net.minecraft.world.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.item.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.player.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.h"
 
 ResourceLocation ItemInHandRenderer::ENCHANT_GLINT_LOCATION =
     ResourceLocation(TN__BLUR__MISC_GLINT);

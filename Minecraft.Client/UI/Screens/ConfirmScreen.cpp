@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "ConfirmScreen.h"
 #include "../SmallButton.h"
-#include "../Minecraft.World/net.minecraft.locale.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.locale.h"
 
 ConfirmScreen::ConfirmScreen(Screen* parent, const std::wstring& title1,
                              const std::wstring& title2, int id) {

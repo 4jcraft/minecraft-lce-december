@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
-#include "../Minecraft.World/net.minecraft.world.entity.animal.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.animal.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
 #include "../Models/VillagerGolemModel.h"
 #include "../Models/ModelPart.h"
 #include "../../Textures/TextureAtlas.h"

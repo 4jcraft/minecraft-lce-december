@@ -1,6 +1,6 @@
 #include "../../stdafx.h"
 #include "ColourTable.h"
-#include "../../../Minecraft.World/StringHelpers.h"
+#include "../../../../Minecraft.World/Util/StringHelpers.h"
 
 std::unordered_map<std::wstring, eMinecraftColour>
     ColourTable::s_colourNamesMap;

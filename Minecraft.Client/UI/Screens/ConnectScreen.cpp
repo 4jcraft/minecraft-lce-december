@@ -5,7 +5,7 @@
 #include "../Button.h"
 #include "../../Minecraft.h"
 #include "../../Player/User.h"
-#include "../Minecraft.World/net.minecraft.locale.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.locale.h"
 
 ConnectScreen::ConnectScreen(Minecraft* minecraft, const std::wstring& ip,
                              int port) {

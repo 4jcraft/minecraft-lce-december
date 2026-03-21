@@ -12,7 +12,7 @@
 #include "../../Headers/net.minecraft.world.level.biome.h"
 #include "../../Headers/net.minecraft.world.item.h"
 #include "../../Util/SharedConstants.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "SnowMan.h"
 #include "../../Util/SoundTypes.h"
 

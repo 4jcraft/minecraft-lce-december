@@ -3,8 +3,8 @@
 #include "MushroomCowRenderer.h"
 #include "../../Textures/TextureAtlas.h"
 #include "../Models/QuadrupedModel.h"
-#include "../Minecraft.World/net.minecraft.world.entity.animal.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.animal.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
 
 ResourceLocation MushroomCowRenderer::MOOSHROOM_LOCATION =
     ResourceLocation(TN_MOB_RED_COW);

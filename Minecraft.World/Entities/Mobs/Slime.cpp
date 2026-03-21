@@ -13,7 +13,7 @@
 #include "../../Headers/net.minecraft.world.damagesource.h"
 #include "../../Headers/com.mojang.nbt.h"
 #include "Slime.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "../../Util/SoundTypes.h"
 
 void Slime::_init() {

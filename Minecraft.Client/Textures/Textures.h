@@ -1,5 +1,5 @@
 #pragma once
-#include "../Minecraft.World/ArrayWithLength.h"
+#include "../../Minecraft.World/Util/ArrayWithLength.h"
 
 class DynamicTexture;
 class BufferedImage;

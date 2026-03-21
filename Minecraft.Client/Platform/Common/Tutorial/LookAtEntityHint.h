@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../Minecraft.World/Class.h"
+#include "../../../../Minecraft.World/Util/Class.h"
 #include "TutorialHint.h"
 
 class ItemInstance;

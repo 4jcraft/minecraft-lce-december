@@ -11,7 +11,7 @@
 #include "../../Headers/net.minecraft.world.damagesource.h"
 #include "../../Headers/net.minecraft.stats.h"
 #include "Ghast.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "../../Level/Events/LevelEvent.h"
 #include "../../Util/SoundTypes.h"
 

@@ -1,7 +1,7 @@
 #include "../Platform/stdafx.h"
 #include "Stitching/Stitcher.h"
 #include "Texture.h"
-#include "../Minecraft.World/StringHelpers.h"
+#include "../../Minecraft.World/Util/StringHelpers.h"
 #include "TextureHolder.h"
 
 TextureHolder::TextureHolder(Texture* texture) {

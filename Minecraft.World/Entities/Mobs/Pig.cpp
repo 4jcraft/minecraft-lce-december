@@ -14,7 +14,7 @@
 #include "../../Headers/net.minecraft.world.entity.player.h"
 #include "../../Headers/net.minecraft.world.entity.global.h"
 #include "Pig.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "../MobCategory.h"
 
 Pig::Pig(Level* level) : Animal(level) {

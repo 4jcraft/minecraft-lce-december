@@ -6,7 +6,7 @@
 #include "Tutorial.h"
 #include "TutorialConstraints.h"
 #include "ChoiceTask.h"
-#include "../../../Minecraft.World/Material.h"
+#include "../../../../Minecraft.World/Blocks/Material.h"
 
 ChoiceTask::ChoiceTask(
     Tutorial* tutorial, int descriptionId, int promptId /*= -1*/,

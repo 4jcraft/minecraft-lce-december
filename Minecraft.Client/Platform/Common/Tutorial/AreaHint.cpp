@@ -3,7 +3,7 @@
 #include "../../Minecraft.h"
 #include "../../MultiplayerLocalPlayer.h"
 #include "AreaHint.h"
-#include "../../../Minecraft.World/AABB.h"
+#include "../../../../Minecraft.World/Util/AABB.h"
 #include "Tutorial.h"
 
 AreaHint::AreaHint(eTutorial_Hint id, Tutorial* tutorial,

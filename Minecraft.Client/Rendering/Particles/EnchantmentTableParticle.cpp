@@ -1,5 +1,5 @@
 #include "../../Platform/stdafx.h"
-#include "../Minecraft.World/JavaMath.h"
+#include "../../../Minecraft.World/Util/JavaMath.h"
 #include "EnchantmentTableParticle.h"
 
 EchantmentTableParticle::EchantmentTableParticle(Level* level, double x,

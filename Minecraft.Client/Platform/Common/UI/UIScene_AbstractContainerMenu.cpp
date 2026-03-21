@@ -2,8 +2,8 @@
 #include "UI.h"
 #include "UIScene_AbstractContainerMenu.h"
 
-#include "../../../Minecraft.World/net.minecraft.world.inventory.h"
-#include "../../../Minecraft.World/net.minecraft.world.item.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.inventory.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.item.h"
 #include "../../MultiplayerLocalPlayer.h"
 
 UIScene_AbstractContainerMenu::UIScene_AbstractContainerMenu(

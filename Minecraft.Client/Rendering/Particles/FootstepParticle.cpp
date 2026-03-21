@@ -2,8 +2,8 @@
 #include "FootstepParticle.h"
 #include "../../Textures/Textures.h"
 #include "../Tesselator.h"
-#include "../Minecraft.World/Mth.h"
-#include "../Minecraft.World/net.minecraft.world.level.h"
+#include "../../../Minecraft.World/Util/Mth.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.h"
 #include "../../Textures/ResourceLocation.h"
 
 ResourceLocation FootstepParticle::FOOTPRINT_LOCATION =

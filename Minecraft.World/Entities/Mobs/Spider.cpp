@@ -11,7 +11,7 @@
 #include "../../Headers/com.mojang.nbt.h"
 #include "../../Util/BasicTypeContainers.h"
 #include "Spider.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "../../Util/SoundTypes.h"
 
 Spider::Spider(Level* level) : Monster(level) {

@@ -1,9 +1,9 @@
 #include "../Platform/stdafx.h"
 #include "../Minecraft.h"
-#include "../Minecraft.World/net.minecraft.world.level.h"
-#include "../Minecraft.World/net.minecraft.world.level.dimension.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.dimension.h"
 #include "MultiplayerLocalPlayer.h"
-#include "../Minecraft.World/JavaMath.h"
+#include "../../Minecraft.World/Util/JavaMath.h"
 #include "Texture.h"
 #include "CompassTexture.h"
 

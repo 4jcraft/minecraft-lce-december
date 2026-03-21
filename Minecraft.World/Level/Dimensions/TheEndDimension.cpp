@@ -4,8 +4,8 @@
 #include "../../Headers/net.minecraft.world.level.levelgen.h"
 #include "../../Headers/net.minecraft.world.level.h"
 #include "../../Headers/net.minecraft.world.level.tile.h"
-#include "../Minecraft.Client/Minecraft.h"
-#include "../Minecraft.Client/Common/Colours/ColourTable.h"
+#include "../../../Minecraft.Client/Minecraft.h"
+#include "../../../Minecraft.Client/Platform/Common/Colours/ColourTable.h"
 
 void TheEndDimension::init() {
     biomeSource = new FixedBiomeSource(Biome::sky, 0.5f, 0);

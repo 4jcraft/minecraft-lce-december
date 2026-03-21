@@ -13,7 +13,7 @@
 
 #include "PSVita/PSVitaExtras/Conf.h"
 #include "Common/Network/Sony/SonyHttp.h"
-#include "../../../Minecraft.World/C4JThread.h"
+#include "../../../../Minecraft.World/Util/C4JThread.h"
 
 #define MATCHING_PORT (1)
 #define MATCHING_RXBUFLEN (2048)

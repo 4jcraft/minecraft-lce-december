@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Packet.h"
-#include "../Minecraft.Client/Model.h"
-#include "../Minecraft.Client/SkinBox.h"
+#include "../../../Minecraft.Client/Rendering/Models/Model.h"
+#include "../../../Minecraft.Client/Rendering/Models/SkinBox.h"
 
 class DLCSkinFile;
 

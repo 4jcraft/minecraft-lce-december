@@ -3,7 +3,7 @@
 #include "SoundEngine.h"
 #include "../Consoles_App.h"
 #include "../../MultiplayerLocalPlayer.h"
-#include "../../../Minecraft.World/net.minecraft.world.level.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.level.h"
 #include "../../Minecraft.World/leveldata.h"
 #include "../../Minecraft.World/mth.h"
 #include "../../TexturePackRepository.h"

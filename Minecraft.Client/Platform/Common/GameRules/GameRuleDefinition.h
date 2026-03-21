@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <string>
 
-#include "../../../Minecraft.World/ItemInstance.h"
+#include "../../../../Minecraft.World/Items/ItemInstance.h"
 #include "ConsoleGameRulesConstants.h"
 
 #include "GameRulesInstance.h"

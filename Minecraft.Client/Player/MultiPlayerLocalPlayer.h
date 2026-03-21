@@ -1,6 +1,6 @@
 #pragma once
 #include "LocalPlayer.h"
-#include "../Minecraft.World/SharedConstants.h"
+#include "../../Minecraft.World/Util/SharedConstants.h"
 
 class ClientConnection;
 class Minecraft;

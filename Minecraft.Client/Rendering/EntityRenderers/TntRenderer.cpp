@@ -2,8 +2,8 @@
 #include "TntRenderer.h"
 #include "../../Textures/TextureAtlas.h"
 #include "TileRenderer.h"
-#include "../Minecraft.World/net.minecraft.world.entity.item.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.item.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
 
 TntRenderer::TntRenderer() {
     renderer = new TileRenderer();

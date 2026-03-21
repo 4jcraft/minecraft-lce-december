@@ -4,9 +4,9 @@
 #include "PendingConnection.h"
 #include "PlayerConnection.h"
 #include "../Player/ServerPlayer.h"
-#include "../Minecraft.World/net.minecraft.network.h"
-#include "../Minecraft.World/Socket.h"
-#include "../Minecraft.World/net.minecraft.world.level.h"
+#include "../../Minecraft.World/Headers/net.minecraft.network.h"
+#include "../../Minecraft.World/Network/Socket.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.h"
 #include "../Level/MultiPlayerLevel.h"
 
 ServerConnection::ServerConnection(MinecraftServer* server) {

@@ -8,8 +8,8 @@
 #include "../../Headers/com.mojang.nbt.h"
 
 #ifndef _CONTENT_PACKAGE
-#include "../Minecraft.Client/Minecraft.h"
-#include "../Minecraft.Client/Gui.h"
+#include "../../../Minecraft.Client/Minecraft.h"
+#include "../../../Minecraft.Client/UI/Gui.h"
 #endif
 
 void Packet::staticCtor() {

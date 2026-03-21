@@ -3,7 +3,7 @@
 #include "../Headers/net.minecraft.world.entity.item.h"
 #include "../Headers/net.minecraft.world.item.h"
 #include "../Headers/net.minecraft.network.packet.h"
-#include "../Minecraft.Client/ServerPlayer.h"
+#include "../../Minecraft.Client/Player/ServerPlayer.h"
 #include "GiveItemCommand.h"
 
 EGameCommand GiveItemCommand::getId() { return eGameCommand_Give; }

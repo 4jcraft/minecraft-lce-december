@@ -1,9 +1,9 @@
 #pragma once
-#include "../Minecraft.World/LevelListener.h"
-#include "../Minecraft.World/Definitions.h"
+#include "../../Minecraft.World/Level/Events/LevelListener.h"
+#include "../../Minecraft.World/Util/Definitions.h"
 #include "OffsettedRenderList.h"
-#include "../Minecraft.World/JavaIntHash.h"
-#include "../Minecraft.World/Level.h"
+#include "../../Minecraft.World/Util/JavaIntHash.h"
+#include "../../Minecraft.World/Level/Level.h"
 #include "../Textures/ResourceLocation.h"
 #include <xmcore.h>
 #ifdef __PS3__

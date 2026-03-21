@@ -11,7 +11,7 @@
 
 #include "PSVita/PSVitaExtras/Conf.h"
 #include "Common/Network/Sony/SonyHttp.h"
-#include "../../../Minecraft.World/C4JThread.h"
+#include "../../../../Minecraft.World/Util/C4JThread.h"
 
 // image used for the invite gui, filesize must be smaller than
 // SCE_NP_MESSAGE_DIALOG_MAX_INDEX_ICON_SIZE ( 64K )

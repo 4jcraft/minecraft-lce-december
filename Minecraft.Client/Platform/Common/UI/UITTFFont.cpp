@@ -1,7 +1,7 @@
 #include "../../stdafx.h"
 #include "UI.h"
-#include "../../../Minecraft.World/StringHelpers.h"
-#include "../../../Minecraft.World/File.h"
+#include "../../../../Minecraft.World/Util/StringHelpers.h"
+#include "../../../../Minecraft.World/IO/Files/File.h"
 #include "UITTFFont.h"
 
 UITTFFont::UITTFFont(const std::string& name, const std::string& path,

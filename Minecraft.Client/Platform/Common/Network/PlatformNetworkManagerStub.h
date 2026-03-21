@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "../../../Minecraft.World/C4JThread.h"
+#include "../../../../Minecraft.World/Util/C4JThread.h"
 #include "NetworkPlayerInterface.h"
 #include "PlatformNetworkManagerInterface.h"
 #include "SessionInfo.h"

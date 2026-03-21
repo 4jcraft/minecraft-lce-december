@@ -3,12 +3,12 @@
 #include "../EditBox.h"
 #include "../Button.h"
 #include "../../GameState/SurvivalMode.h"
-#include "../Minecraft.World/net.minecraft.locale.h"
-#include "../Minecraft.World/StringHelpers.h"
-#include "../Minecraft.World/net.minecraft.world.level.h"
-#include "../Minecraft.World/net.minecraft.world.level.storage.h"
-#include "../Minecraft.World/SharedConstants.h"
-#include "../Minecraft.World/Random.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.locale.h"
+#include "../../../Minecraft.World/Util/StringHelpers.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.storage.h"
+#include "../../../Minecraft.World/Util/SharedConstants.h"
+#include "../../../Minecraft.World/Util/Random.h"
 
 CreateWorldScreen::CreateWorldScreen(Screen* lastScreen) {
     done = false;  // 4J added

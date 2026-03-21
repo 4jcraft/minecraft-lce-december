@@ -14,7 +14,7 @@
 #include "../../Headers/net.minecraft.world.level.h"
 #include "../../Headers/net.minecraft.world.level.tile.h"
 #include "../../Headers/net.minecraft.world.phys.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "../SyncedEntityData.h"
 #include "VillagerGolem.h"
 #include "../../Util/ParticleTypes.h"

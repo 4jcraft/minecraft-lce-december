@@ -5,8 +5,8 @@
 #include "FolderTexturePack.h"
 #include "DLCTexturePack.h"
 #include "../../GameState/Options.h"
-#include "../Minecraft.World/File.h"
-#include "../Minecraft.World/StringHelpers.h"
+#include "../../../Minecraft.World/IO/Files/File.h"
+#include "../../../Minecraft.World/Util/StringHelpers.h"
 #include "../../Rendering/Minimap.h"
 
 TexturePack* TexturePackRepository::DEFAULT_TEXTURE_PACK = NULL;

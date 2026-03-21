@@ -2,7 +2,7 @@
 class Mob;
 class Options;
 
-#include "../../Minecraft.World/SoundTypes.h"
+#include "../../../../Minecraft.World/Util/SoundTypes.h"
 
 enum eMUSICFILES {
     eStream_Overworld_Calm1 = 0,

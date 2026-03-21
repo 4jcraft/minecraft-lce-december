@@ -1,5 +1,5 @@
 #include "../../Platform/stdafx.h"
-#include "../Minecraft.Client/Minecraft.h"
+#include "../../../Minecraft.Client/Minecraft.h"
 #include "../../Headers/net.minecraft.world.effect.h"
 #include "../../Util/JavaMath.h"
 #include "../../Util/SharedConstants.h"

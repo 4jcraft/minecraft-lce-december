@@ -1,9 +1,9 @@
 #include "../../stdafx.h"
 #include "CompleteAllRuleDefinition.h"
 #include "ConsoleGameRules.h"
-#include "../../../Minecraft.World/StringHelpers.h"
-#include "../../../Minecraft.World/Connection.h"
-#include "../../../Minecraft.World/net.minecraft.network.packet.h"
+#include "../../../../Minecraft.World/Util/StringHelpers.h"
+#include "../../../../Minecraft.World/Network/Connection.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.network.packet.h"
 
 void CompleteAllRuleDefinition::getChildren(
     std::vector<GameRuleDefinition*>* children) {

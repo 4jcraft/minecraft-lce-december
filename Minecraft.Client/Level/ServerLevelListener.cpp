@@ -7,9 +7,9 @@
 #include "../Network/PlayerList.h"
 #include "../Network/PlayerChunkMap.h"
 #include "../Network/PlayerConnection.h"
-#include "../Minecraft.World/net.minecraft.world.level.dimension.h"
-#include "../Minecraft.World/net.minecraft.network.packet.h"
-#include "../Minecraft.World/LevelData.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.dimension.h"
+#include "../../Minecraft.World/Headers/net.minecraft.network.packet.h"
+#include "../../Minecraft.World/Level/LevelData.h"
 
 ServerLevelListener::ServerLevelListener(MinecraftServer* server,
                                          ServerLevel* level) {

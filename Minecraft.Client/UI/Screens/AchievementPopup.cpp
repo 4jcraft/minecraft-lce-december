@@ -4,10 +4,10 @@
 #include "../Font.h"
 #include "../../Textures/Textures.h"
 #include "../../Rendering/Lighting.h"
-#include "../Minecraft.World/System.h"
-#include "../Minecraft.World/net.minecraft.locale.h"
-#include "../Minecraft.World/net.minecraft.stats.h"
-#include "../Minecraft.World/SharedConstants.h"
+#include "../../../Minecraft.World/Platform/System.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.locale.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.stats.h"
+#include "../../../Minecraft.World/Util/SharedConstants.h"
 
 AchievementPopup::AchievementPopup(Minecraft* mc) {
     // 4J - added initialisers

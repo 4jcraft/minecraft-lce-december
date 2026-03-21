@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Minecraft.World/Icon.h"
+#include "../../../Minecraft.World/Util/Icon.h"
 class Texture;
 
 class StitchedTexture : public Icon {

@@ -19,7 +19,7 @@
 #include "../../Headers/net.minecraft.world.damagesource.h"
 #include "../../Util/SharedConstants.h"
 #include "Skeleton.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "../../Util/SoundTypes.h"
 
 Skeleton::Skeleton(Level* level) : Monster(level) {

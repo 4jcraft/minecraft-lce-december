@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <qnet.h>
-#include "../../../Minecraft.World/C4JThread.h"
+#include "../../../../Minecraft.World/Util/C4JThread.h"
 #include "NetworkPlayerInterface.h"
 #ifdef _XBOX
 #include "../../Xbox/Network/PlatformNetworkManagerXbox.h"
