@@ -12,7 +12,7 @@
 #include "../Containers/FurnaceMenu.h"
 #include "../Containers/FurnaceResultSlot.h"
 #include "../Containers/HopperMenu.h"
-#include "../HorseInventoryMenu.h"
+#include "../Containers/HorseInventoryMenu.h"
 #include "../Containers/InventoryMenu.h"
 #include "../Containers/MenuBackup.h"
 #include "../Containers/ResultContainer.h"

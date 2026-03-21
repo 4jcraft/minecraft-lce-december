@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Golem.h"
-#include "../../RangedAttackMob.h"
+#include "RangedAttackMob.h"
 
 class SnowMan : public Golem, public RangedAttackMob {
 public:

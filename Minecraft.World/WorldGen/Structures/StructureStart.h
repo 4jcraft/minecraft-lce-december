@@ -2,7 +2,7 @@
 class StructurePiece;
 class BoundingBox;
 
-#include "../../StructureFeatureIO.h"
+#include "../StructureFeatureIO.h"
 
 class StructureStart {
 public:

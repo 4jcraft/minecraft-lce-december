@@ -2,7 +2,7 @@
 
 #include "AbstractProjectileDispenseBehavior.h"
 #include "../Blocks/DispenserTile.h"
-#include "../Projectile.h"
+#include "../Entities/Projectile.h"
 #include "../Level/Level.h"
 #include "../Level/Events/LevelEvent.h"
 #include "../Items/ItemInstance.h"

@@ -3,7 +3,7 @@
 #include "IUIScene_AbstractContainerMenu.h"
 #include "../../../../Minecraft.World/Containers/Container.h"
 #include "../../../../Minecraft.World/Containers/Inventory.h"
-#include "../../../../Minecraft.World/EntityHorse.h"
+#include "../../../../Minecraft.World/Entities/Mobs/EntityHorse.h"
 
 class IUIScene_HorseInventoryMenu : public virtual IUIScene_AbstractContainerMenu
 {

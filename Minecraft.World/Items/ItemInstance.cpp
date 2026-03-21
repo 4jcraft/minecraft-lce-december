@@ -12,7 +12,7 @@
 #include "../Headers/net.minecraft.world.item.enchantment.h"
 #include "Item.h"
 #include "ItemInstance.h"
-#include "../HtmlString.h"
+#include "../Util/HtmlString.h"
 
 const std::wstring ItemInstance::ATTRIBUTE_MODIFIER_FORMAT = L"#.###";
 

@@ -10,7 +10,7 @@
 #include "../WorldGen/Features/StrongholdFeature.h"
 #include "../WorldGen/Structures/StrongholdPieces.h"
 #include "../WorldGen/Features/StructureFeature.h"
-#include "../StructureFeatureIO.h"
+#include "../WorldGen/StructureFeatureIO.h"
 #include "../WorldGen/StructureFeatureSavedData.h"
 #include "../WorldGen/Structures/StructurePiece.h"
 #include "../WorldGen/Structures/StructureStart.h"

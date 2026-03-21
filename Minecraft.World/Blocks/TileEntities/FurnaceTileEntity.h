@@ -2,7 +2,7 @@
 
 #include "../FurnaceTile.h"
 #include "TileEntity.h"
-#include "../../WorldlyContainer.h"
+#include "../../Containers/WorldlyContainer.h"
 
 class Player;
 class Level;

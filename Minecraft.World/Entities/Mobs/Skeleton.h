@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Monster.h"
-#include "../../RangedAttackMob.h"
+#include "RangedAttackMob.h"
 
 class RangedAttackGoal;
 class MeleeAttackGoal;

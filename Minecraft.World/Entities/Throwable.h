@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "../Projectile.h"
+#include "Projectile.h"
 
 class Mob;
 class HitResult;

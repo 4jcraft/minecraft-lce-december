@@ -1,5 +1,5 @@
 #pragma once
 
-#include "../DummyCriteria.h"
-#include "../HealthCriteria.h"
-#include "../ObjectiveCriteria.h"
+#include "../Scores/Criteria/DummyCriteria.h"
+#include "../Scores/Criteria/HealthCriteria.h"
+#include "../Scores/Criteria/ObjectiveCriteria.h"

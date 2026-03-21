@@ -84,4 +84,4 @@
 // 4J Added
 #include "../Items/ClockItem.h"
 #include "../Items/CompassItem.h"
-#include "../HtmlString.h"
+#include "../Util/HtmlString.h"

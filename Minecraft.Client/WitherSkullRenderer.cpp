@@ -1,7 +1,7 @@
 #include "Build/stdafx.h"
 #include "WitherSkullRenderer.h"
 #include "Rendering/Models/SkeletonHeadModel.h"
-#include "../Minecraft.World/WitherSkull.h"
+#include "../Minecraft.World/Entities/WitherSkull.h"
 
 ResourceLocation WitherSkullRenderer::WITHER_ARMOR_LOCATION(TN_MOB_WITHER_INVULNERABLE);
 ResourceLocation WitherSkullRenderer::WITHER_LOCATION(TN_MOB_WITHER);

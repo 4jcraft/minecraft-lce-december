@@ -1,4 +1,4 @@
 #pragma once
 
-#include "../AmbientCreature.h"
-#include "../Bat.h"
+#include "../Entities/Mobs/AmbientCreature.h"
+#include "../Entities/Mobs/Bat.h"

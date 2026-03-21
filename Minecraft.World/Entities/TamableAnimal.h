@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Mobs/Animal.h"
-#include "../OwnableEntity.h"
+#include "OwnableEntity.h"
 
 class SitGoal;
 

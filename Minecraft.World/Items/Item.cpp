@@ -14,7 +14,7 @@
 #include "MapItem.h"
 #include "Item.h"
 #include "HangingEntityItem.h"
-#include "../HtmlString.h"
+#include "../Util/HtmlString.h"
 
 typedef Item::Tier _Tier;
 
