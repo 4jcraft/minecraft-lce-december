@@ -113,7 +113,7 @@ void Creeper::tick() {
                 else
                     level->explode(shared_from_this(), x, y, z, explosionRadius,
                                    destroyBlocks);
-                remove();
+                std::remove();
             }
         }
     }
@@ -139,7 +139,7 @@ void Creeper::die(DamageSource* source) {
         source->getDirectEntity()->instanceof(eTYPE_ARROW) &&
         source->getEntity() != NULL &&
         source->getEntity()->instanceof(eTYPE_PLAYER)) {
-        shared_ptr<Player> player =
+        std::shared_ptr<Player> player =
             dynamic_pointer_cast<Player>(source->getEntity());
         player->awardStat(GenericStats::archer(), GenericStats::param_archer());
     }

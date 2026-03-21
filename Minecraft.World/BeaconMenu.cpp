@@ -50,49 +50,51 @@ bool BeaconMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> BeaconMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
-        clicked = stack->copy();
+        std::shared_ptr<ItemInstance> std::stack = slot->getItem();
+        clicked = std::stack->copy();
 
         if (slotIndex == PAYMENT_SLOT) {
-            if (!moveItemStackTo(stack, INV_SLOT_START, USE_ROW_SLOT_END,
+            if (!moveItemStackTo(std::stack, INV_SLOT_START, USE_ROW_SLOT_END,
                                  true)) {
                 return nullptr;
             }
-            slot->onQuickCraft(stack, clicked);
-        } else if (!paymentSlot->hasItem() && paymentSlot->mayPlace(stack) &&
-                   stack->count == 1) {
-            if (!moveItemStackTo(stack, PAYMENT_SLOT, PAYMENT_SLOT + 1,
+            slot->onQuickCraft(std::stack, clicked);
+        } else if (!paymentSlot->hasItem() &&
+                   paymentSlot->mayPlace(std::stack) &&
+                   std::stack->count == 1) {
+            if (!moveItemStackTo(std::stack, PAYMENT_SLOT, PAYMENT_SLOT + 1,
                                  false)) {
                 return nullptr;
             }
         } else if (slotIndex >= INV_SLOT_START && slotIndex < INV_SLOT_END) {
-            if (!moveItemStackTo(stack, USE_ROW_SLOT_START, USE_ROW_SLOT_END,
-                                 false)) {
+            if (!moveItemStackTo(std::stack, USE_ROW_SLOT_START,
+                                 USE_ROW_SLOT_END, false)) {
                 return nullptr;
             }
         } else if (slotIndex >= USE_ROW_SLOT_START &&
                    slotIndex < USE_ROW_SLOT_END) {
-            if (!moveItemStackTo(stack, INV_SLOT_START, INV_SLOT_END, false)) {
+            if (!moveItemStackTo(std::stack, INV_SLOT_START, INV_SLOT_END,
+                                 false)) {
                 return nullptr;
             }
         } else {
-            if (!moveItemStackTo(stack, INV_SLOT_START, USE_ROW_SLOT_END,
+            if (!moveItemStackTo(std::stack, INV_SLOT_START, USE_ROW_SLOT_END,
                                  false)) {
                 return nullptr;
             }
         }
-        if (stack->count == 0) {
+        if (std::stack->count == 0) {
             slot->set(nullptr);
         } else {
             slot->setChanged();
         }
-        if (stack->count == clicked->count) {
+        if (std::stack->count == clicked->count) {
             return nullptr;
         } else {
-            slot->onTake(player, stack);
+            slot->onTake(player, std::stack);
         }
     }
     return clicked;

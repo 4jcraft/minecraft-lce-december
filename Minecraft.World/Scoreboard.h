@@ -13,27 +13,28 @@ public:
     static const int DISPLAY_SLOTS = 3;
 
 private:
-    unordered_map<std::wstring, Objective*> objectivesByName;
-    unordered_map<ObjectiveCriteria*, vector<Objective*>*> objectivesByCriteria;
-    unordered_map<std::wstring, unordered_map<Objective*, Score*> >
+    std::unordered_map<std::wstring, Objective*> objectivesByName;
+    std::unordered_map<ObjectiveCriteria*, std::vector<Objective*>*>
+        objectivesByCriteria;
+    std::unordered_map<std::wstring, std::unordered_map<Objective*, Score*> >
         playerScores;
     Objective* displayObjectives[DISPLAY_SLOTS];
-    unordered_map<std::wstring, PlayerTeam*> teamsByName;
-    unordered_map<std::wstring, PlayerTeam*> teamsByPlayer;
+    std::unordered_map<std::wstring, PlayerTeam*> teamsByName;
+    std::unordered_map<std::wstring, PlayerTeam*> teamsByPlayer;
 
 public:
     Objective* getObjective(const std::wstring& name);
     Objective* addObjective(const std::wstring& name,
                             ObjectiveCriteria* criteria);
-    vector<Objective*>* findObjectiveFor(ObjectiveCriteria* criteria);
+    std::vector<Objective*>* findObjectiveFor(ObjectiveCriteria* criteria);
     Score* getPlayerScore(const std::wstring& name, Objective* objective);
-    vector<Score*>* getPlayerScores(Objective* objective);
-    vector<Objective*>* getObjectives();
-    vector<std::wstring>* getTrackedPlayers();
+    std::vector<Score*>* getPlayerScores(Objective* objective);
+    std::vector<Objective*>* getObjectives();
+    std::vector<std::wstring>* getTrackedPlayers();
     void resetPlayerScore(const std::wstring& player);
-    vector<Score*>* getScores();
-    vector<Score*>* getScores(Objective* objective);
-    unordered_map<Objective*, Score*>* getPlayerScores(
+    std::vector<Score*>* getScores();
+    std::vector<Score*>* getScores(Objective* objective);
+    std::unordered_map<Objective*, Score*>* getPlayerScores(
         const std::wstring& player);
     void removeObjective(Objective* objective);
     void setDisplayObjective(int slot, Objective* objective);
@@ -44,8 +45,8 @@ public:
     void addPlayerToTeam(const std::wstring& player, PlayerTeam* team);
     bool removePlayerFromTeam(const std::wstring& player);
     void removePlayerFromTeam(const std::wstring& player, PlayerTeam* team);
-    vector<std::wstring>* getTeamNames();
-    vector<PlayerTeam*>* getPlayerTeams();
+    std::vector<std::wstring>* getTeamNames();
+    std::vector<PlayerTeam*>* getPlayerTeams();
     std::shared_ptr<Player> getPlayer(const std::wstring& name);
     PlayerTeam* getPlayersTeam(const std::wstring& name);
     void onObjectiveAdded(Objective* objective);

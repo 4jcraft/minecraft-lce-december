@@ -23,16 +23,16 @@ std::shared_ptr<ItemInstance> EmptyMapItem::use(
 
     // data.setDirty();
 
-    shared_ptr<ItemInstance> map =
-        shared_ptr<ItemInstance>(new ItemInstance(Item::map, 1, -1));
-    Item::map->onCraftedBy(map, level, player);
+    std::shared_ptr<ItemInstance> map =
+        std::shared_ptr<ItemInstance>(new ItemInstance(Item::map, 1, -1));
+    Item::map->onCraftedBy(std::map, level, player);
 
     itemInstance->count--;
     if (itemInstance->count <= 0) {
-        return map;
+        return std::map;
     } else {
         if (!player->inventory->add(map->copy())) {
-            player->drop(map);
+            player->drop(std::map);
         }
     }
 

@@ -34,10 +34,10 @@ public:
     virtual void setSitting(bool value);
     virtual std::wstring getOwnerUUID();
     virtual void setOwnerUUID(const std::wstring& name);
-    virtual shared_ptr<Entity> getOwner();
+    virtual std::shared_ptr<Entity> getOwner();
     virtual SitGoal* getSitGoal();
-    bool wantsToAttack(shared_ptr<LivingEntity> target,
-                       shared_ptr<LivingEntity> owner);
+    bool wantsToAttack(std::shared_ptr<LivingEntity> target,
+                       std::shared_ptr<LivingEntity> owner);
     Team* getTeam();
-    bool isAlliedTo(shared_ptr<LivingEntity> other);
+    bool isAlliedTo(std::shared_ptr<LivingEntity> other);
 };

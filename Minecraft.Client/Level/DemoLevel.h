@@ -1,16 +1,19 @@
 #pragma once
 #include "..\Minecraft.World\net.minecraft.world.level.h"
 
-class DemoLevel : public Level
-{
+class DemoLevel : public Level {
 private:
-	static const __int64 DEMO_LEVEL_SEED = 0;	// 4J - TODO - was "Don't Look Back".hashCode();
+    static const __int64 DEMO_LEVEL_SEED =
+        0;  // 4J - TODO - was "Don't Look Back".hashCode();
     static const int DEMO_SPAWN_X = 796;
     static const int DEMO_SPAWN_Y = 72;
     static const int DEMO_SPAWN_Z = -731;
+
 public:
-	DemoLevel(std::shared_ptr<LevelStorage> levelStorage, const std::wstring& levelName);
-    DemoLevel(Level *level, Dimension *dimension);
+    DemoLevel(std::shared_ptr<LevelStorage> levelStorage,
+              const std::wstring& levelName);
+    DemoLevel(Level* level, Dimension* dimension);
+
 protected:
-	virtual void setInitialSpawn();
+    virtual void setInitialSpawn();
 };

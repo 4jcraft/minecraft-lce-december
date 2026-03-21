@@ -14,7 +14,7 @@ public:
 
     std::wstring getFeatureName();
 
-    MineShaftFeature(unordered_map<wstring, wstring> options);
+    MineShaftFeature(std::unordered_map<std::wstring, std::wstring> options);
 
 protected:
     virtual bool isFeatureChunk(int x, int z, bool bIsSuperflat = false);

@@ -13,26 +13,26 @@ public:
     private:
         eATTRIBUTE_ID id;
         double base;
-        unordered_set<AttributeModifier*> modifiers;
+        std::unordered_set<AttributeModifier*> modifiers;
 
     public:
         AttributeSnapshot(eATTRIBUTE_ID id, double base,
-                          unordered_set<AttributeModifier*>* modifiers);
+                          std::unordered_set<AttributeModifier*>* modifiers);
         ~AttributeSnapshot();
 
         eATTRIBUTE_ID getId();
         double getBase();
-        unordered_set<AttributeModifier*>* getModifiers();
+        std::unordered_set<AttributeModifier*>* getModifiers();
     };
 
 private:
     int entityId;
-    unordered_set<AttributeSnapshot*> attributes;
+    std::unordered_set<AttributeSnapshot*> attributes;
 
 public:
     UpdateAttributesPacket();
     UpdateAttributesPacket(int entityId,
-                           unordered_set<AttributeInstance*>* values);
+                           std::unordered_set<AttributeInstance*>* values);
     ~UpdateAttributesPacket();
 
     void read(DataInputStream* dis);
@@ -40,7 +40,7 @@ public:
     void handle(PacketListener* listener);
     int getEstimatedSize();
     int getEntityId();
-    unordered_set<AttributeSnapshot*> getValues();
+    std::unordered_set<AttributeSnapshot*> getValues();
 
 public:
     static std::shared_ptr<Packet> create() {

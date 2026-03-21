@@ -461,7 +461,7 @@ typedef struct {
         struct {
             DWORD cbData;
             LPWSTR pwszData;
-        } string;
+        } std::string;
         float fData;
         struct {
             DWORD cbData;
@@ -474,39 +474,33 @@ typedef struct {
 typedef struct {
     DWORD dwPropertyId;
     XUSER_DATA value;
-} XUSER_PROPERTY, *PXUSER_PROPERTY;
-
-// these need to match apwstrLocaleCode
-// const int XC_LANGUAGE_ENGLISH		=1;
-// const int XC_LANGUAGE_JAPANESE		=2;
-// const int XC_LANGUAGE_GERMAN		=3;
-// const int XC_LANGUAGE_FRENCH		=4;
-// const int XC_LANGUAGE_SPANISH		=5;
-// const int XC_LANGUAGE_ITALIAN		=6;
-// const int XC_LANGUAGE_KOREAN		=7;
-// const int XC_LANGUAGE_TCHINESE		=8;
-// const int XC_LANGUAGE_PORTUGUESE	=9;
-// const int XC_LANGUAGE_BRAZILIAN		=10;
-// #if defined __PS3__ || defined __PSVITA__ || defined __ORBIS__
-// const int XC_LANGUAGE_RUSSIAN		=11;
-// // more PS3
-// const int XC_LANGUAGE_DUTCH			=12;
-// const int XC_LANGUAGE_FINISH		=13;
-// const int XC_LANGUAGE_SWEDISH		=14;
-// const int XC_LANGUAGE_DANISH		=15;
-// const int XC_LANGUAGE_NORWEGIAN		=16;
-// const int XC_LANGUAGE_POLISH		=17;
-// const int XC_LANGUAGE_TURKISH		=18;
-// const int XC_LANGUAGE_LATINAMERICANSPANISH		=19;
-//
-// const int XC_LANGUAGE_GREEK			=20;
-// #else
-// const int XC_LANGUAGE_UKENGLISH	=11;
-// const int XC_LANGUAGE_MEXICANSPANISH=12;
-// #endif
-
-// matching Xbox 360
-const int XC_LANGUAGE_ENGLISH = 0x01;
+} XUSER_PROPERTY,
+    *PXUSER_PROPER  // these need to match apwstrLocaleCode // const int
+                    // XC_LANGUAGE_ENGLISH		=1; // const int
+                    // XC_LANGUAGE_JAPANESE		=2; // const int
+                    // XC_LANGUAGE_GERMAN		=3; // const int
+                    // XC_LANGUAGE_FRENCH		=4; // const int
+                    // XC_LANGUAGE_SPANISH		=5; // const int
+                    // XC_LANGUAGE_ITALIAN		=6; // const int
+                    // XC_LANGUAGE_KOREAN		=7; // const int
+                    // XC_LANGUAGE_TCHINESE		=8; // const int
+                    // XC_LANGUAGE_PORTUGUESE	=9; // const int
+                    // XC_LANGUAGE_BRAZILIAN		=10; // #if defined
+                    // __PS3__ || defined __PSVITA__ || defined __ORBIS__ //
+                    // const int XC_LANGUAGE_RUSSIAN		=11; // // more
+                    // PS3 // const int XC_LANGUAGE_DUTCH
+                    // =12; // const int XC_LANGUAGE_FINISH		=13; //
+                    // const int XC_LANGUAGE_SWEDISH		=14; // const
+                    // int XC_LANGUAGE_DANISH		=15; // const int
+                    // XC_LANGUAGE_NORWEGIAN		=16; // const int
+                    // XC_LANGUAGE_POLISH		=17; // const int
+                    // XC_LANGUAGE_TURKISH		=18; // const int
+                    // XC_LANGUAGE_LATINAMERICANSPANISH		=19; // // const
+                    // int XC_LANGUAGE_GREEK			=20; // #else //
+                    // const int XC_LANGUAGE_UKENGLISH	=11; // const int
+                    // XC_LANGUAGE_MEXICANSPANISH=12; // #endif  // matching
+                    // Xbox 360     
+    const int XC_LANGUAGE_ENGLISH = 0x01;
 const int XC_LANGUAGE_JAPANESE = 0x02;
 const int XC_LANGUAGE_GERMAN = 0x03;
 const int XC_LANGUAGE_FRENCH = 0x04;
@@ -521,17 +515,13 @@ const int XC_LANGUAGE_SWEDISH = 0x0D;
 const int XC_LANGUAGE_TURKISH = 0x0E;
 const int XC_LANGUAGE_BNORWEGIAN = 0x0F;
 const int XC_LANGUAGE_DUTCH = 0x10;
-const int XC_LANGUAGE_SCHINESE = 0x11;
-
-// for Sony
-// const int XC_LANGUAGE_LATINAMERICANSPANISH	=0xF0; // 4J-JEV: Now
-// differentiated via XC_LOCALE_LATIN_AMERICA
-const int XC_LANGUAGE_FINISH = 0xF1;
+const int XC_LANGUAGE_SCHINESE =
+    0x  // for Sony // const int XC_LANGUAGE_LATINAMERICANSPANISH	=0xF0;
+        // // 4J-JEV: Now // differentiated via XC_LOCALE_LATIN_AMERICA     
+    const int XC_LANGUAGE_FINISH = 0xF1;
 const int XC_LANGUAGE_GREEK = 0xF2;
-const int XC_LANGUAGE_DANISH = 0xF3;
-
-// for Xbox One
-const int XC_LANGUAGE_CZECH = 0xF4;
+const int XC_LANGUAGE_DANISH = 0x  // for Xbox One     
+    const int XC_LANGUAGE_CZECH = 0xF4;
 const int XC_LANGUAGE_SLOVAK = 0xF5;
 
 const int XC_LOCALE_AUSTRALIA = 1;
@@ -576,28 +566,19 @@ const int XC_LOCALE_TURKEY = 39;
 const int XC_LOCALE_ARGENTINA = 40;
 const int XC_LOCALE_SAUDI_ARABIA = 41;
 const int XC_LOCALE_ISRAEL = 42;
-const int XC_LOCALE_UNITED_ARAB_EMIRATES = 43;
-
-// for Sony
-const int XC_LOCALE_LATIN_AMERICA = 240;
-
-#if !(defined _DURANGO || defined __PS3__ || defined __ORBIS__ || \
+const int XC_LOCALE_UNITED_ARAB_EMIRATES =  // for Sony     
+    const int XC_LOCALE_LATIN_AMERICA =
+#if !(defined _DURANGO || defined __PS3__ || defined __ORBIS__ || \     
       defined __PSVITA__)
-DWORD XGetLanguage();
+        DWORD XGetLanguage();
 DWORD XGetLocale();
-DWORD XEnableGuestSignin(BOOL fEnable);
-#endif
+DWORD XEnableGuestSignin(BOOL fEnab#endif     
 
 class D3DXVECTOR3 {
 public:
     D3DXVECTOR3();
     D3DXVECTOR3(float, float, float);
     float x, y, z, pad;
-    D3DXVECTOR3& operator+=(CONST D3DXVECTOR3& add);
-};
-
-#define QNET_E_SESSION_FULL 0
-#define QNET_USER_MASK_USER0 1
-#define QNET_USER_MASK_USER1 2
-#define QNET_USER_MASK_USER2 4
-#define QNET_USER_MASK_USER3 8
+D3DXVECTOR3& operator+=(CONST D3DXVECTOR3& add)
+#define QNET_E_SESSION_FULL \
+    0 #define QNET_USER_MASK_USER0 1 #define QNET_USER_MASK_USER1 2 #define QNET_USER_MASK_USER2 4 #define QNET_USER_MASK_USER3 8     

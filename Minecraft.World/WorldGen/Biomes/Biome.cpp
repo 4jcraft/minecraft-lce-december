@@ -421,7 +421,7 @@ int Biome::getSkyColor(float temp) {
     return Minecraft::GetInstance()->getColourTable()->getColor(m_skyColor);
 }
 
-vector<Biome::MobSpawnerData*>* Biome::getMobs(MobCategory* category) {
+std::vector<Biome::MobSpawnerData*>* Biome::getMobs(MobCategory* category) {
     if (category == MobCategory::monster) return &enemies;
     if (category == MobCategory::creature) return &friendlies;
     if (category == MobCategory::waterCreature) return &waterFriendlies;
@@ -433,10 +433,10 @@ vector<Biome::MobSpawnerData*>* Biome::getMobs(MobCategory* category) {
     return NULL;
 }
 
-bool Biome::hasSnow() {
-    // 4J - snowCovered flag removed as it wasn't being set by the game anymore
-    // - snow is now temperature dependent to match code in rain rendering,
-    // shouldFreeze functions etc.
+bool Biome::hasSnow() {  // 4J - snowCovered flag removed as it wasn't being set
+                         // by the game anymore     // - snow is now temperature
+                         // dependent to match code in rain rendering,     //
+                         // shouldFreeze functions etc.     
     if (!_hasRain) return false;
 
     if (getTemperature() >= 0.15f) return false;
@@ -444,11 +444,10 @@ bool Biome::hasSnow() {
     return true;
 }
 
-bool Biome::hasRain() {
-    // 4J - snowCovered flag removed as it wasn't being set by the game anymore,
-    // replaced by call to hasSnow()
-    if (hasSnow()) return false;
-    //    if (snowCovered) return false;
+bool Biome::hasRain() {  // 4J - snowCovered flag removed as it wasn't being set
+                         // by the game anymore,     // replaced by call to
+                         // hasSnow()     
+    if (hasSnow()) return false;  //    if (snowCovered) return false;     
     return _hasRain;
 }
 
@@ -458,35 +457,36 @@ float Biome::getCreatureProbability() { return 0.1f; }
 
 int Biome::getDownfallInt() { return (int)(downfall * 65536); }
 
-int Biome::getTemperatureInt() { return (int)(temperature * 65536); }
+int Biome::getTemperatureInt() {
+    return (int)(temperature * 65536)  // 4J - brought forward from 1.2.3     
+        float Biome::getDownfall() {
+        return downfall  // 4J - brought forward from 1.2.3     
+            float Biome::getTemperature() {
+            return temperature;
+        }
 
-// 4J - brought forward from 1.2.3
-float Biome::getDownfall() { return downfall; }
+        void Biome::decorate(Level * level, Random * random, int xo, int zo) {
+            decorator->decorate(level, random, xo, zo);
+        }
 
-// 4J - brought forward from 1.2.3
-float Biome::getTemperature() { return temperature; }
+        int
+        Biome::getGrassColor() {  // double temp = Mth::clamp(getTemperature(),
+                                  // 0.0f, 1.0f);     // double rain =
+                                  // Mth::clamp(getDownfall(), 0.0f, 1.0f);     
+                                  // return GrassColor::get(temp, rain);     
+            return Minecraft::GetInstance()->getColourTable()->getColor(
+                m_grassColor);
+        }
 
-void Biome::decorate(Level* level, Random* random, int xo, int zo) {
-    decorator->decorate(level, random, xo, zo);
-}
-
-int Biome::getGrassColor() {
-    // double temp = Mth::clamp(getTemperature(), 0.0f, 1.0f);
-    // double rain = Mth::clamp(getDownfall(), 0.0f, 1.0f);
-
-    // return GrassColor::get(temp, rain);
-    return Minecraft::GetInstance()->getColourTable()->getColor(m_grassColor);
-}
-
-int Biome::getFolageColor() {
-    // double temp = Mth::clamp(getTemperature(), 0.0f, 1.0f);
-    // double rain = Mth::clamp(getDownfall(), 0.0f, 1.0f);
-
-    // return FoliageColor::get(temp, rain);
-    return Minecraft::GetInstance()->getColourTable()->getColor(m_foliageColor);
-}
-
-// 4J Added
-int Biome::getWaterColor() {
-    return Minecraft::GetInstance()->getColourTable()->getColor(m_waterColor);
-}
+        int
+        Biome::getFolageColor() {  // double temp = Mth::clamp(getTemperature(),
+                                   // 0.0f, 1.0f);     // double rain =
+                                   // Mth::clamp(getDownfall(),
+                                   // 0.0f, 1.0f);     
+                                   // return FoliageColor::get(temp, rain);     
+            return Minecraft::GetInstance()->getColourTable()->getColor(
+                m_foliageColor)  // 4J Added     
+                int Biome::getWaterColor() {
+                return Minecraft::GetInstance()->getColourTable()->getColor(
+                    m_waterColor);
+            }

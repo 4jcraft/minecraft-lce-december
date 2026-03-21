@@ -24,8 +24,8 @@ public:
     int hashCode();
     int compareTo(Pos* pos);
     Pos* offset(int x, int y, int z);
-    void set(int x, int y, int z);
-    void set(Pos* pos);
+    void std::set(int x, int y, int z);
+    void std::set(Pos* pos);
 
     Pos* above();
     Pos* above(int steps);
@@ -40,8 +40,8 @@ public:
     Pos* east();
     Pos* east(int steps);
 
-    void move(int x, int y, int z);
-    void move(Pos pos);
+    void std::move(int x, int y, int z);
+    void std::move(Pos pos);
     void moveX(int steps);
     void moveY(int steps);
     void moveZ(int steps);

@@ -188,17 +188,17 @@ bool ChestTile::isFullChest(Level* level, int x, int y, int z) {
 
 void ChestTile::neighborChanged(Level* level, int x, int y, int z, int type) {
     BaseEntityTile::neighborChanged(level, x, y, z, type);
-    shared_ptr<ChestTileEntity>(cte) =
+    std::shared_ptr<ChestTileEntity>(cte) =
         dynamic_pointer_cast<ChestTileEntity>(level->getTileEntity(x, y, z));
     if (cte != NULL) cte->clearCache();
 }
 
 void ChestTile::onRemove(Level* level, int x, int y, int z, int id, int data) {
-    shared_ptr<Container> container =
+    std::shared_ptr<Container> container =
         dynamic_pointer_cast<ChestTileEntity>(level->getTileEntity(x, y, z));
     if (container != NULL) {
         for (unsigned int i = 0; i < container->getContainerSize(); i++) {
-            shared_ptr<ItemInstance> item = container->getItem(i);
+            std::shared_ptr<ItemInstance> item = container->getItem(i);
             if (item != NULL) {
                 float xo = random->nextFloat() * 0.8f + 0.1f;
                 float yo = random->nextFloat() * 0.8f + 0.1f;
@@ -209,11 +209,13 @@ void ChestTile::onRemove(Level* level, int x, int y, int z, int id, int data) {
                     if (count > item->count) count = item->count;
                     item->count -= count;
 
-                    shared_ptr<ItemInstance> newItem = shared_ptr<ItemInstance>(
-                        new ItemInstance(item->id, count, item->getAuxValue()));
+                    std::shared_ptr<ItemInstance> newItem =
+                        std::shared_ptr<ItemInstance>(new ItemInstance(
+                            item->id, count, item->getAuxValue()));
                     newItem->set4JData(item->get4JData());
-                    shared_ptr<ItemEntity> itemEntity = shared_ptr<ItemEntity>(
-                        new ItemEntity(level, x + xo, y + yo, z + zo, newItem));
+                    std::shared_ptr<ItemEntity> itemEntity =
+                        std::shared_ptr<ItemEntity>(new ItemEntity(
+                            level, x + xo, y + yo, z + zo, newItem));
                     float pow = 0.05f;
                     itemEntity->xd = (float)random->nextGaussian() * pow;
                     itemEntity->yd = (float)random->nextGaussian() * pow + 0.2f;
@@ -224,144 +226,141 @@ void ChestTile::onRemove(Level* level, int x, int y, int z, int id, int data) {
                     }
 
                     level->addEntity(itemEntity);
+                    // 4J Stu - Fix for duplication
+                    // glitch                                   
+                    container->setItem(i, nullptr);
                 }
-
-                // 4J Stu - Fix for duplication glitch
-                container->setItem(i, nullptr);
             }
+            level->updateNeighbourForOutputSignal(x, y, z, id);
         }
-        level->updateNeighbourForOutputSignal(x, y, z, id);
-    }
-    BaseEntityTile::onRemove(level, x, y, z, id, data);
-}
-
-// 4J-PB - Adding a TestUse for tooltip display
-bool ChestTile::TestUse() { return true; }
-
-// 4J-PB - changing to 1.5 equivalent
+    BaseEntityTile::onRe// 4J-PB - Adding a TestUse for tooltip display                                   
+bool Ches// 4J-PB - changing to 1.5 equivalent                                   
 bool ChestTile::use(Level* level, int x, int y, int z,
                     std::shared_ptr<Player> player, int clickedFace,
                     float clickX, float clickY, float clickZ,
-                    bool soundOnly /*=false*/)  // 4J added soundOnly param
+/*=false*/   // 4J added soundOnly param     )                             
 {
-    if (soundOnly) return true;
+            if (soundOnly) return true;
 
-    if (level->isClientSide) {
-        return true;
-    }
-    shared_ptr<Container> container = getContainer(level, x, y, z);
+            if (level->isClientSide) {
+                return true;
+            }
+            std::shared_ptr<Container> container = getContainer(level, x, y, z);
 
-    if (container != NULL) {
-        player->openContainer(container);
-    }
+            if (container != NULL) {
+                player->openContainer(container);
+            }
 
-    return true;
+            return true;
 }
 
 std::shared_ptr<Container> ChestTile::getContainer(Level* level, int x, int y,
                                                    int z) {
-    shared_ptr<Container> container =
-        dynamic_pointer_cast<ChestTileEntity>(level->getTileEntity(x, y, z));
-    if (container == NULL) return nullptr;
+            std::shared_ptr<Container> container =
+                dynamic_pointer_cast<ChestTileEntity>(
+                    level->getTileEntity(x, y, z));
+            if (container == NULL) return nullptr;
 
-    if (level->isSolidBlockingTile(x, y + 1, z)) return nullptr;
-    if (isCatSittingOnChest(level, x, y, z)) return nullptr;
+            if (level->isSolidBlockingTile(x, y + 1, z)) return nullptr;
+            if (isCatSittingOnChest(level, x, y, z)) return nullptr;
 
-    if (level->getTile(x - 1, y, z) == id &&
-        (level->isSolidBlockingTile(x - 1, y + 1, z) ||
-         isCatSittingOnChest(level, x - 1, y, z)))
-        return nullptr;
-    if (level->getTile(x + 1, y, z) == id &&
-        (level->isSolidBlockingTile(x + 1, y + 1, z) ||
-         isCatSittingOnChest(level, x + 1, y, z)))
-        return nullptr;
-    if (level->getTile(x, y, z - 1) == id &&
-        (level->isSolidBlockingTile(x, y + 1, z - 1) ||
-         isCatSittingOnChest(level, x, y, z - 1)))
-        return nullptr;
-    if (level->getTile(x, y, z + 1) == id &&
-        (level->isSolidBlockingTile(x, y + 1, z + 1) ||
-         isCatSittingOnChest(level, x, y, z + 1)))
-        return nullptr;
+            if (level->getTile(x - 1, y, z) == id &&
+                (level->isSolidBlockingTile(x - 1, y + 1, z) ||
+                 isCatSittingOnChest(level, x - 1, y, z)))
+                return nullptr;
+            if (level->getTile(x + 1, y, z) == id &&
+                (level->isSolidBlockingTile(x + 1, y + 1, z) ||
+                 isCatSittingOnChest(level, x + 1, y, z)))
+                return nullptr;
+            if (level->getTile(x, y, z - 1) == id &&
+                (level->isSolidBlockingTile(x, y + 1, z - 1) ||
+                 isCatSittingOnChest(level, x, y, z - 1)))
+                return nullptr;
+            if (level->getTile(x, y, z + 1) == id &&
+                (level->isSolidBlockingTile(x, y + 1, z + 1) ||
+                 isCatSittingOnChest(level, x, y, z + 1)))
+                return nullptr;
 
-    if (level->getTile(x - 1, y, z) == id)
-        container = shared_ptr<Container>(
-            new CompoundContainer(IDS_CHEST_LARGE,
-                                  dynamic_pointer_cast<ChestTileEntity>(
-                                      level->getTileEntity(x - 1, y, z)),
-                                  container));
-    if (level->getTile(x + 1, y, z) == id)
-        container = shared_ptr<Container>(
-            new CompoundContainer(IDS_CHEST_LARGE, container,
-                                  dynamic_pointer_cast<ChestTileEntity>(
-                                      level->getTileEntity(x + 1, y, z))));
-    if (level->getTile(x, y, z - 1) == id)
-        container = shared_ptr<Container>(
-            new CompoundContainer(IDS_CHEST_LARGE,
-                                  dynamic_pointer_cast<ChestTileEntity>(
-                                      level->getTileEntity(x, y, z - 1)),
-                                  container));
-    if (level->getTile(x, y, z + 1) == id)
-        container = shared_ptr<Container>(
-            new CompoundContainer(IDS_CHEST_LARGE, container,
-                                  dynamic_pointer_cast<ChestTileEntity>(
-                                      level->getTileEntity(x, y, z + 1))));
+            if (level->getTile(x - 1, y, z) == id)
+                container = std::shared_ptr<Container>(new CompoundContainer(
+                    IDS_CHEST_LARGE,
+                    dynamic_pointer_cast<ChestTileEntity>(
+                        level->getTileEntity(x - 1, y, z)),
+                    container));
+            if (level->getTile(x + 1, y, z) == id)
+                container = std::shared_ptr<Container>(new CompoundContainer(
+                    IDS_CHEST_LARGE, container,
+                    dynamic_pointer_cast<ChestTileEntity>(
+                        level->getTileEntity(x + 1, y, z))));
+            if (level->getTile(x, y, z - 1) == id)
+                container = std::shared_ptr<Container>(new CompoundContainer(
+                    IDS_CHEST_LARGE,
+                    dynamic_pointer_cast<ChestTileEntity>(
+                        level->getTileEntity(x, y, z - 1)),
+                    container));
+            if (level->getTile(x, y, z + 1) == id)
+                container = std::shared_ptr<Container>(new CompoundContainer(
+                    IDS_CHEST_LARGE, container,
+                    dynamic_pointer_cast<ChestTileEntity>(
+                        level->getTileEntity(x, y, z + 1))));
 
-    return container;
+            return container;
 }
 
 std::shared_ptr<TileEntity> ChestTile::newTileEntity(Level* level) {
-    MemSect(50);
-    shared_ptr<TileEntity> retval =
-        shared_ptr<TileEntity>(new ChestTileEntity());
-    MemSect(0);
-    return retval;
+            MemSect(50);
+            std::shared_ptr<TileEntity> retval =
+                std::shared_ptr<TileEntity>(new ChestTileEntity());
+            MemSect(0);
+            return retval;
 }
 
-bool ChestTile::isSignalSource() { return type == TYPE_TRAP; }
+bool ChestTile::isSignalSource() {
+            return type == TYPE_TRAP; }
 
 int ChestTile::getSignal(LevelSource* level, int x, int y, int z, int dir) {
-    if (!isSignalSource()) return Redstone::SIGNAL_NONE;
+            if (!isSignalSource()) return Redstone::SIGNAL_NONE;
 
-    int openCount =
-        dynamic_pointer_cast<ChestTileEntity>(level->getTileEntity(x, y, z))
-            ->openCount;
-    return Mth::clamp(openCount, Redstone::SIGNAL_NONE, Redstone::SIGNAL_MAX);
+            int openCount = dynamic_pointer_cast<ChestTileEntity>(
+                                level->getTileEntity(x, y, z))
+                                ->openCount;
+            return Mth::clamp(openCount, Redstone::SIGNAL_NONE,
+                              Redstone::SIGNAL_MAX);
 }
 
 int ChestTile::getDirectSignal(LevelSource* level, int x, int y, int z,
                                int dir) {
-    if (dir == Facing::UP) {
-        return getSignal(level, x, y, z, dir);
-    } else {
-        return Redstone::SIGNAL_NONE;
-    }
+            if (dir == Facing::UP) {
+                return getSignal(level, x, y, z, dir);
+            } else {
+                return Redstone::SIGNAL_NONE;
+            }
 }
 
 bool ChestTile::isCatSittingOnChest(Level* level, int x, int y, int z) {
-    vector<shared_ptr<Entity> >* entities = level->getEntitiesOfClass(
-        typeid(Ocelot), AABB::newTemp(x, y + 1, z, x + 1, y + 2, z + 1));
-    for (AUTO_VAR(it, entities->begin()); it != entities->end(); ++it) {
-        shared_ptr<Ocelot> ocelot = dynamic_pointer_cast<Ocelot>(*it);
-        if (ocelot->isSitting()) {
+            std::vector<std::shared_ptr<Entity> >* entities =
+                level->getEntitiesOfClass(
+                    typeid(Ocelot),
+                    AABB::newTemp(x, y + 1, z, x + 1, y + 2, z + 1));
+            for (AUTO_VAR(it, entities->begin()); it != entities->end(); ++it) {
+                std::shared_ptr<Ocelot> ocelot =
+                    dynamic_pointer_cast<Ocelot>(*it);
+                if (ocelot->isSitting()) {
+                    delete entities;
+                    return true;
+                }
+            }
             delete entities;
-            return true;
-        }
-    }
-    delete entities;
-    return false;
+            return false;
 }
 
-bool ChestTile::hasAnalogOutputSignal() { return true; }
+bool ChestTile::hasAnalogOutputSignal() {
+            return true; }
 
 int ChestTile::getAnalogOutputSignal(Level* level, int x, int y, int z,
                                      int dir) {
     return AbstractContainerMenu::getRedstoneSignalFromContainer(
-        getContainer(level, x, y, z));
-}
-
-void ChestTile::registerIcons(IconRegister* iconRegister) {
-    // Register wood as the chest's icon, because it's used by the particles
-    // when destroying the chest
-    icon = iconRegister->registerIcon(L"planks_oak");
+        getConta// Register wood as the chest's icon, because it's used by the particlesonReg// when destroying the chest                                        "planks_oak"     
+                                
+    icon = iconRegister->registerIcon(L            );
 }

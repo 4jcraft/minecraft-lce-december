@@ -218,7 +218,7 @@ void PathfinderMob::checkHurtTarget(std::shared_ptr<Entity> target, float d) {}
 float PathfinderMob::getWalkTargetValue(int x, int y, int z) { return 0; }
 
 std::shared_ptr<Entity> PathfinderMob::findAttackTarget() {
-    return shared_ptr<Entity>();
+    return std::shared_ptr<Entity>();
 }
 
 bool PathfinderMob::canSpawn() {
@@ -240,87 +240,83 @@ std::shared_ptr<Entity> PathfinderMob::getAttackTarget() {
 }
 
 void PathfinderMob::setAttackTarget(std::shared_ptr<Entity> attacker) {
-    attackTarget = attacker;
-}
-
-// might move to navigation, might make area
-bool PathfinderMob::isWithinRestriction() {
-    return isWithinRestriction(Mth::floor(x), Mth::floor(y), Mth::floor(z));
-}
-
-bool PathfinderMob::isWithinRestriction(int x, int y, int z) {
-    if (restrictRadius == -1) return true;
-    return restrictCenter->distSqr(x, y, z) < restrictRadius * restrictRadius;
-}
-
-void PathfinderMob::restrictTo(int x, int y, int z, int radius) {
-    restrictCenter->set(x, y, z);
-    restrictRadius = radius;
-}
-
-Pos* PathfinderMob::getRestrictCenter() { return restrictCenter; }
-
-float PathfinderMob::getRestrictRadius() { return restrictRadius; }
-
-void PathfinderMob::clearRestriction() { restrictRadius = -1; }
-
-bool PathfinderMob::hasRestriction() { return restrictRadius != -1; }
-
-void PathfinderMob::tickLeash() {
-    Mob::tickLeash();
-
-    if (isLeashed() && getLeashHolder() != NULL &&
-        getLeashHolder()->level == this->level) {
-        // soft restriction
-        shared_ptr<Entity> leashHolder = getLeashHolder();
-        restrictTo((int)leashHolder->x, (int)leashHolder->y,
-                   (int)leashHolder->z, 5);
-
-        float _distanceTo = distanceTo(leashHolder);
-
-        shared_ptr<TamableAnimal> tamabaleAnimal =
-            shared_from_this()->instanceof(eTYPE_TAMABLE_ANIMAL)
-                ? dynamic_pointer_cast<TamableAnimal>(shared_from_this())
-                : nullptr;
-        if ((tamabaleAnimal != NULL) && tamabaleAnimal->isSitting()) {
-            if (_distanceTo > 10) {
-                dropLeash(true, true);
-            }
-            return;
-        }
-
-        if (!addedLeashRestrictionGoal) {
-            goalSelector.addGoal(2, leashRestrictionGoal, false);
-            getNavigation()->setAvoidWater(false);
-            addedLeashRestrictionGoal = true;
-        }
-
-        onLeashDistance(_distanceTo);
-
-        if (_distanceTo > 4) {
-            // harder restriction
-            getNavigation()->moveTo(leashHolder, 1.0);
-        }
-        if (_distanceTo > 6) {
-            // hardest restriction
-            double dx = (leashHolder->x - x) / _distanceTo;
-            double dy = (leashHolder->y - y) / _distanceTo;
-            double dz = (leashHolder->z - z) / _distanceTo;
-
-            xd += dx * abs(dx) * .4;
-            yd += dy * abs(dy) * .4;
-            zd += dz * abs(dz) * .4;
-        }
-        if (_distanceTo > 10) {
-            dropLeash(true, true);
-        }
-
-    } else if (!isLeashed() && addedLeashRestrictionGoal) {
-        addedLeashRestrictionGoal = false;
-        goalSelector.removeGoal(leashRestrictionGoal);
-        getNavigation()->setAvoidWater(true);
-        clearRestriction();
+    attackTarget = attacker  // might move to navigation, might make area     
+        bool PathfinderMob::isWithinRestriction() {
+        return isWithinRestriction(Mth::floor(x), Mth::floor(y), Mth::floor(z));
     }
+
+    bool PathfinderMob::isWithinRestriction(int x, int y, int z) {
+        if (restrictRadius == -1) return true;
+        return restrictCenter->distSqr(x, y, z) <
+               restrictRadius * restrictRadius;
+    }
+
+    void PathfinderMob::restrictTo(int x, int y, int z, int radius) {
+        restrictCenter->set(x, y, z);
+        restrictRadius = radius;
+    }
+
+    Pos* PathfinderMob::getRestrictCenter() { return restrictCenter; }
+
+    float PathfinderMob::getRestrictRadius() { return restrictRadius; }
+
+    void PathfinderMob::clearRestriction() { restrictRadius = -1; }
+
+    bool PathfinderMob::hasRestriction() { return restrictRadius != -1; }
+
+    void PathfinderMob::tickLeash() {
+        Mob::tickLeash();
+
+        if (isLeashed() && getLeashHolder() != NULL &&
+            getLeashHolder()->level == this->level) {
+            // soft restriction     
+            std::shared_ptr<Entity> leashHolder = getLeashHolder();
+            restrictTo((int)leashHolder->x, (int)leashHolder->y,
+                       (int)leashHolder->z, 5);
+
+            float _distanceTo = distanceTo(leashHolder);
+
+            std::shared_ptr<TamableAnimal> tamabaleAnimal =
+                shared_from_this()->instanceof(eTYPE_TAMABLE_ANIMAL)
+                    ? dynamic_pointer_cast<TamableAnimal>(shared_from_this())
+                    : nullptr;
+            if ((tamabaleAnimal != NULL) && tamabaleAnimal->isSitting()) {
+                if (_distanceTo > 10) {
+                    dropLeash(true, true);
+                }
+                return;
+            }
+
+            if (!addedLeashRestrictionGoal) {
+                goalSelector.addGoal(2, leashRestrictionGoal, false);
+                getNavigation()->setAvoidWater(false);
+                addedLeashRestrictionGoal = true;
+            }
+
+            onLeashDistance(_distanceTo);
+
+            if (_distanceTo > 4)  // harder restriction               
+                getNavigation()->moveTo(leashHolder, 1.0);
+        }
+        if (_distanceTo > 6)  // hardest restriction               
+            double dx = (leashHolder->x - x) / _distanceTo;
+        double dy = (leashHolder->y - y) / _distanceTo;
+        double dz = (leashHolder->z - z) / _distanceTo;
+
+        xd += dx * abs(dx) * .4;
+        yd += dy * abs(dy) * .4;
+        zd += dz * abs(dz) * .4;
+    }
+    if (_distanceTo > 10) {
+        dropLeash(true, true);
+    }
+}
+else if (!isLeashed() && addedLeashRestrictionGoal) {
+    addedLeashRestrictionGoal = false;
+    goalSelector.removeGoal(leashRestrictionGoal);
+    getNavigation()->setAvoidWater(true);
+    clearRestriction();
+}
 }
 
 void PathfinderMob::onLeashDistance(float distanceToLeashHolder) {}

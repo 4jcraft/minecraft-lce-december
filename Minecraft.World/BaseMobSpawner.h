@@ -24,7 +24,7 @@ public:
 
 private:
     std::wstring entityId;
-    vector<SpawnData*>* spawnPotentials;
+    std::vector<SpawnData*>* spawnPotentials;
     SpawnData* nextSpawnData;
 
 public:

@@ -66,7 +66,7 @@ bool ReadOnlyChunkCache::shouldSave() { return false; }
 
 std::wstring ReadOnlyChunkCache::gatherStats() { return L"ReadOnlyChunkCache"; }
 
-vector<Biome::MobSpawnerData*>* ReadOnlyChunkCache::getMobsAt(
+std::vector<Biome::MobSpawnerData*>* ReadOnlyChunkCache::getMobsAt(
     MobCategory* mobCategory, int x, int y, int z) {
     return NULL;
 }

@@ -160,9 +160,9 @@ int DiodeTile::getInputSignal(Level* level, int x, int y, int z, int data) {
     int input = level->getSignal(xx, y, zz, Direction::DIRECTION_FACING[dir]);
 
     if (input >= Redstone::SIGNAL_MAX) return input;
-    return max(input, level->getTile(xx, y, zz) == Tile::redStoneDust_Id
-                          ? level->getData(xx, y, zz)
-                          : Redstone::SIGNAL_NONE);
+    return std::max(input, level->getTile(xx, y, zz) == Tile::redStoneDust_Id
+                               ? level->getData(xx, y, zz)
+                               : Redstone::SIGNAL_NONE);
 }
 
 int DiodeTile::getAlternateSignal(LevelSource* level, int x, int y, int z,
@@ -172,12 +172,14 @@ int DiodeTile::getAlternateSignal(LevelSource* level, int x, int y, int z,
     switch (dir) {
         case Direction::SOUTH:
         case Direction::NORTH:
-            return max(getAlternateSignalAt(level, x - 1, y, z, Facing::WEST),
-                       getAlternateSignalAt(level, x + 1, y, z, Facing::EAST));
+            return std::max(
+                getAlternateSignalAt(level, x - 1, y, z, Facing::WEST),
+                getAlternateSignalAt(level, x + 1, y, z, Facing::EAST));
         case Direction::EAST:
         case Direction::WEST:
-            return max(getAlternateSignalAt(level, x, y, z + 1, Facing::SOUTH),
-                       getAlternateSignalAt(level, x, y, z - 1, Facing::NORTH));
+            return std::max(
+                getAlternateSignalAt(level, x, y, z + 1, Facing::SOUTH),
+                getAlternateSignalAt(level, x, y, z - 1, Facing::NORTH));
     }
 
     return Redstone::SIGNAL_NONE;

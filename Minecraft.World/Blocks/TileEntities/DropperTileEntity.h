@@ -7,7 +7,7 @@ public:
     eINSTANCEOF GetType() { return eTYPE_DROPPERTILEENTITY; }
     static TileEntity* create() { return new DropperTileEntity(); }
     // 4J Added
-    virtual shared_ptr<TileEntity> clone();
+    virtual std::shared_ptr<TileEntity> clone();
 
 public:
     std::wstring getName();

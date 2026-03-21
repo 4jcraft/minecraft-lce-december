@@ -3,13 +3,17 @@
 
 class LivingEntity;
 
-class SheepFurModel : public QuadrupedModel
-{
+class SheepFurModel : public QuadrupedModel {
 private:
-	float headXRot;
-public:
-	SheepFurModel();
+    float headXRot;
 
-	virtual void prepareMobModel(std::shared_ptr<LivingEntity> mob, float time, float r, float a);
-	virtual void setupAnim(float time, float r, float bob, float yRot, float xRot, float scale, std::shared_ptr<Entity> entity, unsigned int uiBitmaskOverrideAnim=0);
+public:
+    SheepFurModel();
+
+    virtual void prepareMobModel(std::shared_ptr<LivingEntity> mob, float time,
+                                 float r, float a);
+    virtual void setupAnim(float time, float r, float bob, float yRot,
+                           float xRot, float scale,
+                           std::shared_ptr<Entity> entity,
+                           unsigned int uiBitmaskOverrideAnim = 0);
 };

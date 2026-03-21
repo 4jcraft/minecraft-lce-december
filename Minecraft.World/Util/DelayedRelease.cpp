@@ -15,7 +15,7 @@ bool DelayedRelease::makeStepSound() { return false; }
 void DelayedRelease::tick() {
     if (delay-- <= 0) {
         level->addEntity(toRelease);
-        remove();
+        std::remove();
     }
 }
 

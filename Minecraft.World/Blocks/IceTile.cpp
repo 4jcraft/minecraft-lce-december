@@ -26,7 +26,7 @@ void IceTile::playerDestroy(Level* level, std::shared_ptr<Player> player, int x,
     player->causeFoodExhaustion(FoodConstants::EXHAUSTION_MINE);
 
     if (isSilkTouchable() && EnchantmentHelper::hasSilkTouch(player)) {
-        shared_ptr<ItemInstance> item = getSilkTouchItemInstance(data);
+        std::shared_ptr<ItemInstance> item = getSilkTouchItemInstance(data);
         if (item != NULL) {
             popResource(level, x, y, z, item);
         }

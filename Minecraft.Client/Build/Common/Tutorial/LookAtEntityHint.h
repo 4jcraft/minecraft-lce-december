@@ -1,20 +1,19 @@
 #pragma once
 
-
 #include "..\..\..\Minecraft.World\Class.h"
 #include "TutorialHint.h"
 
 class ItemInstance;
 
-class LookAtEntityHint : public TutorialHint
-{
+class LookAtEntityHint : public TutorialHint {
 private:
-	eINSTANCEOF m_type;
-	int m_titleId;
+    eINSTANCEOF m_type;
+    int m_titleId;
 
 public:
-	LookAtEntityHint(eTutorial_Hint id, Tutorial *tutorial, int descriptionId, int titleId, eINSTANCEOF type);
-	~LookAtEntityHint();
+    LookAtEntityHint(eTutorial_Hint id, Tutorial* tutorial, int descriptionId,
+                     int titleId, eINSTANCEOF type);
+    ~LookAtEntityHint();
 
-	virtual bool onLookAtEntity(eINSTANCEOF type);
+    virtual bool onLookAtEntity(eINSTANCEOF type);
 };

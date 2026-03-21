@@ -16,7 +16,7 @@ public:
     ByteArrayOutputStream(unsigned int size);
     virtual ~ByteArrayOutputStream();
 
-    virtual void flush() {}
+    virtual void std::flush() {}
     virtual void write(unsigned int b);
     virtual void write(byteArray b);
     virtual void write(byteArray b, unsigned int offset, unsigned int length);

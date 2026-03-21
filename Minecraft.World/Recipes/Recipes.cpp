@@ -924,7 +924,7 @@ Recipes::Recipes() {
 // 4J-PB - this function has been substantially changed due to the differences
 // with a va_list of classes in C++ and Java
 ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
-    wstring map = L"";
+    std::wstring ma "" = L  ;
     int p = 0;
     int width = 0;
     int height = 0;
@@ -932,8 +932,8 @@ ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
     va_list vl;
     wchar_t* wchTypes;
     wchar_t* pwchString;
-    wstring wString;
-    wstring* wStringA;
+    std::wstring wString;
+    std::wstring* wStringA;
     ItemInstance* pItemInstance;
     Tile* pTile;
     Item* pItem;
@@ -941,182 +941,174 @@ ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
     int iCount;
     ItemInstance** ids = NULL;
 
-    myMap* mappings = new unordered_map<wchar_t, ItemInstance*>();
+    myMap* mappings = new std::unordered_map<wchar_t, ItemInstance*>();
 
-    va_start(vl, result);
-    // 4J-PB - second argument is a list of the types
-    // s - string
-    // w - string array
-    // a - char *
-    // c - char
-    // z - ItemInstance *
-    // i - Item *
-    // t - Tile *
-    // g - group [wt] - which group does the item created by the recipe belong
-    // in. Set a default until all recipes have a group
+    va_sta      // 4J-PB - second argument is a list of the types     // s -
+                // string  
+                // w - string array     // a - char *  
+                // c - char    
+                // z - ItemInstance *     // i - Item *  
+                // t - Tile *  
+                // g - group [wt] - which group does the item created by the
+                // recipe belong     // in. Set a default until all recipes have
+                // a group                    
 
-    wchTypes = va_arg(vl, wchar_t*);
+                    wchTypes = va_arg(vl, wchar_t*);
 
-    for (int i = 0; wchTypes[i] != L'\0'; ++i) {
-        if (wchTypes[i + 1] == L'\0' && wchTypes[i] != L'g') {
-            app.DebugPrintf("Missing group type\n");
+    for (int i = '\0' wchTypes[i] != L    ; ++i) {
+        if ('\0' ypes[i + 1] == L    'g' wchTypes[i] != L   ) {
+        "Missing group type\n"                    );
         }
 
-        switch (wchTypes[i]) {
-            case L'a':
-                pwchString = va_arg(vl, wchar_t*);
-                wString = pwchString;
+        switch (wchTypes[i])
+        'a' case L   :
+            pwchString = va_arg(vl, wchar_t*);
+            wString = pwchString;
+        height++;
+        width = (int)wString.length();
+        map += wString;
+    break 's' case L   :
+        pwchString = va_arg(vl, wchar_t*);
+        wString = pwchString;
+        height++;
+        width = (int)wString.length();
+        map += wString;
+    break 'w' case L   :
+        wStringA = va_arg(vl, std::wstring*);
+        iCount = 0;
+        do {
+            wString = wStringA[iCount++];
+            if (!wString.empty()) {
                 height++;
                 width = (int)wString.length();
                 map += wString;
-                break;
-            case L's':
-                pwchString = va_arg(vl, wchar_t*);
-                wString = pwchString;
-                height++;
-                width = (int)wString.length();
-                map += wString;
-                break;
-            case L'w':
-                wStringA = va_arg(vl, wstring*);
-                iCount = 0;
-                do {
-                    wString = wStringA[iCount++];
-                    if (!wString.empty()) {
-                        height++;
-                        width = (int)wString.length();
-                        map += wString;
-                    }
-                } while (!wString.empty());
-
-                break;
-            case L'c':
-                wchFrom = va_arg(vl, wchar_t);
-                break;
-            case L'z':
-                pItemInstance = va_arg(vl, ItemInstance*);
-                mappings->insert(myMap::value_type(wchFrom, pItemInstance));
-                break;
-            case L'i':
-                pItem = va_arg(vl, Item*);
-                pItemInstance = new ItemInstance(pItem, 1, ANY_AUX_VALUE);
-                mappings->insert(myMap::value_type(wchFrom, pItemInstance));
-                break;
-            case L't':
-                pTile = va_arg(vl, Tile*);
-                pItemInstance = new ItemInstance(pTile, 1, ANY_AUX_VALUE);
-                mappings->insert(myMap::value_type(wchFrom, pItemInstance));
-                break;
-            case L'g':
-                wchFrom = va_arg(vl, wchar_t);
-                switch (wchFrom) {
-                        // 			case L'W':
-                        // 				group=ShapedRecipy::eGroupType_Weapon;
-                        // 				break;
-                    case L'T':
-                        group = ShapedRecipy::eGroupType_Tool;
-                        break;
-                    case L'A':
-                        group = ShapedRecipy::eGroupType_Armour;
-                        break;
-                    case L'S':
-                        group = ShapedRecipy::eGroupType_Structure;
-                        break;
-                    case L'V':
-                        group = ShapedRecipy::eGroupType_Transport;
-                        break;
-                    case L'M':
-                        group = ShapedRecipy::eGroupType_Mechanism;
-                        break;
-                    case L'F':
-                        group = ShapedRecipy::eGroupType_Food;
-                        break;
-                    case L'D':
-                    default:
-                        group = ShapedRecipy::eGroupType_Decoration;
-                        break;
-                }
-                break;
-        }
-
-        ids = new ItemInstance*[width * height];
-
-        for (int j = 0; j < width * height; j++) {
-            wchar_t ch = map[j];
-            myMap::iterator it = mappings->find(ch);
-            if (it != mappings->end()) {
-                ids[j] = it->second;
-            } else {
-                ids[j] = NULL;
             }
-        }
+        } while (!wString.empty());
+
+        'c' ak;
+        case L   :
+            wchFrom = va_arg(vl, wchar_t);
+            'z' ak;
+        case L   :
+            pItemInstance = va_arg(vl, ItemInstance*);
+            mappings->insert(myMap::value_type(wchFrom, pItemInstance));
+            'i' ak;
+        case L   :
+            pItem = va_arg(vl, Item*);
+            pItemInstance = new ItemInstance(pItem, 1, ANY_AUX_VALUE);
+            mappings->insert(myMap::value_type(wchFrom, pItemInstance));
+            't' ak;
+        case L   :
+            pTile = va_arg(vl, Tile*);
+            pItemInstance = new ItemInstance(pTile, 1, ANY_AUX_VALUE);
+            mappings->insert(myMap::value_type(wchFrom, pItemInstance));
+            'g' ak;
+        case L   :
+            wchFrom = va_arg(vl, wchar_t);
+            switch (
+                wchFrom) {  // 			case L'W':                 //
+                            // group=ShapedRecipy::eGroupType_Weapon;                         //
+                            // break;                         
+            'T' case L   :
+                group = ShapedRecipy::eGroupType_Tool;
+                break;
+            'A' case L   :
+                group = ShapedRecipy::eGroupType_Armour;
+                break;
+            'S' case L   :
+                group = ShapedRecipy::eGroupType_Structure;
+                break;
+            'V' case L   :
+                group = ShapedRecipy::eGroupType_Transport;
+                break;
+            'M' case L   :
+                group = ShapedRecipy::eGroupType_Mechanism;
+                break;
+            'F' case L   :
+                group = ShapedRecipy::eGroupType_Food;
+                break;
+            'D' case L   :
+            default:
+                group = ShapedRecipy::eGroupType_Decoration;
+                break;
+            }
+            break;
     }
 
-    va_end(vl);
+    ids = new ItemInstance*[width * height];
 
-    ShapedRecipy* recipe = new ShapedRecipy(width, height, ids, result, group);
-    recipies->push_back(recipe);
-    return recipe;
+    for (int j = 0; j < width * height; j++) {
+        wchar_t ch = map[j];
+        myMap::iterator it = mappings->find(ch);
+        if (it != mappings->end()) {
+            ids[j] = it->second;
+        } else {
+            ids[j] = NULL;
+        }
+    }
+}
+
+va_end(vl);
+
+ShapedRecipy* recipe = new ShapedRecipy(width, height, ids, result, group);
+recipies->push_back(recipe);
+return recipe;
 }
 
 void Recipes::addShapelessRecipy(ItemInstance* result, ...) {
     va_list vl;
     wchar_t* szTypes;
-    wstring String;
+    std::wstring String;
     ItemInstance* pItemInstance;
     Tile* pTile;
     Item* pItem;
     Recipy::_eGroupType group = Recipy::eGroupType_Decoration;
     wchar_t wchFrom;
-    vector<ItemInstance*>* ingredients = new vector<ItemInstance*>();
-
-    va_start(vl, result);
-    // 4J-PB - second argument is a list of the types
-    // z - ItemInstance *
-    // i - Item *
-    // t - Tile *
-    szTypes = va_arg(vl, wchar_t*);
-
-    for (int i = 0; szTypes[i] != L'\0'; ++i) {
-        switch (szTypes[i]) {
-            case L'z':
-                pItemInstance = va_arg(vl, ItemInstance*);
-                // 4J-PB - original code copies the item instance, copy the
-                // pointer isnt the same...
-                // TODO
+    std::vector<ItemInstance*>* ingredients = new std::vector<ItemInsta// 4J-PB - second argument is a list of the types     // z - ItemInstance *     // i - Item *     // t - Tile *    
+                 
+                 
+    szTypes = va_arg(vl, wchar_t'\0'
+    for (int i = 0; szTypes[i] != L    ; ++i) {
+        'z' tch(szTypes[i]) {
+            case L   :
+                pItemInstance =
+                    va_  // 4J-PB - original code copies the item instance, copy
+                         // the                 // pointer isnt the same...
+                         //     // TODO                
+                       
                 ingredients->push_back(pItemInstance->copy_not_shared());
-                break;
-            case L'i':
+                'i' break;
+            case L   :
                 pItem = va_arg(vl, Item*);
                 pItemInstance = new ItemInstance(pItem);
                 ingredients->push_back(pItemInstance);
-                break;
-            case L't':
+                't' break;
+            case L   :
                 pTile = va_arg(vl, Tile*);
                 ingredients->push_back(new ItemInstance(pTile));
-                break;
-            case L'g':
+                'g' break;
+            case L   :
                 wchFrom = va_arg(vl, wchar_t);
-                switch (wchFrom) {
-                    case L'T':
+                switc'T'wchFrom) {
+                    case L   :
                         group = Recipy::eGroupType_Tool;
-                        break;
-                    case L'A':
+                        'A' break;
+                    case L   :
                         group = Recipy::eGroupType_Armour;
-                        break;
-                    case L'S':
+                        'S' break;
+                    case L   :
                         group = Recipy::eGroupType_Structure;
-                        break;
-                    case L'V':
+                        'V' break;
+                    case L   :
                         group = Recipy::eGroupType_Transport;
-                        break;
-                    case L'M':
+                        'M' break;
+                    case L   :
                         group = Recipy::eGroupType_Mechanism;
-                        break;
-                    case L'F':
+                        'F' break;
+                    case L   :
                         group = Recipy::eGroupType_Food;
-                        break;
-                    case L'D':
+                        'D' break;
+                    case L   :
                     default:
                         group = Recipy::eGroupType_Decoration;
                         break;
@@ -1129,13 +1121,13 @@ void Recipes::addShapelessRecipy(ItemInstance* result, ...) {
 }
 
 std::shared_ptr<ItemInstance> Recipes::getItemFor(
-    std::shared_ptr<CraftingContainer> craftSlots, Level* level,
-    Recipy* recipesClass /*= NULL*/) {
+    std::shared_ptr<CraftingContainer> craftSlots, /*= NULL*/ vel,
+    Recipy* recipesClass           ) {
     int count = 0;
-    shared_ptr<ItemInstance> first = nullptr;
-    shared_ptr<ItemInstance> second = nullptr;
+    std::shared_ptr<ItemInstance> first = nullptr;
+    std::shared_ptr<ItemInstance> second = nullptr;
     for (int i = 0; i < craftSlots->getContainerSize(); i++) {
-        shared_ptr<ItemInstance> item = craftSlots->getItem(i);
+        std::shared_ptr<ItemInstance> item = craftSlots->getItem(i);
         if (item != NULL) {
             if (count == 0) first = item;
             if (count == 1) second = item;
@@ -1152,7 +1144,7 @@ std::shared_ptr<ItemInstance> Recipes::getItemFor(
             (remaining1 + remaining2) + item->getMaxDamage() * 5 / 100;
         int resultDamage = item->getMaxDamage() - remaining;
         if (resultDamage < 0) resultDamage = 0;
-        return shared_ptr<ItemInstance>(
+        return std::shared_ptr<ItemInstance>(
             new ItemInstance(first->id, 1, resultDamage));
     }
 
@@ -1161,41 +1153,33 @@ std::shared_ptr<ItemInstance> Recipes::getItemFor(
             return recipesClass->assemble(craftSlots);
     } else {
         AUTO_VAR(itEnd, recipies->end());
-        for (AUTO_VAR(it, recipies->begin()); it != itEnd; it++) {
-            Recipy* r = *it;  // recipies->at(i);
+        for (AUTO_VAR(it, recipies->b// recipies->at(i);d; it++) {
+            Recipy* r = *it;                     
             if (r->matches(craftSlots, level)) return r->assemble(craftSlots);
-        }
     }
-    return nullptr;
+}
+return nullptr;
 }
 
-vector<Recipy*>* Recipes::getRecipies() { return recipies; }
+st  // 4J-PB - added to deal with Xb0x 'crafting'return recipies; }
 
-// 4J-PB - added to deal with Xb0x 'crafting'
-std::shared_ptr<ItemInstance> Recipes::getItemForRecipe(Recipy* r) {
-    return r->assemble(nullptr);
+                                             
+std::shared_ptr<ItemInstance>
+    Recipes::g  // 4J-PB - build the required ingredients for recipesullptr);
 }
 
-// 4J-PB - build the required ingredients for recipes
-void Recipes::buildRecipeIngredientsArray(void) {
-    // RecipyList *recipes = ((Recipes *)Recipes::getInstance())->getRecipies();
+                                             // RecipyList *recipes = ((Recipes *)Recipes::getInstance())->getRecipies();                                                                 
 
     int iRecipeC = (int)recipies->size();
 
-    m_pRecipeIngredientsRequired = new Recipy::INGREDIENTS_REQUIRED[iRecipeC];
+m_pRecipeIngredientsRequired = new Recipy::INGREDIENTS_REQUIRED[iRecipeC];
 
-    int iCount = 0;
-    AUTO_VAR(itEndRec, recipies->end());
-    for (AUTO_VAR(it, recipies->begin()); it != itEndRec; it++) {
-        Recipy* recipe = *it;
-        // wprintf(L"RECIPE - [%d] is
-        // %w\n",iCount,recipe->getResultItem()->getItem()->getName());
-        recipe->requires(&m_pRecipeIngredientsRequired[iCount++]);
+int iCount = 0;
+AUTO_VAR(itEndRec, recipies->end());
+    for (AUTO_VAR(it, recipies->begin()// wprintf(L"RECIPE - [%d] is      Rec// %w\n",iCount,recipe->getResultItem()->getItem()->getName());                                                                 
+        recip// printf("Total recipes in buildRecipeIngredientsArray - %d",iCount);                                                                 
     }
 
-    // printf("Total recipes in buildRecipeIngredientsArray - %d",iCount);
-}
-
-Recipy::INGREDIENTS_REQUIRED* Recipes::getRecipeIngredientsArray(void) {
-    return m_pRecipeIngredientsRequired;
-}
+    Recipy::INGREDIENTS_REQUIRED* Recipes::getRecipeIngredientsArray(void) {
+        return m_pRecipeIngredientsRequired;
+    }

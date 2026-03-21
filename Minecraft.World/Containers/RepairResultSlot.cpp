@@ -31,7 +31,7 @@ void RepairResultSlot::onTake(std::shared_ptr<Player> player,
         player->giveExperienceLevels(-m_menu->cost);
     m_menu->repairSlots->setItem(AnvilMenu::INPUT_SLOT, nullptr);
     if (m_menu->repairItemCountCost > 0) {
-        shared_ptr<ItemInstance> addition =
+        std::shared_ptr<ItemInstance> addition =
             m_menu->repairSlots->getItem(AnvilMenu::ADDITIONAL_SLOT);
         if (addition != NULL && addition->count > m_menu->repairItemCountCost) {
             addition->count -= m_menu->repairItemCountCost;

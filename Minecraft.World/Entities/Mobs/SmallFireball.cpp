@@ -60,7 +60,7 @@ void SmallFireball::onHit(HitResult* res) {
                 level->setTileAndUpdate(tileX, tileY, tileZ, Tile::fire_Id);
             }
         }
-        remove();
+        std::remove();
     }
 }
 

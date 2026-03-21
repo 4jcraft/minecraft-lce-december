@@ -8,5 +8,5 @@ private:
     static byteArray replacements;
 
 public:
-    static void replace(byteArray blocks);
+    static void std::replace(byteArray blocks);
 };

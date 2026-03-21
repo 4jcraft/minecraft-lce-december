@@ -51,7 +51,7 @@ void RunAroundLikeCrazyGoal::tick() {
         }
 
         horse->rider.lock()->ride(nullptr);
-        horse->rider = weak_ptr<LivingEntity>();
+        horse->rider = std::weak_ptr<LivingEntity>();
         horse->makeMad();
         horse->level->broadcastEntityEvent(horse->shared_from_this(),
                                            EntityEvent::TAMING_FAILED);

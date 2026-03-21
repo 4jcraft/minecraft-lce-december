@@ -38,6 +38,6 @@ void Snowball::onHit(HitResult* res) {
     for (int i = 0; i < 8; i++)
         level->addParticle(eParticleType_snowballpoof, x, y, z, 0, 0, 0);
     if (!level->isClientSide) {
-        remove();
+        std::remove();
     }
 }

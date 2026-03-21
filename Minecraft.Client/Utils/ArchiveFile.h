@@ -6,33 +6,29 @@
 #include "..\Minecraft.World\File.h"
 #include "..\Minecraft.World\ArrayWithLength.h"
 
-
-
-class ArchiveFile
-{
+class ArchiveFile {
 protected:
-	File m_sourcefile;
-	BYTE *m_cachedData;
+    File m_sourcefile;
+    BYTE* m_cachedData;
 
-	typedef struct _MetaData
-	{
-		std::wstring filename;
-		int ptr;
-		int filesize;
-		bool isCompressed;
+    typedef struct _MetaData {
+        std::wstring filename;
+        int ptr;
+        int filesize;
+        bool isCompressed;
 
-	} MetaData, *PMetaData;
-	
-	std::unordered_map<std::wstring, PMetaData> m_index;
-	
+    } MetaData, *PMetaData;
+
+    std::unordered_map<std::wstring, PMetaData> m_index;
+
 public:
-	void _readHeader(DataInputStream *dis);
+    void _readHeader(DataInputStream* dis);
 
-	ArchiveFile(File file);
-	~ArchiveFile();
+    ArchiveFile(File file);
+    ~ArchiveFile();
 
-	std::vector<std::wstring> *getFileList();
-	bool hasFile(const std::wstring &filename);
-	int getFileSize(const std::wstring &filename);
-	byteArray getFile(const std::wstring &filename);
+    std::vector<std::wstring>* getFileList();
+    bool hasFile(const std::wstring& filename);
+    int getFileSize(const std::wstring& filename);
+    byteArray getFile(const std::wstring& filename);
 };

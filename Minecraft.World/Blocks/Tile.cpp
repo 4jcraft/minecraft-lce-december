@@ -2084,7 +2084,7 @@ void Tile::spawnResources(Level* level, int x, int y, int z, int data,
         if (type <= 0) continue;
 
         popResource(level, x, y, z,
-                    shared_ptr<ItemInstance>(new ItemInstance(
+                    std::shared_ptr<ItemInstance>(new ItemInstance(
                         type, 1, getSpawnResourcesAuxValue(data))));
     }
 }
@@ -2099,144 +2099,149 @@ void Tile::popResource(Level* level, int x, int y, int z,
     double xo = level->random->nextFloat() * s + (1 - s) * 0.5;
     double yo = level->random->nextFloat() * s + (1 - s) * 0.5;
     double zo = level->random->nextFloat() * s + (1 - s) * 0.5;
-    shared_ptr<ItemEntity> item = shared_ptr<ItemEntity>(
+    std::shared_ptr<ItemEntity> item = std::shared_ptr<ItemEntity>(
         new ItemEntity(level, x + xo, y + yo, z + zo, itemInstance));
     item->throwTime = 10;
-    level->addEntity(item);
-}
-
-// Brought forward for TU7
-void Tile::popExperience(Level* level, int x, int y, int z, int amount) {
-    if (!level->isClientSide) {
-        while (amount > 0) {
-            int newCount = ExperienceOrb::getExperienceValue(amount);
-            amount -= newCount;
-            level->addEntity(shared_ptr<ExperienceOrb>(
-                new ExperienceOrb(level, x + .5, y + .5, z + .5, newCount)));
+    level->addEn  // Brought forward for TU7               
+        void Tile::popExperience(Level * level, int x, int y, int z,
+                                 int amount) {
+        if (!level->isClientSide) {
+            while (amount > 0) {
+                int newCount = ExperienceOrb::getExperienceValue(amount);
+                amount -= newCount;
+                level->addEntity(
+                    std::shared_ptr<ExperienceOrb>(new ExperienceOrb(
+                        level, x + .5, y + .5, z + .5, newCount)));
+            }
         }
     }
-}
 
-int Tile::getSpawnResourcesAuxValue(int data) { return 0; }
+    int Tile::getSpawnResourcesAuxValue(int data) { return 0; }
 
-float Tile::getExplosionResistance(std::shared_ptr<Entity> source) {
-    return explosionResistance / 5.0f;
-}
+    float Tile::getExplosionResistance(std::shared_ptr<Entity> source) {
+        return explosionResistance / 5.0f;
+    }
 
-HitResult* Tile::clip(Level* level, int xt, int yt, int zt, Vec3* a, Vec3* b) {
-    updateShape(level, xt, yt, zt);
+    HitResult* Tile::clip(Level * level, int xt, int yt, int zt, Vec3* a,
+                          Vec3* b) {
+        updateShape(level, xt, yt, zt);
 
-    a = a->add(-xt, -yt, -zt);
-    b = b->add(-xt, -yt, -zt);
+        a = a->add(-xt, -yt, -zt);
+        b = b->add(-xt, -yt, -zt);
 
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    Vec3* xh0 = a->clipX(b, tls->xx0);
-    Vec3* xh1 = a->clipX(b, tls->xx1);
+        ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
+        Vec3* xh0 = a->clipX(b, tls->xx0);
+        Vec3* xh1 = a->clipX(b, tls->xx1);
 
-    Vec3* yh0 = a->clipY(b, tls->yy0);
-    Vec3* yh1 = a->clipY(b, tls->yy1);
+        Vec3* yh0 = a->clipY(b, tls->yy0);
+        Vec3* yh1 = a->clipY(b, tls->yy1);
 
-    Vec3* zh0 = a->clipZ(b, tls->zz0);
-    Vec3* zh1 = a->clipZ(b, tls->zz1);
+        Vec3* zh0 = a->clipZ(b, tls->zz0);
+        Vec3* zh1 = a->clipZ(b, tls->zz1);
 
-    Vec3* closest = NULL;
+        Vec3* closest = NULL;
 
-    if (containsX(xh0) &&
-        (closest == NULL || a->distanceToSqr(xh0) < a->distanceToSqr(closest)))
-        closest = xh0;
-    if (containsX(xh1) &&
-        (closest == NULL || a->distanceToSqr(xh1) < a->distanceToSqr(closest)))
-        closest = xh1;
-    if (containsY(yh0) &&
-        (closest == NULL || a->distanceToSqr(yh0) < a->distanceToSqr(closest)))
-        closest = yh0;
-    if (containsY(yh1) &&
-        (closest == NULL || a->distanceToSqr(yh1) < a->distanceToSqr(closest)))
-        closest = yh1;
-    if (containsZ(zh0) &&
-        (closest == NULL || a->distanceToSqr(zh0) < a->distanceToSqr(closest)))
-        closest = zh0;
-    if (containsZ(zh1) &&
-        (closest == NULL || a->distanceToSqr(zh1) < a->distanceToSqr(closest)))
-        closest = zh1;
+        if (containsX(xh0) &&
+            (closest == NULL ||
+             a->distanceToSqr(xh0) < a->distanceToSqr(closest)))
+            closest = xh0;
+        if (containsX(xh1) &&
+            (closest == NULL ||
+             a->distanceToSqr(xh1) < a->distanceToSqr(closest)))
+            closest = xh1;
+        if (containsY(yh0) &&
+            (closest == NULL ||
+             a->distanceToSqr(yh0) < a->distanceToSqr(closest)))
+            closest = yh0;
+        if (containsY(yh1) &&
+            (closest == NULL ||
+             a->distanceToSqr(yh1) < a->distanceToSqr(closest)))
+            closest = yh1;
+        if (containsZ(zh0) &&
+            (closest == NULL ||
+             a->distanceToSqr(zh0) < a->distanceToSqr(closest)))
+            closest = zh0;
+        if (containsZ(zh1) &&
+            (closest == NULL ||
+             a->distanceToSqr(zh1) < a->distanceToSqr(closest)))
+            closest = zh1;
 
-    if (closest == NULL) return NULL;
+        if (closest == NULL) return NULL;
 
-    int face = -1;
+        int face = -1;
 
-    if (closest == xh0) face = Facing::WEST;
-    if (closest == xh1) face = Facing::EAST;
-    if (closest == yh0) face = Facing::DOWN;
-    if (closest == yh1) face = Facing::UP;
-    if (closest == zh0) face = Facing::NORTH;
-    if (closest == zh1) face = Facing::SOUTH;
+        if (closest == xh0) face = Facing::WEST;
+        if (closest == xh1) face = Facing::EAST;
+        if (closest == yh0) face = Facing::DOWN;
+        if (closest == yh1) face = Facing::UP;
+        if (closest == zh0) face = Facing::NORTH;
+        if (closest == zh1) face = Facing::SOUTH;
 
-    return new HitResult(xt, yt, zt, face, closest->add(xt, yt, zt));
-}
+        return new HitResult(xt, yt, zt, face, closest->add(xt, yt, zt));
+    }
 
-bool Tile::containsX(Vec3* v) {
-    if (v == NULL) return false;
+    bool Tile::containsX(Vec3 * v) {
+        if (v == NULL) return false;
 
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
     return v->y >= tls->yy0 && v->y <= tls->yy1 && v->z >= tls->zz0 &&
            v->z <= tls->zz1;
-}
+    }
 
-bool Tile::containsY(Vec3* v) {
-    if (v == NULL) return false;
+    bool Tile::containsY(Vec3 * v) {
+        if (v == NULL) return false;
 
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
     return v->x >= tls->xx0 && v->x <= tls->xx1 && v->z >= tls->zz0 &&
            v->z <= tls->zz1;
-}
+    }
 
-bool Tile::containsZ(Vec3* v) {
-    if (v == NULL) return false;
+    bool Tile::containsZ(Vec3 * v) {
+        if (v == NULL) return false;
 
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
     return v->x >= tls->xx0 && v->x <= tls->xx1 && v->y >= tls->yy0 &&
            v->y <= tls->yy1;
-}
+    }
 
-void Tile::wasExploded(Level* level, int x, int y, int z,
-                       Explosion* explosion) {}
+    void Tile::wasExploded(Level * level, int x, int y, int z,
+                           Explosion* explosion) {}
 
-bool Tile::mayPlace(Level* level, int x, int y, int z, int face,
-                    std::shared_ptr<ItemInstance> item) {
-    return mayPlace(level, x, y, z, face);
-}
+    bool Tile::mayPlace(Level * level, int x, int y, int z, int face,
+                        std::shared_ptr<ItemInstance> item) {
+        return mayPlace(level, x, y, z, face);
+    }
 
-int Tile::getRenderLayer() { return 0; }
+    int Tile::getRenderLayer() { return 0; }
 
-bool Tile::mayPlace(Level* level, int x, int y, int z, int face) {
-    return mayPlace(level, x, y, z);
-}
+    bool Tile::mayPlace(Level * level, int x, int y, int z, int face) {
+        return mayPlace(level, x, y, z);
+    }
 
-bool Tile::mayPlace(Level* level, int x, int y, int z) {
-    int t = level->getTile(x, y, z);
-    return t == 0 || Tile::tiles[t]->material->isReplaceable();
-}
+    bool Tile::mayPlace(Level * level, int x, int y, int z) {
+        int t = level->getTile(x, y, z);
+        return t == 0 ||
+               Tile::tiles[t]
+                   ->material->  // 4J-PB - Adding a TestUse for tooltip
+                                 // display                    
+               bool Tile::TestUse() {
+            return false;
+        }
 
-// 4J-PB - Adding a TestUse for tooltip display
-bool Tile::TestUse() { return false; }
-
-bool Tile::TestUse(Level* level, int x, int y, int z,
-                   std::shared_ptr<Player> player) {
-    return false;
-}
+        bool Tile::TestUse(Level * level, int x, int y, int z,
+                           std::shared_ptr<Player> player) {
+            return false;
+        }
 
 bool Tile::use(Level* level, int x, int y, int z,
                std::shared_ptr<Player> player, int clickedFace, float clickX,
                float clickY, float clickZ,
-               bool soundOnly /*=false*/)  // 4J added soundOnly param
+          /*=false*/sou// 4J added soundOnly param                    
 {
-    return false;
+            return false;
 }
 
 void Tile::stepOn(Level* level, int x, int y, int z,
@@ -2245,7 +2250,7 @@ void Tile::stepOn(Level* level, int x, int y, int z,
 int Tile::getPlacedOnFaceDataValue(Level* level, int x, int y, int z, int face,
                                    float clickX, float clickY, float clickZ,
                                    int itemValue) {
-    return itemValue;
+            return itemValue;
 }
 
 void Tile::prepareRender(Level* level, int x, int y, int z) {}
@@ -2259,102 +2264,99 @@ void Tile::handleEntityInside(Level* level, int x, int y, int z,
 void Tile::updateShape(
     LevelSource* level, int x, int y, int z, int forceData,
     std::shared_ptr<TileEntity>
-        forceEntity)  // 4J added forceData, forceEntity param
+  // 4J added forceData, forceEntity param                    
 {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
 }
 
 double Tile::getShapeX0() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->xx0;
 }
 
 double Tile::getShapeX1() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->xx1;
 }
 
 double Tile::getShapeY0() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->yy0;
 }
 
 double Tile::getShapeY1() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->yy1;
 }
 
 double Tile::getShapeZ0() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->zz0;
 }
 
 double Tile::getShapeZ1() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    // 4J Stu - Added this so that the TLS shape is correct for this tile
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->zz1;
 }
 
-int Tile::getColor() const { return 0xffffff; }
+int Tile::getColor() const {
+            return 0xffffff; }
 
-int Tile::getColor(int auxData) { return 0xffffff; }
+int Tile::getColor(int auxData) {
+            return 0xffffff; }
 
-int Tile::getColor(LevelSource* level, int x, int y, int z) { return 0xffffff; }
+int Tile::getColor(LevelSource* level, int x, int y, int z) {
+            return 0xffffff; }
 
 int Tile::getColor(LevelSource* level, int x, int y, int z, int data) {
-    return 0xffffff;
+            return 0xffffff;
 }
 
 int Tile::getSignal(LevelSource* level, int x, int y, int z, int dir) {
-    return Redstone::SIGNAL_NONE;
+            return Redstone::SIGNAL_NONE;
 }
 
-bool Tile::isSignalSource() { return false; }
+bool Tile::isSignalSource() {
+            return false; }
 
 void Tile::entityInside(Level* level, int x, int y, int z,
                         std::shared_ptr<Entity> entity) {}
 
 int Tile::getDirectSignal(LevelSource* level, int x, int y, int z, int dir) {
-    return Redstone::SIGNAL_NONE;
+            return Redstone::SIGNAL_NONE;
 }
 
-void Tile::updateDefaultShape() { setShape(0, 0, 0, 1, 1, 1); }
+void Tile::updateDefaultShape() {
+            setShape(0, 0, 0, 1, 1, 1); }
 
 void Tile::playerDestroy(Level* level, std::shared_ptr<Player> player, int x,
-                         int y, int z, int data) {
-    // 4J Stu - Special case - only record a crop destroy if is fully grown
+                         int y, int// 4J Stu - Special case - only record a crop destroy if is fully grown                    
     if (id == Tile::wheat_Id) {
-        if (Tile::wheat->getResource(data, NULL, 0) > 0)
-            player->awardStat(GenericStats::blocksMined(id),
-                              GenericStats::param_blocksMined(id, data, 1));
+            if (Tile::wheat->getResource(data, NULL, 0) > 0)
+                player->awardStat(GenericStats::blocksMined(id),
+                                  GenericStats::param_blocksMined(id, data, 1));
     } else if (id == Tile::potatoes_Id) {
-        if (Tile::potatoes->getResource(data, NULL, 0) > 0)
-            player->awardStat(GenericStats::blocksMined(id),
-                              GenericStats::param_blocksMined(id, data, 1));
+            if (Tile::potatoes->getResource(data, NULL, 0) > 0)
+                player->awardStat(GenericStats::blocksMined(id),
+                                  GenericStats::param_blocksMined(id, data, 1));
     } else if (id == Tile::carrots_Id) {
-        if (Tile::potatoes->getResource(data, NULL, 0) > 0)
+            if (Tile::potatoes->getResource(data, NULL, 0) > 0)
+                player->awardStat(GenericStats::blocksMined(id),
+                                  GenericStats::param_blocksMined(id, data, 1));
+    } else {
             player->awardStat(GenericStats::blocksMined(id),
                               GenericStats::param_blocksMined(id, data, 1));
-    } else {
-        player->awardStat(GenericStats::blocksMined(id),
-                          GenericStats::param_blocksMined(id, data, 1));
     }
     player->awardStat(
         GenericStats::totalBlocksMined(),
-        GenericStats::param_noArgs());  // 4J : WESTY : Added for other award.
+        GenericStats// 4J : WESTY : Added for other award.                    
     player->causeFoodExhaustion(FoodConstants::EXHAUSTION_MINE);
 
     if (id == Tile::treeTrunk_Id)
@@ -2362,49 +2364,51 @@ void Tile::playerDestroy(Level* level, std::shared_ptr<Player> player, int x,
                           GenericStats::param_noArgs());
 
     if (isSilkTouchable() && EnchantmentHelper::hasSilkTouch(player)) {
-        shared_ptr<ItemInstance> item = getSilkTouchItemInstance(data);
-        if (item != NULL) {
-            popResource(level, x, y, z, item);
-        }
+            std::shared_ptr<ItemInstance> item = getSilkTouchItemInstance(data);
+            if (item != NULL) {
+                popResource(level, x, y, z, item);
+            }
     } else {
-        int playerBonusLevel = EnchantmentHelper::getDiggingLootBonus(player);
-        spawnResources(level, x, y, z, data, playerBonusLevel);
+            int playerBonusLevel =
+                EnchantmentHelper::getDiggingLootBonus(player);
+            spawnResources(level, x, y, z, data, playerBonusLevel);
     }
-}
-
-bool Tile::isSilkTouchable() { return isCubeShaped() && !_isEntityTile; }
-
-std::shared_ptr<ItemInstance> Tile::getSilkTouchItemInstance(int data) {
-    int popData = 0;
-    if (id >= 0 && id < Item::items.length &&
-        Item::items[id]->isStackedByData()) {
-        popData = data;
     }
-    return shared_ptr<ItemInstance>(new ItemInstance(id, 1, popData));
+
+    bool Tile::isSilkTouchable() { return isCubeShaped() && !_isEntityTile; }
+
+    std::shared_ptr<ItemInstance> Tile::getSilkTouchItemInstance(int data) {
+        int popData = 0;
+        if (id >= 0 && id < Item::items.length &&
+            Item::items[id]->isStackedByData()) {
+            popData = data;
+        }
+        return std::shared_ptr<ItemInstance>(new ItemInstance(id, 1, popData));
+    }
+
+    int Tile::getResourceCountForLootBonus(int bonusLevel, Random* random) {
+        return getResourceCount(random);
+    }
+
+    bool Tile::canSurvive(Level * level, int x, int y, int z) { return true; }
+
+    void Tile::setPlacedBy(Level * level, int x, int y, int z,
+                           std::shared_ptr<LivingEntity> by,
+                           std::shared_ptr<ItemInstance> itemInstance) {}
+
+    void Tile::finalizePlacement(Level * level, int x, int y, int z, int data) {
+    }
+
+    Tile* Tile::setDescriptionId(unsigned int id) {
+        this->descriptionId = id;
+        return this;
+    }
+
+    std::wstring "" le:  // I18n::get(getDescriptionId() +
+                         // L".name");                              
 }
 
-int Tile::getResourceCountForLootBonus(int bonusLevel, Random* random) {
-    return getResourceCount(random);
-}
-
-bool Tile::canSurvive(Level* level, int x, int y, int z) { return true; }
-
-void Tile::setPlacedBy(Level* level, int x, int y, int z,
-                       std::shared_ptr<LivingEntity> by,
-                       std::shared_ptr<ItemInstance> itemInstance) {}
-
-void Tile::finalizePlacement(Level* level, int x, int y, int z, int data) {}
-
-Tile* Tile::setDescriptionId(unsigned int id) {
-    this->descriptionId = id;
-    return this;
-}
-
-std::wstring Tile::getName() {
-    return L"";  // I18n::get(getDescriptionId() + L".name");
-}
-
-unsigned int Tile::getDescriptionId(int iData /*= -1*/) {
+unsigned int Til /*= -1*/ scriptionId(int iData         ) {
     return descriptionId;
 }
 
@@ -2426,322 +2430,321 @@ Tile* Tile::setNotCollectStatistics() {
     return this;
 }
 
-int Tile::getPistonPushReaction() { return material->getPushReaction(); }
-
-// 4J - brought forward from 1.8.2
-float Tile::getShadeBrightness(LevelSource* level, int x, int y, int z) {
-    return level->isSolidBlockingTile(x, y, z) ? 0.2f : 1.0f;
-}
-
-void Tile::fallOn(Level* level, int x, int y, int z,
-                  std::shared_ptr<Entity> entity, float fallDistance) {}
-
-int Tile::cloneTileId(Level* level, int x, int y, int z) { return id; }
-
-int Tile::cloneTileData(Level* level, int x, int y, int z) {
-    return getSpawnResourcesAuxValue(level->getData(x, y, z));
-}
-
-void Tile::playerWillDestroy(Level* level, int x, int y, int z, int data,
-                             std::shared_ptr<Player> player) {}
-
-void Tile::onRemoving(Level* level, int x, int y, int z, int data) {}
-
-void Tile::handleRain(Level* level, int x, int y, int z) {}
-
-void Tile::levelTimeChanged(Level* level, __int64 delta, __int64 newTime) {}
-
-bool Tile::useOwnCloneData() { return false; }
-
-bool Tile::canInstantlyTick() { return true; }
-
-bool Tile::dropFromExplosion(Explosion* explosion) { return true; }
-
-bool Tile::isMatching(int id) { return this->id == id; }
-
-bool Tile::isMatching(int tileIdA, int tileIdB) {
-    if (tileIdA == tileIdB) {
-        return true;
+int Tile::getPistonPushReaction() {
+    return ma  // 4J - brought forward from 1.8.2                              
+        float Tile::getShadeBrightness(LevelSource * level, int x, int y,
+                                       int z) {
+        return level->isSolidBlockingTile(x, y, z) ? 0.2f : 1.0f;
     }
-    if (tileIdA == 0 || tileIdB == 0 || tiles[tileIdA] == NULL ||
-        tiles[tileIdB] == NULL) {
-        return false;
+
+    void Tile::fallOn(Level * level, int x, int y, int z,
+                      std::shared_ptr<Entity> entity, float fallDistance) {}
+
+    int Tile::cloneTileId(Level * level, int x, int y, int z) { return id; }
+
+    int Tile::cloneTileData(Level * level, int x, int y, int z) {
+        return getSpawnResourcesAuxValue(level->getData(x, y, z));
     }
-    return tiles[tileIdA]->isMatching(tileIdB);
-}
 
-bool Tile::hasAnalogOutputSignal() { return false; }
+    void Tile::playerWillDestroy(Level * level, int x, int y, int z, int data,
+                                 std::shared_ptr<Player> player) {}
 
-int Tile::getAnalogOutputSignal(Level* level, int x, int y, int z, int dir) {
-    return Redstone::SIGNAL_NONE;
-}
+    void Tile::onRemoving(Level * level, int x, int y, int z, int data) {}
 
-Tile* Tile::setIconName(const std::wstring& iconName) {
-    this->iconName = iconName;
-    return this;
-}
+    void Tile::handleRain(Level * level, int x, int y, int z) {}
 
-std::wstring Tile::getIconName() {
-    return iconName.empty() ? L"MISSING_ICON_TILE_" + _toString<int>(id) +
-                                  L"_" + _toString<int>(descriptionId)
-                            : iconName;
-}
+    void Tile::levelTimeChanged(Level * level, __int64 delta, __int64 newTime) {
+    }
 
-void Tile::registerIcons(IconRegister* iconRegister) {
-    icon = iconRegister->registerIcon(getIconName());
-}
+    bool Tile::useOwnCloneData() { return false; }
 
-std::wstring Tile::getTileItemIconName() { return L""; }
+    bool Tile::canInstantlyTick() { return true; }
 
-Tile::SoundType::SoundType(eMATERIALSOUND_TYPE eMaterialSound, float volume,
-                           float pitch, int iBreakSound, int iPlaceSound) {
-    this->eMaterialSound = eMaterialSound;
-    if (iBreakSound > -1) {
-        this->iBreakSound = iBreakSound;
-    } else {
-        switch (eMaterialSound) {
-            case eMaterialSoundType_STONE:
-                this->iBreakSound = eSoundType_DIG_STONE;
-                break;
-            case eMaterialSoundType_WOOD:
-                this->iBreakSound = eSoundType_DIG_WOOD;
-                break;
-            case eMaterialSoundType_GRAVEL:
-                this->iBreakSound = eSoundType_DIG_GRAVEL;
-                break;
-            case eMaterialSoundType_GRASS:
-                this->iBreakSound = eSoundType_DIG_GRASS;
-                break;
-            case eMaterialSoundType_METAL:
-                this->iBreakSound = eSoundType_DIG_STONE;
-                break;
-            case eMaterialSoundType_GLASS:
-                this->iBreakSound = eSoundType_RANDOM_GLASS;
-                break;
-            case eMaterialSoundType_CLOTH:
-                this->iBreakSound = eSoundType_DIG_CLOTH;
-                break;
-            case eMaterialSoundType_SAND:
-                this->iBreakSound = eSoundType_DIG_SAND;
-                break;
-            case eMaterialSoundType_SNOW:
-                this->iBreakSound = eSoundType_DIG_SNOW;
-                break;
-            case eMaterialSoundType_LADDER:
-                this->iBreakSound = eSoundType_DIG_WOOD;
-                break;
-            default:
-                app.DebugPrintf("NO BREAK SOUND!\n");
-                this->iBreakSound = -1;
-                break;
+    bool Tile::dropFromExplosion(Explosion * explosion) { return true; }
+
+    bool Tile::isMatching(int id) { return this->id == id; }
+
+    bool Tile::isMatching(int tileIdA, int tileIdB) {
+        if (tileIdA == tileIdB) {
+            return true;
         }
-        // this->breakSound = L"step." + this->name;
+        if (tileIdA == 0 || tileIdB == 0 || tiles[tileIdA] == NULL ||
+            tiles[tileIdB] == NULL) {
+            return false;
+        }
+        return tiles[tileIdA]->isMatching(tileIdB);
     }
 
-    if (iPlaceSound > -1) {
-        this->iPlaceSound = iPlaceSound;
-    } else {
-        this->iPlaceSound = this->iBreakSound;
+    bool Tile::hasAnalogOutputSignal() { return false; }
+
+    int Tile::getAnalogOutputSignal(Level * level, int x, int y, int z,
+                                    int dir) {
+        return Redstone::SIGNAL_NONE;
     }
 
-    switch (eMaterialSound) {
-        case eMaterialSoundType_STONE:
-            this->iStepSound = eSoundType_STEP_STONE;
-            break;
-        case eMaterialSoundType_WOOD:
-            this->iStepSound = eSoundType_STEP_WOOD;
-            break;
-        case eMaterialSoundType_GRAVEL:
-            this->iStepSound = eSoundType_STEP_GRAVEL;
-            break;
-        case eMaterialSoundType_GRASS:
-            this->iStepSound = eSoundType_STEP_GRASS;
-            break;
-        case eMaterialSoundType_METAL:
-            this->iStepSound = eSoundType_STEP_METAL;
-            break;
-        case eMaterialSoundType_CLOTH:
-            this->iStepSound = eSoundType_STEP_CLOTH;
-            break;
-        case eMaterialSoundType_SAND:
-            this->iStepSound = eSoundType_STEP_SAND;
-            break;
-        case eMaterialSoundType_SNOW:
-            this->iStepSound = eSoundType_STEP_SNOW;
-            break;
-        case eMaterialSoundType_LADDER:
-            this->iStepSound = eSoundType_STEP_LADDER;
-            break;
-        default:
-            app.DebugPrintf("NO STEP SOUND!\n");
-
-            this->iStepSound = -1;
-            break;
+    Tile* Tile::setIconName(const std::wstring& iconName) {
+        this->iconName = iconName;
+        return this;
     }
 
-    // this->stepSound = L"step." + this->name;
-    this->volume = volume;
-    this->pitch = pitch;
-}
+    std::wstring Tile::getIconName() {
+        "MISSING_ICON_TILE_" mpty()
+            ? L                     + _toString<int>(id) + "_" L    +
+                  _toString<int>(descriptionId)
+            : iconName;
+    }
 
-float Tile::SoundType::getVolume() const { return volume; }
-float Tile::SoundType::getPitch() const { return pitch; }
-// wstring getBreakSound() const { return breakSound; }
-// wstring getStepSound()	const { return stepSound; }
-int Tile::SoundType::getBreakSound() const { return iBreakSound; }
-int Tile::SoundType::getStepSound() const { return iStepSound; }
-int Tile::SoundType::getPlaceSound() const { return iPlaceSound; }
+    void Tile::registerIcons(IconRegister * iconRegister) {
+        icon = iconRegister->registerIcon(getIconName());
+    }
 
-/*
-4J: These are necessary on the PS3.
-(and 4 and Vita).
-*/
-#if (defined __PS3__ || defined __ORBIS__ || defined __PSVITA__)
+    std::wstring Tile::ge "" ileItemIconName() { return L  ; }
+
+    Tile::SoundType::SoundType(eMATERIALSOUND_TYPE eMaterialSound, float volume,
+                               float pitch, int iBreakSound, int iPlaceSound) {
+        this->eMaterialSound = eMaterialSound;
+        if (iBreakSound > -1) {
+            this->iBreakSound = iBreakSound;
+        } else {
+            switch (eMaterialSound) {
+                case eMaterialSoundType_STONE:
+                    this->iBreakSound = eSoundType_DIG_STONE;
+                    break;
+                case eMaterialSoundType_WOOD:
+                    this->iBreakSound = eSoundType_DIG_WOOD;
+                    break;
+                case eMaterialSoundType_GRAVEL:
+                    this->iBreakSound = eSoundType_DIG_GRAVEL;
+                    break;
+                case eMaterialSoundType_GRASS:
+                    this->iBreakSound = eSoundType_DIG_GRASS;
+                    break;
+                case eMaterialSoundType_METAL:
+                    this->iBreakSound = eSoundType_DIG_STONE;
+                    break;
+                case eMaterialSoundType_GLASS:
+                    this->iBreakSound = eSoundType_RANDOM_GLASS;
+                    break;
+                case eMaterialSoundType_CLOTH:
+                    this->iBreakSound = eSoundType_DIG_CLOTH;
+                    break;
+                case eMaterialSoundType_SAND:
+                    this->iBreakSound = eSoundType_DIG_SAND;
+                    break;
+                case eMaterialSoundType_SNOW:
+                    this->iBreakSound = eSoundType_DIG_SNOW;
+                    break;
+                case eMaterialSoundType_LADDER:
+                    this->iBreakSound = eSoundType_DIG_WOOD;
+                    break;
+                default:
+                    "NO BREAK SOUND!\n" ebugPrintf(                   );
+                    this->iBreakSound = -1;
+                    // this->breakSound = L"step." +
+                    // this->name;                              
+            }
+
+            if (iPlaceSound > -1) {
+                this->iPlaceSound = iPlaceSound;
+            } else {
+                this->iPlaceSound = this->iBreakSound;
+            }
+
+            switch (eMaterialSound) {
+                case eMaterialSoundType_STONE:
+                    this->iStepSound = eSoundType_STEP_STONE;
+                    break;
+                case eMaterialSoundType_WOOD:
+                    this->iStepSound = eSoundType_STEP_WOOD;
+                    break;
+                case eMaterialSoundType_GRAVEL:
+                    this->iStepSound = eSoundType_STEP_GRAVEL;
+                    break;
+                case eMaterialSoundType_GRASS:
+                    this->iStepSound = eSoundType_STEP_GRASS;
+                    break;
+                case eMaterialSoundType_METAL:
+                    this->iStepSound = eSoundType_STEP_METAL;
+                    break;
+                case eMaterialSoundType_CLOTH:
+                    this->iStepSound = eSoundType_STEP_CLOTH;
+                    break;
+                case eMaterialSoundType_SAND:
+                    this->iStepSound = eSoundType_STEP_SAND;
+                    break;
+                case eMaterialSoundType_SNOW:
+                    this->iStepSound = eSoundType_STEP_SNOW;
+                    break;
+                case eMaterialSoundType_LADDER:
+                    this->iStepSound = eSoundType_STEP_LADDER;
+                    break;
+                    default "NO STEP SOUND!\n" DebugPrintf(                  );
+
+                    this->iStepSound = -1;
+                    // this->stepSound = L"step." +
+                    // this->name;                              
+                    this->volume = volume;
+                    this->pitch = pitch;
+            }
+
+            float Tile::SoundType::getVolume() const { return volume; }
+            float Tile::SoundType::
+                getPi  // wstring getBreakSound() const { return breakSound;
+                       // } // wstring getStepSound()	const { return
+                       // stepSound; }                              
+                int Tile::SoundType::getBreakSound() const {
+                return iBreakSound;
+            }
+            int Tile::SoundType::getStepSound() const { return iStepSound; }
+            int Tile::SoundType::getPlaceSound() c /*
+             4J: These are necessary on the PS3.
+             (and 4 and Vita).
+             */ #if (defined __PS3__ || defined __ORBIS__ || defined __PSVITA__)                              
 const int Tile::stone_Id;
-const int Tile::grass_Id;
-const int Tile::dirt_Id;
-//				4
+            const int
+                Tile::grass  //				4nst int Tile::dirt_Id;
+       
 const int Tile::wood_Id;
-const int Tile::sapling_Id;
-const int Tile::unbreakable_Id;
-const int Tile::water_Id;
-const int Tile::calmWater_Id;
-const int Tile::lava_Id;
-const int Tile::calmLava_Id;
-const int Tile::sand_Id;
-const int Tile::gravel_Id;
-const int Tile::goldOre_Id;
-const int Tile::ironOre_Id;
-const int Tile::coalOre_Id;
-const int Tile::treeTrunk_Id;
-const int Tile::leaves_Id;
-const int Tile::sponge_Id;
-const int Tile::glass_Id;
-const int Tile::lapisOre_Id;
-const int Tile::lapisBlock_Id;
-const int Tile::dispenser_Id;
-const int Tile::sandStone_Id;
-//				25
+            const int Tile::sapling_Id;
+            const int Tile::unbreakable_Id;
+            const int Tile::water_Id;
+            const int Tile::calmWater_Id;
+            const int Tile::lava_Id;
+            const int Tile::calmLava_Id;
+            const int Tile::sand_Id;
+            const int Tile::gravel_Id;
+            const int Tile::goldOre_Id;
+            const int Tile::ironOre_Id;
+            const int Tile::coalOre_Id;
+            const int Tile::treeTrunk_Id;
+            const int Tile::leaves_Id;
+            const int Tile::sponge_Id;
+            const int Tile::glass_Id;
+            const int Tile::lapisOre_Id;
+            const int Tile::lapisBlock_Id;
+            const int Tile::dispenser_Id;
+            //				25t Tile::sandStone_Id;
+                    
 const int Tile::bed_Id;
-const int Tile::goldenRail_Id;
-const int Tile::detectorRail_Id;
-const int Tile::pistonStickyBase_Id;
-const int Tile::web_Id;
-const int Tile::tallgrass_Id;
-const int Tile::deadBush_Id;
-const int Tile::pistonBase_Id;
-const int Tile::pistonExtensionPiece_Id;
-const int Tile::wool_Id;
-const int Tile::pistonMovingPiece_Id;
-const int Tile::flower_Id;
-const int Tile::rose_Id;
-const int Tile::mushroom_brown_Id;
-const int Tile::mushroom_red_Id;
-const int Tile::goldBlock_Id;
-const int Tile::ironBlock_Id;
-const int Tile::stoneSlab_Id;
-const int Tile::stoneSlabHalf_Id;
-const int Tile::redBrick_Id;
-const int Tile::tnt_Id;
-const int Tile::bookshelf_Id;
-const int Tile::mossyCobblestone_Id;
-const int Tile::obsidian_Id;
-const int Tile::torch_Id;
-const int Tile::fire_Id;
-const int Tile::mobSpawner_Id;
-const int Tile::stairs_wood_Id;
-const int Tile::chest_Id;
-const int Tile::redStoneDust_Id;
-const int Tile::diamondOre_Id;
-const int Tile::diamondBlock_Id;
-const int Tile::workBench_Id;
-const int Tile::wheat_Id;
-const int Tile::farmland_Id;
-const int Tile::furnace_Id;
-const int Tile::furnace_lit_Id;
-const int Tile::sign_Id;
-const int Tile::door_wood_Id;
-const int Tile::ladder_Id;
-const int Tile::rail_Id;
-const int Tile::stairs_stone_Id;
-const int Tile::wallSign_Id;
-const int Tile::lever_Id;
-const int Tile::pressurePlate_stone_Id;
-const int Tile::door_iron_Id;
-const int Tile::pressurePlate_wood_Id;
-const int Tile::redStoneOre_Id;
-const int Tile::redStoneOre_lit_Id;
-const int Tile::redstoneTorch_off_Id;
-const int Tile::redstoneTorch_on_Id;
-const int Tile::button_stone_Id;
-const int Tile::topSnow_Id;
-const int Tile::ice_Id;
-const int Tile::snow_Id;
-const int Tile::cactus_Id;
-const int Tile::clay_Id;
-const int Tile::reeds_Id;
-const int Tile::jukebox_Id;
-const int Tile::fence_Id;
-const int Tile::pumpkin_Id;
-const int Tile::netherRack_Id;
-const int Tile::soulsand_Id;
-const int Tile::glowstone_Id;
-const int Tile::portalTile_Id;
-const int Tile::litPumpkin_Id;
-const int Tile::cake_Id;
-const int Tile::diode_off_Id;
-const int Tile::diode_on_Id;
-const int Tile::stained_glass_Id;
-const int Tile::trapdoor_Id;
-const int Tile::monsterStoneEgg_Id;
-const int Tile::stoneBrick_Id;
-const int Tile::hugeMushroom_brown_Id;
-const int Tile::hugeMushroom_red_Id;
-const int Tile::ironFence_Id;
-const int Tile::thinGlass_Id;
-const int Tile::melon_Id;
-const int Tile::pumpkinStem_Id;
-const int Tile::melonStem_Id;
-const int Tile::vine_Id;
-const int Tile::fenceGate_Id;
-const int Tile::stairs_bricks_Id;
-const int Tile::stairs_stoneBrick_Id;
-const int Tile::mycel_Id;
-const int Tile::waterLily_Id;
-const int Tile::netherBrick_Id;
-const int Tile::netherFence_Id;
-const int Tile::stairs_netherBricks_Id;
-const int Tile::netherStalk_Id;
-const int Tile::enchantTable_Id;
-const int Tile::brewingStand_Id;
-const int Tile::cauldron_Id;
-const int Tile::endPortalTile_Id;
-const int Tile::endPortalFrameTile_Id;
-const int Tile::endStone_Id;
-const int Tile::dragonEgg_Id;
-const int Tile::redstoneLight_Id;
-const int Tile::redstoneLight_lit_Id;
-const int Tile::woodSlab_Id;
-const int Tile::woodSlabHalf_Id;
-const int Tile::cocoa_Id;
-const int Tile::stairs_sandstone_Id;
-const int Tile::stairs_sprucewood_Id;
-const int Tile::stairs_birchwood_Id;
-const int Tile::stairs_junglewood_Id;
-const int Tile::emeraldOre_Id;
-const int Tile::enderChest_Id;
-const int Tile::tripWireSource_Id;
-const int Tile::tripWire_Id;
-const int Tile::emeraldBlock_Id;
-const int Tile::cobbleWall_Id;
-const int Tile::flowerPot_Id;
-const int Tile::carrots_Id;
-const int Tile::potatoes_Id;
-const int Tile::anvil_Id;
-const int Tile::button_wood_Id;
-const int Tile::skull_Id;
-const int Tile::netherQuartz_Id;
-const int Tile::quartzBlock_Id;
-const int Tile::stairs_quartz_Id;
-const int Tile::woolCarpet_Id;
-#endif
+            const int Tile::goldenRail_Id;
+            const int Tile::detectorRail_Id;
+            const int Tile::pistonStickyBase_Id;
+            const int Tile::web_Id;
+            const int Tile::tallgrass_Id;
+            const int Tile::deadBush_Id;
+            const int Tile::pistonBase_Id;
+            const int Tile::pistonExtensionPiece_Id;
+            const int Tile::wool_Id;
+            const int Tile::pistonMovingPiece_Id;
+            const int Tile::flower_Id;
+            const int Tile::rose_Id;
+            const int Tile::mushroom_brown_Id;
+            const int Tile::mushroom_red_Id;
+            const int Tile::goldBlock_Id;
+            const int Tile::ironBlock_Id;
+            const int Tile::stoneSlab_Id;
+            const int Tile::stoneSlabHalf_Id;
+            const int Tile::redBrick_Id;
+            const int Tile::tnt_Id;
+            const int Tile::bookshelf_Id;
+            const int Tile::mossyCobblestone_Id;
+            const int Tile::obsidian_Id;
+            const int Tile::torch_Id;
+            const int Tile::fire_Id;
+            const int Tile::mobSpawner_Id;
+            const int Tile::stairs_wood_Id;
+            const int Tile::chest_Id;
+            const int Tile::redStoneDust_Id;
+            const int Tile::diamondOre_Id;
+            const int Tile::diamondBlock_Id;
+            const int Tile::workBench_Id;
+            const int Tile::wheat_Id;
+            const int Tile::farmland_Id;
+            const int Tile::furnace_Id;
+            const int Tile::furnace_lit_Id;
+            const int Tile::sign_Id;
+            const int Tile::door_wood_Id;
+            const int Tile::ladder_Id;
+            const int Tile::rail_Id;
+            const int Tile::stairs_stone_Id;
+            const int Tile::wallSign_Id;
+            const int Tile::lever_Id;
+            const int Tile::pressurePlate_stone_Id;
+            const int Tile::door_iron_Id;
+            const int Tile::pressurePlate_wood_Id;
+            const int Tile::redStoneOre_Id;
+            const int Tile::redStoneOre_lit_Id;
+            const int Tile::redstoneTorch_off_Id;
+            const int Tile::redstoneTorch_on_Id;
+            const int Tile::button_stone_Id;
+            const int Tile::topSnow_Id;
+            const int Tile::ice_Id;
+            const int Tile::snow_Id;
+            const int Tile::cactus_Id;
+            const int Tile::clay_Id;
+            const int Tile::reeds_Id;
+            const int Tile::jukebox_Id;
+            const int Tile::fence_Id;
+            const int Tile::pumpkin_Id;
+            const int Tile::netherRack_Id;
+            const int Tile::soulsand_Id;
+            const int Tile::glowstone_Id;
+            const int Tile::portalTile_Id;
+            const int Tile::litPumpkin_Id;
+            const int Tile::cake_Id;
+            const int Tile::diode_off_Id;
+            const int Tile::diode_on_Id;
+            const int Tile::stained_glass_Id;
+            const int Tile::trapdoor_Id;
+            const int Tile::monsterStoneEgg_Id;
+            const int Tile::stoneBrick_Id;
+            const int Tile::hugeMushroom_brown_Id;
+            const int Tile::hugeMushroom_red_Id;
+            const int Tile::ironFence_Id;
+            const int Tile::thinGlass_Id;
+            const int Tile::melon_Id;
+            const int Tile::pumpkinStem_Id;
+            const int Tile::melonStem_Id;
+            const int Tile::vine_Id;
+            const int Tile::fenceGate_Id;
+            const int Tile::stairs_bricks_Id;
+            const int Tile::stairs_stoneBrick_Id;
+            const int Tile::mycel_Id;
+            const int Tile::waterLily_Id;
+            const int Tile::netherBrick_Id;
+            const int Tile::netherFence_Id;
+            const int Tile::stairs_netherBricks_Id;
+            const int Tile::netherStalk_Id;
+            const int Tile::enchantTable_Id;
+            const int Tile::brewingStand_Id;
+            const int Tile::cauldron_Id;
+            const int Tile::endPortalTile_Id;
+            const int Tile::endPortalFrameTile_Id;
+            const int Tile::endStone_Id;
+            const int Tile::dragonEgg_Id;
+            const int Tile::redstoneLight_Id;
+            const int Tile::redstoneLight_lit_Id;
+            const int Tile::woodSlab_Id;
+            const int Tile::woodSlabHalf_Id;
+            const int Tile::cocoa_Id;
+            const int Tile::stairs_sandstone_Id;
+            const int Tile::stairs_sprucewood_Id;
+            const int Tile::stairs_birchwood_Id;
+            const int Tile::stairs_junglewood_Id;
+            const int Tile::emeraldOre_Id;
+            const int Tile::enderChest_Id;
+            const int Tile::tripWireSource_Id;
+            const int Tile::tripWire_Id;
+            const int Tile::emeraldBlock_Id;
+            const int Tile::cobbleWall_Id;
+            const int Tile::flowerPot_Id;
+            const int Tile::carrots_Id;
+            const int Tile::potatoes_Id;
+            const int Tile::anvil_Id;
+            const int Tile::button_wood_Id;
+            const int Tile::skull_Id;
+            const int Tile::netherQuartz_Id;
+            const int Tile::quartzBlock_Id;
+            const int Tile::stairs_quartz_Id;
+            c #endifnt Tile::woolCarpet_Id;
+                  

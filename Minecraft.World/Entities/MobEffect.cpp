@@ -64,7 +64,7 @@ void MobEffect::staticCtor() {
                 SharedMonsterAttributes::MOVEMENT_SPEED,
                 eModifierId_POTION_MOVESLOWDOWN, -0.15f,
                 AttributeModifier::OPERATION_MULTIPLY_TOTAL);  //->setIcon(1,
-                                                               //0);
+                                                               // 0);
     digSpeed =
         (new MobEffect(3, false, eMinecraftColour_Effect_DigSpeed))
             ->setDescriptionId(IDS_POTION_DIGSPEED)
@@ -77,16 +77,17 @@ void MobEffect::staticCtor() {
             ->setPostfixDescriptionId(IDS_POTION_DIGSLOWDOWN_POSTFIX)
             ->setIcon(
                 MobEffect::e_MobEffectIcon_MiningFatigue);  //->setIcon(3, 0);
-    damageBoost = (new AttackDamageMobEffect(
-                       5, false, eMinecraftColour_Effect_DamageBoost))
-                      ->setDescriptionId(IDS_POTION_DAMAGEBOOST)
-                      ->setPostfixDescriptionId(IDS_POTION_DAMAGEBOOST_POSTFIX)
-                      ->setIcon(MobEffect::e_MobEffectIcon_Strength)
-                      ->addAttributeModifier(
-                          SharedMonsterAttributes::ATTACK_DAMAGE,
-                          eModifierId_POTION_DAMAGEBOOST, 3,
-                          AttributeModifier::OPERATION_MULTIPLY_TOTAL);  //->setIcon(4,
-                                                                         //0);
+    damageBoost =
+        (new AttackDamageMobEffect(5, false,
+                                   eMinecraftColour_Effect_DamageBoost))
+            ->setDescriptionId(IDS_POTION_DAMAGEBOOST)
+            ->setPostfixDescriptionId(IDS_POTION_DAMAGEBOOST_POSTFIX)
+            ->setIcon(MobEffect::e_MobEffectIcon_Strength)
+            ->addAttributeModifier(
+                SharedMonsterAttributes::ATTACK_DAMAGE,
+                eModifierId_POTION_DAMAGEBOOST, 3,
+                AttributeModifier::OPERATION_MULTIPLY_TOTAL);  //->setIcon(4,
+                                                               // 0);
     heal = (new InstantenousMobEffect(6, false, eMinecraftColour_Effect_Heal))
                ->setDescriptionId(IDS_POTION_HEAL)
                ->setPostfixDescriptionId(IDS_POTION_HEAL_POSTFIX);
@@ -263,7 +264,7 @@ void MobEffect::applyEffectTick(std::shared_ptr<LivingEntity> mob,
         }
     } else if ((id == heal->id && !mob->isInvertedHealAndHarm()) ||
                (id == harm->id && mob->isInvertedHealAndHarm())) {
-        mob->heal(max(4 << amplification, 0));
+        mob->heal(std::max(4 << amplification, 0));
     } else if ((id == harm->id && !mob->isInvertedHealAndHarm()) ||
                (id == heal->id && mob->isInvertedHealAndHarm())) {
         mob->hurt(DamageSource::magic, 6 << amplification);
@@ -291,9 +292,8 @@ void MobEffect::applyInstantenousEffect(std::shared_ptr<LivingEntity> source,
     }
 }
 
-bool MobEffect::isInstantenous() { return false; }
-
-/**
+bool MobEffect::isInstantenous() {
+    return false/**
  * This parameter says if the applyEffect method should be called depending
  * on the remaining duration ticker. For instance, the regeneration will be
  * activated every 8 ticks, healing one point of health.
@@ -302,144 +302,145 @@ bool MobEffect::isInstantenous() { return false; }
  * @param amplification
  *            Effect amplification, starts at 0 (weakest)
  * @return
- */
-bool MobEffect::isDurationEffectTick(int remainingDuration, int amplification) {
-    // Maybe move this to separate class implementations in the future?
-    if (id == regeneration->id) {
-        // tick intervals are 50, 25, 12, 6..
-        int interval = 50 >> amplification;
-        if (interval > 0) {
-            return (remainingDuration % interval) == 0;
+ */     
+bool MobEffect::isDurationEffectTick(int remainingDuration, int amplification) {// Maybe move this to separate class implementations in the future?     
+        if (id == regeneration->id) {
+            // tick intervals are 50, 25, 12, 6..     
+            int interval = 50 >> amplification;
+            if (interval > 0) {
+                return (remainingDuration % interval) == 0;
+            }
+            return true;
+        } else if (id == poison->id) {
+            // tick intervals are 25, 12, 6..     
+            int interval = 25 >> amplification;
+            if (interval > 0) {
+                return (remainingDuration % interval) == 0;
+            }
+            return true;
+        } else if (id == wither->id) {
+            int interval = 40 >> amplification;
+            if (interval > 0) {
+                return (remainingDuration % interval) == 0;
+            }
+            return true;
+        } else if (id == hunger->id) {
+            return true;
         }
-        return true;
-    } else if (id == poison->id) {
-        // tick intervals are 25, 12, 6..
-        int interval = 25 >> amplification;
-        if (interval > 0) {
-            return (remainingDuration % interval) == 0;
-        }
-        return true;
-    } else if (id == wither->id) {
-        int interval = 40 >> amplification;
-        if (interval > 0) {
-            return (remainingDuration % interval) == 0;
-        }
-        return true;
-    } else if (id == hunger->id) {
-        return true;
+
+        return false;
     }
 
-    return false;
-}
-
-MobEffect* MobEffect::setDescriptionId(unsigned int id) {
-    descriptionId = id;
-    return this;
-}
-
-unsigned int MobEffect::getDescriptionId(int iData) { return descriptionId; }
-
-MobEffect* MobEffect::setPostfixDescriptionId(unsigned int id) {
-    m_postfixDescriptionId = id;
-    return this;
-}
-
-unsigned int MobEffect::getPostfixDescriptionId(int iData) {
-    return m_postfixDescriptionId;
-}
-
-bool MobEffect::hasIcon() { return icon != e_MobEffectIcon_None; }
-
-MobEffect::EMobEffectIcon MobEffect::getIcon() { return icon; }
-
-bool MobEffect::isHarmful() { return _isHarmful; }
-
-std::wstring MobEffect::formatDuration(MobEffectInstance* instance) {
-    if (instance->isNoCounter()) {
-        return L"**:**";
-    }
-    int duration = instance->getDuration();
-
-    int seconds = duration / SharedConstants::TICKS_PER_SECOND;
-    int minutes = seconds / 60;
-    seconds %= 60;
-
-    wchar_t temp[8];
-    ZeroMemory(&temp, 8 * (sizeof(wchar_t)));
-
-    if (seconds < 10) {
-        swprintf(temp, 8, L"%d:0%d", minutes, seconds);
-        // return minutes + ":0" + seconds;
-    } else {
-        swprintf(temp, 8, L"%d:%d", minutes, seconds);
-        // return minutes + ":" + seconds;
+    MobEffect* MobEffect::setDescriptionId(unsigned int id) {
+        descriptionId = id;
+        return this;
     }
 
-    return temp;
-}
+    unsigned int MobEffect::getDescriptionId(int iData) {
+        return descriptionId;
+    }
 
-MobEffect* MobEffect::setDurationModifier(double durationModifier) {
-    this->durationModifier = durationModifier;
-    return this;
-}
+    MobEffect* MobEffect::setPostfixDescriptionId(unsigned int id) {
+        m_postfixDescriptionId = id;
+        return this;
+    }
 
-double MobEffect::getDurationModifier() { return durationModifier; }
+    unsigned int MobEffect::getPostfixDescriptionId(int iData) {
+        return m_postfixDescriptionId;
+    }
 
-MobEffect* MobEffect::setDisabled() {
-    _isDisabled = true;
-    return this;
-}
+    bool MobEffect::hasIcon() { return icon != e_MobEffectIcon_None; }
 
-bool MobEffect::isDisabled() { return _isDisabled; }
+    MobEffect::EMobEffectIcon MobEffect::getIcon() { return icon; }
 
-eMinecraftColour MobEffect::getColor() { return color; }
+    bool MobEffect::isHarmful() { return _isHarmful; }
 
-MobEffect* MobEffect::addAttributeModifier(Attribute* attribute,
-                                           eMODIFIER_ID id, double amount,
-                                           int operation) {
-    AttributeModifier* effect = new AttributeModifier(id, amount, operation);
-    attributeModifiers.insert(
-        std::pair<Attribute*, AttributeModifier*>(attribute, effect));
-    return this;
-}
+    std::wstring MobEffect::formatDuration(MobEffectInstance * instance) {
+        if (instance->isNoCounter()) {
+            ret "**:**"     ;
+        }
+        int duration = instance->getDuration();
 
-unordered_map<Attribute*, AttributeModifier*>*
-MobEffect::getAttributeModifiers() {
-    return &attributeModifiers;
-}
+        int seconds = duration / SharedConstants::TICKS_PER_SECOND;
+        int minutes = seconds / 60;
+        seconds %= 60;
 
-void MobEffect::removeAttributeModifiers(std::shared_ptr<LivingEntity> entity,
-                                         BaseAttributeMap* attributes,
-                                         int amplifier) {
-    for (AUTO_VAR(it, attributeModifiers.begin());
-         it != attributeModifiers.end(); ++it) {
-        AttributeInstance* attribute = attributes->getInstance(it->first);
+        wchar_t temp[8];
+        ZeroMemory(&temp, 8 * (sizeof(wchar_t)));
 
-        if (attribute != NULL) {
-            attribute->removeModifier(it->second);
+        if (seconds < 10) {
+            swprintf(temp, "%d:0%d"     , minutes, seconds);
+            // return minutes + ":0" + seconds;     
+        } else {
+            swprintf(temp, "%d:%d"     , minutes, seconds);
+            // return minutes + ":" + seconds;     
+        }
+
+        return temp;
+    }
+
+    MobEffect* MobEffect::setDurationModifier(double durationModifier) {
+        this->durationModifier = durationModifier;
+        return this;
+    }
+
+    double MobEffect::getDurationModifier() { return durationModifier; }
+
+    MobEffect* MobEffect::setDisabled() {
+        _isDisabled = true;
+        return this;
+    }
+
+    bool MobEffect::isDisabled() { return _isDisabled; }
+
+    eMinecraftColour MobEffect::getColor() { return color; }
+
+    MobEffect* MobEffect::addAttributeModifier(
+        Attribute * attribute, eMODIFIER_ID id, double amount, int operation) {
+        AttributeModifier* effect =
+            new AttributeModifier(id, amount, operation);
+        attributeModifiers.insert(
+            std::pair<Attribute*, AttributeModifier*>(attribute, effect));
+        return this;
+    }
+
+    std::unordered_map<Attribute*, AttributeModifier*>*
+    MobEffect::getAttributeModifiers() {
+        return &attributeModifiers;
+    }
+
+    void MobEffect::removeAttributeModifiers(
+        std::shared_ptr<LivingEntity> entity, BaseAttributeMap * attributes,
+        int amplifier) {
+        for (AUTO_VAR(it, attributeModifiers.begin());
+             it != attributeModifiers.end(); ++it) {
+            AttributeInstance* attribute = attributes->getInstance(it->first);
+
+            if (attribute != NULL) {
+                attribute->removeModifier(it->second);
+            }
         }
     }
-}
 
-void MobEffect::addAttributeModifiers(std::shared_ptr<LivingEntity> entity,
-                                      BaseAttributeMap* attributes,
-                                      int amplifier) {
-    for (AUTO_VAR(it, attributeModifiers.begin());
-         it != attributeModifiers.end(); ++it) {
-        AttributeInstance* attribute = attributes->getInstance(it->first);
+    void MobEffect::addAttributeModifiers(std::shared_ptr<LivingEntity> entity,
+                                          BaseAttributeMap * attributes,
+                                          int amplifier) {
+        for (AUTO_VAR(it, attributeModifiers.begin());
+             it != attributeModifiers.end(); ++it) {
+            AttributeInstance* attribute = attributes->getInstance(it->first);
 
-        if (attribute != NULL) {
-            AttributeModifier* original = it->second;
-            attribute->removeModifier(original);
-            attribute->addModifier(new AttributeModifier(
-                original->getId(),
-                getAttributeModifierValue(amplifier, original),
-                original->getOperation()));
+            if (attribute != NULL) {
+                AttributeModifier* original = it->second;
+                attribute->removeModifier(original);
+                attribute->addModifier(new AttributeModifier(
+                    original->getId(),
+                    getAttributeModifierValue(amplifier, original),
+                    original->getOperation()));
+            }
         }
     }
-}
 
-double MobEffect::getAttributeModifierValue(int amplifier,
-                                            AttributeModifier* original) {
-    return original->getAmount() * (amplifier + 1);
-}
+    double MobEffect::getAttributeModifierValue(int amplifier,
+                                                AttributeModifier* original) {
+        return original->getAmount() * (amplifier + 1);
+    }

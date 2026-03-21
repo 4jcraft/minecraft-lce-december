@@ -86,11 +86,11 @@ void Witch::aiStep() {
         if (isUsingItem()) {
             if (usingTime-- <= 0) {
                 setUsingItem(false);
-                shared_ptr<ItemInstance> item = getCarriedItem();
+                std::shared_ptr<ItemInstance> item = getCarriedItem();
                 setEquippedSlot(SLOT_WEAPON, nullptr);
 
                 if (item != NULL && item->id == Item::potion_Id) {
-                    vector<MobEffectInstance*>* effects =
+                    std::vector<MobEffectInstance*>* effects =
                         Item::potion->getMobEffects(item);
                     if (effects != NULL) {
                         for (AUTO_VAR(it, effects->begin());
@@ -127,7 +127,7 @@ void Witch::aiStep() {
 
             if (potion > -1) {
                 setEquippedSlot(SLOT_WEAPON,
-                                shared_ptr<ItemInstance>(
+                                std::shared_ptr<ItemInstance>(
                                     new ItemInstance(Item::potion, 1, potion)));
                 usingTime = getCarriedItem()->getUseDuration();
                 setUsingItem(true);
@@ -189,9 +189,10 @@ void Witch::performRangedAttack(std::shared_ptr<LivingEntity> target,
                                 float power) {
     if (isUsingItem()) return;
 
-    shared_ptr<ThrownPotion> potion = shared_ptr<ThrownPotion>(new ThrownPotion(
-        level, dynamic_pointer_cast<LivingEntity>(shared_from_this()),
-        PotionBrewing::POTION_ID_SPLASH_DAMAGE));
+    std::shared_ptr<ThrownPotion> potion =
+        std::shared_ptr<ThrownPotion>(new ThrownPotion(
+            level, dynamic_pointer_cast<LivingEntity>(shared_from_this()),
+            PotionBrewing::POTION_ID_SPLASH_DAMAGE));
     potion->xRot -= -20;
     double xd = (target->x + target->xd) - x;
     double yd = (target->y + target->getHeadHeight() - 1.1f) - y;

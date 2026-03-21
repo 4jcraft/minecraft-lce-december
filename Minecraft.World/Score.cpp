@@ -32,7 +32,7 @@ void Score::increment() {
 void Score::decrement() {
     // if (objective.getCriteria().isReadOnly()) throw new
     // IllegalStateException("Cannot modify read-only score");
-    remove(1);
+    std::remove(1);
 }
 
 int Score::getScore() { return count; }
@@ -49,6 +49,6 @@ std::wstring Score::getOwner() { return owner; }
 
 Scoreboard* Score::getScoreboard() { return scoreboard; }
 
-void Score::updateFor(vector<shared_ptr<Player> >* players) {
+void Score::updateFor(std::vector<std::shared_ptr<Player> >* players) {
     setScore(objective->getCriteria()->getScoreModifier(players));
 }

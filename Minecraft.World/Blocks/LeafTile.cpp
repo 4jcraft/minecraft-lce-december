@@ -238,7 +238,7 @@ void LeafTile::spawnResources(Level* level, int x, int y, int z, int data,
         if (level->random->nextInt(chance) == 0) {
             int type = getResource(data, level->random, playerBonusLevel);
             popResource(level, x, y, z,
-                        shared_ptr<ItemInstance>(new ItemInstance(
+                        std::shared_ptr<ItemInstance>(new ItemInstance(
                             type, 1, getSpawnResourcesAuxValue(data))));
         }
 
@@ -252,7 +252,7 @@ void LeafTile::spawnResources(Level* level, int x, int y, int z, int data,
         if ((data & LEAF_TYPE_MASK) == NORMAL_LEAF &&
             level->random->nextInt(chance) == 0) {
             popResource(level, x, y, z,
-                        shared_ptr<ItemInstance>(
+                        std::shared_ptr<ItemInstance>(
                             new ItemInstance(Item::apple_Id, 1, 0)));
         }
     }
@@ -262,12 +262,12 @@ void LeafTile::playerDestroy(Level* level, std::shared_ptr<Player> player,
                              int x, int y, int z, int data) {
     if (!level->isClientSide && player->getSelectedItem() != NULL &&
         player->getSelectedItem()->id == Item::shears->id) {
-        player->awardStat(GenericStats::blocksMined(id),
-                          GenericStats::param_blocksMined(id, data, 1));
-
-        // drop leaf block instead of sapling
+        player->awardStat(
+            GenericStats::blocksMined(id),
+            GenericStats::param_blocksMined(
+                id, data, 1));  // drop leaf block instead of sapling          
         popResource(level, x, y, z,
-                    shared_ptr<ItemInstance>(new ItemInstance(
+                    std::shared_ptr<ItemInstance>(new ItemInstance(
                         Tile::leaves_Id, 1, data & LEAF_TYPE_MASK)));
     } else {
         TransparentTile::playerDestroy(level, player, x, y, z, data);
@@ -278,10 +278,7 @@ int LeafTile::getSpawnResourcesAuxValue(int data) {
     return data & LEAF_TYPE_MASK;
 }
 
-bool LeafTile::isSolidRender(bool isServerLevel) {
-    // 4J Stu - The server level shouldn't care how the tile is rendered!
-    // Fix for #9407 - Gameplay: Destroying a block of snow on top of trees,
-    // removes any adjacent snow.
+bool LeafTile::isSolidRender(bool isServ// 4J Stu - The server level shouldn't care how the tile is rendered!     // Fix for #9407 - Gameplay: Destroying a block of snow on top of trees,     // removes any adjacent snow.               
     if (isServerLevel) return true;
     return !allowSame;
 }
@@ -305,7 +302,7 @@ void LeafTile::setFancy(bool fancyGraphics) {
 }
 
 std::shared_ptr<ItemInstance> LeafTile::getSilkTouchItemInstance(int data) {
-    return shared_ptr<ItemInstance>(
+    return std::shared_ptr<ItemInstance>(
         new ItemInstance(id, 1, data & LEAF_TYPE_MASK));
 }
 
@@ -319,17 +316,16 @@ bool LeafTile::shouldTileTick(Level* level, int x, int y, int z) {
     return (currentData & UPDATE_LEAF_BIT) != 0;
 }
 
-unsigned int LeafTile::getDescriptionId(int iData /*= -1*/) {
+unsigned int LeafTile::getDesc /*= -1*/ d(int iData         ) {
     int leafIndex = iData & LEAF_TYPE_MASK;
     return LeafTile::LEAF_NAMES[leafIndex];
 }
 
 void LeafTile::registerIcons(IconRegister* iconRegister) {
-    for (int fancy = 0; fancy < 2; fancy++) {
-        // icons[fancy] = new Icon[TEXTURES[fancy].length];
+    for (int fancy = 0; fancy < 2;// icons[fancy] = new Icon[TEXTURES[fancy].length];                    
 
         for (int i = 0; i < 4; i++) {
-            icons[fancy][i] = iconRegister->registerIcon(TEXTURES[fancy][i]);
+        icons[fancy][i] = iconRegister->registerIcon(TEXTURES[fancy][i]);
         }
-    }
+}
 }

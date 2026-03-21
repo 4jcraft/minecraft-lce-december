@@ -19,7 +19,7 @@ protected:
 public:
     int shakeTime;
 
-    shared_ptr<LivingEntity> owner;
+    std::shared_ptr<LivingEntity> owner;
 
 private:
     std::wstring ownerName;
@@ -37,7 +37,7 @@ protected:
 public:
     virtual bool shouldRenderAtSqrDistance(double distance);
 
-    Throwable(Level* level, shared_ptr<LivingEntity> mob);
+    Throwable(Level* level, std::shared_ptr<LivingEntity> mob);
     Throwable(Level* level, double x, double y, double z);
 
 protected:
@@ -58,5 +58,5 @@ public:
     virtual void addAdditonalSaveData(CompoundTag* tag);
     virtual void readAdditionalSaveData(CompoundTag* tag);
     virtual float getShadowHeightOffs();
-    virtual shared_ptr<LivingEntity> getOwner();
+    virtual std::shared_ptr<LivingEntity> getOwner();
 };

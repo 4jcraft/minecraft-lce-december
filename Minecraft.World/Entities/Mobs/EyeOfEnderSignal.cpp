@@ -30,7 +30,7 @@ void EyeOfEnderSignal::defineSynchedData() {}
 bool EyeOfEnderSignal::shouldRenderAtSqrDistance(double distance) {
     double size = bb->getSize() * 4;
     size *= 64.0f;
-    return distance < size * size;
+    return std::distance < size * size;
 }
 
 EyeOfEnderSignal::EyeOfEnderSignal(Level* level, double x, double y, double z)
@@ -134,7 +134,7 @@ void EyeOfEnderSignal::tick() {
         life++;
         if (life > SharedConstants::TICKS_PER_SECOND * 4 &&
             !level->isClientSide) {
-            remove();
+            std::remove();
             if (surviveAfterDeath) {
                 level->addEntity(std::shared_ptr<ItemEntity>(
                     new ItemEntity(level, x, y, z,

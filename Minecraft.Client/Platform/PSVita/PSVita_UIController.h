@@ -2,30 +2,34 @@
 
 #include "..\Common\UI\UIController.h"
 
-class ConsoleUIController : public UIController
-{
+class ConsoleUIController : public UIController {
 private:
-	gdraw_psp2_dynamic_buffer *m_dynamicBuffer;
-	int m_currentBackBuffer;
+    gdraw_psp2_dynamic_buffer* m_dynamicBuffer;
+    int m_currentBackBuffer;
+
 public:
-	void init(S32 w, S32 h);
+    void init(S32 w, S32 h);
 
-	void render();
+    void render();
 
-	void shutdown();
-	void beginIggyCustomDraw4J(IggyCustomDrawCallbackRegion *region, CustomDrawData *customDrawRegion);
-	virtual CustomDrawData *setupCustomDraw(UIScene *scene, IggyCustomDrawCallbackRegion *region);
-	virtual CustomDrawData *calculateCustomDraw(IggyCustomDrawCallbackRegion *region);
-	virtual void endCustomDraw(IggyCustomDrawCallbackRegion *region);
+    void shutdown();
+    void beginIggyCustomDraw4J(IggyCustomDrawCallbackRegion* region,
+                               CustomDrawData* customDrawRegion);
+    virtual CustomDrawData* setupCustomDraw(
+        UIScene* scene, IggyCustomDrawCallbackRegion* region);
+    virtual CustomDrawData* calculateCustomDraw(
+        IggyCustomDrawCallbackRegion* region);
+    virtual void endCustomDraw(IggyCustomDrawCallbackRegion* region);
 
 protected:
-	virtual void setTileOrigin(S32 xPos, S32 yPos);
+    virtual void setTileOrigin(S32 xPos, S32 yPos);
 
-public:	
-	GDrawTexture *getSubstitutionTexture(int textureId);
-	void destroySubstitutionTexture(void *destroyCallBackData, GDrawTexture *handle);
+public:
+    GDrawTexture* getSubstitutionTexture(int textureId);
+    void destroySubstitutionTexture(void* destroyCallBackData,
+                                    GDrawTexture* handle);
 
-	static void handleUnlockFullVersionCallback();
+    static void handleUnlockFullVersionCallback();
 };
 
 extern ConsoleUIController ui;

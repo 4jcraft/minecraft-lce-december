@@ -7,7 +7,7 @@ private:
     double nextNextGaussian;
 
 protected:
-    int next(int bits);
+    int std::next(int bits);
 
 public:
     Random();

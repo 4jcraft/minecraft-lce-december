@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 #if defined(__PS3__) || defined(__ORBIS__) || defined __PSVITA__
 #define LOCALE_COUNT 21
 #elif defined _XBOX_ONE
@@ -10,71 +8,65 @@
 #define LOCALE_COUNT 11
 #endif
 
-class StringTable
-{
+class StringTable {
 private:
-	bool isStatic;
+    bool isStatic;
 
-	std::unordered_map<std::wstring, std::wstring> m_stringsMap;
-	std::vector<std::wstring> m_stringsVec;
+    std::unordered_map<std::wstring, std::wstring> m_stringsMap;
+    std::vector<std::wstring> m_stringsVec;
 
-	byteArray src;
+    byteArray src;
 
 public:
+    // 	enum eLocale
+    // 	{
+    // 		eLocale_Default=0,
+    // 		eLocale_American,
+    // 		eLocale_Japanese,
+    // 		eLocale_German,
+    // 		eLocale_French,
+    // 		eLocale_Spanish,
+    // 		eLocale_Italian,
+    // 		eLocale_Korean,
+    // 		eLocale_TradChinese,
+    // 		eLocale_Portuguese,
+    // 		eLocale_Brazilian,
+    // #if defined(__PS3__) || defined(__ORBIS__) || defined __PSVITA__
+    // 		eLocale_Russian,
+    // 		eLocale_Dutch,
+    // 		eLocale_Finish,
+    // 		eLocale_Swedish,
+    // 		eLocale_Danish,
+    // 		eLocale_Norwegian,
+    // 		eLocale_Polish,
+    // 		eLocale_Turkish,
+    // 		eLocale_LatinAmericanSpanish,
+    // 		eLocale_Greek,
+    // #elif defined _XBOX_ONE || defined _XBOX
+    // 		eLocale_British,
+    // 		eLocale_Irish,
+    // 		eLocale_Australian,
+    // 		eLocale_NewZealand,
+    // 		eLocale_Canadian,
+    // 		eLocale_Mexican,
+    // 		eLocale_FrenchCanadian,
+    // 		eLocale_Austrian,
+    // #endif
+    // 	};
 
-// 	enum eLocale
-// 	{
-// 		eLocale_Default=0,
-// 		eLocale_American,
-// 		eLocale_Japanese,
-// 		eLocale_German,
-// 		eLocale_French,
-// 		eLocale_Spanish,
-// 		eLocale_Italian,
-// 		eLocale_Korean,
-// 		eLocale_TradChinese,
-// 		eLocale_Portuguese,
-// 		eLocale_Brazilian,
-// #if defined(__PS3__) || defined(__ORBIS__) || defined __PSVITA__
-// 		eLocale_Russian,
-// 		eLocale_Dutch,
-// 		eLocale_Finish,
-// 		eLocale_Swedish,
-// 		eLocale_Danish,
-// 		eLocale_Norwegian,
-// 		eLocale_Polish,
-// 		eLocale_Turkish,
-// 		eLocale_LatinAmericanSpanish,
-// 		eLocale_Greek,
-// #elif defined _XBOX_ONE || defined _XBOX
-// 		eLocale_British,
-// 		eLocale_Irish,
-// 		eLocale_Australian,
-// 		eLocale_NewZealand,
-// 		eLocale_Canadian,
-// 		eLocale_Mexican,
-// 		eLocale_FrenchCanadian,
-// 		eLocale_Austrian,
-// #endif
-// 	};
+    StringTable(void);
+    StringTable(PBYTE pbData, DWORD dwSize);
+    ~StringTable(void);
+    void ReloadStringTable();
 
-	StringTable(void);
-	StringTable(PBYTE pbData, DWORD dwSize);
-	~StringTable(void);
-	void ReloadStringTable();
+    void getData(PBYTE* ppbData, UINT* pdwSize);
 
-	void getData(PBYTE *ppbData, UINT *pdwSize);
+    LPCWSTR getString(const std::wstring& id);
+    LPCWSTR getString(int id);
 
-	LPCWSTR getString(const std::wstring &id);
-	LPCWSTR getString(int id);
-
-	//static LPCWSTR m_wchLocaleCode[LOCALE_COUNT];
-
-
+    // static LPCWSTR m_wchLocaleCode[LOCALE_COUNT];
 
 private:
-	//std::wstring getLangId(DWORD dwLanguage=0);
-	void ProcessStringTableData(void);
-
+    // std::wstring getLangId(DWORD dwLanguage=0);
+    void ProcessStringTableData(void);
 };
-

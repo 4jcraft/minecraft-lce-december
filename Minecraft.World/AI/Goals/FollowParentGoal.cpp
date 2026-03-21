@@ -16,7 +16,7 @@ FollowParentGoal::FollowParentGoal(Animal* animal, double speedModifier) {
 bool FollowParentGoal::canUse() {
     if (animal->getAge() >= 0) return false;
 
-    vector<std::shared_ptr<Entity> >* parents =
+    std::vector<std::shared_ptr<Entity> >* parents =
         animal->level->getEntitiesOfClass(typeid(*animal),
                                           animal->bb->grow(8, 4, 8));
 
@@ -34,7 +34,7 @@ bool FollowParentGoal::canUse() {
 
     if (closest == NULL) return false;
     if (closestDistSqr < 3 * 3) return false;
-    parent = weak_ptr<Animal>(closest);
+    parent = std::weak_ptr<Animal>(closest);
     return true;
 }
 
@@ -47,7 +47,7 @@ bool FollowParentGoal::canContinueToUse() {
 
 void FollowParentGoal::start() { timeToRecalcPath = 0; }
 
-void FollowParentGoal::stop() { parent = weak_ptr<Animal>(); }
+void FollowParentGoal::stop() { parent = std::weak_ptr<Animal>(); }
 
 void FollowParentGoal::tick() {
     if (--timeToRecalcPath > 0) return;

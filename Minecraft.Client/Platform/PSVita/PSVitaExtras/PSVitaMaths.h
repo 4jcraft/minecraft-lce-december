@@ -8,4 +8,4 @@ typedef Vector4 XMFLOAT4;
 
 XMMATRIX XMMatrixMultiply(XMMATRIX a, XMMATRIX b);
 XMVECTOR XMMatrixDeterminant(XMMATRIX a);
-XMMATRIX XMMatrixInverse(Vector4 *a, XMMATRIX b);
+XMMATRIX XMMatrixInverse(Vector4* a, XMMATRIX b);

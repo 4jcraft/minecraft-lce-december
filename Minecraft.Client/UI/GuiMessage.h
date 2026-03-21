@@ -1,10 +1,8 @@
 #pragma once
 
-
-class GuiMessage
-{
+class GuiMessage {
 public:
-	std::wstring std::string;
-	int ticks;
-	GuiMessage(const std::wstring& std::string);
+    std::wstring std::string;
+    int ticks;
+    GuiMessage(const std::wstring& std::string);
 };

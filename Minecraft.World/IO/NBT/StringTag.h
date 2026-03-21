@@ -17,7 +17,7 @@ public:
 
     std::wstring toString() { return data; }
 
-    Tag* copy() { return new StringTag(getName(), data); }
+    Tag* std::copy() { return new StringTag(getName(), data); }
 
     bool equals(Tag* obj) {
         if (Tag::equals(obj)) {

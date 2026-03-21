@@ -8,10 +8,10 @@ public:
     static const std::wstring OPTION_SPACING;
 
     static void staticCtor();
-    static vector<Biome*> allowedBiomes;
+    static std::vector<Biome*> allowedBiomes;
 
 private:
-    vector<Biome::MobSpawnerData*> swamphutEnemies;
+    std::vector<Biome::MobSpawnerData*> swamphutEnemies;
     int spacing;
     int minSeparation;
 
@@ -19,7 +19,8 @@ private:
 
 public:
     RandomScatteredLargeFeature();
-    RandomScatteredLargeFeature(unordered_map<wstring, wstring> options);
+    RandomScatteredLargeFeature(
+        std::unordered_map<std::wstring, std::wstring> options);
 
     std::wstring getFeatureName();
 
@@ -43,5 +44,5 @@ public:
 
 public:
     bool isSwamphut(int cellX, int cellY, int cellZ);
-    vector<Biome::MobSpawnerData*>* getSwamphutEnemies();
+    std::vector<Biome::MobSpawnerData*>* getSwamphutEnemies();
 };

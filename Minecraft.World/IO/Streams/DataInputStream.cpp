@@ -98,7 +98,7 @@ unsigned char DataInputStream::readUnsignedByte() {
 
 // Reads two input bytes and returns a char value. Let a be the first byte read
 // and b be the second byte. The value returned is: (char)((a << 8) | (b &
-//0xff))
+// 0xff))
 //
 // This method is suitable for reading bytes written by the writeChar method of
 // interface DataOutput. Returns: the char value read.
@@ -233,7 +233,7 @@ __int64 DataInputStream::readLong() {
 
 // Reads two input bytes and returns a short value. Let a be the first byte read
 // and b be the second byte. The value returned is: (short)((a << 8) | (b &
-//0xff))
+// 0xff))
 //
 // This method is suitable for reading the bytes written by the writeShort
 // method of interface DataOutput. Returns: the 16-bit value read.
@@ -296,20 +296,18 @@ unsigned short DataInputStream::readUnsignedShort() {
 // Returns:
 // a Unicode string.
 std::wstring DataInputStream::readUTF() {
-    wstring outputString;
+    std::wstring outputString;
     int a = stream->read();
     int b = stream->read();
     unsigned short UTFLength = (unsigned short)(((a & 0xff) << 8) | (b & 0xff));
-
-    //// 4J Stu - I decided while writing DataOutputStream that we didn't need
-    ///to bother using the UTF8 format / used in the java libs, and just write
-    ///in/out as wchar_t all the time
-
+    //// 4J Stu - I decided while writing DataOutputStream that we didn't
+    ///need     ///to bother using the UTF8 format / used in the java libs, and
+    ///just write     ///in/out as wchar_t all the time     
     /*for( unsigned short i = 0; i < UTFLength; i++)
-    {
-            wchar_t theChar = readChar();
-            outputString.push_back(theChar);
-    }*/
+        {
+                wchar_t theChar = readChar();
+                outputString.push_back(theChar);
+        }*/     
 
     unsigned short currentByteIndex = 0;
     while (currentByteIndex < UTFLength) {
@@ -317,49 +315,49 @@ std::wstring DataInputStream::readUTF() {
         currentByteIndex++;
 
         if (firstByte == -1)
-            // TODO 4J Stu - EOFException
+            // TODO 4J Stu - EOFException     
             break;
 
-        // Masking patterns:
-        // 10000000 = 0x80 // Match only highest bit
-        // 11000000 = 0xC0 // Match only highest two bits
-        // 11100000 = 0xE0 // Match only highest three bits
-        // 11110000 = 0xF0 // Match only highest four bits
+        // Masking patterns:     
+        // 10000000 = 0x80 // Match only highest bit     
+        // 11000000 = 0xC0 // Match only highest two bits     
+        // 11100000 = 0xE0 // Match only highest three bits     
+        // 11110000 = 0xF0 // Match only highest four bits     
 
-        // Matching patterns:
-        // 10xxxxxx = 0x80 // ERROR, or second/third byte
-        // 1111xxxx = 0xF0 //ERROR
-        // 0xxxxxxx = 0x00 // One byte UTF
-        // 110xxxxx = 0xC0 // Two byte UTF
-        // 1110xxxx = 0xE0 // Three byte UTF
+        // Matching patterns:     
+        // 10xxxxxx = 0x80 // ERROR, or second/third byte     
+        // 1111xxxx = 0xF0 //ERROR     
+        // 0xxxxxxx = 0x00 // One byte UTF     
+        // 110xxxxx = 0xC0 // Two byte UTF     
+        // 1110xxxx = 0xE0 // Three byte UTF     
         if (((firstByte & 0xC0) == 0x80) || ((firstByte & 0xF0) == 0xF0)) {
-            // TODO 4J Stu - UTFDataFormatException
+            // TODO 4J Stu - UTFDataFormatException     
             break;
         } else if ((firstByte & 0x80) == 0x00) {
-            // One byte UTF
+            // One byte UTF     
             wchar_t readChar = (wchar_t)firstByte;
             outputString.push_back(readChar);
             continue;
         } else if ((firstByte & 0xE0) == 0xC0) {
-            // Two byte UTF
+            // Two byte UTF     
 
-            // No more bytes to read
+            // No more bytes to read     
             if (!(currentByteIndex < UTFLength)) {
-                // TODO 4J Stu - UTFDataFormatException
+                // TODO 4J Stu - UTFDataFormatException     
                 break;
             }
 
             int secondByte = stream->read();
             currentByteIndex++;
 
-            // No second byte
+            // No second byte     
             if (secondByte == -1) {
-                // TODO 4J Stu - EOFException
+                // TODO 4J Stu - EOFException     
                 break;
             }
-            // Incorrect second byte pattern
+            // Incorrect second byte pattern     
             else if ((secondByte & 0xC0) != 0x80) {
-                // TODO 4J Stu - UTFDataFormatException
+                // TODO 4J Stu - UTFDataFormatException     
                 break;
             }
 
@@ -368,41 +366,41 @@ std::wstring DataInputStream::readUTF() {
             outputString.push_back(readChar);
             continue;
         } else if ((firstByte & 0xF0) == 0xE0) {
-            // Three byte UTF
+            // Three byte UTF     
 
-            // No more bytes to read
+            // No more bytes to read     
             if (!(currentByteIndex < UTFLength)) {
-                // TODO 4J Stu - UTFDataFormatException
+                // TODO 4J Stu - UTFDataFormatException     
                 break;
             }
 
             int secondByte = stream->read();
             currentByteIndex++;
 
-            // No second byte
+            // No second byte     
             if (secondByte == -1) {
-                // TODO 4J Stu - EOFException
+                // TODO 4J Stu - EOFException     
                 break;
             }
 
-            // No more bytes to read
+            // No more bytes to read     
             if (!(currentByteIndex < UTFLength)) {
-                // TODO 4J Stu - UTFDataFormatException
+                // TODO 4J Stu - UTFDataFormatException     
                 break;
             }
 
             int thirdByte = stream->read();
             currentByteIndex++;
 
-            // No third byte
+            // No third byte     
             if (thirdByte == -1) {
-                // TODO 4J Stu - EOFException
+                // TODO 4J Stu - EOFException     
                 break;
             }
-            // Incorrect second or third byte pattern
+            // Incorrect second or third byte pattern     
             else if (((secondByte & 0xC0) != 0x80) ||
                      ((thirdByte & 0xC0) != 0x80)) {
-                // TODO 4J Stu - UTFDataFormatException
+                // TODO 4J Stu - UTFDataFormatException     
                 break;
             }
 
@@ -422,96 +420,87 @@ int DataInputStream::readUTFChar() {
     int firstByte = stream->read();
 
     if (firstByte == -1)
-        // TODO 4J Stu - EOFException
+        // TODO 4J Stu - EOFException     
         return returnValue;
-
-    // Masking patterns:
-    // 10000000 = 0x80 // Match only highest bit
-    // 11000000 = 0xC0 // Match only highest two bits
-    // 11100000 = 0xE0 // Match only highest three bits
-    // 11110000 = 0xF0 // Match only highest four bits
-
-    // Matching patterns:
-    // 10xxxxxx = 0x80 // ERROR, or second/third byte
-    // 1111xxxx = 0xF0 //ERROR
-    // 0xxxxxxx = 0x00 // One byte UTF
-    // 110xxxxx = 0xC0 // Two byte UTF
-    // 1110xxxx = 0xE0 // Three byte UTF
+    // Masking patterns:     // 10000000 = 0x80 // Match only highest bit     //
+    // 11000000 = 0xC0 // Match only highest two bits     // 11100000 = 0xE0 //
+    // Match only highest three bits     // 11110000 = 0xF0 // Match only
+    // highest four bits      Matching patterns:     // 10xxxxxx = 0x80 //
+    // ERROR, or second/third byte     // 1111xxxx = 0xF0 //ERROR     //
+    // 0xxxxxxx = 0x00 // One byte UTF     // 110xxxxx = 0xC0 // Two byte
+    // UTF     // 1110xxxx = 0xE0 // Three byte UTF     
     if (((firstByte & 0xC0) == 0x80) || ((firstByte & 0xF0) == 0xF0)) {
-        // TODO 4J Stu - UTFDataFormatException
+        // TODO 4J Stu - UTFDataFormatException     
         return returnValue;
     } else if ((firstByte & 0x80) == 0x00) {
-        // One byte UTF
+        // One byte UTF     
         returnValue = firstByte;
     } else if ((firstByte & 0xE0) == 0xC0) {
-        // Two byte UTF
+        // Two byte UTF     
         int secondByte = stream->read();
 
-        // No second byte
+        // No second byte     
         if (secondByte == -1) {
-            // TODO 4J Stu - EOFException
+            // TODO 4J Stu - EOFException     
             return returnValue;
         }
-        // Incorrect second byte pattern
+        // Incorrect second byte pattern     
         else if ((secondByte & 0xC0) != 0x80) {
-            // TODO 4J Stu - UTFDataFormatException
+            // TODO 4J Stu - UTFDataFormatException     
             return returnValue;
         }
 
         returnValue = ((firstByte & 0x1F) << 6) | (secondByte & 0x3F);
     } else if ((firstByte & 0xF0) == 0xE0) {
-        // Three byte UTF
+        // Three byte UTF     
 
         int secondByte = stream->read();
 
-        // No second byte
+        // No second byte     
         if (secondByte == -1) {
-            // TODO 4J Stu - EOFException
+            // TODO 4J Stu - EOFException     
             return returnValue;
         }
 
         int thirdByte = stream->read();
 
-        // No third byte
+        // No third byte     
         if (thirdByte == -1) {
-            // TODO 4J Stu - EOFException
+            // TODO 4J Stu - EOFException     
             return returnValue;
         }
-        // Incorrect second or third byte pattern
+        // Incorrect second or third byte pattern     
         else if (((secondByte & 0xC0) != 0x80) ||
                  ((thirdByte & 0xC0) != 0x80)) {
-            // TODO 4J Stu - UTFDataFormatException
+            // TODO 4J Stu - UTFDataFormatException     
             return returnValue;
         }
 
         returnValue = (((firstByte & 0x0F) << 12) | ((secondByte & 0x3F) << 6) |
                        (thirdByte & 0x3F));
     }
-    return returnValue;
-}
+    return returnValue  // 4J Added     
+        PlayerUID DataInputStream::readPlayerUID() {
+        PlayerUID returnVa #if defined (__PS3__) || defined(__ORBIS__) ||
+            defined(__PSVITA__)     
+    for (int idPos = 0; idPos < sizeof(PlayerUID);
+         idPos++)((char*)&returnValue)[idPos] = readByt #elif defined(_DURANGO)     
+    returnValue = readUT #else      
+    returnValue = readLon #endif  // PS3     
+            return returnValue;
+    }
 
-// 4J Added
-PlayerUID DataInputStream::readPlayerUID() {
-    PlayerUID returnValue;
-#if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
-    for (int idPos = 0; idPos < sizeof(PlayerUID); idPos++)
-        ((char*)&returnValue)[idPos] = readByte();
-#elif defined(_DURANGO)
-    returnValue = readUTF();
-#else
-    returnValue = readLong();
-#endif  // PS3
-    return returnValue;
-}
+    void DataInputStream::deleteChildStream() {
+        delete stream  // Skips n bytes of input from this input stream. Fewer
+                       // bytes might be skipped // if the end of the input
+                       // stream is reached. The actual number k of bytes to
+                       // be // skipped is equal to the smaller of n and
+                       // count-pos. The value k is added into // pos and k is
+                       // returned. Overrides: skip in class InputStream
+                       // Parameters: n - // the number of bytes to be skipped.
+                       // Returns: the actual number of bytes // skipped.     
+            __int64 DataInputStream::skip(__int64 n) {
+            return stream->skip(n);
+        }
 
-void DataInputStream::deleteChildStream() { delete stream; }
-
-// Skips n bytes of input from this input stream. Fewer bytes might be skipped
-// if the end of the input stream is reached. The actual number k of bytes to be
-// skipped is equal to the smaller of n and count-pos. The value k is added into
-// pos and k is returned. Overrides: skip in class InputStream Parameters: n -
-// the number of bytes to be skipped. Returns: the actual number of bytes
-// skipped.
-__int64 DataInputStream::skip(__int64 n) { return stream->skip(n); }
-
-int DataInputStream::skipBytes(int n) { return skip(n); }
+        int DataInputStream::skipBytes(int n) { return skip(n); }

@@ -13,7 +13,7 @@ void DefaultGameModeCommand::execute(std::shared_ptr<CommandSender> source,
     //	doSetGameType(newMode);
 
     //	logAdminAction(source, "commands.defaultgamemode.success",
-    //ChatMessageComponent.forTranslation("gameMode." + newMode.getName()));
+    // ChatMessageComponent.forTranslation("gameMode." + newMode.getName()));
 
     //	return;
     //}
@@ -27,10 +27,10 @@ void DefaultGameModeCommand::doSetGameType(GameType* newGameType) {
 
     // if (minecraftServer.getForceGameType()) {
     //	for (ServerPlayer player :
-    //MinecraftServer.getInstance().getPlayers().players) {
+    // MinecraftServer.getInstance().getPlayers().players) {
     //		player.setGameMode(newGameType);
     //		player.fallDistance = 0; // reset falldistance so flying people
-    //do not die :P
+    // do not die :P
     //	}
     // }
 }

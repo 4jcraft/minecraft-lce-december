@@ -2,18 +2,18 @@
 
 #include "UIControl_Base.h"
 
-class UIControl_Label : public UIControl_Base
-{
+class UIControl_Label : public UIControl_Base {
 private:
-	bool m_reinitEnabled;
+    bool m_reinitEnabled;
 
 public:
-	UIControl_Label();
+    UIControl_Label();
 
-	virtual bool setupControl(UIScene *scene, IggyValuePath *parent, const std::string &controlName);
+    virtual bool setupControl(UIScene* scene, IggyValuePath* parent,
+                              const std::string& controlName);
 
-	void init(UIString label);
-	virtual void ReInit();
+    void init(UIString label);
+    virtual void ReInit();
 
-	void disableReinitialisation() { m_reinitEnabled = false; }
+    void disableReinitialisation() { m_reinitEnabled = false; }
 };

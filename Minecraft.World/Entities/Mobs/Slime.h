@@ -50,7 +50,7 @@ protected:
     virtual std::shared_ptr<Slime> createChild();
 
 public:
-    virtual void remove();
+    virtual void std::remove();
     virtual void playerTouch(std::shared_ptr<Player> player);
 
 protected:

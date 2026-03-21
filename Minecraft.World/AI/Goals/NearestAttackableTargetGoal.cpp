@@ -55,13 +55,14 @@ bool NearestAttackableTargetGoal::canUse() {
         return false;
     double within = getFollowDistance();
 
-    vector<shared_ptr<Entity> >* entities = mob->level->getEntitiesOfClass(
-        targetType, mob->bb->grow(within, 4, within), selector);
+    std::vector<std::shared_ptr<Entity> >* entities =
+        mob->level->getEntitiesOfClass(
+            targetType, mob->bb->grow(within, 4, within), selector);
 
     bool result = false;
     if (entities != NULL && !entities->empty()) {
         std::sort(entities->begin(), entities->end(), *distComp);
-        target = weak_ptr<LivingEntity>(
+        target = std::weak_ptr<LivingEntity>(
             dynamic_pointer_cast<LivingEntity>(entities->at(0)));
         result = true;
     }

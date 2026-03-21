@@ -66,38 +66,39 @@ bool HorseInventoryMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> HorseInventoryMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
-        clicked = stack->copy();
+        std::shared_ptr<ItemInstance> std::stack = slot->getItem();
+        clicked = std::stack->copy();
 
         if (slotIndex < horseContainer->getContainerSize()) {
-            if (!moveItemStackTo(stack, horseContainer->getContainerSize(),
+            if (!moveItemStackTo(std::stack, horseContainer->getContainerSize(),
                                  slots.size(), true)) {
                 return nullptr;
             }
         } else {
-            if (getSlot(EntityHorse::INV_SLOT_ARMOR)->mayPlace(stack) &&
+            if (getSlot(EntityHorse::INV_SLOT_ARMOR)->mayPlace(std::stack) &&
                 !getSlot(EntityHorse::INV_SLOT_ARMOR)->hasItem()) {
-                if (!moveItemStackTo(stack, EntityHorse::INV_SLOT_ARMOR,
+                if (!moveItemStackTo(std::stack, EntityHorse::INV_SLOT_ARMOR,
                                      EntityHorse::INV_SLOT_ARMOR + 1, false)) {
                     return nullptr;
                 }
-            } else if (getSlot(EntityHorse::INV_SLOT_SADDLE)->mayPlace(stack)) {
-                if (!moveItemStackTo(stack, EntityHorse::INV_SLOT_SADDLE,
+            } else if (getSlot(EntityHorse::INV_SLOT_SADDLE)
+                           ->mayPlace(std::stack)) {
+                if (!moveItemStackTo(std::stack, EntityHorse::INV_SLOT_SADDLE,
                                      EntityHorse::INV_SLOT_SADDLE + 1, false)) {
                     return nullptr;
                 }
             } else if (horseContainer->getContainerSize() <=
                            EntityHorse::INV_BASE_COUNT ||
-                       !moveItemStackTo(stack, EntityHorse::INV_BASE_COUNT,
+                       !moveItemStackTo(std::stack, EntityHorse::INV_BASE_COUNT,
                                         horseContainer->getContainerSize(),
                                         false)) {
                 return nullptr;
             }
         }
-        if (stack->count == 0) {
+        if (std::stack->count == 0) {
             slot->set(nullptr);
         } else {
             slot->setChanged();

@@ -37,7 +37,7 @@ private:
     int randomInterval;
     DistComp* distComp;
     EntitySelector* selector;
-    weak_ptr<LivingEntity> target;
+    std::weak_ptr<LivingEntity> target;
 
 public:
     NearestAttackableTargetGoal(PathfinderMob* mob,

@@ -19,9 +19,9 @@ void EffectCommand::execute(std::shared_ptr<CommandSender> source,
     //	if (args[1].equals("clear")) {
     //		if (player.getActiveEffects().isEmpty()) {
     //			throw new
-    //CommandException("commands.effect.failure.notActive.all",
-    //player.getAName()); 		} else { 			player.removeAllEffects();
-    //			logAdminAction(source,
+    // CommandException("commands.effect.failure.notActive.all",
+    // player.getAName()); 		} else {
+    // player.removeAllEffects(); 			logAdminAction(source,
     //"commands.effect.success.removed.all", player.getAName());
     //		}
     //	} else {
@@ -31,8 +31,8 @@ void EffectCommand::execute(std::shared_ptr<CommandSender> source,
     //		int amplifier = 0;
 
     //		if (effectId < 0 || effectId >= MobEffect.effects.length ||
-    //MobEffect.effects[effectId] == null) { 			throw new
-    //InvalidNumberException("commands.effect.notFound", effectId);
+    // MobEffect.effects[effectId] == null) { 			throw new
+    // InvalidNumberException("commands.effect.notFound", effectId);
     //		}
 
     //		if (args.length >= 3) {
@@ -41,7 +41,7 @@ void EffectCommand::execute(std::shared_ptr<CommandSender> source,
     //				duration = seconds;
     //			} else {
     //				duration = seconds *
-    //SharedConstants.TICKS_PER_SECOND;
+    // SharedConstants.TICKS_PER_SECOND;
     //			}
     //		} else if (MobEffect.effects[effectId].isInstantenous()) {
     //			duration = 1;
@@ -56,19 +56,19 @@ void EffectCommand::execute(std::shared_ptr<CommandSender> source,
     //				player.removeEffect(effectId);
     //				logAdminAction(source,
     //"commands.effect.success.removed",
-    //ChatMessageComponent.forTranslation(MobEffect.effects[effectId].getDescriptionId()),
-    //player.getAName()); 			} else { 				throw new
-    //CommandException("commands.effect.failure.notActive",
-    //ChatMessageComponent.forTranslation(MobEffect.effects[effectId].getDescriptionId()),
-    //player.getAName());
+    // ChatMessageComponent.forTranslation(MobEffect.effects[effectId].getDescriptionId()),
+    // player.getAName()); 			} else {
+    // throw new CommandException("commands.effect.failure.notActive",
+    // ChatMessageComponent.forTranslation(MobEffect.effects[effectId].getDescriptionId()),
+    // player.getAName());
     //			}
     //		} else {
     //			MobEffectInstance instance = new
-    //MobEffectInstance(effectId, duration, amplifier);
+    // MobEffectInstance(effectId, duration, amplifier);
     //			player.addEffect(instance);
     //			logAdminAction(source, "commands.effect.success",
-    //ChatMessageComponent.forTranslation(instance.getDescriptionId()),
-    //effectId, amplifier, player.getAName(), seconds);
+    // ChatMessageComponent.forTranslation(instance.getDescriptionId()),
+    // effectId, amplifier, player.getAName(), seconds);
     //		}
     //	}
 

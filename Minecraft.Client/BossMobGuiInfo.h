@@ -2,8 +2,7 @@
 
 class BossMob;
 
-class BossMobGuiInfo
-{
+class BossMobGuiInfo {
 public:
     static float healthProgress;
     static int displayTicks;

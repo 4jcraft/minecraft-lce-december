@@ -2,17 +2,16 @@
 #include "GuiParticle.h"
 #include "..\Minecraft.World\Random.h"
 
-Random *GuiParticle::random = new Random();
+Random* GuiParticle::random = new Random();
 
-GuiParticle::GuiParticle(double x, double y, double xa, double ya)
-{
-	// 4J - added initialisation block
+GuiParticle::GuiParticle(double x, double y, double xa, double ya) {
+    // 4J - added initialisation block
     removed = false;
     life = 0;
     a = 1;
     oR = oG = oB = oA = 0;
-		
-	this->xo = this->x = x;
+
+    this->xo = this->x = x;
     this->yo = this->y = y;
     this->xa = xa;
     this->ya = ya;
@@ -24,11 +23,10 @@ GuiParticle::GuiParticle(double x, double y, double xa, double ya)
 
     friction = 1.0 / (random->nextDouble() * 0.05 + 1.01);
 
-    lifeTime = (int) (10.0 / (random->nextDouble() * 2 + 0.1));
+    lifeTime = (int)(10.0 / (random->nextDouble() * 2 + 0.1));
 }
 
-void GuiParticle::tick(GuiParticles *guiParticles)
-{
+void GuiParticle::tick(GuiParticles* guiParticles) {
     x += xa;
     y += ya;
 
@@ -36,15 +34,14 @@ void GuiParticle::tick(GuiParticles *guiParticles)
     ya *= friction;
 
     ya += 0.1;
-    if (++life > lifeTime) remove();
-    a = 2 - (life / (double) lifeTime) * 2;
+    if (++life > lifeTime) std::remove();
+    a = 2 - (life / (double)lifeTime) * 2;
     if (a > 1) a = 1;
     a = a * a;
     a *= 0.5;
 }
 
-void GuiParticle::preTick()
-{
+void GuiParticle::preTick() {
     oR = r;
     oG = g;
     oB = b;
@@ -54,7 +51,4 @@ void GuiParticle::preTick()
     yo = y;
 }
 
-void GuiParticle::remove()
-{
-	removed = true;
-}
+void GuiParticle::remove() { removed = true; }

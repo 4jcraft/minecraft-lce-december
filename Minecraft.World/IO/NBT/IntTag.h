@@ -16,10 +16,10 @@ public:
     std::wstring toString() {
         static wchar_t buf[32];
         swprintf(buf, 32, L"%d", data);
-        return wstring(buf);
+        return std::wstring(buf);
     }
 
-    Tag* copy() { return new IntTag(getName(), data); }
+    Tag* std::copy() { return new IntTag(getName(), data); }
 
     bool equals(Tag* obj) {
         if (Tag::equals(obj)) {

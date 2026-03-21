@@ -58,7 +58,7 @@ std::shared_ptr<ItemInstance> SetEquippedItemPacket::getItem() { return item; }
 bool SetEquippedItemPacket::canBeInvalidated() { return true; }
 
 bool SetEquippedItemPacket::isInvalidatedBy(std::shared_ptr<Packet> packet) {
-    shared_ptr<SetEquippedItemPacket> target =
+    std::shared_ptr<SetEquippedItemPacket> target =
         dynamic_pointer_cast<SetEquippedItemPacket>(packet);
     return target->entity == entity && target->slot == slot;
 }

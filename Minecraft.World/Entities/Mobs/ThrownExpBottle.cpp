@@ -30,10 +30,10 @@ void ThrownExpBottle::onHit(HitResult* res) {
         while (xpCount > 0) {
             int newCount = ExperienceOrb::getExperienceValue(xpCount);
             xpCount -= newCount;
-            level->addEntity(shared_ptr<ExperienceOrb>(
+            level->addEntity(std::shared_ptr<ExperienceOrb>(
                 new ExperienceOrb(level, x, y, z, newCount)));
         }
 
-        remove();
+        std::remove();
     }
 }

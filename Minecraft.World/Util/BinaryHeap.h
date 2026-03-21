@@ -21,7 +21,7 @@ public:
     void clear();
     Node* peek();
     Node* pop();
-    void remove(Node* node);
+    void std::remove(Node* node);
     void changeCost(Node* node, float newCost);
     int size();
 

@@ -105,7 +105,7 @@ NetherBridgePieces::PieceWeight* NetherBridgePieces::castlePieceWeights
 
 NetherBridgePieces::NetherBridgePiece*
 NetherBridgePieces::findAndCreateBridgePieceFactory(
-    NetherBridgePieces::PieceWeight* piece, list<StructurePiece*>* pieces,
+    NetherBridgePieces::PieceWeight* piece, std::list<StructurePiece*>* pieces,
     Random* random, int footX, int footY, int footZ, int direction, int depth) {
     EPieceClass pieceClass = piece->pieceClass;
     NetherBridgePiece* structurePiece = NULL;
@@ -168,8 +168,8 @@ WeighedTreasure* NetherBridgePieces::NetherBridgePiece::fortressTreasureItems
         new WeighedTreasure(Item::horseArmorDiamond_Id, 0, 1, 1, 3),
 };
 
-NetherBridgePieces::NetherBridgePiece::NetherBridgePiece() {
-    // for reflection
+NetherBridgePieces::NetherBridgePiece::NetherBridgePiece() {  // for
+                                                              // reflection     
 }
 
 NetherBridgePieces::NetherBridgePiece::NetherBridgePiece(int genDepth)
@@ -182,7 +182,7 @@ void NetherBridgePieces::NetherBridgePiece::addAdditonalSaveData(
     CompoundTag* tag) {}
 
 int NetherBridgePieces::NetherBridgePiece::updatePieceWeight(
-    list<PieceWeight*>* currentPieces) {
+    std::list<PieceWeight*>* currentPieces) {
     bool hasAnyPieces = false;
     int totalWeight = 0;
     for (AUTO_VAR(it, currentPieces->begin()); it != currentPieces->end();
@@ -201,8 +201,8 @@ int NetherBridgePieces::NetherBridgePiece::updatePieceWeight(
 NetherBridgePieces::NetherBridgePiece*
 NetherBridgePieces::NetherBridgePiece::generatePiece(
     StartPiece* startPiece,
-    list<NetherBridgePieces::PieceWeight*>* currentPieces,
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<NetherBridgePieces::PieceWeight*>* currentPieces,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int depth) {
     int totalWeight = updatePieceWeight(currentPieces);
     boolean doStuff = totalWeight > 0 && depth <= MAX_DEPTH;
@@ -246,14 +246,15 @@ NetherBridgePieces::NetherBridgePiece::generatePiece(
 }
 
 StructurePiece* NetherBridgePieces::NetherBridgePiece::generateAndAddPiece(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int footX, int footY, int footZ, int direction, int depth, bool isCastle) {
     if (abs(footX - startPiece->getBoundingBox()->x0) > 7 * 16 ||
         abs(footZ - startPiece->getBoundingBox()->z0) > 7 * 16) {
         return BridgeEndFiller::createPiece(pieces, random, footX, footY, footZ,
                                             direction, depth);
     }
-    list<PieceWeight*>* availablePieces = &startPiece->availableBridgePieces;
+    std::list<PieceWeight*>* availablePieces =
+        &startPiece->availableBridgePieces;
     if (isCastle) {
         availablePieces = &startPiece->availableCastlePieces;
     }
@@ -268,7 +269,7 @@ StructurePiece* NetherBridgePieces::NetherBridgePiece::generateAndAddPiece(
 }
 
 StructurePiece* NetherBridgePieces::NetherBridgePiece::generateChildForward(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int xOff, int yOff, bool isCastle) {
     switch (orientation) {
         case Direction::NORTH:
@@ -296,7 +297,7 @@ StructurePiece* NetherBridgePieces::NetherBridgePiece::generateChildForward(
 }
 
 StructurePiece* NetherBridgePieces::NetherBridgePiece::generateChildLeft(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int yOff, int zOff, bool isCastle) {
     switch (orientation) {
         case Direction::NORTH:
@@ -324,7 +325,7 @@ StructurePiece* NetherBridgePieces::NetherBridgePiece::generateChildLeft(
 }
 
 StructurePiece* NetherBridgePieces::NetherBridgePiece::generateChildRight(
-    StartPiece* startPiece, list<StructurePiece*>* pieces, Random* random,
+    StartPiece* startPiece, std::list<StructurePiece*>* pieces, Random* random,
     int yOff, int zOff, bool isCastle) {
     switch (orientation) {
         case Direction::NORTH:
@@ -359,7 +360,7 @@ bool NetherBridgePieces::NetherBridgePiece::isOkBox(BoundingBox* box,
         if (box->y0 > LOWEST_Y_POSITION) bIsOk = true;
         int xzSize = (startPiece->m_level->getLevelData()->getXZSize() /
                       startPiece->m_level->getLevelData()
-                          ->getHellScale());  // HellRandomLevelSource::XZSIZE;
+ // HellRandomLevelSource::XZSIZE;lScale());                                   
         int blockMin = -((xzSize << 4) / 2) + 1;
         int blockMax = ((xzSize << 4) / 2) - 1;
 
@@ -422,8 +423,9 @@ void NetherBridgePieces::NetherBridgePiece::generateLightPostFacingDown(
     generateLightPost(level, random, chunkBB, x, y, z, 0, -1);
 }
 
-NetherBridgePieces::BridgeStraight::BridgeStraight() {
-    // for reflection
+NetherBridgePi  // for reflectionght::BridgeStraight() {
+                     
+
 }
 
 NetherBridgePieces::BridgeStraight::BridgeStraight(int genDepth, Random* random,
@@ -435,15 +437,15 @@ NetherBridgePieces::BridgeStraight::BridgeStraight(int genDepth, Random* random,
 }
 
 void NetherBridgePieces::BridgeStraight::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     generateChildForward((StartPiece*)startPiece, pieces, random, 1, 3, false);
 }
 
 NetherBridgePieces::BridgeStraight*
-NetherBridgePieces::BridgeStraight::createPiece(list<StructurePiece*>* pieces,
-                                                Random* random, int footX,
-                                                int footY, int footZ,
-                                                int direction, int genDepth) {
+NetherBridgePieces::BridgeStraight::createPiece(
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, -3, 0,
                                               width, height, depth, direction);
 
@@ -462,20 +464,19 @@ NetherBridgePieces::BridgeStraight::createPiece(list<StructurePiece*>* pieces,
 
 bool NetherBridgePieces::BridgeStraight::postProcess(Level* level,
                                                      Random* random,
-                                                     BoundingBox* chunkBB) {
-    // floor
+                          // floor                   BoundingBox* chunkBB) {
+            
     generateBox(level, chunkBB, 0, 3, 0, width - 1, 4, depth - 1,
-                Tile::netherBrick_Id, Tile::netherBrick_Id, false);
-    // room air
-    generateBox(level, chunkBB, 1, 5, 0, 3, 7, depth - 1, 0, 0, false);
+                T// room airBrick_Id, Tile::netherBrick_Id, false);
+               
+    generateBox(level,// hand rails5, 0, 3, 7, depth - 1, 0, 0, false);
 
-    // hand rails
+                 
     generateBox(level, chunkBB, 0, 5, 0, 0, 5, depth - 1, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 4, 5, 0, 4, 5, depth - 1, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
+    generateBox(level, chunkBB, 4, 5, 0, 4, 5, depth - 1, Tile::netherBrick_// supports         Tile::netherBrick_Id, false);
 
-    // supports
+               
     generateBox(level, chunkBB, 0, 2, 0, 4, 2, 5, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 0, 2, 13, 4, 2, 18, Tile::netherBrick_Id,
@@ -486,11 +487,10 @@ bool NetherBridgePieces::BridgeStraight::postProcess(Level* level,
                 Tile::netherBrick_Id, false);
 
     for (int x = 0; x <= 4; x++) {
-        for (int z = 0; z <= 2; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, 18 - z,
-                           chunkBB);
-        }
+    for (int z = 0; z <= 2; z++) {
+        fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
+        fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, 18 - z, chunkBB);
+    }
     }
 
     generateBox(level, chunkBB, 0, 1, 1, 0, 4, 1, Tile::netherFence_Id,
@@ -513,8 +513,9 @@ bool NetherBridgePieces::BridgeStraight::postProcess(Level* level,
     return true;
 }
 
-NetherBridgePieces::BridgeEndFiller::BridgeEndFiller() {
-    // for reflection
+Nether  // for reflectiondgeEndFiller::BridgeEndFiller() {
+                     
+
 }
 
 NetherBridgePieces::BridgeEndFiller::BridgeEndFiller(int genDepth,
@@ -528,10 +529,9 @@ NetherBridgePieces::BridgeEndFiller::BridgeEndFiller(int genDepth,
 }
 
 NetherBridgePieces::BridgeEndFiller*
-NetherBridgePieces::BridgeEndFiller::createPiece(list<StructurePiece*>* pieces,
-                                                 Random* random, int footX,
-                                                 int footY, int footZ,
-                                                 int direction, int genDepth) {
+NetherBridgePieces::BridgeEndFiller::createPiece(
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, -3, 0,
                                               width, height, depth, direction);
 
@@ -550,42 +550,41 @@ NetherBridgePieces::BridgeEndFiller::createPiece(list<StructurePiece*>* pieces,
 
 bool NetherBridgePieces::BridgeEndFiller::postProcess(Level* level,
                                                       Random* random,
-                                                      BoundingBox* chunkBB) {
-    Random* selfRandom = new Random(selfSeed);
+                                                      BoundingBox* chu// floor    Random* selfRandom = new Random(selfSeed);
 
-    // floor
+            
     for (int x = 0; x <= 4; x++) {
-        for (int y = 3; y <= 4; y++) {
-            int z = selfRandom->nextInt(8);
+    for (int y = 3; y <= 4; y++) {
+        int z = selfRandom->nextInt(8);
             generateBox(level, chunkBB, x, y, 0, x, y, z, Tile::netherBrick_Id,
-                        Tile::netherBrick_Id, false);
-        }
+            // hand rails::netherBrick_Id, false);
+    }
     }
 
-    // hand rails
+                 
     {
-        int z = selfRandom->nextInt(8);
-        generateBox(level, chunkBB, 0, 5, 0, 0, 5, z, Tile::netherBrick_Id,
-                    Tile::netherBrick_Id, false);
+    int z = selfRandom->nextInt(8);
+    generateBox(level, chunkBB, 0, 5, 0, 0, 5, z, Tile::netherBrick_Id,
+                Tile::netherBrick_Id, false);
     }
     {
-        int z = selfRandom->nextInt(8);
+    int z = selfRandom->nextInt(8);
         generateBox(level, chunkBB, 4, 5, 0, 4, 5, z, Tile::netherBrick_Id,
-                    Tile::netherBrick_Id, false);
+        // supports        Tile::netherBrick_Id, false);
     }
 
-    // supports
+               
     for (int x = 0; x <= 4; x++) {
-        int z = selfRandom->nextInt(5);
-        generateBox(level, chunkBB, x, 2, 0, x, 2, z, Tile::netherBrick_Id,
-                    Tile::netherBrick_Id, false);
+    int z = selfRandom->nextInt(5);
+    generateBox(level, chunkBB, x, 2, 0, x, 2, z, Tile::netherBrick_Id,
+                Tile::netherBrick_Id, false);
     }
     for (int x = 0; x <= 4; x++) {
-        for (int y = 0; y <= 1; y++) {
-            int z = selfRandom->nextInt(3);
-            generateBox(level, chunkBB, x, y, 0, x, y, z, Tile::netherBrick_Id,
-                        Tile::netherBrick_Id, false);
-        }
+    for (int y = 0; y <= 1; y++) {
+        int z = selfRandom->nextInt(3);
+        generateBox(level, chunkBB, x, y, 0, x, y, z, Tile::netherBrick_Id,
+                    Tile::netherBrick_Id, false);
+    }
     }
 
     delete selfRandom;
@@ -595,20 +594,20 @@ bool NetherBridgePieces::BridgeEndFiller::postProcess(Level* level,
 
 void NetherBridgePieces::BridgeEndFiller::readAdditonalSaveData(
     CompoundTag* tag) {
-    NetherBridgePiece::readAdditonalSaveData(tag);
+    NetherBridgePiec "Seed" dAdditonalSaveData(tag);
 
-    selfSeed = tag->getInt(L"Seed");
+    selfSeed = tag->getInt(L      );
 }
 
 void NetherBridgePieces::BridgeEndFiller::addAdditonalSaveData(
     CompoundTag* tag) {
-    NetherBridgePiece::addAdditonalSaveData(tag);
+    Neth "Seed" gePiece::addAdditonalSaveData(tag);
 
-    tag->putInt(L"Seed", selfSeed);
+    tag->putInt(L      , selfSeed);
 }
+// for reflectiones::BridgeCrossing::BridgeCrossing() {
+                 
 
-NetherBridgePieces::BridgeCrossing::BridgeCrossing() {
-    // for reflection
 }
 
 NetherBridgePieces::BridgeCrossing::BridgeCrossing(int genDepth, Random* random,
@@ -638,17 +637,17 @@ NetherBridgePieces::BridgeCrossing::BridgeCrossing(Random* random, int west,
 }
 
 void NetherBridgePieces::BridgeCrossing::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces,
+    Random* random) {
     generateChildForward((StartPiece*)startPiece, pieces, random, 8, 3, false);
     generateChildLeft((StartPiece*)startPiece, pieces, random, 3, 8, false);
     generateChildRight((StartPiece*)startPiece, pieces, random, 3, 8, false);
 }
 
 NetherBridgePieces::BridgeCrossing*
-NetherBridgePieces::BridgeCrossing::createPiece(list<StructurePiece*>* pieces,
-                                                Random* random, int footX,
-                                                int footY, int footZ,
-                                                int direction, int genDepth) {
+NetherBridgePieces::BridgeCrossing::createPiece(
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -8, -3, 0,
                                               width, height, depth, direction);
 
@@ -667,16 +666,16 @@ NetherBridgePieces::BridgeCrossing::createPiece(list<StructurePiece*>* pieces,
 
 bool NetherBridgePieces::BridgeCrossing::postProcess(Level* level,
                                                      Random* random,
-                                                     BoundingBox* chunkBB) {
-    // floor
+           // floor                                  BoundingBox* chunkBB) {
+            
     generateBox(level, chunkBB, 7, 3, 0, 11, 4, 18, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 0, 3, 7, 18, 4, 11, Tile::netherBrick_Id,
+    generateBox(level, chunkBB, 0, 3, 7, 18, 4, 11, Ti// room airrick_Id,
                 Tile::netherBrick_Id, false);
-    // room air
+               
     generateBox(level, chunkBB, 8, 5, 0, 10, 7, 18, 0, 0, false);
-    generateBox(level, chunkBB, 0, 5, 8, 18, 7, 10, 0, 0, false);
-    // hand rails
+// hand railsox(level, chunkBB, 0, 5, 8, 18, 7, 10, 0, 0, false);
+                 
     generateBox(level, chunkBB, 7, 5, 0, 7, 5, 7, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 7, 5, 11, 7, 5, 18, Tile::netherBrick_Id,
@@ -691,10 +690,10 @@ bool NetherBridgePieces::BridgeCrossing::postProcess(Level* level,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 0, 5, 11, 7, 5, 11, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 11, 5, 11, 18, 5, 11, Tile::netherBrick_Id,
+    generateBox(level, chunkBB, 11, 5, 11, 18, 5, 11, Til// supportsick_Id,
                 Tile::netherBrick_Id, false);
 
-    // supports
+               
     generateBox(level, chunkBB, 7, 2, 0, 11, 2, 5, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 7, 2, 13, 11, 2, 18, Tile::netherBrick_Id,
@@ -704,11 +703,10 @@ bool NetherBridgePieces::BridgeCrossing::postProcess(Level* level,
     generateBox(level, chunkBB, 7, 0, 15, 11, 1, 18, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     for (int x = 7; x <= 11; x++) {
-        for (int z = 0; z <= 2; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, 18 - z,
-                           chunkBB);
-        }
+    for (int z = 0; z <= 2; z++) {
+        fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
+        fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, 18 - z, chunkBB);
+    }
     }
 
     generateBox(level, chunkBB, 0, 2, 7, 5, 2, 11, Tile::netherBrick_Id,
@@ -720,18 +718,16 @@ bool NetherBridgePieces::BridgeCrossing::postProcess(Level* level,
     generateBox(level, chunkBB, 15, 0, 7, 18, 1, 11, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     for (int x = 0; x <= 2; x++) {
-        for (int z = 7; z <= 11; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-            fillColumnDown(level, Tile::netherBrick_Id, 0, 18 - x, -1, z,
-                           chunkBB);
-        }
+    for (int z = 7; z <= 11; z++) {
+        fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
+        fillColumnDown(level, Tile::netherBrick_Id, 0, 18 - x, -1, z, chunkBB);
+    }
     }
 
-    return true;
-}
+ // for reflection
 
 NetherBridgePieces::StartPiece::StartPiece() {
-    // for reflection
+                     
     previousPiece = NULL;
 }
 
@@ -760,11 +756,8 @@ void NetherBridgePieces::StartPiece::readAdditonalSaveData(CompoundTag* tag) {
 }
 
 void NetherBridgePieces::StartPiece::addAdditonalSaveData(CompoundTag* tag) {
-    BridgeCrossing::addAdditonalSaveData(tag);
-}
-
-NetherBridgePieces::RoomCrossing::RoomCrossing() {
-    // for reflection
+    BridgeCrossing::addAdditonalSav// for reflectiontherBridgePieces::RoomCrossing::RoomCrossing() {
+                     
 }
 
 NetherBridgePieces::RoomCrossing::RoomCrossing(int genDepth, Random* random,
@@ -775,14 +768,14 @@ NetherBridgePieces::RoomCrossing::RoomCrossing(int genDepth, Random* random,
 }
 
 void NetherBridgePieces::RoomCrossing::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
     generateChildForward((StartPiece*)startPiece, pieces, random, 2, 0, false);
     generateChildLeft((StartPiece*)startPiece, pieces, random, 0, 2, false);
     generateChildRight((StartPiece*)startPiece, pieces, random, 0, 2, false);
 }
 
 NetherBridgePieces::RoomCrossing* NetherBridgePieces::RoomCrossing::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
     BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -2, 0, 0,
                                               width, height, depth, direction);
@@ -800,15 +793,13 @@ NetherBridgePieces::RoomCrossing* NetherBridgePieces::RoomCrossing::createPiece(
     return new RoomCrossing(genDepth, random, box, direction);
 }
 
-bool NetherBridgePieces::RoomCrossing::postProcess(Level* level, Random* random,
-                                                   BoundingBox* chunkBB) {
-    // floor
-    generateBox(level, chunkBB, 0, 0, 0, width - 1, 1, depth - 1,
-                Tile::netherBrick_Id, Tile::netherBrick_Id, false);
-    // room air
+bool NetherBridgePieces::RoomCrossing::postProcess(Level* level, Random* random,// floor                                            BoundingBox* chunkBB) {
+            
+    generateBox(level, chunkBB, 0, 0, 0, width - 1, 1, dep// room air             Tile::netherBrick_Id, Tile::netherBrick_Id, false);
+     // walls  
     generateBox(level, chunkBB, 0, 2, 0, 6, 7, 6, 0, 0, false);
 
-    // walls
+            
     generateBox(level, chunkBB, 0, 2, 0, 1, 6, 0, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 0, 2, 6, 1, 6, 6, Tile::netherBrick_Id,
@@ -823,10 +814,10 @@ bool NetherBridgePieces::RoomCrossing::postProcess(Level* level, Random* random,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 6, 2, 0, 6, 6, 1, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 6, 2, 5, 6, 6, 6, Tile::netherBrick_Id,
+    generateBox(level, chunkBB, 6, 2, 5, 6,// entriese::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // entries
+              
     generateBox(level, chunkBB, 2, 6, 0, 4, 6, 0, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 2, 5, 0, 4, 5, 0, Tile::netherFence_Id,
@@ -845,59 +836,58 @@ bool NetherBridgePieces::RoomCrossing::postProcess(Level* level, Random* random,
                 Tile::netherFence_Id, false);
 
     for (int x = 0; x <= 6; x++) {
-        for (int z = 0; z <= 6; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
+    for (int z = 0; z <= 6; z++) {
+        fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
+        // for reflectionrn true;
+    }
+
+    NetherBridgePieces::StairsRoom::StairsRoom(){
+                     
+}
+
+    NetherBridgePieces::StairsRoom::StairsRoom(int genDepth, Random* random,
+                                               BoundingBox* box, int direction)
+        : NetherBridgePiece(genDepth) {
+        orientation = direction;
+        boundingBox = box;
+    }
+
+    void NetherBridgePieces::StairsRoom::addChildren(
+        StructurePiece * startPiece, std::list<StructurePiece*> * pieces,
+        Random * random) {
+        generateChildRight((StartPiece*)startPiece, pieces, random, 6, 2,
+                           false);
+    }
+
+    NetherBridgePieces::StairsRoom* NetherBridgePieces::StairsRoom::createPiece(
+        std::list<StructurePiece*> * pieces, Random * random, int footX,
+        int footY, int footZ, int direction, int genDepth) {
+        BoundingBox* box = BoundingBox::orientBox(
+            footX, footY, footZ, -2, 0, 0, width, height, depth, direction);
+
+        StartPiece* startPiece = NULL;
+        if (pieces != NULL)
+            startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+
+        if (!isOkBox(box, startPiece) ||
+            StructurePiece::findCollisionPiece(pieces, box) != NULL) {
+            delete box;
+            return NULL;
         }
+
+        return new StairsRoom(genDepth, random, box, direction);
     }
 
-    return true;
-}
-
-NetherBridgePieces::StairsRoom::StairsRoom() {
-    // for reflection
-}
-
-NetherBridgePieces::StairsRoom::StairsRoom(int genDepth, Random* random,
-                                           BoundingBox* box, int direction)
-    : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = box;
-}
-
-void NetherBridgePieces::StairsRoom::addChildren(StructurePiece* startPiece,
-                                                 list<StructurePiece*>* pieces,
-                                                 Random* random) {
-    generateChildRight((StartPiece*)startPiece, pieces, random, 6, 2, false);
-}
-
-NetherBridgePieces::StairsRoom* NetherBridgePieces::StairsRoom::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
-    int footZ, int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -2, 0, 0,
-                                              width, height, depth, direction);
-
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
-
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
-    }
-
-    return new StairsRoom(genDepth, random, box, direction);
-}
-
-bool NetherBridgePieces::StairsRoom::postProcess(Level* level, Random* random,
-                                                 BoundingBox* chunkBB) {
-    // floor
-    generateBox(level, chunkBB, 0, 0, 0, width - 1, 1, depth - 1,
-                Tile::netherBrick_Id, Tile::netherBrick_Id, false);
-    // room air
+    bool NetherBridgePieces::StairsRoom::postProcess(Level * level,
+                                                     Ran  // floordom,
+                                                         BoundingBox *
+                                                         chunkBB) {
+            
+    generateBox(level, chunkBB, 0, 0, 0, width -// room airh - 1,
+                Tile::netherBrick_Id, Tile::netherBrick_Id, fals// walls           
     generateBox(level, chunkBB, 0, 2, 0, 6, 10, 6, 0, 0, false);
 
-    // walls
+            
     generateBox(level, chunkBB, 0, 2, 0, 1, 8, 0, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 5, 2, 0, 6, 8, 0, Tile::netherBrick_Id,
@@ -906,18 +896,18 @@ bool NetherBridgePieces::StairsRoom::postProcess(Level* level, Random* random,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 6, 2, 1, 6, 8, 6, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 1, 2, 6, 5, 8, 6, Tile::netherBrick_Id,
+    generateBox(level, chunkBB, 1// wall decorationsle::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // wall decorations
+                       
     generateBox(level, chunkBB, 0, 3, 2, 0, 5, 4, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
     generateBox(level, chunkBB, 6, 3, 2, 6, 5, 2, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
-    generateBox(level, chunkBB, 6, 3, 4, 6, 5, 4, Tile::netherFence_Id,
+    generateBox(level, chunkBB, 6// stair6, 5, 4, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
 
-    // stair
+            
     placeBlock(level, Tile::netherBrick_Id, 0, 5, 2, 5, chunkBB);
     generateBox(level, chunkBB, 4, 2, 5, 4, 3, 5, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
@@ -925,92 +915,90 @@ bool NetherBridgePieces::StairsRoom::postProcess(Level* level, Random* random,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 2, 2, 5, 2, 5, 5, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 1, 2, 5, 1, 6, 5, Tile::netherBrick_Id,
+    generateBox(level, chunkBB, 1// top floor, 5, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // top floor
+                
     generateBox(level, chunkBB, 1, 7, 1, 5, 7, 4, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
+                Tile::net// entriesd, false);
     generateBox(level, chunkBB, 6, 8, 2, 6, 8, 4, 0, 0, false);
 
-    // entries
+              
     generateBox(level, chunkBB, 2, 6, 0, 4, 8, 0, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 2, 5, 0, 4, 5, 0, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
 
     for (int x = 0; x <= 6; x++) {
-        for (int z = 0; z <= 6; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-        }
-    }
+            for (int z = 0; z <= 6; z++) {
+                fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z,
+                               chunkBB);
+                // for reflectionreturn true;
+            }
 
-    return true;
+            NetherBridgePieces::MonsterThrone::MonsterThrone(){
+                     
 }
 
-NetherBridgePieces::MonsterThrone::MonsterThrone() {
-    // for reflection
-}
+            NetherBridgePieces::MonsterThrone::MonsterThrone(
+                int genDepth, Random* random, BoundingBox* box, int direction)
+                : NetherBridgePiece(genDepth) {
+                orientation = direction;
+                boundingBox = box;
+                hasPlacedMobSpawner = false;
+            }
 
-NetherBridgePieces::MonsterThrone::MonsterThrone(int genDepth, Random* random,
-                                                 BoundingBox* box,
-                                                 int direction)
-    : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = box;
-    hasPlacedMobSpawner = false;
-}
+            NetherBridgePieces::MonsterThrone*
+            NetherBridgePieces::MonsterThrone::createPiece(
+                std::list<StructurePiece*> * pieces, Random * random, int footX,
+                int footY, int footZ, int direction, int genDepth) {
+                BoundingBox* box =
+                    BoundingBox::orientBox(footX, footY, footZ, -2, 0, 0, width,
+                                           height, depth, direction);
 
-NetherBridgePieces::MonsterThrone*
-NetherBridgePieces::MonsterThrone::createPiece(list<StructurePiece*>* pieces,
-                                               Random* random, int footX,
-                                               int footY, int footZ,
-                                               int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -2, 0, 0,
-                                              width, height, depth, direction);
+                StartPiece* startPiece = NULL;
+                if (pieces != NULL)
+                    startPiece =
+                        ((NetherBridgePieces::StartPiece*)pieces->front());
 
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+                if (!isOkBox(box, startPiece) ||
+                    StructurePiece::findCollisionPiece(pieces, box) != NULL) {
+                    delete box;
+                    return NULL;
+                }
 
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
-    }
+                return new MonsterThrone(genDepth, random, box, direction);
+            }
 
-    return new MonsterThrone(genDepth, random, box, direction);
-}
+            void NetherBridgePieces::MonsterThrone::readAdditonalSaveData(
+                CompoundTag * tag) {
+                "Mob" etherBridgePiece::readAdditonalSaveData(tag);
 
-void NetherBridgePieces::MonsterThrone::readAdditonalSaveData(
-    CompoundTag* tag) {
-    NetherBridgePiece::readAdditonalSaveData(tag);
+                hasPlacedMobSpawner = tag->getBoolean(L     );
+            }
 
-    hasPlacedMobSpawner = tag->getBoolean(L"Mob");
-}
-
-void NetherBridgePieces::MonsterThrone::addAdditonalSaveData(CompoundTag* tag) {
+void NetherBridgePieces::MonsterThrone::addAdditonalSaveDa"Mob"mpoundTag* tag) {
     NetherBridgePiece::addAdditonalSaveData(tag);
 
-    tag->putBoolean(L"Mob", hasPlacedMobSpawner);
+    tag->putBoolean(L     , hasPlacedMobSpawner);
 }
 
 bool NetherBridgePieces::MonsterThrone::postProcess(Level* level,
                                                     Random* random,
-                                                    BoundingBox* chunkBB) {
+                                                  // floorsgBox* chunkBB) {
     generateBox(level, chunkBB, 0, 2, 0, 6, 7, 7, 0, 0, false);
 
-    // floors
+             
     generateBox(level, chunkBB, 1, 0, 0, 5, 1, 7, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 1, 2, 1, 5, 2, 7, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 1, 3, 2, 5, 3, 7, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 1, 4, 3, 5, 4, 7, Tile::netherBrick_Id,
+    generateBox(level, chunk// rails, 3, 5, 4, 7, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // rails
+            
     generateBox(level, chunkBB, 1, 2, 0, 1, 4, 2, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 5, 2, 0, 5, 4, 2, Tile::netherBrick_Id,
@@ -1038,75 +1026,80 @@ bool NetherBridgePieces::MonsterThrone::postProcess(Level* level,
                 Tile::netherFence_Id, false);
 
     if (!hasPlacedMobSpawner) {
-        int y = getWorldY(5), x = getWorldX(3, 5), z = getWorldZ(3, 5);
-        if (chunkBB->isInside(x, y, z)) {
-            hasPlacedMobSpawner = true;
-            level->setTileAndData(x, y, z, Tile::mobSpawner_Id, 0,
-                                  Tile::UPDATE_CLIENTS);
-            std::shared_ptr<MobSpawnerTileEntity> entity =
-                dynamic_pointer_cast<MobSpawnerTileEntity>(
-                    level->getTileEntity(x, y, z));
-            if (entity != NULL) entity->getSpawner()->setEntityId(L"Blaze");
-        }
+                int y = getWorldY(5), x = getWorldX(3, 5), z = getWorldZ(3, 5);
+                if (chunkBB->isInside(x, y, z)) {
+                    hasPlacedMobSpawner = true;
+                    level->setTileAndData(x, y, z, Tile::mobSpawner_Id, 0,
+                                          Tile::UPDATE_CLIENTS);
+                    std::shared_ptr<MobSpawnerTileEntity> entity =
+                        dynamic_pointer_cast<MobSpawnerTileEntity>(
+                            leve "Blaze" ileEntity(x, y, z));
+                    if (entity != NULL)
+                        entity->getSpawner()->setEntityId(L       );
+                }
     }
 
     for (int x = 0; x <= 6; x++) {
-        for (int z = 0; z <= 6; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-        }
-    }
+                for (int z = 0; z <= 6; z++) {
+                    fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z,
+                                   chunkBB);
+                    // for reflection   return true;
+                }
 
-    return true;
+                NetherBridgePieces::CastleEntrance::CastleEntrance(){
+                     
 }
 
-NetherBridgePieces::CastleEntrance::CastleEntrance() {
-    // for reflection
-}
+                NetherBridgePieces::CastleEntrance::CastleEntrance(
+                    int genDepth, Random* random, BoundingBox* stairsBox,
+                    int direction)
+                    : NetherBridgePiece(genDepth) {
+                    orientation = direction;
+                    boundingBox = stairsBox;
+                }
 
-NetherBridgePieces::CastleEntrance::CastleEntrance(int genDepth, Random* random,
-                                                   BoundingBox* stairsBox,
-                                                   int direction)
-    : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = stairsBox;
-}
+                void NetherBridgePieces::CastleEntrance::addChildren(
+                    StructurePiece * startPiece,
+                    std::list<StructurePiece*> * pieces, Random * random) {
+                    generateChildForward((StartPiece*)startPiece, pieces,
+                                         random, 5, 3, true);
+                }
 
-void NetherBridgePieces::CastleEntrance::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
-    generateChildForward((StartPiece*)startPiece, pieces, random, 5, 3, true);
-}
+                NetherBridgePieces::CastleEntrance*
+                NetherBridgePieces::CastleEntrance::createPiece(
+                    std::list<StructurePiece*> * pieces, Random * random,
+                    int footX, int footY, int footZ, int direction,
+                    int genDepth) {
+                    BoundingBox* box =
+                        BoundingBox::orientBox(footX, footY, footZ, -5, -3, 0,
+                                               width, height, depth, direction);
 
-NetherBridgePieces::CastleEntrance*
-NetherBridgePieces::CastleEntrance::createPiece(list<StructurePiece*>* pieces,
-                                                Random* random, int footX,
-                                                int footY, int footZ,
-                                                int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -5, -3, 0,
-                                              width, height, depth, direction);
+                    StartPiece* startPiece = NULL;
+                    if (pieces != NULL)
+                        startPiece =
+                            ((NetherBridgePieces::StartPiece*)pieces->front());
 
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+                    if (!isOkBox(box, startPiece) ||
+                        StructurePiece::findCollisionPiece(pieces, box) !=
+                            NULL) {
+                        delete box;
+                        return NULL;
+                    }
 
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
-    }
+                    return new CastleEntrance(genDepth, random, box, direction);
+                }
 
-    return new CastleEntrance(genDepth, random, box, direction);
-}
-
-bool NetherBridgePieces::CastleEntrance::postProcess(Level* level,
-                                                     Random* random,
-                                                     BoundingBox* chunkBB) {
-    // floor
-    generateBox(level, chunkBB, 0, 3, 0, 12, 4, 12, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    // room air
+                bool NetherBridgePieces::CastleEntrance::postProcess(
+                    Level * level,
+                    // floorRandom* random,
+                    BoundingBox * chunkBB) {
+            
+    generateBox(lev// room air, 0, 3, 0, 12, 4, 12, Tile::netherBrick_Id,
+                Tile::netherB// walls false);
+               
     generateBox(level, chunkBB, 0, 5, 0, 12, 13, 12, 0, 0, false);
 
-    // walls
+            
     generateBox(level, chunkBB, 0, 5, 0, 1, 12, 12, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 11, 5, 0, 12, 12, 12, Tile::netherBrick_Id,
@@ -1121,50 +1114,66 @@ bool NetherBridgePieces::CastleEntrance::postProcess(Level* level,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 8, 5, 0, 10, 12, 1, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 5, 9, 0, 7, 12, 1, Tile::netherBrick_Id,
+    generateBox(lev// roofnkBB, 5, 9, 0, 7, 12, 1, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // roof
-    generateBox(level, chunkBB, 2, 11, 2, 10, 12, 10, Tile::netherBrick_Id,
+           
+    generateBox(level,// entrance decoration, 12, 10, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // entrance decoration
-    generateBox(level, chunkBB, 5, 8, 0, 7, 8, 0, Tile::netherFence_Id,
+                          
+    generateBox(le// wall decorations 0, 7, 8, 0, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
 
-    // wall decorations
+                       
     for (int i = 1; i <= 11; i += 2) {
-        generateBox(level, chunkBB, i, 10, 0, i, 11, 0, Tile::netherFence_Id,
-                    Tile::netherFence_Id, false);
-        generateBox(level, chunkBB, i, 10, 12, i, 11, 12, Tile::netherFence_Id,
-                    Tile::netherFence_Id, false);
-        generateBox(level, chunkBB, 0, 10, i, 0, 11, i, Tile::netherFence_Id,
-                    Tile::netherFence_Id, false);
-        generateBox(level, chunkBB, 12, 10, i, 12, 11, i, Tile::netherFence_Id,
-                    Tile::netherFence_Id, false);
-        placeBlock(level, Tile::netherBrick_Id, 0, i, 13, 0, chunkBB);
-        placeBlock(level, Tile::netherBrick_Id, 0, i, 13, 12, chunkBB);
-        placeBlock(level, Tile::netherBrick_Id, 0, 0, 13, i, chunkBB);
-        placeBlock(level, Tile::netherBrick_Id, 0, 12, 13, i, chunkBB);
-        placeBlock(level, Tile::netherFence_Id, 0, i + 1, 13, 0, chunkBB);
-        placeBlock(level, Tile::netherFence_Id, 0, i + 1, 13, 12, chunkBB);
-        placeBlock(level, Tile::netherFence_Id, 0, 0, 13, i + 1, chunkBB);
-        placeBlock(level, Tile::netherFence_Id, 0, 12, 13, i + 1, chunkBB);
+                        generateBox(level, chunkBB, i, 10, 0, i, 11, 0,
+                                    Tile::netherFence_Id, Tile::netherFence_Id,
+                                    false);
+                        generateBox(level, chunkBB, i, 10, 12, i, 11, 12,
+                                    Tile::netherFence_Id, Tile::netherFence_Id,
+                                    false);
+                        generateBox(level, chunkBB, 0, 10, i, 0, 11, i,
+                                    Tile::netherFence_Id, Tile::netherFence_Id,
+                                    false);
+                        generateBox(level, chunkBB, 12, 10, i, 12, 11, i,
+                                    Tile::netherFence_Id, Tile::netherFence_Id,
+                                    false);
+                        placeBlock(level, Tile::netherBrick_Id, 0, i, 13, 0,
+                                   chunkBB);
+                        placeBlock(level, Tile::netherBrick_Id, 0, i, 13, 12,
+                                   chunkBB);
+                        placeBlock(level, Tile::netherBrick_Id, 0, 0, 13, i,
+                                   chunkBB);
+                        placeBlock(level, Tile::netherBrick_Id, 0, 12, 13, i,
+                                   chunkBB);
+                        placeBlock(level, Tile::netherFence_Id, 0, i + 1, 13, 0,
+                                   chunkBB);
+                        placeBlock(level, Tile::netherFence_Id, 0, i + 1, 13,
+                                   12, chunkBB);
+                        placeBlock(level, Tile::netherFence_Id, 0, 0, 13, i + 1,
+                                   chunkBB);
+                        placeBlock(level, Tile::netherFence_Id, 0, 12, 13,
+                                   i + 1, chunkBB);
     }
     placeBlock(level, Tile::netherFence_Id, 0, 0, 13, 0, chunkBB);
     placeBlock(level, Tile::netherFence_Id, 0, 0, 13, 12, chunkBB);
-    placeBlock(level, Tile::netherFence_Id, 0, 0, 13, 0, chunkBB);
+    placeBlock(level, Tile::netherF// inside decorations chunkBB);
     placeBlock(level, Tile::netherFence_Id, 0, 12, 13, 0, chunkBB);
 
-    // inside decorations
+                         
     for (int z = 3; z <= 9; z += 2) {
-        generateBox(level, chunkBB, 1, 7, z, 1, 8, z, Tile::netherFence_Id,
-                    Tile::netherFence_Id, false);
-        generateBox(level, chunkBB, 11, 7, z, 11, 8, z, Tile::netherFence_Id,
-                    Tile::netherFence_Id, false);
+                        generateBox(level, chunkBB, 1, 7, z, 1, 8, z,
+                                    Tile::netherFence_Id, Tile::netherFence_Id,
+                                    false);
+                        generateBox(
+                            level,
+                            chunkBB  // supports 11, 8, z, Tile::netherFence_Id,
+                                Tile::netherFence_Id,
+                            false);
     }
 
-    // supports
+               
     generateBox(level, chunkBB, 4, 2, 0, 8, 2, 12, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 0, 2, 4, 12, 2, 8, Tile::netherBrick_Id,
@@ -1180,41 +1189,44 @@ bool NetherBridgePieces::CastleEntrance::postProcess(Level* level,
                 Tile::netherBrick_Id, false);
 
     for (int x = 4; x <= 8; x++) {
-        for (int z = 0; z <= 2; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, 12 - z,
-                           chunkBB);
-        }
+                        for (int z = 0; z <= 2; z++) {
+                            fillColumnDown(level, Tile::netherBrick_Id, 0, x,
+                                           -1, z, chunkBB);
+                            fillColumnDown(level, Tile::netherBrick_Id, 0, x,
+                                           -1, 12 - z, chunkBB);
+                        }
     }
     for (int x = 0; x <= 2; x++) {
-        for (int z = 4; z <= 8; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-            fillColumnDown(level, Tile::netherBrick_Id, 0, 12 - x, -1, z,
-                           chunkBB);
-        }
+                        for (int z = 4; z <= 8; z++) {
+                            fillColumnDown(level, Tile::netherBrick_Id, 0, x,
+                                           -1, z, chunkBB);
+                            fillColumnDown(  // lava well:netherBrick_Id, 0, 12
+                                             // - x, -1, z,
+                                chunkBB);
+                        }
     }
 
-    // lava well
+                
     generateBox(level, chunkBB, 5, 5, 5, 7, 5, 7, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 6, 1, 6, 6, 4, 6, 0, 0, false);
-    placeBlock(level, Tile::netherBrick_Id, 0, 6, 0, 6, chunkBB);
+    placeBlock(level, Ti// tick lava welld, 0, 6, 0, 6, chunkBB);
     placeBlock(level, Tile::lava_Id, 0, 6, 5, 6, chunkBB);
-    // tick lava well
+                     
     int x = getWorldX(6, 6);
     int y = getWorldY(5);
     int z = getWorldZ(6, 6);
     if (chunkBB->isInside(x, y, z)) {
-        level->setInstaTick(true);
-        Tile::tiles[Tile::lava_Id]->tick(level, x, y, z, random);
-        level->setInstaTick(false);
-    }
+                        level->setInstaTick(true);
+                        Tile::tiles[Tile::lava_Id]->tick(level, x, y, z,
+                                                         random);
+                        level->setI  // for reflection    }
 
-    return true;
+                            return true;
 }
 
 NetherBridgePieces::CastleStalkRoom::CastleStalkRoom() {
-    // for reflection
+                     
 }
 
 NetherBridgePieces::CastleStalkRoom::CastleStalkRoom(int genDepth,
@@ -1222,69 +1234,81 @@ NetherBridgePieces::CastleStalkRoom::CastleStalkRoom(int genDepth,
                                                      BoundingBox* stairsBox,
                                                      int direction)
     : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = stairsBox;
+                        orientation = direction;
+                        boundingBox = stairsBox;
 }
 
 void NetherBridgePieces::CastleStalkRoom::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
-    generateChildForward((StartPiece*)startPiece, pieces, random, 5, 3, true);
-    generateChildForward((StartPiece*)startPiece, pieces, random, 5, 11, true);
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
+                        generateChildForward((StartPiece*)startPiece, pieces,
+                                             random, 5, 3, true);
+                        generateChildForward((StartPiece*)startPiece, pieces,
+                                             random, 5, 11, true);
 }
 
 NetherBridgePieces::CastleStalkRoom*
-NetherBridgePieces::CastleStalkRoom::createPiece(list<StructurePiece*>* pieces,
+NetherBridgePieces::CastleStalkRoom::createPiece(std::list<StructurePiece*>* pieces,
                                                  Random* random, int footX,
                                                  int footY, int footZ,
                                                  int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -5, -3, 0,
-                                              width, height, depth, direction);
+                        BoundingBox* box = BoundingBox::orientBox(
+                            footX, footY, footZ, -5, -3, 0, width, height,
+                            depth, direction);
 
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+                        StartPiece* startPiece = NULL;
+                        if (pieces != NULL)
+                            startPiece = ((NetherBridgePieces::StartPiece*)
+                                              pieces->front());
 
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
-    }
+                        if (!isOkBox(box, startPiece) ||
+                            StructurePiece::findCollisionPiece(pieces, box) !=
+                                NULL) {
+                            delete box;
+                            return NULL;
+                        }
 
-    return new CastleStalkRoom(genDepth, random, box, direction);
+                        return new CastleStalkRoom(genDepth, random, box,
+                                                   direction);
 }
 
 bool NetherBridgePieces::CastleStalkRoom::postProcess(Level* level,
-                                                      Random* random,
+                                     // floor         Random* random,
                                                       BoundingBox* chunkBB) {
-    // floor
-    generateBox(level, chunkBB, 0, 3, 0, 12, 4, 12, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    // room air
+                                
+    gener  // room airl, chunkBB, 0, 3, 0, 12, 4, 12, Tile::netherBrick_Id,
+                            Til  // wallsrBrick_Id, false);
+               
     generateBox(level, chunkBB, 0, 5, 0, 12, 13, 12, 0, 0, false);
 
-    // walls
+                                
     generateBox(level, chunkBB, 0, 5, 0, 1, 12, 12, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 11, 5, 0, 12, 12, 12, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 2, 5, 11, 4, 12, 12, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 8, 5, 11, 10, 12, 12, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 5, 9, 11, 7, 12, 12, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 2, 5, 0, 4, 12, 1, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 8, 5, 0, 10, 12, 1, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 5, 9, 0, 7, 12, 1, Tile::netherBrick_Id,
+                            Tile::netherBrick_Id, false);
+                        generateBox(level, chunkBB, 11, 5, 0, 12, 12, 12,
+                                    Tile::netherBrick_Id, Tile::netherBrick_Id,
+                                    false);
+                        generateBox(level, chunkBB, 2, 5, 11, 4, 12, 12,
+                                    Tile::netherBrick_Id, Tile::netherBrick_Id,
+                                    false);
+                        generateBox(level, chunkBB, 8, 5, 11, 10, 12, 12,
+                                    Tile::netherBrick_Id, Tile::netherBrick_Id,
+                                    false);
+                        generateBox(level, chunkBB, 5, 9, 11, 7, 12, 12,
+                                    Tile::netherBrick_Id, Tile::netherBrick_Id,
+                                    false);
+                        generateBox(level, chunkBB, 2, 5, 0, 4, 12, 1,
+                                    Tile::netherBrick_Id, Tile::netherBrick_Id,
+                                    false);
+                        generateBox(level, chunkBB, 8, 5, 0, 10, 12, 1,
+                                    Tile::netherBrick_Id, Tile::netherBrick_Id,
+                                    false);
+    gener// rooflevel, chunkBB, 5, 9, 0, 7, 12, 1, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // roof
-    generateBox(level, chunkBB, 2, 11, 2, 10, 12, 10, Tile::netherBrick_Id,
+           
+    generate// wall decorations 2, 11, 2, 10, 12, 10, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // wall decorations
+                       
     for (int i = 1; i <= 11; i += 2) {
         generateBox(level, chunkBB, i, 10, 0, i, 11, 0, Tile::netherFence_Id,
                     Tile::netherFence_Id, false);
@@ -1305,47 +1329,54 @@ bool NetherBridgePieces::CastleStalkRoom::postProcess(Level* level,
     }
     placeBlock(level, Tile::netherFence_Id, 0, 0, 13, 0, chunkBB);
     placeBlock(level, Tile::netherFence_Id, 0, 0, 13, 12, chunkBB);
-    placeBlock(level, Tile::netherFence_Id, 0, 0, 13, 0, chunkBB);
+    placeBlock(level, Til// inside decorations 0, 13, 0, chunkBB);
     placeBlock(level, Tile::netherFence_Id, 0, 12, 13, 0, chunkBB);
 
-    // inside decorations
+                         
     for (int z = 3; z <= 9; z += 2) {
-        generateBox(level, chunkBB, 1, 7, z, 1, 8, z, Tile::netherFence_Id,
-                    Tile::netherFence_Id, false);
-        generateBox(level, chunkBB, 11, 7, z, 11, 8, z, Tile::netherFence_Id,
-                    Tile::netherFence_Id, false);
+                            generateBox(level, chunkBB, 1, 7, z, 1, 8, z,
+                                        Tile::netherFence_Id,
+                                        Tile::netherFence_Id, false);
+                            generateBox(leve  // inside stair 7, z, 11, 8, z,
+                                              // Tile::netherFence_Id,
+                                                  Tile::netherFence_Id,
+                                        false);
     }
 
-    // inside stair
+                   
     int stairOrientation = getOrientationData(Tile::stairs_netherBricks_Id, 3);
     for (int i = 0; i <= 6; i++) {
-        int z = i + 4;
-        for (int x = 5; x <= 7; x++) {
-            placeBlock(level, Tile::stairs_netherBricks_Id, stairOrientation, x,
-                       5 + i, z, chunkBB);
-        }
-        if (z >= 5 && z <= 8) {
-            generateBox(level, chunkBB, 5, 5, z, 7, i + 4, z,
-                        Tile::netherBrick_Id, Tile::netherBrick_Id, false);
-        } else if (z >= 9 && z <= 10) {
-            generateBox(level, chunkBB, 5, 8, z, 7, i + 4, z,
-                        Tile::netherBrick_Id, Tile::netherBrick_Id, false);
-        }
-        if (i >= 1) {
-            generateBox(level, chunkBB, 5, 6 + i, z, 7, 9 + i, z, 0, 0, false);
-        }
+                            int z = i + 4;
+                            for (int x = 5; x <= 7; x++) {
+                                placeBlock(level, Tile::stairs_netherBricks_Id,
+                                           stairOrientation, x, 5 + i, z,
+                                           chunkBB);
+                            }
+                            if (z >= 5 && z <= 8) {
+                                generateBox(level, chunkBB, 5, 5, z, 7, i + 4,
+                                            z, Tile::netherBrick_Id,
+                                            Tile::netherBrick_Id, false);
+                            } else if (z >= 9 && z <= 10) {
+                                generateBox(level, chunkBB, 5, 8, z, 7, i + 4,
+                                            z, Tile::netherBrick_Id,
+                                            Tile::netherBrick_Id, false);
+                            }
+                            if (i >= 1) {
+                                generateBox(level, chunkBB, 5, 6 + i, z, 7,
+                                            9 + i, z, 0, 0, false);
+                            }
     }
     for (int x = 5; x <= 7; x++) {
-        placeBlock(level, Tile::stairs_netherBricks_Id, stairOrientation, x, 12,
-                   11, chunkBB);
+                            placeBlock(level, Tile::stairs_netherBricks_Id,
+                                       stairOrientation, x, 12, 11, chunkBB);
     }
     generateBox(level, chunkBB, 5, 6, 7, 5, 7, 7, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
     generateBox(level, chunkBB, 7, 6, 7, 7, 7, 7, Tile::netherFence_Id,
-                Tile::netherFence_Id, false);
+    // farmland catwalkstherFence_Id, false);
     generateBox(level, chunkBB, 5, 13, 12, 7, 13, 12, 0, 0, false);
 
-    // farmland catwalks
+                        
     generateBox(level, chunkBB, 2, 5, 2, 3, 5, 3, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 2, 5, 9, 3, 5, 10, Tile::netherBrick_Id,
@@ -1373,21 +1404,20 @@ bool NetherBridgePieces::CastleStalkRoom::postProcess(Level* level,
     placeBlock(level, Tile::stairs_netherBricks_Id, eastOrientation, 8, 5, 3,
                chunkBB);
     placeBlock(level, Tile::stairs_netherBricks_Id, eastOrientation, 8, 5, 9,
-               chunkBB);
-    placeBlock(level, Tile::stairs_netherBricks_Id, eastOrientation, 8, 5, 10,
+               chun// farmlandsaceBlock(level, Tile::stairs_netherBricks_Id, eastOrientation, 8, 5, 10,
                chunkBB);
 
-    // farmlands
+                
     generateBox(level, chunkBB, 3, 4, 4, 4, 4, 8, Tile::soulsand_Id,
                 Tile::soulsand_Id, false);
     generateBox(level, chunkBB, 8, 4, 4, 9, 4, 8, Tile::soulsand_Id,
                 Tile::soulsand_Id, false);
     generateBox(level, chunkBB, 3, 5, 4, 4, 5, 8, Tile::netherStalk_Id,
                 Tile::netherStalk_Id, false);
-    generateBox(level, chunkBB, 8, 5, 4, 9, 5, 8, Tile::netherStalk_Id,
+    gene// supportsel, chunkBB, 8, 5, 4, 9, 5, 8, Tile::netherStalk_Id,
                 Tile::netherStalk_Id, false);
 
-    // supports
+               
     generateBox(level, chunkBB, 4, 2, 0, 8, 2, 12, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 0, 2, 4, 12, 2, 8, Tile::netherBrick_Id,
@@ -1403,68 +1433,80 @@ bool NetherBridgePieces::CastleStalkRoom::postProcess(Level* level,
                 Tile::netherBrick_Id, false);
 
     for (int x = 4; x <= 8; x++) {
-        for (int z = 0; z <= 2; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, 12 - z,
-                           chunkBB);
-        }
+                            for (int z = 0; z <= 2; z++) {
+                                fillColumnDown(level, Tile::netherBrick_Id, 0,
+                                               x, -1, z, chunkBB);
+                                fillColumnDown(level, Tile::netherBrick_Id, 0,
+                                               x, -1, 12 - z, chunkBB);
+                            }
     }
     for (int x = 0; x <= 2; x++) {
-        for (int z = 4; z <= 8; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-            fillColumnDown(level, Tile::netherBrick_Id, 0, 12 - x, -1, z,
-                           chunkBB);
-        }
-    }
+                            for (int z = 4; z <= 8; z++) {
+                                fillColumnDown(level, Tile::netherBrick_Id, 0,
+                                               x, -1, z, chunkBB);
+                                fillColumnDown(level, Tile::netherBrick_Id, 0,
+                                               12 - x, -1, z, chunkBB);
+                                // for reflection   return true;
+                            }
 
-    return true;
+                            NetherBridgePieces::CastleSmallCorridorPiece::
+                                CastleSmallCorridorPiece(){
+                     
 }
 
-NetherBridgePieces::CastleSmallCorridorPiece::CastleSmallCorridorPiece() {
-    // for reflection
-}
+                            NetherBridgePieces::CastleSmallCorridorPiece::
+                                CastleSmallCorridorPiece(
+                                    int genDepth, Random* random,
+                                    BoundingBox* stairsBox, int direction)
+                                : NetherBridgePiece(genDepth) {
+                                orientation = direction;
+                                boundingBox = stairsBox;
+                            }
 
-NetherBridgePieces::CastleSmallCorridorPiece::CastleSmallCorridorPiece(
-    int genDepth, Random* random, BoundingBox* stairsBox, int direction)
-    : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = stairsBox;
-}
+                            void NetherBridgePieces::CastleSmallCorridorPiece::
+                                addChildren(StructurePiece * startPiece,
+                                            std::list<StructurePiece*> * pieces,
+                                            Random * random) {
+                                generateChildForward((StartPiece*)startPiece,
+                                                     pieces, random, 1, 0,
+                                                     true);
+                            }
 
-void NetherBridgePieces::CastleSmallCorridorPiece::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
-    generateChildForward((StartPiece*)startPiece, pieces, random, 1, 0, true);
-}
+                            NetherBridgePieces::CastleSmallCorridorPiece*
+                            NetherBridgePieces::CastleSmallCorridorPiece::
+                                createPiece(std::list<StructurePiece*> * pieces,
+                                            Random * random, int footX,
+                                            int footY, int footZ, int direction,
+                                            int genDepth) {
+                                BoundingBox* box = BoundingBox::orientBox(
+                                    footX, footY, footZ, -1, 0, 0, width,
+                                    height, depth, direction);
 
-NetherBridgePieces::CastleSmallCorridorPiece*
-NetherBridgePieces::CastleSmallCorridorPiece::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
-    int footZ, int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, 0, 0,
-                                              width, height, depth, direction);
+                                StartPiece* startPiece = NULL;
+                                if (pieces != NULL)
+                                    startPiece =
+                                        ((NetherBridgePieces::StartPiece*)
+                                             pieces->front());
 
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+                                if (!isOkBox(box, startPiece) ||
+                                    StructurePiece::findCollisionPiece(
+                                        pieces, box) != NULL) {
+                                    delete box;
+                                    return NULL;
+                                }
 
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
-    }
+                                return new CastleSmallCorridorPiece(
+                                    genDepth, random, box, direction);
+                            }
 
-    return new CastleSmallCorridorPiece(genDepth, random, box, direction);
-}
-
-bool NetherBridgePieces::CastleSmallCorridorPiece::postProcess(
+b// floorerBridgePieces::CastleSmallCorridorPiece::postProcess(
     Level* level, Random* random, BoundingBox* chunkBB) {
-    // floor
-    generateBox(level, chunkBB, 0, 0, 0, 4, 1, 4, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    // room air
+            // room airrateBox(level, chunkBB, 0, 0, 0, 4, 1, 4, Tile::netherBrick_Id,
+        // walls  Tile::netherBrick_Id, false);
+               
     generateBox(level, chunkBB, 0, 2, 0, 4, 5, 4, 0, 0, false);
 
-    // walls
+            
     generateBox(level, chunkBB, 0, 2, 0, 0, 5, 4, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 4, 2, 0, 4, 5, 4, Tile::netherBrick_Id,
@@ -1474,161 +1516,194 @@ bool NetherBridgePieces::CastleSmallCorridorPiece::postProcess(
     generateBox(level, chunkBB, 0, 3, 3, 0, 4, 3, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
     generateBox(level, chunkBB, 4, 3, 1, 4, 4, 1, Tile::netherFence_Id,
-                Tile::netherFence_Id, false);
-    generateBox(level, chunkBB, 4, 3, 3, 4, 4, 3, Tile::netherFence_Id,
+                Tile::netherFence_Id, false)// roofenerateBox(level, chunkBB, 4, 3, 3, 4, 4, 3, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
 
-    // roof
-    generateBox(level, chunkBB, 0, 6, 0, 4, 6, 4, Tile::netherBrick_Id,
+          // supportsateBox(level, chunkBB, 0, 6, 0, 4, 6, 4, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // supports
+               
     for (int x = 0; x <= 4; x++) {
         for (int z = 0; z <= 4; z++) {
             fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
         }
+        // for reflectionrue;
     }
 
-    return true;
+    NetherBridgePieces::CastleSmallCorridorCrossingPiece::
+        CastleSmallCorridorCrossingPiece(){
+                     
 }
 
-NetherBridgePieces::CastleSmallCorridorCrossingPiece::
-    CastleSmallCorridorCrossingPiece() {
-    // for reflection
-}
-
-NetherBridgePieces::CastleSmallCorridorCrossingPiece::
-    CastleSmallCorridorCrossingPiece(int genDepth, Random* random,
-                                     BoundingBox* stairsBox, int direction)
-    : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = stairsBox;
-}
-
-void NetherBridgePieces::CastleSmallCorridorCrossingPiece::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
-    generateChildForward((StartPiece*)startPiece, pieces, random, 1, 0, true);
-    generateChildLeft((StartPiece*)startPiece, pieces, random, 0, 1, true);
-    generateChildRight((StartPiece*)startPiece, pieces, random, 0, 1, true);
-}
-
-NetherBridgePieces::CastleSmallCorridorCrossingPiece*
-NetherBridgePieces::CastleSmallCorridorCrossingPiece::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
-    int footZ, int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, 0, 0,
-                                              width, height, depth, direction);
-
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
-
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
+    NetherBridgePieces::CastleSmallCorridorCrossingPiece::
+        CastleSmallCorridorCrossingPiece(int genDepth, Random* random,
+                                         BoundingBox* stairsBox, int direction)
+        : NetherBridgePiece(genDepth) {
+        orientation = direction;
+        boundingBox = stairsBox;
     }
 
-    return new CastleSmallCorridorCrossingPiece(genDepth, random, box,
-                                                direction);
-}
+    void NetherBridgePieces::CastleSmallCorridorCrossingPiece::addChildren(
+        StructurePiece * startPiece, std::list<StructurePiece*> * pieces,
+        Random * random) {
+        generateChildForward((StartPiece*)startPiece, pieces, random, 1, 0,
+                             true);
+        generateChildLeft((StartPiece*)startPiece, pieces, random, 0, 1, true);
+        generateChildRight((StartPiece*)startPiece, pieces, random, 0, 1, true);
+    }
 
-bool NetherBridgePieces::CastleSmallCorridorCrossingPiece::postProcess(
+    NetherBridgePieces::CastleSmallCorridorCrossingPiece*
+    NetherBridgePieces::CastleSmallCorridorCrossingPiece::createPiece(
+        std::list<StructurePiece*> * pieces, Random * random, int footX,
+        int footY, int footZ, int direction, int genDepth) {
+        BoundingBox* box = BoundingBox::orientBox(
+            footX, footY, footZ, -1, 0, 0, width, height, depth, direction);
+
+        StartPiece* startPiece = NULL;
+        if (pieces != NULL)
+            startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+
+        if (!isOkBox(box, startPiece) ||
+            StructurePiece::findCollisionPiece(pieces, box) != NULL) {
+            delete box;
+            return NULL;
+        }
+
+        return new CastleSmallCorridorCrossingPiece(genDepth, random, box,
+                                                    direction);
+    }
+    // floortherBridgePieces::CastleSmallCorridorCrossingPiece::postProcess(
     Level* level, Random* random, BoundingBox* chunkBB) {
-    // floor
-    generateBox(level, chunkBB, 0, 0, 0, 4, 1, 4, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    // room air
+        // room air 
+    generateBox(level, chunkBB, 0, 0, 0, 4, 1, 4, Tile::netherBrick_// walls            Tile::netherBrick_Id, false);
+               
     generateBox(level, chunkBB, 0, 2, 0, 4, 5, 4, 0, 0, false);
 
-    // walls
+            
     generateBox(level, chunkBB, 0, 2, 0, 0, 5, 0, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 4, 2, 0, 4, 5, 0, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 0, 2, 4, 0, 5, 4, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
+                Tile::netherBrick_// roofse);
     generateBox(level, chunkBB, 4, 2, 4, 4, 5, 4, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // roof
+// supports
     generateBox(level, chunkBB, 0, 6, 0, 4, 6, 4, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // supports
+               
     for (int x = 0; x <= 4; x++) {
-        for (int z = 0; z <= 4; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-        }
-    }
+                                        for (int z = 0; z <= 4; z++) {
+                                            fillColumnDown(
+                                                level, Tile::netherBrick_Id, 0,
+                                                x, -1, z, chunkBB);
+                                            // for reflectionreturn true;
+                                        }
 
-    return true;
-}
-
-NetherBridgePieces::CastleSmallCorridorRightTurnPiece::
-    CastleSmallCorridorRightTurnPiece() {
-    // for reflection
+                                        NetherBridgePieces::
+                                            CastleSmallCorridorRightTurnPiece::
+                                                CastleSmallCorridorRightTurnPiece() {
+                                                             
     isNeedingChest = false;
-}
+                                        }
 
-NetherBridgePieces::CastleSmallCorridorRightTurnPiece::
-    CastleSmallCorridorRightTurnPiece(int genDepth, Random* random,
-                                      BoundingBox* stairsBox, int direction)
-    : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = stairsBox;
-    isNeedingChest = random->nextInt(3) == 0;
-}
+                                        NetherBridgePieces::
+                                            CastleSmallCorridorRightTurnPiece::
+                                                CastleSmallCorridorRightTurnPiece(
+                                                    int genDepth,
+                                                    Random* random,
+                                                    BoundingBox* stairsBox,
+                                                    int direction)
+                                            : NetherBridgePiece(genDepth) {
+                                            orientation = direction;
+                                            boundingBox = stairsBox;
+                                            isNeedingChest =
+                                                random->nextInt(3) == 0;
+                                        }
 
-void NetherBridgePieces::CastleSmallCorridorRightTurnPiece::
-    readAdditonalSaveData(CompoundTag* tag) {
-    NetherBridgePiece::readAdditonalSaveData(tag);
+                                        void NetherBridgePieces::
+                                            CastleSmallCorridorRightTurnPiece::
+                                                "Chest" AdditonalSaveData(
+                                                    CompoundTag * tag) {
+                                            NetherBridgePiece::
+                                                readAdditonalSaveData(tag);
 
-    isNeedingChest = tag->getBoolean(L"Chest");
-}
+                                            isNeedingChest =
+                                                tag->getBoolean(L       );
+                                        }
 
-void NetherBridgePieces::CastleSmallCorridorRightTurnPiece::
-    addAdditonalSaveData(CompoundTag* tag) {
-    NetherBridgePiece::addAdditonalSaveData(tag);
+                                        void NetherBridgePieces::
+                                            CastleSmallCorrido
+                                            "Chest" urnPiece::
+                                                addAdditonalSaveData(
+                                                    CompoundTag * tag) {
+                                            NetherBridgePiece::
+                                                addAdditonalSaveData(tag);
 
-    tag->putBoolean(L"Chest", isNeedingChest);
-}
+                                            tag->putBoolean(L       ,
+                                                            isNeedingChest);
+                                        }
 
-void NetherBridgePieces::CastleSmallCorridorRightTurnPiece::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
-    generateChildRight((StartPiece*)startPiece, pieces, random, 0, 1, true);
-}
+                                        void NetherBridgePieces::
+                                            CastleSmallCorridorRightTurnPiece::
+                                                addChildren(
+                                                    StructurePiece * startPiece,
+                                                    std::list<StructurePiece*> *
+                                                        pieces,
+                                                    Random * random) {
+                                            generateChildRight(
+                                                (StartPiece*)startPiece, pieces,
+                                                random, 0, 1, true);
+                                        }
 
-NetherBridgePieces::CastleSmallCorridorRightTurnPiece*
-NetherBridgePieces::CastleSmallCorridorRightTurnPiece::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
-    int footZ, int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, 0, 0,
-                                              width, height, depth, direction);
+                                        NetherBridgePieces::
+                                            CastleSmallCorridorRightTurnPiece*
+                                            NetherBridgePieces::
+                                                CastleSmallCorridorRightTurnPiece::
+                                                    createPiece(
+                                                        std::list<
+                                                            StructurePiece*> *
+                                                            pieces,
+                                                        Random * random,
+                                                        int footX, int footY,
+                                                        int footZ,
+                                                        int direction,
+                                                        int genDepth) {
+                                            BoundingBox* box =
+                                                BoundingBox::orientBox(
+                                                    footX, footY, footZ, -1, 0,
+                                                    0, width, height, depth,
+                                                    direction);
 
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+                                            StartPiece* startPiece = NULL;
+                                            if (pieces != NULL)
+                                                startPiece =
+                                                    ((NetherBridgePieces::
+                                                          StartPiece*)
+                                                         pieces->front());
 
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
-    }
+                                            if (!isOkBox(box, startPiece) ||
+                                                StructurePiece::
+                                                        findCollisionPiece(
+                                                            pieces, box) !=
+                                                    NULL) {
+                                                delete box;
+                                                return NULL;
+                                            }
 
     return new CastleSmallCorridorRightTurnPiece(genDepth, random, box,
-                                                 direction);
-}
+                                                 direc// floor
 
 bool NetherBridgePieces::CastleSmallCorridorRightTurnPiece::postProcess(
-    Level* level, Random* random, BoundingBox* chunkBB) {
-    // floor
-    generateBox(level, chunkBB, 0, 0, 0, 4, 1, 4, Tile::netherBrick_Id,
+    Level* level, Random* random, BoundingBox* c// room air           
+    generateBox(level, chunkBB, 0, 0, 0, 4, 1, 4, Tile::ne// wallsk_Id,
                 Tile::netherBrick_Id, false);
-    // room air
+               
     generateBox(level, chunkBB, 0, 2, 0, 4, 5, 4, 0, 0, false);
 
-    // walls
+            
     generateBox(level, chunkBB, 0, 2, 0, 0, 5, 4, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 0, 3, 1, 0, 4, 1, Tile::netherFence_Id,
@@ -1647,95 +1722,129 @@ bool NetherBridgePieces::CastleSmallCorridorRightTurnPiece::postProcess(
                 Tile::netherBrick_Id, false);
 
     if (isNeedingChest) {
-        int y = getWorldY(2);
-        int x = getWorldX(1, 3), z = getWorldZ(1, 3);
-        if (chunkBB->isInside(x, y, z)) {
-            isNeedingChest = false;
+                                                int y = getWorldY(2);
+                                                int x = getWorldX(1, 3),
+                                                    z = getWorldZ(1, 3);
+                                                if (chunkBB->isInside(x, y,
+                                                                      z)) {
+                                                    isNeedingChest = false;
             createChest(level, chunkBB, random, 1, 2, 3,
                         WeighedTreasureArray(fortressTreasureItems,
-                                             FORTRESS_TREASURE_ITEMS_COUNT),
+  // roof                                    FORTRESS_TREASURE_ITEMS_COUNT),
                         2 + random->nextInt(4));
-        }
-    }
-
-    // roof
+       // supports          
     generateBox(level, chunkBB, 0, 6, 0, 4, 6, 4, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // supports
+               
     for (int x = 0; x <= 4; x++) {
-        for (int z = 0; z <= 4; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-        }
+                                                        for (int z = 0; z <= 4;
+                                                             z++) {
+                                                            fillColumnDown(
+                                                                level,
+                                                                Tile::
+                                                                    netherBrick_Id,
+                                                                0, x, -1, z,
+                                                                chunkBB);
+                                                        }
     }
 
-    return true;
-}
-
-NetherBridgePieces::CastleSmallCorridorLeftTurnPiece::
+   // for reflectionNetherBridgePieces::CastleSmallCorridorLeftTurnPiece::
     CastleSmallCorridorLeftTurnPiece() {
-    isNeedingChest = false;
-    // for reflection
+                                                        isNeedingChest = false;
+                                                                         
 }
 
 NetherBridgePieces::CastleSmallCorridorLeftTurnPiece::
     CastleSmallCorridorLeftTurnPiece(int genDepth, Random* random,
                                      BoundingBox* stairsBox, int direction)
     : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = stairsBox;
-    isNeedingChest = random->nextInt(3) == 0;
+                                                        orientation = direction;
+                                                        boundingBox = stairsBox;
+                                                        isNeedingChest =
+                                                            random->nextInt(
+                                                                3) == 0;
 }
 
-void NetherBridgePieces::CastleSmallCorridorLeftTurnPiece::
+void NetherBridgePieces::CastleSmallCorridorLeftTur"Chest":
     readAdditonalSaveData(CompoundTag* tag) {
-    NetherBridgePiece::readAdditonalSaveData(tag);
+                                                        NetherBridgePiece::
+                                                            readAdditonalSaveData(
+                                                                tag);
 
-    isNeedingChest = tag->getBoolean(L"Chest");
+                                                        isNeedingChest =
+                                                            tag->getBoolean(
+                                                                L       );
 }
 
-void NetherBridgePieces::CastleSmallCorridorLeftTurnPiece::addAdditonalSaveData(
+void NetherBridgePieces::CastleS"Chest"ridorLeftTurnPiece::addAdditonalSaveData(
     CompoundTag* tag) {
-    NetherBridgePiece::addAdditonalSaveData(tag);
+                                                        NetherBridgePiece::
+                                                            addAdditonalSaveData(
+                                                                tag);
 
-    tag->putBoolean(L"Chest", isNeedingChest);
+                                                        tag->putBoolean(
+                                                            L       ,
+                                                            isNeedingChest);
 }
 
 void NetherBridgePieces::CastleSmallCorridorLeftTurnPiece::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
-    generateChildLeft((StartPiece*)startPiece, pieces, random, 0, 1, true);
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
+                                                        generateChildLeft(
+                                                            (StartPiece*)
+                                                                startPiece,
+                                                            pieces, random, 0,
+                                                            1, true);
 }
 
 NetherBridgePieces::CastleSmallCorridorLeftTurnPiece*
 NetherBridgePieces::CastleSmallCorridorLeftTurnPiece::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, 0, 0,
-                                              width, height, depth, direction);
+                                                        BoundingBox* box =
+                                                            BoundingBox::
+                                                                orientBox(
+                                                                    footX,
+                                                                    footY,
+                                                                    footZ, -1,
+                                                                    0, 0, width,
+                                                                    height,
+                                                                    depth,
+                                                                    direction);
 
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+                                                        StartPiece* startPiece =
+                                                            NULL;
+                                                        if (pieces != NULL)
+                                                            startPiece =
+                                                                ((NetherBridgePieces::
+                                                                      StartPiece*)pieces
+                                                                     ->front());
 
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
-    }
+                                                        if (!isOkBox(
+                                                                box,
+                                                                startPiece) ||
+                                                            StructurePiece::
+                                                                    findCollisionPiece(
+                                                                        pieces,
+                                                                        box) !=
+                                                                NULL) {
+                                                            delete box;
+                                                            return NULL;
+                                                        }
 
     return new CastleSmallCorridorLeftTurnPiece(genDepth, random, box,
-                                                direction);
+    // floorrection);
 }
 
 bool NetherBridgePieces::CastleSmallCorridorLeftTurnPiece::postProcess(
-    Level* level, Random* random, BoundingBox* chunkBB) {
-    // floor
-    generateBox(level, chunkBB, 0, 0, 0, 4, 1, 4, Tile::netherBrick_Id,
+    Level* level, Random* random, Boun// room airunkBB) {
+            
+    generateBox(level, chunkBB, 0, 0, 0, 4, 1, 4// wallsnetherBrick_Id,
                 Tile::netherBrick_Id, false);
-    // room air
+               
     generateBox(level, chunkBB, 0, 2, 0, 4, 5, 4, 0, 0, false);
 
-    // walls
+            
     generateBox(level, chunkBB, 4, 2, 0, 4, 5, 4, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 4, 3, 1, 4, 4, 1, Tile::netherFence_Id,
@@ -1754,195 +1863,269 @@ bool NetherBridgePieces::CastleSmallCorridorLeftTurnPiece::postProcess(
                 Tile::netherBrick_Id, false);
 
     if (isNeedingChest) {
-        int y = getWorldY(2);
-        int x = getWorldX(3, 3), z = getWorldZ(3, 3);
-        if (chunkBB->isInside(x, y, z)) {
-            isNeedingChest = false;
+                                                        int y = getWorldY(2);
+                                                        int x = getWorldX(3, 3),
+                                                            z = getWorldZ(3, 3);
+                                                        if (chunkBB->isInside(
+                                                                x, y, z)) {
+                                                            isNeedingChest =
+                                                                false;
             createChest(level, chunkBB, random, 3, 2, 3,
-                        WeighedTreasureArray(fortressTreasureItems,
+                        WeighedTreasureArray(fortressTreasur// roof
                                              FORTRESS_TREASURE_ITEMS_COUNT),
-                        2 + random->nextInt(4));
-        }
-    }
+                        2 + random->nextInt(4)// supports}
+                                                        }
 
-    // roof
+                                                               
     generateBox(level, chunkBB, 0, 6, 0, 4, 6, 4, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
+                                                            Tile::
+                                                                netherBrick_Id,
+                                                            false);
 
-    // supports
+                                                                   
     for (int x = 0; x <= 4; x++) {
-        for (int z = 0; z <= 4; z++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-        }
-    }
+                                                            for (int z = 0;
+                                                                 z <= 4; z++) {
+            fillColumnDown(level, Tile::ne// for reflectionx, -1, z, chunkBB);
+                                                            }
+                                                        }
 
-    return true;
+                                                        return true;
 }
 
 NetherBridgePieces::CastleCorridorStairsPiece::CastleCorridorStairsPiece() {
-    // for reflection
+                     
 }
 
 NetherBridgePieces::CastleCorridorStairsPiece::CastleCorridorStairsPiece(
     int genDepth, Random* random, BoundingBox* stairsBox, int direction)
     : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = stairsBox;
+                                                        orientation = direction;
+                                                        boundingBox = stairsBox;
 }
 
 void NetherBridgePieces::CastleCorridorStairsPiece::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
-    generateChildForward((StartPiece*)startPiece, pieces, random, 1, 0, true);
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
+                                                        generateChildForward(
+                                                            (StartPiece*)
+                                                                startPiece,
+                                                            pieces, random, 1,
+                                                            0, true);
 }
 
 NetherBridgePieces::CastleCorridorStairsPiece*
 NetherBridgePieces::CastleCorridorStairsPiece::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
+    std::list<StructurePiece*>* pieces, Random* random, int footX, int footY,
     int footZ, int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -1, -7, 0,
-                                              width, height, depth, direction);
+                                                        BoundingBox* box =
+                                                            BoundingBox::
+                                                                orientBox(
+                                                                    footX,
+                                                                    footY,
+                                                                    footZ, -1,
+                                                                    -7, 0,
+                                                                    width,
+                                                                    height,
+                                                                    depth,
+                                                                    direction);
 
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+                                                        StartPiece* startPiece =
+                                                            NULL;
+                                                        if (pieces != NULL)
+                                                            startPiece =
+                                                                ((NetherBridgePieces::
+                                                                      StartPiece*)pieces
+                                                                     ->front());
 
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
-    }
+                                                        if (!isOkBox(
+                                                                box,
+                                                                startPiece) ||
+                                                            StructurePiece::
+                                                                    findCollisionPiece(
+                                                                        pieces,
+                                                                        box) !=
+                                                                NULL) {
+                                                            delete box;
+                                                            return NULL;
+                                                        }
 
-    return new CastleCorridorStairsPiece(genDepth, random, box, direction);
+    return new CastleCorridorStairsPiece(// generate stairsbox, direction);
 }
 
 bool NetherBridgePieces::CastleCorridorStairsPiece::postProcess(
     Level* level, Random* random, BoundingBox* chunkBB) {
-    // generate stairs
+                                                                          
     int stairsData = getOrientationData(Tile::stairs_netherBricks_Id, 2);
-    for (int step = 0; step <= 9; step++) {
-        int floor = max(1, 7 - step);
-        int roof = min(max(floor + 5, 14 - step), 13);
-        int z = step;
+                                                        // floort step = 0; step
+                                                        // <= 9; step++) {
+                                                        int floor = std::max(
+                                                            1, 7 - step);
+                                                        int roof = std::min(
+                                                            std::max(floor + 5,
+                                                                     14 - step),
+                                                            13)  // room airnt z
+                                                                 // = step;
 
-        // floor
+                
         generateBox(level, chunkBB, 0, 0, z, 4, floor, z, Tile::netherBrick_Id,
-                    Tile::netherBrick_Id, false);
-        // room air
+                                                                 Tile::
+                                                                     netherBrick_Id,
+                                                                 false);
+                                                                   
         generateBox(level, chunkBB, 1, floor + 1, z, 3, roof - 1, z, 0, 0,
-                    false);
-        if (step <= 6) {
-            placeBlock(level, Tile::stairs_netherBricks_Id, stairsData, 1,
-                       floor + 1, z, chunkBB);
+                                                            false);
+                                                        if (step <= 6) {
+                                                            placeBlock(
+                                                                level,
+                                                                Tile::
+                                                                    stairs_netherBricks_Id,
+                                                                stairsData, 1,
+                                                                floor + 1, z,
+                                                                chunkBB);
             placeBlock(level, Tile::stairs_netherBricks_Id, stairsData, 2,
-                       floor + 1, z, chunkBB);
+       // roof         floor + 1, z, chunkBB);
             placeBlock(level, Tile::stairs_netherBricks_Id, stairsData, 3,
-                       floor + 1, z, chunkBB);
-        }
-        // roof
+                       floor + 1,// wallskBB);
+                                                        }
+                                                               
         generateBox(level, chunkBB, 0, roof, z, 4, roof, z,
-                    Tile::netherBrick_Id, Tile::netherBrick_Id, false);
-        // walls
+                                                            Tile::
+                                                                netherBrick_Id,
+                                                            Tile::
+                                                                netherBrick_Id,
+                                                            false);
+                                                                
         generateBox(level, chunkBB, 0, floor + 1, z, 0, roof - 1, z,
-                    Tile::netherBrick_Id, Tile::netherBrick_Id, false);
-        generateBox(level, chunkBB, 4, floor + 1, z, 4, roof - 1, z,
-                    Tile::netherBrick_Id, Tile::netherBrick_Id, false);
-        if ((step & 1) == 0) {
-            generateBox(level, chunkBB, 0, floor + 2, z, 0, floor + 3, z,
-                        Tile::netherFence_Id, Tile::netherFence_Id, false);
-            generateBox(level, chunkBB, 4, floor + 2, z, 4, floor + 3, z,
-                        Tile::netherFence_Id, Tile::netherFence_Id, false);
-        }
+                                                            Tile::
+                                                                netherBrick_Id,
+                                                            Tile::
+                                                                netherBrick_Id,
+                                                            false);
+                                                        generateBox(
+                                                            level, chunkBB, 4,
+                                                            floor + 1, z, 4,
+                                                            roof - 1, z,
+                                                            Tile::
+                                                                netherBrick_Id,
+                                                            Tile::
+                                                                netherBrick_Id,
+                                                            false);
+                                                        if ((step & 1) == 0) {
+                                                            generateBox(
+                                                                level, chunkBB,
+                                                                0, floor + 2, z,
+                                                                0, floor + 3, z,
+                                                                Tile::
+                                                                    netherFence_Id,
+                                                                Tile::netherFence_I  // supports            generateBox(level, chunkBB, 4, floor + 2, z, 4, floor + 3, z,
+                                                                    Tile::
+                                                                        netherFence_Id,
+                                                                Tile::
+                                                                    netherFence_Id,
+                                                                false);
+                                                        }
 
-        // supports
+                                                                   
         for (int x = 0; x <= 4; x++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-        }
+                                                            fillColum  // for
+                                                                       // reflection::netherBrick_Id,
+                                                                       // 0, x,
+                                                                       // -1, z,
+                                                                       // chunkBB);
+                                                        }
     }
 
     return true;
+                                                }
+
+                                                NetherBridgePieces::
+                                                    CastleCorridorTBalconyPiece::
+                                                        CastleCorridorTBalconyPiece(){
+                     
 }
 
-NetherBridgePieces::CastleCorridorTBalconyPiece::CastleCorridorTBalconyPiece() {
-    // for reflection
-}
-
-NetherBridgePieces::CastleCorridorTBalconyPiece::CastleCorridorTBalconyPiece(
-    int genDepth, Random* random, BoundingBox* stairsBox, int direction)
-    : NetherBridgePiece(genDepth) {
-    orientation = direction;
-    boundingBox = stairsBox;
-}
-
-void NetherBridgePieces::CastleCorridorTBalconyPiece::addChildren(
-    StructurePiece* startPiece, list<StructurePiece*>* pieces, Random* random) {
-    int zOff = 1;
-    // compensate for weird negative-facing behaviour
+                                                NetherBridgePieces::
+                                                    CastleCorridorTBalconyPiece::
+                                                        CastleCorridorTBalconyPiece(
+                                                            int genDepth,
+                                                            Random* random,
+                                                            BoundingBox*
+                                                                stairsBox,
+                                                            int direction)
+                                                    : NetherBridgePiece(
+                                                          genDepth) {
+                                                    orientation = direction;
+    boundingBox = stai// compensate for weird negative-facing behaviourTBalconyPiece::addChildren(
+    StructurePiece* startPiece, std::list<StructurePiece*>* pieces, Random* random) {
+        int zOff = 1;
+                                                         
     if (orientation == Direction::WEST || orientation == Direction::NORTH) {
-        zOff = 5;
+            zOff = 5;
+        }
+
+        generateChildLeft((StartPiece*)startPiece, pieces, random, 0, zOff,
+                          random->nextInt(8) > 0);
+        generateChildRight((StartPiece*)startPiece, pieces, random, 0, zOff,
+                           random->nextInt(8) > 0);
     }
 
-    generateChildLeft((StartPiece*)startPiece, pieces, random, 0, zOff,
-                      random->nextInt(8) > 0);
-    generateChildRight((StartPiece*)startPiece, pieces, random, 0, zOff,
-                       random->nextInt(8) > 0);
-}
+    NetherBridgePieces::CastleCorridorTBalconyPiece*
+    NetherBridgePieces::CastleCorridorTBalconyPiece::createPiece(
+        std::list<StructurePiece*> * pieces, Random * random, int footX,
+        int footY, int footZ, int direction, int genDepth) {
+        BoundingBox* box = BoundingBox::orientBox(
+            footX, footY, footZ, -3, 0, 0, width, height, depth, direction);
 
-NetherBridgePieces::CastleCorridorTBalconyPiece*
-NetherBridgePieces::CastleCorridorTBalconyPiece::createPiece(
-    list<StructurePiece*>* pieces, Random* random, int footX, int footY,
-    int footZ, int direction, int genDepth) {
-    BoundingBox* box = BoundingBox::orientBox(footX, footY, footZ, -3, 0, 0,
-                                              width, height, depth, direction);
+        StartPiece* startPiece = NULL;
+        if (pieces != NULL)
+            startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
 
-    StartPiece* startPiece = NULL;
-    if (pieces != NULL)
-        startPiece = ((NetherBridgePieces::StartPiece*)pieces->front());
+        if (!isOkBox(box, startPiece) ||
+            StructurePiece::findCollisionPiece(pieces, box) != NULL) {
+            delete box;
+            return NULL;
+        }
 
-    if (!isOkBox(box, startPiece) ||
-        StructurePiece::findCollisionPiece(pieces, box) != NULL) {
-        delete box;
-        return NULL;
+        return new Castl  // floorrTBalconyPiece(genDepth, random, box,
+                          // direction);
     }
 
-    return new CastleCorridorTBalconyPiece(genDepth, random, box, direction);
-}
-
-bool NetherBridgePieces::CastleCorridorTBalconyPiece::postProcess(
-    Level* level, Random* random, BoundingBox* chunkBB) {
-    // floor
-    generateBox(level, chunkBB, 0, 0, 0, 8, 1, 8, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
-    // room air
-    generateBox(level, chunkBB, 0, 2, 0, 8, 5, 8, 0, 0, false);
-    // corridor roof
+    bool NetherBridgePieces::CastleCorridorTBalconyPiece::postProcess(
+        // room airel, Random* random, BoundingBox* chunkBB) {
+            
+    generate  // corridor roofBB, 0, 0, 0, 8, 1, 8, Tile::netherBrick_Id,
+            Tile::netherBrick_Id,
+        false);
+               
+    generateBox(le// inside walls, 2, 0, 8, 5, 8, 0, 0, false);
+                    
     generateBox(level, chunkBB, 0, 6, 0, 8, 6, 5, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
 
-    // inside walls
+                   
     generateBox(level, chunkBB, 0, 2, 0, 2, 5, 0, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 6, 2, 0, 8, 5, 0, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 1, 3, 0, 1, 4, 0, Tile::netherFence_Id,
+    generateBox(level, chunkBB, 1, 3, 0, 1, 4, 0, T// balcony floor_Id,
                 Tile::netherFence_Id, false);
     generateBox(level, chunkBB, 7, 3, 0, 7, 4, 0, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
 
-    // balcony floor
-    generateBox(level, chunkBB, 0, 2, 4, 8, 2, 8, Tile::netherBrick_Id,
-                Tile::netherBrick_Id, false);
+                    
+    generateBox(level, chunkBB, 0, 2, 4, 8, 2, 8, Tile::nethe// hand rails              Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 1, 1, 4, 2, 2, 4, 0, 0, false);
     generateBox(level, chunkBB, 6, 1, 4, 7, 2, 4, 0, 0, false);
 
-    // hand rails
+                 
     generateBox(level, chunkBB, 0, 3, 8, 8, 3, 8, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
-    generateBox(level, chunkBB, 0, 3, 6, 0, 3, 7, Tile::netherFence_Id,
+    generateBox(level, chunkBB, 0, 3, 6, 0, 3, 7, T// balcony walls_Id,
                 Tile::netherFence_Id, false);
     generateBox(level, chunkBB, 8, 3, 6, 8, 3, 7, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
 
-    // balcony walls
+                    
     generateBox(level, chunkBB, 0, 3, 4, 0, 5, 5, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 8, 3, 4, 8, 5, 5, Tile::netherBrick_Id,
@@ -1951,17 +2134,23 @@ bool NetherBridgePieces::CastleCorridorTBalconyPiece::postProcess(
                 Tile::netherBrick_Id, false);
     generateBox(level, chunkBB, 6, 3, 5, 7, 5, 5, Tile::netherBrick_Id,
                 Tile::netherBrick_Id, false);
-    generateBox(level, chunkBB, 1, 4, 5, 1, 5, 5, Tile::netherFence_Id,
+    generateBox(level, chunkBB, 1, 4, 5, 1, 5, 5, T// supportsFence_Id,
                 Tile::netherFence_Id, false);
     generateBox(level, chunkBB, 7, 4, 5, 7, 5, 5, Tile::netherFence_Id,
                 Tile::netherFence_Id, false);
 
-    // supports
+               
     for (int z = 0; z <= 5; z++) {
-        for (int x = 0; x <= 8; x++) {
-            fillColumnDown(level, Tile::netherBrick_Id, 0, x, -1, z, chunkBB);
-        }
+                                                        for (int x = 0; x <= 8;
+                                                             x++) {
+                                                            fillColumnDown(
+                                                                level,
+                                                                Tile::
+                                                                    netherBrick_Id,
+                                                                0, x, -1, z,
+                                                                chunkBB);
+                                                        }
     }
 
     return true;
-}
+                                                }

@@ -114,7 +114,7 @@ std::shared_ptr<AgableMob> Chicken::getBreedOffspring(
     std::shared_ptr<AgableMob> target) {
     // 4J - added limit to chickens that can be bred
     if (level->canCreateMore(GetType(), Level::eSpawnType_Breed)) {
-        return shared_ptr<Chicken>(new Chicken(level));
+        return std::shared_ptr<Chicken>(new Chicken(level));
     } else {
         return nullptr;
     }

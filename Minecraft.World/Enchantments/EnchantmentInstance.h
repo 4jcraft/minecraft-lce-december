@@ -11,5 +11,5 @@ public:
     EnchantmentInstance(int id, int level);
 
     // 4J Added
-    EnchantmentInstance* copy();
+    EnchantmentInstance* std::copy();
 };

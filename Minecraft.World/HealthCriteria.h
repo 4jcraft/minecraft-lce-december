@@ -6,6 +6,6 @@ class HealthCriteria : public DummyCriteria {
 public:
     HealthCriteria(const std::wstring& id);
 
-    int getScoreModifier(vector<std::shared_ptr<Player> >* players);
+    int getScoreModifier(std::vector<std::shared_ptr<Player> >* players);
     bool isReadOnly();
 };

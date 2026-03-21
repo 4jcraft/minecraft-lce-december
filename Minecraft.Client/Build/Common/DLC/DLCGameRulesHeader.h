@@ -3,40 +3,42 @@
 #include "DLCGameRules.h"
 #include "..\GameRules\LevelGenerationOptions.h"
 
-class DLCGameRulesHeader : public DLCGameRules, public JustGrSource
-{
+class DLCGameRulesHeader : public DLCGameRules, public JustGrSource {
 private:
+    // GR-Header
+    PBYTE m_pbData;
+    DWORD m_dwBytes;
 
-	// GR-Header 
-	PBYTE m_pbData;
-	DWORD m_dwBytes;
-
-	bool m_hasData;
-
-public:
-	virtual bool requiresTexturePack() {return m_bRequiresTexturePack;}
-	virtual UINT getRequiredTexturePackId() {return m_requiredTexturePackId;}
-	virtual std::wstring getDefaultSaveName() {return m_defaultSaveName;}
-	virtual LPCWSTR getWorldName() {return m_worldName.c_str();}
-	virtual LPCWSTR getDisplayName() {return m_displayName.c_str();}
-	virtual std::wstring getGrfPath() {return L"GameRules.grf";}
-
-	virtual void setRequiresTexturePack(bool x) {m_bRequiresTexturePack = x;}
-	virtual void setRequiredTexturePackId(UINT x) {m_requiredTexturePackId = x;}
-	virtual void setDefaultSaveName(const std::wstring &x) {m_defaultSaveName = x;}
-	virtual void setWorldName(const std::wstring & x) {m_worldName = x;}
-	virtual void setDisplayName(const std::wstring & x) {m_displayName = x;}
-	virtual void setGrfPath(const std::wstring & x) {m_grfPath = x;}
-
-	LevelGenerationOptions *lgo;
+    bool m_hasData;
 
 public:
-	DLCGameRulesHeader(const std::wstring &path);
+    virtual bool requiresTexturePack() { return m_bRequiresTexturePack; }
+    virtual UINT getRequiredTexturePackId() { return m_requiredTexturePackId; }
+    virtual std::wstring getDefaultSaveName() { return m_defaultSaveName; }
+    virtual LPCWSTR getWorldName() { return m_worldName.c_str(); }
+    virtual LPCWSTR getDisplayName() { return m_displayName.c_str(); }
+    virtual std::wstring getGrfPath() { return L"GameRules.grf"; }
 
-	virtual void addData(PBYTE pbData, DWORD dwBytes);
-	virtual PBYTE getData(DWORD &dwBytes);
+    virtual void setRequiresTexturePack(bool x) { m_bRequiresTexturePack = x; }
+    virtual void setRequiredTexturePackId(UINT x) {
+        m_requiredTexturePackId = x;
+    }
+    virtual void setDefaultSaveName(const std::wstring& x) {
+        m_defaultSaveName = x;
+    }
+    virtual void setWorldName(const std::wstring& x) { m_worldName = x; }
+    virtual void setDisplayName(const std::wstring& x) { m_displayName = x; }
+    virtual void setGrfPath(const std::wstring& x) { m_grfPath = x; }
 
-	void setGrfData(PBYTE fData, DWORD fSize, StringTable *);
+    LevelGenerationOptions* lgo;
 
-	virtual bool ready() { return m_hasData; }
+public:
+    DLCGameRulesHeader(const std::wstring& path);
+
+    virtual void addData(PBYTE pbData, DWORD dwBytes);
+    virtual PBYTE getData(DWORD& dwBytes);
+
+    void setGrfData(PBYTE fData, DWORD fSize, StringTable*);
+
+    virtual bool ready() { return m_hasData; }
 };

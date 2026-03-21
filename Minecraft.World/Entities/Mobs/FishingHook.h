@@ -59,5 +59,5 @@ public:
     int retrieve();
 
     // 4J Stu - Brought forward from 1.4
-    virtual void remove();
+    virtual void std::remove();
 };

@@ -11,7 +11,7 @@ public:
     virtual void write(byteArray b);
     virtual void write(byteArray b, unsigned int offset, unsigned int length);
     virtual void close();
-    virtual void flush() {}
+    virtual void std::flush() {}
 
 private:
     HANDLE m_fileHandle;

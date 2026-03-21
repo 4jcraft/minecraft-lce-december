@@ -19,7 +19,7 @@ std::shared_ptr<ItemInstance> AbstractProjectileDispenseBehavior::execute(
     Position* position = DispenserTile::getDispensePosition(source);
     FacingEnum* facing = DispenserTile::getFacing(source->getData());
 
-    shared_ptr<Projectile> projectile = getProjectile(world, position);
+    std::shared_ptr<Projectile> projectile = getProjectile(world, position);
 
     delete position;
 

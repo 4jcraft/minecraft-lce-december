@@ -2,13 +2,13 @@
 
 class LevelRuleset;
 
-class LevelRules
-{
+class LevelRules {
 public:
-	LevelRules();
+    LevelRules();
 
-	void addLevelRule(const std::wstring &displayName, PBYTE pbData, DWORD dwLen);
-	void addLevelRule(const std::wstring &displayName, LevelRuleset *rootRule);
+    void addLevelRule(const std::wstring& displayName, PBYTE pbData,
+                      DWORD dwLen);
+    void addLevelRule(const std::wstring& displayName, LevelRuleset* rootRule);
 
-	void removeLevelRule(LevelRuleset *removing);
+    void removeLevelRule(LevelRuleset* removing);
 };

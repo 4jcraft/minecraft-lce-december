@@ -29,23 +29,24 @@ bool HopperMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> HopperMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
-        clicked = stack->copy();
+        std::shared_ptr<ItemInstance> std::stack = slot->getItem();
+        clicked = std::stack->copy();
 
         if (slotIndex < hopper->getContainerSize()) {
-            if (!moveItemStackTo(stack, hopper->getContainerSize(),
+            if (!moveItemStackTo(std::stack, hopper->getContainerSize(),
                                  slots.size(), true)) {
                 return nullptr;
             }
         } else {
-            if (!moveItemStackTo(stack, 0, hopper->getContainerSize(), false)) {
+            if (!moveItemStackTo(std::stack, 0, hopper->getContainerSize(),
+                                 false)) {
                 return nullptr;
             }
         }
-        if (stack->count == 0) {
+        if (std::stack->count == 0) {
             slot->set(nullptr);
         } else {
             slot->setChanged();

@@ -43,15 +43,16 @@ public:
     Minecart(Level* level);
     virtual ~Minecart();
 
-    static shared_ptr<Minecart> createMinecart(Level* level, double x, double y,
-                                               double z, int type);
+    static std::shared_ptr<Minecart> createMinecart(Level* level, double x,
+                                                    double y, double z,
+                                                    int type);
 
 protected:
     virtual bool makeStepSound();
     virtual void defineSynchedData();
 
 public:
-    virtual AABB* getCollideAgainstBox(shared_ptr<Entity> entity);
+    virtual AABB* getCollideAgainstBox(std::shared_ptr<Entity> entity);
     virtual AABB* getCollideBox();
     virtual bool isPushable();
 
@@ -62,7 +63,7 @@ public:
     virtual void destroy(DamageSource* source);
     virtual void animateHurt();
     virtual bool isPickable();
-    virtual void remove();
+    virtual void std::remove();
 
 private:
     static const int EXITS[][2][3];
@@ -86,7 +87,7 @@ protected:
 public:
     virtual float getShadowHeightOffs();
     using Entity::push;
-    virtual void push(shared_ptr<Entity> e);
+    virtual void push(std::shared_ptr<Entity> e);
 
 private:
     int lSteps;

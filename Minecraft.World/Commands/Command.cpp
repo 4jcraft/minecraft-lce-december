@@ -34,7 +34,7 @@ void Command::logAdminAction(std::shared_ptr<CommandSender> source, int type,
 void Command::setLogger(AdminLogCommand* logger) { Command::logger = logger; }
 
 std::shared_ptr<ServerPlayer> Command::getPlayer(PlayerUID playerId) {
-    shared_ptr<ServerPlayer> player =
+    std::shared_ptr<ServerPlayer> player =
         MinecraftServer::getInstance()->getPlayers()->getPlayer(playerId);
 
     if (player == NULL) {

@@ -111,7 +111,7 @@ void WitherBoss::aiStep() {
     yd *= 0.6f;
 
     if (!level->isClientSide && getAlternativeTarget(0) > 0) {
-        shared_ptr<Entity> e = level->getEntity(getAlternativeTarget(0));
+        std::shared_ptr<Entity> e = level->getEntity(getAlternativeTarget(0));
         if (e != NULL) {
             if ((y < e->y) || (!isPowered() && y < (e->y + 5))) {
                 if (yd < 0) {
@@ -142,7 +142,7 @@ void WitherBoss::aiStep() {
 
     for (int i = 0; i < 2; i++) {
         int entityId = getAlternativeTarget(i + 1);
-        shared_ptr<Entity> e = nullptr;
+        std::shared_ptr<Entity> e = nullptr;
         if (entityId > 0) {
             e = level->getEntity(entityId);
         }
@@ -233,10 +233,11 @@ void WitherBoss::newServerAiStep() {
 
             int headTarget = getAlternativeTarget(i);
             if (headTarget > 0) {
-                shared_ptr<Entity> current = level->getEntity(headTarget);
+                std::shared_ptr<Entity> current = level->getEntity(headTarget);
 
-                // 4J: Added check for instance of living entity, had a problem
-                // with IDs being recycled to other entities
+                // 4J: Added check for instance of living entity, had a
+                // problem                with IDs being recycled to other
+                // entities               
                 if (current == NULL ||
                     !current->instanceof(eTYPE_LIVINGENTITY) ||
                     !current->isAlive() || distanceToSqr(current) > 30 * 30 ||
@@ -251,15 +252,14 @@ void WitherBoss::newServerAiStep() {
                     idleHeadUpdates[i - 1] = 0;
                 }
             } else {
-                vector<shared_ptr<Entity> >* entities =
+                std::vector<std::shared_ptr<Entity> >* entities =
                     level->getEntitiesOfClass(typeid(LivingEntity),
                                               bb->grow(20, 8, 20),
-                                              livingEntitySelector);
-                // randomly try to find a target 10 times
+                                              livingEntitySe// randomly try to find a target 10 times                         
                 for (int attempt = 0; attempt < 10 && !entities->empty();
                      attempt++) {
                     int randomIndex = random->nextInt(entities->size());
-                    shared_ptr<LivingEntity> selected =
+                    std::shared_ptr<LivingEntity> selected =
                         dynamic_pointer_cast<LivingEntity>(
                             entities->at(randomIndex));
 
@@ -278,28 +278,25 @@ void WitherBoss::newServerAiStep() {
                             setAlternativeTarget(i, selected->entityId);
                             break;
                         }
+                        // don't pick this again                              
+                        entities->erase(entities->begin() + randomIndex);
                     }
-                    // don't pick this again
-                    entities->erase(entities->begin() + randomIndex);
-                }
-                delete entities;
+                    delete entities;
+            }
             }
         }
-    }
-    if (getTarget() != NULL) {
-        assert(getTarget()->instanceof(eTYPE_LIVINGENTITY));
-        setAlternativeTarget(0, getTarget()->entityId);
-    } else {
-        setAlternativeTarget(0, 0);
-    }
+        if (getTarget() != NULL) {
+            assert(getTarget()->instanceof(eTYPE_LIVINGENTITY));
+            setAlternativeTarget(0, getTarget()->entityId);
+        } else {
+            setAlternativeTarget(0, 0);
+        }
 
-    if (destroyBlocksTick > 0) {
-        destroyBlocksTick--;
+        if (destroyBlocksTick > 0) {
+            destroyBlocksTick--;
 
         if (destroyBlocksTick == 0 &&
-            level->getGameRules()->getBoolean(GameRules::RULE_MOBGRIEFING)) {
-            // destroy all blocks that are within 1 range, counting from
-            // feet and 3 blocks up
+            level->getGameRules()->getBoolean(GameRules::RUL// destroy all blocks that are within 1 range, counting from             // feet and 3 blocks up                              
 
             int feet = Mth::floor(y);
             int ox = Mth::floor(x);
@@ -400,9 +397,10 @@ void WitherBoss::performRangedAttack(int head, double tx, double ty, double tz,
     double yd = ty - hy;
     double zd = tz - hz;
 
-    shared_ptr<WitherSkull> ie = shared_ptr<WitherSkull>(new WitherSkull(
-        level, dynamic_pointer_cast<LivingEntity>(shared_from_this()), xd, yd,
-        zd));
+    std::shared_ptr<WitherSkull> ie =
+        std::shared_ptr<WitherSkull>(new WitherSkull(
+            level, dynamic_pointer_cast<LivingEntity>(shared_from_this()), xd,
+            yd, zd));
     if (dangerous) ie->setDangerous(true);
     ie->y = hy;
     ie->x = hx;
@@ -423,31 +421,31 @@ bool WitherBoss::hurt(DamageSource* source, float dmg) {
     }
 
     if (isPowered()) {
-        shared_ptr<Entity> directEntity = source->getDirectEntity();
+        std::shared_ptr<Entity> directEntity = source->getDirectEntity();
         if (directEntity != NULL && directEntity->GetType() == eTYPE_ARROW) {
             return false;
         }
     }
 
-    shared_ptr<Entity> sourceEntity = source->getEntity();
+    std::shared_ptr<Entity> sourceEntity = source->getEntity();
     if (sourceEntity != NULL) {
         if (sourceEntity->instanceof(eTYPE_PLAYER)) {
         } else if (sourceEntity->instanceof(eTYPE_LIVINGENTITY) &&
                    dynamic_pointer_cast<LivingEntity>(sourceEntity)
-                           ->getMobType() == getMobType()) {
-            // can't be harmed by other undead
+                       // can't be harmed by other undead) {
+                                              
             return false;
-        }
     }
-    if (destroyBlocksTick <= 0) {
-        destroyBlocksTick = SharedConstants::TICKS_PER_SECOND;
-    }
+}
+if (destroyBlocksTick <= 0) {
+    destroyBlocksTick = SharedConstants::TICKS_PER_SECOND;
+}
 
-    for (int i = 0; i < IDLE_HEAD_UPDATES_SIZE; i++) {
-        idleHeadUpdates[i] += 3;
-    }
+for (int i = 0; i < IDLE_HEAD_UPDATES_SIZE; i++) {
+    idleHeadUpdates[i] += 3;
+}
 
-    return Monster::hurt(source, dmg);
+return Monster::hurt(source, dmg);
 }
 
 void WitherBoss::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel) {
@@ -464,8 +462,9 @@ bool WitherBoss::isPickable() { return !removed; }
 
 void WitherBoss::causeFallDamage(float distance) {}
 
-void WitherBoss::addEffect(MobEffectInstance* newEffect) {
-    // do nothing
+void WitherBo  // do nothing(MobEffectInstance* newEffect) {
+                 
+
 }
 
 bool WitherBoss::useNewAi() { return true; }
@@ -474,10 +473,7 @@ void WitherBoss::registerAttributes() {
     Monster::registerAttributes();
 
     getAttribute(SharedMonsterAttributes::MAX_HEALTH)->setBaseValue(300);
-    getAttribute(SharedMonsterAttributes::MOVEMENT_SPEED)->setBaseValue(0.6f);
-
-    // 4J Stu - Don't make it so far!
-    // getAttribute(SharedMonsterAttributes::FOLLOW_RANGE)->setBaseValue(40);
+    getAttribute(SharedMonsterAttr// 4J Stu - Don't make it so far!alue(// getAttribute(SharedMonsterAttributes::FOLLOW_RANGE)->setBaseValue(40);                                                  
 }
 
 float WitherBoss::getHeadYRot(int i) { return yRotHeads[i]; }

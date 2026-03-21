@@ -21,7 +21,7 @@ public:
     bool intersects(int x0, int z0, int x1, int z1);
     void expand(BoundingBox* other);
     BoundingBox* getIntersection(BoundingBox* other);
-    void move(int dx, int dy, int dz);
+    void std::move(int dx, int dy, int dz);
     bool isInside(int x, int y, int z);
 
     int getXSpan();

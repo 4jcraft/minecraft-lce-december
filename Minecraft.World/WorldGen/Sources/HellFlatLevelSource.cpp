@@ -181,7 +181,7 @@ std::wstring HellFlatLevelSource::gatherStats() {
     return L"HellFlatLevelSource";
 }
 
-vector<Biome::MobSpawnerData*>* HellFlatLevelSource::getMobsAt(
+std::vector<Biome::MobSpawnerData*>* HellFlatLevelSource::getMobsAt(
     MobCategory* mobCategory, int x, int y, int z) {
     Biome* biome = level->getBiome(x, z);
     if (biome == NULL) {

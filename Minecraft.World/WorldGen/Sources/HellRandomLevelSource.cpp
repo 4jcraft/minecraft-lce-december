@@ -246,7 +246,7 @@ void HellRandomLevelSource::buildSurfaces(int xOffs, int zOffs,
                                                                // needs the
                                                                // value to exist
                                                                // for the linker
-                                        y = min(y, genDepthMinusOne);
+                                        y = std::min(y, genDepthMinusOne);
                                         runDepth += 1;
                                         offs =
                                             (z * 16 + x) * Level::genDepth + y;
@@ -261,8 +261,8 @@ void HellRandomLevelSource::buildSurfaces(int xOffs, int zOffs,
                                 top = (byte)Tile::calmLava_Id;
 
                             run = runDepth;
-                            // 4J Stu - If sand, then allow adding nether wart
-                            // at heights below the water level
+                            // 4J Stu - If sand, then allow adding nether
+                            // wart      at heights below the water level     
                             if (y >= waterHeight - 1 || sand)
                                 blocks[offs] = top;
                             else
@@ -287,256 +287,263 @@ LevelChunk* HellRandomLevelSource::create(int x, int z) {
 
 LevelChunk* HellRandomLevelSource::getChunk(int xOffs, int zOffs) {
     random->setSeed(xOffs * 341873128712l + zOffs * 132897987541l);
-
-    // 4J - now allocating this with a physical alloc & bypassing general memory
-    // management so that it will get cleanly freed
+    // 4J - now allocating this with a physical alloc & bypassing general
+    // memory     // management so that it will get cleanly freed     
     int blocksSize = Level::genDepth * 16 * 16;
     byte* tileData =
         (byte*)XPhysicalAlloc(blocksSize, MAXULONG_PTR, 4096, PAGE_READWRITE);
     XMemSet128(tileData, 0, blocksSize);
-    byteArray blocks = byteArray(tileData, blocksSize);
-    //    byteArray blocks = byteArray(16 * level->depth * 16);
+    byteArray blocks =
+        byteArray(tileData, blocksSize);  //    byteArray blocks = byteArray(16
+                                          //    * level->depth * 16);     
 
     prepareHeights(xOffs, zOffs, blocks);
     buildSurfaces(xOffs, zOffs, blocks);
 
     caveFeature->apply(this, level, xOffs, zOffs, blocks);
     netherBridgeFeature->apply(this, level, xOffs, zOffs, blocks);
-
-    // 4J - this now creates compressed block data from the blocks array passed
-    // in, so needs to be after data is finalised. Also now need to free the
-    // passed in blocks as the LevelChunk doesn't use the passed in allocation
-    // anymore.
+    // 4J - this now creates compressed block data from the blocks array
+    // passed     // in, so needs to be after data is finalised. Also now need
+    // to free the     // passed in blocks as the LevelChunk doesn't use the
+    // passed in allocation     // anymore.     
     LevelChunk* levelChunk = new LevelChunk(level, blocks, xOffs, zOffs);
     levelChunk->setCheckAllLight();
     XPhysicalFree(tileData);
-    return levelChunk;
-}
-
-// 4J - removed & moved into its own method from getChunk, so we can call
-// recalcHeightmap after the chunk is added into the cache. Without doing this,
-// then loads of the lightgaps() calls will fail to add any lights, because
-// adding a light checks if the cache has this chunk in. lightgaps also does
-// light 1 block into the neighbouring chunks, and maybe that is somehow enough
-// to get lighting to propagate round the world, but this just doesn't seem
-// right - this isn't a new fault in the 360 version, have checked that java
-// does the same.
-void HellRandomLevelSource::lightChunk(LevelChunk* lc) {
-    lc->recalcHeightmap();
-}
-
-doubleArray HellRandomLevelSource::getHeights(doubleArray buffer, int x, int y,
-                                              int z, int xSize, int ySize,
-                                              int zSize) {
-    if (buffer.data == NULL) {
-        buffer = doubleArray(xSize * ySize * zSize);
+    return levelChunk  // 4J - removed & moved into its own method from
+                       // getChunk, so we can call // recalcHeightmap after the
+                       // chunk is added into the cache. Without doing this, //
+                       // then loads of the lightgaps() calls will fail to add
+                       // any lights, because // adding a light checks if the
+                       // cache has this chunk in. lightgaps also does // light
+                       // 1 block into the neighbouring chunks, and maybe that
+                       // is somehow enough // to get lighting to propagate
+                       // round the world, but this just doesn't seem // right -
+                       // this isn't a new fault in the 360 version, have
+                       // checked that java // does the same.     
+        void HellRandomLevelSource::lightChunk(LevelChunk * lc) {
+        lc->recalcHeightmap();
     }
 
-    double s = 1 * 684.412;
-    double hs = 1 * 684.412 * 3;
-
-    doubleArray pnr, ar, br, sr, dr, fi,
-        fis;  // 4J - used to be declared with class level scope but moved here
-              // for thread safety
-
-    sr = scaleNoise->getRegion(sr, x, y, z, xSize, 1, zSize, 1.0, 0, 1.0);
-    dr = depthNoise->getRegion(dr, x, y, z, xSize, 1, zSize, 100.0, 0, 100.0);
-
-    pnr = perlinNoise1->getRegion(pnr, x, y, z, xSize, ySize, zSize, s / 80.0,
-                                  hs / 60.0, s / 80.0);
-    ar = lperlinNoise1->getRegion(ar, x, y, z, xSize, ySize, zSize, s, hs, s);
-    br = lperlinNoise2->getRegion(br, x, y, z, xSize, ySize, zSize, s, hs, s);
-
-    int p = 0;
-    int pp = 0;
-    doubleArray yoffs = doubleArray(ySize);
-    for (int yy = 0; yy < ySize; yy++) {
-        yoffs[yy] = cos(yy * PI * 6 / (double)ySize) * 2;
-
-        double dd = yy;
-        if (yy > ySize / 2) {
-            dd = (ySize - 1) - yy;
+    doubleArray HellRandomLevelSource::getHeights(doubleArray buffer, int x,
+                                                  int y, int z, int xSize,
+                                                  int ySize, int zSize) {
+        if (buffer.data == NULL) {
+            buffer = doubleArray(xSize * ySize * zSize);
         }
-        if (dd < 4) {
-            dd = 4 - dd;
-            yoffs[yy] -= dd * dd * dd * 10;
-        }
-    }
 
-    for (int xx = 0; xx < xSize; xx++) {
-        for (int zz = 0; zz < zSize; zz++) {
-            double scale = ((sr[pp] + 256.0) / 512);
-            if (scale > 1) scale = 1;
+        double s = 1 * 684.412;
+        double hs = 1 * 684.412 * 3;
 
-            double floating = 0;
+        doubleArray pnr, ar, br, sr, dr, fi,
+            f  // 4J - used to be declared with class level scope but moved
+               // here      for thread safety     
 
-            double depth = (dr[pp] / 8000.0);
-            if (depth < 0) depth = -depth;
-            depth = depth * 3.0 - 3.0;
+                   sr = scaleNoise->getRegion(sr, x, y, z, xSize, 1, zSize, 1.0,
+                                              0, 1.0);
+        dr = depthNoise->getRegion(dr, x, y, z, xSize, 1, zSize, 100.0, 0,
+                                   100.0);
 
-            if (depth < 0) {
-                depth = depth / 2;
-                if (depth < -1) depth = -1;
-                depth = depth / 1.4;
-                depth /= 2;
-                scale = 0;
-            } else {
-                if (depth > 1) depth = 1;
-                depth = depth / 6;
+        pnr = perlinNoise1->getRegion(pnr, x, y, z, xSize, ySize, zSize,
+                                      s / 80.0, hs / 60.0, s / 80.0);
+        ar = lperlinNoise1->getRegion(ar, x, y, z, xSize, ySize, zSize, s, hs,
+                                      s);
+        br = lperlinNoise2->getRegion(br, x, y, z, xSize, ySize, zSize, s, hs,
+                                      s);
+
+        int p = 0;
+        int pp = 0;
+        doubleArray yoffs = doubleArray(ySize);
+        for (int yy = 0; yy < ySize; yy++) {
+            yoffs[yy] = cos(yy * PI * 6 / (double)ySize) * 2;
+
+            double dd = yy;
+            if (yy > ySize / 2) {
+                dd = (ySize - 1) - yy;
             }
-            scale = (scale) + 0.5;
-            depth = depth * ySize / 16;
-            pp++;
-
-            for (int yy = 0; yy < ySize; yy++) {
-                double val = 0;
-
-                double yOffs = yoffs[yy];
-
-                double bb = ar[p] / 512;
-                double cc = br[p] / 512;
-
-                double v = (pnr[p] / 10 + 1) / 2;
-                if (v < 0)
-                    val = bb;
-                else if (v > 1)
-                    val = cc;
-                else
-                    val = bb + (cc - bb) * v;
-                val -= yOffs;
-
-                if (yy > ySize - 4) {
-                    double slide = (yy - (ySize - 4)) / (4 - 1.0f);
-                    val = val * (1 - slide) + -10 * slide;
-                }
-
-                if (yy < floating) {
-                    double slide = (floating - yy) / (4);
-                    if (slide < 0) slide = 0;
-                    if (slide > 1) slide = 1;
-                    val = val * (1 - slide) + -10 * slide;
-                }
-
-                buffer[p] = val;
-                p++;
+            if (dd < 4) {
+                dd = 4 - dd;
+                yoffs[yy] -= dd * dd * dd * 10;
             }
         }
+
+        for (int xx = 0; xx < xSize; xx++) {
+            for (int zz = 0; zz < zSize; zz++) {
+                double scale = ((sr[pp] + 256.0) / 512);
+                if (scale > 1) scale = 1;
+
+                double floating = 0;
+
+                double depth = (dr[pp] / 8000.0);
+                if (depth < 0) depth = -depth;
+                depth = depth * 3.0 - 3.0;
+
+                if (depth < 0) {
+                    depth = depth / 2;
+                    if (depth < -1) depth = -1;
+                    depth = depth / 1.4;
+                    depth /= 2;
+                    scale = 0;
+                } else {
+                    if (depth > 1) depth = 1;
+                    depth = depth / 6;
+                }
+                scale = (scale) + 0.5;
+                depth = depth * ySize / 16;
+                pp++;
+
+                for (int yy = 0; yy < ySize; yy++) {
+                    double val = 0;
+
+                    double yOffs = yoffs[yy];
+
+                    double bb = ar[p] / 512;
+                    double cc = br[p] / 512;
+
+                    double v = (pnr[p] / 10 + 1) / 2;
+                    if (v < 0)
+                        val = bb;
+                    else if (v > 1)
+                        val = cc;
+                    else
+                        val = bb + (cc - bb) * v;
+                    val -= yOffs;
+
+                    if (yy > ySize - 4) {
+                        double slide = (yy - (ySize - 4)) / (4 - 1.0f);
+                        val = val * (1 - slide) + -10 * slide;
+                    }
+
+                    if (yy < floating) {
+                        double slide = (floating - yy) / (4);
+                        if (slide < 0) slide = 0;
+                        if (slide > 1) slide = 1;
+                        val = val * (1 - slide) + -10 * slide;
+                    }
+
+                    buffer[p] = val;
+                    p++;
+                }
+            }
+        }
+
+        delete[] pnr.data;
+        delete[] ar.data;
+        delete[] br.data;
+        delete[] sr.data;
+        delete[] dr.data;
+        delete[] fi.data;
+        delete[] fis.data;
+        delete[] yoffs.data;
+
+        return buffer;
     }
 
-    delete[] pnr.data;
-    delete[] ar.data;
-    delete[] br.data;
-    delete[] sr.data;
-    delete[] dr.data;
-    delete[] fi.data;
-    delete[] fis.data;
-    delete[] yoffs.data;
+    bool HellRandomLevelSource::hasChunk(int x, int y) { return true; }
 
-    return buffer;
-}
+    void HellRandomLevelSource::postProcess(ChunkSource * parent, int xt,
+                                            int zt) {
+        HeavyTile::instaFall = true;
+        int xo = xt * 16;
+        int zo = zt * 16;
+        // 4J - added. The original java didn't do any setting of the random
+        // seed     // here. We'll be running our postProcess in parallel with
+        // getChunk etc. so     // we need to use a separate random - have used
+        // the same initialisation code     // as used in
+        // RandomLevelSource::postProcess to make sure this random value     //
+        // is consistent for each world generation. Also changed all uses of
+        // random     // here to pprandom.     
+        pprandom->setSeed(level->getSeed());
+        __int64 xScale = pprandom->nextLong() / 2 * 2 + 1;
+        __int64 zScale = pprandom->nextLong() / 2 * 2 + 1;
+        pprandom->setSeed(((xt * xScale) + (zt * zScale)) ^ level->getSeed());
 
-bool HellRandomLevelSource::hasChunk(int x, int y) { return true; }
+        netherBridgeFeature->postProcess(level, pprandom, xt, zt);
 
-void HellRandomLevelSource::postProcess(ChunkSource* parent, int xt, int zt) {
-    HeavyTile::instaFall = true;
-    int xo = xt * 16;
-    int zo = zt * 16;
+        for (int i = 0; i < 8; i++) {
+            int x = xo + pprandom->nextInt(16) + 8;
+            int y = pprandom->nextInt(Level::genDepth - 8) + 4;
+            int z = zo + pprandom->nextInt(16) + 8;
+            HellSpringFeature(Tile::lava_Id, false)
+                .place(level, pprandom, x, y, z);
+        }
 
-    // 4J - added. The original java didn't do any setting of the random seed
-    // here. We'll be running our postProcess in parallel with getChunk etc. so
-    // we need to use a separate random - have used the same initialisation code
-    // as used in RandomLevelSource::postProcess to make sure this random value
-    // is consistent for each world generation. Also changed all uses of random
-    // here to pprandom.
-    pprandom->setSeed(level->getSeed());
-    __int64 xScale = pprandom->nextLong() / 2 * 2 + 1;
-    __int64 zScale = pprandom->nextLong() / 2 * 2 + 1;
-    pprandom->setSeed(((xt * xScale) + (zt * zScale)) ^ level->getSeed());
+        int count = pprandom->nextInt(pprandom->nextInt(10) + 1) + 1;
 
-    netherBridgeFeature->postProcess(level, pprandom, xt, zt);
+        for (int i = 0; i < count; i++) {
+            int x = xo + pprandom->nextInt(16) + 8;
+            int y = pprandom->nextInt(Level::genDepth - 8) + 4;
+            int z = zo + pprandom->nextInt(16) + 8;
+            HellFireFeature().place(level, pprandom, x, y, z);
+        }
 
-    for (int i = 0; i < 8; i++) {
-        int x = xo + pprandom->nextInt(16) + 8;
-        int y = pprandom->nextInt(Level::genDepth - 8) + 4;
-        int z = zo + pprandom->nextInt(16) + 8;
-        HellSpringFeature(Tile::lava_Id, false).place(level, pprandom, x, y, z);
+        count = pprandom->nextInt(pprandom->nextInt(10) + 1);
+        for (int i = 0; i < count; i++) {
+            int x = xo + pprandom->nextInt(16) + 8;
+            int y = pprandom->nextInt(Level::genDepth - 8) + 4;
+            int z = zo + pprandom->nextInt(16) + 8;
+            LightGemFeature().place(level, pprandom, x, y, z);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            int x = xo + pprandom->nextInt(16) + 8;
+            int y = pprandom->nextInt(Level::genDepth);
+            int z = zo + pprandom->nextInt(16) + 8;
+            HellPortalFeature().place(level, pprandom, x, y, z);
+        }
+
+        if (pprandom->nextInt(1) == 0) {
+            int x = xo + pprandom->nextInt(16) + 8;
+            int y = pprandom->nextInt(Level::genDepth);
+            int z = zo + pprandom->nextInt(16) + 8;
+            FlowerFeature(Tile::mushroom_brown_Id)
+                .place(level, pprandom, x, y, z);
+        }
+
+        if (pprandom->nextInt(1) == 0) {
+            int x = xo + pprandom->nextInt(16) + 8;
+            int y = pprandom->nextInt(Level::genDepth);
+            int z = zo + pprandom->nextInt(16) + 8;
+            FlowerFeature(Tile::mushroom_red_Id)
+                .place(level, pprandom, x, y, z);
+        }
+
+        OreFeature quartzFeature(Tile::netherQuartz_Id, 13,
+                                 Tile::netherRack_Id);
+        for (int i = 0; i < 16; i++) {
+            int x = xo + pprandom->nextInt(16);
+            int y = pprandom->nextInt(Level::genDepth - 20) + 10;
+            int z = zo + pprandom->nextInt(16);
+            quartzFeature.place(level, pprandom, x, y, z);
+        }
+
+        for (int i = 0; i < 16; i++) {
+            int x = xo + random->nextInt(16);
+            int y = random->nextInt(Level::genDepth - 20) + 10;
+            int z = zo + random->nextInt(16);
+            HellSpringFeature hellSpringFeature(Tile::lava_Id, true);
+            hellSpringFeature.place(level, random, x, y, z);
+        }
+
+        HeavyTile::instaFall = false;
+
+        app.processSchematics(parent->getChunk(xt, zt));
     }
 
-    int count = pprandom->nextInt(pprandom->nextInt(10) + 1) + 1;
-
-    for (int i = 0; i < count; i++) {
-        int x = xo + pprandom->nextInt(16) + 8;
-        int y = pprandom->nextInt(Level::genDepth - 8) + 4;
-        int z = zo + pprandom->nextInt(16) + 8;
-        HellFireFeature().place(level, pprandom, x, y, z);
+    bool HellRandomLevelSource::save(bool force,
+                                     ProgressListener* progressListener) {
+        return true;
     }
 
-    count = pprandom->nextInt(pprandom->nextInt(10) + 1);
-    for (int i = 0; i < count; i++) {
-        int x = xo + pprandom->nextInt(16) + 8;
-        int y = pprandom->nextInt(Level::genDepth - 8) + 4;
-        int z = zo + pprandom->nextInt(16) + 8;
-        LightGemFeature().place(level, pprandom, x, y, z);
+    bool HellRandomLevelSource::tick() { return false; }
+
+    bool HellRandomLevelSource::shouldSave() { return true; }
+
+    std::wstring HellRandomLevelSource::gatherStats() {
+        ret "HellRandomLevelSource"     ;
     }
 
-    for (int i = 0; i < 10; i++) {
-        int x = xo + pprandom->nextInt(16) + 8;
-        int y = pprandom->nextInt(Level::genDepth);
-        int z = zo + pprandom->nextInt(16) + 8;
-        HellPortalFeature().place(level, pprandom, x, y, z);
-    }
-
-    if (pprandom->nextInt(1) == 0) {
-        int x = xo + pprandom->nextInt(16) + 8;
-        int y = pprandom->nextInt(Level::genDepth);
-        int z = zo + pprandom->nextInt(16) + 8;
-        FlowerFeature(Tile::mushroom_brown_Id).place(level, pprandom, x, y, z);
-    }
-
-    if (pprandom->nextInt(1) == 0) {
-        int x = xo + pprandom->nextInt(16) + 8;
-        int y = pprandom->nextInt(Level::genDepth);
-        int z = zo + pprandom->nextInt(16) + 8;
-        FlowerFeature(Tile::mushroom_red_Id).place(level, pprandom, x, y, z);
-    }
-
-    OreFeature quartzFeature(Tile::netherQuartz_Id, 13, Tile::netherRack_Id);
-    for (int i = 0; i < 16; i++) {
-        int x = xo + pprandom->nextInt(16);
-        int y = pprandom->nextInt(Level::genDepth - 20) + 10;
-        int z = zo + pprandom->nextInt(16);
-        quartzFeature.place(level, pprandom, x, y, z);
-    }
-
-    for (int i = 0; i < 16; i++) {
-        int x = xo + random->nextInt(16);
-        int y = random->nextInt(Level::genDepth - 20) + 10;
-        int z = zo + random->nextInt(16);
-        HellSpringFeature hellSpringFeature(Tile::lava_Id, true);
-        hellSpringFeature.place(level, random, x, y, z);
-    }
-
-    HeavyTile::instaFall = false;
-
-    app.processSchematics(parent->getChunk(xt, zt));
-}
-
-bool HellRandomLevelSource::save(bool force,
-                                 ProgressListener* progressListener) {
-    return true;
-}
-
-bool HellRandomLevelSource::tick() { return false; }
-
-bool HellRandomLevelSource::shouldSave() { return true; }
-
-std::wstring HellRandomLevelSource::gatherStats() {
-    return L"HellRandomLevelSource";
-}
-
-vector<Biome::MobSpawnerData*>* HellRandomLevelSource::getMobsAt(
-    MobCategory* mobCategory, int x, int y, int z) {
-    // check if the coordinates is within a netherbridge
+std::vector<Biome::MobSpawnerData*>* HellRandomLevelSource::getMobsAt(
+    MobCategory* mobCategory, int x, int y, int// check if the coordinates is within a netherbridge          
     if (mobCategory == MobCategory::monster) {
         if (netherBridgeFeature->isInsideFeature(x, y, z)) {
             return netherBridgeFeature->getBridgeEnemies();

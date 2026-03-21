@@ -13,9 +13,9 @@ public:
     DataLayer(byteArray data, int depthBits);
     ~DataLayer();
 
-    int get(int x, int y, int z);
+    int std::get(int x, int y, int z);
 
-    void set(int x, int y, int z, int val);
+    void std::set(int x, int y, int z, int val);
     bool isValid();
     void setAll(int br);
 };

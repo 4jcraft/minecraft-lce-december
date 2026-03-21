@@ -19,14 +19,14 @@ void FlyingMob::checkFallDamage(double ya, bool onGround) {
 void FlyingMob::travel(float xa, float ya) {
     if (isInWater()) {
         moveRelative(xa, ya, 0.02f);
-        move(xd, yd, zd);
+        std::move(xd, yd, zd);
 
         xd *= 0.80f;
         yd *= 0.80f;
         zd *= 0.80f;
     } else if (isInLava()) {
         moveRelative(xa, ya, 0.02f);
-        move(xd, yd, zd);
+        std::move(xd, yd, zd);
         xd *= 0.50f;
         yd *= 0.50f;
         zd *= 0.50f;
@@ -55,7 +55,7 @@ void FlyingMob::travel(float xa, float ya) {
             }
         }
 
-        move(xd, yd, zd);
+        std::move(xd, yd, zd);
 
         xd *= friction;
         yd *= friction;

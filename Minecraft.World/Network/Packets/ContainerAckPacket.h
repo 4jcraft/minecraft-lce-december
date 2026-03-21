@@ -23,7 +23,7 @@ public:
 
 public:
     static std::shared_ptr<Packet> create() {
-        return shared_ptr<Packet>(new ContainerAckPacket());
+        return std::shared_ptr<Packet>(new ContainerAckPacket());
     }
     virtual int getId() { return 106; }
 };

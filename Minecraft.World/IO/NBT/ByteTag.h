@@ -16,7 +16,7 @@ public:
     std::wstring toString() {
         static wchar_t buf[32];
         swprintf(buf, 32, L"%d", data);
-        return wstring(buf);
+        return std::wstring(buf);
     }
 
     bool equals(Tag* obj) {
@@ -27,5 +27,5 @@ public:
         return false;
     }
 
-    Tag* copy() { return new ByteTag(getName(), data); }
+    Tag* std::copy() { return new ByteTag(getName(), data); }
 };

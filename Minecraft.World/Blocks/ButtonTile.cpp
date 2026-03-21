@@ -262,7 +262,7 @@ void ButtonTile::checkPressed(Level* level, int x, int y, int z) {
     updateShape(data);
     Tile::ThreadStorage* tls =
         (Tile::ThreadStorage*)TlsGetValue(Tile::tlsIdxShape);
-    vector<shared_ptr<Entity> >* entities = level->getEntitiesOfClass(
+    std::vector<std::shared_ptr<Entity> >* entities = level->getEntitiesOfClass(
         typeid(Arrow), AABB::newTemp(x + tls->xx0, y + tls->yy0, z + tls->zz0,
                                      x + tls->xx1, y + tls->yy1, z + tls->zz1));
     shouldBePressed = !entities->empty();
@@ -311,6 +311,5 @@ bool ButtonTile::shouldTileTick(Level* level, int x, int y, int z) {
     return (currentData & 8) != 0;
 }
 
-void ButtonTile::registerIcons(IconRegister* iconRegister) {
-    // None
+void ButtonTile::registerIcons(IconRegister* iconRegist// None          
 }

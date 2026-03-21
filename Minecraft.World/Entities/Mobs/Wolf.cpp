@@ -231,22 +231,22 @@ int Wolf::getMaxHeadXRot() {
 bool Wolf::hurt(DamageSource* source, float dmg) {
     // 4J: Protect owned wolves from untrusted players
     if (isTame()) {
-        shared_ptr<Entity> entity = source->getDirectEntity();
+        std::shared_ptr<Entity> entity = source->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            shared_ptr<Player> attacker = dynamic_pointer_cast<Player>(entity);
+            std::shared_ptr<Player> attacker =
+                dynamic_pointer_cast<Player>(entity);
             attacker->canHarmPlayer(getOwnerUUID());
         }
     }
 
     if (isInvulnerable()) return false;
-    shared_ptr<Entity> sourceEntity = source->getEntity();
+    std::shared_ptr<Entity> sourceEntity = source->getEntity();
     sitGoal->wantToSit(false);
     if (sourceEntity != NULL && !(sourceEntity->instanceof(eTYPE_PLAYER) ||
-                                  sourceEntity->instanceof(eTYPE_ARROW))) {
-        // Take half damage from non-players and arrows
+                                  sourceEntity->instanceof(eTYPE_ARRO// Take half damage from non-players and arrows               
         dmg = (dmg + 1) / 2;
-    }
-    return TamableAnimal::hurt(source, dmg);
+}
+return TamableAnimal::hurt(source, dmg);
 }
 
 bool Wolf::doHurtTarget(std::shared_ptr<Entity> target) {
@@ -276,14 +276,12 @@ void Wolf::tame(const std::wstring& wsOwnerUUID, bool bDisplayTamingParticles,
     sitGoal->wantToSit(bSetSitting);
     setHealth(TAME_HEALTH);
 
-    setOwnerUUID(wsOwnerUUID);
-
-    // We'll not show the taming particles if this is a baby wolf
+    setOwnerUUID(wsOw// We'll not show the taming particles if this is a baby wolf               
     spawnTamingParticles(bDisplayTamingParticles);
 }
 
 bool Wolf::mobInteract(std::shared_ptr<Player> player) {
-    shared_ptr<ItemInstance> item = player->inventory->getSelected();
+    std::shared_ptr<ItemInstance> item = player->inventory->getSelected();
 
     if (isTame()) {
         if (item != NULL) {
@@ -293,7 +291,8 @@ bool Wolf::mobInteract(std::shared_ptr<Player> player) {
                 if (food->isMeat() &&
                     entityData->getFloat(DATA_HEALTH_ID) < MAX_HEALTH) {
                     heal(food->getNutrition());
-                    // 4J-PB - don't lose the bone in creative mode
+                    // 4J-PB - don't lose the bone in creative
+                    // mode                    
                     if (player->abilities.instabuild == false) {
                         item->count--;
                         if (item->count <= 0) {
@@ -328,40 +327,34 @@ bool Wolf::mobInteract(std::shared_ptr<Player> player) {
             }
         }
     } else {
-        if (item != NULL && item->id == Item::bone->id && !isAngry()) {
-            // 4J-PB - don't lose the bone in creative mode
+        if (item != NULL && item->id == Item::bone->id && !isAng// 4J-PB - don't lose the bone in creative mode                    
             if (player->abilities.instabuild == false) {
-                item->count--;
-                if (item->count <= 0) {
-                    player->inventory->setItem(player->inventory->selected,
-                                               nullptr);
-                }
+            item->count--;
+            if (item->count <= 0) {
+                player->inventory->setItem(player->inventory->selected,
+                                           nullptr);
+            }
             }
 
             if (!level->isClientSide) {
-                if (random->nextInt(3) == 0) {
-                    // 4J : WESTY: Added for new acheivements.
-                    player->awardStat(
-                        GenericStats::tamedEntity(eTYPE_WOLF),
-                        GenericStats::param_tamedEntity(eTYPE_WOLF));
+            if (random->nextInt(3) == 0) {
+                // 4J : WESTY: Added for new acheivements.                    
+                player->awardStat(GenericStats::tamedEntity(eTYPE_WOLF),
+                                  GenericStats::param_tamedEntity(eTYPE_WOLF));
 
-                    // 4J Changed to this
-                    tame(player->getUUID(), true, true);
+                // 4J Changed to this                    
+                tame(player->getUUID(), true, true);
 
-                    level->broadcastEntityEvent(shared_from_this(),
-                                                EntityEvent::TAMING_SUCCEEDED);
-                } else {
-                    spawnTamingParticles(false);
-                    level->broadcastEntityEvent(shared_from_this(),
-                                                EntityEvent::TAMING_FAILED);
-                }
+                level->broadcastEntityEvent(shared_from_this(),
+                                            EntityEvent::TAMING_SUCCEEDED);
+            } else {
+                spawnTamingParticles(false);
+                level->broadcastEntityEvent(shared_from_this(),
+                                            EntityEvent::TAMING_FAILED);
+            }
             }
 
-            return true;
-        }
-
-        // 4J-PB - stop wild wolves going in to Love Mode (even though they do
-        // on Java, but don't breed)
+            return true;// 4J-PB - stop wild wolves going in to Love Mode (even though they do         // on Java, but don't breed)                    
         if ((item != NULL) && isFood(item)) {
             return false;
         }
@@ -396,9 +389,10 @@ bool Wolf::isFood(std::shared_ptr<ItemInstance> item) {
     return ((FoodItem*)Item::items[item->id])->isMeat();
 }
 
-int Wolf::getMaxSpawnClusterSize() {
-    // 4J - changed - was 8 but we have a limit of only 8 wolves in the world so
-    // doesn't seem right potentially spawning them all in once cluster
+int Wolf::getMaxSpawn  // 4J - changed - was 8 but we have a limit of only 8
+                       // wolves in the world so     // doesn't seem right
+                       // potentially spawning them all in once
+                       // cluster                    
     return 4;
 }
 
@@ -420,28 +414,25 @@ int Wolf::getCollarColor() {
 }
 
 void Wolf::setCollarColor(int color) {
-    entityData->set(DATA_COLLAR_COLOR, (byte)(color & 0xF));
-}
-
-// 4J-PB added for tooltips
+    entityData->set(DATA_COLLAR_COLOR, (byte// 4J-PB added for tooltips                    
 int Wolf::GetSynchedHealth() {
-    return getEntityData()->getInteger(DATA_HEALTH_ID);
+        return getEntityData()->getInteger(DATA_HEALTH_ID);
 }
 
 std::shared_ptr<AgableMob> Wolf::getBreedOffspring(
-    std::shared_ptr<AgableMob> target) {
-    // 4J - added limit to wolves that can be bred
+    std::shared_ptr<Agabl// 4J - added limit to wolves that can be bred                    
     if (level->canCreateMore(GetType(), Level::eSpawnType_Breed)) {
-        shared_ptr<Wolf> pBabyWolf = shared_ptr<Wolf>(new Wolf(level));
+        std::shared_ptr<Wolf> pBabyWolf =
+            std::shared_ptr<Wolf>(new Wolf(level));
 
-        if (!getOwnerUUID().empty()) {
-            // set the baby wolf to be tame, and assign the owner
+        if (!getOwner// set the baby wolf to be tame, and assign the owner                              
             pBabyWolf->tame(getOwnerUUID(), false, false);
         }
         return pBabyWolf;
-    } else {
-        return nullptr;
-    }
+}
+else {
+    return nullptr;
+}
 }
 
 void Wolf::setIsInterested(bool value) {
@@ -457,7 +448,7 @@ bool Wolf::canMate(std::shared_ptr<Animal> animal) {
     if (!isTame()) return false;
 
     if (!animal->instanceof(eTYPE_WOLF)) return false;
-    shared_ptr<Wolf> partner = dynamic_pointer_cast<Wolf>(animal);
+    std::shared_ptr<Wolf> partner = dynamic_pointer_cast<Wolf>(animal);
 
     if (partner == NULL) return false;
     if (!partner->isTame()) return false;
@@ -475,29 +466,25 @@ bool Wolf::removeWhenFarAway() {
 }
 
 bool Wolf::wantsToAttack(std::shared_ptr<LivingEntity> target,
-                         std::shared_ptr<LivingEntity> owner) {
-    // filter un-attackable mobs
+                         std::sha// filter un-attackable mobs {
+                                
     if (target->GetType() == eTYPE_CREEPER ||
-        target->GetType() == eTYPE_GHAST) {
+        target->GetType() == eTYPE_GHAST)// never target wolves that has this player as owner                                   
+    if (target->GetType() == eTYPE_WOLF) {
+    std::shared_ptr<Wolf> wolfTarget = dynamic_pointer_cast<Wolf>(target);
+    if (wolfTarget->isTame() && wolfTarget->getOwner() == owner) {
         return false;
     }
-    // never target wolves that has this player as owner
-    if (target->GetType() == eTYPE_WOLF) {
-        shared_ptr<Wolf> wolfTarget = dynamic_pointer_cast<Wolf>(target);
-        if (wolfTarget->isTame() && wolfTarget->getOwner() == owner) {
-            return false;
-        }
     }
     if (target->instanceof(eTYPE_PLAYER) && owner->instanceof(eTYPE_PLAYER) &&
         !dynamic_pointer_cast<Player>(owner)->canHarmPlayer(
-            dynamic_pointer_cast<Player>(target))) {
-        // pvp is off
-        return false;
-    }
-    // don't attack tame horses
+            dynamic_p// pvp is offlayer>(target))) {
+              // don't attack tame horsese;
+}
+                           
     if ((target->GetType() == eTYPE_HORSE) &&
         dynamic_pointer_cast<EntityHorse>(target)->isTamed()) {
-        return false;
-    }
-    return true;
+    return false;
+}
+return true;
 }

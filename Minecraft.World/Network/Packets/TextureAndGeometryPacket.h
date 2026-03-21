@@ -25,7 +25,7 @@ public:
     TextureAndGeometryPacket(const std::wstring& textureName, PBYTE pbData,
                              DWORD dwBytes, DLCSkinFile* pDLCSkinFile);
     TextureAndGeometryPacket(const std::wstring& textureName, PBYTE pbData,
-                             DWORD dwBytes, vector<SKIN_BOX*>* pvSkinBoxes,
+                             DWORD dwBytes, std::vector<SKIN_BOX*>* pvSkinBoxes,
                              unsigned int uiAnimOverrideBitmask);
 
     virtual void handle(PacketListener* listener);

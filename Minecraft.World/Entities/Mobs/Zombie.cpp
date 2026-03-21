@@ -119,7 +119,7 @@ void Zombie::aiStep() {
                              Mth::floor(z))) {
             bool burn = true;
 
-            shared_ptr<ItemInstance> helmet = getCarried(SLOT_HELM);
+            std::shared_ptr<ItemInstance> helmet = getCarried(SLOT_HELM);
             if (helmet != NULL) {
                 if (helmet->isDamageableItem()) {
                     helmet->setAuxValue(helmet->getDamageValue() +
@@ -143,7 +143,7 @@ void Zombie::aiStep() {
 
 bool Zombie::hurt(DamageSource* source, float dmg) {
     if (Monster::hurt(source, dmg)) {
-        shared_ptr<LivingEntity> target = getTarget();
+        std::shared_ptr<LivingEntity> target = getTarget();
         if ((target == NULL) && getAttackTarget() != NULL &&
             getAttackTarget()->instanceof(eTYPE_LIVINGENTITY))
             target = dynamic_pointer_cast<LivingEntity>(getAttackTarget());
@@ -157,8 +157,8 @@ bool Zombie::hurt(DamageSource* source, float dmg) {
             int x = Mth::floor(this->x);
             int y = Mth::floor(this->y);
             int z = Mth::floor(this->z);
-            shared_ptr<Zombie> reinforcement =
-                shared_ptr<Zombie>(new Zombie(level));
+            std::shared_ptr<Zombie> reinforcement =
+                std::shared_ptr<Zombie>(new Zombie(level));
 
             for (int i = 0; i < REINFORCEMENT_ATTEMPTS; i++) {
                 int xt = x + Mth::nextInt(random, REINFORCEMENT_RANGE_MIN,
@@ -263,13 +263,13 @@ void Zombie::populateDefaultEquipmentSlots() {
         (level->difficulty == Difficulty::HARD ? 0.05f : 0.01f)) {
         int rand = random->nextInt(3);
         if (rand == 0) {
-            setEquippedSlot(
-                SLOT_WEAPON,
-                shared_ptr<ItemInstance>(new ItemInstance(Item::sword_iron)));
+            setEquippedSlot(SLOT_WEAPON,
+                            std::shared_ptr<ItemInstance>(
+                                new ItemInstance(Item::sword_iron)));
         } else {
-            setEquippedSlot(
-                SLOT_WEAPON,
-                shared_ptr<ItemInstance>(new ItemInstance(Item::shovel_iron)));
+            setEquippedSlot(SLOT_WEAPON,
+                            std::shared_ptr<ItemInstance>(
+                                new ItemInstance(Item::shovel_iron)));
         }
     }
 }
@@ -277,33 +277,27 @@ void Zombie::populateDefaultEquipmentSlots() {
 void Zombie::addAdditonalSaveData(CompoundTag* tag) {
     Monster::addAdditonalSaveData(tag);
 
-    if (isBaby()) tag->putBoolean(L"IsBaby", true);
-    if (isVillager()) tag->putBoolean(L"IsVillager", true);
-    tag->putInt(L"ConversionTime",
+    i"IsBaby"y()) tag->putBoolean(L        , true);
+    if (i"IsVillager" tag->putBoolean(L        "ConversionTime" tag->putInt(L                ,
                 isConverting() ? villagerConversionTime : -1);
 }
 
 void Zombie::readAdditionalSaveData(CompoundTag* tag) {
-    Monster::readAdditionalSaveData(tag);
-
-    if (tag->getBoolean(L"IsBaby")) setBaby(true);
-    if (tag->getBoolean(L"IsVillager")) setVillager(true);
-    if (tag->contains(L"ConversionTime") && tag->getInt(L"ConversionTime") > -1)
-        startConverting(tag->getInt(L"ConversionTime"));
+    Monster::readAdditionalSaveData(ta"IsBaby" if (tag->getBoolean(L        )) setBaby(tr"IsVillager"(tag->getBoolean(L            )) setVillager("ConversionTime"ag->contains(L    "ConversionTime" tag->getInt(L                ) > -1)
+       "ConversionTime"(tag->getInt(L                ));
 }
 
 void Zombie::killed(std::shared_ptr<LivingEntity> mob) {
     Monster::killed(mob);
 
     if (level->difficulty >= Difficulty::NORMAL &&
-        (mob->GetType() ==
-         eTYPE_VILLAGER))  // 4J-JEV: Villager isn't a non-terminal class, no
-                           // need to instanceof.
+        (mob->GetType() // 4J-JEV: Villager isn't a non-terminal class, no                            // need to instanceof.                              
     {
         if (level->difficulty == Difficulty::NORMAL && random->nextBoolean())
             return;
 
-        shared_ptr<Zombie> zombie = shared_ptr<Zombie>(new Zombie(level));
+        std::shared_ptr<Zombie> zombie =
+            std::shared_ptr<Zombie>(new Zombie(level));
         zombie->copyPosition(mob);
         level->removeEntity(mob);
         zombie->finalizeMobSpawn(NULL);
@@ -317,7 +311,7 @@ void Zombie::killed(std::shared_ptr<LivingEntity> mob) {
 }
 
 MobGroupData* Zombie::finalizeMobSpawn(
-    MobGroupData* groupData, int extraData /*= 0*/)  // 4J Added extraData param
+   /*= 0*/upD// 4J Added extraData paramta        )                             
 {
     groupData = Monster::finalizeMobSpawn(groupData);
     float difficulty = level->getDifficulty(x, y, z);
@@ -344,149 +338,143 @@ MobGroupData* Zombie::finalizeMobSpawn(
     populateDefaultEquipmentSlots();
     populateDefaultEquipmentEnchantments();
 
-    if (getCarried(SLOT_HELM) == NULL) {
-        // [EB]: We have this code in quite some places, shouldn't we set
-        // something like this globally?
+    if (g// [EB]: We have this code in quite some places, shouldn't we set         // something like this globally?                                        
         if (Calendar::GetMonth() + 1 == 10 && Calendar::GetDayOfMonth() == 31 &&
-            random->nextFloat() < 0.25f) {
-            // Halloween! OooOOo! 25% of all skeletons/zombies can wear
-            // pumpkins on their heads.
+            ran// Halloween! OooOOo! 25% of all skeletons/zombies can wear             // pumpkins on their heads.
+                                       
             setEquippedSlot(SLOT_HELM,
-                            shared_ptr<ItemInstance>(new ItemInstance(
+                            std::shared_ptr<ItemInstance>(new ItemInstance(
                                 random->nextFloat() < 0.1f ? Tile::litPumpkin
                                                            : Tile::pumpkin)));
             dropChances[SLOT_HELM] = 0;
         }
-    }
+}
 
     getAttribute(SharedMonsterAttributes::KNOCKBACK_RESISTANCE)
         ->addModifier(
             new AttributeModifier(random->nextDouble() * 0.05f,
-                                  AttributeModifier::OPERATION_ADDITION));
-
-    // 4J Stu - Take this out, it's not good and nobody will notice. Also not
-    // great for performance.
-    // getAttribute(SharedMonsterAttributes::FOLLOW_RANGE)->addModifier(new
-    // AttributeModifier(random->nextDouble() * 1.50f,
-    // AttributeModifier::OPERATION_MULTIPLY_TOTAL));
+                                  A// 4J Stu - Take this out, it's not good and nobody will notice. Also not     // great for performance.     // getAttribute(SharedMonsterAttributes::FOLLOW_RANGE)->addModifier(new     // AttributeModifier(random->nextDouble() * 1.50f,     // AttributeModifier::OPERATION_MULTIPLY_TOTAL));                                             
 
     if (random->nextFloat() < difficulty * ZOMBIE_LEADER_CHANCE) {
-        getAttribute(SPAWN_REINFORCEMENTS_CHANCE)
-            ->addModifier(
-                new AttributeModifier(random->nextDouble() * 0.25f + 0.50f,
-                                      AttributeModifier::OPERATION_ADDITION));
-        getAttribute(SharedMonsterAttributes::MAX_HEALTH)
-            ->addModifier(new AttributeModifier(
-                random->nextDouble() * 3.0f + 1.0f,
-                AttributeModifier::OPERATION_MULTIPLY_TOTAL));
+    getAttribute(SPAWN_REINFORCEMENTS_CHANCE)
+        ->addModifier(
+            new AttributeModifier(random->nextDouble() * 0.25f + 0.50f,
+                                  AttributeModifier::OPERATION_ADDITION));
+    getAttribute(SharedMonsterAttributes::MAX_HEALTH)
+        ->addModifier(
+            new AttributeModifier(random->nextDouble() * 3.0f + 1.0f,
+                                  AttributeModifier::OPERATION_MULTIPLY_TOTAL));
     }
 
     return groupData;
-}
+    }
 
-bool Zombie::mobInteract(std::shared_ptr<Player> player) {
-    shared_ptr<ItemInstance> item = player->getSelectedItem();
+    bool Zombie::mobInteract(std::shared_ptr<Player> player) {
+        std::shared_ptr<ItemInstance> item = player->getSelectedItem();
 
-    if (item != NULL && item->getItem() == Item::apple_gold &&
-        item->getAuxValue() == 0 && isVillager() &&
-        hasEffect(MobEffect::weakness)) {
-        if (!player->abilities.instabuild) item->count--;
-        if (item->count <= 0) {
-            player->inventory->setItem(player->inventory->selected, nullptr);
-        }
+        if (item != NULL && item->getItem() == Item::apple_gold &&
+            item->getAuxValue() == 0 && isVillager() &&
+            hasEffect(MobEffect::weakness)) {
+            if (!player->abilities.instabuild) item->count--;
+            if (item->count <= 0) {
+                player->inventory->setItem(player->inventory->selected,
+                                           nullptr);
+            }
 
-        if (!level->isClientSide) {
+            if (!level->isClientSide) {
             startConverting(random->nextInt(VILLAGER_CONVERSION_WAIT_MAX -
                                             VILLAGER_CONVERSION_WAIT_MIN + 1) +
-                            VILLAGER_CONVERSION_WAIT_MIN);
-
-            // 4J-JEV, award achievement here, as it is impractical to award
-            // when the zombie is actually cured.
+                      // 4J-JEV, award achievement here, as it is impractical to award             // when the zombie is actually cured.
+                                                 
             player->awardStat(GenericStats::zombieDoctor(),
                               GenericStats::param_zombieDoctor());
+            }
+
+            return true;
         }
 
-        return true;
+        return false;
     }
 
-    return false;
-}
+    void Zombie::startConverting(int time) {
+        villagerConversionTime = time;
+        getEntityData()->set(DATA_CONVERTING_ID, (byte)1);
 
-void Zombie::startConverting(int time) {
-    villagerConversionTime = time;
-    getEntityData()->set(DATA_CONVERTING_ID, (byte)1);
+        removeEffect(MobEffect::weakness->id);
+        addEffect(new MobEffectInstance(MobEffect::damageBoost->id, time,
+                                        std::min(level->difficulty - 1, 0)));
 
-    removeEffect(MobEffect::weakness->id);
-    addEffect(new MobEffectInstance(MobEffect::damageBoost->id, time,
-                                    min(level->difficulty - 1, 0)));
-
-    level->broadcastEntityEvent(shared_from_this(),
-                                EntityEvent::ZOMBIE_CONVERTING);
-}
-
-void Zombie::handleEntityEvent(byte id) {
-    if (id == EntityEvent::ZOMBIE_CONVERTING) {
-        level->playLocalSound(
-            x + 0.5f, y + 0.5f, z + 0.5f, eSoundType_MOB_ZOMBIE_REMEDY,
-            1 + random->nextFloat(), random->nextFloat() * 0.7f + 0.3f, false);
-    } else {
-        Monster::handleEntityEvent(id);
+        level->broadcastEntityEvent(shared_from_this(),
+                                    EntityEvent::ZOMBIE_CONVERTING);
     }
-}
 
-bool Zombie::removeWhenFarAway() { return !isConverting(); }
+    void Zombie::handleEntityEvent(byte id) {
+        if (id == EntityEvent::ZOMBIE_CONVERTING) {
+            level->playLocalSound(x + 0.5f, y + 0.5f, z + 0.5f,
+                                  eSoundType_MOB_ZOMBIE_REMEDY,
+                                  1 + random->nextFloat(),
+                                  random->nextFloat() * 0.7f + 0.3f, false);
+        } else {
+            Monster::handleEntityEvent(id);
+        }
+    }
 
-bool Zombie::isConverting() {
-    return getEntityData()->getByte(DATA_CONVERTING_ID) == (byte)1;
-}
+    bool Zombie::removeWhenFarAway() { return !isConverting(); }
 
-void Zombie::finishConversion() {
-    shared_ptr<Villager> villager = shared_ptr<Villager>(new Villager(level));
-    villager->copyPosition(shared_from_this());
-    villager->finalizeMobSpawn(NULL);
-    villager->setRewardPlayersInVillage();
-    if (isBaby()) villager->setAge(-20 * 60 * 20);
-    level->removeEntity(shared_from_this());
-    level->addEntity(villager);
+    bool Zombie::isConverting() {
+        return getEntityData()->getByte(DATA_CONVERTING_ID) == (byte)1;
+    }
 
-    villager->addEffect(new MobEffectInstance(
-        MobEffect::confusion->id, SharedConstants::TICKS_PER_SECOND * 10, 0));
-    level->levelEvent(nullptr, LevelEvent::SOUND_ZOMBIE_CONVERTED, (int)x,
-                      (int)y, (int)z, 0);
-}
+    void Zombie::finishConversion() {
+        std::shared_ptr<Villager> villager =
+            std::shared_ptr<Villager>(new Villager(level));
+        villager->copyPosition(shared_from_this());
+        villager->finalizeMobSpawn(NULL);
+        villager->setRewardPlayersInVillage();
+        if (isBaby()) villager->setAge(-20 * 60 * 20);
+        level->removeEntity(shared_from_this());
+        level->addEntity(villager);
 
-int Zombie::getConversionProgress() {
-    int amount = 1;
+        villager->addEffect(
+            new MobEffectInstance(MobEffect::confusion->id,
+                                  SharedConstants::TICKS_PER_SECOND * 10, 0));
+        level->levelEvent(nullptr, LevelEvent::SOUND_ZOMBIE_CONVERTED, (int)x,
+                          (int)y, (int)z, 0);
+    }
 
-    if (random->nextFloat() < 0.01f) {
-        int specialBlocksCount = 0;
+    int Zombie::getConversionProgress() {
+        int amount = 1;
 
-        for (int xx = (int)x - SPECIAL_BLOCK_RADIUS;
-             xx < (int)x + SPECIAL_BLOCK_RADIUS &&
-             specialBlocksCount < MAX_SPECIAL_BLOCKS_COUNT;
-             xx++) {
-            for (int yy = (int)y - SPECIAL_BLOCK_RADIUS;
-                 yy < (int)y + SPECIAL_BLOCK_RADIUS &&
+        if (random->nextFloat() < 0.01f) {
+            int specialBlocksCount = 0;
+
+            for (int xx = (int)x - SPECIAL_BLOCK_RADIUS;
+                 xx < (int)x + SPECIAL_BLOCK_RADIUS &&
                  specialBlocksCount < MAX_SPECIAL_BLOCKS_COUNT;
-                 yy++) {
-                for (int zz = (int)z - SPECIAL_BLOCK_RADIUS;
-                     zz < (int)z + SPECIAL_BLOCK_RADIUS &&
+                 xx++) {
+                for (int yy = (int)y - SPECIAL_BLOCK_RADIUS;
+                     yy < (int)y + SPECIAL_BLOCK_RADIUS &&
                      specialBlocksCount < MAX_SPECIAL_BLOCKS_COUNT;
-                     zz++) {
-                    int tile = level->getTile(xx, yy, zz);
+                     yy++) {
+                    for (int zz = (int)z - SPECIAL_BLOCK_RADIUS;
+                         zz < (int)z + SPECIAL_BLOCK_RADIUS &&
+                         specialBlocksCount < MAX_SPECIAL_BLOCKS_COUNT;
+                         zz++) {
+                        int tile = level->getTile(xx, yy, zz);
 
-                    if (tile == Tile::ironFence_Id || tile == Tile::bed_Id) {
-                        if (random->nextFloat() < 0.3f) amount++;
-                        specialBlocksCount++;
+                        if (tile == Tile::ironFence_Id ||
+                            tile == Tile::bed_Id) {
+                            if (random->nextFloat() < 0.3f) amount++;
+                            specialBlocksCount++;
+                        }
                     }
                 }
             }
         }
+        return amount;
     }
-    return amount;
-}
 
-Zombie::ZombieGroupData::ZombieGroupData(bool baby, bool villager) {
-    isBaby = baby;
-    isVillager = villager;
-}
+    Zombie::ZombieGroupData::ZombieGroupData(bool baby, bool villager) {
+        isBaby = baby;
+        isVillager = villager;
+    }

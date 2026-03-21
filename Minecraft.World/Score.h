@@ -32,7 +32,7 @@ public:
           const std::wstring& owner);
 
     void add(int count);
-    void remove(int count);
+    void std::remove(int count);
     void increment();
     void decrement();
     int getScore();
@@ -40,5 +40,5 @@ public:
     Objective* getObjective();
     std::wstring getOwner();
     Scoreboard* getScoreboard();
-    void updateFor(vector<std::shared_ptr<Player> >* players);
+    void updateFor(std::vector<std::shared_ptr<Player> >* players);
 };

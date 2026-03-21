@@ -16,7 +16,7 @@ MoveTowardsTargetGoal::MoveTowardsTargetGoal(PathfinderMob* mob,
 }
 
 bool MoveTowardsTargetGoal::canUse() {
-    target = weak_ptr<LivingEntity>(mob->getTarget());
+    target = std::weak_ptr<LivingEntity>(mob->getTarget());
     if (target.lock() == NULL) return false;
     if (target.lock()->distanceToSqr(mob->shared_from_this()) > within * within)
         return false;
@@ -37,7 +37,7 @@ bool MoveTowardsTargetGoal::canContinueToUse() {
                within * within;
 }
 
-void MoveTowardsTargetGoal::stop() { target = weak_ptr<Mob>(); }
+void MoveTowardsTargetGoal::stop() { target = std::weak_ptr<Mob>(); }
 
 void MoveTowardsTargetGoal::start() {
     mob->getNavigation()->moveTo(wantedX, wantedY, wantedZ, speedModifier);

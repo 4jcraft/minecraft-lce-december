@@ -23,7 +23,7 @@ public:
 
 public:
     static std::shared_ptr<Packet> create() {
-        return shared_ptr<Packet>(new ChunkVisibilityPacket());
+        return std::shared_ptr<Packet>(new ChunkVisibilityPacket());
     }
     virtual int getId() { return 50; }
 };

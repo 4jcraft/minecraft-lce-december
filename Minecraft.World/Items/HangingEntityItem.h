@@ -26,5 +26,5 @@ private:
 public:
     virtual void appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                                  std::shared_ptr<Player> player,
-                                 vector<HtmlString>* lines, bool advanced);
+                                 std::vector<HtmlString>* lines, bool advanced);
 };

@@ -103,5 +103,5 @@ public:
 
     // 4J Added
     bool equals(DamageSource* source);
-    virtual DamageSource* copy();
+    virtual DamageSource* std::copy();
 };

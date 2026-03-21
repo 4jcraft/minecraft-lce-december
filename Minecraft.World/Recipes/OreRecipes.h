@@ -9,7 +9,7 @@ public:
     OreRecipies() { _init(); }
 
 private:
-    vector<Object*> map[MAX_ORE_RECIPES];
+    std::vector<Object*> map[MAX_ORE_RECIPES];
 
 public:
     void addRecipes(Recipes* r);

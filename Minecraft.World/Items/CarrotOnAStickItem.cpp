@@ -18,7 +18,7 @@ std::shared_ptr<ItemInstance> CarrotOnAStickItem::use(
     std::shared_ptr<ItemInstance> itemInstance, Level* level,
     std::shared_ptr<Player> player) {
     if (player->isRiding()) {
-        shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(player->riding);
+        std::shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(player->riding);
         if (pig) {
             if (pig->getControlGoal()->canBoost() &&
                 itemInstance->getMaxDamage() - itemInstance->getAuxValue() >=
@@ -27,8 +27,8 @@ std::shared_ptr<ItemInstance> CarrotOnAStickItem::use(
                 itemInstance->hurtAndBreak(7, player);
 
                 if (itemInstance->count == 0) {
-                    shared_ptr<ItemInstance> replacement =
-                        shared_ptr<ItemInstance>(
+                    std::shared_ptr<ItemInstance> replacement =
+                        std::shared_ptr<ItemInstance>(
                             new ItemInstance(Item::fishingRod));
                     replacement->setTag(itemInstance->tag);
                     return replacement;

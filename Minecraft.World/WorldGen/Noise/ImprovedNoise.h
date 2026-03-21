@@ -20,8 +20,8 @@ public:
     double noise(double _x, double _y, double _z);
 
     double lerp(double t, double a, double b);
-    double grad2(int hash, double x, double z);
-    double grad(int hash, double x, double y, double z);
+    double grad2(int std::hash, double x, double z);
+    double grad(int std::hash, double x, double y, double z);
     virtual double getValue(double x, double y);
     double getValue(double x, double y, double z);
 

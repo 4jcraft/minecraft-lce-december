@@ -21,5 +21,5 @@ DispenseItemBehavior* BehaviorRegistry::get(Item* key) {
 }
 
 void BehaviorRegistry::add(Item* key, DispenseItemBehavior* value) {
-    storage.insert(make_pair(key, value));
+    storage.insert(std::make_pair(key, value));
 }

@@ -16,7 +16,7 @@ private:
 
 public:
     static void loadAttributes(BaseAttributeMap* attributes,
-                               ListTag<CompoundTag>* list);
+                               ListTag<CompoundTag>* std::list);
 
 private:
     static void loadAttribute(AttributeInstance* instance, CompoundTag* tag);

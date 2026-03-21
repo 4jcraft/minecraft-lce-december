@@ -1,8 +1,7 @@
 #pragma once
 class BufferedImage;
 
-class MemTextureProcessor
-{
+class MemTextureProcessor {
 public:
-	virtual BufferedImage *process(BufferedImage *read) = 0;
+    virtual BufferedImage* process(BufferedImage* read) = 0;
 };

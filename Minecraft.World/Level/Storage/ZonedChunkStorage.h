@@ -28,7 +28,7 @@ public:
     File dir;
 
 private:
-    unordered_map<__int64, ZoneFile*> zoneFiles;
+    std::unordered_map<__int64, ZoneFile*> zoneFiles;
     __int64 tickCount;
 
 public:
@@ -45,7 +45,7 @@ public:
 
     void tick();
 
-    void flush();
+    void std::flush();
 
     void loadEntities(Level* level, LevelChunk* lc);
     void saveEntities(Level* level, LevelChunk* lc);

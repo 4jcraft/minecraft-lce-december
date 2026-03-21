@@ -11,9 +11,9 @@ private:
     PathfinderMob* mob;
     double speedModifier;
     Path* path;
-    weak_ptr<DoorInfo> doorInfo;
+    std::weak_ptr<DoorInfo> doorInfo;
     bool onlyAtNight;
-    vector<weak_ptr<DoorInfo> > visited;
+    std::vector<std::weak_ptr<DoorInfo> > visited;
 
 public:
     MoveThroughVillageGoal(PathfinderMob* mob, double speedModifier,

@@ -22,7 +22,8 @@ void Mushroom::tick(Level* level, int x, int y, int z, Random* random) {
         for (int xx = x - r; xx <= x + r; xx++)
             for (int zz = z - r; zz <= z + r; zz++)
                 for (int yy = y - 1; yy <= y + 1; yy++) {
-                    if (level->getTile(xx, yy, zz) == id && --max <= 0) return;
+                    if (level->getTile(xx, yy, zz) == id && --std::max <= 0)
+                        return;
                 }
 
         int x2 = x + random->nextInt(3) - 1;

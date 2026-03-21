@@ -37,7 +37,7 @@ public:
     std::wstring toString() {
         static wchar_t buf[32];
         swprintf(buf, 32, L"[%d bytes]", data.length);
-        return wstring(buf);
+        return std::wstring(buf);
     }
 
     bool equals(Tag* obj) {
@@ -51,7 +51,7 @@ public:
         return false;
     }
 
-    Tag* copy() {
+    Tag* std::copy() {
         intArray cp = intArray(data.length);
         System::arraycopy(data, 0, &cp, 0, data.length);
         return new IntArrayTag(getName(), cp);

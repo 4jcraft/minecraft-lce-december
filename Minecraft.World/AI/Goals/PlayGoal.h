@@ -5,7 +5,7 @@
 class PlayGoal : public Goal {
 private:
     Villager* mob;
-    weak_ptr<LivingEntity> followFriend;
+    std::weak_ptr<LivingEntity> followFriend;
     double speedModifier;
     double wantedX, wantedY, wantedZ;
     int playTime;

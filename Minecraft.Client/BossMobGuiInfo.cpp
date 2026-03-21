@@ -7,9 +7,9 @@ int BossMobGuiInfo::displayTicks = 0;
 std::wstring BossMobGuiInfo::name = L"";
 bool BossMobGuiInfo::darkenWorld = false;
 
-void BossMobGuiInfo::setBossHealth(std::shared_ptr<BossMob> boss, bool darkenWorld)
-{
-    healthProgress = (float) boss->getHealth() / (float) boss->getMaxHealth();
+void BossMobGuiInfo::setBossHealth(std::shared_ptr<BossMob> boss,
+                                   bool darkenWorld) {
+    healthProgress = (float)boss->getHealth() / (float)boss->getMaxHealth();
     displayTicks = SharedConstants::TICKS_PER_SECOND * 5;
     name = boss->getAName();
     BossMobGuiInfo::darkenWorld = darkenWorld;

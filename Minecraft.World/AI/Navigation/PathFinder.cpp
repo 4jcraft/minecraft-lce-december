@@ -172,8 +172,8 @@ Node* PathFinder::getNode(Entity* entity, int x, int y, int z, Node* size,
                 return NULL;  // 4J - rolling this back to pre-java 1.6.4
                               // version as we're suspicious of the performance
                               // implications of this
-                              //			if (drop++ >= entity->getMaxFallDistance())
-                              //return NULL;
+                              //			if (drop++ >=
+                              //entity->getMaxFallDistance()) return NULL;
             y--;
 
             if (y > 0) best = getNode(x, y, z);
@@ -193,7 +193,7 @@ Node* PathFinder::getNode(Entity* entity, int x, int y, int z, Node* size,
         MemSect(54);
         node = new Node(x, y, z);
         MemSect(0);
-        nodes.insert(unordered_map<int, Node*>::value_type(i, node));
+        nodes.insert(std::unordered_map<int, Node*>::value_type(i, node));
     } else {
         node = (*it).second;
     }
@@ -227,8 +227,8 @@ int PathFinder::isFree(Entity* entity, int x, int y, int z, Node* size,
 
                 Tile* tile = Tile::tiles[tileId];
 
-                // 4J Stu - Use new getTileRenderShape passing in the tileId we
-                // have already got
+                // 4J Stu - Use new getTileRenderShape passing in the tileId
+                // we      have already got     
                 if (entity->level->getTileRenderShape(tileId) ==
                     Tile::SHAPE_RAIL) {
                     int xt = Mth::floor(entity->x);
@@ -261,26 +261,27 @@ int PathFinder::isFree(Entity* entity, int x, int y, int z, Node* size,
                 return TYPE_BLOCKED;
             }
 
-    return walkable ? TYPE_WALKABLE : TYPE_OPEN;
-}
+    return walkable
+               ? TYPE_WALKABLE
+               : TYPE_OPEN  // function
+                            // reconstruct_path(came_from,current_node)     
+                     Path *
+                     PathFinder::reconstruct_path(Node * from, Node * to) {
+        int count = 1;
+        Node* n = to;
+        while (n->cameFrom != NULL) {
+            count++;
+            n = n->cameFrom;
+        }
 
-// function reconstruct_path(came_from,current_node)
-Path* PathFinder::reconstruct_path(Node* from, Node* to) {
-    int count = 1;
-    Node* n = to;
-    while (n->cameFrom != NULL) {
-        count++;
-        n = n->cameFrom;
-    }
-
-    NodeArray nodes = NodeArray(count);
-    n = to;
-    nodes.data[--count] = n;
-    while (n->cameFrom != NULL) {
-        n = n->cameFrom;
+        NodeArray nodes = NodeArray(count);
+        n = to;
         nodes.data[--count] = n;
+        while (n->cameFrom != NULL) {
+            n = n->cameFrom;
+            nodes.data[--count] = n;
+        }
+        Path* ret = new Path(nodes);
+        delete[] nodes.data;
+        return ret;
     }
-    Path* ret = new Path(nodes);
-    delete[] nodes.data;
-    return ret;
-}

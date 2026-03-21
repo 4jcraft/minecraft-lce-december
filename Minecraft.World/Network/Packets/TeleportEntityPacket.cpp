@@ -74,7 +74,7 @@ int TeleportEntityPacket::getEstimatedSize() { return 2 + 2 + 2 + 2 + 1 + 1; }
 bool TeleportEntityPacket::canBeInvalidated() { return true; }
 
 bool TeleportEntityPacket::isInvalidatedBy(std::shared_ptr<Packet> packet) {
-    shared_ptr<TeleportEntityPacket> target =
+    std::shared_ptr<TeleportEntityPacket> target =
         dynamic_pointer_cast<TeleportEntityPacket>(packet);
     return target->id == id;
 }

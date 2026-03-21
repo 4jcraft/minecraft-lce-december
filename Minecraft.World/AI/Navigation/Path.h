@@ -12,10 +12,10 @@ public:
     Path(NodeArray nodes);
     ~Path();
 
-    void next();
+    void std::next();
     bool isDone();
     Node* last();
-    Node* get(int i);
+    Node* std::get(int i);
     int getSize();
     void setSize(int length);
     int getIndex();
