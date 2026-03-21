@@ -1,6 +1,6 @@
 #include "../../Build/stdafx.h"
 #include "FallingTileRenderer.h"
-#include "../../TextureAtlas.h"
+#include "../../Textures/TextureAtlas.h"
 #include "TileRenderer.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.item.h"
 #include "..\Minecraft.World\net.minecraft.world.level.h"

@@ -4,7 +4,7 @@
 #include "../Tesselator.h"
 #include "../Lighting.h"
 #include "EnderDragonRenderer.h"
-#include "../../BossMobGuiInfo.h"
+#include "../../UI/BossMobGuiInfo.h"
 
 ResourceLocation EnderDragonRenderer::DRAGON_EXPLODING_LOCATION = ResourceLocation(TN_MOB_ENDERDRAGON_SHUFFLE);
 ResourceLocation EnderDragonRenderer::CRYSTAL_BEAM_LOCATION = ResourceLocation(TN_MOB_ENDERDRAGON_BEAM);

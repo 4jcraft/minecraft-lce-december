@@ -5,7 +5,7 @@
 
 #include "Input/ConsoleInput.h"
 #include "Level/DerivedServerLevel.h"
-#include "DispenserBootstrap.h"
+#include "GameState/DispenserBootstrap.h"
 #include "Player/EntityTracker.h"
 #include "MinecraftServer.h"
 #include "GameState/Options.h"

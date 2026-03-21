@@ -1,7 +1,7 @@
 #include "../../Build/stdafx.h"
 #include "EnderManRenderer.h"
 #include "../Models/EnderManModel.h"
-#include "../../TextureAtlas.h"
+#include "../../Textures/TextureAtlas.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.monster.h"
 #include "..\Minecraft.World\net.minecraft.world.level.tile.h"
 

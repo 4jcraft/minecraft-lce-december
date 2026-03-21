@@ -9,7 +9,7 @@
 #include "../MinecraftServer.h"
 #include "ServerLevel.h"
 #include "../Minecraft.h"
-#include "../FireworksParticles.h"
+#include "../Rendering/Particles/FireworksParticles.h"
 #include "..\Minecraft.World\PrimedTnt.h"
 #include "..\Minecraft.World\Tile.h"
 #include "..\Minecraft.World\TileEntity.h"

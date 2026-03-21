@@ -13,7 +13,7 @@
 #include "TheEndPortalRenderer.h"
 #include "SkullTileRenderer.h"
 #include "EnderChestRenderer.h"
-#include "../../BeaconRenderer.h"
+#include "BeaconRenderer.h"
 
 TileEntityRenderDispatcher *TileEntityRenderDispatcher::instance = NULL;
 double TileEntityRenderDispatcher::xOff = 0;

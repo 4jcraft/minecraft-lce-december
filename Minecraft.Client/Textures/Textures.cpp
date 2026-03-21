@@ -16,9 +16,9 @@
 #include "..\Minecraft.World\net.minecraft.world.h"
 #include "..\Minecraft.World\net.minecraft.world.level.h"
 #include "..\Minecraft.World\StringHelpers.h"
-#include "../ResourceLocation.h"
+#include "ResourceLocation.h"
 #include "..\Minecraft.World\ItemEntity.h"
-#include "../TextureAtlas.h"
+#include "TextureAtlas.h"
 
 bool Textures::MIPMAP = true;
 C4JRender::eTextureFormat Textures::TEXTURE_FORMAT = C4JRender::TEXTURE_FORMAT_RxGyBzAw;

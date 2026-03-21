@@ -4,7 +4,7 @@
 #include "entityRenderDispatcher.h"
 //#include "ItemFrame"
 #include "ItemFrameRenderer.h"
-#include "../../TextureAtlas.h"
+#include "../../Textures/TextureAtlas.h"
 
 #include "..\Minecraft.World\JavaMath.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.Item.h"

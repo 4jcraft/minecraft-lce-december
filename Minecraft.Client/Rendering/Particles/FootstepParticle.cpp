@@ -4,7 +4,7 @@
 #include "../Tesselator.h"
 #include "..\Minecraft.World\Mth.h"
 #include "..\Minecraft.World\net.minecraft.world.level.h"
-#include "../../ResourceLocation.h"
+#include "../../Textures/ResourceLocation.h"
 
 ResourceLocation FootstepParticle::FOOTPRINT_LOCATION = ResourceLocation(TN_MISC_FOOTSTEP);
 

@@ -3,7 +3,7 @@
 #include "..\Minecraft.World\net.minecraft.world.level.tile.h"
 #include "../Models/VillagerGolemModel.h"
 #include "../Models/ModelPart.h"
-#include "../../TextureAtlas.h"
+#include "../../Textures/TextureAtlas.h"
 #include "VillagerGolemRenderer.h"
 
 ResourceLocation VillagerGolemRenderer::GOLEM_LOCATION = ResourceLocation(TN_MOB_VILLAGER_GOLEM);

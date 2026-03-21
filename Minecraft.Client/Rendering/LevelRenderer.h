@@ -4,7 +4,7 @@
 #include "OffsettedRenderList.h"
 #include "..\Minecraft.World\JavaIntHash.h"
 #include "..\Minecraft.World\Level.h"
-#include "../ResourceLocation.h"
+#include "../Textures/ResourceLocation.h"
 #include <xmcore.h>
 #ifdef __PS3__
 #include "C4JSpursJob.h"

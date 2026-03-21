@@ -10,7 +10,7 @@
 #include "..\Minecraft.World\StringHelpers.h"
 #include "..\Minecraft.World\net.minecraft.world.h"
 #include "../../GameState/Options.h"
-#include "../../TextureAtlas.h"
+#include "../../Textures/TextureAtlas.h"
 
 #ifdef _XBOX
 extern IDirect3DDevice9 *g_pD3DDevice;

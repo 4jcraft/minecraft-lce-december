@@ -46,11 +46,11 @@
 #include "..\Minecraft.World\Item.h"
 #include "..\Minecraft.World\compression.h"
 #include "PS3\PS3Extras\ShutdownManager.h"
-#include "../BossMobGuiInfo.h"
+#include "../UI/BossMobGuiInfo.h"
 
 #include "../Textures/Packs/TexturePackRepository.h"
 #include "../Textures/Packs/TexturePack.h"
-#include "../TextureAtlas.h"
+#include "../Textures/TextureAtlas.h"
 
 bool GameRenderer::anaglyph3d = false;
 int GameRenderer::anaglyphPass = 0;

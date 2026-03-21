@@ -11,7 +11,7 @@ class SparseDataStorage;
 
 #include "..\Minecraft.World\SmoothFloat.h"
 #include "..\Minecraft.World\C4JThread.h"
-#include "../ResourceLocation.h"
+#include "../Textures/ResourceLocation.h"
 
 class GameRenderer
 {

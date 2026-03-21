@@ -6,7 +6,7 @@
 #include "../Player/ServerPlayer.h"
 #include "../Network/PlayerConnection.h"
 #include "../Player/EntityTracker.h"
-#include "../ServerScoreboard.h"
+#include "../Network/ServerScoreboard.h"
 #include "..\Minecraft.World\ScoreboardSaveData.h"
 #include "..\Minecraft.World\net.minecraft.world.h"
 #include "..\Minecraft.World\net.minecraft.world.item.h"
