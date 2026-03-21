@@ -40,7 +40,7 @@ void ChatScreen::keyPressed(wchar_t ch, int eventKey) {
 }
 
 void ChatScreen::render(int xm, int ym, float a) {
-    std::fill(2, height - 14, width - 2, height - 2, 0x80000000);
+    fill(2, height - 14, width - 2, height - 2, 0x80000000);
     drawString(font, L"> " + message + (frame / 6 % 2 == 0 ? L"_" : L""), 4,
                height - 12, 0xe0e0e0);
 

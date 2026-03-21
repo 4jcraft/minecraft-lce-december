@@ -856,7 +856,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
         }
 
         int color = (int)(220.0f * amount) << 24 | (0x101020);
-        std::fill(0, 0, screenWidth / fScaleFactorWidth,
+        fill(0, 0, screenWidth / fScaleFactorWidth,
                   screenHeight / fScaleFactorHeight, color);
         glEnable(GL_ALPHA_TEST);
         glEnable(GL_DEPTH_TEST);
@@ -870,7 +870,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
         float amount = (float)timer / (float)Player::DEATHFADE_DURATION;
 
         int color = (int)(220.0f * amount) << 24 | (0x200000);
-        std::fill(0, 0, screenWidth / fScaleFactorWidth,
+        fill(0, 0, screenWidth / fScaleFactorWidth,
                   screenHeight / fScaleFactorHeight, color);
         glEnable(GL_ALPHA_TEST);
         glEnable(GL_DEPTH_TEST);
@@ -1118,12 +1118,12 @@ max) + "% (" + (total / 1024 / 1024) + "MB)"; drawString(font, msg, screenWidth
 
 		int xxo = (screenWidth - cols * slotWidth) / 2;
 		int yyo = 10;
-		std::fill(xxo - 1, yyo - 1, xxo + slotWidth * cols, yyo + 9 * rows, 0x80000000);
+		fill(xxo - 1, yyo - 1, xxo + slotWidth * cols, yyo + 9 * rows, 0x80000000);
 		for (int i = 0; i < slots; i++) {
 			int xo = xxo + i % cols * slotWidth;
 			int yo = yyo + i / cols * 9;
 
-			std::fill(xo, yo, xo + slotWidth - 1, yo + 8, 0x20ffffff);
+			fill(xo, yo, xo + slotWidth - 1, yo + 8, 0x20ffffff);
 			glColor4f(1, 1, 1, 1);
 			glEnable(GL_ALPHA_TEST);
 

@@ -62,8 +62,8 @@ void NameEntryScreen::render(int xm, int ym, float a) {
     int by = height / 2 - 10;
     int bw = 200;
     int bh = 20;
-    std::fill(bx - 1, by - 1, bx + bw + 1, by + bh + 1, 0xffa0a0a0);
-    std::fill(bx, by, bx + bw, by + bh, 0xff000000);
+    fill(bx - 1, by - 1, bx + bw + 1, by + bh + 1, 0xffa0a0a0);
+    fill(bx, by, bx + bw, by + bh, 0xff000000);
     drawString(font, name + (frame / 6 % 2 == 0 ? L"_" : L""), bx + 4,
                by + (bh - 8) / 2, 0xe0e0e0);
 

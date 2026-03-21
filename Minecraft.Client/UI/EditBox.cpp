@@ -68,8 +68,8 @@ void EditBox::focus(bool newFocus) {
 }
 
 void EditBox::render() {
-    std::fill(x - 1, y - 1, x + width + 1, y + height + 1, 0xffa0a0a0);
-    std::fill(x, y, x + width, y + height, 0xff000000);
+    fill(x - 1, y - 1, x + width + 1, y + height + 1, 0xffa0a0a0);
+    fill(x, y, x + width, y + height, 0xff000000);
 
     if (active) {
         bool renderUnderscore = inFocus && (frame / 6 % 2 == 0);

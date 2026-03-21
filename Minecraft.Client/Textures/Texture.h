@@ -90,7 +90,7 @@ public:
             BufferedImage* image, bool mipMap = true);
 
     const Rect2i* getRect();
-    void std::fill(const Rect2i* rect, int color);
+    void fill(const Rect2i* rect, int color);
     void writeAsBMP(const std::wstring& name);
     void writeAsPNG(const std::wstring& filename);
     void blit(int x, int y, Texture* source);
