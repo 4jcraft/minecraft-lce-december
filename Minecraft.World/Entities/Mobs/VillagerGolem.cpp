@@ -53,7 +53,7 @@ VillagerGolem::VillagerGolem(Level* level) : Golem(level) {
 
 void VillagerGolem::defineSynchedData() {
     Golem::defineSynchedData();
-    entityData->define(DATA_FLAGS_ID, (byte)0);
+    entityData->define(DATA_FLAGS_ID, (uint8_t)0);
 }
 
 bool VillagerGolem::useNewAi() { return true; }
@@ -149,7 +149,7 @@ bool VillagerGolem::doHurtTarget(std::shared_ptr<Entity> target) {
     return hurt;
 }
 
-void VillagerGolem::handleEntityEvent(byte id) {
+void VillagerGolem::handleEntityEvent(uint8_t id) {
     if (id == EntityEvent::START_ATTACKING) {
         attackAnimationTick = 10;
         playSound(eSoundType_MOB_IRONGOLEM_THROW, 1, 1);
@@ -197,11 +197,11 @@ bool VillagerGolem::isPlayerCreated() {
 }
 
 void VillagerGolem::setPlayerCreated(bool value) {
-    byte current = entityData->getByte(DATA_FLAGS_ID);
+    uint8_t current = entityData->getByte(DATA_FLAGS_ID);
     if (value) {
-        entityData->set(DATA_FLAGS_ID, (byte)(current | 0x01));
+        entityData->set(DATA_FLAGS_ID, (uint8_t)(current | 0x01));
     } else {
-        entityData->set(DATA_FLAGS_ID, (byte)(current & ~0x01));
+        entityData->set(DATA_FLAGS_ID, (uint8_t)(current & ~0x01));
     }
 }
 

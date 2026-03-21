@@ -4079,7 +4079,7 @@ bool Level::mayInteract(std::shared_ptr<Player> player, int xt, int yt, int zt,
     return true;
 }
 
-void Level::broadcastEntityEvent(std::shared_ptr<Entity> e, byte event) {}
+void Level::broadcastEntityEvent(std::shared_ptr<Entity> e, uint8_t event) {}
 
 ChunkSource* Level::getChunkSource() { return chunkSource; }
 

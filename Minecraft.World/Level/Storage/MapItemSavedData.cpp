@@ -302,10 +302,10 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                     int size = MAP_SIZE - 1;
 #ifdef _LARGE_WORLDS
                     if (xd < -size || yd < -size || xd > size || yd > size) {
-                        if (xd <= -size) x = (byte)(size * 2 + 2.5);
-                        if (yd <= -size) y = (byte)(size * 2 + 2.5);
-                        if (xd >= size) x = (byte)(size * 2 + 1);
-                        if (yd >= size) y = (byte)(size * 2 + 1);
+                        if (xd <= -size) x = (uint8_t)(size * 2 + 2.5);
+                        if (yd <= -size) y = (uint8_t)(size * 2 + 2.5);
+                        if (xd >= size) x = (uint8_t)(size * 2 + 1);
+                        if (yd >= size) y = (uint8_t)(size * 2 + 1);
                     }
 #endif
                     // decorations.push_back(new MapDecoration(4, x, y, 0));
@@ -345,10 +345,10 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                     }
 #ifdef _LARGE_WORLDS
                     if (xd < -size || yd < -size || xd > size || yd > size) {
-                        if (xd <= -size) x = (byte)(size * 2 + 2.5);
-                        if (yd <= -size) y = (byte)(size * 2 + 2.5);
-                        if (xd >= size) x = (byte)(size * 2 + 1);
-                        if (yd >= size) y = (byte)(size * 2 + 1);
+                        if (xd <= -size) x = (uint8_t)(size * 2 + 2.5);
+                        if (yd <= -size) y = (uint8_t)(size * 2 + 2.5);
+                        if (xd >= size) x = (uint8_t)(size * 2 + 1);
+                        if (yd >= size) y = (uint8_t)(size * 2 + 1);
                     }
 #endif
                     // decorations.push_back(new MapDecoration(7, x, y, 0));
@@ -385,10 +385,10 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
 				if (xd < -size || yd < -size || xd > size || yd > size)
 				{
 
-					if (xd <= -size) x = (byte) (size * 2 + 2.5);
-					if (yd <= -size) y = (byte) (size * 2 + 2.5);
-					if (xd >= size) x = (byte) (size * 2 + 1);
-					if (yd >= size) y = (byte) (size * 2 + 1);
+					if (xd <= -size) x = (uint8_t) (size * 2 + 2.5);
+					if (yd <= -size) y = (uint8_t) (size * 2 + 2.5);
+					if (xd >= size) x = (uint8_t) (size * 2 + 1);
+					if (yd >= size) y = (uint8_t) (size * 2 + 1);
 				}
 #endif
 				//decorations.push_back(new MapDecoration(7, x, y, 0));
@@ -454,10 +454,10 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
 
                             rot = 0;
                             size--;  // Added to match the old adjusted size
-                            if (xd <= -size) x = (byte)(size * 2 + 2.5);
-                            if (yd <= -size) y = (byte)(size * 2 + 2.5);
-                            if (xd >= size) x = (byte)(size * 2 + 1);
-                            if (yd >= size) y = (byte)(size * 2 + 1);
+                            if (xd <= -size) x = (uint8_t)(size * 2 + 2.5);
+                            if (yd <= -size) y = (uint8_t)(size * 2 + 2.5);
+                            if (xd >= size) x = (uint8_t)(size * 2 + 1);
+                            if (yd >= size) y = (uint8_t)(size * 2 + 1);
                         }
 #endif
 
@@ -592,8 +592,8 @@ void MapItemSavedData::mergeInMapData(
         int yd1 = 0;
 
         for (int z = 0; z < h; z++) {
-            byte oldColor = colors[x + z * w];
-            byte newColor = dataToAdd->colors[x + z * w];
+            uint8_t oldColor = colors[x + z * w];
+            uint8_t newColor = dataToAdd->colors[x + z * w];
             if (oldColor == 0 && oldColor != newColor) {
                 if (yd0 > z) yd0 = z;
                 if (yd1 < z) yd1 = z;

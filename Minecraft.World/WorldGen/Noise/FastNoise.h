@@ -2,7 +2,7 @@
 
 class FastNoise {
 private:
-    byte** noiseMaps;
+    uint8_t** noiseMaps;
     int levels;
 
 public:

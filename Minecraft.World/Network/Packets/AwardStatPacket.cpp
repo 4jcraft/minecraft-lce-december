@@ -12,7 +12,7 @@ AwardStatPacket::AwardStatPacket() {
 AwardStatPacket::AwardStatPacket(int statId, int count) {
     this->statId = statId;
 
-    this->m_paramData.data = (byte*)new int(count);
+    this->m_paramData.data = (uint8_t*)new int(count);
     this->m_paramData.length = sizeof(int);
 }
 

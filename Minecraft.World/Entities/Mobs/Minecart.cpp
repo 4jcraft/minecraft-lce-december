@@ -91,7 +91,7 @@ void Minecart::defineSynchedData() {
     entityData->define(DATA_ID_DAMAGE, 0.0f);
     entityData->define(DATA_ID_DISPLAY_TILE, 0);
     entityData->define(DATA_ID_DISPLAY_OFFSET, 6);
-    entityData->define(DATA_ID_CUSTOM_DISPLAY, (byte)0);
+    entityData->define(DATA_ID_CUSTOM_DISPLAY, (uint8_t)0);
 }
 
 AABB* Minecart::getCollideAgainstBox(std::shared_ptr<Entity> entity) {
@@ -878,7 +878,7 @@ bool Minecart::hasCustomDisplay() {
 }
 
 void Minecart::setCustomDisplay(bool value) {
-    getEntityData()->set(DATA_ID_CUSTOM_DISPLAY, (byte)(value ? 1 : 0));
+    getEntityData()->set(DATA_ID_CUSTOM_DISPLAY, (uint8_t)(value ? 1 : 0));
 }
 
 void Minecart::setCustomName(const std::wstring& name) { this->name = name; }

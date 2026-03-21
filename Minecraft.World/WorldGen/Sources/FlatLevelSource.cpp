@@ -44,7 +44,7 @@ void FlatLevelSource::prepareHeights(byteArray blocks) {
                 } else if (yc == 3) {
                     block = Tile::grass_Id;
                 }
-                blocks[xc << 11 | zc << 7 | yc] = (byte)block;
+                blocks[xc << 11 | zc << 7 | yc] = (uint8_t)block;
             }
         }
     }
@@ -56,8 +56,8 @@ LevelChunk* FlatLevelSource::getChunk(int xOffs, int zOffs) {
     // 4J - now allocating this with a physical alloc & bypassing general memory
     // management so that it will get cleanly freed
     int chunksSize = Level::genDepth * 16 * 16;
-    byte* tileData =
-        (byte*)XPhysicalAlloc(chunksSize, MAXULONG_PTR, 4096, PAGE_READWRITE);
+    uint8_t* tileData =
+        (uint8_t*)XPhysicalAlloc(chunksSize, MAXULONG_PTR, 4096, PAGE_READWRITE);
     XMemSet128(tileData, 0, chunksSize);
     byteArray blocks = byteArray(tileData, chunksSize);
     //	byteArray blocks = byteArray(16 * level->depth * 16);

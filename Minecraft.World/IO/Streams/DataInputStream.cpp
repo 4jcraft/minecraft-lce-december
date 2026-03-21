@@ -90,7 +90,7 @@ bool DataInputStream::readBoolean() { return stream->read() != 0; }
 // the range -128 through 127, inclusive. This method is suitable for reading
 // the byte written by the writeByte method of interface DataOutput. Returns:
 // the 8-bit value read.
-byte DataInputStream::readByte() { return (byte)stream->read(); }
+uint8_t DataInputStream::readByte() { return (uint8_t)stream->read(); }
 
 unsigned char DataInputStream::readUnsignedByte() {
     return (unsigned char)stream->read();

@@ -86,7 +86,7 @@ BlockRegionUpdatePacket::BlockRegionUpdatePacket(int x, int y, int z, int xs,
 
 void BlockRegionUpdatePacket::read(DataInputStream* dis)  // throws IOException
 {
-    byte chunkFlags = dis->readByte();
+    uint8_t chunkFlags = dis->readByte();
     x = dis->readInt();
     y = dis->readShort();
     z = dis->readInt();
@@ -132,7 +132,7 @@ void BlockRegionUpdatePacket::read(DataInputStream* dis)  // throws IOException
 void BlockRegionUpdatePacket::write(
     DataOutputStream* dos)  // throws IOException
 {
-    byte chunkFlags = 0;
+    uint8_t chunkFlags = 0;
     if (bIsFullChunk) chunkFlags |= BLOCK_REGION_UPDATE_FULLCHUNK;
     if (ys == 0) chunkFlags |= BLOCK_REGION_UPDATE_ZEROHEIGHT;
 

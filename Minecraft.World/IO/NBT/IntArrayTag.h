@@ -32,7 +32,7 @@ public:
         }
     }
 
-    byte getId() { return TAG_Int_Array; }
+    uint8_t getId() { return TAG_Int_Array; }
 
     std::wstring toString() {
         static wchar_t buf[32];

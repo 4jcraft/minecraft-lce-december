@@ -2685,15 +2685,15 @@ bool TileRenderer::tesselateDustInWorld(Tile* tt, int x, int y, int z) {
             Minecraft::GetInstance()->getColourTable()->getColor(
                 eMinecraftColour_Tile_RedstoneDustLitMax);
 
-        byte redComponent =
+        uint8_t redComponent =
             ((minColour >> 16) & 0xFF) +
             (((maxColour >> 16) & 0xFF - (minColour >> 16) & 0xFF) *
              ((data - 1) / 14.0f));
-        byte greenComponent =
+        uint8_t greenComponent =
             ((minColour >> 8) & 0xFF) +
             (((maxColour >> 8) & 0xFF - (minColour >> 8) & 0xFF) *
              ((data - 1) / 14.0f));
-        byte blueComponent =
+        uint8_t blueComponent =
             ((minColour) & 0xFF) +
             (((maxColour) & 0xFF - (minColour) & 0xFF) * ((data - 1) / 14.0f));
 

@@ -115,7 +115,7 @@ std::shared_ptr<ItemInstance> ItemInstance::useTimeDepleted(
 
 CompoundTag* ItemInstance::save(CompoundTag* compoundTag) {
     compoundTag->putShort(L"id", (short)id);
-    compoundTag->putByte(L"Count", (byte)count);
+    compoundTag->putByte(L"Count", (uint8_t)count);
     compoundTag->putShort(L"Damage", (short)auxValue);
     if (tag != NULL) compoundTag->put(L"tag", tag->copy());
     return compoundTag;
@@ -628,7 +628,7 @@ void ItemInstance::enchant(const Enchantment* enchantment, int level) {
     ListTag<CompoundTag>* list = (ListTag<CompoundTag>*)tag->get(L"ench");
     CompoundTag* ench = new CompoundTag();
     ench->putShort((wchar_t*)TAG_ENCH_ID, (short)enchantment->id);
-    ench->putShort((wchar_t*)TAG_ENCH_LEVEL, (byte)level);
+    ench->putShort((wchar_t*)TAG_ENCH_LEVEL, (uint8_t)level);
     list->add(ench);
 }
 

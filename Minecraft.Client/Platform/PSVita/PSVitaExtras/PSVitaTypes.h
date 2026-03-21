@@ -32,7 +32,7 @@ typedef int INT;
 typedef unsigned int UINT;
 typedef unsigned int* PUINT;
 
-typedef unsigned char byte;
+typedef unsigned char uint8_t;
 typedef long long __int64;
 typedef unsigned long long __uint64;
 typedef unsigned int DWORD;

@@ -13,7 +13,7 @@ public:
 
     void load(DataInput* dis, int tagDepth) { data = dis->readUTF(); }
 
-    byte getId() { return TAG_String; }
+    uint8_t getId() { return TAG_String; }
 
     std::wstring toString() { return data; }
 

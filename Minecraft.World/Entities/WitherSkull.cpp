@@ -94,7 +94,7 @@ bool WitherSkull::isPickable() { return false; }
 bool WitherSkull::hurt(DamageSource* source, float damage) { return false; }
 
 void WitherSkull::defineSynchedData() {
-    entityData->define(DATA_DANGEROUS, (byte)0);
+    entityData->define(DATA_DANGEROUS, (uint8_t)0);
 }
 
 bool WitherSkull::isDangerous() {
@@ -102,7 +102,7 @@ bool WitherSkull::isDangerous() {
 }
 
 void WitherSkull::setDangerous(bool value) {
-    entityData->set(DATA_DANGEROUS, value ? (byte)1 : (byte)0);
+    entityData->set(DATA_DANGEROUS, value ? (uint8_t)1 : (uint8_t)0);
 }
 
 bool WitherSkull::shouldBurn() { return false; }

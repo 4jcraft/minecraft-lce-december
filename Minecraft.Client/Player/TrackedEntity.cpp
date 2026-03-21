@@ -165,7 +165,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
                     teleportDelay = 0;
                     packet = std::shared_ptr<TeleportEntityPacket>(
                         new TeleportEntityPacket(e->entityId, xn, yn, zn,
-                                                 (byte)yRotn, (byte)xRotn));
+                                                 (uint8_t)yRotn, (uint8_t)xRotn));
                     //			printf("%d: New teleport rot
                     //%d\n",e->entityId,yRotn);
                     yRotp = yRotn;
@@ -301,7 +301,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
                 // 4J: Changed this to use deltas
                 broadcast(
                     std::shared_ptr<MoveEntityPacket>(new MoveEntityPacket::Rot(
-                        e->entityId, (byte)yRota, (byte)xRota)));
+                        e->entityId, (uint8_t)yRota, (uint8_t)xRota)));
                 yRotp = yRotn;
                 xRotp = xRotn;
             }
@@ -318,7 +318,7 @@ void TrackedEntity::tick(EntityTracker* tracker,
         int yHeadRot = Mth::floor(e->getYHeadRot() * 256 / 360);
         if (abs(yHeadRot - yHeadRotp) >= TOLERANCE_LEVEL) {
             broadcast(std::shared_ptr<RotateHeadPacket>(
-                new RotateHeadPacket(e->entityId, (byte)yHeadRot)));
+                new RotateHeadPacket(e->entityId, (uint8_t)yHeadRot)));
             yHeadRotp = yHeadRot;
         }
 

@@ -21,7 +21,7 @@ ChunkTilesUpdatePacket::ChunkTilesUpdatePacket() {
 }
 
 ChunkTilesUpdatePacket::ChunkTilesUpdatePacket(int xc, int zc,
-                                               shortArray positions, byte count,
+                                               shortArray positions, uint8_t count,
                                                Level* level) {
     shouldDelay = true;
     this->xc = xc;
@@ -38,8 +38,8 @@ ChunkTilesUpdatePacket::ChunkTilesUpdatePacket(int xc, int zc,
         int y = (positions[i]) & 255;
 
         this->positions[i] = positions[i];
-        blocks[i] = (byte)levelChunk->getTile(x, y, z);
-        data[i] = (byte)levelChunk->getData(x, y, z);
+        blocks[i] = (uint8_t)levelChunk->getTile(x, y, z);
+        data[i] = (uint8_t)levelChunk->getData(x, y, z);
     }
     levelIdx =
         ((level->dimension->id == 0) ? 0

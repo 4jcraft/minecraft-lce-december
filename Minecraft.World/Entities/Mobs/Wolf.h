@@ -61,7 +61,7 @@ public:
     virtual bool doHurtTarget(std::shared_ptr<Entity> target);
     virtual void setTame(bool value);
     virtual bool mobInteract(std::shared_ptr<Player> player);
-    virtual void handleEntityEvent(byte id);
+    virtual void handleEntityEvent(uint8_t id);
     float getTailAngle();
     virtual bool isFood(std::shared_ptr<ItemInstance> item);
     virtual int getMaxSpawnClusterSize();

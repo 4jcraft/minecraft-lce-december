@@ -57,7 +57,7 @@ RegionFile::RegionFile(ConsoleSaveFile* saveFile, File* path) {
         // byte zero = 0;
         DWORD numberOfBytesWritten = 0;
         DWORD bytesToWrite = 0x1000 - (fileEntry->getFileSize() & 0xfff);
-        byte* zeroBytes = new byte[bytesToWrite];
+        uint8_t* zeroBytes = new uint8_t[bytesToWrite];
         ZeroMemory(zeroBytes, bytesToWrite);
 
         /* the file size is not a multiple of 4KB, grow it */
@@ -231,8 +231,8 @@ DataInputStream* RegionFile::getChunkDataInputStream(
     }
 
     MemSect(50);
-    byte* data = new byte[length];
-    byte* decomp = new byte[decompLength];
+    uint8_t* data = new uint8_t[length];
+    uint8_t* decomp = new uint8_t[decompLength];
     MemSect(0);
     readDecompLength = decompLength;
     m_saveFile->readFile(fileEntry, data, length, &numberOfBytesRead);
@@ -275,13 +275,13 @@ DataOutputStream* RegionFile::getChunkDataOutputStream(int x, int z) {
 }
 
 /* write a chunk at (x,z) with length bytes of data to disk */
-void RegionFile::write(int x, int z, byte* data,
+void RegionFile::write(int x, int z, uint8_t* data,
                        int length)  // TODO - was synchronized
 {
     // 4J Stu - Do the compression here so that we know how much space we need
     // to store the compressed data
-    byte* compData =
-        new byte[length + 2048];  // presuming compression is going to make this
+    uint8_t* compData =
+        new uint8_t[length + 2048];  // presuming compression is going to make this
                                   // smaller...	UPDATE - for some really small
                                   // things this isn't the case. Added 2K on
                                   // here to cover those.
@@ -411,7 +411,7 @@ void RegionFile::write(int x, int z, byte* data,
 }
 
 /* write a chunk data to the region file at specified sector number */
-void RegionFile::write(int sectorNumber, byte* data, int length,
+void RegionFile::write(int sectorNumber, uint8_t* data, int length,
                        unsigned int compLength) {
     DWORD numberOfBytesWritten = 0;
     // SetFilePointer(file,sectorNumber * SECTOR_BYTES,0,FILE_BEGIN);
@@ -459,7 +459,7 @@ bool RegionFile::hasChunk(int x, int z) { return getOffset(x, z) != 0; }
 void RegionFile::insertInitialSectors() {
     m_saveFile->setFilePointer(fileEntry, 0, NULL, FILE_BEGIN);
     DWORD numberOfBytesWritten = 0;
-    byte zeroBytes[SECTOR_BYTES];
+    uint8_t zeroBytes[SECTOR_BYTES];
     ZeroMemory(zeroBytes, SECTOR_BYTES);
 
     /* we need to write the chunk offset table */

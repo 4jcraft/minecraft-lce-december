@@ -37,7 +37,7 @@ protected:
     virtual void addAdditonalSaveData(CompoundTag* tag);
 
 public:
-    virtual void handleEntityEvent(byte eventId);
+    virtual void handleEntityEvent(uint8_t eventId);
     virtual void tick();
     virtual BaseMobSpawner* getSpawner();
 };

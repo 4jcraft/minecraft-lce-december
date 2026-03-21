@@ -118,7 +118,7 @@ void HellRandomLevelSource::prepareHeights(int xOffs, int zOffs,
                                 tileId = Tile::netherRack_Id;
                             }
 
-                            blocks[offs] = (byte)tileId;
+                            blocks[offs] = (uint8_t)tileId;
                             offs += step;
                             val += vala;
                         }
@@ -167,8 +167,8 @@ void HellRandomLevelSource::buildSurfaces(int xOffs, int zOffs,
 
             int run = -1;
 
-            byte top = (byte)Tile::netherRack_Id;
-            byte material = (byte)Tile::netherRack_Id;
+            uint8_t top = (uint8_t)Tile::netherRack_Id;
+            uint8_t material = (uint8_t)Tile::netherRack_Id;
 
             for (int y = Level::genDepthMinusOne; y >= 0; y--) {
                 int offs = (z * 16 + x) * Level::genDepth + y;
@@ -178,28 +178,28 @@ void HellRandomLevelSource::buildSurfaces(int xOffs, int zOffs,
                 if (xOffs <= -(m_XZSize / 2)) {
                     if (z - random->nextInt(4) <= 0 ||
                         xOffs < -(m_XZSize / 2)) {
-                        blocks[offs] = (byte)Tile::unbreakable_Id;
+                        blocks[offs] = (uint8_t)Tile::unbreakable_Id;
                         blockSet = true;
                     }
                 }
                 if (zOffs <= -(m_XZSize / 2)) {
                     if (x - random->nextInt(4) <= 0 ||
                         zOffs < -(m_XZSize / 2)) {
-                        blocks[offs] = (byte)Tile::unbreakable_Id;
+                        blocks[offs] = (uint8_t)Tile::unbreakable_Id;
                         blockSet = true;
                     }
                 }
                 if (xOffs >= (m_XZSize / 2) - 1) {
                     if (z + random->nextInt(4) >= 15 ||
                         xOffs > (m_XZSize / 2)) {
-                        blocks[offs] = (byte)Tile::unbreakable_Id;
+                        blocks[offs] = (uint8_t)Tile::unbreakable_Id;
                         blockSet = true;
                     }
                 }
                 if (zOffs >= (m_XZSize / 2) - 1) {
                     if (x + random->nextInt(4) >= 15 ||
                         zOffs > (m_XZSize / 2)) {
-                        blocks[offs] = (byte)Tile::unbreakable_Id;
+                        blocks[offs] = (uint8_t)Tile::unbreakable_Id;
                         blockSet = true;
                     }
                 }
@@ -208,7 +208,7 @@ void HellRandomLevelSource::buildSurfaces(int xOffs, int zOffs,
 
                 if (y >= Level::genDepthMinusOne - random->nextInt(5) ||
                     y <= 0 + random->nextInt(5)) {
-                    blocks[offs] = (byte)Tile::unbreakable_Id;
+                    blocks[offs] = (uint8_t)Tile::unbreakable_Id;
                 } else {
                     int old = blocks[offs];
 
@@ -218,19 +218,19 @@ void HellRandomLevelSource::buildSurfaces(int xOffs, int zOffs,
                         if (run == -1) {
                             if (runDepth <= 0) {
                                 top = 0;
-                                material = (byte)Tile::netherRack_Id;
+                                material = (uint8_t)Tile::netherRack_Id;
                             } else if (y >= waterHeight - 4 &&
                                        y <= waterHeight + 1) {
-                                top = (byte)Tile::netherRack_Id;
-                                material = (byte)Tile::netherRack_Id;
-                                if (gravel) top = (byte)Tile::gravel_Id;
+                                top = (uint8_t)Tile::netherRack_Id;
+                                material = (uint8_t)Tile::netherRack_Id;
+                                if (gravel) top = (uint8_t)Tile::gravel_Id;
                                 if (gravel)
-                                    material = (byte)Tile::netherRack_Id;
+                                    material = (uint8_t)Tile::netherRack_Id;
                                 if (sand) {
                                     // 4J Stu - Make some nether wart spawn
                                     // outside of the nether fortresses
                                     if (random->nextInt(16) == 0) {
-                                        top = (byte)Tile::netherStalk_Id;
+                                        top = (uint8_t)Tile::netherStalk_Id;
 
                                         // Place the nether wart on top of the
                                         // soul sand
@@ -251,14 +251,14 @@ void HellRandomLevelSource::buildSurfaces(int xOffs, int zOffs,
                                         offs =
                                             (z * 16 + x) * Level::genDepth + y;
                                     } else {
-                                        top = (byte)Tile::soulsand_Id;
+                                        top = (uint8_t)Tile::soulsand_Id;
                                     }
                                 }
-                                if (sand) material = (byte)Tile::soulsand_Id;
+                                if (sand) material = (uint8_t)Tile::soulsand_Id;
                             }
 
                             if (y < waterHeight && top == 0)
-                                top = (byte)Tile::calmLava_Id;
+                                top = (uint8_t)Tile::calmLava_Id;
 
                             run = runDepth;
                             // 4J Stu - If sand, then allow adding nether wart
@@ -291,8 +291,8 @@ LevelChunk* HellRandomLevelSource::getChunk(int xOffs, int zOffs) {
     // 4J - now allocating this with a physical alloc & bypassing general memory
     // management so that it will get cleanly freed
     int blocksSize = Level::genDepth * 16 * 16;
-    byte* tileData =
-        (byte*)XPhysicalAlloc(blocksSize, MAXULONG_PTR, 4096, PAGE_READWRITE);
+    uint8_t* tileData =
+        (uint8_t*)XPhysicalAlloc(blocksSize, MAXULONG_PTR, 4096, PAGE_READWRITE);
     XMemSet128(tileData, 0, blocksSize);
     byteArray blocks = byteArray(tileData, blocksSize);
     //    byteArray blocks = byteArray(16 * level->depth * 16);

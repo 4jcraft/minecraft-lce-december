@@ -8,7 +8,7 @@ public:
     static TileEntity* create() { return new MusicTileEntity(); }
 
 public:
-    byte note;
+    uint8_t note;
 
     bool on;
 

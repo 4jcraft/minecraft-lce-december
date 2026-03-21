@@ -64,7 +64,7 @@ Tag* Tag::setName(const std::wstring& name) {
 Tag* Tag::readNamedTag(DataInput* dis) { return readNamedTag(dis, 0); }
 
 Tag* Tag::readNamedTag(DataInput* dis, int tagDepth) {
-    byte type = dis->readByte();
+    uint8_t type = dis->readByte();
     if (type == 0) return new EndTag();
 
     // 4J Stu - readByte can return -1, so if it's that then also mark as the
@@ -100,7 +100,7 @@ void Tag::writeNamedTag(Tag* tag, DataOutput* dos) {
     tag->write(dos);
 }
 
-Tag* Tag::newTag(byte type, const std::wstring& name) {
+Tag* Tag::newTag(uint8_t type, const std::wstring& name) {
     switch (type) {
         case TAG_End:
             return new EndTag(name);
@@ -130,7 +130,7 @@ Tag* Tag::newTag(byte type, const std::wstring& name) {
     return NULL;
 }
 
-wchar_t* Tag::getTagName(byte type) {
+wchar_t* Tag::getTagName(uint8_t type) {
     switch (type) {
         case TAG_End:
             return L"TAG_End";

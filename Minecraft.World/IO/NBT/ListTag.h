@@ -5,7 +5,7 @@ template <class T>
 class ListTag : public Tag {
 private:
     std::vector<Tag*> list;
-    byte type;
+    uint8_t type;
 
 public:
     ListTag() : Tag(L"") {}
@@ -44,7 +44,7 @@ public:
         }
     }
 
-    byte getId() { return TAG_List; }
+    uint8_t getId() { return TAG_List; }
 
     std::wstring toString() {
         static wchar_t buf[64];

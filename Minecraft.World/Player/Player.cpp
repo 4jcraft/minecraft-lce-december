@@ -175,7 +175,7 @@ void Player::registerAttributes() {
 void Player::defineSynchedData() {
     LivingEntity::defineSynchedData();
 
-    entityData->define(DATA_PLAYER_FLAGS_ID, (byte)0);
+    entityData->define(DATA_PLAYER_FLAGS_ID, (uint8_t)0);
     entityData->define(DATA_PLAYER_ABSORPTION_ID, (float)0);
     entityData->define(DATA_SCORE_ID, (int)0);
 }
@@ -565,7 +565,7 @@ void Player::completeUsingItem() {
     }
 }
 
-void Player::handleEntityEvent(byte id) {
+void Player::handleEntityEvent(uint8_t id) {
     if (id == EntityEvent::USE_ITEM_COMPLETE) {
         completeUsingItem();
     } else {
@@ -1790,13 +1790,13 @@ bool Player::getPlayerFlag(int flag) {
 }
 
 void Player::setPlayerFlag(int flag, bool value) {
-    byte currentValue = entityData->getByte(DATA_PLAYER_FLAGS_ID);
+    uint8_t currentValue = entityData->getByte(DATA_PLAYER_FLAGS_ID);
     if (value) {
         entityData->set(DATA_PLAYER_FLAGS_ID,
-                        (byte)(currentValue | (1 << flag)));
+                        (uint8_t)(currentValue | (1 << flag)));
     } else {
         entityData->set(DATA_PLAYER_FLAGS_ID,
-                        (byte)(currentValue & ~(1 << flag)));
+                        (uint8_t)(currentValue & ~(1 << flag)));
     }
 }
 

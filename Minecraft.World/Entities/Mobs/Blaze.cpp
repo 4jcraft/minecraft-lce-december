@@ -37,7 +37,7 @@ void Blaze::registerAttributes() {
 void Blaze::defineSynchedData() {
     Monster::defineSynchedData();
 
-    entityData->define(DATA_FLAGS_ID, (byte)0);
+    entityData->define(DATA_FLAGS_ID, (uint8_t)0);
 }
 
 int Blaze::getAmbientSound() { return eSoundType_MOB_BLAZE_BREATHE; }
@@ -172,7 +172,7 @@ bool Blaze::isCharged() {
 }
 
 void Blaze::setCharged(bool value) {
-    byte flags = entityData->getByte(DATA_FLAGS_ID);
+    uint8_t flags = entityData->getByte(DATA_FLAGS_ID);
     if (value) {
         flags |= 0x1;
     } else {

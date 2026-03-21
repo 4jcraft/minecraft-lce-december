@@ -66,9 +66,9 @@ void EnderMan::registerAttributes() {
 void EnderMan::defineSynchedData() {
     Monster::defineSynchedData();
 
-    entityData->define(DATA_CARRY_ITEM_ID, (byte)0);
-    entityData->define(DATA_CARRY_ITEM_DATA, (byte)0);
-    entityData->define(DATA_CREEPY, (byte)0);
+    entityData->define(DATA_CARRY_ITEM_ID, (uint8_t)0);
+    entityData->define(DATA_CARRY_ITEM_DATA, (uint8_t)0);
+    entityData->define(DATA_CREEPY, (uint8_t)0);
 }
 
 void EnderMan::addAdditonalSaveData(CompoundTag* tag) {
@@ -337,7 +337,7 @@ void EnderMan::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel) {
 
 // 4J Brought forward from 1.2.3 to help fix Enderman behaviour
 void EnderMan::setCarryingTile(int carryingTile) {
-    entityData->set(DATA_CARRY_ITEM_ID, (byte)(carryingTile & 0xff));
+    entityData->set(DATA_CARRY_ITEM_ID, (uint8_t)(carryingTile & 0xff));
 }
 
 int EnderMan::getCarryingTile() {
@@ -345,7 +345,7 @@ int EnderMan::getCarryingTile() {
 }
 
 void EnderMan::setCarryingData(int carryingData) {
-    entityData->set(DATA_CARRY_ITEM_DATA, (byte)(carryingData & 0xff));
+    entityData->set(DATA_CARRY_ITEM_DATA, (uint8_t)(carryingData & 0xff));
 }
 
 int EnderMan::getCarryingData() {
@@ -376,5 +376,5 @@ bool EnderMan::hurt(DamageSource* source, float damage) {
 bool EnderMan::isCreepy() { return entityData->getByte(DATA_CREEPY) > 0; }
 
 void EnderMan::setCreepy(bool creepy) {
-    entityData->set(DATA_CREEPY, (byte)(creepy ? 1 : 0));
+    entityData->set(DATA_CREEPY, (uint8_t)(creepy ? 1 : 0));
 }

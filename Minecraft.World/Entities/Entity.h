@@ -344,7 +344,7 @@ public:
     virtual void handleInsidePortal();
     virtual int getDimensionChangingDelay();
     virtual void lerpMotion(double xd, double yd, double zd);
-    virtual void handleEntityEvent(byte eventId);
+    virtual void handleEntityEvent(uint8_t eventId);
     virtual void animateHurt();
     virtual ItemInstanceArray getEquipmentSlots();  // ItemInstance[]
     virtual void setEquippedSlot(

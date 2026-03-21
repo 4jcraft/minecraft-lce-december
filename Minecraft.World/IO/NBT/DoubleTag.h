@@ -13,7 +13,7 @@ public:
     void write(DataOutput* dos) { dos->writeDouble(data); }
     void load(DataInput* dis, int tagDepth) { data = dis->readDouble(); }
 
-    byte getId() { return TAG_Double; }
+    uint8_t getId() { return TAG_Double; }
     std::wstring toString() {
         static wchar_t buf[32];
         swprintf(buf, 32, L"%f", data);

@@ -63,7 +63,7 @@ FileInputStream::~FileInputStream() {
 // is yet available. Returns: the next byte of data, or -1 if the end of the
 // file is reached.
 int FileInputStream::read() {
-    byte byteRead = 0;
+    uint8_t byteRead = 0;
     DWORD numberOfBytesRead;
 
     BOOL bSuccess = ReadFile(m_fileHandle,        // handle to file

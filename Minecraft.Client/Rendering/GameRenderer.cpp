@@ -60,7 +60,7 @@ C4JThread* GameRenderer::m_updateThread;
 C4JThread::EventArray* GameRenderer::m_updateEvents;
 bool GameRenderer::nearThingsToDo = false;
 bool GameRenderer::updateRunning = false;
-std::vector<byte*> GameRenderer::m_deleteStackByte;
+std::vector<uint8_t*> GameRenderer::m_deleteStackByte;
 std::vector<SparseLightStorage*> GameRenderer::m_deleteStackSparseLightStorage;
 std::vector<CompressedTileStorage*>
     GameRenderer::m_deleteStackCompressedTileStorage;
@@ -1047,7 +1047,7 @@ void GameRenderer::renderLevel(float a) { renderLevel(a, 0); }
 
 #ifdef MULTITHREAD_ENABLE
 // Request that an item be deleted, when it is safe to do so
-void GameRenderer::AddForDelete(byte* deleteThis) {
+void GameRenderer::AddForDelete(uint8_t* deleteThis) {
     EnterCriticalSection(&m_csDeleteStack);
     m_deleteStackByte.push_back(deleteThis);
 }
@@ -1865,9 +1865,9 @@ void GameRenderer::setupClearColor(float a) {
         unsigned int colour =
             Minecraft::GetInstance()->getColourTable()->getColor(
                 eMinecraftColour_Under_Water_Clear_Colour);
-        byte redComponent = ((colour >> 16) & 0xFF);
-        byte greenComponent = ((colour >> 8) & 0xFF);
-        byte blueComponent = ((colour) & 0xFF);
+        uint8_t redComponent = ((colour >> 16) & 0xFF);
+        uint8_t greenComponent = ((colour >> 8) & 0xFF);
+        uint8_t blueComponent = ((colour) & 0xFF);
 
         fr = (float)redComponent / 256 + clearness;    // 0.02f;
         fg = (float)greenComponent / 256 + clearness;  // 0.02f;
@@ -1876,9 +1876,9 @@ void GameRenderer::setupClearColor(float a) {
         unsigned int colour =
             Minecraft::GetInstance()->getColourTable()->getColor(
                 eMinecraftColour_Under_Lava_Clear_Colour);
-        byte redComponent = ((colour >> 16) & 0xFF);
-        byte greenComponent = ((colour >> 8) & 0xFF);
-        byte blueComponent = ((colour) & 0xFF);
+        uint8_t redComponent = ((colour >> 16) & 0xFF);
+        uint8_t greenComponent = ((colour >> 8) & 0xFF);
+        uint8_t blueComponent = ((colour) & 0xFF);
 
         fr = (float)redComponent / 256;    // 0.6f;
         fg = (float)greenComponent / 256;  // 0.1f;

@@ -133,13 +133,13 @@ void CanyonFeature::addTunnel(__int64 seed, int xOffs, int zOffs,
                                 block == Tile::dirt_Id ||
                                 block == Tile::grass_Id) {
                                 if (yy < 10) {
-                                    blocks[p] = (byte)Tile::lava_Id;
+                                    blocks[p] = (uint8_t)Tile::lava_Id;
                                 } else {
-                                    blocks[p] = (byte)0;
+                                    blocks[p] = (uint8_t)0;
                                     if (hasGrass &&
                                         blocks[p - 1] == Tile::dirt_Id)
                                         blocks[p - 1] =
-                                            (byte)level
+                                            (uint8_t)level
                                                 ->getBiome(xx + xOffs * 16,
                                                            zz + zOffs * 16)
                                                 ->topMaterial;

@@ -67,7 +67,7 @@ public:
     bool isInLove();
     void resetLove();
     virtual bool canMate(std::shared_ptr<Animal> partner);
-    virtual void handleEntityEvent(byte id);
+    virtual void handleEntityEvent(uint8_t id);
 
     // 4J added for determining whether animals are enclosed or not
 private:

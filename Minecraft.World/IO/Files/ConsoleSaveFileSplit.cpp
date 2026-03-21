@@ -592,7 +592,7 @@ void ConsoleSaveFileSplit::deleteFile(FileEntry* file) {
 
     const int bufferSize = 4096;
     int amountToRead = bufferSize;
-    byte buffer[bufferSize];
+    uint8_t buffer[bufferSize];
     DWORD bufferDataSize = 0;
 
     char* readStartOffset =
@@ -994,8 +994,8 @@ void ConsoleSaveFileSplit::MoveDataBeyond(FileEntry* file,
     const DWORD bufferSize = 4096;
     DWORD amountToRead = bufferSize;
     // assert( nNumberOfBytesToWrite <= bufferSize );
-    static byte buffer1[bufferSize];
-    static byte buffer2[bufferSize];
+    static uint8_t buffer1[bufferSize];
+    static uint8_t buffer2[bufferSize];
     DWORD buffer1Size = 0;
     DWORD buffer2Size = 0;
 
@@ -1306,7 +1306,7 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool updateThumbnail) {
 
     // Attempt to allocate the required memory
     // We do not own this, it belongs to the StorageManager
-    byte* compData = (byte*)StorageManager.AllocateSaveData(compLength);
+    uint8_t* compData = (uint8_t*)StorageManager.AllocateSaveData(compLength);
 
     // If we failed to allocate then compData will be NULL
     // Pre-calculate the compressed data size so that we can attempt to allocate
@@ -1335,7 +1335,7 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool updateThumbnail) {
         compLength = compLength + 8;
 
         // Attempt to allocate the required memory
-        compData = (byte*)StorageManager.AllocateSaveData(compLength);
+        compData = (uint8_t*)StorageManager.AllocateSaveData(compLength);
     }
 
     if (compData != NULL) {

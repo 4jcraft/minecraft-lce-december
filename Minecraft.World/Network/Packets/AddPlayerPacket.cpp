@@ -119,7 +119,7 @@ int AddPlayerPacket::getEstimatedSize() {
                 sizeof(int) + sizeof(int) + sizeof(BYTE) + sizeof(BYTE) +
                 sizeof(short) + sizeof(PlayerUID) + sizeof(PlayerUID) +
                 sizeof(int) + sizeof(BYTE) + sizeof(unsigned int) +
-                sizeof(byte);
+                sizeof(uint8_t);
 
     if (entityData != NULL) {
         iSize += entityData->getSizeInBytes();

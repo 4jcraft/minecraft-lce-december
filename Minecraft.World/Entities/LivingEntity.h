@@ -223,7 +223,7 @@ private:
 
 public:
     virtual void swing();
-    virtual void handleEntityEvent(byte id);
+    virtual void handleEntityEvent(uint8_t id);
 
 protected:
     virtual void outOfWorld();

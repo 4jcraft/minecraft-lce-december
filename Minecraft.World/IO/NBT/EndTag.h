@@ -9,7 +9,7 @@ public:
     void load(DataInput* dis, int tagDepth) {};
     void write(DataOutput* dos) {};
 
-    byte getId() { return TAG_End; }
+    uint8_t getId() { return TAG_End; }
     std::wstring toString() { return std::wstring(L"END"); }
 
     Tag* copy() { return new EndTag(); }

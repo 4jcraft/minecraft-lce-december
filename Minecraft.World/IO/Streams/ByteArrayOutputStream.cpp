@@ -27,7 +27,7 @@ void ByteArrayOutputStream::write(unsigned int b) {
     // If we will fill the buffer we need to make it bigger
     if (count + 1 >= buf.length) buf.resize(buf.length * 2);
 
-    buf[count] = (byte)b;
+    buf[count] = (uint8_t)b;
     count++;
 }
 

@@ -23,7 +23,7 @@ void SynchedEntityData::define(int id, int value) {
     m_isEmpty = false;
 }
 
-void SynchedEntityData::define(int id, byte value) {
+void SynchedEntityData::define(int id, uint8_t value) {
     MemSect(17);
     checkId(id);
     int type = TYPE_BYTE;
@@ -91,7 +91,7 @@ void SynchedEntityData::checkId(int id) {
 #endif
 }
 
-byte SynchedEntityData::getByte(int id) {
+uint8_t SynchedEntityData::getByte(int id) {
     return itemsById[id]->getValue_byte();
 }
 
@@ -132,7 +132,7 @@ void SynchedEntityData::set(int id, int value) {
     }
 }
 
-void SynchedEntityData::set(int id, byte value) {
+void SynchedEntityData::set(int id, uint8_t value) {
     std::shared_ptr<DataItem> dataItem = itemsById[id];
 
     // update the value if it has changed
@@ -321,7 +321,7 @@ SynchedEntityData::unpack(DataInputStream* input)  // throws IOException
         std::shared_ptr<DataItem> item = std::shared_ptr<DataItem>();
         switch (itemType) {
             case TYPE_BYTE: {
-                byte dataRead = input->readByte();
+                uint8_t dataRead = input->readByte();
                 item = std::shared_ptr<DataItem>(
                     new DataItem(itemType, itemId, dataRead));
             } break;
@@ -462,7 +462,7 @@ SynchedEntityData::DataItem::DataItem(int type, int id, int value)
     this->dirty = true;
 }
 
-SynchedEntityData::DataItem::DataItem(int type, int id, byte value)
+SynchedEntityData::DataItem::DataItem(int type, int id, uint8_t value)
     : type(type), id(id) {
     this->value_byte = value;
     this->dirty = true;
@@ -500,7 +500,7 @@ void SynchedEntityData::DataItem::setValue(int value) {
     this->value_int = value;
 }
 
-void SynchedEntityData::DataItem::setValue(byte value) {
+void SynchedEntityData::DataItem::setValue(uint8_t value) {
     this->value_byte = value;
 }
 
@@ -527,7 +527,7 @@ short SynchedEntityData::DataItem::getValue_short() { return value_short; }
 
 float SynchedEntityData::DataItem::getValue_float() { return value_float; }
 
-byte SynchedEntityData::DataItem::getValue_byte() { return value_byte; }
+uint8_t SynchedEntityData::DataItem::getValue_byte() { return value_byte; }
 
 std::wstring SynchedEntityData::DataItem::getValue_wstring() {
     return value_wstring;

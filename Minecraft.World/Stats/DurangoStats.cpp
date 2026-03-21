@@ -180,7 +180,7 @@ byteArray DsItemEvent::createParamBlob(eAcquisitionMethod eMethod, int itemId,
                                        int itemAux, int itemCount) {
     byteArray output;
     Param param = {eMethod, itemId, itemAux, itemCount};
-    output.data = (byte*)new Param(param);
+    output.data = (uint8_t*)new Param(param);
     output.length = sizeof(Param);
     return output;
 }
@@ -270,7 +270,7 @@ byteArray DsMobKilled::createParamBlob(std::shared_ptr<Player> player,
             EntityIO::eTypeToIoid(dmgSrc->getDirectEntity()->GetType()),
             mob->distanceTo(player->x, player->y, player->z), 0 /*not needed*/
         };
-        output.data = (byte*)new Param(param);
+        output.data = (uint8_t*)new Param(param);
         output.length = sizeof(Param);
         return output;
     }
@@ -283,7 +283,7 @@ byteArray DsMobKilled::createParamBlob(std::shared_ptr<Player> player,
         (item != NULL ? item->getItem()->id : 0),
         mob->distanceTo(player->x, player->y, player->z), 0 /*not needed*/
     };
-    output.data = (byte*)new Param(param);
+    output.data = (uint8_t*)new Param(param);
     output.length = sizeof(Param);
     return output;
 }
@@ -323,7 +323,7 @@ byteArray DsMobInteract::createParamBlob(eInteract interactionId,
                                          int entityId) {
     byteArray output;
     Param param = {interactionId, EntityIO::eTypeToIoid((eINSTANCEOF)entityId)};
-    output.data = (byte*)new Param(param);
+    output.data = (uint8_t*)new Param(param);
     output.length = sizeof(Param);
     return output;
 }
@@ -366,7 +366,7 @@ void DsTravel::handleParamBlob(std::shared_ptr<LocalPlayer> player,
 byteArray DsTravel::createParamBlob(eMethod method, int distance) {
     byteArray output;
     Param param = {method, distance};
-    output.data = (byte*)new Param(param);
+    output.data = (uint8_t*)new Param(param);
     output.length = sizeof(Param);
     return output;
 }
@@ -456,7 +456,7 @@ byteArray DsItemUsed::createParamBlob(int itemId, int aux, int count,
                                       int health, int hunger) {
     byteArray output;
     Param param = {itemId, aux, count, health, hunger};
-    output.data = (byte*)new Param(param);
+    output.data = (uint8_t*)new Param(param);
     output.length = sizeof(Param);
     return output;
 }
@@ -531,7 +531,7 @@ void DsAchievement::handleParamBlob(std::shared_ptr<LocalPlayer> player,
 byteArray DsAchievement::createSmallParamBlob(eAward award) {
     byteArray output;
     SmallParam param = {award};
-    output.data = (byte*)new SmallParam(param);
+    output.data = (uint8_t*)new SmallParam(param);
     output.length = sizeof(SmallParam);
     return output;
 }
@@ -539,7 +539,7 @@ byteArray DsAchievement::createSmallParamBlob(eAward award) {
 byteArray DsAchievement::createLargeParamBlob(eAward award, int count) {
     byteArray output;
     LargeParam param = {award, count};
-    output.data = (byte*)new LargeParam(param);
+    output.data = (uint8_t*)new LargeParam(param);
     output.length = sizeof(LargeParam);
     return output;
 }
@@ -566,7 +566,7 @@ void DsChangedDimension::handleParamBlob(std::shared_ptr<LocalPlayer> player,
 byteArray DsChangedDimension::createParamBlob(int fromDimId, int toDimId) {
     byteArray output;
     Param param = {fromDimId, toDimId};
-    output.data = (byte*)new Param(param);
+    output.data = (uint8_t*)new Param(param);
     output.length = sizeof(Param);
     return output;
 }
@@ -594,7 +594,7 @@ void DsEnteredBiome::handleParamBlob(std::shared_ptr<LocalPlayer> player,
 byteArray DsEnteredBiome::createParamBlob(int biomeId) {
     byteArray output;
     Param param = {biomeId};
-    output.data = (byte*)new Param(param);
+    output.data = (uint8_t*)new Param(param);
     output.length = sizeof(Param);
     return output;
 }

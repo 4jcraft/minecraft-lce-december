@@ -114,7 +114,7 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
             }
 
             fireTag->put(FireworksItem::TAG_EXPLOSIONS, expTags);
-            fireTag->putByte(FireworksItem::TAG_FLIGHT, (byte)sulphurCount);
+            fireTag->putByte(FireworksItem::TAG_FLIGHT, (uint8_t)sulphurCount);
             itemTag->put(FireworksItem::TAG_FIREWORKS, fireTag);
 
             resultItem->setTag(itemTag);
@@ -130,7 +130,7 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
         CompoundTag* itemTag = new CompoundTag();
         CompoundTag* expTag = new CompoundTag(FireworksItem::TAG_EXPLOSION);
 
-        byte type = 0;
+        uint8_t type = 0;
 
         std::vector<int> colors;
         for (int slot = 0; slot < craftSlots->getContainerSize(); slot++) {

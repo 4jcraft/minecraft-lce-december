@@ -6,8 +6,8 @@
 
 ByteBuffer::ByteBuffer(unsigned int capacity) : Buffer(capacity) {
     hasBackingArray = false;
-    buffer = new byte[capacity];
-    memset(buffer, 0, sizeof(byte) * capacity);
+    buffer = new uint8_t[capacity];
+    memset(buffer, 0, sizeof(uint8_t) * capacity);
     byteOrder = BIGENDIAN;
 }
 
@@ -24,7 +24,7 @@ ByteBuffer* ByteBuffer::allocateDirect(int capacity) {
     return new ByteBuffer(capacity);
 }
 
-ByteBuffer::ByteBuffer(unsigned int capacity, byte* backingArray)
+ByteBuffer::ByteBuffer(unsigned int capacity, uint8_t* backingArray)
     : Buffer(capacity) {
     hasBackingArray = true;
     buffer = backingArray;
@@ -79,7 +79,7 @@ ByteBuffer* ByteBuffer::flip() {
 }
 
 // 4J Added so we can write this to a file
-byte* ByteBuffer::getBuffer() { return buffer; }
+uint8_t* ByteBuffer::getBuffer() { return buffer; }
 
 int ByteBuffer::getSize() {
     // TODO 4J Stu - Should this be the capcity and not the limit?
@@ -232,7 +232,7 @@ void ByteBuffer::getShortArray(shortArray& s) {
 // Throws:
 // IndexOutOfBoundsException - If index is negative or not smaller than the
 // buffer's limit ReadOnlyBufferException - If this buffer is read-only
-ByteBuffer* ByteBuffer::put(int index, byte b) {
+ByteBuffer* ByteBuffer::put(int index, uint8_t b) {
     assert(index < m_limit);
     assert(index >= 0);
 
@@ -433,8 +433,8 @@ FloatBuffer* ByteBuffer::asFloatBuffer() {
 // we're using the RSX now to upload textures to vram, so we need th main ram
 // textures allocated from io space
 ByteBuffer_IO::ByteBuffer_IO(unsigned int capacity)
-    : ByteBuffer(capacity, (byte*)RenderManager.allocIOMem(capacity, 64)) {
-    memset(buffer, 0, sizeof(byte) * capacity);
+    : ByteBuffer(capacity, (uint8_t*)RenderManager.allocIOMem(capacity, 64)) {
+    memset(buffer, 0, sizeof(uint8_t) * capacity);
     byteOrder = BIGENDIAN;
 }
 
