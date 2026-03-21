@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../AttributeModifier.h"
+#include "../AI/Attributes/AttributeModifier.h"
 
 class Mob;
 class MobEffectInstance;

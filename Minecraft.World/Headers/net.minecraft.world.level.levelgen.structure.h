@@ -11,7 +11,7 @@
 #include "../WorldGen/Structures/StrongholdPieces.h"
 #include "../WorldGen/Features/StructureFeature.h"
 #include "../StructureFeatureIO.h"
-#include "../StructureFeatureSavedData.h"
+#include "../WorldGen/StructureFeatureSavedData.h"
 #include "../WorldGen/Structures/StructurePiece.h"
 #include "../WorldGen/Structures/StructureStart.h"
 #include "../WorldGen/Features/VillageFeature.h"

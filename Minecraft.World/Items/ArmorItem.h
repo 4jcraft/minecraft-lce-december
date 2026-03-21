@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Item.h"
-#include "../DefaultDispenseItemBehavior.h"
+#include "../Core/DefaultDispenseItemBehavior.h"
 
 class ArmorItem : public Item {
 public:
