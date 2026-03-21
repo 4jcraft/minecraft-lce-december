@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "EnderManRenderer.h"
 #include "../Models/EnderManModel.h"
 #include "../../Textures/TextureAtlas.h"

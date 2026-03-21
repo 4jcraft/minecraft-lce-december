@@ -1,4 +1,4 @@
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "DemoLevel.h"
 #include "..\Minecraft.World\net.minecraft.world.level.storage.h"
 

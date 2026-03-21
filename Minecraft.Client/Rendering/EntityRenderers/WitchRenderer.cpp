@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "EntityRenderDispatcher.h"
 #include "WitchRenderer.h"
 #include "../Models/WitchModel.h"

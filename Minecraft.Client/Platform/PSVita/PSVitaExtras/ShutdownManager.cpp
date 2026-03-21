@@ -1,4 +1,4 @@
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 #include "ShutdownManager.h"
 #include "..\..\Common\Leaderboards\LeaderboardManager.h"
 #include "..\..\MinecraftServer.h"

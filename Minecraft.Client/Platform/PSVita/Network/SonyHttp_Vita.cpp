@@ -1,4 +1,4 @@
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 #include "SonyHttp_Vita.h"
 
 static const int sc_SSLHeapSize   = (304 * 1024U);

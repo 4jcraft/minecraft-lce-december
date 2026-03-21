@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "../Models/ModelPart.h"
 #include "MushroomCowRenderer.h"
 #include "../../Textures/TextureAtlas.h"

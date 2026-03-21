@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "ModelPart.h"
 #include "WitchModel.h"
 #include "VillagerModel.h"

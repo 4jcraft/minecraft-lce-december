@@ -17,6 +17,8 @@
     {"from": "*ResourceLocation.*", "to": "Textures"},
     {"from": "*DispenserBootstrap.*", "to": "GameState"},
     {"from": "*ServerScoreboard.*", "to": "Network"},
-    {"from": "*BossMobGuiInfo.*", "to": "UI"}
+    {"from": "*BossMobGuiInfo.*", "to": "UI"},
+    {"from": "Build/*", "to": "Platform"},
+    {"from": "Build/Common", "to": "Platform/Common"}
   ]
 }

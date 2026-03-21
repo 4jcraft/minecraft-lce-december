@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "LivingEntityRenderer.h"
 #include "../Lighting.h"
 #include "../Cube.h"

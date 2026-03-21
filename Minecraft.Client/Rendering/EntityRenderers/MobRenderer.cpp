@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "MobRenderer.h"
 #include "LivingEntityRenderer.h"
 #include "../../Player/MultiPlayerLocalPlayer.h"

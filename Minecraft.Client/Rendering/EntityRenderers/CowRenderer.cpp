@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "CowRenderer.h"
 
 ResourceLocation CowRenderer::COW_LOCATION = ResourceLocation(TN_MOB_COW);

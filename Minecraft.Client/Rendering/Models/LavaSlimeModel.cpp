@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "..\Minecraft.World\Mth.h"
 #include "LavaSlimeModel.h"
 #include "ModelPart.h"

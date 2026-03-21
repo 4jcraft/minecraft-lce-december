@@ -1,4 +1,4 @@
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 
 #include "SonyCommerce_Vita.h"
 #include "../PSVitaExtras/ShutdownManager.h"

@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "EntityTileRenderer.h"
 #include "TileEntityRenderDispatcher.h"
 #include "..\Minecraft.World\net.minecraft.world.level.tile.h"

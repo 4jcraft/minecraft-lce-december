@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "HorseRenderer.h"
 #include "MobRenderer.h"
 #include "EntityRenderDispatcher.h"

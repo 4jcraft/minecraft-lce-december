@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "SkeletonRenderer.h"
 #include "../Models/SkeletonModel.h"
 #include "../../../Minecraft.World/Entities/Mobs/Skeleton.h"

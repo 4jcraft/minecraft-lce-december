@@ -1,4 +1,4 @@
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "BossMobGuiInfo.h"
 #include "../../Minecraft.World/Entities/Mobs/BossMob.h"
 

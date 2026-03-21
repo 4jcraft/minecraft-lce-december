@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "MinecartRenderer.h"
 #include "../Models/MinecartModel.h"
 #include "../../Textures/TextureAtlas.h"

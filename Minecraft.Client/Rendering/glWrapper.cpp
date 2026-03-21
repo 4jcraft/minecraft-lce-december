@@ -1,4 +1,4 @@
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "..\Minecraft.World\FloatBuffer.h"
 #include "..\Minecraft.World\IntBuffer.h"
 #include "..\Minecraft.World\ByteBuffer.h"

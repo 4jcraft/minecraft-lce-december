@@ -1,4 +1,4 @@
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 #include "PSVitaStrings.h"
 #include <ces.h>
 

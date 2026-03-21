@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "TntRenderer.h"
 #include "../../Textures/TextureAtlas.h"
 #include "TileRenderer.h"

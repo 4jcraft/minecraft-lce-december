@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "HugeExplosionParticle.h"
 #include "..\Minecraft.World\Random.h"
 #include "../../Textures/Textures.h"

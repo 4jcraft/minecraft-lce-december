@@ -1,7 +1,7 @@
-#include "../../../Build/stdafx.h"
+#include "../../stdafx.h"
 #include "SQRNetworkManager_Vita.h"
 #include "SonyVoiceChat_Vita.h"
-#include "../../../Build/Common/Network/Sony/PlatformNetworkManagerSony.h"
+#include "../../Common/Network/Sony/PlatformNetworkManagerSony.h"
 
 #include <np.h>
 #include <rudp.h>

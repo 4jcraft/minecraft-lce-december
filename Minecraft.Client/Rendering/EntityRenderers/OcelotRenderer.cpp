@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "OcelotRenderer.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.animal.h"
 

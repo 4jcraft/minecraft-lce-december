@@ -1,4 +1,4 @@
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "Lighting.h"
 #include "..\Minecraft.World\FloatBuffer.h"
 #include "..\Minecraft.World\Vec3.h"

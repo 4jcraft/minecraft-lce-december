@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "FireballRenderer.h"
 #include "EntityRenderDispatcher.h"
 #include "../../Textures/TextureAtlas.h"

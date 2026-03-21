@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "GiantMobRenderer.h"	
 
 ResourceLocation GiantMobRenderer::ZOMBIE_LOCATION = ResourceLocation(TN_ITEM_ARROWS);
