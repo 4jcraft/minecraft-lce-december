@@ -4,10 +4,10 @@ class ShapelessRecipy : public Recipy {
 private:
     _eGroupType group;
     const ItemInstance* result;
-    vector<ItemInstance*>* ingredients;
+    std::vector<ItemInstance*>* ingredients;
 
 public:
-    ShapelessRecipy(ItemInstance* result, vector<ItemInstance*>* ingredients,
+    ShapelessRecipy(ItemInstance* result, std::vector<ItemInstance*>* ingredients,
                     _eGroupType egroup = Recipy::eGroupType_Decoration);
 
     virtual const ItemInstance* getResultItem();

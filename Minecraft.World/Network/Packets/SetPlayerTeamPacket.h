@@ -6,7 +6,7 @@ class PlayerTeam;
 
 class SetPlayerTeamPacket
     : public Packet,
-      public enable_shared_from_this<SetPlayerTeamPacket> {
+      public std::enable_shared_from_this<SetPlayerTeamPacket> {
 public:
     static const int METHOD_ADD = 0;
     static const int METHOD_REMOVE = 1;
@@ -18,13 +18,13 @@ public:
     std::wstring displayName;
     std::wstring prefix;
     std::wstring suffix;
-    vector<std::wstring> players;
+    std::vector<std::wstring> players;
     int method;
     int options;
 
     SetPlayerTeamPacket();
     SetPlayerTeamPacket(PlayerTeam* team, int method);
-    SetPlayerTeamPacket(PlayerTeam* team, vector<std::wstring>* players,
+    SetPlayerTeamPacket(PlayerTeam* team, std::vector<std::wstring>* players,
                         int method);
     void read(DataInputStream* dis);
     void write(DataOutputStream* dos);

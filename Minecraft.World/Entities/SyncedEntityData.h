@@ -109,11 +109,11 @@ public:
     void set(int id, std::shared_ptr<ItemInstance>);
     void markDirty(int id);
     bool isDirty();
-    static void pack(vector<std::shared_ptr<DataItem> >* items,
+    static void pack(std::vector<std::shared_ptr<DataItem> >* items,
                      DataOutputStream* output);  // TODO throws IOException
-    vector<std::shared_ptr<DataItem> >* packDirty();
+    std::vector<std::shared_ptr<DataItem> >* packDirty();
     void packAll(DataOutputStream* output);  // throws IOException
-    vector<std::shared_ptr<DataItem> >* getAll();
+    std::vector<std::shared_ptr<DataItem> >* getAll();
 
 private:
     static void writeDataItem(
@@ -121,7 +121,7 @@ private:
         std::shared_ptr<DataItem> dataItem);  // throws IOException
 
 public:
-    static vector<std::shared_ptr<DataItem> >* unpack(
+    static std::vector<std::shared_ptr<DataItem> >* unpack(
         DataInputStream* input);  // throws IOException
 
     /**
@@ -130,7 +130,7 @@ public:
      * @param items
      */
 public:
-    void assignValues(vector<std::shared_ptr<DataItem> >* items);
+    void assignValues(std::vector<std::shared_ptr<DataItem> >* items);
     bool isEmpty();
     void clearDirty();
 

@@ -11,8 +11,8 @@ void LevelGenerators::addLevelGenerator(const std::wstring& displayName,
 }
 
 void LevelGenerators::removeLevelGenerator(LevelGenerationOptions* generator) {
-    vector<LevelGenerationOptions*>::iterator it;
-    while ((it = find(m_levelGenerators.begin(), m_levelGenerators.end(),
+    std::vector<LevelGenerationOptions*>::iterator it;
+    while ((it = std::find(m_levelGenerators.begin(), m_levelGenerators.end(),
                       generator)) != m_levelGenerators.end()) {
         m_levelGenerators.erase(it);
     }

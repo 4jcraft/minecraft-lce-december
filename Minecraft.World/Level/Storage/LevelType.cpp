@@ -82,7 +82,7 @@ bool LevelType::hasReplacement() { return m_replacement; }
 LevelType* LevelType::getLevelType(std::wstring name) {
     if (name.length() > 0) {
         for (int i = 0; i < 16; i++) {
-            wstring genname = levelTypes[i]->m_generatorName;
+            std::wstring genname = levelTypes[i]->m_generatorName;
 
             if (levelTypes[i] != NULL && (genname.compare(name) == 0)) {
                 return levelTypes[i];

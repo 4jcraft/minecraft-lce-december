@@ -6,7 +6,7 @@ class MobEffectInstance;
 
 class RemoveMobEffectPacket
     : public Packet,
-      public enable_shared_from_this<RemoveMobEffectPacket> {
+      public std::enable_shared_from_this<RemoveMobEffectPacket> {
 public:
     int entityId;
     char effectId;

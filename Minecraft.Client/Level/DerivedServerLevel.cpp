@@ -4,7 +4,7 @@
 #include "../../Minecraft.World/Level/DerivedLevelData.h"
 
 DerivedServerLevel::DerivedServerLevel(MinecraftServer* server,
-                                       shared_ptr<LevelStorage> levelStorage,
+                                       std::shared_ptr<LevelStorage> levelStorage,
                                        const std::wstring& levelName,
                                        int dimension,
                                        LevelSettings* levelSettings,

@@ -127,9 +127,9 @@ private:
     bool hasGapsToCheck;
 
 public:
-    unordered_map<TilePos, shared_ptr<TileEntity>, TilePosKeyHash, TilePosKeyEq>
+    std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash, TilePosKeyEq>
         tileEntities;
-    vector<shared_ptr<Entity> >** entityBlocks;
+    std::vector<std::shared_ptr<Entity> >** entityBlocks;
 
     static const int sTerrainPopulatedFromHere = 2;
     static const int sTerrainPopulatedFromW = 4;
@@ -228,15 +228,15 @@ public:
     virtual void setBrightness(LightLayer::variety layer, int x, int y, int z,
                                int brightness);
     virtual int getRawBrightness(int x, int y, int z, int skyDampen);
-    virtual void addEntity(shared_ptr<Entity> e);
-    virtual void removeEntity(shared_ptr<Entity> e);
-    virtual void removeEntity(shared_ptr<Entity> e, int yc);
+    virtual void addEntity(std::shared_ptr<Entity> e);
+    virtual void removeEntity(std::shared_ptr<Entity> e);
+    virtual void removeEntity(std::shared_ptr<Entity> e, int yc);
     virtual bool isSkyLit(int x, int y, int z);
     virtual void skyBrightnessChanged();
-    virtual shared_ptr<TileEntity> getTileEntity(int x, int y, int z);
-    virtual void addTileEntity(shared_ptr<TileEntity> te);
+    virtual std::shared_ptr<TileEntity> getTileEntity(int x, int y, int z);
+    virtual void addTileEntity(std::shared_ptr<TileEntity> te);
     virtual void setTileEntity(int x, int y, int z,
-                               shared_ptr<TileEntity> tileEntity);
+                               std::shared_ptr<TileEntity> tileEntity);
     virtual void removeTileEntity(int x, int y, int z);
     virtual void load();
     virtual void unload(bool unloadTileEntities);  // 4J - added parameter
@@ -245,11 +245,11 @@ public:
     virtual bool isUnloaded();
 #endif
     virtual void markUnsaved();
-    virtual void getEntities(shared_ptr<Entity> except, AABB* bb,
-                             vector<shared_ptr<Entity> >& es,
+    virtual void getEntities(std::shared_ptr<Entity> except, AABB* bb,
+                             std::vector<std::shared_ptr<Entity> >& es,
                              const EntitySelector* selector);
     virtual void getEntitiesOfClass(const std::type_info& ec, AABB* bb,
-                                    vector<shared_ptr<Entity> >& es,
+                                    std::vector<std::shared_ptr<Entity> >& es,
                                     const EntitySelector* selector);
     virtual int countEntities();
     virtual bool shouldSave(bool force);

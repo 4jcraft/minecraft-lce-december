@@ -104,15 +104,15 @@ void Explosion::explode() {
     // time. If we explode something next to an EnderCrystal then it creates a
     // new explosion that overwrites the shared vector in the level So copy it
     // here instead of directly using the shared one
-    vector<shared_ptr<Entity> >* levelEntities =
+    std::vector<std::shared_ptr<Entity> >* levelEntities =
         level->getEntities(source, AABB::newTemp(x0, y0, z0, x1, y1, z1));
-    vector<shared_ptr<Entity> > entities(levelEntities->begin(),
+    std::vector<std::shared_ptr<Entity> > entities(levelEntities->begin(),
                                          levelEntities->end());
     Vec3* center = Vec3::newTemp(x, y, z);
 
     AUTO_VAR(itEnd, entities.end());
     for (AUTO_VAR(it, entities.begin()); it != itEnd; it++) {
-        shared_ptr<Entity> e = *it;  // entities->at(i);
+        std::shared_ptr<Entity> e = *it;  // entities->at(i);
 
         // 4J Stu - If the entity is not in a block that would be blown up, then
         // they should not be damaged Fix for #46606 - TU5: Content: Gameplay:
@@ -160,7 +160,7 @@ void Explosion::explode() {
             e->zd += za * kbPower;
 
             if (e->instanceof(eTYPE_PLAYER)) {
-                shared_ptr<Player> player = dynamic_pointer_cast<Player>(e);
+                std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(e);
                 // app.DebugPrintf("Adding player knockback (%f,%f,%f)\n", xa *
                 // pow, ya * pow, za * pow);
                 hitPlayers.insert(playerVec3Map::value_type(
@@ -173,7 +173,7 @@ void Explosion::explode() {
 
 void Explosion::finalizeExplosion(
     bool generateParticles,
-    vector<TilePos>*
+    std::vector<TilePos>*
         toBlowDirect /*=NULL*/)  // 4J - added toBlowDirect parameter
 {
     level->playSound(
@@ -188,9 +188,9 @@ void Explosion::finalizeExplosion(
 
     // 4J - use pointer to vector directly passed in if this is available - used
     // to speed up calling this from an incoming packet
-    vector<TilePos>* toBlowArray =
+    std::vector<TilePos>* toBlowArray =
         toBlowDirect ? toBlowDirect
-                     : new vector<TilePos>(toBlow.begin(), toBlow.end());
+                     : new std::vector<TilePos>(toBlow.begin(), toBlow.end());
     if (destroyBlocks) {
         // toBlowArray.addAll(toBlow);
         //  TODO 4J Stu - Reverse iterator

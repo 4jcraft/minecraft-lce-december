@@ -26,7 +26,7 @@ void PlayerTeam::setDisplayName(const std::wstring& displayName) {
     scoreboard->onTeamChanged(this);
 }
 
-unordered_set<wstring>* PlayerTeam::getPlayers() { return &players; }
+std::unordered_set<std::wstring>* PlayerTeam::getPlayers() { return &players; }
 
 std::wstring PlayerTeam::getPrefix() { return prefix; }
 

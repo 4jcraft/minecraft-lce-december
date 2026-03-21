@@ -47,18 +47,18 @@ void CombatTracker::recordDamage(DamageSource* source, float health,
 
 std::shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket() {
     if (entries.size() == 0)
-        return shared_ptr<ChatPacket>(new ChatPacket(mob->getNetworkName()));
+        return std::shared_ptr<ChatPacket>(new ChatPacket(mob->getNetworkName()));
 
     CombatEntry* knockOffEntry = getMostSignificantFall();
     CombatEntry* killingBlow = entries[entries.size() - 1];
 
-    shared_ptr<ChatPacket> result;
+    std::shared_ptr<ChatPacket> result;
 
-    shared_ptr<Entity> killingEntity = killingBlow->getSource()->getEntity();
+    std::shared_ptr<Entity> killingEntity = killingBlow->getSource()->getEntity();
 
     if (knockOffEntry != NULL &&
         killingBlow->getSource()->equals(DamageSource::fall)) {
-        shared_ptr<Entity> attackerEntity =
+        std::shared_ptr<Entity> attackerEntity =
             knockOffEntry->getSource()->getEntity();
 
         if (knockOffEntry->getSource()->equals(DamageSource::fall) ||
@@ -80,47 +80,47 @@ std::shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket() {
                     break;
             }
 
-            result = shared_ptr<ChatPacket>(
+            result = std::shared_ptr<ChatPacket>(
                 new ChatPacket(mob->getNetworkName(), message));
         } else if (attackerEntity != NULL &&
                    (killingEntity == NULL || attackerEntity != killingEntity)) {
-            shared_ptr<ItemInstance> attackerItem =
+            std::shared_ptr<ItemInstance> attackerItem =
                 attackerEntity->instanceof(eTYPE_LIVINGENTITY)
                     ? dynamic_pointer_cast<LivingEntity>(attackerEntity)
                           ->getCarriedItem()
                     : nullptr;
 
             if (attackerItem != NULL && attackerItem->hasCustomHoverName()) {
-                result = shared_ptr<ChatPacket>(new ChatPacket(
+                result = std::shared_ptr<ChatPacket>(new ChatPacket(
                     mob->getNetworkName(),
                     ChatPacket::e_ChatDeathFellAssistItem,
                     attackerEntity->GetType(), attackerEntity->getNetworkName(),
                     attackerItem->getHoverName()));
             } else {
-                result = shared_ptr<ChatPacket>(new ChatPacket(
+                result = std::shared_ptr<ChatPacket>(new ChatPacket(
                     mob->getNetworkName(), ChatPacket::e_ChatDeathFellAssist,
                     attackerEntity->GetType(),
                     attackerEntity->getNetworkName()));
             }
         } else if (killingEntity != NULL) {
-            shared_ptr<ItemInstance> killerItem =
+            std::shared_ptr<ItemInstance> killerItem =
                 killingEntity->instanceof(eTYPE_LIVINGENTITY)
                     ? dynamic_pointer_cast<LivingEntity>(killingEntity)
                           ->getCarriedItem()
                     : nullptr;
             if (killerItem != NULL && killerItem->hasCustomHoverName()) {
-                result = shared_ptr<ChatPacket>(new ChatPacket(
+                result = std::shared_ptr<ChatPacket>(new ChatPacket(
                     mob->getNetworkName(),
                     ChatPacket::e_ChatDeathFellFinishItem,
                     killingEntity->GetType(), killingEntity->getNetworkName(),
                     killerItem->getHoverName()));
             } else {
-                result = shared_ptr<ChatPacket>(new ChatPacket(
+                result = std::shared_ptr<ChatPacket>(new ChatPacket(
                     mob->getNetworkName(), ChatPacket::e_ChatDeathFellFinish,
                     killingEntity->GetType(), killingEntity->getNetworkName()));
             }
         } else {
-            result = shared_ptr<ChatPacket>(new ChatPacket(
+            result = std::shared_ptr<ChatPacket>(new ChatPacket(
                 mob->getNetworkName(), ChatPacket::e_ChatDeathFellKiller));
         }
     } else {
@@ -132,8 +132,8 @@ std::shared_ptr<ChatPacket> CombatTracker::getDeathMessagePacket() {
 }
 
 std::shared_ptr<LivingEntity> CombatTracker::getKiller() {
-    shared_ptr<LivingEntity> bestMob = nullptr;
-    shared_ptr<Player> bestPlayer = nullptr;
+    std::shared_ptr<LivingEntity> bestMob = nullptr;
+    std::shared_ptr<Player> bestPlayer = nullptr;
     float bestMobDamage = 0;
     float bestPlayerDamage = 0;
 

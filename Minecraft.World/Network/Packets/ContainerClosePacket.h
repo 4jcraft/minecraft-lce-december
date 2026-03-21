@@ -4,7 +4,7 @@
 
 class ContainerClosePacket
     : public Packet,
-      public enable_shared_from_this<ContainerClosePacket> {
+      public std::enable_shared_from_this<ContainerClosePacket> {
 public:
     int containerId;
 

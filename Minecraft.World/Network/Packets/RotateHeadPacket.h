@@ -5,7 +5,7 @@
 #include "Packet.h"
 
 class RotateHeadPacket : public Packet,
-                         public enable_shared_from_this<RotateHeadPacket> {
+                         public std::enable_shared_from_this<RotateHeadPacket> {
 public:
     int id;
     char yHeadRot;

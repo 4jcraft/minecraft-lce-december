@@ -20,9 +20,9 @@ void ProgressRenderer::progressStart(int title) {
     _progressStart(title);
 }
 
-void ProgressRenderer::progressStartNoAbort(int string) {
+void ProgressRenderer::progressStartNoAbort(int std::string) {
     noAbort = true;
-    _progressStart(string);
+    _progressStart(std::string);
 }
 
 void ProgressRenderer::_progressStart(int title) {
@@ -192,7 +192,7 @@ void ProgressRenderer::progressStage(std::wstring& wstrText) {
 
 std::wstring& ProgressRenderer::getProgressString(void) {
     EnterCriticalSection(&ProgressRenderer::s_progress);
-    wstring& temp = m_wstrText;
+    std::wstring& temp = m_wstrText;
     LeaveCriticalSection(&ProgressRenderer::s_progress);
     return temp;
 }

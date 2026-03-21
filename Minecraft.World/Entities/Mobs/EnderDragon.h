@@ -31,15 +31,15 @@ public:
     int posPointer;
 
     // MultiEntityMobPart[] subEntities;
-    vector<shared_ptr<Entity> > subEntities;
-    shared_ptr<MultiEntityMobPart> head;
-    shared_ptr<MultiEntityMobPart> neck;  // 4J Added
-    shared_ptr<MultiEntityMobPart> body;
-    shared_ptr<MultiEntityMobPart> tail1;
-    shared_ptr<MultiEntityMobPart> tail2;
-    shared_ptr<MultiEntityMobPart> tail3;
-    shared_ptr<MultiEntityMobPart> wing1;
-    shared_ptr<MultiEntityMobPart> wing2;
+    std::vector<std::shared_ptr<Entity> > subEntities;
+    std::shared_ptr<MultiEntityMobPart> head;
+    std::shared_ptr<MultiEntityMobPart> neck;  // 4J Added
+    std::shared_ptr<MultiEntityMobPart> body;
+    std::shared_ptr<MultiEntityMobPart> tail1;
+    std::shared_ptr<MultiEntityMobPart> tail2;
+    std::shared_ptr<MultiEntityMobPart> tail3;
+    std::shared_ptr<MultiEntityMobPart> wing1;
+    std::shared_ptr<MultiEntityMobPart> wing2;
 
     float oFlapTime;
     float flapTime;
@@ -102,13 +102,13 @@ private:
     static const int PODIUM_Z_POS = 0;
 
 private:
-    shared_ptr<Entity> attackTarget;
+    std::shared_ptr<Entity> attackTarget;
 
 public:
     int dragonDeathTime;
 
 public:
-    shared_ptr<EnderCrystal> nearestCrystal;
+    std::shared_ptr<EnderCrystal> nearestCrystal;
 
 private:
     void _init();
@@ -131,14 +131,14 @@ private:
 
     void checkCrystals();
     void checkAttack();
-    void knockBack(vector<shared_ptr<Entity> >* entities);
-    void hurt(vector<shared_ptr<Entity> >* entities);
+    void knockBack(std::vector<std::shared_ptr<Entity> >* entities);
+    void hurt(std::vector<std::shared_ptr<Entity> >* entities);
     void findNewTarget();
     float rotWrap(double d);
     bool checkWalls(AABB* bb);
 
 public:
-    virtual bool hurt(shared_ptr<MultiEntityMobPart> MultiEntityMobPart,
+    virtual bool hurt(std::shared_ptr<MultiEntityMobPart> MultiEntityMobPart,
                       DamageSource* source, float damage);
     virtual bool hurt(DamageSource* source, float damage);
 
@@ -153,7 +153,7 @@ protected:
     virtual void checkDespawn();
 
 public:
-    virtual vector<shared_ptr<Entity> >* getSubEntities();
+    virtual std::vector<std::shared_ptr<Entity> >* getSubEntities();
     virtual bool isPickable();
     Level* getLevel();
 

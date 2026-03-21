@@ -10,7 +10,7 @@
 EnchantmentMenu::EnchantmentMenu(std::shared_ptr<Inventory> inventory,
                                  Level* level, int xt, int yt, int zt) {
     enchantSlots =
-        shared_ptr<EnchantmentContainer>(new EnchantmentContainer(this));
+        std::shared_ptr<EnchantmentContainer>(new EnchantmentContainer(this));
 
     for (int i = 0; i < 3; ++i) {
         costs[i] = 0;
@@ -72,7 +72,7 @@ void EnchantmentMenu::slotsChanged()  // 4J used to take a shared_ptr<Container>
                                       // container but wasn't using it, so
                                       // removed to simplify things
 {
-    shared_ptr<ItemInstance> item = enchantSlots->getItem(0);
+    std::shared_ptr<ItemInstance> item = enchantSlots->getItem(0);
 
     if (item == NULL || !item->isEnchantable()) {
         for (int i = 0; i < 3; i++) {
@@ -135,13 +135,13 @@ void EnchantmentMenu::slotsChanged()  // 4J used to take a shared_ptr<Container>
 }
 
 bool EnchantmentMenu::clickMenuButton(std::shared_ptr<Player> player, int i) {
-    shared_ptr<ItemInstance> item = enchantSlots->getItem(0);
+    std::shared_ptr<ItemInstance> item = enchantSlots->getItem(0);
     if (costs[i] > 0 && item != NULL &&
         (player->experienceLevel >= costs[i] || player->abilities.instabuild)) {
         if (!level->isClientSide) {
             bool isBook = item->id == Item::book_Id;
 
-            vector<EnchantmentInstance*>* newEnchantment =
+            std::vector<EnchantmentInstance*>* newEnchantment =
                 EnchantmentHelper::selectEnchantment(&random, item, costs[i]);
             if (newEnchantment != NULL) {
                 player->giveExperienceLevels(-costs[i]);
@@ -175,7 +175,7 @@ void EnchantmentMenu::removed(std::shared_ptr<Player> player) {
     AbstractContainerMenu::removed(player);
     if (level->isClientSide) return;
 
-    shared_ptr<ItemInstance> item = enchantSlots->removeItemNoUpdate(0);
+    std::shared_ptr<ItemInstance> item = enchantSlots->removeItemNoUpdate(0);
     if (item != NULL) {
         player->drop(item);
     }
@@ -189,12 +189,12 @@ bool EnchantmentMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> EnchantmentMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     Slot* IngredientSlot = slots.at(INGREDIENT_SLOT);
 
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if (slotIndex == INGREDIENT_SLOT) {

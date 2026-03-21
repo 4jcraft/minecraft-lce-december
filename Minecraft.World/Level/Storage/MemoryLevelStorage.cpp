@@ -19,7 +19,7 @@ ChunkStorage* MemoryLevelStorage::createChunkStorage(Dimension* dimension) {
 }
 
 void MemoryLevelStorage::saveLevelData(LevelData* levelData,
-                                       vector<shared_ptr<Player> >* players) {}
+                                       std::vector<std::shared_ptr<Player> >* players) {}
 
 void MemoryLevelStorage::saveLevelData(LevelData* levelData) {}
 
@@ -37,5 +37,5 @@ CompoundTag* MemoryLevelStorage::loadPlayerDataTag(
 }
 
 ConsoleSavePath MemoryLevelStorage::getDataFile(const std::wstring& id) {
-    return ConsoleSaveFile(wstring(L""));
+    return ConsoleSaveFile(std::wstring(L""));
 }

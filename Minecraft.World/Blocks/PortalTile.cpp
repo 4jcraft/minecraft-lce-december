@@ -24,7 +24,7 @@ void PortalTile::tick(Level* level, int x, int y, int z, Random* random) {
         if (y0 > 0 && !level->isSolidBlockingTile(x, y0 + 1, z)) {
             // spawn a pig man here
             int iResult = 0;
-            shared_ptr<Entity> entity = SpawnEggItem::spawnMobAt(
+            std::shared_ptr<Entity> entity = SpawnEggItem::spawnMobAt(
                 level, 57, x + .5, y0 + 1.1, z + .5, &iResult);
             if (entity != NULL) {
                 entity->changingDimensionDelay =

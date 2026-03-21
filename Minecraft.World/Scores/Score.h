@@ -40,5 +40,5 @@ public:
     Objective* getObjective();
     std::wstring getOwner();
     Scoreboard* getScoreboard();
-    void updateFor(vector<std::shared_ptr<Player> >* players);
+    void updateFor(std::vector<std::shared_ptr<Player> >* players);
 };

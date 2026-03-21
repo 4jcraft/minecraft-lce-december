@@ -2,13 +2,13 @@
 #include "../Headers/net.minecraft.world.level.levelgen.structure.h"
 #include "StructureFeatureIO.h"
 
-unordered_map<wstring, structureStartCreateFn>
+std::unordered_map<std::wstring, structureStartCreateFn>
     StructureFeatureIO::startIdClassMap;
-unordered_map<unsigned int, wstring> StructureFeatureIO::startClassIdMap;
+std::unordered_map<unsigned int, std::wstring> StructureFeatureIO::startClassIdMap;
 
-unordered_map<wstring, structurePieceCreateFn>
+std::unordered_map<std::wstring, structurePieceCreateFn>
     StructureFeatureIO::pieceIdClassMap;
-unordered_map<unsigned int, wstring> StructureFeatureIO::pieceClassIdMap;
+std::unordered_map<unsigned int, std::wstring> StructureFeatureIO::pieceClassIdMap;
 
 void StructureFeatureIO::setStartId(EStructureStart clas,
                                     structureStartCreateFn createFn,

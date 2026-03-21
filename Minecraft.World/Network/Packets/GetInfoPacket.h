@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class GetInfoPacket : public Packet,
-                      public enable_shared_from_this<GetInfoPacket> {
+                      public std::enable_shared_from_this<GetInfoPacket> {
 public:
     virtual void read(DataInputStream* dis);
     virtual void write(DataOutputStream* dos);

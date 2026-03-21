@@ -75,7 +75,7 @@ private:
         friend class DirectoryLevelStorage;
 
     private:
-        unordered_map<__int64, short> m_mappings;
+        std::unordered_map<__int64, short> m_mappings;
 
     public:
         void addMapping(int id, int centreX, int centreZ, int dimension,
@@ -87,9 +87,9 @@ private:
     };
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__) || \
     defined(_DURANGO)
-    unordered_map<PlayerUID, PlayerMappings, PlayerUID::Hash> m_playerMappings;
+    std::unordered_map<PlayerUID, PlayerMappings, PlayerUID::Hash> m_playerMappings;
 #else
-    unordered_map<PlayerUID, PlayerMappings> m_playerMappings;
+    std::unordered_map<PlayerUID, PlayerMappings> m_playerMappings;
 #endif
     byteArray m_usedMappings;
 #else
@@ -98,8 +98,8 @@ private:
 #endif
     bool m_bHasLoadedMapDataMappings;
 
-    unordered_map<std::wstring, ByteArrayOutputStream*> m_cachedSaveData;
-    vector<short>
+    std::unordered_map<std::wstring, ByteArrayOutputStream*> m_cachedSaveData;
+    std::vector<short>
         m_mapFilesToDelete;  // Temp list of files that couldn't be deleted
                              // immediately due to saving being disabled
 
@@ -126,7 +126,7 @@ public:
     virtual ChunkStorage* createChunkStorage(Dimension* dimension);
     LevelData* prepareLevel();
     virtual void saveLevelData(LevelData* levelData,
-                               vector<std::shared_ptr<Player> >* players);
+                               std::vector<std::shared_ptr<Player> >* players);
     virtual void saveLevelData(LevelData* levelData);
     virtual void save(std::shared_ptr<Player> player);
     virtual CompoundTag* load(

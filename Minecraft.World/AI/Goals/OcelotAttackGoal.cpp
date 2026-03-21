@@ -7,7 +7,7 @@
 #include "OcelotAttackGoal.h"
 
 OcelotAttackGoal::OcelotAttackGoal(Mob* mob) {
-    target = weak_ptr<LivingEntity>();
+    target = std::weak_ptr<LivingEntity>();
     attackTime = 0;
     speed = 0;
     trackTarget = false;
@@ -21,7 +21,7 @@ OcelotAttackGoal::OcelotAttackGoal(Mob* mob) {
 bool OcelotAttackGoal::canUse() {
     std::shared_ptr<LivingEntity> bestTarget = mob->getTarget();
     if (bestTarget == NULL) return false;
-    target = weak_ptr<LivingEntity>(bestTarget);
+    target = std::weak_ptr<LivingEntity>(bestTarget);
     return true;
 }
 
@@ -32,7 +32,7 @@ bool OcelotAttackGoal::canContinueToUse() {
 }
 
 void OcelotAttackGoal::stop() {
-    target = weak_ptr<Mob>();
+    target = std::weak_ptr<Mob>();
     mob->getNavigation()->stop();
 }
 

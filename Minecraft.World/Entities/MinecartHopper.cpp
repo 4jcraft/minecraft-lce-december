@@ -85,7 +85,7 @@ void MinecartHopper::tick() {
 bool MinecartHopper::suckInItems() {
     if (HopperTileEntity::suckInItems(this)) return true;
 
-    vector<shared_ptr<Entity> >* items =
+    std::vector<std::shared_ptr<Entity> >* items =
         level->getEntitiesOfClass(typeid(ItemEntity), bb->grow(0.25f, 0, 0.25f),
                                   EntitySelector::ENTITY_STILL_ALIVE);
 

@@ -10,7 +10,7 @@ public:
     void write(DataOutput* dos) {};
 
     byte getId() { return TAG_End; }
-    std::wstring toString() { return wstring(L"END"); }
+    std::wstring toString() { return std::wstring(L"END"); }
 
     Tag* copy() { return new EndTag(); }
 

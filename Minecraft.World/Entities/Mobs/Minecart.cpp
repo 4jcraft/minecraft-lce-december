@@ -63,20 +63,20 @@ std::shared_ptr<Minecart> Minecart::createMinecart(Level* level, double x,
                                                    int type) {
     switch (type) {
         case TYPE_CHEST:
-            return shared_ptr<MinecartChest>(new MinecartChest(level, x, y, z));
+            return std::shared_ptr<MinecartChest>(new MinecartChest(level, x, y, z));
         case TYPE_FURNACE:
-            return shared_ptr<MinecartFurnace>(
+            return std::shared_ptr<MinecartFurnace>(
                 new MinecartFurnace(level, x, y, z));
         case TYPE_TNT:
-            return shared_ptr<MinecartTNT>(new MinecartTNT(level, x, y, z));
+            return std::shared_ptr<MinecartTNT>(new MinecartTNT(level, x, y, z));
         case TYPE_SPAWNER:
-            return shared_ptr<MinecartSpawner>(
+            return std::shared_ptr<MinecartSpawner>(
                 new MinecartSpawner(level, x, y, z));
         case TYPE_HOPPER:
-            return shared_ptr<MinecartHopper>(
+            return std::shared_ptr<MinecartHopper>(
                 new MinecartHopper(level, x, y, z));
         default:
-            return shared_ptr<MinecartRideable>(
+            return std::shared_ptr<MinecartRideable>(
                 new MinecartRideable(level, x, y, z));
     }
 }
@@ -125,7 +125,7 @@ bool Minecart::hurt(DamageSource* source, float hurtDamage) {
     // 4J-JEV: Fix for #88212,
     // Untrusted players shouldn't be able to damage minecarts or boats.
     if (dynamic_cast<EntityDamageSource*>(source) != NULL) {
-        shared_ptr<Entity> attacker = source->getDirectEntity();
+        std::shared_ptr<Entity> attacker = source->getDirectEntity();
 
         if (attacker->instanceof(eTYPE_PLAYER) &&
             !dynamic_pointer_cast<Player>(attacker)->isAllowedToHurtEntity(
@@ -167,8 +167,8 @@ bool Minecart::hurt(DamageSource* source, float hurtDamage) {
 
 void Minecart::destroy(DamageSource* source) {
     remove();
-    shared_ptr<ItemInstance> item =
-        shared_ptr<ItemInstance>(new ItemInstance(Item::minecart, 1));
+    std::shared_ptr<ItemInstance> item =
+        std::shared_ptr<ItemInstance>(new ItemInstance(Item::minecart, 1));
     if (!name.empty()) item->setHoverName(name);
     spawnAtLocation(item, 0);
 }
@@ -301,15 +301,15 @@ void Minecart::tick() {
         }
         setRot(yRot, xRot);
 
-        vector<shared_ptr<Entity> >* entities =
+        std::vector<std::shared_ptr<Entity> >* entities =
             level->getEntities(shared_from_this(), bb->grow(0.2f, 0, 0.2f));
         if (entities != NULL && !entities->empty()) {
             AUTO_VAR(itEnd, entities->end());
             for (AUTO_VAR(it, entities->begin()); it != itEnd; it++) {
-                shared_ptr<Entity> e = (*it);  // entities->at(i);
+                std::shared_ptr<Entity> e = (*it);  // entities->at(i);
                 if (e != rider.lock() && e->isPushable() &&
                     e->instanceof(eTYPE_MINECART)) {
-                    shared_ptr<Minecart> cart =
+                    std::shared_ptr<Minecart> cart =
                         dynamic_pointer_cast<Minecart>(e);
                     cart->m_bHasPushedCartThisTick = false;
                     cart->push(shared_from_this());
@@ -328,7 +328,7 @@ void Minecart::tick() {
                 if (rider.lock()->riding == shared_from_this()) {
                     rider.lock()->riding = nullptr;
                 }
-                rider = weak_ptr<Entity>();
+                rider = std::weak_ptr<Entity>();
             }
         }
     }
@@ -403,12 +403,12 @@ void Minecart::moveAlongTrack(int xt, int yt, int zt, double maxSpeed,
     zd = pow * zD / dd;
 
     if (rider.lock() != NULL && rider.lock()->instanceof(eTYPE_LIVINGENTITY)) {
-        shared_ptr<LivingEntity> living =
+        std::shared_ptr<LivingEntity> living =
             dynamic_pointer_cast<LivingEntity>(rider.lock());
 
-        double forward = living->yya;
+        double std::forward = living->yya;
 
-        if (forward > 0) {
+        if (std::forward > 0) {
             double riderXd = -sin(living->yRot * PI / 180);
             double riderZd = cos(living->yRot * PI / 180);
 
@@ -736,7 +736,7 @@ void Minecart::push(std::shared_ptr<Entity> e) {
             double xdd = (e->xd + xd);
             double zdd = (e->zd + zd);
 
-            shared_ptr<Minecart> cart = dynamic_pointer_cast<Minecart>(e);
+            std::shared_ptr<Minecart> cart = dynamic_pointer_cast<Minecart>(e);
             if (cart != NULL && cart->getType() == TYPE_FURNACE &&
                 getType() != TYPE_FURNACE) {
                 xd *= 0.2f;

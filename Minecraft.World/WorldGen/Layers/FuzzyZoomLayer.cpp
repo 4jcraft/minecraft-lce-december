@@ -57,9 +57,9 @@ int FuzzyZoomLayer::random(int a, int b, int c, int d) {
 std::shared_ptr<Layer> FuzzyZoomLayer::zoom(__int64 seed,
                                             std::shared_ptr<Layer> sup,
                                             int count) {
-    shared_ptr<Layer> result = sup;
+    std::shared_ptr<Layer> result = sup;
     for (int i = 0; i < count; i++) {
-        result = shared_ptr<Layer>(new FuzzyZoomLayer(seed + i, result));
+        result = std::shared_ptr<Layer>(new FuzzyZoomLayer(seed + i, result));
     }
     return result;
 }

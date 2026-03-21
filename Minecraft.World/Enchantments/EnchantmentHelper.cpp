@@ -31,9 +31,9 @@ int EnchantmentHelper::getEnchantmentLevel(
     return 0;
 }
 
-unordered_map<int, int>* EnchantmentHelper::getEnchantments(
+std::unordered_map<int, int>* EnchantmentHelper::getEnchantments(
     std::shared_ptr<ItemInstance> item) {
-    unordered_map<int, int>* result = new unordered_map<int, int>();
+    std::unordered_map<int, int>* result = new std::unordered_map<int, int>();
     ListTag<CompoundTag>* list =
         item->id == Item::enchantedBook_Id
             ? Item::enchantedBook->getEnchantments(item)
@@ -46,14 +46,14 @@ unordered_map<int, int>* EnchantmentHelper::getEnchantments(
             int level =
                 list->get(i)->getShort((wchar_t*)ItemInstance::TAG_ENCH_LEVEL);
 
-            result->insert(unordered_map<int, int>::value_type(type, level));
+            result->insert(std::unordered_map<int, int>::value_type(type, level));
         }
     }
 
     return result;
 }
 
-void EnchantmentHelper::setEnchantments(unordered_map<int, int>* enchantments,
+void EnchantmentHelper::setEnchantments(std::unordered_map<int, int>* enchantments,
                                         std::shared_ptr<ItemInstance> item) {
     ListTag<CompoundTag>* list = new ListTag<CompoundTag>();
 
@@ -239,7 +239,7 @@ std::shared_ptr<ItemInstance> EnchantmentHelper::getRandomItemWith(
     Enchantment* enchantment, std::shared_ptr<LivingEntity> source) {
     ItemInstanceArray items = source->getEquipmentSlots();
     for (unsigned int i = 0; i < items.length; ++i) {
-        shared_ptr<ItemInstance> item = items[i];
+        std::shared_ptr<ItemInstance> item = items[i];
         if (item != NULL && getEnchantmentLevel(enchantment->id, item) > 0) {
             return item;
         }
@@ -289,7 +289,7 @@ int EnchantmentHelper::getEnchantmentCost(
 std::shared_ptr<ItemInstance> EnchantmentHelper::enchantItem(
     Random* random, std::shared_ptr<ItemInstance> itemInstance,
     int enchantmentCost) {
-    vector<EnchantmentInstance*>* newEnchantment =
+    std::vector<EnchantmentInstance*>* newEnchantment =
         EnchantmentHelper::selectEnchantment(random, itemInstance,
                                              enchantmentCost);
     bool isBook = itemInstance->id == Item::book_Id;
@@ -319,7 +319,7 @@ std::shared_ptr<ItemInstance> EnchantmentHelper::enchantItem(
  * @param enchantmentCost
  * @return
  */
-vector<EnchantmentInstance*>* EnchantmentHelper::selectEnchantment(
+std::vector<EnchantmentInstance*>* EnchantmentHelper::selectEnchantment(
     Random* random, std::shared_ptr<ItemInstance> itemInstance,
     int enchantmentCost) {
     // withdraw bonus from item
@@ -343,12 +343,12 @@ vector<EnchantmentInstance*>* EnchantmentHelper::selectEnchantment(
         realValue = 1;
     }
 
-    vector<EnchantmentInstance*>* results = NULL;
+    std::vector<EnchantmentInstance*>* results = NULL;
 
-    unordered_map<int, EnchantmentInstance*>* availableEnchantments =
+    std::unordered_map<int, EnchantmentInstance*>* availableEnchantments =
         getAvailableEnchantmentResults(realValue, itemInstance);
     if (availableEnchantments != NULL && !availableEnchantments->empty()) {
-        vector<WeighedRandomItem*> values;
+        std::vector<WeighedRandomItem*> values;
         for (AUTO_VAR(it, availableEnchantments->begin());
              it != availableEnchantments->end(); ++it) {
             values.push_back(it->second);
@@ -358,7 +358,7 @@ vector<EnchantmentInstance*>* EnchantmentHelper::selectEnchantment(
         values.clear();
 
         if (instance != NULL) {
-            results = new vector<EnchantmentInstance*>();
+            results = new std::vector<EnchantmentInstance*>();
             results->push_back(
                 instance->copy());  // 4J Stu - Inserting a copy so we can clear
                                     // memory from the availableEnchantments
@@ -424,11 +424,11 @@ vector<EnchantmentInstance*>* EnchantmentHelper::selectEnchantment(
     return results;
 }
 
-unordered_map<int, EnchantmentInstance*>*
+std::unordered_map<int, EnchantmentInstance*>*
 EnchantmentHelper::getAvailableEnchantmentResults(
     int value, std::shared_ptr<ItemInstance> itemInstance) {
     Item* item = itemInstance->getItem();
-    unordered_map<int, EnchantmentInstance*>* results = NULL;
+    std::unordered_map<int, EnchantmentInstance*>* results = NULL;
 
     bool isBook = itemInstance->id == Item::book_Id;
 
@@ -448,7 +448,7 @@ EnchantmentHelper::getAvailableEnchantmentResults(
             if (value >= e->getMinCost(level) &&
                 value <= e->getMaxCost(level)) {
                 if (results == NULL) {
-                    results = new unordered_map<int, EnchantmentInstance*>();
+                    results = new std::unordered_map<int, EnchantmentInstance*>();
                 }
                 AUTO_VAR(it, results->find(e->id));
                 if (it != results->end()) {

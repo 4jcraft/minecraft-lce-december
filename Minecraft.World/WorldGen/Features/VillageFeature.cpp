@@ -8,7 +8,7 @@
 const std::wstring VillageFeature::OPTION_SIZE_MODIFIER = L"size";
 const std::wstring VillageFeature::OPTION_SPACING = L"distance";
 
-vector<Biome*> VillageFeature::allowedBiomes;
+std::vector<Biome*> VillageFeature::allowedBiomes;
 
 void VillageFeature::staticCtor() {
     allowedBiomes.push_back(Biome::plains);
@@ -25,7 +25,7 @@ void VillageFeature::_init(int iXZSize) {
 
 VillageFeature::VillageFeature(int iXZSize) { _init(iXZSize); }
 
-VillageFeature::VillageFeature(unordered_map<wstring, wstring> options,
+VillageFeature::VillageFeature(std::unordered_map<std::wstring, std::wstring> options,
                                int iXZSize) {
     _init(iXZSize);
 
@@ -119,8 +119,8 @@ VillageFeature::VillageStart::VillageStart(Level* level, Random* random,
     pieces.push_back(startRoom);
     startRoom->addChildren(startRoom, &pieces, random);
 
-    vector<StructurePiece*>* pendingRoads = &startRoom->pendingRoads;
-    vector<StructurePiece*>* pendingHouses = &startRoom->pendingHouses;
+    std::vector<StructurePiece*>* pendingRoads = &startRoom->pendingRoads;
+    std::vector<StructurePiece*>* pendingHouses = &startRoom->pendingHouses;
     while (!pendingRoads->empty() || !pendingHouses->empty()) {
         // prioritize roads
         if (pendingRoads->empty()) {

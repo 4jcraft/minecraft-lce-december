@@ -67,9 +67,9 @@ gz_statep state;
    then the deflate() state is reset to start a new gzip stream.  If gz->direct
    is true, then simply write to the output file without compressing, and
    ignore flush. */
-local int gz_comp(state, flush)
+local int gz_comp(state, std::flush)
 gz_statep state;
-int flush;
+int std::flush;
 {
     int ret, got;
     unsigned have;
@@ -95,8 +95,8 @@ int flush;
         /* write out current buffer contents if full, or if flushing, but if
            doing Z_FINISH then don't write until we get to Z_STREAM_END */
         if (strm->avail_out == 0 ||
-            (flush != Z_NO_FLUSH &&
-             (flush != Z_FINISH || ret == Z_STREAM_END))) {
+            (std::flush != Z_NO_FLUSH &&
+             (std::flush != Z_FINISH || ret == Z_STREAM_END))) {
             have = (unsigned)(strm->next_out - state->x.next);
             if (have && ((got = write(state->fd, state->x.next, have)) < 0 ||
                          (unsigned)got != have)) {
@@ -112,7 +112,7 @@ int flush;
 
         /* compress */
         have = strm->avail_out;
-        ret = deflate(strm, flush);
+        ret = deflate(strm, std::flush);
         if (ret == Z_STREAM_ERROR) {
             gz_error(state, Z_STREAM_ERROR,
                      "internal error: deflate stream corrupt");
@@ -122,7 +122,7 @@ int flush;
     } while (have);
 
     /* if that completed a deflate stream, allow another to start */
-    if (flush == Z_FINISH) deflateReset(strm);
+    if (std::flush == Z_FINISH) deflateReset(strm);
 
     /* all done, no errors */
     return 0;
@@ -428,9 +428,9 @@ int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17,
 #endif
 
 /* -- see zlib.h -- */
-int ZEXPORT gzflush(file, flush)
+int ZEXPORT gzflush(file, std::flush)
 gzFile file;
-int flush;
+int std::flush;
 {
     gz_statep state;
 
@@ -442,7 +442,7 @@ int flush;
     if (state->mode != GZ_WRITE || state->err != Z_OK) return Z_STREAM_ERROR;
 
     /* check flush parameter */
-    if (flush < 0 || flush > Z_FINISH) return Z_STREAM_ERROR;
+    if (std::flush < 0 || std::flush > Z_FINISH) return Z_STREAM_ERROR;
 
     /* check for seek request */
     if (state->seek) {
@@ -451,7 +451,7 @@ int flush;
     }
 
     /* compress remaining data with requested flush */
-    gz_comp(state, flush);
+    gz_comp(state, std::flush);
     return state->err;
 }
 

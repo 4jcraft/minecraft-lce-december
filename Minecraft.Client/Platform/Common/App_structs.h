@@ -205,4 +205,4 @@ typedef struct _TMSPPRequest {
     LPVOID lpCallbackParam;
 } TMSPPRequest;
 
-typedef pair<EUIScene, HXUIOBJ> SceneStackPair;
+typedef std::pair<EUIScene, HXUIOBJ> SceneStackPair;

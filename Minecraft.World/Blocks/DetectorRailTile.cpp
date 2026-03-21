@@ -64,7 +64,7 @@ void DetectorRailTile::checkPressed(Level* level, int x, int y, int z,
     bool shouldBePressed = false;
 
     float b = 2 / 16.0f;
-    vector<shared_ptr<Entity> >* entities = level->getEntitiesOfClass(
+    std::vector<std::shared_ptr<Entity> >* entities = level->getEntitiesOfClass(
         typeid(Minecart),
         AABB::newTemp(x + b, y, z + b, x + 1 - b, y + 1 - b, z + 1 - b));
     if (!entities->empty()) {
@@ -105,13 +105,13 @@ int DetectorRailTile::getAnalogOutputSignal(Level* level, int x, int y, int z,
                                             int dir) {
     if ((level->getData(x, y, z) & RAIL_DATA_BIT) > 0) {
         float b = 2 / 16.0f;
-        vector<shared_ptr<Entity> >* entities = level->getEntitiesOfClass(
+        std::vector<std::shared_ptr<Entity> >* entities = level->getEntitiesOfClass(
             typeid(Minecart),
             AABB::newTemp(x + b, y, z + b, x + 1 - b, y + 1 - b, z + 1 - b),
             EntitySelector::CONTAINER_ENTITY_SELECTOR);
 
         if (entities->size() > 0) {
-            shared_ptr<Entity> out = entities->at(0);
+            std::shared_ptr<Entity> out = entities->at(0);
             delete entities;
             return AbstractContainerMenu::getRedstoneSignalFromContainer(
                 dynamic_pointer_cast<Container>(out));

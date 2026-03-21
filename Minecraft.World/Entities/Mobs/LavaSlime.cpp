@@ -41,7 +41,7 @@ float LavaSlime::getBrightness(float a) { return 1.0f; }
 ePARTICLE_TYPE LavaSlime::getParticleName() { return eParticleType_flame; }
 
 std::shared_ptr<Slime> LavaSlime::createChild() {
-    return shared_ptr<LavaSlime>(new LavaSlime(level));
+    return std::shared_ptr<LavaSlime>(new LavaSlime(level));
 }
 
 int LavaSlime::getDeathLoot() {

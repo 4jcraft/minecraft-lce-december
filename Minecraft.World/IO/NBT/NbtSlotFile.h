@@ -14,9 +14,9 @@ private:
     static const int FILE_SLOT_SIZE = 500;
 
     HANDLE raf;
-    vector<int>** fileSlotMap;
+    std::vector<int>** fileSlotMap;
     int fileSlotMapLength;
-    vector<int> freeFileSlots;
+    std::vector<int> freeFileSlots;
     int totalFileSlots;
     static __int64 largest;
 
@@ -30,14 +30,14 @@ private:
     void seekSlot(int fileSlot);
 
 public:
-    vector<CompoundTag*>* readAll(int slot);
+    std::vector<CompoundTag*>* readAll(int slot);
 
 private:
-    vector<int>* toReplace;
+    std::vector<int>* toReplace;
 
     int getFreeSlot();
 
 public:
-    void replaceSlot(int slot, vector<CompoundTag*>* tags);
+    void replaceSlot(int slot, std::vector<CompoundTag*>* tags);
     void close();
 };

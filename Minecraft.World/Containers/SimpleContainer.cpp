@@ -19,7 +19,7 @@ SimpleContainer::SimpleContainer(int name, std::wstring stringName,
 void SimpleContainer::addListener(
     net_minecraft_world::ContainerListener* listener) {
     if (listeners == NULL)
-        listeners = new vector<net_minecraft_world::ContainerListener*>();
+        listeners = new std::vector<net_minecraft_world::ContainerListener*>();
     listeners->push_back(listener);
 }
 
@@ -28,9 +28,9 @@ void SimpleContainer::removeListener(
     // 4J Java has a remove function on lists that will find the first occurence
     // of an object and remove it. We need to replicate that ourselves
 
-    vector<net_minecraft_world::ContainerListener*>::iterator it =
+    std::vector<net_minecraft_world::ContainerListener*>::iterator it =
         listeners->begin();
-    vector<net_minecraft_world::ContainerListener*>::iterator itEnd =
+    std::vector<net_minecraft_world::ContainerListener*>::iterator itEnd =
         listeners->end();
     while (it != itEnd && *it != listener) it++;
 
@@ -45,12 +45,12 @@ std::shared_ptr<ItemInstance> SimpleContainer::removeItem(unsigned int slot,
                                                           int count) {
     if ((*items)[slot] != NULL) {
         if ((*items)[slot]->count <= count) {
-            shared_ptr<ItemInstance> item = (*items)[slot];
+            std::shared_ptr<ItemInstance> item = (*items)[slot];
             (*items)[slot] = nullptr;
             setChanged();
             return item;
         } else {
-            shared_ptr<ItemInstance> i = (*items)[slot]->remove(count);
+            std::shared_ptr<ItemInstance> i = (*items)[slot]->remove(count);
             if ((*items)[slot]->count == 0) (*items)[slot] = nullptr;
             setChanged();
             return i;
@@ -61,7 +61,7 @@ std::shared_ptr<ItemInstance> SimpleContainer::removeItem(unsigned int slot,
 
 std::shared_ptr<ItemInstance> SimpleContainer::removeItemNoUpdate(int slot) {
     if ((*items)[slot] != NULL) {
-        shared_ptr<ItemInstance> item = (*items)[slot];
+        std::shared_ptr<ItemInstance> item = (*items)[slot];
         (*items)[slot] = nullptr;
         return item;
     }

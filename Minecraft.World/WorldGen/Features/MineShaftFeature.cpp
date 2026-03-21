@@ -9,7 +9,7 @@ MineShaftFeature::MineShaftFeature() { chance = 0.01; }
 
 std::wstring MineShaftFeature::getFeatureName() { return L"Mineshaft"; }
 
-MineShaftFeature::MineShaftFeature(unordered_map<wstring, wstring> options) {
+MineShaftFeature::MineShaftFeature(std::unordered_map<std::wstring, std::wstring> options) {
     chance = 0.01;
 
     for (AUTO_VAR(it, options.begin()); it != options.end(); ++it) {

@@ -5,8 +5,8 @@
 #include "../Util/SoundTypes.h"
 #include "../Headers/net.minecraft.world.h"
 
-unordered_map<Level*, deque<NotGateTile::Toggle>*> NotGateTile::recentToggles =
-    unordered_map<Level*, deque<NotGateTile::Toggle>*>();
+std::unordered_map<Level*, std::deque<NotGateTile::Toggle>*> NotGateTile::recentToggles =
+    std::unordered_map<Level*, std::deque<NotGateTile::Toggle>*>();
 
 // 4J - added, to tie in with other changes brought forward from 1.3.2 to
 // associate toggles with a level. In addition to what the java version does, we
@@ -23,7 +23,7 @@ bool NotGateTile::isToggledTooFrequently(Level* level, int x, int y, int z,
                                          bool add) {
     // 4J - brought forward changes to associate toggles with a level from 1.3.2
     if (recentToggles.find(level) == recentToggles.end()) {
-        recentToggles[level] = new deque<Toggle>;
+        recentToggles[level] = new std::deque<Toggle>;
     }
     if (add)
         recentToggles[level]->push_back(Toggle(x, y, z, level->getGameTime()));
@@ -102,7 +102,7 @@ void NotGateTile::tick(Level* level, int x, int y, int z, Random* random) {
 
     // 4J - brought forward changes from 1.3.2 to associate toggles with level
     if (recentToggles.find(level) != recentToggles.end()) {
-        deque<Toggle>* toggles = recentToggles[level];
+        std::deque<Toggle>* toggles = recentToggles[level];
         while (!toggles->empty() &&
                level->getGameTime() - toggles->front().when >
                    RECENT_TOGGLE_TIMER) {
@@ -203,7 +203,7 @@ int NotGateTile::cloneTileId(Level* level, int x, int y, int z) {
 
 void NotGateTile::levelTimeChanged(Level* level, __int64 delta,
                                    __int64 newTime) {
-    deque<Toggle>* toggles = recentToggles[level];
+    std::deque<Toggle>* toggles = recentToggles[level];
 
     if (toggles != NULL) {
         for (AUTO_VAR(it, toggles->begin()); it != toggles->end(); ++it) {

@@ -4,7 +4,7 @@
 
 class AddGlobalEntityPacket
     : public Packet,
-      public enable_shared_from_this<AddGlobalEntityPacket> {
+      public std::enable_shared_from_this<AddGlobalEntityPacket> {
 public:
     static const int LIGHTNING;
 

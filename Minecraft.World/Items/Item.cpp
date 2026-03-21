@@ -1560,7 +1560,7 @@ bool Item::hasPotionBrewingFormula() { return !potionBrewingFormula.empty(); }
 
 void Item::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                            std::shared_ptr<Player> player,
-                           vector<HtmlString>* lines, bool advanced) {}
+                           std::vector<HtmlString>* lines, bool advanced) {}
 
 std::wstring Item::getHoverName(std::shared_ptr<ItemInstance> itemInstance) {
     // String elementName = ("" +

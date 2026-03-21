@@ -43,7 +43,7 @@ void ThornsEnchantment::doThornsAfterAttack(
     std::shared_ptr<Entity> source, std::shared_ptr<LivingEntity> target,
     Random* random) {
     int level = EnchantmentHelper::getArmorThorns(target);
-    shared_ptr<ItemInstance> item =
+    std::shared_ptr<ItemInstance> item =
         EnchantmentHelper::getRandomItemWith(Enchantment::thorns, target);
 
     if (shouldHit(level, random)) {

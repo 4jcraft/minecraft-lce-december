@@ -56,7 +56,7 @@ std::shared_ptr<Packet> MobSpawnerTileEntity::getUpdatePacket() {
     CompoundTag* tag = new CompoundTag();
     save(tag);
     tag->remove(L"SpawnPotentials");
-    return shared_ptr<TileEntityDataPacket>(new TileEntityDataPacket(
+    return std::shared_ptr<TileEntityDataPacket>(new TileEntityDataPacket(
         x, y, z, TileEntityDataPacket::TYPE_MOB_SPAWNER, tag));
 }
 
@@ -69,8 +69,8 @@ BaseMobSpawner* MobSpawnerTileEntity::getSpawner() { return spawner; }
 
 // 4J Added
 std::shared_ptr<TileEntity> MobSpawnerTileEntity::clone() {
-    shared_ptr<MobSpawnerTileEntity> result =
-        shared_ptr<MobSpawnerTileEntity>(new MobSpawnerTileEntity());
+    std::shared_ptr<MobSpawnerTileEntity> result =
+        std::shared_ptr<MobSpawnerTileEntity>(new MobSpawnerTileEntity());
     TileEntity::clone(result);
 
     return result;

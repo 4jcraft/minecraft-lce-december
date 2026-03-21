@@ -132,7 +132,7 @@ int BufferedReader::read(wchar_t cbuf[], unsigned int off, unsigned int len) {
 // line, not including any line-termination characters, or null if the end of
 // the stream has been reached
 std::wstring BufferedReader::readLine() {
-    wstring output = L"";
+    std::wstring output = L"";
     bool newLineCharFound = false;
 
     while (readMark < bufferedMark) {

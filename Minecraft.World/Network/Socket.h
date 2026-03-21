@@ -41,7 +41,7 @@ private:
         virtual __int64 skip(__int64 n) {
             return n;
         }  // 4J Stu - Not implemented
-        virtual void flush() {}
+        virtual void std::flush() {}
     };
 
     class SocketOutputStreamLocal : public SocketOutputStream {
@@ -59,7 +59,7 @@ private:
         virtual void write(byteArray b, unsigned int offset,
                            unsigned int length);
         virtual void close();
-        virtual void flush() {}
+        virtual void std::flush() {}
     };
 
     class SocketInputStreamNetwork : public InputStream {
@@ -77,7 +77,7 @@ private:
         virtual __int64 skip(__int64 n) {
             return n;
         }  // 4J Stu - Not implemented
-        virtual void flush() {}
+        virtual void std::flush() {}
     };
     class SocketOutputStreamNetwork : public SocketOutputStream {
         bool m_streamOpen;
@@ -94,7 +94,7 @@ private:
         virtual void writeWithFlags(byteArray b, unsigned int offset,
                                     unsigned int length, int flags);
         virtual void close();
-        virtual void flush() {}
+        virtual void std::flush() {}
     };
 
     bool m_hostServerConnection;  // true if this is the connection between the

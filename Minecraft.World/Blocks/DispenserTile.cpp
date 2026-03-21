@@ -89,7 +89,7 @@ bool DispenserTile::use(Level* level, int x, int y, int z,
         return true;
     }
 
-    shared_ptr<DispenserTileEntity> trap =
+    std::shared_ptr<DispenserTileEntity> trap =
         dynamic_pointer_cast<DispenserTileEntity>(
             level->getTileEntity(x, y, z));
     player->openTrap(trap);
@@ -99,7 +99,7 @@ bool DispenserTile::use(Level* level, int x, int y, int z,
 
 void DispenserTile::dispenseFrom(Level* level, int x, int y, int z) {
     BlockSourceImpl source(level, x, y, z);
-    shared_ptr<DispenserTileEntity> trap =
+    std::shared_ptr<DispenserTileEntity> trap =
         dynamic_pointer_cast<DispenserTileEntity>(source.getEntity());
     if (trap == NULL) return;
 
@@ -107,11 +107,11 @@ void DispenserTile::dispenseFrom(Level* level, int x, int y, int z) {
     if (slot < 0) {
         level->levelEvent(LevelEvent::SOUND_CLICK_FAIL, x, y, z, 0);
     } else {
-        shared_ptr<ItemInstance> item = trap->getItem(slot);
+        std::shared_ptr<ItemInstance> item = trap->getItem(slot);
         DispenseItemBehavior* behavior = getDispenseMethod(item);
 
         if (behavior != DispenseItemBehavior::NOOP) {
-            shared_ptr<ItemInstance> leftOver =
+            std::shared_ptr<ItemInstance> leftOver =
                 behavior->dispense(&source, item);
 
             trap->setItem(slot, leftOver->count == 0 ? nullptr : leftOver);
@@ -148,7 +148,7 @@ void DispenserTile::tick(Level* level, int x, int y, int z, Random* random) {
 }
 
 std::shared_ptr<TileEntity> DispenserTile::newTileEntity(Level* level) {
-    return shared_ptr<DispenserTileEntity>(new DispenserTileEntity());
+    return std::shared_ptr<DispenserTileEntity>(new DispenserTileEntity());
 }
 
 void DispenserTile::setPlacedBy(Level* level, int x, int y, int z,
@@ -166,11 +166,11 @@ void DispenserTile::setPlacedBy(Level* level, int x, int y, int z,
 
 void DispenserTile::onRemove(Level* level, int x, int y, int z, int id,
                              int data) {
-    shared_ptr<Container> container = dynamic_pointer_cast<DispenserTileEntity>(
+    std::shared_ptr<Container> container = dynamic_pointer_cast<DispenserTileEntity>(
         level->getTileEntity(x, y, z));
     if (container != NULL) {
         for (unsigned int i = 0; i < container->getContainerSize(); i++) {
-            shared_ptr<ItemInstance> item = container->getItem(i);
+            std::shared_ptr<ItemInstance> item = container->getItem(i);
             if (item != NULL) {
                 float xo = random->nextFloat() * 0.8f + 0.1f;
                 float yo = random->nextFloat() * 0.8f + 0.1f;
@@ -181,10 +181,10 @@ void DispenserTile::onRemove(Level* level, int x, int y, int z, int id,
                     if (count > item->count) count = item->count;
                     item->count -= count;
 
-                    shared_ptr<ItemInstance> newItem = shared_ptr<ItemInstance>(
+                    std::shared_ptr<ItemInstance> newItem = std::shared_ptr<ItemInstance>(
                         new ItemInstance(item->id, count, item->getAuxValue()));
                     newItem->set4JData(item->get4JData());
-                    shared_ptr<ItemEntity> itemEntity = shared_ptr<ItemEntity>(
+                    std::shared_ptr<ItemEntity> itemEntity = std::shared_ptr<ItemEntity>(
                         new ItemEntity(level, x + xo, y + yo, z + zo, newItem));
                     float pow = 0.05f;
                     itemEntity->xd = (float)random->nextGaussian() * pow;

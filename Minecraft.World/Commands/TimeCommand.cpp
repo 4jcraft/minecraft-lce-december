@@ -70,6 +70,6 @@ std::shared_ptr<GameCommandPacket> TimeCommand::preparePacket(bool night) {
 
     dos.writeBoolean(night);
 
-    return shared_ptr<GameCommandPacket>(
+    return std::shared_ptr<GameCommandPacket>(
         new GameCommandPacket(eGameCommand_Time, baos.toByteArray()));
 }

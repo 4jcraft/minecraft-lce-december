@@ -28,13 +28,13 @@ public:
     virtual ~DispenserTileEntity();
 
     virtual unsigned int getContainerSize();
-    virtual shared_ptr<ItemInstance> getItem(unsigned int slot);
-    virtual shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
-    virtual shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
+    virtual std::shared_ptr<ItemInstance> getItem(unsigned int slot);
+    virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
+    virtual std::shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
     virtual bool removeProjectile(int itemId);
     virtual int getRandomSlot();
-    virtual void setItem(unsigned int slot, shared_ptr<ItemInstance> item);
-    virtual int addItem(shared_ptr<ItemInstance> item);
+    virtual void setItem(unsigned int slot, std::shared_ptr<ItemInstance> item);
+    virtual int addItem(std::shared_ptr<ItemInstance> item);
     virtual std::wstring getName();
     virtual std::wstring getCustomName();
     virtual void setCustomName(const std::wstring& name);
@@ -42,14 +42,14 @@ public:
     virtual void load(CompoundTag* base);
     virtual void save(CompoundTag* base);
     virtual int getMaxStackSize();
-    virtual bool stillValid(shared_ptr<Player> player);
+    virtual bool stillValid(std::shared_ptr<Player> player);
     virtual void setChanged();
 
     virtual void startOpen();
     virtual void stopOpen();
-    virtual bool canPlaceItem(int slot, shared_ptr<ItemInstance> item);
+    virtual bool canPlaceItem(int slot, std::shared_ptr<ItemInstance> item);
 
     // 4J Added
-    virtual shared_ptr<TileEntity> clone();
-    void AddItemBack(shared_ptr<ItemInstance> item, unsigned int slot);
+    virtual std::shared_ptr<TileEntity> clone();
+    void AddItemBack(std::shared_ptr<ItemInstance> item, unsigned int slot);
 };

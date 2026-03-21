@@ -41,7 +41,7 @@ Item::boots_diamond, Item::boots_gold},
 */
 
 void ArmorRecipes::_init() {
-    map = new vector<Object*>[MAX_ARMOUR_RECIPES];
+    map = new std::vector<Object*>[MAX_ARMOUR_RECIPES];
 
     // 4J-PB - removing the chain armour, since we show all possible recipes in
     // the xbox game, and it's not one you can make

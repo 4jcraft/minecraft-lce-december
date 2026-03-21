@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class SignUpdatePacket : public Packet,
-                         public enable_shared_from_this<SignUpdatePacket> {
+                         public std::enable_shared_from_this<SignUpdatePacket> {
 public:
     int x, y, z;
     bool m_bVerified;

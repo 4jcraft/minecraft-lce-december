@@ -210,7 +210,7 @@ void Chunk::rebuild() {
     //oldTileEntities(renderableTileEntities.begin(),renderableTileEntities.end());
     //// 4J removed this & next line 	renderableTileEntities.clear();
 
-    vector<shared_ptr<TileEntity> > renderableTileEntities;  // 4J - added
+    std::vector<std::shared_ptr<TileEntity> > renderableTileEntities;  // 4J - added
 
     int r = 1;
 
@@ -446,7 +446,7 @@ void Chunk::rebuild() {
 
                         Tile* tile = Tile::tiles[tileId];
                         if (currentLayer == 0 && tile->isEntityTile()) {
-                            shared_ptr<TileEntity> et =
+                            std::shared_ptr<TileEntity> et =
                                 region->getTileEntity(x, y, z);
                             if (TileEntityRenderDispatcher::instance
                                     ->hasRenderer(et)) {
@@ -555,7 +555,7 @@ void Chunk::rebuild() {
             // Now go through the current list. If these are already in the
             // list, then unflag the remove flag. If they aren't, then add
             for (int i = 0; i < renderableTileEntities.size(); i++) {
-                AUTO_VAR(it2, find(it->second.begin(), it->second.end(),
+                AUTO_VAR(it2, std::find(it->second.begin(), it->second.end(),
                                    renderableTileEntities[i]));
                 if (it2 == it->second.end()) {
                     (*globalRenderableTileEntities)[key].push_back(
@@ -601,11 +601,11 @@ void Chunk::rebuild() {
             globalRenderableTileEntities.removeAll(oldTileEntities);
             */
 
-    unordered_set<shared_ptr<TileEntity> > newTileEntities(
+    std::unordered_set<std::shared_ptr<TileEntity> > newTileEntities(
         renderableTileEntities.begin(), renderableTileEntities.end());
 
     AUTO_VAR(endIt, oldTileEntities.end());
-    for (unordered_set<shared_ptr<TileEntity> >::iterator it =
+    for (std::unordered_set<std::shared_ptr<TileEntity> >::iterator it =
              oldTileEntities.begin();
          it != endIt; it++) {
         newTileEntities.erase(*it);
@@ -616,7 +616,7 @@ void Chunk::rebuild() {
 
     EnterCriticalSection(globalRenderableTileEntities_cs);
     endIt = newTileEntities.end();
-    for (unordered_set<shared_ptr<TileEntity> >::iterator it =
+    for (std::unordered_set<std::shared_ptr<TileEntity> >::iterator it =
              newTileEntities.begin();
          it != endIt; it++) {
         globalRenderableTileEntities->push_back(*it);
@@ -625,13 +625,13 @@ void Chunk::rebuild() {
     // 4J - All these new things added to globalRenderableTileEntities
 
     AUTO_VAR(endItRTE, renderableTileEntities.end());
-    for (vector<shared_ptr<TileEntity> >::iterator it =
+    for (std::vector<std::shared_ptr<TileEntity> >::iterator it =
              renderableTileEntities.begin();
          it != endItRTE; it++) {
         oldTileEntities.erase(*it);
     }
     // 4J - oldTileEntities is now the removed items
-    vector<shared_ptr<TileEntity> >::iterator it =
+    std::vector<std::shared_ptr<TileEntity> >::iterator it =
         globalRenderableTileEntities->begin();
     while (it != globalRenderableTileEntities->end()) {
         if (oldTileEntities.find(*it) != oldTileEntities.end()) {
@@ -705,7 +705,7 @@ void Chunk::rebuild_SPU() {
     //oldTileEntities(renderableTileEntities.begin(),renderableTileEntities.end());
     //// 4J removed this & next line 	renderableTileEntities.clear();
 
-    vector<shared_ptr<TileEntity> > renderableTileEntities;  // 4J - added
+    std::vector<std::shared_ptr<TileEntity> > renderableTileEntities;  // 4J - added
 
     //        List<TileEntity> newTileEntities = new ArrayList<TileEntity>();
     //        newTileEntities.clear();
@@ -792,7 +792,7 @@ void Chunk::rebuild_SPU() {
                     if (tileId > 0) {
                         if (currentLayer == 0 &&
                             Tile::tiles[tileId]->isEntityTile()) {
-                            shared_ptr<TileEntity> et =
+                            std::shared_ptr<TileEntity> et =
                                 region.getTileEntity(x, y, z);
                             if (TileEntityRenderDispatcher::instance
                                     ->hasRenderer(et)) {
@@ -878,7 +878,7 @@ void Chunk::rebuild_SPU() {
             // Now go through the current list. If these are already in the
             // list, then unflag the remove flag. If they aren't, then add
             for (int i = 0; i < renderableTileEntities.size(); i++) {
-                AUTO_VAR(it2, find(it->second.begin(), it->second.end(),
+                AUTO_VAR(it2, std::find(it->second.begin(), it->second.end(),
                                    renderableTileEntities[i]));
                 if (it2 == it->second.end()) {
                     (*globalRenderableTileEntities)[key].push_back(
@@ -923,11 +923,11 @@ void Chunk::rebuild_SPU() {
             globalRenderableTileEntities.removeAll(oldTileEntities);
             */
 
-    unordered_set<shared_ptr<TileEntity> > newTileEntities(
+    std::unordered_set<std::shared_ptr<TileEntity> > newTileEntities(
         renderableTileEntities.begin(), renderableTileEntities.end());
 
     AUTO_VAR(endIt, oldTileEntities.end());
-    for (unordered_set<shared_ptr<TileEntity> >::iterator it =
+    for (std::unordered_set<std::shared_ptr<TileEntity> >::iterator it =
              oldTileEntities.begin();
          it != endIt; it++) {
         newTileEntities.erase(*it);
@@ -938,7 +938,7 @@ void Chunk::rebuild_SPU() {
 
     EnterCriticalSection(globalRenderableTileEntities_cs);
     endIt = newTileEntities.end();
-    for (unordered_set<shared_ptr<TileEntity> >::iterator it =
+    for (std::unordered_set<std::shared_ptr<TileEntity> >::iterator it =
              newTileEntities.begin();
          it != endIt; it++) {
         globalRenderableTileEntities.push_back(*it);
@@ -947,13 +947,13 @@ void Chunk::rebuild_SPU() {
     // 4J - All these new things added to globalRenderableTileEntities
 
     AUTO_VAR(endItRTE, renderableTileEntities.end());
-    for (vector<shared_ptr<TileEntity> >::iterator it =
+    for (std::vector<std::shared_ptr<TileEntity> >::iterator it =
              renderableTileEntities.begin();
          it != endItRTE; it++) {
         oldTileEntities.erase(*it);
     }
     // 4J - oldTileEntities is now the removed items
-    vector<shared_ptr<TileEntity> >::iterator it =
+    std::vector<std::shared_ptr<TileEntity> >::iterator it =
         globalRenderableTileEntities->begin();
     while (it != globalRenderableTileEntities->end()) {
         if (oldTileEntities.find(*it) != oldTileEntities.end()) {

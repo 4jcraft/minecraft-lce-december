@@ -146,13 +146,13 @@ void Throwable::tick() {
     }
 
     if (!level->isClientSide) {
-        shared_ptr<Entity> hitEntity = nullptr;
-        vector<shared_ptr<Entity> >* objects = level->getEntities(
+        std::shared_ptr<Entity> hitEntity = nullptr;
+        std::vector<std::shared_ptr<Entity> >* objects = level->getEntities(
             shared_from_this(), bb->expand(xd, yd, zd)->grow(1, 1, 1));
         double nearest = 0;
-        shared_ptr<LivingEntity> owner = getOwner();
+        std::shared_ptr<LivingEntity> owner = getOwner();
         for (int i = 0; i < objects->size(); i++) {
-            shared_ptr<Entity> e = objects->at(i);
+            std::shared_ptr<Entity> e = objects->at(i);
             if (!e->isPickable() || (e == owner && flightTime < 5)) continue;
 
             float rr = 0.3f;

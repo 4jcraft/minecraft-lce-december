@@ -29,7 +29,7 @@ TargetGoal::TargetGoal(PathfinderMob* mob, bool mustSee, bool mustReach) {
 }
 
 bool TargetGoal::canContinueToUse() {
-    shared_ptr<LivingEntity> target = mob->getTarget();
+    std::shared_ptr<LivingEntity> target = mob->getTarget();
     if (target == NULL) return false;
     if (!target->isAlive()) return false;
 
@@ -68,7 +68,7 @@ bool TargetGoal::canAttack(std::shared_ptr<LivingEntity> target,
 
     OwnableEntity* ownableMob = dynamic_cast<OwnableEntity*>(mob);
     if (ownableMob != NULL && !ownableMob->getOwnerUUID().empty()) {
-        shared_ptr<OwnableEntity> ownableTarget =
+        std::shared_ptr<OwnableEntity> ownableTarget =
             dynamic_pointer_cast<OwnableEntity>(target);
         if (ownableTarget != NULL && ownableMob->getOwnerUUID().compare(
                                          ownableTarget->getOwnerUUID()) == 0) {

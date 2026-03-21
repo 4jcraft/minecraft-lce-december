@@ -23,7 +23,7 @@ class AvoidPlayerGoal : public Goal {
 private:
     PathfinderMob* mob;  // Owner of this goal
     double walkSpeedModifier, sprintSpeedModifier;
-    weak_ptr<Entity> toAvoid;
+    std::weak_ptr<Entity> toAvoid;
     float maxDist;
     Path* path;
     PathNavigation* pathNav;

@@ -14,7 +14,7 @@ CreeperRenderer::CreeperRenderer() : MobRenderer(new CreeperModel(), 0.5f) {
 }
 
 void CreeperRenderer::scale(std::shared_ptr<LivingEntity> mob, float a) {
-    shared_ptr<Creeper> creeper = dynamic_pointer_cast<Creeper>(mob);
+    std::shared_ptr<Creeper> creeper = dynamic_pointer_cast<Creeper>(mob);
 
     float g = creeper->getSwelling(a);
 
@@ -30,7 +30,7 @@ void CreeperRenderer::scale(std::shared_ptr<LivingEntity> mob, float a) {
 
 int CreeperRenderer::getOverlayColor(std::shared_ptr<LivingEntity> mob,
                                      float br, float a) {
-    shared_ptr<Creeper> creeper = dynamic_pointer_cast<Creeper>(mob);
+    std::shared_ptr<Creeper> creeper = dynamic_pointer_cast<Creeper>(mob);
 
     float step = creeper->getSwelling(a);
 
@@ -53,7 +53,7 @@ int CreeperRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob, int layer,
                                   float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    shared_ptr<Creeper> mob = dynamic_pointer_cast<Creeper>(_mob);
+    std::shared_ptr<Creeper> mob = dynamic_pointer_cast<Creeper>(_mob);
     if (mob->isPowered()) {
         if (mob->isInvisible())
             glDepthMask(false);

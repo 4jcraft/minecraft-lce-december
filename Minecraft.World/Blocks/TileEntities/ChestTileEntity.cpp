@@ -62,14 +62,14 @@ std::shared_ptr<ItemInstance> ChestTileEntity::removeItem(unsigned int slot,
                                                           int count) {
     if (items->data[slot] != NULL) {
         if (items->data[slot]->count <= count) {
-            shared_ptr<ItemInstance> item = items->data[slot];
+            std::shared_ptr<ItemInstance> item = items->data[slot];
             items->data[slot] = nullptr;
             setChanged();
             // 4J Stu - Fix for duplication glitch
             if (item->count <= 0) return nullptr;
             return item;
         } else {
-            shared_ptr<ItemInstance> i = items->data[slot]->remove(count);
+            std::shared_ptr<ItemInstance> i = items->data[slot]->remove(count);
             if (items->data[slot]->count == 0) items->data[slot] = nullptr;
             setChanged();
             // 4J Stu - Fix for duplication glitch
@@ -82,7 +82,7 @@ std::shared_ptr<ItemInstance> ChestTileEntity::removeItem(unsigned int slot,
 
 std::shared_ptr<ItemInstance> ChestTileEntity::removeItemNoUpdate(int slot) {
     if (items->data[slot] != NULL) {
-        shared_ptr<ItemInstance> item = items->data[slot];
+        std::shared_ptr<ItemInstance> item = items->data[slot];
         items->data[slot] = nullptr;
         return item;
     }
@@ -190,10 +190,10 @@ void ChestTileEntity::checkNeighbors() {
     if (hasCheckedNeighbors) return;
 
     hasCheckedNeighbors = true;
-    n = weak_ptr<ChestTileEntity>();
-    e = weak_ptr<ChestTileEntity>();
-    w = weak_ptr<ChestTileEntity>();
-    s = weak_ptr<ChestTileEntity>();
+    n = std::weak_ptr<ChestTileEntity>();
+    e = std::weak_ptr<ChestTileEntity>();
+    w = std::weak_ptr<ChestTileEntity>();
+    s = std::weak_ptr<ChestTileEntity>();
 
     if (isSameChest(x - 1, y, z)) {
         w = dynamic_pointer_cast<ChestTileEntity>(
@@ -212,7 +212,7 @@ void ChestTileEntity::checkNeighbors() {
             level->getTileEntity(x, y, z + 1));
     }
 
-    shared_ptr<ChestTileEntity> cteThis =
+    std::shared_ptr<ChestTileEntity> cteThis =
         dynamic_pointer_cast<ChestTileEntity>(shared_from_this());
     if (n.lock() != NULL)
         n.lock()->heyImYourNeighbor(cteThis, Direction::SOUTH);
@@ -242,20 +242,20 @@ void ChestTileEntity::tick() {
         openCount = 0;
 
         float range = 5;
-        vector<shared_ptr<Entity> >* players = level->getEntitiesOfClass(
+        std::vector<std::shared_ptr<Entity> >* players = level->getEntitiesOfClass(
             typeid(Player),
             AABB::newTemp(x - range, y - range, z - range, x + 1 + range,
                           y + 1 + range, z + 1 + range));
         for (AUTO_VAR(it, players->begin()); it != players->end(); ++it) {
-            shared_ptr<Player> player = dynamic_pointer_cast<Player>(*it);
+            std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(*it);
 
             ContainerMenu* containerMenu =
                 dynamic_cast<ContainerMenu*>(player->containerMenu);
             if (containerMenu != NULL) {
-                shared_ptr<Container> container = containerMenu->getContainer();
-                shared_ptr<Container> thisContainer =
+                std::shared_ptr<Container> container = containerMenu->getContainer();
+                std::shared_ptr<Container> thisContainer =
                     dynamic_pointer_cast<Container>(shared_from_this());
-                shared_ptr<CompoundContainer> compoundContainer =
+                std::shared_ptr<CompoundContainer> compoundContainer =
                     dynamic_pointer_cast<CompoundContainer>(container);
                 if ((container == thisContainer) ||
                     (compoundContainer != NULL &&
@@ -370,8 +370,8 @@ int ChestTileEntity::getType() {
 
 // 4J Added
 std::shared_ptr<TileEntity> ChestTileEntity::clone() {
-    shared_ptr<ChestTileEntity> result =
-        shared_ptr<ChestTileEntity>(new ChestTileEntity());
+    std::shared_ptr<ChestTileEntity> result =
+        std::shared_ptr<ChestTileEntity>(new ChestTileEntity());
     TileEntity::clone(result);
 
     for (unsigned int i = 0; i < items->length; i++) {

@@ -6,7 +6,7 @@ class Level;
 
 class BlockRegionUpdatePacket
     : public Packet,
-      public enable_shared_from_this<BlockRegionUpdatePacket> {
+      public std::enable_shared_from_this<BlockRegionUpdatePacket> {
 public:
     int x, y, z;
     int xs, ys, zs;

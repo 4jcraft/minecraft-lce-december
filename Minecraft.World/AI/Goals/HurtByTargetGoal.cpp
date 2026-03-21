@@ -22,7 +22,7 @@ void HurtByTargetGoal::start() {
 
     if (alertSameType) {
         double within = getFollowDistance();
-        vector<std::shared_ptr<Entity> >* nearby =
+        std::vector<std::shared_ptr<Entity> >* nearby =
             mob->level->getEntitiesOfClass(
                 typeid(*mob), AABB::newTemp(mob->x, mob->y, mob->z, mob->x + 1,
                                             mob->y + 1, mob->z + 1)

@@ -5,7 +5,7 @@
 
 class RemoveEntitiesPacket
     : public Packet,
-      public enable_shared_from_this<RemoveEntitiesPacket> {
+      public std::enable_shared_from_this<RemoveEntitiesPacket> {
 public:
     static const int MAX_PER_PACKET = Byte::MAX_VALUE;
 

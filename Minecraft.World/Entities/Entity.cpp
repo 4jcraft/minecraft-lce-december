@@ -256,7 +256,7 @@ void Entity::_init(bool useSmallId, Level* level) {
     viewScale = 1.0;
 
     blocksBuilding = false;
-    rider = weak_ptr<Entity>();
+    rider = std::weak_ptr<Entity>();
     riding = nullptr;
     forcedLoading = false;
 
@@ -310,7 +310,7 @@ void Entity::_init(bool useSmallId, Level* level) {
 
     // values that need to be sent to clients in SMP
     if (useSmallId) {
-        entityData = shared_ptr<SynchedEntityData>(new SynchedEntityData());
+        entityData = std::shared_ptr<SynchedEntityData>(new SynchedEntityData());
     } else {
         entityData = nullptr;
     }
@@ -396,7 +396,7 @@ return entityId;
 void Entity::resetPos() {
     if (level == NULL) return;
 
-    shared_ptr<Entity> sharedThis = shared_from_this();
+    std::shared_ptr<Entity> sharedThis = shared_from_this();
     while (true && y > 0) {
         setPos(x, y, z);
         if (level->getCubes(sharedThis, bb)->empty()) break;
@@ -1221,7 +1221,7 @@ bool Entity::shouldRenderAtSqrDistance(double distance) {
 bool Entity::isCreativeModeAllowed() { return false; }
 
 bool Entity::saveAsMount(CompoundTag* entityTag) {
-    wstring id = getEncodeId();
+    std::wstring id = getEncodeId();
     if (removed || id.empty()) {
         return false;
     }
@@ -1232,7 +1232,7 @@ bool Entity::saveAsMount(CompoundTag* entityTag) {
 }
 
 bool Entity::save(CompoundTag* entityTag) {
-    wstring id = getEncodeId();
+    std::wstring id = getEncodeId();
     if (removed || id.empty() || (rider.lock() != NULL)) {
         return false;
     }
@@ -1385,7 +1385,7 @@ std::shared_ptr<ItemEntity> Entity::spawnAtLocation(int resource, int count) {
 std::shared_ptr<ItemEntity> Entity::spawnAtLocation(int resource, int count,
                                                     float yOffs) {
     return spawnAtLocation(
-        shared_ptr<ItemInstance>(new ItemInstance(resource, count, 0)), yOffs);
+        std::shared_ptr<ItemInstance>(new ItemInstance(resource, count, 0)), yOffs);
 }
 
 std::shared_ptr<ItemEntity> Entity::spawnAtLocation(
@@ -1393,7 +1393,7 @@ std::shared_ptr<ItemEntity> Entity::spawnAtLocation(
     if (itemInstance->count == 0) {
         return nullptr;
     }
-    shared_ptr<ItemEntity> ie = shared_ptr<ItemEntity>(
+    std::shared_ptr<ItemEntity> ie = std::shared_ptr<ItemEntity>(
         new ItemEntity(level, x, y + yOffs, z, itemInstance));
     ie->throwTime = 10;
     level->addEntity(ie);
@@ -1468,7 +1468,7 @@ void Entity::rideTick() {
 }
 
 void Entity::positionRider() {
-    shared_ptr<Entity> lockedRider = rider.lock();
+    std::shared_ptr<Entity> lockedRider = rider.lock();
     if (lockedRider == NULL) {
         return;
     }
@@ -1491,13 +1491,13 @@ void Entity::ride(std::shared_ptr<Entity> e) {
             if (!level->isClientSide)
                 moveTo(riding->x, riding->bb->y0 + riding->bbHeight, riding->z,
                        yRot, xRot);
-            riding->rider = weak_ptr<Entity>();
+            riding->rider = std::weak_ptr<Entity>();
         }
         riding = nullptr;
         return;
     }
     if (riding != NULL) {
-        riding->rider = weak_ptr<Entity>();
+        riding->rider = std::weak_ptr<Entity>();
     }
     riding = e;
     e->rider = shared_from_this();
@@ -1660,7 +1660,7 @@ bool Entity::checkInTile(double x, double y, double z) {
     double yd = y - (yTile);
     double zd = z - (zTile);
 
-    vector<AABB*>* cubes = level->getTileCubes(bb);
+    std::vector<AABB*>* cubes = level->getTileCubes(bb);
     if ((cubes && !cubes->empty()) ||
         level->isFullAABBTile(xTile, yTile, zTile)) {
         bool west = !level->isFullAABBTile(xTile - 1, yTile, zTile);
@@ -1715,7 +1715,7 @@ void Entity::makeStuckInWeb() {
 
 std::wstring Entity::getAName() {
 #ifdef _DEBUG
-    wstring id = EntityIO::getEncodeId(shared_from_this());
+    std::wstring id = EntityIO::getEncodeId(shared_from_this());
     if (id.empty()) id = L"generic";
     return L"entity." + id + _toString(entityId);
 #else
@@ -1723,7 +1723,7 @@ std::wstring Entity::getAName() {
 #endif
 }
 
-vector<shared_ptr<Entity> >* Entity::getSubEntities() { return NULL; }
+std::vector<std::shared_ptr<Entity> >* Entity::getSubEntities() { return NULL; }
 
 bool Entity::is(std::shared_ptr<Entity> other) {
     return shared_from_this() == other;
@@ -1792,7 +1792,7 @@ void Entity::changeDimension(int i) {
 
     server->getPlayers()->repositionAcrossDimension(
         shared_from_this(), lastDimension, oldLevel, newLevel);
-    shared_ptr<Entity> newEntity = EntityIO::newEntity(
+    std::shared_ptr<Entity> newEntity = EntityIO::newEntity(
         EntityIO::getEncodeId(shared_from_this()), newLevel);
 
     if (newEntity != NULL) {

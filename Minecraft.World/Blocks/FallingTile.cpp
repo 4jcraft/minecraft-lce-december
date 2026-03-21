@@ -121,7 +121,7 @@ void FallingTile::tick() {
                         if (tileEntity != NULL) {
                             CompoundTag* swap = new CompoundTag();
                             tileEntity->save(swap);
-                            vector<Tag*>* allTags = tileData->getAllTags();
+                            std::vector<Tag*>* allTags = tileData->getAllTags();
                             for (AUTO_VAR(it, allTags->begin());
                                  it != allTags->end(); ++it) {
                                 Tag* tag = *it;
@@ -166,8 +166,8 @@ void FallingTile::causeFallDamage(float distance) {
         if (dmg > 0) {
             // 4J: Copy vector since it might be modified when we hurt the
             // entities (invalidating our std::iterator)
-            vector<std::shared_ptr<Entity> >* entities =
-                new vector<std::shared_ptr<Entity> >(
+            std::vector<std::shared_ptr<Entity> >* entities =
+                new std::vector<std::shared_ptr<Entity> >(
                     *level->getEntities(shared_from_this(), bb));
             DamageSource* source = tile == Tile::anvil_Id
                                        ? DamageSource::anvil

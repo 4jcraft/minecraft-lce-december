@@ -80,7 +80,7 @@ bool EnderCrystal::hurt(DamageSource* source, float damage) {
             if (!level->isClientSide) {
                 level->explode(nullptr, x, y, z, 6, true);
 
-                vector<std::shared_ptr<Entity> > entities =
+                std::vector<std::shared_ptr<Entity> > entities =
                     level->getAllEntities();
                 std::shared_ptr<EnderDragon> dragon = nullptr;
                 AUTO_VAR(itEnd, entities.end());

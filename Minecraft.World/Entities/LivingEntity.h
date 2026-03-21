@@ -54,7 +54,7 @@ public:
 private:
     BaseAttributeMap* attributes;
     CombatTracker* combatTracker;
-    unordered_map<int, MobEffectInstance*> activeEffects;
+    std::unordered_map<int, MobEffectInstance*> activeEffects;
     ItemInstanceArray lastEquipment;
 
 public:
@@ -155,7 +155,7 @@ protected:
 
 public:
     virtual void removeAllEffects();
-    virtual vector<MobEffectInstance*>* getActiveEffects();
+    virtual std::vector<MobEffectInstance*>* getActiveEffects();
     virtual bool hasEffect(int id);
     virtual bool hasEffect(MobEffect* effect);
     virtual MobEffectInstance* getEffect(MobEffect* effect);

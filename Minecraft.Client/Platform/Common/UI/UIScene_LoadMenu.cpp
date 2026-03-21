@@ -1063,7 +1063,7 @@ void UIScene_LoadMenu::handleTimerComplete(int id) {
 
                     if (pDLCInfo) {
                         // retrieve the image - if we haven't already
-                        wstring textureName =
+                        std::wstring textureName =
                             filenametowstring(pDLCInfo->chImageURL);
 
                         if (hasRegisteredSubstitutionTexture(textureName) ==

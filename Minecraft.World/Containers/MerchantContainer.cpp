@@ -27,19 +27,19 @@ std::shared_ptr<ItemInstance> MerchantContainer::removeItem(unsigned int slot,
                                                             int count) {
     if (items[slot] != NULL) {
         if (slot == MerchantMenu::RESULT_SLOT) {
-            shared_ptr<ItemInstance> item = items[slot];
+            std::shared_ptr<ItemInstance> item = items[slot];
             items[slot] = nullptr;
             return item;
         }
         if (items[slot]->count <= count) {
-            shared_ptr<ItemInstance> item = items[slot];
+            std::shared_ptr<ItemInstance> item = items[slot];
             items[slot] = nullptr;
             if (isPaymentSlot(slot)) {
                 updateSellItem();
             }
             return item;
         } else {
-            shared_ptr<ItemInstance> i = items[slot]->remove(count);
+            std::shared_ptr<ItemInstance> i = items[slot]->remove(count);
             if (items[slot]->count == 0) items[slot] = nullptr;
             if (isPaymentSlot(slot)) {
                 updateSellItem();
@@ -57,7 +57,7 @@ bool MerchantContainer::isPaymentSlot(int slot) {
 
 std::shared_ptr<ItemInstance> MerchantContainer::removeItemNoUpdate(int slot) {
     if (items[slot] != NULL) {
-        shared_ptr<ItemInstance> item = items[slot];
+        std::shared_ptr<ItemInstance> item = items[slot];
         items[slot] = nullptr;
         return item;
     }
@@ -102,8 +102,8 @@ void MerchantContainer::setChanged() { updateSellItem(); }
 void MerchantContainer::updateSellItem() {
     activeRecipe = NULL;
 
-    shared_ptr<ItemInstance> buyItem1 = items[MerchantMenu::PAYMENT1_SLOT];
-    shared_ptr<ItemInstance> buyItem2 = items[MerchantMenu::PAYMENT2_SLOT];
+    std::shared_ptr<ItemInstance> buyItem1 = items[MerchantMenu::PAYMENT1_SLOT];
+    std::shared_ptr<ItemInstance> buyItem2 = items[MerchantMenu::PAYMENT2_SLOT];
 
     if (buyItem1 == NULL) {
         buyItem1 = buyItem2;

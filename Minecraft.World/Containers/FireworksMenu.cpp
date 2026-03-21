@@ -17,8 +17,8 @@ FireworksMenu::FireworksMenu(std::shared_ptr<Inventory> inventory, Level* level,
     m_canMakeFade = false;
 
     craftSlots =
-        shared_ptr<CraftingContainer>(new CraftingContainer(this, 3, 3));
-    resultSlots = shared_ptr<ResultContainer>(new ResultContainer());
+        std::shared_ptr<CraftingContainer>(new CraftingContainer(this, 3, 3));
+    resultSlots = std::shared_ptr<ResultContainer>(new ResultContainer());
 
     this->level = level;
     x = xt;
@@ -61,7 +61,7 @@ void FireworksMenu::removed(std::shared_ptr<Player> player) {
     if (level->isClientSide) return;
 
     for (int i = 0; i < 9; i++) {
-        shared_ptr<ItemInstance> item = craftSlots->removeItemNoUpdate(i);
+        std::shared_ptr<ItemInstance> item = craftSlots->removeItemNoUpdate(i);
         if (item != NULL) {
             player->drop(item);
         }
@@ -72,10 +72,10 @@ bool FireworksMenu::stillValid(std::shared_ptr<Player> player) { return true; }
 
 std::shared_ptr<ItemInstance> FireworksMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if (slotIndex == RESULT_SLOT) {

@@ -4,7 +4,7 @@
 
 class TileEditorOpenPacket
     : public Packet,
-      public enable_shared_from_this<TileEditorOpenPacket> {
+      public std::enable_shared_from_this<TileEditorOpenPacket> {
 public:
     static const int SIGN = 0;
     static const int COMMAND_BLOCK = 1;

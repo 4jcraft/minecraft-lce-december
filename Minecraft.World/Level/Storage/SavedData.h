@@ -4,7 +4,7 @@
 
 class CompoundTag;
 
-class SavedData : public enable_shared_from_this<SavedData> {
+class SavedData : public std::enable_shared_from_this<SavedData> {
 public:
     const std::wstring id;
 

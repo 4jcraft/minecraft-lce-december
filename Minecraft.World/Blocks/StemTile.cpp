@@ -180,7 +180,7 @@ void StemTile::spawnResources(Level* level, int x, int y, int z, int data,
     if (fruit == Tile::melon) seed = Item::seeds_melon;
     for (int i = 0; i < 3; i++) {
         popResource(level, x, y, z,
-                    shared_ptr<ItemInstance>(new ItemInstance(seed)));
+                    std::shared_ptr<ItemInstance>(new ItemInstance(seed)));
     }
 }
 

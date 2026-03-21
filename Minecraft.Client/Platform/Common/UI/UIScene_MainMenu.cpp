@@ -86,14 +86,14 @@ UIScene_MainMenu::UIScene_MainMenu(int iPad, void* initData,
 
     m_splash = L"";
 
-    wstring filename = L"splashes.txt";
+    std::wstring filename = L"splashes.txt";
     if (app.hasArchiveFile(filename)) {
         byteArray splashesArray = app.getArchiveFile(filename);
         ByteArrayInputStream bais(splashesArray);
         InputStreamReader isr(&bais);
         BufferedReader br(&isr);
 
-        wstring line = L"";
+        std::wstring line = L"";
         while (!(line = br.readLine()).empty()) {
             line = trimString(line);
             if (line.length() > 0) {
@@ -2150,7 +2150,7 @@ void UIScene_MainMenu::LoadTrial(void) {
     param->settings = app.GetGameHostOption(eGameHostOption_Tutorial) |
                       app.GetGameHostOption(eGameHostOption_DisableSaving);
 
-    vector<LevelGenerationOptions*>* generators = app.getLevelGenerators();
+    std::vector<LevelGenerationOptions*>* generators = app.getLevelGenerators();
     param->levelGen = generators->at(0);
 
     LoadingInputParams* loadingParams = new LoadingInputParams();

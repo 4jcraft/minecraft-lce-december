@@ -175,13 +175,13 @@ void Fireball::tick() {
     if (res != NULL) {
         to = Vec3::newTemp(res->pos->x, res->pos->y, res->pos->z);
     }
-    shared_ptr<Entity> hitEntity = nullptr;
-    vector<shared_ptr<Entity> >* objects = level->getEntities(
+    std::shared_ptr<Entity> hitEntity = nullptr;
+    std::vector<std::shared_ptr<Entity> >* objects = level->getEntities(
         shared_from_this(), bb->expand(xd, yd, zd)->grow(1, 1, 1));
     double nearest = 0;
     AUTO_VAR(itEnd, objects->end());
     for (AUTO_VAR(it, objects->begin()); it != itEnd; it++) {
-        shared_ptr<Entity> e = *it;  // objects->at(i);
+        std::shared_ptr<Entity> e = *it;  // objects->at(i);
         if (!e->isPickable() || (e->is(owner)))
             continue;  // 4J Stu - Never collide with the owner (Enderdragon) //
                        // && flightTime < 25)) continue;

@@ -28,17 +28,17 @@ std::shared_ptr<ItemInstance> ArmorItem::ArmorDispenseItemBehavior::execute(
     int z = source->getBlockZ() + facing->getStepZ();
     AABB* bb = AABB::newTemp(x, y, z, x + 1, y + 1, z + 1);
     EntitySelector* selector = new MobCanWearArmourEntitySelector(dispensed);
-    vector<shared_ptr<Entity> >* entities =
+    std::vector<std::shared_ptr<Entity> >* entities =
         source->getWorld()->getEntitiesOfClass(typeid(LivingEntity), bb,
                                                selector);
     delete selector;
 
     if (entities->size() > 0) {
-        shared_ptr<LivingEntity> target =
+        std::shared_ptr<LivingEntity> target =
             dynamic_pointer_cast<LivingEntity>(entities->at(0));
         int offset = target->instanceof(eTYPE_PLAYER) ? 1 : 0;
         int slot = Mob::getEquipmentSlotForItem(dispensed);
-        shared_ptr<ItemInstance> equip = dispensed->copy();
+        std::shared_ptr<ItemInstance> equip = dispensed->copy();
         equip->count = 1;
         target->setEquippedSlot(slot - offset, equip);
         if (target->instanceof(eTYPE_MOB))

@@ -265,17 +265,17 @@ Packet::Packet() : createTime(System::currentTimeMillis()) {
     shouldDelay = false;
 }
 
-unordered_map<int, packetCreateFn> Packet::idToCreateMap;
+std::unordered_map<int, packetCreateFn> Packet::idToCreateMap;
 
-unordered_set<int> Packet::clientReceivedPackets = unordered_set<int>();
-unordered_set<int> Packet::serverReceivedPackets = unordered_set<int>();
-unordered_set<int> Packet::sendToAnyClientPackets = unordered_set<int>();
+std::unordered_set<int> Packet::clientReceivedPackets = std::unordered_set<int>();
+std::unordered_set<int> Packet::serverReceivedPackets = std::unordered_set<int>();
+std::unordered_set<int> Packet::sendToAnyClientPackets = std::unordered_set<int>();
 
 // 4J Added
-unordered_map<int, Packet::PacketStatistics*> Packet::outgoingStatistics =
-    unordered_map<int, Packet::PacketStatistics*>();
-vector<Packet::PacketStatistics*> Packet::renderableStats =
-    vector<Packet::PacketStatistics*>();
+std::unordered_map<int, Packet::PacketStatistics*> Packet::outgoingStatistics =
+    std::unordered_map<int, Packet::PacketStatistics*>();
+std::vector<Packet::PacketStatistics*> Packet::renderableStats =
+    std::vector<Packet::PacketStatistics*>();
 int Packet::renderPos = 0;
 
 // sendToAnyClient - true - send to anyone, false - Sends to one person per
@@ -284,12 +284,12 @@ void Packet::map(int id, bool receiveOnClient, bool receiveOnServer,
                  bool sendToAnyClient, bool renderStats,
                  const std::type_info& clazz, packetCreateFn createFn) {
 #if 0
-	if (idToClassMap.count(id) > 0) throw new IllegalArgumentException(wstring(L"Duplicate packet id:") + _toString<int>(id));
+	if (idToClassMap.count(id) > 0) throw new IllegalArgumentException(std::wstring(L"Duplicate packet id:") + _toString<int>(id));
 	if (classToIdMap.count(clazz) > 0) throw new IllegalArgumentException(L"Duplicate packet class:"); // TODO + clazz);
 #endif
 
     idToCreateMap.insert(
-        unordered_map<int, packetCreateFn>::value_type(id, createFn));
+        std::unordered_map<int, packetCreateFn>::value_type(id, createFn));
 
 #ifndef _CONTENT_PACKAGE
 #if PACKET_ENABLE_STAT_TRACKING
@@ -400,8 +400,8 @@ return id;
 }
 */
 
-unordered_map<int, Packet::PacketStatistics*> Packet::statistics =
-    unordered_map<int, Packet::PacketStatistics*>();
+std::unordered_map<int, Packet::PacketStatistics*> Packet::statistics =
+    std::unordered_map<int, Packet::PacketStatistics*>();
 
 // int Packet::nextPrint = 0;
 
@@ -410,7 +410,7 @@ std::shared_ptr<Packet> Packet::readPacket(
                                           // should this declare a throws?
 {
     int id = 0;
-    shared_ptr<Packet> packet = nullptr;
+    std::shared_ptr<Packet> packet = nullptr;
 
     // 4J - removed try/catch
     //    try
@@ -508,7 +508,7 @@ std::wstring Packet::readUtf(DataInputStream* dis,
         //        zero! Weird string!");
     }
 
-    wstring builder = L"";
+    std::wstring builder = L"";
     for (int i = 0; i < stringLength; i++) {
         wchar_t rc = dis->readChar();
         builder.push_back(rc);
@@ -579,13 +579,13 @@ bool Packet::isAync() { return false; }
 
 // 4J Stu - Brought these functions forward for enchanting/game rules
 std::shared_ptr<ItemInstance> Packet::readItem(DataInputStream* dis) {
-    shared_ptr<ItemInstance> item = nullptr;
+    std::shared_ptr<ItemInstance> item = nullptr;
     int id = dis->readShort();
     if (id >= 0) {
         int count = dis->readByte();
         int damage = dis->readShort();
 
-        item = shared_ptr<ItemInstance>(new ItemInstance(id, count, damage));
+        item = std::shared_ptr<ItemInstance>(new ItemInstance(id, count, damage));
         // 4J Stu - Always read/write the tag
         // if (Item.items[id].canBeDepleted() ||
         // Item.items[id].shouldOverrideMultiplayerNBT())

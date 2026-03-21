@@ -20,11 +20,11 @@ void EnchantItemCommand::execute(std::shared_ptr<CommandSender> source,
 
     bais.reset();
 
-    shared_ptr<ServerPlayer> player = getPlayer(uid);
+    std::shared_ptr<ServerPlayer> player = getPlayer(uid);
 
     if (player == NULL) return;
 
-    shared_ptr<ItemInstance> selectedItem = player->getSelectedItem();
+    std::shared_ptr<ItemInstance> selectedItem = player->getSelectedItem();
 
     if (selectedItem == NULL) return;
 
@@ -78,6 +78,6 @@ std::shared_ptr<GameCommandPacket> EnchantItemCommand::preparePacket(
     dos.writeInt(enchantmentId);
     dos.writeInt(enchantmentLevel);
 
-    return shared_ptr<GameCommandPacket>(
+    return std::shared_ptr<GameCommandPacket>(
         new GameCommandPacket(eGameCommand_EnchantItem, baos.toByteArray()));
 }

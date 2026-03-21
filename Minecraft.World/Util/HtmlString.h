@@ -13,5 +13,5 @@ public:
                bool italics = false, bool indent = false);
     std::wstring ToString();
 
-    static std::wstring Compose(vector<HtmlString>* strings);
+    static std::wstring Compose(std::vector<HtmlString>* strings);
 };

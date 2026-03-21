@@ -33,7 +33,7 @@ public:
 
     ItemEntity(Level* level, double x, double y, double z);
     ItemEntity(Level* level, double x, double y, double z,
-               shared_ptr<ItemInstance> item);
+               std::shared_ptr<ItemInstance> item);
 
 protected:
     virtual bool makeStepSound();
@@ -51,7 +51,7 @@ private:
     void mergeWithNeighbours();
 
 public:
-    bool merge(shared_ptr<ItemEntity> target);
+    bool std::merge(std::shared_ptr<ItemEntity> target);
     void setShortLifeTime();
     virtual bool updateInWaterState();
 
@@ -62,12 +62,12 @@ public:
     virtual bool hurt(DamageSource* source, float damage);
     virtual void addAdditonalSaveData(CompoundTag* entityTag);
     virtual void readAdditionalSaveData(CompoundTag* tag);
-    virtual void playerTouch(shared_ptr<Player> player);
+    virtual void playerTouch(std::shared_ptr<Player> player);
 
     virtual std::wstring getAName();
     virtual void changeDimension(int i);
-    shared_ptr<ItemInstance> getItem();
-    void setItem(shared_ptr<ItemInstance> item);
+    std::shared_ptr<ItemInstance> getItem();
+    void setItem(std::shared_ptr<ItemInstance> item);
     virtual bool isAttackable();
 
     void setThrower(const std::wstring& thrower);

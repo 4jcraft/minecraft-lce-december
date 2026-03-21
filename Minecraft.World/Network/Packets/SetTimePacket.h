@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class SetTimePacket : public Packet,
-                      public enable_shared_from_this<SetTimePacket> {
+                      public std::enable_shared_from_this<SetTimePacket> {
 public:
     __int64 gameTime;
     __int64 dayTime;

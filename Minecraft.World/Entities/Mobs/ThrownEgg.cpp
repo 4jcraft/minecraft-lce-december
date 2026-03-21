@@ -41,8 +41,8 @@ void ThrownEgg::onHit(HitResult* res) {
             int count = 1;
             if (random->nextInt(32) == 0) count = 4;
             for (int i = 0; i < count; i++) {
-                shared_ptr<Chicken> chicken =
-                    shared_ptr<Chicken>(new Chicken(level));
+                std::shared_ptr<Chicken> chicken =
+                    std::shared_ptr<Chicken>(new Chicken(level));
                 chicken->setAge(-20 * 60 * 20);
 
                 chicken->moveTo(x, y, z, yRot, 0);

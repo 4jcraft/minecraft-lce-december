@@ -36,20 +36,20 @@ void Monster::tick() {
 std::shared_ptr<Entity> Monster::findAttackTarget() {
 #ifndef _FINAL_BUILD
     if (app.GetMobsDontAttackEnabled()) {
-        return shared_ptr<Player>();
+        return std::shared_ptr<Player>();
     }
 #endif
 
-    shared_ptr<Player> player =
+    std::shared_ptr<Player> player =
         level->getNearestAttackablePlayer(shared_from_this(), 16);
     if (player != NULL && canSee(player)) return player;
-    return shared_ptr<Player>();
+    return std::shared_ptr<Player>();
 }
 
 bool Monster::hurt(DamageSource* source, float dmg) {
     if (isInvulnerable()) return false;
     if (PathfinderMob::hurt(source, dmg)) {
-        shared_ptr<Entity> sourceEntity = source->getEntity();
+        std::shared_ptr<Entity> sourceEntity = source->getEntity();
         if (rider.lock() == sourceEntity || riding == sourceEntity) return true;
 
         if (sourceEntity != shared_from_this()) {
@@ -72,7 +72,7 @@ bool Monster::doHurtTarget(std::shared_ptr<Entity> target) {
     int knockback = 0;
 
     if (target->instanceof(eTYPE_LIVINGENTITY)) {
-        shared_ptr<LivingEntity> livingTarget =
+        std::shared_ptr<LivingEntity> livingTarget =
             dynamic_pointer_cast<LivingEntity>(target);
         dmg += EnchantmentHelper::getDamageBonus(
             dynamic_pointer_cast<LivingEntity>(shared_from_this()),
@@ -102,7 +102,7 @@ bool Monster::doHurtTarget(std::shared_ptr<Entity> target) {
         }
 
         if (target->instanceof(eTYPE_LIVINGENTITY)) {
-            shared_ptr<LivingEntity> livingTarget =
+            std::shared_ptr<LivingEntity> livingTarget =
                 dynamic_pointer_cast<LivingEntity>(target);
             ThornsEnchantment::doThornsAfterAttack(shared_from_this(),
                                                    livingTarget, random);

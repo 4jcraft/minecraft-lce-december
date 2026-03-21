@@ -27,7 +27,7 @@ bool FlowerPotTile::use(Level* level, int x, int y, int z,
                         std::shared_ptr<Player> player, int clickedFace,
                         float clickX, float clickY, float clickZ,
                         bool soundOnly) {
-    shared_ptr<ItemInstance> item = player->inventory->getSelected();
+    std::shared_ptr<ItemInstance> item = player->inventory->getSelected();
     if (item == NULL) return false;
     if (level->getData(x, y, z) != 0) return false;
     int type = getTypeFromItem(item);
@@ -49,7 +49,7 @@ bool FlowerPotTile::use(Level* level, int x, int y, int z,
 }
 
 int FlowerPotTile::cloneTileId(Level* level, int x, int y, int z) {
-    shared_ptr<ItemInstance> item = getItemFromType(level->getData(x, y, z));
+    std::shared_ptr<ItemInstance> item = getItemFromType(level->getData(x, y, z));
 
     if (item == NULL) {
         return Item::flowerPot_Id;
@@ -59,7 +59,7 @@ int FlowerPotTile::cloneTileId(Level* level, int x, int y, int z) {
 }
 
 int FlowerPotTile::cloneTileData(Level* level, int x, int y, int z) {
-    shared_ptr<ItemInstance> item = getItemFromType(level->getData(x, y, z));
+    std::shared_ptr<ItemInstance> item = getItemFromType(level->getData(x, y, z));
 
     if (item == NULL) {
         return Item::flowerPot_Id;
@@ -89,7 +89,7 @@ void FlowerPotTile::spawnResources(Level* level, int x, int y, int z, int data,
     Tile::spawnResources(level, x, y, z, data, odds, playerBonusLevel);
 
     if (data > 0) {
-        shared_ptr<ItemInstance> item = getItemFromType(data);
+        std::shared_ptr<ItemInstance> item = getItemFromType(data);
         if (item != NULL) popResource(level, x, y, z, item);
     }
 }
@@ -101,33 +101,33 @@ int FlowerPotTile::getResource(int data, Random* random, int playerBonusLevel) {
 std::shared_ptr<ItemInstance> FlowerPotTile::getItemFromType(int type) {
     switch (type) {
         case TYPE_FLOWER_RED:
-            return shared_ptr<ItemInstance>(new ItemInstance(Tile::rose));
+            return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::rose));
         case TYPE_FLOWER_YELLOW:
-            return shared_ptr<ItemInstance>(new ItemInstance(Tile::flower));
+            return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::flower));
         case TYPE_CACTUS:
-            return shared_ptr<ItemInstance>(new ItemInstance(Tile::cactus));
+            return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::cactus));
         case TYPE_MUSHROOM_BROWN:
-            return shared_ptr<ItemInstance>(
+            return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::mushroom_brown));
         case TYPE_MUSHROOM_RED:
-            return shared_ptr<ItemInstance>(
+            return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::mushroom_red));
         case TYPE_DEAD_BUSH:
-            return shared_ptr<ItemInstance>(new ItemInstance(Tile::deadBush));
+            return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::deadBush));
         case TYPE_SAPLING_DEFAULT:
-            return shared_ptr<ItemInstance>(
+            return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::sapling, 1, Sapling::TYPE_DEFAULT));
         case TYPE_SAPLING_BIRCH:
-            return shared_ptr<ItemInstance>(
+            return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::sapling, 1, Sapling::TYPE_BIRCH));
         case TYPE_SAPLING_EVERGREEN:
-            return shared_ptr<ItemInstance>(
+            return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::sapling, 1, Sapling::TYPE_EVERGREEN));
         case TYPE_SAPLING_JUNGLE:
-            return shared_ptr<ItemInstance>(
+            return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::sapling, 1, Sapling::TYPE_JUNGLE));
         case TYPE_FERN:
-            return shared_ptr<ItemInstance>(
+            return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::tallgrass, 1, TallGrass::FERN));
     }
 

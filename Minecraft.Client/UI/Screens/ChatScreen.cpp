@@ -21,9 +21,9 @@ void ChatScreen::keyPressed(wchar_t ch, int eventKey) {
         return;
     }
     if (eventKey == Keyboard::KEY_RETURN) {
-        wstring msg = trimString(message);
+        std::wstring msg = trimString(message);
         if (msg.length() > 0) {
-            wstring trim = trimString(message);
+            std::wstring trim = trimString(message);
             if (!minecraft->handleClientSideCommand(trim)) {
                 minecraft->player->chat(trim);
             }
@@ -40,7 +40,7 @@ void ChatScreen::keyPressed(wchar_t ch, int eventKey) {
 }
 
 void ChatScreen::render(int xm, int ym, float a) {
-    fill(2, height - 14, width - 2, height - 2, 0x80000000);
+    std::fill(2, height - 14, width - 2, height - 2, 0x80000000);
     drawString(font, L"> " + message + (frame / 6 % 2 == 0 ? L"_" : L""), 4,
                height - 12, 0xe0e0e0);
 

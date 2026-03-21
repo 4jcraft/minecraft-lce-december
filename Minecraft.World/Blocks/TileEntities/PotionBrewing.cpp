@@ -71,18 +71,18 @@ const std::wstring PotionBrewing::MOD_GUNPOWDER =
     L"+14";  //&13-13"; // gunpowder makes them throwable! // gunpowder requires
              // 13 and sets 14
 #else
-const wstring PotionBrewing::MOD_WATER = L"-1-3-5-7-9-11-13";
-const wstring PotionBrewing::MOD_SUGAR = L"+0";
-const wstring PotionBrewing::MOD_GHASTTEARS = L"+11";
-const wstring PotionBrewing::MOD_SPIDEREYE = L"+10+7+5";
-const wstring PotionBrewing::MOD_FERMENTEDEYE = L"+14+9";
-const wstring PotionBrewing::MOD_SPECKLEDMELON = L"";
-const wstring PotionBrewing::MOD_BLAZEPOWDER = L"+14";
-const wstring PotionBrewing::MOD_MAGMACREAM = L"+14+6+1";
-const wstring PotionBrewing::MOD_REDSTONE = L"";  // redstone increases duration
-const wstring PotionBrewing::MOD_GLOWSTONE =
+const std::wstring PotionBrewing::MOD_WATER = L"-1-3-5-7-9-11-13";
+const std::wstring PotionBrewing::MOD_SUGAR = L"+0";
+const std::wstring PotionBrewing::MOD_GHASTTEARS = L"+11";
+const std::wstring PotionBrewing::MOD_SPIDEREYE = L"+10+7+5";
+const std::wstring PotionBrewing::MOD_FERMENTEDEYE = L"+14+9";
+const std::wstring PotionBrewing::MOD_SPECKLEDMELON = L"";
+const std::wstring PotionBrewing::MOD_BLAZEPOWDER = L"+14";
+const std::wstring PotionBrewing::MOD_MAGMACREAM = L"+14+6+1";
+const std::wstring PotionBrewing::MOD_REDSTONE = L"";  // redstone increases duration
+const std::wstring PotionBrewing::MOD_GLOWSTONE =
     L"";  // glowstone increases amplification
-const wstring PotionBrewing::MOD_GUNPOWDER =
+const std::wstring PotionBrewing::MOD_GUNPOWDER =
     L"";  // gunpowder makes them throwable! // gunpowder requires 13 and sets
           // 14
 #endif
@@ -90,7 +90,7 @@ const wstring PotionBrewing::MOD_GUNPOWDER =
 PotionBrewing::intStringMap PotionBrewing::potionEffectDuration;
 PotionBrewing::intStringMap PotionBrewing::potionEffectAmplifier;
 
-unordered_map<int, int> PotionBrewing::cachedColors;
+std::unordered_map<int, int> PotionBrewing::cachedColors;
 
 void PotionBrewing::staticCtor() {
 #if _SIMPLIFIED_BREWING
@@ -189,7 +189,7 @@ int PotionBrewing::getAppearanceValue(int brew) {
     return valueOf(brew, 5, 4, 3, 2, 1);
 }
 
-int PotionBrewing::getColorValue(vector<MobEffectInstance*>* effects) {
+int PotionBrewing::getColorValue(std::vector<MobEffectInstance*>* effects) {
     ColourTable* colourTable = Minecraft::GetInstance()->getColourTable();
 
     int baseColor = colourTable->getColor(eMinecraftColour_Potion_BaseColour);
@@ -224,7 +224,7 @@ int PotionBrewing::getColorValue(vector<MobEffectInstance*>* effects) {
     return ((int)red) << 16 | ((int)green) << 8 | ((int)blue);
 }
 
-bool PotionBrewing::areAllEffectsAmbient(vector<MobEffectInstance*>* effects) {
+bool PotionBrewing::areAllEffectsAmbient(std::vector<MobEffectInstance*>* effects) {
     for (AUTO_VAR(it, effects->begin()); it != effects->end(); ++it) {
         MobEffectInstance* effect = *it;
         if (!effect->isAmbient()) return false;
@@ -239,7 +239,7 @@ int PotionBrewing::getColorValue(int brew, bool includeDisabledEffects) {
         if (colIt != cachedColors.end()) {
             return colIt->second;  // cachedColors.get(brew);
         }
-        vector<MobEffectInstance*>* effects = getEffects(brew, false);
+        std::vector<MobEffectInstance*>* effects = getEffects(brew, false);
         int color = getColorValue(effects);
         if (effects != NULL) {
             for (AUTO_VAR(it, effects->begin()); it != effects->end(); ++it) {
@@ -390,7 +390,7 @@ int PotionBrewing::parseEffectFormulaValue(const std::wstring& definition,
     return result;
 }
 #else
-int PotionBrewing::parseEffectFormulaValue(const wstring& definition, int start,
+int PotionBrewing::parseEffectFormulaValue(const std::wstring& definition, int start,
                                            int end, int brew) {
     if (start >= definition.length() || end < 0 || start >= end) {
         return 0;
@@ -514,9 +514,9 @@ int PotionBrewing::parseEffectFormulaValue(const wstring& definition, int start,
 }
 #endif
 
-vector<MobEffectInstance*>* PotionBrewing::getEffects(
+std::vector<MobEffectInstance*>* PotionBrewing::getEffects(
     int brew, bool includeDisabledEffects) {
-    vector<MobEffectInstance*>* list = NULL;
+    std::vector<MobEffectInstance*>* list = NULL;
 
     // for (MobEffect effect : MobEffect.effects)
     for (unsigned int i = 0; i < MobEffect::NUM_EFFECTS; ++i) {
@@ -530,7 +530,7 @@ vector<MobEffectInstance*>* PotionBrewing::getEffects(
         if (effIt == potionEffectDuration.end()) {
             continue;
         }
-        wstring durationString = effIt->second;
+        std::wstring durationString = effIt->second;
 
         int duration = parseEffectFormulaValue(
             durationString, 0, (int)durationString.length(), brew);
@@ -538,7 +538,7 @@ vector<MobEffectInstance*>* PotionBrewing::getEffects(
             int amplifier = 0;
             AUTO_VAR(ampIt, potionEffectAmplifier.find(effect->getId()));
             if (ampIt != potionEffectAmplifier.end()) {
-                wstring amplifierString = ampIt->second;
+                std::wstring amplifierString = ampIt->second;
                 amplifier = parseEffectFormulaValue(
                     amplifierString, 0, (int)amplifierString.length(), brew);
                 if (amplifier < 0) {
@@ -562,7 +562,7 @@ vector<MobEffectInstance*>* PotionBrewing::getEffects(
             }
 
             if (list == NULL) {
-                list = new vector<MobEffectInstance*>();
+                list = new std::vector<MobEffectInstance*>();
             }
             MobEffectInstance* instance =
                 new MobEffectInstance(effect->getId(), duration, amplifier);
@@ -756,19 +756,19 @@ int PotionBrewing::valueOf(int brew, int p1, int p2, int p3, int p4, int p5) {
 }
 
 std::wstring PotionBrewing::toString(int brew) {
-    wstring string;
+    std::wstring std::string;
 
     int bit = NUM_BITS - 1;
     while (bit >= 0) {
         if ((brew & (1 << bit)) != 0) {
-            string.append(L"O");
+            std::string.append(L"O");
         } else {
-            string.append(L"x");
+            std::string.append(L"x");
         }
         bit--;
     }
 
-    return string;
+    return std::string;
 }
 
 // void main(String[] args)

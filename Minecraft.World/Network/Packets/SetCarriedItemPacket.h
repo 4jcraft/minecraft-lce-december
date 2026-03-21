@@ -4,7 +4,7 @@
 
 class SetCarriedItemPacket
     : public Packet,
-      public enable_shared_from_this<SetCarriedItemPacket> {
+      public std::enable_shared_from_this<SetCarriedItemPacket> {
 public:
     int slot;
 

@@ -6,7 +6,7 @@
 
 class ServerSettingsChangedPacket
     : public Packet,
-      public enable_shared_from_this<ServerSettingsChangedPacket> {
+      public std::enable_shared_from_this<ServerSettingsChangedPacket> {
 public:
     static const int HOST_DIFFICULTY;
     static const int HOST_OPTIONS;

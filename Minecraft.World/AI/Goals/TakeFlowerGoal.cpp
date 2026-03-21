@@ -11,7 +11,7 @@
 TakeFlowerGoal::TakeFlowerGoal(Villager* villager) {
     takeFlower = false;
     pickupTick = 0;
-    golem = weak_ptr<VillagerGolem>();
+    golem = std::weak_ptr<VillagerGolem>();
 
     this->villager = villager;
     setRequiredControlFlags(Control::MoveControlFlag |
@@ -22,7 +22,7 @@ bool TakeFlowerGoal::canUse() {
     if (villager->getAge() >= 0) return false;
     if (!villager->level->isDay()) return false;
 
-    vector<std::shared_ptr<Entity> >* golems =
+    std::vector<std::shared_ptr<Entity> >* golems =
         villager->level->getEntitiesOfClass(typeid(VillagerGolem),
                                             villager->bb->grow(6, 2, 6));
     if (golems->size() == 0) {
@@ -35,7 +35,7 @@ bool TakeFlowerGoal::canUse() {
         std::shared_ptr<VillagerGolem> vg =
             dynamic_pointer_cast<VillagerGolem>(*it);
         if (vg->getOfferFlowerTick() > 0) {
-            golem = weak_ptr<VillagerGolem>(vg);
+            golem = std::weak_ptr<VillagerGolem>(vg);
             break;
         }
     }
@@ -55,7 +55,7 @@ void TakeFlowerGoal::start() {
 }
 
 void TakeFlowerGoal::stop() {
-    golem = weak_ptr<VillagerGolem>();
+    golem = std::weak_ptr<VillagerGolem>();
     villager->getNavigation()->stop();
 }
 

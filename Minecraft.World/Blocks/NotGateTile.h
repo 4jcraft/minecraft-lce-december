@@ -27,7 +27,7 @@ public:
     };
 
 private:
-    static unordered_map<Level*, deque<Toggle>*>
+    static std::unordered_map<Level*, std::deque<Toggle>*>
         recentToggles;  // 4J - brought forward change from 1.3.2
 public:
     static void removeLevelReferences(Level* level);  // 4J added

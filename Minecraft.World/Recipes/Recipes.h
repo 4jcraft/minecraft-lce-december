@@ -32,7 +32,7 @@ class WeaponRecipies;
 class ShapedRecipy;
 class FireworksRecipe;
 
-typedef unordered_map<wchar_t, ItemInstance*> myMap;
+typedef std::unordered_map<wchar_t, ItemInstance*> myMap;
 
 #define ADD_OBJECT(a, b) a.push_back(new Object(b))
 
@@ -82,7 +82,7 @@ public:
 private:
     static Recipes* instance;
 
-    vector<Recipy*>* recipies;
+    std::vector<Recipy*>* recipies;
 
 public:
     static void staticCtor();
@@ -101,7 +101,7 @@ public:
     std::shared_ptr<ItemInstance> getItemFor(
         std::shared_ptr<CraftingContainer> craftSlots, Level* level,
         Recipy* recipesClass = NULL);  // 4J Added recipesClass param
-    vector<Recipy*>* getRecipies();
+    std::vector<Recipy*>* getRecipies();
 
     // 4J-PB - Added all below for new Xbox 'crafting'
     std::shared_ptr<ItemInstance> getItemForRecipe(Recipy* r);

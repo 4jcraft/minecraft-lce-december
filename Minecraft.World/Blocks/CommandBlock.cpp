@@ -8,7 +8,7 @@ CommandBlock::CommandBlock(int id)
     : BaseEntityTile(id, Material::metal, isSolidRender()) {}
 
 std::shared_ptr<TileEntity> CommandBlock::newTileEntity(Level* level) {
-    return shared_ptr<CommandBlockEntity>(new CommandBlockEntity());
+    return std::shared_ptr<CommandBlockEntity>(new CommandBlockEntity());
 }
 
 void CommandBlock::neighborChanged(Level* level, int x, int y, int z,
@@ -28,11 +28,11 @@ void CommandBlock::neighborChanged(Level* level, int x, int y, int z,
 }
 
 void CommandBlock::tick(Level* level, int x, int y, int z, Random* random) {
-    shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
+    std::shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
 
     if (tileEntity != NULL &&
         dynamic_pointer_cast<CommandBlockEntity>(tileEntity) != NULL) {
-        shared_ptr<CommandBlockEntity> commandBlock =
+        std::shared_ptr<CommandBlockEntity> commandBlock =
             dynamic_pointer_cast<CommandBlockEntity>(tileEntity);
         commandBlock->setSuccessCount(commandBlock->performCommand(level));
         level->updateNeighbourForOutputSignal(x, y, z, id);
@@ -45,7 +45,7 @@ bool CommandBlock::use(Level* level, int x, int y, int z,
                        std::shared_ptr<Player> player, int clickedFace,
                        float clickX, float clickY, float clickZ,
                        bool soundOnly) {
-    shared_ptr<CommandBlockEntity> amce =
+    std::shared_ptr<CommandBlockEntity> amce =
         dynamic_pointer_cast<CommandBlockEntity>(level->getTileEntity(x, y, z));
 
     if (amce != NULL) {
@@ -59,7 +59,7 @@ bool CommandBlock::hasAnalogOutputSignal() { return true; }
 
 int CommandBlock::getAnalogOutputSignal(Level* level, int x, int y, int z,
                                         int dir) {
-    shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
+    std::shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
 
     if (tileEntity != NULL &&
         dynamic_pointer_cast<CommandBlockEntity>(tileEntity) != NULL) {
@@ -73,7 +73,7 @@ int CommandBlock::getAnalogOutputSignal(Level* level, int x, int y, int z,
 void CommandBlock::setPlacedBy(Level* level, int x, int y, int z,
                                std::shared_ptr<LivingEntity> by,
                                std::shared_ptr<ItemInstance> itemInstance) {
-    shared_ptr<CommandBlockEntity> cblock =
+    std::shared_ptr<CommandBlockEntity> cblock =
         dynamic_pointer_cast<CommandBlockEntity>(level->getTileEntity(x, y, z));
 
     if (itemInstance->hasCustomHoverName()) {

@@ -117,7 +117,7 @@ void Slime::tick() {
 
 void Slime::serverAiStep() {
     checkDespawn();
-    shared_ptr<Player> player =
+    std::shared_ptr<Player> player =
         level->getNearestAttackablePlayer(shared_from_this(), 16);
     if (player != NULL) {
         lookAt(player, 10, 20);
@@ -152,7 +152,7 @@ void Slime::decreaseSquish() { targetSquish = targetSquish * 0.6f; }
 int Slime::getJumpDelay() { return random->nextInt(20) + 10; }
 
 std::shared_ptr<Slime> Slime::createChild() {
-    return shared_ptr<Slime>(new Slime(level));
+    return std::shared_ptr<Slime>(new Slime(level));
 }
 
 void Slime::remove() {
@@ -168,7 +168,7 @@ void Slime::remove() {
             if (i == 0 || level->countInstanceOf(eTYPE_SLIME, true) < 35) {
                 float xd = (i % 2 - 0.5f) * size / 4.0f;
                 float zd = (i / 2 - 0.5f) * size / 4.0f;
-                shared_ptr<Slime> slime = createChild();
+                std::shared_ptr<Slime> slime = createChild();
                 slime->setSize(size / 2);
                 slime->moveTo(x + xd, y + 0.5, z + zd,
                               random->nextFloat() * 360, 0);

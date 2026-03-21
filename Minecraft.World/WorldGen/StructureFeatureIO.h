@@ -71,11 +71,11 @@ enum EStructurePiece {
 
 class StructureFeatureIO {
 private:
-    static unordered_map<std::wstring, structureStartCreateFn> startIdClassMap;
-    static unordered_map<unsigned int, std::wstring> startClassIdMap;
+    static std::unordered_map<std::wstring, structureStartCreateFn> startIdClassMap;
+    static std::unordered_map<unsigned int, std::wstring> startClassIdMap;
 
-    static unordered_map<std::wstring, structurePieceCreateFn> pieceIdClassMap;
-    static unordered_map<unsigned int, std::wstring> pieceClassIdMap;
+    static std::unordered_map<std::wstring, structurePieceCreateFn> pieceIdClassMap;
+    static std::unordered_map<unsigned int, std::wstring> pieceClassIdMap;
 
 public:
     static void setStartId(EStructureStart clas,

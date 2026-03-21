@@ -22,10 +22,10 @@ public:
     static const int DATA_TOTAL_COST = 0;
 
 private:
-    shared_ptr<Container> resultSlots;
+    std::shared_ptr<Container> resultSlots;
 
     // 4J Stu - anonymous class here now RepairContainer
-    shared_ptr<Container> repairSlots;
+    std::shared_ptr<Container> repairSlots;
 
     Level* level;
     int x, y, z;
@@ -36,22 +36,22 @@ public:
 private:
     int repairItemCountCost;
     std::wstring itemName;
-    shared_ptr<Player> player;
+    std::shared_ptr<Player> player;
 
 public:
     using AbstractContainerMenu::slotsChanged;
 
-    AnvilMenu(shared_ptr<Inventory> inventory, Level* level, int xt, int yt,
-              int zt, shared_ptr<Player> player);
+    AnvilMenu(std::shared_ptr<Inventory> inventory, Level* level, int xt, int yt,
+              int zt, std::shared_ptr<Player> player);
 
-    void slotsChanged(shared_ptr<Container> container);
+    void slotsChanged(std::shared_ptr<Container> container);
     void createResult();
     void sendData(int id, int value);
     void addSlotListener(ContainerListener* listener);
     void setData(int id, int value);
-    void removed(shared_ptr<Player> player);
-    bool stillValid(shared_ptr<Player> player);
-    shared_ptr<ItemInstance> quickMoveStack(shared_ptr<Player> player,
+    void removed(std::shared_ptr<Player> player);
+    bool stillValid(std::shared_ptr<Player> player);
+    std::shared_ptr<ItemInstance> quickMoveStack(std::shared_ptr<Player> player,
                                             int slotIndex);
     void setItemName(const std::wstring& name);
 };

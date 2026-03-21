@@ -7,7 +7,7 @@
 
 MenuBackup::MenuBackup(std::shared_ptr<Inventory> inventory,
                        AbstractContainerMenu* menu) {
-    backups = new unordered_map<short, ItemInstanceArray*>();
+    backups = new std::unordered_map<short, ItemInstanceArray*>();
 
     this->inventory = inventory;
     this->menu = menu;

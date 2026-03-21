@@ -34,7 +34,7 @@ void GoalSelector::removeGoal(Goal* toRemove) {
         Goal* goal = ig->goal;
 
         if (goal == toRemove) {
-            AUTO_VAR(it2, find(usingGoals.begin(), usingGoals.end(), ig));
+            AUTO_VAR(it2, std::find(usingGoals.begin(), usingGoals.end(), ig));
             if (it2 != usingGoals.end()) {
                 goal->stop();
                 usingGoals.erase(it2);
@@ -50,14 +50,14 @@ void GoalSelector::removeGoal(Goal* toRemove) {
 }
 
 void GoalSelector::tick() {
-    vector<InternalGoal*> toStart;
+    std::vector<InternalGoal*> toStart;
 
     if (tickCount++ % newGoalRate == 0) {
         // for (InternalGoal ig : goals)
         for (AUTO_VAR(it, goals.begin()); it != goals.end(); ++it) {
             InternalGoal* ig = *it;
             // bool isUsing = usingGoals.contains(ig);
-            AUTO_VAR(usingIt, find(usingGoals.begin(), usingGoals.end(), ig));
+            AUTO_VAR(usingIt, std::find(usingGoals.begin(), usingGoals.end(), ig));
 
             // if (isUsing)
             if (usingIt != usingGoals.end()) {
@@ -102,7 +102,7 @@ void GoalSelector::tick() {
     }
 }
 
-vector<GoalSelector::InternalGoal*>* GoalSelector::getRunningGoals() {
+std::vector<GoalSelector::InternalGoal*>* GoalSelector::getRunningGoals() {
     return &usingGoals;
 }
 
@@ -116,7 +116,7 @@ bool GoalSelector::canUseInSystem(GoalSelector::InternalGoal* goal) {
         InternalGoal* ig = *it;
         if (ig == goal) continue;
 
-        AUTO_VAR(usingIt, find(usingGoals.begin(), usingGoals.end(), ig));
+        AUTO_VAR(usingIt, std::find(usingGoals.begin(), usingGoals.end(), ig));
 
         if (goal->prio >= ig->prio) {
             if (usingIt != usingGoals.end() && !canCoExist(goal, ig))

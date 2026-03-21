@@ -238,7 +238,7 @@ void LeafTile::spawnResources(Level* level, int x, int y, int z, int data,
         if (level->random->nextInt(chance) == 0) {
             int type = getResource(data, level->random, playerBonusLevel);
             popResource(level, x, y, z,
-                        shared_ptr<ItemInstance>(new ItemInstance(
+                        std::shared_ptr<ItemInstance>(new ItemInstance(
                             type, 1, getSpawnResourcesAuxValue(data))));
         }
 
@@ -252,7 +252,7 @@ void LeafTile::spawnResources(Level* level, int x, int y, int z, int data,
         if ((data & LEAF_TYPE_MASK) == NORMAL_LEAF &&
             level->random->nextInt(chance) == 0) {
             popResource(level, x, y, z,
-                        shared_ptr<ItemInstance>(
+                        std::shared_ptr<ItemInstance>(
                             new ItemInstance(Item::apple_Id, 1, 0)));
         }
     }
@@ -267,7 +267,7 @@ void LeafTile::playerDestroy(Level* level, std::shared_ptr<Player> player,
 
         // drop leaf block instead of sapling
         popResource(level, x, y, z,
-                    shared_ptr<ItemInstance>(new ItemInstance(
+                    std::shared_ptr<ItemInstance>(new ItemInstance(
                         Tile::leaves_Id, 1, data & LEAF_TYPE_MASK)));
     } else {
         TransparentTile::playerDestroy(level, player, x, y, z, data);
@@ -305,7 +305,7 @@ void LeafTile::setFancy(bool fancyGraphics) {
 }
 
 std::shared_ptr<ItemInstance> LeafTile::getSilkTouchItemInstance(int data) {
-    return shared_ptr<ItemInstance>(
+    return std::shared_ptr<ItemInstance>(
         new ItemInstance(id, 1, data & LEAF_TYPE_MASK));
 }
 

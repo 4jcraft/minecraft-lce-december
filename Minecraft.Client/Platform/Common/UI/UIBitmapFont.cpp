@@ -302,7 +302,7 @@ rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
     };
 
     static long long lastPrint = System::currentTimeMillis();
-    static unordered_set<DebugData> debug_fontSizesRequested;
+    static std::unordered_set<DebugData> debug_fontSizesRequested;
 
     {
         DebugData dData = {m_cFontData->getFontName(), (long)pixel_scale,
@@ -312,7 +312,7 @@ rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
         if ((lastPrint - System::currentTimeMillis()) > VERBOSE_FONT_OUTPUT) {
             app.DebugPrintf("<UIBitmapFont> Requested font/sizes:\n");
 
-            unordered_set<DebugData>::iterator itr;
+            std::unordered_set<DebugData>::iterator itr;
             for (itr = debug_fontSizesRequested.begin();
                  itr != debug_fontSizesRequested.end(); itr++) {
                 app.DebugPrintf("<UIBitmapFont>\t- %s:%i\t(x%i)\n",

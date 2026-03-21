@@ -47,13 +47,13 @@ std::shared_ptr<ItemInstance> FurnaceTileEntity::removeItem(unsigned int slot,
 
     if (items[slot] != NULL) {
         if (items[slot]->count <= count) {
-            shared_ptr<ItemInstance> item = items[slot];
+            std::shared_ptr<ItemInstance> item = items[slot];
             items[slot] = nullptr;
             // 4J Stu - Fix for duplication glitch
             if (item->count <= 0) return nullptr;
             return item;
         } else {
-            shared_ptr<ItemInstance> i = items[slot]->remove(count);
+            std::shared_ptr<ItemInstance> i = items[slot]->remove(count);
             if (items[slot]->count == 0) items[slot] = nullptr;
             // 4J Stu - Fix for duplication glitch
             if (i->count <= 0) return nullptr;
@@ -67,7 +67,7 @@ std::shared_ptr<ItemInstance> FurnaceTileEntity::removeItemNoUpdate(int slot) {
     m_charcoalUsed = false;
 
     if (items[slot] != NULL) {
-        shared_ptr<ItemInstance> item = items[slot];
+        std::shared_ptr<ItemInstance> item = items[slot];
         items[slot] = nullptr;
         return item;
     }
@@ -176,7 +176,7 @@ void FurnaceTileEntity::tick() {
                                               ->getItem()
                                               ->getCraftingRemainingItem();
                         items[SLOT_FUEL] =
-                            remaining != NULL ? shared_ptr<ItemInstance>(
+                            remaining != NULL ? std::shared_ptr<ItemInstance>(
                                                     new ItemInstance(remaining))
                                               : nullptr;
                     }
@@ -330,8 +330,8 @@ bool FurnaceTileEntity::canTakeItemThroughFace(
 
 // 4J Added
 std::shared_ptr<TileEntity> FurnaceTileEntity::clone() {
-    shared_ptr<FurnaceTileEntity> result =
-        shared_ptr<FurnaceTileEntity>(new FurnaceTileEntity());
+    std::shared_ptr<FurnaceTileEntity> result =
+        std::shared_ptr<FurnaceTileEntity>(new FurnaceTileEntity());
     TileEntity::clone(result);
 
     result->litTime = litTime;

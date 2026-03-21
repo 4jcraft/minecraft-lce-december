@@ -80,13 +80,13 @@ std::shared_ptr<ItemInstance> BoatItem::use(
     Vec3* b = player->getViewVector(a);
     bool hitEntity = false;
     float overlap = 1;
-    vector<shared_ptr<Entity> >* objects = level->getEntities(
+    std::vector<std::shared_ptr<Entity> >* objects = level->getEntities(
         player,
         player->bb->expand(b->x * (range), b->y * (range), b->z * (range))
             ->grow(overlap, overlap, overlap));
     // for (int i = 0; i < objects.size(); i++) {
     for (AUTO_VAR(it, objects->begin()); it != objects->end(); ++it) {
-        shared_ptr<Entity> e = *it;  // objects.get(i);
+        std::shared_ptr<Entity> e = *it;  // objects.get(i);
         if (!e->isPickable()) continue;
 
         float rr = e->getPickRadius();
@@ -108,7 +108,7 @@ std::shared_ptr<ItemInstance> BoatItem::use(
         if (level->countInstanceOf(eTYPE_BOAT, true) <
             Level::MAX_XBOX_BOATS)  // 4J - added limit
         {
-            shared_ptr<Boat> boat = shared_ptr<Boat>(
+            std::shared_ptr<Boat> boat = std::shared_ptr<Boat>(
                 new Boat(level, xt + 0.5f, yt + 1.0f, zt + 0.5f));
             boat->yRot =
                 ((Mth::floor(player->yRot * 4.0F / 360.0F + 0.5) & 0x3) - 1) *

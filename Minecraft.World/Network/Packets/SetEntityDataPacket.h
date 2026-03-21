@@ -5,12 +5,12 @@
 
 class SetEntityDataPacket
     : public Packet,
-      public enable_shared_from_this<SetEntityDataPacket> {
+      public std::enable_shared_from_this<SetEntityDataPacket> {
 public:
     int id;
 
 private:
-    vector<std::shared_ptr<SynchedEntityData::DataItem> >* packedItems;
+    std::vector<std::shared_ptr<SynchedEntityData::DataItem> >* packedItems;
 
 public:
     SetEntityDataPacket();
@@ -23,7 +23,7 @@ public:
     virtual void handle(PacketListener* listener);
     virtual int getEstimatedSize();
 
-    vector<std::shared_ptr<SynchedEntityData::DataItem> >* getUnpackedData();
+    std::vector<std::shared_ptr<SynchedEntityData::DataItem> >* getUnpackedData();
 
 public:
     static std::shared_ptr<Packet> create() {

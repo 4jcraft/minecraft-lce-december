@@ -987,7 +987,7 @@ bool TileRenderer::tesselateAnvilInWorld(AnvilTile* tt, int x, int y, int z,
 bool TileRenderer::tesselateAnvilInWorld(AnvilTile* tt, int x, int y, int z,
                                          int data, bool render) {
     int facing = render ? 0 : data & 3;
-    bool rotate = false;
+    bool std::rotate = false;
     float bottom = 0;
 
     switch (facing) {
@@ -1006,29 +1006,29 @@ bool TileRenderer::tesselateAnvilInWorld(AnvilTile* tt, int x, int y, int z,
             southFlip = FLIP_CCW;
             upFlip = FLIP_CCW;
             downFlip = FLIP_CW;
-            rotate = true;
+            std::rotate = true;
             break;
         case Direction::EAST:
             northFlip = FLIP_CCW;
             southFlip = FLIP_CW;
             upFlip = FLIP_CW;
             downFlip = FLIP_CCW;
-            rotate = true;
+            std::rotate = true;
             break;
     }
 
     bottom = tesselateAnvilPiece(tt, x, y, z, AnvilTile::PART_BASE, bottom,
                                  12.0f / 16.0f, 4.0f / 16.0f, 12.0f / 16.0f,
-                                 rotate, render, data);
+                                 std::rotate, render, data);
     bottom = tesselateAnvilPiece(tt, x, y, z, AnvilTile::PART_JOINT, bottom,
                                  8.0f / 16.0f, 1.0f / 16.0f, 10.0f / 16.0f,
-                                 rotate, render, data);
+                                 std::rotate, render, data);
     bottom = tesselateAnvilPiece(tt, x, y, z, AnvilTile::PART_COLUMN, bottom,
                                  4.0f / 16.0f, 5.0f / 16.0f, 8.0f / 16.0f,
-                                 rotate, render, data);
+                                 std::rotate, render, data);
     bottom = tesselateAnvilPiece(tt, x, y, z, AnvilTile::PART_TOP, bottom,
                                  10.0f / 16.0f, 6.0f / 16.0f, 16.0f / 16.0f,
-                                 rotate, render, data);
+                                 std::rotate, render, data);
 
     setShape(0, 0, 0, 1, 1, 1);
     northFlip = FLIP_NONE;
@@ -1043,9 +1043,9 @@ bool TileRenderer::tesselateAnvilInWorld(AnvilTile* tt, int x, int y, int z,
 
 float TileRenderer::tesselateAnvilPiece(AnvilTile* tt, int x, int y, int z,
                                         int part, float bottom, float width,
-                                        float height, float length, bool rotate,
+                                        float height, float length, bool std::rotate,
                                         bool render, int data) {
-    if (rotate) {
+    if (std::rotate) {
         float swap = width;
         width = length;
         length = swap;

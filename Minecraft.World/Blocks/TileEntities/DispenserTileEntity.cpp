@@ -29,14 +29,14 @@ std::shared_ptr<ItemInstance> DispenserTileEntity::removeItem(unsigned int slot,
                                                               int count) {
     if (items[slot] != NULL) {
         if (items[slot]->count <= count) {
-            shared_ptr<ItemInstance> item = items[slot];
+            std::shared_ptr<ItemInstance> item = items[slot];
             items[slot] = nullptr;
             setChanged();
             // 4J Stu - Fix for duplication glitch
             if (item->count <= 0) return nullptr;
             return item;
         } else {
-            shared_ptr<ItemInstance> i = items[slot]->remove(count);
+            std::shared_ptr<ItemInstance> i = items[slot]->remove(count);
             if (items[slot]->count == 0) items[slot] = nullptr;
             setChanged();
             // 4J Stu - Fix for duplication glitch
@@ -50,7 +50,7 @@ std::shared_ptr<ItemInstance> DispenserTileEntity::removeItem(unsigned int slot,
 std::shared_ptr<ItemInstance> DispenserTileEntity::removeItemNoUpdate(
     int slot) {
     if (items[slot] != NULL) {
-        shared_ptr<ItemInstance> item = items[slot];
+        std::shared_ptr<ItemInstance> item = items[slot];
         items[slot] = nullptr;
         return item;
     }
@@ -83,7 +83,7 @@ void DispenserTileEntity::AddItemBack(std::shared_ptr<ItemInstance> item,
 bool DispenserTileEntity::removeProjectile(int itemId) {
     for (unsigned int i = 0; i < items.length; i++) {
         if (items[i] != NULL && items[i]->id == itemId) {
-            shared_ptr<ItemInstance> removedItem = removeItem(i, 1);
+            std::shared_ptr<ItemInstance> removedItem = removeItem(i, 1);
             return removedItem != NULL;
         }
     }
@@ -189,8 +189,8 @@ bool DispenserTileEntity::canPlaceItem(int slot,
 
 // 4J Added
 std::shared_ptr<TileEntity> DispenserTileEntity::clone() {
-    shared_ptr<DispenserTileEntity> result =
-        shared_ptr<DispenserTileEntity>(new DispenserTileEntity());
+    std::shared_ptr<DispenserTileEntity> result =
+        std::shared_ptr<DispenserTileEntity>(new DispenserTileEntity());
     TileEntity::clone(result);
 
     for (unsigned int i = 0; i < items.length; i++) {

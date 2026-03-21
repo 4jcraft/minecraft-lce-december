@@ -28,7 +28,7 @@ void MinecartContainer::destroy(DamageSource* source) {
     Minecart::destroy(source);
 
     for (int i = 0; i < getContainerSize(); i++) {
-        shared_ptr<ItemInstance> item = getItem(i);
+        std::shared_ptr<ItemInstance> item = getItem(i);
         if (item != NULL) {
             float xo = random->nextFloat() * 0.8f + 0.1f;
             float yo = random->nextFloat() * 0.8f + 0.1f;
@@ -39,9 +39,9 @@ void MinecartContainer::destroy(DamageSource* source) {
                 if (count > item->count) count = item->count;
                 item->count -= count;
 
-                shared_ptr<ItemEntity> itemEntity = shared_ptr<ItemEntity>(
+                std::shared_ptr<ItemEntity> itemEntity = std::shared_ptr<ItemEntity>(
                     new ItemEntity(level, x + xo, y + yo, z + zo,
-                                   shared_ptr<ItemInstance>(new ItemInstance(
+                                   std::shared_ptr<ItemInstance>(new ItemInstance(
                                        item->id, count, item->getAuxValue()))));
                 float pow = 0.05f;
                 itemEntity->xd = (float)random->nextGaussian() * pow;
@@ -61,11 +61,11 @@ std::shared_ptr<ItemInstance> MinecartContainer::removeItem(unsigned int slot,
                                                             int count) {
     if (items[slot] != NULL) {
         if (items[slot]->count <= count) {
-            shared_ptr<ItemInstance> item = items[slot];
+            std::shared_ptr<ItemInstance> item = items[slot];
             items[slot] = nullptr;
             return item;
         } else {
-            shared_ptr<ItemInstance> i = items[slot]->remove(count);
+            std::shared_ptr<ItemInstance> i = items[slot]->remove(count);
             if (items[slot]->count == 0) items[slot] = nullptr;
             return i;
         }
@@ -75,7 +75,7 @@ std::shared_ptr<ItemInstance> MinecartContainer::removeItem(unsigned int slot,
 
 std::shared_ptr<ItemInstance> MinecartContainer::removeItemNoUpdate(int slot) {
     if (items[slot] != NULL) {
-        shared_ptr<ItemInstance> item = items[slot];
+        std::shared_ptr<ItemInstance> item = items[slot];
         items[slot] = nullptr;
         return item;
     }
@@ -123,7 +123,7 @@ void MinecartContainer::changeDimension(int i) {
 void MinecartContainer::remove() {
     if (dropEquipment) {
         for (int i = 0; i < getContainerSize(); i++) {
-            shared_ptr<ItemInstance> item = getItem(i);
+            std::shared_ptr<ItemInstance> item = getItem(i);
             if (item != NULL) {
                 float xo = random->nextFloat() * 0.8f + 0.1f;
                 float yo = random->nextFloat() * 0.8f + 0.1f;
@@ -134,10 +134,10 @@ void MinecartContainer::remove() {
                     if (count > item->count) count = item->count;
                     item->count -= count;
 
-                    shared_ptr<ItemEntity> itemEntity =
-                        shared_ptr<ItemEntity>(new ItemEntity(
+                    std::shared_ptr<ItemEntity> itemEntity =
+                        std::shared_ptr<ItemEntity>(new ItemEntity(
                             level, x + xo, y + yo, z + zo,
-                            shared_ptr<ItemInstance>(new ItemInstance(
+                            std::shared_ptr<ItemInstance>(new ItemInstance(
                                 item->id, count, item->getAuxValue()))));
 
                     if (item->hasTag()) {
@@ -199,7 +199,7 @@ bool MinecartContainer::interact(std::shared_ptr<Player> player) {
 }
 
 void MinecartContainer::applyNaturalSlowdown() {
-    shared_ptr<Container> container =
+    std::shared_ptr<Container> container =
         dynamic_pointer_cast<Container>(shared_from_this());
     int emptiness =
         Redstone::SIGNAL_MAX -

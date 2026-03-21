@@ -25,7 +25,7 @@ CompoundTag* StructureFeatureSavedData::getFeatureTag(int chunkX, int chunkZ) {
 
 void StructureFeatureSavedData::putFeatureTag(CompoundTag* tag, int chunkX,
                                               int chunkZ) {
-    wstring name = createFeatureTagId(chunkX, chunkZ);
+    std::wstring name = createFeatureTagId(chunkX, chunkZ);
     tag->setName(name);
     pieceTags->put(name, tag);
 }

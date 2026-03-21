@@ -11,7 +11,7 @@ public:
 
 private:
     TamableAnimal* tamable;  // Owner of this goal
-    weak_ptr<LivingEntity> owner;
+    std::weak_ptr<LivingEntity> owner;
     Level* level;
     double speedModifier;
     PathNavigation* navigation;

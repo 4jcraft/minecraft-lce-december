@@ -256,7 +256,7 @@ void UIScene::loadMovie() {
         &UIController::ms_reloadSkinCS);  // MGH - added to prevent crash
                                           // loading Iggy movies while the skins
                                           // were being reloaded
-    wstring moviePath = getMoviePath();
+    std::wstring moviePath = getMoviePath();
 
 #ifdef __PS3__
     if (RenderManager.IsWidescreen()) {
@@ -479,7 +479,7 @@ void UIScene::removeControl(UIControl_Base* control, bool centreScene) {
     IggyDataValue result;
     IggyDataValue value[2];
 
-    string name = control->getControlName();
+    std::string name = control->getControlName();
     IggyStringUTF8 stringVal;
     stringVal.string = (char*)name.c_str();
     stringVal.length = name.length();
@@ -558,7 +558,7 @@ void UIScene::customDraw(IggyCustomDrawCallbackRegion* region) {
 }
 
 void UIScene::customDrawSlotControl(IggyCustomDrawCallbackRegion* region,
-                                    int iPad, shared_ptr<ItemInstance> item,
+                                    int iPad, std::shared_ptr<ItemInstance> item,
                                     float fAlpha, bool isFoil,
                                     bool bDecorations) {
     if (item != NULL) {
@@ -568,7 +568,7 @@ void UIScene::customDrawSlotControl(IggyCustomDrawCallbackRegion* region,
                 // that player specific rendering
                 //  eg clock and compass, are rendered correctly
                 Minecraft* pMinecraft = Minecraft::GetInstance();
-                shared_ptr<MultiplayerLocalPlayer> oldPlayer =
+                std::shared_ptr<MultiplayerLocalPlayer> oldPlayer =
                     pMinecraft->player;
                 if (iPad >= 0 && iPad < XUSER_MAX_COUNT)
                     pMinecraft->player = pMinecraft->localplayers[iPad];
@@ -655,7 +655,7 @@ void UIScene::customDrawSlotControl(IggyCustomDrawCallbackRegion* region,
             // Make sure that pMinecraft->player is the correct player so that
             // player specific rendering
             //  eg clock and compass, are rendered correctly
-            shared_ptr<MultiplayerLocalPlayer> oldPlayer = pMinecraft->player;
+            std::shared_ptr<MultiplayerLocalPlayer> oldPlayer = pMinecraft->player;
             if (iPad >= 0 && iPad < XUSER_MAX_COUNT)
                 pMinecraft->player = pMinecraft->localplayers[iPad];
 
@@ -671,7 +671,7 @@ void UIScene::customDrawSlotControl(IggyCustomDrawCallbackRegion* region,
 }
 
 void UIScene::_customDrawSlotControl(CustomDrawData* region, int iPad,
-                                     shared_ptr<ItemInstance> item,
+                                     std::shared_ptr<ItemInstance> item,
                                      float fAlpha, bool isFoil,
                                      bool bDecorations,
                                      bool usingCommandBuffer) {

@@ -681,9 +681,9 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
 
     // CREATE UNICODE MAP //
     for (unsigned int i = 0; i < sFontData.m_uiGlyphCount; i++) {
-        std::unordered_map<unsigned int, unsigned short>::value_type pair(
+        std::unordered_map<unsigned int, unsigned short>::value_type std::pair(
             sFontData.Codepoints[i], i);
-        m_unicodeMap.insert(pair);
+        m_unicodeMap.insert(std::pair);
     }
 
     // CREATE KERNING TABLE //

@@ -10,6 +10,6 @@ public:
     DummyCriteria(const std::wstring& name);
 
     virtual std::wstring getName();
-    virtual int getScoreModifier(vector<std::shared_ptr<Player> >* players);
+    virtual int getScoreModifier(std::vector<std::shared_ptr<Player> >* players);
     virtual bool isReadOnly();
 };

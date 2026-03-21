@@ -44,13 +44,13 @@ public:
     static void staticCtor();
 
 public:
-    static unordered_map<int, packetCreateFn>
+    static std::unordered_map<int, packetCreateFn>
         idToCreateMap;  // IntHashMap in 1.8.2 ... needed? // Made public
                         // in 1.0.1
 
-    static unordered_set<int> clientReceivedPackets;
-    static unordered_set<int> serverReceivedPackets;
-    static unordered_set<int> sendToAnyClientPackets;
+    static std::unordered_set<int> clientReceivedPackets;
+    static std::unordered_set<int> serverReceivedPackets;
+    static std::unordered_set<int> sendToAnyClientPackets;
 
     // 4J Stu - Added the sendToAnyClient param so we can limit some packets to
     // be only sent to one player on a system 4J Stu - Added renderStats param
@@ -78,9 +78,9 @@ public:
 
 private:
     // 4J Added to track stats for packets that are going out via QNet
-    static unordered_map<int, PacketStatistics*>
+    static std::unordered_map<int, PacketStatistics*>
         outgoingStatistics;  // IntHashMap in 1.8.2 ... needed?
-    static vector<PacketStatistics*> renderableStats;
+    static std::vector<PacketStatistics*> renderableStats;
     static int renderPos;
 
 public:
@@ -89,7 +89,7 @@ public:
     static void updatePacketStatsPIX();
 
 private:
-    static unordered_map<int, PacketStatistics*> statistics;
+    static std::unordered_map<int, PacketStatistics*> statistics;
     // static int nextPrint;
 
 public:

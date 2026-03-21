@@ -197,7 +197,7 @@ bool Connection::writeTick() {
         (fakeLag == 0 ||
          System::currentTimeMillis() - outgoing.front()->createTime >=
              fakeLag)) {
-        shared_ptr<Packet> packet;
+        std::shared_ptr<Packet> packet;
 
         EnterCriticalSection(&writeLock);
 
@@ -240,7 +240,7 @@ bool Connection::writeTick() {
         (fakeLag == 0 ||
          System::currentTimeMillis() - outgoing_slow.front()->createTime >=
              fakeLag)) {
-        shared_ptr<Packet> packet;
+        std::shared_ptr<Packet> packet;
 
         // synchronized (writeLock) {
 
@@ -323,7 +323,7 @@ bool Connection::readTick() {
 
     // try {
 
-    shared_ptr<Packet> packet =
+    std::shared_ptr<Packet> packet =
         Packet::readPacket(dis, packetListener->isServerPacketListener());
 
     if (packet != NULL) {
@@ -371,7 +371,7 @@ void Connection::close(DisconnectPacket::eDisconnectReason reason, ...) {
 
     disconnectReason = reason;  // va_arg( input, const wstring );
 
-    vector<void*> objs = vector<void*>();
+    std::vector<void*> objs = std::vector<void*>();
     void* i = NULL;
     while (i != NULL) {
         i = va_arg(input, void*);
@@ -459,7 +459,7 @@ void Connection::tick() {
     // read and write threads don't timeout
     tickCount++;
     if (tickCount % 20 == 0) {
-        send(shared_ptr<KeepAlivePacket>(new KeepAlivePacket()));
+        send(std::shared_ptr<KeepAlivePacket>(new KeepAlivePacket()));
     }
 
     // 4J Stu - 1.8.2 changed from 100 to 1000
@@ -477,10 +477,10 @@ void Connection::tick() {
 
     EnterCriticalSection(&incoming_cs);
     // 4J Stu - If disconnected, then we shouldn't process incoming packets
-    std::vector<shared_ptr<Packet> > packetsToHandle;
+    std::vector<std::shared_ptr<Packet> > packetsToHandle;
     while (!disconnected && !g_NetworkManager.IsLeavingGame() &&
            g_NetworkManager.IsInSession() && !incoming.empty() && max-- >= 0) {
-        shared_ptr<Packet> packet = incoming.front();
+        std::shared_ptr<Packet> packet = incoming.front();
         packetsToHandle.push_back(packet);
         incoming.pop();
     }
@@ -494,7 +494,7 @@ void Connection::tick() {
         packetsToHandle[i]->handle(packetListener);
         PIXEndNamedEvent();
     }
-    flush();
+    std::flush();
 
     // 4J Stu - Moved this a bit later in the function to stop the race
     // condition of Disconnect packets not being processed when local client
@@ -527,7 +527,7 @@ void Connection::sendAndQuit() {
         return;
     }
     //	printf("Con:0x%x send & quit\n",this);
-    flush();
+    std::flush();
     quitting = true;
     // TODO 4J Stu - How to interrupt threads? Or do we need to change the
     // multithreaded functions a bit more

@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class InteractPacket : public Packet,
-                       public enable_shared_from_this<InteractPacket> {
+                       public std::enable_shared_from_this<InteractPacket> {
 public:
     static const int INTERACT;
     static const int ATTACK;

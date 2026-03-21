@@ -231,15 +231,15 @@ int Wolf::getMaxHeadXRot() {
 bool Wolf::hurt(DamageSource* source, float dmg) {
     // 4J: Protect owned wolves from untrusted players
     if (isTame()) {
-        shared_ptr<Entity> entity = source->getDirectEntity();
+        std::shared_ptr<Entity> entity = source->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            shared_ptr<Player> attacker = dynamic_pointer_cast<Player>(entity);
+            std::shared_ptr<Player> attacker = dynamic_pointer_cast<Player>(entity);
             attacker->canHarmPlayer(getOwnerUUID());
         }
     }
 
     if (isInvulnerable()) return false;
-    shared_ptr<Entity> sourceEntity = source->getEntity();
+    std::shared_ptr<Entity> sourceEntity = source->getEntity();
     sitGoal->wantToSit(false);
     if (sourceEntity != NULL && !(sourceEntity->instanceof(eTYPE_PLAYER) ||
                                   sourceEntity->instanceof(eTYPE_ARROW))) {
@@ -283,7 +283,7 @@ void Wolf::tame(const std::wstring& wsOwnerUUID, bool bDisplayTamingParticles,
 }
 
 bool Wolf::mobInteract(std::shared_ptr<Player> player) {
-    shared_ptr<ItemInstance> item = player->inventory->getSelected();
+    std::shared_ptr<ItemInstance> item = player->inventory->getSelected();
 
     if (isTame()) {
         if (item != NULL) {
@@ -432,7 +432,7 @@ std::shared_ptr<AgableMob> Wolf::getBreedOffspring(
     std::shared_ptr<AgableMob> target) {
     // 4J - added limit to wolves that can be bred
     if (level->canCreateMore(GetType(), Level::eSpawnType_Breed)) {
-        shared_ptr<Wolf> pBabyWolf = shared_ptr<Wolf>(new Wolf(level));
+        std::shared_ptr<Wolf> pBabyWolf = std::shared_ptr<Wolf>(new Wolf(level));
 
         if (!getOwnerUUID().empty()) {
             // set the baby wolf to be tame, and assign the owner
@@ -457,7 +457,7 @@ bool Wolf::canMate(std::shared_ptr<Animal> animal) {
     if (!isTame()) return false;
 
     if (!animal->instanceof(eTYPE_WOLF)) return false;
-    shared_ptr<Wolf> partner = dynamic_pointer_cast<Wolf>(animal);
+    std::shared_ptr<Wolf> partner = dynamic_pointer_cast<Wolf>(animal);
 
     if (partner == NULL) return false;
     if (!partner->isTame()) return false;
@@ -483,7 +483,7 @@ bool Wolf::wantsToAttack(std::shared_ptr<LivingEntity> target,
     }
     // never target wolves that has this player as owner
     if (target->GetType() == eTYPE_WOLF) {
-        shared_ptr<Wolf> wolfTarget = dynamic_pointer_cast<Wolf>(target);
+        std::shared_ptr<Wolf> wolfTarget = dynamic_pointer_cast<Wolf>(target);
         if (wolfTarget->isTame() && wolfTarget->getOwner() == owner) {
             return false;
         }

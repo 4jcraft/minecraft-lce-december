@@ -9,14 +9,14 @@ class CompoundTag;
 
 typedef TileEntity* (*tileEntityCreateFn)();
 
-class TileEntity : public enable_shared_from_this<TileEntity> {
+class TileEntity : public std::enable_shared_from_this<TileEntity> {
 public:
     static void staticCtor();
     virtual eINSTANCEOF GetType() { return eTYPE_TILEENTITY; }
 
 private:
-    typedef unordered_map<std::wstring, tileEntityCreateFn> idToCreateMapType;
-    typedef unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
+    typedef std::unordered_map<std::wstring, tileEntityCreateFn> idToCreateMapType;
+    typedef std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
                           eINSTANCEOFKeyEq>
         classToIdMapType;
     static idToCreateMapType idCreateMap;

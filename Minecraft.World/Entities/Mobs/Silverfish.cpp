@@ -33,7 +33,7 @@ bool Silverfish::makeStepSound() { return false; }
 std::shared_ptr<Entity> Silverfish::findAttackTarget() {
 #ifndef _FINAL_BUILD
     if (app.GetMobsDontAttackEnabled()) {
-        return shared_ptr<Player>();
+        return std::shared_ptr<Player>();
     }
 #endif
 
@@ -185,7 +185,7 @@ bool Silverfish::isDarkEnoughToSpawn() { return true; }
 
 bool Silverfish::canSpawn() {
     if (Monster::canSpawn()) {
-        shared_ptr<Player> nearestPlayer =
+        std::shared_ptr<Player> nearestPlayer =
             level->getNearestPlayer(shared_from_this(), 5.0);
         return nearestPlayer == NULL;
     }

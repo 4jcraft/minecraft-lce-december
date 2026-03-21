@@ -4,7 +4,7 @@
 
 class TakeItemEntityPacket
     : public Packet,
-      public enable_shared_from_this<TakeItemEntityPacket> {
+      public std::enable_shared_from_this<TakeItemEntityPacket> {
 public:
     int itemId, playerId;
 

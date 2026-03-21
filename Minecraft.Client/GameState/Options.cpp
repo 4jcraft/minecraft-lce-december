@@ -284,7 +284,7 @@ std::wstring Options::getMessage(const Options::Option* item) {
     // 4J TODO, should these wstrings append rather than add?
 
     Language* language = Language::getInstance();
-    wstring caption = language->getElement(item->getCaptionId()) + L": ";
+    std::wstring caption = language->getElement(item->getCaptionId()) + L": ";
 
     if (item->isProgress()) {
         float progressValue = getProgressValue(item);
@@ -357,14 +357,14 @@ void Options::load() {
     BufferedReader* br = new BufferedReader(
         new InputStreamReader(new FileInputStream(optionsFile)));
 
-    wstring line = L"";
+    std::wstring line = L"";
     while ((line = br->readLine()) !=
            L"")  // 4J - was check against NULL - do we need to distinguish
                  // between empty lines and a fail here?
     {
         // 4J - removed try/catch
         //            try {
-        wstring cmds[2];
+        std::wstring cmds[2];
         int splitpos = (int)line.find(L":");
         if (splitpos == wstring::npos) {
             cmds[0] = line;
@@ -412,10 +412,10 @@ void Options::load() {
     //    }
 }
 
-float Options::readFloat(std::wstring string) {
-    if (string == L"true") return 1;
-    if (string == L"false") return 0;
-    return _fromString<float>(string);
+float Options::readFloat(std::wstring std::string) {
+    if (std::string == L"true") return 1;
+    if (std::string == L"false") return 0;
+    return _fromString<float>(std::string);
 }
 
 void Options::save() {
@@ -431,22 +431,22 @@ void Options::save() {
     dos.writeChars(L"music:" + _toString<float>(music) + L"\n");
     dos.writeChars(L"sound:" + _toString<float>(sound) + L"\n");
     dos.writeChars(L"invertYMouse:" +
-                   wstring(invertYMouse ? L"true" : L"false") + L"\n");
+                   std::wstring(invertYMouse ? L"true" : L"false") + L"\n");
     dos.writeChars(L"mouseSensitivity:" + _toString<float>(sensitivity));
     dos.writeChars(L"fov:" + _toString<float>(fov));
     dos.writeChars(L"gamma:" + _toString<float>(gamma));
     dos.writeChars(L"viewDistance:" + _toString<int>(viewDistance));
     dos.writeChars(L"guiScale:" + _toString<int>(guiScale));
     dos.writeChars(L"particles:" + _toString<int>(particles));
-    dos.writeChars(L"bobView:" + wstring(bobView ? L"true" : L"false"));
-    dos.writeChars(L"anaglyph3d:" + wstring(anaglyph3d ? L"true" : L"false"));
+    dos.writeChars(L"bobView:" + std::wstring(bobView ? L"true" : L"false"));
+    dos.writeChars(L"anaglyph3d:" + std::wstring(anaglyph3d ? L"true" : L"false"));
     dos.writeChars(L"advancedOpengl:" +
-                   wstring(advancedOpengl ? L"true" : L"false"));
+                   std::wstring(advancedOpengl ? L"true" : L"false"));
     dos.writeChars(L"fpsLimit:" + _toString<int>(framerateLimit));
     dos.writeChars(L"difficulty:" + _toString<int>(difficulty));
     dos.writeChars(L"fancyGraphics:" +
-                   wstring(fancyGraphics ? L"true" : L"false"));
-    dos.writeChars(L"ao:" + wstring(ambientOcclusion ? L"true" : L"false"));
+                   std::wstring(fancyGraphics ? L"true" : L"false"));
+    dos.writeChars(L"ao:" + std::wstring(ambientOcclusion ? L"true" : L"false"));
     dos.writeChars(L"clouds:" + _toString<bool>(renderClouds));
     dos.writeChars(L"skin:" + skin);
     dos.writeChars(L"lastServer:" + lastMpIp);

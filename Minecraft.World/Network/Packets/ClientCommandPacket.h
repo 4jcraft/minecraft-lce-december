@@ -4,7 +4,7 @@
 
 class ClientCommandPacket
     : public Packet,
-      public enable_shared_from_this<ClientCommandPacket> {
+      public std::enable_shared_from_this<ClientCommandPacket> {
 public:
     static const int LOGIN_COMPLETE = 0;
     static const int PERFORM_RESPAWN = 1;

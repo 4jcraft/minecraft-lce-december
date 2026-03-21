@@ -17,7 +17,7 @@ private:
 
     Scoreboard* scoreboard;
     std::wstring name;
-    unordered_set<std::wstring> players;
+    std::unordered_set<std::wstring> players;
     std::wstring displayName;
     std::wstring prefix;
     std::wstring suffix;
@@ -31,7 +31,7 @@ public:
     std::wstring getName();
     std::wstring getDisplayName();
     void setDisplayName(const std::wstring& displayName);
-    unordered_set<std::wstring>* getPlayers();
+    std::unordered_set<std::wstring>* getPlayers();
     std::wstring getPrefix();
     void setPrefix(const std::wstring& prefix);
     std::wstring getSuffix();

@@ -12,7 +12,7 @@ const std::wstring StrongholdFeature::OPTION_DISTANCE = L"distance";
 const std::wstring StrongholdFeature::OPTION_COUNT = L"count";
 const std::wstring StrongholdFeature::OPTION_SPREAD = L"spread";
 
-vector<Biome*> StrongholdFeature::allowedBiomes;
+std::vector<Biome*> StrongholdFeature::allowedBiomes;
 
 void StrongholdFeature::staticCtor() {
     allowedBiomes.push_back(Biome::desert);
@@ -43,7 +43,7 @@ void StrongholdFeature::_init() {
 
 StrongholdFeature::StrongholdFeature() : StructureFeature() { _init(); }
 
-StrongholdFeature::StrongholdFeature(unordered_map<wstring, wstring> options) {
+StrongholdFeature::StrongholdFeature(std::unordered_map<std::wstring, std::wstring> options) {
     _init();
 
     for (AUTO_VAR(it, options.begin()); it != options.end(); ++it) {
@@ -199,8 +199,8 @@ bool StrongholdFeature::isFeatureChunk(int x, int z, bool bIsSuperflat) {
     return false;
 }
 
-vector<TilePos>* StrongholdFeature::getGuesstimatedFeaturePositions() {
-    vector<TilePos>* positions = new vector<TilePos>();
+std::vector<TilePos>* StrongholdFeature::getGuesstimatedFeaturePositions() {
+    std::vector<TilePos>* positions = new std::vector<TilePos>();
     for (int i = 0; i < strongholdPos_length; i++) {
         ChunkPos* chunkPos = strongholdPos[i];
         if (chunkPos != NULL) {
@@ -243,7 +243,7 @@ StrongholdFeature::StrongholdStart::StrongholdStart(Level* level,
     pieces.push_back(startRoom);
     startRoom->addChildren(startRoom, &pieces, random);
 
-    vector<StructurePiece*>* pendingChildren = &startRoom->pendingChildren;
+    std::vector<StructurePiece*>* pendingChildren = &startRoom->pendingChildren;
     while (!pendingChildren->empty()) {
         int pos = random->nextInt((int)pendingChildren->size());
         AUTO_VAR(it, pendingChildren->begin() + pos);

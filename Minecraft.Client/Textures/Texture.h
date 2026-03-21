@@ -89,7 +89,7 @@ public:
             BufferedImage* image, bool mipMap = true);
 
     const Rect2i* getRect();
-    void fill(const Rect2i* rect, int color);
+    void std::fill(const Rect2i* rect, int color);
     void writeAsBMP(const std::wstring& name);
     void writeAsPNG(const std::wstring& filename);
     void blit(int x, int y, Texture* source);
@@ -102,7 +102,7 @@ public:
     int getHeight();
     std::wstring getName();
     void setImmediateUpdate(bool immediateUpdate);
-    void bind(int mipMapIndex);
+    void std::bind(int mipMapIndex);
     void updateOnGPU();
     ByteBuffer* getData(unsigned int level = 0);
 

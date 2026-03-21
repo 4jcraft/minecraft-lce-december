@@ -4,7 +4,7 @@ class DispenseItemBehavior;
 
 class BehaviorRegistry {
 private:
-    unordered_map<Item*, DispenseItemBehavior*> storage;
+    std::unordered_map<Item*, DispenseItemBehavior*> storage;
     DispenseItemBehavior* defaultBehavior;
 
 public:

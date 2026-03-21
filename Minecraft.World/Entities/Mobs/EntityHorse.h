@@ -10,7 +10,7 @@ class AnimalChest;
 
 class HorseEntitySelector : public EntitySelector {
 public:
-    bool matches(shared_ptr<Entity> entity) const;
+    bool matches(std::shared_ptr<Entity> entity) const;
 };
 
 class EntityHorse : public Animal,
@@ -106,7 +106,7 @@ protected:
     bool isEntityJumping;
 
 private:
-    shared_ptr<AnimalChest> inventory;
+    std::shared_ptr<AnimalChest> inventory;
     bool hasReproduced;
 
 protected:
@@ -158,7 +158,7 @@ protected:
 public:
     virtual bool isChestedHorse();
     virtual int getArmorType();
-    virtual int getArmorTypeForItem(shared_ptr<ItemInstance> armorItem);
+    virtual int getArmorTypeForItem(std::shared_ptr<ItemInstance> armorItem);
     virtual bool isEating();
     virtual bool isStanding();
     virtual bool isBred();
@@ -193,7 +193,7 @@ public:
     virtual bool canSpawn();
 
 protected:
-    virtual shared_ptr<EntityHorse> getClosestMommy(shared_ptr<Entity> baby,
+    virtual std::shared_ptr<EntityHorse> getClosestMommy(std::shared_ptr<Entity> baby,
                                                     double searchRadius);
 
 public:
@@ -240,11 +240,11 @@ private:
 public:
     virtual std::wstring getLayeredTextureHashName();
     virtual intArray getLayeredTextureLayers();
-    virtual void openInventory(shared_ptr<Player> player);
-    virtual bool mobInteract(shared_ptr<Player> player);
+    virtual void openInventory(std::shared_ptr<Player> player);
+    virtual bool mobInteract(std::shared_ptr<Player> player);
 
 private:
-    virtual void doPlayerRide(shared_ptr<Player> player);
+    virtual void doPlayerRide(std::shared_ptr<Player> player);
 
 public:
     virtual bool isAmuletHorse();
@@ -258,7 +258,7 @@ public:
     virtual bool isPureBreed();
     virtual bool isUndead();
     virtual bool isSterile();
-    virtual bool isFood(shared_ptr<ItemInstance> itemInstance);
+    virtual bool isFood(std::shared_ptr<ItemInstance> itemInstance);
 
 private:
     virtual void moveTail();
@@ -291,17 +291,17 @@ public:
     virtual void dropMyStuff();
 
 private:
-    virtual void dropInventory(shared_ptr<Entity> entity,
-                               shared_ptr<AnimalChest> animalchest);
+    virtual void dropInventory(std::shared_ptr<Entity> entity,
+                               std::shared_ptr<AnimalChest> animalchest);
 
 public:
-    virtual bool tameWithName(shared_ptr<Player> player);
+    virtual bool tameWithName(std::shared_ptr<Player> player);
     virtual void travel(float xa, float ya);
     virtual void addAdditonalSaveData(CompoundTag* tag);
     virtual void readAdditionalSaveData(CompoundTag* tag);
-    virtual bool canMate(shared_ptr<Animal> partner);
-    virtual shared_ptr<AgableMob> getBreedOffspring(
-        shared_ptr<AgableMob> partner);
+    virtual bool canMate(std::shared_ptr<Animal> partner);
+    virtual std::shared_ptr<AgableMob> getBreedOffspring(
+        std::shared_ptr<AgableMob> partner);
     virtual MobGroupData* finalizeMobSpawn(
         MobGroupData* groupData,
         int extraData = 0);  // 4J Added extraData param
@@ -327,7 +327,7 @@ private:
     virtual double generateRandomJumpStrength();
     virtual double generateRandomSpeed();
 
-    shared_ptr<Player> getOwner();
+    std::shared_ptr<Player> getOwner();
 
 public:
     class HorseGroupData : public MobGroupData {

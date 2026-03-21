@@ -21,10 +21,10 @@ public:
     std::shared_ptr<Entity> source;
     float r;
 
-    unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq> toBlow;
+    std::unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq> toBlow;
 
 private:
-    typedef unordered_map<std::shared_ptr<Player>, Vec3*, PlayerKeyHash,
+    typedef std::unordered_map<std::shared_ptr<Player>, Vec3*, PlayerKeyHash,
                           PlayerKeyEq>
         playerVec3Map;
     playerVec3Map hitPlayers;
@@ -40,7 +40,7 @@ public:
 public:
     void finalizeExplosion(
         bool generateParticles,
-        vector<TilePos>* toBlowDirect = NULL);  // 4J - added toBlow parameter
+        std::vector<TilePos>* toBlowDirect = NULL);  // 4J - added toBlow parameter
     playerVec3Map* getHitPlayers();
     Vec3* getHitPlayerKnockback(std::shared_ptr<Player> player);
     std::shared_ptr<LivingEntity> getSourceMob();

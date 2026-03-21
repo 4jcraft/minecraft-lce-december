@@ -4,7 +4,7 @@
 
 class UpdateGameRuleProgressPacket
     : public Packet,
-      public enable_shared_from_this<UpdateGameRuleProgressPacket> {
+      public std::enable_shared_from_this<UpdateGameRuleProgressPacket> {
 public:
     ConsoleGameRules::EGameRuleType m_definitionType;
     std::wstring m_messageId;

@@ -8,7 +8,7 @@ class RangedAttackGoal : public Goal {
 private:
     Mob* mob;                          // Owner
     RangedAttackMob* rangedAttackMob;  // owner
-    weak_ptr<LivingEntity> target;
+    std::weak_ptr<LivingEntity> target;
     int attackTime;
     double speedModifier;
     int seeTime;

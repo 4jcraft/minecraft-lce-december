@@ -38,7 +38,7 @@ FireworksRecipe::FireworksRecipe() {
 
 bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
                               Level* level) {
-    shared_ptr<ItemInstance> resultItem = nullptr;
+    std::shared_ptr<ItemInstance> resultItem = nullptr;
 
     int paperCount = 0;
     int sulphurCount = 0;
@@ -48,7 +48,7 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
     int typeComponents = 0;
 
     for (int slot = 0; slot < craftSlots->getContainerSize(); slot++) {
-        shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
+        std::shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
         if (item == NULL) continue;
 
         if (item->id == Item::gunpowder_Id) {
@@ -92,7 +92,7 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
     // create fireworks
     if (sulphurCount >= 1 && paperCount == 1 && chargeComponents == 0) {
         resultItem =
-            shared_ptr<ItemInstance>(new ItemInstance(Item::fireworks));
+            std::shared_ptr<ItemInstance>(new ItemInstance(Item::fireworks));
         if (chargeCount > 0) {
             CompoundTag* itemTag = new CompoundTag();
             CompoundTag* fireTag =
@@ -101,7 +101,7 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
                 new ListTag<CompoundTag>(FireworksItem::TAG_EXPLOSIONS);
 
             for (int slot = 0; slot < craftSlots->getContainerSize(); slot++) {
-                shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
+                std::shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
                 if (item == NULL || item->id != Item::fireworksCharge_Id)
                     continue;
 
@@ -126,15 +126,15 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
     if (sulphurCount == 1 && paperCount == 0 && chargeCount == 0 &&
         colorCount > 0 && typeComponents <= 1) {
         resultItem =
-            shared_ptr<ItemInstance>(new ItemInstance(Item::fireworksCharge));
+            std::shared_ptr<ItemInstance>(new ItemInstance(Item::fireworksCharge));
         CompoundTag* itemTag = new CompoundTag();
         CompoundTag* expTag = new CompoundTag(FireworksItem::TAG_EXPLOSION);
 
         byte type = 0;
 
-        vector<int> colors;
+        std::vector<int> colors;
         for (int slot = 0; slot < craftSlots->getContainerSize(); slot++) {
-            shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
+            std::shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
             if (item == NULL) continue;
 
             if (item->id == Item::dye_powder_Id) {
@@ -172,9 +172,9 @@ bool FireworksRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
     // apply fade colors to firecharge
     if (sulphurCount == 0 && paperCount == 0 && chargeCount == 1 &&
         colorCount > 0 && colorCount == chargeComponents) {
-        vector<int> colors;
+        std::vector<int> colors;
         for (int slot = 0; slot < craftSlots->getContainerSize(); slot++) {
-            shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
+            std::shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
             if (item == NULL) continue;
 
             if (item->id == Item::dye_powder_Id) {
@@ -243,7 +243,7 @@ void FireworksRecipe::updatePossibleRecipes(
     int typeComponents = 0;
 
     for (int slot = 0; slot < craftSlots->getContainerSize(); slot++) {
-        shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
+        std::shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
         if (item == NULL) continue;
 
         if (item->id == Item::gunpowder_Id) {

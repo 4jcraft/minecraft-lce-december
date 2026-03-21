@@ -15,7 +15,7 @@ private:
         _LiquidTickData(Level* level, int x, int y, int z, Random* random)
             : level(level), x(x), y(y), z(z), random(random) {}
     } LiquidTickData;
-    deque<LiquidTickData>
+    std::deque<LiquidTickData>
         m_tilesToTick;  // For an iterative version of instatick
     bool m_iterativeInstatick;
 

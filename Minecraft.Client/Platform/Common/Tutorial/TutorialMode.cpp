@@ -31,7 +31,7 @@ bool TutorialMode::destroyBlock(int x, int y, int z, int face) {
         int t = minecraft->level->getTile(x, y, z);
         tutorial->destroyBlock(Tile::tiles[t]);
     }
-    shared_ptr<ItemInstance> item = minecraft->player->getSelectedItem();
+    std::shared_ptr<ItemInstance> item = minecraft->player->getSelectedItem();
     int damageBefore;
     if (item != NULL) {
         damageBefore = item->getDamageValue();
@@ -68,8 +68,8 @@ void TutorialMode::tick() {
     */
 }
 
-bool TutorialMode::useItemOn(shared_ptr<Player> player, Level* level,
-                             shared_ptr<ItemInstance> item, int x, int y, int z,
+bool TutorialMode::useItemOn(std::shared_ptr<Player> player, Level* level,
+                             std::shared_ptr<ItemInstance> item, int x, int y, int z,
                              int face, Vec3* hit, bool bTestUseOnly,
                              bool* pbUsedItem) {
     bool haveItem = false;
@@ -97,7 +97,7 @@ bool TutorialMode::useItemOn(shared_ptr<Player> player, Level* level,
     return result;
 }
 
-void TutorialMode::attack(shared_ptr<Player> player,
+void TutorialMode::attack(std::shared_ptr<Player> player,
                           std::shared_ptr<Entity> entity) {
     if (!tutorial->m_allTutorialsComplete) tutorial->attack(player, entity);
 

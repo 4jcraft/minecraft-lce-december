@@ -16,7 +16,7 @@ void BoatRenderer::render(std::shared_ptr<Entity> _boat, double x, double y,
     // 4J - original version used generics and thus had an input parameter of
     // type Boat rather than shared_ptr<Entity>  we have here - do some casting
     // around instead
-    shared_ptr<Boat> boat = dynamic_pointer_cast<Boat>(_boat);
+    std::shared_ptr<Boat> boat = dynamic_pointer_cast<Boat>(_boat);
 
     glPushMatrix();
 

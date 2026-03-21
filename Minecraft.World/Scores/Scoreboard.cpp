@@ -38,7 +38,7 @@ Objective* Scoreboard::addObjective(const std::wstring& name,
     //	return objective;
 }
 
-vector<Objective*>* Scoreboard::findObjectiveFor(ObjectiveCriteria* criteria) {
+std::vector<Objective*>* Scoreboard::findObjectiveFor(ObjectiveCriteria* criteria) {
     return NULL;
     // vector<Objective *> *objectives =
     // objectivesByCriteria.find(criteria)->second;
@@ -70,7 +70,7 @@ Score* Scoreboard::getPlayerScore(const std::wstring& name,
     // return score;
 }
 
-vector<Score*>* Scoreboard::getPlayerScores(Objective* objective) {
+std::vector<Score*>* Scoreboard::getPlayerScores(Objective* objective) {
     return NULL;
     // vector<Score *> *result = new vector<Score *>();
 
@@ -85,12 +85,12 @@ vector<Score*>* Scoreboard::getPlayerScores(Objective* objective) {
     // return result;
 }
 
-vector<Objective*>* Scoreboard::getObjectives() {
+std::vector<Objective*>* Scoreboard::getObjectives() {
     return NULL;
     // return objectivesByName.values();
 }
 
-vector<wstring>* Scoreboard::getTrackedPlayers() {
+std::vector<std::wstring>* Scoreboard::getTrackedPlayers() {
     return NULL;
     // return playerScores.keySet();
 }
@@ -105,7 +105,7 @@ void Scoreboard::resetPlayerScore(const std::wstring& player) {
     // }
 }
 
-vector<Score*>* Scoreboard::getScores() {
+std::vector<Score*>* Scoreboard::getScores() {
     return NULL;
     // Collection<Map<Objective, Score>> values = playerScores.values();
     // List<Score> result = new ArrayList<Score>();
@@ -118,7 +118,7 @@ vector<Score*>* Scoreboard::getScores() {
     // return result;
 }
 
-vector<Score*>* Scoreboard::getScores(Objective* objective) {
+std::vector<Score*>* Scoreboard::getScores(Objective* objective) {
     return NULL;
     // Collection<Map<Objective, Score>> values = playerScores.values();
     // List<Score> result = new ArrayList<Score>();
@@ -131,7 +131,7 @@ vector<Score*>* Scoreboard::getScores(Objective* objective) {
     // return result;
 }
 
-unordered_map<Objective*, Score*>* Scoreboard::getPlayerScores(
+std::unordered_map<Objective*, Score*>* Scoreboard::getPlayerScores(
     const std::wstring& player) {
     return NULL;
     // Map<Objective, Score> result = playerScores.get(player);
@@ -228,12 +228,12 @@ void Scoreboard::removePlayerFromTeam(const std::wstring& player,
     // team.getPlayers().remove(player);
 }
 
-vector<wstring>* Scoreboard::getTeamNames() {
+std::vector<std::wstring>* Scoreboard::getTeamNames() {
     return NULL;
     // return teamsByName.keySet();
 }
 
-vector<PlayerTeam*>* Scoreboard::getPlayerTeams() {
+std::vector<PlayerTeam*>* Scoreboard::getPlayerTeams() {
     return NULL;
     // return teamsByName.values();
 }

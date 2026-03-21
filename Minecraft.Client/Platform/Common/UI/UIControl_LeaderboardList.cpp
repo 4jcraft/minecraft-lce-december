@@ -48,14 +48,14 @@ void UIControl_LeaderboardList::clearList() {
                                             m_funcResetLeaderboard, 0, NULL);
 }
 
-void UIControl_LeaderboardList::setupTitles(const std::wstring& rank,
+void UIControl_LeaderboardList::setupTitles(const std::wstring& std::rank,
                                             const std::wstring& gamertag) {
     IggyDataValue result;
     IggyDataValue value[2];
 
     IggyStringUTF16 stringVal0;
-    stringVal0.string = (IggyUTF16*)rank.c_str();
-    stringVal0.length = rank.length();
+    stringVal0.string = (IggyUTF16*)std::rank.c_str();
+    stringVal0.length = std::rank.length();
     value[0].type = IGGY_DATATYPE_string_UTF16;
     value[0].string16 = stringVal0;
 

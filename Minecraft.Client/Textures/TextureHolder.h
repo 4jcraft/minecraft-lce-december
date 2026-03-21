@@ -17,7 +17,7 @@ public:
     Texture* getTexture();
     int getWidth() const;
     int getHeight() const;
-    void rotate();
+    void std::rotate();
     bool isRotated();
 
 private:

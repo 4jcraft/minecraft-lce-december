@@ -27,7 +27,7 @@ ChunkStorage* McRegionLevelStorage::createChunkStorage(Dimension* dimension) {
     if (dynamic_cast<HellDimension*>(dimension) != NULL) {
         if (app.GetResetNether()) {
 #ifdef SPLIT_SAVES
-            vector<FileEntry*>* netherFiles =
+            std::vector<FileEntry*>* netherFiles =
                 m_saveFile->getRegionFilesByDimension(1);
             if (netherFiles != NULL) {
                 DWORD bytesWritten = 0;
@@ -39,7 +39,7 @@ ChunkStorage* McRegionLevelStorage::createChunkStorage(Dimension* dimension) {
                 delete netherFiles;
             }
 #else
-            vector<FileEntry*>* netherFiles =
+            std::vector<FileEntry*>* netherFiles =
                 m_saveFile->getFilesWithPrefix(LevelStorage::NETHER_FOLDER);
             if (netherFiles != NULL) {
                 for (AUTO_VAR(it, netherFiles->begin());
@@ -73,7 +73,7 @@ ChunkStorage* McRegionLevelStorage::createChunkStorage(Dimension* dimension) {
                 "is: %d\n",
                 m_saveFile->getSaveVersion(), SAVE_FILE_VERSION_NEW_END);
 
-            vector<FileEntry*>* endFiles =
+            std::vector<FileEntry*>* endFiles =
                 m_saveFile->getFilesWithPrefix(LevelStorage::ENDER_FOLDER);
 
             // 4J-PB - There will be no End in early saves
@@ -92,7 +92,7 @@ ChunkStorage* McRegionLevelStorage::createChunkStorage(Dimension* dimension) {
 }
 
 void McRegionLevelStorage::saveLevelData(LevelData* levelData,
-                                         vector<shared_ptr<Player> >* players) {
+                                         std::vector<std::shared_ptr<Player> >* players) {
     levelData->setVersion(MCREGION_VERSION_ID);
     MemSect(38);
     DirectoryLevelStorage::saveLevelData(levelData, players);

@@ -78,7 +78,7 @@ protected:
     std::unordered_map<int, TutorialMessage*> messages;
     std::vector<TutorialConstraint*> m_globalConstraints;
     std::vector<TutorialConstraint*> constraints[e_Tutorial_State_Max];
-    std::vector<pair<TutorialConstraint*, unsigned char> >
+    std::vector<std::pair<TutorialConstraint*, unsigned char> >
         constraintsToRemove[e_Tutorial_State_Max];
     std::vector<TutorialTask*>
         tasks;  // We store a copy of the tasks for the main gameplay tutorial

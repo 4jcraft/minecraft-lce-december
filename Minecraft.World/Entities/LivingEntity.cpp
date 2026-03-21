@@ -402,7 +402,7 @@ void LivingEntity::readAdditionalSaveData(CompoundTag* tag) {
             CompoundTag* effectTag = effects->get(i);
             MobEffectInstance* effect = MobEffectInstance::load(effectTag);
             activeEffects.insert(
-                unordered_map<int, MobEffectInstance*>::value_type(
+                std::unordered_map<int, MobEffectInstance*>::value_type(
                     effect->getId(), effect));
         }
     }
@@ -458,7 +458,7 @@ void LivingEntity::tickEffects() {
                 setInvisible(false);
                 setWeakened(false);
             } else {
-                vector<MobEffectInstance*> values;
+                std::vector<MobEffectInstance*> values;
                 for (AUTO_VAR(it, activeEffects.begin());
                      it != activeEffects.end(); ++it) {
                     values.push_back(it->second);
@@ -530,8 +530,8 @@ void LivingEntity::removeAllEffects() {
     }
 }
 
-vector<MobEffectInstance*>* LivingEntity::getActiveEffects() {
-    vector<MobEffectInstance*>* active = new vector<MobEffectInstance*>();
+std::vector<MobEffectInstance*>* LivingEntity::getActiveEffects() {
+    std::vector<MobEffectInstance*>* active = new std::vector<MobEffectInstance*>();
 
     for (AUTO_VAR(it, activeEffects.begin()); it != activeEffects.end(); ++it) {
         active->push_back(it->second);
@@ -570,7 +570,7 @@ void LivingEntity::addEffect(MobEffectInstance* newEffect) {
         effectInst->update(newEffect);
         onEffectUpdated(effectInst, true);
     } else {
-        activeEffects.insert(unordered_map<int, MobEffectInstance*>::value_type(
+        activeEffects.insert(std::unordered_map<int, MobEffectInstance*>::value_type(
             newEffect->getId(), newEffect));
         onEffectAdded(newEffect);
     }
@@ -588,7 +588,7 @@ void LivingEntity::addEffectNoUpdate(MobEffectInstance* newEffect) {
             activeEffects.find(newEffect->getId())->second;
         effectInst->update(newEffect);
     } else {
-        activeEffects.insert(unordered_map<int, MobEffectInstance*>::value_type(
+        activeEffects.insert(std::unordered_map<int, MobEffectInstance*>::value_type(
             newEffect->getId(), newEffect));
     }
 }
@@ -1576,7 +1576,7 @@ void LivingEntity::aiStep() {
 void LivingEntity::newServerAiStep() {}
 
 void LivingEntity::pushEntities() {
-    vector<std::shared_ptr<Entity> >* entities =
+    std::vector<std::shared_ptr<Entity> >* entities =
         level->getEntities(shared_from_this(), this->bb->grow(0.2f, 0, 0.2f));
     if (entities != NULL && !entities->empty()) {
         AUTO_VAR(itEnd, entities->end());

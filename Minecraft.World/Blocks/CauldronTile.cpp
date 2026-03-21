@@ -77,7 +77,7 @@ bool CauldronTile::use(Level* level, int x, int y, int z,
         return true;
     }
 
-    shared_ptr<ItemInstance> item = player->inventory->getSelected();
+    std::shared_ptr<ItemInstance> item = player->inventory->getSelected();
     if (item == NULL) {
         return true;
     }
@@ -90,7 +90,7 @@ bool CauldronTile::use(Level* level, int x, int y, int z,
             if (!player->abilities.instabuild) {
                 player->inventory->setItem(
                     player->inventory->selected,
-                    shared_ptr<ItemInstance>(
+                    std::shared_ptr<ItemInstance>(
                         new ItemInstance(Item::bucket_empty)));
             }
 
@@ -100,10 +100,10 @@ bool CauldronTile::use(Level* level, int x, int y, int z,
         return true;
     } else if (item->id == Item::glassBottle_Id) {
         if (fillLevel > 0) {
-            shared_ptr<ItemInstance> potion =
-                shared_ptr<ItemInstance>(new ItemInstance(Item::potion, 1, 0));
+            std::shared_ptr<ItemInstance> potion =
+                std::shared_ptr<ItemInstance>(new ItemInstance(Item::potion, 1, 0));
             if (!player->inventory->add(potion)) {
-                level->addEntity(shared_ptr<ItemEntity>(
+                level->addEntity(std::shared_ptr<ItemEntity>(
                     new ItemEntity(level, x + 0.5, y + 1.5, z + 0.5, potion)));
             }
             // 4J Stu - Brought forward change to update inventory when filling

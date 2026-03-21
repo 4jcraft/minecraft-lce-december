@@ -296,7 +296,7 @@ unsigned short DataInputStream::readUnsignedShort() {
 // Returns:
 // a Unicode string.
 std::wstring DataInputStream::readUTF() {
-    wstring outputString;
+    std::wstring outputString;
     int a = stream->read();
     int b = stream->read();
     unsigned short UTFLength = (unsigned short)(((a & 0xff) << 8) | (b & 0xff));

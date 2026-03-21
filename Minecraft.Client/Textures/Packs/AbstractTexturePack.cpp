@@ -166,11 +166,11 @@ std::wstring AbstractTexturePack::getAnimationString(
 
 std::wstring AbstractTexturePack::getAnimationString(
     const std::wstring& textureName, const std::wstring& path) {
-    wstring animationDefinitionFile = textureName + L".txt";
+    std::wstring animationDefinitionFile = textureName + L".txt";
 
     bool requiresFallback = !hasFile(L"\\" + textureName + L".png", false);
 
-    wstring result = L"";
+    std::wstring result = L"";
 
     InputStream* fileStream =
         getResource(L"\\" + path + animationDefinitionFile, requiresFallback);
@@ -185,7 +185,7 @@ std::wstring AbstractTexturePack::getAnimationString(
         InputStreamReader isr(fileStream);
         BufferedReader br(&isr);
 
-        wstring line = br.readLine();
+        std::wstring line = br.readLine();
         while (!line.empty()) {
             line = trimString(line);
             if (line.length() > 0) {

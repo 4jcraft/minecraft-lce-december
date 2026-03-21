@@ -291,7 +291,7 @@ void Textures::loadIndexedTextures() {
     // referenced directly be an enumerated type rather by string
     for (int i = 0; i < TN_COUNT - 2; i++) {
         preLoadedIdx[i] =
-            loadTexture((TEXTURE_NAME)i, wstring(preLoaded[i]) + L".png");
+            loadTexture((TEXTURE_NAME)i, std::wstring(preLoaded[i]) + L".png");
     }
 }
 
@@ -387,15 +387,15 @@ void Textures::setTextureFormat(const std::wstring& resourceName) {
 }
 
 void Textures::bindTexture(const std::wstring& resourceName) {
-    bind(loadTexture(TN_COUNT, resourceName));
+    std::bind(loadTexture(TN_COUNT, resourceName));
 }
 
 // 4J Added
 void Textures::bindTexture(ResourceLocation* resource) {
     if (resource->isPreloaded()) {
-        bind(loadTexture(resource->getTexture()));
+        std::bind(loadTexture(resource->getTexture()));
     } else {
-        bind(loadTexture(TN_COUNT, resource->getPath()));
+        std::bind(loadTexture(TN_COUNT, resource->getPath()));
     }
 }
 
@@ -419,7 +419,7 @@ void Textures::bind(int id) {
 }
 
 ResourceLocation* Textures::getTextureLocation(std::shared_ptr<Entity> entity) {
-    shared_ptr<ItemEntity> item = dynamic_pointer_cast<ItemEntity>(entity);
+    std::shared_ptr<ItemEntity> item = dynamic_pointer_cast<ItemEntity>(entity);
     int iconType = item->getItem()->getIconType();
     return getTextureLocation(iconType);
 }
@@ -463,7 +463,7 @@ int Textures::loadTexture(TEXTURE_NAME texId,
         if (inMap) return id;
     }
 
-    wstring pathName = resourceName;
+    std::wstring pathName = resourceName;
 
     // 4J - added special cases to avoid mipmapping on clouds & shadows
     if ((resourceName == L"environment/clouds.png") ||
@@ -481,7 +481,7 @@ int Textures::loadTexture(TEXTURE_NAME texId,
     //    try {
     int id = MemoryTracker::genTextures();
 
-    wstring prefix = L"%blur%";
+    std::wstring prefix = L"%blur%";
     bool blur = resourceName.substr(0, prefix.size()).compare(prefix) ==
                 0;  // resourceName.startsWith("%blur%");
     if (blur) pathName = resourceName.substr(6);
@@ -713,7 +713,7 @@ intArray Textures::anaglyph(intArray rawPixels) {
 }
 
 void Textures::replaceTexture(intArray rawPixels, int w, int h, int id) {
-    bind(id);
+    std::bind(id);
 
     // Removed in Java
 #if 0
@@ -1129,34 +1129,34 @@ void Textures::reloadAll() {
 
 #if 0
 	AUTO_VAR(itEndLI, loadedImages.end() );
-	for(unordered_map<int, BufferedImage *>::iterator it = loadedImages.begin(); it != itEndLI; it++ )
+	for(std::unordered_map<int, BufferedImage *>::iterator it = loadedImages.begin(); it != itEndLI; it++ )
 	{
         BufferedImage *image = it->second;
         loadTexture(image, it->first);
     }
 
 	AUTO_VAR(itEndHT, httpTextures.end());
-	for(unordered_map<wstring, HttpTexture *>::iterator it = httpTextures.begin(); it != itEndHT; it++ )
+	for(std::unordered_map<std::wstring, HttpTexture *>::iterator it = httpTextures.begin(); it != itEndHT; it++ )
 	{
 		it->second->isLoaded = false;
 	}
 
 	AUTO_VAR(itEndMT, memTextures.end());
-	for(unordered_map<wstring, MemTexture *>::iterator it = memTextures.begin(); it != itEndMT; it++ )
+	for(std::unordered_map<std::wstring, MemTexture *>::iterator it = memTextures.begin(); it != itEndMT; it++ )
 	{
 		it->second->isLoaded = false;
 	}
 
 
 	AUTO_VAR(itEndIM, idMap.end());
-	for( unordered_map<wstring, int>::iterator it = idMap.begin(); it != itEndIM; it++ )
+	for( std::unordered_map<std::wstring, int>::iterator it = idMap.begin(); it != itEndIM; it++ )
 	{
-		wstring name = it->first;
+		std::wstring name = it->first;
 
 		int id = idMap[name];
 		BufferedImage *image;
 
-		wstring prefix = L"%blur%";
+		std::wstring prefix = L"%blur%";
 		bool blur = name.substr(0, prefix.size()).compare(prefix) == 0; //name.startsWith("%blur%");
 		if (blur) name = name.substr(6);
 
@@ -1170,9 +1170,9 @@ void Textures::reloadAll() {
 		delete image;
 	}
 	AUTO_VAR(itEndPM, pixelsMap.end());
-	for( unordered_map<wstring, intArray>::iterator it = pixelsMap.begin(); it != itEndPM; it++ )
+	for( std::unordered_map<std::wstring, intArray>::iterator it = pixelsMap.begin(); it != itEndPM; it++ )
 	{
-		wstring name = it->first;
+		std::wstring name = it->first;
 		BufferedImage *image = readImage(skin->getResource(name));
 
 		loadTexturePixels(image, pixelsMap[name]);
@@ -1207,7 +1207,7 @@ BufferedImage* Textures::readImage(
     MemSect(32);
     // is this image one of the Title Update ones?
     bool isTu = IsTUImage(texId, name);
-    wstring drive = L"";
+    std::wstring drive = L"";
 
     if (!skins->isUsingDefaultSkin() &&
         skins->getSelected()->hasFile(L"res/" + name, false)) {
@@ -1220,7 +1220,7 @@ BufferedImage* Textures::readImage(
 #ifdef __PS3__
         if (app.GetBootedFromDiscPatch() && app.IsFileInPatchList(pchName)) {
             char* pchUsrDir = app.GetBDUsrDirPath(pchName);
-            wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
+            std::wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
 
             if (isTu) {
                 drive = wstr + L"\\Common\\res\\TitleUpdate\\";

@@ -216,7 +216,7 @@ typedef struct IggyAllocator {
 #endif
 } IggyAllocator;
 
-RADEXPFUNC void RADEXPLINK IggyInit(IggyAllocator* allocator);
+RADEXPFUNC void RADEXPLINK IggyInit(IggyAllocator* std::allocator);
 RADEXPFUNC void RADEXPLINK IggyShutdown(void);
 
 typedef enum IggyConfigureBoolName {
@@ -382,7 +382,7 @@ typedef struct {
 } IggyPlayerGCSizes;
 
 typedef struct {
-    IggyAllocator allocator;
+    IggyAllocator std::allocator;
     IggyPlayerGCSizes gc;
     char* filename;
     char* user_name;
@@ -617,7 +617,7 @@ typedef struct {
 
     IggyFontGetCodepointGlyph* get_glyph_for_codepoint;
     IggyFontGetGlyphMetrics* get_glyph_metrics;
-    IggyFontIsGlyphEmpty* is_empty;
+    IggyFontIsGlyphEmpty* std::is_empty;
     IggyFontGetKerningForGlyphPair* get_kerning;
 
     IggyVectorFontGetGlyphShape* get_shape;
@@ -633,7 +633,7 @@ typedef struct {
 
     IggyFontGetCodepointGlyph* get_glyph_for_codepoint;
     IggyFontGetGlyphMetrics* get_glyph_metrics;
-    IggyFontIsGlyphEmpty* is_empty;
+    IggyFontIsGlyphEmpty* std::is_empty;
     IggyFontGetKerningForGlyphPair* get_kerning;
 
     IggyBitmapFontCanProvideBitmap* can_bitmap;
@@ -1022,7 +1022,7 @@ RADEXPFUNC IggyName RADEXPLINK IggyPlayerCreateFastNameUTF8(Iggy* f,
                                                             S32 len);
 RADEXPFUNC IggyResult RADEXPLINK IggyPlayerCallFunctionRS(Iggy* player,
                                                           IggyDataValue* result,
-                                                          IggyName function,
+                                                          IggyName std::function,
                                                           S32 numargs,
                                                           IggyDataValue* args);
 RADEXPFUNC IggyResult RADEXPLINK
@@ -1114,7 +1114,7 @@ IDOCN struct IggyValuePath {
     IggyValuePath* parent;
     // align 0 mod 8
     IggyName name;
-    IggyValueRef ref;
+    IggyValueRef std::ref;
     // align 0 mod 8
     S32 index;
     S32 type;
@@ -1126,8 +1126,8 @@ typedef enum {
     IGGY_ValueRef_Weak,
 } IggyValueRefType;
 
-RADEXPFUNC rrbool RADEXPLINK IggyValueRefCheck(IggyValueRef ref);
-RADEXPFUNC void RADEXPLINK IggyValueRefFree(Iggy* p, IggyValueRef ref);
+RADEXPFUNC rrbool RADEXPLINK IggyValueRefCheck(IggyValueRef std::ref);
+RADEXPFUNC void RADEXPLINK IggyValueRefFree(Iggy* p, IggyValueRef std::ref);
 RADEXPFUNC IggyValueRef RADEXPLINK
 IggyValueRefFromPath(IggyValuePath* var, IggyValueRefType reftype);
 RADEXPFUNC rrbool RADEXPLINK
@@ -1149,7 +1149,7 @@ RADEXPFUNC rrbool RADEXPLINK IggyValuePathMakeNameRef(IggyValuePath* result,
                                                       IggyValuePath* parent,
                                                       char const* text_utf8);
 RADEXPFUNC void RADEXPLINK IggyValuePathFromRef(IggyValuePath* result,
-                                                Iggy* iggy, IggyValueRef ref);
+                                                Iggy* iggy, IggyValueRef std::ref);
 
 RADEXPFUNC void RADEXPLINK IggyValuePathMakeNameRefFast(IggyValuePath* result,
                                                         IggyValuePath* parent,

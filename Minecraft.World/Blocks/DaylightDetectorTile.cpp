@@ -79,7 +79,7 @@ bool DaylightDetectorTile::isSolidRender(bool isServerLevel) { return false; }
 bool DaylightDetectorTile::isSignalSource() { return true; }
 
 std::shared_ptr<TileEntity> DaylightDetectorTile::newTileEntity(Level* level) {
-    return shared_ptr<DaylightDetectorTileEntity>(
+    return std::shared_ptr<DaylightDetectorTileEntity>(
         new DaylightDetectorTileEntity());
 }
 

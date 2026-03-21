@@ -10,5 +10,5 @@ public:
     virtual void write(byteArray b, unsigned int offset,
                        unsigned int length) = 0;
     virtual void close() = 0;
-    virtual void flush() = 0;
+    virtual void std::flush() = 0;
 };

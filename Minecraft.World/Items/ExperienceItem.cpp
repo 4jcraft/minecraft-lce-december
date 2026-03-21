@@ -27,6 +27,6 @@ std::shared_ptr<ItemInstance> ExperienceItem::use(
                            0.4f / (random->nextFloat() * 0.4f + 0.8f));
     if (!level->isClientSide)
         level->addEntity(
-            shared_ptr<ThrownExpBottle>(new ThrownExpBottle(level, player)));
+            std::shared_ptr<ThrownExpBottle>(new ThrownExpBottle(level, player)));
     return itemInstance;
 }

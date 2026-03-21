@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class TexturePacket : public Packet,
-                      public enable_shared_from_this<TexturePacket> {
+                      public std::enable_shared_from_this<TexturePacket> {
 public:
     std::wstring textureName;
     PBYTE pbData;

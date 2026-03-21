@@ -42,7 +42,7 @@ UIScene_TeleportMenu::UIScene_TeleportMenu(int iPad, void* initData,
             m_players[m_playersCount] = player->GetSmallId();
             ++m_playersCount;
 
-            wstring playerName = L"";
+            std::wstring playerName = L"";
 #ifndef _CONTENT_PACKAGE
             if (app.DebugSettingsOn() &&
                 (app.GetGameSettingsDebugMask() &
@@ -124,7 +124,7 @@ void UIScene_TeleportMenu::handleReload() {
             m_players[m_playersCount] = player->GetSmallId();
             ++m_playersCount;
 
-            wstring playerName = L"";
+            std::wstring playerName = L"";
 #ifndef _CONTENT_PACKAGE
             if (app.DebugSettingsOn() &&
                 (app.GetGameSettingsDebugMask() &
@@ -183,7 +183,7 @@ void UIScene_TeleportMenu::tick() {
                     i, (int)app.GetPlayerColour(m_players[i]));
             }
 
-            wstring playerName = L"";
+            std::wstring playerName = L"";
 #ifndef _CONTENT_PACKAGE
             if (app.DebugSettingsOn() &&
                 (app.GetGameSettingsDebugMask() &
@@ -241,7 +241,7 @@ void UIScene_TeleportMenu::handlePress(F64 controlId, F64 childId) {
             INetworkPlayer* thisPlayer =
                 g_NetworkManager.GetLocalPlayerByUserIndex(m_iPad);
 
-            shared_ptr<GameCommandPacket> packet;
+            std::shared_ptr<GameCommandPacket> packet;
             if (m_teleportToPlayer) {
                 packet = TeleportCommand::preparePacket(
                     thisPlayer->GetUID(), selectedPlayer->GetUID());
@@ -288,7 +288,7 @@ void UIScene_TeleportMenu::OnPlayerChanged(void* callbackParam,
         scene->m_players[scene->m_playersCount] = pPlayer->GetSmallId();
         ++scene->m_playersCount;
 
-        wstring playerName = L"";
+        std::wstring playerName = L"";
 #ifndef _CONTENT_PACKAGE
         if (app.DebugSettingsOn() &&
             (app.GetGameSettingsDebugMask() &

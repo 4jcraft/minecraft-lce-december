@@ -14,8 +14,8 @@ public:
 private:
     ServerLevel* level;
     Random* random;
-    unordered_map<__int64, PortalPosition*> cachedPortals;
-    vector<__int64> cachedPortalKeys;
+    std::unordered_map<__int64, PortalPosition*> cachedPortals;
+    std::vector<__int64> cachedPortalKeys;
 
 public:
     PortalForcer(ServerLevel* level);

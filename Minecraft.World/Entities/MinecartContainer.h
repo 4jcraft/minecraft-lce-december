@@ -15,15 +15,15 @@ public:
     MinecartContainer(Level* level, double x, double y, double z);
 
     virtual void destroy(DamageSource* source);
-    virtual shared_ptr<ItemInstance> getItem(unsigned int slot);
-    virtual shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
-    virtual shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
-    virtual void setItem(unsigned int slot, shared_ptr<ItemInstance> item);
+    virtual std::shared_ptr<ItemInstance> getItem(unsigned int slot);
+    virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot, int count);
+    virtual std::shared_ptr<ItemInstance> removeItemNoUpdate(int slot);
+    virtual void setItem(unsigned int slot, std::shared_ptr<ItemInstance> item);
     virtual void setChanged();
-    virtual bool stillValid(shared_ptr<Player> player);
+    virtual bool stillValid(std::shared_ptr<Player> player);
     virtual void startOpen();
     virtual void stopOpen();
-    virtual bool canPlaceItem(int slot, shared_ptr<ItemInstance> item);
+    virtual bool canPlaceItem(int slot, std::shared_ptr<ItemInstance> item);
     virtual std::wstring getName();
     virtual int getMaxStackSize();
     virtual void changeDimension(int i);
@@ -34,7 +34,7 @@ protected:
     virtual void readAdditionalSaveData(CompoundTag* base);
 
 public:
-    virtual bool interact(shared_ptr<Player> player);
+    virtual bool interact(std::shared_ptr<Player> player);
 
 protected:
     virtual void applyNaturalSlowdown();

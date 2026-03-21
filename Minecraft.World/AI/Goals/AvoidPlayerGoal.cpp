@@ -35,7 +35,7 @@ AvoidPlayerGoal::AvoidPlayerGoal(PathfinderMob* mob,
 
     entitySelector = new AvoidPlayerGoalEntitySelector(this);
 
-    toAvoid = weak_ptr<Entity>();
+    toAvoid = std::weak_ptr<Entity>();
     path = NULL;
 }
 
@@ -46,20 +46,20 @@ AvoidPlayerGoal::~AvoidPlayerGoal() {
 
 bool AvoidPlayerGoal::canUse() {
     if (avoidType == typeid(Player)) {
-        shared_ptr<TamableAnimal> tamableAnimal =
+        std::shared_ptr<TamableAnimal> tamableAnimal =
             dynamic_pointer_cast<TamableAnimal>(mob->shared_from_this());
         if (tamableAnimal != NULL && tamableAnimal->isTame()) return false;
-        toAvoid = weak_ptr<Entity>(
+        toAvoid = std::weak_ptr<Entity>(
             mob->level->getNearestPlayer(mob->shared_from_this(), maxDist));
         if (toAvoid.lock() == NULL) return false;
     } else {
-        vector<shared_ptr<Entity> >* entities = mob->level->getEntitiesOfClass(
+        std::vector<std::shared_ptr<Entity> >* entities = mob->level->getEntitiesOfClass(
             avoidType, mob->bb->grow(maxDist, 3, maxDist), entitySelector);
         if (entities->empty()) {
             delete entities;
             return false;
         }
-        toAvoid = weak_ptr<Entity>(entities->at(0));
+        toAvoid = std::weak_ptr<Entity>(entities->at(0));
         delete entities;
     }
 
@@ -86,7 +86,7 @@ void AvoidPlayerGoal::start() {
     path = NULL;
 }
 
-void AvoidPlayerGoal::stop() { toAvoid = weak_ptr<Entity>(); }
+void AvoidPlayerGoal::stop() { toAvoid = std::weak_ptr<Entity>(); }
 
 void AvoidPlayerGoal::tick() {
     if (mob->distanceToSqr(toAvoid.lock()) < 7 * 7)

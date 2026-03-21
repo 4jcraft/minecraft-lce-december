@@ -30,21 +30,21 @@ RegionFile* RegionFileCache::_getRegionFile(
     MemSect(31);
     File file;
     if (useSplitSaves(saveFile->getSavePlatform())) {
-        file = File(prefix + wstring(L"r.") + _toString(chunkX >> 4) + L"." +
+        file = File(prefix + std::wstring(L"r.") + _toString(chunkX >> 4) + L"." +
                     _toString(chunkZ >> 4) + L".mcr");
     } else {
-        file = File(prefix + wstring(L"r.") + _toString(chunkX >> 5) + L"." +
+        file = File(prefix + std::wstring(L"r.") + _toString(chunkX >> 5) + L"." +
                     _toString(chunkZ >> 5) + L".mcr");
     }
     MemSect(0);
 
-    RegionFile* ref = NULL;
+    RegionFile* std::ref = NULL;
     AUTO_VAR(it, cache.find(file));
-    if (it != cache.end()) ref = it->second;
+    if (it != cache.end()) std::ref = it->second;
 
     // 4J Jev, put back in.
-    if (ref != NULL) {
-        return ref;
+    if (std::ref != NULL) {
+        return std::ref;
     }
 
     // 4J Stu - Remove for new save files

@@ -4,7 +4,7 @@
 
 class SetCreativeModeSlotPacket
     : public Packet,
-      public enable_shared_from_this<SetCreativeModeSlotPacket> {
+      public std::enable_shared_from_this<SetCreativeModeSlotPacket> {
 public:
     int slotNum;
     std::shared_ptr<ItemInstance> item;

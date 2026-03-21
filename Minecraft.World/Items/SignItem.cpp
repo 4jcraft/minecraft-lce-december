@@ -45,7 +45,7 @@ bool SignItem::useOn(std::shared_ptr<ItemInstance> instance,
         }
 
         instance->count--;
-        shared_ptr<SignTileEntity> ste =
+        std::shared_ptr<SignTileEntity> ste =
             dynamic_pointer_cast<SignTileEntity>(level->getTileEntity(x, y, z));
         if (ste != NULL) player->openTextEdit(ste);
 

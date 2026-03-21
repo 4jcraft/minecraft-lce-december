@@ -36,7 +36,7 @@ void CreativeMode::adjustPlayer(std::shared_ptr<Player> player) {
 
     for (int i = 0; i < 9; i++) {
         if (player->inventory->items[i] == NULL) {
-            player->inventory->items[i] = shared_ptr<ItemInstance>(
+            player->inventory->items[i] = std::shared_ptr<ItemInstance>(
                 new ItemInstance(User::allowedTiles[i]));
         } else {
             // 4J-PB - this line is commented out in 1.0.1

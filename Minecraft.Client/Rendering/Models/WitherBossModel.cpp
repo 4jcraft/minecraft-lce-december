@@ -68,7 +68,7 @@ void WitherBossModel::setupAnim(float time, float r, float bob, float yRot,
 
 void WitherBossModel::prepareMobModel(std::shared_ptr<LivingEntity> mob,
                                       float time, float r, float a) {
-    shared_ptr<WitherBoss> boss = dynamic_pointer_cast<WitherBoss>(mob);
+    std::shared_ptr<WitherBoss> boss = dynamic_pointer_cast<WitherBoss>(mob);
 
     for (int i = 1; i < 3; i++) {
         heads[i]->yRot =

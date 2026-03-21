@@ -8,8 +8,8 @@
 
 AnvilMenu::AnvilMenu(std::shared_ptr<Inventory> inventory, Level* level, int xt,
                      int yt, int zt, std::shared_ptr<Player> player) {
-    resultSlots = shared_ptr<ResultContainer>(new ResultContainer());
-    repairSlots = shared_ptr<RepairContainer>(
+    resultSlots = std::shared_ptr<ResultContainer>(new ResultContainer());
+    repairSlots = std::shared_ptr<RepairContainer>(
         new RepairContainer(this, IDS_REPAIR_AND_NAME, true, 2));
     cost = 0;
     repairItemCountCost = 0;
@@ -45,7 +45,7 @@ void AnvilMenu::slotsChanged(std::shared_ptr<Container> container) {
 }
 
 void AnvilMenu::createResult() {
-    shared_ptr<ItemInstance> input = repairSlots->getItem(INPUT_SLOT);
+    std::shared_ptr<ItemInstance> input = repairSlots->getItem(INPUT_SLOT);
     cost = 0;
     int price = 0;
     int tax = 0;
@@ -58,10 +58,10 @@ void AnvilMenu::createResult() {
         cost = 0;
         return;
     } else {
-        shared_ptr<ItemInstance> result = input->copy();
-        shared_ptr<ItemInstance> addition =
+        std::shared_ptr<ItemInstance> result = input->copy();
+        std::shared_ptr<ItemInstance> addition =
             repairSlots->getItem(ADDITIONAL_SLOT);
-        unordered_map<int, int>* enchantments =
+        std::unordered_map<int, int>* enchantments =
             EnchantmentHelper::getEnchantments(result);
         bool usingBook = false;
 
@@ -132,7 +132,7 @@ void AnvilMenu::createResult() {
                     }
                 }
 
-                unordered_map<int, int>* additionalEnchantments =
+                std::unordered_map<int, int>* additionalEnchantments =
                     EnchantmentHelper::getEnchantments(addition);
 
                 for (AUTO_VAR(it, additionalEnchantments->begin());
@@ -341,7 +341,7 @@ void AnvilMenu::removed(std::shared_ptr<Player> player) {
     if (level->isClientSide) return;
 
     for (int i = 0; i < repairSlots->getContainerSize(); i++) {
-        shared_ptr<ItemInstance> item = repairSlots->removeItemNoUpdate(i);
+        std::shared_ptr<ItemInstance> item = repairSlots->removeItemNoUpdate(i);
         if (item != NULL) {
             player->drop(item);
         }
@@ -356,10 +356,10 @@ bool AnvilMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> AnvilMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if (slotIndex == RESULT_SLOT) {
@@ -396,7 +396,7 @@ std::shared_ptr<ItemInstance> AnvilMenu::quickMoveStack(
 void AnvilMenu::setItemName(const std::wstring& name) {
     itemName = name;
     if (getSlot(RESULT_SLOT)->hasItem()) {
-        shared_ptr<ItemInstance> item = getSlot(RESULT_SLOT)->getItem();
+        std::shared_ptr<ItemInstance> item = getSlot(RESULT_SLOT)->getItem();
 
         if (name.empty()) {
             item->resetHoverName();

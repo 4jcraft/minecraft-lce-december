@@ -461,7 +461,7 @@ typedef struct {
         struct {
             DWORD cbData;
             LPWSTR pwszData;
-        } string;
+        } std::string;
         float fData;
         struct {
             DWORD cbData;

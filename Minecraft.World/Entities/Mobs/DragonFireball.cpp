@@ -30,7 +30,7 @@ DragonFireball::DragonFireball(Level* level, double x, double y, double z,
 void DragonFireball::onHit(HitResult* res) {
     if (!level->isClientSide) {
         AABB* aoe = bb->grow(SPLASH_RANGE, SPLASH_RANGE / 2, SPLASH_RANGE);
-        vector<shared_ptr<Entity> >* entitiesOfClass =
+        std::vector<std::shared_ptr<Entity> >* entitiesOfClass =
             level->getEntitiesOfClass(typeid(LivingEntity), aoe);
 
         if (entitiesOfClass != NULL && !entitiesOfClass->empty()) {
@@ -38,7 +38,7 @@ void DragonFireball::onHit(HitResult* res) {
             for (AUTO_VAR(it, entitiesOfClass->begin());
                  it != entitiesOfClass->end(); ++it) {
                 // shared_ptr<Entity> e = *it;
-                shared_ptr<LivingEntity> e =
+                std::shared_ptr<LivingEntity> e =
                     dynamic_pointer_cast<LivingEntity>(*it);
                 double dist = distanceToSqr(e);
                 if (dist < SPLASH_RANGE_SQ) {

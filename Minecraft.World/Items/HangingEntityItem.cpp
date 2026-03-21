@@ -31,7 +31,7 @@ bool HangingEntityItem::useOn(std::shared_ptr<ItemInstance> instance,
 
     int dir = Direction::FACING_DIRECTION[face];
 
-    shared_ptr<HangingEntity> entity =
+    std::shared_ptr<HangingEntity> entity =
         createEntity(level, xt, yt, zt, dir, instance->getAuxValue());
 
     if (!player->mayUseItemAt(xt, yt, zt, face, instance)) return false;
@@ -68,8 +68,8 @@ std::shared_ptr<HangingEntity> HangingEntityItem::createEntity(
     int auxValue)  // 4J added auxValue
 {
     if (eType == eTYPE_PAINTING) {
-        shared_ptr<Painting> painting =
-            shared_ptr<Painting>(new Painting(level, x, y, z, dir));
+        std::shared_ptr<Painting> painting =
+            std::shared_ptr<Painting>(new Painting(level, x, y, z, dir));
 
 #ifndef _CONTENT_PACKAGE
         if (app.DebugArtToolsOn() && auxValue > 0) {
@@ -82,8 +82,8 @@ std::shared_ptr<HangingEntity> HangingEntityItem::createEntity(
 
         return dynamic_pointer_cast<HangingEntity>(painting);
     } else if (eType == eTYPE_ITEM_FRAME) {
-        shared_ptr<ItemFrame> itemFrame =
-            shared_ptr<ItemFrame>(new ItemFrame(level, x, y, z, dir));
+        std::shared_ptr<ItemFrame> itemFrame =
+            std::shared_ptr<ItemFrame>(new ItemFrame(level, x, y, z, dir));
 
         return dynamic_pointer_cast<HangingEntity>(itemFrame);
     } else {
@@ -94,7 +94,7 @@ std::shared_ptr<HangingEntity> HangingEntityItem::createEntity(
 // 4J Adding overrides for art tools
 void HangingEntityItem::appendHoverText(
     std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player,
-    vector<HtmlString>* lines, bool advanced) {
+    std::vector<HtmlString>* lines, bool advanced) {
 #ifndef _CONTENT_PACKAGE
     if (eType == eTYPE_PAINTING && app.DebugArtToolsOn() &&
         itemInstance->getAuxValue() > 0) {
@@ -107,7 +107,7 @@ void HangingEntityItem::appendHoverText(
                  Painting::Motive::values[motive]->w / 16,
                  Painting::Motive::values[motive]->h / 16);
 
-        wstring motiveName = formatted;
+        std::wstring motiveName = formatted;
 
         lines->push_back(HtmlString(motiveName.c_str(), eHTMLColor_c));
     } else

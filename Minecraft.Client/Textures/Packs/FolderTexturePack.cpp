@@ -24,7 +24,7 @@ InputStream* FolderTexturePack::getResourceImplementation(
 	return new BufferedInputStream(new FileInputStream(file));
 #endif
 
-    wstring wDrive = L"";
+    std::wstring wDrive = L"";
     // Make the content package point to to the UPDATE: drive is needed
 #ifdef _XBOX
     wDrive = L"GAME:\\DummyTexturePack\\res";
@@ -60,7 +60,7 @@ bool FolderTexturePack::isTerrainUpdateCompatible() {
 
 std::wstring FolderTexturePack::getPath(bool bTitleUpdateTexture /*= false*/,
                                         const char* pchBDPatchFilename) {
-    wstring wDrive;
+    std::wstring wDrive;
 #ifdef _XBOX
     wDrive = L"GAME:\\" + file->getPath() + L"\\";
 #else

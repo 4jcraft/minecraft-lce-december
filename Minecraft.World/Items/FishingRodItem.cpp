@@ -36,10 +36,10 @@ std::shared_ptr<ItemInstance> FishingRodItem::use(
         if (!level->isClientSide) {
             // 4J Stu - Move the player->fishing out of the ctor as we cannot
             // reference 'this'
-            shared_ptr<FishingHook> hook =
-                shared_ptr<FishingHook>(new FishingHook(level, player));
+            std::shared_ptr<FishingHook> hook =
+                std::shared_ptr<FishingHook>(new FishingHook(level, player));
             player->fishing = hook;
-            level->addEntity(shared_ptr<FishingHook>(hook));
+            level->addEntity(std::shared_ptr<FishingHook>(hook));
         }
         player->swing();
     }

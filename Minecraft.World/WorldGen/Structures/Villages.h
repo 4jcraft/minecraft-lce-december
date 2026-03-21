@@ -10,9 +10,9 @@ public:
 
 private:
     Level* level;
-    deque<Pos*> queries;
-    vector<std::shared_ptr<DoorInfo> > unclustered;
-    vector<std::shared_ptr<Village> > villages;
+    std::deque<Pos*> queries;
+    std::vector<std::shared_ptr<DoorInfo> > unclustered;
+    std::vector<std::shared_ptr<Village> > villages;
     int _tick;
 
 public:
@@ -28,7 +28,7 @@ private:
     void removeVillages();
 
 public:
-    vector<std::shared_ptr<Village> >* getVillages();
+    std::vector<std::shared_ptr<Village> >* getVillages();
     std::shared_ptr<Village> getClosestVillage(int x, int y, int z,
                                                int maxDist);
 

@@ -1,13 +1,13 @@
 #include "../Platform/stdafx.h"
 
 std::wstring toLower(const std::wstring& a) {
-    wstring out = wstring(a);
+    std::wstring out = std::wstring(a);
     std::transform(out.begin(), out.end(), out.begin(), ::tolower);
     return out;
 }
 
 std::wstring trimString(const std::wstring& a) {
-    wstring b;
+    std::wstring b;
     int start = (int)a.find_first_not_of(L" \t\n\r");
     int end = (int)a.find_last_not_of(L" \t\n\r");
     if (start == wstring::npos) start = 0;
@@ -18,7 +18,7 @@ std::wstring trimString(const std::wstring& a) {
 
 std::wstring replaceAll(const std::wstring& in, const std::wstring& replace,
                         const std::wstring& with) {
-    wstring out = in;
+    std::wstring out = in;
     size_t pos = 0;
     while ((pos = out.find(replace, pos)) != wstring::npos) {
         out.replace(pos, replace.length(), with);
@@ -29,14 +29,14 @@ std::wstring replaceAll(const std::wstring& in, const std::wstring& replace,
 
 bool equalsIgnoreCase(const std::wstring& a, const std::wstring& b) {
     bool out;
-    wstring c = toLower(a);
-    wstring d = toLower(b);
+    std::wstring c = toLower(a);
+    std::wstring d = toLower(b);
     out = c.compare(d) == 0;
     return out;
 }
 
 std::wstring convStringToWstring(const std::string& converting) {
-    wstring converted(converting.length(), L' ');
+    std::wstring converted(converting.length(), L' ');
     copy(converting.begin(), converting.end(), converted.begin());
     return converted;
 }
@@ -99,26 +99,26 @@ bool BothAreSpaces(wchar_t lhs, wchar_t rhs) {
     return (lhs == rhs) && (lhs == L' ');
 }
 
-void stripWhitespaceForHtml(std::wstring& string, bool bRemoveNewline) {
+void stripWhitespaceForHtml(std::wstring& std::string, bool bRemoveNewline) {
     // Strip newline chars
     if (bRemoveNewline) {
-        string.erase(std::remove(string.begin(), string.end(), '\n'),
-                     string.end());
-        string.erase(std::remove(string.begin(), string.end(), '\r'),
-                     string.end());
+        std::string.erase(std::remove(std::string.begin(), std::string.end(), '\n'),
+                     std::string.end());
+        std::string.erase(std::remove(std::string.begin(), std::string.end(), '\r'),
+                     std::string.end());
     }
 
-    string.erase(std::remove(string.begin(), string.end(), '\t'), string.end());
+    std::string.erase(std::remove(std::string.begin(), std::string.end(), '\t'), std::string.end());
 
     // Strip duplicate spaces
-    string.erase(std::unique(string.begin(), string.end(), BothAreSpaces),
-                 string.end());
+    std::string.erase(std::unique(std::string.begin(), std::string.end(), BothAreSpaces),
+                 std::string.end());
 
-    string = trimString(string);
+    std::string = trimString(std::string);
 }
 
 std::wstring escapeXML(const std::wstring& in) {
-    wstring out = in;
+    std::wstring out = in;
     out = replaceAll(out, L"&", L"&amp;");
     // out = replaceAll(out, L"\"", L"&quot;");
     // out = replaceAll(out, L"'", L"&apos;");
@@ -128,7 +128,7 @@ std::wstring escapeXML(const std::wstring& in) {
 }
 
 std::wstring parseXMLSpecials(const std::wstring& in) {
-    wstring out = in;
+    std::wstring out = in;
     out = replaceAll(out, L"&amp;", L"&");
     // out = replaceAll(out, L"\"", L"&quot;");
     // out = replaceAll(out, L"'", L"&apos;");

@@ -14,7 +14,7 @@ public:
     virtual std::shared_ptr<LevelStorage> selectLevel(
         ConsoleSaveFile* saveFile, const std::wstring& levelId,
         bool createPlayerDir) = 0;
-    virtual vector<LevelSummary*>* getLevelList() = 0;
+    virtual std::vector<LevelSummary*>* getLevelList() = 0;
     virtual void clearAll() = 0;
     virtual LevelData* getDataTagFor(ConsoleSaveFile* saveFile,
                                      const std::wstring& levelId) = 0;

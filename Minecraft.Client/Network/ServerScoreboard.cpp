@@ -150,7 +150,7 @@ void ServerScoreboard::setDirty() {
     // }
 }
 
-vector<shared_ptr<Packet> >* ServerScoreboard::getStartTrackingPackets(
+std::vector<std::shared_ptr<Packet> >* ServerScoreboard::getStartTrackingPackets(
     Objective* objective) {
     return NULL;
 
@@ -189,7 +189,7 @@ void ServerScoreboard::startTrackingObjective(Objective* objective) {
     // trackedObjectives.push_back(objective);
 }
 
-vector<shared_ptr<Packet> >* ServerScoreboard::getStopTrackingPackets(
+std::vector<std::shared_ptr<Packet> >* ServerScoreboard::getStopTrackingPackets(
     Objective* objective) {
     return NULL;
 

@@ -187,7 +187,7 @@ std::wstring Mth::createInsecureUUID(Random* random) {
         output[31 - i] = nybbleLow;
         output[15 - i] = nybbleHigh;
     }
-    return wstring(output);
+    return std::wstring(output);
 }
 
 // 4J Added

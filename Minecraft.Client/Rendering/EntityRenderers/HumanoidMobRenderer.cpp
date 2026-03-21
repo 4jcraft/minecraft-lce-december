@@ -12,7 +12,7 @@
 
 const std::wstring HumanoidMobRenderer::MATERIAL_NAMES[5] = {
     L"cloth", L"chain", L"iron", L"diamond", L"gold"};
-std::map<wstring, ResourceLocation> HumanoidMobRenderer::ARMOR_LOCATION_CACHE;
+std::map<std::wstring, ResourceLocation> HumanoidMobRenderer::ARMOR_LOCATION_CACHE;
 
 void HumanoidMobRenderer::_init(HumanoidModel* humanoidModel, float scale) {
     this->humanoidModel = humanoidModel;
@@ -55,13 +55,13 @@ ResourceLocation* HumanoidMobRenderer::getArmorLocation(ArmorItem* armorItem,
         case 4:
             break;
     };
-    wstring path = wstring(L"armor/" + MATERIAL_NAMES[armorItem->modelIndex])
+    std::wstring path = std::wstring(L"armor/" + MATERIAL_NAMES[armorItem->modelIndex])
                        .append(L"_")
                        .append(_toString<int>(layer == 2 ? 2 : 1))
                        .append((overlay ? L"_b" : L""))
                        .append(L".png");
 
-    std::map<wstring, ResourceLocation>::iterator it =
+    std::map<std::wstring, ResourceLocation>::iterator it =
         ARMOR_LOCATION_CACHE.find(path);
 
     ResourceLocation* location;
@@ -69,7 +69,7 @@ ResourceLocation* HumanoidMobRenderer::getArmorLocation(ArmorItem* armorItem,
         location = &it->second;
     } else {
         ARMOR_LOCATION_CACHE.insert(
-            std::pair<wstring, ResourceLocation>(path, ResourceLocation(path)));
+            std::pair<std::wstring, ResourceLocation>(path, ResourceLocation(path)));
 
         it = ARMOR_LOCATION_CACHE.find(path);
         location = &it->second;
@@ -80,7 +80,7 @@ ResourceLocation* HumanoidMobRenderer::getArmorLocation(ArmorItem* armorItem,
 
 void HumanoidMobRenderer::prepareSecondPassArmor(
     std::shared_ptr<LivingEntity> mob, int layer, float a) {
-    shared_ptr<ItemInstance> itemInstance = mob->getArmor(3 - layer);
+    std::shared_ptr<ItemInstance> itemInstance = mob->getArmor(3 - layer);
     if (itemInstance != NULL) {
         Item* item = itemInstance->getItem();
         if (dynamic_cast<ArmorItem*>(item) != NULL) {
@@ -101,9 +101,9 @@ void HumanoidMobRenderer::createArmorParts() {
 
 int HumanoidMobRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob,
                                       int layer, float a) {
-    shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
+    std::shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
 
-    shared_ptr<ItemInstance> itemInstance = mob->getArmor(3 - layer);
+    std::shared_ptr<ItemInstance> itemInstance = mob->getArmor(3 - layer);
     if (itemInstance != NULL) {
         Item* item = itemInstance->getItem();
         if (dynamic_cast<ArmorItem*>(item) != NULL) {
@@ -152,12 +152,12 @@ int HumanoidMobRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob,
 
 void HumanoidMobRenderer::render(std::shared_ptr<Entity> _mob, double x,
                                  double y, double z, float rot, float a) {
-    shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
+    std::shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
 
     float brightness =
         SharedConstants::TEXTURE_LIGHTING ? 1 : mob->getBrightness(a);
     glColor3f(brightness, brightness, brightness);
-    shared_ptr<ItemInstance> item = mob->getCarriedItem();
+    std::shared_ptr<ItemInstance> item = mob->getCarriedItem();
 
     prepareCarriedItem(mob, item);
 
@@ -193,8 +193,8 @@ void HumanoidMobRenderer::additionalRendering(std::shared_ptr<LivingEntity> mob,
     float brightness =
         SharedConstants::TEXTURE_LIGHTING ? 1 : mob->getBrightness(a);
     glColor3f(brightness, brightness, brightness);
-    shared_ptr<ItemInstance> item = mob->getCarriedItem();
-    shared_ptr<ItemInstance> headGear = mob->getArmor(3);
+    std::shared_ptr<ItemInstance> item = mob->getCarriedItem();
+    std::shared_ptr<ItemInstance> headGear = mob->getArmor(3);
 
     if (headGear != NULL) {
         // don't render the pumpkin of skulls for the skins with that disabled
@@ -222,7 +222,7 @@ void HumanoidMobRenderer::additionalRendering(std::shared_ptr<LivingEntity> mob,
                 float s = 17 / 16.0f;
                 glScalef(s, -s, -s);
 
-                wstring extra = L"";
+                std::wstring extra = L"";
                 if (headGear->hasTag() &&
                     headGear->getTag()->contains(L"SkullOwner")) {
                     extra = headGear->getTag()->getString(L"SkullOwner");

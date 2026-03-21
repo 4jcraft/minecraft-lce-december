@@ -88,7 +88,7 @@ std::shared_ptr<Entity> PigZombie::findAttackTarget() {
 #ifndef _FINAL_BUILD
 #ifdef _DEBUG_MENUS_ENABLED
     if (app.GetMobsDontAttackEnabled()) {
-        return shared_ptr<Player>();
+        return std::shared_ptr<Player>();
     }
 #endif
 #endif
@@ -98,15 +98,15 @@ std::shared_ptr<Entity> PigZombie::findAttackTarget() {
 }
 
 bool PigZombie::hurt(DamageSource* source, float dmg) {
-    shared_ptr<Entity> sourceEntity = source->getEntity();
+    std::shared_ptr<Entity> sourceEntity = source->getEntity();
     if (sourceEntity != NULL && sourceEntity->instanceof(eTYPE_PLAYER)) {
-        vector<shared_ptr<Entity> >* nearby =
+        std::vector<std::shared_ptr<Entity> >* nearby =
             level->getEntities(shared_from_this(), bb->grow(32, 32, 32));
         AUTO_VAR(itEnd, nearby->end());
         for (AUTO_VAR(it, nearby->begin()); it != itEnd; it++) {
-            shared_ptr<Entity> e = *it;  // nearby->at(i);
+            std::shared_ptr<Entity> e = *it;  // nearby->at(i);
             if (e->instanceof(eTYPE_PIGZOMBIE)) {
-                shared_ptr<PigZombie> pigZombie =
+                std::shared_ptr<PigZombie> pigZombie =
                     dynamic_pointer_cast<PigZombie>(e);
                 pigZombie->alert(sourceEntity);
             }
@@ -148,7 +148,7 @@ void PigZombie::dropRareDeathLoot(int rareLootLevel) {
 int PigZombie::getDeathLoot() { return Item::rotten_flesh_Id; }
 
 void PigZombie::populateDefaultEquipmentSlots() {
-    setEquippedSlot(SLOT_WEAPON, shared_ptr<ItemInstance>(
+    setEquippedSlot(SLOT_WEAPON, std::shared_ptr<ItemInstance>(
                                      new ItemInstance(Item::sword_gold)));
 }
 

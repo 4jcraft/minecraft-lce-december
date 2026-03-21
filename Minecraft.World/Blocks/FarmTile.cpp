@@ -59,7 +59,7 @@ void FarmTile::fallOn(Level* level, int x, int y, int z,
     if (!level->isClientSide &&
         level->random->nextFloat() < (fallDistance - .5f)) {
         if (entity->instanceof(eTYPE_PLAYER)) {
-            shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+            std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
             if (!player->isAllowedToMine()) {
                 return;
             }

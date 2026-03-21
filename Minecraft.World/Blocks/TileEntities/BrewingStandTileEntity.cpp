@@ -74,7 +74,7 @@ bool BrewingStandTileEntity::isBrewable() {
     if (items[INGREDIENT_SLOT] == NULL || items[INGREDIENT_SLOT]->count <= 0) {
         return false;
     }
-    shared_ptr<ItemInstance> ingredient = items[INGREDIENT_SLOT];
+    std::shared_ptr<ItemInstance> ingredient = items[INGREDIENT_SLOT];
     if (PotionBrewing::SIMPLIFIED_BREWING) {
         if (!Item::items[ingredient->id]->hasPotionBrewingFormula()) {
             return false;
@@ -93,9 +93,9 @@ bool BrewingStandTileEntity::isBrewable() {
                     break;
                 }
 
-                vector<MobEffectInstance*>* currentEffects =
+                std::vector<MobEffectInstance*>* currentEffects =
                     Item::potion->getMobEffects(currentBrew);
-                vector<MobEffectInstance*>* newEffects =
+                std::vector<MobEffectInstance*>* newEffects =
                     Item::potion->getMobEffects(newBrew);
 
                 // 4J - this code replaces an expression
@@ -158,7 +158,7 @@ void BrewingStandTileEntity::doBrew() {
         return;
     }
 
-    shared_ptr<ItemInstance> ingredient = items[INGREDIENT_SLOT];
+    std::shared_ptr<ItemInstance> ingredient = items[INGREDIENT_SLOT];
 
     if (PotionBrewing::SIMPLIFIED_BREWING) {
         for (int dest = 0; dest < 3; dest++) {
@@ -167,9 +167,9 @@ void BrewingStandTileEntity::doBrew() {
                 int newBrew = NORMALISE_POTION_AUXVAL(
                     applyIngredient(currentBrew, ingredient));
 
-                vector<MobEffectInstance*>* currentEffects =
+                std::vector<MobEffectInstance*>* currentEffects =
                     Item::potion->getMobEffects(currentBrew);
-                vector<MobEffectInstance*>* newEffects =
+                std::vector<MobEffectInstance*>* newEffects =
                     Item::potion->getMobEffects(newBrew);
 
                 // 4J - this code replaces an expression
@@ -213,13 +213,13 @@ void BrewingStandTileEntity::doBrew() {
             } else if (isWater && items[dest] != NULL &&
                        items[dest]->id == Item::glassBottle_Id) {
                 items[dest] =
-                    shared_ptr<ItemInstance>(new ItemInstance(Item::potion));
+                    std::shared_ptr<ItemInstance>(new ItemInstance(Item::potion));
             }
         }
     }
 
     if (Item::items[ingredient->id]->hasCraftingRemainingItem()) {
-        items[INGREDIENT_SLOT] = shared_ptr<ItemInstance>(new ItemInstance(
+        items[INGREDIENT_SLOT] = std::shared_ptr<ItemInstance>(new ItemInstance(
             Item::items[ingredient->id]->getCraftingRemainingItem()));
     } else {
         items[INGREDIENT_SLOT]->count--;
@@ -307,14 +307,14 @@ std::shared_ptr<ItemInstance> BrewingStandTileEntity::removeItem(
 
     if (slot >= 0 && slot < items.length && items[slot] != NULL) {
         if (items[slot]->count <= count) {
-            shared_ptr<ItemInstance> item = items[slot];
+            std::shared_ptr<ItemInstance> item = items[slot];
             items[slot] = nullptr;
             this->setChanged();
             // 4J Stu - Fix for duplication glitch
             if (item->count <= 0) return nullptr;
             return item;
         } else {
-            shared_ptr<ItemInstance> i = items[slot]->remove(count);
+            std::shared_ptr<ItemInstance> i = items[slot]->remove(count);
             if (items[slot]->count == 0) items[slot] = nullptr;
             this->setChanged();
             // 4J Stu - Fix for duplication glitch
@@ -328,7 +328,7 @@ std::shared_ptr<ItemInstance> BrewingStandTileEntity::removeItem(
 std::shared_ptr<ItemInstance> BrewingStandTileEntity::removeItemNoUpdate(
     int slot) {
     if (slot >= 0 && slot < items.length) {
-        shared_ptr<ItemInstance> item = items[slot];
+        std::shared_ptr<ItemInstance> item = items[slot];
         items[slot] = nullptr;
         return item;
     }
@@ -404,8 +404,8 @@ bool BrewingStandTileEntity::canTakeItemThroughFace(
 
 // 4J Added
 std::shared_ptr<TileEntity> BrewingStandTileEntity::clone() {
-    shared_ptr<BrewingStandTileEntity> result =
-        shared_ptr<BrewingStandTileEntity>(new BrewingStandTileEntity());
+    std::shared_ptr<BrewingStandTileEntity> result =
+        std::shared_ptr<BrewingStandTileEntity>(new BrewingStandTileEntity());
     TileEntity::clone(result);
 
     result->brewTime = brewTime;

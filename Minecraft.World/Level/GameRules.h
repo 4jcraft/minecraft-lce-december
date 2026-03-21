@@ -33,7 +33,7 @@ public:
     static const int RULE_DAYLIGHT;
 
 private:
-    unordered_map<std::wstring, GameRule*> rules;
+    std::unordered_map<std::wstring, GameRule*> rules;
 
 public:
     GameRules();

@@ -34,8 +34,8 @@ public:
     static const int CONTAINER_ID_INVENTORY = 0;
     static const int CONTAINER_ID_CREATIVE = -2;
 
-    vector<std::shared_ptr<ItemInstance> > lastSlots;
-    vector<Slot*> slots;
+    std::vector<std::shared_ptr<ItemInstance> > lastSlots;
+    std::vector<Slot*> slots;
     int containerId;
 
 private:
@@ -43,13 +43,13 @@ private:
 
     int quickcraftType;
     int quickcraftStatus;
-    unordered_set<Slot*> quickcraftSlots;
+    std::unordered_set<Slot*> quickcraftSlots;
 
 private:
     bool m_bNeedsRendered;  // 4J added
 
 protected:
-    vector<ContainerListener*> containerListeners;
+    std::vector<ContainerListener*> containerListeners;
 
     // 4J Stu - The java does not have ctor here (being an abstract) but we need
     // one to initialise the member variables
@@ -62,7 +62,7 @@ public:
     virtual ~AbstractContainerMenu();
     virtual void addSlotListener(ContainerListener* listener);
     virtual void removeSlotListener(ContainerListener* listener);
-    virtual vector<std::shared_ptr<ItemInstance> >* getItems();
+    virtual std::vector<std::shared_ptr<ItemInstance> >* getItems();
     virtual void sendData(int id, int value);
     virtual void broadcastChanges();
     virtual bool needsRendered();
@@ -95,7 +95,7 @@ public:
     short backup(std::shared_ptr<Inventory> inventory);
 
 private:
-    unordered_set<std::shared_ptr<Player>, PlayerKeyHash, PlayerKeyEq>
+    std::unordered_set<std::shared_ptr<Player>, PlayerKeyHash, PlayerKeyEq>
         unSynchedPlayers;
 
 public:
@@ -126,7 +126,7 @@ public:
     static bool canItemQuickReplace(Slot* slot,
                                     std::shared_ptr<ItemInstance> item,
                                     bool ignoreSize);
-    static void getQuickCraftSlotCount(unordered_set<Slot*>* quickCraftSlots,
+    static void getQuickCraftSlotCount(std::unordered_set<Slot*>* quickCraftSlots,
                                        int quickCraftingType,
                                        std::shared_ptr<ItemInstance> item,
                                        int carry);

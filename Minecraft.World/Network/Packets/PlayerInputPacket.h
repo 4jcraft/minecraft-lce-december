@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class PlayerInputPacket : public Packet,
-                          public enable_shared_from_this<PlayerInputPacket> {
+                          public std::enable_shared_from_this<PlayerInputPacket> {
 private:
     float xxa;
     float yya;

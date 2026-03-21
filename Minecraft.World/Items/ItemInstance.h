@@ -23,7 +23,7 @@ class HtmlString;
 // 4J Stu - While this is not really an abstract class, we don't want to make
 // new instances of it, mainly because there are too many ctors and that doesn't
 // fit well into out macroisation setup
-class ItemInstance : public enable_shared_from_this<ItemInstance> {
+class ItemInstance : public std::enable_shared_from_this<ItemInstance> {
 public:
     static const std::wstring ATTRIBUTE_MODIFIER_FORMAT;
     static const wchar_t* TAG_ENCH_ID;
@@ -49,7 +49,7 @@ private:
     void _init(int id, int count, int auxValue);
 
     // TU9
-    shared_ptr<ItemFrame> frame;
+    std::shared_ptr<ItemFrame> frame;
 
 public:
     ItemInstance(Tile* tile);
@@ -63,27 +63,27 @@ public:
     ItemInstance(Item* item, int count, int auxValue);
     ItemInstance(int id, int count, int damage);
 
-    static shared_ptr<ItemInstance> fromTag(CompoundTag* itemTag);
+    static std::shared_ptr<ItemInstance> fromTag(CompoundTag* itemTag);
 
 private:
     ItemInstance() { _init(-1, 0, 0); }
 
 public:
     ~ItemInstance();
-    shared_ptr<ItemInstance> remove(int count);
+    std::shared_ptr<ItemInstance> remove(int count);
 
     Item* getItem() const;
     Icon* getIcon();
     int getIconType();
-    bool useOn(shared_ptr<Player> player, Level* level, int x, int y, int z,
+    bool useOn(std::shared_ptr<Player> player, Level* level, int x, int y, int z,
                int face, float clickX, float clickY, float clickZ,
                bool bTestUseOnOnly = false);
     float getDestroySpeed(Tile* tile);
-    bool TestUse(shared_ptr<ItemInstance> itemInstance, Level* level,
-                 shared_ptr<Player> player);
-    shared_ptr<ItemInstance> use(Level* level, shared_ptr<Player> player);
-    shared_ptr<ItemInstance> useTimeDepleted(Level* level,
-                                             shared_ptr<Player> player);
+    bool TestUse(std::shared_ptr<ItemInstance> itemInstance, Level* level,
+                 std::shared_ptr<Player> player);
+    std::shared_ptr<ItemInstance> use(Level* level, std::shared_ptr<Player> player);
+    std::shared_ptr<ItemInstance> useTimeDepleted(Level* level,
+                                             std::shared_ptr<Player> player);
     CompoundTag* save(CompoundTag* compoundTag);
     void load(CompoundTag* compoundTag);
     int getMaxStackSize();
@@ -96,18 +96,18 @@ public:
     void setAuxValue(int value);
     int getMaxDamage();
     bool hurt(int dmg, Random* random);
-    void hurtAndBreak(int dmg, shared_ptr<LivingEntity> owner);
-    void hurtEnemy(shared_ptr<LivingEntity> mob, shared_ptr<Player> attacker);
+    void hurtAndBreak(int dmg, std::shared_ptr<LivingEntity> owner);
+    void hurtEnemy(std::shared_ptr<LivingEntity> mob, std::shared_ptr<Player> attacker);
     void mineBlock(Level* level, int tile, int x, int y, int z,
-                   shared_ptr<Player> owner);
+                   std::shared_ptr<Player> owner);
     bool canDestroySpecial(Tile* tile);
-    bool interactEnemy(shared_ptr<Player> player, shared_ptr<LivingEntity> mob);
-    shared_ptr<ItemInstance> copy() const;
+    bool interactEnemy(std::shared_ptr<Player> player, std::shared_ptr<LivingEntity> mob);
+    std::shared_ptr<ItemInstance> copy() const;
     ItemInstance* copy_not_shared() const;  // 4J Stu - Added for use in recipes
     static bool tagMatches(
-        shared_ptr<ItemInstance> a,
-        shared_ptr<ItemInstance> b);  // 4J Brought forward from 1.2
-    static bool matches(shared_ptr<ItemInstance> a, shared_ptr<ItemInstance> b);
+        std::shared_ptr<ItemInstance> a,
+        std::shared_ptr<ItemInstance> b);  // 4J Brought forward from 1.2
+    static bool matches(std::shared_ptr<ItemInstance> a, std::shared_ptr<ItemInstance> b);
 
     // 4J-PB
     int GetCount() { return count; }
@@ -121,26 +121,26 @@ public:
        // have o or 1 of the item
 
 private:
-    bool matches(shared_ptr<ItemInstance> b);
+    bool matches(std::shared_ptr<ItemInstance> b);
 
 public:
-    bool sameItem(shared_ptr<ItemInstance> b);
-    bool sameItemWithTags(shared_ptr<ItemInstance> b);  // 4J Added
+    bool sameItem(std::shared_ptr<ItemInstance> b);
+    bool sameItemWithTags(std::shared_ptr<ItemInstance> b);  // 4J Added
     bool sameItem_not_shared(
         ItemInstance* b);  // 4J Stu - Added this for the one time I need it
     virtual unsigned int getUseDescriptionId();  // 4J Added
     virtual unsigned int getDescriptionId(int iData = -1);
     virtual ItemInstance* setDescriptionId(unsigned int id);
-    static shared_ptr<ItemInstance> clone(shared_ptr<ItemInstance> item);
+    static std::shared_ptr<ItemInstance> clone(std::shared_ptr<ItemInstance> item);
     std::wstring toString();
-    void inventoryTick(Level* level, shared_ptr<Entity> owner, int slot,
+    void inventoryTick(Level* level, std::shared_ptr<Entity> owner, int slot,
                        bool selected);
-    void onCraftedBy(Level* level, shared_ptr<Player> player, int craftCount);
-    bool equals(shared_ptr<ItemInstance> ii);
+    void onCraftedBy(Level* level, std::shared_ptr<Player> player, int craftCount);
+    bool equals(std::shared_ptr<ItemInstance> ii);
 
     int getUseDuration();
     UseAnim getUseAnimation();
-    void releaseUsing(Level* level, shared_ptr<Player> player,
+    void releaseUsing(Level* level, std::shared_ptr<Player> player,
                       int durationLeft);
 
     // 4J Stu - Brought forward these functions for enchanting/game rules
@@ -152,8 +152,8 @@ public:
     void setHoverName(const std::wstring& name);
     void resetHoverName();
     bool hasCustomHoverName();
-    vector<HtmlString>* getHoverText(shared_ptr<Player> player, bool advanced);
-    vector<HtmlString>* getHoverTextOnly(shared_ptr<Player> player,
+    std::vector<HtmlString>* getHoverText(std::shared_ptr<Player> player, bool advanced);
+    std::vector<HtmlString>* getHoverTextOnly(std::shared_ptr<Player> player,
                                          bool advanced);  // 4J Added
     bool isFoil();
     const Rarity* getRarity();
@@ -163,8 +163,8 @@ public:
     void addTagElement(std::wstring name, Tag* tag);
     bool mayBePlacedInAdventureMode();
     bool isFramed();
-    void setFramed(shared_ptr<ItemFrame> frame);
-    shared_ptr<ItemFrame> getFrame();
+    void setFramed(std::shared_ptr<ItemFrame> frame);
+    std::shared_ptr<ItemFrame> getFrame();
     int getBaseRepairCost();
     void setRepairCost(int cost);
     attrAttrModMap* getAttributeModifiers();

@@ -19,11 +19,11 @@ public:
 
 #ifdef ENABLE_STRUCTURE_SAVING
 private:
-    shared_ptr<StructureFeatureSavedData> savedData;
+    std::shared_ptr<StructureFeatureSavedData> savedData;
 #endif
 
 protected:
-    unordered_map<__int64, StructureStart*> cachedStructures;
+    std::unordered_map<__int64, StructureStart*> cachedStructures;
 
 public:
     StructureFeature();
@@ -48,7 +48,7 @@ public:
                                         int cellZ);
 
 protected:
-    vector<TilePos>* getGuesstimatedFeaturePositions();
+    std::vector<TilePos>* getGuesstimatedFeaturePositions();
 
 private:
     virtual void restoreSavedData(Level* level);

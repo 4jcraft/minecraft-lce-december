@@ -25,7 +25,7 @@ public:
     virtual Tile* getDefaultDisplayTile();
     virtual int getDefaultDisplayOffset();
     virtual unsigned int getContainerSize();
-    virtual bool interact(shared_ptr<Player> player);
+    virtual bool interact(std::shared_ptr<Player> player);
     virtual void activateMinecart(int xt, int yt, int zt, bool state);
     virtual bool isEnabled();
     virtual void setEnabled(bool enabled);
@@ -46,16 +46,16 @@ public:
     bool isOnCooldown();
 
     // 4J For Hopper
-    virtual shared_ptr<ItemInstance> getItem(unsigned int slot) {
+    virtual std::shared_ptr<ItemInstance> getItem(unsigned int slot) {
         return MinecartContainer::getItem(slot);
     }
-    virtual shared_ptr<ItemInstance> removeItem(unsigned int slot, int count) {
+    virtual std::shared_ptr<ItemInstance> removeItem(unsigned int slot, int count) {
         return MinecartContainer::removeItem(slot, count);
     }
-    virtual shared_ptr<ItemInstance> removeItemNoUpdate(int slot) {
+    virtual std::shared_ptr<ItemInstance> removeItemNoUpdate(int slot) {
         return MinecartContainer::removeItemNoUpdate(slot);
     }
-    virtual void setItem(unsigned int slot, shared_ptr<ItemInstance> item) {
+    virtual void setItem(unsigned int slot, std::shared_ptr<ItemInstance> item) {
         MinecartContainer::setItem(slot, item);
     }
     virtual std::wstring getName() { return MinecartContainer::getName(); }
@@ -68,12 +68,12 @@ public:
     }
 
     virtual void setChanged() { MinecartContainer::setChanged(); }
-    virtual bool stillValid(shared_ptr<Player> player) {
+    virtual bool stillValid(std::shared_ptr<Player> player) {
         return MinecartContainer::stillValid(player);
     }
     virtual void startOpen() { MinecartContainer::startOpen(); }
     virtual void stopOpen() { MinecartContainer::stopOpen(); }
-    virtual bool canPlaceItem(int slot, shared_ptr<ItemInstance> item) {
+    virtual bool canPlaceItem(int slot, std::shared_ptr<ItemInstance> item) {
         return MinecartContainer::canPlaceItem(slot, item);
     }
 };

@@ -39,7 +39,7 @@ void RestrictOpenDoorGoal::start() {
 void RestrictOpenDoorGoal::stop() {
     mob->getNavigation()->setCanOpenDoors(true);
     mob->getNavigation()->setCanPassDoors(true);
-    doorInfo = weak_ptr<DoorInfo>();
+    doorInfo = std::weak_ptr<DoorInfo>();
 }
 
 void RestrictOpenDoorGoal::tick() {

@@ -5,7 +5,7 @@
 class ServerPlayer;
 
 class PlayerInfoPacket : public Packet,
-                         public enable_shared_from_this<PlayerInfoPacket> {
+                         public std::enable_shared_from_this<PlayerInfoPacket> {
 public:
     // 4J Stu - I have re-purposed this packet for our uses
     // std::wstring name;

@@ -103,28 +103,28 @@ EnderDragon::EnderDragon(Level* level) : Mob(level) {
 
 // 4J - split off from ctor so we can use shared_from_this()
 void EnderDragon::AddParts() {
-    head = shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
+    head = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
         dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"head", 6,
         6));
-    neck = shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
+    neck = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
         dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"neck", 6,
         6));  // 4J Added
-    body = shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
+    body = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
         dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"body", 8,
         8));
-    tail1 = shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
+    tail1 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
         dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"tail", 4,
         4));
-    tail2 = shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
+    tail2 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
         dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"tail", 4,
         4));
-    tail3 = shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
+    tail3 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
         dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"tail", 4,
         4));
-    wing1 = shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
+    wing1 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
         dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"wing", 4,
         4));
-    wing2 = shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
+    wing2 = std::shared_ptr<MultiEntityMobPart>(new MultiEntityMobPart(
         dynamic_pointer_cast<MultiEntityMob>(shared_from_this()), L"wing", 4,
         4));
 
@@ -458,14 +458,14 @@ void EnderDragon::aiStep() {
         if (getSynchedAction() == e_EnderdragonAction_Sitting_Flaming ||
             getSynchedAction() == e_EnderdragonAction_Landing) {
             if (m_actionTicks < (FLAME_TICKS - 10)) {
-                vector<shared_ptr<Entity> >* targets =
+                std::vector<std::shared_ptr<Entity> >* targets =
                     level->getEntities(shared_from_this(), m_acidArea);
 
                 for (AUTO_VAR(it, targets->begin()); it != targets->end();
                      ++it) {
                     if ((*it)->instanceof(eTYPE_LIVINGENTITY)) {
                         // app.DebugPrintf("Attacking entity with acid\n");
-                        shared_ptr<LivingEntity> e =
+                        std::shared_ptr<LivingEntity> e =
                             dynamic_pointer_cast<LivingEntity>(*it);
                         e->hurt(DamageSource::dragonbreath, 2);
                     }
@@ -701,7 +701,7 @@ void EnderDragon::aiStep() {
 
     // Curls/straightens the tail
     for (int i = 0; i < 3; i++) {
-        shared_ptr<MultiEntityMobPart> part = nullptr;
+        std::shared_ptr<MultiEntityMobPart> part = nullptr;
 
         if (i == 0) part = tail1;
         if (i == 1) part = tail2;
@@ -758,8 +758,8 @@ void EnderDragon::aiStep() {
 
                     level->levelEvent(nullptr, LevelEvent::SOUND_GHAST_FIREBALL,
                                       (int)x, (int)y, (int)z, 0);
-                    shared_ptr<DragonFireball> ie =
-                        shared_ptr<DragonFireball>(new DragonFireball(
+                    std::shared_ptr<DragonFireball> ie =
+                        std::shared_ptr<DragonFireball>(new DragonFireball(
                             level,
                             dynamic_pointer_cast<Mob>(shared_from_this()), xdd,
                             ydd, zdd));
@@ -809,14 +809,14 @@ void EnderDragon::checkCrystals() {
 
     if (random->nextInt(10) == 0) {
         float maxDist = 32;
-        vector<shared_ptr<Entity> >* crystals = level->getEntitiesOfClass(
+        std::vector<std::shared_ptr<Entity> >* crystals = level->getEntitiesOfClass(
             typeid(EnderCrystal), bb->grow(maxDist, maxDist, maxDist));
 
-        shared_ptr<EnderCrystal> crystal = nullptr;
+        std::shared_ptr<EnderCrystal> crystal = nullptr;
         double nearest = Double::MAX_VALUE;
         // for (Entity ec : crystals)
         for (AUTO_VAR(it, crystals->begin()); it != crystals->end(); ++it) {
-            shared_ptr<EnderCrystal> ec =
+            std::shared_ptr<EnderCrystal> ec =
                 dynamic_pointer_cast<EnderCrystal>(*it);
             double dist = ec->distanceToSqr(shared_from_this());
             if (dist < nearest) {
@@ -844,7 +844,7 @@ void EnderDragon::checkAttack() {
     }
 }
 
-void EnderDragon::knockBack(vector<shared_ptr<Entity> >* entities) {
+void EnderDragon::knockBack(std::vector<std::shared_ptr<Entity> >* entities) {
     double xm = (body->bb->x0 + body->bb->x1) / 2;
     //        double ym = (body.bb.y0 + body.bb.y1) / 2;
     double zm = (body->bb->z0 + body->bb->z1) / 2;
@@ -853,7 +853,7 @@ void EnderDragon::knockBack(vector<shared_ptr<Entity> >* entities) {
     for (AUTO_VAR(it, entities->begin()); it != entities->end(); ++it) {
         if ((*it)->instanceof(eTYPE_LIVINGENTITY))  //(e instanceof Mob)
         {
-            shared_ptr<LivingEntity> e =
+            std::shared_ptr<LivingEntity> e =
                 dynamic_pointer_cast<LivingEntity>(*it);
             double xd = e->x - xm;
             double zd = e->z - zm;
@@ -863,12 +863,12 @@ void EnderDragon::knockBack(vector<shared_ptr<Entity> >* entities) {
     }
 }
 
-void EnderDragon::hurt(vector<shared_ptr<Entity> >* entities) {
+void EnderDragon::hurt(std::vector<std::shared_ptr<Entity> >* entities) {
     // for (int i = 0; i < entities->size(); i++)
     for (AUTO_VAR(it, entities->begin()); it != entities->end(); ++it) {
         if ((*it)->instanceof(eTYPE_LIVINGENTITY))  //(e instanceof Mob)
         {
-            shared_ptr<LivingEntity> e =
+            std::shared_ptr<LivingEntity> e =
                 dynamic_pointer_cast<LivingEntity>(*it);  // entities.get(i);
             DamageSource* damageSource = DamageSource::mobAttack(
                 dynamic_pointer_cast<LivingEntity>(shared_from_this()));
@@ -879,7 +879,7 @@ void EnderDragon::hurt(vector<shared_ptr<Entity> >* entities) {
 }
 
 void EnderDragon::findNewTarget() {
-    shared_ptr<Player> playerNearestToEgg = nullptr;
+    std::shared_ptr<Player> playerNearestToEgg = nullptr;
 
     // Update current action
     switch (getSynchedAction()) {
@@ -1193,7 +1193,7 @@ void EnderDragon::tickDeath() {
             while (xpCount > 0) {
                 int newCount = ExperienceOrb::getExperienceValue(xpCount);
                 xpCount -= newCount;
-                level->addEntity(shared_ptr<ExperienceOrb>(
+                level->addEntity(std::shared_ptr<ExperienceOrb>(
                     new ExperienceOrb(level, x, y, z, newCount)));
             }
         }
@@ -1213,7 +1213,7 @@ void EnderDragon::tickDeath() {
         while (xpCount > 0) {
             int newCount = ExperienceOrb::getExperienceValue(xpCount);
             xpCount -= newCount;
-            level->addEntity(shared_ptr<ExperienceOrb>(
+            level->addEntity(std::shared_ptr<ExperienceOrb>(
                 new ExperienceOrb(level, x, y, z, newCount)));
         }
         int xo = 5 + random->nextInt(2) * 2 - 1;
@@ -1291,7 +1291,7 @@ void EnderDragon::spawnExitPortal(int x, int z) {
 
 void EnderDragon::checkDespawn() {}
 
-vector<shared_ptr<Entity> >* EnderDragon::getSubEntities() {
+std::vector<std::shared_ptr<Entity> >* EnderDragon::getSubEntities() {
     return &subEntities;
 }
 
@@ -1399,7 +1399,7 @@ EnderDragon::EEnderdragonAction EnderDragon::getSynchedAction() {
 void EnderDragon::handleCrystalDestroyed(DamageSource* source) {
     AABB* tempBB = AABB::newTemp(PODIUM_X_POS, 84.0, PODIUM_Z_POS,
                                  PODIUM_X_POS + 1.0, 85.0, PODIUM_Z_POS + 1.0);
-    vector<shared_ptr<Entity> >* crystals = level->getEntitiesOfClass(
+    std::vector<std::shared_ptr<Entity> >* crystals = level->getEntitiesOfClass(
         typeid(EnderCrystal), tempBB->grow(48, 40, 48));
     m_remainingCrystalsCount = (int)crystals->size() - 1;
     if (m_remainingCrystalsCount < 0) m_remainingCrystalsCount = 0;

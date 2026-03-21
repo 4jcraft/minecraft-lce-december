@@ -13,7 +13,7 @@
 
 class CompoundTag : public Tag {
 private:
-    unordered_map<wstring, Tag*> tags;
+    std::unordered_map<std::wstring, Tag*> tags;
 
 public:
     CompoundTag() : Tag(L"") {}
@@ -21,7 +21,7 @@ public:
 
     void write(DataOutput* dos) {
         AUTO_VAR(itEnd, tags.end());
-        for (unordered_map<wstring, Tag*>::iterator it = tags.begin();
+        for (std::unordered_map<std::wstring, Tag*>::iterator it = tags.begin();
              it != itEnd; it++) {
             Tag::writeNamedTag(it->second, dos);
         }
@@ -45,13 +45,13 @@ public:
         delete tag;
     }
 
-    vector<Tag*>* getAllTags()  // 4J - was collection
+    std::vector<Tag*>* getAllTags()  // 4J - was collection
     {
         // 4J - was return tags.values();
-        vector<Tag*>* ret = new vector<Tag*>;
+        std::vector<Tag*>* ret = new std::vector<Tag*>;
 
         AUTO_VAR(itEnd, tags.end());
-        for (unordered_map<wstring, Tag*>::iterator it = tags.begin();
+        for (std::unordered_map<std::wstring, Tag*>::iterator it = tags.begin();
              it != itEnd; it++) {
             ret->push_back(it->second);
         }
@@ -101,7 +101,7 @@ public:
     }
 
     void putCompound(const std::wstring& name, CompoundTag* value) {
-        tags[name] = value->setName(wstring(name));
+        tags[name] = value->setName(std::wstring(name));
     }
 
     void putBoolean(const std::wstring& name, bool val) {
@@ -149,7 +149,7 @@ public:
     }
 
     std::wstring getString(const std::wstring& name) {
-        if (tags.find(name) == tags.end()) return wstring(L"");
+        if (tags.find(name) == tags.end()) return std::wstring(L"");
         return ((StringTag*)tags[name])->data;
     }
 
@@ -173,7 +173,7 @@ public:
         return (ListTag<Tag>*)tags[name];
     }
 
-    bool getBoolean(const std::wstring& string) { return getByte(string) != 0; }
+    bool getBoolean(const std::wstring& std::string) { return getByte(std::string) != 0; }
 
     void remove(const std::wstring& name) {
         AUTO_VAR(it, tags.find(name));
@@ -185,7 +185,7 @@ public:
         static const int bufSize = 32;
         static wchar_t buf[bufSize];
         swprintf(buf, bufSize, L"%d entries", tags.size());
-        return wstring(buf);
+        return std::wstring(buf);
     }
 
     void print(char* prefix, std::ostream out) {
@@ -232,17 +232,17 @@ public:
             CompoundTag* o = (CompoundTag*)obj;
 
             if (tags.size() == o->tags.size()) {
-                bool equal = true;
+                bool std::equal = true;
                 AUTO_VAR(itEnd, tags.end());
                 for (AUTO_VAR(it, tags.begin()); it != itEnd; it++) {
                     AUTO_VAR(itFind, o->tags.find(it->first));
                     if (itFind == o->tags.end() ||
                         !it->second->equals(itFind->second)) {
-                        equal = false;
+                        std::equal = false;
                         break;
                     }
                 }
-                return equal;
+                return std::equal;
                 // return tags.entrySet().equals(o.tags.entrySet());
             }
         }

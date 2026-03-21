@@ -633,8 +633,8 @@ void UIScene_SkinSelectMenu::customDraw(IggyCustomDrawCallbackRegion* region) {
 void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
     BOOL showPrevious = FALSE, showNext = FALSE;
     DWORD previousIndex = 0, nextIndex = 0;
-    wstring skinName = L"";
-    wstring skinOrigin = L"";
+    std::wstring skinName = L"";
+    std::wstring skinOrigin = L"";
     bool bSkinIsFree = false;
     bool bLicensed = false;
     DLCSkinFile* skinFile = NULL;
@@ -754,7 +754,7 @@ void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
         // add the boxes to the humanoid model, but only if we've not done this
         // already
 
-        vector<ModelPart*>* pAdditionalModelParts =
+        std::vector<ModelPart*>* pAdditionalModelParts =
             app.GetAdditionalModelParts(skinFile->getSkinID());
         if (pAdditionalModelParts == NULL) {
             pAdditionalModelParts = app.SetAdditionalSkinBoxes(
@@ -776,9 +776,9 @@ void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
     nextIndex = getNextSkinIndex(m_skinIndex);
     previousIndex = getPreviousSkinIndex(m_skinIndex);
 
-    wstring otherSkinPath = L"";
-    wstring otherCapePath = L"";
-    vector<SKIN_BOX*>* othervAdditionalSkinBoxes = NULL;
+    std::wstring otherSkinPath = L"";
+    std::wstring otherCapePath = L"";
+    std::vector<SKIN_BOX*>* othervAdditionalSkinBoxes = NULL;
     wchar_t chars[256];
 
     // turn off all displays
@@ -857,7 +857,7 @@ void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
             }
             if (othervAdditionalSkinBoxes &&
                 othervAdditionalSkinBoxes->size() != 0) {
-                vector<ModelPart*>* pAdditionalModelParts =
+                std::vector<ModelPart*>* pAdditionalModelParts =
                     app.GetAdditionalModelParts(skinFile->getSkinID());
                 if (pAdditionalModelParts == NULL) {
                     pAdditionalModelParts = app.SetAdditionalSkinBoxes(
@@ -926,7 +926,7 @@ void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
             }
             if (othervAdditionalSkinBoxes &&
                 othervAdditionalSkinBoxes->size() != 0) {
-                vector<ModelPart*>* pAdditionalModelParts =
+                std::vector<ModelPart*>* pAdditionalModelParts =
                     app.GetAdditionalModelParts(skinFile->getSkinID());
                 if (pAdditionalModelParts == NULL) {
                     pAdditionalModelParts = app.SetAdditionalSkinBoxes(
@@ -1502,7 +1502,7 @@ int UIScene_SkinSelectMenu::UnlockSkinReturned(
             // downloaded it
 
             // retrieve the store name for the skin pack
-            wstring wStrPackName = pScene->m_currentPack->getName();
+            std::wstring wStrPackName = pScene->m_currentPack->getName();
             const char* pchPackName = wstringtofilename(wStrPackName);
             SONYDLC* pSONYDLCInfo = app.GetSONYDLCInfo((char*)pchPackName);
 

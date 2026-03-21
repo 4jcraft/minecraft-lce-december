@@ -119,7 +119,7 @@ void Zombie::aiStep() {
                              Mth::floor(z))) {
             bool burn = true;
 
-            shared_ptr<ItemInstance> helmet = getCarried(SLOT_HELM);
+            std::shared_ptr<ItemInstance> helmet = getCarried(SLOT_HELM);
             if (helmet != NULL) {
                 if (helmet->isDamageableItem()) {
                     helmet->setAuxValue(helmet->getDamageValue() +
@@ -143,7 +143,7 @@ void Zombie::aiStep() {
 
 bool Zombie::hurt(DamageSource* source, float dmg) {
     if (Monster::hurt(source, dmg)) {
-        shared_ptr<LivingEntity> target = getTarget();
+        std::shared_ptr<LivingEntity> target = getTarget();
         if ((target == NULL) && getAttackTarget() != NULL &&
             getAttackTarget()->instanceof(eTYPE_LIVINGENTITY))
             target = dynamic_pointer_cast<LivingEntity>(getAttackTarget());
@@ -157,8 +157,8 @@ bool Zombie::hurt(DamageSource* source, float dmg) {
             int x = Mth::floor(this->x);
             int y = Mth::floor(this->y);
             int z = Mth::floor(this->z);
-            shared_ptr<Zombie> reinforcement =
-                shared_ptr<Zombie>(new Zombie(level));
+            std::shared_ptr<Zombie> reinforcement =
+                std::shared_ptr<Zombie>(new Zombie(level));
 
             for (int i = 0; i < REINFORCEMENT_ATTEMPTS; i++) {
                 int xt = x + Mth::nextInt(random, REINFORCEMENT_RANGE_MIN,
@@ -265,11 +265,11 @@ void Zombie::populateDefaultEquipmentSlots() {
         if (rand == 0) {
             setEquippedSlot(
                 SLOT_WEAPON,
-                shared_ptr<ItemInstance>(new ItemInstance(Item::sword_iron)));
+                std::shared_ptr<ItemInstance>(new ItemInstance(Item::sword_iron)));
         } else {
             setEquippedSlot(
                 SLOT_WEAPON,
-                shared_ptr<ItemInstance>(new ItemInstance(Item::shovel_iron)));
+                std::shared_ptr<ItemInstance>(new ItemInstance(Item::shovel_iron)));
         }
     }
 }
@@ -303,7 +303,7 @@ void Zombie::killed(std::shared_ptr<LivingEntity> mob) {
         if (level->difficulty == Difficulty::NORMAL && random->nextBoolean())
             return;
 
-        shared_ptr<Zombie> zombie = shared_ptr<Zombie>(new Zombie(level));
+        std::shared_ptr<Zombie> zombie = std::shared_ptr<Zombie>(new Zombie(level));
         zombie->copyPosition(mob);
         level->removeEntity(mob);
         zombie->finalizeMobSpawn(NULL);
@@ -352,7 +352,7 @@ MobGroupData* Zombie::finalizeMobSpawn(
             // Halloween! OooOOo! 25% of all skeletons/zombies can wear
             // pumpkins on their heads.
             setEquippedSlot(SLOT_HELM,
-                            shared_ptr<ItemInstance>(new ItemInstance(
+                            std::shared_ptr<ItemInstance>(new ItemInstance(
                                 random->nextFloat() < 0.1f ? Tile::litPumpkin
                                                            : Tile::pumpkin)));
             dropChances[SLOT_HELM] = 0;
@@ -385,7 +385,7 @@ MobGroupData* Zombie::finalizeMobSpawn(
 }
 
 bool Zombie::mobInteract(std::shared_ptr<Player> player) {
-    shared_ptr<ItemInstance> item = player->getSelectedItem();
+    std::shared_ptr<ItemInstance> item = player->getSelectedItem();
 
     if (item != NULL && item->getItem() == Item::apple_gold &&
         item->getAuxValue() == 0 && isVillager() &&
@@ -441,7 +441,7 @@ bool Zombie::isConverting() {
 }
 
 void Zombie::finishConversion() {
-    shared_ptr<Villager> villager = shared_ptr<Villager>(new Villager(level));
+    std::shared_ptr<Villager> villager = std::shared_ptr<Villager>(new Villager(level));
     villager->copyPosition(shared_from_this());
     villager->finalizeMobSpawn(NULL);
     villager->setRewardPlayersInVillage();

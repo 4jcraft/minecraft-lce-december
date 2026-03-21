@@ -66,7 +66,7 @@ void FurnaceResultSlot::checkTakeAchievements(
         while (amount > 0) {
             int newCount = ExperienceOrb::getExperienceValue(amount);
             amount -= newCount;
-            player->level->addEntity(shared_ptr<ExperienceOrb>(
+            player->level->addEntity(std::shared_ptr<ExperienceOrb>(
                 new ExperienceOrb(player->level, player->x, player->y + .5,
                                   player->z + .5, newCount)));
         }

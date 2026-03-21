@@ -87,7 +87,7 @@ void EmptyLevelChunk::skyBrightnessChanged() {}
 
 std::shared_ptr<TileEntity> EmptyLevelChunk::getTileEntity(int x, int y,
                                                            int z) {
-    return shared_ptr<TileEntity>();
+    return std::shared_ptr<TileEntity>();
 }
 
 void EmptyLevelChunk::addTileEntity(std::shared_ptr<TileEntity> te) {}
@@ -107,11 +107,11 @@ bool EmptyLevelChunk::containsPlayer() { return false; }
 void EmptyLevelChunk::markUnsaved() {}
 
 void EmptyLevelChunk::getEntities(std::shared_ptr<Entity> except, AABB bb,
-                                  vector<shared_ptr<Entity> >& es,
+                                  std::vector<std::shared_ptr<Entity> >& es,
                                   EntitySelector* selector) {}
 
 void EmptyLevelChunk::getEntitiesOfClass(const std::type_info& ec, AABB bb,
-                                         vector<shared_ptr<Entity> >& es,
+                                         std::vector<std::shared_ptr<Entity> >& es,
                                          EntitySelector* selector) {}
 
 int EmptyLevelChunk::countEntities() { return 0; }

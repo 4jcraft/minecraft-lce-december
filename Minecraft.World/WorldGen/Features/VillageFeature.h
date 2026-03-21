@@ -17,9 +17,9 @@ private:
 
 public:
     static void staticCtor();
-    static vector<Biome*> allowedBiomes;
+    static std::vector<Biome*> allowedBiomes;
     VillageFeature(int iXZSize);
-    VillageFeature(unordered_map<wstring, wstring> options, int iXZSize);
+    VillageFeature(std::unordered_map<std::wstring, std::wstring> options, int iXZSize);
     std::wstring getFeatureName();
 
 protected:

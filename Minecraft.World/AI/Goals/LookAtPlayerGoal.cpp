@@ -37,7 +37,7 @@ bool LookAtPlayerGoal::canUse() {
         lookAt =
             mob->level->getNearestPlayer(mob->shared_from_this(), lookDistance);
     } else {
-        lookAt = weak_ptr<Entity>(mob->level->getClosestEntityOfClass(
+        lookAt = std::weak_ptr<Entity>(mob->level->getClosestEntityOfClass(
             lookAtType, mob->bb->grow(lookDistance, 3, lookDistance),
             mob->shared_from_this()));
     }
@@ -55,7 +55,7 @@ void LookAtPlayerGoal::start() {
     lookTime = 40 + mob->getRandom()->nextInt(40);
 }
 
-void LookAtPlayerGoal::stop() { lookAt = weak_ptr<Entity>(); }
+void LookAtPlayerGoal::stop() { lookAt = std::weak_ptr<Entity>(); }
 
 void LookAtPlayerGoal::tick() {
     mob->getLookControl()->setLookAt(

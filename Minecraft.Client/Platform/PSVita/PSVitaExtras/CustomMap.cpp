@@ -49,7 +49,7 @@ SCustomMapNode* CustomMap::get(int index) { return m_NodePool[index]; }
 
 void CustomMap::insert(const ChunkPos& Key, bool Value) {
     // see if this key already exists
-    SCustomMapNode* Node = find(Key);
+    SCustomMapNode* Node = std::find(Key);
 
     if (!Node) {
         // do we have any space in the pool

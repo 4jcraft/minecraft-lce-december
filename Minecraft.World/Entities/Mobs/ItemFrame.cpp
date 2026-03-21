@@ -40,7 +40,7 @@ bool ItemFrame::shouldRenderAtSqrDistance(double distance) {
 }
 
 void ItemFrame::dropItem(std::shared_ptr<Entity> causedBy) {
-    shared_ptr<ItemInstance> item = getItem();
+    std::shared_ptr<ItemInstance> item = getItem();
 
     if (causedBy != NULL && causedBy->instanceof(eTYPE_PLAYER)) {
         if (dynamic_pointer_cast<Player>(causedBy)->abilities.instabuild) {
@@ -49,7 +49,7 @@ void ItemFrame::dropItem(std::shared_ptr<Entity> causedBy) {
         }
     }
 
-    spawnAtLocation(shared_ptr<ItemInstance>(new ItemInstance(Item::frame)), 0);
+    spawnAtLocation(std::shared_ptr<ItemInstance>(new ItemInstance(Item::frame)), 0);
     if ((item != NULL) && (random->nextFloat() < dropChance)) {
         item = item->copy();
         removeFramedMap(item);
@@ -60,7 +60,7 @@ void ItemFrame::dropItem(std::shared_ptr<Entity> causedBy) {
 void ItemFrame::removeFramedMap(std::shared_ptr<ItemInstance> item) {
     if (item == NULL) return;
     if (item->id == Item::map_Id) {
-        shared_ptr<MapItemSavedData> mapItemSavedData =
+        std::shared_ptr<MapItemSavedData> mapItemSavedData =
             Item::map->getSavedData(item, level);
         mapItemSavedData->removeItemFrameDecoration(item);
         // mapItemSavedData.decorations.remove("frame-" + entityId);
@@ -116,7 +116,7 @@ bool ItemFrame::interact(std::shared_ptr<Player> player) {
     }
 
     if (getItem() == NULL) {
-        shared_ptr<ItemInstance> item = player->getCarriedItem();
+        std::shared_ptr<ItemInstance> item = player->getCarriedItem();
 
         if (item != NULL) {
             if (!level->isClientSide)  // isClientSide)

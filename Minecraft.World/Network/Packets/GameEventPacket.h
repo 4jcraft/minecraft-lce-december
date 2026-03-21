@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class GameEventPacket : public Packet,
-                        public enable_shared_from_this<GameEventPacket> {
+                        public std::enable_shared_from_this<GameEventPacket> {
 public:
     static const int NO_RESPAWN_BED_AVAILABLE;
     static const int START_RAINING;

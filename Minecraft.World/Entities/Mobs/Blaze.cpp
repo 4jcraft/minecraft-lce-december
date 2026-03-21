@@ -126,8 +126,8 @@ void Blaze::checkHurtTarget(std::shared_ptr<Entity> target, float d) {
                 //                    (random.nextFloat() - random.nextFloat())
                 //                    * 0.2f + 1.0f);
                 for (int i = 0; i < 1; i++) {
-                    shared_ptr<SmallFireball> ie =
-                        shared_ptr<SmallFireball>(new SmallFireball(
+                    std::shared_ptr<SmallFireball> ie =
+                        std::shared_ptr<SmallFireball>(new SmallFireball(
                             level,
                             dynamic_pointer_cast<Mob>(shared_from_this()),
                             xd + random->nextGaussian() * sqd, yd,

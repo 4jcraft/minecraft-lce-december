@@ -571,7 +571,7 @@ void Minecraft::setScreen(Screen* screen) {
     }*/
 }
 
-void Minecraft::checkGlError(const std::wstring& string) {
+void Minecraft::checkGlError(const std::wstring& std::string) {
     // 4J - TODO
 }
 
@@ -903,7 +903,7 @@ bool Minecraft::addLocalPlayer(int idx) {
 
     if (success) {
         app.DebugPrintf("Adding temp local player on pad %d\n", idx);
-        localplayers[idx] = shared_ptr<MultiplayerLocalPlayer>(
+        localplayers[idx] = std::shared_ptr<MultiplayerLocalPlayer>(
             new MultiplayerLocalPlayer(this, level, user, NULL));
         localgameModes[idx] = NULL;
 
@@ -962,7 +962,7 @@ std::shared_ptr<MultiplayerLocalPlayer> Minecraft::createExtraLocalPlayer(
             // A temp player displaying a connecting screen
             tempScreenSection = localplayers[idx]->m_iScreenSection;
         }
-        wstring prevname = user->name;
+        std::wstring prevname = user->name;
         user->name = name;
 
         // Don't need this any more
@@ -1068,7 +1068,7 @@ void Minecraft::removeLocalPlayerIdx(int idx) {
     bool updateXui = true;
     if (localgameModes[idx] != NULL) {
         if (getLevel(localplayers[idx]->dimension)->isClientSide) {
-            shared_ptr<MultiplayerLocalPlayer> mplp = localplayers[idx];
+            std::shared_ptr<MultiplayerLocalPlayer> mplp = localplayers[idx];
             ((MultiPlayerLevel*)getLevel(localplayers[idx]->dimension))
                 ->removeClientConnection(mplp->connection, true);
             delete mplp->connection;
@@ -1092,7 +1092,7 @@ void Minecraft::removeLocalPlayerIdx(int idx) {
         localgameModes[idx] = NULL;
     } else if (m_pendingLocalConnections[idx] != NULL) {
         m_pendingLocalConnections[idx]->sendAndDisconnect(
-            shared_ptr<DisconnectPacket>(
+            std::shared_ptr<DisconnectPacket>(
                 new DisconnectPacket(DisconnectPacket::eDisconnect_Quitting)));
         ;
         delete m_pendingLocalConnections[idx];
@@ -1628,7 +1628,7 @@ void Minecraft::run_middle() {
                                             }
                                         } else {
                                             // create the localplayer
-                                            shared_ptr<Player> player =
+                                            std::shared_ptr<Player> player =
                                                 localplayers[i];
                                             if (player == NULL) {
                                                 player = createExtraLocalPlayer(
@@ -1893,7 +1893,7 @@ void Minecraft::run_middle() {
             // if (pause) timer.a = 1;
 
             PIXBeginNamedEvent(0, "Sound engine update");
-            soundEngine->tick((shared_ptr<Mob>*)localplayers, timer->a);
+            soundEngine->tick((std::shared_ptr<Mob>*)localplayers, timer->a);
             PIXEndNamedEvent();
 
             PIXBeginNamedEvent(0, "Light update");
@@ -2432,7 +2432,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
             *piUse = IDS_TOOLTIPS_WAKEUP;
         } else {
             if (player->isRiding()) {
-                shared_ptr<Entity> mount = player->riding;
+                std::shared_ptr<Entity> mount = player->riding;
 
                 if (mount->instanceof(eTYPE_MINECART) ||
                     mount->instanceof(eTYPE_BOAT)) {
@@ -2444,7 +2444,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
 
             // no hit result, but we may have something in our hand that we can
             // do something with
-            shared_ptr<ItemInstance> itemInstance =
+            std::shared_ptr<ItemInstance> itemInstance =
                 player->inventory->getSelected();
 
             // 4J-JEV: Moved all this here to avoid having it in 3 different
@@ -2851,7 +2851,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 hitResult->entity);
                         }
 
-                        shared_ptr<ItemInstance> heldItem = nullptr;
+                        std::shared_ptr<ItemInstance> heldItem = nullptr;
                         if (player->inventory->IsHeldItem()) {
                             heldItem = player->inventory->getSelected();
                         }
@@ -2863,7 +2863,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 if (player->isAllowedToAttackAnimals())
                                     *piAction = IDS_TOOLTIPS_HIT;
 
-                                shared_ptr<Animal> animal =
+                                std::shared_ptr<Animal> animal =
                                     dynamic_pointer_cast<Animal>(
                                         hitResult->entity);
 
@@ -2901,7 +2901,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 if (player->isAllowedToAttackAnimals())
                                     *piAction = IDS_TOOLTIPS_HIT;
 
-                                shared_ptr<Animal> animal =
+                                std::shared_ptr<Animal> animal =
                                     dynamic_pointer_cast<Animal>(
                                         hitResult->entity);
 
@@ -2943,7 +2943,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 if (player->isAllowedToAttackAnimals())
                                     *piAction = IDS_TOOLTIPS_HIT;
 
-                                shared_ptr<Animal> animal =
+                                std::shared_ptr<Animal> animal =
                                     dynamic_pointer_cast<Animal>(
                                         hitResult->entity);
 
@@ -3033,7 +3033,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 if (player->isAllowedToAttackAnimals())
                                     *piAction = IDS_TOOLTIPS_HIT;
 
-                                shared_ptr<Sheep> sheep =
+                                std::shared_ptr<Sheep> sheep =
                                     dynamic_pointer_cast<Sheep>(
                                         hitResult->entity);
 
@@ -3096,7 +3096,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 if (player->isAllowedToAttackAnimals())
                                     *piAction = IDS_TOOLTIPS_HIT;
 
-                                shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(
+                                std::shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(
                                     hitResult->entity);
 
                                 if (pig->isLeashed() &&
@@ -3135,7 +3135,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 // can be tamed, fed, and made to sit/stand, or
                                 // enter love mode
                                 {
-                                    shared_ptr<Wolf> wolf =
+                                    std::shared_ptr<Wolf> wolf =
                                         dynamic_pointer_cast<Wolf>(
                                             hitResult->entity);
 
@@ -3233,7 +3233,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 }
                                 break;
                             case eTYPE_OCELOT: {
-                                shared_ptr<Ocelot> ocelot =
+                                std::shared_ptr<Ocelot> ocelot =
                                     dynamic_pointer_cast<Ocelot>(
                                         hitResult->entity);
 
@@ -3284,7 +3284,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                                 // Fix for #58576 - TU6: Content: Gameplay: Hit
                                 // button prompt is available when attacking a
                                 // host who has "Invisible" option turned on
-                                shared_ptr<Player> TargetPlayer =
+                                std::shared_ptr<Player> TargetPlayer =
                                     dynamic_pointer_cast<Player>(
                                         hitResult->entity);
 
@@ -3308,7 +3308,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                             } break;
 
                             case eTYPE_ITEM_FRAME: {
-                                shared_ptr<ItemFrame> itemFrame =
+                                std::shared_ptr<ItemFrame> itemFrame =
                                     dynamic_pointer_cast<ItemFrame>(
                                         hitResult->entity);
 
@@ -3328,7 +3328,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                             case eTYPE_VILLAGER: {
                                 // 4J-JEV: Cannot leash villagers.
 
-                                shared_ptr<Villager> villager =
+                                std::shared_ptr<Villager> villager =
                                     dynamic_pointer_cast<Villager>(
                                         hitResult->entity);
                                 if (!villager->isBaby()) {
@@ -3338,7 +3338,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                             } break;
 
                             case eTYPE_ZOMBIE: {
-                                shared_ptr<Zombie> zomb =
+                                std::shared_ptr<Zombie> zomb =
                                     dynamic_pointer_cast<Zombie>(
                                         hitResult->entity);
                                 static GoldenAppleItem* goldapple =
@@ -3355,7 +3355,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                             } break;
 
                             case eTYPE_HORSE: {
-                                shared_ptr<EntityHorse> horse =
+                                std::shared_ptr<EntityHorse> horse =
                                     dynamic_pointer_cast<EntityHorse>(
                                         hitResult->entity);
 
@@ -3461,7 +3461,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
 
                             default:
                                 if (hitResult->entity->instanceof(eTYPE_MOB)) {
-                                    shared_ptr<Mob> mob =
+                                    std::shared_ptr<Mob> mob =
                                         dynamic_pointer_cast<Mob>(
                                             hitResult->entity);
                                     if (mob->isLeashed() &&
@@ -3661,8 +3661,8 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                     // level )); shared_ptr<Mob> mob =
                     // dynamic_pointer_cast<Mob>(Wolf::_class->newInstance(
                     // level ));
-                    shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(
-                        shared_ptr<Spider>(new Spider(level)));
+                    std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(
+                        std::shared_ptr<Spider>(new Spider(level)));
                     mob->moveTo(player->x + 1, player->y, player->z + 1,
                                 level->random->nextFloat() * 360, 0);
                     level->addEntity(mob);
@@ -3694,7 +3694,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
 
         if ((player->ullButtonsPressed & (1LL << MINECRAFT_ACTION_INVENTORY)) &&
             gameMode->isInputAllowed(MINECRAFT_ACTION_INVENTORY)) {
-            shared_ptr<MultiplayerLocalPlayer> player =
+            std::shared_ptr<MultiplayerLocalPlayer> player =
                 Minecraft::GetInstance()->player;
             ui.PlayUISFX(eSFX_Press);
 
@@ -3707,7 +3707,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
 
         if ((player->ullButtonsPressed & (1LL << MINECRAFT_ACTION_CRAFTING)) &&
             gameMode->isInputAllowed(MINECRAFT_ACTION_CRAFTING)) {
-            shared_ptr<MultiplayerLocalPlayer> player =
+            std::shared_ptr<MultiplayerLocalPlayer> player =
                 Minecraft::GetInstance()->player;
 
             // 4J-PB - reordered the if statement so creative mode doesn't bring
@@ -3785,8 +3785,8 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
 #endif
         if (selected || wheel != 0 ||
             (player->ullButtonsPressed & (1LL << MINECRAFT_ACTION_DROP))) {
-            wstring itemName = L"";
-            shared_ptr<ItemInstance> selectedItem = player->getSelectedItem();
+            std::wstring itemName = L"";
+            std::shared_ptr<ItemInstance> selectedItem = player->getSelectedItem();
             // Dropping items happens over network, so if we only have one then
             // assume that we dropped it and should hide the item
             int iCount = 0;
@@ -4062,7 +4062,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures) {
                             Camera::prepare(
                                 localplayers[idx],
                                 localplayers[idx]->ThirdPersonView() == 2);
-                            shared_ptr<LivingEntity> cameraEntity =
+                            std::shared_ptr<LivingEntity> cameraEntity =
                                 cameraTargetPlayer;
                             double xOff =
                                 cameraEntity->xOld +
@@ -4273,7 +4273,7 @@ void Minecraft::setLevel(MultiPlayerLevel* level, int message /*=-1*/,
 
         // Delete all the player objects
         for (unsigned int idx = 0; idx < XUSER_MAX_COUNT; ++idx) {
-            shared_ptr<MultiplayerLocalPlayer> mplp = localplayers[idx];
+            std::shared_ptr<MultiplayerLocalPlayer> mplp = localplayers[idx];
             if (mplp != NULL && mplp->connection != NULL) {
                 delete mplp->connection;
                 mplp->connection = NULL;
@@ -4482,7 +4482,7 @@ void Minecraft::respawnPlayer(int iPad, int dimension, int newEntityId) {
     gameRenderer
         ->DisableUpdateThread();  // 4J - don't do updating whilst we are
                                   // adjusting the player & localplayer array
-    shared_ptr<MultiplayerLocalPlayer> localPlayer = localplayers[iPad];
+    std::shared_ptr<MultiplayerLocalPlayer> localPlayer = localplayers[iPad];
 
     level->validateSpawn();
     level->removeAllPendingEntityRemovals();
@@ -4491,7 +4491,7 @@ void Minecraft::respawnPlayer(int iPad, int dimension, int newEntityId) {
         level->removeEntity(localPlayer);
     }
 
-    shared_ptr<Player> oldPlayer = localPlayer;
+    std::shared_ptr<Player> oldPlayer = localPlayer;
     cameraTargetPlayer = nullptr;
 
     // 4J-PB - copy and set the players xbox pad
@@ -4589,7 +4589,7 @@ void Minecraft::startAndConnectTo(const std::wstring& name,
                                   const std::wstring& sid,
                                   const std::wstring& url) {
     bool fullScreen = false;
-    wstring userName = name;
+    std::wstring userName = name;
 
     /* 4J - removed window handling things here
     final Frame frame = new Frame("Minecraft");
@@ -4686,8 +4686,8 @@ bool useLomp = false;
 int g_iMainThreadId;
 
 void Minecraft::main() {
-    wstring name;
-    wstring sessionId;
+    std::wstring name;
+    std::wstring sessionId;
 
     // g_iMainThreadId = GetCurrentThreadId();
 
@@ -4998,13 +4998,13 @@ void Minecraft::inGameSignInCheckAllPrivilegesCallback(LPVOID lpParam,
         } else if (ProfileManager.IsSignedInLive(iPad) &&
                    ProfileManager.AllowedToPlayMultiplayer(iPad)) {
             // create the local player for the iPad
-            shared_ptr<Player> player = pClass->localplayers[iPad];
+            std::shared_ptr<Player> player = pClass->localplayers[iPad];
             if (player == NULL) {
                 if (pClass->level->isClientSide) {
                     pClass->addLocalPlayer(iPad);
                 } else {
                     // create the local player for the iPad
-                    shared_ptr<Player> player = pClass->localplayers[iPad];
+                    std::shared_ptr<Player> player = pClass->localplayers[iPad];
                     if (player == NULL) {
                         player = pClass->createExtraLocalPlayer(
                             iPad,
@@ -5088,7 +5088,7 @@ int Minecraft::InGame_SignInReturned(void* pParam, bool bContinue, int iPad)
                     pMinecraftClass->addLocalPlayer(iPad);
                 } else {
                     // create the local player for the iPad
-                    shared_ptr<Player> player =
+                    std::shared_ptr<Player> player =
                         pMinecraftClass->localplayers[iPad];
                     if (player == NULL) {
                         player = pMinecraftClass->createExtraLocalPlayer(
@@ -5126,7 +5126,7 @@ int Minecraft::InGame_SignInReturned(void* pParam, bool bContinue, int iPad)
 void Minecraft::tickAllConnections() {
     int oldIdx = getLocalPlayerIdx();
     for (unsigned int i = 0; i < XUSER_MAX_COUNT; i++) {
-        shared_ptr<MultiplayerLocalPlayer> mplp = localplayers[i];
+        std::shared_ptr<MultiplayerLocalPlayer> mplp = localplayers[i];
         if (mplp && mplp->connection) {
             setLocalPlayerIdx(i);
             mplp->connection->tick();
@@ -5137,7 +5137,7 @@ void Minecraft::tickAllConnections() {
 
 bool Minecraft::addPendingClientTextureRequest(
     const std::wstring& textureName) {
-    AUTO_VAR(it, find(m_pendingTextureRequests.begin(),
+    AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
                       m_pendingTextureRequests.end(), textureName));
     if (it == m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.push_back(textureName);
@@ -5147,7 +5147,7 @@ bool Minecraft::addPendingClientTextureRequest(
 }
 
 void Minecraft::handleClientTextureReceived(const std::wstring& textureName) {
-    AUTO_VAR(it, find(m_pendingTextureRequests.begin(),
+    AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
                       m_pendingTextureRequests.end(), textureName));
     if (it != m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.erase(it);

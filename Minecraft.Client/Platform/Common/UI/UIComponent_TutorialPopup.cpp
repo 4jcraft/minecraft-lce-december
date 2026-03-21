@@ -82,7 +82,7 @@ void UIComponent_TutorialPopup::SetTutorialDescription(
     TutorialPopupInfo* info) {
     m_interactScene = info->interactScene;
 
-    wstring parsed =
+    std::wstring parsed =
         _SetIcon(info->icon, info->iAuxVal, info->isFoil, info->desc);
     parsed = _SetImage(parsed);
     parsed = ParseDescription(m_iPad, parsed);
@@ -175,7 +175,7 @@ void UIComponent_TutorialPopup::_SetDescription(UIScene* interactScene,
         m_bAllowFade = allowFade;
 
         if (isReminder) {
-            wstring text(app.GetString(IDS_TUTORIAL_REMINDER));
+            std::wstring text(app.GetString(IDS_TUTORIAL_REMINDER));
             text.append(desc);
             stripWhitespaceForHtml(text);
             // set the text colour
@@ -190,7 +190,7 @@ void UIComponent_TutorialPopup::_SetDescription(UIScene* interactScene,
 
             m_labelDescription.setLabel(text, true);
         } else {
-            wstring text(desc);
+            std::wstring text(desc);
             stripWhitespaceForHtml(text);
             // set the text colour
             wchar_t formatting[40];
@@ -229,7 +229,7 @@ void UIComponent_TutorialPopup::_SetDescription(UIScene* interactScene,
 
 std::wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal,
                                                  bool isFoil, LPCWSTR desc) {
-    wstring temp(desc);
+    std::wstring temp(desc);
 
     bool isFixedIcon = false;
 
@@ -237,21 +237,21 @@ std::wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal,
     if (icon != TUTORIAL_NO_ICON) {
         m_iconIsFoil = false;
         m_iconItem =
-            shared_ptr<ItemInstance>(new ItemInstance(icon, 1, iAuxVal));
+            std::shared_ptr<ItemInstance>(new ItemInstance(icon, 1, iAuxVal));
     } else {
         m_iconItem = nullptr;
-        wstring openTag(L"{*ICON*}");
-        wstring closeTag(L"{*/ICON*}");
+        std::wstring openTag(L"{*ICON*}");
+        std::wstring closeTag(L"{*/ICON*}");
         int iconTagStartPos = (int)temp.find(openTag);
         int iconStartPos = iconTagStartPos + (int)openTag.length();
         if (iconTagStartPos > 0 && iconStartPos < (int)temp.length()) {
             int iconEndPos = (int)temp.find(closeTag, iconStartPos);
 
             if (iconEndPos > iconStartPos && iconEndPos < (int)temp.length()) {
-                wstring id =
+                std::wstring id =
                     temp.substr(iconStartPos, iconEndPos - iconStartPos);
 
-                vector<wstring> idAndAux = stringSplit(id, L':');
+                std::vector<std::wstring> idAndAux = stringSplit(id, L':');
 
                 int iconId = _fromString<int>(idAndAux[0]);
 
@@ -260,7 +260,7 @@ std::wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal,
                 } else {
                     iAuxVal = 0;
                 }
-                m_iconItem = shared_ptr<ItemInstance>(
+                m_iconItem = std::shared_ptr<ItemInstance>(
                     new ItemInstance(iconId, 1, iAuxVal));
 
                 temp.replace(iconTagStartPos,
@@ -271,49 +271,49 @@ std::wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal,
 
         // remove any icon text
         else if (temp.find(L"{*CraftingTableIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::workBench_Id, 1, 0));
         } else if (temp.find(L"{*SticksIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::stick_Id, 1, 0));
         } else if (temp.find(L"{*PlanksIcon*}") != wstring::npos) {
             m_iconItem =
-                shared_ptr<ItemInstance>(new ItemInstance(Tile::wood_Id, 1, 0));
+                std::shared_ptr<ItemInstance>(new ItemInstance(Tile::wood_Id, 1, 0));
         } else if (temp.find(L"{*WoodenShovelIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::shovel_wood_Id, 1, 0));
         } else if (temp.find(L"{*WoodenHatchetIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::hatchet_wood_Id, 1, 0));
         } else if (temp.find(L"{*WoodenPickaxeIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::pickAxe_wood_Id, 1, 0));
         } else if (temp.find(L"{*FurnaceIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::furnace_Id, 1, 0));
         } else if (temp.find(L"{*WoodenDoorIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::door_wood, 1, 0));
         } else if (temp.find(L"{*TorchIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::torch_Id, 1, 0));
         } else if (temp.find(L"{*BoatIcon*}") != wstring::npos) {
             m_iconItem =
-                shared_ptr<ItemInstance>(new ItemInstance(Item::boat_Id, 1, 0));
+                std::shared_ptr<ItemInstance>(new ItemInstance(Item::boat_Id, 1, 0));
         } else if (temp.find(L"{*FishingRodIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::fishingRod_Id, 1, 0));
         } else if (temp.find(L"{*FishIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::fish_raw_Id, 1, 0));
         } else if (temp.find(L"{*MinecartIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::minecart_Id, 1, 0));
         } else if (temp.find(L"{*RailIcon*}") != wstring::npos) {
             m_iconItem =
-                shared_ptr<ItemInstance>(new ItemInstance(Tile::rail_Id, 1, 0));
+                std::shared_ptr<ItemInstance>(new ItemInstance(Tile::rail_Id, 1, 0));
         } else if (temp.find(L"{*PoweredRailIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::goldenRail_Id, 1, 0));
         } else if (temp.find(L"{*StructuresIcon*}") != wstring::npos) {
             isFixedIcon = true;
@@ -322,7 +322,7 @@ std::wstring UIComponent_TutorialPopup::_SetIcon(int icon, int iAuxVal,
             isFixedIcon = true;
             setupIconHolder(e_ICON_TYPE_TOOLS);
         } else if (temp.find(L"{*StoneIcon*}") != wstring::npos) {
-            m_iconItem = shared_ptr<ItemInstance>(
+            m_iconItem = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Tile::stone_Id, 1, 0));
         } else {
             m_iconItem = nullptr;
@@ -339,8 +339,8 @@ std::wstring UIComponent_TutorialPopup::_SetImage(std::wstring& desc) {
 #if 0
 	BOOL imageShowAtStart = m_image.IsShown();
 
-	wstring openTag(L"{*IMAGE*}");
-	wstring closeTag(L"{*/IMAGE*}");
+	std::wstring openTag(L"{*IMAGE*}");
+	std::wstring closeTag(L"{*/IMAGE*}");
 	int imageTagStartPos = (int)desc.find(openTag);
 	int imageStartPos = imageTagStartPos + (int)openTag.length();
 	if( imageTagStartPos > 0 && imageStartPos < (int)desc.length() )
@@ -349,7 +349,7 @@ std::wstring UIComponent_TutorialPopup::_SetImage(std::wstring& desc) {
 
 		if(imageEndPos > imageStartPos && imageEndPos < (int)desc.length() )
 		{
-			wstring id = desc.substr(imageStartPos, imageEndPos - imageStartPos);
+			std::wstring id = desc.substr(imageStartPos, imageEndPos - imageStartPos);
 			m_image.SetImagePath( id.c_str() );
 			m_image.SetShow( TRUE );
 

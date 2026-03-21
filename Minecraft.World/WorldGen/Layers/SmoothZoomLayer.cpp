@@ -51,9 +51,9 @@ intArray SmoothZoomLayer::getArea(int xo, int yo, int w, int h) {
 std::shared_ptr<Layer> SmoothZoomLayer::zoom(__int64 seed,
                                              std::shared_ptr<Layer> sup,
                                              int count) {
-    shared_ptr<Layer> result = sup;
+    std::shared_ptr<Layer> result = sup;
     for (int i = 0; i < count; i++) {
-        result = shared_ptr<Layer>(new SmoothZoomLayer(seed + i, result));
+        result = std::shared_ptr<Layer>(new SmoothZoomLayer(seed + i, result));
     }
     return result;
 }

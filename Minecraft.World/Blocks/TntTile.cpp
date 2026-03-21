@@ -52,7 +52,7 @@ void TntTile::wasExploded(Level* level, int x, int y, int z,
     // is unchecked.
     if (level->newPrimedTntAllowed() &&
         app.GetGameHostOption(eGameHostOption_TNT)) {
-        shared_ptr<PrimedTnt> primed = shared_ptr<PrimedTnt>(new PrimedTnt(
+        std::shared_ptr<PrimedTnt> primed = std::shared_ptr<PrimedTnt>(new PrimedTnt(
             level, x + 0.5f, y + 0.5f, z + 0.5f, explosion->getSourceMob()));
         primed->life =
             level->random->nextInt(primed->life / 4) + primed->life / 8;
@@ -72,7 +72,7 @@ void TntTile::destroy(Level* level, int x, int y, int z, int data,
         // 4J - added condition to have finite limit of these
         if (level->newPrimedTntAllowed() &&
             app.GetGameHostOption(eGameHostOption_TNT)) {
-            shared_ptr<PrimedTnt> tnt = shared_ptr<PrimedTnt>(
+            std::shared_ptr<PrimedTnt> tnt = std::shared_ptr<PrimedTnt>(
                 new PrimedTnt(level, x + 0.5f, y + 0.5f, z + 0.5f, source));
             level->addEntity(tnt);
             level->playEntitySound(tnt, eSoundType_RANDOM_FUSE, 1, 1.0f);
@@ -101,7 +101,7 @@ void TntTile::entityInside(Level* level, int x, int y, int z,
                            std::shared_ptr<Entity> entity) {
     if (entity->GetType() == eTYPE_ARROW && !level->isClientSide) {
         if (entity->isOnFire()) {
-            shared_ptr<Arrow> arrow = dynamic_pointer_cast<Arrow>(entity);
+            std::shared_ptr<Arrow> arrow = dynamic_pointer_cast<Arrow>(entity);
             destroy(level, x, y, z, EXPLODE_BIT,
                     arrow->owner->instanceof(eTYPE_LIVINGENTITY)
                         ? dynamic_pointer_cast<LivingEntity>(arrow->owner)

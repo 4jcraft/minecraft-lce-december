@@ -29,7 +29,7 @@ UseItemPacket::UseItemPacket(int x, int y, int z, int face,
     this->face = face;
     // 4J - take copy of item as we want our packets to have full ownership of
     // any referenced data
-    this->item = item ? item->copy() : shared_ptr<ItemInstance>();
+    this->item = item ? item->copy() : std::shared_ptr<ItemInstance>();
     this->clickX = clickX;
     this->clickY = clickY;
     this->clickZ = clickZ;

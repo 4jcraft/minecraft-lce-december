@@ -9,7 +9,7 @@
 #include "PacketListener.h"
 
 class TradeItemPacket : public Packet,
-                        public enable_shared_from_this<TradeItemPacket> {
+                        public std::enable_shared_from_this<TradeItemPacket> {
 public:
     int containerId;
     int offer;
@@ -24,7 +24,7 @@ public:
 
 public:
     static std::shared_ptr<Packet> create() {
-        return shared_ptr<Packet>(new TradeItemPacket());
+        return std::shared_ptr<Packet>(new TradeItemPacket());
     }
     virtual int getId() { return 151; }
 };

@@ -187,7 +187,7 @@ void Font::draw(const std::wstring& str, bool dropShadow) {
     textures->bindTexture(m_textureLocation);
 
     bool noise = false;
-    wstring cleanStr = sanitize(str);
+    std::wstring cleanStr = sanitize(str);
 
     for (int i = 0; i < (int)cleanStr.length(); ++i) {
         // Map character
@@ -256,7 +256,7 @@ void Font::draw(const std::wstring& str, int x, int y, int color,
 }
 
 int Font::width(const std::wstring& str) {
-    wstring cleanStr = sanitize(str);
+    std::wstring cleanStr = sanitize(str);
 
     if (cleanStr == L"") return 0;  // 4J - was NULL comparison
     int len = 0;
@@ -276,7 +276,7 @@ int Font::width(const std::wstring& str) {
 }
 
 std::wstring Font::sanitize(const std::wstring& str) {
-    wstring sb = str;
+    std::wstring sb = str;
 
     for (unsigned int i = 0; i < sb.length(); i++) {
         if (CharacterExists(sb[i])) {
@@ -307,32 +307,32 @@ bool Font::CharacterExists(wchar_t c) {
     }
 }
 
-void Font::drawWordWrap(const std::wstring& string, int x, int y, int w,
+void Font::drawWordWrap(const std::wstring& std::string, int x, int y, int w,
                         int col, int h) {
     // if (bidirectional)
     //{
     //	string = reorderBidi(string);
     // }
-    drawWordWrapInternal(string, x, y, w, col, h);
+    drawWordWrapInternal(std::string, x, y, w, col, h);
 }
 
-void Font::drawWordWrapInternal(const std::wstring& string, int x, int y, int w,
+void Font::drawWordWrapInternal(const std::wstring& std::string, int x, int y, int w,
                                 int col, int h) {
-    drawWordWrapInternal(string, x, y, w, col, false, h);
+    drawWordWrapInternal(std::string, x, y, w, col, false, h);
 }
 
-void Font::drawWordWrap(const std::wstring& string, int x, int y, int w,
+void Font::drawWordWrap(const std::wstring& std::string, int x, int y, int w,
                         int col, bool darken, int h) {
     // if (bidirectional)
     //{
     //	string = reorderBidi(string);
     // }
-    drawWordWrapInternal(string, x, y, w, col, darken, h);
+    drawWordWrapInternal(std::string, x, y, w, col, darken, h);
 }
 
-void Font::drawWordWrapInternal(const std::wstring& string, int x, int y, int w,
+void Font::drawWordWrapInternal(const std::wstring& std::string, int x, int y, int w,
                                 int col, bool darken, int h) {
-    vector<wstring> lines = stringSplit(string, L'\n');
+    std::vector<std::wstring> lines = stringSplit(std::string, L'\n');
     if (lines.size() > 1) {
         AUTO_VAR(itEnd, lines.end());
         for (AUTO_VAR(it, lines.begin()); it != itEnd; it++) {
@@ -344,10 +344,10 @@ void Font::drawWordWrapInternal(const std::wstring& string, int x, int y, int w,
         }
         return;
     }
-    vector<wstring> words = stringSplit(string, L' ');
+    std::vector<std::wstring> words = stringSplit(std::string, L' ');
     unsigned int pos = 0;
     while (pos < words.size()) {
-        wstring line = words[pos++] + L" ";
+        std::wstring line = words[pos++] + L" ";
         while (pos < words.size() && width(line + words[pos]) < w) {
             line += words[pos++] + L" ";
         }
@@ -375,8 +375,8 @@ void Font::drawWordWrapInternal(const std::wstring& string, int x, int y, int w,
     }
 }
 
-int Font::wordWrapHeight(const std::wstring& string, int w) {
-    vector<wstring> lines = stringSplit(string, L'\n');
+int Font::wordWrapHeight(const std::wstring& std::string, int w) {
+    std::vector<std::wstring> lines = stringSplit(std::string, L'\n');
     if (lines.size() > 1) {
         int h = 0;
         AUTO_VAR(itEnd, lines.end());
@@ -385,11 +385,11 @@ int Font::wordWrapHeight(const std::wstring& string, int w) {
         }
         return h;
     }
-    vector<wstring> words = stringSplit(string, L' ');
+    std::vector<std::wstring> words = stringSplit(std::string, L' ');
     unsigned int pos = 0;
     int y = 0;
     while (pos < words.size()) {
-        wstring line = words[pos++] + L" ";
+        std::wstring line = words[pos++] + L" ";
         while (pos < words.size() && width(line + words[pos]) < w) {
             line += words[pos++] + L" ";
         }

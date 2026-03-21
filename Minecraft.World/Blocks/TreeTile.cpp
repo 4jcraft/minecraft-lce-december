@@ -62,7 +62,7 @@ int TreeTile::getWoodType(int data) { return data & MASK_TYPE; }
 
 std::shared_ptr<ItemInstance> TreeTile::getSilkTouchItemInstance(int data) {
     // fix to avoid getting silktouched sideways logs
-    return shared_ptr<ItemInstance>(new ItemInstance(id, 1, getWoodType(data)));
+    return std::shared_ptr<ItemInstance>(new ItemInstance(id, 1, getWoodType(data)));
 }
 
 void TreeTile::registerIcons(IconRegister* iconRegister) {

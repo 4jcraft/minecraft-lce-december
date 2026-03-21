@@ -21,7 +21,7 @@ void OcelotRenderer::render(std::shared_ptr<Entity> _mob, double x, double y,
 
 ResourceLocation* OcelotRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
-    shared_ptr<Ocelot> cat = dynamic_pointer_cast<Ocelot>(entity);
+    std::shared_ptr<Ocelot> cat = dynamic_pointer_cast<Ocelot>(entity);
 
     switch (cat->getCatType()) {
         default:
@@ -40,7 +40,7 @@ void OcelotRenderer::scale(std::shared_ptr<LivingEntity> _mob, float a) {
     // 4J - original version used generics and thus had an input parameter of
     // type Blaze rather than shared_ptr<Entity>  we have here - do some casting
     // around instead
-    shared_ptr<Ocelot> mob = dynamic_pointer_cast<Ocelot>(_mob);
+    std::shared_ptr<Ocelot> mob = dynamic_pointer_cast<Ocelot>(_mob);
     MobRenderer::scale(mob, a);
     if (mob->isTame()) {
         glScalef(.8f, .8f, .8f);

@@ -4,7 +4,7 @@
 
 class ContainerOpenPacket
     : public Packet,
-      public enable_shared_from_this<ContainerOpenPacket> {
+      public std::enable_shared_from_this<ContainerOpenPacket> {
 public:
     static const int CONTAINER = 0;
     static const int WORKBENCH = 1;

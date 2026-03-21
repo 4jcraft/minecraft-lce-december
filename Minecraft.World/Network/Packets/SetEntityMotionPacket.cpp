@@ -85,7 +85,7 @@ int SetEntityMotionPacket::getEstimatedSize() { return useBytes ? 5 : 8; }
 bool SetEntityMotionPacket::canBeInvalidated() { return true; }
 
 bool SetEntityMotionPacket::isInvalidatedBy(std::shared_ptr<Packet> packet) {
-    shared_ptr<SetEntityMotionPacket> target =
+    std::shared_ptr<SetEntityMotionPacket> target =
         dynamic_pointer_cast<SetEntityMotionPacket>(packet);
     return target->id == id;
 }

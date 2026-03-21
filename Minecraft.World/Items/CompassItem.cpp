@@ -5,7 +5,7 @@
 #include "../Headers/net.minecraft.world.h"
 
 #ifdef __PSVITA__
-const wstring CompassItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {
+const std::wstring CompassItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {
     L"compassP0"};
 #else
 const std::wstring CompassItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {

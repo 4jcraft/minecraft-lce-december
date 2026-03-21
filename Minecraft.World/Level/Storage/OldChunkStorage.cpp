@@ -200,7 +200,7 @@ bool OldChunkStorage::saveEntities(LevelChunk* lc, Level* level,
 #endif
     for (int i = 0; i < lc->ENTITY_BLOCKS_LENGTH; i++) {
         AUTO_VAR(itEnd, lc->entityBlocks[i]->end());
-        for (vector<std::shared_ptr<Entity> >::iterator it =
+        for (std::vector<std::shared_ptr<Entity> >::iterator it =
                  lc->entityBlocks[i]->begin();
              it != itEnd; it++) {
             std::shared_ptr<Entity> e = *it;
@@ -257,7 +257,7 @@ void OldChunkStorage::save(LevelChunk* lc, Level* level,
     ListTag<CompoundTag>* tileEntityTags = new ListTag<CompoundTag>();
 
     AUTO_VAR(itEnd, lc->tileEntities.end());
-    for (unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
+    for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
                        TilePosKeyEq>::iterator it = lc->tileEntities.begin();
          it != itEnd; it++) {
         std::shared_ptr<TileEntity> te = it->second;
@@ -269,7 +269,7 @@ void OldChunkStorage::save(LevelChunk* lc, Level* level,
     PIXEndNamedEvent();
 
     PIXBeginNamedEvent(0, "Saving tile tick data");
-    vector<TickNextTickData>* ticksInChunk =
+    std::vector<TickNextTickData>* ticksInChunk =
         level->fetchTicksInChunk(lc, false);
     if (ticksInChunk != NULL) {
         __int64 levelTime = level->getGameTime();
@@ -354,7 +354,7 @@ void OldChunkStorage::save(LevelChunk* lc, Level* level, CompoundTag* tag) {
     ListTag<CompoundTag>* tileEntityTags = new ListTag<CompoundTag>();
 
     AUTO_VAR(itEnd, lc->tileEntities.end());
-    for (unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
+    for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
                        TilePosKeyEq>::iterator it = lc->tileEntities.begin();
          it != itEnd; it++) {
         std::shared_ptr<TileEntity> te = it->second;
@@ -366,7 +366,7 @@ void OldChunkStorage::save(LevelChunk* lc, Level* level, CompoundTag* tag) {
     PIXEndNamedEvent();
 
     PIXBeginNamedEvent(0, "Saving tile tick data");
-    vector<TickNextTickData>* ticksInChunk =
+    std::vector<TickNextTickData>* ticksInChunk =
         level->fetchTicksInChunk(lc, false);
     if (ticksInChunk != NULL) {
         __int64 levelTime = level->getGameTime();

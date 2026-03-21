@@ -101,7 +101,7 @@ bool MonsterRoomFeature::place(Level* level, Random* random, int x, int y,
             WeighedTreasureArray treasure = WeighedTreasure::addToTreasure(
                 wrapperArray,
                 Item::enchantedBook->createForRandomTreasure(random));
-            shared_ptr<ChestTileEntity> chest =
+            std::shared_ptr<ChestTileEntity> chest =
                 dynamic_pointer_cast<ChestTileEntity>(
                     level->getTileEntity(xc, yc, zc));
             if (chest != NULL) {
@@ -114,7 +114,7 @@ bool MonsterRoomFeature::place(Level* level, Random* random, int x, int y,
 
     level->setTileAndData(x, y, z, Tile::mobSpawner_Id, 0,
                           Tile::UPDATE_CLIENTS);
-    shared_ptr<MobSpawnerTileEntity> entity =
+    std::shared_ptr<MobSpawnerTileEntity> entity =
         dynamic_pointer_cast<MobSpawnerTileEntity>(
             level->getTileEntity(x, y, z));
     if (entity != NULL) {
@@ -126,9 +126,9 @@ bool MonsterRoomFeature::place(Level* level, Random* random, int x, int y,
 
 std::wstring MonsterRoomFeature::randomEntityId(Random* random) {
     int id = random->nextInt(4);
-    if (id == 0) return wstring(L"Skeleton");
-    if (id == 1) return wstring(L"Zombie");
-    if (id == 2) return wstring(L"Zombie");
-    if (id == 3) return wstring(L"Spider");
-    return wstring(L"");
+    if (id == 0) return std::wstring(L"Skeleton");
+    if (id == 1) return std::wstring(L"Zombie");
+    if (id == 2) return std::wstring(L"Zombie");
+    if (id == 3) return std::wstring(L"Spider");
+    return std::wstring(L"");
 }

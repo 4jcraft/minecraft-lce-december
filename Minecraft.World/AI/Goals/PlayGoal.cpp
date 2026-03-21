@@ -10,7 +10,7 @@
 #include "PlayGoal.h"
 
 PlayGoal::PlayGoal(Villager* mob, double speedModifier) {
-    followFriend = weak_ptr<LivingEntity>();
+    followFriend = std::weak_ptr<LivingEntity>();
     wantedX = wantedY = wantedZ = 0.0;
     playTime = 0;
 
@@ -23,7 +23,7 @@ bool PlayGoal::canUse() {
     if (mob->getAge() >= 0) return false;
     if (mob->getRandom()->nextInt(400) != 0) return false;
 
-    vector<std::shared_ptr<Entity> >* children = mob->level->getEntitiesOfClass(
+    std::vector<std::shared_ptr<Entity> >* children = mob->level->getEntitiesOfClass(
         typeid(Villager), mob->bb->grow(6, 3, 6));
     double closestDistSqr = Double::MAX_VALUE;
     // for (Entity c : children)
@@ -36,7 +36,7 @@ bool PlayGoal::canUse() {
         double distSqr = friendV->distanceToSqr(mob->shared_from_this());
         if (distSqr > closestDistSqr) continue;
         closestDistSqr = distSqr;
-        followFriend = weak_ptr<LivingEntity>(friendV);
+        followFriend = std::weak_ptr<LivingEntity>(friendV);
     }
     delete children;
 
@@ -60,7 +60,7 @@ void PlayGoal::start() {
 
 void PlayGoal::stop() {
     mob->setChasing(false);
-    followFriend = weak_ptr<LivingEntity>();
+    followFriend = std::weak_ptr<LivingEntity>();
 }
 
 void PlayGoal::tick() {

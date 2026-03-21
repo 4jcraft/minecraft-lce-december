@@ -13,7 +13,7 @@ class ContainerListener {
 public:
     virtual void refreshContainer(
         AbstractContainerMenu* container,
-        vector<std::shared_ptr<ItemInstance> >* items) = 0;
+        std::vector<std::shared_ptr<ItemInstance> >* items) = 0;
 
     virtual void slotChanged(AbstractContainerMenu* container, int slotIndex,
                              std::shared_ptr<ItemInstance> item) = 0;

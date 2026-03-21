@@ -86,7 +86,7 @@ void MerchantRecipeList::writeToStream(DataOutputStream* stream) {
         Packet::writeItem(r->getBuyAItem(), stream);
         Packet::writeItem(r->getSellItem(), stream);
 
-        shared_ptr<ItemInstance> buyBItem = r->getBuyBItem();
+        std::shared_ptr<ItemInstance> buyBItem = r->getBuyBItem();
         stream->writeBoolean(buyBItem != NULL);
         if (buyBItem != NULL) {
             Packet::writeItem(buyBItem, stream);
@@ -103,10 +103,10 @@ MerchantRecipeList* MerchantRecipeList::createFromStream(
 
     int count = (int)(stream->readByte() & 0xff);
     for (int i = 0; i < count; i++) {
-        shared_ptr<ItemInstance> buy = Packet::readItem(stream);
-        shared_ptr<ItemInstance> sell = Packet::readItem(stream);
+        std::shared_ptr<ItemInstance> buy = Packet::readItem(stream);
+        std::shared_ptr<ItemInstance> sell = Packet::readItem(stream);
 
-        shared_ptr<ItemInstance> buyB = nullptr;
+        std::shared_ptr<ItemInstance> buyB = nullptr;
         if (stream->readBoolean()) {
             buyB = Packet::readItem(stream);
         }

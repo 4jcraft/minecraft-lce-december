@@ -23,8 +23,8 @@ public:
     bool exists() const;
     bool isFile() const;
     bool renameTo(File dest);
-    vector<File*>* listFiles() const;  // Array
-    vector<File*>* listFiles(FileFilter* filter) const;
+    std::vector<File*>* listFiles() const;  // Array
+    std::vector<File*>* listFiles(FileFilter* filter) const;
     bool isDirectory() const;
     __int64 length();
     __int64 lastModified();

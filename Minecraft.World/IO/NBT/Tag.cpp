@@ -43,7 +43,7 @@ bool Tag::equals(Tag* obj) {
 void Tag::print(std::ostream out) { out << ""; }
 
 void Tag::print(char* prefix, std::wostream out) {
-    wstring name = getName();
+    std::wstring name = getName();
 
     out << prefix;
     out << getTagName(getId());
@@ -51,7 +51,7 @@ void Tag::print(char* prefix, std::wostream out) {
         out << L"(\"" << name << L"\")";
     }
     out << L": ";
-    out << toString() << endl;
+    out << toString() << std::endl;
 }
 
 std::wstring Tag::getName() { return name; }
@@ -77,7 +77,7 @@ Tag* Tag::readNamedTag(DataInput* dis, int tagDepth) {
         return new EndTag();
     }
 
-    wstring name = dis->readUTF();  // new String(bytes, "UTF-8");
+    std::wstring name = dis->readUTF();  // new String(bytes, "UTF-8");
 
     Tag* tag = newTag(type, name);
     //        short length = dis.readShort();

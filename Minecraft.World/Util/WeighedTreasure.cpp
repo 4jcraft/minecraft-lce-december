@@ -8,7 +8,7 @@ WeighedTreasure::WeighedTreasure(int itemId, int auxValue, int minCount,
                                  int maxCount, int weight)
     : WeighedRandomItem(weight) {
     this->item =
-        shared_ptr<ItemInstance>(new ItemInstance(itemId, 1, auxValue));
+        std::shared_ptr<ItemInstance>(new ItemInstance(itemId, 1, auxValue));
     this->minCount = minCount;
     this->maxCount = maxCount;
 }
@@ -33,13 +33,13 @@ void WeighedTreasure::addChestItems(Random* random, WeighedTreasureArray items,
             treasure->minCount +
             random->nextInt(treasure->maxCount - treasure->minCount + 1);
         if (treasure->item->getMaxStackSize() >= count) {
-            shared_ptr<ItemInstance> copy = treasure->item->copy();
+            std::shared_ptr<ItemInstance> copy = treasure->item->copy();
             copy->count = count;
             dest->setItem(random->nextInt(dest->getContainerSize()), copy);
         } else {
             // use multiple slots
             for (int c = 0; c < count; c++) {
-                shared_ptr<ItemInstance> copy = treasure->item->copy();
+                std::shared_ptr<ItemInstance> copy = treasure->item->copy();
                 copy->count = 1;
                 dest->setItem(random->nextInt(dest->getContainerSize()), copy);
             }
@@ -59,13 +59,13 @@ void WeighedTreasure::addDispenserItems(
             treasure->minCount +
             random->nextInt(treasure->maxCount - treasure->minCount + 1);
         if (treasure->item->getMaxStackSize() >= count) {
-            shared_ptr<ItemInstance> copy = treasure->item->copy();
+            std::shared_ptr<ItemInstance> copy = treasure->item->copy();
             copy->count = count;
             dest->setItem(random->nextInt(dest->getContainerSize()), copy);
         } else {
             // use multiple slots
             for (int c = 0; c < count; c++) {
-                shared_ptr<ItemInstance> copy = treasure->item->copy();
+                std::shared_ptr<ItemInstance> copy = treasure->item->copy();
                 copy->count = 1;
                 dest->setItem(random->nextInt(dest->getContainerSize()), copy);
             }

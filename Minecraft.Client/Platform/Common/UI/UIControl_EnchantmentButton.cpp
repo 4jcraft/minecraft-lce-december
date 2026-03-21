@@ -92,7 +92,7 @@ void UIControl_EnchantmentButton::render(IggyCustomDrawCallbackRegion* region) {
         glEnable(GL_ALPHA_TEST);
         glAlphaFunc(GL_GREATER, 0.1f);
         Minecraft* pMinecraft = Minecraft::GetInstance();
-        wstring line = _toString<int>(cost);
+        std::wstring line = _toString<int>(cost);
         Font* font = pMinecraft->altFont;
         // int col = 0x685E4A;
         unsigned int col = m_textColour;
@@ -184,7 +184,7 @@ UIControl_EnchantmentButton::EnchantmentNames
     UIControl_EnchantmentButton::EnchantmentNames::instance;
 
 UIControl_EnchantmentButton::EnchantmentNames::EnchantmentNames() {
-    wstring allWords =
+    std::wstring allWords =
         L"the elder scrolls klaatu berata niktu xyzzy bless curse light "
         L"darkness fire air earth water hot dry cold wet ignite snuff embiggen "
         L"twist shorten stretch fiddle destroy imbue galvanize enchant free "
@@ -201,7 +201,7 @@ UIControl_EnchantmentButton::EnchantmentNames::EnchantmentNames() {
 
 std::wstring UIControl_EnchantmentButton::EnchantmentNames::getRandomName() {
     int wordCount = random.nextInt(2) + 3;
-    wstring word = L"";
+    std::wstring word = L"";
     for (int i = 0; i < wordCount; i++) {
         if (i > 0) word += L" ";
         word += words[random.nextInt(words.size())];

@@ -8,7 +8,7 @@
 #include "RecordingItem.h"
 #include "../Stats/GenericStats.h"
 
-unordered_map<wstring, RecordingItem*> RecordingItem::BY_NAME;
+std::unordered_map<std::wstring, RecordingItem*> RecordingItem::BY_NAME;
 
 RecordingItem::RecordingItem(int id, const std::wstring& recording)
     : Item(id), recording(recording) {
@@ -44,8 +44,8 @@ bool RecordingItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
 
 void RecordingItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                                     std::shared_ptr<Player> player,
-                                    vector<HtmlString>* lines, bool advanced) {
-    eMinecraftColour color = getRarity(shared_ptr<ItemInstance>())->color;
+                                    std::vector<HtmlString>* lines, bool advanced) {
+    eMinecraftColour color = getRarity(std::shared_ptr<ItemInstance>())->color;
 
     wchar_t text[256];
     swprintf(text, 256, L"%ls %ls", L"C418 -", recording.c_str());

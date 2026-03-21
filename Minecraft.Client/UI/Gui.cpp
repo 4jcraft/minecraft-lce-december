@@ -261,7 +261,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
     // Display the pumpkin screen effect
     /////////////////////////////////////////////////////////////////////////////////////
 
-    shared_ptr<ItemInstance> headGear =
+    std::shared_ptr<ItemInstance> headGear =
         minecraft->player->inventory->getArmor(3);
 
     // 4J-PB - changing this to be per player
@@ -339,7 +339,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
                 TN_GUI_GUI);  // 4J was L"/gui/gui.png"
             MemSect(0);
 
-            shared_ptr<Inventory> inventory = minecraft->player->inventory;
+            std::shared_ptr<Inventory> inventory = minecraft->player->inventory;
             if (bTwoPlayerSplitscreen) {
                 // need to apply scale factors depending on the mode
 
@@ -810,7 +810,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
             wchar_t formatted[10];
             swprintf(formatted, 10, L"%d", minecraft->player->experienceLevel);
 
-            wstring str = formatted;
+            std::wstring str = formatted;
             int x = iWidthOffset + (screenWidth - font->width(str)) / 2;
             int y = screenHeight - iSafezoneYHalf - iTooltipsYOffset;
             // If we're in creative mode, we don't need to offset the XP display
@@ -856,7 +856,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
         }
 
         int color = (int)(220.0f * amount) << 24 | (0x101020);
-        fill(0, 0, screenWidth / fScaleFactorWidth,
+        std::fill(0, 0, screenWidth / fScaleFactorWidth,
              screenHeight / fScaleFactorHeight, color);
         glEnable(GL_ALPHA_TEST);
         glEnable(GL_DEPTH_TEST);
@@ -870,7 +870,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
         float amount = (float)timer / (float)Player::DEATHFADE_DURATION;
 
         int color = (int)(220.0f * amount) << 24 | (0x200000);
-        fill(0, 0, screenWidth / fScaleFactorWidth,
+        std::fill(0, 0, screenWidth / fScaleFactorWidth,
              screenHeight / fScaleFactorHeight, color);
         glEnable(GL_ALPHA_TEST);
         glEnable(GL_DEPTH_TEST);
@@ -909,7 +909,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
         int iYPos = 82;
 
         if (minecraft->level->dimension->id == 0) {
-            wstring wfeature[eTerrainFeature_Count];
+            std::wstring wfeature[eTerrainFeature_Count];
 
             wfeature[eTerrainFeature_Stronghold] = L"Stronghold: ";
             wfeature[eTerrainFeature_Mineshaft] = L"Mineshaft: ";
@@ -919,7 +919,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
             for (int i = 0; i < app.m_vTerrainFeatures.size(); i++) {
                 FEATURE_DATA* pFeatureData = app.m_vTerrainFeatures[i];
 
-                wstring itemInfo = L"[" + _toString<int>(pFeatureData->x * 16) +
+                std::wstring itemInfo = L"[" + _toString<int>(pFeatureData->x * 16) +
                                    L", " +
                                    _toString<int>(pFeatureData->z * 16) + L"] ";
                 wfeature[pFeatureData->eTerrainFeature] += itemInfo;
@@ -1079,7 +1079,7 @@ max) + "% (" + (total / 1024 / 1024) + "MB)"; drawString(font, msg, screenWidth
 						y+= iHeightOffset;
 					}
 
-					wstring msg = guiMessages[iPad][i].string;
+					std::wstring msg = guiMessages[iPad][i].string;
 					// 4J-PB - fill the black bar across the whole screen, otherwise it looks odd due to the safe area
 					this->fill(0, y - 1, screenWidth/fScaleFactorWidth, y + 8, (alpha / 2) << 24);
 					glEnable(GL_BLEND);
@@ -1118,12 +1118,12 @@ max) + "% (" + (total / 1024 / 1024) + "MB)"; drawString(font, msg, screenWidth
 
 		int xxo = (screenWidth - cols * slotWidth) / 2;
 		int yyo = 10;
-		fill(xxo - 1, yyo - 1, xxo + slotWidth * cols, yyo + 9 * rows, 0x80000000);
+		std::fill(xxo - 1, yyo - 1, xxo + slotWidth * cols, yyo + 9 * rows, 0x80000000);
 		for (int i = 0; i < slots; i++) {
 			int xo = xxo + i % cols * slotWidth;
 			int yo = yyo + i / cols * 9;
 
-			fill(xo, yo, xo + slotWidth - 1, yo + 8, 0x20ffffff);
+			std::fill(xo, yo, xo + slotWidth - 1, yo + 8, 0x20ffffff);
 			glColor4f(1, 1, 1, 1);
 			glEnable(GL_ALPHA_TEST);
 
@@ -1280,7 +1280,7 @@ void Gui::renderTp(float br, int w, int h) {
 }
 
 void Gui::renderSlot(int slot, int x, int y, float a) {
-    shared_ptr<ItemInstance> item = minecraft->player->inventory->items[slot];
+    std::shared_ptr<ItemInstance> item = minecraft->player->inventory->items[slot];
     if (item == NULL) return;
 
     float pop = item->popTime - a;
@@ -1335,7 +1335,7 @@ void Gui::clearMessages(int iPad) {
 
 void Gui::addMessage(const std::wstring& _string, int iPad,
                      bool bIsDeathMessage) {
-    wstring string = _string;  // 4J - Take copy of input as it is const
+    std::wstring std::string = _string;  // 4J - Take copy of input as it is const
     // int iScale=1;
 
     // if((minecraft->player->m_iScreenSection==C4JRender::VIEWPORT_TYPE_SPLIT_TOP)
@@ -1406,12 +1406,12 @@ void Gui::addMessage(const std::wstring& _string, int iPad,
             break;
     }
 
-    while (string.length() > maximumChars) {
+    while (std::string.length() > maximumChars) {
         unsigned int i = 1;
-        while (i < string.length() && (i + 1) <= maximumChars) {
+        while (i < std::string.length() && (i + 1) <= maximumChars) {
             i++;
         }
-        int iLast = (int)string.find_last_of(L" ", i);
+        int iLast = (int)std::string.find_last_of(L" ", i);
         switch (XGetLanguage()) {
             case XC_LANGUAGE_JAPANESE:
             case XC_LANGUAGE_TCHINESE:
@@ -1419,7 +1419,7 @@ void Gui::addMessage(const std::wstring& _string, int iPad,
                 iLast = maximumChars;
                 break;
             default:
-                iLast = (int)string.find_last_of(L" ", i);
+                iLast = (int)std::string.find_last_of(L" ", i);
                 break;
         }
 
@@ -1427,8 +1427,8 @@ void Gui::addMessage(const std::wstring& _string, int iPad,
         if (iLast != i) {
             iLast++;
         }
-        addMessage(string.substr(0, iLast), iPad, bIsDeathMessage);
-        string = string.substr(iLast);
+        addMessage(std::string.substr(0, iLast), iPad, bIsDeathMessage);
+        std::string = std::string.substr(iLast);
     }
 
     if (iPad == -1) {
@@ -1438,7 +1438,7 @@ void Gui::addMessage(const std::wstring& _string, int iPad,
                 !(bIsDeathMessage &&
                   app.GetGameSettings(i, eGameSetting_DeathMessages) == 0)) {
                 guiMessages[i].insert(guiMessages[i].begin(),
-                                      GuiMessage(string));
+                                      GuiMessage(std::string));
                 while (guiMessages[i].size() > 50) {
                     guiMessages[i].pop_back();
                 }
@@ -1446,7 +1446,7 @@ void Gui::addMessage(const std::wstring& _string, int iPad,
         }
     } else if (!(bIsDeathMessage &&
                  app.GetGameSettings(iPad, eGameSetting_DeathMessages) == 0)) {
-        guiMessages[iPad].insert(guiMessages[iPad].begin(), GuiMessage(string));
+        guiMessages[iPad].insert(guiMessages[iPad].begin(), GuiMessage(std::string));
         while (guiMessages[iPad].size() > 50) {
             guiMessages[iPad].pop_back();
         }
@@ -1478,16 +1478,16 @@ float Gui::getJukeboxOpacity(int iPad) {
     return alpha;
 }
 
-void Gui::setNowPlaying(const std::wstring& string) {
+void Gui::setNowPlaying(const std::wstring& std::string) {
     //	overlayMessageString = L"Now playing: " + string;
-    overlayMessageString = app.GetString(IDS_NOWPLAYING) + string;
+    overlayMessageString = app.GetString(IDS_NOWPLAYING) + std::string;
     overlayMessageTime = 20 * 3;
     animateOverlayMessageColor = true;
 }
 
 void Gui::displayClientMessage(int messageId, int iPad) {
     // Language *language = Language::getInstance();
-    wstring languageString =
+    std::wstring languageString =
         app.GetString(messageId);  // language->getElement(messageId);
 
     addMessage(languageString, iPad);

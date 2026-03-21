@@ -27,7 +27,7 @@ VillagerGolem::VillagerGolem(Level* level) : Golem(level) {
     setHealth(getMaxHealth());
 
     villageUpdateInterval = 0;
-    village = weak_ptr<Village>();
+    village = std::weak_ptr<Village>();
     attackAnimationTick = 0;
     offerFlowerTick = 0;
 
@@ -61,7 +61,7 @@ bool VillagerGolem::useNewAi() { return true; }
 void VillagerGolem::serverAiMobStep() {
     if (--villageUpdateInterval <= 0) {
         villageUpdateInterval = 70 + random->nextInt(50);
-        shared_ptr<Village> _village = level->villages->getClosestVillage(
+        std::shared_ptr<Village> _village = level->villages->getClosestVillage(
             Mth::floor(x), Mth::floor(y), Mth::floor(z), Villages::MaxDoorDist);
         village = _village;
         if (_village == NULL)
@@ -216,9 +216,9 @@ void VillagerGolem::die(DamageSource* source) {
 bool VillagerGolem::hurt(DamageSource* source, float dmg) {
     // 4J: Protect owned golem from untrusted players
     if (isPlayerCreated()) {
-        shared_ptr<Entity> entity = source->getDirectEntity();
+        std::shared_ptr<Entity> entity = source->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+            std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
             if (!player->isAllowedToAttackPlayers()) return false;
         }
     }

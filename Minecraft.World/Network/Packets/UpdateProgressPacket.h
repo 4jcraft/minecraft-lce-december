@@ -7,7 +7,7 @@
 
 class UpdateProgressPacket
     : public Packet,
-      public enable_shared_from_this<UpdateProgressPacket> {
+      public std::enable_shared_from_this<UpdateProgressPacket> {
 public:
     int m_percentage;
 

@@ -110,5 +110,5 @@ public:
 
     virtual int getWidth();
     virtual int getHeight();
-    virtual void dropItem(shared_ptr<Entity> causedBy);
+    virtual void dropItem(std::shared_ptr<Entity> causedBy);
 };

@@ -31,7 +31,7 @@ void SmoothStoneBrickTile::registerIcons(IconRegister* iconRegister) {
     icons = new Icon*[SMOOTH_STONE_BRICK_NAMES_LENGTH];
 
     for (int i = 0; i < SMOOTH_STONE_BRICK_NAMES_LENGTH; i++) {
-        wstring name = getIconName();
+        std::wstring name = getIconName();
         if (!TEXTURE_NAMES[i].empty()) name += L"_" + TEXTURE_NAMES[i];
         icons[i] = iconRegister->registerIcon(name);
     }

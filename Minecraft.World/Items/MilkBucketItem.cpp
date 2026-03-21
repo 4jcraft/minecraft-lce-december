@@ -15,7 +15,7 @@ std::shared_ptr<ItemInstance> MilkBucketItem::useTimeDepleted(
     }
 
     if (instance->count <= 0) {
-        return shared_ptr<ItemInstance>(new ItemInstance(Item::bucket_empty));
+        return std::shared_ptr<ItemInstance>(new ItemInstance(Item::bucket_empty));
     }
     return instance;
 }

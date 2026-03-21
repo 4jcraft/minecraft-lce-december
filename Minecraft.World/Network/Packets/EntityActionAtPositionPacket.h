@@ -4,7 +4,7 @@
 
 class EntityActionAtPositionPacket
     : public Packet,
-      public enable_shared_from_this<EntityActionAtPositionPacket> {
+      public std::enable_shared_from_this<EntityActionAtPositionPacket> {
 public:
     static const int START_SLEEP;
     int id, x, y, z, action;

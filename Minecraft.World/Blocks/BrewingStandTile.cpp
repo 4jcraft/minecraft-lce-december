@@ -20,7 +20,7 @@ bool BrewingStandTile::isSolidRender(bool isServerLevel) { return false; }
 int BrewingStandTile::getRenderShape() { return SHAPE_BREWING_STAND; }
 
 std::shared_ptr<TileEntity> BrewingStandTile::newTileEntity(Level* level) {
-    return shared_ptr<TileEntity>(new BrewingStandTileEntity());
+    return std::shared_ptr<TileEntity>(new BrewingStandTileEntity());
 }
 
 bool BrewingStandTile::isCubeShaped() { return false; }
@@ -49,7 +49,7 @@ bool BrewingStandTile::use(
     if (level->isClientSide) {
         return true;
     }
-    shared_ptr<BrewingStandTileEntity> brewingStand =
+    std::shared_ptr<BrewingStandTileEntity> brewingStand =
         dynamic_pointer_cast<BrewingStandTileEntity>(
             level->getTileEntity(x, y, z));
     if (brewingStand != NULL) player->openBrewingStand(brewingStand);
@@ -78,13 +78,13 @@ void BrewingStandTile::animateTick(Level* level, int xt, int yt, int zt,
 
 void BrewingStandTile::onRemove(Level* level, int x, int y, int z, int id,
                                 int data) {
-    shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
+    std::shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
     if (tileEntity != NULL &&
         (dynamic_pointer_cast<BrewingStandTileEntity>(tileEntity) != NULL)) {
-        shared_ptr<BrewingStandTileEntity> container =
+        std::shared_ptr<BrewingStandTileEntity> container =
             dynamic_pointer_cast<BrewingStandTileEntity>(tileEntity);
         for (int i = 0; i < container->getContainerSize(); i++) {
-            shared_ptr<ItemInstance> item = container->getItem(i);
+            std::shared_ptr<ItemInstance> item = container->getItem(i);
             if (item != NULL) {
                 float xo = random->nextFloat() * 0.8f + 0.1f;
                 float yo = random->nextFloat() * 0.8f + 0.1f;
@@ -95,10 +95,10 @@ void BrewingStandTile::onRemove(Level* level, int x, int y, int z, int id,
                     if (count > item->count) count = item->count;
                     item->count -= count;
 
-                    shared_ptr<ItemEntity> itemEntity =
-                        shared_ptr<ItemEntity>(new ItemEntity(
+                    std::shared_ptr<ItemEntity> itemEntity =
+                        std::shared_ptr<ItemEntity>(new ItemEntity(
                             level, x + xo, y + yo, z + zo,
-                            shared_ptr<ItemInstance>(new ItemInstance(
+                            std::shared_ptr<ItemInstance>(new ItemInstance(
                                 item->id, count, item->getAuxValue()))));
                     float pow = 0.05f;
                     itemEntity->xd = (float)random->nextGaussian() * pow;

@@ -82,7 +82,7 @@ UIScene_SettingsOptionsMenu::UIScene_SettingsOptionsMenu(int iPad,
     m_sliderDifficulty.init(difficultyLabels[ucValue], eControl_Difficulty, 0,
                             3, ucValue);
 
-    wstring wsText = app.GetString(m_iDifficultySettingA[app.GetGameSettings(
+    std::wstring wsText = app.GetString(m_iDifficultySettingA[app.GetGameSettings(
         m_iPad, eGameSetting_Difficulty)]);
     EHTMLFontSize size = eHTMLSize_Normal;
     if (!RenderManager.IsHiDef() && !RenderManager.IsWidescreen()) {
@@ -292,7 +292,7 @@ void UIScene_SettingsOptionsMenu::handleReload() {
     m_sliderDifficulty.init(difficultyLabels[ucValue], eControl_Difficulty, 0,
                             3, ucValue);
 
-    wstring wsText = app.GetString(m_iDifficultySettingA[app.GetGameSettings(
+    std::wstring wsText = app.GetString(m_iDifficultySettingA[app.GetGameSettings(
         m_iPad, eGameSetting_Difficulty)]);
     EHTMLFontSize size = eHTMLSize_Normal;
     if (!RenderManager.IsHiDef() && !RenderManager.IsWidescreen()) {
@@ -374,7 +374,7 @@ void UIScene_SettingsOptionsMenu::handleSliderMove(F64 sliderId,
 
             app.SetGameSettings(m_iPad, eGameSetting_Difficulty, value);
 
-            wstring wsText = app.GetString(m_iDifficultySettingA[value]);
+            std::wstring wsText = app.GetString(m_iDifficultySettingA[value]);
             EHTMLFontSize size = eHTMLSize_Normal;
             if (!RenderManager.IsHiDef() && !RenderManager.IsWidescreen()) {
                 size = eHTMLSize_Splitscreen;

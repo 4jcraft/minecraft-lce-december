@@ -10,7 +10,7 @@ private:
     BinaryHeap openSet;
 
     // 4J Jev, was a IntHashMap, thought this was close enough.
-    unordered_map<int, Node*, IntKeyHash, IntKeyEq> nodes;
+    std::unordered_map<int, Node*, IntKeyHash, IntKeyEq> nodes;
 
     NodeArray* neighbors;
 

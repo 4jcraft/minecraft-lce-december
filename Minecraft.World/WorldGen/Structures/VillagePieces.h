@@ -163,8 +163,8 @@ public:
 
         // these queues are used so that the addChildren calls are called in a
         // random order
-        vector<StructurePiece*> pendingHouses;
-        vector<StructurePiece*> pendingRoads;
+        std::vector<StructurePiece*> pendingHouses;
+        std::vector<StructurePiece*> pendingRoads;
 
         StartPiece();
         StartPiece(BiomeSource* biomeSource, int genDepth, Random* random,

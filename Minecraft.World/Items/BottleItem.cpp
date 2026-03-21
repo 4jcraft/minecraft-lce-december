@@ -31,12 +31,12 @@ std::shared_ptr<ItemInstance> BottleItem::use(
         if (level->getMaterial(xt, yt, zt) == Material::water) {
             itemInstance->count--;
             if (itemInstance->count <= 0) {
-                return shared_ptr<ItemInstance>(
+                return std::shared_ptr<ItemInstance>(
                     new ItemInstance((Item*)Item::potion));
             } else {
-                if (!player->inventory->add(shared_ptr<ItemInstance>(
+                if (!player->inventory->add(std::shared_ptr<ItemInstance>(
                         new ItemInstance((Item*)Item::potion)))) {
-                    player->drop(shared_ptr<ItemInstance>(
+                    player->drop(std::shared_ptr<ItemInstance>(
                         new ItemInstance(Item::potion_Id, 1, 0)));
                 }
             }

@@ -4,7 +4,7 @@
 
 class ContainerSetSlotPacket
     : public Packet,
-      public enable_shared_from_this<ContainerSetSlotPacket> {
+      public std::enable_shared_from_this<ContainerSetSlotPacket> {
 public:
     static const int CONTAINER;
     static const int WORKBENCH;

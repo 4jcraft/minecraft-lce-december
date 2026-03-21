@@ -10,7 +10,7 @@ ContainerSetContentPacket::~ContainerSetContentPacket() { delete[] items.data; }
 ContainerSetContentPacket::ContainerSetContentPacket() { containerId = 0; }
 
 ContainerSetContentPacket::ContainerSetContentPacket(
-    int containerId, vector<std::shared_ptr<ItemInstance> >* newItems) {
+    int containerId, std::vector<std::shared_ptr<ItemInstance> >* newItems) {
     this->containerId = containerId;
     items = ItemInstanceArray((int)newItems->size());
     for (unsigned int i = 0; i < items.length; i++) {

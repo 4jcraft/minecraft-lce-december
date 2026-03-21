@@ -31,7 +31,7 @@ public:
     ~CustomMap();
 
     void clear();
-    SCustomMapNode* find(const ChunkPos& Key);
+    SCustomMapNode* std::find(const ChunkPos& Key);
     int end();
     SCustomMapNode* get(int index);
     void insert(const ChunkPos& Key, bool Value);

@@ -153,7 +153,7 @@ void EntityRenderer::renderShadow(std::shared_ptr<Entity> e, double x, double y,
     float fYLocalPlayerShadowOffset = 0.0f;
 
     if (e->instanceof(eTYPE_MOB)) {
-        shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(e);
+        std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(e);
         r *= mob->getSizeScale();
 
         if (mob->instanceof(eTYPE_ANIMAL)) {

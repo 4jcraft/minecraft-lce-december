@@ -7,7 +7,7 @@ class MerchantRecipeList;
 class MerchantRecipe;
 
 class ClientSideMerchant : public Merchant,
-                           public enable_shared_from_this<ClientSideMerchant> {
+                           public std::enable_shared_from_this<ClientSideMerchant> {
 private:
     MerchantContainer* container;
     std::shared_ptr<Player> source;

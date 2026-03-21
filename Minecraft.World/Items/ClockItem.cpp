@@ -5,7 +5,7 @@
 #include "../Headers/net.minecraft.world.h"
 
 #ifdef __PSVITA__
-const wstring ClockItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {L"clockP0"};
+const std::wstring ClockItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {L"clockP0"};
 #else
 const std::wstring ClockItem::TEXTURE_PLAYER_ICON[XUSER_MAX_COUNT] = {
     L"clockP0", L"clockP1", L"clockP2", L"clockP3"};

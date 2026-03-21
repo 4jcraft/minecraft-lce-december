@@ -121,7 +121,7 @@ public:
                                  byteArray paramBlob);
     static byteArray createParamBlob(eMethod method, int distance);
 
-    void flush(std::shared_ptr<LocalPlayer> plr);
+    void std::flush(std::shared_ptr<LocalPlayer> plr);
 
 protected:
     unsigned int param_cache[MAX_LOCAL_PLAYERS][eMethod_MAX];

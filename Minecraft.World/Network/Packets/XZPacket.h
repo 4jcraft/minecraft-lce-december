@@ -4,7 +4,7 @@
 
 #include "Packet.h"
 
-class XZPacket : public Packet, public enable_shared_from_this<XZPacket> {
+class XZPacket : public Packet, public std::enable_shared_from_this<XZPacket> {
 public:
     static const int STRONGHOLD;
 

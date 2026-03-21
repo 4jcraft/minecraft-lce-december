@@ -61,7 +61,7 @@ Icon* EnchantmentTableTile::getTexture(int face, int data) {
 }
 
 std::shared_ptr<TileEntity> EnchantmentTableTile::newTileEntity(Level* level) {
-    return shared_ptr<TileEntity>(new EnchantmentTableEntity());
+    return std::shared_ptr<TileEntity>(new EnchantmentTableEntity());
 }
 
 bool EnchantmentTableTile::use(
@@ -74,7 +74,7 @@ bool EnchantmentTableTile::use(
     if (level->isClientSide) {
         return true;
     }
-    shared_ptr<EnchantmentTableEntity> table =
+    std::shared_ptr<EnchantmentTableEntity> table =
         dynamic_pointer_cast<EnchantmentTableEntity>(
             level->getTileEntity(x, y, z));
     player->startEnchanting(x, y, z,

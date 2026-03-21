@@ -200,7 +200,7 @@ void UIControl_DynamicButtonList::tick() {
     UIControl_ButtonList::tick();
 
     int buttonIndex = 0;
-    vector<UIString>::iterator itr;
+    std::vector<UIString>::iterator itr;
     for (itr = m_labels.begin(); itr != m_labels.end(); itr++) {
         if (itr->needsUpdating()) {
             setButtonLabel(buttonIndex, itr->getString());

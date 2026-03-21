@@ -10,7 +10,7 @@ private:
     Mob* mob;  // Owner of this goal
 
 protected:
-    weak_ptr<Entity> lookAt;
+    std::weak_ptr<Entity> lookAt;
 
 private:
     float lookDistance;

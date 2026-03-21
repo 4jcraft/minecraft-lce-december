@@ -26,12 +26,12 @@ DispenseItemBehavior* DropperTile::getDispenseMethod(
 }
 
 std::shared_ptr<TileEntity> DropperTile::newTileEntity(Level* level) {
-    return shared_ptr<DropperTileEntity>(new DropperTileEntity());
+    return std::shared_ptr<DropperTileEntity>(new DropperTileEntity());
 }
 
 void DropperTile::dispenseFrom(Level* level, int x, int y, int z) {
     BlockSourceImpl source(level, x, y, z);
-    shared_ptr<DispenserTileEntity> trap =
+    std::shared_ptr<DispenserTileEntity> trap =
         dynamic_pointer_cast<DispenserTileEntity>(source.getEntity());
     if (trap == NULL) return;
 
@@ -39,12 +39,12 @@ void DropperTile::dispenseFrom(Level* level, int x, int y, int z) {
     if (slot < 0) {
         level->levelEvent(LevelEvent::SOUND_CLICK_FAIL, x, y, z, 0);
     } else {
-        shared_ptr<ItemInstance> item = trap->getItem(slot);
+        std::shared_ptr<ItemInstance> item = trap->getItem(slot);
         int face = level->getData(x, y, z) & DispenserTile::FACING_MASK;
-        shared_ptr<Container> into = HopperTileEntity::getContainerAt(
+        std::shared_ptr<Container> into = HopperTileEntity::getContainerAt(
             level, x + Facing::STEP_X[face], y + Facing::STEP_Y[face],
             z + Facing::STEP_Z[face]);
-        shared_ptr<ItemInstance> remaining = nullptr;
+        std::shared_ptr<ItemInstance> remaining = nullptr;
 
         if (into != NULL) {
             remaining =

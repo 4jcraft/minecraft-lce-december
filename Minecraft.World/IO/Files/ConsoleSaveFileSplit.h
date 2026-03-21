@@ -57,8 +57,8 @@ private:
         bool dirty;
         int64_t lastWritten;
     };
-    unordered_map<unsigned int, RegionFileReference*> regionFiles;
-    vector<WriteHistory> writeHistory;
+    std::unordered_map<unsigned int, RegionFileReference*> regionFiles;
+    std::vector<WriteHistory> writeHistory;
     int64_t m_lastTickTime;
 
     FileEntry* GetRegionFileEntry(unsigned int regionIndex);
@@ -140,14 +140,14 @@ public:
 
     virtual std::wstring getFilename();
 
-    virtual vector<FileEntry*>* getFilesWithPrefix(const std::wstring& prefix);
-    virtual vector<FileEntry*>* getRegionFilesByDimension(
+    virtual std::vector<FileEntry*>* getFilesWithPrefix(const std::wstring& prefix);
+    virtual std::vector<FileEntry*>* getRegionFilesByDimension(
         unsigned int dimensionIndex);
 
 #if defined(__PS3__) || defined(__ORBIS__)
-    virtual wstring getPlayerDataFilenameForLoad(const PlayerUID& pUID);
-    virtual wstring getPlayerDataFilenameForSave(const PlayerUID& pUID);
-    virtual vector<FileEntry*>* getValidPlayerDatFiles();
+    virtual std::wstring getPlayerDataFilenameForLoad(const PlayerUID& pUID);
+    virtual std::wstring getPlayerDataFilenameForSave(const PlayerUID& pUID);
+    virtual std::vector<FileEntry*>* getValidPlayerDatFiles();
 #endif  //__PS3__
 
     virtual int getSaveVersion();

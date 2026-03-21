@@ -6,7 +6,7 @@ class LevelType;
 class GameType;
 
 class RespawnPacket : public Packet,
-                      public enable_shared_from_this<RespawnPacket> {
+                      public std::enable_shared_from_this<RespawnPacket> {
 public:
     char dimension;
     char difficulty;

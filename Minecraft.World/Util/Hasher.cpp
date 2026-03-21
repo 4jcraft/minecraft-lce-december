@@ -8,7 +8,7 @@ Hasher::Hasher(std::wstring& salt) { this->salt = salt; }
 std::wstring Hasher::getHash(std::wstring& name) {
     // 4J Stu - Removed try/catch
     // try {
-    wstring s = wstring(salt).append(name);
+    std::wstring s = std::wstring(salt).append(name);
     // MessageDigest m;
     // m = MessageDigest.getInstance("MD5");
     // m.update(s.getBytes(), 0, s.length());

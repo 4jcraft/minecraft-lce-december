@@ -368,7 +368,7 @@ ConsoleSaveFileSplit::ConsoleSaveFileSplit(ConsoleSaveFile* sourceSave,
     header.setSaveVersion(sourceSave->getSaveVersion());
 
     if (alreadySmallRegions) {
-        vector<FileEntry*>* sourceFiles = sourceSave->getFilesWithPrefix(L"");
+        std::vector<FileEntry*>* sourceFiles = sourceSave->getFilesWithPrefix(L"");
 
         DWORD bytesWritten;
         for (AUTO_VAR(it, sourceFiles->begin()); it != sourceFiles->end();
@@ -891,7 +891,7 @@ void ConsoleSaveFileSplit::tick() {
     }
 
     // Compile a vector of dirty regions.
-    vector<DirtyRegionFile> dirtyRegions;
+    std::vector<DirtyRegionFile> dirtyRegions;
     for (AUTO_VAR(it, regionFiles.begin()); it != regionFiles.end(); it++) {
         DirtyRegionFile dirtyRegion;
 
@@ -1148,8 +1148,8 @@ bool ConsoleSaveFileSplit::GetNumericIdentifierFromName(
     // Determine whether it is one of our region file names if the file
     // extension is ".mbr"
     if (fileName.length() < 4) return false;
-    wstring extension = fileName.substr(fileName.length() - 4, 4);
-    if (extension != wstring(L".mcr")) return false;
+    std::wstring extension = fileName.substr(fileName.length() - 4, 4);
+    if (extension != std::wstring(L".mcr")) return false;
 
     unsigned int id = 0;
     int x, z;
@@ -1188,7 +1188,7 @@ bool ConsoleSaveFileSplit::GetNumericIdentifierFromName(
 
 std::wstring ConsoleSaveFileSplit::GetNameFromNumericIdentifier(
     unsigned int idIn) {
-    wstring prefix;
+    std::wstring prefix;
 
     switch (idIn & 0x00ff0000) {
         case 0:
@@ -1203,7 +1203,7 @@ std::wstring ConsoleSaveFileSplit::GetNameFromNumericIdentifier(
     }
     signed char regionX = (idIn >> 8) & 255;
     signed char regionZ = idIn & 255;
-    wstring region = (prefix + wstring(L"r.") + _toString(regionX) + L"." +
+    std::wstring region = (prefix + std::wstring(L"r.") + _toString(regionX) + L"." +
                       _toString(regionZ) + L".mcr");
 
     return region;
@@ -1465,7 +1465,7 @@ void ConsoleSaveFileSplit::DebugFlushToFile(
     // 14 chars for the digits
     // 11 chars for the separators + suffix
     // 25 chars total
-    wstring cutFileName = m_fileName;
+    std::wstring cutFileName = m_fileName;
     if (m_fileName.length() > XCONTENT_MAX_FILENAME_LENGTH - 25) {
         cutFileName = m_fileName.substr(0, XCONTENT_MAX_FILENAME_LENGTH - 25);
     }
@@ -1475,11 +1475,11 @@ void ConsoleSaveFileSplit::DebugFlushToFile(
              t.wSecond);
 
 #ifdef _UNICODE
-    wstring wtemp = targetFileDir.getPath() + wstring(fileName);
+    std::wstring wtemp = targetFileDir.getPath() + std::wstring(fileName);
     LPCWSTR lpFileName = wtemp.c_str();
 #else
     LPCSTR lpFileName =
-        wstringtofilename(targetFileDir.getPath() + wstring(fileName));
+        wstringtofilename(targetFileDir.getPath() + std::wstring(fileName));
 #endif
 
     HANDLE hSaveFile = CreateFile(lpFileName, GENERIC_WRITE, 0, NULL,
@@ -1507,21 +1507,21 @@ unsigned int ConsoleSaveFileSplit::getSizeOnDisk() {
 
 std::wstring ConsoleSaveFileSplit::getFilename() { return m_fileName; }
 
-vector<FileEntry*>* ConsoleSaveFileSplit::getFilesWithPrefix(
+std::vector<FileEntry*>* ConsoleSaveFileSplit::getFilesWithPrefix(
     const std::wstring& prefix) {
     return header.getFilesWithPrefix(prefix);
 }
 
-vector<FileEntry*>* ConsoleSaveFileSplit::getRegionFilesByDimension(
+std::vector<FileEntry*>* ConsoleSaveFileSplit::getRegionFilesByDimension(
     unsigned int dimensionIndex) {
-    vector<FileEntry*>* files = NULL;
+    std::vector<FileEntry*>* files = NULL;
 
     for (AUTO_VAR(it, regionFiles.begin()); it != regionFiles.end(); ++it) {
         unsigned int entryDimension = ((it->first) >> 16) & 0xFF;
 
         if (entryDimension == dimensionIndex) {
             if (files == NULL) {
-                files = new vector<FileEntry*>();
+                files = new std::vector<FileEntry*>();
             }
 
             files->push_back(it->second->fileEntry);
@@ -1532,15 +1532,15 @@ vector<FileEntry*>* ConsoleSaveFileSplit::getRegionFilesByDimension(
 }
 
 #if defined(__PS3__) || defined(__ORBIS__)
-wstring ConsoleSaveFileSplit::getPlayerDataFilenameForLoad(
+std::wstring ConsoleSaveFileSplit::getPlayerDataFilenameForLoad(
     const PlayerUID& pUID) {
     return header.getPlayerDataFilenameForLoad(pUID);
 }
-wstring ConsoleSaveFileSplit::getPlayerDataFilenameForSave(
+std::wstring ConsoleSaveFileSplit::getPlayerDataFilenameForSave(
     const PlayerUID& pUID) {
     return header.getPlayerDataFilenameForSave(pUID);
 }
-vector<FileEntry*>* ConsoleSaveFileSplit::getValidPlayerDatFiles() {
+std::vector<FileEntry*>* ConsoleSaveFileSplit::getValidPlayerDatFiles() {
     return header.getValidPlayerDatFiles();
 }
 #endif
@@ -1624,12 +1624,12 @@ void ConsoleSaveFileSplit::ConvertToLocalPlatform() {
         return;
     }
     // convert each of the region files to the local platform
-    vector<FileEntry*>* allFilesInSave = getFilesWithPrefix(wstring(L""));
+    std::vector<FileEntry*>* allFilesInSave = getFilesWithPrefix(std::wstring(L""));
     for (AUTO_VAR(it, allFilesInSave->begin()); it < allFilesInSave->end();
          ++it) {
         FileEntry* fe = *it;
-        wstring fName(fe->data.filename);
-        wstring suffix(L".mcr");
+        std::wstring fName(fe->data.filename);
+        std::wstring suffix(L".mcr");
         if (fName.compare(fName.length() - suffix.length(), suffix.length(),
                           suffix) == 0) {
             app.DebugPrintf("Processing a region file: %ls\n", fName.c_str());

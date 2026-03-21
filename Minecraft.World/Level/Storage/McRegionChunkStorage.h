@@ -14,7 +14,7 @@ private:
     ConsoleSaveFile* m_saveFile;
     static CRITICAL_SECTION cs_memory;
 
-    unordered_map<__int64, byteArray> m_entityData;
+    std::unordered_map<__int64, byteArray> m_entityData;
 
     static std::deque<DataOutputStream*> s_chunkDataQueue;
     static int s_runningThreadCount;
@@ -30,7 +30,7 @@ public:
     virtual void saveEntities(Level* level, LevelChunk* levelChunk);
     virtual void loadEntities(Level* level, LevelChunk* levelChunk);
     virtual void tick();
-    virtual void flush();
+    virtual void std::flush();
     virtual void WaitForAll();                 // 4J Added
     virtual void WaitIfTooManyQueuedChunks();  // 4J Added
 

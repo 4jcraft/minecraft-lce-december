@@ -15,8 +15,8 @@ public:
     static const std::wstring STRUCTURE_DUNGEON;
 
 private:
-    vector<FlatLayerInfo*> layers;
-    unordered_map<std::wstring, unordered_map<std::wstring, std::wstring> >
+    std::vector<FlatLayerInfo*> layers;
+    std::unordered_map<std::wstring, std::unordered_map<std::wstring, std::wstring> >
         structures;
     int biome;
 
@@ -26,16 +26,16 @@ public:
 
     int getBiome();
     void setBiome(int biome);
-    unordered_map<std::wstring, unordered_map<std::wstring, std::wstring> >*
+    std::unordered_map<std::wstring, std::unordered_map<std::wstring, std::wstring> >*
     getStructures();
-    vector<FlatLayerInfo*>* getLayers();
+    std::vector<FlatLayerInfo*>* getLayers();
     void updateLayers();
     std::wstring toString();
 
 private:
     static FlatLayerInfo* getLayerFromString(const std::wstring& input,
                                              int yOffset);
-    static vector<FlatLayerInfo*>* getLayersFromString(
+    static std::vector<FlatLayerInfo*>* getLayersFromString(
         const std::wstring& input);
 
 public:

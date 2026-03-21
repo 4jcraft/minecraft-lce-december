@@ -13,9 +13,9 @@ private:
 public:
     static int getEnchantmentLevel(int enchantmentId,
                                    std::shared_ptr<ItemInstance> piece);
-    static unordered_map<int, int>* getEnchantments(
+    static std::unordered_map<int, int>* getEnchantments(
         std::shared_ptr<ItemInstance> item);
-    static void setEnchantments(unordered_map<int, int>* enchantments,
+    static void setEnchantments(std::unordered_map<int, int>* enchantments,
                                 std::shared_ptr<ItemInstance> item);
 
     static int getEnchantmentLevel(int enchantmentId,
@@ -112,10 +112,10 @@ public:
      * @param enchantmentCost
      * @return
      */
-    static vector<EnchantmentInstance*>* selectEnchantment(
+    static std::vector<EnchantmentInstance*>* selectEnchantment(
         Random* random, std::shared_ptr<ItemInstance> itemInstance,
         int enchantmentCost);
-    static unordered_map<int, EnchantmentInstance*>*
+    static std::unordered_map<int, EnchantmentInstance*>*
     getAvailableEnchantmentResults(int value,
                                    std::shared_ptr<ItemInstance> itemInstance);
 };

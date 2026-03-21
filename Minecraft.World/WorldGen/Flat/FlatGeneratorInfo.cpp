@@ -26,12 +26,12 @@ int FlatGeneratorInfo::getBiome() { return biome; }
 
 void FlatGeneratorInfo::setBiome(int biome) { this->biome = biome; }
 
-unordered_map<wstring, unordered_map<wstring, wstring> >*
+std::unordered_map<std::wstring, std::unordered_map<std::wstring, std::wstring> >*
 FlatGeneratorInfo::getStructures() {
     return &structures;
 }
 
-vector<FlatLayerInfo*>* FlatGeneratorInfo::getLayers() { return &layers; }
+std::vector<FlatLayerInfo*>* FlatGeneratorInfo::getLayers() { return &layers; }
 
 void FlatGeneratorInfo::updateLayers() {
     int y = 0;
@@ -114,7 +114,7 @@ FlatLayerInfo* FlatGeneratorInfo::getLayerFromString(const std::wstring& input,
 		if (height < 0) height = 0;
 	}
 
-	wstring identity = parts[parts.size() - 1];
+	std::wstring identity = parts[parts.size() - 1];
 	parts = stringSplit(identity, L':');
 
 	id = _fromString<int>(parts[0]);
@@ -134,11 +134,11 @@ FlatLayerInfo* FlatGeneratorInfo::getLayerFromString(const std::wstring& input,
 #endif
 }
 
-vector<FlatLayerInfo*>* FlatGeneratorInfo::getLayersFromString(
+std::vector<FlatLayerInfo*>* FlatGeneratorInfo::getLayersFromString(
     const std::wstring& input) {
     if (input.empty()) return NULL;
 
-    vector<FlatLayerInfo*>* result = new vector<FlatLayerInfo*>();
+    std::vector<FlatLayerInfo*>* result = new std::vector<FlatLayerInfo*>();
     std::vector<std::wstring> depths = stringSplit(input, L',');
 
     int yOffset = 0;
@@ -165,7 +165,7 @@ FlatGeneratorInfo* FlatGeneratorInfo::fromValue(const std::wstring& input) {
 
 	FlatGeneratorInfo *result = new FlatGeneratorInfo();
 	int index = parts.size() == 1 ? 0 : 1;
-	vector<FlatLayerInfo *> *layers = getLayersFromString(parts[index++]);
+	std::vector<FlatLayerInfo *> *layers = getLayersFromString(parts[index++]);
 
 	if (layers == NULL || layers->isEmpty())
 	{
@@ -189,7 +189,7 @@ FlatGeneratorInfo* FlatGeneratorInfo::fromValue(const std::wstring& input) {
 		{
 			std::vector<std::wstring> separated = stringSplit(parts[index++], L"\\(");
 
-			unordered_map<wstring, wstring> structureOptions;
+			std::unordered_map<std::wstring, std::wstring> structureOptions;
 
 			if (separated[0].length() > 0)
 			{
@@ -210,7 +210,7 @@ FlatGeneratorInfo* FlatGeneratorInfo::fromValue(const std::wstring& input) {
 	}
 	else
 	{
-		(* (result->getStructures()) )[STRUCTURE_VILLAGE] = unordered_map<wstring, wstring>();
+		(* (result->getStructures()) )[STRUCTURE_VILLAGE] = std::unordered_map<std::wstring, std::wstring>();
 	}
 
 	return result;
@@ -226,7 +226,7 @@ FlatGeneratorInfo* FlatGeneratorInfo::getDefault() {
     result->getLayers()->push_back(new FlatLayerInfo(1, Tile::grass_Id));
     result->updateLayers();
     (*(result->getStructures()))[STRUCTURE_VILLAGE] =
-        unordered_map<wstring, wstring>();
+        std::unordered_map<std::wstring, std::wstring>();
 
     return result;
 }

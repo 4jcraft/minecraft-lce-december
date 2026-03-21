@@ -4,7 +4,7 @@
 
 class LevelParticlesPacket
     : public Packet,
-      public enable_shared_from_this<LevelParticlesPacket> {
+      public std::enable_shared_from_this<LevelParticlesPacket> {
 private:
     std::wstring name;
     float x;

@@ -6,7 +6,7 @@
 #include "../../../../Minecraft.World/Headers/net.minecraft.network.packet.h"
 
 void CompleteAllRuleDefinition::getChildren(
-    vector<GameRuleDefinition*>* children) {
+    std::vector<GameRuleDefinition*>* children) {
     CompoundGameRuleDefinition::getChildren(children);
 }
 
@@ -19,7 +19,7 @@ bool CompleteAllRuleDefinition::onUseTile(GameRule* rule, int tileId, int x,
 }
 
 bool CompleteAllRuleDefinition::onCollectItem(GameRule* rule,
-                                              shared_ptr<ItemInstance> item) {
+                                              std::shared_ptr<ItemInstance> item) {
     bool statusChanged = CompoundGameRuleDefinition::onCollectItem(rule, item);
     if (statusChanged) updateStatus(rule);
     return statusChanged;
@@ -49,7 +49,7 @@ void CompleteAllRuleDefinition::updateStatus(GameRule* rule) {
             auxValue = m_lastRuleStatusChanged->getAuxValue();
             m_lastRuleStatusChanged = NULL;
         }
-        rule->getConnection()->send(shared_ptr<UpdateGameRuleProgressPacket>(
+        rule->getConnection()->send(std::shared_ptr<UpdateGameRuleProgressPacket>(
             new UpdateGameRuleProgressPacket(
                 getActionType(), this->m_descriptionId, icon, auxValue, 0,
                 &data, sizeof(PacketData))));
@@ -61,7 +61,7 @@ void CompleteAllRuleDefinition::updateStatus(GameRule* rule) {
 std::wstring CompleteAllRuleDefinition::generateDescriptionString(
     const std::wstring& description, void* data, int dataLength) {
     PacketData* values = (PacketData*)data;
-    wstring newDesc = description;
+    std::wstring newDesc = description;
     newDesc =
         replaceAll(newDesc, L"{*progress*}", _toString<int>(values->progress));
     newDesc = replaceAll(newDesc, L"{*goal*}", _toString<int>(values->goal));

@@ -32,7 +32,7 @@ ItemRenderer::~ItemRenderer() { delete random; }
 
 ResourceLocation* ItemRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
-    shared_ptr<ItemEntity> itemEntity =
+    std::shared_ptr<ItemEntity> itemEntity =
         dynamic_pointer_cast<ItemEntity>(entity);
     return getTextureLocation(itemEntity->getItem()->getIconType());
 }
@@ -55,12 +55,12 @@ void ItemRenderer::render(std::shared_ptr<Entity> _itemEntity, double x,
                           double y, double z, float rot, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    shared_ptr<ItemEntity> itemEntity =
+    std::shared_ptr<ItemEntity> itemEntity =
         dynamic_pointer_cast<ItemEntity>(_itemEntity);
     bindTexture(itemEntity);
 
     random->setSeed(187);
-    shared_ptr<ItemInstance> item = itemEntity->getItem();
+    std::shared_ptr<ItemInstance> item = itemEntity->getItem();
     if (item->getItem() == NULL) return;
 
     glPushMatrix();
@@ -227,7 +227,7 @@ void ItemRenderer::renderItemBillboard(std::shared_ptr<ItemEntity> entity,
 
         float width = 1 / 16.0f;
         float margin = 0.35f / 16.0f;
-        shared_ptr<ItemInstance> item = entity->getItem();
+        std::shared_ptr<ItemInstance> item = entity->getItem();
         int items = item->count;
 
         if (items < 2) {
@@ -619,7 +619,7 @@ void ItemRenderer::renderGuiItemDecorations(Font* font, Textures* textures,
     if (item->count > 1 || !countText.empty() ||
         item->GetForceNumberDisplay()) {
         MemSect(31);
-        wstring amount = countText;
+        std::wstring amount = countText;
         if (amount.empty()) {
             int count = item->count;
             if (count > 64) {

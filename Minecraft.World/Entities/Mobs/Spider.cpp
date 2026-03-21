@@ -51,7 +51,7 @@ std::shared_ptr<Entity> Spider::findAttackTarget() {
 #ifndef _FINAL_BUILD
 #ifdef _DEBUG_MENUS_ENABLED
     if (app.GetMobsDontAttackEnabled()) {
-        return shared_ptr<Player>();
+        return std::shared_ptr<Player>();
     }
 #endif
 #endif
@@ -61,7 +61,7 @@ std::shared_ptr<Entity> Spider::findAttackTarget() {
         double maxDist = 16;
         return level->getNearestAttackablePlayer(shared_from_this(), maxDist);
     }
-    return shared_ptr<Entity>();
+    return std::shared_ptr<Entity>();
 }
 
 int Spider::getAmbientSound() { return eSoundType_MOB_SPIDER_AMBIENT; }
@@ -152,8 +152,8 @@ MobGroupData* Spider::finalizeMobSpawn(
     if (level->random->nextInt(100) == 0)
 #endif
     {
-        shared_ptr<Skeleton> skeleton =
-            shared_ptr<Skeleton>(new Skeleton(level));
+        std::shared_ptr<Skeleton> skeleton =
+            std::shared_ptr<Skeleton>(new Skeleton(level));
         skeleton->moveTo(x, y, z, yRot, 0);
         skeleton->finalizeMobSpawn(NULL);
         level->addEntity(skeleton);

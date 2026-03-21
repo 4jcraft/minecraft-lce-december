@@ -8,7 +8,7 @@
 
 class ChunkVisibilityPacket
     : public Packet,
-      public enable_shared_from_this<ChunkVisibilityPacket> {
+      public std::enable_shared_from_this<ChunkVisibilityPacket> {
 public:
     int x, z;
     bool visible;
@@ -23,7 +23,7 @@ public:
 
 public:
     static std::shared_ptr<Packet> create() {
-        return shared_ptr<Packet>(new ChunkVisibilityPacket());
+        return std::shared_ptr<Packet>(new ChunkVisibilityPacket());
     }
     virtual int getId() { return 50; }
 };

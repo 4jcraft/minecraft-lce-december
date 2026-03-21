@@ -58,8 +58,8 @@ ItemInstance::ItemInstance(int id, int count, int damage) {
 }
 
 std::shared_ptr<ItemInstance> ItemInstance::fromTag(CompoundTag* itemTag) {
-    shared_ptr<ItemInstance> itemInstance =
-        shared_ptr<ItemInstance>(new ItemInstance());
+    std::shared_ptr<ItemInstance> itemInstance =
+        std::shared_ptr<ItemInstance>(new ItemInstance());
     itemInstance->load(itemTag);
     return itemInstance->getItem() != NULL ? itemInstance : nullptr;
 }
@@ -69,8 +69,8 @@ ItemInstance::~ItemInstance() {
 }
 
 std::shared_ptr<ItemInstance> ItemInstance::remove(int count) {
-    shared_ptr<ItemInstance> ii =
-        shared_ptr<ItemInstance>(new ItemInstance(id, count, auxValue));
+    std::shared_ptr<ItemInstance> ii =
+        std::shared_ptr<ItemInstance>(new ItemInstance(id, count, auxValue));
     if (tag != NULL) ii->tag = (CompoundTag*)tag->copy();
     this->count -= count;
 
@@ -198,7 +198,7 @@ bool ItemInstance::hurt(int dmg, Random* random) {
 }
 
 void ItemInstance::hurtAndBreak(int dmg, std::shared_ptr<LivingEntity> owner) {
-    shared_ptr<Player> player = dynamic_pointer_cast<Player>(owner);
+    std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(owner);
     if (player != NULL && player->abilities.instabuild) return;
     if (!isDamageableItem()) return;
 
@@ -239,8 +239,8 @@ bool ItemInstance::interactEnemy(std::shared_ptr<Player> player,
 }
 
 std::shared_ptr<ItemInstance> ItemInstance::copy() const {
-    shared_ptr<ItemInstance> copy =
-        shared_ptr<ItemInstance>(new ItemInstance(id, count, auxValue));
+    std::shared_ptr<ItemInstance> copy =
+        std::shared_ptr<ItemInstance>(new ItemInstance(id, count, auxValue));
     if (tag != NULL) {
         copy->tag = (CompoundTag*)tag->copy();
     }
@@ -414,7 +414,7 @@ void ItemInstance::setTag(CompoundTag* tag) {
 }
 
 std::wstring ItemInstance::getHoverName() {
-    wstring title = getItem()->getHoverName(shared_from_this());
+    std::wstring title = getItem()->getHoverName(shared_from_this());
 
     if (tag != NULL && tag->contains(L"display")) {
         CompoundTag* display = tag->getCompound(L"display");
@@ -455,9 +455,9 @@ bool ItemInstance::hasCustomHoverName() {
     return tag->getCompound(L"display")->contains(L"Name");
 }
 
-vector<HtmlString>* ItemInstance::getHoverText(std::shared_ptr<Player> player,
+std::vector<HtmlString>* ItemInstance::getHoverText(std::shared_ptr<Player> player,
                                                bool advanced) {
-    vector<HtmlString>* lines = new vector<HtmlString>();
+    std::vector<HtmlString>* lines = new std::vector<HtmlString>();
     Item* item = Item::items[id];
     HtmlString title = HtmlString(getHoverName());
 
@@ -506,7 +506,7 @@ vector<HtmlString>* ItemInstance::getHoverText(std::shared_ptr<Player> player,
                 int level = list->get(i)->getShort((wchar_t*)TAG_ENCH_LEVEL);
 
                 if (Enchantment::enchantments[type] != NULL) {
-                    wstring unformatted = L"";
+                    std::wstring unformatted = L"";
                     lines->push_back(
                         Enchantment::enchantments[type]->getFullname(level));
                 }
@@ -571,7 +571,7 @@ vector<HtmlString>* ItemInstance::getHoverText(std::shared_ptr<Player> player,
 
     if (advanced) {
         if (isDamaged()) {
-            wstring damageStr =
+            std::wstring damageStr =
                 L"Durability: LOCALISE " +
                 _toString<int>((getMaxDamage()) - getDamageValue()) + L" / " +
                 _toString<int>(getMaxDamage());
@@ -583,9 +583,9 @@ vector<HtmlString>* ItemInstance::getHoverText(std::shared_ptr<Player> player,
 }
 
 // 4J Added
-vector<HtmlString>* ItemInstance::getHoverTextOnly(
+std::vector<HtmlString>* ItemInstance::getHoverTextOnly(
     std::shared_ptr<Player> player, bool advanced) {
-    vector<HtmlString>* lines = new vector<HtmlString>();
+    std::vector<HtmlString>* lines = new std::vector<HtmlString>();
     Item* item = Item::items[id];
 
     item->appendHoverText(shared_from_this(), player, lines, advanced);
@@ -598,7 +598,7 @@ vector<HtmlString>* ItemInstance::getHoverTextOnly(
                 int level = list->get(i)->getShort((wchar_t*)TAG_ENCH_LEVEL);
 
                 if (Enchantment::enchantments[type] != NULL) {
-                    wstring unformatted = L"";
+                    std::wstring unformatted = L"";
                     lines->push_back(
                         Enchantment::enchantments[type]->getFullname(level));
                 }

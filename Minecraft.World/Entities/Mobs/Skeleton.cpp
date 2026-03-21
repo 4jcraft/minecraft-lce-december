@@ -100,7 +100,7 @@ void Skeleton::aiStep() {
                              Mth::floor(z))) {
             bool burn = true;
 
-            shared_ptr<ItemInstance> helmet = getCarried(SLOT_HELM);
+            std::shared_ptr<ItemInstance> helmet = getCarried(SLOT_HELM);
             if (helmet != NULL) {
                 if (helmet->isDamageableItem()) {
                     helmet->setAuxValue(helmet->getDamageValue() +
@@ -143,7 +143,7 @@ void Skeleton::die(DamageSource* source) {
         source->getDirectEntity()->instanceof(eTYPE_ARROW) &&
         source->getEntity() != NULL &&
         source->getEntity()->instanceof(eTYPE_PLAYER)) {
-        shared_ptr<Player> player =
+        std::shared_ptr<Player> player =
             dynamic_pointer_cast<Player>(source->getEntity());
 
         double xd = player->x - x;
@@ -181,7 +181,7 @@ void Skeleton::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel) {
 
 void Skeleton::dropRareDeathLoot(int rareLootLevel) {
     if (getSkeletonType() == TYPE_WITHER) {
-        spawnAtLocation(shared_ptr<ItemInstance>(new ItemInstance(
+        spawnAtLocation(std::shared_ptr<ItemInstance>(new ItemInstance(
                             Item::skull_Id, 1, SkullTileEntity::TYPE_WITHER)),
                         0);
     }
@@ -191,7 +191,7 @@ void Skeleton::populateDefaultEquipmentSlots() {
     Monster::populateDefaultEquipmentSlots();
 
     setEquippedSlot(SLOT_WEAPON,
-                    shared_ptr<ItemInstance>(new ItemInstance(Item::bow)));
+                    std::shared_ptr<ItemInstance>(new ItemInstance(Item::bow)));
 }
 
 MobGroupData* Skeleton::finalizeMobSpawn(
@@ -204,7 +204,7 @@ MobGroupData* Skeleton::finalizeMobSpawn(
         goalSelector.addGoal(4, meleeGoal, false);
 
         setSkeletonType(TYPE_WITHER);
-        setEquippedSlot(SLOT_WEAPON, shared_ptr<ItemInstance>(
+        setEquippedSlot(SLOT_WEAPON, std::shared_ptr<ItemInstance>(
                                          new ItemInstance(Item::sword_stone)));
         getAttribute(SharedMonsterAttributes::ATTACK_DAMAGE)->setBaseValue(4);
     } else {
@@ -223,7 +223,7 @@ MobGroupData* Skeleton::finalizeMobSpawn(
             // Halloween! OooOOo! 25% of all skeletons/zombies can wear pumpkins
             // on their heads.
             setEquippedSlot(SLOT_HELM,
-                            shared_ptr<ItemInstance>(new ItemInstance(
+                            std::shared_ptr<ItemInstance>(new ItemInstance(
                                 random->nextFloat() < 0.1f ? Tile::litPumpkin
                                                            : Tile::pumpkin)));
             dropChances[SLOT_HELM] = 0;
@@ -236,7 +236,7 @@ void Skeleton::reassessWeaponGoal() {
     goalSelector.removeGoal(meleeGoal);
     goalSelector.removeGoal(bowGoal);
 
-    shared_ptr<ItemInstance> carried = getCarriedItem();
+    std::shared_ptr<ItemInstance> carried = getCarriedItem();
 
     if (carried != NULL && carried->id == Item::bow_Id) {
         goalSelector.addGoal(4, bowGoal, false);
@@ -247,7 +247,7 @@ void Skeleton::reassessWeaponGoal() {
 
 void Skeleton::performRangedAttack(std::shared_ptr<LivingEntity> target,
                                    float power) {
-    shared_ptr<Arrow> arrow = shared_ptr<Arrow>(
+    std::shared_ptr<Arrow> arrow = std::shared_ptr<Arrow>(
         new Arrow(level, dynamic_pointer_cast<LivingEntity>(shared_from_this()),
                   target, 1.60f, 14 - (level->difficulty * 4)));
     int damageBonus = EnchantmentHelper::getEnchantmentLevel(

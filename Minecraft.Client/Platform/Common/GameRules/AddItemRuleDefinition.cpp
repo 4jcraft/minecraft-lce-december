@@ -31,7 +31,7 @@ void AddItemRuleDefinition::writeAttributes(DataOutputStream* dos,
     dos->writeUTF(_toString(m_slot));
 }
 
-void AddItemRuleDefinition::getChildren(vector<GameRuleDefinition*>* children) {
+void AddItemRuleDefinition::getChildren(std::vector<GameRuleDefinition*>* children) {
     GameRuleDefinition::getChildren(children);
     for (AUTO_VAR(it, m_enchantments.begin()); it != m_enchantments.end(); it++)
         children->push_back(*it);
@@ -84,13 +84,13 @@ void AddItemRuleDefinition::addAttribute(const std::wstring& attributeName,
     }
 }
 
-bool AddItemRuleDefinition::addItemToContainer(shared_ptr<Container> container,
+bool AddItemRuleDefinition::addItemToContainer(std::shared_ptr<Container> container,
                                                int slotId) {
     bool added = false;
     if (Item::items[m_itemId] != NULL) {
         int quantity =
             min(m_quantity, Item::items[m_itemId]->getMaxStackSize());
-        shared_ptr<ItemInstance> newItem = shared_ptr<ItemInstance>(
+        std::shared_ptr<ItemInstance> newItem = std::shared_ptr<ItemInstance>(
             new ItemInstance(m_itemId, quantity, m_auxValue));
         newItem->set4JData(m_dataTag);
 

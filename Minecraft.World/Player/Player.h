@@ -57,10 +57,10 @@ protected:
     static const int FLAG_HIDE_CAPE = 1;
 
 public:
-    shared_ptr<Inventory> inventory;
+    std::shared_ptr<Inventory> inventory;
 
 private:
-    shared_ptr<PlayerEnderChestContainer> enderChestInventory;
+    std::shared_ptr<PlayerEnderChestContainer> enderChestInventory;
 
 public:
     AbstractContainerMenu* inventoryMenu;
@@ -126,7 +126,7 @@ public:
     // 4J Stu - Made protected so that we can access it from
     // MultiPlayerLocalPlayer
 protected:
-    shared_ptr<ItemInstance> useItem;
+    std::shared_ptr<ItemInstance> useItem;
     int useItemDuration;
 
 protected:
@@ -150,7 +150,7 @@ protected:
     virtual void defineSynchedData();
 
 public:
-    shared_ptr<ItemInstance> getUseItem();
+    std::shared_ptr<ItemInstance> getUseItem();
     int getUseItemDuration();
     bool isUsingItem();
     int getTicksUsingItem();
@@ -168,7 +168,7 @@ public:
     virtual void playSound(int iSound, float volume, float pitch);
 
 protected:
-    void spawnEatParticles(shared_ptr<ItemInstance> useItem, int count);
+    void spawnEatParticles(std::shared_ptr<ItemInstance> useItem, int count);
     virtual void completeUsingItem();
 
 public:
@@ -179,7 +179,7 @@ protected:
     virtual void closeContainer();
 
 public:
-    virtual void ride(shared_ptr<Entity> e);
+    virtual void ride(std::shared_ptr<Entity> e);
     void prepareCustomTextures();
     virtual void rideTick();
     virtual void resetPos();
@@ -191,22 +191,22 @@ public:
     virtual void aiStep();
 
 private:
-    virtual void touch(shared_ptr<Entity> entity);
+    virtual void touch(std::shared_ptr<Entity> entity);
 
 public:
     virtual int getScore();
     virtual void setScore(int value);
     virtual void increaseScore(int amount);
     virtual void die(DamageSource* source);
-    virtual void awardKillScore(shared_ptr<Entity> victim, int awardPoints);
+    virtual void awardKillScore(std::shared_ptr<Entity> victim, int awardPoints);
     virtual bool isShootable();
     bool isCreativeModeAllowed();
-    virtual shared_ptr<ItemEntity> drop(bool all);
-    shared_ptr<ItemEntity> drop(shared_ptr<ItemInstance> item);
-    shared_ptr<ItemEntity> drop(shared_ptr<ItemInstance> item, bool randomly);
+    virtual std::shared_ptr<ItemEntity> drop(bool all);
+    std::shared_ptr<ItemEntity> drop(std::shared_ptr<ItemInstance> item);
+    std::shared_ptr<ItemEntity> drop(std::shared_ptr<ItemInstance> item, bool randomly);
 
 protected:
-    virtual void reallyDrop(shared_ptr<ItemEntity> thrownItem);
+    virtual void reallyDrop(std::shared_ptr<ItemEntity> thrownItem);
 
 public:
     float getDestroySpeed(Tile* tile, bool hasProperTool);
@@ -214,11 +214,11 @@ public:
     virtual void readAdditionalSaveData(CompoundTag* entityTag);
     virtual void addAdditonalSaveData(CompoundTag* entityTag);
     virtual bool openContainer(
-        shared_ptr<Container> container);  // 4J - added bool return
-    virtual bool openHopper(shared_ptr<HopperTileEntity> container);
-    virtual bool openHopper(shared_ptr<MinecartHopper> container);
-    virtual bool openHorseInventory(shared_ptr<EntityHorse> horse,
-                                    shared_ptr<Container> container);
+        std::shared_ptr<Container> container);  // 4J - added bool return
+    virtual bool openHopper(std::shared_ptr<HopperTileEntity> container);
+    virtual bool openHopper(std::shared_ptr<MinecartHopper> container);
+    virtual bool openHorseInventory(std::shared_ptr<EntityHorse> horse,
+                                    std::shared_ptr<Container> container);
     virtual bool startEnchanting(
         int x, int y, int z,
         const std::wstring& name);                     // 4J - added bool return
@@ -236,10 +236,10 @@ protected:
     virtual void setDefaultHeadHeight();
 
 public:
-    shared_ptr<FishingHook> fishing;
+    std::shared_ptr<FishingHook> fishing;
 
     virtual bool hurt(DamageSource* source, float dmg);
-    virtual bool canHarmPlayer(shared_ptr<Player> target);
+    virtual bool canHarmPlayer(std::shared_ptr<Player> target);
     virtual bool canHarmPlayer(
         std::wstring targetName);  // 4J: Added for ServerPlayer when only
                                    // player name is provided
@@ -258,28 +258,28 @@ public:
     using Entity::interact;
 
     virtual bool openFurnace(
-        shared_ptr<FurnaceTileEntity> container);  // 4J - added bool return
+        std::shared_ptr<FurnaceTileEntity> container);  // 4J - added bool return
     virtual bool openTrap(
-        shared_ptr<DispenserTileEntity> container);  // 4J - added bool return
-    virtual void openTextEdit(shared_ptr<TileEntity> sign);
-    virtual bool openBrewingStand(shared_ptr<BrewingStandTileEntity>
+        std::shared_ptr<DispenserTileEntity> container);  // 4J - added bool return
+    virtual void openTextEdit(std::shared_ptr<TileEntity> sign);
+    virtual bool openBrewingStand(std::shared_ptr<BrewingStandTileEntity>
                                       brewingStand);  // 4J - added bool return
-    virtual bool openBeacon(shared_ptr<BeaconTileEntity> beacon);
+    virtual bool openBeacon(std::shared_ptr<BeaconTileEntity> beacon);
     virtual bool openTrading(
-        shared_ptr<Merchant> traderTarget,
+        std::shared_ptr<Merchant> traderTarget,
         const std::wstring& name);  // 4J - added bool return
-    virtual void openItemInstanceGui(shared_ptr<ItemInstance> itemInstance);
-    virtual bool interact(shared_ptr<Entity> entity);
-    virtual shared_ptr<ItemInstance> getSelectedItem();
+    virtual void openItemInstanceGui(std::shared_ptr<ItemInstance> itemInstance);
+    virtual bool interact(std::shared_ptr<Entity> entity);
+    virtual std::shared_ptr<ItemInstance> getSelectedItem();
     void removeSelectedItem();
     virtual double getRidingHeight();
-    virtual void attack(shared_ptr<Entity> entity);
-    virtual void crit(shared_ptr<Entity> entity);
-    virtual void magicCrit(shared_ptr<Entity> entity);
+    virtual void attack(std::shared_ptr<Entity> entity);
+    virtual void crit(std::shared_ptr<Entity> entity);
+    virtual void magicCrit(std::shared_ptr<Entity> entity);
     virtual void respawn();
 
 protected:
-    static void animateRespawn(shared_ptr<Player> player, Level* level);
+    static void animateRespawn(std::shared_ptr<Player> player, Level* level);
 
 public:
     Slot* getInventorySlot(int slotId);
@@ -363,10 +363,10 @@ protected:
     virtual void causeFallDamage(float distance);
 
 public:
-    virtual void killed(shared_ptr<LivingEntity> mob);
+    virtual void killed(std::shared_ptr<LivingEntity> mob);
     virtual void makeStuckInWeb();
-    virtual Icon* getItemInHandIcon(shared_ptr<ItemInstance> item, int layer);
-    virtual shared_ptr<ItemInstance> getArmor(int pos);
+    virtual Icon* getItemInHandIcon(std::shared_ptr<ItemInstance> item, int layer);
+    virtual std::shared_ptr<ItemInstance> getArmor(int pos);
     virtual void increaseXp(int i);
     virtual void giveExperienceLevels(int amount);
     int getXpNeededForNextLevel();
@@ -374,20 +374,20 @@ public:
     FoodData* getFoodData();
     bool canEat(bool magicalItem);
     bool isHurt();
-    virtual void startUsingItem(shared_ptr<ItemInstance> instance,
+    virtual void startUsingItem(std::shared_ptr<ItemInstance> instance,
                                 int duration);
     virtual bool mayDestroyBlockAt(int x, int y, int z);
     virtual bool mayUseItemAt(int x, int y, int z, int face,
-                              shared_ptr<ItemInstance> item);
+                              std::shared_ptr<ItemInstance> item);
 
 protected:
-    virtual int getExperienceReward(shared_ptr<Player> killedBy);
+    virtual int getExperienceReward(std::shared_ptr<Player> killedBy);
     virtual bool isAlwaysExperienceDropper();
 
 public:
     virtual std::wstring getAName();
     virtual bool shouldShowName();
-    virtual void restoreFrom(shared_ptr<Player> oldPlayer, bool restoreAll);
+    virtual void restoreFrom(std::shared_ptr<Player> oldPlayer, bool restoreAll);
 
 protected:
     bool makeStepSound();
@@ -401,12 +401,12 @@ public:
 
     virtual Level* getCommandSenderWorld();
 
-    shared_ptr<PlayerEnderChestContainer> getEnderChestInventory();
+    std::shared_ptr<PlayerEnderChestContainer> getEnderChestInventory();
 
-    virtual shared_ptr<ItemInstance> getCarried(int slot);
-    virtual shared_ptr<ItemInstance> getCarriedItem();
-    virtual void setEquippedSlot(int slot, shared_ptr<ItemInstance> item);
-    virtual bool isInvisibleTo(shared_ptr<Player> player);
+    virtual std::shared_ptr<ItemInstance> getCarried(int slot);
+    virtual std::shared_ptr<ItemInstance> getCarriedItem();
+    virtual void setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item);
+    virtual bool isInvisibleTo(std::shared_ptr<Player> player);
     virtual ItemInstanceArray getEquipmentSlots();
     virtual bool isCapeHidden();
     virtual bool isPushedByWater();
@@ -417,12 +417,12 @@ public:
 
     //////// 4J /////////////////
 
-    static int hash_fnct(const shared_ptr<Player> k);
-    static bool eq_test(const shared_ptr<Player> x, const shared_ptr<Player> y);
+    static int hash_fnct(const std::shared_ptr<Player> k);
+    static bool eq_test(const std::shared_ptr<Player> x, const std::shared_ptr<Player> y);
 
     // 4J Stu - Added to allow callback to tutorial to stay within
     // Minecraft.Client Overidden in LocalPlayer
-    virtual void onCrafted(shared_ptr<ItemInstance> item) {}
+    virtual void onCrafted(std::shared_ptr<ItemInstance> item) {}
 
     // 4J Overriding this so that we can have some different default skins
     virtual int getTexture();  // 4J changed from wstring to int
@@ -547,12 +547,12 @@ public:
                                        unsigned int value);
 
     bool isAllowedToUse(Tile* tile);
-    bool isAllowedToUse(shared_ptr<ItemInstance> item);
-    bool isAllowedToInteract(shared_ptr<Entity> target);
+    bool isAllowedToUse(std::shared_ptr<ItemInstance> item);
+    bool isAllowedToInteract(std::shared_ptr<Entity> target);
     bool isAllowedToMine();
     bool isAllowedToAttackPlayers();
     bool isAllowedToAttackAnimals();
-    bool isAllowedToHurtEntity(shared_ptr<Entity> target);
+    bool isAllowedToHurtEntity(std::shared_ptr<Entity> target);
     bool isAllowedToFly();
     bool isAllowedToIgnoreExhaustion();
     bool isAllowedToTeleport();
@@ -568,10 +568,10 @@ public:
 
 public:
     // 4J Stu - Added hooks for the game rules
-    virtual void handleCollectItem(shared_ptr<ItemInstance> item) {}
+    virtual void handleCollectItem(std::shared_ptr<ItemInstance> item) {}
 
-    vector<ModelPart*>* GetAdditionalModelParts();
-    void SetAdditionalModelParts(vector<ModelPart*>* ppAdditionalModelParts);
+    std::vector<ModelPart*>* GetAdditionalModelParts();
+    void SetAdditionalModelParts(std::vector<ModelPart*>* ppAdditionalModelParts);
 
 #if defined(__PS3__) || defined(__ORBIS__)
     enum ePlayerNameValidState {
@@ -584,7 +584,7 @@ public:
     void SetPlayerNameValidState(bool bState);
 #endif
 private:
-    vector<ModelPart*>* m_ppAdditionalModelParts;
+    std::vector<ModelPart*>* m_ppAdditionalModelParts;
     bool m_bCheckedForModelParts;
     bool m_bCheckedDLCForModelParts;
 
@@ -597,15 +597,15 @@ private:
 };
 
 typedef struct {
-    int operator()(const shared_ptr<Player> k) const {
+    int operator()(const std::shared_ptr<Player> k) const {
         return Player::hash_fnct(k);
     }
 
 } PlayerKeyHash;
 
 typedef struct {
-    bool operator()(const shared_ptr<Player> x,
-                    const shared_ptr<Player> y) const {
+    bool operator()(const std::shared_ptr<Player> x,
+                    const std::shared_ptr<Player> y) const {
         return Player::eq_test(x, y);
     }
 } PlayerKeyEq;

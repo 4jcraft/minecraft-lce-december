@@ -19,13 +19,13 @@ DirectoryLevelStorageSource::DirectoryLevelStorageSource(const File dir)
 
 std::wstring DirectoryLevelStorageSource::getName() { return L"Old Format"; }
 
-vector<LevelSummary*>* DirectoryLevelStorageSource::getLevelList() {
+std::vector<LevelSummary*>* DirectoryLevelStorageSource::getLevelList() {
     // 4J Stu - We don't use directory list with the Xbox save locations
-    vector<LevelSummary*>* levels = new vector<LevelSummary*>;
+    std::vector<LevelSummary*>* levels = new std::vector<LevelSummary*>;
 #if 0
 	for (int i = 0; i < 5; i++) 
 	{
-		wstring levelId = wstring(L"World").append( _toString( (i+1) ) );
+		std::wstring levelId = std::wstring(L"World").append( _toString( (i+1) ) );
 
 		LevelData *levelData = getDataTagFor(saveFile, levelId);
 		if (levelData != NULL) 
@@ -42,7 +42,7 @@ void DirectoryLevelStorageSource::clearAll() {}
 LevelData* DirectoryLevelStorageSource::getDataTagFor(
     ConsoleSaveFile* saveFile, const std::wstring& levelId) {
     // File dataFile(dir, L"level.dat");
-    ConsoleSavePath dataFile = ConsoleSavePath(wstring(L"level.dat"));
+    ConsoleSavePath dataFile = ConsoleSavePath(std::wstring(L"level.dat"));
     if (saveFile->doesFileExist(dataFile)) {
         ConsoleSaveFileInputStream fis =
             ConsoleSaveFileInputStream(saveFile, dataFile);
@@ -61,7 +61,7 @@ void DirectoryLevelStorageSource::renameLevel(
     ConsoleSaveFileOriginal tempSave(levelId);
 
     // File dataFile = File(dir, L"level.dat");
-    ConsoleSavePath dataFile = ConsoleSavePath(wstring(L"level.dat"));
+    ConsoleSavePath dataFile = ConsoleSavePath(std::wstring(L"level.dat"));
     if (tempSave.doesFileExist(dataFile)) {
         ConsoleSaveFileInputStream fis =
             ConsoleSaveFileInputStream(&tempSave, dataFile);
@@ -97,7 +97,7 @@ void DirectoryLevelStorageSource::deleteLevel(const std::wstring& levelId) {
     dir._delete();
 }
 
-void DirectoryLevelStorageSource::deleteRecursive(vector<File*>* files) {
+void DirectoryLevelStorageSource::deleteRecursive(std::vector<File*>* files) {
     AUTO_VAR(itEnd, files->end());
     for (AUTO_VAR(it, files->begin()); it != itEnd; it++) {
         File* file = *it;
@@ -111,7 +111,7 @@ void DirectoryLevelStorageSource::deleteRecursive(vector<File*>* files) {
 std::shared_ptr<LevelStorage> DirectoryLevelStorageSource::selectLevel(
     ConsoleSaveFile* saveFile, const std::wstring& levelId,
     bool createPlayerDir) {
-    return shared_ptr<LevelStorage>(
+    return std::shared_ptr<LevelStorage>(
         new DirectoryLevelStorage(saveFile, baseDir, levelId, createPlayerDir));
 }
 

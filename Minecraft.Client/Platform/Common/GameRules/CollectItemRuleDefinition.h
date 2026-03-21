@@ -34,9 +34,9 @@ public:
     void populateGameRule(GameRulesInstance::EGameRulesInstanceType type,
                           GameRule* rule);
 
-    bool onCollectItem(GameRule* rule, shared_ptr<ItemInstance> item);
+    bool onCollectItem(GameRule* rule, std::shared_ptr<ItemInstance> item);
 
-    static std::wstring generateXml(shared_ptr<ItemInstance> item);
+    static std::wstring generateXml(std::shared_ptr<ItemInstance> item);
 
 private:
     // static wstring generateXml(CollectItemRuleDefinition *ruleDef);

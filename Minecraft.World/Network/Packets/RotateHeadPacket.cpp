@@ -28,7 +28,7 @@ int RotateHeadPacket::getEstimatedSize() { return 5; }
 bool RotateHeadPacket::canBeInvalidated() { return true; }
 
 bool RotateHeadPacket::isInvalidatedBy(std::shared_ptr<Packet> packet) {
-    shared_ptr<RotateHeadPacket> target =
+    std::shared_ptr<RotateHeadPacket> target =
         dynamic_pointer_cast<RotateHeadPacket>(packet);
     return target->id == id;
 }

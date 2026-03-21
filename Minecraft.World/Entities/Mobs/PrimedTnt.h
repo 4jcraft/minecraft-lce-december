@@ -10,7 +10,7 @@ public:
     static const int serialVersionUID = 0;
 
     int life;
-    weak_ptr<LivingEntity> owner;
+    std::weak_ptr<LivingEntity> owner;
 
     void _init();
 

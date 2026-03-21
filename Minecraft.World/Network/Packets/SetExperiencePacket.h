@@ -4,7 +4,7 @@
 
 class SetExperiencePacket
     : public Packet,
-      public enable_shared_from_this<SetExperiencePacket> {
+      public std::enable_shared_from_this<SetExperiencePacket> {
 public:
     float experienceProgress;
     int totalExperience;

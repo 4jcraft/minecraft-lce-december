@@ -111,7 +111,7 @@ void WitherBoss::aiStep() {
     yd *= 0.6f;
 
     if (!level->isClientSide && getAlternativeTarget(0) > 0) {
-        shared_ptr<Entity> e = level->getEntity(getAlternativeTarget(0));
+        std::shared_ptr<Entity> e = level->getEntity(getAlternativeTarget(0));
         if (e != NULL) {
             if ((y < e->y) || (!isPowered() && y < (e->y + 5))) {
                 if (yd < 0) {
@@ -142,7 +142,7 @@ void WitherBoss::aiStep() {
 
     for (int i = 0; i < 2; i++) {
         int entityId = getAlternativeTarget(i + 1);
-        shared_ptr<Entity> e = nullptr;
+        std::shared_ptr<Entity> e = nullptr;
         if (entityId > 0) {
             e = level->getEntity(entityId);
         }
@@ -233,7 +233,7 @@ void WitherBoss::newServerAiStep() {
 
             int headTarget = getAlternativeTarget(i);
             if (headTarget > 0) {
-                shared_ptr<Entity> current = level->getEntity(headTarget);
+                std::shared_ptr<Entity> current = level->getEntity(headTarget);
 
                 // 4J: Added check for instance of living entity, had a problem
                 // with IDs being recycled to other entities
@@ -251,7 +251,7 @@ void WitherBoss::newServerAiStep() {
                     idleHeadUpdates[i - 1] = 0;
                 }
             } else {
-                vector<shared_ptr<Entity> >* entities =
+                std::vector<std::shared_ptr<Entity> >* entities =
                     level->getEntitiesOfClass(typeid(LivingEntity),
                                               bb->grow(20, 8, 20),
                                               livingEntitySelector);
@@ -259,7 +259,7 @@ void WitherBoss::newServerAiStep() {
                 for (int attempt = 0; attempt < 10 && !entities->empty();
                      attempt++) {
                     int randomIndex = random->nextInt(entities->size());
-                    shared_ptr<LivingEntity> selected =
+                    std::shared_ptr<LivingEntity> selected =
                         dynamic_pointer_cast<LivingEntity>(
                             entities->at(randomIndex));
 
@@ -400,7 +400,7 @@ void WitherBoss::performRangedAttack(int head, double tx, double ty, double tz,
     double yd = ty - hy;
     double zd = tz - hz;
 
-    shared_ptr<WitherSkull> ie = shared_ptr<WitherSkull>(new WitherSkull(
+    std::shared_ptr<WitherSkull> ie = std::shared_ptr<WitherSkull>(new WitherSkull(
         level, dynamic_pointer_cast<LivingEntity>(shared_from_this()), xd, yd,
         zd));
     if (dangerous) ie->setDangerous(true);
@@ -423,13 +423,13 @@ bool WitherBoss::hurt(DamageSource* source, float dmg) {
     }
 
     if (isPowered()) {
-        shared_ptr<Entity> directEntity = source->getDirectEntity();
+        std::shared_ptr<Entity> directEntity = source->getDirectEntity();
         if (directEntity != NULL && directEntity->GetType() == eTYPE_ARROW) {
             return false;
         }
     }
 
-    shared_ptr<Entity> sourceEntity = source->getEntity();
+    std::shared_ptr<Entity> sourceEntity = source->getEntity();
     if (sourceEntity != NULL) {
         if (sourceEntity->instanceof(eTYPE_PLAYER)) {
         } else if (sourceEntity->instanceof(eTYPE_LIVINGENTITY) &&

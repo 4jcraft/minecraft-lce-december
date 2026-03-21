@@ -17,7 +17,7 @@ public:
     void checkSession();
     ChunkStorage* createChunkStorage(Dimension* dimension);
     void saveLevelData(LevelData* levelData,
-                       vector<std::shared_ptr<Player> >* players);
+                       std::vector<std::shared_ptr<Player> >* players);
     void saveLevelData(LevelData* levelData);
     PlayerIO* getPlayerIO();
     void closeAll();

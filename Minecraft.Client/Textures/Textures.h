@@ -282,7 +282,7 @@ public:
     void bindTextureLayers(ResourceLocation* resource);  // 4J added
 
     // 4J Made public for use in XUI controls
-    void bind(int id);
+    void std::bind(int id);
 
     ResourceLocation* getTextureLocation(std::shared_ptr<Entity> entity);
     ResourceLocation* getTextureLocation(int iconType);

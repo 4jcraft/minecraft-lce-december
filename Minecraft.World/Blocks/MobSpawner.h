@@ -21,7 +21,7 @@ private:
     // AP - See CustomMap.h for an explanation of this
     static CustomMap chunksToPoll;
 #else
-    static unordered_map<ChunkPos, bool, ChunkPosKeyHash, ChunkPosKeyEq>
+    static std::unordered_map<ChunkPos, bool, ChunkPosKeyHash, ChunkPosKeyEq>
         chunksToPoll;
 #endif
 
@@ -33,7 +33,7 @@ public:
 
 public:
     static bool attackSleepingPlayers(
-        Level* level, vector<std::shared_ptr<Player> >* players);
+        Level* level, std::vector<std::shared_ptr<Player> >* players);
 
     static void postProcessSpawnMobs(Level* level, Biome* biome, int xo, int zo,
                                      int cellWidth, int cellHeight,

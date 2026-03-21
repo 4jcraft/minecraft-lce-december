@@ -4,7 +4,7 @@
 
 class RecordingItem : public Item {
 private:
-    static unordered_map<std::wstring, RecordingItem*> BY_NAME;
+    static std::unordered_map<std::wstring, RecordingItem*> BY_NAME;
 
 public:
     const std::wstring recording;
@@ -21,7 +21,7 @@ public
 
     virtual void appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                                  std::shared_ptr<Player> player,
-                                 vector<HtmlString>* lines, bool advanced);
+                                 std::vector<HtmlString>* lines, bool advanced);
     virtual const Rarity* getRarity(std::shared_ptr<ItemInstance> itemInstance);
 
     void registerIcons(IconRegister* iconRegister);

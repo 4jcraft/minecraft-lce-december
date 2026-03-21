@@ -2,7 +2,7 @@
 #include "DemoLevel.h"
 #include "../../Minecraft.World/Headers/net.minecraft.world.level.storage.h"
 
-DemoLevel::DemoLevel(shared_ptr<LevelStorage> levelStorage,
+DemoLevel::DemoLevel(std::shared_ptr<LevelStorage> levelStorage,
                      const std::wstring& levelName)
     : Level(levelStorage, levelName, DEMO_LEVEL_SEED) {}
 

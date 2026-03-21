@@ -4,7 +4,7 @@
 
 class ContainerButtonClickPacket
     : public Packet,
-      public enable_shared_from_this<ContainerButtonClickPacket> {
+      public std::enable_shared_from_this<ContainerButtonClickPacket> {
 public:
     int containerId;
     int buttonId;

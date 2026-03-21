@@ -50,9 +50,9 @@ bool EnderChestTile::use(Level* level, int x, int y, int z,
                          std::shared_ptr<Player> player, int clickedFace,
                          float clickX, float clickY, float clickZ,
                          bool soundOnly) {
-    shared_ptr<PlayerEnderChestContainer> container =
+    std::shared_ptr<PlayerEnderChestContainer> container =
         player->getEnderChestInventory();
-    shared_ptr<EnderChestTileEntity> enderChest =
+    std::shared_ptr<EnderChestTileEntity> enderChest =
         dynamic_pointer_cast<EnderChestTileEntity>(
             level->getTileEntity(x, y, z));
     if (container == NULL || enderChest == NULL) return true;
@@ -70,7 +70,7 @@ bool EnderChestTile::use(Level* level, int x, int y, int z,
 }
 
 std::shared_ptr<TileEntity> EnderChestTile::newTileEntity(Level* level) {
-    return shared_ptr<EnderChestTileEntity>(new EnderChestTileEntity());
+    return std::shared_ptr<EnderChestTileEntity>(new EnderChestTileEntity());
 }
 
 void EnderChestTile::animateTick(Level* level, int xt, int yt, int zt,

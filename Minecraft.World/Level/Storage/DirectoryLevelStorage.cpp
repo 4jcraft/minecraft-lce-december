@@ -163,7 +163,7 @@ DirectoryLevelStorage::DirectoryLevelStorage(ConsoleSaveFile* saveFile,
     : sessionId(System::currentTimeMillis()),
       dir(L""),
       playerDir(sc_szPlayerDir),
-      dataDir(wstring(L"data/")),
+      dataDir(std::wstring(L"data/")),
       levelId(levelId) {
     m_saveFile = saveFile;
     m_bHasLoadedMapDataMappings = false;
@@ -189,7 +189,7 @@ DirectoryLevelStorage::~DirectoryLevelStorage() {
 void DirectoryLevelStorage::initiateSession() {
     // 4J Jev, removed try/catch.
 
-    File dataFile = File(dir, wstring(L"session.lock"));
+    File dataFile = File(dir, std::wstring(L"session.lock"));
     FileOutputStream fos = FileOutputStream(dataFile);
     DataOutputStream dos = DataOutputStream(&fos);
     dos.writeLong(sessionId);
@@ -326,7 +326,7 @@ LevelData* DirectoryLevelStorage::prepareLevel() {
 
     // 4J Jev, removed try/catch
 
-    ConsoleSavePath dataFile = ConsoleSavePath(wstring(L"level.dat"));
+    ConsoleSavePath dataFile = ConsoleSavePath(std::wstring(L"level.dat"));
 
     if (m_saveFile->doesFileExist(dataFile)) {
         ConsoleSaveFileInputStream fis =
@@ -342,7 +342,7 @@ LevelData* DirectoryLevelStorage::prepareLevel() {
 }
 
 void DirectoryLevelStorage::saveLevelData(
-    LevelData* levelData, vector<shared_ptr<Player> >* players) {
+    LevelData* levelData, std::vector<std::shared_ptr<Player> >* players) {
     // 4J Jev, removed try/catch
 
     CompoundTag* dataTag = levelData->createTag(players);
@@ -350,7 +350,7 @@ void DirectoryLevelStorage::saveLevelData(
     CompoundTag* root = new CompoundTag();
     root->put(L"Data", dataTag);
 
-    ConsoleSavePath currentFile = ConsoleSavePath(wstring(L"level.dat"));
+    ConsoleSavePath currentFile = ConsoleSavePath(std::wstring(L"level.dat"));
 
     ConsoleSaveFileOutputStream fos =
         ConsoleSaveFileOutputStream(m_saveFile, currentFile);
@@ -367,7 +367,7 @@ void DirectoryLevelStorage::saveLevelData(LevelData* levelData) {
     CompoundTag* root = new CompoundTag();
     root->put(L"Data", dataTag);
 
-    ConsoleSavePath currentFile = ConsoleSavePath(wstring(L"level.dat"));
+    ConsoleSavePath currentFile = ConsoleSavePath(std::wstring(L"level.dat"));
 
     ConsoleSaveFileOutputStream fos =
         ConsoleSaveFileOutputStream(m_saveFile, currentFile);
@@ -466,9 +466,9 @@ void DirectoryLevelStorage::clearOldPlayerFiles() {
     if (StorageManager.GetSaveDisabled()) return;
 
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
-    vector<FileEntry*>* playerFiles = m_saveFile->getValidPlayerDatFiles();
+    std::vector<FileEntry*>* playerFiles = m_saveFile->getValidPlayerDatFiles();
 #else
-    vector<FileEntry*>* playerFiles =
+    std::vector<FileEntry*>* playerFiles =
         m_saveFile->getFilesWithPrefix(playerDir.getName());
 #endif
 
@@ -479,7 +479,7 @@ void DirectoryLevelStorage::clearOldPlayerFiles() {
                 (1L << eDebugSetting_DistributableSave)) {
             for (unsigned int i = 0; i < playerFiles->size(); ++i) {
                 FileEntry* file = playerFiles->at(i);
-                wstring xuidStr = replaceAll(
+                std::wstring xuidStr = replaceAll(
                     replaceAll(file->data.filename, playerDir.getName(), L""),
                     L".dat", L"");
 #if defined(__PS3__) || defined(__ORBIS__) || defined(_DURANGO)
@@ -499,7 +499,7 @@ void DirectoryLevelStorage::clearOldPlayerFiles() {
             for (unsigned int i = MAX_PLAYER_DATA_SAVES;
                  i < playerFiles->size(); ++i) {
                 FileEntry* file = playerFiles->at(i);
-                wstring xuidStr = replaceAll(
+                std::wstring xuidStr = replaceAll(
                     replaceAll(file->data.filename, playerDir.getName(), L""),
                     L".dat", L"");
 #if defined(__PS3__) || defined(__ORBIS__) || defined(_DURANGO)
@@ -546,9 +546,9 @@ void DirectoryLevelStorage::flushSaveFile(bool autosave) {
 void DirectoryLevelStorage::resetNetherPlayerPositions() {
     if (app.GetResetNether()) {
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
-        vector<FileEntry*>* playerFiles = m_saveFile->getValidPlayerDatFiles();
+        std::vector<FileEntry*>* playerFiles = m_saveFile->getValidPlayerDatFiles();
 #else
-        vector<FileEntry*>* playerFiles =
+        std::vector<FileEntry*>* playerFiles =
             m_saveFile->getFilesWithPrefix(playerDir.getName());
 #endif
 
@@ -632,11 +632,11 @@ int DirectoryLevelStorage::getAuxValueForMap(PlayerUID xuid, int dimension,
 
         // If we had an old map file for a mapping that is no longer valid,
         // delete it
-        std::wstring id = wstring(L"map_") + _toString(mapId);
+        std::wstring id = std::wstring(L"map_") + _toString(mapId);
         ConsoleSavePath file = getDataFile(id);
 
         if (m_saveFile->doesFileExist(file)) {
-            AUTO_VAR(it, find(m_mapFilesToDelete.begin(),
+            AUTO_VAR(it, std::find(m_mapFilesToDelete.begin(),
                               m_mapFilesToDelete.end(), mapId));
             if (it != m_mapFilesToDelete.end()) m_mapFilesToDelete.erase(it);
 
@@ -727,7 +727,7 @@ void DirectoryLevelStorage::deleteMapFilesForPlayer(PlayerUID xuid) {
     if (it != m_playerMappings.end()) {
         for (AUTO_VAR(itMap, it->second.m_mappings.begin());
              itMap != it->second.m_mappings.end(); ++itMap) {
-            std::wstring id = wstring(L"map_") + _toString(itMap->second);
+            std::wstring id = std::wstring(L"map_") + _toString(itMap->second);
             ConsoleSavePath file = getDataFile(id);
 
             if (m_saveFile->doesFileExist(file)) {
@@ -751,7 +751,7 @@ void DirectoryLevelStorage::deleteMapFilesForPlayer(PlayerUID xuid) {
         if (m_mapDataMappings.xuids[i] == xuid) {
             changed = true;
 
-            std::wstring id = wstring(L"map_") + _toString(i);
+            std::wstring id = std::wstring(L"map_") + _toString(i);
             ConsoleSavePath file = getDataFile(id);
 
             if (m_saveFile->doesFileExist(file)) {
@@ -791,7 +791,7 @@ void DirectoryLevelStorage::saveAllCachedData() {
 
     for (AUTO_VAR(it, m_mapFilesToDelete.begin());
          it != m_mapFilesToDelete.end(); ++it) {
-        std::wstring id = wstring(L"map_") + _toString(*it);
+        std::wstring id = std::wstring(L"map_") + _toString(*it);
         ConsoleSavePath file = getDataFile(id);
         if (m_saveFile->doesFileExist(file)) {
             m_saveFile->deleteFile(m_saveFile->createFile(file));

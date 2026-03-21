@@ -40,10 +40,10 @@ bool ContainerMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> ContainerMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if (slotIndex < containerRows * 9) {
@@ -78,11 +78,11 @@ std::shared_ptr<ItemInstance> ContainerMenu::clicked(
     int slotIndex, int buttonNum, int clickType, std::shared_ptr<Player> player,
     bool looped)  // 4J Added looped param
 {
-    shared_ptr<ItemInstance> out = AbstractContainerMenu::clicked(
+    std::shared_ptr<ItemInstance> out = AbstractContainerMenu::clicked(
         slotIndex, buttonNum, clickType, player, looped);
 
 #ifdef _EXTENDED_ACHIEVEMENTS
-    shared_ptr<LocalPlayer> localPlayer =
+    std::shared_ptr<LocalPlayer> localPlayer =
         dynamic_pointer_cast<LocalPlayer>(player);
 
     if (localPlayer !=
@@ -90,7 +90,7 @@ std::shared_ptr<ItemInstance> ContainerMenu::clicked(
     {
         int cobblecount = 0;
         for (int i = 0; i < container->getContainerSize(); i++) {
-            shared_ptr<ItemInstance> item = container->getItem(i);
+            std::shared_ptr<ItemInstance> item = container->getItem(i);
             if ((item != nullptr) && (item->id == Tile::cobblestone_Id)) {
                 cobblecount += item->GetCount();
             }

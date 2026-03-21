@@ -107,7 +107,7 @@ int MobEffectInstance::hashCode() {
 }
 
 std::wstring MobEffectInstance::toString() {
-    wstring result =
+    std::wstring result =
         L"MobEffectInstance::toString - NON IMPLEMENTED OR LOCALISED FUNCTION";
     // wstring result = "";
     // if (getAmplifier() > 0)

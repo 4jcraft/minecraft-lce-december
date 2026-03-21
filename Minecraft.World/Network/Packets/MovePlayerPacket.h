@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class MovePlayerPacket : public Packet,
-                         public enable_shared_from_this<MovePlayerPacket> {
+                         public std::enable_shared_from_this<MovePlayerPacket> {
 public:
     class PosRot;
     class Pos;

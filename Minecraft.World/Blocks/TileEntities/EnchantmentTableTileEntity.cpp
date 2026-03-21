@@ -36,7 +36,7 @@ void EnchantmentTableEntity::tick() {
     oOpen = open;
     oRot = rot;
 
-    shared_ptr<Player> player =
+    std::shared_ptr<Player> player =
         level->getNearestPlayer(x + 0.5f, y + 0.5f, z + 0.5f, 3);
     if (player != NULL) {
         double xd = player->x - (x + 0.5f);
@@ -98,8 +98,8 @@ void EnchantmentTableEntity::setCustomName(const std::wstring& name) {
 }
 
 std::shared_ptr<TileEntity> EnchantmentTableEntity::clone() {
-    shared_ptr<EnchantmentTableEntity> result =
-        shared_ptr<EnchantmentTableEntity>(new EnchantmentTableEntity());
+    std::shared_ptr<EnchantmentTableEntity> result =
+        std::shared_ptr<EnchantmentTableEntity>(new EnchantmentTableEntity());
     TileEntity::clone(result);
 
     result->time = time;

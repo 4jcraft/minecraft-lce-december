@@ -22,7 +22,7 @@ class EmptyMapItem;
 
 #define ITEM_ICON_COLUMNS 16
 
-class Item : public enable_shared_from_this<Item> {
+class Item : public std::enable_shared_from_this<Item> {
 protected:
     // static const UUID BASE_ATTACK_DAMAGE_UUID;
 
@@ -759,7 +759,7 @@ public:
     virtual bool hasPotionBrewingFormula();
     virtual void appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                                  std::shared_ptr<Player> player,
-                                 vector<HtmlString>* lines, bool advanced);
+                                 std::vector<HtmlString>* lines, bool advanced);
     virtual std::wstring getHoverName(
         std::shared_ptr<ItemInstance> itemInstance);
     virtual bool isFoil(std::shared_ptr<ItemInstance> itemInstance);

@@ -119,11 +119,11 @@ void ItemEntity::tick() {
 }
 
 void ItemEntity::mergeWithNeighbours() {
-    vector<shared_ptr<Entity> >* neighbours =
+    std::vector<std::shared_ptr<Entity> >* neighbours =
         level->getEntitiesOfClass(typeid(*this), bb->grow(0.5, 0, 0.5));
     for (AUTO_VAR(it, neighbours->begin()); it != neighbours->end(); ++it) {
-        shared_ptr<ItemEntity> entity = dynamic_pointer_cast<ItemEntity>(*it);
-        merge(entity);
+        std::shared_ptr<ItemEntity> entity = dynamic_pointer_cast<ItemEntity>(*it);
+        std::merge(entity);
     }
     delete neighbours;
 }
@@ -131,8 +131,8 @@ void ItemEntity::mergeWithNeighbours() {
 bool ItemEntity::merge(std::shared_ptr<ItemEntity> target) {
     if (target == shared_from_this()) return false;
     if (!target->isAlive() || !this->isAlive()) return false;
-    shared_ptr<ItemInstance> myItem = this->getItem();
-    shared_ptr<ItemInstance> targetItem = target->getItem();
+    std::shared_ptr<ItemInstance> myItem = this->getItem();
+    std::shared_ptr<ItemInstance> targetItem = target->getItem();
 
     if (targetItem->getItem() != myItem->getItem()) return false;
     if (targetItem->hasTag() ^ myItem->hasTag()) return false;
@@ -206,7 +206,7 @@ void ItemEntity::readAdditionalSaveData(CompoundTag* tag) {
 void ItemEntity::playerTouch(std::shared_ptr<Player> player) {
     if (level->isClientSide) return;
 
-    shared_ptr<ItemInstance> item = getItem();
+    std::shared_ptr<ItemInstance> item = getItem();
 
     // 4J Stu - Fix for duplication glitch
     if (item->count <= 0) {
@@ -228,7 +228,7 @@ void ItemEntity::playerTouch(std::shared_ptr<Player> player) {
 
 #ifdef _EXTENDED_ACHIEVEMENTS
             if (getItem()->getItem()->id) {
-                shared_ptr<Player> pThrower =
+                std::shared_ptr<Player> pThrower =
                     level->getPlayerByName(getThrower());
                 if ((pThrower != nullptr) && (pThrower != player)) {
                     pThrower->awardStat(GenericStats::diamondsToYou(),
@@ -262,7 +262,7 @@ void ItemEntity::changeDimension(int i) {
 }
 
 std::shared_ptr<ItemInstance> ItemEntity::getItem() {
-    shared_ptr<ItemInstance> result =
+    std::shared_ptr<ItemInstance> result =
         getEntityData()->getItemInstance(DATA_ITEM);
 
     if (result == NULL) {
@@ -271,7 +271,7 @@ std::shared_ptr<ItemInstance> ItemEntity::getItem() {
             // level.getLogger().severe("Item entity " + entityId + " has no
             // item?!");
         }
-        return shared_ptr<ItemInstance>(new ItemInstance(Tile::stone));
+        return std::shared_ptr<ItemInstance>(new ItemInstance(Tile::stone));
     }
 
     return result;

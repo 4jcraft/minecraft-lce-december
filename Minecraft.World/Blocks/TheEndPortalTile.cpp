@@ -24,7 +24,7 @@ TheEndPortal::TheEndPortal(int id, Material* material)
 }
 
 std::shared_ptr<TileEntity> TheEndPortal::newTileEntity(Level* level) {
-    return shared_ptr<TileEntity>(new TheEndPortalTileEntity());
+    return std::shared_ptr<TileEntity>(new TheEndPortalTileEntity());
 }
 
 void TheEndPortal::updateShape(

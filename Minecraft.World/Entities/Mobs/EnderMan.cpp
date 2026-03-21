@@ -86,11 +86,11 @@ void EnderMan::readAdditionalSaveData(CompoundTag* tag) {
 std::shared_ptr<Entity> EnderMan::findAttackTarget() {
 #ifndef _FINAL_BUILD
     if (app.GetMobsDontAttackEnabled()) {
-        return shared_ptr<Player>();
+        return std::shared_ptr<Player>();
     }
 #endif
 
-    shared_ptr<Player> player =
+    std::shared_ptr<Player> player =
         level->getNearestAttackablePlayer(shared_from_this(), 64);
     if (player != NULL) {
         if (isLookingAtMe(player)) {
@@ -111,7 +111,7 @@ std::shared_ptr<Entity> EnderMan::findAttackTarget() {
 }
 
 bool EnderMan::isLookingAtMe(std::shared_ptr<Player> player) {
-    shared_ptr<ItemInstance> helmet = player->inventory->armor[3];
+    std::shared_ptr<ItemInstance> helmet = player->inventory->armor[3];
     if (helmet != NULL && helmet->id == Tile::pumpkin_Id) return false;
 
     Vec3* look = player->getViewVector(1)->normalize();

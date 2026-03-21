@@ -45,9 +45,9 @@ void MerchantResultSlot::onTake(std::shared_ptr<Player> player,
 
     MerchantRecipe* activeRecipe = slots->getActiveRecipe();
     if (activeRecipe != NULL) {
-        shared_ptr<ItemInstance> item1 =
+        std::shared_ptr<ItemInstance> item1 =
             slots->getItem(MerchantMenu::PAYMENT1_SLOT);
-        shared_ptr<ItemInstance> item2 =
+        std::shared_ptr<ItemInstance> item2 =
             slots->getItem(MerchantMenu::PAYMENT2_SLOT);
 
         // remove payment items, but remember slots may have switched
@@ -74,8 +74,8 @@ bool MerchantResultSlot::mayCombine(std::shared_ptr<ItemInstance> second) {
 bool MerchantResultSlot::removePaymentItemsIfMatching(
     MerchantRecipe* activeRecipe, std::shared_ptr<ItemInstance> a,
     std::shared_ptr<ItemInstance> b) {
-    shared_ptr<ItemInstance> buyA = activeRecipe->getBuyAItem();
-    shared_ptr<ItemInstance> buyB = activeRecipe->getBuyBItem();
+    std::shared_ptr<ItemInstance> buyA = activeRecipe->getBuyAItem();
+    std::shared_ptr<ItemInstance> buyB = activeRecipe->getBuyBItem();
 
     if (a != NULL && a->id == buyA->id) {
         if (buyB != NULL && b != NULL && buyB->id == b->id) {

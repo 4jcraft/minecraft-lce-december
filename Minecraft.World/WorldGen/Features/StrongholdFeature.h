@@ -25,7 +25,7 @@ public:
     static void staticCtor();
 
 private:
-    static vector<Biome*> allowedBiomes;
+    static std::vector<Biome*> allowedBiomes;
 
     bool isSpotSelected;
     static const int strongholdPos_length =
@@ -39,14 +39,14 @@ private:
 
 public:
     StrongholdFeature();
-    StrongholdFeature(unordered_map<wstring, wstring> options);
+    StrongholdFeature(std::unordered_map<std::wstring, std::wstring> options);
     ~StrongholdFeature();
 
     std::wstring getFeatureName();
 
 protected:
     virtual bool isFeatureChunk(int x, int z, bool bIsSuperflat = false);
-    vector<TilePos>* getGuesstimatedFeaturePositions();
+    std::vector<TilePos>* getGuesstimatedFeaturePositions();
     virtual StructureStart* createStructureStart(int x, int z);
 
 public:

@@ -42,7 +42,7 @@ public:
     static const int BITS_FOR_SPLASH = (1 << 14);
 
 private:
-    typedef unordered_map<int, std::wstring> intStringMap;
+    typedef std::unordered_map<int, std::wstring> intStringMap;
     static intStringMap potionEffectDuration;
     static intStringMap potionEffectAmplifier;
 
@@ -68,11 +68,11 @@ private:
 
 public:
     static int getAppearanceValue(int brew);
-    static int getColorValue(vector<MobEffectInstance*>* effects);
-    static bool areAllEffectsAmbient(vector<MobEffectInstance*>* effects);
+    static int getColorValue(std::vector<MobEffectInstance*>* effects);
+    static bool areAllEffectsAmbient(std::vector<MobEffectInstance*>* effects);
 
 private:
-    static unordered_map<int, int> cachedColors;
+    static std::unordered_map<int, int> cachedColors;
 
 public:
     static int getColorValue(int brew, bool includeDisabledEffects);
@@ -98,7 +98,7 @@ private:
                                        int start, int end, int brew);
 
 public:
-    static vector<MobEffectInstance*>* getEffects(int brew,
+    static std::vector<MobEffectInstance*>* getEffects(int brew,
                                                   bool includeDisabledEffects);
 
 #if !(_SIMPLIFIED_BREWING)

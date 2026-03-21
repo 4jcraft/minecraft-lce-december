@@ -6,10 +6,10 @@
 class Player;
 
 class AddPlayerPacket : public Packet,
-                        public enable_shared_from_this<AddPlayerPacket> {
+                        public std::enable_shared_from_this<AddPlayerPacket> {
 private:
     std::shared_ptr<SynchedEntityData> entityData;
-    vector<std::shared_ptr<SynchedEntityData::DataItem> >* unpack;
+    std::vector<std::shared_ptr<SynchedEntityData::DataItem> >* unpack;
 
 public:
     int id;
@@ -36,7 +36,7 @@ public:
     virtual void handle(PacketListener* listener);
     virtual int getEstimatedSize();
 
-    vector<std::shared_ptr<SynchedEntityData::DataItem> >* getUnpackedData();
+    std::vector<std::shared_ptr<SynchedEntityData::DataItem> >* getUnpackedData();
 
 public:
     static std::shared_ptr<Packet> create() {

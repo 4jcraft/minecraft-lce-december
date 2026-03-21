@@ -33,7 +33,7 @@ void PlayerEnderChestContainer::setItemsByTag(
 ListTag<CompoundTag>* PlayerEnderChestContainer::createTag() {
     ListTag<CompoundTag>* items = new ListTag<CompoundTag>(L"EnderItems");
     for (int i = 0; i < getContainerSize(); i++) {
-        shared_ptr<ItemInstance> item = getItem(i);
+        std::shared_ptr<ItemInstance> item = getItem(i);
         if (item != NULL) {
             CompoundTag* tag = new CompoundTag();
             tag->putByte(L"Slot", (byte)i);

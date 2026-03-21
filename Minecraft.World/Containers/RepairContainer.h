@@ -5,7 +5,7 @@
 class AnvilMenu;
 
 class RepairContainer : public SimpleContainer,
-                        public enable_shared_from_this<RepairContainer> {
+                        public std::enable_shared_from_this<RepairContainer> {
 private:
     AnvilMenu* m_menu;
 

@@ -4,11 +4,11 @@
 
 HealthCriteria::HealthCriteria(const std::wstring& id) : DummyCriteria(id) {}
 
-int HealthCriteria::getScoreModifier(vector<shared_ptr<Player> >* players) {
+int HealthCriteria::getScoreModifier(std::vector<std::shared_ptr<Player> >* players) {
     float health = 0;
 
     for (AUTO_VAR(it, players->begin()); it != players->end(); ++it) {
-        shared_ptr<Player> player = *it;
+        std::shared_ptr<Player> player = *it;
         health += player->getHealth() + player->getAbsorptionAmount();
     }
 

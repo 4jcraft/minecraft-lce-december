@@ -15,7 +15,7 @@ bool OwnerHurtTargetGoal::canUse() {
     std::shared_ptr<LivingEntity> owner =
         dynamic_pointer_cast<LivingEntity>(tameAnimal->getOwner());
     if (owner == NULL) return false;
-    ownerLastHurt = weak_ptr<LivingEntity>(owner->getLastHurtMob());
+    ownerLastHurt = std::weak_ptr<LivingEntity>(owner->getLastHurtMob());
     int ts = owner->getLastHurtMobTimestamp();
     std::shared_ptr<LivingEntity> locked = ownerLastHurt.lock();
     return ts != timestamp && canAttack(locked, false) &&

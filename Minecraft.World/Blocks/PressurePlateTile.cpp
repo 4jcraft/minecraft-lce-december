@@ -22,7 +22,7 @@ int PressurePlateTile::getSignalForData(int data) {
 }
 
 int PressurePlateTile::getSignalStrength(Level* level, int x, int y, int z) {
-    vector<shared_ptr<Entity> >* entities = NULL;
+    std::vector<std::shared_ptr<Entity> >* entities = NULL;
 
     if (sensitivity == everything)
         entities = level->getEntities(nullptr, getSensitiveAABB(x, y, z));
@@ -38,7 +38,7 @@ int PressurePlateTile::getSignalStrength(Level* level, int x, int y, int z) {
 
     if (entities != NULL && !entities->empty()) {
         for (AUTO_VAR(it, entities->begin()); it != entities->end(); ++it) {
-            shared_ptr<Entity> e = *it;
+            std::shared_ptr<Entity> e = *it;
             if (!e->isIgnoringTileTriggers()) {
                 if (sensitivity != everything) delete entities;
                 return Redstone::SIGNAL_MAX;

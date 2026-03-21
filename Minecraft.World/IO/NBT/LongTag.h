@@ -16,7 +16,7 @@ public:
     std::wstring toString() {
         static wchar_t buf[32];
         swprintf(buf, 32, L"%I64d", data);
-        return wstring(buf);
+        return std::wstring(buf);
     }
 
     Tag* copy() { return new LongTag(getName(), data); }

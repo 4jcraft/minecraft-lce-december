@@ -152,7 +152,7 @@ bool Ocelot::hurt(DamageSource* source, float dmg) {
 void Ocelot::dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel) {}
 
 bool Ocelot::mobInteract(std::shared_ptr<Player> player) {
-    shared_ptr<ItemInstance> item = player->inventory->getSelected();
+    std::shared_ptr<ItemInstance> item = player->inventory->getSelected();
     if (isTame()) {
         if (equalsIgnoreCase(player->getUUID(), getOwnerUUID())) {
             if (!level->isClientSide && !isFood(item)) {
@@ -201,7 +201,7 @@ std::shared_ptr<AgableMob> Ocelot::getBreedOffspring(
     std::shared_ptr<AgableMob> target) {
     // 4J - added limit to number of animals that can be bred
     if (level->canCreateMore(GetType(), Level::eSpawnType_Breed)) {
-        shared_ptr<Ocelot> offspring = shared_ptr<Ocelot>(new Ocelot(level));
+        std::shared_ptr<Ocelot> offspring = std::shared_ptr<Ocelot>(new Ocelot(level));
         if (isTame()) {
             offspring->setOwnerUUID(getOwnerUUID());
             offspring->setTame(true);
@@ -221,7 +221,7 @@ bool Ocelot::canMate(std::shared_ptr<Animal> animal) {
     if (animal == shared_from_this()) return false;
     if (!isTame()) return false;
 
-    shared_ptr<Ocelot> partner = dynamic_pointer_cast<Ocelot>(animal);
+    std::shared_ptr<Ocelot> partner = dynamic_pointer_cast<Ocelot>(animal);
     if (partner == NULL) return false;
     if (!partner->isTame()) return false;
 
@@ -283,7 +283,7 @@ MobGroupData* Ocelot::finalizeMobSpawn(
 #endif
         if (level->random->nextInt(7) == 0) {
         for (int kitten = 0; kitten < 2; kitten++) {
-            shared_ptr<Ocelot> ocelot = shared_ptr<Ocelot>(new Ocelot(level));
+            std::shared_ptr<Ocelot> ocelot = std::shared_ptr<Ocelot>(new Ocelot(level));
             ocelot->moveTo(x, y, z, yRot, 0);
             ocelot->setAge(-20 * 60 * 20);
             level->addEntity(ocelot);

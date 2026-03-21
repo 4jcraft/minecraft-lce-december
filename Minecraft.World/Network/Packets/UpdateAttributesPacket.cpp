@@ -7,12 +7,12 @@
 UpdateAttributesPacket::UpdateAttributesPacket() { entityId = 0; }
 
 UpdateAttributesPacket::UpdateAttributesPacket(
-    int entityId, unordered_set<AttributeInstance*>* values) {
+    int entityId, std::unordered_set<AttributeInstance*>* values) {
     this->entityId = entityId;
 
     for (AUTO_VAR(it, values->begin()); it != values->end(); ++it) {
         AttributeInstance* value = *it;
-        unordered_set<AttributeModifier*> mods;
+        std::unordered_set<AttributeModifier*> mods;
         value->getModifiers(mods);
         attributes.insert(new AttributeSnapshot(value->getAttribute()->getId(),
                                                 value->getBaseValue(), &mods));
@@ -34,8 +34,8 @@ void UpdateAttributesPacket::read(DataInputStream* dis) {
     for (int i = 0; i < attributeCount; i++) {
         eATTRIBUTE_ID id = static_cast<eATTRIBUTE_ID>(dis->readShort());
         double base = dis->readDouble();
-        unordered_set<AttributeModifier*> modifiers =
-            unordered_set<AttributeModifier*>();
+        std::unordered_set<AttributeModifier*> modifiers =
+            std::unordered_set<AttributeModifier*>();
         int modifierCount = dis->readShort();
 
         for (int j = 0; j < modifierCount; j++) {
@@ -63,7 +63,7 @@ void UpdateAttributesPacket::write(DataOutputStream* dos) {
     for (AUTO_VAR(it, attributes.begin()); it != attributes.end(); ++it) {
         AttributeSnapshot* attribute = (*it);
 
-        unordered_set<AttributeModifier*>* modifiers =
+        std::unordered_set<AttributeModifier*>* modifiers =
             attribute->getModifiers();
 
         dos->writeShort(attribute->getId());
@@ -90,14 +90,14 @@ int UpdateAttributesPacket::getEstimatedSize() {
 
 int UpdateAttributesPacket::getEntityId() { return entityId; }
 
-unordered_set<UpdateAttributesPacket::AttributeSnapshot*>
+std::unordered_set<UpdateAttributesPacket::AttributeSnapshot*>
 UpdateAttributesPacket::getValues() {
     return attributes;
 }
 
 UpdateAttributesPacket::AttributeSnapshot::AttributeSnapshot(
     eATTRIBUTE_ID id, double base,
-    unordered_set<AttributeModifier*>* modifiers) {
+    std::unordered_set<AttributeModifier*>* modifiers) {
     this->id = id;
     this->base = base;
 
@@ -117,7 +117,7 @@ eATTRIBUTE_ID UpdateAttributesPacket::AttributeSnapshot::getId() { return id; }
 
 double UpdateAttributesPacket::AttributeSnapshot::getBase() { return base; }
 
-unordered_set<AttributeModifier*>*
+std::unordered_set<AttributeModifier*>*
 UpdateAttributesPacket::AttributeSnapshot::getModifiers() {
     return &modifiers;
 }

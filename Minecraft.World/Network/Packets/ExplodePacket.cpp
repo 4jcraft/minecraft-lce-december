@@ -18,7 +18,7 @@ ExplodePacket::ExplodePacket() {
 
 ExplodePacket::ExplodePacket(
     double x, double y, double z, float r,
-    unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq>* toBlow,
+    std::unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq>* toBlow,
     Vec3* knockback, bool knockBackOnly) {
     this->x = x;
     this->y = y;

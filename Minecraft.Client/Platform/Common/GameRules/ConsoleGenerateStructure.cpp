@@ -15,7 +15,7 @@ ConsoleGenerateStructure::ConsoleGenerateStructure() : StructurePiece(0) {
 }
 
 void ConsoleGenerateStructure::getChildren(
-    vector<GameRuleDefinition*>* children) {
+    std::vector<GameRuleDefinition*>* children) {
     GameRuleDefinition::getChildren(children);
 
     for (AUTO_VAR(it, m_actions.begin()); it != m_actions.end(); it++)

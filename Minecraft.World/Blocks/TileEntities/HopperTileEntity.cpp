@@ -64,11 +64,11 @@ std::shared_ptr<ItemInstance> HopperTileEntity::removeItem(unsigned int slot,
                                                            int count) {
     if (items[slot] != NULL) {
         if (items[slot]->count <= count) {
-            shared_ptr<ItemInstance> item = items[slot];
+            std::shared_ptr<ItemInstance> item = items[slot];
             items[slot] = nullptr;
             return item;
         } else {
-            shared_ptr<ItemInstance> i = items[slot]->remove(count);
+            std::shared_ptr<ItemInstance> i = items[slot]->remove(count);
             if (items[slot]->count == 0) items[slot] = nullptr;
             return i;
         }
@@ -78,7 +78,7 @@ std::shared_ptr<ItemInstance> HopperTileEntity::removeItem(unsigned int slot,
 
 std::shared_ptr<ItemInstance> HopperTileEntity::removeItemNoUpdate(int slot) {
     if (items[slot] != NULL) {
-        shared_ptr<ItemInstance> item = items[slot];
+        std::shared_ptr<ItemInstance> item = items[slot];
         items[slot] = nullptr;
         return item;
     }
@@ -154,7 +154,7 @@ bool HopperTileEntity::tryMoveItems() {
 }
 
 bool HopperTileEntity::ejectItems() {
-    shared_ptr<Container> container = getAttachedContainer();
+    std::shared_ptr<Container> container = getAttachedContainer();
     if (container == NULL) {
         return false;
     }
@@ -162,8 +162,8 @@ bool HopperTileEntity::ejectItems() {
     for (int slot = 0; slot < getContainerSize(); slot++) {
         if (getItem(slot) == NULL) continue;
 
-        shared_ptr<ItemInstance> original = getItem(slot)->copy();
-        shared_ptr<ItemInstance> result = addItem(
+        std::shared_ptr<ItemInstance> original = getItem(slot)->copy();
+        std::shared_ptr<ItemInstance> result = addItem(
             container.get(), removeItem(slot, 1),
             Facing::OPPOSITE_FACING[HopperTile::getAttachedFace(getData())]);
 
@@ -179,12 +179,12 @@ bool HopperTileEntity::ejectItems() {
 }
 
 bool HopperTileEntity::suckInItems(Hopper* hopper) {
-    shared_ptr<Container> container = getSourceContainer(hopper);
+    std::shared_ptr<Container> container = getSourceContainer(hopper);
 
     if (container != NULL) {
         int face = Facing::DOWN;
 
-        shared_ptr<WorldlyContainer> worldly =
+        std::shared_ptr<WorldlyContainer> worldly =
             dynamic_pointer_cast<WorldlyContainer>(container);
         if ((worldly != NULL) && (face > -1)) {
             intArray slots = worldly->getSlotsForFace(face);
@@ -202,7 +202,7 @@ bool HopperTileEntity::suckInItems(Hopper* hopper) {
             }
         }
     } else {
-        shared_ptr<ItemEntity> above =
+        std::shared_ptr<ItemEntity> above =
             getItemAt(hopper->getLevel(), hopper->getLevelX(),
                       hopper->getLevelY() + 1, hopper->getLevelZ());
 
@@ -217,11 +217,11 @@ bool HopperTileEntity::suckInItems(Hopper* hopper) {
 bool HopperTileEntity::tryTakeInItemFromSlot(Hopper* hopper,
                                              Container* container, int slot,
                                              int face) {
-    shared_ptr<ItemInstance> item = container->getItem(slot);
+    std::shared_ptr<ItemInstance> item = container->getItem(slot);
 
     if (item != NULL && canTakeItemFromContainer(container, item, slot, face)) {
-        shared_ptr<ItemInstance> original = item->copy();
-        shared_ptr<ItemInstance> result =
+        std::shared_ptr<ItemInstance> original = item->copy();
+        std::shared_ptr<ItemInstance> result =
             addItem(hopper, container->removeItem(slot, 1), -1);
 
         if (result == NULL || result->count == 0) {
@@ -240,8 +240,8 @@ bool HopperTileEntity::addItem(Container* container,
     bool changed = false;
     if (item == NULL) return false;
 
-    shared_ptr<ItemInstance> copy = item->getItem()->copy();
-    shared_ptr<ItemInstance> result = addItem(container, copy, -1);
+    std::shared_ptr<ItemInstance> copy = item->getItem()->copy();
+    std::shared_ptr<ItemInstance> result = addItem(container, copy, -1);
 
     if (result == NULL || result->count == 0) {
         changed = true;
@@ -302,7 +302,7 @@ bool HopperTileEntity::canTakeItemFromContainer(
 std::shared_ptr<ItemInstance> HopperTileEntity::tryMoveInItem(
     Container* container, std::shared_ptr<ItemInstance> item, int slot,
     int face) {
-    shared_ptr<ItemInstance> current = container->getItem(slot);
+    std::shared_ptr<ItemInstance> current = container->getItem(slot);
 
     if (canPlaceItemInContainer(container, item, slot, face)) {
         bool success = false;
@@ -345,12 +345,12 @@ std::shared_ptr<Container> HopperTileEntity::getSourceContainer(
 
 std::shared_ptr<ItemEntity> HopperTileEntity::getItemAt(Level* level, double xt,
                                                         double yt, double zt) {
-    vector<shared_ptr<Entity> >* entities = level->getEntitiesOfClass(
+    std::vector<std::shared_ptr<Entity> >* entities = level->getEntitiesOfClass(
         typeid(ItemEntity), AABB::newTemp(xt, yt, zt, xt + 1, yt + 1, zt + 1),
         EntitySelector::ENTITY_STILL_ALIVE);
 
     if (entities->size() > 0) {
-        shared_ptr<ItemEntity> out =
+        std::shared_ptr<ItemEntity> out =
             dynamic_pointer_cast<ItemEntity>(entities->at(0));
         delete entities;
         return out;
@@ -363,13 +363,13 @@ std::shared_ptr<ItemEntity> HopperTileEntity::getItemAt(Level* level, double xt,
 std::shared_ptr<Container> HopperTileEntity::getContainerAt(Level* level,
                                                             double x, double y,
                                                             double z) {
-    shared_ptr<Container> result = nullptr;
+    std::shared_ptr<Container> result = nullptr;
 
     int xt = Mth::floor(x);
     int yt = Mth::floor(y);
     int zt = Mth::floor(z);
 
-    shared_ptr<TileEntity> entity = level->getTileEntity(xt, yt, zt);
+    std::shared_ptr<TileEntity> entity = level->getTileEntity(xt, yt, zt);
 
     result = dynamic_pointer_cast<Container>(entity);
     if (result != NULL) {
@@ -384,7 +384,7 @@ std::shared_ptr<Container> HopperTileEntity::getContainerAt(Level* level,
     }
 
     if (result == NULL) {
-        vector<shared_ptr<Entity> >* entities = level->getEntities(
+        std::vector<std::shared_ptr<Entity> >* entities = level->getEntities(
             nullptr, AABB::newTemp(x, y, z, x + 1, y + 1, z + 1),
             EntitySelector::CONTAINER_ENTITY_SELECTOR);
 
@@ -420,8 +420,8 @@ bool HopperTileEntity::isOnCooldown() { return cooldownTime > 0; }
 
 // 4J Added
 std::shared_ptr<TileEntity> HopperTileEntity::clone() {
-    shared_ptr<HopperTileEntity> result =
-        shared_ptr<HopperTileEntity>(new HopperTileEntity());
+    std::shared_ptr<HopperTileEntity> result =
+        std::shared_ptr<HopperTileEntity>(new HopperTileEntity());
     TileEntity::clone(result);
 
     result->name = name;

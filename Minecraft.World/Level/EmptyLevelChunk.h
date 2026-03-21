@@ -30,23 +30,23 @@ public:
     void setBrightness(LightLayer::variety layer, int x, int y, int z,
                        int brightness);
     int getRawBrightness(int x, int y, int z, int skyDampen);
-    void addEntity(shared_ptr<Entity> e);
-    void removeEntity(shared_ptr<Entity> e);
-    void removeEntity(shared_ptr<Entity> e, int yc);
+    void addEntity(std::shared_ptr<Entity> e);
+    void removeEntity(std::shared_ptr<Entity> e);
+    void removeEntity(std::shared_ptr<Entity> e, int yc);
     bool isSkyLit(int x, int y, int z);
     void skyBrightnessChanged();
-    shared_ptr<TileEntity> getTileEntity(int x, int y, int z);
-    void addTileEntity(shared_ptr<TileEntity> te);
-    void setTileEntity(int x, int y, int z, shared_ptr<TileEntity> tileEntity);
+    std::shared_ptr<TileEntity> getTileEntity(int x, int y, int z);
+    void addTileEntity(std::shared_ptr<TileEntity> te);
+    void setTileEntity(int x, int y, int z, std::shared_ptr<TileEntity> tileEntity);
     void removeTileEntity(int x, int y, int z);
     void load();
     void unload(bool unloadTileEntities);  // 4J - added parameter
     bool containsPlayer();                 // 4J added
     void markUnsaved();
-    void getEntities(shared_ptr<Entity> except, AABB bb,
-                     vector<shared_ptr<Entity> >& es, EntitySelector* selector);
+    void getEntities(std::shared_ptr<Entity> except, AABB bb,
+                     std::vector<std::shared_ptr<Entity> >& es, EntitySelector* selector);
     void getEntitiesOfClass(const std::type_info& ec, AABB bb,
-                            vector<shared_ptr<Entity> >& es,
+                            std::vector<std::shared_ptr<Entity> >& es,
                             EntitySelector* selector);
     int countEntities();
     bool shouldSave(bool force);

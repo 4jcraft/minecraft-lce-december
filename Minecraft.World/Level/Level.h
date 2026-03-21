@@ -98,25 +98,25 @@ public:
 public:
     CRITICAL_SECTION m_entitiesCS;  // 4J added
 
-    vector<std::shared_ptr<Entity> > entities;
+    std::vector<std::shared_ptr<Entity> > entities;
 
 protected:
-    vector<std::shared_ptr<Entity> > entitiesToRemove;
+    std::vector<std::shared_ptr<Entity> > entitiesToRemove;
 
 public:
     bool hasEntitiesToRemove();           // 4J added
     bool m_bDisableAddNewTileEntities;    // 4J Added
     CRITICAL_SECTION m_tileEntityListCS;  // 4J added
-    vector<std::shared_ptr<TileEntity> > tileEntityList;
+    std::vector<std::shared_ptr<TileEntity> > tileEntityList;
 
 private:
-    vector<std::shared_ptr<TileEntity> > pendingTileEntities;
-    vector<std::shared_ptr<TileEntity> > tileEntitiesToUnload;
+    std::vector<std::shared_ptr<TileEntity> > pendingTileEntities;
+    std::vector<std::shared_ptr<TileEntity> > tileEntitiesToUnload;
     bool updatingTileEntities;
 
 public:
-    vector<std::shared_ptr<Player> > players;
-    vector<std::shared_ptr<Entity> > globalEntities;
+    std::vector<std::shared_ptr<Player> > players;
+    std::vector<std::shared_ptr<Entity> > globalEntities;
 
 private:
     int cloudColor;
@@ -143,7 +143,7 @@ public:
     Dimension* dimension;
 
 protected:
-    vector<LevelListener*> listeners;
+    std::vector<LevelListener*> listeners;
 
 public:
     ChunkSource* chunkSource;  // 4J - changed to public
@@ -384,11 +384,11 @@ public:
                                   int tickDelay, int prioTilt);
     virtual void tickEntities();
     void addAllPendingTileEntities(
-        vector<std::shared_ptr<TileEntity> >& entities);
+        std::vector<std::shared_ptr<TileEntity> >& entities);
     void tick(std::shared_ptr<Entity> e);
     virtual void tick(std::shared_ptr<Entity> e, bool actual);
     bool isUnobstructed(AABB* aabb);
-    bool isUnobstructed(AABB* aabb, std::shared_ptr<Entity> ignore);
+    bool isUnobstructed(AABB* aabb, std::shared_ptr<Entity> std::ignore);
     bool containsAnyBlocks(AABB* box);
     bool containsAnyLiquid(AABB* box);
     bool containsAnyLiquid_NoLoad(AABB* box);  // 4J added
@@ -453,7 +453,7 @@ protected:
     // AP - See CustomSet.h for an explanation of this
     CustomSet chunksToPoll;
 #else
-    unordered_set<ChunkPos, ChunkPosKeyHash, ChunkPosKeyEq> chunksToPoll;
+    std::unordered_set<ChunkPos, ChunkPosKeyHash, ChunkPosKeyEq> chunksToPoll;
 #endif
 
 private:
@@ -490,30 +490,30 @@ public:
 
 public:
     virtual bool tickPendingTicks(bool force);
-    virtual vector<TickNextTickData>* fetchTicksInChunk(LevelChunk* chunk,
+    virtual std::vector<TickNextTickData>* fetchTicksInChunk(LevelChunk* chunk,
                                                         bool remove);
 
 private:
-    vector<std::shared_ptr<Entity> > es;
+    std::vector<std::shared_ptr<Entity> > es;
 
 public:
     bool isClientSide;
 
-    vector<std::shared_ptr<Entity> >* getEntities(
+    std::vector<std::shared_ptr<Entity> >* getEntities(
         std::shared_ptr<Entity> except, AABB* bb);
-    vector<std::shared_ptr<Entity> >* getEntities(
+    std::vector<std::shared_ptr<Entity> >* getEntities(
         std::shared_ptr<Entity> except, AABB* bb,
         const EntitySelector* selector);
-    vector<std::shared_ptr<Entity> >* getEntitiesOfClass(
+    std::vector<std::shared_ptr<Entity> >* getEntitiesOfClass(
         const std::type_info& baseClass, AABB* bb);
-    vector<std::shared_ptr<Entity> >* getEntitiesOfClass(
+    std::vector<std::shared_ptr<Entity> >* getEntitiesOfClass(
         const std::type_info& baseClass, AABB* bb,
         const EntitySelector* selector);
     std::shared_ptr<Entity> getClosestEntityOfClass(
         const std::type_info& baseClass, AABB* bb,
         std::shared_ptr<Entity> source);
     virtual std::shared_ptr<Entity> getEntity(int entityId) = 0;
-    vector<std::shared_ptr<Entity> > getAllEntities();
+    std::vector<std::shared_ptr<Entity> > getAllEntities();
     void tileEntityChanged(int x, int y, int z, std::shared_ptr<TileEntity> te);
     //	unsigned int countInstanceOf(BaseObject::Class *clas);
     unsigned int countInstanceOf(
@@ -522,8 +522,8 @@ public:
     unsigned int countInstanceOfInRange(eINSTANCEOF clas, bool singleType,
                                         int range, int x, int y,
                                         int z);  // 4J Added
-    void addEntities(vector<std::shared_ptr<Entity> >* list);
-    virtual void removeEntities(vector<std::shared_ptr<Entity> >* list);
+    void addEntities(std::vector<std::shared_ptr<Entity> >* list);
+    virtual void removeEntities(std::vector<std::shared_ptr<Entity> >* list);
     bool mayPlace(int tileId, int x, int y, int z, bool ignoreEntities,
                   int face, std::shared_ptr<Entity> ignoreEntity,
                   std::shared_ptr<ItemInstance> item);

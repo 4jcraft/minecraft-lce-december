@@ -34,7 +34,7 @@ void StatsCounter::award(Stat* stat, unsigned int difficulty,
     if (val == stats.end()) {
         StatContainer newVal;
         newVal.stats[difficulty] = count;
-        stats.insert(make_pair(stat, newVal));
+        stats.insert(std::make_pair(stat, newVal));
     } else {
         val->second.stats[difficulty] += count;
 
@@ -144,7 +144,7 @@ void StatsCounter::parse(void* data) {
                     newVal.stats[1] = statData[1];
                     newVal.stats[2] = statData[2];
                     newVal.stats[3] = statData[3];
-                    stats.insert(make_pair(*iter, newVal));
+                    stats.insert(std::make_pair(*iter, newVal));
                 }
                 statData += 4;
             } else {
@@ -155,7 +155,7 @@ void StatsCounter::parse(void* data) {
                     newVal.stats[1] = largeStatData[1];
                     newVal.stats[2] = largeStatData[2];
                     newVal.stats[3] = largeStatData[3];
-                    stats.insert(make_pair(*iter, newVal));
+                    stats.insert(std::make_pair(*iter, newVal));
                 }
                 largeStatData += 4;
                 statData = (unsigned short*)largeStatData;
@@ -166,7 +166,7 @@ void StatsCounter::parse(void* data) {
                 newVal.stats[1] = 0;
                 newVal.stats[2] = 0;
                 newVal.stats[3] = 0;
-                stats.insert(make_pair(*iter, newVal));
+                stats.insert(std::make_pair(*iter, newVal));
             }
             ++statData;
         }
@@ -1774,57 +1774,57 @@ void StatsCounter::writeStats() {
 void StatsCounter::setupStatBoards() {
 #ifndef _DURANGO
     statBoards.insert(
-        make_pair(Stats::killsZombie, LEADERBOARD_KILLS_PEACEFUL));
+        std::make_pair(Stats::killsZombie, LEADERBOARD_KILLS_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::killsSkeleton, LEADERBOARD_KILLS_PEACEFUL));
+        std::make_pair(Stats::killsSkeleton, LEADERBOARD_KILLS_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::killsCreeper, LEADERBOARD_KILLS_PEACEFUL));
+        std::make_pair(Stats::killsCreeper, LEADERBOARD_KILLS_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::killsSpider, LEADERBOARD_KILLS_PEACEFUL));
+        std::make_pair(Stats::killsSpider, LEADERBOARD_KILLS_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::killsSpiderJockey, LEADERBOARD_KILLS_PEACEFUL));
+        std::make_pair(Stats::killsSpiderJockey, LEADERBOARD_KILLS_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::killsZombiePigman, LEADERBOARD_KILLS_PEACEFUL));
+        std::make_pair(Stats::killsZombiePigman, LEADERBOARD_KILLS_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::killsNetherZombiePigman, LEADERBOARD_KILLS_PEACEFUL));
-    statBoards.insert(make_pair(Stats::killsSlime, LEADERBOARD_KILLS_PEACEFUL));
+        std::make_pair(Stats::killsNetherZombiePigman, LEADERBOARD_KILLS_PEACEFUL));
+    statBoards.insert(std::make_pair(Stats::killsSlime, LEADERBOARD_KILLS_PEACEFUL));
 
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::dirt->id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::dirt->id],
                                 LEADERBOARD_MININGBLOCKS_PEACEFUL));
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::cobblestone->id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::cobblestone->id],
                                 LEADERBOARD_MININGBLOCKS_PEACEFUL));
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::sand->id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::sand->id],
                                 LEADERBOARD_MININGBLOCKS_PEACEFUL));
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::stone->id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::stone->id],
                                 LEADERBOARD_MININGBLOCKS_PEACEFUL));
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::gravel->id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::gravel->id],
                                 LEADERBOARD_MININGBLOCKS_PEACEFUL));
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::clay->id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::clay->id],
                                 LEADERBOARD_MININGBLOCKS_PEACEFUL));
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::obsidian->id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::obsidian->id],
                                 LEADERBOARD_MININGBLOCKS_PEACEFUL));
 
-    statBoards.insert(make_pair(Stats::itemsCollected[Item::egg->id],
+    statBoards.insert(std::make_pair(Stats::itemsCollected[Item::egg->id],
                                 LEADERBOARD_FARMING_PEACEFUL));
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::wheat_Id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::wheat_Id],
                                 LEADERBOARD_FARMING_PEACEFUL));
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::mushroom_brown_Id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::mushroom_brown_Id],
                                 LEADERBOARD_FARMING_PEACEFUL));
-    statBoards.insert(make_pair(Stats::blocksMined[Tile::reeds_Id],
+    statBoards.insert(std::make_pair(Stats::blocksMined[Tile::reeds_Id],
                                 LEADERBOARD_FARMING_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::cowsMilked, LEADERBOARD_FARMING_PEACEFUL));
-    statBoards.insert(make_pair(Stats::itemsCollected[Tile::pumpkin->id],
+        std::make_pair(Stats::cowsMilked, LEADERBOARD_FARMING_PEACEFUL));
+    statBoards.insert(std::make_pair(Stats::itemsCollected[Tile::pumpkin->id],
                                 LEADERBOARD_FARMING_PEACEFUL));
 
     statBoards.insert(
-        make_pair(Stats::walkOneM, LEADERBOARD_TRAVELLING_PEACEFUL));
+        std::make_pair(Stats::walkOneM, LEADERBOARD_TRAVELLING_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::fallOneM, LEADERBOARD_TRAVELLING_PEACEFUL));
+        std::make_pair(Stats::fallOneM, LEADERBOARD_TRAVELLING_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::minecartOneM, LEADERBOARD_TRAVELLING_PEACEFUL));
+        std::make_pair(Stats::minecartOneM, LEADERBOARD_TRAVELLING_PEACEFUL));
     statBoards.insert(
-        make_pair(Stats::boatOneM, LEADERBOARD_TRAVELLING_PEACEFUL));
+        std::make_pair(Stats::boatOneM, LEADERBOARD_TRAVELLING_PEACEFUL));
 #endif
 }
 

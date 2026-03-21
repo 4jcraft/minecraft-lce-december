@@ -64,8 +64,8 @@ public:
 private:
     std::unordered_map<int, std::shared_ptr<Entity>, IntKeyHash2, IntKeyEq>
         entitiesById;  // 4J - was IntHashMap
-    unordered_set<std::shared_ptr<Entity> > forced;
-    unordered_set<std::shared_ptr<Entity> > reEntries;
+    std::unordered_set<std::shared_ptr<Entity> > forced;
+    std::unordered_set<std::shared_ptr<Entity> > reEntries;
 
 public:
     virtual bool addEntity(std::shared_ptr<Entity> e);
@@ -97,7 +97,7 @@ protected:
 
 public:
     void animateTickDoWork();            // 4J added
-    unordered_set<int> chunksToAnimate;  // 4J added
+    std::unordered_set<int> chunksToAnimate;  // 4J added
 
 public:
     void removeAllPendingEntityRemovals();

@@ -106,12 +106,12 @@ std::shared_ptr<ItemInstance> BucketItem::use(
 
         if (!level->mayInteract(player, xt, yt, zt, content)) {
             app.DebugPrintf("!!!!!!!!!!! Can't place that here\n");
-            shared_ptr<ServerPlayer> servPlayer =
+            std::shared_ptr<ServerPlayer> servPlayer =
                 dynamic_pointer_cast<ServerPlayer>(player);
             if (servPlayer != NULL) {
                 app.DebugPrintf(
                     "Sending ChatPacket::e_ChatCannotPlaceLava to player\n");
-                servPlayer->connection->send(shared_ptr<ChatPacket>(
+                servPlayer->connection->send(std::shared_ptr<ChatPacket>(
                     new ChatPacket(L"", ChatPacket::e_ChatCannotPlaceLava)));
             }
 
@@ -131,12 +131,12 @@ std::shared_ptr<ItemInstance> BucketItem::use(
                 }
 
                 if (--itemInstance->count <= 0) {
-                    return shared_ptr<ItemInstance>(
+                    return std::shared_ptr<ItemInstance>(
                         new ItemInstance(Item::bucket_water));
                 } else {
-                    if (!player->inventory->add(shared_ptr<ItemInstance>(
+                    if (!player->inventory->add(std::shared_ptr<ItemInstance>(
                             new ItemInstance(Item::bucket_water)))) {
-                        player->drop(shared_ptr<ItemInstance>(
+                        player->drop(std::shared_ptr<ItemInstance>(
                             new ItemInstance(Item::bucket_water_Id, 1, 0)));
                     }
                     return itemInstance;
@@ -154,12 +154,12 @@ std::shared_ptr<ItemInstance> BucketItem::use(
                     return itemInstance;
                 }
                 if (--itemInstance->count <= 0) {
-                    return shared_ptr<ItemInstance>(
+                    return std::shared_ptr<ItemInstance>(
                         new ItemInstance(Item::bucket_lava));
                 } else {
-                    if (!player->inventory->add(shared_ptr<ItemInstance>(
+                    if (!player->inventory->add(std::shared_ptr<ItemInstance>(
                             new ItemInstance(Item::bucket_lava)))) {
-                        player->drop(shared_ptr<ItemInstance>(
+                        player->drop(std::shared_ptr<ItemInstance>(
                             new ItemInstance(Item::bucket_lava_Id, 1, 0)));
                     }
                     return itemInstance;
@@ -167,7 +167,7 @@ std::shared_ptr<ItemInstance> BucketItem::use(
             }
         } else if (content < 0) {
             delete hr;
-            return shared_ptr<ItemInstance>(
+            return std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::bucket_empty));
         } else {
             if (hr->f == 0) yt--;
@@ -182,7 +182,7 @@ std::shared_ptr<ItemInstance> BucketItem::use(
 
             if (emptyBucket(level, xt, yt, zt) &&
                 !player->abilities.instabuild) {
-                return shared_ptr<ItemInstance>(
+                return std::shared_ptr<ItemInstance>(
                     new ItemInstance(Item::bucket_empty));
             }
         }

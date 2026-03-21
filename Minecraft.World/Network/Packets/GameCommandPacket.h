@@ -4,7 +4,7 @@
 #include "Packet.h"
 
 class GameCommandPacket : public Packet,
-                          public enable_shared_from_this<GameCommandPacket> {
+                          public std::enable_shared_from_this<GameCommandPacket> {
 public:
     EGameCommand command;
     int length;

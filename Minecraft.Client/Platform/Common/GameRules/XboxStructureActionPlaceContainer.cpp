@@ -22,7 +22,7 @@ XboxStructureActionPlaceContainer::~XboxStructureActionPlaceContainer() {
 // *dos, UINT numAttrs)
 
 void XboxStructureActionPlaceContainer::getChildren(
-    vector<GameRuleDefinition*>* children) {
+    std::vector<GameRuleDefinition*>* children) {
     XboxStructureActionPlaceBlock::getChildren(children);
     for (AUTO_VAR(it, m_items.begin()); it != m_items.end(); it++)
         children->push_back(*it);
@@ -75,7 +75,7 @@ bool XboxStructureActionPlaceContainer::placeContainerInLevel(
 
         level->setTileAndData(worldX, worldY, worldZ, m_tile, 0,
                               Tile::UPDATE_ALL);
-        shared_ptr<Container> container = dynamic_pointer_cast<Container>(
+        std::shared_ptr<Container> container = dynamic_pointer_cast<Container>(
             level->getTileEntity(worldX, worldY, worldZ));
 
         app.DebugPrintf(

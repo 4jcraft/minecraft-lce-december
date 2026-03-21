@@ -21,8 +21,8 @@ CraftingMenu::CraftingMenu(std::shared_ptr<Inventory> inventory, Level* level,
                            int xt, int yt, int zt)
     : AbstractContainerMenu() {
     craftSlots =
-        shared_ptr<CraftingContainer>(new CraftingContainer(this, 3, 3));
-    resultSlots = shared_ptr<ResultContainer>(new ResultContainer());
+        std::shared_ptr<CraftingContainer>(new CraftingContainer(this, 3, 3));
+    resultSlots = std::shared_ptr<ResultContainer>(new ResultContainer());
 
     this->level = level;
     x = xt;
@@ -63,7 +63,7 @@ void CraftingMenu::removed(std::shared_ptr<Player> player) {
     if (level->isClientSide) return;
 
     for (int i = 0; i < 9; i++) {
-        shared_ptr<ItemInstance> item = craftSlots->removeItemNoUpdate(i);
+        std::shared_ptr<ItemInstance> item = craftSlots->removeItemNoUpdate(i);
         if (item != NULL) {
             player->drop(item);
         }
@@ -78,10 +78,10 @@ bool CraftingMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> CraftingMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if (slotIndex == RESULT_SLOT) {

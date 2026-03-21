@@ -27,7 +27,7 @@ std::shared_ptr<ItemInstance> EnderpearlItem::use(
                            0.4f / (random->nextFloat() * 0.4f + 0.8f));
     if (!level->isClientSide) {
         level->addEntity(
-            shared_ptr<ThrownEnderpearl>(new ThrownEnderpearl(level, player)));
+            std::shared_ptr<ThrownEnderpearl>(new ThrownEnderpearl(level, player)));
     }
     return instance;
 }

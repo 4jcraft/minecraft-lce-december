@@ -16,38 +16,38 @@
 #include "../../Headers/com.mojang.nbt.h"
 #include "EntityIO.h"
 
-unordered_map<wstring, entityCreateFn>* EntityIO::idCreateMap =
-    new unordered_map<wstring, entityCreateFn>;
-unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>*
+std::unordered_map<std::wstring, entityCreateFn>* EntityIO::idCreateMap =
+    new std::unordered_map<std::wstring, entityCreateFn>;
+std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>*
     EntityIO::classIdMap =
-        new unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash,
+        new std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
                           eINSTANCEOFKeyEq>;
-unordered_map<int, entityCreateFn>* EntityIO::numCreateMap =
-    new unordered_map<int, entityCreateFn>;
-unordered_map<int, eINSTANCEOF>* EntityIO::numClassMap =
-    new unordered_map<int, eINSTANCEOF>;
-unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
+std::unordered_map<int, entityCreateFn>* EntityIO::numCreateMap =
+    new std::unordered_map<int, entityCreateFn>;
+std::unordered_map<int, eINSTANCEOF>* EntityIO::numClassMap =
+    new std::unordered_map<int, eINSTANCEOF>;
+std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
               eINSTANCEOFKeyEq>* EntityIO::classNumMap =
-    new unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>;
-unordered_map<wstring, int>* EntityIO::idNumMap =
-    new unordered_map<wstring, int>;
-unordered_map<int, EntityIO::SpawnableMobInfo*>
+    new std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>;
+std::unordered_map<std::wstring, int>* EntityIO::idNumMap =
+    new std::unordered_map<std::wstring, int>;
+std::unordered_map<int, EntityIO::SpawnableMobInfo*>
     EntityIO::idsSpawnableInCreative;
 
 void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas,
                      const std::wstring& id, int idNum) {
     idCreateMap->insert(
-        unordered_map<wstring, entityCreateFn>::value_type(id, createFn));
-    classIdMap->insert(unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash,
+        std::unordered_map<std::wstring, entityCreateFn>::value_type(id, createFn));
+    classIdMap->insert(std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
                                      eINSTANCEOFKeyEq>::value_type(clas, id));
     numCreateMap->insert(
-        unordered_map<int, entityCreateFn>::value_type(idNum, createFn));
+        std::unordered_map<int, entityCreateFn>::value_type(idNum, createFn));
     numClassMap->insert(
-        unordered_map<int, eINSTANCEOF>::value_type(idNum, clas));
+        std::unordered_map<int, eINSTANCEOF>::value_type(idNum, clas));
     classNumMap->insert(
-        unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
+        std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
                       eINSTANCEOFKeyEq>::value_type(clas, idNum));
-    idNumMap->insert(unordered_map<wstring, int>::value_type(id, idNum));
+    idNumMap->insert(std::unordered_map<std::wstring, int>::value_type(id, idNum));
 }
 
 void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas,
@@ -56,7 +56,7 @@ void EntityIO::setId(entityCreateFn createFn, eINSTANCEOF clas,
     setId(createFn, clas, id, idNum);
 
     idsSpawnableInCreative.insert(
-        unordered_map<int, SpawnableMobInfo*>::value_type(
+        std::unordered_map<int, SpawnableMobInfo*>::value_type(
             idNum, new SpawnableMobInfo(idNum, color1, color2, nameId)));
 }
 
@@ -225,12 +225,12 @@ void EntityIO::staticCtor() {
 
 std::shared_ptr<Entity> EntityIO::newEntity(const std::wstring& id,
                                             Level* level) {
-    shared_ptr<Entity> entity;
+    std::shared_ptr<Entity> entity;
 
     AUTO_VAR(it, idCreateMap->find(id));
     if (it != idCreateMap->end()) {
         entityCreateFn create = it->second;
-        if (create != NULL) entity = shared_ptr<Entity>(create(level));
+        if (create != NULL) entity = std::shared_ptr<Entity>(create(level));
         if ((entity != NULL) && entity->GetType() == eTYPE_ENDERDRAGON) {
             dynamic_pointer_cast<EnderDragon>(entity)
                 ->AddParts();  // 4J added to finalise creation
@@ -241,7 +241,7 @@ std::shared_ptr<Entity> EntityIO::newEntity(const std::wstring& id,
 }
 
 std::shared_ptr<Entity> EntityIO::loadStatic(CompoundTag* tag, Level* level) {
-    shared_ptr<Entity> entity;
+    std::shared_ptr<Entity> entity;
 
     if (tag->getString(L"id").compare(L"Minecart") == 0) {
         // I don't like this any more than you do. Sadly, compatibility...
@@ -264,7 +264,7 @@ std::shared_ptr<Entity> EntityIO::loadStatic(CompoundTag* tag, Level* level) {
     AUTO_VAR(it, idCreateMap->find(tag->getString(L"id")));
     if (it != idCreateMap->end()) {
         entityCreateFn create = it->second;
-        if (create != NULL) entity = shared_ptr<Entity>(create(level));
+        if (create != NULL) entity = std::shared_ptr<Entity>(create(level));
         if ((entity != NULL) && entity->GetType() == eTYPE_ENDERDRAGON) {
             dynamic_pointer_cast<EnderDragon>(entity)
                 ->AddParts();  // 4J added to finalise creation
@@ -283,12 +283,12 @@ std::shared_ptr<Entity> EntityIO::loadStatic(CompoundTag* tag, Level* level) {
 }
 
 std::shared_ptr<Entity> EntityIO::newById(int id, Level* level) {
-    shared_ptr<Entity> entity;
+    std::shared_ptr<Entity> entity;
 
     AUTO_VAR(it, numCreateMap->find(id));
     if (it != numCreateMap->end()) {
         entityCreateFn create = it->second;
-        if (create != NULL) entity = shared_ptr<Entity>(create(level));
+        if (create != NULL) entity = std::shared_ptr<Entity>(create(level));
         if ((entity != NULL) && entity->GetType() == eTYPE_ENDERDRAGON) {
             dynamic_pointer_cast<EnderDragon>(entity)
                 ->AddParts();  // 4J added to finalise creation
@@ -304,15 +304,15 @@ std::shared_ptr<Entity> EntityIO::newById(int id, Level* level) {
 
 std::shared_ptr<Entity> EntityIO::newByEnumType(eINSTANCEOF eType,
                                                 Level* level) {
-    shared_ptr<Entity> entity;
+    std::shared_ptr<Entity> entity;
 
-    unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
+    std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
                   eINSTANCEOFKeyEq>::iterator it = classNumMap->find(eType);
     if (it != classNumMap->end()) {
         AUTO_VAR(it2, numCreateMap->find(it->second));
         if (it2 != numCreateMap->end()) {
             entityCreateFn create = it2->second;
-            if (create != NULL) entity = shared_ptr<Entity>(create(level));
+            if (create != NULL) entity = std::shared_ptr<Entity>(create(level));
             if ((entity != NULL) && entity->GetType() == eTYPE_ENDERDRAGON) {
                 dynamic_pointer_cast<EnderDragon>(entity)
                     ->AddParts();  // 4J added to finalise creation
@@ -324,14 +324,14 @@ std::shared_ptr<Entity> EntityIO::newByEnumType(eINSTANCEOF eType,
 }
 
 int EntityIO::getId(std::shared_ptr<Entity> entity) {
-    unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
+    std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
                   eINSTANCEOFKeyEq>::iterator it =
         classNumMap->find(entity->GetType());
     return (*it).second;
 }
 
 std::wstring EntityIO::getEncodeId(std::shared_ptr<Entity> entity) {
-    unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash,
+    std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
                   eINSTANCEOFKeyEq>::iterator it =
         classIdMap->find(entity->GetType());
     if (it != classIdMap->end())
@@ -358,7 +358,7 @@ std::wstring EntityIO::getEncodeId(int entityIoValue) {
 
     AUTO_VAR(it, numClassMap->find(entityIoValue));
     if (it != numClassMap->end()) {
-        unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash,
+        std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
                       eINSTANCEOFKeyEq>::iterator classIdIt =
             classIdMap->find(it->second);
         if (classIdIt != classIdMap->end())
@@ -398,7 +398,7 @@ eINSTANCEOF EntityIO::getClass(int id) {
 }
 
 int EntityIO::eTypeToIoid(eINSTANCEOF eType) {
-    unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
+    std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
                   eINSTANCEOFKeyEq>::iterator it = classNumMap->find(eType);
     if (it != classNumMap->end()) return it->second;
     return -1;

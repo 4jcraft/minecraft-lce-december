@@ -6,7 +6,7 @@ class Level;
 
 class ChunkTilesUpdatePacket
     : public Packet,
-      public enable_shared_from_this<ChunkTilesUpdatePacket> {
+      public std::enable_shared_from_this<ChunkTilesUpdatePacket> {
 public:
     int xc, zc;
     shortArray positions;

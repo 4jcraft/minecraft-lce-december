@@ -12,7 +12,7 @@ void PrimedTnt::_init() {
     setSize(0.98f, 0.98f);
     heightOffset = bbHeight / 2.0f;
 
-    owner = weak_ptr<LivingEntity>();
+    owner = std::weak_ptr<LivingEntity>();
 }
 
 PrimedTnt::PrimedTnt(Level* level) : Entity(level) {
@@ -41,7 +41,7 @@ PrimedTnt::PrimedTnt(Level* level, double x, double y, double z,
     yo = y;
     zo = z;
 
-    this->owner = weak_ptr<LivingEntity>(owner);
+    this->owner = std::weak_ptr<LivingEntity>(owner);
 }
 
 void PrimedTnt::defineSynchedData() {}

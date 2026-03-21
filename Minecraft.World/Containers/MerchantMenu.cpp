@@ -10,7 +10,7 @@ MerchantMenu::MerchantMenu(std::shared_ptr<Inventory> inventory,
     trader = merchant;
     this->level = level;
 
-    tradeContainer = shared_ptr<MerchantContainer>(new MerchantContainer(
+    tradeContainer = std::shared_ptr<MerchantContainer>(new MerchantContainer(
         dynamic_pointer_cast<Player>(inventory->player->shared_from_this()),
         merchant));
     addSlot(new Slot(tradeContainer, PAYMENT1_SLOT, SELLSLOT1_X, ROW2_Y));
@@ -60,12 +60,12 @@ bool MerchantMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> MerchantMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = NULL;
 
     if (slotIndex < slots.size()) slot = slots.at(slotIndex);
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if (slotIndex == RESULT_SLOT) {
@@ -111,7 +111,7 @@ void MerchantMenu::removed(std::shared_ptr<Player> player) {
     AbstractContainerMenu::removed(player);
     if (level->isClientSide) return;
 
-    shared_ptr<ItemInstance> item =
+    std::shared_ptr<ItemInstance> item =
         tradeContainer->removeItemNoUpdate(PAYMENT1_SLOT);
     if (item) {
         player->drop(item);

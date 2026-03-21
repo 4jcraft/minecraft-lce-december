@@ -2084,7 +2084,7 @@ void Tile::spawnResources(Level* level, int x, int y, int z, int data,
         if (type <= 0) continue;
 
         popResource(level, x, y, z,
-                    shared_ptr<ItemInstance>(new ItemInstance(
+                    std::shared_ptr<ItemInstance>(new ItemInstance(
                         type, 1, getSpawnResourcesAuxValue(data))));
     }
 }
@@ -2099,7 +2099,7 @@ void Tile::popResource(Level* level, int x, int y, int z,
     double xo = level->random->nextFloat() * s + (1 - s) * 0.5;
     double yo = level->random->nextFloat() * s + (1 - s) * 0.5;
     double zo = level->random->nextFloat() * s + (1 - s) * 0.5;
-    shared_ptr<ItemEntity> item = shared_ptr<ItemEntity>(
+    std::shared_ptr<ItemEntity> item = std::shared_ptr<ItemEntity>(
         new ItemEntity(level, x + xo, y + yo, z + zo, itemInstance));
     item->throwTime = 10;
     level->addEntity(item);
@@ -2111,7 +2111,7 @@ void Tile::popExperience(Level* level, int x, int y, int z, int amount) {
         while (amount > 0) {
             int newCount = ExperienceOrb::getExperienceValue(amount);
             amount -= newCount;
-            level->addEntity(shared_ptr<ExperienceOrb>(
+            level->addEntity(std::shared_ptr<ExperienceOrb>(
                 new ExperienceOrb(level, x + .5, y + .5, z + .5, newCount)));
         }
     }
@@ -2362,7 +2362,7 @@ void Tile::playerDestroy(Level* level, std::shared_ptr<Player> player, int x,
                           GenericStats::param_noArgs());
 
     if (isSilkTouchable() && EnchantmentHelper::hasSilkTouch(player)) {
-        shared_ptr<ItemInstance> item = getSilkTouchItemInstance(data);
+        std::shared_ptr<ItemInstance> item = getSilkTouchItemInstance(data);
         if (item != NULL) {
             popResource(level, x, y, z, item);
         }
@@ -2380,7 +2380,7 @@ std::shared_ptr<ItemInstance> Tile::getSilkTouchItemInstance(int data) {
         Item::items[id]->isStackedByData()) {
         popData = data;
     }
-    return shared_ptr<ItemInstance>(new ItemInstance(id, 1, popData));
+    return std::shared_ptr<ItemInstance>(new ItemInstance(id, 1, popData));
 }
 
 int Tile::getResourceCountForLootBonus(int bonusLevel, Random* random) {

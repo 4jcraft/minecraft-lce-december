@@ -121,7 +121,7 @@ int AddMobPacket::getEstimatedSize() {
     return size;
 }
 
-vector<shared_ptr<SynchedEntityData::DataItem> >*
+std::vector<std::shared_ptr<SynchedEntityData::DataItem> >*
 AddMobPacket::getUnpackedData() {
     if (unpack == NULL) {
         unpack = entityData->getAll();

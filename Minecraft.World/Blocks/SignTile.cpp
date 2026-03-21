@@ -66,7 +66,7 @@ std::shared_ptr<TileEntity> SignTile::newTileEntity(Level* level) {
     // try {
     //  4J Stu - For some reason the newInstance wasn't working right, but doing
     //  it like the other TileEntities is fine
-    return shared_ptr<TileEntity>(new SignTileEntity());
+    return std::shared_ptr<TileEntity>(new SignTileEntity());
     // return dynamic_pointer_cast<TileEntity>( clas->newInstance() );
     // } catch (Exception e) {
     //  TODO 4J Stu - Exception handling

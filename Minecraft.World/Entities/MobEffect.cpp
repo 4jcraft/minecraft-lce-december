@@ -404,7 +404,7 @@ MobEffect* MobEffect::addAttributeModifier(Attribute* attribute,
     return this;
 }
 
-unordered_map<Attribute*, AttributeModifier*>*
+std::unordered_map<Attribute*, AttributeModifier*>*
 MobEffect::getAttributeModifiers() {
     return &attributeModifiers;
 }

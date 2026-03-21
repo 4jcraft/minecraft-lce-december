@@ -10,7 +10,7 @@ void NoteBlockTile::neighborChanged(Level* level, int x, int y, int z,
                                     int type) {
     app.DebugPrintf("-------- Neighbour changed type %d\n", type);
     bool signal = level->hasNeighborSignal(x, y, z);
-    shared_ptr<MusicTileEntity> mte =
+    std::shared_ptr<MusicTileEntity> mte =
         dynamic_pointer_cast<MusicTileEntity>(level->getTileEntity(x, y, z));
     app.DebugPrintf("-------- Signal is %s, tile is currently %s\n",
                     signal ? "TRUE" : "FALSE", mte->on ? "ON" : "OFF");
@@ -32,7 +32,7 @@ bool NoteBlockTile::use(Level* level, int x, int y, int z,
 {
     if (soundOnly) return false;
     if (level->isClientSide) return true;
-    shared_ptr<MusicTileEntity> mte =
+    std::shared_ptr<MusicTileEntity> mte =
         dynamic_pointer_cast<MusicTileEntity>(level->getTileEntity(x, y, z));
     if (mte != NULL) {
         mte->tune();
@@ -44,13 +44,13 @@ bool NoteBlockTile::use(Level* level, int x, int y, int z,
 void NoteBlockTile::attack(Level* level, int x, int y, int z,
                            std::shared_ptr<Player> player) {
     if (level->isClientSide) return;
-    shared_ptr<MusicTileEntity> mte =
+    std::shared_ptr<MusicTileEntity> mte =
         dynamic_pointer_cast<MusicTileEntity>(level->getTileEntity(x, y, z));
     if (mte != NULL) mte->playNote(level, x, y, z);
 }
 
 std::shared_ptr<TileEntity> NoteBlockTile::newTileEntity(Level* level) {
-    return shared_ptr<MusicTileEntity>(new MusicTileEntity());
+    return std::shared_ptr<MusicTileEntity>(new MusicTileEntity());
 }
 
 bool NoteBlockTile::triggerEvent(Level* level, int x, int y, int z, int i,

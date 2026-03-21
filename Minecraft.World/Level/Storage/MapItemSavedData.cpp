@@ -136,7 +136,7 @@ charArray MapItemSavedData::HoldingPlayer::nextUpdatePacket(
         }
         delete data.data;
     }
-    shared_ptr<ServerPlayer> servPlayer =
+    std::shared_ptr<ServerPlayer> servPlayer =
         dynamic_pointer_cast<ServerPlayer>(player);
     for (int d = 0; d < 10; d++) {
         int column = (tick++ * 11) % (MapItem::IMAGE_WIDTH);
@@ -223,8 +223,8 @@ void MapItemSavedData::save(CompoundTag* tag) {
 void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                                      std::shared_ptr<ItemInstance> item) {
     if (carriedByPlayers.find(player) == carriedByPlayers.end()) {
-        shared_ptr<HoldingPlayer> hp =
-            shared_ptr<HoldingPlayer>(new HoldingPlayer(player, this));
+        std::shared_ptr<HoldingPlayer> hp =
+            std::shared_ptr<HoldingPlayer>(new HoldingPlayer(player, this));
         carriedByPlayers.insert(
             playerHoldingPlayerMapType::value_type(player, hp));
         carriedBy.push_back(hp);
@@ -242,7 +242,7 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
 #endif
     bool addedPlayers = false;
     for (AUTO_VAR(it, carriedBy.begin()); it != carriedBy.end();) {
-        shared_ptr<HoldingPlayer> hp = *it;
+        std::shared_ptr<HoldingPlayer> hp = *it;
 
         // 4J Stu - Players in the same dimension as an item frame with a map
         // need to be sent this data, so don't remove them
@@ -250,7 +250,7 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                                   //&& !item->isFramed() ))
         {
             AUTO_VAR(it2,
-                     carriedByPlayers.find((shared_ptr<Player>)hp->player));
+                     carriedByPlayers.find((std::shared_ptr<Player>)hp->player));
             if (it2 != carriedByPlayers.end()) {
                 carriedByPlayers.erase(it2);
             }
@@ -268,7 +268,7 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                     MinecraftServer::getInstance()->getPlayerList();
                 for (AUTO_VAR(it3, players->players.begin());
                      it3 != players->players.end(); ++it3) {
-                    shared_ptr<ServerPlayer> serverPlayer = *it3;
+                    std::shared_ptr<ServerPlayer> serverPlayer = *it3;
                     if (serverPlayer->dimension == 1) {
                         atLeastOnePlayerInTheEnd = true;
                         break;
@@ -310,7 +310,7 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
 #endif
                     // decorations.push_back(new MapDecoration(4, x, y, 0));
                     nonPlayerDecorations.insert(
-                        unordered_map<int, MapDecoration*>::value_type(
+                        std::unordered_map<int, MapDecoration*>::value_type(
                             END_PORTAL_DECORATION_KEY,
                             new MapDecoration(
                                 4, x, y, 0, END_PORTAL_DECORATION_KEY, true)));
@@ -353,7 +353,7 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
 #endif
                     // decorations.push_back(new MapDecoration(7, x, y, 0));
                     nonPlayerDecorations.insert(
-                        unordered_map<int, MapDecoration*>::value_type(
+                        std::unordered_map<int, MapDecoration*>::value_type(
                             item->getFrame()->entityId,
                             new MapDecoration(12, x, y, rot,
                                               item->getFrame()->entityId,
@@ -366,7 +366,7 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
 #if 0
 			for(AUTO_VAR(it,playerLevel->entities.begin()); it != playerLevel->entities.end(); ++it)
 			{
-				shared_ptr<Entity> ent = *it;
+				std::shared_ptr<Entity> ent = *it;
 
 				if((ent->GetType() & eTYPE_ENEMY) == 0) continue;
 
@@ -392,7 +392,7 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
 				}
 #endif
 				//decorations.push_back(new MapDecoration(7, x, y, 0));
-				nonPlayerDecorations.insert( unordered_map<int, MapDecoration *>::value_type( ent->entityId, new MapDecoration(4, x, y, rot, ent->entityId, true) ) );
+				nonPlayerDecorations.insert( std::unordered_map<int, MapDecoration *>::value_type( ent->entityId, new MapDecoration(4, x, y, rot, ent->entityId, true) ) );
 			}
 #endif
 
@@ -405,7 +405,7 @@ void MapItemSavedData::tickCarriedBy(std::shared_ptr<Player> player,
                     MinecraftServer::getInstance()->getPlayerList();
                 for (AUTO_VAR(it3, players->players.begin());
                      it3 != players->players.end(); ++it3) {
-                    shared_ptr<ServerPlayer> decorationPlayer = *it3;
+                    std::shared_ptr<ServerPlayer> decorationPlayer = *it3;
                     if (decorationPlayer != NULL &&
                         decorationPlayer->dimension == this->dimension) {
                         float xd =
@@ -503,7 +503,7 @@ charArray MapItemSavedData::getUpdatePacket(
     AUTO_VAR(it, carriedByPlayers.find(player));
     if (it == carriedByPlayers.end()) return charArray();
 
-    shared_ptr<HoldingPlayer> hp = it->second;
+    std::shared_ptr<HoldingPlayer> hp = it->second;
     return hp->nextUpdatePacket(itemInstance);
 }
 
@@ -512,7 +512,7 @@ void MapItemSavedData::setDirty(int x, int y0, int y1) {
 
     AUTO_VAR(itEnd, carriedBy.end());
     for (AUTO_VAR(it, carriedBy.begin()); it != itEnd; it++) {
-        shared_ptr<HoldingPlayer> hp = *it;  // carriedBy.at(i);
+        std::shared_ptr<HoldingPlayer> hp = *it;  // carriedBy.at(i);
         if (hp->rowsDirtyMin[x] < 0 || hp->rowsDirtyMin[x] > y0)
             hp->rowsDirtyMin[x] = y0;
         if (hp->rowsDirtyMax[x] < 0 || hp->rowsDirtyMax[x] < y1)
@@ -563,11 +563,11 @@ void MapItemSavedData::handleComplexItemData(charArray& data) {
 
 std::shared_ptr<MapItemSavedData::HoldingPlayer>
 MapItemSavedData::getHoldingPlayer(std::shared_ptr<Player> player) {
-    shared_ptr<HoldingPlayer> hp = nullptr;
+    std::shared_ptr<HoldingPlayer> hp = nullptr;
     AUTO_VAR(it, carriedByPlayers.find(player));
 
     if (it == carriedByPlayers.end()) {
-        hp = shared_ptr<HoldingPlayer>(new HoldingPlayer(player, this));
+        hp = std::shared_ptr<HoldingPlayer>(new HoldingPlayer(player, this));
         carriedByPlayers[player] = hp;
         carriedBy.push_back(hp);
     } else {

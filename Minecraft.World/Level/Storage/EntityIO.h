@@ -25,17 +25,17 @@ public:
     };
 
 private:
-    static unordered_map<wstring, entityCreateFn>* idCreateMap;
-    static unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash,
+    static std::unordered_map<std::wstring, entityCreateFn>* idCreateMap;
+    static std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash,
                          eINSTANCEOFKeyEq>* classIdMap;
-    static unordered_map<int, entityCreateFn>* numCreateMap;
-    static unordered_map<int, eINSTANCEOF>* numClassMap;
-    static unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
+    static std::unordered_map<int, entityCreateFn>* numCreateMap;
+    static std::unordered_map<int, eINSTANCEOF>* numClassMap;
+    static std::unordered_map<eINSTANCEOF, int, eINSTANCEOFKeyHash,
                          eINSTANCEOFKeyEq>* classNumMap;
-    static unordered_map<wstring, int>* idNumMap;
+    static std::unordered_map<std::wstring, int>* idNumMap;
 
 public:
-    static unordered_map<int, SpawnableMobInfo*> idsSpawnableInCreative;
+    static std::unordered_map<int, SpawnableMobInfo*> idsSpawnableInCreative;
 
 private:
     static void setId(entityCreateFn createFn, eINSTANCEOF clas,
@@ -47,12 +47,12 @@ private:
 
 public:
     static void staticCtor();
-    static shared_ptr<Entity> newEntity(const std::wstring& id, Level* level);
-    static shared_ptr<Entity> loadStatic(CompoundTag* tag, Level* level);
-    static shared_ptr<Entity> newById(int id, Level* level);
-    static shared_ptr<Entity> newByEnumType(eINSTANCEOF eType, Level* level);
-    static int getId(shared_ptr<Entity> entity);
-    static std::wstring getEncodeId(shared_ptr<Entity> entity);
+    static std::shared_ptr<Entity> newEntity(const std::wstring& id, Level* level);
+    static std::shared_ptr<Entity> loadStatic(CompoundTag* tag, Level* level);
+    static std::shared_ptr<Entity> newById(int id, Level* level);
+    static std::shared_ptr<Entity> newByEnumType(eINSTANCEOF eType, Level* level);
+    static int getId(std::shared_ptr<Entity> entity);
+    static std::wstring getEncodeId(std::shared_ptr<Entity> entity);
     static int getId(const std::wstring& encodeId);
     static std::wstring getEncodeId(int entityIoValue);
     static int getNameId(int entityIoValue);

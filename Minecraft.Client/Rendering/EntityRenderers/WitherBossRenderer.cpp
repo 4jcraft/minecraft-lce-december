@@ -19,7 +19,7 @@ WitherBossRenderer::WitherBossRenderer()
 
 void WitherBossRenderer::render(std::shared_ptr<Entity> entity, double x,
                                 double y, double z, float rot, float a) {
-    shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(entity);
+    std::shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(entity);
 
     BossMobGuiInfo::setBossHealth(mob, true);
 
@@ -33,7 +33,7 @@ void WitherBossRenderer::render(std::shared_ptr<Entity> entity, double x,
 
 ResourceLocation* WitherBossRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
-    shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(entity);
+    std::shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(entity);
 
     int invulnerableTicks = mob->getInvulnerableTicks();
     if (invulnerableTicks <= 0 ||
@@ -45,7 +45,7 @@ ResourceLocation* WitherBossRenderer::getTextureLocation(
 }
 
 void WitherBossRenderer::scale(std::shared_ptr<LivingEntity> _mob, float a) {
-    shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(_mob);
+    std::shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(_mob);
     int inTicks = mob->getInvulnerableTicks();
     if (inTicks > 0) {
         float scale = 2.0f - (((float)inTicks - a) /
@@ -59,7 +59,7 @@ void WitherBossRenderer::scale(std::shared_ptr<LivingEntity> _mob, float a) {
 
 int WitherBossRenderer::prepareArmor(std::shared_ptr<LivingEntity> entity,
                                      int layer, float a) {
-    shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(entity);
+    std::shared_ptr<WitherBoss> mob = dynamic_pointer_cast<WitherBoss>(entity);
 
     if (mob->isPowered()) {
         if (mob->isInvisible()) {

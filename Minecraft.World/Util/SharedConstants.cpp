@@ -9,7 +9,7 @@ const bool SharedConstants::TEXTURE_LIGHTING = true;
 std::wstring SharedConstants::readAcceptableChars() {
     // 4J-PB - I've added ã in (for Portuguese in bed string) and added the
     // character at the same place in the default.png font
-    wstring result =
+    std::wstring result =
         L" !\"#$%&'()*+,-./"
         L"0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'"
         L"abcdefghijklmnopqrstuvwxyz{|}~"
@@ -19,8 +19,8 @@ std::wstring SharedConstants::readAcceptableChars() {
        // BufferedReader br = new BufferedReader(new
        // InputStreamReader(SharedConstants.class.getResourceAsStream("/font.txt"),
        // "UTF-8"));
-		BufferedReader *br = new BufferedReader(new InputStreamReader( new FileInputStream( new File( wstring(L"/font.txt") ) ) ) );
-		wstring line;
+		BufferedReader *br = new BufferedReader(new InputStreamReader( new FileInputStream( new File( std::wstring(L"/font.txt") ) ) ) );
+		std::wstring line;
 		while ( !(line = br->readLine()).empty())
 		{
 			if (!( wcscmp( &line[0], L"#") == 0 ) )

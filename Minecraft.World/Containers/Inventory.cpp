@@ -131,7 +131,7 @@ void Inventory::swapPaint(int wheel) {
 int Inventory::clearInventory(int id, int data) {
     int count = 0;
     for (int i = 0; i < items.length; i++) {
-        shared_ptr<ItemInstance> item = items[i];
+        std::shared_ptr<ItemInstance> item = items[i];
         if (item == NULL) continue;
         if (id > -1 && item->id != id) continue;
         if (data > -1 && item->getAuxValue() != data) continue;
@@ -140,7 +140,7 @@ int Inventory::clearInventory(int id, int data) {
         items[i] = nullptr;
     }
     for (int i = 0; i < armor.length; i++) {
-        shared_ptr<ItemInstance> item = armor[i];
+        std::shared_ptr<ItemInstance> item = armor[i];
         if (item == NULL) continue;
         if (id > -1 && item->id != id) continue;
         if (data > -1 && item->getAuxValue() != data) continue;
@@ -172,10 +172,10 @@ void Inventory::replaceSlot(Item* item, int data) {
         if (oldSlot >= 0) {
             int oldSlotCount = items[oldSlot]->count;
             items[oldSlot] = items[selected];
-            items[selected] = shared_ptr<ItemInstance>(
+            items[selected] = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::items[item->id], oldSlotCount, data));
         } else {
-            items[selected] = shared_ptr<ItemInstance>(
+            items[selected] = std::shared_ptr<ItemInstance>(
                 new ItemInstance(Item::items[item->id], 1, data));
         }
     }
@@ -200,7 +200,7 @@ int Inventory::addResource(std::shared_ptr<ItemInstance> itemInstance) {
     if (slot < 0) slot = getFreeSlot();
     if (slot < 0) return count;
     if (items[slot] == NULL) {
-        items[slot] = shared_ptr<ItemInstance>(
+        items[slot] = std::shared_ptr<ItemInstance>(
             new ItemInstance(type, 0, itemInstance->getAuxValue()));
         // 4J Stu - Brought forward from 1.2
         if (itemInstance->hasTag()) {
@@ -290,7 +290,7 @@ bool Inventory::hasResource(int type) {
 }
 
 void Inventory::swapSlots(int from, int to) {
-    shared_ptr<ItemInstance> tmp = items[to];
+    std::shared_ptr<ItemInstance> tmp = items[to];
     items[to] = items[from];
     items[from] = tmp;
 }
@@ -352,11 +352,11 @@ std::shared_ptr<ItemInstance> Inventory::removeItem(unsigned int slot,
 
     if (pile[slot] != NULL) {
         if (pile[slot]->count <= count) {
-            shared_ptr<ItemInstance> item = pile[slot];
+            std::shared_ptr<ItemInstance> item = pile[slot];
             pile[slot] = nullptr;
             return item;
         } else {
-            shared_ptr<ItemInstance> i = pile[slot]->remove(count);
+            std::shared_ptr<ItemInstance> i = pile[slot]->remove(count);
             if (pile[slot]->count == 0) pile[slot] = nullptr;
             return i;
         }
@@ -372,7 +372,7 @@ std::shared_ptr<ItemInstance> Inventory::removeItemNoUpdate(int slot) {
     }
 
     if (pile[slot] != NULL) {
-        shared_ptr<ItemInstance> item = pile[slot];
+        std::shared_ptr<ItemInstance> item = pile[slot];
         pile[slot] = nullptr;
         return item;
     }
@@ -382,7 +382,7 @@ std::shared_ptr<ItemInstance> Inventory::removeItemNoUpdate(int slot) {
 void Inventory::setItem(unsigned int slot, std::shared_ptr<ItemInstance> item) {
 #ifdef _DEBUG
     if (item != NULL) {
-        wstring itemstring = item->toString();
+        std::wstring itemstring = item->toString();
         app.DebugPrintf("Inventory::setItem - slot = %d,\t item = %d ", slot,
                         item->id);
         // OutputDebugStringW(itemstring.c_str());
@@ -455,8 +455,8 @@ void Inventory::load(ListTag<CompoundTag>* inventoryList) {
     for (int i = 0; i < inventoryList->size(); i++) {
         CompoundTag* tag = inventoryList->get(i);
         unsigned int slot = tag->getByte(L"Slot") & 0xff;
-        shared_ptr<ItemInstance> item =
-            shared_ptr<ItemInstance>(ItemInstance::fromTag(tag));
+        std::shared_ptr<ItemInstance> item =
+            std::shared_ptr<ItemInstance>(ItemInstance::fromTag(tag));
         if (item != NULL) {
             if (slot >= 0 && slot < items.length) items[slot] = item;
             if (slot >= 100 && slot < armor.length + 100)
@@ -497,7 +497,7 @@ int Inventory::getMaxStackSize() { return MAX_INVENTORY_STACK_SIZE; }
 bool Inventory::canDestroy(Tile* tile) {
     if (tile->material->isAlwaysDestroyable()) return true;
 
-    shared_ptr<ItemInstance> item = getItem(selected);
+    std::shared_ptr<ItemInstance> item = getItem(selected);
     if (item != NULL) return item->canDestroySpecial(tile);
     return false;
 }
@@ -574,7 +574,7 @@ bool Inventory::isSame(std::shared_ptr<ItemInstance> a,
 }
 
 std::shared_ptr<Inventory> Inventory::copy() {
-    shared_ptr<Inventory> copy = shared_ptr<Inventory>(new Inventory(NULL));
+    std::shared_ptr<Inventory> copy = std::shared_ptr<Inventory>(new Inventory(NULL));
     for (unsigned int i = 0; i < items.length; i++) {
         copy->items[i] = items[i] != NULL ? items[i]->copy() : nullptr;
     }

@@ -226,13 +226,13 @@ void Arrow::tick() {
     if (res != NULL) {
         to = Vec3::newTemp(res->pos->x, res->pos->y, res->pos->z);
     }
-    shared_ptr<Entity> hitEntity = nullptr;
-    vector<shared_ptr<Entity> >* objects = level->getEntities(
+    std::shared_ptr<Entity> hitEntity = nullptr;
+    std::vector<std::shared_ptr<Entity> >* objects = level->getEntities(
         shared_from_this(), this->bb->expand(xd, yd, zd)->grow(1, 1, 1));
     double nearest = 0;
     AUTO_VAR(itEnd, objects->end());
     for (AUTO_VAR(it, objects->begin()); it != itEnd; it++) {
-        shared_ptr<Entity> e = *it;  // objects->at(i);
+        std::shared_ptr<Entity> e = *it;  // objects->at(i);
         if (!e->isPickable() || (e == owner && flightTime < 5)) continue;
 
         float rr = 0.3f;
@@ -255,7 +255,7 @@ void Arrow::tick() {
 
     if ((res != NULL) && (res->entity != NULL) &&
         res->entity->instanceof(eTYPE_PLAYER)) {
-        shared_ptr<Player> player = dynamic_pointer_cast<Player>(res->entity);
+        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(res->entity);
         // 4J: Check for owner being null
         if (player->abilities.invulnerable ||
             ((owner != NULL) &&
@@ -294,7 +294,7 @@ void Arrow::tick() {
                 }
 
                 if (res->entity->instanceof(eTYPE_LIVINGENTITY)) {
-                    shared_ptr<LivingEntity> mob =
+                    std::shared_ptr<LivingEntity> mob =
                         dynamic_pointer_cast<LivingEntity>(res->entity);
 
                     if (!level->isClientSide) {
@@ -318,7 +318,7 @@ void Arrow::tick() {
                         owner->GetType() == eTYPE_SERVERPLAYER) {
                         dynamic_pointer_cast<ServerPlayer>(owner)
                             ->connection->send(
-                                shared_ptr<GameEventPacket>(new GameEventPacket(
+                                std::shared_ptr<GameEventPacket>(new GameEventPacket(
                                     GameEventPacket::SUCCESSFUL_BOW_HIT, 0)));
                     }
                 }
@@ -469,7 +469,7 @@ void Arrow::playerTouch(std::shared_ptr<Player> player) {
 
     if (pickup == PICKUP_ALLOWED) {
         if (!player->inventory->add(
-                shared_ptr<ItemInstance>(new ItemInstance(Item::arrow, 1)))) {
+                std::shared_ptr<ItemInstance>(new ItemInstance(Item::arrow, 1)))) {
             bRemove = false;
         }
     }

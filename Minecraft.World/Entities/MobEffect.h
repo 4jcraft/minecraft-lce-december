@@ -75,7 +75,7 @@ public:
     static void staticCtor();
 
 private:
-    unordered_map<Attribute*, AttributeModifier*> attributeModifiers;
+    std::unordered_map<Attribute*, AttributeModifier*> attributeModifiers;
     int descriptionId;
     int m_postfixDescriptionId;  // 4J added
     EMobEffectIcon icon;         // 4J changed type
@@ -124,7 +124,7 @@ public:
     virtual MobEffect* addAttributeModifier(Attribute* attribute,
                                             eMODIFIER_ID id, double amount,
                                             int operation);
-    virtual unordered_map<Attribute*, AttributeModifier*>*
+    virtual std::unordered_map<Attribute*, AttributeModifier*>*
     getAttributeModifiers();
     virtual void removeAttributeModifiers(std::shared_ptr<LivingEntity> entity,
                                           BaseAttributeMap* attributes,

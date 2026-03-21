@@ -27,7 +27,7 @@ private:
 
     int* offsets;
     int* chunkTimestamps;
-    vector<bool>* sectorFree;
+    std::vector<bool>* sectorFree;
     int sizeDelta;
     __int64 _lastModified;
     bool m_bIsEmpty;  // 4J added

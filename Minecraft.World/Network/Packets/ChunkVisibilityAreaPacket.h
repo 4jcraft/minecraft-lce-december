@@ -9,7 +9,7 @@ class Level;
 // each chunk
 class ChunkVisibilityAreaPacket
     : public Packet,
-      public enable_shared_from_this<ChunkVisibilityAreaPacket> {
+      public std::enable_shared_from_this<ChunkVisibilityAreaPacket> {
 public:
     int m_minX, m_maxX, m_minZ, m_maxZ;
 

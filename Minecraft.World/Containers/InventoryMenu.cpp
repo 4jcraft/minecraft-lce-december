@@ -30,8 +30,8 @@ InventoryMenu::InventoryMenu(std::shared_ptr<Inventory> inventory, bool active,
 
 void InventoryMenu::_init(std::shared_ptr<Inventory> inventory, bool active) {
     craftSlots =
-        shared_ptr<CraftingContainer>(new CraftingContainer(this, 2, 2));
-    resultSlots = shared_ptr<ResultContainer>(new ResultContainer());
+        std::shared_ptr<CraftingContainer>(new CraftingContainer(this, 2, 2));
+    resultSlots = std::shared_ptr<ResultContainer>(new ResultContainer());
 
     this->active = active;
     addSlot(
@@ -78,7 +78,7 @@ void InventoryMenu::slotsChanged()  // 4J used to take a shared_ptr<Container>
 void InventoryMenu::removed(std::shared_ptr<Player> player) {
     AbstractContainerMenu::removed(player);
     for (int i = 0; i < 4; i++) {
-        shared_ptr<ItemInstance> item = craftSlots->removeItemNoUpdate(i);
+        std::shared_ptr<ItemInstance> item = craftSlots->removeItemNoUpdate(i);
         if (item != NULL) {
             player->drop(item);
             craftSlots->setItem(i, nullptr);
@@ -91,7 +91,7 @@ bool InventoryMenu::stillValid(std::shared_ptr<Player> player) { return true; }
 
 std::shared_ptr<ItemInstance> InventoryMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
 
     Slot* HelmetSlot = slots.at(ARMOR_SLOT_START);
@@ -100,7 +100,7 @@ std::shared_ptr<ItemInstance> InventoryMenu::quickMoveStack(
     Slot* BootsSlot = slots.at(ARMOR_SLOT_START + 3);
 
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if (slotIndex == RESULT_SLOT) {
@@ -222,7 +222,7 @@ std::shared_ptr<ItemInstance> InventoryMenu::clicked(
     int slotIndex, int buttonNum, int clickType, std::shared_ptr<Player> player,
     bool looped)  // 4J Added looped param
 {
-    shared_ptr<ItemInstance> out = AbstractContainerMenu::clicked(
+    std::shared_ptr<ItemInstance> out = AbstractContainerMenu::clicked(
         slotIndex, buttonNum, clickType, player, looped);
 
 #ifdef _EXTENDED_ACHIEVEMENTS

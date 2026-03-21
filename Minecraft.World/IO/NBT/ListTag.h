@@ -4,7 +4,7 @@
 template <class T>
 class ListTag : public Tag {
 private:
-    vector<Tag*> list;
+    std::vector<Tag*> list;
     byte type;
 
 public:
@@ -50,13 +50,13 @@ public:
         static wchar_t buf[64];
         swprintf(buf, 64, L"%d entries of type %ls", list.size(),
                  Tag::getTagName(type));
-        return wstring(buf);
+        return std::wstring(buf);
     }
 
     void print(char* prefix, std::ostream out) {
         Tag::print(prefix, out);
 
-        out << prefix << "{" << endl;
+        out << prefix << "{" << std::endl;
 
         char* newPrefix = new char[strlen(prefix) + 4];
         strcpy(newPrefix, prefix);
@@ -65,7 +65,7 @@ public:
         for (AUTO_VAR(it, list.begin()); it != itEnd; it++)
             (*it)->print(newPrefix, out);
         delete[] newPrefix;
-        out << prefix << "}" << endl;
+        out << prefix << "}" << std::endl;
     }
 
     void add(T* tag) {
@@ -105,9 +105,9 @@ public:
         if (Tag::equals(obj)) {
             ListTag* o = (ListTag*)obj;
             if (type == o->type) {
-                bool equal = false;
+                bool std::equal = false;
                 if (list.size() == o->list.size()) {
-                    equal = true;
+                    std::equal = true;
                     AUTO_VAR(itEnd, list.end());
                     // 4J Stu - Pretty inefficient method, but I think we can
                     // live with it give how often it will happen, and the small
@@ -122,14 +122,14 @@ public:
                             }
                         }
                         if (!thisMatches) {
-                            equal = false;
+                            std::equal = false;
                             break;
                         }
                     }
                 }
 
                 // return list->equals(o->list);
-                return equal;
+                return std::equal;
             }
         }
         return false;

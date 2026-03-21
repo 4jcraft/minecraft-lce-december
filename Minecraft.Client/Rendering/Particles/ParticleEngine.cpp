@@ -64,7 +64,7 @@ void ParticleEngine::tick() {
             {
                 for (unsigned int i = 0; i < particles[l][tt][list].size();
                      i++) {
-                    shared_ptr<Particle> p = particles[l][tt][list][i];
+                    std::shared_ptr<Particle> p = particles[l][tt][list][i];
                     p->tick();
                     if (p->removed) {
                         particles[l][tt][list][i] =
@@ -127,7 +127,7 @@ void ParticleEngine::render(std::shared_ptr<Entity> player, float a, int list) {
                     t->end();
                     t->begin();
                 }
-                shared_ptr<Particle> p = particles[l][tt][list][i];
+                std::shared_ptr<Particle> p = particles[l][tt][list][i];
 
                 if (SharedConstants::TEXTURE_LIGHTING)  // 4J - change brought
                                                         // forward from 1.8.2
@@ -170,7 +170,7 @@ void ParticleEngine::renderLit(std::shared_ptr<Entity> player, float a,
     if (!particles[l][tt][list].empty()) {
         Tesselator* t = Tesselator::getInstance();
         for (unsigned int i = 0; i < particles[l][tt][list].size(); i++) {
-            shared_ptr<Particle> p = particles[l][tt][list][i];
+            std::shared_ptr<Particle> p = particles[l][tt][list][i];
 
             if (SharedConstants::TEXTURE_LIGHTING)  // 4J - change brought
                                                     // forward from 1.8.2
@@ -209,7 +209,7 @@ void ParticleEngine::destroy(int x, int y, int z, int tid, int data) {
                 double yp = y + (yy + 0.5) / SD;
                 double zp = z + (zz + 0.5) / SD;
                 int face = random->nextInt(6);
-                add((shared_ptr<TerrainParticle>(new TerrainParticle(
+                add((std::shared_ptr<TerrainParticle>(new TerrainParticle(
                          level, xp, yp, zp, xp - x - 0.5f, yp - y - 0.5f,
                          zp - z - 0.5f, tile, face, data, textures)))
                         ->init(x, y, z, data));
@@ -239,7 +239,7 @@ void ParticleEngine::crack(int x, int y, int z, int face) {
     if (face == 3) zp = z + tile->getShapeZ1() + r;
     if (face == 4) xp = x + tile->getShapeX0() - r;
     if (face == 5) xp = x + tile->getShapeX1() + r;
-    add((shared_ptr<TerrainParticle>(
+    add((std::shared_ptr<TerrainParticle>(
              new TerrainParticle(level, xp, yp, zp, 0, 0, 0, tile, face,
                                  level->getData(x, y, z), textures)))
             ->init(x, y, z, level->getData(x, y, z))
@@ -261,7 +261,7 @@ void ParticleEngine::moveParticleInList(std::shared_ptr<Particle> particle,
                 ? 0
                 : (particle->level->dimension->id == -1 ? 1 : 2);
     for (int tt = 0; tt < TEXTURE_COUNT; tt++) {
-        AUTO_VAR(it, find(particles[l][tt][source].begin(),
+        AUTO_VAR(it, std::find(particles[l][tt][source].begin(),
                           particles[l][tt][source].end(), particle));
         if (it != particles[l][tt][source].end()) {
             (*it) = particles[l][tt][source].back();

@@ -2,7 +2,7 @@
 
 #include "Packet.h"
 
-class ChatPacket : public Packet, public enable_shared_from_this<ChatPacket> {
+class ChatPacket : public Packet, public std::enable_shared_from_this<ChatPacket> {
     // longest allowed std::string is "<" + name + "> " + message
 private:
     static const unsigned int MAX_LENGTH;
@@ -118,8 +118,8 @@ public:
     };
 
 public:
-    vector<std::wstring> m_stringArgs;
-    vector<int> m_intArgs;
+    std::vector<std::wstring> m_stringArgs;
+    std::vector<int> m_intArgs;
     EChatPacketMessage m_messageType;
 
     ChatPacket();

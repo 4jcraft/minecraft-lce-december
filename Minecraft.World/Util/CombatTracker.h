@@ -24,7 +24,7 @@ public:
     };
 
 private:
-    vector<CombatEntry*> entries;
+    std::vector<CombatEntry*> entries;
     LivingEntity* mob;  // Owner
     int lastDamageTime;
     bool inCombat;

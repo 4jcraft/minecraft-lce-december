@@ -364,12 +364,12 @@ public:
     bool m_isTerminal;
     const std::string m_name;
     const eINSTANCEOF m_id;
-    vector<eINSTANCEOF> m_parents;
+    std::vector<eINSTANCEOF> m_parents;
 
-    static unordered_map<eINSTANCEOF, SubClass*> s_ids;
+    static std::unordered_map<eINSTANCEOF, SubClass*> s_ids;
 
     SubClass(const std::string& name, eINSTANCEOF id) : m_name(name), m_id(id) {
-        s_ids.insert(pair<eINSTANCEOF, SubClass*>(id, this));
+        s_ids.insert(std::pair<eINSTANCEOF, SubClass*>(id, this));
         m_isTerminal = true;
     }
 
@@ -392,7 +392,7 @@ public:
 #define SUBCLASS(x) (new SubClass(#x, x))
 
     static void checkDerivations() {
-        vector<SubClass*>* classes = new vector<SubClass*>();
+        std::vector<SubClass*>* classes = new std::vector<SubClass*>();
 
         classes->push_back(SUBCLASS(eTYPE_VALID_IN_SPAWNER_FLAG));
         classes->push_back(SUBCLASS(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK));
@@ -691,15 +691,15 @@ public:
         classes->push_back(SUBCLASS(eType_TILE));
         classes->push_back(SUBCLASS(eType_FIRETILE));
 
-        vector<pair<SubClass*, SubClass*> > m_falsePositives;
-        vector<pair<SubClass*, SubClass*> > m_falseNegatives;
+        std::vector<std::pair<SubClass*, SubClass*> > m_falsePositives;
+        std::vector<std::pair<SubClass*, SubClass*> > m_falseNegatives;
 
-        vector<SubClass*>::iterator it1;
+        std::vector<SubClass*>::iterator it1;
         for (it1 = classes->begin(); it1 != classes->end(); it1++) {
             SubClass* current = *it1;
             // if ( current->justFlag() ) continue;
 
-            vector<SubClass*>::iterator it2;
+            std::vector<SubClass*>::iterator it2;
             for (it2 = classes->begin(); it2 != classes->end(); it2++) {
                 SubClass* comparing = *it2;
                 // if ( comparing->justFlag() ) continue;
@@ -714,8 +714,8 @@ public:
                 bool shouldDerive, doesDerive;
 
                 {
-                    vector<eINSTANCEOF>::iterator it3;
-                    it3 = find(current->m_parents.begin(),
+                    std::vector<eINSTANCEOF>::iterator it3;
+                    it3 = std::find(current->m_parents.begin(),
                                current->m_parents.end(), typeComp);
                     shouldDerive = (typeComp == typeCurr) ||
                                    (it3 != current->m_parents.end());
@@ -724,19 +724,19 @@ public:
                 doesDerive = eTYPE_DERIVED_FROM(typeComp, typeCurr);
 
                 if (shouldDerive != doesDerive) {
-                    vector<pair<SubClass*, SubClass*> >* errorArray;
+                    std::vector<std::pair<SubClass*, SubClass*> >* errorArray;
                     if (shouldDerive)
                         errorArray = &m_falseNegatives;
                     else
                         errorArray = &m_falsePositives;
 
                     errorArray->push_back(
-                        pair<SubClass*, SubClass*>(comparing, current));
+                        std::pair<SubClass*, SubClass*>(comparing, current));
                 }
             }
         }
 
-        vector<pair<SubClass*, SubClass*> >::iterator itrErr;
+        std::vector<std::pair<SubClass*, SubClass*> >::iterator itrErr;
         for (itrErr = m_falsePositives.begin();
              itrErr != m_falsePositives.end(); itrErr++) {
             SubClass *sub = itrErr->first, *super = itrErr->second;

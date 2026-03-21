@@ -421,7 +421,7 @@ int Biome::getSkyColor(float temp) {
     return Minecraft::GetInstance()->getColourTable()->getColor(m_skyColor);
 }
 
-vector<Biome::MobSpawnerData*>* Biome::getMobs(MobCategory* category) {
+std::vector<Biome::MobSpawnerData*>* Biome::getMobs(MobCategory* category) {
     if (category == MobCategory::monster) return &enemies;
     if (category == MobCategory::creature) return &friendlies;
     if (category == MobCategory::waterCreature) return &waterFriendlies;

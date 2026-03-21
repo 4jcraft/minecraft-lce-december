@@ -52,7 +52,7 @@ Texture* Stitcher::constructTexture(bool mipmap) {
         mipmap);
     stitchedTexture->fill(stitchedTexture->getRect(), 0xffff0000);
 
-    vector<StitchSlot*>* slots = gatherAreas();
+    std::vector<StitchSlot*>* slots = gatherAreas();
     for (int index = 0; index < slots->size(); index++) {
         StitchSlot* slot = slots->at(index);
         TextureHolder* textureHolder = slot->getHolder();
@@ -87,8 +87,8 @@ void Stitcher::stitch() {
     }
 }
 
-vector<StitchSlot*>* Stitcher::gatherAreas() {
-    vector<StitchSlot*>* result = new vector<StitchSlot*>();
+std::vector<StitchSlot*>* Stitcher::gatherAreas() {
+    std::vector<StitchSlot*>* result = new std::vector<StitchSlot*>();
 
     // for (StitchSlot slot : storage)
     for (AUTO_VAR(it, storage.begin()); it != storage.end(); ++it) {

@@ -4,7 +4,7 @@
 
 class SetEntityMotionPacket
     : public Packet,
-      public enable_shared_from_this<SetEntityMotionPacket> {
+      public std::enable_shared_from_this<SetEntityMotionPacket> {
 public:
     int id;
     int xa, ya, za;

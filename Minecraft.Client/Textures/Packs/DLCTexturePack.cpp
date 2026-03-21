@@ -129,9 +129,9 @@ std::wstring DLCTexturePack::getPath(bool bTitleUpdateTexture /*= false*/,
 
 std::wstring DLCTexturePack::getAnimationString(const std::wstring& textureName,
                                                 const std::wstring& path) {
-    wstring result = L"";
+    std::wstring result = L"";
 
-    wstring fullpath = L"res/" + path + textureName + L".png";
+    std::wstring fullpath = L"res/" + path + textureName + L".png";
     if (hasFile(fullpath)) {
         result = m_dlcDataPack->getFile(DLCManager::e_DLCType_Texture, fullpath)
                      ->getParameterAsString(DLCManager::e_DLCParamType_Anim);
@@ -280,7 +280,7 @@ int DLCTexturePack::packMounted(LPVOID pParam, int iPad, DWORD dwErr,
         texturePack->setHasAudio(false);
         DWORD dwFilesProcessed = 0;
         // Load the DLC textures
-        wstring dataFilePath = texturePack->m_dlcInfoPack->getFullDataPath();
+        std::wstring dataFilePath = texturePack->m_dlcInfoPack->getFullDataPath();
         if (!dataFilePath.empty()) {
             if (!app.m_dlcManager.readDLCDataFile(
                     dwFilesProcessed,
@@ -296,7 +296,7 @@ int DLCTexturePack::packMounted(LPVOID pParam, int iPad, DWORD dwErr,
 #ifdef _XBOX
                 File xzpPath(
                     getFilePath(texturePack->m_dlcInfoPack->GetPackID(),
-                                wstring(L"TexturePack.xzp")));
+                                std::wstring(L"TexturePack.xzp")));
 
                 if (xzpPath.exists()) {
                     const char* pchFilename =
@@ -333,7 +333,7 @@ int DLCTexturePack::packMounted(LPVOID pParam, int iPad, DWORD dwErr,
 #else
                 File archivePath(
                     getFilePath(texturePack->m_dlcInfoPack->GetPackID(),
-                                wstring(L"media.arc")));
+                                std::wstring(L"media.arc")));
                 if (archivePath.exists())
                     texturePack->m_archiveFile = new ArchiveFile(archivePath);
 #endif
@@ -359,7 +359,7 @@ int DLCTexturePack::packMounted(LPVOID pParam, int iPad, DWORD dwErr,
                                 dlcFile->getGrfPath()));
                             if (grf.exists()) {
 #ifdef _UNICODE
-                                wstring path = grf.getPath();
+                                std::wstring path = grf.getPath();
                                 const WCHAR* pchFilename = path.c_str();
                                 HANDLE fileHandle = CreateFile(
                                     pchFilename,   // file name
@@ -432,7 +432,7 @@ int DLCTexturePack::packMounted(LPVOID pParam, int iPad, DWORD dwErr,
                                         levelGen->getBaseSavePath()));
                         if (grf.exists()) {
 #ifdef _UNICODE
-                            wstring path = grf.getPath();
+                            std::wstring path = grf.getPath();
                             const WCHAR* pchFilename = path.c_str();
                             HANDLE fileHandle = CreateFile(
                                 pchFilename,   // file name
@@ -489,10 +489,10 @@ int DLCTexturePack::packMounted(LPVOID pParam, int iPad, DWORD dwErr,
 #ifdef _XBOX
                 File audioXSBPath(
                     getFilePath(texturePack->m_dlcInfoPack->GetPackID(),
-                                wstring(L"MashUp.xsb")));
+                                std::wstring(L"MashUp.xsb")));
                 File audioXWBPath(
                     getFilePath(texturePack->m_dlcInfoPack->GetPackID(),
-                                wstring(L"MashUp.xwb")));
+                                std::wstring(L"MashUp.xwb")));
 
                 if (audioXSBPath.exists() && audioXWBPath.exists()) {
                     texturePack->setHasAudio(true);
@@ -630,7 +630,7 @@ void DLCTexturePack::unloadUI() {
 }
 
 std::wstring DLCTexturePack::getXuiRootPath() {
-    wstring path = L"";
+    std::wstring path = L"";
     if (m_dlcDataPack != NULL &&
         m_dlcDataPack->doesPackContainFile(DLCManager::e_DLCType_UIData,
                                            L"TexturePack.xzp")) {

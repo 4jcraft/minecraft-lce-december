@@ -29,18 +29,18 @@ bool LeashItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
 bool LeashItem::bindPlayerMobs(std::shared_ptr<Player> player, Level* level,
                                int x, int y, int z) {
     // check if there is a knot at the given coordinate
-    shared_ptr<LeashFenceKnotEntity> activeKnot =
+    std::shared_ptr<LeashFenceKnotEntity> activeKnot =
         LeashFenceKnotEntity::findKnotAt(level, x, y, z);
 
     // look for entities that can be attached to the fence
     bool foundMobs = false;
     double range = 7;
-    vector<shared_ptr<Entity> >* mobs = level->getEntitiesOfClass(
+    std::vector<std::shared_ptr<Entity> >* mobs = level->getEntitiesOfClass(
         typeid(Mob), AABB::newTemp(x - range, y - range, z - range, x + range,
                                    y + range, z + range));
     if (mobs != NULL) {
         for (AUTO_VAR(it, mobs->begin()); it != mobs->end(); ++it) {
-            shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
+            std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
             if (mob->isLeashed() && mob->getLeashHolder() == player) {
                 if (activeKnot == NULL) {
                     activeKnot =
@@ -59,13 +59,13 @@ bool LeashItem::bindPlayerMobsTest(std::shared_ptr<Player> player, Level* level,
                                    int x, int y, int z) {
     // look for entities that can be attached to the fence
     double range = 7;
-    vector<shared_ptr<Entity> >* mobs = level->getEntitiesOfClass(
+    std::vector<std::shared_ptr<Entity> >* mobs = level->getEntitiesOfClass(
         typeid(Mob), AABB::newTemp(x - range, y - range, z - range, x + range,
                                    y + range, z + range));
 
     if (mobs != NULL) {
         for (AUTO_VAR(it, mobs->begin()); it != mobs->end(); ++it) {
-            shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
+            std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
             if (mob->isLeashed() && mob->getLeashHolder() == player)
                 return true;
         }

@@ -77,7 +77,7 @@ RegionFile::RegionFile(ConsoleSaveFile* saveFile, File* path) {
     } else {
         nSectors = (int)fileEntry->getFileSize() / SECTOR_BYTES;
     }
-    sectorFree = new vector<bool>;
+    sectorFree = new std::vector<bool>;
     sectorFree->reserve(nSectors);
 
     for (int i = 0; i < nSectors; ++i) {
@@ -334,7 +334,7 @@ void RegionFile::write(int x, int z, byte* data,
             PIXBeginNamedEvent(0, "Scanning for free space\n");
             /* scan for a free space large enough to store this chunk */
             int runStart =
-                (int)(find(sectorFree->begin(), sectorFree->end(), true) -
+                (int)(std::find(sectorFree->begin(), sectorFree->end(), true) -
                       sectorFree
                           ->begin());  // 4J - was sectorFree.indexOf(true)
             int runLength = 0;

@@ -10,7 +10,7 @@ bool SaddleItem::interactEnemy(std::shared_ptr<ItemInstance> itemInstance,
                                std::shared_ptr<Player> player,
                                std::shared_ptr<LivingEntity> mob) {
     if ((mob != NULL) && mob->instanceof(eTYPE_PIG)) {
-        shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(mob);
+        std::shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(mob);
         if (!pig->hasSaddle() && !pig->isBaby()) {
             pig->setSaddle(true);
             itemInstance->count--;

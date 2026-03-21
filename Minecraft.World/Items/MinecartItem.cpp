@@ -43,7 +43,7 @@ std::shared_ptr<ItemInstance> MinecartItem::MinecartDispenseBehavior::execute(
 
     outcome = ACTIVATED_ITEM;
 
-    shared_ptr<Minecart> minecart =
+    std::shared_ptr<Minecart> minecart =
         Minecart::createMinecart(world, spawnX, spawnY + yOffset, spawnZ,
                                  ((MinecartItem*)dispensed->getItem())->type);
     if (dispensed->hasCustomHoverName()) {
@@ -76,7 +76,7 @@ bool MinecartItem::useOn(std::shared_ptr<ItemInstance> instance,
     if (BaseRailTile::isRail(targetType)) {
         if (!bTestUseOnOnly) {
             if (!level->isClientSide) {
-                shared_ptr<Minecart> cart = Minecart::createMinecart(
+                std::shared_ptr<Minecart> cart = Minecart::createMinecart(
                     level, x + 0.5f, y + 0.5f, z + 0.5f, type);
                 if (instance->hasCustomHoverName()) {
                     cart->setCustomName(instance->getHoverName());

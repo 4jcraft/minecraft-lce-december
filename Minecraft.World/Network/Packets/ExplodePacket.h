@@ -4,11 +4,11 @@
 #include "Packet.h"
 
 class ExplodePacket : public Packet,
-                      public enable_shared_from_this<ExplodePacket> {
+                      public std::enable_shared_from_this<ExplodePacket> {
 public:
     double x, y, z;
     float r;
-    vector<TilePos>
+    std::vector<TilePos>
         toBlow;  // 4J - was an unorderedset but doesn't require any features of
                  // that apart from making it match the ctor toBlow type
     bool m_bKnockbackOnly;
@@ -21,7 +21,7 @@ private:
 public:
     ExplodePacket();
     ExplodePacket(double x, double y, double z, float r,
-                  unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq>* toBlow,
+                  std::unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq>* toBlow,
                   Vec3* knockback, bool knockBackOnly);
 
     virtual void read(DataInputStream* dis);

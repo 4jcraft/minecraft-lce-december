@@ -9,10 +9,10 @@ public:
     eINSTANCEOF GetType() { return eTYPE_MULTIENTITY_MOB_PART; };
 
 public:
-    weak_ptr<MultiEntityMob> parentMob;
+    std::weak_ptr<MultiEntityMob> parentMob;
     const std::wstring id;
 
-    MultiEntityMobPart(shared_ptr<MultiEntityMob> parentMob, const wstring& id,
+    MultiEntityMobPart(std::shared_ptr<MultiEntityMob> parentMob, const std::wstring& id,
                        float w, float h);
 
 protected:
@@ -23,5 +23,5 @@ protected:
 public:
     virtual bool isPickable();
     virtual bool hurt(DamageSource* source, float damage);
-    virtual bool is(shared_ptr<Entity> other);
+    virtual bool is(std::shared_ptr<Entity> other);
 };

@@ -4,7 +4,7 @@
 
 class TextureChangePacket
     : public Packet,
-      public enable_shared_from_this<TextureChangePacket> {
+      public std::enable_shared_from_this<TextureChangePacket> {
 public:
     enum ETextureChangeType {
         e_TextureChange_Skin = 0,

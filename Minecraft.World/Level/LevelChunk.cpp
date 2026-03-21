@@ -58,7 +58,7 @@ void LevelChunk::init(Level* level, int x, int z) {
 #else
     EnterCriticalSection(&m_csEntities);
 #endif
-    entityBlocks = new vector<shared_ptr<Entity> >*[ENTITY_BLOCKS_LENGTH];
+    entityBlocks = new std::vector<std::shared_ptr<Entity> >*[ENTITY_BLOCKS_LENGTH];
 #ifdef _ENTITIES_RW_SECTION
     LeaveCriticalRWSection(&m_csEntities, true);
 #else
@@ -89,7 +89,7 @@ void LevelChunk::init(Level* level, int x, int z) {
     EnterCriticalSection(&m_csEntities);
 #endif
     for (int i = 0; i < ENTITY_BLOCKS_LENGTH; i++) {
-        entityBlocks[i] = new vector<shared_ptr<Entity> >();
+        entityBlocks[i] = new std::vector<std::shared_ptr<Entity> >();
     }
 #ifdef _ENTITIES_RW_SECTION
     LeaveCriticalRWSection(&m_csEntities, true);
@@ -996,7 +996,7 @@ bool LevelChunk::setTileAndData(int x, int y, int z, int _tile, int _data) {
     if (old == _tile && oldData == _data) {
         // 4J Stu - Need to do this here otherwise double chests don't always
         // work correctly
-        shared_ptr<TileEntity> te = getTileEntity(x, y, z);
+        std::shared_ptr<TileEntity> te = getTileEntity(x, y, z);
         if (te != NULL) {
             te->clearCache();
         }
@@ -1084,7 +1084,7 @@ bool LevelChunk::setTileAndData(int x, int y, int z, int _tile, int _data) {
         //*>(Tile::tiles[_tile]) != NULL)
         if (_tile > 0 && Tile::tiles[_tile] != NULL &&
             Tile::tiles[_tile]->isEntityTile()) {
-            shared_ptr<TileEntity> te = getTileEntity(x, y, z);
+            std::shared_ptr<TileEntity> te = getTileEntity(x, y, z);
             if (te == NULL) {
                 te = dynamic_cast<EntityTile*>(Tile::tiles[_tile])
                          ->newTileEntity(level);
@@ -1107,7 +1107,7 @@ bool LevelChunk::setTileAndData(int x, int y, int z, int _tile, int _data) {
     // NULL)
     else if (old > 0 && Tile::tiles[_tile] != NULL &&
              Tile::tiles[_tile]->isEntityTile()) {
-        shared_ptr<TileEntity> te = getTileEntity(x, y, z);
+        std::shared_ptr<TileEntity> te = getTileEntity(x, y, z);
         if (te != NULL) {
             te->clearCache();
         }
@@ -1145,7 +1145,7 @@ bool LevelChunk::setData(int x, int y, int z, int val, int mask,
     data->set(x, y % Level::COMPRESSED_CHUNK_SECTION_HEIGHT, z, val);
     int _tile = getTile(x, y, z);
     if (_tile > 0 && dynamic_cast<EntityTile*>(Tile::tiles[_tile]) != NULL) {
-        shared_ptr<TileEntity> te = getTileEntity(x, y, z);
+        std::shared_ptr<TileEntity> te = getTileEntity(x, y, z);
         if (te != NULL) {
             te->clearCache();
             te->data = val;
@@ -1317,7 +1317,7 @@ void LevelChunk::removeEntity(std::shared_ptr<Entity> e, int yc) {
 #endif
 
     // 4J - was entityBlocks[yc]->remove(e);
-    AUTO_VAR(it, find(entityBlocks[yc]->begin(), entityBlocks[yc]->end(), e));
+    AUTO_VAR(it, std::find(entityBlocks[yc]->begin(), entityBlocks[yc]->end(), e));
     if (it != entityBlocks[yc]->end()) {
         entityBlocks[yc]->erase(it);
         // 4J - we don't want storage creeping up here as thinkgs move round the
@@ -1365,7 +1365,7 @@ std::shared_ptr<TileEntity> LevelChunk::getTileEntity(int x, int y, int z) {
     // insert when we don't want one)
     // shared_ptr<TileEntity> tileEntity = tileEntities[pos];
     EnterCriticalSection(&m_csTileEntities);
-    shared_ptr<TileEntity> tileEntity = nullptr;
+    std::shared_ptr<TileEntity> tileEntity = nullptr;
     AUTO_VAR(it, tileEntities.find(pos));
 
     if (it == tileEntities.end()) {
@@ -1470,7 +1470,7 @@ void LevelChunk::removeTileEntity(int x, int y, int z) {
         EnterCriticalSection(&m_csTileEntities);
         AUTO_VAR(it, tileEntities.find(pos));
         if (it != tileEntities.end()) {
-            shared_ptr<TileEntity> te = tileEntities[pos];
+            std::shared_ptr<TileEntity> te = tileEntities[pos];
             tileEntities.erase(pos);
             if (te != NULL) {
                 if (level->isClientSide) {
@@ -1496,7 +1496,7 @@ void LevelChunk::load() {
             if (entityTags != NULL) {
                 for (int i = 0; i < entityTags->size(); i++) {
                     CompoundTag* teTag = entityTags->get(i);
-                    shared_ptr<Entity> ent = EntityIO::loadStatic(teTag, level);
+                    std::shared_ptr<Entity> ent = EntityIO::loadStatic(teTag, level);
                     if (ent != NULL) {
                         ent->onLoadedFromSave();
                         addEntity(ent);
@@ -1510,7 +1510,7 @@ void LevelChunk::load() {
             if (tileEntityTags != NULL) {
                 for (int i = 0; i < tileEntityTags->size(); i++) {
                     CompoundTag* teTag = tileEntityTags->get(i);
-                    shared_ptr<TileEntity> te = TileEntity::loadStatic(teTag);
+                    std::shared_ptr<TileEntity> te = TileEntity::loadStatic(teTag);
                     if (te != NULL) {
                         addTileEntity(te);
                     }
@@ -1522,7 +1522,7 @@ void LevelChunk::load() {
         }
 #endif
 
-        vector<shared_ptr<TileEntity> > values;
+        std::vector<std::shared_ptr<TileEntity> > values;
         EnterCriticalSection(&m_csTileEntities);
         for (AUTO_VAR(it, tileEntities.begin()); it != tileEntities.end();
              it++) {
@@ -1595,10 +1595,10 @@ void LevelChunk::unload(bool unloadTileEntities)  // 4J - added parameter
             EnterCriticalSection(&m_csEntities);
             for (int i = 0; i < ENTITY_BLOCKS_LENGTH; i++) {
                 AUTO_VAR(itEnd, entityBlocks[i]->end());
-                for (vector<shared_ptr<Entity> >::iterator it =
+                for (std::vector<std::shared_ptr<Entity> >::iterator it =
                          entityBlocks[i]->begin();
                      it != itEnd; it++) {
-                    shared_ptr<Entity> e = *it;
+                    std::shared_ptr<Entity> e = *it;
                     CompoundTag* teTag = new CompoundTag();
                     if (e->save(teTag)) {
                         entityTags->add(teTag);
@@ -1617,11 +1617,11 @@ void LevelChunk::unload(bool unloadTileEntities)  // 4J - added parameter
             ListTag<CompoundTag>* tileEntityTags = new ListTag<CompoundTag>();
 
             AUTO_VAR(itEnd, tileEntities.end());
-            for (unordered_map<TilePos, shared_ptr<TileEntity>, TilePosKeyHash,
+            for (std::unordered_map<TilePos, std::shared_ptr<TileEntity>, TilePosKeyHash,
                                TilePosKeyEq>::iterator it =
                      tileEntities.begin();
                  it != itEnd; it++) {
-                shared_ptr<TileEntity> te = it->second;
+                std::shared_ptr<TileEntity> te = it->second;
                 CompoundTag* teTag = new CompoundTag();
                 te->save(teTag);
                 tileEntityTags->add(teTag);
@@ -1643,7 +1643,7 @@ bool LevelChunk::containsPlayer() {
     EnterCriticalSection(&m_csEntities);
 #endif
     for (int i = 0; i < ENTITY_BLOCKS_LENGTH; i++) {
-        vector<shared_ptr<Entity> >* vecEntity = entityBlocks[i];
+        std::vector<std::shared_ptr<Entity> >* vecEntity = entityBlocks[i];
         for (int j = 0; j < vecEntity->size(); j++) {
             if (vecEntity->at(j)->GetType() == eTYPE_SERVERPLAYER) {
 #ifdef _ENTITIES_RW_SECTION
@@ -1670,7 +1670,7 @@ bool LevelChunk::isUnloaded() { return m_bUnloaded; }
 void LevelChunk::markUnsaved() { this->setUnsaved(true); }
 
 void LevelChunk::getEntities(std::shared_ptr<Entity> except, AABB* bb,
-                             vector<shared_ptr<Entity> >& es,
+                             std::vector<std::shared_ptr<Entity> >& es,
                              const EntitySelector* selector) {
     int yc0 = Mth::floor((bb->y0 - 2) / 16);
     int yc1 = Mth::floor((bb->y1 + 2) / 16);
@@ -1683,15 +1683,15 @@ void LevelChunk::getEntities(std::shared_ptr<Entity> except, AABB* bb,
     EnterCriticalSection(&m_csEntities);
 #endif
     for (int yc = yc0; yc <= yc1; yc++) {
-        vector<shared_ptr<Entity> >* entities = entityBlocks[yc];
+        std::vector<std::shared_ptr<Entity> >* entities = entityBlocks[yc];
 
         AUTO_VAR(itEnd, entities->end());
         for (AUTO_VAR(it, entities->begin()); it != itEnd; it++) {
-            shared_ptr<Entity> e = *it;  // entities->at(i);
+            std::shared_ptr<Entity> e = *it;  // entities->at(i);
             if (e != except && e->bb->intersects(bb) &&
                 (selector == NULL || selector->matches(e))) {
                 es.push_back(e);
-                vector<shared_ptr<Entity> >* subs = e->getSubEntities();
+                std::vector<std::shared_ptr<Entity> >* subs = e->getSubEntities();
                 if (subs != NULL) {
                     for (int j = 0; j < subs->size(); j++) {
                         e = subs->at(j);
@@ -1710,7 +1710,7 @@ void LevelChunk::getEntities(std::shared_ptr<Entity> except, AABB* bb,
 }
 
 void LevelChunk::getEntitiesOfClass(const std::type_info& ec, AABB* bb,
-                                    vector<shared_ptr<Entity> >& es,
+                                    std::vector<std::shared_ptr<Entity> >& es,
                                     const EntitySelector* selector) {
     int yc0 = Mth::floor((bb->y0 - 2) / 16);
     int yc1 = Mth::floor((bb->y1 + 2) / 16);
@@ -1732,11 +1732,11 @@ void LevelChunk::getEntitiesOfClass(const std::type_info& ec, AABB* bb,
     EnterCriticalSection(&m_csEntities);
 #endif
     for (int yc = yc0; yc <= yc1; yc++) {
-        vector<shared_ptr<Entity> >* entities = entityBlocks[yc];
+        std::vector<std::shared_ptr<Entity> >* entities = entityBlocks[yc];
 
         AUTO_VAR(itEnd, entities->end());
         for (AUTO_VAR(it, entities->begin()); it != itEnd; it++) {
-            shared_ptr<Entity> e = *it;  // entities->at(i);
+            std::shared_ptr<Entity> e = *it;  // entities->at(i);
 
             bool isAssignableFrom = false;
             // Some special cases where the base class is a general type that

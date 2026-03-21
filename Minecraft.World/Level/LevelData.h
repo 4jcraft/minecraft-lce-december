@@ -70,7 +70,7 @@ public:
     LevelData(LevelSettings* levelSettings, const std::wstring& levelName);
     LevelData(LevelData* copy);
     CompoundTag* createTag();
-    CompoundTag* createTag(vector<std::shared_ptr<Player> >* players);
+    CompoundTag* createTag(std::vector<std::shared_ptr<Player> >* players);
 
     enum { DIMENSION_NETHER = -1, DIMENSION_OVERWORLD = 0, DIMENSION_END = 1 };
 

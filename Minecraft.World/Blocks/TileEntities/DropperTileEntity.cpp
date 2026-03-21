@@ -8,8 +8,8 @@ std::wstring DropperTileEntity::getName() {
 
 // 4J Added
 std::shared_ptr<TileEntity> DropperTileEntity::clone() {
-    shared_ptr<DropperTileEntity> result =
-        shared_ptr<DropperTileEntity>(new DropperTileEntity());
+    std::shared_ptr<DropperTileEntity> result =
+        std::shared_ptr<DropperTileEntity>(new DropperTileEntity());
     TileEntity::clone(result);
 
     result->name = name;

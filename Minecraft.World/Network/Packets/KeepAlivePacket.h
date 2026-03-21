@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class KeepAlivePacket : public Packet,
-                        public enable_shared_from_this<KeepAlivePacket> {
+                        public std::enable_shared_from_this<KeepAlivePacket> {
 public:
     int id;
 

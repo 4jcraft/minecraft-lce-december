@@ -7,9 +7,9 @@
 #include "PistonPieceTileEntity.h"
 
 TileEntity::idToCreateMapType TileEntity::idCreateMap =
-    unordered_map<wstring, tileEntityCreateFn>();
+    std::unordered_map<std::wstring, tileEntityCreateFn>();
 TileEntity::classToIdMapType TileEntity::classIdMap =
-    unordered_map<eINSTANCEOF, wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>();
+    std::unordered_map<eINSTANCEOF, std::wstring, eINSTANCEOFKeyHash, eINSTANCEOFKeyEq>();
 
 void TileEntity::staticCtor() {
     TileEntity::setId(FurnaceTileEntity::create, eTYPE_FURNACETILEENTITY,
@@ -98,12 +98,12 @@ void TileEntity::save(CompoundTag* tag) {
 void TileEntity::tick() {}
 
 std::shared_ptr<TileEntity> TileEntity::loadStatic(CompoundTag* tag) {
-    shared_ptr<TileEntity> entity = nullptr;
+    std::shared_ptr<TileEntity> entity = nullptr;
 
     // try
     //{
     AUTO_VAR(it, idCreateMap.find(tag->getString(L"id")));
-    if (it != idCreateMap.end()) entity = shared_ptr<TileEntity>(it->second());
+    if (it != idCreateMap.end()) entity = std::shared_ptr<TileEntity>(it->second());
     //}
     // catch (Exception e)
     //{

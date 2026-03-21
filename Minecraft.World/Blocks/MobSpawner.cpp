@@ -36,7 +36,7 @@ TilePos MobSpawner::getRandomPosWithin(Level* level, int cx, int cz) {
 // AP - See CustomMap.h for an explanation of this
 CustomMap MobSpawner::chunksToPoll;
 #else
-unordered_map<ChunkPos, bool, ChunkPosKeyHash, ChunkPosKeyEq>
+std::unordered_map<ChunkPos, bool, ChunkPosKeyHash, ChunkPosKeyEq>
     MobSpawner::chunksToPoll;
 #endif
 
@@ -482,7 +482,7 @@ void MobSpawner::postProcessSpawnMobs(Level* level, Biome* biome, int xo,
                                       Random* random) {
     // 4J - not for our version. Creates a few too many mobs.
 #if 0
-	vector<Biome::MobSpawnerData *> *mobs = biome->getMobs(MobCategory::creature);
+	std::vector<Biome::MobSpawnerData *> *mobs = biome->getMobs(MobCategory::creature);
 	if (mobs->empty())
 	{
 		return;
@@ -490,7 +490,7 @@ void MobSpawner::postProcessSpawnMobs(Level* level, Biome* biome, int xo,
 
 	while (random->nextFloat() < biome->getCreatureProbability())
 	{
-		Biome::MobSpawnerData *type = (Biome::MobSpawnerData *) WeighedRandom::getRandomItem(level->random, ((vector<WeighedRandomItem *> *)mobs));
+		Biome::MobSpawnerData *type = (Biome::MobSpawnerData *) WeighedRandom::getRandomItem(level->random, ((std::vector<WeighedRandomItem *> *)mobs));
 		MobGroupData *groupData = NULL;
 		int count = type->minCount + random->nextInt(1 + type->maxCount - type->minCount);
 

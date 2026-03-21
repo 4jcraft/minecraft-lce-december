@@ -9,7 +9,7 @@
 std::shared_ptr<ItemInstance> DefaultDispenseItemBehavior::dispense(
     BlockSource* source, std::shared_ptr<ItemInstance> dispensed) {
     eOUTCOME outcome = DISPENCED_ITEM;
-    shared_ptr<ItemInstance> result = execute(source, dispensed, outcome);
+    std::shared_ptr<ItemInstance> result = execute(source, dispensed, outcome);
 
     playSound(source, outcome);
     playAnimation(source, DispenserTile::getFacing(source->getData()), outcome);
@@ -23,7 +23,7 @@ std::shared_ptr<ItemInstance> DefaultDispenseItemBehavior::execute(
     FacingEnum* facing = DispenserTile::getFacing(source->getData());
     Position* position = DispenserTile::getDispensePosition(source);
 
-    shared_ptr<ItemInstance> itemInstance = dispensed->remove(1);
+    std::shared_ptr<ItemInstance> itemInstance = dispensed->remove(1);
 
     spawnItem(source->getWorld(), itemInstance, 6, facing, position);
 
@@ -41,7 +41,7 @@ void DefaultDispenseItemBehavior::spawnItem(Level* world,
     double spawnY = position->getY();
     double spawnZ = position->getZ();
 
-    shared_ptr<ItemEntity> itemEntity = shared_ptr<ItemEntity>(
+    std::shared_ptr<ItemEntity> itemEntity = std::shared_ptr<ItemEntity>(
         new ItemEntity(world, spawnX, spawnY - 0.3, spawnZ, item));
 
     double pow = world->random->nextDouble() * 0.1 + 0.2;

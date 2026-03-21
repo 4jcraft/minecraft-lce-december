@@ -4,7 +4,7 @@
 
 class ContainerSetContentPacket
     : public Packet,
-      public enable_shared_from_this<ContainerSetContentPacket> {
+      public std::enable_shared_from_this<ContainerSetContentPacket> {
 public:
     int containerId;
     ItemInstanceArray items;
@@ -12,7 +12,7 @@ public:
     ContainerSetContentPacket();
     ~ContainerSetContentPacket();
     ContainerSetContentPacket(int containerId,
-                              vector<std::shared_ptr<ItemInstance> >* newItems);
+                              std::vector<std::shared_ptr<ItemInstance> >* newItems);
 
     virtual void read(DataInputStream* dis);
     virtual void write(DataOutputStream* dos);

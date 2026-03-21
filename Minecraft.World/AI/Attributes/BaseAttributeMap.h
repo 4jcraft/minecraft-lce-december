@@ -6,10 +6,10 @@ class BaseAttributeMap {
 protected:
     // unordered_map<Attribute *, AttributeInstance *> attributesByObject;
 #ifdef __ORBIS__
-    unordered_map<eATTRIBUTE_ID, AttributeInstance*, std::hash<int> >
+    std::unordered_map<eATTRIBUTE_ID, AttributeInstance*, std::hash<int> >
         attributesById;
 #else
-    unordered_map<eATTRIBUTE_ID, AttributeInstance*> attributesById;
+    std::unordered_map<eATTRIBUTE_ID, AttributeInstance*> attributesById;
 #endif
 
 public:
@@ -20,7 +20,7 @@ public:
 
     virtual AttributeInstance* registerAttribute(Attribute* attribute) = 0;
 
-    virtual void getAttributes(vector<AttributeInstance*>& atts);
+    virtual void getAttributes(std::vector<AttributeInstance*>& atts);
     virtual void onAttributeModified(
         ModifiableAttributeInstance* attributeInstance);
 

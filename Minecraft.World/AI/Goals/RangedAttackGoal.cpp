@@ -25,7 +25,7 @@ void RangedAttackGoal::_init(RangedAttackMob* rangedMob, Mob* mob,
     setRequiredControlFlags(Control::MoveControlFlag |
                             Control::LookControlFlag);
 
-    target = weak_ptr<LivingEntity>();
+    target = std::weak_ptr<LivingEntity>();
     attackTime = -1;
     seeTime = 0;
 }
@@ -47,7 +47,7 @@ RangedAttackGoal::RangedAttackGoal(RangedAttackMob* rangedMob, Mob* mob,
 bool RangedAttackGoal::canUse() {
     std::shared_ptr<LivingEntity> bestTarget = mob->getTarget();
     if (bestTarget == NULL) return false;
-    target = weak_ptr<LivingEntity>(bestTarget);
+    target = std::weak_ptr<LivingEntity>(bestTarget);
     return true;
 }
 
@@ -56,7 +56,7 @@ bool RangedAttackGoal::canContinueToUse() {
 }
 
 void RangedAttackGoal::stop() {
-    target = weak_ptr<LivingEntity>();
+    target = std::weak_ptr<LivingEntity>();
     seeTime = 0;
     attackTime = -1;
 }

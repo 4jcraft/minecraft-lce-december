@@ -75,14 +75,14 @@ bool FurnaceMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> FurnaceMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     // Slot *IngredientSlot = slots->at(INGREDIENT_SLOT);
 
     bool charcoalUsed = furnace->wasCharcoalUsed();
 
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if (slotIndex == RESULT_SLOT) {
@@ -145,7 +145,7 @@ std::shared_ptr<ItemInstance> FurnaceMenu::clicked(
 {
     bool charcoalUsed = furnace->wasCharcoalUsed();
 
-    shared_ptr<ItemInstance> out = AbstractContainerMenu::clicked(
+    std::shared_ptr<ItemInstance> out = AbstractContainerMenu::clicked(
         slotIndex, buttonNum, clickType, player, looped);
 
 #ifdef _EXTENDED_ACHIEVEMENTS

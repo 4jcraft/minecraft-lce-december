@@ -15,7 +15,7 @@ void FishingHookRenderer::render(std::shared_ptr<Entity> _hook, double x,
                                  double y, double z, float rot, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    shared_ptr<FishingHook> hook = dynamic_pointer_cast<FishingHook>(_hook);
+    std::shared_ptr<FishingHook> hook = dynamic_pointer_cast<FishingHook>(_hook);
 
     glPushMatrix();
 

@@ -64,7 +64,7 @@ bool BrewingStandMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> BrewingStandMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     Slot* IngredientSlot = slots.at(INGREDIENT_SLOT);
     Slot* PotionSlot1 = slots.at(BOTTLE_SLOT_START);
@@ -72,7 +72,7 @@ std::shared_ptr<ItemInstance> BrewingStandMenu::quickMoveStack(
     Slot* PotionSlot3 = slots.at(BOTTLE_SLOT_START + 2);
 
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if ((slotIndex >= BOTTLE_SLOT_START && slotIndex <= BOTTLE_SLOT_END) ||

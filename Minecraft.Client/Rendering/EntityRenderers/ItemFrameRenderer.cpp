@@ -31,7 +31,7 @@ void ItemFrameRenderer::render(std::shared_ptr<Entity> _itemframe, double x,
     // 4J - original version used generics and thus had an input parameter of
     // type EnderCrystal rather than shared_ptr<Entity>  we have here - do some
     // casting around instead
-    shared_ptr<ItemFrame> itemFrame =
+    std::shared_ptr<ItemFrame> itemFrame =
         dynamic_pointer_cast<ItemFrame>(_itemframe);
 
     glPushMatrix();
@@ -51,7 +51,7 @@ void ItemFrameRenderer::render(std::shared_ptr<Entity> _itemframe, double x,
     glPopMatrix();
 }
 
-void ItemFrameRenderer::drawFrame(shared_ptr<ItemFrame> itemFrame) {
+void ItemFrameRenderer::drawFrame(std::shared_ptr<ItemFrame> itemFrame) {
     Minecraft* pMinecraft = Minecraft::GetInstance();
 
     glPushMatrix();
@@ -116,13 +116,13 @@ void ItemFrameRenderer::drawFrame(shared_ptr<ItemFrame> itemFrame) {
     glPopMatrix();
 }
 
-void ItemFrameRenderer::drawItem(shared_ptr<ItemFrame> entity) {
+void ItemFrameRenderer::drawItem(std::shared_ptr<ItemFrame> entity) {
     Minecraft* pMinecraft = Minecraft::GetInstance();
 
-    shared_ptr<ItemInstance> instance = entity->getItem();
+    std::shared_ptr<ItemInstance> instance = entity->getItem();
     if (instance == NULL) return;
 
-    shared_ptr<ItemEntity> itemEntity = shared_ptr<ItemEntity>(
+    std::shared_ptr<ItemEntity> itemEntity = std::shared_ptr<ItemEntity>(
         new ItemEntity(entity->level, 0, 0, 0, instance));
     itemEntity->getItem()->count = 1;
     itemEntity->bobOffs = 0;
@@ -163,7 +163,7 @@ void ItemFrameRenderer::drawItem(shared_ptr<ItemFrame> entity) {
         t->vertexUV(0 - vo, 0 - vo, 0, 0, 0);
         t->end();
 
-        shared_ptr<MapItemSavedData> data =
+        std::shared_ptr<MapItemSavedData> data =
             Item::map->getSavedData(itemEntity->getItem(), entity->level);
         if (data != NULL) {
             entityRenderDispatcher->itemInHandRenderer->minimap->render(

@@ -74,7 +74,7 @@ bool ServerChunkCache::hasChunk(int x, int z) {
     return true;
 }
 
-vector<LevelChunk*>* ServerChunkCache::getLoadedChunkList() {
+std::vector<LevelChunk*>* ServerChunkCache::getLoadedChunkList() {
     return &m_loadedChunkList;
 }
 
@@ -724,7 +724,7 @@ bool ServerChunkCache::save(bool force, ProgressListener* progressListener) {
         // minimise the amount of data that needs to be moved round when
         // creating a new level.
 
-        vector<LevelChunk*> sortedChunkList;
+        std::vector<LevelChunk*> sortedChunkList;
 
         for (int i = 0; i < m_loadedChunkList.size(); i++) {
             if ((m_loadedChunkList[i]->x < 0) && (m_loadedChunkList[i]->z < 0))
@@ -816,7 +816,7 @@ bool ServerChunkCache::save(bool force, ProgressListener* progressListener) {
         // minimise the amount of data that needs to be moved round when
         // creating a new level.
 
-        vector<LevelChunk*> sortedChunkList;
+        std::vector<LevelChunk*> sortedChunkList;
 
         for (int i = 0; i < m_loadedChunkList.size(); i++) {
             if ((m_loadedChunkList[i]->x < 0) && (m_loadedChunkList[i]->z < 0))
@@ -1048,7 +1048,7 @@ std::wstring ServerChunkCache::gatherStats() {
                                    // Drop: " + _toString<int>(toDrop.size());
 }
 
-vector<Biome::MobSpawnerData*>* ServerChunkCache::getMobsAt(
+std::vector<Biome::MobSpawnerData*>* ServerChunkCache::getMobsAt(
     MobCategory* mobCategory, int x, int y, int z) {
     return source->getMobsAt(mobCategory, x, y, z);
 }

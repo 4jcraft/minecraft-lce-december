@@ -16,7 +16,7 @@ void JukeboxTile::Entity::load(CompoundTag* tag) {
     if (tag->contains(L"RecordItem")) {
         setRecord(ItemInstance::fromTag(tag->getCompound(L"RecordItem")));
     } else if (tag->getInt(L"Record") > 0) {
-        setRecord(shared_ptr<ItemInstance>(
+        setRecord(std::shared_ptr<ItemInstance>(
             new ItemInstance(tag->getInt(L"Record"), 1, 0)));
     }
 }
@@ -33,8 +33,8 @@ void JukeboxTile::Entity::save(CompoundTag* tag) {
 
 // 4J Added
 std::shared_ptr<TileEntity> JukeboxTile::Entity::clone() {
-    shared_ptr<JukeboxTile::Entity> result =
-        shared_ptr<JukeboxTile::Entity>(new JukeboxTile::Entity());
+    std::shared_ptr<JukeboxTile::Entity> result =
+        std::shared_ptr<JukeboxTile::Entity>(new JukeboxTile::Entity());
     TileEntity::clone(result);
 
     result->record = record;
@@ -85,7 +85,7 @@ void JukeboxTile::setRecord(Level* level, int x, int y, int z,
                             std::shared_ptr<ItemInstance> record) {
     if (level->isClientSide) return;
 
-    shared_ptr<JukeboxTile::Entity> rte =
+    std::shared_ptr<JukeboxTile::Entity> rte =
         dynamic_pointer_cast<JukeboxTile::Entity>(
             level->getTileEntity(x, y, z));
     rte->setRecord(record->copy());
@@ -97,12 +97,12 @@ void JukeboxTile::setRecord(Level* level, int x, int y, int z,
 void JukeboxTile::dropRecording(Level* level, int x, int y, int z) {
     if (level->isClientSide) return;
 
-    shared_ptr<JukeboxTile::Entity> rte =
+    std::shared_ptr<JukeboxTile::Entity> rte =
         dynamic_pointer_cast<JukeboxTile::Entity>(
             level->getTileEntity(x, y, z));
     if (rte == NULL) return;
 
-    shared_ptr<ItemInstance> oldRecord = rte->getRecord();
+    std::shared_ptr<ItemInstance> oldRecord = rte->getRecord();
     if (oldRecord == NULL) return;
 
     level->levelEvent(LevelEvent::SOUND_PLAY_RECORDING, x, y, z, 0);
@@ -117,9 +117,9 @@ void JukeboxTile::dropRecording(Level* level, int x, int y, int z) {
     double yo = level->random->nextFloat() * s + (1 - s) * 0.2 + 0.6;
     double zo = level->random->nextFloat() * s + (1 - s) * 0.5;
 
-    shared_ptr<ItemInstance> itemInstance = oldRecord->copy();
+    std::shared_ptr<ItemInstance> itemInstance = oldRecord->copy();
 
-    shared_ptr<ItemEntity> item = shared_ptr<ItemEntity>(
+    std::shared_ptr<ItemEntity> item = std::shared_ptr<ItemEntity>(
         new ItemEntity(level, x + xo, y + yo, z + zo, itemInstance));
     item->throwTime = 10;
     level->addEntity(item);
@@ -138,7 +138,7 @@ void JukeboxTile::spawnResources(Level* level, int x, int y, int z, int data,
 }
 
 std::shared_ptr<TileEntity> JukeboxTile::newTileEntity(Level* level) {
-    return shared_ptr<JukeboxTile::Entity>(new JukeboxTile::Entity());
+    return std::shared_ptr<JukeboxTile::Entity>(new JukeboxTile::Entity());
 }
 
 void JukeboxTile::registerIcons(IconRegister* iconRegister) {
@@ -150,7 +150,7 @@ bool JukeboxTile::hasAnalogOutputSignal() { return true; }
 
 int JukeboxTile::getAnalogOutputSignal(Level* level, int x, int y, int z,
                                        int dir) {
-    shared_ptr<ItemInstance> record =
+    std::shared_ptr<ItemInstance> record =
         dynamic_pointer_cast<JukeboxTile::Entity>(level->getTileEntity(x, y, z))
             ->getRecord();
     return record == NULL ? Redstone::SIGNAL_NONE

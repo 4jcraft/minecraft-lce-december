@@ -6,7 +6,7 @@
 #include "SwellGoal.h"
 
 SwellGoal::SwellGoal(Creeper* creeper) {
-    target = weak_ptr<LivingEntity>();
+    target = std::weak_ptr<LivingEntity>();
 
     this->creeper = creeper;
     setRequiredControlFlags(Control::MoveControlFlag);
@@ -20,10 +20,10 @@ bool SwellGoal::canUse() {
 
 void SwellGoal::start() {
     creeper->getNavigation()->stop();
-    target = weak_ptr<LivingEntity>(creeper->getTarget());
+    target = std::weak_ptr<LivingEntity>(creeper->getTarget());
 }
 
-void SwellGoal::stop() { target = weak_ptr<LivingEntity>(); }
+void SwellGoal::stop() { target = std::weak_ptr<LivingEntity>(); }
 
 void SwellGoal::tick() {
     if (target.lock() == NULL) {

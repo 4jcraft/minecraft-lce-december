@@ -32,8 +32,8 @@ void Slot::onQuickCraft(std::shared_ptr<ItemInstance> picked, int count) {}
 void Slot::checkTakeAchievements(std::shared_ptr<ItemInstance> picked) {}
 
 void Slot::swap(Slot* other) {
-    shared_ptr<ItemInstance> item1 = container->getItem(slot);
-    shared_ptr<ItemInstance> item2 = other->container->getItem(other->slot);
+    std::shared_ptr<ItemInstance> item1 = container->getItem(slot);
+    std::shared_ptr<ItemInstance> item2 = other->container->getItem(other->slot);
 
     if (item1 != NULL && item1->count > other->getMaxStackSize()) {
         if (item2 != NULL) return;
@@ -86,7 +86,7 @@ bool Slot::mayPickup(std::shared_ptr<Player> player) { return true; }
 bool Slot::isActive() { return true; }
 
 bool Slot::mayCombine(std::shared_ptr<ItemInstance> second) {
-    shared_ptr<ItemInstance> first = getItem();
+    std::shared_ptr<ItemInstance> first = getItem();
 
     if (first == NULL || second == NULL) return false;
 
@@ -112,11 +112,11 @@ bool Slot::mayCombine(std::shared_ptr<ItemInstance> second) {
 
 std::shared_ptr<ItemInstance> Slot::combine(
     std::shared_ptr<ItemInstance> item) {
-    shared_ptr<ItemInstance> result = nullptr;
-    shared_ptr<ItemInstance> first = getItem();
+    std::shared_ptr<ItemInstance> result = nullptr;
+    std::shared_ptr<ItemInstance> first = getItem();
 
-    shared_ptr<CraftingContainer> craftSlots =
-        shared_ptr<CraftingContainer>(new CraftingContainer(NULL, 2, 2));
+    std::shared_ptr<CraftingContainer> craftSlots =
+        std::shared_ptr<CraftingContainer>(new CraftingContainer(NULL, 2, 2));
     craftSlots->setItem(0, item);
     craftSlots->setItem(1, first);
 

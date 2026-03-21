@@ -4,7 +4,7 @@
 
 class TileDestructionPacket
     : public Packet,
-      public enable_shared_from_this<TileDestructionPacket> {
+      public std::enable_shared_from_this<TileDestructionPacket> {
 private:
     int id;
     int x;

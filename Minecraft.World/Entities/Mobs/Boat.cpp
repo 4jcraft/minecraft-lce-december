@@ -73,7 +73,7 @@ bool Boat::hurt(DamageSource* source, float hurtDamage) {
     // 4J-JEV: Fix for #88212,
     // Untrusted players shouldn't be able to damage minecarts or boats.
     if (dynamic_cast<EntityDamageSource*>(source) != NULL) {
-        shared_ptr<Entity> attacker = source->getDirectEntity();
+        std::shared_ptr<Entity> attacker = source->getDirectEntity();
 
         if (attacker->instanceof(eTYPE_PLAYER) &&
             !dynamic_pointer_cast<Player>(attacker)->isAllowedToHurtEntity(
@@ -274,11 +274,11 @@ void Boat::tick() {
     }
 
     if (rider.lock() != NULL && rider.lock()->instanceof(eTYPE_LIVINGENTITY)) {
-        shared_ptr<LivingEntity> livingRider =
+        std::shared_ptr<LivingEntity> livingRider =
             dynamic_pointer_cast<LivingEntity>(rider.lock());
-        double forward = livingRider->yya;
+        double std::forward = livingRider->yya;
 
-        if (forward > 0) {
+        if (std::forward > 0) {
             double riderXd = -sin(livingRider->yRot * PI / 180);
             double riderZd = cos(livingRider->yRot * PI / 180);
             xd += riderXd * acceleration * 0.05f;
@@ -345,12 +345,12 @@ void Boat::tick() {
 
     if (level->isClientSide) return;
 
-    vector<shared_ptr<Entity> >* entities =
+    std::vector<std::shared_ptr<Entity> >* entities =
         level->getEntities(shared_from_this(), bb->grow(0.2f, 0, 0.2f));
     if (entities != NULL && !entities->empty()) {
         AUTO_VAR(itEnd, entities->end());
         for (AUTO_VAR(it, entities->begin()); it != itEnd; it++) {
-            shared_ptr<Entity> e = (*it);  // entities->at(i);
+            std::shared_ptr<Entity> e = (*it);  // entities->at(i);
             if (e != rider.lock() && e->isPushable() &&
                 e->GetType() == eTYPE_BOAT) {
                 e->push(shared_from_this());
@@ -375,7 +375,7 @@ void Boat::tick() {
     }
 
     if (rider.lock() != NULL) {
-        if (rider.lock()->removed) rider = weak_ptr<Entity>();
+        if (rider.lock()->removed) rider = std::weak_ptr<Entity>();
     }
 }
 

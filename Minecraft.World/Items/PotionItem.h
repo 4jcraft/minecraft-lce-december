@@ -14,7 +14,7 @@ public:
     static const std::wstring CONTENTS_ICON;
 
 private:
-    unordered_map<int, vector<MobEffectInstance*>*> cachedMobEffects;
+    std::unordered_map<int, std::vector<MobEffectInstance*>*> cachedMobEffects;
 
     Icon* iconThrowable;
     Icon* iconDrinkable;
@@ -23,9 +23,9 @@ private:
 public:
     PotionItem(int id);
 
-    virtual vector<MobEffectInstance*>* getMobEffects(
+    virtual std::vector<MobEffectInstance*>* getMobEffects(
         std::shared_ptr<ItemInstance> potion);
-    virtual vector<MobEffectInstance*>* getMobEffects(int auxValue);
+    virtual std::vector<MobEffectInstance*>* getMobEffects(int auxValue);
     virtual std::shared_ptr<ItemInstance> useTimeDepleted(
         std::shared_ptr<ItemInstance> instance, Level* level,
         std::shared_ptr<Player> player);
@@ -51,7 +51,7 @@ public:
         std::shared_ptr<ItemInstance> itemInstance);
     virtual void appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                                  std::shared_ptr<Player> player,
-                                 vector<HtmlString>* lines, bool advanced);
+                                 std::vector<HtmlString>* lines, bool advanced);
     virtual bool isFoil(std::shared_ptr<ItemInstance> itemInstance);
 
     virtual unsigned int getUseDescriptionId(
@@ -63,10 +63,10 @@ public:
 
     // 4J Stu - Based loosely on a function that gets added in java much later
     // on (1.3)
-    static vector<pair<int, int> >* getUniquePotionValues();
+    static std::vector<std::pair<int, int> >* getUniquePotionValues();
 
 private:
     // 4J Stu - Added to support function above, different from Java
     // implementation
-    static vector<pair<int, int> > s_uniquePotionValues;
+    static std::vector<std::pair<int, int> > s_uniquePotionValues;
 };

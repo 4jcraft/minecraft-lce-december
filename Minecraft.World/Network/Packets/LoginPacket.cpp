@@ -102,7 +102,7 @@ void LoginPacket::read(DataInputStream* dis)  // throws IOException
 {
     clientVersion = dis->readInt();
     userName = readUtf(dis, Player::MAX_NAME_LENGTH);
-    wstring typeName = readUtf(dis, 16);
+    std::wstring typeName = readUtf(dis, 16);
     m_pLevelType = LevelType::getLevelType(typeName);
     if (m_pLevelType == NULL) {
         m_pLevelType = LevelType::lvl_normal;

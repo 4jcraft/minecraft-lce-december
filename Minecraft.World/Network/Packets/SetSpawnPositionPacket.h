@@ -4,7 +4,7 @@
 
 class SetSpawnPositionPacket
     : public Packet,
-      public enable_shared_from_this<SetSpawnPositionPacket> {
+      public std::enable_shared_from_this<SetSpawnPositionPacket> {
 public:
     int x, y, z;
 

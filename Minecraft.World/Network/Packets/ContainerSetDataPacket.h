@@ -4,7 +4,7 @@
 
 class ContainerSetDataPacket
     : public Packet,
-      public enable_shared_from_this<ContainerSetDataPacket> {
+      public std::enable_shared_from_this<ContainerSetDataPacket> {
 public:
     int containerId;
     int id;

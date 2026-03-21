@@ -12,7 +12,7 @@
 
 const wchar_t File::pathSeparator = L'\\';
 #ifdef _XBOX
-const wstring File::pathRoot =
+const std::wstring File::pathRoot =
     L"GAME:";  // Path root after pathSeparator has been removed
 #else
 const std::wstring File::pathRoot =
@@ -35,17 +35,17 @@ File::File(const std::wstring& pathname)  //: parent( NULL )
     // 	printf("File::File - %s\n",buf);
     // #endif
     if (pathname.empty())
-        m_abstractPathName = wstring(L"");
+        m_abstractPathName = std::wstring(L"");
     else
         m_abstractPathName = pathname;
 
 #ifdef _WINDOWS64
-    string path = wstringtochararray(m_abstractPathName);
-    string finalPath = StorageManager.GetMountedPath(path.c_str());
+    std::string path = wstringtochararray(m_abstractPathName);
+    std::string finalPath = StorageManager.GetMountedPath(path.c_str());
     if (finalPath.size() == 0) finalPath = path;
     m_abstractPathName = convStringToWstring(finalPath);
 #elif defined(_DURANGO)
-    wstring finalPath =
+    std::wstring finalPath =
         StorageManager.GetMountedPath(m_abstractPathName.c_str());
     if (finalPath.size() == 0) finalPath = m_abstractPathName;
     m_abstractPathName = finalPath;
@@ -150,9 +150,9 @@ bool File::mkdir() const {
 //          parent directories to be created
 //
 bool File::mkdirs() const {
-    vector<wstring> path = stringSplit(m_abstractPathName, pathSeparator);
+    std::vector<std::wstring> path = stringSplit(m_abstractPathName, pathSeparator);
 
-    wstring pathToHere = L"";
+    std::wstring pathToHere = L"";
     AUTO_VAR(itEnd, path.end());
     for (AUTO_VAR(it, path.begin()); it != itEnd; it++) {
         // If this member of the vector is the root then just skip to the next
@@ -233,7 +233,7 @@ bool File::renameTo(File dest) {
     // location in memory every time it is called, therefore we were getting
     // sourcePath and destPath having the same value. The solution here is to
     // make a copy of the sourcePath by storing it in a std::string
-    string sourcePath = wstringtofilename(getPath());
+    std::string sourcePath = wstringtofilename(getPath());
     const char* destPath = wstringtofilename(dest.getPath());
 #ifdef _DURANGO
     __debugbreak();  // TODO
@@ -272,8 +272,8 @@ bool File::renameTo(File dest) {
 // directory denoted by this abstract pathname. The array will be empty if the
 // directory is empty. Returns null if this abstract pathname does not denote a
 // directory, or if an I/O error occurs.
-vector<File*>* File::listFiles() const {
-    vector<File*>* vOutput = new vector<File*>();
+std::vector<File*>* File::listFiles() const {
+    std::vector<File*>* vOutput = new std::vector<File*>();
 
     // TODO 4J Stu - Also need to check for I/O errors?
     if (!isDirectory()) return vOutput;
@@ -406,11 +406,11 @@ vector<File*>* File::listFiles() const {
 // denoted by this abstract pathname. The array will be empty if the directory
 // is empty. Returns null if this abstract pathname does not denote a directory,
 // or if an I/O error occurs.
-vector<File*>* File::listFiles(FileFilter* filter) const {
+std::vector<File*>* File::listFiles(FileFilter* filter) const {
     // TODO 4J Stu - Also need to check for I/O errors?
     if (!isDirectory()) return NULL;
 
-    vector<File*>* vOutput = new vector<File*>();
+    std::vector<File*>* vOutput = new std::vector<File*>();
 
 #ifdef __PS3__
     const char* lpFileName = wstringtofilename(getPath());
@@ -661,10 +661,10 @@ int File::hash_fnct(const File& k) {
     // if (k->parent != NULL)
     //	hashCode = hash_fnct(k->getParent());
 
-    wchar_t* ref = (wchar_t*)k.m_abstractPathName.c_str();
+    wchar_t* std::ref = (wchar_t*)k.m_abstractPathName.c_str();
 
     for (unsigned int i = 0; i < k.m_abstractPathName.length(); i++) {
-        hashCode += ((hashCode * 33) + ref[i]) % 149;
+        hashCode += ((hashCode * 33) + std::ref[i]) % 149;
     }
 
     return (int)hashCode;

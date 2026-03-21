@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class AnimatePacket : public Packet,
-                      public enable_shared_from_this<AnimatePacket> {
+                      public std::enable_shared_from_this<AnimatePacket> {
 public:
     static const int SWING = 1;
     static const int HURT = 2;

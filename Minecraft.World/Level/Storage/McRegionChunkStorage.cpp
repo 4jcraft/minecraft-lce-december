@@ -35,7 +35,7 @@ McRegionChunkStorage::McRegionChunkStorage(ConsoleSaveFile* saveFile,
 
 #ifdef SPLIT_SAVES
     ConsoleSavePath currentFile =
-        ConsoleSavePath(m_prefix + wstring(L"entities.dat"));
+        ConsoleSavePath(m_prefix + std::wstring(L"entities.dat"));
 
     if (m_saveFile->doesFileExist(currentFile)) {
         ConsoleSaveFileInputStream fis =
@@ -294,7 +294,7 @@ void McRegionChunkStorage::flush() {
 #ifdef SPLIT_SAVES
     PIXBeginNamedEvent(0, "Flushing entity data");
     ConsoleSavePath currentFile =
-        ConsoleSavePath(m_prefix + wstring(L"entities.dat"));
+        ConsoleSavePath(m_prefix + std::wstring(L"entities.dat"));
     ConsoleSaveFileOutputStream fos =
         ConsoleSaveFileOutputStream(m_saveFile, currentFile);
     BufferedOutputStream bos(&fos, 1024 * 1024);

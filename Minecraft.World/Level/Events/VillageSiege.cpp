@@ -10,7 +10,7 @@ VillageSiege::VillageSiege(Level* level) {
     siegeState = SIEGE_NOT_INITED;
     siegeCount = 0;
     nextSpawnTime = 0;
-    village = weak_ptr<Village>();
+    village = std::weak_ptr<Village>();
     spawnX = spawnY = spawnZ = 0;
 
     this->level = level;
@@ -65,7 +65,7 @@ void VillageSiege::tick() {
 }
 
 bool VillageSiege::tryToSetupSiege() {
-    vector<std::shared_ptr<Player> >* players = &level->players;
+    std::vector<std::shared_ptr<Player> >* players = &level->players;
     // for (Player player : players)
     for (AUTO_VAR(it, players->begin()); it != players->end(); ++it) {
         std::shared_ptr<Player> player = *it;
@@ -92,7 +92,7 @@ bool VillageSiege::tryToSetupSiege() {
                      (int)(Mth::sin(level->random->nextFloat() * PI * 2.f) *
                            radius * 0.9);
             overlaps = false;
-            vector<std::shared_ptr<Village> >* villages =
+            std::vector<std::shared_ptr<Village> >* villages =
                 level->villages->getVillages();
             // for (Village v : level.villages.getVillages())
             for (AUTO_VAR(itV, villages->begin()); itV != villages->end();

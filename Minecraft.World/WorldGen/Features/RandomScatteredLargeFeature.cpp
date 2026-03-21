@@ -6,7 +6,7 @@
 #include "RandomScatteredLargeFeature.h"
 
 const std::wstring RandomScatteredLargeFeature::OPTION_SPACING = L"distance";
-vector<Biome*> RandomScatteredLargeFeature::allowedBiomes;
+std::vector<Biome*> RandomScatteredLargeFeature::allowedBiomes;
 
 void RandomScatteredLargeFeature::staticCtor() {
     allowedBiomes.push_back(Biome::desert);
@@ -26,7 +26,7 @@ void RandomScatteredLargeFeature::_init() {
 RandomScatteredLargeFeature::RandomScatteredLargeFeature() { _init(); }
 
 RandomScatteredLargeFeature::RandomScatteredLargeFeature(
-    unordered_map<wstring, wstring> options) {
+    std::unordered_map<std::wstring, std::wstring> options) {
     _init();
 
     for (AUTO_VAR(it, options.begin()); it != options.end(); ++it) {
@@ -125,7 +125,7 @@ bool RandomScatteredLargeFeature::isSwamphut(int cellX, int cellY, int cellZ) {
     return dynamic_cast<ScatteredFeaturePieces::SwamplandHut*>(first) != NULL;
 }
 
-vector<Biome::MobSpawnerData*>*
+std::vector<Biome::MobSpawnerData*>*
 RandomScatteredLargeFeature::getSwamphutEnemies() {
     return &swamphutEnemies;
 }

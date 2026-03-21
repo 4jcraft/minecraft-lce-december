@@ -79,7 +79,7 @@ void BaseMobSpawner::tick() {
         bool _delay = false;
 
         for (int c = 0; c < spawnCount; c++) {
-            shared_ptr<Entity> entity =
+            std::shared_ptr<Entity> entity =
                 EntityIO::newEntity(getEntityId(), getLevel());
             if (entity == NULL) return;
 
@@ -103,7 +103,7 @@ void BaseMobSpawner::tick() {
             double zp = getZ() + (getLevel()->random->nextDouble() -
                                   getLevel()->random->nextDouble()) *
                                      spawnRange;
-            shared_ptr<Mob> mob = entity->instanceof(eTYPE_MOB)
+            std::shared_ptr<Mob> mob = entity->instanceof(eTYPE_MOB)
                                       ? dynamic_pointer_cast<Mob>(entity)
                                       : nullptr;
 
@@ -133,7 +133,7 @@ std::shared_ptr<Entity> BaseMobSpawner::loadDataAndAddEntity(
         CompoundTag* data = new CompoundTag();
         entity->save(data);
 
-        vector<Tag*>* tags = getNextSpawnData()->tag->getAllTags();
+        std::vector<Tag*>* tags = getNextSpawnData()->tag->getAllTags();
         for (AUTO_VAR(it, tags->begin()); it != tags->end(); ++it) {
             Tag* tag = *it;
             data->put(tag->getName(), tag->copy());
@@ -144,16 +144,16 @@ std::shared_ptr<Entity> BaseMobSpawner::loadDataAndAddEntity(
         if (entity->level != NULL) entity->level->addEntity(entity);
 
         // add mounts
-        shared_ptr<Entity> rider = entity;
+        std::shared_ptr<Entity> rider = entity;
         while (data->contains(Entity::RIDING_TAG)) {
             CompoundTag* ridingTag = data->getCompound(Entity::RIDING_TAG);
-            shared_ptr<Entity> mount =
+            std::shared_ptr<Entity> mount =
                 EntityIO::newEntity(ridingTag->getString(L"id"), entity->level);
             if (mount != NULL) {
                 CompoundTag* mountData = new CompoundTag();
                 mount->save(mountData);
 
-                vector<Tag*>* ridingTags = ridingTag->getAllTags();
+                std::vector<Tag*>* ridingTags = ridingTag->getAllTags();
                 for (AUTO_VAR(it, ridingTags->begin()); it != ridingTags->end();
                      ++it) {
                     Tag* tag = *it;
@@ -191,7 +191,7 @@ void BaseMobSpawner::delay() {
     if ((spawnPotentials != NULL) && (spawnPotentials->size() > 0)) {
         setNextSpawnData((SpawnData*)WeighedRandom::getRandomItem(
             (Random*)getLevel()->random,
-            (vector<WeighedRandomItem*>*)spawnPotentials));
+            (std::vector<WeighedRandomItem*>*)spawnPotentials));
     }
 
     broadcastEvent(EVENT_SPAWN);
@@ -202,7 +202,7 @@ void BaseMobSpawner::load(CompoundTag* tag) {
     spawnDelay = tag->getShort(L"Delay");
 
     if (tag->contains(L"SpawnPotentials")) {
-        spawnPotentials = new vector<SpawnData*>();
+        spawnPotentials = new std::vector<SpawnData*>();
         ListTag<CompoundTag>* potentials =
             (ListTag<CompoundTag>*)tag->getList(L"SpawnPotentials");
 
@@ -273,7 +273,7 @@ void BaseMobSpawner::save(CompoundTag* tag) {
 
 std::shared_ptr<Entity> BaseMobSpawner::getDisplayEntity() {
     if (displayEntity == NULL) {
-        shared_ptr<Entity> e = EntityIO::newEntity(getEntityId(), NULL);
+        std::shared_ptr<Entity> e = EntityIO::newEntity(getEntityId(), NULL);
         e = loadDataAndAddEntity(e);
         displayEntity = e;
     }
@@ -300,7 +300,7 @@ void BaseMobSpawner::setNextSpawnData(SpawnData* nextSpawnData) {
 BaseMobSpawner::SpawnData::SpawnData(CompoundTag* base)
     : WeighedRandomItem(base->getInt(L"Weight")) {
     CompoundTag* tag = base->getCompound(L"Properties");
-    wstring _type = base->getString(L"Type");
+    std::wstring _type = base->getString(L"Type");
 
     if (_type.compare(L"Minecart") == 0) {
         if (tag != NULL) {

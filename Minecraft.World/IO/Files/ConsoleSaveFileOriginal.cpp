@@ -881,7 +881,7 @@ void ConsoleSaveFileOriginal::DebugFlushToFile(
     // 14 chars for the digits
     // 11 chars for the separators + suffix
     // 25 chars total
-    wstring cutFileName = m_fileName;
+    std::wstring cutFileName = m_fileName;
     if (m_fileName.length() > XCONTENT_MAX_FILENAME_LENGTH - 25) {
         cutFileName = m_fileName.substr(0, XCONTENT_MAX_FILENAME_LENGTH - 25);
     }
@@ -891,11 +891,11 @@ void ConsoleSaveFileOriginal::DebugFlushToFile(
              t.wSecond);
 
 #ifdef _UNICODE
-    wstring wtemp = targetFileDir.getPath() + wstring(fileName);
+    std::wstring wtemp = targetFileDir.getPath() + std::wstring(fileName);
     LPCWSTR lpFileName = wtemp.c_str();
 #else
     LPCSTR lpFileName =
-        wstringtofilename(targetFileDir.getPath() + wstring(fileName));
+        wstringtofilename(targetFileDir.getPath() + std::wstring(fileName));
 #endif
 #ifndef __PSVITA__
     HANDLE hSaveFile = CreateFile(lpFileName, GENERIC_WRITE, 0, NULL,
@@ -938,26 +938,26 @@ unsigned int ConsoleSaveFileOriginal::getSizeOnDisk() {
 
 std::wstring ConsoleSaveFileOriginal::getFilename() { return m_fileName; }
 
-vector<FileEntry*>* ConsoleSaveFileOriginal::getFilesWithPrefix(
+std::vector<FileEntry*>* ConsoleSaveFileOriginal::getFilesWithPrefix(
     const std::wstring& prefix) {
     return header.getFilesWithPrefix(prefix);
 }
 
-vector<FileEntry*>* ConsoleSaveFileOriginal::getRegionFilesByDimension(
+std::vector<FileEntry*>* ConsoleSaveFileOriginal::getRegionFilesByDimension(
     unsigned int dimensionIndex) {
     return NULL;
 }
 
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
-wstring ConsoleSaveFileOriginal::getPlayerDataFilenameForLoad(
+std::wstring ConsoleSaveFileOriginal::getPlayerDataFilenameForLoad(
     const PlayerUID& pUID) {
     return header.getPlayerDataFilenameForLoad(pUID);
 }
-wstring ConsoleSaveFileOriginal::getPlayerDataFilenameForSave(
+std::wstring ConsoleSaveFileOriginal::getPlayerDataFilenameForSave(
     const PlayerUID& pUID) {
     return header.getPlayerDataFilenameForSave(pUID);
 }
-vector<FileEntry*>* ConsoleSaveFileOriginal::getValidPlayerDatFiles() {
+std::vector<FileEntry*>* ConsoleSaveFileOriginal::getValidPlayerDatFiles() {
     return header.getValidPlayerDatFiles();
 }
 #endif
@@ -1049,12 +1049,12 @@ void ConsoleSaveFileOriginal::ConvertToLocalPlatform() {
         return;
     }
     // convert each of the region files to the local platform
-    vector<FileEntry*>* allFilesInSave = getFilesWithPrefix(wstring(L""));
+    std::vector<FileEntry*>* allFilesInSave = getFilesWithPrefix(std::wstring(L""));
     for (AUTO_VAR(it, allFilesInSave->begin()); it < allFilesInSave->end();
          ++it) {
         FileEntry* fe = *it;
-        wstring fName(fe->data.filename);
-        wstring suffix(L".mcr");
+        std::wstring fName(fe->data.filename);
+        std::wstring suffix(L".mcr");
         if (fName.compare(fName.length() - suffix.length(), suffix.length(),
                           suffix) == 0) {
             app.DebugPrintf("Processing a region file: %ls\n", fName.c_str());

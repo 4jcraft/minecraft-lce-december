@@ -17,7 +17,7 @@ public:
 
 private:
     bool shouldSignal;
-    unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq> toUpdate;
+    std::unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq> toUpdate;
     Icon* iconCross;
     Icon* iconLine;
     Icon* iconCrossOver;

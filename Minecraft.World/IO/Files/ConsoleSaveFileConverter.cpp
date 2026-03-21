@@ -81,9 +81,9 @@ void ConsoleSaveFileConverter::ConvertSave(ConsoleSaveFile* sourceSave,
 
     // MGH added - find any player data files and copy them across
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
-    vector<FileEntry*>* playerFiles = sourceSave->getValidPlayerDatFiles();
+    std::vector<FileEntry*>* playerFiles = sourceSave->getValidPlayerDatFiles();
 #else
-    vector<FileEntry*>* playerFiles =
+    std::vector<FileEntry*>* playerFiles =
         sourceSave->getFilesWithPrefix(DirectoryLevelStorage::getPlayerDir());
 #endif
 
@@ -284,7 +284,7 @@ void ConsoleSaveFileConverter::ConvertSave(ConsoleSaveFile* sourceSave,
     // 4J Stu - Old version that just changes the compression of chunks, not
     // usable for XboxOne style split saves or compressed tile formats Process
     // region files
-    vector<FileEntry*>* allFilesInSave =
+    std::vector<FileEntry*>* allFilesInSave =
         sourceSave->getFilesWithPrefix(std::wstring(L""));
     for (AUTO_VAR(it, allFilesInSave->begin()); it < allFilesInSave->end();
          ++it) {

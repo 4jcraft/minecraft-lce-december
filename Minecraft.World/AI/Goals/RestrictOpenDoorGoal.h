@@ -8,7 +8,7 @@ class DoorInfo;
 class RestrictOpenDoorGoal : public Goal {
 private:
     PathfinderMob* mob;
-    weak_ptr<DoorInfo> doorInfo;
+    std::weak_ptr<DoorInfo> doorInfo;
 
 public:
     RestrictOpenDoorGoal(PathfinderMob* mob);

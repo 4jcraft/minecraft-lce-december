@@ -48,7 +48,7 @@ int HopperTile::getPlacedOnFaceDataValue(Level* level, int x, int y, int z,
 }
 
 std::shared_ptr<TileEntity> HopperTile::newTileEntity(Level* level) {
-    return shared_ptr<HopperTileEntity>(new HopperTileEntity());
+    return std::shared_ptr<HopperTileEntity>(new HopperTileEntity());
 }
 
 void HopperTile::setPlacedBy(Level* level, int x, int y, int z,
@@ -57,7 +57,7 @@ void HopperTile::setPlacedBy(Level* level, int x, int y, int z,
     BaseEntityTile::setPlacedBy(level, x, y, z, by, itemInstance);
 
     if (itemInstance->hasCustomHoverName()) {
-        shared_ptr<HopperTileEntity> hopper = getHopper(level, x, y, z);
+        std::shared_ptr<HopperTileEntity> hopper = getHopper(level, x, y, z);
         hopper->setCustomName(itemInstance->getHoverName());
     }
 }
@@ -73,7 +73,7 @@ bool HopperTile::use(Level* level, int x, int y, int z,
     if (level->isClientSide) {
         return true;
     }
-    shared_ptr<HopperTileEntity> hopper = getHopper(level, x, y, z);
+    std::shared_ptr<HopperTileEntity> hopper = getHopper(level, x, y, z);
     if (hopper != NULL) player->openHopper(hopper);
     return true;
 }
@@ -95,11 +95,11 @@ void HopperTile::checkPoweredState(Level* level, int x, int y, int z) {
 }
 
 void HopperTile::onRemove(Level* level, int x, int y, int z, int id, int data) {
-    shared_ptr<Container> container =
+    std::shared_ptr<Container> container =
         dynamic_pointer_cast<HopperTileEntity>(level->getTileEntity(x, y, z));
     if (container != NULL) {
         for (int i = 0; i < container->getContainerSize(); i++) {
-            shared_ptr<ItemInstance> item = container->getItem(i);
+            std::shared_ptr<ItemInstance> item = container->getItem(i);
             if (item != NULL) {
                 float xo = random.nextFloat() * 0.8f + 0.1f;
                 float yo = random.nextFloat() * 0.8f + 0.1f;
@@ -110,10 +110,10 @@ void HopperTile::onRemove(Level* level, int x, int y, int z, int id, int data) {
                     if (count > item->count) count = item->count;
                     item->count -= count;
 
-                    shared_ptr<ItemEntity> itemEntity =
-                        shared_ptr<ItemEntity>(new ItemEntity(
+                    std::shared_ptr<ItemEntity> itemEntity =
+                        std::shared_ptr<ItemEntity>(new ItemEntity(
                             level, x + xo, y + yo, z + zo,
-                            shared_ptr<ItemInstance>(new ItemInstance(
+                            std::shared_ptr<ItemInstance>(new ItemInstance(
                                 item->id, count, item->getAuxValue()))));
 
                     if (item->hasTag()) {

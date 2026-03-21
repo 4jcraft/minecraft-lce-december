@@ -4,7 +4,7 @@
 
 class SetEquippedItemPacket
     : public Packet,
-      public enable_shared_from_this<SetEquippedItemPacket> {
+      public std::enable_shared_from_this<SetEquippedItemPacket> {
 public:
     int entity;
     int slot;

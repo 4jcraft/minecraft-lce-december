@@ -41,13 +41,13 @@ ListTag<CompoundTag>* EnchantedBookItem::getEnchantments(
 
 void EnchantedBookItem::appendHoverText(
     std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player,
-    vector<HtmlString>* lines, bool advanced) {
+    std::vector<HtmlString>* lines, bool advanced) {
     Item::appendHoverText(itemInstance, player, lines, advanced);
 
     ListTag<CompoundTag>* list = getEnchantments(itemInstance);
 
     if (list != NULL) {
-        wstring unformatted = L"";
+        std::wstring unformatted = L"";
         for (int i = 0; i < list->size(); i++) {
             int type =
                 list->get(i)->getShort((wchar_t*)ItemInstance::TAG_ENCH_ID);
@@ -101,14 +101,14 @@ void EnchantedBookItem::addEnchantment(std::shared_ptr<ItemInstance> item,
 
 std::shared_ptr<ItemInstance> EnchantedBookItem::createForEnchantment(
     EnchantmentInstance* enchant) {
-    shared_ptr<ItemInstance> item =
-        shared_ptr<ItemInstance>(new ItemInstance(this));
+    std::shared_ptr<ItemInstance> item =
+        std::shared_ptr<ItemInstance>(new ItemInstance(this));
     addEnchantment(item, enchant);
     return item;
 }
 
 void EnchantedBookItem::createForEnchantment(
-    Enchantment* enchant, vector<shared_ptr<ItemInstance> >* items) {
+    Enchantment* enchant, std::vector<std::shared_ptr<ItemInstance> >* items) {
     for (int i = enchant->getMinLevel(); i <= enchant->getMaxLevel(); i++) {
         items->push_back(
             createForEnchantment(new EnchantmentInstance(enchant, i)));
@@ -119,8 +119,8 @@ std::shared_ptr<ItemInstance> EnchantedBookItem::createForRandomLoot(
     Random* random) {
     Enchantment* enchantment = Enchantment::validEnchantments[random->nextInt(
         Enchantment::validEnchantments.size())];
-    shared_ptr<ItemInstance> book =
-        shared_ptr<ItemInstance>(new ItemInstance(id, 1, 0));
+    std::shared_ptr<ItemInstance> book =
+        std::shared_ptr<ItemInstance>(new ItemInstance(id, 1, 0));
     int level = Mth::nextInt(random, enchantment->getMinLevel(),
                              enchantment->getMaxLevel());
 
@@ -139,8 +139,8 @@ WeighedTreasure* EnchantedBookItem::createForRandomTreasure(Random* random,
                                                             int weight) {
     Enchantment* enchantment = Enchantment::validEnchantments[random->nextInt(
         Enchantment::validEnchantments.size())];
-    shared_ptr<ItemInstance> book =
-        shared_ptr<ItemInstance>(new ItemInstance(id, 1, 0));
+    std::shared_ptr<ItemInstance> book =
+        std::shared_ptr<ItemInstance>(new ItemInstance(id, 1, 0));
     int level = Mth::nextInt(random, enchantment->getMinLevel(),
                              enchantment->getMaxLevel());
 

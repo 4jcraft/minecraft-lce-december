@@ -29,7 +29,7 @@ void EggTile::checkSlide(Level* level, int x, int y, int z) {
                 level->setTileAndData(x, y, z, id, 0, Tile::UPDATE_CLIENTS);
             }
         } else {
-            shared_ptr<FallingTile> e = shared_ptr<FallingTile>(
+            std::shared_ptr<FallingTile> e = std::shared_ptr<FallingTile>(
                 new FallingTile(level, x + 0.5f, y + 0.5f, z + 0.5f, id));
             level->addEntity(e);
         }

@@ -25,7 +25,7 @@ NetherBridgeFeature::~NetherBridgeFeature() {
 
 std::wstring NetherBridgeFeature::getFeatureName() { return L"Fortress"; }
 
-vector<Biome::MobSpawnerData*>* NetherBridgeFeature::getBridgeEnemies() {
+std::vector<Biome::MobSpawnerData*>* NetherBridgeFeature::getBridgeEnemies() {
     return &bridgeEnemies;
 }
 
@@ -107,7 +107,7 @@ NetherBridgeFeature::NetherBridgeStart::NetherBridgeStart(Level* level,
     pieces.push_back(start);
     start->addChildren(start, &pieces, random);
 
-    vector<StructurePiece*>* pendingChildren = &start->pendingChildren;
+    std::vector<StructurePiece*>* pendingChildren = &start->pendingChildren;
     while (!pendingChildren->empty()) {
         int pos = random->nextInt((int)pendingChildren->size());
         AUTO_VAR(it, pendingChildren->begin() + pos);

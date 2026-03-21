@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class SetHealthPacket : public Packet,
-                        public enable_shared_from_this<SetHealthPacket> {
+                        public std::enable_shared_from_this<SetHealthPacket> {
 public:
     float health;
     int food;

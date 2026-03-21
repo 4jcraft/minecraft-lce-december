@@ -62,7 +62,7 @@ public:
     }                                                           // 4J Added
     TexturePack* getDefault() { return DEFAULT_TEXTURE_PACK; }  // 4J Added
 
-    std::vector<pair<DWORD, std::wstring> >* getTexturePackIdNames();
+    std::vector<std::pair<DWORD, std::wstring> >* getTexturePackIdNames();
     bool selectTexturePackById(DWORD id);       // 4J Added
     TexturePack* getTexturePackById(DWORD id);  // 4J Added
 

@@ -7,11 +7,11 @@
 
 bool ArmorDyeRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
                              Level* level) {
-    shared_ptr<ItemInstance> target = nullptr;
-    vector<shared_ptr<ItemInstance> > dyes;
+    std::shared_ptr<ItemInstance> target = nullptr;
+    std::vector<std::shared_ptr<ItemInstance> > dyes;
 
     for (int slot = 0; slot < craftSlots->getContainerSize(); slot++) {
-        shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
+        std::shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
         if (item == NULL) continue;
 
         ArmorItem* armor = dynamic_cast<ArmorItem*>(item->getItem());
@@ -34,7 +34,7 @@ bool ArmorDyeRecipe::matches(std::shared_ptr<CraftingContainer> craftSlots,
 
 std::shared_ptr<ItemInstance> ArmorDyeRecipe::assembleDyedArmor(
     std::shared_ptr<CraftingContainer> craftSlots) {
-    shared_ptr<ItemInstance> target = nullptr;
+    std::shared_ptr<ItemInstance> target = nullptr;
     int colorTotals[3] = {0, 0, 0};
     int intensityTotal = 0;
     int colourCounts = 0;
@@ -42,7 +42,7 @@ std::shared_ptr<ItemInstance> ArmorDyeRecipe::assembleDyedArmor(
 
     if (craftSlots != NULL) {
         for (int slot = 0; slot < craftSlots->getContainerSize(); slot++) {
-            shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
+            std::shared_ptr<ItemInstance> item = craftSlots->getItem(slot);
             if (item == NULL) continue;
 
             armor = dynamic_cast<ArmorItem*>(item->getItem());
@@ -146,7 +146,7 @@ void ArmorDyeRecipe::requires(INGREDIENTS_REQUIRED* pIngReq) {
 #if 0
 	AUTO_VAR(citEnd, ingredients->end());
 
-	for (vector<ItemInstance *>::const_iterator ingredient = ingredients->begin(); ingredient != citEnd; ingredient++)
+	for (std::vector<ItemInstance *>::const_iterator ingredient = ingredients->begin(); ingredient != citEnd; ingredient++)
 	{
 		ItemInstance *expected = *ingredient;
 

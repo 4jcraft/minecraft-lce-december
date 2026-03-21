@@ -15,8 +15,8 @@ private:
     };
 
 private:
-    vector<InternalGoal*> goals;
-    vector<InternalGoal*> usingGoals;
+    std::vector<InternalGoal*> goals;
+    std::vector<InternalGoal*> usingGoals;
     int tickCount;
     int newGoalRate;
 
@@ -28,7 +28,7 @@ public:
     void addGoal(int prio, Goal* goal, bool canDeletePointer = true);
     void removeGoal(Goal* toRemove);
     void tick();
-    vector<InternalGoal*>* getRunningGoals();
+    std::vector<InternalGoal*>* getRunningGoals();
 
 private:
     bool canContinueToUse(InternalGoal* ig);

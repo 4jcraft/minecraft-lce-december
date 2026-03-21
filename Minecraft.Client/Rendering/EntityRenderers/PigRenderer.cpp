@@ -14,7 +14,7 @@ int PigRenderer::prepareArmor(std::shared_ptr<LivingEntity> _pig, int layer,
                               float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(_pig);
+    std::shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(_pig);
 
     if (layer == 0 && pig->hasSaddle()) {
         MemSect(31);

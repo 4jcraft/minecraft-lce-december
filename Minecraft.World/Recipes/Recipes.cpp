@@ -924,7 +924,7 @@ Recipes::Recipes() {
 // 4J-PB - this function has been substantially changed due to the differences
 // with a va_list of classes in C++ and Java
 ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
-    wstring map = L"";
+    std::wstring map = L"";
     int p = 0;
     int width = 0;
     int height = 0;
@@ -932,8 +932,8 @@ ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
     va_list vl;
     wchar_t* wchTypes;
     wchar_t* pwchString;
-    wstring wString;
-    wstring* wStringA;
+    std::wstring wString;
+    std::wstring* wStringA;
     ItemInstance* pItemInstance;
     Tile* pTile;
     Item* pItem;
@@ -941,7 +941,7 @@ ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
     int iCount;
     ItemInstance** ids = NULL;
 
-    myMap* mappings = new unordered_map<wchar_t, ItemInstance*>();
+    myMap* mappings = new std::unordered_map<wchar_t, ItemInstance*>();
 
     va_start(vl, result);
     // 4J-PB - second argument is a list of the types
@@ -978,7 +978,7 @@ ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
                 map += wString;
                 break;
             case L'w':
-                wStringA = va_arg(vl, wstring*);
+                wStringA = va_arg(vl, std::wstring*);
                 iCount = 0;
                 do {
                     wString = wStringA[iCount++];
@@ -1062,13 +1062,13 @@ ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
 void Recipes::addShapelessRecipy(ItemInstance* result, ...) {
     va_list vl;
     wchar_t* szTypes;
-    wstring String;
+    std::wstring String;
     ItemInstance* pItemInstance;
     Tile* pTile;
     Item* pItem;
     Recipy::_eGroupType group = Recipy::eGroupType_Decoration;
     wchar_t wchFrom;
-    vector<ItemInstance*>* ingredients = new vector<ItemInstance*>();
+    std::vector<ItemInstance*>* ingredients = new std::vector<ItemInstance*>();
 
     va_start(vl, result);
     // 4J-PB - second argument is a list of the types
@@ -1132,10 +1132,10 @@ std::shared_ptr<ItemInstance> Recipes::getItemFor(
     std::shared_ptr<CraftingContainer> craftSlots, Level* level,
     Recipy* recipesClass /*= NULL*/) {
     int count = 0;
-    shared_ptr<ItemInstance> first = nullptr;
-    shared_ptr<ItemInstance> second = nullptr;
+    std::shared_ptr<ItemInstance> first = nullptr;
+    std::shared_ptr<ItemInstance> second = nullptr;
     for (int i = 0; i < craftSlots->getContainerSize(); i++) {
-        shared_ptr<ItemInstance> item = craftSlots->getItem(i);
+        std::shared_ptr<ItemInstance> item = craftSlots->getItem(i);
         if (item != NULL) {
             if (count == 0) first = item;
             if (count == 1) second = item;
@@ -1152,7 +1152,7 @@ std::shared_ptr<ItemInstance> Recipes::getItemFor(
             (remaining1 + remaining2) + item->getMaxDamage() * 5 / 100;
         int resultDamage = item->getMaxDamage() - remaining;
         if (resultDamage < 0) resultDamage = 0;
-        return shared_ptr<ItemInstance>(
+        return std::shared_ptr<ItemInstance>(
             new ItemInstance(first->id, 1, resultDamage));
     }
 
@@ -1169,7 +1169,7 @@ std::shared_ptr<ItemInstance> Recipes::getItemFor(
     return nullptr;
 }
 
-vector<Recipy*>* Recipes::getRecipies() { return recipies; }
+std::vector<Recipy*>* Recipes::getRecipies() { return recipies; }
 
 // 4J-PB - added to deal with Xb0x 'crafting'
 std::shared_ptr<ItemInstance> Recipes::getItemForRecipe(Recipy* r) {

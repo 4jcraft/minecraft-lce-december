@@ -56,7 +56,7 @@ protected:
     GoalSelector targetSelector;
 
 private:
-    shared_ptr<LivingEntity> target;
+    std::shared_ptr<LivingEntity> target;
     Sensing* sensing;
 
     ItemInstanceArray equipment;
@@ -85,8 +85,8 @@ public:
     virtual JumpControl* getJumpControl();
     virtual PathNavigation* getNavigation();
     virtual Sensing* getSensing();
-    shared_ptr<LivingEntity> getTarget();
-    virtual void setTarget(shared_ptr<LivingEntity> target);
+    std::shared_ptr<LivingEntity> getTarget();
+    virtual void setTarget(std::shared_ptr<LivingEntity> target);
     virtual bool canAttackType(eINSTANCEOF targetType);
     virtual void ate();
 
@@ -99,7 +99,7 @@ public:
     virtual void baseTick();
 
 protected:
-    virtual int getExperienceReward(shared_ptr<Player> killedBy);
+    virtual int getExperienceReward(std::shared_ptr<Player> killedBy);
 
 public:
     virtual void spawnAnim();
@@ -128,7 +128,7 @@ protected:
     virtual bool removeWhenFarAway();
 
 private:
-    shared_ptr<Entity> lookingAt;
+    std::shared_ptr<Entity> lookingAt;
 
 protected:
     int lookTime;
@@ -141,9 +141,9 @@ public:
     virtual int getMaxHeadXRot();
 
 protected:
-    void lookAt(shared_ptr<Entity> e, float yMax, float xMax);
+    void lookAt(std::shared_ptr<Entity> e, float yMax, float xMax);
     bool isLookingAtAnEntity();
-    shared_ptr<Entity> getLookingAt();
+    std::shared_ptr<Entity> getLookingAt();
 
 private:
     float rotlerp(float a, float b, float max);
@@ -154,10 +154,10 @@ public:
     virtual float getHeadSizeScale();
     virtual int getMaxSpawnClusterSize();
     virtual int getMaxFallDistance();
-    virtual shared_ptr<ItemInstance> getCarriedItem();
-    virtual shared_ptr<ItemInstance> getCarried(int slot);
-    virtual shared_ptr<ItemInstance> getArmor(int pos);
-    virtual void setEquippedSlot(int slot, shared_ptr<ItemInstance> item);
+    virtual std::shared_ptr<ItemInstance> getCarriedItem();
+    virtual std::shared_ptr<ItemInstance> getCarried(int slot);
+    virtual std::shared_ptr<ItemInstance> getArmor(int pos);
+    virtual void setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item);
     virtual ItemInstanceArray getEquipmentSlots();
 
 protected:
@@ -165,7 +165,7 @@ protected:
     virtual void populateDefaultEquipmentSlots();
 
 public:
-    static int getEquipmentSlotForItem(shared_ptr<ItemInstance> item);
+    static int getEquipmentSlotForItem(std::shared_ptr<ItemInstance> item);
     static Item* getEquipmentForSlot(int slot, int type);
 
 protected:
@@ -197,16 +197,16 @@ public:
     virtual bool canPickUpLoot();
     virtual void setCanPickUpLoot(bool canPickUpLoot);
     virtual bool isPersistenceRequired();
-    virtual bool interact(shared_ptr<Player> player);
+    virtual bool interact(std::shared_ptr<Player> player);
 
 protected:
-    virtual bool mobInteract(shared_ptr<Player> player);
+    virtual bool mobInteract(std::shared_ptr<Player> player);
 
     // roper / leash methods
 
 private:
     bool _isLeashed;
-    shared_ptr<Entity> leashHolder;
+    std::shared_ptr<Entity> leashHolder;
     CompoundTag* leashInfoTag;
 
 protected:
@@ -216,8 +216,8 @@ public:
     virtual void dropLeash(bool synch, bool createItemDrop);
     virtual bool canBeLeashed();
     virtual bool isLeashed();
-    virtual shared_ptr<Entity> getLeashHolder();
-    virtual void setLeashedTo(shared_ptr<Entity> holder, bool synch);
+    virtual std::shared_ptr<Entity> getLeashHolder();
+    virtual void setLeashedTo(std::shared_ptr<Entity> holder, bool synch);
 
 private:
     virtual void restoreLeashFromSave();

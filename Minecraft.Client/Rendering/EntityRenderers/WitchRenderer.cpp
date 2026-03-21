@@ -13,9 +13,9 @@ WitchRenderer::WitchRenderer() : MobRenderer(new WitchModel(0), 0.5f) {
 
 void WitchRenderer::render(std::shared_ptr<Entity> entity, double x, double y,
                            double z, float rot, float a) {
-    shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
+    std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
 
-    shared_ptr<ItemInstance> item = mob->getCarriedItem();
+    std::shared_ptr<ItemInstance> item = mob->getCarriedItem();
 
     witchModel->holdingItem = item != NULL;
     MobRenderer::render(mob, x, y, z, rot, a);
@@ -28,7 +28,7 @@ ResourceLocation* WitchRenderer::getTextureLocation(
 
 void WitchRenderer::additionalRendering(std::shared_ptr<LivingEntity> entity,
                                         float a) {
-    shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
+    std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
 
     float brightness =
         SharedConstants::TEXTURE_LIGHTING ? 1 : mob->getBrightness(a);
@@ -36,7 +36,7 @@ void WitchRenderer::additionalRendering(std::shared_ptr<LivingEntity> entity,
 
     MobRenderer::additionalRendering(mob, a);
 
-    shared_ptr<ItemInstance> item = mob->getCarriedItem();
+    std::shared_ptr<ItemInstance> item = mob->getCarriedItem();
 
     if (item != NULL) {
         glPushMatrix();

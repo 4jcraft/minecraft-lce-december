@@ -14,7 +14,7 @@ protected:
 public:
     DirectoryLevelStorageSource(const File dir);
     virtual std::wstring getName();
-    virtual vector<LevelSummary*>* getLevelList();
+    virtual std::vector<LevelSummary*>* getLevelList();
     virtual void clearAll();
     virtual LevelData* getDataTagFor(ConsoleSaveFile* saveFile,
                                      const std::wstring& levelId);
@@ -24,7 +24,7 @@ public:
     virtual void deleteLevel(const std::wstring& levelId);
 
 protected:
-    static void deleteRecursive(vector<File*>* files);
+    static void deleteRecursive(std::vector<File*>* files);
 
 public:
     virtual std::shared_ptr<LevelStorage> selectLevel(

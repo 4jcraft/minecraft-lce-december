@@ -22,7 +22,7 @@ AttributeInstance* BaseAttributeMap::getInstance(eATTRIBUTE_ID id) {
     }
 }
 
-void BaseAttributeMap::getAttributes(vector<AttributeInstance*>& atts) {
+void BaseAttributeMap::getAttributes(std::vector<AttributeInstance*>& atts) {
     for (AUTO_VAR(it, attributesById.begin()); it != attributesById.end();
          ++it) {
         atts.push_back(it->second);

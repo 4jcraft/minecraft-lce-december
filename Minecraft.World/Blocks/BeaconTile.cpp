@@ -10,7 +10,7 @@ BeaconTile::BeaconTile(int id)
 }
 
 std::shared_ptr<TileEntity> BeaconTile::newTileEntity(Level* level) {
-    return shared_ptr<BeaconTileEntity>(new BeaconTileEntity());
+    return std::shared_ptr<BeaconTileEntity>(new BeaconTileEntity());
 }
 
 bool BeaconTile::use(Level* level, int x, int y, int z,
@@ -18,7 +18,7 @@ bool BeaconTile::use(Level* level, int x, int y, int z,
                      float clickX, float clickY, float clickZ, bool soundOnly) {
     if (level->isClientSide) return true;
 
-    shared_ptr<BeaconTileEntity> beacon =
+    std::shared_ptr<BeaconTileEntity> beacon =
         dynamic_pointer_cast<BeaconTileEntity>(level->getTileEntity(x, y, z));
     if (beacon != NULL) player->openBeacon(beacon);
 

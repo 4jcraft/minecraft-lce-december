@@ -4,7 +4,7 @@
 
 class PlayerCommandPacket
     : public Packet,
-      public enable_shared_from_this<PlayerCommandPacket> {
+      public std::enable_shared_from_this<PlayerCommandPacket> {
 public:
     static const int START_SNEAKING;
     static const int STOP_SNEAKING;

@@ -20,7 +20,7 @@ SpawnEggItem::SpawnEggItem(int id) : Item(id) {
 
 std::wstring SpawnEggItem::getHoverName(
     std::shared_ptr<ItemInstance> itemInstance) {
-    wstring elementName = getDescription();
+    std::wstring elementName = getDescription();
 
     int nameId = EntityIO::getNameId(itemInstance->getAuxValue());
     if (nameId >= 0) {
@@ -61,7 +61,7 @@ Icon* SpawnEggItem::getLayerIcon(int auxValue, int spriteLayer) {
 // 4J-PB - added for dispenser
 std::shared_ptr<Entity> SpawnEggItem::canSpawn(int iAuxVal, Level* level,
                                                int* piResult) {
-    shared_ptr<Entity> newEntity = EntityIO::newById(iAuxVal, level);
+    std::shared_ptr<Entity> newEntity = EntityIO::newById(iAuxVal, level);
     if (newEntity != NULL) {
         bool canSpawn = false;
 
@@ -169,7 +169,7 @@ bool SpawnEggItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
         level->removeTile(x, y, z);
         level->setTileAndData(x, y, z, Tile::mobSpawner_Id, 0,
                               Tile::UPDATE_ALL);
-        shared_ptr<MobSpawnerTileEntity> mste =
+        std::shared_ptr<MobSpawnerTileEntity> mste =
             dynamic_pointer_cast<MobSpawnerTileEntity>(
                 level->getTileEntity(x, y, z));
         if (mste != NULL) {
@@ -193,7 +193,7 @@ bool SpawnEggItem::useOn(std::shared_ptr<ItemInstance> itemInstance,
     }
 
     int iResult = 0;
-    shared_ptr<Entity> result = spawnMobAt(level, itemInstance->getAuxValue(),
+    std::shared_ptr<Entity> result = spawnMobAt(level, itemInstance->getAuxValue(),
                                            x + .5, y + yOff, z + .5, &iResult);
 
     if (bTestUseOnOnly) {
@@ -243,7 +243,7 @@ std::shared_ptr<ItemInstance> SpawnEggItem::use(
 
         if (level->getMaterial(xt, yt, zt) == Material::water) {
             int iResult = 0;
-            shared_ptr<Entity> result = spawnMobAt(
+            std::shared_ptr<Entity> result = spawnMobAt(
                 level, itemInstance->getAuxValue(), xt, yt, zt, &iResult);
             if (result != NULL) {
                 // 4J-JEV: SetCustomName is a method for Mob not LivingEntity;
@@ -279,7 +279,7 @@ std::shared_ptr<Entity> SpawnEggItem::spawnMobAt(Level* level, int auxVal,
         return nullptr;
     }
 
-    shared_ptr<Entity> newEntity = nullptr;
+    std::shared_ptr<Entity> newEntity = nullptr;
 
     for (int i = 0; i < SPAWN_COUNT; i++) {
         newEntity = canSpawn(mobId, level, piResult);
@@ -287,7 +287,7 @@ std::shared_ptr<Entity> SpawnEggItem::spawnMobAt(Level* level, int auxVal,
         // 4J-JEV: DynCasting to Mob not LivingEntity; so change instanceof to
         // check for Mobs.
         if (newEntity != NULL && newEntity->instanceof(eTYPE_MOB)) {
-            shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(newEntity);
+            std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(newEntity);
             newEntity->moveTo(
                 x, y, z, Mth::wrapDegrees(level->random->nextFloat() * 360), 0);
             newEntity->setDespawnProtected();  // 4J added, default to being

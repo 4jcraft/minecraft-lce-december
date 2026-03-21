@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class LevelSoundPacket : public Packet,
-                         public enable_shared_from_this<LevelSoundPacket> {
+                         public std::enable_shared_from_this<LevelSoundPacket> {
 public:
     static const float PITCH_ACCURACY;
     static const float LOCATION_ACCURACY;

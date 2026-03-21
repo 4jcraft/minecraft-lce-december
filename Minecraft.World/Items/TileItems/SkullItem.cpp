@@ -50,12 +50,12 @@ bool SkullItem::useOn(
             rot = Mth::floor(((player->yRot) * 16) / 360 + 0.5) & 15;
         }
 
-        shared_ptr<TileEntity> skullTE = level->getTileEntity(x, y, z);
-        shared_ptr<SkullTileEntity> skull =
+        std::shared_ptr<TileEntity> skullTE = level->getTileEntity(x, y, z);
+        std::shared_ptr<SkullTileEntity> skull =
             dynamic_pointer_cast<SkullTileEntity>(skullTE);
 
         if (skull != NULL) {
-            wstring extra = L"";
+            std::wstring extra = L"";
             if (instance->hasTag() &&
                 instance->getTag()->contains(L"SkullOwner")) {
                 extra = instance->getTag()->getString(L"SkullOwner");

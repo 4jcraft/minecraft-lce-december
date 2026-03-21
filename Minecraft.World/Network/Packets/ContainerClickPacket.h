@@ -4,7 +4,7 @@
 
 class ContainerClickPacket
     : public Packet,
-      public enable_shared_from_this<ContainerClickPacket> {
+      public std::enable_shared_from_this<ContainerClickPacket> {
 public:
     int containerId;
     int slotNum;

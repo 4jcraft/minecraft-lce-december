@@ -49,6 +49,6 @@ std::wstring Score::getOwner() { return owner; }
 
 Scoreboard* Score::getScoreboard() { return scoreboard; }
 
-void Score::updateFor(vector<shared_ptr<Player> >* players) {
+void Score::updateFor(std::vector<std::shared_ptr<Player> >* players) {
     setScore(objective->getCriteria()->getScoreModifier(players));
 }

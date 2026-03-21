@@ -59,16 +59,16 @@ void ServersideAttributeMap::onAttributeModified(
     }
 }
 
-unordered_set<AttributeInstance*>*
+std::unordered_set<AttributeInstance*>*
 ServersideAttributeMap::getDirtyAttributes() {
     return &dirtyAttributes;
 }
 
-unordered_set<AttributeInstance*>*
+std::unordered_set<AttributeInstance*>*
 ServersideAttributeMap::getSyncableAttributes() {
-    unordered_set<AttributeInstance*>* result =
-        new unordered_set<AttributeInstance*>();
-    vector<AttributeInstance*> atts;
+    std::unordered_set<AttributeInstance*>* result =
+        new std::unordered_set<AttributeInstance*>();
+    std::vector<AttributeInstance*> atts;
     getAttributes(atts);
     for (int i = 0; i < atts.size(); i++) {
         AttributeInstance* instance = atts.at(i);

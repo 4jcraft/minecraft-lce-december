@@ -52,7 +52,7 @@ void WaterLevelChunk::skyBrightnessChanged() {}
 
 std::shared_ptr<TileEntity> WaterLevelChunk::getTileEntity(int x, int y,
                                                            int z) {
-    return shared_ptr<TileEntity>();
+    return std::shared_ptr<TileEntity>();
 }
 
 void WaterLevelChunk::addTileEntity(std::shared_ptr<TileEntity> te) {}
@@ -72,10 +72,10 @@ bool WaterLevelChunk::containsPlayer() { return false; }
 void WaterLevelChunk::markUnsaved() {}
 
 void WaterLevelChunk::getEntities(std::shared_ptr<Entity> except, AABB bb,
-                                  vector<shared_ptr<Entity> >& es) {}
+                                  std::vector<std::shared_ptr<Entity> >& es) {}
 
 void WaterLevelChunk::getEntitiesOfClass(const std::type_info& ec, AABB bb,
-                                         vector<shared_ptr<Entity> >& es) {}
+                                         std::vector<std::shared_ptr<Entity> >& es) {}
 
 int WaterLevelChunk::countEntities() { return 0; }
 

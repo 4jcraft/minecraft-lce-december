@@ -9,7 +9,7 @@ private:
     std::wstring stringName;
     int size;
     ItemInstanceArray* items;
-    vector<net_minecraft_world::ContainerListener*>* listeners;
+    std::vector<net_minecraft_world::ContainerListener*>* listeners;
     bool customName;
 
 public:

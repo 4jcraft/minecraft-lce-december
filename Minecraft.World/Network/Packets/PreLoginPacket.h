@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class PreLoginPacket : public Packet,
-                       public enable_shared_from_this<PreLoginPacket> {
+                       public std::enable_shared_from_this<PreLoginPacket> {
     // the login key is username client->server and sessionid server->client
 public:
     static const int m_iSaveNameLen = 14;

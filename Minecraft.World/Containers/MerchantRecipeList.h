@@ -16,13 +16,13 @@ public:
     MerchantRecipeList(CompoundTag* tag);
     ~MerchantRecipeList();
 
-    MerchantRecipe* getRecipeFor(shared_ptr<ItemInstance> buyA,
-                                 shared_ptr<ItemInstance> buyB,
+    MerchantRecipe* getRecipeFor(std::shared_ptr<ItemInstance> buyA,
+                                 std::shared_ptr<ItemInstance> buyB,
                                  int selectionHint);
     bool addIfNewOrBetter(MerchantRecipe* recipe);  // 4J Added bool return
-    MerchantRecipe* getMatchingRecipeFor(shared_ptr<ItemInstance> buy,
-                                         shared_ptr<ItemInstance> buyB,
-                                         shared_ptr<ItemInstance> sell);
+    MerchantRecipe* getMatchingRecipeFor(std::shared_ptr<ItemInstance> buy,
+                                         std::shared_ptr<ItemInstance> buyB,
+                                         std::shared_ptr<ItemInstance> sell);
     void writeToStream(DataOutputStream* stream);
     static MerchantRecipeList* createFromStream(DataInputStream* stream);
     void load(CompoundTag* tag);

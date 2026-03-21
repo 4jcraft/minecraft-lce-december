@@ -6,7 +6,7 @@ class Abilities;
 
 class PlayerAbilitiesPacket
     : public Packet,
-      public enable_shared_from_this<PlayerAbilitiesPacket> {
+      public std::enable_shared_from_this<PlayerAbilitiesPacket> {
 private:
     static const int FLAG_INVULNERABLE = 1 << 0;
     static const int FLAG_FLYING = 1 << 1;

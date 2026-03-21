@@ -218,7 +218,7 @@ void PathfinderMob::checkHurtTarget(std::shared_ptr<Entity> target, float d) {}
 float PathfinderMob::getWalkTargetValue(int x, int y, int z) { return 0; }
 
 std::shared_ptr<Entity> PathfinderMob::findAttackTarget() {
-    return shared_ptr<Entity>();
+    return std::shared_ptr<Entity>();
 }
 
 bool PathfinderMob::canSpawn() {
@@ -272,13 +272,13 @@ void PathfinderMob::tickLeash() {
     if (isLeashed() && getLeashHolder() != NULL &&
         getLeashHolder()->level == this->level) {
         // soft restriction
-        shared_ptr<Entity> leashHolder = getLeashHolder();
+        std::shared_ptr<Entity> leashHolder = getLeashHolder();
         restrictTo((int)leashHolder->x, (int)leashHolder->y,
                    (int)leashHolder->z, 5);
 
         float _distanceTo = distanceTo(leashHolder);
 
-        shared_ptr<TamableAnimal> tamabaleAnimal =
+        std::shared_ptr<TamableAnimal> tamabaleAnimal =
             shared_from_this()->instanceof(eTYPE_TAMABLE_ANIMAL)
                 ? dynamic_pointer_cast<TamableAnimal>(shared_from_this())
                 : nullptr;

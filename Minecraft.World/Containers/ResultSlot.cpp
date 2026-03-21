@@ -77,13 +77,13 @@ void ResultSlot::onTake(std::shared_ptr<Player> player,
     checkTakeAchievements(carried);
 
     for (unsigned int i = 0; i < craftSlots->getContainerSize(); i++) {
-        shared_ptr<ItemInstance> item = craftSlots->getItem(i);
+        std::shared_ptr<ItemInstance> item = craftSlots->getItem(i);
         if (item != NULL) {
             craftSlots->removeItem(i, 1);
 
             if (item->getItem()->hasCraftingRemainingItem()) {
-                shared_ptr<ItemInstance> craftResult =
-                    shared_ptr<ItemInstance>(new ItemInstance(
+                std::shared_ptr<ItemInstance> craftResult =
+                    std::shared_ptr<ItemInstance>(new ItemInstance(
                         item->getItem()->getCraftingRemainingItem()));
 
                 /*

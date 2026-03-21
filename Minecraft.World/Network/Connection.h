@@ -52,12 +52,12 @@ private:
 
     bool running;
 
-    queue<shared_ptr<Packet> > incoming;  // 4J - was using synchronizedList...
+    std::queue<std::shared_ptr<Packet> > incoming;  // 4J - was using synchronizedList...
     CRITICAL_SECTION incoming_cs;         // ... now has this critical section
-    queue<shared_ptr<Packet> >
+    std::queue<std::shared_ptr<Packet> >
         outgoing;  // 4J - was using synchronizedList - but don't think it is
                    // required as usage is wrapped in writeLock critical section
-    queue<shared_ptr<Packet> >
+    std::queue<std::shared_ptr<Packet> >
         outgoing_slow;  // 4J - was using synchronizedList - but don't think it
                         // is required as usage is wrapped in writeLock critical
                         // section
@@ -113,7 +113,7 @@ private:
     bool writeTick();
 
 public:
-    void flush();
+    void std::flush();
 
 private:
     bool readTick();

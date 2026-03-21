@@ -79,7 +79,7 @@ void Painting::PaintingPostConstructor(int dir, int motive) {
     } else
 #endif
     {
-        vector<Motive*>* survivableMotives = new vector<Motive*>();
+        std::vector<Motive*>* survivableMotives = new std::vector<Motive*>();
         for (int i = 0; i < LAST_VALUE; i++) {
             this->motive = (Motive*)Motive::values[i];
             setDir(dir);
@@ -117,8 +117,8 @@ void Painting::addAdditonalSaveData(CompoundTag* tag) {
 }
 
 void Painting::readAdditionalSaveData(CompoundTag* tag) {
-    wstring motiveName = tag->getString(L"Motive");
-    vector<Motive*>::iterator it;
+    std::wstring motiveName = tag->getString(L"Motive");
+    std::vector<Motive*>::iterator it;
     for (int i = 0; i < LAST_VALUE; i++) {
         if (Motive::values[i]->name.compare(motiveName) == 0) {
             this->motive = (Motive*)Motive::values[i];
@@ -135,12 +135,12 @@ int Painting::getHeight() { return motive->h; }
 
 void Painting::dropItem(std::shared_ptr<Entity> causedBy) {
     if ((causedBy != NULL) && causedBy->instanceof(eTYPE_PLAYER)) {
-        shared_ptr<Player> player = dynamic_pointer_cast<Player>(causedBy);
+        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(causedBy);
         if (player->abilities.instabuild) {
             return;
         }
     }
 
-    spawnAtLocation(shared_ptr<ItemInstance>(new ItemInstance(Item::painting)),
+    spawnAtLocation(std::shared_ptr<ItemInstance>(new ItemInstance(Item::painting)),
                     0.0f);
 }

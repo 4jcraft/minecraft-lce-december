@@ -570,7 +570,7 @@ bool CGameNetworkManager::StartNetworkGame(Minecraft* minecraft,
                         idx, CONTEXT_PRESENCE_MULTIPLAYER, false);
             } else {
                 connection->close();
-                AUTO_VAR(it, find(createdConnections.begin(),
+                AUTO_VAR(it, std::find(createdConnections.begin(),
                                   createdConnections.end(), connection));
                 if (it != createdConnections.end())
                     createdConnections.erase(it);

@@ -162,7 +162,7 @@ DamageSource::DamageSource(ChatPacket::EChatPacketMessage msgId,
 std::shared_ptr<Entity> DamageSource::getDirectEntity() { return getEntity(); }
 
 std::shared_ptr<Entity> DamageSource::getEntity() {
-    return shared_ptr<Entity>();
+    return std::shared_ptr<Entity>();
 }
 
 DamageSource* DamageSource::bypassArmor() {
@@ -204,15 +204,15 @@ DamageSource* DamageSource::setMagic() {
 
 std::shared_ptr<ChatPacket> DamageSource::getDeathMessagePacket(
     std::shared_ptr<LivingEntity> player) {
-    shared_ptr<LivingEntity> source = player->getKillCredit();
+    std::shared_ptr<LivingEntity> source = player->getKillCredit();
     if (source != NULL) {
-        return shared_ptr<ChatPacket>(new ChatPacket(
+        return std::shared_ptr<ChatPacket>(new ChatPacket(
             player->getNetworkName(),
             m_msgWithItemId != ChatPacket::e_ChatCustom ? m_msgWithItemId
                                                         : m_msgId,
             source->GetType(), source->getNetworkName()));
     } else {
-        return shared_ptr<ChatPacket>(
+        return std::shared_ptr<ChatPacket>(
             new ChatPacket(player->getNetworkName(), m_msgId));
     }
 }

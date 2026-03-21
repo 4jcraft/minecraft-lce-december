@@ -66,10 +66,10 @@ bool HorseInventoryMenu::stillValid(std::shared_ptr<Player> player) {
 
 std::shared_ptr<ItemInstance> HorseInventoryMenu::quickMoveStack(
     std::shared_ptr<Player> player, int slotIndex) {
-    shared_ptr<ItemInstance> clicked = nullptr;
+    std::shared_ptr<ItemInstance> clicked = nullptr;
     Slot* slot = slots.at(slotIndex);
     if (slot != NULL && slot->hasItem()) {
-        shared_ptr<ItemInstance> stack = slot->getItem();
+        std::shared_ptr<ItemInstance> stack = slot->getItem();
         clicked = stack->copy();
 
         if (slotIndex < horseContainer->getContainerSize()) {

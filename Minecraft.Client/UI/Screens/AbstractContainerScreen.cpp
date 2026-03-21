@@ -71,7 +71,7 @@ void AbstractContainerScreen::render(int xm, int ym, float a) {
         }
     }
 
-    shared_ptr<Inventory> inventory = minecraft->player->inventory;
+    std::shared_ptr<Inventory> inventory = minecraft->player->inventory;
     if (inventory->getCarried() != NULL)
 	{
         glTranslatef(0, 0, 32);
@@ -92,7 +92,7 @@ void AbstractContainerScreen::render(int xm, int ym, float a) {
     if (inventory->getCarried() == NULL && hoveredSlot != NULL && hoveredSlot->hasItem())
 	{
 
-        wstring elementName = trimString(Language::getInstance()->getElementName(hoveredSlot->getItem()->getDescriptionId()));
+        std::wstring elementName = trimString(Language::getInstance()->getElementName(hoveredSlot->getItem()->getDescriptionId()));
 
         if (elementName.length() > 0)
 		{
@@ -121,7 +121,7 @@ void AbstractContainerScreen::renderSlot(Slot* slot) {
 #if 0
     int x = slot->x;
     int y = slot->y;
-    shared_ptr<ItemInstance> item = slot->getItem();
+    std::shared_ptr<ItemInstance> item = slot->getItem();
 
     if (item == NULL)
 	{

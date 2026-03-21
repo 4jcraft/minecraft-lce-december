@@ -9,7 +9,7 @@ NbtSlotFile::NbtSlotFile(File file) {
     totalFileSlots = 0;
     fileSlotMapLength =
         ZonedChunkStorage::CHUNKS_PER_ZONE * ZonedChunkStorage::CHUNKS_PER_ZONE;
-    fileSlotMap = new vector<int>*[fileSlotMapLength];
+    fileSlotMap = new std::vector<int>*[fileSlotMapLength];
 
     if (!file.exists() || file.length()) {
         raf = CreateFile(wstringtofilename(file.getPath()),
@@ -25,7 +25,7 @@ NbtSlotFile::NbtSlotFile(File file) {
     readHeader();
 
     for (int i = 0; i < fileSlotMapLength; i++) {
-        fileSlotMap[i] = new vector<int>;
+        fileSlotMap[i] = new std::vector<int>;
     }
 
     DWORD numberofBytesRead;
@@ -78,10 +78,10 @@ void NbtSlotFile::seekSlot(int fileSlot) {
     SetFilePointer(raf, target + FILE_SLOT_HEADER_SIZE, 0, FILE_BEGIN);
 }
 
-vector<CompoundTag*>* NbtSlotFile::readAll(int slot) {
+std::vector<CompoundTag*>* NbtSlotFile::readAll(int slot) {
     DWORD numberOfBytesRead;
-    vector<CompoundTag*>* tags = new vector<CompoundTag*>;
-    vector<int>* fileSlots = fileSlotMap[slot];
+    std::vector<CompoundTag*>* tags = new std::vector<CompoundTag*>;
+    std::vector<int>* fileSlots = fileSlotMap[slot];
     int skipped = 0;
 
     AUTO_VAR(itEnd, fileSlots->end());
@@ -150,10 +150,10 @@ int NbtSlotFile::getFreeSlot() {
 
     return fileSlot;
 }
-void NbtSlotFile::replaceSlot(int slot, vector<CompoundTag*>* tags) {
+void NbtSlotFile::replaceSlot(int slot, std::vector<CompoundTag*>* tags) {
     DWORD numberOfBytesWritten;
     toReplace = fileSlotMap[slot];
-    fileSlotMap[slot] = new vector<int>();
+    fileSlotMap[slot] = new std::vector<int>();
 
     AUTO_VAR(itEndTags, tags->end());
     for (AUTO_VAR(it, tags->begin()); it != itEndTags; it++) {

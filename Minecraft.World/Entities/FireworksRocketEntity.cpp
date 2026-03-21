@@ -108,7 +108,7 @@ void FireworksRocketEntity::tick() {
 
 void FireworksRocketEntity::handleEntityEvent(byte eventId) {
     if (eventId == EntityEvent::FIREWORKS_EXPLODE && level->isClientSide) {
-        shared_ptr<ItemInstance> sourceItem =
+        std::shared_ptr<ItemInstance> sourceItem =
             entityData->getItemInstance(DATA_ID_FIREWORKS_ITEM);
         CompoundTag* tag = NULL;
         if (sourceItem != NULL && sourceItem->hasTag()) {
@@ -123,7 +123,7 @@ void FireworksRocketEntity::handleEntityEvent(byte eventId) {
 void FireworksRocketEntity::addAdditonalSaveData(CompoundTag* tag) {
     tag->putInt(L"Life", life);
     tag->putInt(L"LifeTime", lifetime);
-    shared_ptr<ItemInstance> itemInstance =
+    std::shared_ptr<ItemInstance> itemInstance =
         entityData->getItemInstance(DATA_ID_FIREWORKS_ITEM);
     if (itemInstance != NULL) {
         CompoundTag* itemTag = new CompoundTag();
@@ -138,7 +138,7 @@ void FireworksRocketEntity::readAdditionalSaveData(CompoundTag* tag) {
 
     CompoundTag* itemTag = tag->getCompound(L"FireworksItem");
     if (itemTag != NULL) {
-        shared_ptr<ItemInstance> fromTag = ItemInstance::fromTag(itemTag);
+        std::shared_ptr<ItemInstance> fromTag = ItemInstance::fromTag(itemTag);
         if (fromTag != NULL) {
             entityData->set(DATA_ID_FIREWORKS_ITEM, fromTag);
         }

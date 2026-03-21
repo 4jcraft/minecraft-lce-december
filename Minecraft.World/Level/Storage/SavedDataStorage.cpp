@@ -24,7 +24,7 @@ std::shared_ptr<SavedData> SavedDataStorage::get(const std::type_info& clazz,
     AUTO_VAR(it, cache.find(id));
     if (it != cache.end()) return (*it).second;
 
-    shared_ptr<SavedData> data = nullptr;
+    std::shared_ptr<SavedData> data = nullptr;
     if (levelStorage != NULL) {
         // File file = levelStorage->getDataFile(id);
         ConsoleSavePath file = levelStorage->getDataFile(id);
@@ -36,13 +36,13 @@ std::shared_ptr<SavedData> SavedDataStorage::get(const std::type_info& clazz,
 
             if (clazz == typeid(MapItemSavedData)) {
                 data = dynamic_pointer_cast<SavedData>(
-                    shared_ptr<MapItemSavedData>(new MapItemSavedData(id)));
+                    std::shared_ptr<MapItemSavedData>(new MapItemSavedData(id)));
             } else if (clazz == typeid(Villages)) {
                 data = dynamic_pointer_cast<SavedData>(
-                    shared_ptr<Villages>(new Villages(id)));
+                    std::shared_ptr<Villages>(new Villages(id)));
             } else if (clazz == typeid(StructureFeatureSavedData)) {
                 data = dynamic_pointer_cast<SavedData>(
-                    shared_ptr<StructureFeatureSavedData>(
+                    std::shared_ptr<StructureFeatureSavedData>(
                         new StructureFeatureSavedData(id)));
             } else {
                 // Handling of new SavedData class required
@@ -59,7 +59,7 @@ std::shared_ptr<SavedData> SavedDataStorage::get(const std::type_info& clazz,
     }
 
     if (data != NULL) {
-        cache.insert(unordered_map<wstring, shared_ptr<SavedData> >::value_type(
+        cache.insert(std::unordered_map<std::wstring, std::shared_ptr<SavedData> >::value_type(
             id, data));
         savedDatas.push_back(data);
     }
@@ -74,7 +74,7 @@ void SavedDataStorage::set(const std::wstring& id,
     }
     AUTO_VAR(it, cache.find(id));
     if (it != cache.end()) {
-        AUTO_VAR(it2, find(savedDatas.begin(), savedDatas.end(), it->second));
+        AUTO_VAR(it2, std::find(savedDatas.begin(), savedDatas.end(), it->second));
         if (it2 != savedDatas.end()) {
             savedDatas.erase(it2);
         }
@@ -87,7 +87,7 @@ void SavedDataStorage::set(const std::wstring& id,
 void SavedDataStorage::save() {
     AUTO_VAR(itEnd, savedDatas.end());
     for (AUTO_VAR(it, savedDatas.begin()); it != itEnd; it++) {
-        shared_ptr<SavedData> data = *it;  // savedDatas->at(i);
+        std::shared_ptr<SavedData> data = *it;  // savedDatas->at(i);
         if (data->isDirty()) {
             save(data);
             data->setDirty(false);
@@ -130,14 +130,14 @@ void SavedDataStorage::loadAuxValues() {
         dis.close();
 
         Tag* tag;
-        vector<Tag*>* allTags = tags->getAllTags();
+        std::vector<Tag*>* allTags = tags->getAllTags();
         AUTO_VAR(itEnd, allTags->end());
         for (AUTO_VAR(it, allTags->begin()); it != itEnd; it++) {
             tag = *it;  // tags->getAllTags()->at(i);
 
             if (dynamic_cast<ShortTag*>(tag) != NULL) {
                 ShortTag* sTag = (ShortTag*)tag;
-                wstring id = sTag->getName();
+                std::wstring id = sTag->getName();
                 short val = sTag->data;
                 usedAuxIds.insert(uaiMapType::value_type(id, val));
             }

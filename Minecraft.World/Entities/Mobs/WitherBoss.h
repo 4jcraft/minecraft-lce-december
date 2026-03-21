@@ -6,7 +6,7 @@
 
 class LivingEntitySelector : public EntitySelector {
 public:
-    virtual bool matches(shared_ptr<Entity> entity) const;
+    virtual bool matches(std::shared_ptr<Entity> entity) const;
 };
 
 class WitherBoss : public Monster, public RangedAttackMob, public BossMob {
@@ -64,12 +64,12 @@ private:
     virtual double getHeadY(int index);
     virtual double getHeadZ(int index);
     virtual float rotlerp(float a, float b, float max);
-    virtual void performRangedAttack(int head, shared_ptr<LivingEntity> target);
+    virtual void performRangedAttack(int head, std::shared_ptr<LivingEntity> target);
     virtual void performRangedAttack(int head, double tx, double ty, double tz,
                                      bool dangerous);
 
 public:
-    virtual void performRangedAttack(shared_ptr<LivingEntity> target,
+    virtual void performRangedAttack(std::shared_ptr<LivingEntity> target,
                                      float power);
     virtual bool hurt(DamageSource* source, float dmg);
 
@@ -100,7 +100,7 @@ public:
     virtual void setAlternativeTarget(int headIndex, int entityId);
     virtual bool isPowered();
     virtual MobType getMobType();
-    virtual void ride(shared_ptr<Entity> e);
+    virtual void ride(std::shared_ptr<Entity> e);
 
     // 4J Stu - These are required for the BossMob interface
     virtual float getMaxHealth() { return Monster::getMaxHealth(); };

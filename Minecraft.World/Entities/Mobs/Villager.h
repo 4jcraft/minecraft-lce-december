@@ -32,9 +32,9 @@ private:
 
     bool inLove;
     bool chasing;
-    weak_ptr<Village> village;
+    std::weak_ptr<Village> village;
 
-    weak_ptr<Player> tradingPlayer;
+    std::weak_ptr<Player> tradingPlayer;
     MerchantRecipeList* offers;
     int updateMerchantTimer;
     bool addRecipeOnUpdate;
@@ -61,7 +61,7 @@ protected:
     virtual void serverAiMobStep();
 
 public:
-    virtual bool mobInteract(shared_ptr<Player> player);
+    virtual bool mobInteract(std::shared_ptr<Player> player);
 
 protected:
     virtual void defineSynchedData();
@@ -83,7 +83,7 @@ public:
     void setInLove(bool inLove);
     void setChasing(bool chasing);
     bool isChasing();
-    void setLastHurtByMob(shared_ptr<LivingEntity> mob);
+    void setLastHurtByMob(std::shared_ptr<LivingEntity> mob);
     void die(DamageSource* source);
 
     void handleEntityEvent(byte id);
@@ -92,12 +92,12 @@ private:
     void addParticlesAroundSelf(ePARTICLE_TYPE particle);
 
 public:
-    void setTradingPlayer(shared_ptr<Player> player);
-    shared_ptr<Player> getTradingPlayer();
+    void setTradingPlayer(std::shared_ptr<Player> player);
+    std::shared_ptr<Player> getTradingPlayer();
     bool isTrading();
     void notifyTrade(MerchantRecipe* activeRecipe);
-    void notifyTradeUpdated(shared_ptr<ItemInstance> item);
-    MerchantRecipeList* getOffers(shared_ptr<Player> forPlayer);
+    void notifyTradeUpdated(std::shared_ptr<ItemInstance> item);
+    MerchantRecipeList* getOffers(std::shared_ptr<Player> forPlayer);
 
 private:
     float baseRecipeChanceMod;
@@ -109,8 +109,8 @@ public:
     void overrideOffers(MerchantRecipeList* recipeList);
 
 private:
-    static unordered_map<int, pair<int, int> > MIN_MAX_VALUES;
-    static unordered_map<int, pair<int, int> > MIN_MAX_PRICES;
+    static std::unordered_map<int, std::pair<int, int> > MIN_MAX_VALUES;
+    static std::unordered_map<int, std::pair<int, int> > MIN_MAX_PRICES;
 
 public:
     static void staticCtor();
@@ -126,7 +126,7 @@ private:
      */
     static void addItemForTradeIn(MerchantRecipeList* list, int itemId,
                                   Random* random, float likelyHood);
-    static shared_ptr<ItemInstance> getItemTradeInValue(int itemId,
+    static std::shared_ptr<ItemInstance> getItemTradeInValue(int itemId,
                                                         Random* random);
     static int getTradeInValue(int itemId, Random* random);
 
@@ -148,8 +148,8 @@ public:
         MobGroupData* groupData,
         int extraData = 0);  // 4J Added extraData param
     virtual void setRewardPlayersInVillage();
-    virtual shared_ptr<AgableMob> getBreedOffspring(
-        shared_ptr<AgableMob> target);
+    virtual std::shared_ptr<AgableMob> getBreedOffspring(
+        std::shared_ptr<AgableMob> target);
     virtual bool canBeLeashed();
     virtual std::wstring getDisplayName();
 };

@@ -12,7 +12,7 @@ LevelData::LevelData(CompoundTag* tag) {
     seed = tag->getLong(L"RandomSeed");
     m_pGenerator = LevelType::lvl_normal;
     if (tag->contains(L"generatorName")) {
-        wstring generatorName = tag->getString(L"generatorName");
+        std::wstring generatorName = tag->getString(L"generatorName");
         m_pGenerator = LevelType::getLevelType(generatorName);
         if (m_pGenerator == NULL) {
             m_pGenerator = LevelType::lvl_normal;
@@ -316,7 +316,7 @@ CompoundTag* LevelData::createTag() {
     return tag;
 }
 
-CompoundTag* LevelData::createTag(vector<shared_ptr<Player> >* players) {
+CompoundTag* LevelData::createTag(std::vector<std::shared_ptr<Player> >* players) {
     // 4J - removed all code for storing tags for players
     return createTag();
 }

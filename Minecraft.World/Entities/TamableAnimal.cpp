@@ -45,12 +45,12 @@ void TamableAnimal::readAdditionalSaveData(CompoundTag* tag) {
 #ifdef _XBOX_ONE
     // 4J Stu Added from later Java version to remove owners from save transfer
     // saves. We will probably want this on other platforms in the future
-    wstring owner = L"";
+    std::wstring owner = L"";
     if (tag->contains(L"OwnerUUID")) {
         owner = tag->getString(L"OwnerUUID");
     }
 #else
-    wstring owner = tag->getString(L"Owner");
+    std::wstring owner = tag->getString(L"Owner");
 #endif
     if (owner.length() > 0) {
         setOwnerUUID(owner);
@@ -133,7 +133,7 @@ bool TamableAnimal::wantsToAttack(std::shared_ptr<LivingEntity> target,
 
 Team* TamableAnimal::getTeam() {
     if (isTame()) {
-        shared_ptr<LivingEntity> owner =
+        std::shared_ptr<LivingEntity> owner =
             dynamic_pointer_cast<LivingEntity>(getOwner());
         if (owner != NULL) {
             return owner->getTeam();
@@ -144,7 +144,7 @@ Team* TamableAnimal::getTeam() {
 
 bool TamableAnimal::isAlliedTo(std::shared_ptr<LivingEntity> other) {
     if (isTame()) {
-        shared_ptr<LivingEntity> owner =
+        std::shared_ptr<LivingEntity> owner =
             dynamic_pointer_cast<LivingEntity>(getOwner());
         if (other == owner) {
             return true;

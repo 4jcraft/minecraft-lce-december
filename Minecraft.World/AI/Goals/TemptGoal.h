@@ -7,7 +7,7 @@ private:
     PathfinderMob* mob;
     double speedModifier;
     double px, py, pz, pRotX, pRotY;
-    weak_ptr<Player> player;
+    std::weak_ptr<Player> player;
     int calmDown;
     bool _isRunning;
     int itemId;

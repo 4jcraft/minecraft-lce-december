@@ -96,7 +96,7 @@ void GameMode::adjustPlayer(std::shared_ptr<Player> player) {}
 // }
 
 std::shared_ptr<Player> GameMode::createPlayer(Level* level) {
-    return shared_ptr<Player>(new LocalPlayer(minecraft, level, minecraft->user,
+    return std::shared_ptr<Player>(new LocalPlayer(minecraft, level, minecraft->user,
                                               level->dimension->id));
 }
 

@@ -247,7 +247,7 @@ bool PistonBaseTile::triggerEvent(Level* level, int x, int y, int z, int param1,
         PIXEndNamedEvent();
     } else if (param1 == TRIGGER_CONTRACT) {
         PIXBeginNamedEvent(0, "Contract phase A\n");
-        shared_ptr<TileEntity> prevTileEntity = level->getTileEntity(
+        std::shared_ptr<TileEntity> prevTileEntity = level->getTileEntity(
             x + Facing::STEP_X[facing], y + Facing::STEP_Y[facing],
             z + Facing::STEP_Z[facing]);
         if (prevTileEntity != NULL &&
@@ -282,12 +282,12 @@ bool PistonBaseTile::triggerEvent(Level* level, int x, int y, int z, int param1,
                 // the block two steps away is a moving piston block piece, so
                 // replace it with the real data, since it's probably this
                 // piston which is changing too fast
-                shared_ptr<TileEntity> tileEntity =
+                std::shared_ptr<TileEntity> tileEntity =
                     level->getTileEntity(twoX, twoY, twoZ);
                 if (tileEntity != NULL &&
                     dynamic_pointer_cast<PistonPieceEntity>(tileEntity) !=
                         NULL) {
-                    shared_ptr<PistonPieceEntity> ppe =
+                    std::shared_ptr<PistonPieceEntity> ppe =
                         dynamic_pointer_cast<PistonPieceEntity>(tileEntity);
 
                     if (ppe->getFacing() == facing && ppe->isExtending()) {

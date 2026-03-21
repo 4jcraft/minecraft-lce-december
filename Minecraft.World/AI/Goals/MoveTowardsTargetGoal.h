@@ -5,7 +5,7 @@
 class MoveTowardsTargetGoal : public Goal {
 private:
     PathfinderMob* mob;
-    weak_ptr<LivingEntity> target;
+    std::weak_ptr<LivingEntity> target;
     double wantedX, wantedY, wantedZ;
     double speedModifier;
     float within;

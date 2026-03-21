@@ -275,14 +275,14 @@ int EntityHorse::modifyTemper(int amount) {
 bool EntityHorse::hurt(DamageSource* damagesource, float dmg) {
     // 4J: Protect owned horses from untrusted players
     if (isTamed()) {
-        shared_ptr<Entity> entity = damagesource->getDirectEntity();
+        std::shared_ptr<Entity> entity = damagesource->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            shared_ptr<Player> attacker = dynamic_pointer_cast<Player>(entity);
+            std::shared_ptr<Player> attacker = dynamic_pointer_cast<Player>(entity);
             attacker->canHarmPlayer(getOwnerName());
         }
     }
 
-    shared_ptr<Entity> attacker = damagesource->getEntity();
+    std::shared_ptr<Entity> attacker = damagesource->getEntity();
     if (rider.lock() != NULL && (rider.lock() == (attacker))) {
         return false;
     }
@@ -364,8 +364,8 @@ int EntityHorse::getInventorySize() {
 }
 
 void EntityHorse::createInventory() {
-    shared_ptr<AnimalChest> old = inventory;
-    inventory = shared_ptr<AnimalChest>(
+    std::shared_ptr<AnimalChest> old = inventory;
+    inventory = std::shared_ptr<AnimalChest>(
         new AnimalChest(L"HorseChest", getInventorySize()));
     inventory->setCustomName(getAName());
     if (old != NULL) {
@@ -373,7 +373,7 @@ void EntityHorse::createInventory() {
 
         int max = min(old->getContainerSize(), inventory->getContainerSize());
         for (int slot = 0; slot < max; slot++) {
-            shared_ptr<ItemInstance> item = old->getItem(slot);
+            std::shared_ptr<ItemInstance> item = old->getItem(slot);
             if (item != NULL) {
                 inventory->setItem(slot, item->copy());
             }
@@ -417,13 +417,13 @@ std::shared_ptr<EntityHorse> EntityHorse::getClosestMommy(
     std::shared_ptr<Entity> baby, double searchRadius) {
     double closestDistance = Double::MAX_VALUE;
 
-    shared_ptr<Entity> mommy = nullptr;
-    vector<shared_ptr<Entity> >* list = level->getEntities(
+    std::shared_ptr<Entity> mommy = nullptr;
+    std::vector<std::shared_ptr<Entity> >* list = level->getEntities(
         baby, baby->bb->expand(searchRadius, searchRadius, searchRadius),
         PARENT_HORSE_SELECTOR);
 
     for (AUTO_VAR(it, list->begin()); it != list->end(); ++it) {
-        shared_ptr<Entity> horse = *it;
+        std::shared_ptr<Entity> horse = *it;
         double distanceSquared =
             horse->distanceToSqr(baby->x, baby->y, baby->z);
 
@@ -645,7 +645,7 @@ void EntityHorse::openInventory(std::shared_ptr<Player> player) {
 }
 
 bool EntityHorse::mobInteract(std::shared_ptr<Player> player) {
-    shared_ptr<ItemInstance> itemstack = player->inventory->getSelected();
+    std::shared_ptr<ItemInstance> itemstack = player->inventory->getSelected();
 
     if (itemstack != NULL && itemstack->id == Item::spawnEgg_Id) {
         return Animal::mobInteract(player);
@@ -913,7 +913,7 @@ void EntityHorse::aiStep() {
         }
 
         if (isBred() && !isAdult() && !isEating()) {
-            shared_ptr<EntityHorse> mommy =
+            std::shared_ptr<EntityHorse> mommy =
                 getClosestMommy(shared_from_this(), 16);
             if (mommy != NULL && distanceToSqr(mommy) > 4.0) {
                 Path* pathentity = level->findPath(
@@ -1054,7 +1054,7 @@ void EntityHorse::dropInventory(std::shared_ptr<Entity> entity,
     if (animalchest == NULL || level->isClientSide) return;
 
     for (int i = 0; i < animalchest->getContainerSize(); i++) {
-        shared_ptr<ItemInstance> itemstack = animalchest->getItem(i);
+        std::shared_ptr<ItemInstance> itemstack = animalchest->getItem(i);
         if (itemstack == NULL) {
             continue;
         }
@@ -1087,7 +1087,7 @@ void EntityHorse::travel(float xa, float ya) {
     setRot(yRot, xRot);
     yHeadRot = yBodyRot = yRot;
 
-    shared_ptr<LivingEntity> livingRider =
+    std::shared_ptr<LivingEntity> livingRider =
         dynamic_pointer_cast<LivingEntity>(rider.lock());
     xa = livingRider->xxa * .5f;
     ya = livingRider->yya;
@@ -1167,7 +1167,7 @@ void EntityHorse::addAdditonalSaveData(CompoundTag* tag) {
         ListTag<CompoundTag>* listTag = new ListTag<CompoundTag>();
 
         for (int i = INV_BASE_COUNT; i < inventory->getContainerSize(); i++) {
-            shared_ptr<ItemInstance> stack = inventory->getItem(i);
+            std::shared_ptr<ItemInstance> stack = inventory->getItem(i);
 
             if (stack != NULL) {
                 CompoundTag* compoundTag = new CompoundTag();
@@ -1232,7 +1232,7 @@ void EntityHorse::readAdditionalSaveData(CompoundTag* tag) {
     }
 
     if (tag->contains(L"ArmorItem")) {
-        shared_ptr<ItemInstance> armor =
+        std::shared_ptr<ItemInstance> armor =
             ItemInstance::fromTag(tag->getCompound(L"ArmorItem"));
         if (armor != NULL && isHorseArmor(armor->id)) {
             inventory->setItem(INV_SLOT_ARMOR, armor);
@@ -1240,7 +1240,7 @@ void EntityHorse::readAdditionalSaveData(CompoundTag* tag) {
     }
 
     if (tag->contains(L"SaddleItem")) {
-        shared_ptr<ItemInstance> saddleItem =
+        std::shared_ptr<ItemInstance> saddleItem =
             ItemInstance::fromTag(tag->getCompound(L"SaddleItem"));
         if (saddleItem != NULL && saddleItem->id == Item::saddle_Id) {
             inventory->setItem(INV_SLOT_SADDLE, saddleItem);
@@ -1248,7 +1248,7 @@ void EntityHorse::readAdditionalSaveData(CompoundTag* tag) {
     } else if (tag->getBoolean(L"Saddle")) {
         inventory->setItem(
             INV_SLOT_SADDLE,
-            shared_ptr<ItemInstance>(new ItemInstance(Item::saddle)));
+            std::shared_ptr<ItemInstance>(new ItemInstance(Item::saddle)));
     }
     updateEquipment();
 }
@@ -1257,7 +1257,7 @@ bool EntityHorse::canMate(std::shared_ptr<Animal> partner) {
     if (partner == shared_from_this()) return false;
     if (partner->GetType() != GetType()) return false;
 
-    shared_ptr<EntityHorse> horsePartner =
+    std::shared_ptr<EntityHorse> horsePartner =
         dynamic_pointer_cast<EntityHorse>(partner);
 
     if (!isReadyForParenting() || !horsePartner->isReadyForParenting()) {
@@ -1272,10 +1272,10 @@ bool EntityHorse::canMate(std::shared_ptr<Animal> partner) {
 
 std::shared_ptr<AgableMob> EntityHorse::getBreedOffspring(
     std::shared_ptr<AgableMob> partner) {
-    shared_ptr<EntityHorse> horsePartner =
+    std::shared_ptr<EntityHorse> horsePartner =
         dynamic_pointer_cast<EntityHorse>(partner);
-    shared_ptr<EntityHorse> baby =
-        shared_ptr<EntityHorse>(new EntityHorse(level));
+    std::shared_ptr<EntityHorse> baby =
+        std::shared_ptr<EntityHorse>(new EntityHorse(level));
 
     int type = getType();
     int partnerType = horsePartner->getType();
@@ -1470,7 +1470,7 @@ void EntityHorse::positionRider() {
             z - dist * cos);
 
         if (rider.lock()->instanceof(eTYPE_LIVINGENTITY)) {
-            shared_ptr<LivingEntity> livingRider =
+            std::shared_ptr<LivingEntity> livingRider =
                 dynamic_pointer_cast<LivingEntity>(rider.lock());
             livingRider->yBodyRot = yBodyRot;
         }

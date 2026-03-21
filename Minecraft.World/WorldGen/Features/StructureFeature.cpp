@@ -207,7 +207,7 @@ TilePos* StructureFeature::getNearestGeneratedFeature(Level* level, int cellX,
     if (selected != NULL) {
         return selected;
     } else {
-        vector<TilePos>* guesstimatedFeaturePositions =
+        std::vector<TilePos>* guesstimatedFeaturePositions =
             getGuesstimatedFeaturePositions();
         if (guesstimatedFeaturePositions != NULL) {
             TilePos* pSelectedPos = new TilePos(0, 0, 0);
@@ -233,7 +233,7 @@ TilePos* StructureFeature::getNearestGeneratedFeature(Level* level, int cellX,
     return NULL;
 }
 
-vector<TilePos>* StructureFeature::getGuesstimatedFeaturePositions() {
+std::vector<TilePos>* StructureFeature::getGuesstimatedFeaturePositions() {
     return NULL;
 }
 
@@ -251,7 +251,7 @@ void StructureFeature::restoreSavedData(Level* level) {
         } else {
             CompoundTag* fullTag = savedData->getFullTag();
 
-            vector<Tag*>* allTags = fullTag->getAllTags();
+            std::vector<Tag*>* allTags = fullTag->getAllTags();
             for (AUTO_VAR(it, allTags->begin()); it != allTags->end(); ++it) {
                 Tag* featureTag = *it;
                 if (featureTag->getId() == Tag::TAG_Compound) {

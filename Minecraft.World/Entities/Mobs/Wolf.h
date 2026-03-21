@@ -30,7 +30,7 @@ protected:
 
 public:
     virtual bool useNewAi();
-    virtual void setTarget(shared_ptr<LivingEntity> target);
+    virtual void setTarget(std::shared_ptr<LivingEntity> target);
 
 protected:
     virtual void serverAiMobStep();
@@ -58,12 +58,12 @@ public:
     float getHeadHeight();
     int getMaxHeadXRot();
     virtual bool hurt(DamageSource* source, float dmg);
-    virtual bool doHurtTarget(shared_ptr<Entity> target);
+    virtual bool doHurtTarget(std::shared_ptr<Entity> target);
     virtual void setTame(bool value);
-    virtual bool mobInteract(shared_ptr<Player> player);
+    virtual bool mobInteract(std::shared_ptr<Player> player);
     virtual void handleEntityEvent(byte id);
     float getTailAngle();
-    virtual bool isFood(shared_ptr<ItemInstance> item);
+    virtual bool isFood(std::shared_ptr<ItemInstance> item);
     virtual int getMaxSpawnClusterSize();
     bool isAngry();
     void setAngry(bool value);
@@ -76,18 +76,18 @@ public:
     int GetSynchedHealth();
 
 protected:
-    virtual shared_ptr<AgableMob> getBreedOffspring(
-        shared_ptr<AgableMob> target);
+    virtual std::shared_ptr<AgableMob> getBreedOffspring(
+        std::shared_ptr<AgableMob> target);
 
 public:
     virtual void setIsInterested(bool isInterested);
-    virtual bool canMate(shared_ptr<Animal> animal);
+    virtual bool canMate(std::shared_ptr<Animal> animal);
     bool isInterested();
 
 protected:
     virtual bool removeWhenFarAway();
 
 public:
-    virtual bool wantsToAttack(shared_ptr<LivingEntity> target,
-                               shared_ptr<LivingEntity> owner);
+    virtual bool wantsToAttack(std::shared_ptr<LivingEntity> target,
+                               std::shared_ptr<LivingEntity> owner);
 };

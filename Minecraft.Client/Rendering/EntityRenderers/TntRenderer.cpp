@@ -14,7 +14,7 @@ void TntRenderer::render(std::shared_ptr<Entity> _tnt, double x, double y,
                          double z, float rot, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    shared_ptr<PrimedTnt> tnt = dynamic_pointer_cast<PrimedTnt>(_tnt);
+    std::shared_ptr<PrimedTnt> tnt = dynamic_pointer_cast<PrimedTnt>(_tnt);
 
     glPushMatrix();
     glTranslatef((float)x, (float)y, (float)z);

@@ -3,7 +3,7 @@
 #include "Packet.h"
 
 class DisconnectPacket : public Packet,
-                         public enable_shared_from_this<DisconnectPacket> {
+                         public std::enable_shared_from_this<DisconnectPacket> {
 public:
     enum eDisconnectReason {
         eDisconnect_None = 0,

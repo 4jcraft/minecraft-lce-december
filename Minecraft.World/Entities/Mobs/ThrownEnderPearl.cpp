@@ -50,7 +50,7 @@ void ThrownEnderpearl::onHit(HitResult* res) {
         // 4J-JEV: Cheap type check first.
         if ((getOwner() != NULL) &&
             getOwner()->instanceof(eTYPE_SERVERPLAYER)) {
-            shared_ptr<ServerPlayer> serverPlayer =
+            std::shared_ptr<ServerPlayer> serverPlayer =
                 dynamic_pointer_cast<ServerPlayer>(getOwner());
             if (!serverPlayer->removed) {
                 if (!serverPlayer->connection->done &&

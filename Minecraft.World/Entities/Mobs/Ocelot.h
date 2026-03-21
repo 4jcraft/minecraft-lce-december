@@ -62,18 +62,18 @@ protected:
     virtual int getDeathLoot();
 
 public:
-    virtual bool doHurtTarget(shared_ptr<Entity> target);
+    virtual bool doHurtTarget(std::shared_ptr<Entity> target);
     virtual bool hurt(DamageSource* source, float dmg);
 
 protected:
     virtual void dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel);
 
 public:
-    virtual bool mobInteract(shared_ptr<Player> player);
-    virtual shared_ptr<AgableMob> getBreedOffspring(
-        shared_ptr<AgableMob> target);
-    virtual bool isFood(shared_ptr<ItemInstance> itemInstance);
-    virtual bool canMate(shared_ptr<Animal> animal);
+    virtual bool mobInteract(std::shared_ptr<Player> player);
+    virtual std::shared_ptr<AgableMob> getBreedOffspring(
+        std::shared_ptr<AgableMob> target);
+    virtual bool isFood(std::shared_ptr<ItemInstance> itemInstance);
+    virtual bool canMate(std::shared_ptr<Animal> animal);
     virtual int getCatType();
     virtual void setCatType(int type);
     virtual bool canSpawn();

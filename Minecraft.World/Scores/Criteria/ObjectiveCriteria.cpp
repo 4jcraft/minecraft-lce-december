@@ -2,7 +2,7 @@
 #include "../../Headers/net.minecraft.world.scores.criteria.h"
 #include "ObjectiveCriteria.h"
 
-unordered_map<std::wstring, ObjectiveCriteria*>
+std::unordered_map<std::wstring, ObjectiveCriteria*>
     ObjectiveCriteria::CRITERIA_BY_NAME;
 
 ObjectiveCriteria* ObjectiveCriteria::DUMMY = new DummyCriteria(L"dummy");

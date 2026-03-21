@@ -13,7 +13,7 @@ MoveThroughVillageGoal::MoveThroughVillageGoal(PathfinderMob* mob,
                                                double speedModifier,
                                                bool onlyAtNight) {
     path = NULL;
-    doorInfo = weak_ptr<DoorInfo>();
+    doorInfo = std::weak_ptr<DoorInfo>();
 
     this->mob = mob;
     this->speedModifier = speedModifier;
@@ -30,11 +30,11 @@ bool MoveThroughVillageGoal::canUse() {
 
     if (onlyAtNight && mob->level->isDay()) return false;
 
-    shared_ptr<Village> village = mob->level->villages->getClosestVillage(
+    std::shared_ptr<Village> village = mob->level->villages->getClosestVillage(
         Mth::floor(mob->x), Mth::floor(mob->y), Mth::floor(mob->z), 0);
     if (village == NULL) return false;
 
-    shared_ptr<DoorInfo> _doorInfo = getNextDoorInfo(village);
+    std::shared_ptr<DoorInfo> _doorInfo = getNextDoorInfo(village);
     if (_doorInfo == NULL) return false;
     doorInfo = _doorInfo;
 
@@ -61,7 +61,7 @@ bool MoveThroughVillageGoal::canUse() {
 bool MoveThroughVillageGoal::canContinueToUse() {
     if (mob->getNavigation()->isDone()) return false;
     float dist = mob->bbWidth + 4.f;
-    shared_ptr<DoorInfo> _doorInfo = doorInfo.lock();
+    std::shared_ptr<DoorInfo> _doorInfo = doorInfo.lock();
     if (_doorInfo == NULL) return false;
 
     return mob->distanceToSqr(_doorInfo->x, _doorInfo->y, _doorInfo->z) >
@@ -74,7 +74,7 @@ void MoveThroughVillageGoal::start() {
 }
 
 void MoveThroughVillageGoal::stop() {
-    shared_ptr<DoorInfo> _doorInfo = doorInfo.lock();
+    std::shared_ptr<DoorInfo> _doorInfo = doorInfo.lock();
     if (_doorInfo == NULL) return;
 
     if (mob->getNavigation()->isDone() ||
@@ -85,12 +85,12 @@ void MoveThroughVillageGoal::stop() {
 
 std::shared_ptr<DoorInfo> MoveThroughVillageGoal::getNextDoorInfo(
     std::shared_ptr<Village> village) {
-    shared_ptr<DoorInfo> closest = nullptr;
+    std::shared_ptr<DoorInfo> closest = nullptr;
     int closestDistSqr = Integer::MAX_VALUE;
-    vector<shared_ptr<DoorInfo> >* doorInfos = village->getDoorInfos();
+    std::vector<std::shared_ptr<DoorInfo> >* doorInfos = village->getDoorInfos();
     // for (DoorInfo di : doorInfos)
     for (AUTO_VAR(it, doorInfos->begin()); it != doorInfos->end(); ++it) {
-        shared_ptr<DoorInfo> di = *it;
+        std::shared_ptr<DoorInfo> di = *it;
         int distSqr = di->distanceToSqr(Mth::floor(mob->x), Mth::floor(mob->y),
                                         Mth::floor(mob->z));
         if (distSqr < closestDistSqr) {
@@ -105,7 +105,7 @@ std::shared_ptr<DoorInfo> MoveThroughVillageGoal::getNextDoorInfo(
 bool MoveThroughVillageGoal::hasVisited(std::shared_ptr<DoorInfo> di) {
     // for (DoorInfo di2 : visited)
     for (AUTO_VAR(it, visited.begin()); it != visited.end();) {
-        shared_ptr<DoorInfo> di2 = (*it).lock();
+        std::shared_ptr<DoorInfo> di2 = (*it).lock();
         if (di2 == NULL) {
             it = visited.erase(it);
         } else {

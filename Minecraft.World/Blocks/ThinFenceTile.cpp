@@ -113,7 +113,7 @@ bool ThinFenceTile::isSilkTouchable() { return true; }
 
 std::shared_ptr<ItemInstance> ThinFenceTile::getSilkTouchItemInstance(
     int data) {
-    return shared_ptr<ItemInstance>(new ItemInstance(id, 1, data));
+    return std::shared_ptr<ItemInstance>(new ItemInstance(id, 1, data));
 }
 
 void ThinFenceTile::registerIcons(IconRegister* iconRegister) {

@@ -4,7 +4,7 @@
 
 class TextureAndGeometryChangePacket
     : public Packet,
-      public enable_shared_from_this<TextureAndGeometryChangePacket> {
+      public std::enable_shared_from_this<TextureAndGeometryChangePacket> {
 public:
     int id;
     std::wstring path;

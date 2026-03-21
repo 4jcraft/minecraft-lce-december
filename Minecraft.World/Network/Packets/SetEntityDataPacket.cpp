@@ -40,7 +40,7 @@ void SetEntityDataPacket::handle(PacketListener* listener) {
 
 int SetEntityDataPacket::getEstimatedSize() { return 5; }
 
-vector<shared_ptr<SynchedEntityData::DataItem> >*
+std::vector<std::shared_ptr<SynchedEntityData::DataItem> >*
 SetEntityDataPacket::getUnpackedData() {
     return packedItems;
 }

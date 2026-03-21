@@ -55,7 +55,7 @@ void MinecartFurnace::destroy(DamageSource* source) {
 
     if (!source->isExplosion()) {
         spawnAtLocation(
-            shared_ptr<ItemInstance>(new ItemInstance(Tile::furnace, 1)), 0);
+            std::shared_ptr<ItemInstance>(new ItemInstance(Tile::furnace, 1)), 0);
     }
 }
 
@@ -102,7 +102,7 @@ void MinecartFurnace::applyNaturalSlowdown() {
 }
 
 bool MinecartFurnace::interact(std::shared_ptr<Player> player) {
-    shared_ptr<ItemInstance> selected = player->inventory->getSelected();
+    std::shared_ptr<ItemInstance> selected = player->inventory->getSelected();
     if (selected != NULL && selected->id == Item::coal_Id) {
         if (!player->abilities.instabuild && --selected->count == 0)
             player->inventory->setItem(player->inventory->selected, nullptr);

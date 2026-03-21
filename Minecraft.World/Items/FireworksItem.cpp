@@ -26,8 +26,8 @@ bool FireworksItem::useOn(std::shared_ptr<ItemInstance> instance,
     if (bTestUseOnOnly) return true;
 
     if (!level->isClientSide) {
-        shared_ptr<FireworksRocketEntity> f =
-            shared_ptr<FireworksRocketEntity>(new FireworksRocketEntity(
+        std::shared_ptr<FireworksRocketEntity> f =
+            std::shared_ptr<FireworksRocketEntity>(new FireworksRocketEntity(
                 level, x + clickX, y + clickY, z + clickZ, instance));
         level->addEntity(f);
 
@@ -42,7 +42,7 @@ bool FireworksItem::useOn(std::shared_ptr<ItemInstance> instance,
 
 void FireworksItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
                                     std::shared_ptr<Player> player,
-                                    vector<HtmlString>* lines, bool advanced) {
+                                    std::vector<HtmlString>* lines, bool advanced) {
     if (!itemInstance->hasTag()) {
         return;
     }
@@ -51,7 +51,7 @@ void FireworksItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
         return;
     }
     if (fireTag->contains(TAG_FLIGHT)) {
-        lines->push_back(wstring(app.GetString(IDS_ITEM_FIREWORKS_FLIGHT)) +
+        lines->push_back(std::wstring(app.GetString(IDS_ITEM_FIREWORKS_FLIGHT)) +
                          L" " + _toString<int>((fireTag->getByte(TAG_FLIGHT))));
     }
 
@@ -61,7 +61,7 @@ void FireworksItem::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
         for (int i = 0; i < explosions->size(); i++) {
             CompoundTag* expTag = explosions->get(i);
 
-            vector<HtmlString> eLines;
+            std::vector<HtmlString> eLines;
             FireworksChargeItem::appendHoverText(expTag, &eLines);
 
             if (eLines.size() > 0) {

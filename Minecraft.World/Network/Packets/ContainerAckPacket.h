@@ -7,7 +7,7 @@
 #include "PacketListener.h"
 
 class ContainerAckPacket : public Packet,
-                           public enable_shared_from_this<ContainerAckPacket> {
+                           public std::enable_shared_from_this<ContainerAckPacket> {
 public:
     int containerId;
     short uid;
@@ -23,7 +23,7 @@ public:
 
 public:
     static std::shared_ptr<Packet> create() {
-        return shared_ptr<Packet>(new ContainerAckPacket());
+        return std::shared_ptr<Packet>(new ContainerAckPacket());
     }
     virtual int getId() { return 106; }
 };

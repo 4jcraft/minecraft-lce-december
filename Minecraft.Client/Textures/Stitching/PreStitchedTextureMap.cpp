@@ -69,7 +69,7 @@ void PreStitchedTextureMap::stitch() {
     }
 
     // Collection bucket for multiple frames per texture
-    unordered_map<TextureHolder*, vector<Texture*>*>
+    std::unordered_map<TextureHolder*, std::vector<Texture*>*>
         textures;  // = new HashMap<TextureHolder, List<Texture>>();
 
     Stitcher* stitcher = TextureManager::getInstance()->createStitcher(name);
@@ -77,7 +77,7 @@ void PreStitchedTextureMap::stitch() {
     animatedTextures.clear();
 
     // Create the final image
-    wstring filename = name + extension;
+    std::wstring filename = name + extension;
 
     TexturePack* texturePack = Minecraft::GetInstance()->skins->getSelected();
     // try {
@@ -89,7 +89,7 @@ void PreStitchedTextureMap::stitch() {
     int magFilter = Texture::TFLT_NEAREST;
 
     MemSect(32);
-    wstring drive = L"";
+    std::wstring drive = L"";
 
     // 4J-PB - need to check for BD patched files
 #ifdef __PS3__
@@ -202,17 +202,17 @@ void PreStitchedTextureMap::makeTextureAnimated(TexturePack* texturePack,
         return;
     }
 
-    wstring textureFileName = tex->m_fileName;
+    std::wstring textureFileName = tex->m_fileName;
 
-    wstring animString =
+    std::wstring animString =
         texturePack->getAnimationString(textureFileName, path, true);
 
     if (!animString.empty()) {
-        wstring filename = path + textureFileName + extension;
+        std::wstring filename = path + textureFileName + extension;
 
         // TODO: [EB] Put the frames into a proper object, not this inside out
         // hack
-        vector<Texture*>* frames =
+        std::vector<Texture*>* frames =
             TextureManager::getInstance()->createTextures(filename, m_mipMap);
         if (frames == NULL || frames->empty()) {
             return;  // Couldn't load a texture, skip it

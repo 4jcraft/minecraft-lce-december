@@ -5,7 +5,7 @@
 class Score;
 
 class SetScorePacket : public Packet,
-                       public enable_shared_from_this<SetScorePacket> {
+                       public std::enable_shared_from_this<SetScorePacket> {
 public:
     static const int METHOD_CHANGE = 0;
     static const int METHOD_REMOVE = 1;

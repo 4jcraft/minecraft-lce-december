@@ -52,7 +52,7 @@ bool ShapedRecipy::matches(std::shared_ptr<CraftingContainer> craftSlots,
                 else
                     expected = recipeItems[xs + ys * width];
             }
-            shared_ptr<ItemInstance> item = craftSlots->getItem(x, y);
+            std::shared_ptr<ItemInstance> item = craftSlots->getItem(x, y);
             if (item == NULL && expected == NULL) {
                 continue;
             }
@@ -74,11 +74,11 @@ bool ShapedRecipy::matches(std::shared_ptr<CraftingContainer> craftSlots,
 
 std::shared_ptr<ItemInstance> ShapedRecipy::assemble(
     std::shared_ptr<CraftingContainer> craftSlots) {
-    shared_ptr<ItemInstance> result = getResultItem()->copy();
+    std::shared_ptr<ItemInstance> result = getResultItem()->copy();
 
     if (_keepTag && craftSlots != NULL) {
         for (int i = 0; i < craftSlots->getContainerSize(); i++) {
-            shared_ptr<ItemInstance> item = craftSlots->getItem(i);
+            std::shared_ptr<ItemInstance> item = craftSlots->getItem(i);
 
             if (item != NULL && item->hasTag()) {
                 result->setTag((CompoundTag*)item->tag->copy());

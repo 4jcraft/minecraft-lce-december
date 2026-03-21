@@ -48,7 +48,7 @@ void Player::_init() {
     registerAttributes();
     setHealth(getMaxHealth());
 
-    inventory = shared_ptr<Inventory>(new Inventory(this));
+    inventory = std::shared_ptr<Inventory>(new Inventory(this));
 
     userType = 0;
     oBob = bob = 0.0f;
@@ -105,7 +105,7 @@ void Player::_init() {
 #endif
 
     enderChestInventory =
-        shared_ptr<PlayerEnderChestContainer>(new PlayerEnderChestContainer());
+        std::shared_ptr<PlayerEnderChestContainer>(new PlayerEnderChestContainer());
 
     m_bAwardedOnARail = false;
 }
@@ -225,7 +225,7 @@ bool Player::isBlocking() {
 // frame
 void Player::updateFrameTick() {
     if (useItem != NULL) {
-        shared_ptr<ItemInstance> item = inventory->getSelected();
+        std::shared_ptr<ItemInstance> item = inventory->getSelected();
         // 4J Stu - Fix for #45508 - TU5: Gameplay: Eating one piece of food
         // will result in a second piece being eaten as well Original code was
         // item != useItem. Changed this now to use the equals function, and add
@@ -337,11 +337,11 @@ void Player::tick() {
 #if 0
 #ifdef _WINDOWS64
 			// Drop some items so we have them in inventory to play with
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance(Tile::recordPlayer) ) );
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance(Item::map) ) );
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance(Item::record_01) ) );
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance(Item::record_02) ) );
-			this->drop( shared_ptr<ItemInstance>(new ItemInstance( Item::pickAxe_diamond, 1 )) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Tile::recordPlayer) ) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Item::map) ) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Item::record_01) ) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Item::record_02) ) );
+			this->drop( std::shared_ptr<ItemInstance>(new ItemInstance( Item::pickAxe_diamond, 1 )) );
 #endif
 
 #ifdef __PS3__
@@ -357,11 +357,11 @@ void Player::tick() {
 
 #ifdef _DURANGO
 			// Drop some items so we have them in inventory to play with
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance(Tile::recordPlayer) ) );
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance(Item::map) ) );
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance(Item::record_01) ) );
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance(Item::record_02) ) );
-			this->drop( shared_ptr<ItemInstance>(new ItemInstance( Item::pickAxe_diamond, 1 )) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Tile::recordPlayer) ) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Item::map) ) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Item::record_01) ) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance(Item::record_02) ) );
+			this->drop( std::shared_ptr<ItemInstance>(new ItemInstance( Item::pickAxe_diamond, 1 )) );
 #endif
 #endif
             // 4J-PB - Throw items out at the start of the level
@@ -435,9 +435,9 @@ void Player::tick() {
 		static bool madeTrack = false;
 		if( !madeTrack )
 		{	
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance( Item::minecart, 1 ) ) );
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance( Tile::goldenRail, 10 ) ) );
-			this->drop( shared_ptr<ItemInstance>( new ItemInstance( Tile::lever, 10 ) ) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance( Item::minecart, 1 ) ) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance( Tile::goldenRail, 10 ) ) );
+			this->drop( std::shared_ptr<ItemInstance>( new ItemInstance( Tile::lever, 10 ) ) );
 
 			int poweredCount = 0;
 			for(int i = 10; i < 2800; ++i)
@@ -552,7 +552,7 @@ void Player::completeUsingItem() {
         spawnEatParticles(useItem, 16);
 
         int oldCount = useItem->count;
-        shared_ptr<ItemInstance> itemInstance = useItem->useTimeDepleted(
+        std::shared_ptr<ItemInstance> itemInstance = useItem->useTimeDepleted(
             level, dynamic_pointer_cast<Player>(shared_from_this()));
         if (itemInstance != useItem ||
             (itemInstance != NULL && itemInstance->count != oldCount)) {
@@ -582,7 +582,7 @@ void Player::ride(std::shared_ptr<Entity> e) {
         if (!level->isClientSide) findStandUpPosition(riding);
 
         if (riding != NULL) {
-            riding->rider = weak_ptr<Entity>();
+            riding->rider = std::weak_ptr<Entity>();
         }
         riding = nullptr;
 
@@ -745,18 +745,18 @@ void Player::setCustomCape(DWORD capeId) {
                 this->customTextureUrl2 = pMojangData->wchCape;
             } else {
                 if (app.DefaultCapeExists()) {
-                    this->customTextureUrl2 = wstring(L"Special_Cape.png");
+                    this->customTextureUrl2 = std::wstring(L"Special_Cape.png");
                 } else {
-                    this->customTextureUrl2 = wstring(L"");
+                    this->customTextureUrl2 = std::wstring(L"");
                 }
             }
 
         } else {
             // if there is a custom default cloak, then set it here
             if (app.DefaultCapeExists()) {
-                this->customTextureUrl2 = wstring(L"Special_Cape.png");
+                this->customTextureUrl2 = std::wstring(L"Special_Cape.png");
             } else {
-                this->customTextureUrl2 = wstring(L"");
+                this->customTextureUrl2 = std::wstring(L"");
             }
         }
     }
@@ -769,7 +769,7 @@ DWORD Player::getCapeIdFromPath(const std::wstring& cape) {
     if (cape.size() >= 14) {
         dlcCape = cape.substr(0, 3).compare(L"dlc") == 0;
 
-        wstring capeValue = cape.substr(7, cape.size());
+        std::wstring capeValue = cape.substr(7, cape.size());
         capeValue = capeValue.substr(0, capeValue.find_first_of(L'.'));
 
         std::wstringstream ss;
@@ -895,7 +895,7 @@ void Player::rideTick() {
         // xRot = preXRot;
         // yRot = preYRot;
 
-        shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(riding);
+        std::shared_ptr<Pig> pig = dynamic_pointer_cast<Pig>(riding);
         yBodyRot = pig->yBodyRot;
 
         while (yBodyRot - yBodyRotO < -180) yBodyRotO -= 360;
@@ -966,12 +966,12 @@ void Player::aiStep() {
             pickupArea = bb->grow(1, .5, 1);
         }
 
-        vector<shared_ptr<Entity> >* entities =
+        std::vector<std::shared_ptr<Entity> >* entities =
             level->getEntities(shared_from_this(), pickupArea);
         if (entities != NULL) {
             AUTO_VAR(itEnd, entities->end());
             for (AUTO_VAR(it, entities->begin()); it != itEnd; it++) {
-                shared_ptr<Entity> e = *it;  // entities->at(i);
+                std::shared_ptr<Entity> e = *it;  // entities->at(i);
                 if (!e->removed) {
                     touch(e);
                 }
@@ -1001,7 +1001,7 @@ void Player::die(DamageSource* source) {
 
     // 4J - TODO need to use a xuid
     if (app.isXuidNotch(m_xuid)) {
-        drop(shared_ptr<ItemInstance>(new ItemInstance(Item::apple, 1)), true);
+        drop(std::shared_ptr<ItemInstance>(new ItemInstance(Item::apple, 1)), true);
     }
     if (!level->getGameRules()->getBoolean(GameRules::RULE_KEEPINVENTORY)) {
         inventory->dropAll();
@@ -1018,7 +1018,7 @@ void Player::die(DamageSource* source) {
 
 void Player::awardKillScore(std::shared_ptr<Entity> victim, int awardPoints) {
     increaseScore(awardPoints);
-    vector<Objective*>* objectives =
+    std::vector<Objective*>* objectives =
         getScoreboard()->findObjectiveFor(ObjectiveCriteria::KILL_COUNT_ALL);
 
     // if (victim instanceof Player)
@@ -1062,7 +1062,7 @@ std::shared_ptr<ItemEntity> Player::drop(std::shared_ptr<ItemInstance> item,
     if (item == NULL) return nullptr;
     if (item->count == 0) return nullptr;
 
-    shared_ptr<ItemEntity> thrownItem = shared_ptr<ItemEntity>(
+    std::shared_ptr<ItemEntity> thrownItem = std::shared_ptr<ItemEntity>(
         new ItemEntity(level, x, y - 0.3f + getHeadHeight(), z, item));
     thrownItem->throwTime = 20 * 2;
 
@@ -1105,7 +1105,7 @@ float Player::getDestroySpeed(Tile* tile, bool hasProperTool) {
     if (speed > 1) {
         int efficiency = EnchantmentHelper::getDiggingBonus(
             dynamic_pointer_cast<LivingEntity>(shared_from_this()));
-        shared_ptr<ItemInstance> item = inventory->getSelected();
+        std::shared_ptr<ItemInstance> item = inventory->getSelected();
 
         if (efficiency > 0 && item != NULL) {
             float boost = efficiency * efficiency + 1;
@@ -1267,9 +1267,9 @@ bool Player::hurt(DamageSource* source, float dmg) {
 
     if (dmg == 0) return false;
 
-    shared_ptr<Entity> attacker = source->getEntity();
+    std::shared_ptr<Entity> attacker = source->getEntity();
     if (attacker != NULL && attacker->instanceof(eTYPE_ARROW)) {
-        shared_ptr<Arrow> arrow = dynamic_pointer_cast<Arrow>(attacker);
+        std::shared_ptr<Arrow> arrow = dynamic_pointer_cast<Arrow>(attacker);
         if (arrow->owner != NULL) {
             attacker = arrow->owner;
         }
@@ -1358,11 +1358,11 @@ bool Player::openTrading(std::shared_ptr<Merchant> traderTarget,
 void Player::openItemInstanceGui(std::shared_ptr<ItemInstance> itemInstance) {}
 
 bool Player::interact(std::shared_ptr<Entity> entity) {
-    shared_ptr<Player> thisPlayer =
+    std::shared_ptr<Player> thisPlayer =
         dynamic_pointer_cast<Player>(shared_from_this());
 
-    shared_ptr<ItemInstance> item = getSelectedItem();
-    shared_ptr<ItemInstance> itemClone =
+    std::shared_ptr<ItemInstance> item = getSelectedItem();
+    std::shared_ptr<ItemInstance> itemClone =
         (item != NULL) ? item->copy() : nullptr;
     if (entity->interact(thisPlayer)) {
         // [EB]: Added rude check to see if we're still talking about the
@@ -1423,9 +1423,9 @@ void Player::attack(std::shared_ptr<Entity> entity) {
     float magicBoost = 0;
 
     if (entity->instanceof(eTYPE_LIVINGENTITY)) {
-        shared_ptr<Player> thisPlayer =
+        std::shared_ptr<Player> thisPlayer =
             dynamic_pointer_cast<Player>(shared_from_this());
-        shared_ptr<LivingEntity> mob =
+        std::shared_ptr<LivingEntity> mob =
             dynamic_pointer_cast<LivingEntity>(entity);
         magicBoost = EnchantmentHelper::getDamageBonus(thisPlayer, mob);
         knockback += EnchantmentHelper::getKnockbackBonus(thisPlayer, mob);
@@ -1481,17 +1481,17 @@ void Player::attack(std::shared_ptr<Entity> entity) {
             setLastHurtMob(entity);
 
             if (entity->instanceof(eTYPE_LIVINGENTITY)) {
-                shared_ptr<LivingEntity> mob =
+                std::shared_ptr<LivingEntity> mob =
                     dynamic_pointer_cast<LivingEntity>(entity);
                 ThornsEnchantment::doThornsAfterAttack(shared_from_this(), mob,
                                                        random);
             }
         }
 
-        shared_ptr<ItemInstance> item = getSelectedItem();
-        shared_ptr<Entity> hurtTarget = entity;
+        std::shared_ptr<ItemInstance> item = getSelectedItem();
+        std::shared_ptr<Entity> hurtTarget = entity;
         if (entity->instanceof(eTYPE_MULTIENTITY_MOB_PART)) {
-            shared_ptr<Entity> multiMob = dynamic_pointer_cast<Entity>(
+            std::shared_ptr<Entity> multiMob = dynamic_pointer_cast<Entity>(
                 (dynamic_pointer_cast<MultiEntityMobPart>(entity))
                     ->parentMob.lock());
             if ((multiMob != NULL) &&
@@ -1587,7 +1587,7 @@ Player::BedSleepingResult Player::startSleepInBed(int x, int y, int z,
 
             double hRange = 8;
             double vRange = 5;
-            vector<shared_ptr<Entity> >* monsters = level->getEntitiesOfClass(
+            std::vector<std::shared_ptr<Entity> >* monsters = level->getEntitiesOfClass(
                 typeid(Monster),
                 AABB::newTemp(x - hRange, y - vRange, z - hRange, x + hRange,
                               y + vRange, z + hRange));
@@ -2208,7 +2208,7 @@ bool Player::mayDestroyBlockAt(int x, int y, int z) {
         if (tile->material->isDestroyedByHand()) {
             return true;
         } else if (getSelectedItem() != NULL) {
-            shared_ptr<ItemInstance> carried = getSelectedItem();
+            std::shared_ptr<ItemInstance> carried = getSelectedItem();
 
             if (carried->canDestroySpecial(tile) ||
                 carried->getDestroySpeed(tile) > 1) {
@@ -2366,7 +2366,7 @@ int Player::hash_fnct(const std::shared_ptr<Player> k) {
     return (int)boost::hash_value(
         k->name);  // 4J Stu - Names are completely unique?
 #else
-    return (int)std::hash_value(
+    return (int)hash_value(
         k->name);  // 4J Stu - Names are completely unique?
 #endif  //__PS3__
 }
@@ -2576,7 +2576,7 @@ bool Player::isAllowedToInteract(std::shared_ptr<Entity> target) {
         if (target->instanceof(eTYPE_MINECART)) {
             if (getPlayerGamePrivilege(
                     Player::ePlayerGamePrivilege_CanUseContainers) == 0) {
-                shared_ptr<Minecart> minecart =
+                std::shared_ptr<Minecart> minecart =
                     dynamic_pointer_cast<Minecart>(target);
                 if (minecart->getType() == Minecart::TYPE_CHEST)
                     allowed = false;
@@ -2732,7 +2732,7 @@ void Player::enableAllPlayerPrivileges(bool enable) {
 
 bool Player::canCreateParticles() { return !hasInvisiblePrivilege(); }
 
-vector<ModelPart*>* Player::GetAdditionalModelParts() {
+std::vector<ModelPart*>* Player::GetAdditionalModelParts() {
     if (m_ppAdditionalModelParts == NULL && !m_bCheckedForModelParts) {
         bool hasCustomTexture = !customTextureUrl.empty();
         bool customTextureIsDefaultSkin =
@@ -2788,7 +2788,7 @@ vector<ModelPart*>* Player::GetAdditionalModelParts() {
 }
 
 void Player::SetAdditionalModelParts(
-    vector<ModelPart*>* ppAdditionalModelParts) {
+    std::vector<ModelPart*>* ppAdditionalModelParts) {
     m_ppAdditionalModelParts = ppAdditionalModelParts;
 }
 

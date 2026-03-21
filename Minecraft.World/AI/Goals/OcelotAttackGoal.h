@@ -6,7 +6,7 @@ class OcelotAttackGoal : public Goal {
 private:
     Level* level;
     Mob* mob;
-    weak_ptr<LivingEntity> target;
+    std::weak_ptr<LivingEntity> target;
     int attackTime;
     float speed;
     bool trackTarget;
