@@ -323,12 +323,12 @@ int SparseDataStorage::setDataRegion(byteArray dataIn, int x0, int y0, int z0,
                     int y = yy0 + (i * 2);
 
                     int toSet = (*pucIn) & 15;
-                    if (std::get(x, y, z) != toSet) {
+                    if (get(x, y, z) != toSet) {
                         std::set(x, y, z, toSet);
                         callback(x, y, z, param, yparam);
                     }
                     toSet = ((*pucIn) >> 4) & 15;
-                    if (std::get(x, y + 1, z) != toSet) {
+                    if (get(x, y + 1, z) != toSet) {
                         std::set(x, y + 1, z, toSet);
                         callback(x, y + 1, z, param, yparam);
                     }
@@ -364,8 +364,8 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
             for (int i = 0; i < len; i++) {
             int y = yy0 + (i * 2);
 
-            *pucOut = std::get(x, y, z);
-            *pucOut |= std::get(x, y + 1, z) << 4;
+            *pucOut = get(x, y, z);
+            *pucOut |= get(x, y + 1, z) << 4;
             pucOut++;
             }
     }

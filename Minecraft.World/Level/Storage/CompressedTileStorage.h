@@ -122,7 +122,7 @@ public:
     void getData(byteArray retArray,
                  unsigned int retOffset);  // Gets all tile values into an array
                                            // of length 32768.
-    int std::get(int x, int y, int z);     // Get an individual tile value
+    int get(int x, int y, int z);     // Get an individual tile value
     void std::set(int x, int y, int z, i// Set an individual tile value
     typedef void (*tileUpdatedCallback)(int x, int y, int z, void* param,
                                         int yparam);

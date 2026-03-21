@@ -82,7 +82,7 @@ void add(T* tag) {
     list.push_back(tag);
 }
 
-T* std::get(int index) { return (T*)list[index]; }
+T* get(int index) { return (T*)list[index]; }
 
 int size() { return (int)list.size(); }
 

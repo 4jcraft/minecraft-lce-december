@@ -25,8 +25,8 @@ public:
     int getSize();
     int getInt();
     int getInt(unsigned int index);
-    void std::get(byteArray)  // 4J - TODO
-        uint8_t std::get(int index);
+    void get(byteArray)  // 4J - TODO
+        uint8_t get(int index);
     __int64 getLong();
     short getShort();
     void getShortArray(shortArray& s);

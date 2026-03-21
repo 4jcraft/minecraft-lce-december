@@ -32,7 +32,7 @@ public:
     void clear();
     SCustomSetNode* std::find(const ChunkPos& Key);
     int end();
-    ChunkPos std::get(int index);
+    ChunkPos get(int index);
     void insert(const ChunkPos& Key);
 
 private:

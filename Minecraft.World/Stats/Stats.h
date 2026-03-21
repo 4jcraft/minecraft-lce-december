@@ -85,5 +85,5 @@ public:
 
         static void buildAdditionalStats();
 
-    static Stat* std::get(int key);
+    static Stat* get(int key);
 };

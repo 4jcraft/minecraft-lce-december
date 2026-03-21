@@ -778,7 +778,7 @@ int CompressedTileStorage::setDataRegion(byteArray dataIn, int x0, int y0,
                                 for (int x = x0; x < x1; x++) {
                                     for (int z = z0; z < z1; z++) {
                                         for (int y = y0; y < y1; y++) {
-                                            if (std::get(x, y, z) != *pucIn) {
+                                            if (get(x, y, z) != *pucIn) {
                                                 std::set(x, y, z, *pucIn);
                                                 callback(x, y, z, param,
                                                          yparam);
@@ -807,7 +807,7 @@ int CompressedTileStorage::setDataRegion(byteArray dataIn, int x0, int y0,
                                 for (int x = x0; x < x1; x++) {
                                     for (int z = z0; z < z1; z++) {
                                         for (int y = y0; y < y1; y++) {
-                                            if (std::get(x, y, z) != *pucIn++) {
+                                            if (get(x, y, z) != *pucIn++) {
                                                 return true;
                                             }
                                         }
@@ -828,7 +828,7 @@ int CompressedTileStorage::setDataRegion(byteArray dataIn, int x0, int y0,
                                                     for (int y = y0; y < y1;
                                                          y++) {
                                                         *pucOut++ =
-                                                            std::get(x, y, z);
+                                                            get(x, y, z);
                                                     }
                                                 }
                                             }

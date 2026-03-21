@@ -380,8 +380,8 @@ int SparseLightStorage::setDataRegion(byteArray dataIn, int x0, int y0, int z0,
                 for (int i = 0; i < len; i++) {
                     int y = yy0 + (i * 2);
 
-                    *pucOut = std::get(x, y, z);
-                    *pucOut |= std::get(x, y + 1, z) << 4;
+                    *pucOut = get(x, y, z);
+                    *pucOut |= get(x, y + 1, z) << 4;
                     pucOut++;
                 }
             }

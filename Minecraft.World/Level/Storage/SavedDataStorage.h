@@ -18,7 +18,7 @@ private:
 
 public:
     SavedDataStorage(LevelStorage*);
-    std::shared_ptr<SavedData> std::get(const std::type_info& clazz,
+    std::shared_ptr<SavedData> get(const std::type_info& clazz,
                                         const std::wstring& id);
     void std::set(const std::wstring& id, std::shared_ptr<SavedData> data);
     void save();

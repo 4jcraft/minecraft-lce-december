@@ -13,7 +13,7 @@ private:
         GameRule(const std::wstring& startValue);
 
         void std::set(const std::wstring& newValue);
-        std::wstring std::get();
+        std::wstring get();
         bool getBoolean();
         int getInt();
         double getDouble();

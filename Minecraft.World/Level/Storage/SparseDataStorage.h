@@ -86,7 +86,7 @@ public:
     void getData(byteArray retArray,
                  unsigned int retOffset);  // Gets all data values into an array
                                            // of length 16384.
-    int std::get(int x, int y, int z);     // Get an individual data value
+    int get(int x, int y, int z);     // Get an individual data value
     void std::set(int x, int y, int z, i// Set an individual data value
     typedef void (*tileUpdatedCallback)(int x, int y, int z, void* param,
                                         int yparam);

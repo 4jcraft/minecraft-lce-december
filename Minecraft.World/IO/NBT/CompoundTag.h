@@ -107,7 +107,7 @@ void putBoolean(const std::wstring& name, bool val) {
     putByte(name, val ? (uint8_t)1 : 0);
 }
 
-Tag* std::get(const std::wstring& name) {
+Tag* get(const std::wstring& name) {
     AUTO_VAR(it, tags.find(name));
     if (it != tags.end()) return it->second;
     return NULL;

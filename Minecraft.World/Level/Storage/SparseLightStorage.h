@@ -88,7 +88,7 @@ public:
     void getData(byteArray retArray,
                  unsigned int retOffset);  // Gets all lighting values into an
                                            // array of length 16384.
-    int std::get(int x, int y, int z);     // Get an individual lighting value
+    int get(int x, int y, int z);     // Get an individual lighting value
     void std::set(int x, int y, int z, i// Set an individual lighting value
     void setAllB// Set all lighting values to fully bright
     int setDataRegion(
