@@ -6,7 +6,7 @@
 #include "../Items/BowItem.h"
 #include "../Items/BowlFoodItem.h"
 #include "../Items/BucketItem.h"
-#include "../WoolTileItem.h"
+#include "../Items/TileItems/WoolTileItem.h"
 #include "../Items/CoalItem.h"
 #include "../Items/ComplexItem.h"
 #include "../Items/DiggerItem.h"

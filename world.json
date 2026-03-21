@@ -9,7 +9,6 @@
   ],
 
   "moves": [
-    {"from": "Build/*", "to": "Platform/"},
-    {"from": "Build/x64headers/*", "to": "Platform/x64headers/"}
+    {"from": "*TileItem.*", "to": "Items/TileItems"}
   ]
 }

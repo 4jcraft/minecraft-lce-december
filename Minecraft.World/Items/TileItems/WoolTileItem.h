@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Items/TileItems/TileItem.h"
+#include "TileItem.h"
 
 class WoolTileItem : public TileItem {
 public:
