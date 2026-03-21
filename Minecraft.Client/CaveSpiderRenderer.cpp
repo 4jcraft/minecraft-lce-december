@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "Build/stdafx.h"
 #include "CaveSpiderRenderer.h"
 
 ResourceLocation CaveSpiderRenderer::CAVE_SPIDER_LOCATION = ResourceLocation(TN_MOB_CAVE_SPIDER);

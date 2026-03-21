@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "Build/stdafx.h"
 #include "..\Minecraft.World\net.minecraft.core.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.projectile.h"
 #include "..\Minecraft.World\net.minecraft.world.level.tile.h"

@@ -1,6 +1,6 @@
-#include "stdafx.h"
+#include "Build/stdafx.h"
 #include "SkeletonRenderer.h"
-#include "SkeletonModel.h"
+#include "Rendering/Models/SkeletonModel.h"
 #include "../Minecraft.World/Skeleton.h"
 
 ResourceLocation SkeletonRenderer::SKELETON_LOCATION = ResourceLocation(TN_MOB_SKELETON);

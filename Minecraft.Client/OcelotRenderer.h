@@ -1,5 +1,5 @@
 #pragma once
-#include "MobRenderer.h"
+#include "Rendering/EntityRenderers/MobRenderer.h"
 
 class OcelotRenderer : public MobRenderer
 {

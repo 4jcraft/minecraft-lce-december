@@ -1,7 +1,7 @@
-#include "stdafx.h"
+#include "Build/stdafx.h"
 #include "HorseRenderer.h"
-#include "MobRenderer.h"
-#include "EntityRenderDispatcher.h"
+#include "Rendering/EntityRenderers/MobRenderer.h"
+#include "Rendering/EntityRenderers/EntityRenderDispatcher.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.animal.h"
 
 ResourceLocation HorseRenderer::HORSE_LOCATION = ResourceLocation(TN_MOB_HORSE_WHITE);

@@ -1,8 +1,8 @@
-#include "stdafx.h"
+#include "Build/stdafx.h"
 #include "..\Minecraft.World\Mth.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.animal.h"
 #include "ModelHorse.h"
-#include "ModelPart.h"
+#include "Rendering/Models/ModelPart.h"
 
 ModelHorse::ModelHorse()
 {

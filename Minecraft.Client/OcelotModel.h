@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Model.h"
+#include "Rendering/Models/Model.h"
 
 class OcelotModel : public Model
 {

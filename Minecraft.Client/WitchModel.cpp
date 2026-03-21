@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "ModelPart.h"
+#include "Build/stdafx.h"
+#include "Rendering/Models/ModelPart.h"
 #include "WitchModel.h"
-#include "VillagerModel.h"
+#include "Rendering/Models/VillagerModel.h"
 #include "../Minecraft.World/Mth.h"
 
 WitchModel::WitchModel(float g) : VillagerModel(g, 0, 64, 128)

@@ -1,5 +1,5 @@
 #pragma once
-#include "MinecartRenderer.h"
+#include "Rendering/EntityRenderers/MinecartRenderer.h"
 
 class Minecart;
 

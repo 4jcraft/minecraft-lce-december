@@ -87,9 +87,9 @@ typedef XUID GameSessionUID;
 #include <unordered_set>
 #include <vector>
 #include <touch.h>
-#include "PSVitaTypes.h"
-#include "PSVitaStubs.h"
-#include "PSVitaMaths.h"
+#include "../Minecraft.Client/Platform/PSVita/PSVitaExtras/PSVitaTypes.h"
+#include "../Minecraft.Client/Platform/PSVita/PSVitaExtras/PSVitaStubs.h"
+#include "../Minecraft.Client/Platform/PSVita/PSVitaExtras/PSVitaMaths.h"
 #else
 #include <unordered_map>
 #include <unordered_set>

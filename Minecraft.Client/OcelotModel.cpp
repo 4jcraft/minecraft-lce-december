@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "ModelPart.h"
+#include "Build/stdafx.h"
+#include "Rendering/Models/ModelPart.h"
 #include "..\Minecraft.World\net.minecraft.world.entity.animal.h"
 #include "..\Minecraft.World\Mth.h"
 #include "OcelotModel.h"

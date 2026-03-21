@@ -1,5 +1,5 @@
 #pragma once
-#include "VillagerModel.h"
+#include "Rendering/Models/VillagerModel.h"
 
 class WitchModel : public VillagerModel
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Textures.h"
+#include "Textures/Textures.h"
 
 typedef arrayWithLength<_TEXTURE_NAME> textureNameArray;
 class ResourceLocation

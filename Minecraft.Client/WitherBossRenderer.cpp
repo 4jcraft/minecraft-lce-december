@@ -1,7 +1,7 @@
-#include "stdafx.h"
+#include "Build/stdafx.h"
 #include "WitherBossRenderer.h"
 #include "WitherBossModel.h"
-#include "MobRenderer.h"
+#include "Rendering/EntityRenderers/MobRenderer.h"
 #include "../Minecraft.World/WitherBoss.h"
 #include "../Minecraft.Client/BossMobGuiInfo.h"
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "HumanoidMobRenderer.h"
+#include "Rendering/EntityRenderers/HumanoidMobRenderer.h"
 
 class SkeletonRenderer : public HumanoidMobRenderer
 {

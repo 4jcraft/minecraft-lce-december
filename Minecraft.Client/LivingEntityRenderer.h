@@ -1,6 +1,6 @@
 #pragma once
 #include "ResourceLocation.h"
-#include "EntityRenderer.h"
+#include "Rendering/EntityRenderers/EntityRenderer.h"
 #include "..\Minecraft.World\LivingEntity.h"
 
 class LivingEntity;

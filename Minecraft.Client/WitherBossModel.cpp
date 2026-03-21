@@ -1,7 +1,7 @@
-#include "stdafx.h"
+#include "Build/stdafx.h"
 #include "WitherBossModel.h"
 #include "..\Minecraft.World\WitherBoss.h"
-#include "ModelPart.h"
+#include "Rendering/Models/ModelPart.h"
 
 WitherBossModel::WitherBossModel()
 {

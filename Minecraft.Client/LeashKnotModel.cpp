@@ -1,6 +1,6 @@
-#include "stdafx.h";
+#include "Build/stdafx.h";
 #include "LeashKnotModel.h"
-#include "ModelPart.h"
+#include "Rendering/Models/ModelPart.h"
 
 LeashKnotModel::LeashKnotModel() 
 {

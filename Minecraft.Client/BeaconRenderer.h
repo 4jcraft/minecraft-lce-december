@@ -1,5 +1,5 @@
 #pragma once
-#include "TileEntityRenderer.h"
+#include "Rendering/EntityRenderers/TileEntityRenderer.h"
 
 class BeaconTileEntity;
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Particle.h"
+#include "Rendering/Particles/Particle.h"
 #include "..\Minecraft.World\CompoundTag.h"
 
 class ParticleEngine;

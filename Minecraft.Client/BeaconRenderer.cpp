@@ -1,8 +1,8 @@
-#include "stdafx.h"
+#include "Build/stdafx.h"
 #include "..\Minecraft.World\net.minecraft.world.level.tile.entity.h"
 #include "..\Minecraft.World\net.minecraft.world.level.h"
 #include "BeaconRenderer.h"
-#include "Tesselator.h"
+#include "Rendering/Tesselator.h"
 
 ResourceLocation BeaconRenderer::BEAM_LOCATION = ResourceLocation(TN_MISC_BEACON_BEAM);
 

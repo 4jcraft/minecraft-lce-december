@@ -1,6 +1,6 @@
 #pragma once
-#include "Model.h"
-#include "ModelPart.h"
+#include "Rendering/Models/Model.h"
+#include "Rendering/Models/ModelPart.h"
 
 class SkiModel : public Model 
 {

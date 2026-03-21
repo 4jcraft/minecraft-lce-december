@@ -1,8 +1,8 @@
-#include "stdafx.h"
-#include "EntityRenderDispatcher.h"
+#include "Build/stdafx.h"
+#include "Rendering/EntityRenderers/EntityRenderDispatcher.h"
 #include "WitchRenderer.h"
 #include "WitchModel.h"
-#include "ModelPart.h"
+#include "Rendering/Models/ModelPart.h"
 #include "..\Minecraft.World\net.minecraft.world.item.h"
 
 ResourceLocation WitchRenderer::WITCH_LOCATION = ResourceLocation(TN_MOB_WITCH);

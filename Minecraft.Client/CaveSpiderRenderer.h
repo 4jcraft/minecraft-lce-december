@@ -1,5 +1,5 @@
 #pragma once
-#include "SpiderRenderer.h"
+#include "Rendering/EntityRenderers/SpiderRenderer.h"
 
 class CaveSpider;
 

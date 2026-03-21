@@ -1,5 +1,5 @@
 #pragma once
-#include "EntityRenderer.h"
+#include "Rendering/EntityRenderers/EntityRenderer.h"
 
 class SkeletonHeadModel;
 
