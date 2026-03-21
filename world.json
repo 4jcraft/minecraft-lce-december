@@ -9,13 +9,13 @@
   ],
 
   "moves": [
-
-    { "from": "Objective.*", "to": "Scores" },
-    { "from": "PlayerTeam.*", "to": "Scores" },
-    { "from": "Score.*", "to": "Scores" },
-    { "from": "Scoreboard.*", "to": "Scores" },
-    { "from": "ScoreboardSaveData.*", "to": "Scores" },
-    { "from": "ScoreHolder.*", "to": "Scores" },
-    { "from": "Team.*", "to": "Scores" }
+    { "from": "Attribute.*", "to": "AI/Attributes" },
+    { "from": "AttributeInstance.*", "to": "AI/Attributes" },
+    { "from": "AttributeModifier.*", "to": "AI/Attributes" },
+    { "from": "BaseAttribute.*", "to": "AI/Attributes" },
+    { "from": "BaseAttributeMap.*", "to": "AI/Attributes" },
+    { "from": "ModifiableAttributeInstance.*", "to": "AI/Attributes" },
+    { "from": "RangedAttribute.*", "to": "AI/Attributes" },
+    { "from": "ServersideAttributeMap.*", "to": "AI/Attributes" }
   ]
 }

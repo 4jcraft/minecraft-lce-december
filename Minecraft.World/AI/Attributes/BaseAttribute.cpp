@@ -1,4 +1,4 @@
-#include "Platform/stdafx.h"
+#include "../../Platform/stdafx.h"
 
 #include "BaseAttribute.h"
 

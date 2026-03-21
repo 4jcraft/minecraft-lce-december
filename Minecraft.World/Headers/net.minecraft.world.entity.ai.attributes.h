@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../Attribute.h"
-#include "../AttributeInstance.h"
-#include "../AttributeModifier.h"
-#include "../BaseAttribute.h"
-#include "../BaseAttributeMap.h"
-#include "../ModifiableAttributeInstance.h"
-#include "../RangedAttribute.h"
-#include "../ServersideAttributeMap.h"
+#include "../AI/Attributes/Attribute.h"
+#include "../AI/Attributes/AttributeInstance.h"
+#include "../AI/Attributes/AttributeModifier.h"
+#include "../AI/Attributes/BaseAttribute.h"
+#include "../AI/Attributes/BaseAttributeMap.h"
+#include "../AI/Attributes/ModifiableAttributeInstance.h"
+#include "../AI/Attributes/RangedAttribute.h"
+#include "../AI/Attributes/ServersideAttributeMap.h"

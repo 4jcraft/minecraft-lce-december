@@ -2,7 +2,7 @@
 
 #include "../Util/UseAnim.h"
 #include "../Headers/com.mojang.nbt.h"
-#include "../Attribute.h"
+#include "../AI/Attributes/Attribute.h"
 
 class Entity;
 class Level;

@@ -1,4 +1,4 @@
-#include "Platform/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "Attribute.h"
 
 const int Attribute::AttributeNames[] = {
