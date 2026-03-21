@@ -1,9 +1,9 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 
 #include "Biome.h"
 #include "BiomeSource.h"
 #include "BiomeCache.h"
-#include "../../Build/System.h"
+#include "../../Platform/System.h"
 
 BiomeCache::Block::Block(int x, int z, BiomeCache* parent) {
     // 	temps = floatArray(ZONE_SIZE * ZONE_SIZE, false);		// MGH -

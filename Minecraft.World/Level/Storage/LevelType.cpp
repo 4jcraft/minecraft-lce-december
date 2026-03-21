@@ -1,4 +1,4 @@
-#include "../../Build/stdafx.h"
+#include "../../Platform/stdafx.h"
 #include "../../Headers/net.minecraft.world.level.h"
 
 // 	public static final LevelType[] levelTypes = new LevelType[16];

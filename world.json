@@ -1,0 +1,15 @@
+{
+  "project_root": "/home/tropical/Documents/GitHub/minecraft-lce-december/Minecraft.World",
+
+  "include_search_paths": [
+    "/home/tropical/Documents/GitHub/minecraft-lce-december/Minecraft.World/**"
+  ],
+  "extra_scan_paths": [
+    "/home/tropical/Documents/GitHub/minecraft-lce-december/Minecraft.Client/**"
+  ],
+
+  "moves": [
+    {"from": "Build/*", "to": "Platform/"},
+    {"from": "Build/x64headers/*", "to": "Platform/x64headers/"}
+  ]
+}

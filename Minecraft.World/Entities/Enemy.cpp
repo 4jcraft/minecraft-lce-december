@@ -1,4 +1,4 @@
-#include "../Build/stdafx.h"
+#include "../Platform/stdafx.h"
 #include "Enemy.h"
 
 EntitySelector* Enemy::ENEMY_SELECTOR = new Enemy::EnemyEntitySelector();
