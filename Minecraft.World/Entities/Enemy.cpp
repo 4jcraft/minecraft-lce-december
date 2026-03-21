@@ -1,9 +1,8 @@
 #include "../Build/stdafx.h"
 #include "Enemy.h"
 
-EntitySelector *Enemy::ENEMY_SELECTOR = new Enemy::EnemyEntitySelector();
+EntitySelector* Enemy::ENEMY_SELECTOR = new Enemy::EnemyEntitySelector();
 
-bool Enemy::EnemyEntitySelector::matches(std::shared_ptr<Entity> entity) const
-{
-	return (entity != NULL) && entity->instanceof(eTYPE_ENEMY);
+bool Enemy::EnemyEntitySelector::matches(std::shared_ptr<Entity> entity) const {
+    return (entity != NULL) && entity->instanceof(eTYPE_ENEMY);
 }

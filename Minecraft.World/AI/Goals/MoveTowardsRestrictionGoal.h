@@ -2,17 +2,16 @@
 
 #include "Goal.h"
 
-class MoveTowardsRestrictionGoal : public Goal
-{
+class MoveTowardsRestrictionGoal : public Goal {
 private:
-	PathfinderMob *mob;
-	double wantedX, wantedY, wantedZ;
-	double speedModifier;
+    PathfinderMob* mob;
+    double wantedX, wantedY, wantedZ;
+    double speedModifier;
 
 public:
-	MoveTowardsRestrictionGoal(PathfinderMob *mob, double speedModifier);
+    MoveTowardsRestrictionGoal(PathfinderMob* mob, double speedModifier);
 
-	bool canUse();
-	bool canContinueToUse();
-	void start();
+    bool canUse();
+    bool canContinueToUse();
+    void start();
 };

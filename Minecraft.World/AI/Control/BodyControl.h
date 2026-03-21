@@ -2,19 +2,18 @@
 
 #include "Control.h"
 
-class BodyControl : public Control
-{
+class BodyControl : public Control {
 private:
-	LivingEntity *mob;
-	static const float maxClampAngle;
-	int timeStill;
-	float lastHeadY;
+    LivingEntity* mob;
+    static const float maxClampAngle;
+    int timeStill;
+    float lastHeadY;
 
 public:
-	BodyControl(LivingEntity *mob);
+    BodyControl(LivingEntity* mob);
 
-	void clientTick();
+    void clientTick();
 
 private:
-	float clamp(float clampTo, float clampFrom, float clampAngle);
+    float clamp(float clampTo, float clampFrom, float clampAngle);
 };

@@ -1,31 +1,33 @@
 #pragma once
 
-
 #include "Packet.h"
 
 class Level;
 
-class ChunkTilesUpdatePacket : public Packet, public enable_shared_from_this<ChunkTilesUpdatePacket>
-{
+class ChunkTilesUpdatePacket
+    : public Packet,
+      public enable_shared_from_this<ChunkTilesUpdatePacket> {
 public:
-	int xc, zc;
+    int xc, zc;
     shortArray positions;
     byteArray blocks;
     byteArray data;
-    byte count; // 4J Was int but never has a value higher than 10
-	int levelIdx;
+    byte count;  // 4J Was int but never has a value higher than 10
+    int levelIdx;
 
-	ChunkTilesUpdatePacket();
-	~ChunkTilesUpdatePacket();
-	ChunkTilesUpdatePacket(int xc, int zc, shortArray positions, byte count, Level *level);
+    ChunkTilesUpdatePacket();
+    ~ChunkTilesUpdatePacket();
+    ChunkTilesUpdatePacket(int xc, int zc, shortArray positions, byte count,
+                           Level* level);
 
-	virtual void read(DataInputStream *dis);
-	virtual void write(DataOutputStream *dos);
-	virtual void handle(PacketListener *listener);
-	virtual int getEstimatedSize();
+    virtual void read(DataInputStream* dis);
+    virtual void write(DataOutputStream* dos);
+    virtual void handle(PacketListener* listener);
+    virtual int getEstimatedSize();
 
 public:
-	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new ChunkTilesUpdatePacket()); }
-	virtual int getId() { return 52; }
+    static std::shared_ptr<Packet> create() {
+        return std::shared_ptr<Packet>(new ChunkTilesUpdatePacket());
+    }
+    virtual int getId() { return 52; }
 };
-

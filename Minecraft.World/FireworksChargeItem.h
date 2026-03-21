@@ -2,23 +2,25 @@
 
 #include "Items/Item.h"
 
-class FireworksChargeItem : public Item
-{
+class FireworksChargeItem : public Item {
 private:
-	Icon *overlay;
+    Icon* overlay;
 
 public:
-	FireworksChargeItem(int id);
+    FireworksChargeItem(int id);
 
-	virtual Icon *getLayerIcon(int auxValue, int spriteLayer);
-	virtual int getColor(std::shared_ptr<ItemInstance> item, int spriteLayer);
-	virtual bool hasMultipleSpriteLayers();
+    virtual Icon* getLayerIcon(int auxValue, int spriteLayer);
+    virtual int getColor(std::shared_ptr<ItemInstance> item, int spriteLayer);
+    virtual bool hasMultipleSpriteLayers();
 
-	static Tag *getExplosionTagField(std::shared_ptr<ItemInstance> instance, const std::wstring &field);
+    static Tag* getExplosionTagField(std::shared_ptr<ItemInstance> instance,
+                                     const std::wstring& field);
 
-	virtual void appendHoverText(std::shared_ptr<ItemInstance> itemInstance, std::shared_ptr<Player> player, vector<HtmlString> *lines, bool advanced);
+    virtual void appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
+                                 std::shared_ptr<Player> player,
+                                 vector<HtmlString>* lines, bool advanced);
 
-	static void appendHoverText(CompoundTag *expTag, vector<HtmlString> *lines);
+    static void appendHoverText(CompoundTag* expTag, vector<HtmlString>* lines);
 
-	virtual void registerIcons(IconRegister *iconRegister);
+    virtual void registerIcons(IconRegister* iconRegister);
 };

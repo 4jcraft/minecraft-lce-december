@@ -3,9 +3,8 @@
 #include "InputOutputStream.h"
 #include "InputStream.h"
 
-InputStream *InputStream::getResourceAsStream(const std::wstring &fileName)
-{
-	File file( fileName );
+InputStream* InputStream::getResourceAsStream(const std::wstring& fileName) {
+    File file(fileName);
 
-	return file.exists() ? new FileInputStream( file ) : NULL;
+    return file.exists() ? new FileInputStream(file) : NULL;
 }

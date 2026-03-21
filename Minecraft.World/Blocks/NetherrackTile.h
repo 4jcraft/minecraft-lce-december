@@ -1,8 +1,7 @@
 #pragma once
 #include "Tile.h"
 
-class NetherrackTile : public Tile
-{
+class NetherrackTile : public Tile {
 public:
-	NetherrackTile(int id);
+    NetherrackTile(int id);
 };

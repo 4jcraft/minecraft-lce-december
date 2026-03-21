@@ -2,16 +2,15 @@
 
 #define MAX_ORE_RECIPES 8
 
-class OreRecipies 
-{
+class OreRecipies {
 public:
-	// 4J - added for common ctor code
-	void _init();
-	OreRecipies()			{_init();}
+    // 4J - added for common ctor code
+    void _init();
+    OreRecipies() { _init(); }
 
 private:
-	vector <Object *> map[MAX_ORE_RECIPES];
+    vector<Object*> map[MAX_ORE_RECIPES];
 
 public:
-	void addRecipes(Recipes *r);
+    void addRecipes(Recipes* r);
 };

@@ -3,27 +3,24 @@
 #include "../../Headers/net.minecraft.world.level.tile.h"
 #include "DaylightDetectorTileEntity.h"
 
-DaylightDetectorTileEntity::DaylightDetectorTileEntity()
-{
-}
+DaylightDetectorTileEntity::DaylightDetectorTileEntity() {}
 
-void DaylightDetectorTileEntity::tick()
-{
-	if (level != NULL && !level->isClientSide && (level->getGameTime() % SharedConstants::TICKS_PER_SECOND) == 0)
-	{
-		tile = getTile();
-		if (tile != NULL && dynamic_cast<DaylightDetectorTile *>(tile) != NULL)
-		{
-			((DaylightDetectorTile *) tile)->updateSignalStrength(level, x, y, z);
-		}
-	}
+void DaylightDetectorTileEntity::tick() {
+    if (level != NULL && !level->isClientSide &&
+        (level->getGameTime() % SharedConstants::TICKS_PER_SECOND) == 0) {
+        tile = getTile();
+        if (tile != NULL && dynamic_cast<DaylightDetectorTile*>(tile) != NULL) {
+            ((DaylightDetectorTile*)tile)->updateSignalStrength(level, x, y, z);
+        }
+    }
 }
 
 // 4J Added
-std::shared_ptr<TileEntity> DaylightDetectorTileEntity::clone()
-{
-	shared_ptr<DaylightDetectorTileEntity> result = shared_ptr<DaylightDetectorTileEntity>( new DaylightDetectorTileEntity() );
-	TileEntity::clone(result);
+std::shared_ptr<TileEntity> DaylightDetectorTileEntity::clone() {
+    shared_ptr<DaylightDetectorTileEntity> result =
+        shared_ptr<DaylightDetectorTileEntity>(
+            new DaylightDetectorTileEntity());
+    TileEntity::clone(result);
 
-	return result;
+    return result;
 }

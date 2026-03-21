@@ -1,5 +1,3 @@
 #pragma once
 
-class Source
-{
-};
+class Source {};

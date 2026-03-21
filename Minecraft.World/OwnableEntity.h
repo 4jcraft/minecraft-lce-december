@@ -1,8 +1,7 @@
 #pragma once
 
-class OwnableEntity
-{
+class OwnableEntity {
 public:
-	virtual std::wstring getOwnerUUID() = 0;
-	virtual std::shared_ptr<Entity> getOwner() = 0;
+    virtual std::wstring getOwnerUUID() = 0;
+    virtual std::shared_ptr<Entity> getOwner() = 0;
 };

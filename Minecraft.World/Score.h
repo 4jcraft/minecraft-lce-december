@@ -3,10 +3,9 @@
 class Scoreboard;
 class Objective;
 
-class Score
-{
+class Score {
 public:
-	// 4J Not converted
+    // 4J Not converted
 #if 0
 	static final Comparator<Score> SCORE_COMPARATOR = new Comparator<Score>() {
 		@Override
@@ -23,22 +22,23 @@ public:
 #endif
 
 private:
-	Scoreboard *scoreboard;
-	Objective *objective;
-	std::wstring owner;
-	int count;
+    Scoreboard* scoreboard;
+    Objective* objective;
+    std::wstring owner;
+    int count;
 
 public:
-	Score(Scoreboard *scoreboard, Objective *objective, const std::wstring &owner);
+    Score(Scoreboard* scoreboard, Objective* objective,
+          const std::wstring& owner);
 
-	void add(int count);
-	void remove(int count);
-	void increment();
-	void decrement();
-	int getScore();
-	void setScore(int score);
-	Objective *getObjective();
-	std::wstring getOwner();
-	Scoreboard *getScoreboard();
-	void updateFor(vector<std::shared_ptr<Player> > *players);
+    void add(int count);
+    void remove(int count);
+    void increment();
+    void decrement();
+    int getScore();
+    void setScore(int score);
+    Objective* getObjective();
+    std::wstring getOwner();
+    Scoreboard* getScoreboard();
+    void updateFor(vector<std::shared_ptr<Player> >* players);
 };

@@ -5,39 +5,43 @@
 class Random;
 class Level;
 
-class Explosion
-{
+class Explosion {
 public:
-	bool fire;
-	bool destroyBlocks;
+    bool fire;
+    bool destroyBlocks;
 
 private:
-	int size;
+    int size;
 
-	Random *random;
-	Level *level;
+    Random* random;
+    Level* level;
 
 public:
-	double x, y, z;
-	std::shared_ptr<Entity> source;
-	float r;
+    double x, y, z;
+    std::shared_ptr<Entity> source;
+    float r;
 
-	unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq> toBlow;
-	
+    unordered_set<TilePos, TilePosKeyHash, TilePosKeyEq> toBlow;
+
 private:
-	typedef unordered_map<std::shared_ptr<Player>, Vec3 * , PlayerKeyHash, PlayerKeyEq> playerVec3Map;
-	playerVec3Map hitPlayers;
+    typedef unordered_map<std::shared_ptr<Player>, Vec3*, PlayerKeyHash,
+                          PlayerKeyEq>
+        playerVec3Map;
+    playerVec3Map hitPlayers;
 
 public:
-	Explosion(Level *level, std::shared_ptr<Entity> source, double x, double y, double z, float r);
-	~Explosion();
+    Explosion(Level* level, std::shared_ptr<Entity> source, double x, double y,
+              double z, float r);
+    ~Explosion();
 
 public:
-	void explode();
+    void explode();
 
 public:
-	void finalizeExplosion(bool generateParticles, vector<TilePos> *toBlowDirect = NULL);   // 4J - added toBlow parameter
-	playerVec3Map *getHitPlayers();
-	Vec3 *getHitPlayerKnockback( std::shared_ptr<Player> player );
-	std::shared_ptr<LivingEntity> getSourceMob();
+    void finalizeExplosion(
+        bool generateParticles,
+        vector<TilePos>* toBlowDirect = NULL);  // 4J - added toBlow parameter
+    playerVec3Map* getHitPlayers();
+    Vec3* getHitPlayerKnockback(std::shared_ptr<Player> player);
+    std::shared_ptr<LivingEntity> getSourceMob();
 };

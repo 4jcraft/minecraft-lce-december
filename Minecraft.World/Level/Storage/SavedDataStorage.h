@@ -1,35 +1,36 @@
 #pragma once
 
-
 class ConsoleSaveFile;
 #include "SavedData.h"
 
-class SavedDataStorage 
-{
+class SavedDataStorage {
 private:
-	LevelStorage *levelStorage;
+    LevelStorage* levelStorage;
 
-	typedef unordered_map<std::wstring, std::shared_ptr<SavedData> > cacheMapType;
+    typedef unordered_map<std::wstring, std::shared_ptr<SavedData> >
+        cacheMapType;
     cacheMapType cache;
 
     vector<std::shared_ptr<SavedData> > savedDatas;
 
-	typedef unordered_map<std::wstring, short> uaiMapType;
+    typedef unordered_map<std::wstring, short> uaiMapType;
     uaiMapType usedAuxIds;
 
 public:
-	SavedDataStorage(LevelStorage *);
-	std::shared_ptr<SavedData> get(const std::type_info& clazz, const std::wstring& id);
+    SavedDataStorage(LevelStorage*);
+    std::shared_ptr<SavedData> get(const std::type_info& clazz,
+                                   const std::wstring& id);
     void set(const std::wstring& id, std::shared_ptr<SavedData> data);
     void save();
 
 private:
-	void save(std::shared_ptr<SavedData> data);
+    void save(std::shared_ptr<SavedData> data);
     void loadAuxValues();
 
 public:
-	int getFreeAuxValueFor(const std::wstring& id);
+    int getFreeAuxValueFor(const std::wstring& id);
 
-	// 4J Added
-	int getAuxValueForMap(PlayerUID xuid, int dimension, int centreXC, int centreZC, int scale);
+    // 4J Added
+    int getAuxValueForMap(PlayerUID xuid, int dimension, int centreXC,
+                          int centreZC, int scale);
 };

@@ -2,17 +2,17 @@
 
 #include "RotatedPillarTile.h"
 
-class HayBlockTile : public RotatedPillarTile
-{
-	friend class ChunkRebuildData;
-public:
-	HayBlockTile(int id);
+class HayBlockTile : public RotatedPillarTile {
+    friend class ChunkRebuildData;
 
-	int getRenderShape();
+public:
+    HayBlockTile(int id);
+
+    int getRenderShape();
 
 protected:
-	Icon *getTypeTexture(int type);
+    Icon* getTypeTexture(int type);
 
 public:
-	void registerIcons(IconRegister *iconRegister);
+    void registerIcons(IconRegister* iconRegister);
 };

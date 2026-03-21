@@ -1,15 +1,14 @@
 #pragma once
 
-class Sensing
-{
+class Sensing {
 private:
-	Mob *mob;
-	vector<weak_ptr<Entity> > seen;
-	vector<weak_ptr<Entity> > unseen;
+    Mob* mob;
+    vector<weak_ptr<Entity> > seen;
+    vector<weak_ptr<Entity> > unseen;
 
 public:
-	Sensing(Mob *mob);
+    Sensing(Mob* mob);
 
-	void tick();
-	bool canSee(std::shared_ptr<Entity> target);
+    void tick();
+    bool canSee(std::shared_ptr<Entity> target);
 };

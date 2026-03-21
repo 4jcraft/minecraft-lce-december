@@ -5,22 +5,16 @@
 #include "../Util/BasicTypeContainers.h"
 #include "KillCommand.h"
 
-EGameCommand KillCommand::getId()
-{
-	return eGameCommand_Kill;
-}
+EGameCommand KillCommand::getId() { return eGameCommand_Kill; }
 
-int KillCommand::getPermissionLevel()
-{
-	return LEVEL_ALL;
-}
+int KillCommand::getPermissionLevel() { return LEVEL_ALL; }
 
-void KillCommand::execute(std::shared_ptr<CommandSender> source, byteArray commandData)
-{
-	shared_ptr<Player> player = dynamic_pointer_cast<Player>(source);
+void KillCommand::execute(std::shared_ptr<CommandSender> source,
+                          byteArray commandData) {
+    shared_ptr<Player> player = dynamic_pointer_cast<Player>(source);
 
-	player->hurt(DamageSource::outOfWorld, Float::MAX_VALUE);
+    player->hurt(DamageSource::outOfWorld, Float::MAX_VALUE);
 
-	source->sendMessage(L"Ouch. That look like it hurt.");
-//source.sendMessage(ChatMessageComponent.forTranslation("commands.kill.success"));
+    source->sendMessage(L"Ouch. That look like it hurt.");
+    // source.sendMessage(ChatMessageComponent.forTranslation("commands.kill.success"));
 }

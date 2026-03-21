@@ -3,26 +3,26 @@
 #include "Golem.h"
 #include "../../RangedAttackMob.h"
 
-class SnowMan : public Golem, public RangedAttackMob
-{
+class SnowMan : public Golem, public RangedAttackMob {
 public:
-	eINSTANCEOF GetType() { return eTYPE_SNOWMAN; }
-	static Entity *create(Level *level) { return new SnowMan(level); }
+    eINSTANCEOF GetType() { return eTYPE_SNOWMAN; }
+    static Entity* create(Level* level) { return new SnowMan(level); }
 
 public:
-	SnowMan(Level *level);
-	virtual bool useNewAi();
+    SnowMan(Level* level);
+    virtual bool useNewAi();
 
 protected:
-	virtual void registerAttributes();
+    virtual void registerAttributes();
 
 public:
-	virtual void aiStep();
+    virtual void aiStep();
 
 protected:
-	virtual int getDeathLoot();
-	virtual void dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel);
+    virtual int getDeathLoot();
+    virtual void dropDeathLoot(bool wasKilledByPlayer, int playerBonusLevel);
 
 public:
-	virtual void performRangedAttack(std::shared_ptr<LivingEntity> target, float power);
+    virtual void performRangedAttack(std::shared_ptr<LivingEntity> target,
+                                     float power);
 };

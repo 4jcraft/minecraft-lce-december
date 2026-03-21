@@ -33,9 +33,9 @@ public class WeatherCommand extends BaseCommand {
             throw new UsageException("commands.weather.usage");
         }
 
-        int duration = (300 + new Random().nextInt(600)) * SharedConstants.TICKS_PER_SECOND;
-        if (args.length >= 2) {
-            duration = convertArgToInt(source, args[1], 1, 1000000) * SharedConstants.TICKS_PER_SECOND;
+        int duration = (300 + new Random().nextInt(600)) *
+SharedConstants.TICKS_PER_SECOND; if (args.length >= 2) { duration =
+convertArgToInt(source, args[1], 1, 1000000) * SharedConstants.TICKS_PER_SECOND;
         }
 
         Level level = MinecraftServer.getInstance().levels[0];

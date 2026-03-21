@@ -3,27 +3,28 @@
 
 class DamageSource;
 
-class CombatEntry
-{
+class CombatEntry {
 private:
-	DamageSource *source;
-	int time;
-	float damage;
-	float health;
-	CombatTracker::eLOCATION location; // 4J: Location is now an enum, not a std::string
-	float fallDistance;
+    DamageSource* source;
+    int time;
+    float damage;
+    float health;
+    CombatTracker::eLOCATION
+        location;  // 4J: Location is now an enum, not a std::string
+    float fallDistance;
 
 public:
-	CombatEntry(DamageSource *source, int time, float health, float damage, CombatTracker::eLOCATION nextLocation, float fallDistance);
-	~CombatEntry();
+    CombatEntry(DamageSource* source, int time, float health, float damage,
+                CombatTracker::eLOCATION nextLocation, float fallDistance);
+    ~CombatEntry();
 
-	DamageSource *getSource();
-	int getTime();
-	float getDamage();
-	float getHealthBeforeDamage();
-	float getHealthAfterDamage();
-	bool isCombatRelated();
-	CombatTracker::eLOCATION getLocation();
-	std::wstring getAttackerName();
-	float getFallDistance();
+    DamageSource* getSource();
+    int getTime();
+    float getDamage();
+    float getHealthBeforeDamage();
+    float getHealthAfterDamage();
+    bool isCombatRelated();
+    CombatTracker::eLOCATION getLocation();
+    std::wstring getAttackerName();
+    float getFallDistance();
 };

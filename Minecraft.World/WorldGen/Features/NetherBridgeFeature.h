@@ -4,33 +4,34 @@
 #include "biome.h"
 class Random;
 
-class NetherBridgeFeature : public StructureFeature
-{
-
+class NetherBridgeFeature : public StructureFeature {
 private:
-	vector<Biome::MobSpawnerData *> bridgeEnemies;
-	bool isSpotSelected;
-	ChunkPos *netherFortressPos;
+    vector<Biome::MobSpawnerData*> bridgeEnemies;
+    bool isSpotSelected;
+    ChunkPos* netherFortressPos;
 
 public:
-	NetherBridgeFeature();
-	~NetherBridgeFeature();
-	std::wstring getFeatureName();
-	vector<Biome::MobSpawnerData *> *getBridgeEnemies();
+    NetherBridgeFeature();
+    ~NetherBridgeFeature();
+    std::wstring getFeatureName();
+    vector<Biome::MobSpawnerData*>* getBridgeEnemies();
+
 protected:
-	virtual bool isFeatureChunk(int x, int z, bool bIsSuperflat);
-	virtual StructureStart *createStructureStart(int x, int z);
-public:
-	void clearCachedBuildings();
+    virtual bool isFeatureChunk(int x, int z, bool bIsSuperflat);
+    virtual StructureStart* createStructureStart(int x, int z);
 
-	class NetherBridgeStart : public StructureStart
-	{
 public:
-	static StructureStart *Create() { return new NetherBridgeStart(); }
-	virtual EStructureStart GetType() { return eStructureStart_NetherBridgeStart; }
+    void clearCachedBuildings();
 
-	public:
-		NetherBridgeStart();
-		NetherBridgeStart(Level *level, Random *random, int chunkX, int chunkZ);
-	};
+    class NetherBridgeStart : public StructureStart {
+    public:
+        static StructureStart* Create() { return new NetherBridgeStart(); }
+        virtual EStructureStart GetType() {
+            return eStructureStart_NetherBridgeStart;
+        }
+
+    public:
+        NetherBridgeStart();
+        NetherBridgeStart(Level* level, Random* random, int chunkX, int chunkZ);
+    };
 };

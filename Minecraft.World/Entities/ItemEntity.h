@@ -4,71 +4,72 @@
 
 class Player;
 
-class ItemEntity : public Entity
-{
+class ItemEntity : public Entity {
 public:
-	eINSTANCEOF GetType()			{ return eTYPE_ITEMENTITY;}
-	static Entity *create(Level *level) { return new ItemEntity(level); }
+    eINSTANCEOF GetType() { return eTYPE_ITEMENTITY; }
+    static Entity* create(Level* level) { return new ItemEntity(level); }
 
 private:
-	static const int DATA_ITEM = 10;
+    static const int DATA_ITEM = 10;
 
-	static const int LIFETIME = 5 * 60 * SharedConstants::TICKS_PER_SECOND; // Five miniutes.
+    static const int LIFETIME =
+        5 * 60 * SharedConstants::TICKS_PER_SECOND;  // Five miniutes.
 
-	std::wstring thrower;
+    std::wstring thrower;
 
-	// 4J Added
-	void _init();
-	void _init(Level *level, double x, double y, double z);
+    // 4J Added
+    void _init();
+    void _init(Level* level, double x, double y, double z);
 
 public:
-	int age;
-	int throwTime;
+    int age;
+    int throwTime;
 
 private:
-	int health;
+    int health;
 
 public:
-	float bobOffs;
-	
-	ItemEntity(Level *level, double x, double y, double z);
-	ItemEntity(Level *level, double x, double y, double z, shared_ptr<ItemInstance> item);
+    float bobOffs;
+
+    ItemEntity(Level* level, double x, double y, double z);
+    ItemEntity(Level* level, double x, double y, double z,
+               shared_ptr<ItemInstance> item);
 
 protected:
-	virtual bool makeStepSound();
+    virtual bool makeStepSound();
 
 public:
-	ItemEntity(Level *level);
+    ItemEntity(Level* level);
 
 protected:
-	virtual void defineSynchedData();
+    virtual void defineSynchedData();
 
 public:
-	virtual void tick();
+    virtual void tick();
 
 private:
-	void mergeWithNeighbours();
+    void mergeWithNeighbours();
 
 public:
-	bool merge(shared_ptr<ItemEntity> target);
-	void setShortLifeTime();
-	virtual bool updateInWaterState();
+    bool merge(shared_ptr<ItemEntity> target);
+    void setShortLifeTime();
+    virtual bool updateInWaterState();
 
 protected:
-	virtual void burn(int dmg);
+    virtual void burn(int dmg);
 
 public:
-	virtual bool hurt(DamageSource *source, float damage);
-	virtual void addAdditonalSaveData(CompoundTag *entityTag);
-	virtual void readAdditionalSaveData(CompoundTag *tag);
-	virtual void playerTouch(shared_ptr<Player> player);
+    virtual bool hurt(DamageSource* source, float damage);
+    virtual void addAdditonalSaveData(CompoundTag* entityTag);
+    virtual void readAdditionalSaveData(CompoundTag* tag);
+    virtual void playerTouch(shared_ptr<Player> player);
 
-	virtual std::wstring getAName();
-	virtual void changeDimension(int i);
-	shared_ptr<ItemInstance> getItem();
-	void setItem(shared_ptr<ItemInstance> item);
-	virtual bool isAttackable();
+    virtual std::wstring getAName();
+    virtual void changeDimension(int i);
+    shared_ptr<ItemInstance> getItem();
+    void setItem(shared_ptr<ItemInstance> item);
+    virtual bool isAttackable();
 
-	void setThrower(const std::wstring &thrower);
-	std::wstring getThrower();
+    void setThrower(const std::wstring& thrower);
+    std::wstring getThrower();
 };

@@ -1,26 +1,27 @@
 #pragma once
 
-
 #include "Packet.h"
 
-class LevelEventPacket : public Packet, public enable_shared_from_this<LevelEventPacket>
-{
+class LevelEventPacket : public Packet,
+                         public enable_shared_from_this<LevelEventPacket> {
 public:
-	int type;
+    int type;
     int data;
     int x, y, z;
-	bool globalEvent;
+    bool globalEvent;
 
-	LevelEventPacket();
-	LevelEventPacket(int type, int x, int y, int z, int data, bool globalEvent);
+    LevelEventPacket();
+    LevelEventPacket(int type, int x, int y, int z, int data, bool globalEvent);
 
-	virtual void read(DataInputStream *dis);
-	virtual void write(DataOutputStream *dos);
-	virtual void handle(PacketListener *listener);
-	virtual int getEstimatedSize();
-	bool isGlobalEvent();
+    virtual void read(DataInputStream* dis);
+    virtual void write(DataOutputStream* dos);
+    virtual void handle(PacketListener* listener);
+    virtual int getEstimatedSize();
+    bool isGlobalEvent();
 
 public:
-	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new LevelEventPacket()); }
-	virtual int getId() { return 61; }
+    static std::shared_ptr<Packet> create() {
+        return std::shared_ptr<Packet>(new LevelEventPacket());
+    }
+    virtual int getId() { return 61; }
 };

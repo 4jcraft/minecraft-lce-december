@@ -4,11 +4,12 @@ class LivingEntity;
 
 #include "Entities/MobEffect.h"
 
-class AbsoptionMobEffect : public MobEffect
-{
+class AbsoptionMobEffect : public MobEffect {
 public:
-	AbsoptionMobEffect(int id, bool isHarmful, eMinecraftColour color);
+    AbsoptionMobEffect(int id, bool isHarmful, eMinecraftColour color);
 
-	void removeAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier);
-	void addAttributeModifiers(std::shared_ptr<LivingEntity> entity, BaseAttributeMap *attributes, int amplifier);
+    void removeAttributeModifiers(std::shared_ptr<LivingEntity> entity,
+                                  BaseAttributeMap* attributes, int amplifier);
+    void addAttributeModifiers(std::shared_ptr<LivingEntity> entity,
+                               BaseAttributeMap* attributes, int amplifier);
 };

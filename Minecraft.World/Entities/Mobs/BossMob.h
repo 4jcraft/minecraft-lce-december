@@ -1,9 +1,8 @@
 #pragma once
 
-class BossMob
-{
+class BossMob {
 public:
-	virtual float getMaxHealth() = 0;
-	virtual float getHealth() = 0;
-	virtual std::wstring getAName() = 0;
+    virtual float getMaxHealth() = 0;
+    virtual float getHealth() = 0;
+    virtual std::wstring getAName() = 0;
 };

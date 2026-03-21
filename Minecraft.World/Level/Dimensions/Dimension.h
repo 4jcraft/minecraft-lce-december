@@ -9,57 +9,57 @@ class LevelType;
 #include "../../Util/Vec3.h"
 #include "../../Util/Pos.h"
 
-class Dimension
-{
+class Dimension {
 public:
-	static const float MOON_BRIGHTNESS_PER_PHASE[8];
+    static const float MOON_BRIGHTNESS_PER_PHASE[8];
 
-	Level *level;
-	LevelType *levelType;
-	std::wstring levelTypeOptions;
-	BiomeSource *biomeSource;
-	bool ultraWarm ;
-	bool hasCeiling;
-	float *brightnessRamp;
-	int id;
+    Level* level;
+    LevelType* levelType;
+    std::wstring levelTypeOptions;
+    BiomeSource* biomeSource;
+    bool ultraWarm;
+    bool hasCeiling;
+    float* brightnessRamp;
+    int id;
 
-	virtual void init(Level *level);
+    virtual void init(Level* level);
 
 protected:
-	virtual void updateLightRamp();
-	virtual void init();
+    virtual void updateLightRamp();
+    virtual void init();
 
 public:
-	Dimension();
-	~Dimension();
-	virtual ChunkSource *createRandomLevelSource() const;
-	virtual ChunkSource *createFlatLevelSource() const;
-	virtual ChunkStorage *createStorage(File dir);
+    Dimension();
+    ~Dimension();
+    virtual ChunkSource* createRandomLevelSource() const;
+    virtual ChunkSource* createFlatLevelSource() const;
+    virtual ChunkStorage* createStorage(File dir);
 
-	virtual bool isValidSpawn(int x, int z) const;
+    virtual bool isValidSpawn(int x, int z) const;
 
-	virtual float getTimeOfDay(__int64 time, float a) const;
-	virtual int getMoonPhase(__int64 time) const;
-	virtual bool isNaturalDimension();
+    virtual float getTimeOfDay(__int64 time, float a) const;
+    virtual int getMoonPhase(__int64 time) const;
+    virtual bool isNaturalDimension();
+
 private:
-	static const int fogColor = 0xc0d8ff;
+    static const int fogColor = 0xc0d8ff;
 
-	float sunriseCol[4];
+    float sunriseCol[4];
 
 public:
-	virtual float *getSunriseColor(float td, float a);
-	virtual Vec3 *getFogColor(float td, float a) const;
-	virtual bool mayRespawn() const;
-	static Dimension *getNew(int id);
-	virtual float getCloudHeight();
-	virtual bool hasGround();
-	virtual Pos *getSpawnPos();
+    virtual float* getSunriseColor(float td, float a);
+    virtual Vec3* getFogColor(float td, float a) const;
+    virtual bool mayRespawn() const;
+    static Dimension* getNew(int id);
+    virtual float getCloudHeight();
+    virtual bool hasGround();
+    virtual Pos* getSpawnPos();
 
-	int getSpawnYPosition();
-	virtual bool hasBedrockFog(); 
-	double getClearColorScale();
-	virtual bool isFoggyAt(int x, int z);
+    int getSpawnYPosition();
+    virtual bool hasBedrockFog();
+    double getClearColorScale();
+    virtual bool isFoggyAt(int x, int z);
 
-	// 4J Added
-	virtual int getXZSize();
+    // 4J Added
+    virtual int getXZSize();
 };

@@ -50,9 +50,9 @@ public class GameRuleCommand extends BaseCommand {
 
             if (rules.contains(rule)) {
                 String value = rules.get(rule);
-                source.sendMessage(ChatMessageComponent.forPlainText(rule).addPlainText(" = ").addPlainText(value));
-            } else {
-                logAdminAction(source, "commands.gamerule.norule", rule);
+                source.sendMessage(ChatMessageComponent.forPlainText(rule).addPlainText("
+= ").addPlainText(value)); } else { logAdminAction(source,
+"commands.gamerule.norule", rule);
             }
 
             return;

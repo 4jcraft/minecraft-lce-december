@@ -1,7 +1,7 @@
 #pragma once
 
-class RangedAttackMob
-{
+class RangedAttackMob {
 public:
-	virtual void performRangedAttack(std::shared_ptr<LivingEntity> target, float power) = 0;
+    virtual void performRangedAttack(std::shared_ptr<LivingEntity> target,
+                                     float power) = 0;
 };

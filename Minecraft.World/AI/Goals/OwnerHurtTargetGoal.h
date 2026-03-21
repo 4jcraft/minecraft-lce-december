@@ -4,16 +4,15 @@
 
 class TamableAnimal;
 
-class OwnerHurtTargetGoal : public TargetGoal
-{
+class OwnerHurtTargetGoal : public TargetGoal {
 private:
-	TamableAnimal *tameAnimal; // Owner of this goal
-	weak_ptr<LivingEntity> ownerLastHurt;
-	int timestamp;
+    TamableAnimal* tameAnimal;  // Owner of this goal
+    weak_ptr<LivingEntity> ownerLastHurt;
+    int timestamp;
 
 public:
-	OwnerHurtTargetGoal(TamableAnimal *tameAnimal);
+    OwnerHurtTargetGoal(TamableAnimal* tameAnimal);
 
-	bool canUse();
-	void start();
+    bool canUse();
+    void start();
 };

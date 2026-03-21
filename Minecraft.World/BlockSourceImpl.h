@@ -4,26 +4,25 @@
 
 class Level;
 
-class BlockSourceImpl : public BlockSource
-{
+class BlockSourceImpl : public BlockSource {
 private:
-	Level *world;
-	int x;
-	int y;
-	int z;
+    Level* world;
+    int x;
+    int y;
+    int z;
 
 public:
-	BlockSourceImpl(Level *world, int x, int y, int z);
+    BlockSourceImpl(Level* world, int x, int y, int z);
 
-	Level *getWorld();
-	double getX();
-	double getY();
-	double getZ();
-	int getBlockX();
-	int getBlockY();
-	int getBlockZ();
-	Tile *getType();
-	int getData();
-	Material *getMaterial();
-	std::shared_ptr<TileEntity> getEntity();
+    Level* getWorld();
+    double getX();
+    double getY();
+    double getZ();
+    int getBlockX();
+    int getBlockY();
+    int getBlockZ();
+    Tile* getType();
+    int getData();
+    Material* getMaterial();
+    std::shared_ptr<TileEntity> getEntity();
 };

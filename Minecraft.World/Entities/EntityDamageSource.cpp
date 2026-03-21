@@ -4,58 +4,58 @@
 #include "../Headers/net.minecraft.world.damagesource.h"
 #include "../Headers/net.minecraft.network.packet.h"
 
-//EntityDamageSource::EntityDamageSource(const wstring &msgId, shared_ptr<Entity> entity) : DamageSource(msgId)
-EntityDamageSource::EntityDamageSource(ChatPacket::EChatPacketMessage msgId, ChatPacket::EChatPacketMessage msgWithItemId, std::shared_ptr<Entity> entity) : DamageSource(msgId, msgWithItemId)
-{
-	this->entity = entity;
+// EntityDamageSource::EntityDamageSource(const wstring &msgId,
+// shared_ptr<Entity> entity) : DamageSource(msgId)
+EntityDamageSource::EntityDamageSource(
+    ChatPacket::EChatPacketMessage msgId,
+    ChatPacket::EChatPacketMessage msgWithItemId,
+    std::shared_ptr<Entity> entity)
+    : DamageSource(msgId, msgWithItemId) {
+    this->entity = entity;
 }
 
-std::shared_ptr<Entity> EntityDamageSource::getEntity()
-{
-	return entity;
-}
+std::shared_ptr<Entity> EntityDamageSource::getEntity() { return entity; }
 
-//wstring EntityDamageSource::getLocalizedDeathMessage(shared_ptr<Player> player)
+// wstring EntityDamageSource::getLocalizedDeathMessage(shared_ptr<Player>
+// player)
 //{
 //	return L"death." + msgId + player->name + entity->getAName();
 //	//return I18n.get("death." + msgId, player.name, entity.getAName());
-//}
+// }
 
-std::shared_ptr<ChatPacket> EntityDamageSource::getDeathMessagePacket(std::shared_ptr<LivingEntity> player)
-{
-	shared_ptr<ItemInstance> held = (entity != NULL) && entity->instanceof(eTYPE_LIVINGENTITY) ? dynamic_pointer_cast<LivingEntity>(entity)->getCarriedItem() : nullptr;
-	wstring additional = L"";
+std::shared_ptr<ChatPacket> EntityDamageSource::getDeathMessagePacket(
+    std::shared_ptr<LivingEntity> player) {
+    shared_ptr<ItemInstance> held =
+        (entity != NULL) && entity->instanceof(eTYPE_LIVINGENTITY)
+            ? dynamic_pointer_cast<LivingEntity>(entity)->getCarriedItem()
+            : nullptr;
+    wstring additional = L"";
 
-	if (entity->instanceof(eTYPE_SERVERPLAYER))
-	{
-		additional = dynamic_pointer_cast<Player>(entity)->name;
-	}
-	else if (entity->instanceof(eTYPE_MOB))
-	{
-		shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
-		if (mob->hasCustomName())
-		{
-			additional = mob->getCustomName();
-		}
-	}
+    if (entity->instanceof(eTYPE_SERVERPLAYER)) {
+        additional = dynamic_pointer_cast<Player>(entity)->name;
+    } else if (entity->instanceof(eTYPE_MOB)) {
+        shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
+        if (mob->hasCustomName()) {
+            additional = mob->getCustomName();
+        }
+    }
 
-	if ( (held != NULL) && held->hasCustomHoverName())
-	{
-		return shared_ptr<ChatPacket>( new ChatPacket(player->getNetworkName(), m_msgWithItemId, entity->GetType(), additional, held->getHoverName() ) );
-	}
-	else
-	{
-		return shared_ptr<ChatPacket>( new ChatPacket(player->getNetworkName(), m_msgId, entity->GetType(), additional ) );
-	}
+    if ((held != NULL) && held->hasCustomHoverName()) {
+        return shared_ptr<ChatPacket>(new ChatPacket(
+            player->getNetworkName(), m_msgWithItemId, entity->GetType(),
+            additional, held->getHoverName()));
+    } else {
+        return shared_ptr<ChatPacket>(new ChatPacket(
+            player->getNetworkName(), m_msgId, entity->GetType(), additional));
+    }
 }
 
-bool EntityDamageSource::scalesWithDifficulty()
-{
-	return (entity != NULL) && entity->instanceof(eTYPE_LIVINGENTITY) && !entity->instanceof(eTYPE_PLAYER);
+bool EntityDamageSource::scalesWithDifficulty() {
+    return (entity != NULL) && entity->instanceof(eTYPE_LIVINGENTITY) &&
+           !entity->instanceof(eTYPE_PLAYER);
 }
 
 // 4J: Copy function
-DamageSource *EntityDamageSource::copy()
-{
-	return new EntityDamageSource(*this);
+DamageSource* EntityDamageSource::copy() {
+    return new EntityDamageSource(*this);
 }

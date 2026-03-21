@@ -1,7 +1,6 @@
 #pragma once
 
-class EntityTile
-{
+class EntityTile {
 public:
-	virtual std::shared_ptr<TileEntity> newTileEntity(Level *level) = 0;
+    virtual std::shared_ptr<TileEntity> newTileEntity(Level* level) = 0;
 };

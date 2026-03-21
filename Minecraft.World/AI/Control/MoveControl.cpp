@@ -9,69 +9,61 @@
 const float MoveControl::MIN_SPEED = 0.0005f;
 const float MoveControl::MIN_SPEED_SQR = MIN_SPEED * MIN_SPEED;
 
-MoveControl::MoveControl(Mob *mob)
-{
-	this->mob = mob;
-	wantedX = mob->x;
-	wantedY = mob->y;
-	wantedZ = mob->z;
+MoveControl::MoveControl(Mob* mob) {
+    this->mob = mob;
+    wantedX = mob->x;
+    wantedY = mob->y;
+    wantedZ = mob->z;
 
-	speedModifier = 0.0;
+    speedModifier = 0.0;
 
-	_hasWanted = false;
+    _hasWanted = false;
 }
 
-bool MoveControl::hasWanted()
-{
-	return _hasWanted;
+bool MoveControl::hasWanted() { return _hasWanted; }
+
+double MoveControl::getSpeedModifier() { return speedModifier; }
+
+void MoveControl::setWantedPosition(double x, double y, double z,
+                                    double speedModifier) {
+    wantedX = x;
+    wantedY = y;
+    wantedZ = z;
+    this->speedModifier = speedModifier;
+    _hasWanted = true;
 }
 
-double MoveControl::getSpeedModifier()
-{
-	return speedModifier;
+void MoveControl::tick() {
+    mob->setYya(0);
+    if (!_hasWanted) return;
+    _hasWanted = false;
+
+    int yFloor = floor(mob->bb->y0 + .5f);
+
+    double xd = wantedX - mob->x;
+    double zd = wantedZ - mob->z;
+    double yd = wantedY - yFloor;
+    double dd = xd * xd + yd * yd + zd * zd;
+    if (dd < MIN_SPEED_SQR) return;
+
+    float yRotD = (float)(atan2(zd, xd) * 180 / PI) - 90;
+
+    mob->yRot = rotlerp(mob->yRot, yRotD, MAX_TURN);
+    mob->setSpeed(
+        (float)(speedModifier *
+                mob->getAttribute(SharedMonsterAttributes::MOVEMENT_SPEED)
+                    ->getValue()));
+
+    if (yd > 0 && xd * xd + zd * zd < 1) mob->getJumpControl()->jump();
 }
 
-void MoveControl::setWantedPosition(double x, double y, double z, double speedModifier)
-{
-	wantedX = x;
-	wantedY = y;
-	wantedZ = z;
-	this->speedModifier = speedModifier;
-	_hasWanted = true;
-}
-
-void MoveControl::tick()
-{
-	mob->setYya(0);
-	if (!_hasWanted) return;
-	_hasWanted = false;
-
-	int yFloor = floor(mob->bb->y0 + .5f);
-
-	double xd = wantedX - mob->x;
-	double zd = wantedZ - mob->z;
-	double yd = wantedY - yFloor;
-	double dd = xd * xd + yd * yd + zd * zd;
-	if (dd < MIN_SPEED_SQR) return;
-
-	float yRotD = (float) (atan2(zd, xd) * 180 / PI) - 90;
-
-	mob->yRot = rotlerp(mob->yRot, yRotD, MAX_TURN);
-	mob->setSpeed((float) (speedModifier * mob->getAttribute(SharedMonsterAttributes::MOVEMENT_SPEED)->getValue()));
-
-	if (yd > 0 && xd * xd + zd * zd < 1) mob->getJumpControl()->jump();
-}
-
-float MoveControl::rotlerp(float a, float b, float max)
-{
-	float diff = Mth::wrapDegrees(b - a);
-	if (diff > max)
-	{
-		diff = max;
-	}
-	if (diff < -max)
-	{
-		diff = -max;
-	}
-	return a + diff;
+float MoveControl::rotlerp(float a, float b, float max) {
+    float diff = Mth::wrapDegrees(b - a);
+    if (diff > max) {
+        diff = max;
+    }
+    if (diff < -max) {
+        diff = -max;
+    }
+    return a + diff;
 }

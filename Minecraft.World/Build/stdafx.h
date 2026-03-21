@@ -9,12 +9,12 @@
 #define AUTO_VAR(_var, _val) auto _var = _val
 #endif
 
-#if ( defined _XBOX || defined _WINDOWS64  || defined _DURANGO )
+#if (defined _XBOX || defined _WINDOWS64 || defined _DURANGO)
 typedef unsigned __int64 __uint64;
 #endif
 
 #ifdef _WINDOWS64
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+#define WIN32_LEAN_AND_MEAN  // Exclude rarely-used stuff from Windows headers
 // Windows Header Files:
 #include <windows.h>
 #include <malloc.h>
@@ -33,7 +33,7 @@ using namespace DirectX;
 #include "..\Minecraft.Client\Durango\DurangoExtras\DurangoStubs.h"
 #endif
 
-#if (defined __PS3__ || defined _XBOX )
+#if (defined __PS3__ || defined _XBOX)
 // C RunTime Header Files
 #include <stdlib.h>
 #endif
@@ -70,7 +70,6 @@ typedef XUID GameSessionUID;
 #include <sysutil/sysutil_savedata.h>
 #include <sysutil/sysutil_sysparam.h>
 
-
 #include "Ps3Types.h"
 #include "Ps3Stubs.h"
 #include "PS3Maths.h"
@@ -95,7 +94,7 @@ typedef XUID GameSessionUID;
 #include <unordered_set>
 #include <sal.h>
 #include <vector>
-#endif //__PS3__
+#endif  //__PS3__
 
 #include <memory>
 
@@ -112,7 +111,8 @@ typedef XUID GameSessionUID;
 #include <iostream>
 #include <exception>
 
-#ifndef __PS3__			// the PS3 lib assert is rubbish, and aborts the code, we define our own in PS3Types.h
+#ifndef __PS3__  // the PS3 lib assert is rubbish, and aborts the code, we
+                 // define our own in PS3Types.h
 #include <assert.h>
 #endif
 
@@ -134,7 +134,6 @@ typedef XUID GameSessionUID;
 #include "../IO/Streams/Compression.h"
 #include "../Util/PerformanceTimer.h"
 
-
 #ifdef _FINAL_BUILD
 #define printf BREAKTHECOMPILE
 #define wprintf BREAKTHECOMPILE
@@ -144,7 +143,6 @@ typedef XUID GameSessionUID;
 #define OutputDebugStringW BREAKTHECOMPILE
 #endif
 
-
 void MemSect(int sect);
 
 #ifdef _XBOX
@@ -153,7 +151,7 @@ void MemSect(int sect);
 #include "..\Minecraft.Client\xbox\4JLibs\inc\4J_XTMS.h"
 #include "..\Minecraft.Client\xbox\4JLibs\inc\4J_Storage.h"
 #include "..\Minecraft.Client\xbox\4JLibs\inc\4J_Input.h"
-#elif defined (__PS3__)
+#elif defined(__PS3__)
 #include "..\Minecraft.Client\PS3\4JLibs\inc\4J_Profile.h"
 #include "..\Minecraft.Client\PS3\4JLibs\inc\4J_Render.h"
 #include "..\Minecraft.Client\PS3\4JLibs\inc\4J_Storage.h"
@@ -188,7 +186,7 @@ void MemSect(int sect);
 #include "..\Minecraft.Client\Common\App_enums.h"
 #include "..\Minecraft.Client\Common\Tutorial\TutorialEnum.h"
 #include "..\Minecraft.Client\Common\App_structs.h"
-//#endif
+// #endif
 
 #ifdef _XBOX
 #include "..\Minecraft.Client\Common\XUI\XUI_Helper.h"
@@ -206,7 +204,7 @@ void MemSect(int sect);
 #include "..\Minecraft.Client\Xbox\Sentient\SentientTelemetryCommon.h"
 #include "..\Minecraft.Client\Xbox\Sentient\MinecraftTelemetry.h"
 
-#elif defined (__PS3__)
+#elif defined(__PS3__)
 #include "..\Minecraft.Client\PS3\PS3_App.h"
 #include "..\Minecraft.Client\PS3Media\strings.h"
 #include "..\Minecraft.Client\PS3\Sentient\SentientTelemetryCommon.h"
@@ -215,7 +213,7 @@ void MemSect(int sect);
 #elif defined _DURANGO
 #include "..\Minecraft.Client\Durango\Durango_App.h"
 #include "..\Minecraft.Client\DurangoMedia\strings.h"
-//#include "..\Minecraft.Client\Durango\Sentient\SentientManager.h"
+// #include "..\Minecraft.Client\Durango\Sentient\SentientManager.h"
 #include "..\Minecraft.Client\Durango\Sentient\SentientTelemetryCommon.h"
 #include "..\Minecraft.Client\Durango\Sentient\MinecraftTelemetry.h"
 #include "..\Minecraft.Client\Durango\Sentient\TelemetryEnum.h"
@@ -228,7 +226,7 @@ void MemSect(int sect);
 
 #elif defined __PSVITA__
 #include "..\Minecraft.Client\PSVita\PSVita_App.h"
-#include "..\Minecraft.Client\PSVitaMedia\strings.h"		// TODO - create PSVita-specific version of this
+#include "..\Minecraft.Client\PSVitaMedia\strings.h"  // TODO - create PSVita-specific version of this
 #include "..\Minecraft.Client\PSVita\Sentient\SentientManager.h"
 #include "..\Minecraft.Client\PSVita\Sentient\MinecraftTelemetry.h"
 #else

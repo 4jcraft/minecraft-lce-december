@@ -4,63 +4,52 @@
 #include "PacketListener.h"
 #include "TexturePacket.h"
 
-
-
-TexturePacket::TexturePacket() 
-{
-	this->textureName = L"";
-	this->dwBytes = 0;
-	this->pbData = NULL;
+TexturePacket::TexturePacket() {
+    this->textureName = L"";
+    this->dwBytes = 0;
+    this->pbData = NULL;
 }
 
-TexturePacket::~TexturePacket() 
-{
-	// can't free this - it's used elsewhere
-// 	if(this->pbData!=NULL)
-// 	{
-// 		delete [] this->pbData;
-// 	}
+TexturePacket::~TexturePacket() {
+    // can't free this - it's used elsewhere
+    // 	if(this->pbData!=NULL)
+    // 	{
+    // 		delete [] this->pbData;
+    // 	}
 }
 
-TexturePacket::TexturePacket(const std::wstring &textureName, PBYTE pbData, DWORD dwBytes) 
-{
-	this->textureName = textureName;
-	this->pbData = pbData;
-	this->dwBytes = dwBytes;
+TexturePacket::TexturePacket(const std::wstring& textureName, PBYTE pbData,
+                             DWORD dwBytes) {
+    this->textureName = textureName;
+    this->pbData = pbData;
+    this->dwBytes = dwBytes;
 }
 
-void TexturePacket::handle(PacketListener *listener) 
-{
-	listener->handleTexture(shared_from_this());
+void TexturePacket::handle(PacketListener* listener) {
+    listener->handleTexture(shared_from_this());
 }
 
-void TexturePacket::read(DataInputStream *dis) //throws IOException
+void TexturePacket::read(DataInputStream* dis)  // throws IOException
 {
-	textureName = dis->readUTF();
-	dwBytes = (DWORD)dis->readShort();
+    textureName = dis->readUTF();
+    dwBytes = (DWORD)dis->readShort();
 
-	if(dwBytes>0)
-	{
-		this->pbData= new BYTE [dwBytes];
+    if (dwBytes > 0) {
+        this->pbData = new BYTE[dwBytes];
 
-		for(DWORD i=0;i<dwBytes;i++)
-		{
-			this->pbData[i] = dis->readByte();
-		}
-	}
+        for (DWORD i = 0; i < dwBytes; i++) {
+            this->pbData[i] = dis->readByte();
+        }
+    }
 }
 
-void TexturePacket::write(DataOutputStream *dos) //throws IOException 
+void TexturePacket::write(DataOutputStream* dos)  // throws IOException
 {
-	dos->writeUTF(textureName);
-	dos->writeShort((short)dwBytes);
-	for(DWORD i=0;i<dwBytes;i++)
-	{
-		dos->writeByte(this->pbData[i]);
-	}
+    dos->writeUTF(textureName);
+    dos->writeShort((short)dwBytes);
+    for (DWORD i = 0; i < dwBytes; i++) {
+        dos->writeByte(this->pbData[i]);
+    }
 }
 
-int TexturePacket::getEstimatedSize() 
-{
-	return 4096;
-}
+int TexturePacket::getEstimatedSize() { return 4096; }

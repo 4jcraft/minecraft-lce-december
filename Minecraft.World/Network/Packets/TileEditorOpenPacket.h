@@ -2,24 +2,27 @@
 
 #include "Packet.h"
 
-class TileEditorOpenPacket : public Packet, public enable_shared_from_this<TileEditorOpenPacket>
-{
+class TileEditorOpenPacket
+    : public Packet,
+      public enable_shared_from_this<TileEditorOpenPacket> {
 public:
-	static const int SIGN = 0;
-	static const int COMMAND_BLOCK = 1;
+    static const int SIGN = 0;
+    static const int COMMAND_BLOCK = 1;
 
-	int editorType;
-	int x, y, z;
+    int editorType;
+    int x, y, z;
 
-	TileEditorOpenPacket();
-	TileEditorOpenPacket(int editorType, int x, int y, int z);
+    TileEditorOpenPacket();
+    TileEditorOpenPacket(int editorType, int x, int y, int z);
 
-	virtual void handle(PacketListener *listener);
-	virtual void read(DataInputStream *dis);
-	virtual void write(DataOutputStream *dos);
-	virtual int getEstimatedSize();
+    virtual void handle(PacketListener* listener);
+    virtual void read(DataInputStream* dis);
+    virtual void write(DataOutputStream* dos);
+    virtual int getEstimatedSize();
 
 public:
-	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new TileEditorOpenPacket()); }
-	virtual int getId() { return 133; }
+    static std::shared_ptr<Packet> create() {
+        return std::shared_ptr<Packet>(new TileEditorOpenPacket());
+    }
+    virtual int getId() { return 133; }
 };

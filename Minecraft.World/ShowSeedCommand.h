@@ -11,7 +11,8 @@ import net.minecraft.world.level.Level;
 public class ShowSeedCommand extends BaseCommand {
     @Override
     public boolean canExecute(CommandSender source) {
-        return MinecraftServer.getInstance().isSingleplayer() || super.canExecute(source);
+        return MinecraftServer.getInstance().isSingleplayer() ||
+super.canExecute(source);
     }
 
     @Override
@@ -31,8 +32,10 @@ public class ShowSeedCommand extends BaseCommand {
 
     @Override
     public void execute(CommandSender source, String[] args) {
-        Level level = source instanceof Player ? ((Player) source).level : MinecraftServer.getInstance().getLevel(0);
-        source.sendMessage(ChatMessageComponent.forTranslation("commands.seed.success", level.getSeed()));
+        Level level = source instanceof Player ? ((Player) source).level :
+MinecraftServer.getInstance().getLevel(0);
+        source.sendMessage(ChatMessageComponent.forTranslation("commands.seed.success",
+level.getSeed()));
     }
 }
 

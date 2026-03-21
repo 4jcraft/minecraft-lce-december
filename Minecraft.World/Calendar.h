@@ -1,10 +1,9 @@
 #pragma once
 
-class Calendar
-{
+class Calendar {
 public:
-	Calendar();
+    Calendar();
 
-	static unsigned int GetDayOfMonth();
-	static unsigned int GetMonth();	
+    static unsigned int GetDayOfMonth();
+    static unsigned int GetMonth();
 };

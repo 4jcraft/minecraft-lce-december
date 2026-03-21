@@ -2,9 +2,9 @@
 
 class MultiEntityMobPart;
 
-class MultiEntityMob
-{
+class MultiEntityMob {
 public:
-	virtual Level *getLevel() = 0;
-	virtual bool hurt(std::shared_ptr<MultiEntityMobPart> MultiEntityMobPart, DamageSource *source, float damage) = 0;
+    virtual Level* getLevel() = 0;
+    virtual bool hurt(std::shared_ptr<MultiEntityMobPart> MultiEntityMobPart,
+                      DamageSource* source, float damage) = 0;
 };

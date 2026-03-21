@@ -5,61 +5,55 @@
 #include "PacketListener.h"
 #include "ContainerClickPacket.h"
 
+ContainerClickPacket::~ContainerClickPacket() {}
 
-
-ContainerClickPacket::~ContainerClickPacket()
-{
+ContainerClickPacket::ContainerClickPacket() {
+    containerId = 0;
+    slotNum = 0;
+    buttonNum = 0;
+    uid = 0;
+    item = nullptr;
+    clickType = 0;
 }
 
-ContainerClickPacket::ContainerClickPacket()
-{
-	containerId = 0;
-	slotNum = 0;
-	buttonNum = 0;
-	uid = 0;
-	item = nullptr;
-	clickType = 0;
+ContainerClickPacket::ContainerClickPacket(int containerId, int slotNum,
+                                           int buttonNum, int clickType,
+                                           std::shared_ptr<ItemInstance> item,
+                                           short uid) {
+    this->containerId = containerId;
+    this->slotNum = slotNum;
+    this->buttonNum = buttonNum;
+    this->uid = uid;
+    this->clickType = clickType;
+    // 4J - make a copy of the relevant bits of this item, as we want our
+    // packets to have full ownership of any data they reference
+    this->item = item ? item->copy() : nullptr;
 }
 
-ContainerClickPacket::ContainerClickPacket(int containerId, int slotNum, int buttonNum, int clickType, std::shared_ptr<ItemInstance> item, short uid)
-{
-	this->containerId = containerId;
-	this->slotNum = slotNum;
-	this->buttonNum = buttonNum;
-	this->uid = uid;
-	this->clickType = clickType;
-	// 4J - make a copy of the relevant bits of this item, as we want our packets to have full ownership of any data they reference
-	this->item = item ? item->copy() : nullptr;
+void ContainerClickPacket::handle(PacketListener* listener) {
+    listener->handleContainerClick(shared_from_this());
 }
 
-void ContainerClickPacket::handle(PacketListener *listener)
+void ContainerClickPacket::read(DataInputStream* dis)  // throws IOException
 {
-	listener->handleContainerClick(shared_from_this());
+    containerId = dis->readByte();
+    slotNum = dis->readShort();
+    buttonNum = dis->readByte();
+    uid = dis->readShort();
+    clickType = dis->readByte();
+
+    item = readItem(dis);
 }
 
-void ContainerClickPacket::read(DataInputStream *dis) //throws IOException
+void ContainerClickPacket::write(DataOutputStream* dos)  // throws IOException
 {
-	containerId = dis->readByte();
-	slotNum = dis->readShort();
-	buttonNum = dis->readByte();
-	uid = dis->readShort();
-	clickType = dis->readByte();
+    dos->writeByte(containerId);
+    dos->writeShort(slotNum);
+    dos->writeByte(buttonNum);
+    dos->writeShort(uid);
+    dos->writeByte(clickType);
 
-	item = readItem(dis);
+    writeItem(item, dos);
 }
 
-void ContainerClickPacket::write(DataOutputStream *dos) // throws IOException
-{
-	dos->writeByte(containerId);
-	dos->writeShort(slotNum);
-	dos->writeByte(buttonNum);
-	dos->writeShort(uid);
-	dos->writeByte(clickType);
-
-	writeItem(item, dos);
-}
-
-int ContainerClickPacket::getEstimatedSize() 
-{
-	return 4 + 4 + 2 + 1;
-}
+int ContainerClickPacket::getEstimatedSize() { return 4 + 4 + 2 + 1; }

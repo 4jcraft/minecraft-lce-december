@@ -2,8 +2,7 @@
 
 class Scoreboard;
 
-class ScoreHolder
-{
+class ScoreHolder {
 public:
-	virtual Scoreboard *getScoreboard() = 0;
+    virtual Scoreboard* getScoreboard() = 0;
 };

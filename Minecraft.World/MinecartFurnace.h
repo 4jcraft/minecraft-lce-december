@@ -2,50 +2,50 @@
 
 #include "Entities/Mobs/Minecart.h"
 
-class MinecartFurnace : public Minecart
-{
+class MinecartFurnace : public Minecart {
 public:
-	eINSTANCEOF GetType() { return eTYPE_MINECART_FURNACE; };
-	static Entity *create(Level *level) { return new MinecartFurnace(level); }
+    eINSTANCEOF GetType() { return eTYPE_MINECART_FURNACE; };
+    static Entity* create(Level* level) { return new MinecartFurnace(level); }
 
 private:
-	static const int DATA_ID_FUEL = 16;
+    static const int DATA_ID_FUEL = 16;
 
 private:
-	int fuel;
+    int fuel;
 
 public:
-	double xPush, zPush;
+    double xPush, zPush;
 
-	MinecartFurnace(Level *level);
-	MinecartFurnace(Level *level, double x, double y, double z);
+    MinecartFurnace(Level* level);
+    MinecartFurnace(Level* level, double x, double y, double z);
 
-	// 4J added
-	virtual int getContainerType();
+    // 4J added
+    virtual int getContainerType();
 
-	int getType();
+    int getType();
 
 protected:
-	void defineSynchedData();
+    void defineSynchedData();
 
 public:
-	void tick();
-	void destroy(DamageSource *source);
+    void tick();
+    void destroy(DamageSource* source);
 
 protected:
-	void moveAlongTrack(int xt, int yt, int zt, double maxSpeed, double slideSpeed, int tile, int data);
-	void applyNaturalSlowdown();
+    void moveAlongTrack(int xt, int yt, int zt, double maxSpeed,
+                        double slideSpeed, int tile, int data);
+    void applyNaturalSlowdown();
 
 public:
-	bool interact(std::shared_ptr<Player> player);
+    bool interact(std::shared_ptr<Player> player);
 
 protected:
-	void addAdditonalSaveData(CompoundTag *base);
-	void readAdditionalSaveData(CompoundTag *base);
-	bool hasFuel();
-	void setHasFuel(bool fuel);
+    void addAdditonalSaveData(CompoundTag* base);
+    void readAdditionalSaveData(CompoundTag* base);
+    bool hasFuel();
+    void setHasFuel(bool fuel);
 
 public:
-	Tile *getDefaultDisplayTile();
-	int getDefaultDisplayData();
+    Tile* getDefaultDisplayTile();
+    int getDefaultDisplayData();
 };

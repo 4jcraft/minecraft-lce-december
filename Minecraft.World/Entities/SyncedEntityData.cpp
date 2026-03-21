@@ -7,81 +7,78 @@
 #include "../Headers/net.minecraft.world.item.h"
 #include "SyncedEntityData.h"
 
-
-SynchedEntityData::SynchedEntityData()
-{
-	m_isDirty = false;
-	m_isEmpty = true;
+SynchedEntityData::SynchedEntityData() {
+    m_isDirty = false;
+    m_isEmpty = true;
 }
 
-void SynchedEntityData::define(int id, int value)
-{
-	MemSect(17);
-	checkId(id);
-	int type = TYPE_INT;
-	shared_ptr<DataItem> dataItem = shared_ptr<DataItem>( new DataItem(type, id, value) );
-	itemsById[id] = dataItem;
-	MemSect(0);
-	m_isEmpty = false;
+void SynchedEntityData::define(int id, int value) {
+    MemSect(17);
+    checkId(id);
+    int type = TYPE_INT;
+    shared_ptr<DataItem> dataItem =
+        shared_ptr<DataItem>(new DataItem(type, id, value));
+    itemsById[id] = dataItem;
+    MemSect(0);
+    m_isEmpty = false;
 }
 
-void SynchedEntityData::define(int id, byte value)
-{
-	MemSect(17);
-	checkId(id);
-	int type = TYPE_BYTE;
-	shared_ptr<DataItem> dataItem = shared_ptr<DataItem>( new DataItem(type, id, value) );
-	itemsById[id] = dataItem;
-	MemSect(0);
-	m_isEmpty = false;
+void SynchedEntityData::define(int id, byte value) {
+    MemSect(17);
+    checkId(id);
+    int type = TYPE_BYTE;
+    shared_ptr<DataItem> dataItem =
+        shared_ptr<DataItem>(new DataItem(type, id, value));
+    itemsById[id] = dataItem;
+    MemSect(0);
+    m_isEmpty = false;
 }
 
-void SynchedEntityData::define(int id, short value)
-{
-	MemSect(17);
-	checkId(id);
-	int type = TYPE_SHORT;
-	shared_ptr<DataItem> dataItem = shared_ptr<DataItem>( new DataItem(type, id, value) );
-	itemsById[id] = dataItem;
-	MemSect(0);
-	m_isEmpty = false;
+void SynchedEntityData::define(int id, short value) {
+    MemSect(17);
+    checkId(id);
+    int type = TYPE_SHORT;
+    shared_ptr<DataItem> dataItem =
+        shared_ptr<DataItem>(new DataItem(type, id, value));
+    itemsById[id] = dataItem;
+    MemSect(0);
+    m_isEmpty = false;
 }
 
-void SynchedEntityData::define(int id, float value)
-{
-	MemSect(17);
-	checkId(id);
-	int type = TYPE_FLOAT;
-	shared_ptr<DataItem> dataItem = shared_ptr<DataItem>( new DataItem(type, id, value) );
-	itemsById[id] = dataItem;
-	MemSect(0);
-	m_isEmpty = false;
+void SynchedEntityData::define(int id, float value) {
+    MemSect(17);
+    checkId(id);
+    int type = TYPE_FLOAT;
+    shared_ptr<DataItem> dataItem =
+        shared_ptr<DataItem>(new DataItem(type, id, value));
+    itemsById[id] = dataItem;
+    MemSect(0);
+    m_isEmpty = false;
 }
 
-void SynchedEntityData::define(int id, const std::wstring& value)
-{
-	MemSect(17);
-	checkId(id);
-	int type = TYPE_STRING;
-	shared_ptr<DataItem> dataItem = shared_ptr<DataItem>( new DataItem(type, id, value) );
-	itemsById[id] = dataItem;
-	MemSect(0);
-	m_isEmpty = false;
+void SynchedEntityData::define(int id, const std::wstring& value) {
+    MemSect(17);
+    checkId(id);
+    int type = TYPE_STRING;
+    shared_ptr<DataItem> dataItem =
+        shared_ptr<DataItem>(new DataItem(type, id, value));
+    itemsById[id] = dataItem;
+    MemSect(0);
+    m_isEmpty = false;
 }
 
-void SynchedEntityData::defineNULL(int id, void *pVal)
-{
-	MemSect(17);
-	checkId(id);
-	int type = TYPE_ITEMINSTANCE;
-	shared_ptr<DataItem> dataItem = shared_ptr<DataItem>( new DataItem(type, id, shared_ptr<ItemInstance>()) );
-	itemsById[id] = dataItem;
-	MemSect(0);
-	m_isEmpty = false;
+void SynchedEntityData::defineNULL(int id, void* pVal) {
+    MemSect(17);
+    checkId(id);
+    int type = TYPE_ITEMINSTANCE;
+    shared_ptr<DataItem> dataItem = shared_ptr<DataItem>(
+        new DataItem(type, id, shared_ptr<ItemInstance>()));
+    itemsById[id] = dataItem;
+    MemSect(0);
+    m_isEmpty = false;
 }
 
-void SynchedEntityData::checkId(int id)
-{
+void SynchedEntityData::checkId(int id) {
 #if 0
 	if (id > MAX_ID_VALUE)
 	{
@@ -94,533 +91,452 @@ void SynchedEntityData::checkId(int id)
 #endif
 }
 
-byte SynchedEntityData::getByte(int id)
-{
-	return itemsById[id]->getValue_byte();
+byte SynchedEntityData::getByte(int id) {
+    return itemsById[id]->getValue_byte();
 }
 
-short SynchedEntityData::getShort(int id)
-{
-	return itemsById[id]->getValue_short();
+short SynchedEntityData::getShort(int id) {
+    return itemsById[id]->getValue_short();
 }
 
-int SynchedEntityData::getInteger(int id)
-{
-	return itemsById[id]->getValue_int();
+int SynchedEntityData::getInteger(int id) {
+    return itemsById[id]->getValue_int();
 }
 
-float SynchedEntityData::getFloat(int id)
-{
-	return itemsById[id]->getValue_float();
+float SynchedEntityData::getFloat(int id) {
+    return itemsById[id]->getValue_float();
 }
 
-std::wstring SynchedEntityData::getString(int id)
-{
-	return itemsById[id]->getValue_wstring();
+std::wstring SynchedEntityData::getString(int id) {
+    return itemsById[id]->getValue_wstring();
 }
 
-std::shared_ptr<ItemInstance> SynchedEntityData::getItemInstance(int id)
-{
-	//assert(false);	// 4J - not currently implemented
-	return itemsById[id]->getValue_itemInstance();
+std::shared_ptr<ItemInstance> SynchedEntityData::getItemInstance(int id) {
+    // assert(false);	// 4J - not currently implemented
+    return itemsById[id]->getValue_itemInstance();
 }
 
-Pos *SynchedEntityData::getPos(int id)
-{
-	assert(false);	// 4J - not currently implemented
-	return NULL;
+Pos* SynchedEntityData::getPos(int id) {
+    assert(false);  // 4J - not currently implemented
+    return NULL;
 }
 
-void SynchedEntityData::set(int id, int value)
-{
-	shared_ptr<DataItem> dataItem = itemsById[id];
+void SynchedEntityData::set(int id, int value) {
+    shared_ptr<DataItem> dataItem = itemsById[id];
 
-	// update the value if it has changed
-	if (value != dataItem->getValue_int())
-	{
-		dataItem->setValue(value);
-		dataItem->setDirty(true);
-		m_isDirty = true;
-	}
+    // update the value if it has changed
+    if (value != dataItem->getValue_int()) {
+        dataItem->setValue(value);
+        dataItem->setDirty(true);
+        m_isDirty = true;
+    }
 }
 
-void SynchedEntityData::set(int id, byte value)
-{
-	shared_ptr<DataItem> dataItem = itemsById[id];
+void SynchedEntityData::set(int id, byte value) {
+    shared_ptr<DataItem> dataItem = itemsById[id];
 
-	// update the value if it has changed
-	if (value != dataItem->getValue_byte())
-	{
-		dataItem->setValue(value);
-		dataItem->setDirty(true);
-		m_isDirty = true;
-	}
+    // update the value if it has changed
+    if (value != dataItem->getValue_byte()) {
+        dataItem->setValue(value);
+        dataItem->setDirty(true);
+        m_isDirty = true;
+    }
 }
 
-void SynchedEntityData::set(int id, short value)
-{
-	shared_ptr<DataItem> dataItem = itemsById[id];
+void SynchedEntityData::set(int id, short value) {
+    shared_ptr<DataItem> dataItem = itemsById[id];
 
-	// update the value if it has changed
-	if (value != dataItem->getValue_short())
-	{
-		dataItem->setValue(value);
-		dataItem->setDirty(true);
-		m_isDirty = true;
-	}
+    // update the value if it has changed
+    if (value != dataItem->getValue_short()) {
+        dataItem->setValue(value);
+        dataItem->setDirty(true);
+        m_isDirty = true;
+    }
 }
 
-void SynchedEntityData::set(int id, float value)
-{
-	shared_ptr<DataItem> dataItem = itemsById[id];
+void SynchedEntityData::set(int id, float value) {
+    shared_ptr<DataItem> dataItem = itemsById[id];
 
-	// update the value if it has changed
-	if (value != dataItem->getValue_float())
-	{
-		dataItem->setValue(value);
-		dataItem->setDirty(true);
-		m_isDirty = true;
-	}
+    // update the value if it has changed
+    if (value != dataItem->getValue_float()) {
+        dataItem->setValue(value);
+        dataItem->setDirty(true);
+        m_isDirty = true;
+    }
 }
 
-void SynchedEntityData::set(int id, const std::wstring& value)
-{
-	shared_ptr<DataItem> dataItem = itemsById[id];
+void SynchedEntityData::set(int id, const std::wstring& value) {
+    shared_ptr<DataItem> dataItem = itemsById[id];
 
-	// update the value if it has changed
-	if (value != dataItem->getValue_wstring())
-	{
-		dataItem->setValue(value);
-		dataItem->setDirty(true);
-		m_isDirty = true;
-	}
+    // update the value if it has changed
+    if (value != dataItem->getValue_wstring()) {
+        dataItem->setValue(value);
+        dataItem->setDirty(true);
+        m_isDirty = true;
+    }
 }
 
-void SynchedEntityData::set(int id, std::shared_ptr<ItemInstance> value)
-{
-	shared_ptr<DataItem> dataItem = itemsById[id];
+void SynchedEntityData::set(int id, std::shared_ptr<ItemInstance> value) {
+    shared_ptr<DataItem> dataItem = itemsById[id];
 
-	// update the value if it has changed
-	if (value != dataItem->getValue_itemInstance())
-	{
-		dataItem->setValue(value);
-		dataItem->setDirty(true);
-		m_isDirty = true;
-	}
+    // update the value if it has changed
+    if (value != dataItem->getValue_itemInstance()) {
+        dataItem->setValue(value);
+        dataItem->setDirty(true);
+        m_isDirty = true;
+    }
 }
 
-void SynchedEntityData::markDirty(int id)
-{
-	itemsById[id]->dirty = true;
-	m_isDirty = true;
+void SynchedEntityData::markDirty(int id) {
+    itemsById[id]->dirty = true;
+    m_isDirty = true;
 }
 
-bool SynchedEntityData::isDirty()
+bool SynchedEntityData::isDirty() { return m_isDirty; }
+
+void SynchedEntityData::pack(
+    vector<shared_ptr<DataItem> >* items,
+    DataOutputStream* output)  // TODO throws IOException
 {
-	return m_isDirty;
+    if (items != NULL) {
+        AUTO_VAR(itEnd, items->end());
+        for (AUTO_VAR(it, items->begin()); it != itEnd; it++) {
+            shared_ptr<DataItem> dataItem = *it;
+            writeDataItem(output, dataItem);
+        }
+    }
+
+    // add an eof
+    output->writeByte(EOF_MARKER);
 }
 
-void SynchedEntityData::pack(vector<shared_ptr<DataItem> > *items, DataOutputStream *output) // TODO throws IOException
-{
+vector<shared_ptr<SynchedEntityData::DataItem> >*
+SynchedEntityData::packDirty() {
+    vector<shared_ptr<DataItem> >* result = NULL;
 
-	if (items != NULL)
-	{
-		AUTO_VAR(itEnd, items->end());
-		for (AUTO_VAR(it, items->begin()); it != itEnd; it++)
-		{
-			shared_ptr<DataItem> dataItem = *it;
-			writeDataItem(output, dataItem);
-		}
-	}
+    if (m_isDirty) {
+        for (int i = 0; i <= MAX_ID_VALUE; i++) {
+            shared_ptr<DataItem> dataItem = itemsById[i];
+            if ((dataItem != NULL) && dataItem->isDirty()) {
+                dataItem->setDirty(false);
 
-	// add an eof
-	output->writeByte(EOF_MARKER);
+                if (result == NULL) {
+                    result = new vector<shared_ptr<DataItem> >();
+                }
+                result->push_back(dataItem);
+            }
+        }
+    }
+    m_isDirty = false;
+
+    return result;
 }
 
-vector<shared_ptr<SynchedEntityData::DataItem> > *SynchedEntityData::packDirty()
+void SynchedEntityData::packAll(DataOutputStream* output)  // throws IOException
 {
+    for (int i = 0; i <= MAX_ID_VALUE; i++) {
+        shared_ptr<DataItem> dataItem = itemsById[i];
+        if (dataItem != NULL) {
+            writeDataItem(output, dataItem);
+        }
+    }
 
-	vector<shared_ptr<DataItem> > *result = NULL;
-
-	if (m_isDirty)
-	{
-		for( int i = 0; i <= MAX_ID_VALUE; i++ )
-		{
-			shared_ptr<DataItem> dataItem = itemsById[i];
-			if ((dataItem != NULL) && dataItem->isDirty())
-			{
-				dataItem->setDirty(false);
-
-				if (result == NULL)
-				{
-					result = new vector<shared_ptr<DataItem> >();
-				}
-				result->push_back(dataItem);
-			}
-		}
-	}
-	m_isDirty = false;
-
-	return result;
+    // add an eof
+    output->writeByte(EOF_MARKER);
 }
 
-void SynchedEntityData::packAll(DataOutputStream *output) // throws IOException
-{
-	for( int i = 0; i <= MAX_ID_VALUE; i++ )
-	{
-		shared_ptr<DataItem> dataItem = itemsById[i];
-		if(dataItem != NULL)
-		{
-			writeDataItem(output, dataItem);
-		}
-	}
+vector<shared_ptr<SynchedEntityData::DataItem> >* SynchedEntityData::getAll() {
+    vector<shared_ptr<DataItem> >* result = NULL;
 
-	// add an eof
-	output->writeByte(EOF_MARKER);
+    for (int i = 0; i <= MAX_ID_VALUE; i++) {
+        shared_ptr<DataItem> dataItem = itemsById[i];
+        if (dataItem != NULL) {
+            if (result == NULL) {
+                result = new vector<shared_ptr<DataItem> >();
+            }
+            result->push_back(dataItem);
+        }
+    }
+
+    return result;
 }
 
-vector<shared_ptr<SynchedEntityData::DataItem> > *SynchedEntityData::getAll()
+void SynchedEntityData::writeDataItem(
+    DataOutputStream* output,
+    std::shared_ptr<DataItem> dataItem)  // throws IOException
 {
-	vector<shared_ptr<DataItem> > *result = NULL;
+    // pack type and id
+    int header = ((dataItem->getType() << TYPE_SHIFT) |
+                  (dataItem->getId() & MAX_ID_VALUE)) &
+                 0xff;
+    output->writeByte(header);
 
-	for( int i = 0; i <= MAX_ID_VALUE; i++ )
-	{
-		shared_ptr<DataItem> dataItem = itemsById[i];
-		if(dataItem != NULL)
-		{
-			if (result == NULL)
-			{
-				result = new vector<shared_ptr<DataItem> >();
-			}
-			result->push_back(dataItem);
-		}
-	}
+    // write value
+    switch (dataItem->getType()) {
+        case TYPE_BYTE:
+            output->writeByte(dataItem->getValue_byte());
+            break;
+        case TYPE_INT:
+            output->writeInt(dataItem->getValue_int());
+            break;
+        case TYPE_SHORT:
+            output->writeShort(dataItem->getValue_short());
+            break;
+        case TYPE_FLOAT:
+            output->writeFloat(dataItem->getValue_float());
+            break;
+        case TYPE_STRING:
+            Packet::writeUtf(dataItem->getValue_wstring(), output);
+            break;
+        case TYPE_ITEMINSTANCE: {
+            shared_ptr<ItemInstance> instance =
+                (shared_ptr<ItemInstance>)dataItem->getValue_itemInstance();
+            Packet::writeItem(instance, output);
+        } break;
 
-	return result;
+        default:
+            assert(false);  // 4J - not implemented
+            break;
+    }
 }
 
-
-void SynchedEntityData::writeDataItem(DataOutputStream *output, std::shared_ptr<DataItem> dataItem) //throws IOException
+vector<shared_ptr<SynchedEntityData::DataItem> >* SynchedEntityData::unpack(
+    DataInputStream* input)  // throws IOException
 {
-	// pack type and id
-	int header = ((dataItem->getType() << TYPE_SHIFT) | (dataItem->getId() & MAX_ID_VALUE)) & 0xff;
-	output->writeByte(header);
+    vector<shared_ptr<DataItem> >* result = NULL;
 
-	// write value
-	switch (dataItem->getType())
-	{
-	case TYPE_BYTE:
-		output->writeByte( dataItem->getValue_byte());
-		break;	
-	case TYPE_INT:
-		output->writeInt( dataItem->getValue_int());
-		break;
-	case TYPE_SHORT:
-		output->writeShort( dataItem->getValue_short());
-		break;
-	case TYPE_FLOAT:
-		output->writeFloat( dataItem->getValue_float());
-		break;
-	case TYPE_STRING:
-		Packet::writeUtf(dataItem->getValue_wstring(), output);
-		break;
-	case TYPE_ITEMINSTANCE: 
-		{
-			shared_ptr<ItemInstance> instance = (shared_ptr<ItemInstance> )dataItem->getValue_itemInstance();
-			Packet::writeItem(instance, output);
-		}
-		break;
-							
-	default:
-		assert(false);	// 4J - not implemented
-		break;
-	}
-}
+    int currentHeader = input->readByte();
 
-vector<shared_ptr<SynchedEntityData::DataItem> > *SynchedEntityData::unpack(DataInputStream *input) //throws IOException
-{
+    while (currentHeader != EOF_MARKER) {
+        if (result == NULL) {
+            result = new vector<shared_ptr<DataItem> >();
+        }
 
-	vector<shared_ptr<DataItem> > *result = NULL;
+        // split type and id
+        int itemType = (currentHeader & TYPE_MASK) >> TYPE_SHIFT;
+        int itemId = (currentHeader & MAX_ID_VALUE);
 
-	int currentHeader = input->readByte();
+        shared_ptr<DataItem> item = shared_ptr<DataItem>();
+        switch (itemType) {
+            case TYPE_BYTE: {
+                byte dataRead = input->readByte();
+                item = shared_ptr<DataItem>(
+                    new DataItem(itemType, itemId, dataRead));
+            } break;
+            case TYPE_SHORT: {
+                short dataRead = input->readShort();
+                item = shared_ptr<DataItem>(
+                    new DataItem(itemType, itemId, dataRead));
+            } break;
+            case TYPE_INT: {
+                int dataRead = input->readInt();
+                item = shared_ptr<DataItem>(
+                    new DataItem(itemType, itemId, dataRead));
+            } break;
+            case TYPE_FLOAT: {
+                float dataRead = input->readFloat();
+                item = shared_ptr<DataItem>(
+                    new DataItem(itemType, itemId, dataRead));
 
-	while (currentHeader != EOF_MARKER)
-	{
+            } break;
+            case TYPE_STRING:
+                item = shared_ptr<DataItem>(new DataItem(
+                    itemType, itemId,
+                    Packet::readUtf(input, MAX_STRING_DATA_LENGTH)));
+                break;
+            case TYPE_ITEMINSTANCE: {
+                item = shared_ptr<DataItem>(
+                    new DataItem(itemType, itemId, Packet::readItem(input)));
+            } break;
+            default:
+                app.DebugPrintf(
+                    " ------ garbage data, or early end of stream due to an "
+                    "incomplete packet\n");
+                delete result;
+                return NULL;
+                break;
+        }
+        result->push_back(item);
 
-		if (result == NULL)
-		{
-			result = new vector<shared_ptr<DataItem> >();
-		}
+        currentHeader = input->readByte();
+    }
 
-		// split type and id
-		int itemType = (currentHeader & TYPE_MASK) >> TYPE_SHIFT;
-		int itemId = (currentHeader & MAX_ID_VALUE);
-
-		shared_ptr<DataItem> item = shared_ptr<DataItem>();
-		switch (itemType)
-		{
-		case TYPE_BYTE:
-			{
-				byte dataRead = input->readByte();
-				item = shared_ptr<DataItem>( new DataItem(itemType, itemId, dataRead) );
-			}
-			break;
-		case TYPE_SHORT:
-			{
-				short dataRead = input->readShort();
-				item = shared_ptr<DataItem>( new DataItem(itemType, itemId, dataRead) );
-			}
-			break;
-		case TYPE_INT:
-			{
-				int dataRead = input->readInt();
-				item = shared_ptr<DataItem>( new DataItem(itemType, itemId, dataRead) );
-			}
-			break;
-		case TYPE_FLOAT:
-			{
-				float dataRead = input->readFloat();
-				item = shared_ptr<DataItem>( new DataItem(itemType, itemId, dataRead) );
-
-			}
-			break;
-		case TYPE_STRING:
-			item = shared_ptr<DataItem>( new DataItem(itemType, itemId, Packet::readUtf(input, MAX_STRING_DATA_LENGTH)) );
-			break;
-		case TYPE_ITEMINSTANCE: 
-			{
-				item = shared_ptr<DataItem>(new DataItem(itemType, itemId, Packet::readItem(input)));
-			}
-			break;
-		default:
-			app.DebugPrintf(" ------ garbage data, or early end of stream due to an incomplete packet\n");
-			delete result;
-			return NULL;
-			break;
-		}
-		result->push_back(item);
-
-		currentHeader = input->readByte();
-	}
-
-	return result;
+    return result;
 }
 
 /**
-* Assigns values from a list of data items.
-* 
-* @param items
-*/
+ * Assigns values from a list of data items.
+ *
+ * @param items
+ */
 
-void SynchedEntityData::assignValues(vector<shared_ptr<DataItem> > *items)
-{
-	AUTO_VAR(itEnd, items->end());
-	for (AUTO_VAR(it, items->begin()); it != itEnd; it++)
-	{
-		shared_ptr<DataItem> item = *it;
+void SynchedEntityData::assignValues(vector<shared_ptr<DataItem> >* items) {
+    AUTO_VAR(itEnd, items->end());
+    for (AUTO_VAR(it, items->begin()); it != itEnd; it++) {
+        shared_ptr<DataItem> item = *it;
 
-		shared_ptr<DataItem> itemFromId = itemsById[item->getId()];
-		if( itemFromId != NULL )
-		{
-			switch(item->getType())
-			{
-			case TYPE_BYTE:
-				itemFromId->setValue(item->getValue_byte());
-				break;
-			case TYPE_SHORT:
-				itemFromId->setValue(item->getValue_short());
-				break;
-			case TYPE_INT:
-				itemFromId->setValue(item->getValue_int());
-				break;
-			case TYPE_FLOAT:
-				itemFromId->setValue(item->getValue_float());
-				break;
-			case TYPE_STRING:
-				itemFromId->setValue(item->getValue_wstring());
-				break;
-			case TYPE_ITEMINSTANCE:
-				itemFromId->setValue(item->getValue_itemInstance());
-				break;
-			default:
-				assert(false); // 4J - not implemented
-				break;
-			}
-		}
-	}
+        shared_ptr<DataItem> itemFromId = itemsById[item->getId()];
+        if (itemFromId != NULL) {
+            switch (item->getType()) {
+                case TYPE_BYTE:
+                    itemFromId->setValue(item->getValue_byte());
+                    break;
+                case TYPE_SHORT:
+                    itemFromId->setValue(item->getValue_short());
+                    break;
+                case TYPE_INT:
+                    itemFromId->setValue(item->getValue_int());
+                    break;
+                case TYPE_FLOAT:
+                    itemFromId->setValue(item->getValue_float());
+                    break;
+                case TYPE_STRING:
+                    itemFromId->setValue(item->getValue_wstring());
+                    break;
+                case TYPE_ITEMINSTANCE:
+                    itemFromId->setValue(item->getValue_itemInstance());
+                    break;
+                default:
+                    assert(false);  // 4J - not implemented
+                    break;
+            }
+        }
+    }
 
-	// client-side dirty
-	m_isDirty = true;
+    // client-side dirty
+    m_isDirty = true;
 }
 
-bool SynchedEntityData::isEmpty()
-{
-	return m_isEmpty;
+bool SynchedEntityData::isEmpty() { return m_isEmpty; }
+
+void SynchedEntityData::clearDirty() { m_isDirty = false; }
+
+int SynchedEntityData::getSizeInBytes() {
+    int size = 1;
+
+    for (int i = 0; i <= MAX_ID_VALUE; i++) {
+        shared_ptr<DataItem> dataItem = itemsById[i];
+        if (dataItem != NULL) {
+            size += 1;
+
+            // write value
+            switch (dataItem->getType()) {
+                case TYPE_BYTE:
+                    size += 1;
+                    break;
+                case TYPE_SHORT:
+                    size += 2;
+                    break;
+                case TYPE_INT:
+                    size += 4;
+                    break;
+                case TYPE_FLOAT:
+                    size += 4;
+                    break;
+                case TYPE_STRING:
+                    size += (int)dataItem->getValue_wstring().length() +
+                            2;  // Estimate, assuming all ascii chars
+                    break;
+                case TYPE_ITEMINSTANCE:
+                    // short + byte + short
+                    size += 2 + 1 + 2;  // Estimate, assuming all ascii chars
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    return size;
 }
-
-void SynchedEntityData::clearDirty()
-{
-	m_isDirty = false;
-}
-
-int SynchedEntityData::getSizeInBytes()
-{
-	int size = 1;
-
-	for( int i = 0; i <= MAX_ID_VALUE; i++ )
-	{
-		shared_ptr<DataItem> dataItem = itemsById[i];
-		if(dataItem != NULL)
-		{
-			size += 1;
-
-			// write value
-			switch (dataItem->getType())
-			{
-			case TYPE_BYTE:
-				size += 1;
-				break;	
-			case TYPE_SHORT:
-				size += 2;
-				break;
-			case TYPE_INT:
-				size += 4;
-				break;
-			case TYPE_FLOAT:
-				size += 4;
-				break;
-			case TYPE_STRING:
-				size += (int)dataItem->getValue_wstring().length() + 2; // Estimate, assuming all ascii chars
-				break;
-			case TYPE_ITEMINSTANCE:
-				// short + byte + short
-				size += 2 + 1 + 2; // Estimate, assuming all ascii chars
-				break;
-			default:
-				break;
-			}
-		}
-	}
-	return size;
-}
-
 
 //////////////////
 // DataItem class
 /////////////////
 
-SynchedEntityData::DataItem::DataItem(int type, int id, int value) : type( type ), id( id )
-{
-	this->value_int = value;
-	this->dirty = true;
+SynchedEntityData::DataItem::DataItem(int type, int id, int value)
+    : type(type), id(id) {
+    this->value_int = value;
+    this->dirty = true;
 }
 
-SynchedEntityData::DataItem::DataItem(int type, int id, byte value) : type( type ), id( id )
-{
-	this->value_byte = value;
-	this->dirty = true;
+SynchedEntityData::DataItem::DataItem(int type, int id, byte value)
+    : type(type), id(id) {
+    this->value_byte = value;
+    this->dirty = true;
 }
 
-SynchedEntityData::DataItem::DataItem(int type, int id, short value) : type( type ), id( id )
-{
-	this->value_short = value;
-	this->dirty = true;
+SynchedEntityData::DataItem::DataItem(int type, int id, short value)
+    : type(type), id(id) {
+    this->value_short = value;
+    this->dirty = true;
 }
 
-SynchedEntityData::DataItem::DataItem(int type, int id, float value) : type( type ), id( id )
-{
-	this->value_float = value;
-	this->dirty = true;
+SynchedEntityData::DataItem::DataItem(int type, int id, float value)
+    : type(type), id(id) {
+    this->value_float = value;
+    this->dirty = true;
 }
 
-SynchedEntityData::DataItem::DataItem(int type, int id, const std::wstring& value) : type( type ), id( id )
-{
-	this->value_wstring = value;
-	this->dirty = true;
+SynchedEntityData::DataItem::DataItem(int type, int id,
+                                      const std::wstring& value)
+    : type(type), id(id) {
+    this->value_wstring = value;
+    this->dirty = true;
 }
 
-SynchedEntityData::DataItem::DataItem(int type, int id, std::shared_ptr<ItemInstance> itemInstance) : type( type ), id( id )
-{
-	this->value_itemInstance = itemInstance;
-	this->dirty = true;
+SynchedEntityData::DataItem::DataItem(
+    int type, int id, std::shared_ptr<ItemInstance> itemInstance)
+    : type(type), id(id) {
+    this->value_itemInstance = itemInstance;
+    this->dirty = true;
 }
 
-int SynchedEntityData::DataItem::getId()
-{
-	return id;
+int SynchedEntityData::DataItem::getId() { return id; }
+
+void SynchedEntityData::DataItem::setValue(int value) {
+    this->value_int = value;
 }
 
-void SynchedEntityData::DataItem::setValue(int value)
-{
-	this->value_int = value;
+void SynchedEntityData::DataItem::setValue(byte value) {
+    this->value_byte = value;
 }
 
-void SynchedEntityData::DataItem::setValue(byte value)
-{
-	this->value_byte = value;
+void SynchedEntityData::DataItem::setValue(short value) {
+    this->value_short = value;
 }
 
-void SynchedEntityData::DataItem::setValue(short value)
-{
-	this->value_short = value;
+void SynchedEntityData::DataItem::setValue(float value) {
+    this->value_float = value;
 }
 
-void SynchedEntityData::DataItem::setValue(float value)
-{
-	this->value_float = value;
+void SynchedEntityData::DataItem::setValue(const std::wstring& value) {
+    this->value_wstring = value;
 }
 
-void SynchedEntityData::DataItem::setValue(const std::wstring& value)
-{
-	this->value_wstring = value;
+void SynchedEntityData::DataItem::setValue(
+    std::shared_ptr<ItemInstance> itemInstance) {
+    this->value_itemInstance = itemInstance;
 }
 
-void SynchedEntityData::DataItem::setValue(std::shared_ptr<ItemInstance> itemInstance)
-{
-	this->value_itemInstance = itemInstance;
+int SynchedEntityData::DataItem::getValue_int() { return value_int; }
+
+short SynchedEntityData::DataItem::getValue_short() { return value_short; }
+
+float SynchedEntityData::DataItem::getValue_float() { return value_float; }
+
+byte SynchedEntityData::DataItem::getValue_byte() { return value_byte; }
+
+std::wstring SynchedEntityData::DataItem::getValue_wstring() {
+    return value_wstring;
 }
 
-int SynchedEntityData::DataItem::getValue_int()
-{
-	return value_int;
+std::shared_ptr<ItemInstance>
+SynchedEntityData::DataItem::getValue_itemInstance() {
+    return value_itemInstance;
 }
 
-short SynchedEntityData::DataItem::getValue_short()
-{
-	return value_short;
-}
+int SynchedEntityData::DataItem::getType() { return type; }
 
-float SynchedEntityData::DataItem::getValue_float()
-{
-	return value_float;
-}
+bool SynchedEntityData::DataItem::isDirty() { return dirty; }
 
-byte SynchedEntityData::DataItem::getValue_byte()
-{
-	return value_byte;
-}
-
-std::wstring SynchedEntityData::DataItem::getValue_wstring()
-{
-	return value_wstring;
-}
-
-std::shared_ptr<ItemInstance> SynchedEntityData::DataItem::getValue_itemInstance()
-{
-	return value_itemInstance;
-}
-
-int SynchedEntityData::DataItem::getType()
-{
-	return type;
-}
-
-bool SynchedEntityData::DataItem::isDirty()
-{
-	return dirty;
-}
-
-void SynchedEntityData::DataItem::setDirty(bool dirty)
-{
-	this->dirty = dirty;
-}
+void SynchedEntityData::DataItem::setDirty(bool dirty) { this->dirty = dirty; }

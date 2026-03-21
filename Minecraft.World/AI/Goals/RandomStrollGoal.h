@@ -4,17 +4,16 @@
 
 class PathfinderMob;
 
-class RandomStrollGoal : public Goal
-{
+class RandomStrollGoal : public Goal {
 private:
-	PathfinderMob *mob;
-	double wantedX, wantedY, wantedZ;
-	double speedModifier;
+    PathfinderMob* mob;
+    double wantedX, wantedY, wantedZ;
+    double speedModifier;
 
 public:
-	RandomStrollGoal(PathfinderMob *mob, double speedModifier);
+    RandomStrollGoal(PathfinderMob* mob, double speedModifier);
 
-	virtual bool canUse();
-	virtual bool canContinueToUse();
-	virtual void start();
+    virtual bool canUse();
+    virtual bool canContinueToUse();
+    virtual void start();
 };

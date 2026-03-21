@@ -7,97 +7,76 @@
 
 const std::wstring TheEndPortalFrameTile::TEXTURE_EYE = L"endframe_eye";
 
-TheEndPortalFrameTile::TheEndPortalFrameTile(int id) : Tile(id, Material::glass, isSolidRender() )
-{
-	iconTop = NULL;
-	iconEye = NULL;
+TheEndPortalFrameTile::TheEndPortalFrameTile(int id)
+    : Tile(id, Material::glass, isSolidRender()) {
+    iconTop = NULL;
+    iconEye = NULL;
 }
 
-Icon *TheEndPortalFrameTile::getTexture(int face, int data)
-{
-	if (face == Facing::UP)
-	{
-		return iconTop;
-	}
-	if (face == Facing::DOWN)
-	{
-		return Tile::endStone->getTexture(face);
-	}
-	return icon;
+Icon* TheEndPortalFrameTile::getTexture(int face, int data) {
+    if (face == Facing::UP) {
+        return iconTop;
+    }
+    if (face == Facing::DOWN) {
+        return Tile::endStone->getTexture(face);
+    }
+    return icon;
 }
 
-void TheEndPortalFrameTile::registerIcons(IconRegister *iconRegister)
-{
-	icon = iconRegister->registerIcon(L"endframe_side");
-	iconTop = iconRegister->registerIcon(L"endframe_top");
-	iconEye = iconRegister->registerIcon(L"endframe_eye");
+void TheEndPortalFrameTile::registerIcons(IconRegister* iconRegister) {
+    icon = iconRegister->registerIcon(L"endframe_side");
+    iconTop = iconRegister->registerIcon(L"endframe_top");
+    iconEye = iconRegister->registerIcon(L"endframe_eye");
 }
 
-Icon *TheEndPortalFrameTile::getEye()
-{
-	return iconEye;
+Icon* TheEndPortalFrameTile::getEye() { return iconEye; }
+
+bool TheEndPortalFrameTile::isSolidRender(bool isServerLevel) { return false; }
+
+int TheEndPortalFrameTile::getRenderShape() { return SHAPE_PORTAL_FRAME; }
+
+void TheEndPortalFrameTile::updateDefaultShape() {
+    setShape(0, 0, 0, 1, 13.0f / 16.0f, 1);
 }
 
-bool TheEndPortalFrameTile::isSolidRender(bool isServerLevel)
-{
-	return false;
+void TheEndPortalFrameTile::addAABBs(Level* level, int x, int y, int z,
+                                     AABB* box, AABBList* boxes,
+                                     std::shared_ptr<Entity> source) {
+    setShape(0, 0, 0, 1, 13.0f / 16.0f, 1);
+    Tile::addAABBs(level, x, y, z, box, boxes, source);
+
+    int data = level->getData(x, y, z);
+    if (hasEye(data)) {
+        setShape(5.0f / 16.0f, 13.0f / 16.0f, 5.0f / 16.0f, 11.0f / 16.0f, 1,
+                 11.0f / 16.0f);
+        Tile::addAABBs(level, x, y, z, box, boxes, source);
+    }
+    updateDefaultShape();
 }
 
-int TheEndPortalFrameTile::getRenderShape()
-{
-	return SHAPE_PORTAL_FRAME;
+bool TheEndPortalFrameTile::hasEye(int data) { return (data & EYE_BIT) != 0; }
+
+int TheEndPortalFrameTile::getResource(int data, Random* random,
+                                       int playerBonusLevel) {
+    return 0;
 }
 
-void TheEndPortalFrameTile::updateDefaultShape()
-{
-	setShape(0, 0, 0, 1, 13.0f / 16.0f, 1);
+void TheEndPortalFrameTile::setPlacedBy(
+    Level* level, int x, int y, int z, std::shared_ptr<LivingEntity> by,
+    std::shared_ptr<ItemInstance> itemInstance) {
+    int dir = (((Mth::floor(by->yRot * 4 / (360) + 0.5)) & 3) + 2) % 4;
+    level->setData(x, y, z, dir, Tile::UPDATE_CLIENTS);
 }
 
-void TheEndPortalFrameTile::addAABBs(Level *level, int x, int y, int z, AABB *box, AABBList *boxes, std::shared_ptr<Entity> source)
-{
-	setShape(0, 0, 0, 1, 13.0f / 16.0f, 1);
-	Tile::addAABBs(level, x, y, z, box, boxes, source);
+bool TheEndPortalFrameTile::hasAnalogOutputSignal() { return true; }
 
-	int data = level->getData(x, y, z);
-	if (hasEye(data))
-	{
-		setShape(5.0f / 16.0f, 13.0f / 16.0f, 5.0f / 16.0f, 11.0f / 16.0f, 1, 11.0f / 16.0f);
-		Tile::addAABBs(level, x, y, z, box, boxes, source);
-	}
-	updateDefaultShape();
-}
+int TheEndPortalFrameTile::getAnalogOutputSignal(Level* level, int x, int y,
+                                                 int z, int dir) {
+    int data = level->getData(x, y, z);
 
-bool TheEndPortalFrameTile::hasEye(int data)
-{
-	return (data & EYE_BIT) != 0;
-}
-
-int TheEndPortalFrameTile::getResource(int data, Random *random, int playerBonusLevel)
-{
-	return 0;
-}
-
-void TheEndPortalFrameTile::setPlacedBy(Level *level, int x, int y, int z, std::shared_ptr<LivingEntity> by, std::shared_ptr<ItemInstance> itemInstance)
-{
-	int dir = (((Mth::floor(by->yRot * 4 / (360) + 0.5)) & 3) + 2) % 4;
-	level->setData(x, y, z, dir, Tile::UPDATE_CLIENTS);
-}
-
-bool TheEndPortalFrameTile::hasAnalogOutputSignal()
-{
-	return true;
-}
-
-int TheEndPortalFrameTile::getAnalogOutputSignal(Level *level, int x, int y, int z, int dir)
-{
-	int data = level->getData(x, y, z);
-
-	if (hasEye(data))
-	{
-		return Redstone::SIGNAL_MAX;
-	}
-	else
-	{
-		return Redstone::SIGNAL_NONE;
-	}
+    if (hasEye(data)) {
+        return Redstone::SIGNAL_MAX;
+    } else {
+        return Redstone::SIGNAL_NONE;
+    }
 }

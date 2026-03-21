@@ -2,11 +2,8 @@
 #include "../Headers/net.minecraft.h"
 #include "StoneButtonTile.h"
 
-StoneButtonTile::StoneButtonTile(int id) : ButtonTile(id, false)
-{
-}
+StoneButtonTile::StoneButtonTile(int id) : ButtonTile(id, false) {}
 
-Icon *StoneButtonTile::getTexture(int face, int data)
-{
-	return Tile::stone->getTexture(Facing::UP);
+Icon* StoneButtonTile::getTexture(int face, int data) {
+    return Tile::stone->getTexture(Facing::UP);
 }

@@ -14,7 +14,8 @@ public class GameDifficultyCommand extends BaseCommand {
 
     // note: copied from Options.java, move to shared location?
     private static final String[] DIFFICULTY_NAMES = {
-            "options.difficulty.peaceful", "options.difficulty.easy", "options.difficulty.normal", "options.difficulty.hard"
+            "options.difficulty.peaceful", "options.difficulty.easy",
+"options.difficulty.normal", "options.difficulty.hard"
     };
 
     @Override
@@ -40,7 +41,8 @@ public class GameDifficultyCommand extends BaseCommand {
 
             MinecraftServer.getInstance().setDifficulty(newDiff);
 
-            logAdminAction(source, "commands.difficulty.success", ChatMessageComponent.forTranslation(DIFFICULTY_NAMES[newDiff]));
+            logAdminAction(source, "commands.difficulty.success",
+ChatMessageComponent.forTranslation(DIFFICULTY_NAMES[newDiff]));
 
             return;
         }
@@ -51,14 +53,11 @@ public class GameDifficultyCommand extends BaseCommand {
     protected int getDifficultyForString(CommandSender source, String name) {
         if (name.equalsIgnoreCase("peaceful") || name.equalsIgnoreCase("p")) {
             return 0;
-        } else if (name.equalsIgnoreCase("easy") || name.equalsIgnoreCase("e")) {
-            return 1;
-        } else if (name.equalsIgnoreCase("normal") || name.equalsIgnoreCase("n")) {
-            return 2;
-        } else if (name.equalsIgnoreCase("hard") || name.equalsIgnoreCase("h")) {
-            return 3;
-        } else {
-            return convertArgToInt(source, name, 0, 3);
+        } else if (name.equalsIgnoreCase("easy") || name.equalsIgnoreCase("e"))
+{ return 1; } else if (name.equalsIgnoreCase("normal") ||
+name.equalsIgnoreCase("n")) { return 2; } else if (name.equalsIgnoreCase("hard")
+|| name.equalsIgnoreCase("h")) { return 3; } else { return
+convertArgToInt(source, name, 0, 3);
         }
     }
 

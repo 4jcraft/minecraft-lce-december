@@ -1,7 +1,7 @@
 #pragma once
 
-class Projectile
-{
+class Projectile {
 public:
-	virtual void shoot(double xd, double yd, double zd, float pow, float uncertainty) = 0;
+    virtual void shoot(double xd, double yd, double zd, float pow,
+                       float uncertainty) = 0;
 };

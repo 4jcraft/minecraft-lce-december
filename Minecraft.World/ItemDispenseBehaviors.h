@@ -2,116 +2,135 @@
 #include "DefaultDispenseItemBehavior.h"
 #include "AbstractProjectileDispenseBehavior.h"
 
-class ArrowDispenseBehavior : public AbstractProjectileDispenseBehavior
-{
+class ArrowDispenseBehavior : public AbstractProjectileDispenseBehavior {
 protected:
-	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
+    virtual std::shared_ptr<Projectile> getProjectile(Level* world,
+                                                      Position* position);
 };
 
-class EggDispenseBehavior : public AbstractProjectileDispenseBehavior
-{
+class EggDispenseBehavior : public AbstractProjectileDispenseBehavior {
 protected:
-	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
+    virtual std::shared_ptr<Projectile> getProjectile(Level* world,
+                                                      Position* position);
 };
 
-class SnowballDispenseBehavior : public AbstractProjectileDispenseBehavior
-{
+class SnowballDispenseBehavior : public AbstractProjectileDispenseBehavior {
 protected:
-	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
+    virtual std::shared_ptr<Projectile> getProjectile(Level* world,
+                                                      Position* position);
 };
 
-class ExpBottleDispenseBehavior : public AbstractProjectileDispenseBehavior
-{
+class ExpBottleDispenseBehavior : public AbstractProjectileDispenseBehavior {
 protected:
-	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
-	virtual float getUncertainty();
-	virtual float getPower();
+    virtual std::shared_ptr<Projectile> getProjectile(Level* world,
+                                                      Position* position);
+    virtual float getUncertainty();
+    virtual float getPower();
 };
 
-class ThrownPotionDispenseBehavior : public AbstractProjectileDispenseBehavior
-{
+class ThrownPotionDispenseBehavior : public AbstractProjectileDispenseBehavior {
 private:
-	int m_potionValue;
+    int m_potionValue;
+
 public:
-	ThrownPotionDispenseBehavior(int potionValue);
+    ThrownPotionDispenseBehavior(int potionValue);
+
 protected:
-	virtual std::shared_ptr<Projectile> getProjectile(Level *world, Position *position);
-	virtual float getUncertainty();
-	virtual float getPower();
+    virtual std::shared_ptr<Projectile> getProjectile(Level* world,
+                                                      Position* position);
+    virtual float getUncertainty();
+    virtual float getPower();
 };
 
-class PotionDispenseBehavior : public DefaultDispenseItemBehavior
-{
+class PotionDispenseBehavior : public DefaultDispenseItemBehavior {
 public:
-	virtual	std::shared_ptr<ItemInstance> dispense(BlockSource *source, std::shared_ptr<ItemInstance> dispensed);
+    virtual std::shared_ptr<ItemInstance> dispense(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed);
 };
 
-class SpawnEggDispenseBehavior : public DefaultDispenseItemBehavior
-{
+class SpawnEggDispenseBehavior : public DefaultDispenseItemBehavior {
 public:
-	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+    virtual std::shared_ptr<ItemInstance> execute(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
+        eOUTCOME& outcome);
 };
 
-class FireworksDispenseBehavior : public DefaultDispenseItemBehavior
-{
+class FireworksDispenseBehavior : public DefaultDispenseItemBehavior {
 public:
-	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+    virtual std::shared_ptr<ItemInstance> execute(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
+        eOUTCOME& outcome);
+
 protected:
-	virtual void playSound(BlockSource *source, eOUTCOME outcome);
+    virtual void playSound(BlockSource* source, eOUTCOME outcome);
 };
 
-class FireballDispenseBehavior : public DefaultDispenseItemBehavior
-{
+class FireballDispenseBehavior : public DefaultDispenseItemBehavior {
 public:
-	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+    virtual std::shared_ptr<ItemInstance> execute(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
+        eOUTCOME& outcome);
+
 protected:
-	virtual void playSound(BlockSource *source, eOUTCOME outcome);
+    virtual void playSound(BlockSource* source, eOUTCOME outcome);
 };
 
-class BoatDispenseBehavior : public DefaultDispenseItemBehavior
-{
+class BoatDispenseBehavior : public DefaultDispenseItemBehavior {
 public:
-	BoatDispenseBehavior();
-	virtual ~BoatDispenseBehavior();
-	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+    BoatDispenseBehavior();
+    virtual ~BoatDispenseBehavior();
+    virtual std::shared_ptr<ItemInstance> execute(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
+        eOUTCOME& outcome);
+
 protected:
-	virtual void playSound(BlockSource *source, eOUTCOME outcome);
+    virtual void playSound(BlockSource* source, eOUTCOME outcome);
+
 private:
-	DefaultDispenseItemBehavior *defaultDispenseItemBehavior;
+    DefaultDispenseItemBehavior* defaultDispenseItemBehavior;
 };
 
-class FilledBucketDispenseBehavior : public DefaultDispenseItemBehavior
-{
+class FilledBucketDispenseBehavior : public DefaultDispenseItemBehavior {
 public:
-	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+    virtual std::shared_ptr<ItemInstance> execute(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
+        eOUTCOME& outcome);
 };
 
-class EmptyBucketDispenseBehavior : public DefaultDispenseItemBehavior
-{
+class EmptyBucketDispenseBehavior : public DefaultDispenseItemBehavior {
 public:
-	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+    virtual std::shared_ptr<ItemInstance> execute(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
+        eOUTCOME& outcome);
 };
 
-class FlintAndSteelDispenseBehavior : public DefaultDispenseItemBehavior
-{
-	// bool success; // 4J-JEV: Removed because we have something cleaner for this now.
+class FlintAndSteelDispenseBehavior : public DefaultDispenseItemBehavior {
+    // bool success; // 4J-JEV: Removed because we have something cleaner for
+    // this now.
 public:
-	std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+    std::shared_ptr<ItemInstance> execute(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
+        eOUTCOME& outcome);
+
 protected:
-	virtual void playSound(BlockSource *source, eOUTCOME outcome);
+    virtual void playSound(BlockSource* source, eOUTCOME outcome);
 };
 
-class DyeDispenseBehavior : public DefaultDispenseItemBehavior
-{
-	// bool success; // 4J-JEV: Removed because we have something cleaner for this now.
+class DyeDispenseBehavior : public DefaultDispenseItemBehavior {
+    // bool success; // 4J-JEV: Removed because we have something cleaner for
+    // this now.
 public:
-	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+    virtual std::shared_ptr<ItemInstance> execute(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
+        eOUTCOME& outcome);
+
 protected:
-	virtual void playSound(BlockSource *source, eOUTCOME outcome);
+    virtual void playSound(BlockSource* source, eOUTCOME outcome);
 };
 
-class TntDispenseBehavior : public DefaultDispenseItemBehavior
-{
+class TntDispenseBehavior : public DefaultDispenseItemBehavior {
 protected:
-	virtual std::shared_ptr<ItemInstance> execute(BlockSource *source, std::shared_ptr<ItemInstance> dispensed, eOUTCOME &outcome);
+    virtual std::shared_ptr<ItemInstance> execute(
+        BlockSource* source, std::shared_ptr<ItemInstance> dispensed,
+        eOUTCOME& outcome);
 };

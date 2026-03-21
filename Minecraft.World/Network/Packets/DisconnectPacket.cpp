@@ -5,44 +5,30 @@
 #include "PacketListener.h"
 #include "DisconnectPacket.h"
 
+DisconnectPacket::DisconnectPacket() { reason = eDisconnect_None; }
 
-
-DisconnectPacket::DisconnectPacket()
-{
-	reason = eDisconnect_None;
+DisconnectPacket::DisconnectPacket(eDisconnectReason reason) {
+    this->reason = reason;
 }
 
-DisconnectPacket::DisconnectPacket(eDisconnectReason reason)
+void DisconnectPacket::read(DataInputStream* dis)  // throws IOException
 {
-	this->reason = reason;
+    reason = (eDisconnectReason)dis->readInt();
 }
 
-void DisconnectPacket::read(DataInputStream *dis) //throws IOException
+void DisconnectPacket::write(DataOutputStream* dos)  // throws IOException
 {
-	reason = (eDisconnectReason)dis->readInt();
+    dos->writeInt((int)reason);
 }
 
-void DisconnectPacket::write(DataOutputStream *dos) //throws IOException
-{
-	dos->writeInt((int)reason);
+void DisconnectPacket::handle(PacketListener* listener) {
+    listener->handleDisconnect(shared_from_this());
 }
 
-void DisconnectPacket::handle(PacketListener *listener)
-{
-	listener->handleDisconnect(shared_from_this());
-}
+int DisconnectPacket::getEstimatedSize() { return sizeof(eDisconnectReason); }
 
-int DisconnectPacket::getEstimatedSize() 
-{
-	return sizeof(eDisconnectReason);
-}
+bool DisconnectPacket::canBeInvalidated() { return true; }
 
-bool DisconnectPacket::canBeInvalidated()
-{
-	return true;
-}
-
-bool DisconnectPacket::isInvalidatedBy(std::shared_ptr<Packet> packet)
-{
-	return true;
+bool DisconnectPacket::isInvalidatedBy(std::shared_ptr<Packet> packet) {
+    return true;
 }

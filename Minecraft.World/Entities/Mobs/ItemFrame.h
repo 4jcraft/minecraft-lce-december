@@ -5,44 +5,43 @@
 
 class Level;
 
-class ItemFrame : public HangingEntity
-{
+class ItemFrame : public HangingEntity {
 public:
-	eINSTANCEOF GetType() { return eTYPE_ITEM_FRAME; };
-	static Entity *create(Level *level) { return new ItemFrame(level); }
-private:
-	static const int DATA_ITEM = 2;
-	static const int DATA_ROTATION = 3;
-
-	float dropChance;
+    eINSTANCEOF GetType() { return eTYPE_ITEM_FRAME; };
+    static Entity* create(Level* level) { return new ItemFrame(level); }
 
 private:
+    static const int DATA_ITEM = 2;
+    static const int DATA_ROTATION = 3;
 
-	void _init();
+    float dropChance;
+
+private:
+    void _init();
 
 public:
-	ItemFrame(Level *level);
-	ItemFrame(Level *level, int xTile, int yTile, int zTile, int dir);
+    ItemFrame(Level* level);
+    ItemFrame(Level* level, int xTile, int yTile, int zTile, int dir);
 
 protected:
-	virtual void defineSynchedData();
+    virtual void defineSynchedData();
 
 public:
-	virtual int getWidth() {return 9;}
-	virtual int getHeight() {return 9;}
-	virtual bool shouldRenderAtSqrDistance(double distance);
-	virtual void dropItem(std::shared_ptr<Entity> causedBy);
+    virtual int getWidth() { return 9; }
+    virtual int getHeight() { return 9; }
+    virtual bool shouldRenderAtSqrDistance(double distance);
+    virtual void dropItem(std::shared_ptr<Entity> causedBy);
 
 private:
-	void removeFramedMap(std::shared_ptr<ItemInstance> item);
+    void removeFramedMap(std::shared_ptr<ItemInstance> item);
 
 public:
-	std::shared_ptr<ItemInstance> getItem();
-	void setItem(std::shared_ptr<ItemInstance> item);
-	int getRotation();
-	void setRotation(int rotation);
+    std::shared_ptr<ItemInstance> getItem();
+    void setItem(std::shared_ptr<ItemInstance> item);
+    int getRotation();
+    void setRotation(int rotation);
 
-	virtual void addAdditonalSaveData(CompoundTag *tag);
-	virtual void readAdditionalSaveData(CompoundTag *tag);
-	virtual bool interact(std::shared_ptr<Player> player);
+    virtual void addAdditonalSaveData(CompoundTag* tag);
+    virtual void readAdditionalSaveData(CompoundTag* tag);
+    virtual bool interact(std::shared_ptr<Player> player);
 };

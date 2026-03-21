@@ -4,17 +4,16 @@
 
 class Creeper;
 
-class SwellGoal : public Goal
-{
+class SwellGoal : public Goal {
 private:
-	Creeper *creeper;
-	weak_ptr<LivingEntity> target;
+    Creeper* creeper;
+    weak_ptr<LivingEntity> target;
 
 public:
-	SwellGoal(Creeper *creeper);
+    SwellGoal(Creeper* creeper);
 
-	bool canUse();
-	void start();
-	void stop();
-	void tick();
+    bool canUse();
+    void start();
+    void stop();
+    void tick();
 };

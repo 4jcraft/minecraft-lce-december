@@ -42,13 +42,15 @@ public class PlaySoundCommand extends BaseCommand {
         double pitch = 1;
         double minVolume = 0;
 
-        if (args.length > index) x = convertArgToCoordinate(source, x, args[index++]);
-        if (args.length > index) y = convertArgToCoordinate(source, y, args[index++], 0, 0);
-        if (args.length > index) z = convertArgToCoordinate(source, z, args[index++]);
+        if (args.length > index) x = convertArgToCoordinate(source, x,
+args[index++]); if (args.length > index) y = convertArgToCoordinate(source, y,
+args[index++], 0, 0); if (args.length > index) z =
+convertArgToCoordinate(source, z, args[index++]);
 
-        if (args.length > index) volume = convertArgToDouble(source, args[index++], 0, Float.MAX_VALUE);
-        if (args.length > index) pitch = convertArgToDouble(source, args[index++], 0, 2);
-        if (args.length > index) minVolume = convertArgToDouble(source, args[index++], 0, 1);
+        if (args.length > index) volume = convertArgToDouble(source,
+args[index++], 0, Float.MAX_VALUE); if (args.length > index) pitch =
+convertArgToDouble(source, args[index++], 0, 2); if (args.length > index)
+minVolume = convertArgToDouble(source, args[index++], 0, 1);
 
         double maxDist = volume > 1 ? volume * 16 : 16;
         double dist = player.distanceTo(x, y, z);
@@ -58,10 +60,9 @@ public class PlaySoundCommand extends BaseCommand {
                 double deltaX = x - player.x;
                 double deltaY = y - player.y;
                 double deltaZ = z - player.z;
-                double length = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
-                double soundX = player.x;
-                double soundY = player.y;
-                double soundZ = player.z;
+                double length = Math.sqrt(deltaX * deltaX + deltaY * deltaY +
+deltaZ * deltaZ); double soundX = player.x; double soundY = player.y; double
+soundZ = player.z;
 
                 if (length > 0) {
                     soundX += deltaX / length * 2;
@@ -69,20 +70,22 @@ public class PlaySoundCommand extends BaseCommand {
                     soundZ += deltaZ / length * 2;
                 }
 
-                player.connection.send(new LevelSoundPacket(sound, soundX, soundY, soundZ, (float) minVolume, (float) pitch));
-            } else {
-                throw new CommandException("commands.playsound.playerTooFar", player.getAName());
+                player.connection.send(new LevelSoundPacket(sound, soundX,
+soundY, soundZ, (float) minVolume, (float) pitch)); } else { throw new
+CommandException("commands.playsound.playerTooFar", player.getAName());
             }
         } else {
-            player.connection.send(new LevelSoundPacket(sound, x, y, z, (float) volume, (float) pitch));
+            player.connection.send(new LevelSoundPacket(sound, x, y, z, (float)
+volume, (float) pitch));
         }
 
-        logAdminAction(source, "commands.playsound.success", sound, player.getAName());
+        logAdminAction(source, "commands.playsound.success", sound,
+player.getAName());
     }
 
     @Override
-    public boolean isValidWildcardPlayerArgument(String[] args, int argumentIndex) {
-        return argumentIndex == 1;
+    public boolean isValidWildcardPlayerArgument(String[] args, int
+argumentIndex) { return argumentIndex == 1;
     }
 }
 

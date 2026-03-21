@@ -2,18 +2,17 @@
 
 #include "DropperTileEntity.h"
 
-std::wstring DropperTileEntity::getName()
-{
-	return hasCustomName() ? name : app.GetString(IDS_CONTAINER_DROPPER);
+std::wstring DropperTileEntity::getName() {
+    return hasCustomName() ? name : app.GetString(IDS_CONTAINER_DROPPER);
 }
 
 // 4J Added
-std::shared_ptr<TileEntity> DropperTileEntity::clone()
-{
-	shared_ptr<DropperTileEntity> result = shared_ptr<DropperTileEntity>( new DropperTileEntity() );
-	TileEntity::clone(result);
+std::shared_ptr<TileEntity> DropperTileEntity::clone() {
+    shared_ptr<DropperTileEntity> result =
+        shared_ptr<DropperTileEntity>(new DropperTileEntity());
+    TileEntity::clone(result);
 
-	result->name = name;
+    result->name = name;
 
-	return result;
+    return result;
 }

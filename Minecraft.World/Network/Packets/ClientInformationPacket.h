@@ -2,8 +2,7 @@
 
 #include "../../Build/stdafx.h"
 
-class ClientInformationPacket : public Packet
-{
+class ClientInformationPacket : public Packet {
 #if 0
 	private String language;
 	private int viewDistance;

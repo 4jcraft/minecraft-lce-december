@@ -1,6 +1,4 @@
 #include "../Build/stdafx.h"
 #include "DirtTile.h"
 
-DirtTile::DirtTile(int id) : Tile(id, Material::dirt)
-{
-}
+DirtTile::DirtTile(int id) : Tile(id, Material::dirt) {}

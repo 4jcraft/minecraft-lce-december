@@ -2,11 +2,8 @@
 
 #include "SimpleFoiledItem.h"
 
-SimpleFoiledItem::SimpleFoiledItem(int id) : Item(id)
-{
-}
+SimpleFoiledItem::SimpleFoiledItem(int id) : Item(id) {}
 
-bool SimpleFoiledItem::isFoil(std::shared_ptr<ItemInstance> itemInstance)
-{
-	return true;
+bool SimpleFoiledItem::isFoil(std::shared_ptr<ItemInstance> itemInstance) {
+    return true;
 }

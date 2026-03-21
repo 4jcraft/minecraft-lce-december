@@ -2,10 +2,9 @@
 
 #include "ButtonTile.h"
 
-class WoodButtonTile : public ButtonTile
-{
+class WoodButtonTile : public ButtonTile {
 public:
-	WoodButtonTile(int id);
+    WoodButtonTile(int id);
 
-	Icon *getTexture(int face, int data);
+    Icon* getTexture(int face, int data);
 };

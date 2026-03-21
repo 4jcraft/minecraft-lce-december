@@ -1,155 +1,137 @@
 #pragma once
 #include "Tag.h"
 
-template <class T> class ListTag : public Tag
-{
+template <class T>
+class ListTag : public Tag {
 private:
-	vector<Tag *> list;
-	byte type;
+    vector<Tag*> list;
+    byte type;
 
 public:
-	ListTag() : Tag(L"") {}
-	ListTag(const std::wstring &name) : Tag(name) {}
+    ListTag() : Tag(L"") {}
+    ListTag(const std::wstring& name) : Tag(name) {}
 
-	void write(DataOutput *dos)
-	{
-		if (list.size() > 0) type = (list[0])->getId();
-		else type = 1;
+    void write(DataOutput* dos) {
+        if (list.size() > 0)
+            type = (list[0])->getId();
+        else
+            type = 1;
 
-		dos->writeByte(type);
-		dos->writeInt((int)list.size());
+        dos->writeByte(type);
+        dos->writeInt((int)list.size());
 
-		AUTO_VAR(itEnd, list.end());
-		for (AUTO_VAR(it, list.begin()); it != itEnd; it++)
-			(*it)->write(dos);
-	}
+        AUTO_VAR(itEnd, list.end());
+        for (AUTO_VAR(it, list.begin()); it != itEnd; it++) (*it)->write(dos);
+    }
 
-	void load(DataInput *dis, int tagDepth)
-	{
-		if (tagDepth > MAX_DEPTH)
-		{
+    void load(DataInput* dis, int tagDepth) {
+        if (tagDepth > MAX_DEPTH) {
 #ifndef _CONTENT_PACKAGE
-			printf("Tried to read NBT tag with too high complexity, depth > %d", MAX_DEPTH);
-			__debugbreak();
+            printf("Tried to read NBT tag with too high complexity, depth > %d",
+                   MAX_DEPTH);
+            __debugbreak();
 #endif
-			return;
-		}
-		type = dis->readByte();
-		int size = dis->readInt();
+            return;
+        }
+        type = dis->readByte();
+        int size = dis->readInt();
 
-		list.clear();
-		for (int i = 0; i < size; i++)
-		{
-			Tag *tag = Tag::newTag(type, L"");
-			tag->load(dis, tagDepth);
-			list.push_back(tag);
-		}
-	}
+        list.clear();
+        for (int i = 0; i < size; i++) {
+            Tag* tag = Tag::newTag(type, L"");
+            tag->load(dis, tagDepth);
+            list.push_back(tag);
+        }
+    }
 
-	byte getId() { return TAG_List; }
+    byte getId() { return TAG_List; }
 
-	std::wstring toString()
-	{
-		static wchar_t buf[64];
-		swprintf(buf,64,L"%d entries of type %ls",list.size(),Tag::getTagName(type));
-		return wstring( buf );
-	}
+    std::wstring toString() {
+        static wchar_t buf[64];
+        swprintf(buf, 64, L"%d entries of type %ls", list.size(),
+                 Tag::getTagName(type));
+        return wstring(buf);
+    }
 
-	void print(char *prefix, std::ostream out)
-	{
-		Tag::print(prefix, out);
+    void print(char* prefix, std::ostream out) {
+        Tag::print(prefix, out);
 
-		out << prefix << "{" << endl;
+        out << prefix << "{" << endl;
 
-		char *newPrefix = new char[ strlen(prefix) + 4 ];
-		strcpy( newPrefix, prefix);
-		strcat( newPrefix, "   ");
-		AUTO_VAR(itEnd, list.end());
-		for (AUTO_VAR(it, list.begin()); it != itEnd; it++)
-			(*it)->print(newPrefix, out);
-		delete[] newPrefix;
-		out << prefix << "}" << endl;
-	}
+        char* newPrefix = new char[strlen(prefix) + 4];
+        strcpy(newPrefix, prefix);
+        strcat(newPrefix, "   ");
+        AUTO_VAR(itEnd, list.end());
+        for (AUTO_VAR(it, list.begin()); it != itEnd; it++)
+            (*it)->print(newPrefix, out);
+        delete[] newPrefix;
+        out << prefix << "}" << endl;
+    }
 
-	void add(T *tag)
-	{
-		type = tag->getId();
-		// 4J: List tag write/load doesn't preserve tag names so remove them so we can safely do comparisons
-		// There are a few ways I could have fixed this but this seems the least invasive, most complete fix
-		// (covers other items that also use list tags and require equality checks to work)
-		// considering we can't change the write/load functions.
-		tag->setName(L"");
-		list.push_back(tag);
-	}
+    void add(T* tag) {
+        type = tag->getId();
+        // 4J: List tag write/load doesn't preserve tag names so remove them so
+        // we can safely do comparisons There are a few ways I could have fixed
+        // this but this seems the least invasive, most complete fix (covers
+        // other items that also use list tags and require equality checks to
+        // work) considering we can't change the write/load functions.
+        tag->setName(L"");
+        list.push_back(tag);
+    }
 
-	T *get(int index)
-	{
-		return (T *) list[index];
-	}
+    T* get(int index) { return (T*)list[index]; }
 
-	int size()
-	{
-		return (int)list.size();
-	}
+    int size() { return (int)list.size(); }
 
-	virtual ~ListTag()
-	{
-		AUTO_VAR(itEnd, list.end());
-		for (AUTO_VAR(it, list.begin()); it != itEnd; it++)
-		{
-			delete *it;
-		}
-	}
+    virtual ~ListTag() {
+        AUTO_VAR(itEnd, list.end());
+        for (AUTO_VAR(it, list.begin()); it != itEnd; it++) {
+            delete *it;
+        }
+    }
 
-	virtual Tag *copy()
-	{
-		ListTag<T> *res = new ListTag<T>(getName());
-		res->type = type;
-		AUTO_VAR(itEnd, list.end());
-		for (AUTO_VAR(it, list.begin()); it != itEnd; it++)
-		{
-			T *copy = (T *) (*it)->copy();
-			res->list.push_back(copy);
-		}
-		return res;
-	}
+    virtual Tag* copy() {
+        ListTag<T>* res = new ListTag<T>(getName());
+        res->type = type;
+        AUTO_VAR(itEnd, list.end());
+        for (AUTO_VAR(it, list.begin()); it != itEnd; it++) {
+            T* copy = (T*)(*it)->copy();
+            res->list.push_back(copy);
+        }
+        return res;
+    }
 
-	virtual bool equals(Tag *obj)
-	{
-		if (Tag::equals(obj))
-		{
-			ListTag *o = (ListTag *) obj;
-			if (type == o->type)
-			{
-				bool equal = false;
-				if(list.size() == o->list.size())
-				{
-					equal = true;
-					AUTO_VAR(itEnd, list.end());
-					// 4J Stu - Pretty inefficient method, but I think we can live with it give how often it will happen, and the small sizes of the data sets
-					for (AUTO_VAR(it, list.begin()); it != itEnd; ++it)
-					{
-						bool thisMatches = false;
-						for(AUTO_VAR(it2, o->list.begin()); it2 != o->list.end(); ++it2)
-						{
-							if((*it)->equals(*it2))
-							{
-								thisMatches = true;
-								break;
-							}
-						}
-						if(!thisMatches)
-						{
-							equal = false;
-							break;
-						}
-					}
-				}
+    virtual bool equals(Tag* obj) {
+        if (Tag::equals(obj)) {
+            ListTag* o = (ListTag*)obj;
+            if (type == o->type) {
+                bool equal = false;
+                if (list.size() == o->list.size()) {
+                    equal = true;
+                    AUTO_VAR(itEnd, list.end());
+                    // 4J Stu - Pretty inefficient method, but I think we can
+                    // live with it give how often it will happen, and the small
+                    // sizes of the data sets
+                    for (AUTO_VAR(it, list.begin()); it != itEnd; ++it) {
+                        bool thisMatches = false;
+                        for (AUTO_VAR(it2, o->list.begin());
+                             it2 != o->list.end(); ++it2) {
+                            if ((*it)->equals(*it2)) {
+                                thisMatches = true;
+                                break;
+                            }
+                        }
+                        if (!thisMatches) {
+                            equal = false;
+                            break;
+                        }
+                    }
+                }
 
-				//return list->equals(o->list);
-				return equal;
-			}
-		}
-		return false;
-	}
+                // return list->equals(o->list);
+                return equal;
+            }
+        }
+        return false;
+    }
 };

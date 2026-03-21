@@ -1,49 +1,46 @@
 #pragma once
 
-
 #include "TileEntity.h"
 #include "../../BaseMobSpawner.h"
 
 class Packet;
 class Entity;
 
-class MobSpawnerTileEntity : public TileEntity
-{
+class MobSpawnerTileEntity : public TileEntity {
 public:
-	eINSTANCEOF GetType() { return eTYPE_MOBSPAWNERTILEENTITY; }
-	static TileEntity *create() { return new MobSpawnerTileEntity(); }
+    eINSTANCEOF GetType() { return eTYPE_MOBSPAWNERTILEENTITY; }
+    static TileEntity* create() { return new MobSpawnerTileEntity(); }
 
 private:
-	class TileEntityMobSpawner : public BaseMobSpawner
-	{
-	private:
-		MobSpawnerTileEntity *m_parent;
+    class TileEntityMobSpawner : public BaseMobSpawner {
+    private:
+        MobSpawnerTileEntity* m_parent;
 
-	public:
-		TileEntityMobSpawner(MobSpawnerTileEntity *parent);
+    public:
+        TileEntityMobSpawner(MobSpawnerTileEntity* parent);
 
-		void broadcastEvent(int id);
-		Level *getLevel();
-		int getX();
-		int getY();
-		int getZ();
-		void setNextSpawnData(BaseMobSpawner::SpawnData *nextSpawnData);
-	};
+        void broadcastEvent(int id);
+        Level* getLevel();
+        int getX();
+        int getY();
+        int getZ();
+        void setNextSpawnData(BaseMobSpawner::SpawnData* nextSpawnData);
+    };
 
-	BaseMobSpawner *spawner;
+    BaseMobSpawner* spawner;
 
 public:
-	MobSpawnerTileEntity();
-	~MobSpawnerTileEntity();
+    MobSpawnerTileEntity();
+    ~MobSpawnerTileEntity();
 
-	virtual void load(CompoundTag *tag);
-	virtual void save(CompoundTag *tag);
-	virtual void tick();
-	virtual std::shared_ptr<Packet> getUpdatePacket();
-	virtual bool triggerEvent(int b0, int b1);
-	virtual BaseMobSpawner *getSpawner();
+    virtual void load(CompoundTag* tag);
+    virtual void save(CompoundTag* tag);
+    virtual void tick();
+    virtual std::shared_ptr<Packet> getUpdatePacket();
+    virtual bool triggerEvent(int b0, int b1);
+    virtual BaseMobSpawner* getSpawner();
 
-	// 4J Added
-	virtual std::shared_ptr<TileEntity> clone();
-	void setEntityId(const std::wstring &id);
+    // 4J Added
+    virtual std::shared_ptr<TileEntity> clone();
+    void setEntityId(const std::wstring& id);
 };

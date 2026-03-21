@@ -12,19 +12,17 @@
 #include "EggItem.h"
 #include "../Util/SoundTypes.h"
 
+EggItem::EggItem(int id) : Item(id) { maxStackSize = 16; }
 
-EggItem::EggItem(int id) : Item( id )
-{
-	maxStackSize = 16;
-}
-
-std::shared_ptr<ItemInstance> EggItem::use(std::shared_ptr<ItemInstance> instance, Level *level, std::shared_ptr<Player> player) 
-{
-	if (!player->abilities.instabuild)
-	{
-		instance->count--;
-	}
-	level->playEntitySound( player, eSoundType_RANDOM_BOW, 0.5f, 0.4f / (random->nextFloat() * 0.4f + 0.8f));
-	if (!level->isClientSide) level->addEntity( shared_ptr<ThrownEgg>(new ThrownEgg(level, player)) );
-	return instance;
+std::shared_ptr<ItemInstance> EggItem::use(
+    std::shared_ptr<ItemInstance> instance, Level* level,
+    std::shared_ptr<Player> player) {
+    if (!player->abilities.instabuild) {
+        instance->count--;
+    }
+    level->playEntitySound(player, eSoundType_RANDOM_BOW, 0.5f,
+                           0.4f / (random->nextFloat() * 0.4f + 0.8f));
+    if (!level->isClientSide)
+        level->addEntity(shared_ptr<ThrownEgg>(new ThrownEgg(level, player)));
+    return instance;
 }

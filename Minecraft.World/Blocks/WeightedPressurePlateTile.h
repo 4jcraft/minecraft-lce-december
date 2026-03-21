@@ -2,17 +2,17 @@
 
 #include "BasePressurePlateTile.h"
 
-class WeightedPressurePlateTile : public BasePressurePlateTile
-{
+class WeightedPressurePlateTile : public BasePressurePlateTile {
 private:
-	int maxWeight;
+    int maxWeight;
 
 public:
-	WeightedPressurePlateTile(int id, const std::wstring &tex, Material *material, int maxWeight);
+    WeightedPressurePlateTile(int id, const std::wstring& tex,
+                              Material* material, int maxWeight);
 
 protected:
-	virtual int getSignalStrength(Level *level, int x, int y, int z);
-	virtual int getSignalForData(int data);
-	virtual int getDataForSignal(int signal);
-	virtual int getTickDelay(Level *level);
+    virtual int getSignalStrength(Level* level, int x, int y, int z);
+    virtual int getSignalForData(int data);
+    virtual int getDataForSignal(int signal);
+    virtual int getTickDelay(Level* level);
 };

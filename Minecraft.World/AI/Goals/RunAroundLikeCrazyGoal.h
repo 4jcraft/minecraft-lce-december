@@ -4,18 +4,17 @@
 
 class EntityHorse;
 
-class RunAroundLikeCrazyGoal : public Goal
-{
+class RunAroundLikeCrazyGoal : public Goal {
 private:
-	EntityHorse *horse; // Owner
-	double speedModifier;
-	double posX, posY, posZ;
+    EntityHorse* horse;  // Owner
+    double speedModifier;
+    double posX, posY, posZ;
 
 public:
-	RunAroundLikeCrazyGoal(EntityHorse *mob, double speedModifier);
+    RunAroundLikeCrazyGoal(EntityHorse* mob, double speedModifier);
 
-	bool canUse();
-	void start();
-	bool canContinueToUse();
-	void tick();
+    bool canUse();
+    void start();
+    bool canContinueToUse();
+    void tick();
 };

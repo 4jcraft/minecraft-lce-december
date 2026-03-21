@@ -3,18 +3,21 @@
 
 class Random;
 
-class Mushroom : public Bush
-{
-	friend class Tile;
+class Mushroom : public Bush {
+    friend class Tile;
+
 protected:
-	Mushroom(int id);
+    Mushroom(int id);
+
 public:
-	virtual void updateDefaultShape(); // 4J Added override
-	virtual void tick(Level *level, int x, int y, int z, Random *random);
-	virtual bool mayPlace(Level *level, int x, int y, int z);
+    virtual void updateDefaultShape();  // 4J Added override
+    virtual void tick(Level* level, int x, int y, int z, Random* random);
+    virtual bool mayPlace(Level* level, int x, int y, int z);
+
 protected:
-	virtual bool mayPlaceOn(int tile);
+    virtual bool mayPlaceOn(int tile);
+
 public:
-	virtual bool canSurvive(Level *level, int x, int y, int z);
-	bool growTree(Level *level, int x, int y, int z, Random *random);
+    virtual bool canSurvive(Level* level, int x, int y, int z);
+    bool growTree(Level* level, int x, int y, int z, Random* random);
 };

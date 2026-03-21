@@ -1,39 +1,39 @@
 #pragma once
 #include "../Entity.h"
 
-class PrimedTnt : public Entity
-{
+class PrimedTnt : public Entity {
 public:
-	eINSTANCEOF GetType() { return eTYPE_PRIMEDTNT; };
-	static Entity *create(Level *level) { return new PrimedTnt(level); }
+    eINSTANCEOF GetType() { return eTYPE_PRIMEDTNT; };
+    static Entity* create(Level* level) { return new PrimedTnt(level); }
 
 public:
-	static const int serialVersionUID = 0;
+    static const int serialVersionUID = 0;
 
-	int life;
-	weak_ptr<LivingEntity> owner;
+    int life;
+    weak_ptr<LivingEntity> owner;
 
-	void _init();
+    void _init();
 
-	PrimedTnt(Level *level);
-	PrimedTnt(Level *level, double x, double y, double z, std::shared_ptr<LivingEntity> owner);
+    PrimedTnt(Level* level);
+    PrimedTnt(Level* level, double x, double y, double z,
+              std::shared_ptr<LivingEntity> owner);
 
 protected:
-	virtual void defineSynchedData();
-	virtual bool makeStepSound();
+    virtual void defineSynchedData();
+    virtual bool makeStepSound();
 
 public:
-	virtual bool isPickable();
-	virtual void tick();
+    virtual bool isPickable();
+    virtual void tick();
 
 private:
-	void explode();
+    void explode();
 
 protected:
-	virtual void addAdditonalSaveData(CompoundTag *entityTag);
-	virtual void readAdditionalSaveData(CompoundTag *tag);
+    virtual void addAdditonalSaveData(CompoundTag* entityTag);
+    virtual void readAdditionalSaveData(CompoundTag* tag);
 
 public:
-	virtual float getShadowHeightOffs();
-	virtual std::shared_ptr<LivingEntity> getOwner();
+    virtual float getShadowHeightOffs();
+    virtual std::shared_ptr<LivingEntity> getOwner();
 };

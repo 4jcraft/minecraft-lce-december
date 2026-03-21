@@ -2,30 +2,19 @@
 
 #include "BaseAttribute.h"
 
-BaseAttribute::BaseAttribute(eATTRIBUTE_ID id, double defaultValue)
-{
-	this->id = id;
-	this->defaultValue = defaultValue;
-	syncable = false;
+BaseAttribute::BaseAttribute(eATTRIBUTE_ID id, double defaultValue) {
+    this->id = id;
+    this->defaultValue = defaultValue;
+    syncable = false;
 }
 
-eATTRIBUTE_ID BaseAttribute::getId()
-{
-	return id;
-}
+eATTRIBUTE_ID BaseAttribute::getId() { return id; }
 
-double BaseAttribute::getDefaultValue()
-{
-	return defaultValue;
-}
+double BaseAttribute::getDefaultValue() { return defaultValue; }
 
-bool BaseAttribute::isClientSyncable()
-{
-	return syncable;
-}
+bool BaseAttribute::isClientSyncable() { return syncable; }
 
-BaseAttribute *BaseAttribute::setSyncable(bool syncable)
-{
-	this->syncable = syncable;
-	return this;
+BaseAttribute* BaseAttribute::setSyncable(bool syncable) {
+    this->syncable = syncable;
+    return this;
 }

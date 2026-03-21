@@ -1,25 +1,26 @@
 #pragma once
 
-
 #include "Packet.h"
 
-class TexturePacket : public Packet, public enable_shared_from_this<TexturePacket>
-{
+class TexturePacket : public Packet,
+                      public enable_shared_from_this<TexturePacket> {
 public:
-	std::wstring textureName;
-	PBYTE pbData;
-	DWORD dwBytes;
+    std::wstring textureName;
+    PBYTE pbData;
+    DWORD dwBytes;
 
-	TexturePacket();
-	~TexturePacket(); 
-	TexturePacket(const std::wstring &textureName, PBYTE pbData, DWORD dwBytes);
+    TexturePacket();
+    ~TexturePacket();
+    TexturePacket(const std::wstring& textureName, PBYTE pbData, DWORD dwBytes);
 
-	virtual void handle(PacketListener *listener);
-	virtual void read(DataInputStream *dis);
-	virtual void write(DataOutputStream *dos);
-	virtual int getEstimatedSize();
+    virtual void handle(PacketListener* listener);
+    virtual void read(DataInputStream* dis);
+    virtual void write(DataOutputStream* dos);
+    virtual int getEstimatedSize();
 
 public:
-	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new TexturePacket()); }
-	virtual int getId() { return 154; }
+    static std::shared_ptr<Packet> create() {
+        return std::shared_ptr<Packet>(new TexturePacket());
+    }
+    virtual int getId() { return 154; }
 };

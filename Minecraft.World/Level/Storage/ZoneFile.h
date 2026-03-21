@@ -3,15 +3,14 @@
 #include "../../IO/NBT/NbtSlotFile.h"
 #include "ZoneIO.h"
 
-class ZoneFile
-{
+class ZoneFile {
 public:
     static const int FILE_HEADER_SIZE = 1024 * 4;
 
 private:
     static const int MAGIC_NUMBER = 0x13737000;
 
-	static const int slotsLength;
+    static const int slotsLength;
 
     shortArray slots;
     short slotCount;
@@ -26,10 +25,10 @@ public:
     __int64 key;
     File file;
 
-    NbtSlotFile *entityFile;
+    NbtSlotFile* entityFile;
 
     ZoneFile(__int64 key, File file, File entityFile);
-	~ZoneFile();
+    ~ZoneFile();
 
     void readHeader();
 
@@ -37,6 +36,6 @@ public:
 
 public:
     void close();
-    ZoneIo *getZoneIo(int slot);
+    ZoneIo* getZoneIo(int slot);
     bool containsSlot(int slot);
 };

@@ -4,11 +4,10 @@
 
 class Level;
 
-class Hopper : public virtual Container
-{
+class Hopper : public virtual Container {
 public:
-	virtual Level *getLevel() = 0;
-	virtual double getLevelX() = 0;
-	virtual double getLevelY() = 0;
-	virtual double getLevelZ() = 0;
+    virtual Level* getLevel() = 0;
+    virtual double getLevelX() = 0;
+    virtual double getLevelY() = 0;
+    virtual double getLevelZ() = 0;
 };

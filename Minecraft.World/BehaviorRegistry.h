@@ -2,16 +2,15 @@
 
 class DispenseItemBehavior;
 
-class BehaviorRegistry 
-{
+class BehaviorRegistry {
 private:
-	unordered_map<Item*, DispenseItemBehavior*> storage;
-	DispenseItemBehavior *defaultBehavior;
+    unordered_map<Item*, DispenseItemBehavior*> storage;
+    DispenseItemBehavior* defaultBehavior;
 
 public:
-	BehaviorRegistry(DispenseItemBehavior *defaultValue);
-	~BehaviorRegistry();
+    BehaviorRegistry(DispenseItemBehavior* defaultValue);
+    ~BehaviorRegistry();
 
-	DispenseItemBehavior *get(Item *key);
-	void add(Item *key, DispenseItemBehavior *value);
+    DispenseItemBehavior* get(Item* key);
+    void add(Item* key, DispenseItemBehavior* value);
 };

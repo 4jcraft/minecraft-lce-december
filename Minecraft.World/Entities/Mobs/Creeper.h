@@ -1,65 +1,63 @@
 #pragma once
 
-
 #include "../Monster.h"
 
 class Level;
 class DamageSource;
 
-class Creeper : public Monster
-{
+class Creeper : public Monster {
 public:
-	eINSTANCEOF GetType() { return eTYPE_CREEPER; }
-	static Entity *create(Level *level) { return new Creeper(level); }
+    eINSTANCEOF GetType() { return eTYPE_CREEPER; }
+    static Entity* create(Level* level) { return new Creeper(level); }
 
 private:
-	static const int DATA_SWELL_DIR = 16;
-	static const int DATA_IS_POWERED = 17;
+    static const int DATA_SWELL_DIR = 16;
+    static const int DATA_IS_POWERED = 17;
 
-	int oldSwell;
-	int swell;
-	int maxSwell;
-	int explosionRadius;
+    int oldSwell;
+    int swell;
+    int maxSwell;
+    int explosionRadius;
 
-	void _init();
-
-public:
-	Creeper(Level *level);
-
-protected:
-	void registerAttributes();
+    void _init();
 
 public:
-	virtual bool useNewAi();
-
-	virtual int getMaxFallDistance();
+    Creeper(Level* level);
 
 protected:
-	virtual void causeFallDamage(float distance);
-	virtual void defineSynchedData();
+    void registerAttributes();
 
 public:
-	virtual void addAdditonalSaveData(CompoundTag *entityTag);
-	virtual void readAdditionalSaveData(CompoundTag *tag);
+    virtual bool useNewAi();
+
+    virtual int getMaxFallDistance();
 
 protected:
-	virtual void tick();
-
-protected:
-	virtual int getHurtSound();
-	virtual int getDeathSound();
+    virtual void causeFallDamage(float distance);
+    virtual void defineSynchedData();
 
 public:
-	virtual void die(DamageSource *source);
-	virtual bool doHurtTarget(std::shared_ptr<Entity> target);
-	virtual bool isPowered();
-	float getSwelling(float a);
+    virtual void addAdditonalSaveData(CompoundTag* entityTag);
+    virtual void readAdditionalSaveData(CompoundTag* tag);
 
 protected:
-	int getDeathLoot();
+    virtual void tick();
+
+protected:
+    virtual int getHurtSound();
+    virtual int getDeathSound();
 
 public:
-	int getSwellDir();
-	void setSwellDir(int dir);
-	void thunderHit(const LightningBolt *lightningBolt) ;
+    virtual void die(DamageSource* source);
+    virtual bool doHurtTarget(std::shared_ptr<Entity> target);
+    virtual bool isPowered();
+    float getSwelling(float a);
+
+protected:
+    int getDeathLoot();
+
+public:
+    int getSwellDir();
+    void setSwellDir(int dir);
+    void thunderHit(const LightningBolt* lightningBolt);
 };

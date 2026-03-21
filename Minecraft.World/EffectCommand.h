@@ -2,17 +2,16 @@
 
 #include "Commands/Command.h"
 
-class EffectCommand : public Command
-{
+class EffectCommand : public Command {
 public:
-	EGameCommand getId();
-	int getPermissionLevel();
-	std::wstring getUsage(CommandSender *source);
-	void execute(std::shared_ptr<CommandSender> source, byteArray commandData);
+    EGameCommand getId();
+    int getPermissionLevel();
+    std::wstring getUsage(CommandSender* source);
+    void execute(std::shared_ptr<CommandSender> source, byteArray commandData);
 
 protected:
-	std::wstring getPlayerNames();
+    std::wstring getPlayerNames();
 
 public:
-	bool isValidWildcardPlayerArgument(std::wstring args, int argumentIndex);
+    bool isValidWildcardPlayerArgument(std::wstring args, int argumentIndex);
 };

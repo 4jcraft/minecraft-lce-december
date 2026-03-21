@@ -4,8 +4,7 @@
 
 class Level;
 
-class Location : public Position
-{
+class Location : public Position {
 public:
-	virtual Level *getWorld() = 0;
+    virtual Level* getWorld() = 0;
 };

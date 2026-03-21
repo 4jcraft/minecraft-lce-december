@@ -2,38 +2,43 @@
 
 #include "Packet.h"
 
-class LevelParticlesPacket : public Packet, public enable_shared_from_this<LevelParticlesPacket>
-{
+class LevelParticlesPacket
+    : public Packet,
+      public enable_shared_from_this<LevelParticlesPacket> {
 private:
-	std::wstring name;
-	float x;
-	float y;
-	float z;
-	float xDist;
-	float yDist;
-	float zDist;
-	float maxSpeed;
-	int count;
+    std::wstring name;
+    float x;
+    float y;
+    float z;
+    float xDist;
+    float yDist;
+    float zDist;
+    float maxSpeed;
+    int count;
 
 public:
-	LevelParticlesPacket();
-	LevelParticlesPacket(const std::wstring &name, float x, float y, float z, float xDist, float yDist, float zDist, float maxSpeed, int count);
+    LevelParticlesPacket();
+    LevelParticlesPacket(const std::wstring& name, float x, float y, float z,
+                         float xDist, float yDist, float zDist, float maxSpeed,
+                         int count);
 
-	void read(DataInputStream *dis);
-	void write(DataOutputStream *dos);
-	std::wstring getName();
-	double getX();
-	double getY();
-	double getZ();
-	float getXDist();
-	float getYDist();
-	float getZDist();
-	float getMaxSpeed();
-	int getCount();
-	void handle(PacketListener *listener);
-	int getEstimatedSize();
+    void read(DataInputStream* dis);
+    void write(DataOutputStream* dos);
+    std::wstring getName();
+    double getX();
+    double getY();
+    double getZ();
+    float getXDist();
+    float getYDist();
+    float getZDist();
+    float getMaxSpeed();
+    int getCount();
+    void handle(PacketListener* listener);
+    int getEstimatedSize();
 
 public:
-	static std::shared_ptr<Packet> create() { return std::shared_ptr<Packet>(new LevelParticlesPacket()); }
-	virtual int getId() { return 63; }
+    static std::shared_ptr<Packet> create() {
+        return std::shared_ptr<Packet>(new LevelParticlesPacket());
+    }
+    virtual int getId() { return 63; }
 };

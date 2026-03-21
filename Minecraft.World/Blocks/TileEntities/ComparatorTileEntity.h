@@ -2,21 +2,20 @@
 
 #include "TileEntity.h"
 
-class ComparatorTileEntity : public TileEntity
-{
+class ComparatorTileEntity : public TileEntity {
 public:
-	eINSTANCEOF GetType() { return eTYPE_COMPARATORTILEENTITY; }
-	static TileEntity *create() { return new ComparatorTileEntity(); }
+    eINSTANCEOF GetType() { return eTYPE_COMPARATORTILEENTITY; }
+    static TileEntity* create() { return new ComparatorTileEntity(); }
 
-	// 4J Added
-	virtual std::shared_ptr<TileEntity> clone();
+    // 4J Added
+    virtual std::shared_ptr<TileEntity> clone();
 
 private:
-	int output;
+    int output;
 
 public:
-	void save(CompoundTag *tag);
-	void load(CompoundTag *tag);
-	int getOutputSignal();
-	void setOutputSignal(int value);
+    void save(CompoundTag* tag);
+    void load(CompoundTag* tag);
+    int getOutputSignal();
+    void setOutputSignal(int value);
 };

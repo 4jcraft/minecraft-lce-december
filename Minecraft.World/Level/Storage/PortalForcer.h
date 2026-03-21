@@ -2,29 +2,29 @@
 
 class Random;
 
-class PortalForcer
-{
+class PortalForcer {
 public:
-	class PortalPosition : public Pos
-	{
-	public:
-		__int64 lastUsed;
+    class PortalPosition : public Pos {
+    public:
+        __int64 lastUsed;
 
-		PortalPosition(int x, int y, int z, __int64 time);
-	};
+        PortalPosition(int x, int y, int z, __int64 time);
+    };
 
 private:
-	ServerLevel *level;
-	Random *random;
-	unordered_map<__int64, PortalPosition *> cachedPortals;
-	vector<__int64> cachedPortalKeys;
+    ServerLevel* level;
+    Random* random;
+    unordered_map<__int64, PortalPosition*> cachedPortals;
+    vector<__int64> cachedPortalKeys;
 
 public:
-	PortalForcer(ServerLevel *level);
-	~PortalForcer();
+    PortalForcer(ServerLevel* level);
+    ~PortalForcer();
 
-	void force(std::shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal);
-	bool findPortal(std::shared_ptr<Entity> e, double xOriginal, double yOriginal, double zOriginal, float yRotOriginal);
-	bool createPortal(std::shared_ptr<Entity> e);
-	void tick(__int64 time);
+    void force(std::shared_ptr<Entity> e, double xOriginal, double yOriginal,
+               double zOriginal, float yRotOriginal);
+    bool findPortal(std::shared_ptr<Entity> e, double xOriginal,
+                    double yOriginal, double zOriginal, float yRotOriginal);
+    bool createPortal(std::shared_ptr<Entity> e);
+    void tick(__int64 time);
 };
