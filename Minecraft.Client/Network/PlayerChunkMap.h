@@ -1,6 +1,6 @@
 #pragma once
-#include "../Minecraft.World/JavaIntHash.h"
-#include "../Minecraft.World/ChunkPos.h"
+#include "../../Minecraft.World/Util/JavaIntHash.h"
+#include "../../Minecraft.World/Level/ChunkPos.h"
 class ServerPlayer;
 class ServerLevel;
 class MinecraftServer;

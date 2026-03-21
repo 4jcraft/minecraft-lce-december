@@ -38,10 +38,10 @@
 #include "Player.h"
 #include "../Util/ParticleTypes.h"
 
-#include "../Minecraft.Client/Textures.h"
+#include "../../Minecraft.Client/Textures/Textures.h"
 
-#include "../Minecraft.Client/LocalPlayer.h"
-#include "../Minecraft.Client/HumanoidModel.h"
+#include "../../Minecraft.Client/Player/LocalPlayer.h"
+#include "../../Minecraft.Client/Rendering/Models/HumanoidModel.h"
 #include "../Util/SoundTypes.h"
 
 void Player::_init() {

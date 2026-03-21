@@ -3,9 +3,9 @@
 #include "../Headers/net.minecraft.world.item.h"
 #include "Slot.h"
 #include "../Stats/GenericStats.h"
-#include "../Minecraft.Client/StatsCounter.h"
-#include "../Minecraft.Client/Minecraft.h"
-#include "../Minecraft.Client/LocalPlayer.h"
+#include "../../Minecraft.Client/GameState/StatsCounter.h"
+#include "../../Minecraft.Client/Minecraft.h"
+#include "../../Minecraft.Client/Player/LocalPlayer.h"
 #include "ContainerMenu.h"
 
 ContainerMenu::ContainerMenu(std::shared_ptr<Container> inventory,

@@ -8,8 +8,8 @@
 #include "../../Headers/net.minecraft.world.damagesource.h"
 #include "../../Headers/net.minecraft.world.item.enchantment.h"
 #include "../../Headers/net.minecraft.network.packet.h"
-#include "../Minecraft.Client/ServerPlayer.h"
-#include "../Minecraft.Client/PlayerConnection.h"
+#include "../../../Minecraft.Client/Player/ServerPlayer.h"
+#include "../../../Minecraft.Client/Network/PlayerConnection.h"
 #include "../../Headers/com.mojang.nbt.h"
 #include "Arrow.h"
 

@@ -1,13 +1,13 @@
 #include "../Platform/stdafx.h"
 #include "StatsCounter.h"
-#include "../Minecraft.World/Stat.h"
-#include "../Minecraft.World/Stats.h"
-#include "../Minecraft.World/Achievement.h"
-#include "../Minecraft.World/Achievements.h"
+#include "../../Minecraft.World/Stats/Stat.h"
+#include "../../Minecraft.World/Stats/Stats.h"
+#include "../../Minecraft.World/Stats/Achievement.h"
+#include "../../Minecraft.World/Stats/Achievements.h"
 #include "../Minecraft.Client/LocalPlayer.h"
 
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
-#include "../Minecraft.World/net.minecraft.world.item.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.item.h"
 
 #include "../Minecraft.Client/Common/Leaderboards/LeaderboardManager.h"
 

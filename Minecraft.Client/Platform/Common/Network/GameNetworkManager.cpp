@@ -1,12 +1,12 @@
 #include "../../stdafx.h"
-#include "../../../Minecraft.World/StringHelpers.h"
-#include "../../../Minecraft.World/AABB.h"
-#include "../../../Minecraft.World/Vec3.h"
-#include "../../../Minecraft.World/Socket.h"
-#include "../../../Minecraft.World/ThreadName.h"
-#include "../../../Minecraft.World/Entity.h"
-#include "../../../Minecraft.World/net.minecraft.world.level.tile.h"
-#include "../../../Minecraft.World/FireworksRecipe.h"
+#include "../../../../Minecraft.World/Util/StringHelpers.h"
+#include "../../../../Minecraft.World/Util/AABB.h"
+#include "../../../../Minecraft.World/Util/Vec3.h"
+#include "../../../../Minecraft.World/Network/Socket.h"
+#include "../../../../Minecraft.World/Util/ThreadName.h"
+#include "../../../../Minecraft.World/Entities/Entity.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
+#include "../../../../Minecraft.World/Recipes/FireworksRecipe.h"
 #include "../../ClientConnection.h"
 #include "../../Minecraft.h"
 #include "../../User.h"
@@ -17,15 +17,15 @@
 #include "../../MultiPlayerLevel.h"
 #include "../../ProgressRenderer.h"
 #include "../../MultiPlayerLocalPlayer.h"
-#include "../../../Minecraft.World/DisconnectPacket.h"
-#include "../../../Minecraft.World/Compression.h"
-#include "../../../Minecraft.World/OldChunkStorage.h"
+#include "../../../../Minecraft.World/Network/Packets/DisconnectPacket.h"
+#include "../../../../Minecraft.World/IO/Streams/Compression.h"
+#include "../../../../Minecraft.World/Level/Storage/OldChunkStorage.h"
 #include "../../TexturePackRepository.h"
 #include "../../TexturePack.h"
 
 #include "../../Gui.h"
 #include "../../LevelRenderer.h"
-#include "../../../Minecraft.World/IntCache.h"
+#include "../../../../Minecraft.World/Util/IntCache.h"
 #include "../GameRules/ConsoleGameRules.h"
 #include "GameNetworkManager.h"
 
@@ -38,7 +38,7 @@
 #endif
 
 #ifdef _DURANGO
-#include "../Minecraft.World/DurangoStats.h"
+#include "../../../../Minecraft.World/Stats/DurangoStats.h"
 #endif
 
 // Global instance

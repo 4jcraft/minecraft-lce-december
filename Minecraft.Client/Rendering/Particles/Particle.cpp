@@ -1,10 +1,10 @@
 #include "../../Platform/stdafx.h"
 #include "Particle.h"
 #include "../Tesselator.h"
-#include "../Minecraft.World/Random.h"
-#include "../Minecraft.World/Mth.h"
-#include "../Minecraft.World/JavaMath.h"
-#include "../Minecraft.World/net.minecraft.world.h"
+#include "../../../Minecraft.World/Util/Random.h"
+#include "../../../Minecraft.World/Util/Mth.h"
+#include "../../../Minecraft.World/Util/JavaMath.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.h"
 
 /*
     protected int tex;

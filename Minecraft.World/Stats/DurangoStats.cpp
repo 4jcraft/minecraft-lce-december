@@ -12,12 +12,12 @@
 #include "../Items/Item.h"
 #include "../Level/Level.h"
 
-#include "../Minecraft.Client/Minecraft.h"
+#include "../../Minecraft.Client/Minecraft.h"
 #include "../Level/LevelData.h"
 #include "../Level/Storage/LevelSettings.h"
 
-#include "../Minecraft.Client/LocalPlayer.h"
-#include "../Minecraft.Client/MultiPlayerLocalPlayer.h"
+#include "../../Minecraft.Client/Player/LocalPlayer.h"
+#include "../../Minecraft.Client/Player/MultiPlayerLocalPlayer.h"
 
 #include "../Level/Storage/EntityIO.h"
 

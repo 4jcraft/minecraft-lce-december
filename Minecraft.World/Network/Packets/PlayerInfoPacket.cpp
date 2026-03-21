@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "../../Headers/net.minecraft.world.entity.player.h"
-#include "../Minecraft.Client/ServerPlayer.h"
-#include "../Minecraft.Client/PlayerConnection.h"
+#include "../../../Minecraft.Client/Player/ServerPlayer.h"
+#include "../../../Minecraft.Client/Network/PlayerConnection.h"
 #include <qnet.h>
 #include "PacketListener.h"
 #include "../../IO/Streams/InputOutputStream.h"

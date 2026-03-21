@@ -12,9 +12,9 @@
 #include "../Blocks/Material.h"
 #include "ItemInstance.h"
 #include "BucketItem.h"
-#include "../Minecraft.Client/LocalPlayer.h"
-#include "../Minecraft.Client/ServerPlayer.h"
-#include "../Minecraft.Client/PlayerConnection.h"
+#include "../../Minecraft.Client/Player/LocalPlayer.h"
+#include "../../Minecraft.Client/Player/ServerPlayer.h"
+#include "../../Minecraft.Client/Network/PlayerConnection.h"
 #include "../Minecraft.World/ChatPacket.h"
 #include "../Util/SoundTypes.h"
 

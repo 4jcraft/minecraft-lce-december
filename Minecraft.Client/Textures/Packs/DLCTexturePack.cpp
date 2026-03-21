@@ -7,7 +7,7 @@
 #include "Common/DLC/DLCUIDataFile.h"
 #include "Common/DLC/DLCTextureFile.h"
 #include "Common/DLC/DLCLocalisationFile.h"
-#include "../Minecraft.World/StringHelpers.h"
+#include "../../../Minecraft.World/Util/StringHelpers.h"
 #include "../../Utils/StringTable.h"
 #include "Common/DLC/DLCAudioFile.h"
 

@@ -18,7 +18,7 @@
 #include "../../Headers/net.minecraft.stats.h"
 #include "Sheep.h"
 #include "Wolf.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "../../Util/SoundTypes.h"
 
 Wolf::Wolf(Level* level) : TamableAnimal(level) {

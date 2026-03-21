@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "../Minecraft.World/Entity.h"
-#include "../Minecraft.World/ParticleTypes.h"
+#include "../../../Minecraft.World/Entities/Entity.h"
+#include "../../../Minecraft.World/Util/ParticleTypes.h"
 #include "ParticleEngine.h"
 class Tesselator;
 class CompoundTag;

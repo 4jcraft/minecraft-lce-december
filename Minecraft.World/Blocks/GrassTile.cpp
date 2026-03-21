@@ -1,5 +1,5 @@
 #include "../Platform/stdafx.h"
-#include "../Minecraft.Client/Minecraft.h"
+#include "../../Minecraft.Client/Minecraft.h"
 #include "GrassTile.h"
 #include "../Headers/net.minecraft.world.level.h"
 #include "../Headers/net.minecraft.world.level.biome.h"
@@ -8,7 +8,7 @@
 
 // AP - included for PSVita Alpha cut out optimisation
 #include "../IO/Streams/IntBuffer.h"
-#include "../Minecraft.Client/Tesselator.h"
+#include "../../Minecraft.Client/Rendering/Tesselator.h"
 
 GrassTile::GrassTile(int id) : Tile(id, Material::grass) {
     iconTop = NULL;

@@ -9,8 +9,8 @@ class SparseLightStorage;
 class CompressedTileStorage;
 class SparseDataStorage;
 
-#include "../Minecraft.World/SmoothFloat.h"
-#include "../Minecraft.World/C4JThread.h"
+#include "../../Minecraft.World/Util/SmoothFloat.h"
+#include "../../Minecraft.World/Util/C4JThread.h"
 #include "../Textures/ResourceLocation.h"
 
 class GameRenderer

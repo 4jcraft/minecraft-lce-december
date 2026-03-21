@@ -9,9 +9,9 @@
 #include "../../Headers/net.minecraft.network.packet.h"
 #include "SignTileEntity.h"
 #include <xuiapp.h>
-#include "../Minecraft.Client/ClientConnection.h"
-#include "../Minecraft.Client/Minecraft.h"
-#include "../Minecraft.Client/ServerLevel.h"
+#include "../../../Minecraft.Client/Network/ClientConnection.h"
+#include "../../../Minecraft.Client/Minecraft.h"
+#include "../../../Minecraft.Client/Level/ServerLevel.h"
 #include "../Minecraft.World/Level.h"
 
 const int SignTileEntity::MAX_LINE_LENGTH = 15;

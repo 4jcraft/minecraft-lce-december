@@ -1,7 +1,7 @@
 #include "../Platform/stdafx.h"
 #include "../Headers/net.minecraft.commands.h"
-#include "../Minecraft.Client/MinecraftServer.h"
-#include "../Minecraft.Client/PlayerList.h"
+#include "../../Minecraft.Client/MinecraftServer.h"
+#include "../../Minecraft.Client/Network/PlayerList.h"
 #include "../Headers/net.minecraft.world.level.h"
 #include "ExperienceCommand.h"
 

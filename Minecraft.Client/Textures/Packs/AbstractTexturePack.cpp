@@ -1,8 +1,8 @@
 #include "../../Platform/stdafx.h"
 #include "../Textures.h"
 #include "AbstractTexturePack.h"
-#include "../Minecraft.World/InputOutputStream.h"
-#include "../Minecraft.World/StringHelpers.h"
+#include "../../../Minecraft.World/IO/Streams/InputOutputStream.h"
+#include "../../../Minecraft.World/Util/StringHelpers.h"
 
 AbstractTexturePack::AbstractTexturePack(DWORD id, File *file, const std::wstring &name, TexturePack *fallback) : id(id), name(name)
 {

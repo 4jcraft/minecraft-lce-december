@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "HumanoidModel.h"
-#include "../Minecraft.World/Mth.h"
-#include "../Minecraft.World/Entity.h"
+#include "../../../Minecraft.World/Util/Mth.h"
+#include "../../../Minecraft.World/Entities/Entity.h"
 #include "ModelPart.h"
 
 // 4J added 

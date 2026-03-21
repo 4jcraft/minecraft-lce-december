@@ -5,7 +5,7 @@
 #include "../../Headers/net.minecraft.world.effect.h"
 #include "../../Headers/net.minecraft.world.level.h"
 #include "../../Headers/net.minecraft.world.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "CaveSpider.h"
 
 CaveSpider::CaveSpider(Level* level) : Spider(level) {

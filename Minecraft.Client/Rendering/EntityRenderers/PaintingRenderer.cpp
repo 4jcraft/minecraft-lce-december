@@ -1,10 +1,10 @@
 #include "../../Platform/stdafx.h"
 #include "PaintingRenderer.h"
 #include "EntityRenderDispatcher.h"
-#include "../Minecraft.World/net.minecraft.world.entity.h"
-#include "../Minecraft.World/net.minecraft.world.level.h"
-#include "../Minecraft.World/Random.h"
-#include "../Minecraft.World/Mth.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.h"
+#include "../../../Minecraft.World/Util/Random.h"
+#include "../../../Minecraft.World/Util/Mth.h"
 
 ResourceLocation PaintingRenderer::PAINTING_LOCATION(TN_ART_KZ);
 

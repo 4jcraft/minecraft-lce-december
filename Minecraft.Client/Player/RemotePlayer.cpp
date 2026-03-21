@@ -1,7 +1,7 @@
 #include "../Platform/stdafx.h"
 #include "RemotePlayer.h"
-#include "../Minecraft.World/net.minecraft.world.item.h"
-#include "../Minecraft.World/Mth.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.item.h"
+#include "../../Minecraft.World/Util/Mth.h"
 
 RemotePlayer::RemotePlayer(Level *level, const std::wstring& name) : Player(level, name)
 {

@@ -2,10 +2,10 @@
 #include "FishingHookRenderer.h"
 #include "EntityRenderDispatcher.h"
 #include "../../GameState/Options.h"
-#include "../Minecraft.World/net.minecraft.world.entity.projectile.h"
-#include "../Minecraft.World/net.minecraft.world.entity.player.h"
-#include "../Minecraft.World/Vec3.h"
-#include "../Minecraft.World/Mth.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.projectile.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.player.h"
+#include "../../../Minecraft.World/Util/Vec3.h"
+#include "../../../Minecraft.World/Util/Mth.h"
 #include "../../Player/MultiPlayerLocalPlayer.h"
 
 ResourceLocation FishingHookRenderer::PARTICLE_LOCATION = ResourceLocation(TN_PARTICLES);

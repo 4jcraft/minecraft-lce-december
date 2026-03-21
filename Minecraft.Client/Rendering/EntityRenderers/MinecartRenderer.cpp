@@ -2,8 +2,8 @@
 #include "MinecartRenderer.h"
 #include "../Models/MinecartModel.h"
 #include "../../Textures/TextureAtlas.h"
-#include "../Minecraft.World/net.minecraft.world.entity.item.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.item.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
 
 ResourceLocation MinecartRenderer::MINECART_LOCATION(TN_ITEM_CART);
 

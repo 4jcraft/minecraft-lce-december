@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include "LightningBoltRenderer.h"
 #include "../Tesselator.h"
-#include "../Minecraft.World/net.minecraft.world.entity.global.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.global.h"
 
 void LightningBoltRenderer::render(std::shared_ptr<Entity> _bolt, double x, double y, double z, float rot, float a)
 {

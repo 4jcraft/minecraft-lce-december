@@ -14,7 +14,7 @@
 #include "../Level/Level.h"
 #include "../Level/ChunkPos.h"
 #include "../Level/TilePos.h"
-#include "../Minecraft.Client/ServerLevel.h"
+#include "../../Minecraft.Client/Level/ServerLevel.h"
 #include "MobSpawner.h"
 #include "../Level/Dimensions/Dimension.h"
 

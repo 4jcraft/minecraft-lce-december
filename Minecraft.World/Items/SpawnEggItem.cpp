@@ -1,5 +1,5 @@
 #include "../Platform/stdafx.h"
-#include "../Minecraft.Client/Minecraft.h"
+#include "../../Minecraft.Client/Minecraft.h"
 #include "../Headers/net.minecraft.h"
 #include "../Headers/net.minecraft.world.level.h"
 #include "../Headers/net.minecraft.world.level.tile.h"

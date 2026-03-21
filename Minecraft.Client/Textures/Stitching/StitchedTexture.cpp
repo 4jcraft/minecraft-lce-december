@@ -1,6 +1,6 @@
 #include "../../Platform/stdafx.h"
 #include "../Texture.h"
-#include "../Minecraft.World/StringHelpers.h"
+#include "../../../Minecraft.World/Util/StringHelpers.h"
 #include "../ClockTexture.h"
 #include "../CompassTexture.h"
 #include "StitchedTexture.h"

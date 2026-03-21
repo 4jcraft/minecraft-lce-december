@@ -13,7 +13,7 @@
 #endif
 #include "UI/UIStructs.h"
 
-#include "../../Minecraft.World/DisconnectPacket.h"
+#include "../../../Minecraft.World/Network/Packets/DisconnectPacket.h"
 #include <xsocialpost.h>
 
 #include "../StringTable.h"

@@ -4,8 +4,8 @@
 #include "../../Headers/net.minecraft.world.phys.h"
 #include "LightningBolt.h"
 #include "../../Util/SoundTypes.h"
-#include "../Minecraft.Client/MinecraftServer.h"
-#include "../Minecraft.Client/PlayerList.h"
+#include "../../../Minecraft.Client/MinecraftServer.h"
+#include "../../../Minecraft.Client/Network/PlayerList.h"
 #include "../../Headers/net.minecraft.world.level.dimension.h"
 
 LightningBolt::LightningBolt(Level* level, double x, double y, double z)

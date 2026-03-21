@@ -3,7 +3,7 @@
 #include "../Entities/Mob.h"
 
 #ifdef __PSVITA__
-#include "../Minecraft.Client/PSVita/PSVitaExtras/CustomMap.h"
+#include "../../Minecraft.Client/Platform/PSVita/PSVitaExtras/CustomMap.h"
 #endif
 
 class Player;

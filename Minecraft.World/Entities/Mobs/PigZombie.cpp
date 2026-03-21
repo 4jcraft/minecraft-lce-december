@@ -11,7 +11,7 @@
 #include "../../Headers/net.minecraft.world.entity.item.h"
 #include "../../Headers/net.minecraft.world.damagesource.h"
 #include "PigZombie.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "../../Util/SoundTypes.h"
 
 AttributeModifier* PigZombie::SPEED_MODIFIER_ATTACKING =

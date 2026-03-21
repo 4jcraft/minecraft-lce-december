@@ -1,16 +1,16 @@
 #include "../../stdafx.h"
 #include <vector>
-#include "../../../Minecraft.World/com.mojang.nbt.h"
-#include "../../../Minecraft.World/System.h"
+#include "../../../../Minecraft.World/Headers/com.mojang.nbt.h"
+#include "../../../../Minecraft.World/Platform/System.h"
 #include "ConsoleSchematicFile.h"
-#include "../../../Minecraft.World/InputOutputStream.h"
-#include "../../../Minecraft.World/net.minecraft.world.level.h"
-#include "../../../Minecraft.World/net.minecraft.world.level.chunk.h"
-#include "../../../Minecraft.World/net.minecraft.world.level.tile.entity.h"
-#include "../../../Minecraft.World/net.minecraft.world.entity.h"
-#include "../../../Minecraft.World/net.minecraft.world.entity.item.h"
-#include "../../../Minecraft.World/net.minecraft.world.phys.h"
-#include "../../../Minecraft.World/Compression.h"
+#include "../../../../Minecraft.World/IO/Streams/InputOutputStream.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.level.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.level.chunk.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.level.tile.entity.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.entity.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.entity.item.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.phys.h"
+#include "../../../../Minecraft.World/IO/Streams/Compression.h"
 
 ConsoleSchematicFile::ConsoleSchematicFile()
 {

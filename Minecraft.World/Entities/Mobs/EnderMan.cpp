@@ -9,7 +9,7 @@
 #include "../../Headers/net.minecraft.world.damagesource.h"
 #include "../../Headers/net.minecraft.world.phys.h"
 #include "../../Headers/com.mojang.nbt.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "EnderMan.h"
 
 AttributeModifier* EnderMan::SPEED_MODIFIER_ATTACKING =

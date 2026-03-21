@@ -1,10 +1,10 @@
 #pragma once
-#include "../Minecraft.World/net.minecraft.world.level.h"
-#include "../Minecraft.World/File.h"
-#include "../Minecraft.World/net.minecraft.world.level.storage.h"
-#include "../Minecraft.World/JavaIntHash.h"
-#include "../Minecraft.World/RandomLevelSource.h"
-#include "../Minecraft.World/C4JThread.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.h"
+#include "../../Minecraft.World/IO/Files/File.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.storage.h"
+#include "../../Minecraft.World/Util/JavaIntHash.h"
+#include "../../Minecraft.World/Level/RandomLevelSource.h"
+#include "../../Minecraft.World/Util/C4JThread.h"
 
 class ServerLevel;
 

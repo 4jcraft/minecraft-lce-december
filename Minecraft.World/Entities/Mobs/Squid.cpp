@@ -9,7 +9,7 @@
 #include "../../Headers/net.minecraft.world.entity.monster.h"
 #include "../../Util/SharedConstants.h"
 #include "Squid.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 
 void Squid::_init() {
     xBodyRot = xBodyRotO = 0.0f;

@@ -1,7 +1,7 @@
 #include "../Platform/stdafx.h"
 #include "CompassItem.h"
-#include "../Minecraft.Client/Minecraft.h"
-#include "../Minecraft.Client/MultiPlayerLocalPlayer.h"
+#include "../../Minecraft.Client/Minecraft.h"
+#include "../../Minecraft.Client/Player/MultiPlayerLocalPlayer.h"
 #include "../Headers/net.minecraft.world.h"
 
 #ifdef __PSVITA__

@@ -4,7 +4,7 @@
 #include <string>
 #include <functional>
 
-#include "../../Minecraft.Client/SkinBox.h"
+#include "../../../Minecraft.Client/Rendering/Models/SkinBox.h"
 
 #include <vector>
 
@@ -47,14 +47,14 @@ typedef SQRNetworkManager::PresenceSyncInfo INVITE_INFO;
 #include <np.h>
 #include <assert.h>
 #include <stdlib.h>
-#include "../../Minecraft.Client/PSVita/Network/SQRNetworkManager_Vita.h"
-#include "../../Minecraft.Client/PSVita/Network/SQRNetworkManager_AdHoc_Vita.h"
-#include "../../Minecraft.Client/PSVita/4JLibs/inc/4J_Profile.h"
+#include "../../../Minecraft.Client/Platform/PSVita/Network/SQRNetworkManager_Vita.h"
+#include "../../../Minecraft.Client/Platform/PSVita/Network/SQRNetworkManager_AdHoc_Vita.h"
+#include "../../../Minecraft.Client/Platform/PSVita/4JLibs/inc/4J_Profile.h"
 typedef SQRNetworkManager_Vita::SessionID SessionID;
 typedef SQRNetworkManager_Vita::PresenceSyncInfo INVITE_INFO;
 
 #elif defined _DURANGO
-#include "../../Minecraft.Client/Durango/4JLibs/inc/4J_Profile.h"
+#include "../../../Minecraft.Client/Platform/PSVita/4JLibs/inc/4J_Profile.h"
 #include "../../Minecraft.Client/Durango/Network/DQRNetworkManager.h"
 typedef ULONGLONG SessionID;
 typedef ULONGLONG GameSessionUID;

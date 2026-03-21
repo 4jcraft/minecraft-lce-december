@@ -3,8 +3,8 @@
 #include "../../Headers/net.minecraft.world.damagesource.h"
 #include "../../Headers/net.minecraft.world.entity.h"
 #include "../../Headers/net.minecraft.world.level.h"
-#include "../Minecraft.Client/ServerPlayer.h"
-#include "../Minecraft.Client/PlayerConnection.h"
+#include "../../../Minecraft.Client/Player/ServerPlayer.h"
+#include "../../../Minecraft.Client/Network/PlayerConnection.h"
 #include "ThrownEnderPearl.h"
 
 ThrownEnderpearl::ThrownEnderpearl(Level* level) : Throwable(level) {

@@ -4,10 +4,10 @@
 #include "../GameState/Options.h"
 #include "../Rendering/Tesselator.h"
 #include "../Textures/ResourceLocation.h"
-#include "../Minecraft.World/IntBuffer.h"
-#include "../Minecraft.World/net.minecraft.h"
-#include "../Minecraft.World/StringHelpers.h"
-#include "../Minecraft.World/Random.h"
+#include "../../Minecraft.World/IO/Streams/IntBuffer.h"
+#include "../../Minecraft.World/Headers/net.minecraft.h"
+#include "../../Minecraft.World/Util/StringHelpers.h"
+#include "../../Minecraft.World/Util/Random.h"
 
 Font::Font(Options *options, const std::wstring& name, Textures* textures, bool enforceUnicode, ResourceLocation *textureLocation, int cols, int rows, int charWidth, int charHeight, unsigned short charMap[]/* = nullptr */) : textures(textures)
 {

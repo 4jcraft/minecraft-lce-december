@@ -10,7 +10,7 @@
 #include "../Headers/net.minecraft.world.item.enchantment.h"
 #include "Monster.h"
 
-#include "../Minecraft.Client/Minecraft.h"
+#include "../../Minecraft.Client/Minecraft.h"
 
 Monster::Monster(Level* level) : PathfinderMob(level) {
     xpReward = Enemy::XP_REWARD_MEDIUM;

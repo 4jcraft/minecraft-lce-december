@@ -5,13 +5,13 @@
 #include "../../Player/LocalPlayer.h"
 #include "../../GameState/Options.h"
 #include "../../Textures/TextureAtlas.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
-#include "../Minecraft.World/net.minecraft.world.h"
-#include "../Minecraft.World/net.minecraft.world.entity.h"
-#include "../Minecraft.World/Level.h"
-#include "../Minecraft.World/AABB.h"
-#include "../Minecraft.World/Mth.h"
-#include "../Minecraft.World/net.minecraft.world.entity.animal.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.h"
+#include "../../../Minecraft.World/Level/Level.h"
+#include "../../../Minecraft.World/Util/AABB.h"
+#include "../../../Minecraft.World/Util/Mth.h"
+#include "../../../Minecraft.World/Headers/net.minecraft.world.entity.animal.h"
 
 ResourceLocation EntityRenderer::SHADOW_LOCATION = ResourceLocation(TN__CLAMP__MISC_SHADOW);
 

@@ -2,7 +2,7 @@
 #include "UI.h"
 #include "../../Minecraft.h"
 #include "../../MultiPlayerLocalPlayer.h"
-#include "../../../Minecraft.World/net.minecraft.world.inventory.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.inventory.h"
 #include "UIScene_CraftingMenu.h"
 
 #ifdef __PSVITA__

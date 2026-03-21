@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Minecraft.World/CommandDispatcher.h"
-#include "../Minecraft.World/AdminLogCommand.h"
+#include "../../Minecraft.World/Commands/CommandDispatcher.h"
+#include "../../Minecraft.World/Commands/AdminLogCommand.h"
 
 class ServerCommandDispatcher : public CommandDispatcher, public AdminLogCommand
 {

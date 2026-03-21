@@ -2,10 +2,10 @@
 #include "Chunk.h"
 #include "EntityRenderers/TileRenderer.h"
 #include "EntityRenderers/TileEntityRenderDispatcher.h"
-#include "../Minecraft.World/net.minecraft.world.level.h"
-#include "../Minecraft.World/net.minecraft.world.level.chunk.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.h"
-#include "../Minecraft.World/net.minecraft.world.level.tile.entity.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.chunk.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.tile.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.tile.entity.h"
 #include "LevelRenderer.h"
 
 #ifdef __PS3__

@@ -18,12 +18,12 @@
 #include "EntityPos.h"
 #include "Entity.h"
 #include "../Util/SoundTypes.h"
-#include "../minecraft.Client/HumanoidModel.h"
-#include "../Minecraft.Client/MinecraftServer.h"
-#include "../Minecraft.Client/MultiPlayerLevel.h"
-#include "../Minecraft.Client/MultiPlayerLocalPlayer.h"
-#include "../Minecraft.Client/ServerLevel.h"
-#include "../Minecraft.Client/PlayerList.h"
+#include "../../Minecraft.Client/Rendering/Models/HumanoidModel.h"
+#include "../../Minecraft.Client/MinecraftServer.h"
+#include "../../Minecraft.Client/Level/MultiPlayerLevel.h"
+#include "../../Minecraft.Client/Player/MultiPlayerLocalPlayer.h"
+#include "../../Minecraft.Client/Level/ServerLevel.h"
+#include "../../Minecraft.Client/Network/PlayerList.h"
 
 const std::wstring Entity::RIDING_TAG = L"Riding";
 

@@ -3,8 +3,8 @@
 #include "../Headers/net.minecraft.world.entity.item.h"
 #include "../Headers/net.minecraft.world.level.h"
 #include "../Headers/net.minecraft.world.h"
-#include "../Minecraft.Client/Minecraft.h"
-#include "../Minecraft.Client/Common/Colours/ColourTable.h"
+#include "../../Minecraft.Client/Minecraft.h"
+#include "../../Minecraft.Client/Platform/Common/Colours/ColourTable.h"
 #include "StemTile.h"
 
 const std::wstring StemTile::TEXTURE_ANGLED = L"stem_bent";

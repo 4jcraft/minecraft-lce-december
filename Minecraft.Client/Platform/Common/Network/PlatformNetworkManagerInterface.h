@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <qnet.h>
-#include "../../../Minecraft.World/C4JThread.h"
+#include "../../../../Minecraft.World/Util/C4JThread.h"
 #include "NetworkPlayerInterface.h"
 #include "SessionInfo.h"
 

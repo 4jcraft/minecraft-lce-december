@@ -4,10 +4,10 @@
 #include "../../../UI/BossMobGuiInfo.h"
 #include "../../Minecraft.h"
 #include "../../MultiPlayerLocalPlayer.h"
-#include "../../../Minecraft.World/net.minecraft.world.entity.boss.enderdragon.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.entity.boss.enderdragon.h"
 #include "../../EnderDragonRenderer.h"
-#include "../../../Minecraft.World/net.minecraft.world.inventory.h"
-#include "../../../Minecraft.World/StringHelpers.h"
+#include "../../../../Minecraft.World/Headers/net.minecraft.world.inventory.h"
+#include "../../../../Minecraft.World/Util/StringHelpers.h"
 
 UIScene_HUD::UIScene_HUD(int iPad, void *initData, UILayer *parentLayer) : UIScene(iPad, parentLayer)
 {

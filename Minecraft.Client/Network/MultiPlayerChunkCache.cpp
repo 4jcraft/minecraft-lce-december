@@ -1,14 +1,14 @@
 #include "../Platform/stdafx.h"
 #include "MultiPlayerChunkCache.h"
 #include "ServerChunkCache.h"
-#include "../Minecraft.World/net.minecraft.world.level.chunk.h"
-#include "../Minecraft.World/net.minecraft.world.level.dimension.h"
-#include "../Minecraft.World/Arrays.h"
-#include "../Minecraft.World/StringHelpers.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.chunk.h"
+#include "../../Minecraft.World/Headers/net.minecraft.world.level.dimension.h"
+#include "../../Minecraft.World/Util/Arrays.h"
+#include "../../Minecraft.World/Util/StringHelpers.h"
 #include "../MinecraftServer.h"
 #include "../Level/ServerLevel.h"
-#include "../Minecraft.World/Tile.h"
-#include "../Minecraft.World/WaterLevelChunk.h"
+#include "../../Minecraft.World/Blocks/Tile.h"
+#include "../../Minecraft.World/Level/WaterLevelChunk.h"
 
 MultiPlayerChunkCache::MultiPlayerChunkCache(Level *level)
 {

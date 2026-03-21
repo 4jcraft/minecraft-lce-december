@@ -16,7 +16,7 @@
 #include "../../Headers/net.minecraft.world.entity.player.h"
 #include "../../Headers/net.minecraft.world.entity.monster.h"
 #include "Sheep.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "../MobCategory.h"
 #include "../../Stats/GenericStats.h"
 

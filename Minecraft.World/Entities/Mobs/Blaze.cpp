@@ -9,7 +9,7 @@
 #include "../../Headers/net.minecraft.world.entity.monster.h"
 #include "../../Headers/net.minecraft.world.entity.projectile.h"
 #include "../../Util/SharedConstants.h"
-#include "../Minecraft.Client/Textures.h"
+#include "../../../Minecraft.Client/Textures/Textures.h"
 #include "Blaze.h"
 #include "../../Util/SoundTypes.h"
 

@@ -6,7 +6,7 @@
 #include "../Headers/net.minecraft.world.entity.item.h"
 #include "../Headers/net.minecraft.world.entity.player.h"
 #include "../Headers/net.minecraft.world.h"
-#include "../Minecraft.Client/ServerPlayer.h"
+#include "../../Minecraft.Client/Player/ServerPlayer.h"
 
 const std::wstring CauldronTile::TEXTURE_INSIDE = L"cauldron_inner";
 const std::wstring CauldronTile::TEXTURE_BOTTOM = L"cauldron_bottom";

@@ -1,5 +1,5 @@
 #include "../Platform/stdafx.h"
-#include "../Minecraft.World/IntBuffer.h"
+#include "../../Minecraft.World/IO/Streams/IntBuffer.h"
 #include "OffsettedRenderList.h"
 
 // 4J added
