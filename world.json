@@ -9,6 +9,6 @@
   ],
 
   "moves": [
-    { "from": "PlayerSelector.*", "to": "Commands/" }
+    { "from": "Build/**", "to": "Platform/" }
   ]
 }
