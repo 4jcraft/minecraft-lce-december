@@ -9,6 +9,6 @@
   ],
 
   "moves": [
-    { "from": "StructureFeatureSavedData.*", "to": "WorldGen/" }
+    { "from": "*Block.*", "to": "Blocks/" }
   ]
 }

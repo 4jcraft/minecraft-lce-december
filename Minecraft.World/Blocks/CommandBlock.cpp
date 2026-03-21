@@ -1,7 +1,7 @@
-#include "Platform/stdafx.h"
-#include "Headers/net.minecraft.world.level.h"
-#include "Headers/net.minecraft.world.level.redstone.h"
-#include "Headers/net.minecraft.world.level.tile.entity.h"
+#include "../Platform/stdafx.h"
+#include "../Headers/net.minecraft.world.level.h"
+#include "../Headers/net.minecraft.world.level.redstone.h"
+#include "../Headers/net.minecraft.world.level.tile.entity.h"
 #include "CommandBlock.h"
 
 CommandBlock::CommandBlock(int id)

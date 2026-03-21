@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Blocks/ThinFenceTile.h"
+#include "ThinFenceTile.h"
 
 class StainedGlassPaneBlock : public ThinFenceTile {
     friend class ChunkRebuildData;

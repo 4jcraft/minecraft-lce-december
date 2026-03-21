@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Blocks/HalfTransparentTile.h"
+#include "HalfTransparentTile.h"
 
 class StainedGlassBlock : public HalfTransparentTile {
     friend class ChunkRebuildData;
