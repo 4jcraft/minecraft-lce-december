@@ -1,7 +1,7 @@
 #include "../../Platform/stdafx.h"
 #include <iostream>
 #include "PacketListener.h"
-#include "PreloginPacket.h"
+#include "PreLoginPacket.h"
 #include "../../IO/Streams/InputOutputStream.h"
 
 PreLoginPacket::PreLoginPacket() {

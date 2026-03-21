@@ -8,10 +8,10 @@
 #include "../../../Minecraft.Client/Minecraft.h"
 #include "../../../Minecraft.Client/MinecraftServer.h"
 #include "../../../Minecraft.Client/Level/ServerLevel.h"
-#include "../Minecraft.World/net.minecraft.world.level.h"
-#include "../Minecraft.World/LevelData.h"
+#include "../../Headers/net.minecraft.world.level.h"
+#include "../../Level/LevelData.h"
 #include "../../../Minecraft.Client/Platform/Common/GameRules/LevelGenerationOptions.h"
-#include "../Minecraft.World/net.minecraft.world.level.chunk.storage.h"
+#include "../../Headers/net.minecraft.world.level.chunk.storage.h"
 
 #define RESERVE_ALLOCATION MEM_RESERVE
 #define COMMIT_ALLOCATION MEM_COMMIT

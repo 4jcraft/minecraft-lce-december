@@ -7,7 +7,7 @@
 #include "Storage/SavedData.h"
 #include "../Util/Definitions.h"
 #include "../Util/ParticleTypes.h"
-#include "biome.h"
+#include "../WorldGen/Biomes/Biome.h"
 #include "../Util/C4JThread.h"
 
 #ifdef __PSVITA__

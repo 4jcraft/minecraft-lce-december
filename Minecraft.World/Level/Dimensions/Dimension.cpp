@@ -3,7 +3,7 @@
 #include "../../Headers/net.minecraft.world.level.levelgen.h"
 #include "../../Headers/net.minecraft.world.level.h"
 #include "../../Headers/net.minecraft.world.level.storage.h"
-#include "dimension.h"
+#include "Dimension.h"
 #include "../../WorldGen/Biomes/BiomeSource.h"
 #include "../../WorldGen/Biomes/FixedBiomeSource.h"
 #include "../Storage/OldChunkStorage.h"

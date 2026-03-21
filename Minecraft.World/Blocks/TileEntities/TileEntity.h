@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../Util/HashExtension.h"
-#include "../Minecraft.World/JavaIntHash.h"
+#include "../../Util/JavaIntHash.h"
 
 class Level;
 class Packet;

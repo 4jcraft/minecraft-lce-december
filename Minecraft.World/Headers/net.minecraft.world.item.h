@@ -34,7 +34,7 @@
 #include "../Items/ShearsItem.h"
 #include "../Items/ShovelItem.h"
 #include "../Items/SignItem.h"
-#include "SnowBallItem.h"
+#include "../Items/SnowballItem.h"
 #include "../Items/TileItems/StoneSlabTileItem.h"
 #include "../Items/TileItems/TileItem.h"
 #include "../Items/TileItems/PlanterTileItem.h"

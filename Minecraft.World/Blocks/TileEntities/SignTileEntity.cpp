@@ -12,7 +12,7 @@
 #include "../../../Minecraft.Client/Network/ClientConnection.h"
 #include "../../../Minecraft.Client/Minecraft.h"
 #include "../../../Minecraft.Client/Level/ServerLevel.h"
-#include "../Minecraft.World/Level.h"
+#include "../../Level/Level.h"
 
 const int SignTileEntity::MAX_LINE_LENGTH = 15;
 
