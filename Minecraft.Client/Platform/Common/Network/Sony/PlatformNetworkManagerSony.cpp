@@ -395,10 +395,10 @@ int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS// Attempts to remap the
         if (state == IPObtainedState) {
             preferSignoutError = true;
 #endif  
-#ifdef __PSVITA__    // If we're in ad-hoc mode this problem definitely wasn't PSN related     
+#ifdef __PSVITA__      // If we're in ad-hoc mode this problem definitely wasn't PSN related     
             if (usingAdhocMode())
                 preferSignoutError =
-                    fa #endif      // If we're the host we haven't lost connection to the server     
+                    fa #endif        // If we're the host we haven't lost connection to the server     
                     if (IDS == IDS_CONNECTION_LOST_SERVER &&
                         g_NetworkManager.IsHost()) {
                     IDS = IDS_CONNECTION_LOST_LIVE;
@@ -487,6 +487,7 @@ int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS// Attempts to remap the
 
                 m_pSQRNet->Tic #endif      
 
+            
             }
 
             int CPlatformNetworkManagerSony::GetPlayerCount() {
@@ -564,6 +565,7 @@ bool CPlatformNetworkManagerSony::SessionHasSpace(
 
 	return spaceLeft >= spaceRequi#else     
 	return t#endif     
+
 
 }
 
@@ -651,12 +653,12 @@ void CPlatformNetworkManagerSony::_HostGame(int usersMask, unsigned char publicS
 }
 
 bool CPlatformNetworkManagerSony::
-    _StartGame #if 0    // Set the options that now allow players to join this game     
+    _StartGame #if 0      // Set the options that now allow players to join this game     
     BOOL enableJip =
         T  // Must always be true othewise nobody can join the game while in the
            // PLAY state     
-               m_pIQNet->SetOpt(QNET_OPTION_JOIN_IN_PROGRESS_ALLOWED,
-                                &enableJip, sizeof BOOL);
+            m_pIQNet->SetOpt(QNET_OPTION_JOIN_IN_PROGRESS_ALLOWED, &enableJip,
+                             sizeof BOOL);
 BOOL enableInv = !IsLocalGame();
 m_pIQNet->SetOpt(QNET_OPTION_INVITES_ALLOWED, &enableInv, sizeof BOOL);
 BOOL enablePres = !IsPrivateGame() && !IsLocalGame();
@@ -666,6 +668,7 @@ m_pIQNet->SetOpt(QNET_OPTION_PRESENCE_JOIN_MODE, &enablePres, sizeof BOOL);
 	m_pSQRNet->StartGame();
 	return t#endif     
 
+        
         }
 
         int CPlatformNetworkManagerSony::JoinGame(
@@ -740,18 +743,18 @@ m_pIQNet->SetOpt(QNET_OPTION_PRESENCE_JOIN_MODE, &enablePres, sizeof BOOL);
         void CPlatformNetworkManagerSony::HandleSignInChange() { return; }
 
         bool CPlatformNetworkManagerSony::
-            _RunNetworkGame #if 0    // We delay actually starting the session so that we know the game server is running by the time the clients try to join  // This does result in a host advantage     
+            _RunNetworkGame #if 0      // We delay actually starting the session so that we know the game server is running by the time the clients try to join  // This does result in a host advantage     
             HRESULT hr = m_pIQNet->StartGame();
         if (FAILED(hr))
             return fals  // Set the options that now allow players to join this
                          // game     
-                             BOOL enableJip =
-                                 T  // Must always be true othewise nobody can
-                                    // join the game while in the PLAY
-                                    // state     
-                                        m_pIQNet->SetOpt(
-                                            QNET_OPTION_JOIN_IN_PROGRESS_ALLOWED,
-                                            &enableJip, sizeof BOOL);
+                       BOOL enableJip =
+                           T  // Must always be true othewise nobody can
+                              // join the game while in the PLAY
+                              // state     
+                               m_pIQNet->SetOpt(
+                                   QNET_OPTION_JOIN_IN_PROGRESS_ALLOWED,
+                                   &enableJip, sizeof BOOL);
         BOOL enableInv = !IsLocalGame();
         m_pIQNet->SetOpt(QNET_OPTION_INVITES_ALLOWED, &enableInv, sizeof BOOL);
         BOOL enablePres = !IsPrivateGame() && !IsLocalGame();
@@ -892,6 +895,7 @@ std::wstring CPlatformNetworkManagerSony::GatherStats#if 0     
 " Queue bytes: "      + _toString( ((NetworkPlayerXbox *)GetHostPlayer())->GetQNetPlayer()->GetSendQueueSize( NULL, QNET_GETSENDQUEUESIZE_BYTES  #else     
 	ret""n #endif     
 
+                
                 }
 
 std::wstring CPlatformNetworkManagerSony::GatherRTTStats#if 0     
@@ -912,6 +916,7 @@ for (unsigned int i = 0; i < GetPlayerCount(); ++i) {
 return st #else      
 	ret "" n #endif      
 
+            
             }
 
             void CPlatformNetworkManagerSony::TickSearch() {
@@ -937,7 +942,7 @@ return st #else      
                         // Don't start searches unless we have registered a
                         // callback     
                         int searchDelay =
-                            MINECRAFT_PS3ROOM_SEARCH_DELAY_MILLISECO #ifdef __PSVITA__      // in adhoc mode we can keep searching, as the friend list is populated in callbacks    // 4J Stu - Every second seems a bit much as it makes the friend list flash every time it updates. Changed this to 5 seconds.     
+                            MINECRAFT_PS3ROOM_SEARCH_DELAY_MILLISECO #ifdef __PSVITA__        // in adhoc mode we can keep searching, as the friend list is populated in callbacks    // 4J Stu - Every second seems a bit much as it makes the friend list flash every time it updates. Changed this to 5 seconds.     
                             if (usingAdhocMode()) searchDelay = 5 #endif      
 			if (m_SessionsUpdatedCallback != NULL &&
                             (m_lastSearchStartTime + searchDelay) <
@@ -1065,6 +1070,7 @@ bool CPlatformNetworkManagerSony::GetGameSessionInfo(int iPad, SessionID session
         return ( hr == S_O#else     
 	return fa#endif     
 
+        
         }
 
         void CPlatformNetworkManagerSony::SetSessionsUpdatedCallback(
@@ -1166,6 +1172,7 @@ bool CPlatformNetworkManagerSony::GetGameSessionInfo(int iPad, SessionID session
 
 void CPlatformNetworkManagerSony::Notify(int ID, ULONG_PTR Para#if 0     
 	m_pSQRNet->Notify( ID, Para#endif     
+
 
 }
 

@@ -34,8 +34,8 @@
 /// This event will be sent to the event callback when the session is created
 /// but not linked to PSN on the server.
 ///															This
-///will only happen on the PC version and requires to call
-///<c>sceRemoteStorageOpenWebBrowser()</c> function.
+/// will only happen on the PC version and requires to call
+///< c>sceRemoteStorageOpenWebBrowser()</c> function.
 /// @retval ERROR_OCCURRED
 /// This event will be sent to the event callback when an error has occurred in
 /// the thread.
@@ -74,8 +74,8 @@ int32_t sceRemoteStorageTerm();
 ///
 /// @param param	A structure containing	the request Id to be aborted.
 ///					This request Id is provided by other
-///functions (get/setData, getStatus and OpenWebBrowser) so they can be
-///referenced.
+/// functions (get/setData, getStatus and OpenWebBrowser) so they can be
+/// referenced.
 ///
 /// @retval SCE_REMOTE_STORAGE_SUCCESS
 /// The operation was successful.

@@ -225,7 +225,7 @@ typedef enum IggyConfigureBoolName {
                                                    // startup will not prevent
                                                    // Iggy from being created
                                                    // (default false)     
-                                                       IGGY_CONFIGURE_BOOL_IgnoreFlashVersion,
+        IGGY_CONFIGURE_BOOL_IgnoreFlashVersion,
     IGGY_CONFIGURE_BOOL_NeverDelayGotoProcessing,
     IGGY_CONFIGURE_BOOL_SuppressAntialiasingOnAllBitmaps,
     IGGY_CONFIGURE_BOOL_SuppressAntialiasingOn9SliceBitmaps,
@@ -334,22 +334,22 @@ typedef struct
                                  // garbage collector     
     S32 stack_size_in_bytes;     // size of the stack used for AS3 expression
                               // evaluation and function activation records     
-    S32 young_heap_size_in_bytes;  // size of the heap from which initial
-                                   // allocations are made     
-    S32 old_heap_size_in_bytes;    // this parameter is not supported yet     
-    S32 remembered_set_size_in_by  // storage used to keep track of pointers
-                                   // from old heap to young heap     
-                                       S32 greylist_size_in_bytes;  // storage
-                                                                    // used to
-                                                                    // keep
-                                                                    // track of
-                                                                    // partially-garbage
-                                                                    // collected
-                                                                    // objects
-                                                                    // on the
-                                                                    // old
-                                                                    // heap     
-    S32 rootstack_size_in_bytes;  // size of the stack used for exposing
+    S32 young_heap_size_in_bytes;    // size of the heap from which initial
+                                     // allocations are made     
+    S32 old_heap_size_in_bytes;      // this parameter is not supported yet     
+    S32 remembered_set_size_in_by    // storage used to keep track of pointers
+                                     // from old heap to young heap     
+        S32 greylist_size_in_bytes;  // storage
+                                     // used to
+                                     // keep
+                                     // track of
+                                     // partially-garbage
+                                     // collected
+                                     // objects
+                                     // on the
+                                     // old
+                                     // heap     
+    S32 rootstack_size_in_bytes;     // size of the stack used for exposing
                                   // temporaries to the garbage collector     
     S32 padding;
 } IggyPlayerGCSizes;
@@ -401,20 +401,24 @@ typedef struct IggyProperties
 
     F32 movie_frame_rate_current_  // the current frame rate Iggy is trying to
                                    // achieve for the file          
-                                       F32 movie_frame_rate_from_fil  // the
-                                                                      // frame
-                                                                      // rate
-                                                                      // specified
-                                                                      // in the
-                                                                      // SWF
-                                                                      // file          
+        F32 movie_frame_rate_from_fil  // the
+                                       // frame
+                                       // rate
+                                       // specified
+                                       // in the
+                                       // SWF
+                                       // file          
 
-                                                                          S32 frames  // the number of times Tick() has been called          
-                                                                              S32 swf_major_versio  // the major SWF version number of the file, currently always 9          
+            S32 frames  // the number of times Tick() has been called          
+                S32 swf_major_versio  // the major SWF version number of the
+                                      // file, currently always 9          
 
-                                                                                  F64 time_passed_in_  // the total time passed since starting the file          
-                                                                                      F64 seconds_since_l  // the number of seconds that have ocurred           
-                                                                                          F64 seconds_per_dra  // 1/render fps, updated on $IggyPlayerDrawTilesStart          
+                                          F64 time_passed_in_  // the total time
+                                                               // passed since
+                                                               // starting the
+                                                               // file          
+                                                                   F64 seconds_since_l  // the number of seconds that have ocurred           
+                                                                       F64 seconds_per_dra  // 1/render fps, updated on $IggyPlayerDrawTilesStart          
 } IggyProperties;
 
 RADEXPFUNC IggyProperties * RADEXPLINK IggyPlayerProperties(Iggy *player);
@@ -482,7 +486,7 @@ typedef struct
     F32 line_gap;
     F32 average_glyph_width_for_t  // for embedded fonts, Iggy uses width of
                                    // 'g'          
-                                       F32 largest_glyph_bbox_y1;
+        F32 largest_glyph_bbox_y1;
 } IggyFontMetrics;
 
 typedef struct
@@ -519,17 +523,17 @@ typedef struct
 
 typedef struct
 {
-    U8* pixels_one_per_byte  // pixels from the top left, 0 is transparent and
-                             // 255 is opaque          
-                                 S32 width_in_pixels;  // this is the actual
-                                                       // width of the bitmap
-                                                       // data          
-    S32 height_in_pixels;  // this is the actual height of the bitmap
-                           // data          
-    S32 stride_in_bytes;   // the distance from one row to the next          
-    S32 oversample;        // this is the amount of oversampling (0 or 1 = not
-                           // oversample, 2 = 2x oversampled, 4 = 4x
-                           // oversampled)          
+    U8* pixels_one_per_byte   // pixels from the top left, 0 is transparent and
+                              // 255 is opaque          
+        S32 width_in_pixels;  // this is the actual
+                              // width of the bitmap
+                              // data          
+    S32 height_in_pixels;     // this is the actual height of the bitmap
+                              // data          
+    S32 stride_in_bytes;      // the distance from one row to the next          
+    S32 oversample;  // this is the amount of oversampling (0 or 1 = not
+                     // oversample, 2 = 2x oversampled, 4 = 4x
+                     // oversampled)          
     rrbool
         point_sample;  // if true, the bitmap will be drawn with point sampling;
                        // if false, it will be drawn with bilinear          
@@ -537,13 +541,13 @@ typedef struct
                        // origin          
     S32 top_left_y;    // the offset of the top left corner from the character
                        // origin          
-    F32 pixel_scale_correct  // the pixel_scale at which this character should
-                             // be displayed at width_in_pixels          
-                                 F32 pixel_scale_min;  // the smallest
-                                                       // pixel_scale to allow
-                                                       // using this character
-                                                       // (scaled
-                                                       // down)          
+    F32 pixel_scale_correct    // the pixel_scale at which this character should
+                               // be displayed at width_in_pixels          
+        F32 pixel_scale_min;   // the smallest
+                               // pixel_scale to allow
+                               // using this character
+                               // (scaled
+                               // down)          
     F32 pixel_scale_max;       // the largest pixels cale to allow using this
                                // character (scaled up)          
     void* user_context_for_fr  // you can use this to store data to access on
@@ -885,14 +889,16 @@ typedef struct
     F32 old_heap_fraction  // the fraction 0..1 (default 0.125) of the
                            // outstanding allocations from the last major GC
                            // cycle to traverse during one GC cycle          
-                               F32 new_allocation_mu  // a number
-                                                      // from 1..infinity
-                                                      // (default 2) which is
-                                                      // the amount of the
-                                                      // allocations in the last
-                                                      // cycle to
-                                                      // traverse          
-                                                          F32 sweep_multiplier;  // a positive number (default 2) which weights the amount of data swept vs marked          
+        F32 new_allocation_mu      // a number
+                                   // from 1..infinity
+                                   // (default 2) which is
+                                   // the amount of the
+                                   // allocations in the last
+                                   // cycle to
+                                   // traverse          
+            F32 sweep_multiplier;  // a positive number (default 2) which
+                                   // weights the amount of data swept vs
+                                   // marked          
 } IggyGarbageCollectorControl;
 
 typedef enum
@@ -922,23 +928,26 @@ typedef struct
         ev  // the type of garbage collection event that was just
             // performed          
 
-                U32 increment_processing_byte  // the number of bytes that were
-                                               // processed in that
-                                               // event          
+            U32 increment_processing_byte  // the number of bytes that were
+                                           // processed in that
+                                           // event          
 
-                                                   U32 last_slice_tenured_bytes;  // the number of bytes that were tenured from young-to-old heap since the previous GC step          
+                U32 last_slice_tenured_bytes;  // the number of bytes that were
+                                               // tenured from young-to-old heap
+                                               // since the previous GC
+                                               // step          
     U32 last_slice_old_allocation  // the number of bytes that were tenured or
                                    // were directly allocated from the old heap
                                    // since the previous GC step          
 
-                                       U32 heap_used_bytes;  // the number of
-                                                             // bytes in use in
-                                                             // the old heap
-                                                             // (the young heap
-                                                             // is
-                                                             // empty)          
-    U32 heap_size_bytes;  // the number of bytes allocated for the old
-                          // heap          
+        U32 heap_used_bytes;  // the number of
+                              // bytes in use in
+                              // the old heap
+                              // (the young heap
+                              // is
+                              // empty)          
+    U32 heap_size_bytes;      // the number of bytes allocated for the old
+                              // heap          
 
     U32 onstage_display_objects;   // the number of on-stage display objects
                                    // (MovieClips, TextFields, Shapes, etc)
@@ -1205,7 +1214,7 @@ typedef struct IggyEventResult
     U32 new_flags;
     S32 focu  // an $IggyFocusChange that indicates how the focus (may have)
               // changed in response to the event          
-                  S32 focus_d  // ection;   
+        S32 focus_d  // ection;   
 } IggyEventResult;
 
 RADEXPFUNC void RADEXPLINK IggyMakeEventNone(IggyEvent *event);
@@ -1280,7 +1289,7 @@ IDOCN RADEXPFUNC void RADEXPLINK IggyIMEWin32GetCandidatePosition(Iggy* f, F32* 
 IDOCN RADEXPFUNC void* RADEXPLINK IggyIMEGetFocusedTextfield(Iggy* f);
 IDOCN RADEXPFUNC void RADEXPLINK IggyIMEDrawRect(S32 x0, S32 y0, S32 x1, S32 y1, const U8
 #endif);  //////////////////////////////////////////////////////////// // //
-          ///Input focus handling //       
+          /// Input focus handling //       
   
 
 typedef void *IggyFoc
@@ -1335,14 +1344,19 @@ typedef struct
     char* subcategory;
     S32 subcategory_stringlen;
 
-    S32 static_allocatio  // number of non-freeable allocations for this
-                          // subcategory          
-                              S32 static_allocatio  // bytes of non-freeable
-                                                    // allocations for this
-                                                    // subcategory          
+    S32 static_allocatio      // number of non-freeable allocations for this
+                              // subcategory          
+        S32 static_allocatio  // bytes of non-freeable
+                              // allocations for this
+                              // subcategory          
 
-                                                        S32 dynamic_allocati  // number of freeable allocations for this subcategory          
-                                                            S32 dynamic_allocati  // estimated bytes of freeable allocations for this subcategory          
+            S32 dynamic_allocati  // number of freeable allocations for this
+                                  // subcategory          
+                                      S32 dynamic_allocati  // estimated bytes
+                                                            // of freeable
+                                                            // allocations for
+                                                            // this
+                                                            // subcategory          
 } IggyMemoryUseInfo;
 
 RADEXPFUNC rrbool RADEXPLINK IggyDebugGetMemoryUseInfo(Iggy *player, IggyLibrary lib, char const *category_string, S32 category_stringlen, S32 iteration, IggyMemoryUseInfo *data);

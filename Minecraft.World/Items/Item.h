@@ -669,8 +669,8 @@ protected:
 public:
     bool canBeDepleted();
     /**
-     * Returns true when the item was used to deal more than default
-     * damage
+     * Returns true when the item was used to deal more than
+     * default damage
      *
      * @param itemInstance
      * @param mob

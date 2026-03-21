@@ -405,14 +405,14 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
         if (lastDataAndCount2 == lastDataAndCount) {
         // Queue old data to be deleted                                        
         //			printf("Marking for delete 0x%x\n",
-        //lastDataPointer); #ifdef DATA_COMPRESSION_STATS          
+        // lastDataPointer); #ifdef DATA_COMPRESSION_STATS          
                              #endif   
             count =
             linesUs  // If we didn't succeed, queue data that we made to be
                      // deleted, and             // try again               
                         
             q        //			printf("Marking for delete (fail)
-               //0x%x\n",             //dataPointer);            
+                     // 0x%x\n",             //dataPointer);            
                            
         }
     }
@@ -432,8 +432,8 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
         qu  // Add this into a queue for deleting. This shouldn't be actually
             // deleted     // until tick has been called twice from when the
             // data went into the queue.                                        
-                deleteQueue[deleteQueueIndex]
-                    .Push(data);
+            deleteQueue[deleteQueueIndex]
+                .Push(data);
     // We have 3 queues for deleting. Always delete from the next one
     // after     // where we are writing to, so it should take 2 ticks before we
     // ever delete     // something, from when the request to delete it came
@@ -443,8 +443,8 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
         unsigned char* toFree = NULL;
     do {
         //		if( toFree ) printf("Deleting 0x%x\n", toFree); //
-        //Determine correct means to free this data - could have been allocated
-        //either // with XPhysicalAlloc or malloc #ifdef
+        // Determine correct means to free this data - could have been allocated
+        // either // with XPhysicalAlloc or malloc #ifdef
         //_XBOX                           
                     
         if ((unsigned int)toFree >= MM_PHYSICAL_4KB_BASE) {
@@ -460,12 +460,12 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
                 // as necessary if // other simultaneous writes happen.   
                                     
 void SparseDataStorage::
-                    updateData  // Now actually assign this data to the storage.
-                                // Just repeat until     // successful, there
-                                // isn't any useful really that we can merge the
-                                // results     // of this with any other
-                                // simultaneous writes that might be
-                                // happening.                                        
+        updateData  // Now actually assign this data to the storage.
+                    // Just repeat until     // successful, there
+                    // isn't any useful really that we can merge the
+                    // results     // of this with any other
+                    // simultaneous writes that might be
+                    // happening.                                        
         bool success = false;
     do {
         __int64 lastDataAndCount = dataAndCount;
@@ -538,10 +538,11 @@ int SparseDataStorage::compress() {
             queueForDelete(newIndice// Success
                     } else {
                                   
-    //			printf("Successfully compressed to %d planes, to delete //0x%x\n", planesToAlloc, planeIndices); #ifdef DATA_COMPRESSION_STATS          
+      //			printf("Successfully compressed to %d planes, to delete //0x%x\n", planesToAlloc, planeIndices); #ifdef DATA_COMPRESSION_STATS          
                          #endif count = planesToAlloc;
                               
         
+                    
                     }
 
                     return planesToAlloc;

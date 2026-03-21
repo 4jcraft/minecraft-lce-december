@@ -142,8 +142,8 @@ public:
         char imageUrl[SCE_NP_COMMERCE2_URL_LEN];    ///< The product image URL.
         char price[SCE_TOOLKIT_NP_SKU_PRICE_LEN];   ///< The price of the
                                                     ///< product. This is
-                                                   ///< formatted to include the
-                                                   ///< currency code.
+        ///< formatted to include the
+        ///< currency code.
         char padding[6];  ///< Padding.
 #ifdef __PS3__
         CellRtcTick releaseDate;  ///< The product release date.
@@ -188,8 +188,8 @@ public:
         char imageUrl[SCE_NP_COMMERCE2_URL_LEN];    ///< The product image URL.
         char price[SCE_TOOLKIT_NP_SKU_PRICE_LEN];   ///< The price of the
                                                     ///< product. This is
-                                                   ///< formatted to include the
-                                                   ///< currency code.
+        ///< formatted to include the
+        ///< currency code.
         char ratingSystemId
             [SCE_NP_COMMERCE2_RATING_SYSTEM_ID_LEN];  ///< The ID of the rating
                                                       ///< system (for example:

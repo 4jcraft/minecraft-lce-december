@@ -301,8 +301,8 @@ std::wstring DataInputStream::readUTF() {
     int b = stream->read();
     unsigned short UTFLength = (unsigned short)(((a & 0xff) << 8) | (b & 0xff));
     //// 4J Stu - I decided while writing DataOutputStream that we didn't
-    ///need     ///to bother using the UTF8 format / used in the java libs, and
-    ///just write     ///in/out as wchar_t all the time     
+    /// need     ///to bother using the UTF8 format / used in the java libs, and
+    /// just write     ///in/out as wchar_t all the time     
     /*for( unsigned short i = 0; i < UTFLength; i++)
         {
                 wchar_t theChar = readChar();

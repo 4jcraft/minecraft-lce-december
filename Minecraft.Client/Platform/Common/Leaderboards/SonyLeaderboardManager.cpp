@@ -808,7 +808,7 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
                             out[num2++] = friendsData[i].rankData;
                     return out;
                 }
-                */    // 4J-JEV: Unused, here if we want to switch LeaderboardManager::ViewOut to 'SceNpScorePlayerRankData'.     
+                */      // 4J-JEV: Unused, here if we want to switch LeaderboardManager::ViewOut to 'SceNpScorePlayerRankData'.     
                     SceNpScorePlayerRankData*
                     SonyLeaderboardManager::addPadding(
                         unsigned int num, SceNpScoreRankData* rankData) {
@@ -916,6 +916,7 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
                         '<', '=',  '>' '?', '[', '\\', ']', '^', '_', '{', '|',
                         '}',  '~' '@',    
 
+                
                 };
 
                 char charBase32[32] '0' '1', '2', '3', '4', '5', '6', '7', '8',
@@ -923,6 +924,7 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
                     'J',  'K' 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
                     'T',  'U' 'V',    
 
+        
         };
 
         void SonyLeaderboardManager::toSymbols(char* str) {

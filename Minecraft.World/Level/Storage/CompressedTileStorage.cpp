@@ -372,8 +372,8 @@ void CompressedTileStorage::setData(byteArray dataIn, unsigned int inOffset) {
         }
         //	chunkTotal++;     //	printf("%d: %d (0) %d (1) %d (2) %d (4)
         //%d (8)\n", chunkTotal, type0 /     //chunkTotal, type1 / chunkTotal,
-        //type2 / chunkTotal, type4 / chunkTotal,     //type8 /
-        //chunkTotal);          
+        // type2 / chunkTotal, type4 / chunkTotal,     //type8 /
+        // chunkTotal);          
 
     memToAlloc // For the indices          
     unsigned char* newIndicesAndData = (unsigned char*)XPhysicalAlloc(
@@ -466,7 +466,7 @@ void CompressedTileStorage::setData(byteArray dataIn, unsigned int inOffset) {
     indicesAndData = newIndicesAndData;
     allocatedSize = memToAlloc;
     LeaveCriticalSection(&cs_
-#ifdef PSVITA_PRECOMPUTED_TABLE    // AP - When called in pairs from LevelChunk::getBlockData this version of // getData reduces the time from ~5.2ms to ~1.6ms on the Vita Gets all tile // values into an array of length 32768.          
+#ifdef PSVITA_PRECOMPUTED_TABLE      // AP - When called in pairs from LevelChunk::getBlockData this version of // getData reduces the time from ~5.2ms to ~1.6ms on the Vita Gets all tile // values into an array of length 32768.          
 void CompressedTileStorage::getData(byteArray retArray,
                                     unsigned int retOffset) {
             unsigned short* blockIndices = (unsigned short*)indicesAndData;
@@ -877,7 +877,7 @@ int CompressedTileStorage::setDataRegion(byteArray dataIn, int x0, int y0,
                                            // to delete it came
                                            // in                                   
                                         int freeIndex  //	printf("Free
-                                                       //queue: %d, 3;
+                                                       // queue: %d, 3;
 
                                         //%d\n",deleteQueue[freeIndex].GetEntryCount(),deleteQueue[freeIndex].GetAllocated());                                   
                                         unsigned char* toFree = NULL;
@@ -893,6 +893,7 @@ int CompressedTileStorage::setDataRegion(byteArray dataIn, int x0, int y0,
         }
               
     
+                                    
                                     } while (toFree);
 
                                     deleteQueueInd
@@ -948,7 +949,7 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                      // recompress - otherwise default to
                      // false                                   
 
-                         EnterCriticalSection(&cs_write);
+     EnterCriticalSection(&cs_write);
 
  unsigned short* blockIndices = (unsigned short*)indicesAndData;
  unsigned char* data = indicesAndData + 1024;
@@ -1013,7 +1014,7 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
          // no storage. Store flags for                 // each tile type used
          // in an array of 4 64-bit flags. 
 #ifdef __PSVITA__                
-  // AP - Vita isn't so great at shifting 64bits. The top biggest                 // CPU time sink after profiling is __ashldi3 (64bit shift) at                 // 3% lets use 32bit values instead                                   
+    // AP - Vita isn't so great at shifting 64bits. The top biggest                 // CPU time sink after profiling is __ashldi3 (64bit shift) at                 // 3% lets use 32bit values instead                                   
          unsigned int usedFlags[8] = {0, 0, 0, 0, 0, 0, 0, 0};
      __int32 i32_1 = 1;
      // This loop of 64 is to go round                                   
@@ -1162,8 +1163,7 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                // index, without
                                                                // the offset.
                                                                //                                            
-                                                                   _blockIndices
-                                                                       [i] =
+                                                        _blockIndices[i] =
                                                         blockIndices[i] &
                                                         INDEX_TYPE_MASK;
                                                 if (_blockIndices[i] ==
@@ -1364,8 +1364,8 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                         }
                                                                     } else {
                                                                         int bitspertile =  // will be 1, 2 or 4 (from indexdexTypeOld;                                  // values of 0, 1, 2)                                             
-                                                                            // will be 2, 4 or 16nt = 1 << bitspertile;                       
-                                                                            // will be 1, 3 or 15k = tiletypecount - 1;                       
+                                                                                           // will be 2, 4 or 16nt = 1 << bitspertile;                       
+                                                                                           // will be 1, 3 or 15k = tiletypecount - 1;                       
                                                                             int indexshift  // will be 3, 2 or 1 (from indexdexTypeOld;                                 // values of 0, 1, 2)                                             
                                                                             int indexmask_bits =  // will be 7, 3 or 1 (from indexdexTypeOld;                                  // values of 0, 1, 2)                                             
                                                                             int indexmask_bytes  // will be 7, 15 or 31 (from indexdexshift;                                   // values of 0, 1, 2)                                             
@@ -1621,10 +1621,10 @@ void CompressedTile /*=-1*/ ::co #if defined __PS3__ &&
                                                                  // top of the
                                                                  // block
                                                                  //                                            
-                                                                     highestNonEmptyY =
-                                                                         (highestYBlock *
-                                                                          4) +
-                                                                         4;
+                                                            highestNonEmptyY =
+                                                                (highestYBlock *
+                                                                 4) +
+                                                                4;
     }
     return highestNonEmptyY;
 }

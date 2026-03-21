@@ -781,6 +781,7 @@ CGameNetworkManager::eJoinGameResult CGameNetworkManager::JoinGame(FriendSession
 void CGameNetworkManager::CancelJoinGame(LPVOID lpPara#ifdef _XBOX_ONE     
 	s_pPlatformNetworkManager->CancelJoinGam#endif     
 
+    
     }
 
     bool CGameNetworkManager::LeaveGame(bool bMigrateHost) {
@@ -803,14 +804,11 @@ void CGameNetworkManager::CancelJoinGame(LPVOID lpPara#ifdef _XBOX_ONE     
 
             return 0;
 
-
-
-
 #endif      
 
 		app.DebugPr "JoinFromInvite_SignInReturned, iPad %d\n"     ,
-                iPad  // It's possible that the player has not signed in - they
-                      // can back out     
+            iPad  // It's possible that the player has not signed in - they
+                  // can back out     
                 if (ProfileManager.IsSignedIn(iPad) &&
                     ProfileManager.IsSignedInLive(iPad)) {
                         app.DebugPr"JoinFromInvite_SignInReturned, passed sign-in tests\n"     );
@@ -946,7 +944,7 @@ int CGameNetworkManager::RunNetworkGameThreadProc( void* lpParameter // Share AA
                 app.m_gameRules.unloadCurrentGameRules();
             Tile::ReleaseThreadStorage();
                 return -1
-#ifdef __PSVITA__    // 4J-JEV: Wait for the loading/saving to finish.     
+#ifdef __PSVITA__      // 4J-JEV: Wait for the loading/saving to finish.     
 	while (StorageManager.GetSaveState() != C4JStorage::ESaveGame_Idle)	Sleep(#endif     
 
 	Tile::ReleaseThreadStorage();
@@ -1034,7 +1032,7 @@ int	CGameNetworkManager::ExitAndJoinFromInviteThreadProc( void* lpParam // Share
 	return S_O
 #if defined __PS3__ || defined __PSVITA__ || \
     defined                                  \
-        __ORBIS__   // This case happens when we have been returned from the game to the main menu after receiving an invite and are now trying to go back in to join the new game // The pair of methods MustSignInReturned_0 & PSNSignInReturned_0 handle this     
+        __ORBIS__     // This case happens when we have been returned from the game to the main menu after receiving an invite and are now trying to go back in to join the new game // The pair of methods MustSignInReturned_0 & PSNSignInReturned_0 handle this     
                     int CGameNetworkManager::MustSignInReturned_0(
                         void* pParam, int iPad,
                         C4JStorage::EMessageResult result) {
@@ -1051,6 +1049,7 @@ int	CGameNetworkManager::ExitAndJoinFromInviteThreadProc( void* lpParam // Share
                                     &CGameNetworkManager::PSNSignInReturned_0,
                                     pParam, tr #endif      
 	
+                
                 }
                 else {
                     app.SetAction(0, eAppAction_Idle);
@@ -1076,9 +1075,9 @@ int CGameNetworkManager::PSNSignInReturned_0(void* pParam, bool bContinue, int i
 			if (!SQRNetworkManager_PS3::UpdateInviteData(
                                 (SQRNetworkManager::PresenceSyncInfo*)
                                     inviteData->pInviteInfo)) {
-                            bContinue = false;
+                                    bContinue = false;
 #elif defined \
-    __ORBIS__      // TODO: No Orbis equivalent (should there be?) #endif     
+    __ORBIS__        // TODO: No Orbis equivalent (should there be?) #endif     
 		}
 	}
 
@@ -1115,7 +1114,7 @@ int CGameNetworkManager::PSNSignInReturned_1(void* pParam, bool bContinue, int i
 			{
 				bContinue = false;
 #elif defined \
-    __ORBIS__      // TODO: No Orbis equivalent (should there be?) #endif     
+    __ORBIS__        // TODO: No Orbis equivalent (should there be?) #endif     
 			
 		}
 	}
@@ -1184,7 +1183,7 @@ int CGameNetworkManager::ChangeSessionTypeThreadProc( void* lpParam // Share AAB
 	pServer->m_serverPausedEvent->WaitForSignal(INFINI
 #if defined(__PS3__) || defined(__ORBIS__) || \
     defined                                   \
-        __PSVITA__    // Swap these two messages around as one is too long to display at 480     
+        __PSVITA__      // Swap these two messages around as one is too long to display at 480     
 	pMinecraft->progressRenderer->progressStartNoAbort( IDS_PROGRESS_CONVERTING_TO_OFFLINE_GAME );
 	pMinecraft->progressRenderer->progressStage( -//g_NetworkManager.CorrectErrorIDS(IDS_CONNECTION_LOST_LIVE_NO_EXIT) ); #elif defined(_XBOX_ONE)     
 	if( g_NetworkManager.m_bFullSessionMessageOnNextSessionChange )
@@ -1200,7 +1199,7 @@ int CGameNetworkManager::ChangeSessionTypeThreadProc( void* lpParam // Share AAB
 	pMinecraft->progressRenderer->progressStage( IDS_PROGRESS_CONVERTING_TO_OFFLINE_GAM#endif     
 
 	pMinecraft->progressRenderer->progressStagePercentage(
-#ifdef _XBOX_ONE    // wait for any players that were being added, to finish doing this. On XB1, if we don't do this then there's an async thread running doing this,  // which could then finish at any inappropriate time later     
+#ifdef _XBOX_ONE      // wait for any players that were being added, to finish doing this. On XB1, if we don't do this then there's an async thread running doing this,  // which could then finish at any inappropriate time later     
 	while( s_pPlatformNetworkManager->IsAddingPlayer() )
 	{
 		Sleep(1)#endif   // Null the network player of all the server players that are local, to stop them being removed from the server when removed from the session     
@@ -1284,13 +1283,13 @@ int CGameNetworkManager::ChangeSessionTypeThreadProc( void* lpParam // Share AAB
 	}
 	
 	pMinecraft->progressRenderer->progressStagePercentage(1
-#ifndef _XBOX    // Make sure that we have transitioned through any joining/creating stages so we're actually ready to set to play     
+#ifndef _XBOX      // Make sure that we have transitioned through any joining/creating stages so we're actually ready to set to play     
 	while(!s_pPlatformNetworkManager->IsReadyToPlayOrIdle())
 	{
 		Sleep(10)#endif     
 
 	s_pPlatformNetworkManager->_StartGam
-#ifndef _XBOX    // Wait until the message box has been closed     
+#ifndef _XBOX      // Wait until the message box has been closed     
 	while(ui.IsSceneInStack(XUSER_INDEX_ANY, eUIScene_MessageBox))
 	{
 		Sleep(10)#endif   // Start the game again     
@@ -1654,7 +1653,7 @@ void CGameNetworkManager::GameInviteReceived( int userIndex, const INVITE_INFO *
 #endif      
 
 	if ( \
-    noUGC #ifdef __PSVITA__     // showing the system message for chat restriction here instead now, to fix FQA bug report     
+    noUGC #ifdef __PSVITA__       // showing the system message for chat restriction here instead now, to fix FQA bug report     
 		ProfileManager.DisplaySystemMessage( SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_PSN_CHAT_RESTRICTION, ProfileManager.GetPrimaryPad(#else     
 		int messageText = IDS_NO_USER_CREATED_CONTENT_PRIVILEGE_SINGLE_LOCAL;
 		if(joiningUsers > 1) messageText = IDS_NO_USER_CREATED_CONTENT_PRIVILEGE_ALL_LOCAL;
@@ -1681,7 +1680,7 @@ void CGameNetworkManager::GameInviteReceived( int userIndex, const INVITE_INFO *
 		if( !g_NetworkManager.IsInSession() )
 #if defined(__PS3__) || \
     defined(            \
-        __PSVITA__)      // PS3 is more complicated here - we need to make sure that the player is online. If they are then we can do the same as the xbox, if not we need to try and get them online and then, if they do sign in, go down the same path     
+        __PSVITA__)        // PS3 is more complicated here - we need to make sure that the player is online. If they are then we can do the same as the xbox, if not we need to try and get them online and then, if they do sign in, go down the same path     
 		// Determine why they're not "signed in live"    // MGH - On Vita we need to add a new message at some point for connecting when already signed in     
 			if(ProfileManager.IsSignedInLive(ProfileManager.GetPrimaryPad()))
 			{

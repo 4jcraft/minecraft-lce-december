@@ -732,11 +732,11 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
                         else
                             *cursor = 0x00;
                     }
-#endif       // 4J-JEV: Empty glyphs are considered to be whitespace.     
-                        if (xMax == 0)
-                            m_kerningTable[glyph] =
-                                               sFontData.m_uiWhitespaceWidth;
-                    else m_kerningTable[glyph] = xMax + 1;
+#endif         // 4J-JEV: Empty glyphs are considered to be whitespace.     
+                    if (xMax == 0)
+                        m_kerningTable[glyph] = sFontData.m_uiWhitespaceWidth;
+                    else
+                        m_kerningTable[glyph] = xMax + 1;
                     // CACHE GLYPH ADVANCES //     
                     m_pfAdvanceTable = new float[sFontData.m_uiGlyphCount];
                     for (unsigned short glyph = 0;

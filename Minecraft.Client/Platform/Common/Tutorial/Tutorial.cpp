@@ -2167,6 +2167,7 @@ void Tutorial::tick(// Don't do anything for the first 2 seconds so that the loa
 			ui.SetTutorial(m_iPa#endifs);
       
 		
+
 }
 }
 
@@ -2896,6 +2897,7 @@ void Tutorial::RemoveConstraint(TutorialConstraint* c,
         }
 		}*/                    
 	
+
 }
 else if (delayedRemove) {
     c->setQueuedForRemoval(true);

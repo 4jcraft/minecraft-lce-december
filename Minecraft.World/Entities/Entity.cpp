@@ -1291,7 +1291,7 @@ void Entity::onLoadedFromSave() {}
                     ListTag <
                         DoubleTag  // Add the first parameter to the
                                    // ListTag                             ""         
-                                       res->add(new DoubleTag(L  , firstValue));
+                            res->add(new DoubleTag(L  , firstValue));
 
                     va_list vl;
                     va_start(vl, firstValue);
@@ -1313,29 +1313,30 @@ void Entity::onLoadedFromSave() {}
                     ListTag <
                         FloatTa  // Add the first parameter to the
                                  // ListTag                            ""          
-                                     res->a  // TODO - 4J Stu For some reason
-                                             // the va_list wasn't working
-                                             // correctly here     // We only
-                                             // make a list of two floats so
-                                             // just overriding and not
-                                             // using     //
-                                             // va_list                         
+                            res->a  // TODO - 4J Stu For some reason
+                                    // the va_list wasn't working
+                                    // correctly here     // We only
+                                    // make a list of two floats so
+                                    // just overriding and not
+                                    // using     //
+                                    // va_list                         
                         ""          
-    res->ad                                  /*
-                                      va_list vl;
-                                      va_start(vl,firstValue);
-                                 
-                                      float val;
-                                 
-                                      for (unsigned int i = 1; i < number;
-                                      i++)
-                                      {
-                                      val = va_arg(vl,float);
-                                      res->add(new
-                                      FloatTag(val));
-                                      }
-                                      va_end(vl);
-                                      */                                        
+    res->ad                         /*
+                             va_list vl;
+                             va_start(vl,firstValue);
+                        
+                             float val;
+                        
+                             for (unsigned int i = 1; i <
+                             number;
+                             i++)
+                             {
+                             val = va_arg(vl,float);
+                             res->add(new
+                             FloatTag(val));
+                             }
+                             va_end(vl);
+                             */                                        
     return res;
                 }
 
@@ -1435,6 +1436,7 @@ void Entity::onLoadedFromSave() {}
                    
                    
 
+                
                 }
 
                 void Entity::positionRider() {
@@ -1674,7 +1676,7 @@ std::wstring Entity::getAName() {
     std::ws "generic" = EntityIO::ge "entity."(shared_from_this());
                 if
 #elsempty()) id = ""  #endif;
-                return L          + id + _toString(entityId);
+                    return L          + id + _toString(entityId);
                      
     return L  ;
                       
@@ -1814,13 +1816,13 @@ void Entity::setAnimOverride"!!! Setting anim override bitmask to %d\n"nimOverri
                            // anim                          
                                                                     
         unsigned int uiIgnoreUserCustomSkinAnimSettingMask =
-                               (1 << HumanoidModel::eAnim_ForceAnim) |
-                               (1 << HumanoidModel::eAnim_DisableRenderArm0) |
-                               (1 << HumanoidModel::eAnim_DisableRenderArm1) |
-                               (1 << HumanoidModel::eAnim_DisableRenderTorso) |
-                               (1 << HumanoidModel::eAnim_DisableRenderLeg0) |
-                               (1 << HumanoidModel::eAnim_DisableRenderLeg1) |
-                               (1 << HumanoidModel::eAnim_DisableRenderHair);
+                (1 << HumanoidModel::eAnim_ForceAnim) |
+                (1 << HumanoidModel::eAnim_DisableRenderArm0) |
+                (1 << HumanoidModel::eAnim_DisableRenderArm1) |
+                (1 << HumanoidModel::eAnim_DisableRenderTorso) |
+                (1 << HumanoidModel::eAnim_DisableRenderLeg0) |
+                (1 << HumanoidModel::eAnim_DisableRenderLeg1) |
+                (1 << HumanoidModel::eAnim_DisableRenderHair);
 
         if ((m_uiAnimOverrideBitmask &
              HumanoidModel::m_staticBitmaskIgnorePlayerCustomAnimSetting) !=

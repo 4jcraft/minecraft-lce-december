@@ -708,6 +708,7 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
     delete listeners[i];
     */                    
 
+    
     }
 
     void Level::initializeLevel(LevelSettings * settings) {
@@ -951,8 +952,8 @@ bool Level::setData(int x, int y, int z, int data, int updateFlags,
                 }
             }
             /**
-             * Sets a tile to air without dropping resources or showing any
-             * animation.
+             * Sets a tile to air without dropping resources or showing
+             * any animation.
              *
              * @param x
              * @param y
@@ -1659,6 +1660,7 @@ void Level::playerRemoved(std::shared_ptr<Entity> e) {
                     // player list     
                                           
     
+                
                 }
             }
 
@@ -1683,6 +1685,7 @@ void Level::playerRemoved(std::shared_ptr<Entity> e) {
                                   // list                         
                                               
     
+                    
                     }
 
                     int xc = e->xChunk;
@@ -1875,6 +1878,7 @@ AABBList// boxes.clear();ubes(// int x0 = Mth::floor(box->x0);     // int x1 = M
 
                     
 
+    
     }
 
                                              
@@ -2234,9 +2238,8 @@ void Level::tickEntities() {
                                                                                         i  // TREnd = entitiesToRemove.end();
                                                                                         // for (int i = 0; i < entities.size(); i++) it !=/* 4J Jev, using an iterator causes problems here as
                                                                                         *
-                                                                                        the vector is modified
-                                                                                            from inside this loop
-                                                                                                .*
+                                                                                        the vector is modified from
+                                                                                                inside this loop.*
                                                                                         /                          
 
                                                                                                                      
@@ -2320,7 +2323,7 @@ void Level::tickEntities() {
         if (!te->isRemoved() && te->hasLevel()) {
                                                                                                 if (hasChunkAt(
                                                                                                         te -
-                                                                                                            #endif
+#endif
                                                                                                                 ->y,
                                                                                                         te->z)) {
                                                                                                                         
@@ -2334,8 +2337,7 @@ void Level::tickEntities() {
                                                                                                 }
                                                                                             }
 
-                                                                                    if (te
-                                                                                            ->isRemoved()) {
+                                                                                    if (te->isRemoved()) {
                                                                                         it =
                                                                                             tileEntityList
                                                                                                 .erase(
@@ -2576,6 +2578,7 @@ void Level::tickEntities() {
                                                                                             false;
                                                                                                       
         
+                                                                                    
                                                                                     }
     }
 
@@ -3810,6 +3813,7 @@ void Level::tickWeather() {
         }
                                                                                                     
     
+                                                                                    
                                                                                     }
 
                                                                                     oRainLevel =
@@ -3930,13 +3934,14 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                                      r) +
                                                                                                         l));
                                                                                                 chunksToP  // 4J Stu - Added 1.2.3, but not sure if we want to do it     // util.Timer.push("playerCheckLight");i] - //// randomly check areas around the players }
-                                                                                                    // if (!players.isEmpty()) {ete[]//	int select = random.nextInt(players.size());0) de//	Player player = players.get(select);     //	int px = Mth.floor(player.x) + random.nextInt(11) - 5;     //	int py = Mth.floor(player.y) + random.nextInt(11) - 5;     //	int pz = Mth.floor(player.z) + random.nextInt(11) - 5;     //	checkLight(px, py, pz);     // }
-                                                                                                    // util.Timer.pop();                   
-                                                        // lc->tick();	// 4J - brought this lighting update forward from 1.8.2                                                             
+                                                                                                           // if (!players.isEmpty()) {ete[]//	int select = random.nextInt(players.size());0) de//	Player player = players.get(select);     //	int px = Mth.floor(player.x) + random.nextInt(11) - 5;     //	int py = Mth.floor(player.y) + random.nextInt(11) - 5;     //	int pz = Mth.floor(player.z) + random.nextInt(11) - 5;     //	checkLight(px, py, pz);     // }
+                                                                                                           // util.Timer.pop();                   
+                                                          // lc->tick();	// 4J - brought this lighting update forward from 1.8.2                                                             
                               
         
                         
 
+                                                                                            
                                                                                             }
 
                                                                                             void
@@ -4000,6 +4005,7 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                                                                        
                             
 
+                                                                                        
                                                                                         }
 
                                                                                         void
@@ -4288,14 +4294,14 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                         return result;
                                                                                     }
 
-                                                                                                                                                                     // 4J - special mode added so we can do lava lighting updates without xc, int // having all neighbouring chunks loaded ince, bool rootOnlyEmissive) {
+                                                                                                                                                                       // 4J - special mode added so we can do lava lighting updates without xc, int // having all neighbouring chunks loaded ince, bool rootOnlyEmissive) {
                                                                                         lightCache_t* cache =
                                                                                             (lightCache_t*)
                                                                                                 T  // 4J - this is normal java behaviourint64 cacheUse = 0;
 
                                                                                         if (force) {
                                                                                                    
-#if 0    /////////////////////////////////////////////////////////////////////////////////////////////  // Get the frequency of the timerxc, yc, zc, 0)) return;
+#if 0      /////////////////////////////////////////////////////////////////////////////////////////////  // Get the frequency of the timerxc, yc, zc, 0)) return;
                                                                                     }
                                                                                     else {
                                                                                                                              
@@ -4318,7 +4324,7 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                             zc);
 
                                                                                                                                                                
-                                                                // int darktcc = 0;      // 4J - added                               
+                                                                  // int darktcc = 0;      // 4J - added                               
 
                                                                                         int*
                                                                                             toCheck;
@@ -4338,7 +4344,7 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                         0;
                                                                                     int toCheckCount =
                                                                                         0;
-                                                                                                       // Lock 128K of cache (containing all the lighting cache + first 112K of;
+                                                                                                         // Lock 128K of cache (containing all the lighting cache + first 112K of;
                                                                                         // toCheck array) on L2 to try and stop any cached data getting knocked out (xc // of L2 by other non-cached reads (or vice-versa)  Lea//	if( cache ) XLockL2(XLOCKL2_INDEX_TITLE, cache, 128 * 1024,     //XLOCKL2_LOCK_SIZE_1_WAY, 0 );                                     
                                                                                
                                                       
@@ -4460,24 +4466,24 @@ void Level::buildAndPrepareChunksToPoll() {
                                     } else {
                                                                                                                                                    
                                                                                
-                                                        // 4J - added - keep track of which tiles formurrent > (expected - block)) {
+                                                          // 4J - added - keep track of which tiles formurrent > (expected - block)) {
                                                                                                                     // the edge of the region we are zeroing - can = true;
                                                                                                                     // store over the original elements in the array      }
                                                                                                                     // because tcn must be <= tcp                                                          
                                                                               
                                                                                 
                                                              
-                   //			darktcc = tcc;edge == true)///////////////////////////////////////////////////// = p;
+                     //			darktcc = tcc;edge == true)///////////////////////////////////////////////////// = p;
                                                                                                                     // 4J added - we've moved all the edge tiles to             }
                                                                                                                     // the start of the array, so only need to     checkedPosition = 0;
                                                                                                                     // process these now. The original processes                                  // all tcc tiles again in the next section;                                                 
                                                                            
                                                                              
-                                      // If force is set, then this is being used to in a special mode to tryckedPosit// and light lava tiles as chunks are being loaded in. In this case, we   int x // don't want a lighting update to drag in any neighbouring chunks that    int z// aren't loaded yet. 32 + zc;
+                                        // If force is set, then this is being used to in a special mode to tryckedPosit// and light lava tiles as chunks are being loaded in. In this case, we   int x // don't want a lighting update to drag in any neighbouring chunks that    int z// aren't loaded yet. 32 + zc;
 
                                                                                
                                                                                
-                  // If rootOnlyEmissive flag is set, then only consider the starting tile         // to be possibly emissive.rce) {
+                    // If rootOnlyEmissive flag is set, then only consider the starting tile         // to be possibly emissive.rce) {
                                                                                                                     if (!hasChunkAt(
                                                                                                                             x,
                                                                                                                             y,

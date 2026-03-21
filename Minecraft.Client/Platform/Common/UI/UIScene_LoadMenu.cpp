@@ -450,7 +450,8 @@ void UIScene_LoadMenu::tick() {
         // 			// dump out the thumbnail
         // 			HANDLE hThumbnail =
         // CreateFile("GAME:\\thumbnail.png", GENERIC_WRITE, 0, NULL,
-        // OPEN_ALWAYS, FILE_FLAG_RANDOM_ACCESS, NULL); 			DWORD dwBytes;
+        // OPEN_ALWAYS, FILE_FLAG_RANDOM_ACCESS, NULL);
+        // DWORD dwBytes;
         // 			WriteFile(hThumbnail,pbImageData,dwImageBytes,&dwBytes,NULL);
         // 			XCloseHandle(hThumbnail);
         // #endif
@@ -1108,6 +1109,7 @@ void UIScene_LoadMenu::handleTimerComplete(int id) {
 		}
                 br #endif      
 	
+            
             }
         }
 
@@ -1301,7 +1303,6 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                     // in to Live, stop!     
                     if (isOnlineGame && !isSignedInLive)
 
-
 #ifdef __ORBIS__     
 			assert(iPadNotSignedInLive !=
                                -1)  // Check if PSN is unavailable because of
@@ -1338,7 +1339,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                            IDS_PRO_NOTONLINE_TEXT, uiIDA, 1,
                                            ProfileManager.GetPrimaryPad());
                     retur #endif      
-		  // Check if user-created content is allowed, as we cannot play multiplayer if it's not     
+		    // Check if user-created content is allowed, as we cannot play multiplayer if it's not     
                         bool noUGC = false;
                     BOOL pccAllowed = TRUE;
                     BOOL pccFriendsAllowed = TRUE;
@@ -1349,8 +1350,6 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                         ProfileManager.GetChatAndContentRestrictions(
                             ProfileManager.GetPrimaryPad(), false, NULL,
                             &bContentRestricted, NULL);
-
-
 #endif  
 #ifdef __ORBIS__     
 		bool bPlayStationPlus = true;
@@ -1365,7 +1364,6 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                     break;
                                 }
                             }
-
 
 #endif      
 		noUGC = !pccAllowed && !pccFriendsAllowed;
@@ -1559,7 +1557,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                         pClass->m_bIgnoreInput = fa
 #if defined(__PS3__) || defined(__ORBIS__) || \
     defined(                                  \
-        __PSVITA__)     // show the message that trophies are disabled     
+        __PSVITA__)       // show the message that trophies are disabled     
                                         UINT uiIDA[1];
                                     uiIDA[0] = IDS_CONFIRM_OK;
                                     ui.RequestErrorMessage(
@@ -1570,6 +1568,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                         pClass);
                 app.SetGameHostOption(eGameHostOption_WasntSaveOwner, tr#endif     
 	
+                                
                                 }
 
                                 return 0;
@@ -1848,6 +1847,7 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                                 ProfileManager.GetPrimaryPad());
                                             retur #endif      
 			
+                                        
                                         }  // Check if user-created content is
                                            // allowed, as we cannot play
                                            // multiplayer if it's not     
@@ -1908,7 +1908,7 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                                 }
                                             }
                                         }
-#endif        // This is NOT called from a storage manager thread, and is in fact called from the main thread in the Profile library tick. Therefore we use the main threads IntCache.     
+#endif          // This is NOT called from a storage manager thread, and is in fact called from the main thread in the Profile library tick. Therefore we use the main threads IntCache.     
                                         StartGameFromSave(pClass,
                                                           dwLocalUsersMask);
                                     }

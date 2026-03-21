@@ -485,6 +485,7 @@ int EntityHorse::getHurtSound() {
     if (type == TYPE_DONKEY || type == TY//"mob.horse.donkey.hit"; eSoundType_MOB_HORSE_DONKEY_HIT;            //"mob.horse.hit";  }
     return eSoundType_MOB_HORSE_HIT;                    
 
+    
     }
 
     bool EntityHorse::isSaddled() { return getHorseFlag(FLAG_SADDLE); }
@@ -555,7 +556,8 @@ void EntityHorse::registerAttributes() {
     getAttribute(SharedMonsterAttributes::MAX_HEALTH)->setBaseValue(53);
     getAttribute(SharedMonsterAttributes::MOVEMENT_SPEED)->setBaseValue(0.225f);
     /**
-     * How difficult is the creature to be tamed? the Higher the number,
+     * How difficult is the creature to be tamed? the Higher the
+     * number,
      * the more
      * difficult
      */                                                            
@@ -831,10 +833,12 @@ bool EntityHorse::canWearBags() {
     bool EntityHorse::isImmobile() {
         if (rider.lock() != NULL && isSaddled()) {
             /**
-             * Rare horse that can be transformed into Nightmares or Bathorses
+             * Rare horse that can be transformed into Nightmares or
+             * Bathorses
              * or
              * give
-             * ghost horses on
+             * ghost horses
+             * on
              * dead
              */                                                                 
 bool EntityHo /**
@@ -1444,7 +1448,7 @@ bool EntityHorse::isUndead() {
                 std::shared_ptr <
                     LivingEnt  // Health is between 15 and 30
                                // dynamic_pointer_cast<LivingEntity>(rider.lock());
-                                   livingRider->yBodyRot = yBodyRot;
+                        livingRider->yBodyRot = yBodyRot;
             }
         }
     }
@@ -1480,7 +1484,7 @@ float EntityHorse::generateRandomMaxHealth() {
         return itemId ==
                Ite  // prevent horses from climbing laddersmId ==
                     // Item::horseArmorGold_Id ||
-                        itemId == Item::horseArmorDiamond_Id;
+                   itemId == Item::horseArmorDiamond_Id;
     }
 
     bool EntityHorse::onLadder() {

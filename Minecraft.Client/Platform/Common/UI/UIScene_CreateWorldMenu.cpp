@@ -1093,8 +1093,7 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
     StorageManager
         .ResetSaveData  // Make our next save default to the name of the
                         // level     
-                            StorageManager.SetSaveTitle(
-                                (wchar_t*)wWorldName.c_str());
+            StorageManager.SetSaveTitle((wchar_t*)wWorldName.c_str());
 
     std::wstring wSeed;
     if (!pClass->m_MoreOptionsParams.seed.empty()) {
@@ -1310,7 +1309,7 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
                             // library incorrectly returning false for
                             // IsSignedInLive if the npAvailability isn't
                             // SCE_OK          
-                                UINT uiIDA[1];
+                            UINT uiIDA[1];
                     uiIDA[0] = IDS_OK;
                     ui.RequestAlertMessage(IDS_ONLINE_SERVICE_TITLE,
                                            IDS_CONTENT_RESTRICTION, uiIDA, 1,
@@ -1384,7 +1383,7 @@ int UIScene_CreateWorldMenu::ConfirmCreateReturned(
                 ->m_MoreOptionsParams
                 .bOnlin  // 4J Stu - If we only have one controller connected,
                          // then don't show the sign-in UI again          
-                             DWORD connectedControllers = 0;
+                    DWORD connectedControllers = 0;
         for (unsigned int i = 0; i < XUSER_MAX_COUNT; ++i) {
             if (InputManager.IsPadConnected(i) || ProfileManager.IsSignedIn(i))
                 ++connectedControllers;

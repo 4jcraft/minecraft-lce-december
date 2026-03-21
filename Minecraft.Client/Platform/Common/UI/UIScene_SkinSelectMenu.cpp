@@ -527,7 +527,7 @@ void UIScene_SkinSelectMenu::InputActionOK(unsigned int iPad) {
 #if !(defined(_XBOX) || defined(_WINDOWS64) || \
       defined(_XBOX_ONE))  // 4J Stu - Temp to get the win build running, but so
                            // we check this for other platforms
-                                    // you can't see the store
+                           // you can't see the store
                                     UINT uiIDA[1];
                                     uiIDA[0] = IDS_CONFIRM_OK;
                                     ui.RequestAlertMessage(
@@ -1386,7 +1386,7 @@ void UIScene#ifdef __PSVITA__HandleDLCInstalled()
 void UIScene_SkinSel#ifdef __PSVITA__CMountingComplete()
 {
                      
-  // to prevent a race condition between the install and the mounted callback #endif                    "UIScene_SkinSelectMenu::HandleDLCMountingComplete\n"                                        );
+    // to prevent a race condition between the install and the mounted callback #endif                    "UIScene_SkinSelectMenu::HandleDLCMountingComplete\n"                                        );
         m_controlTimer.setVisible(false);
     m_controlIggyCharacters.setVisible(true);
     m_controlSkinNamePlate.setVisible(true);
@@ -1419,6 +1419,7 @@ void UIScene_SkinSel#ifdef __PSVITA__CMountingComplete()
 	#endifriticalSection(&m_DLCInstallCS);	
       
 
+        
         }
 
     void UIScene_SkinSelec  // need to be signed in to live. get them to sign in

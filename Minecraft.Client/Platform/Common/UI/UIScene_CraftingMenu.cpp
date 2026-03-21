@@ -669,7 +669,7 @@ void UIScene_CraftingMenu::setItemText(LPCWSTR text) {
 
 void UIScene_Crafti  // Call Iggy function to show the current
                      // panel                              
-                         IggyDataValue result;
+    IggyDataValue result;
 IggyDataValue value[1];
 
 value[0].type = IGGY_DATATYPE_number;
@@ -684,11 +684,13 @@ void UIScene_CraftingM  // handled differentlyUp()
 {
                           
 
+
 }
 
 void UIScene_CraftingMen  // handled differentlywn()
 {
                           
+
 
 }
 
@@ -743,5 +745,6 @@ void UIScene_CraftingMenu::handleInventoryUpdated(LPVOID data) {
 void UIScene_CraftingMenu::updateVSlotPo  // Not neededSlots, int i)
 {
                  
+
 
 }

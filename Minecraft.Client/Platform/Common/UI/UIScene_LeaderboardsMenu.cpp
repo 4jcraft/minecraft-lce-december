@@ -801,7 +801,7 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
             while (uiVal != 0) {
             uiVal /= 10;
             iDigitC++;
-#ifdef _DEBUG      //app.DebugPrintf("Value - %d\n",leaderboardEntry->m_columns[i]); #endif     
+#ifdef _DEBUG        //app.DebugPrintf("Value - %d\n",leaderboardEntry->m_columns[i]); #endif     
             if (iDigitC < 4) {  // m	    
                                 swprintf(leaderboardEntry->m_wcColumns[i], "%um"     , leaderboardEntry->m_columns[#ifdef _DEBUG     //app.DebugPrintf("Display - %um\n", leaderboardEntry->m_columns[i]); #endif     
             } else if (iDigitC < 8) {  // km with a .X     
@@ -810,7 +810,7 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
                                 swprintf(leaderboardEntry->m_wcColumns[i], "%.0fkm"     , ((float)leaderboardEntry->m_columns[i])/1000#ifdef _DEBUG     //app.DebugPrintf("Display - %.0fkm\n", ((float)leaderboardEntry->m_columns[i])/1000.f); #endif     
             }
 
-#ifdef _DURANGO    //Is the player     
+#ifdef _DURANGO      //Is the player     
             PlayerUID myXuid;
             ProfileManager.GetXUID(ProfileManager.GetPrimaryPad(), &myXuid,
                                    true);
@@ -824,7 +824,7 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
                 leaderboardEntry->m_bOnline = false;
                 leaderboardEntry->m_bFriend = false;
                 leaderboardEntry->m_bRequestedFriend = fa
-#ifdef _XBOX     //Check for friend status     
+#ifdef _XBOX       //Check for friend status     
                     for (unsigned int friendIndex = 0;
                          friendIndex < m_numFriends; ++friendIndex) {
                     if (m_friends[friendIndex].xuid == statsRow->m_uid) {
@@ -850,188 +850,206 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
 
                 }
 
-                void UIScene_LeaderboardsMenu::PopulateLeaderboard(
-                    LeaderboardManager::eStatsReturn ret) {
-                    int iValidSlots = SetLeaderboardTitleIcons();
-                    if (ret == LeaderboardManager::eStatsReturn_Success &&
-                        m_leaderboard.m_totalEntryCount > 0) {
-                        m_listEntries.setupTitles(
-                            app.GetString(IDS_LEADERBOARD_RANK),
-                            app.GetString(
-                                IDS_LEADERBOARD_GAMERTAG))  // Update entries
-                                                            // display     
-                            wchar_t entriesBuffer[40];
-                        if (app.DebugSettingsOn() &&
-                            (app.GetGameSettingsDebugMask() &
-                             (1L << eDebugSetting_DebugLeaderboards))) {
-                            swprintf(entriesBuffer, "%ls12345678"     ,
-                                     app.GetString(IDS_LEADERBOARD_ENTRIES));
-                        } else {
-                            swprintf(entriesBuffer, "%ls%i"     ,
-                                     app.GetString(IDS_LEADERBOARD_ENTRIES),
-                                     m_leaderboard.m_totalEntryCount);
-                        }
-
-                        m_labelEntries.setLabel(entriesBuffer);
-                        m_labelInfo.setLa "" l(L  );
-                        m_labelInfo.setVisible(false);
-
-                        m_listEntries.initLeaderboard(
-                            m_newSel, m_leaderboard.m_totalEntryCount,
-                            LEADERBOARD_DESCRIPTORS[m_currentLeaderboard]
-                                                   [m_currentDifficulty]
-                                                       .m_columnCount);
-
-                        int startIndex = m_newEntryIndex;
-                        int entryCount = m_newEntriesCount;
-
-                        for (DWORD i = startIndex;
-                             i < (startIndex + entryCount); ++i) {
-                            bool isLast = i == ((startIndex + entryCount) - 1);
-
-                            int idsErrorMessage =
-                                m_leaderboard.m_entries[i].m_idsErrorMessage;
-
-                            if (idsErrorMessage > 0) {
-                                m_listEntries.addDataSet(
-                                    isLast, m_leaderboard.m_entries[i].m_row,
-                                    m_leaderboard.m_entries[i].m_rank,
-                                    m_leaderboard.m_entries[i].m_gamerTag,
-
-                                    t  // 4J-JEV: Has error message to
-                                       // display.     
-
-                                           app.GetString(idsErrorMessage),
-                                    ""
-                                    L"",
-                                    L"", L"", L"", L"", L  
-				);
+                    void UIScene_LeaderboardsMenu::PopulateLeaderboard(
+                        LeaderboardManager::eStatsReturn ret) {
+                        int iValidSlots = SetLeaderboardTitleIcons();
+                        if (ret == LeaderboardManager::eStatsReturn_Success &&
+                            m_leaderboard.m_totalEntryCount > 0) {
+                            m_listEntries.setupTitles(
+                                app.GetString(IDS_LEADERBOARD_RANK),
+                                app.GetString(
+                                    IDS_LEADERBOARD_GAMERTAG))  // Update
+                                                                // entries
+                                                                // display     
+                                wchar_t entriesBuffer[40];
+                            if (app.DebugSettingsOn() &&
+                                (app.GetGameSettingsDebugMask() &
+                                 (1L << eDebugSetting_DebugLeaderboards))) {
+                                swprintf(
+                                    entriesBuffer, "%ls12345678"     ,
+                                    app.GetString(IDS_LEADERBOARD_ENTRIES));
                             } else {
-                                m_listEntries.addDataSet(
-                                    isLast, m_leaderboard.m_entries[i].m_row,
-                                    m_leaderboard.m_entries[i].m_rank,
-                                    m_leaderboard.m_entries[i].m_gamerTag,
-
-                                    // 4J-TomK | The bDisplayMessage Flag
-                                    // defines if Leaderboard Data should be
-                                    //       displayed (false) or if a specific
-                                    // message (true - when data is private for
-                                    // example)       should be displayed. The
-                                    // message itself should be passed on in
-                                    // col0!     
-                                    false,
-
-                                    m_leaderboard.m_entries[i].m_wcColumns[0],
-                                    m_leaderboard.m_entries[i].m_wcColumns[1],
-                                    m_leaderboard.m_entries[i].m_wcColumns[2],
-                                    m_leaderboard.m_entries[i].m_wcColumns[3],
-                                    m_leaderboard.m_entries[i].m_wcColumns[4],
-                                    m_leaderboard.m_entries[i].m_wcColumns[5],
-                                    m_leaderboard.m_entries[i].m_wcColumns[6]);
+                                swprintf(entriesBuffer, "%ls%i"     ,
+                                         app.GetString(IDS_LEADERBOARD_ENTRIES),
+                                         m_leaderboard.m_totalEntryCount);
                             }
-                        }
-                    } else {
-                        m_listEntries.setupTitl ""(
-                            L"", L   )  // Update entries display (to zero)     
-                            wchar_t entriesBuffer[40];
-                        swprintf(entriesBuffer, "%ls0"     ,
-                                 app.GetString(IDS_LEADERBOARD_ENTRIES));
-                        m_labelEntries
-                            .setLabel(
-                                entriesBuffer)  // Show the no results
-                                                // message #if !(defined(_XBOX)
-                                                // || defined(_WINDOWS64)) // 4J
-                                                // Stu - Temp to get the win
-                                                // build running, but so we
-                                                // check this for other
-                                                // platforms     
-                            if (ret ==
-                                LeaderboardManager::eStatsReturn_NetworkError)
-                                m_labelInfo.setLabel(
-                                    app.GetString(IDS_ERROR_NETWORK));
+
+                            m_labelEntries.setLabel(entriesBuffer);
+                            m_labelInfo.setLa "" l(L  );
+                            m_labelInfo.setVisible(false);
+
+                            m_listEntries.initLeaderboard(
+                                m_newSel, m_leaderboard.m_totalEntryCount,
+                                LEADERBOARD_DESCRIPTORS[m_currentLeaderboard]
+                                                       [m_currentDifficulty]
+                                                           .m_columnCount);
+
+                            int startIndex = m_newEntryIndex;
+                            int entryCount = m_newEntriesCount;
+
+                            for (DWORD i = startIndex;
+                                 i < (startIndex + entryCount); ++i) {
+                                bool isLast =
+                                    i == ((startIndex + entryCount) - 1);
+
+                                int idsErrorMessage = m_leaderboard.m_entries[i]
+                                                          .m_idsErrorMessage;
+
+                                if (idsErrorMessage > 0) {
+                                    m_listEntries.addDataSet(
+                                        isLast,
+                                        m_leaderboard.m_entries[i].m_row,
+                                        m_leaderboard.m_entries[i].m_rank,
+                                        m_leaderboard.m_entries[i].m_gamerTag,
+
+                                        t  // 4J-JEV: Has error message to
+                                           // display.     
+
+                                            app.GetString(idsErrorMessage),
+                                        ""
+                                        L"",
+                                        L"", L"", L"", L"", L  
+				);
+                                } else {
+                                    m_listEntries.addDataSet(
+                                        isLast,
+                                        m_leaderboard.m_entries[i].m_row,
+                                        m_leaderboard.m_entries[i].m_rank,
+                                        m_leaderboard.m_entries[i].m_gamerTag,
+
+                                        // 4J-TomK | The bDisplayMessage Flag
+                                        // defines if Leaderboard Data should be
+                                        //       displayed (false) or if a
+                                        // specific message (true - when data is
+                                        // private for example)       should be
+                                        // displayed. The message itself should
+                                        // be passed on in col0!     
+                                        false,
+
+                                        m_leaderboard.m_entries[i]
+                                            .m_wcColumns[0],
+                                        m_leaderboard.m_entries[i]
+                                            .m_wcColumns[1],
+                                        m_leaderboard.m_entries[i]
+                                            .m_wcColumns[2],
+                                        m_leaderboard.m_entries[i]
+                                            .m_wcColumns[3],
+                                        m_leaderboard.m_entries[i]
+                                            .m_wcColumns[4],
+                                        m_leaderboard.m_entries[i]
+                                            .m_wcColumns[5],
+                                        m_leaderboard.m_entries[i]
+                                            .m_wcColumns[6]);
+                                }
+                            }
+                        } else {
+                            m_listEntries.setupTitl ""(
+                                L"",
+                                L   )  // Update entries display (to zero)     
+                                wchar_t entriesBuffer[40];
+                            swprintf(entriesBuffer, "%ls0"     ,
+                                     app.GetString(IDS_LEADERBOARD_ENTRIES));
+                            m_labelEntries
+                                .setLabel(
+                                    entriesBuffer)  // Show the no results
+                                                    // message #if
+                                                    // !(defined(_XBOX)
+                                                    // || defined(_WINDOWS64))
+                                                    // // 4J Stu - Temp to get
+                                                    // the win build running,
+                                                    // but so we check this for
+                                                    // other platforms     
+                                if (ret == LeaderboardManager::
+                                               eStatsReturn_NetworkError)
+                                    m_labelInfo.setLabel(
+                                        app.GetString(IDS_ERROR_NETWORK));
 #endif      
 			m_labelInfo.setLabel( \
     app.GetString(IDS_LEADERBOARD_NORESULTS));
-                        m_labelInfo.setVisible(true);
+                            m_labelInfo.setVisible(true);
+                        }
+                        m_bPopulatedOnce = true;
                     }
-                    m_bPopulatedOnce = true;
+
+                    void UIScene_LeaderboardsMenu::SetLeaderboardHeader() {
+                        m_labelLeaderboard.setLabel(app.GetString(
+                            LEADERBOARD_DESCRIPTORS[m_currentLeaderboard]
+                                                   [m_currentDifficulty]
+                                                       .m_title));
+                    }
+
+                    int UIScene_LeaderboardsMenu::SetLeaderboardTitleIcons() {
+                        int iValidIcons = 0;
+
+                        for (int i = 0; i < 7; i++) {
+                            if (TitleIcons[m_currentLeaderboard][i] == 0)
+                            // m_pHTitleIconSlots[i]->SetShow(FALSE);     
+                        }
+                        else {
+                            iValidIcons++;
+                            m_listEntries.setColumnIcon(
+                                i, TitleIcons[m_currentLeaderboard][i]);
+                        }
+                    }
+
+                    return iValidIcons;
                 }
 
-                void UIScene_LeaderboardsMenu::SetLeaderboardHeader() {
-                    m_labelLeaderboard.setLabel(app.GetString(
-                        LEADERBOARD_DESCRIPTORS[m_currentLeaderboard]
-                                               [m_currentDifficulty]
-                                                   .m_title));
+                void UIScene_LeaderboardsMenu::customDraw(
+                    IggyCustomDrawCallbackRegion * region) {
+                    int slotId = -1;
+                    swscanf((wchar_t*)region->n "slot_%d"     , &slotId);
+                    if (slotId == -1)
+                    // app.DebugPrintf("This is not the control we are looking
+                    // for\n");     
                 }
-
-                int UIScene_LeaderboardsMenu::SetLeaderboardTitleIcons() {
-                    int iValidIcons = 0;
-
-                    for (int i = 0; i < 7; i++) {
-                        if (TitleIcons[m_currentLeaderboard][i] == 0)
-                        // m_pHTitleIconSlots[i]->SetShow(FALSE);     
-                    }
-                    else {
-                        iValidIcons++;
-                        m_listEntries.setColumnIcon(
-                            i, TitleIcons[m_currentLeaderboard][i]);
-                    }
-                }
-
-                return iValidIcons;
-            }
-
-            void UIScene_LeaderboardsMenu::customDraw(
-                IggyCustomDrawCallbackRegion * region) {
-                int slotId = -1;
-                swscanf((wchar_t*)region->n "slot_%d"     , &slotId);
-                if (slotId == -1)
-                // app.DebugPrintf("This is not the control we are looking
-                // for\n");     
-            }
-            else {
-                std::shared_ptr<ItemInstance> item =
-                    std::shared_ptr<ItemInstance>(new ItemInstance(
-                        TitleIcons[m_currentLeaderboard][slotId], 1, 0));
-                customDrawSlotControl(region, m_iPad, item, 1.0f, false, false);
-            }
-        }
-
-        void UIScene_LeaderboardsMenu::handleSelectionChanged(F64 selectedId) {
-            ui.PlayUISFX(eSFX_Focus);
-            m_newSel = (int)selectedId;
-            update  // Handle a request from Iggy for more data               
-                void UIScene_LeaderboardsMenu::handleRequestMoreData(
-                    F64 startIndex, bool up) {
-                unsigned int item = (int)startIndex;
-
-                if (m_leaderboard.m_totalEntryCount > 0 &&
-                    (item + 1) < GetEntryStartIndex()) {
-                    if (LeaderboardManager::Instance()->isIdle()) {
-                        int readIndex = (GetEntryStartIndex() + 1) - READ_SIZE;
-                        if (readIndex <= 0) readIndex = 1;
-                        assert(readIndex >= 1 &&
-                               readIndex <=
-                                   (int)m_leaderboard.m_totalEntryCount);
-                        ReadStats(readIndex);
-                    }
-                } else if (m_leaderboard.m_totalEntryCount > 0 &&
-                           (item + 1) >= (GetEntryStartIndex() +
-                                          m_leaderboard.m_entries.size())) {
-                    if (LeaderboardManager::Instance()->isIdle()) {
-                        int readIndex = (GetEntryStartIndex() + 1) +
-                                        m_leaderboard.m_entries.size();
-                        assert(readIndex >= 1 &&
-                               readIndex <=
-                                   (int)m_leaderboard.m_totalEntryCount);
-                        ReadStats(readIndex);
-                    }
+                else {
+                    std::shared_ptr<ItemInstance> item =
+                        std::shared_ptr<ItemInstance>(new ItemInstance(
+                            TitleIcons[m_currentLeaderboard][slotId], 1, 0));
+                    customDrawSlotControl(region, m_iPad, item, 1.0f, false,
+                                          false);
                 }
             }
 
-            void UIScene_LeaderboardsMenu::
-                handleTimerComp #if (defined __PS3__ || defined __ORBIS__ ||
-                                     defined __PSVITA__)               
+            void UIScene_LeaderboardsMenu::handleSelectionChanged(
+                F64 selectedId) {
+                ui.PlayUISFX(eSFX_Focus);
+                m_newSel = (int)selectedId;
+                update  // Handle a request from Iggy for more
+                        // data               
+                    void UIScene_LeaderboardsMenu::handleRequestMoreData(
+                        F64 startIndex, bool up) {
+                    unsigned int item = (int)startIndex;
+
+                    if (m_leaderboard.m_totalEntryCount > 0 &&
+                        (item + 1) < GetEntryStartIndex()) {
+                        if (LeaderboardManager::Instance()->isIdle()) {
+                            int readIndex =
+                                (GetEntryStartIndex() + 1) - READ_SIZE;
+                            if (readIndex <= 0) readIndex = 1;
+                            assert(readIndex >= 1 &&
+                                   readIndex <=
+                                       (int)m_leaderboard.m_totalEntryCount);
+                            ReadStats(readIndex);
+                        }
+                    } else if (m_leaderboard.m_totalEntryCount > 0 &&
+                               (item + 1) >= (GetEntryStartIndex() +
+                                              m_leaderboard.m_entries.size())) {
+                        if (LeaderboardManager::Instance()->isIdle()) {
+                            int readIndex = (GetEntryStartIndex() + 1) +
+                                            m_leaderboard.m_entries.size();
+                            assert(readIndex >= 1 &&
+                                   readIndex <=
+                                       (int)m_leaderboard.m_totalEntryCount);
+                            ReadStats(readIndex);
+                        }
+                    }
+                }
+
+                void UIScene_LeaderboardsMenu::
+                    handleTimerComp #if (defined __PS3__ || defined __ORBIS__ ||
+                                         defined __PSVITA__)               
 	switch (id) {
         case PLAYER_ON#ifndef _WINDOWS64               
 		if(ProfileManager.IsSignedInLive(ProfileManager.GetPrimaryPad())=// check the player hasn't gone offline    // If they have, bring up the PSN warning and exit from the leaderboards               
@@ -1054,4 +1072,4 @@ int UIScene_LeaderboardsMenu::GetEntryStartIndex()
 {
 	return m_leaderboard.m_entries.size() == 0 ? 0 :
             m_leaderboard.m_entries[0].m_row;
-            }
+                }

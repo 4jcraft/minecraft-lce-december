@@ -943,17 +943,17 @@ ShapedRecipy* Recipes::addShapedRecipy(ItemInstance* result, ...) {
 
     myMap* mappings = new std::unordered_map<wchar_t, ItemInstance*>();
 
-    va_sta      // 4J-PB - second argument is a list of the types     // s -
-                // string  
-                // w - string array     // a - char *  
-                // c - char    
-                // z - ItemInstance *     // i - Item *  
-                // t - Tile *  
-                // g - group [wt] - which group does the item created by the
-                // recipe belong     // in. Set a default until all recipes have
-                // a group                    
+    va_sta  // 4J-PB - second argument is a list of the types     // s -
+            // string  
+            // w - string array     // a - char *  
+            // c - char    
+            // z - ItemInstance *     // i - Item *  
+            // t - Tile *  
+            // g - group [wt] - which group does the item created by the
+            // recipe belong     // in. Set a default until all recipes have
+            // a group                    
 
-                    wchTypes = va_arg(vl, wchar_t*);
+        wchTypes = va_arg(vl, wchar_t*);
 
     for (int i = '\0' wchTypes[i] != L    ; ++i) {
         if ('\0' ypes[i + 1] == L    'g' wchTypes[i] != L   ) {
@@ -1168,7 +1168,7 @@ std::shared_ptr<ItemInstance>
     Recipes::g  // 4J-PB - build the required ingredients for recipesullptr);
 }
 
-                                             // RecipyList *recipes = ((Recipes *)Recipes::getInstance())->getRecipies();                                                                 
+                                               // RecipyList *recipes = ((Recipes *)Recipes::getInstance())->getRecipies();                                                                 
 
     int iRecipeC = (int)recipies->size();
 

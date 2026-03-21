@@ -275,7 +275,7 @@ void CConsoleMinecraftApp::FreeLocalTMSFiles(eTMSFileType eType) {}
 
 void CConsoleMinecraftApp::TemporaryCreateGameStart() {
     //////////////////////////////////////////////////////////////////////////////////////////////
-    ///From CScene_Main::OnInit
+    /// From CScene_Main::OnInit
 
     app.setLevelGenerationOptions(NULL);
 
@@ -287,7 +287,7 @@ void CConsoleMinecraftApp::TemporaryCreateGameStart() {
     app.ApplyGameSettingsChanged(0);
 
     //////////////////////////////////////////////////////////////////////////////////////////////
-    ///From CScene_MultiGameJoinLoad::OnInit
+    /// From CScene_MultiGameJoinLoad::OnInit
     MinecraftServer::resetFlags();
 
     // From CScene_MultiGameJoinLoad::OnNotifyPressEx
@@ -295,7 +295,7 @@ void CConsoleMinecraftApp::TemporaryCreateGameStart() {
     app.SetCorruptSaveDeleted(false);
 
     //////////////////////////////////////////////////////////////////////////////////////////////
-    ///From CScene_MultiGameCreate::CreateGame
+    /// From CScene_MultiGameCreate::CreateGame
 
     app.ClearTerrainFeaturePosition();
     std::wstring wWorldName = L"TestWorld";

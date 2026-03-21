@@ -439,6 +439,7 @@ void ConsoleSaveFileSplit::_init(const std::wstring& fileName,
         __debu#endif();
       
     
+
 }
 
 unsigned int pagesRequired = (heapSize + (CSF_PAGE_SIZE - 1)) / CSF_PAGE_SIZE;
@@ -448,6 +449,7 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
     if (pvRet =#ifndef _CONTENT_PACKAGE         // Out of physical memory          
         __debu#endif();
       
+    
     
     }
     pagesCommitted = pagesRequired;
@@ -672,12 +674,12 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                 memcpy(
                     fileRef->data + file->currentFilePointer, lpBuffer,
                     nNumberOfBytesToWrite);  //		app.DebugPrintf(">>>>>>>>>>>>>>
-                                             //writing a region
-                                             //file's         //data 0x%.8x,
-                                             //0x%x offset %d of %d bytes
+                                             // writing a region
+                                             // file's         //data 0x%.8x,
+                                             // 0x%x offset %d of %d bytes
                                              //(writing
                                              //%d         //bytes)\n",file->data.regionIndex,fileRef->data,file->currentFilePointer,         //file->getFileSize(),
-                                             //nNumberOfBytesToWrite);          
+                                             // nNumberOfBytesToWrite);          
 
                 file->currentFilePointer += nNumberOfBytesToWrite;
                 file->updateLastModifiedTime();
@@ -694,10 +696,8 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                               // file->currentFilePointer,         //
                                               // writeStartOffset);          
 
-                                                  memcpy(
-                                                      (void*)writeStartOffset,
-                                                      lpBuffer,
-                                                      nNumberOfBytesToWrite);
+                        memcpy((void*)writeStartOffset, lpBuffer,
+                               nNumberOfBytesToWrite);
                 *lpNumberOfBytesWritten = nNumberOfBytesToWrite;
 
                 if (file->data.length < 0) file->data.length = 0;
@@ -742,12 +742,12 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                 memset(
                     fileRef->data + file->currentFilePointer, 0,
                     nNumberOfBytesToWrite);  //		app.DebugPrintf(">>>>>>>>>>>>>>
-                                             //writing a region
-                                             //file's         //data 0x%.8x,
-                                             //0x%x offset %d of %d bytes
+                                             // writing a region
+                                             // file's         //data 0x%.8x,
+                                             // 0x%x offset %d of %d bytes
                                              //(writing
                                              //%d         //bytes)\n",file->data.regionIndex,fileRef->data,file->currentFilePointer,         //file->getFileSize(),
-                                             //nNumberOfBytesToWrite);          
+                                             // nNumberOfBytesToWrite);          
 
                 file->currentFilePointer += nNumberOfBytesToWrite;
                 file->updateLastModifiedTime();
@@ -764,9 +764,8 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                               // file->currentFilePointer,         //
                                               // writeStartOffset);          
 
-                                                  memset(
-                                                      (void*)writeStartOffset,
-                                                      0, nNumberOfBytesToWrite);
+                        memset((void*)writeStartOffset, 0,
+                               nNumberOfBytesToWrite);
                 *lpNumberOfBytesWritten = nNumberOfBytesToWrite;
 
                 if (file->data.length < 0) file->data.length = 0;
@@ -822,8 +821,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                               // file->currentFilePointer,         //
                                               // readStartOffset);          
 
-                                                  assert(nNumberOfBytesToRead <=
-                                                         file->getFileSize());
+                        assert(nNumberOfBytesToRead <= file->getFileSize());
 
                 actualBytesToRead = nNumberOfBytesToRead;
                 if (file->currentFilePointer + nNumberOfBytesToRead >
@@ -960,12 +958,12 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
 
                                                 regionRef
                                                     ->Compr  //		app.DebugPrintf("Tick:
-                                                             //Writing region
-                                                             //0x%.8x,
-                                                             //compressed         //as
+                                                             // Writing region
+                                                             // 0x%.8x,
+                                                             // compressed         //as
                                                              //%d
-                                                             //bytes\n",regionRef->fileEntry->getRegionFileIndex(),         //regionRef->dataCompressedSize);               
-                                                                 StorageManager
+                                                             // bytes\n",regionRef->fileEntry->getRegionFileIndex(),         //regionRef->dataCompressedSize);               
+                                                        StorageManager
                                                     .UpdateSubfile(
                                                         regionRef->index,
                                                         regionRef
@@ -1017,6 +1015,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                           WRITE_BANDWIDTH_MEASUREMENT_PERIOD_SECONDS) /
                              (#endif 1024))#endif  
     
+                                                        
                                                         }
                                                               
 
@@ -1044,11 +1043,10 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                             DWORD
                                                                 nNumberOfBytesToWrite) {
                                                         DWORD
-                                                            numberOfBytesRead =
-                                                                0;
+                                                        numberOfBytesRead = 0;
                                                         DWORD
-                                                            numberOfBytesWritten =
-                                                                0;
+                                                        numberOfBytesWritten =
+                                                            0;
 
                                                         const DWORD bufferSize =
                                                             4096;
@@ -1063,23 +1061,23 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                             buffer2[bufferSize];
                                                         DWORD buffer1Size = 0;
                                                         DWORD
-                                                            buffer2  // Only
-                                                                     // ReAlloc
-                                                                     // if we
-                                                                     // need to
-                                                                     // (we
-                                                                     // might
-                                                                     // already
-                                                                     // have
-                                                                     // enough)
-                                                                     // and
-                                                                     // align
-                                                                     // to     //
-                                                                     // 512 byte
-                                                                     // boundaries               
-                                                                         DWORD currentHeapSize =
-                                                                             pagesCommitted *
-                                                                             CSF_PAGE_SIZE;
+                                                        buffer2  // Only
+                                                                 // ReAlloc
+                                                                 // if we
+                                                                 // need to
+                                                                 // (we
+                                                                 // might
+                                                                 // already
+                                                                 // have
+                                                                 // enough)
+                                                                 // and
+                                                                 // align
+                                                                 // to     //
+                                                                 // 512 byte
+                                                                 // boundaries               
+                                                            DWORD currentHeapSize =
+                                                                pagesCommitted *
+                                                                CSF_PAGE_SIZE;
 
                                                         DWORD desiredSize =
                                                             header
@@ -1512,15 +1510,15 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
 
         if (updateThumbnail) {
                                                             PBYTE
-                                                                pbThumbnailData =
-                                                                    NULL;
+                                                            pbThumbnailData =
+                                                                NULL;
                                                             DWORD
-                                                                dwThumbnailDataSize =
-                                                                    0;
+                                                            dwThumbnailDataSize =
+                                                                0;
 
                                                             PBYTE
-                                                                pbDataSaveImage =
-                                                                    NULL;
+                                                            pbDataSaveImage =
+                                                                NULL;
 
 #if (defined _XBOX || defined _DURANGO)                                        
             app.GetSaveThumbnail(&#elif (defined __PS3__ || defined __ORBIS__)                                        
@@ -1847,11 +1845,10 @@ int ConsoleSaveFileSplit::getSaveVersion() {
                                                         ConvertRegionFile(
                                                             File sourceFile) {
                                                         DWORD
-                                                            numberOfBytesWritten =
-                                                                0;
+                                                        numberOfBytesWritten =
+                                                            0;
                                                         DWORD
-                                                            numberOfBytesRead =
-                                                                0;
+                                                        numberOfBytesRead = 0;
 
                                                         RegionFile
                                                             sourceRegionFile(
@@ -1903,10 +1900,11 @@ int ConsoleSaveFileSplit::getSaveVersion() {
                                                                            // back
                                                                            // out
                                                                            // tourceRegionFile
-                                                                               .writeA  // the file (not all of these are written in the                 
-                                                                                        // above processing).                                            
+                                                                        .writeA  // the file (not all of these are written in the                 
+                                                                                 // above processing).                                            
                                                   
 
+                                                                
                                                                 }
 
                                                                 void
@@ -1973,4 +1971,5 @@ int ConsoleSaveFileSplit::getSaveVersion() {
         // now that it's been coverted);                                                         
                                                        
 
+                                                                
                                                                 }

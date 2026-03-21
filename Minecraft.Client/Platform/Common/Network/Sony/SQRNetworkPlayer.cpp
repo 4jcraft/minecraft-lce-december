@@ -518,6 +518,7 @@ void SQRNetworkPlayer::SetNameFromUID() {
         swprintf(&m_name[pos], " (%d)"     ,
                  m_ISD.m_UID.getQuadrant() + 1) #endif      
 
+    
     }
 
     void SQRNetworkPlayer::SetName(char* name) {
@@ -534,12 +535,14 @@ bool SQRNetworkPlayer::HasVoice#ifdef __ORBIS__     
 	return SonyVoiceChat_Vita::hasMicConnected(th#else     
 	return SonyVoiceChat::hasMicConnected(&m_roomMember#endif     
 
+
 }
 
 bool SQRNetworkPlayer::IsTalking#ifdef __ORBIS__     
 	return SonyVoiceChat_Orbis::isTalking(th#elif defined __PSVITA__     
 	return SonyVoiceChat_Vita::isTalking(th#else     
 	return SonyVoiceChat::isTalking(&m_roomMember#endif     
+
 
 }
 
@@ -548,5 +551,6 @@ bool SQRNetworkPlayer::IsMutedByLocalUser(int userInde#ifdef __ORBIS__ // 	asser
 	return f// this is never called, so isn't implemented in the Vita voice stuff at the moment #else     
 	SQRNetworkManager_PS3* pMan = (SQRNetworkManager_PS3*)m_manager;
 	return SonyVoiceChat::isMutedPlayer(pMan->m_roomSyncData.players[userIndex].m_roomMember#endif     
+
 
 }

@@ -543,7 +543,7 @@ void UILayer::removeComponent(EUIScene scene) {
 					m_scenesToDelete
                     .push_  // For anything that might require the pointer be
                             // valid                                                  
-                                compIt = m_components.erase(compIt);
+                        compIt = m_components.erase(compIt);
             }
             else {
                 ++compIt;
@@ -564,7 +564,7 @@ void UILayer::removeComponent(EUIScene scene) {
         m_scenesToD  // For anything that might require the pointer be
                      // valid                                                  
 
-                         b  // If this layer has focus, pass it onsState();
+            b  // If this layer has focus, pass it onsState();
 
 	                                      
 	if (m_hasFocus || hadFocus) {
@@ -601,7 +601,7 @@ void UILayer::removeComponent(EUIScene scene) {
                         // = false */::upd// If haveFocus is false, request
                         // it         )
                         {
-                                          // To update focus in this layer we need to request focus from group   // Focus will be denied if there's an upper layer that needs focus                                                  
+                                            // To update focus in this layer we need to request focus from group   // Focus will be denied if there's an upper layer that needs focus                                                  
                                 allowedFocus =
                                     m_parentGroup->RequestFocus(this);
                         }

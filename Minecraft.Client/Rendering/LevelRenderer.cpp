@@ -161,7 +161,7 @@ LevelRenderer::LevelRenderer(Minecraft* mc, Textures* textures) {
         emptyChunks = 0;
     for (int i = 0; i < 4; i++) {
         //		sortedChunks[i] = NULL;	// 4J - removed - not sorting
-        //our chunks anymore
+        // our chunks anymore
         chunks[i] = ClipChunkArray();
         lastPlayerCount[i] = 0;
     }
@@ -380,7 +380,7 @@ void LevelRenderer::setLevel(int playerIndex, MultiPlayerLevel* level) {
         allChanged(playerIndex);
     } else {
         //		printf("NULLing player %d, chunks @
-        //0x%x\n",playerIndex,chunks[playerIndex]);
+        // 0x%x\n",playerIndex,chunks[playerIndex]);
         if (chunks[playerIndex].data != NULL) {
             for (unsigned int i = 0; i < chunks[playerIndex].length; i++) {
                 chunks[playerIndex][i].chunk->_delete();
@@ -390,8 +390,9 @@ void LevelRenderer::setLevel(int playerIndex, MultiPlayerLevel* level) {
             chunks[playerIndex].data = NULL;
             chunks[playerIndex].length = 0;
             //			delete sortedChunks[playerIndex];	// 4J -
-            //removed - not sorting our chunks anymore 			sortedChunks[playerIndex]
-            //= NULL;	// 4J - removed - not sorting our chunks anymore
+            // removed - not sorting our chunks anymore
+            // sortedChunks[playerIndex] = NULL;	// 4J - removed - not
+            //sorting our chunks anymore
         }
 
         // 4J Stu - If we do this for splitscreen players leaving, then all the
@@ -465,7 +466,7 @@ void LevelRenderer::allChanged(int playerIndex) {
 
     chunks[playerIndex] = ClipChunkArray(xChunks * yChunks * zChunks);
     //	sortedChunks[playerIndex] = new vector<Chunk *>(xChunks * yChunks *
-    //zChunks);		// 4J - removed - not sorting our chunks anymore
+    // zChunks);		// 4J - removed - not sorting our chunks anymore
     int id = 0;
     int count = 0;
 
@@ -496,8 +497,8 @@ void LevelRenderer::allChanged(int playerIndex) {
                     count++;
                 //				sortedChunks[playerIndex]->at((z
                 //* yChunks + y) * xChunks + x) = chunks[playerIndex]->at((z *
-                //yChunks + y) * xChunks + x);	// 4J - removed - not sorting
-                //our chunks anymore
+                // yChunks + y) * xChunks + x);	// 4J - removed - not sorting
+                // our chunks anymore
 
                 id += 3;
             }
@@ -511,9 +512,10 @@ void LevelRenderer::allChanged(int playerIndex) {
             this->resortChunks(
                 Mth::floor(player->x), Mth::floor(player->y),
                 Mth::floor(
-                    player->z))  //			sort(sortedChunks[playerIndex]->begin(),sortedChunks[playerIndex]->end(),
-                                 //DistanceChunkSorter(player));	// 4J -
-                                 //removed - not sorting our chunks anymore     
+                    player
+                        ->z))  //			sort(sortedChunks[playerIndex]->begin(),sortedChunks[playerIndex]->end(),
+                               // DistanceChunkSorter(player));	// 4J -
+                               // removed - not sorting our chunks anymore     
         }
     }
 
@@ -528,9 +530,9 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
             ->GetXboxPa  // 4J added   // 4J Stu - Set these up every time, even
                          // when not rendering as other things (like particle
                          // render) may depend on it for those frames.     
-                             TileEntityRenderDispatcher::instance->prepare(
-                                 level[playerIndex], textures, mc->font,
-                                 mc->cameraTargetPlayer, a);
+                TileEntityRenderDispatcher::instance->prepare(
+                    level[playerIndex], textures, mc->font,
+                    mc->cameraTargetPlayer, a);
     EntityRenderDispatcher::instance->prepare(
         level[playerIndex], textures, mc->font, mc->cameraTargetPlayer,
         mc->crosshairPickMob, mc->options, a);
@@ -759,8 +761,8 @@ int LevelRenderer::renderChunks(int from, int to, int layer, double alpha)
 #if 1 m  // 4J - cut down version, we're not using offsetted render lists, or a
          // sorted chunk list,
          // anymore                                             
-                            // 4J - brought forward from 1.8.2r(alpha);
-                            //                                   
+         // 4J - brought forward from 1.8.2r(alpha);
+         //                                   
                             std::shared_ptr<LivingEntity> player =
                                 mc->cameraTargetPlayer;
                             double xOff = player->xOld +
@@ -828,12 +830,12 @@ int LevelRenderer::renderChunks(int from, int to, int layer, double alpha)
 		if(RenderManager.CBuffCallCutOut(std::list, first))
 		{
 		// AP - back to normal mipmappinga#endifa
-#endif                           // __PS3__	                                 
+#endif                             // __PS3__	                                 
       
                   
 
 	g// 4J - brought forward from 1.8.2u
-#elseightLayer(alpha);		         // int p = 0;              
+#elseightLayer(alpha);		           // int p = 0;              
       
 	_renderChunks.clear();
 	             

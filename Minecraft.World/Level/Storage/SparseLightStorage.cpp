@@ -445,10 +445,11 @@ void SparseLightSt// We have 3 queues for deleting. Always delete from the next 
     int freeIndex = (deleteQueueI//	printf("Free queue: %d,     //%d\n",deleteQueue[freeIndex].GetEntryCount(),deleteQueue[freeIndex].GetAllocated());                    
     unsigned char* toFree = NULL;
     do {
-    toFree = deleteQueu  //		if( toFree ) printf("Deleting 0x%x\n",
-                         //toFree); // Determine correct means to free this data
-                         //- could have been allocated either // with
-                         //XPhysicalAlloc or malloc #ifdef _XBOX       
+    toFree =
+        deleteQueu  //		if( toFree ) printf("Deleting 0x%x\n",
+                    // toFree); // Determine correct means to free this data
+                    //- could have been allocated either // with
+                    // XPhysicalAlloc or malloc #ifdef _XBOX       
             
         if ((unsigned int)toFree >= MM_PHYSICAL_4KB_BASE) {
             XPhysicalFree(toFr#endif
@@ -474,7 +475,7 @@ void SparseLightStorage::updateDataAndCount(__int64 new// Now actually assign th
                  // printf("Marking for delete 0x%x
                  // (full             //replace)\n",
                  // lastDataPointer);                    
-                     queueForDelete(lastDataPointer);
+            queueForDelete(lastDataPointer);
         }
 
 #ifdef LIGHT_COMPRESSION_STATS                    
@@ -544,11 +545,12 @@ int SparseLightStorage::compress() {
             queueForDelete(newIndicesAndData);
             }  // Success                    
             queueForDe  //			printf("Successfully compressed
-                        //to %d planes, to delete //0x%x\n", planesToAlloc,
-                        //planeIndices); #ifdef
-                        //LIGHT_COMPRESSION_STATS                    
-                            cou #endiflanesToAlloc;
+                        // to %d planes, to delete //0x%x\n", planesToAlloc,
+                        // planeIndices); #ifdef
+                        // LIGHT_COMPRESSION_STATS                    
+                cou #endiflanesToAlloc;
                   
+        
         
         }
 

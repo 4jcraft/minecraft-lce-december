@@ -763,7 +763,7 @@ void ItemInHandRenderer::renderScreenEffect(float a) {
         MemSect(31);
         minecraft->textures->bindT  // 4J was L"/misc/water.png";
                                     //                             
-                                        MemSect(0);
+            MemSect(0);
         renderWater(a);
     }
     glEnable(GL_ALPHA_TEST);

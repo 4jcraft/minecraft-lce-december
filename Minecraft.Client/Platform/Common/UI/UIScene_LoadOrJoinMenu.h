@@ -264,7 +264,8 @@ private:
     static std::wstring m_wstrStageText;
     static bool m_bSaveTransferRunning;
     int m_iProgress;
-    char m_downloadedUniqueFilename[64];  // SCE_SAVE_DATA_DIRNAME_DATA_MAXSIZE];
+    char
+        m_downloadedUniqueFilename[64];  // SCE_SAVE_DATA_DIRNAME_DATA_MAXSIZE];
     bool m_saveTransferDownloadCancelled;
     void LaunchSaveTransfer();
     static int CreateDummySaveDataCallback(LPVOID lpParam, bool bRes);

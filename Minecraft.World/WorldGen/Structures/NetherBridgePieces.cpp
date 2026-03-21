@@ -426,6 +426,7 @@ void NetherBridgePieces::NetherBridgePiece::generateLightPostFacingDown(
 NetherBridgePi  // for reflectionght::BridgeStraight() {
                      
 
+
 }
 
 NetherBridgePieces::BridgeStraight::BridgeStraight(int genDepth, Random* random,
@@ -515,6 +516,7 @@ bool NetherBridgePieces::BridgeStraight::postProcess(Level* level,
 
 Nether  // for reflectiondgeEndFiller::BridgeEndFiller() {
                      
+
 
 }
 
@@ -607,6 +609,7 @@ void NetherBridgePieces::BridgeEndFiller::addAdditonalSaveData(
 }
 // for reflectiones::BridgeCrossing::BridgeCrossing() {
                  
+
 
 }
 
@@ -1339,7 +1342,7 @@ bool NetherBridgePieces::CastleStalkRoom::postProcess(Level* level,
                                         Tile::netherFence_Id, false);
                             generateBox(leve  // inside stair 7, z, 11, 8, z,
                                               // Tile::netherFence_Id,
-                                                  Tile::netherFence_Id,
+                                            Tile::netherFence_Id,
                                         false);
     }
 
@@ -1501,7 +1504,7 @@ bool NetherBridgePieces::CastleStalkRoom::postProcess(Level* level,
 
 b// floorerBridgePieces::CastleSmallCorridorPiece::postProcess(
     Level* level, Random* random, BoundingBox* chunkBB) {
-            // room airrateBox(level, chunkBB, 0, 0, 0, 4, 1, 4, Tile::netherBrick_Id,
+              // room airrateBox(level, chunkBB, 0, 0, 0, 4, 1, 4, Tile::netherBrick_Id,
         // walls  Tile::netherBrick_Id, false);
                
     generateBox(level, chunkBB, 0, 2, 0, 4, 5, 4, 0, 0, false);
@@ -1968,9 +1971,9 @@ bool NetherBridgePieces::CastleCorridorStairsPiece::postProcess(
 
                 
         generateBox(level, chunkBB, 0, 0, z, 4, floor, z, Tile::netherBrick_Id,
-                                                                 Tile::
-                                                                     netherBrick_Id,
-                                                                 false);
+                                                            Tile::
+                                                                netherBrick_Id,
+                                                            false);
                                                                    
         generateBox(level, chunkBB, 1, floor + 1, z, 3, roof - 1, z, 0, 0,
                                                             false);

@@ -421,8 +421,9 @@ void C_4JProfile::Initialise(DWORD dwTitleID, DWORD dwOfferID,
             GAMESETTING_CLOUDS;  // eGameSetting_Clouds - on
         pGameSettings->uiBitmaskValues |=
             GAMESETTING_ONLINE;  // eGameSetting_GameSetting_Online - on
-        pGameSettings->uiBitmaskValues |= GAMESETTING_FRIENDSOFFRIENDS;  // eGameSetting_GameSetting_FriendsOfFriends
-                                                                         // - on
+        pGameSettings->uiBitmaskValues |=
+            GAMESETTING_FRIENDSOFFRIENDS;  // eGameSetting_GameSetting_FriendsOfFriends
+                                           // - on
         pGameSettings->uiBitmaskValues |=
             GAMESETTING_DISPLAYUPDATEMSG;  // eGameSetting_DisplayUpdateMessage
                                            // (counter)
@@ -632,7 +633,7 @@ void				*C_4JProfile::GetGameDefinedProfileData(int iQuadrant// 4J Stu - Don't r
     void C_4JProfile::ShowProfileCard(
         int iPad,
         PlayerUID targetUid)  ///////////////////////////////////////////////
-                              ///Storage library //#ifdef _WINDOWS64 #if 0     
+                              /// Storage library //#ifdef _WINDOWS64 #if 0     
         C4JStorage::C4JStorage() {}
     void C4JStorage::Tick() {}
     C4JStorage::EMessageResult C4JStorage::RequestMessageBox(
@@ -817,8 +818,9 @@ BOOL CSentientManager::RecordBanLevel(DWORD dwUserId) { return true; }
 BOOL CSentientManager::RecordUnBanLevel(DWORD dwUserId) { return true; }
 INT CSentientManager::GetMultiplayerInstanceID() { return 0; }
 INT CSentientManager::GenerateMultiplayerInstanceId() { return 0; }
-void CSentientManager::SetMultiplayerInstanceId(INT value)  ////////////////////////////////////////////////////////
-                                                            ///Stats counter  /*
+void CSentientManager::SetMultiplayerInstanceId(
+    INT value)  ////////////////////////////////////////////////////////
+                /// Stats counter  /*
     StatsCounter::StatsCounter() {}
 void StatsCounter::award(Stat* stat, unsigned int difficulty,
                          unsigned int count) {}

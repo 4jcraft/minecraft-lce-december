@@ -128,7 +128,8 @@ SQRNetworkManager_Vita::SQRNetworkManager_Vita(
 
     // 	int ret = sceKernelCreateEqueue(&m_basicEventQueue,
     // "SQRNetworkManager_Vita EQ"); 	assert(ret == SCE_OK); 	ret =
-    // sceKernelAddUserEvent(m_basicEventQueue, sc_UserEventHandle); 	assert(ret
+    // sceKernelAddUserEvent(m_basicEventQueue, sc_UserEventHandle);
+    // assert(ret
     // == SCE_OK);
     //
     // 	m_basicEventThread = new C4JThread(&BasicEventThreadProc,this,"Basic
@@ -712,7 +713,8 @@ void SQRNetworkManager_Vita::FriendSearchTick(// Move onto next state if we're d
             PSVITA_STUBBED;
             return  // 	SQRNetworkManager_Vita *manager =
                     // (SQRNetworkManager_Vita *)lpParameter;  //
-                    // 	int ret = SCE_OK;  // 	SceKernelEvent event;  // 	int
+                    // 	int ret = SCE_OK;  // 	SceKernelEvent event;  //
+                    // int
             // outEv;  // 	do  // 	{  // 		ret =
             // sceKernelWaitEqueue(manager->m_basicEventQueue, &event, 1,
             // &outEv, NULL);  //
@@ -866,10 +868,8 @@ void SQRNetworkManager_Vita::FriendSearchTick(// Move onto next state if we're d
                         m_aFriendSearchResults[idx]
                             .m_RoomExtDataReceived  // Get overall state of the
                                                     // network manager.     
-                                                        SQRNetworkManager_Vita::
-                                                            eSQRNetworkManagerState
-                                                            SQRNetworkManager_Vita::
-                                                                GetState() {
+                                SQRNetworkManager_Vita::eSQRNetworkManagerState
+                                SQRNetworkManager_Vita::GetState() {
                         return m_stateExternal;
                         ;
                     }
@@ -1046,7 +1046,7 @@ void SQRNetworkManager_Vita::SetState(SQRNetworkManager_Vita::eSQRNetworkManager
                                 void SQRNetworkManager_Vita::ResetToIdle() {
                                     app.DebugPr
                                         "------------------ResetToIdle---------"
-                                        "-----------\n"      // If we're the client, remove any networked players properly ( this will destory their rupd context etc.)     
+                                        "-----------\n"        // If we're the client, remove any networked players properly ( this will destory their rupd context etc.)     
                                         if (!m_isHosting) {
                                         RemoveNetworkPlayers(
                                             (1 << MAX_LOCAL_PLAYER_COUNT) - 1);
@@ -1488,8 +1488,8 @@ void SQRNetworkManager_Vita::SendInviteGUI()
                                     // dialogParam.userId =
                                     // ProfileManager.getUserID(ProfileManager.GetPrimaryPad());  //
                                     // ret = sceGameCustomDataDialogOpen(
-                                    // &dialogParam );  // 		if( SCE_OK != ret
-                                    // )  // 		{  //
+                                    // &dialogParam );  // 		if(
+                                    // SCE_OK != ret )  // 		{  //
                                     // app.DebugPrintf("sceGameCustomDataDialogOpen()
                                     // failed. ret = 0x%x\n", ret);  //
                                     // }  // 		else  //
@@ -1517,13 +1517,12 @@ void SQRNetworkManager_Vita::SendInviteGUI()
                                         // sizeof(SceGameCustomDataDialogResult)
                                         // );  //
                                         // dialogResult.sentOnlineIds =
-                                        // &sentOnlineIdList;  // 			int32_t
-                                        // ret =
+                                        // &sentOnlineIdList;  //
+                                        // int32_t ret =
                                         // sceGameCustomDataDialogGetResult(
-                                        // &dialogResult );  // 			if( SCE_OK !=
-                                        // ret )  // 			{
-                                        //   //
-                                        // app.DebugPrintf( "*****
+                                        // &dialogResult );  //
+                                        // if( SCE_OK != ret )  //
+                                        // {   // app.DebugPrintf( "*****
                                         // sceGameCustomDataDialogGetResult
                                         // error:0x%x\n", ret);  //
                                         // }  //
@@ -1657,7 +1656,25 @@ void SQRNetworkManager_Vita::SendInviteGUI()
                                                         // message at some point
                                                         // for connecting when
                                                         // already signed
-                                                        // in    // if (ProfileManager.IsSignedInPSN(ProfileManager.GetPrimaryPad()))    // 		{    // 			// Signed in to PSN but not connected (no internet access)    // 			UINT uiIDA[1];    // 			uiIDA[0] = IDS_OK;    // 			ui.RequestMessageBox( IDS_ERROR_NETWORK_TITLE, IDS_ERROR_NETWORK, uiIDA, 1, ProfileManager.GetPrimaryPad(), NULL, NULL, app.GetStringTable());    // 		}    // 		else     
+                                                        // in    // if
+                                                        // (ProfileManager.IsSignedInPSN(ProfileManager.GetPrimaryPad()))    //
+                                                        // {    //
+                                                        // // Signed in to PSN
+                                                        // but not connected (no
+                                                        // internet
+                                                        // access)    //
+                                                        // UINT uiIDA[1];    //
+                                                        // uiIDA[0] =
+                                                        // IDS_OK;    //
+                                                        // ui.RequestMessageBox(
+                                                        // IDS_ERROR_NETWORK_TITLE,
+                                                        // IDS_ERROR_NETWORK,
+                                                        // uiIDA, 1,
+                                                        // ProfileManager.GetPrimaryPad(),
+                                                        // NULL, NULL,
+                                                        // app.GetStringTable());    //
+                                                        // }    //
+                                                        // else     
                                                 {  // Not signed in to PSN     
                                                     UINT uiIDA[1];
                                                     uiIDA[0] =
@@ -2611,7 +2628,7 @@ void SQRNetworkManager_Vita::SyncRoomData()
 	app.DebugPr"sceNpMatching2CreateContext\n"     );
         ret = sceNpMatching2CreateContext(
             &npId, &s_npCommunicationId, &s_npCommunicationPassphrase,
-            &m_matchingCo /*, option*/      //ret = sceNpMatching2CreateContext(&npId, NULL,NULL, &m_matchingContext/*, option*/);     
+            &m_matchingCo /*, option*/        //ret = sceNpMatching2CreateContext(&npId, NULL,NULL, &m_matchingContext/*, option*/);     
             if (ret < 0) {
                 app.DebugPr"SQRNetworkManager::GetMatchingContext - sceNpMatching2CreateContext failed with code 0x%08x\n"     , ret);
                 return false;
@@ -2816,8 +2833,8 @@ bool SQRNetworkManager_Vita::GetServerContext2()
                         optSignalingParam
                             .hubMemberId  // Room owner is the hub of the
                                           // star     
-                                              SetState(
-                                                  SNM_INT_STATE_HOSTING_CREATE_ROOM_CREATING_ROOM);
+                                SetState(
+                                    SNM_INT_STATE_HOSTING_CREATE_ROOM_CREATING_ROOM);
                         app.DebugPrintf(CMinecraftApp::USE
                                         ">> Creating room start\n"     );
                         s_roomStartTime = System::currentTimeMillis();
@@ -3437,39 +3454,42 @@ SQRNetworkPlayer *SQRNetworkManager_Vita::GetPlayerFromRoomMemberAndLocalIdx(int
                                                       // callback, so call it
                                                       // from the tick
                                                       // instead     
-                            m_bCallPSNSignInCallback = true  // 				if(s_SignInCompleteCallbackFn)    //
-                                                             // {    //
-                                                             // s_SignInCompleteCallbackFn(s_SignInCompleteParam,
-                                                             // true, 0);    //
-                                                             // s_SignInCompleteCallbackFn
-                                                             // = NULL;    //
-                                                             // }     
+                            m_bCallPSNSignInCallback =
+                                true  // 				if(s_SignInCompleteCallbackFn)    //
+                                      // {    //
+                                      // s_SignInCompleteCallbackFn(s_SignInCompleteParam,
+                                      // true, 0);    //
+                                      // s_SignInCompleteCallbackFn
+                                      // = NULL;    //
+                                      // }     
                                 // Check to see if we were booted from an
                                 // invite. Only do this once, the first time we
                                 // have all our networking stuff set up on
                                 // boot-up     
-                                if (manager->m_doBootInviteCheck) {  //					ORBIS_STUBBED;     //
-                                                                     //unsigned
-                                                                     //int type,
-                                                                     //attributes;     //
-                                                                     //CellGameContentSize
-                                                                     //gameSize;`     //
-                                                                     //char
-                                                                     //dirName[CELL_GAME_DIRNAME_SIZE];     //
-                                                                     //   //
-                                                                     //if(
-                                                                     //g_bBootedFromInvite
-                                                                     //)     //
-                                                                     //{     //
-                                                                     //manager->GetInviteDataAndProcess(SCE_NP_BASIC_SELECTED_INVITATION_DATA);     //
-                                                                     //manager->m_doBootInviteCheck
-                                                                     //= false;     // 					}     
+                                if (manager
+                                        ->m_doBootInviteCheck) {  //					ORBIS_STUBBED;     //
+                                                                  // unsigned
+                                                                  // int type,
+                                                                  // attributes;     //
+                                                                  // CellGameContentSize
+                                                                  // gameSize;`     //
+                                                                  // char
+                                                                  // dirName[CELL_GAME_DIRNAME_SIZE];     //
+                                                                  //    //
+                                                                  // if(
+                                                                  // g_bBootedFromInvite
+                                                                  //)     //
+                                                                  //{     //
+                                                                  // manager->GetInviteDataAndProcess(SCE_NP_BASIC_SELECTED_INVITATION_DATA);     //
+                                                                  // manager->m_doBootInviteCheck
+                                                                  //= false;     // 					}     
                             }
                         }
                         break;
                         case SCE_NP_MATCHING2_CONTEXT_EVENT_STOPPED:
                             app.DebugPr
-                                "SCE_NP_MATCHING2_CONTEXT_EVENT_STOPPED\n"       // Can happen when we stop the PSN to switch to adhoc mode   //assert(false);     
+                                "SCE_NP_MATCHING2_CONTEXT_EVENT_"
+                                "STOPPED\n"         // Can happen when we stop the PSN to switch to adhoc mode   //assert(false);     
                                 if (manager->m_state ==
                                     SNM_INT_STATE_HOSTING_CREATE_ROOM_RESTART_MATCHING_CONTEXT) {
                                 sceNpMatching2DestroyContext(
@@ -3507,11 +3527,12 @@ SQRNetworkPlayer *SQRNetworkManager_Vita::GetPlayerFromRoomMemberAndLocalIdx(int
                     }
 
                     LeaveCriticalSection(
-                        &manager->m_csMatching)  // This is an implementation of
-                                                 // SceNpMatching2RequestCallback.
-                                                 // This callback is used by
-                                                 // default for any matching 2
-                                                 // request functions.     
+                        &manager
+                             ->m_csMatching)  // This is an implementation of
+                                              // SceNpMatching2RequestCallback.
+                                              // This callback is used by
+                                              // default for any matching 2
+                                              // request functions.     
                         void SQRNetworkManager_Vita::DefaultRequestCallback(
                             SceNpMatching2ContextId id,
                             SceNpMatching2RequestId reqId,
@@ -3662,10 +3683,11 @@ SQRNetworkPlayer *SQRNetworkManager_Vita::GetPlayerFromRoomMemberAndLocalIdx(int
 
                         manager->m_localMemberId =
                             roomData->roomDataInternal->memberList.me->memberId;
-                        manager->m_room = roomData->roomDataInternal
-                                              ->roomId;  // 					SonyVoiceChat::init(manager);     //
-                                                         // Copy over initial
-                                                         // room sync data     
+                        manager->m_room =
+                            roomData->roomDataInternal
+                                ->roomId;  // 					SonyVoiceChat::init(manager);     //
+                                           // Copy over initial
+                                           // room sync data     
                         for (int i = 0;
                              i <
                              roomData->roomDataInternal->roomBinAttrInternalNum;
@@ -3847,7 +3869,7 @@ SQRNetworkPlayer *SQRNetworkManager_Vita::GetPlayerFromRoomMemberAndLocalIdx(int
                 break;
                                                                                                                                                                                                                     case SCE_NP_MATCHING2_REQUEST_EVENT_LEAVE_ROOM:
                                                                                                                                                                                                                         app.DebugPr
-                                                                                                                                                                                                                            "SCE_NP_MATCHING2_REQUEST_EVENT_LEAVE_ROOM\n"       // This is the response to sceNpMatching2LeaveRoom - from the Sony docs, this doesn't ever fail so no need to do error checking here   // 			SonyVoiceChat::signalDisconnected();     
+                                                                                                                                                                                                                            "SCE_NP_MATCHING2_REQUEST_EVENT_LEAVE_ROOM\n"         // This is the response to sceNpMatching2LeaveRoom - from the Sony docs, this doesn't ever fail so no need to do error checking here   // 			SonyVoiceChat::signalDisconnected();     
                                                                                                                                                                                                                             assert(
                                                                                                                                                                                                                                 manager
                                                                                                                                                                                                                                     ->m_state ==
@@ -4372,7 +4394,7 @@ void SQRNetworkManager_Vita::SysUtilCallback(uint64_t status, uint64_t param, vo
                                 s_SignInCompleteCallbackFn = NULL;
                             }
                         } else {  //		SCE_COMMON_DIALOG_RESULT_USER_CANCELED     //
-                                  //SCE_COMMON_DIALOG_RESULT_ABORTED     
+                                  // SCE_COMMON_DIALOG_RESULT_ABORTED     
                             // Failed, or user may have decided not to sign in -
                             // maybe need to differentiate here     
                             SetState(SNM_INT_STATE_INITIALISE_FAILED);
@@ -4955,7 +4977,7 @@ void SQRNetworkManager_Vita::AttemptPSNSignIn(int (*SignInCompleteCallbackFn)(vo
                                                                                                                                                                                                                                                                 if (s_resendPresenceCountdown ==
                                                                                                                                                                                                                                                                     0) {
                                                                                                                                                                                                                                                                     s_resendPresenceCountdown  // wait a few ticks before setting the rich presence value, so if there's a few being set at one time (like on game startup) we can send them all in a single call     
-                                                                                                                                                                                                                                                                        // Return as if no error happened no matter what, as we'll be resending ourselves if we need to and don't want the calling system to retry     
+                                                                                                                                                                                                                                                                                               // Return as if no error happened no matter what, as we'll be resending ourselves if we need to and don't want the calling system to retry     
                                                                                                                                                                                                                                                                         return 0;
                                                                                                                                                                                                                                                                 }
 

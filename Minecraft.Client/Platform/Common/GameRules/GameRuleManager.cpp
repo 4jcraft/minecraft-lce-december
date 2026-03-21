@@ -376,10 +376,10 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
                          // dlcFile->getData(dwLen);  //byteArray
                          // data(pbData,dwLen);               
 
-                             byteArray data(dIn, dSize);
+                    byteArray data(dIn, dSize);
         ByteArrayInputStream bais(data);
         DataInputStream  // Read File.
-	   // version_number               
+	     // version_number               
             __int64 version = dis.readShort();
         unsigned char compressionType = 0;
         if (version == 0) {
@@ -444,6 +444,7 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
 			return false;
 			*/               
 		
+        
         };
 
         delete[] compressedBuffer.data;

@@ -37,14 +37,15 @@ void ExperienceCommand::execute(std::shared_ptr<CommandSender> source,
     //				logAdminAction(source,
     //"commands.xp.success.negative.levels", amount, player.getAName());
     //} else { 				player.giveExperienceLevels(amount);
-    //logAdminAction(source, "commands.xp.success.levels", amount,
-    //player.getAName());
+    // logAdminAction(source, "commands.xp.success.levels", amount,
+    // player.getAName());
     //			}
     //		} else {
     //			if (take) {
     //				throw new
     // UsageException("commands.xp.failure.widthdrawXp");
-    // } else { 				player.increaseXp(amount); 				logAdminAction(source,
+    // } else { 				player.increaseXp(amount);
+    // logAdminAction(source,
     //"commands.xp.success", amount, player.getAName());
     //			}
     //		}

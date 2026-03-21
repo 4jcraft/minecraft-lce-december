@@ -338,8 +338,8 @@ LevelChunk* HellRandomLevelSource::getChunk(int xOffs, int zOffs) {
             f  // 4J - used to be declared with class level scope but moved
                // here      for thread safety     
 
-                   sr = scaleNoise->getRegion(sr, x, y, z, xSize, 1, zSize, 1.0,
-                                              0, 1.0);
+                sr = scaleNoise->getRegion(sr, x, y, z, xSize, 1, zSize, 1.0, 0,
+                                           1.0);
         dr = depthNoise->getRegion(dr, x, y, z, xSize, 1, zSize, 100.0, 0,
                                    100.0);
 

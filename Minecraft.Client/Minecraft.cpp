@@ -336,7 +336,7 @@ void Minecraft::init() {
     // if (options.languageCode != null) {
     //	Language.getInstance().loadLanguage(options.languageCode);
     //	//
-    //font.setEnforceUnicodeSheet("true".equalsIgnoreCase(I18n.get("language.enforceUnicode")));
+    // font.setEnforceUnicodeSheet("true".equalsIgnoreCase(I18n.get("language.enforceUnicode")));
     //	font.setEnforceUnicodeSheet(Language.getInstance().isSelectedLanguageIsUnicode());
     //	font.setBidirectional(Language.isBidirectional(options.languageCode));
     // }
@@ -832,7 +832,7 @@ bool Minecraft::addLocalPlayer(int idx//int iLocalPlayerC=app.GetLocalPlayerCoun
 		localgameModes[idx] = NULL;
 
 		updatePlayerViewportAssig
-#ifdef _XBOX     // tell the xui scenes a splitscreen player joined          
+#ifdef _XBOX       // tell the xui scenes a splitscreen player joined          
 		XUIMessage xuiMsg;
 		CustomMessage_Splitscreenplayer_Struct myMsgData;
 		CustomMessage_Splitscreenplayer( &xuiMsg, &myMsgData, // send the message          
@@ -963,8 +963,8 @@ void Minecraft::removeLocalPlayerIdx(int idx)
 			g_NetworkManager.RemoveLocalPlayerByUserIndex(idx);
 		}
 		getLevel( localplayers[idx]->dimension )->removeEntity(
-#ifdef _XBOXidx  // 4J Stu - Fix for #12368 - Crash: Game crashes when saving
-                 // then exiting and selecting to save                    
+#ifdef _XBOXidx    // 4J Stu - Fix for #12368 - Crash: Game crashes when saving
+                   // then exiting and selecting to save                    
 		app.TutorialScen#endifateB// 4J Stu - Fix for #13257 - CRASH: Gameplay: Title crashed after exiting the tutorial   // It doesn't matter if they were in the tutorial already                    
 		playerLeftTutorial( idx );
 
@@ -1332,7 +1332,7 @@ void Minecraft::run_middle()
 					}
 
 #ifdef _DURANGO  
-	  // did we just get input from a player who doesn't exist? They'll be wanting to join the game then                              
+	    // did we just get input from a player who doesn't exist? They'll be wanting to join the game then                              
 			if(!pause && !ui.IsIgnorePlayerJoinMenuDisplayed(ProfileManager.GetPrimaryPad()) && g_NetworkManager.SessionHasSpace() && RenderManager.IsHiDef() )
 			{
 				int firstEmptyUser = 0;
@@ -1492,7 +1492,7 @@ void Minecraft::run_middle()
 
 			//renderFpsMeter(tickDuraction);
 #if DEBUG_RENDER_SHOWS_PACKETS   
-   // To show data for only one packet type     //Packet::renderPacketStats(31);			   // To show data for all packet types selected as being renderable in the Packet:static_ctor call to Packet::map                                   
+     // To show data for only one packet type     //Packet::renderPacketStats(31);			   // To show data for all packet types selected as being renderable in the Packet:static_ctor call to Packet::map                                   
 #elsecket:  // To show the size of the QNet queue in bytes and
             // messages                                   
 				g_#endifkManager.renderQueueMeter();
@@ -2987,7 +2987,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures)
 	{
 		    // monitor for keyboard inputlu// #ifndef _CONTENT_PACKAGE >// 	if(!(ui.GetMenuDisplayed(iPad)))N_// 	{CA// 		WCHAR wchInput;ee// 		if(InputManager.InputDetected(iPad,&wchInput))  // 		{  // 			printf("Input Detected!\n");  //  // 			// see if we can react to this  // 			if(app.GetXuiAction(iPad)==eAppAction_Idle)  // 			{	 // 				app.SetAction(iPad,eAppAction_DebugText,(LPVOID)wchInput);  // 			}  // 		} 
 // 	}  // #endif 
-#if 0    // 4J - TODO - some replacement for input handling...                                                
+#if 0      // 4J - TODO - some replacement for input handling...                                                
 	       
 	      
 	     
@@ -3176,15 +3176,15 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures)
 							FrustumCuller frustObj;
 							Culler *frustum = &frustObj;
 							MemSect(0);
-#endif   // __PS3__epare(// 4J Stu - We are always online, but still could be
-         // pausedtum, 0);
+#endif     // __PS3__epare(// 4J Stu - We are always online, but still could be
+           // pausedtum, 0);
 						}
 // || isClientSide())ocalPlayerId//app.DebugPrintf("Minecraft::tick spawn settings - Difficulty = %d",options->difficulty);          
 				if (!pause)                      
 				{
 					                              "Level tick"   #ifdef DISABLE_LEVELTICK_THREAD              
 					level#else>setSpawnSettings(level->difficulty > 0, true);
-#endif   // DISABLE_LEVELTICK_THREAD   );
+#endif     // DISABLE_LEVELTICK_THREAD   );
                                
 					levels[i]->tick();
      
@@ -3192,7 +3192,7 @@ void Minecraft::tick(bool bFirst, bool bUpdateTextures)
                                   
 					PIXEndNamedEvent// 4J Stu - Keep ticking the connections if paused so that they don't time out);
 			if (!pause) particleEngine->tick(// player->tick();vent#ifdef __PS3__  // 	while(!g_tickLevelQueue.empty())  // 	{ // 		Level* pLevel = g_tickLevelQueue.front();c// 		g_tickLevelQueue.pop(); // 		pLevel->tick(); // 	}; 
-#endif      // if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD7) ||  // Keyboard.isKeyDown(Keyboard.KEY_Q)) rota++;  // if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD9) ||  // Keyboard.isKeyDown(Keyboard.KEY_E)) rota--;  // 4J removed  //lastTickTime = System::currentTimeMillis();                                     //    System.out.println("FORCING RELOAD!");		// 4J - removed     
+#endif        // if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD7) ||  // Keyboard.isKeyDown(Keyboard.KEY_Q)) rota++;  // if (Keyboard.isKeyDown(Keyboard.KEY_NUMPAD9) ||  // Keyboard.isKeyDown(Keyboard.KEY_E)) rota--;  // 4J removed  //lastTickTime = System::currentTimeMillis();                                     //    System.out.println("FORCING RELOAD!");		// 4J - removed     
 	                                             
 }
 

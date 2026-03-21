@@ -280,11 +280,11 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
             // need to apply scale factors depending on the mode     
             glPushMatrix();
         glScalef(fScaleFactorWidth, fScaleFactorHeight, fScaleFactorWidth);
-#if RENDER_HUD     /////////////////////////////////////////////////////////////////////////////////////   // Display the quick select background, the quick select selection, and the crosshair   /////////////////////////////////////////////////////////////////////////////////////     
+#if RENDER_HUD       /////////////////////////////////////////////////////////////////////////////////////   // Display the quick select background, the quick select selection, and the crosshair   /////////////////////////////////////////////////////////////////////////////////////     
 
-            glColor4f(1, 1, 1,
-                      1)  // 4J - this is where to set the blend factor for gui
-                          // things   // use the primary player's settings     
+        glColor4f(1, 1, 1,
+                  1)  // 4J - this is where to set the blend factor for gui
+                      // things   // use the primary player's settings     
             unsigned char ucAlpha = app.GetGameSettings(
                 ProfileManager.GetPrimaryPad(),
                 eGameSetting_InterfaceOpacity)  // If the user has started to
@@ -362,6 +362,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
 	      
 
 		
+
 }
 
 bool blink = minecraft->player->invulnerableTime / 3 % 2 == 1;
@@ -639,7 +640,7 @@ int food = foodData->getFoodLevel();
                                 glEnable(GL_COLOR_M// 4J - TomK now using safe zone values directly instead of the magic number calculation that lived here before (which only worked for medium scale, the other two were off!)               
 				int xo = iSafezoneXHalf + 10;
 				int yo = iSafezone
-#ifdef __PSVITA__       // align directly with corners, there are no safe zones on vita               
+#ifdef __PSVITA__         // align directly with corners, there are no safe zones on vita               
 				xo = 10#endifyo = 10;
       
 
@@ -686,7 +687,7 @@ int food = foodData->getFoodLevel();
 				glPopMatrix();
 				Lighting::turnOff();
 				glDisable(GL_RESCALE_NORMAL
-#if RENDER_HUD    // Moved so the opacity blend is applied to it               
+#if RENDER_HUD      // Moved so the opacity blend is applied to it               
 	if (bDisplayGui && minecraft->gameMode->hasExperience() && minecraft->player->experienceLevel > 0)
 	{
             if (true) {
@@ -711,7 +712,7 @@ int food = foodData->getFoodLevel();
                 if (bTwoPlayerSplitscreen) {
                     y += iHe  // int y = screenHeight - 31 -
                               // 4;                    
-                                  font->draw(str, x + 1, y, 0x000000);
+                             font->draw(str, x + 1, y, 0x000000);
                     font->draw(str, x - 1, y, 0x000000);
                     font->draw(str, x, y + 1, 0x000000);
                         font->draw(str, x, y// 			font->draw(str, x + 1, y + 1, 0x000000);    // 			font->draw(str, x - 1, y + 1, 0x000000);    // 			font->draw(str, x + 1, y - 1, 0x000000);    // 			font->draw(str, x - 1, y - 1, 0x000000);                    

@@ -1032,12 +1032,13 @@ void LocalPlayer::displayClientMessage(int messageId)
                                                                             awardStat(
                                                                                 GenericStats::
                                                                                     adventuri #endif(),
-                                                                                #endifcStats::
-                                                                                    param_adventuringTime());
+#endifcStats::
+                                                                                param_adventuringTime());
                                                                     }
 		}
       
 	
+                                                        
                                                         }
                                                               
 }
@@ -1170,10 +1171,10 @@ void LocalPlayer::setExperienceValues(float experienceProgress, int totalExp, in
                                                         this->experienceProgress =
                                                             experienceProgress;
                                                         this->totalExperien  // 4J: removed
-                                                            // void
-                                                            // LocalPlayer::sendMessage(ChatMessageComponent
-                                                            // *message) //{ //
-                                                            // minecraft->gui->getChat()->addMessage(message.toString(true)); //}                                                        
+                                                                             // void
+                                                                             // LocalPlayer::sendMessage(ChatMessageComponent
+                                                                             // *message) //{ //
+                                                                             // minecraft->gui->getChat()->addMessage(message.toString(true)); //}                                                        
    
 
 Pos LocalPlayer::getCommandSenderWorldPosition() {
@@ -1421,7 +1422,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                             buttonPressed) {
                                                                         if  // Are we in an auto-repeat situation? - If so only tell the game that we've clicked if we move more than a unit away from our last   // click position in any axis                                                    // If we're in disabled mode already (set when sprinting) then don't do anything - if we're sprinting, we don't auto-repeat at all.    // With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing                                                                // If we've started sprinting, go into this mode & also don't do anythinged )// Ignore repeate when sleeping                                                            
                                                                                                            
-	  // Get distance from last click point in each axisstClick_disabled;
+	    // Get distance from last click point in each axisstClick_disabled;
                                                                                 return false;
                                                                     }
 
@@ -1589,7 +1590,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                             }
                                                                         }
                                                                         else {
-                                                                                                               // If we actually placed an item, then move into the init state as we are going to be doing the special creative mode auto repeat                                                   // If we're sprinting or riding, don't auto-repeat at all. With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing    // Also ignore repeats when the player is sleeping                                         
+                                                                                                                 // If we actually placed an item, then move into the init state as we are going to be doing the special creative mode auto repeat                                                   // If we're sprinting or riding, don't auto-repeat at all. With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing    // Also ignore repeats when the player is sleeping                                         
 			                                                  
 			if (isSprinting() || isRiding() || isSleeping()) {
                                                                                 lastClickState =
@@ -1614,16 +1615,17 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                             bool LocalPlayer::
                                                                 handleMouseClick(
                                                                     int button) {
-                                                                bool retu  // app.DebugPrintf("handleMouseClick
-                                                                           // -
-                                                                           // Player
-                                                                           // %d
-                                                                           // is
-                                                                           // swinging\n",GetXboxPad());utton
-                                                                           // ==
-                                                                           // 0)
+                                                                bool
+                                                                    retu  // app.DebugPrintf("handleMouseClick
+                                                                          // -
+                                                                          // Player
+                                                                          // %d
+                                                                          // is
+                                                                          // swinging\n",GetXboxPad());utton
+                                                                          // ==
+                                                                          // 0)
                                                                 {
-                                                                                             // 4J-PB - Adding a special case in here for sleeping in a bed in a multiplayer game - we need to wake up, and we don't have the inbedchatscreen with a button                                                                                               
+                                                                                               // 4J-PB - Adding a special case in here for sleeping in a bed in a multiplayer game - we need to wake up, and we don't have the inbedchatscreen with a button                                                                                               
 
                                                                         if (button ==
                                                                                 1 &&

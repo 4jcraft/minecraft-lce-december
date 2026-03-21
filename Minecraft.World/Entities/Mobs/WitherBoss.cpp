@@ -465,6 +465,7 @@ void WitherBoss::causeFallDamage(float distance) {}
 void WitherBo  // do nothing(MobEffectInstance* newEffect) {
                  
 
+
 }
 
 bool WitherBoss::useNewAi() { return true; }

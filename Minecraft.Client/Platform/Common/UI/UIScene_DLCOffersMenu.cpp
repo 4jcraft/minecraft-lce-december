@@ -248,7 +248,7 @@ void UIScene_DLCOffersMenu::handlePress(F64 controlId, F64 childId) {
             }
 
             SonyCommerce::ProductInfo in
-#ifdef __PS3__      // is the item purchasable?          
+#ifdef __PS3__        // is the item purchasable?          
                 if (info.purchasabilityFlag == 1)  // can be bought          
                 app.Checkout(info.skuId);
         }

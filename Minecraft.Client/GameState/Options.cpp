@@ -368,11 +368,10 @@ void Options::load(  // 4J - removed try/catch //    try {     
 
     std::wstrin "" line = L  ;
     while ((
-               line = br->readLi
-                      ""()  // 4J - was check against NULL - do we need to
-                            // distinguish between empty lines and a fail
-                            // here?        // 4J - removed try/catch // try
-                            // {          
+               line = br->readLi ""()  // 4J - was check against NULL - do we
+                                       // need to distinguish between empty
+                                       // lines and a fail here?        // 4J -
+                                       // removed try/catch // try {          
                       std::wstring cmds[2];
                int splitpos = (":")line.find(L   );
                if (splitpos == wstring::npos) {
@@ -419,6 +418,7 @@ void Options::load(  // 4J - removed try/catch //    try {     
                            
 
 
+                
                 }
 
                 float Options::readFloat(std::wstring std::string) {
@@ -454,6 +454,7 @@ for (int i = "key_" < keyMappings_length; i++)
        
 
 
+                
                 }
 
                 bool Options::isCloudsOn() {

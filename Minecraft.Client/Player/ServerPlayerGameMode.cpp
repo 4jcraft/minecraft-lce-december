@@ -140,9 +140,11 @@ void ServerPlayerGameMode::startDestroyBlock(int x, int y, int z, int face) {
             Tile::tiles[t]->getDestroyProgress(player, player->level, x, y, z);
     }
 
-    if (t > 0 && (progress >= 1))  //|| (app.DebugSettingsOn() &&
-                                   //(player->GetDebugOptions()&(1L<<eDebugSetting_InstantDestroy)
-                                   //) )))
+    if (t > 0 &&
+        (progress >=
+         1))  //|| (app.DebugSettingsOn() &&
+              //(player->GetDebugOptions()&(1L<<eDebugSetting_InstantDestroy)
+              //) )))
     {
         destroyBlock(x, y, z);
     } else {
@@ -167,7 +169,7 @@ void ServerPlayerGameMode::stopDestroyBlock(int x, int y, int z) {
             // MGH -	removed checking for the destroy progress here, it has
             // already been checked on the client before it sent the packet.
             //			fixes issues with this failing to destroy
-            //because of packets bunching up
+            // because of packets bunching up
             //             float destroyProgress =
             //             tile->getDestroyProgress(player, player->level, x, y,
             //             z) * (ticksSpentDestroying + 1); if (destroyProgress

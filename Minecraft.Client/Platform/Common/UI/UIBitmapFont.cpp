@@ -240,8 +240,8 @@ rrbool UIBitmapFont::CanProvideBitmap(S32 glyph, F32 pixel_scale) {
 //	Parameters
 //	glyph  The glyph to compute/get the bitmap for
 //	pixel_scale  The scale factor (pseudo point size) requested by the
-//textfield,adjusted for display resolution 	bitmap  The structure to store the
-//bitmap into
+// textfield,adjusted for display resolution 	bitmap  The structure to store
+// the bitmap into
 rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
                                     IggyBitmapCharacter* bitmap) {
     // Description
@@ -348,8 +348,7 @@ rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
                             // bitmap->pixel_scale_correct = pixel_scale * 2;
                             // // Halves original size.    // Actual scale, and
                             // possible range of scales.          
-                                bitmap->pixel_scale_correct =
-            pixel_scale / glyphScale;
+                bitmap->pixel_scale_correct = pixel_scale / glyphScale;
         bitmap->pixel_scale_max = 99.0f;
         bitmap->pixel_scale_min /* 4J-JEV: Some of Sean's code.
 	int glyphScaleMin = 1;
