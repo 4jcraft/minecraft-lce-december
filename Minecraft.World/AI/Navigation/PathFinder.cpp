@@ -228,7 +228,7 @@ int PathFinder::isFree(Entity* entity, int x, int y, int z, Node* size,
                 Tile* tile = Tile::tiles[tileId];
 
                 // 4J Stu - Use new getTileRenderShape passing in the tileId
-                // we      have already got     
+                // we have already got
                 if (entity->level->getTileRenderShape(tileId) ==
                     Tile::SHAPE_RAIL) {
                     int xt = Mth::floor(entity->x);
@@ -264,7 +264,7 @@ int PathFinder::isFree(Entity* entity, int x, int y, int z, Node* size,
     return walkable
                ? TYPE_WALKABLE
                : TYPE_OPEN  // function
-                            // reconstruct_path(came_from,current_node)     
+                            // reconstruct_path(came_from,current_node)
                      Path *
                      PathFinder::reconstruct_path(Node * from, Node * to) {
         int count = 1;

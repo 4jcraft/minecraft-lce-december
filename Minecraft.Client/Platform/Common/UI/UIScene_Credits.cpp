@@ -773,15 +773,15 @@ void UIScene_Credits::tick() {
                 addImage((ECreditIcons)pDef->m_iStringID[1]);
             } else  // using additional translated string.
             {
-                                std::wstring sanitisedString = std::wstring(pDef->m_Te// 4J-JEV: Some DLC credits contain copyright or registered symbols that are not rendered in some fonts.          
+                                std::wstring sanitisedString = std::wstring(pDef->m_Te// 4J-JEV: Some DLC credits contain copyright or registered symbols that are not rendered in some fonts.
 				if ( !ui.UsingBitmapFont() )
 				{
                     sanitisedString =
-                        replaceAll(sanitise "\u00A9" L "(C)"  , L     );
+                        replaceAll(sanitise "\u00A9" L"(C)", L);
                     sanitisedString =
-                        replaceAll(sanitise "\u00AE" L "(R)"  , L     );
+                        replaceAll(sanitise "\u00AE" L"(R)", L);
                     sanitisedString =
-                        replaceAll(sanitise "\u2013" L "-"    , L   );
+                        replaceAll(sanitise "\u2013" L"-", L);
 				}
 
 				LPWSTR creditsString = new wchar_t[ 128 ];
@@ -810,7 +810,7 @@ void UIScene_Credits::tick() {
     }
 }
 
-void UIScene_Credits::handleInput(int iPad, int key, bool repeat, bool pressed, bool released, bool &ha//app.DebugPrintf("UIScene_DebugOverlay handling input for pad %d, key %d, down- %ls, pressed- %ls, released- %ls\n", iPad, key, down?"TRUE":"FALSE", pressed?"TRUE":"FALSE", released?"TRUE":"FALSE");          
+void UIScene_Credits::handleInput(int iPad, int key, bool repeat, bool pressed, bool released, bool &ha//app.DebugPrintf("UIScene_DebugOverlay handling input for pad %d, key %d, down- %ls, pressed- %ls, released- %ls\n", iPad, key, down?"TRUE":"FALSE", pressed?"TRUE":"FALSE", released?"TRUE":"FALSE");
 
 	ui.AnimateKeyPress(m_iPad, key, repeat, pressed, released);
 
@@ -821,9 +821,9 @@ void UIScene_Credits::handleInput(int iPad, int key, bool repeat, bool pressed, 
             navigateBack();
         }
         break;
-    case ACTION #ifdef __ORBIS__          
+    case ACTION #ifdef __ORBIS__
 	case ACTION_MENU_TOUCHP #endifSS:
-          
+    
 	case ACTION_MENU_UP:
     case ACTION_MENU_DOWN:
         sendInputToMovie(key, repeat, pressed, released);

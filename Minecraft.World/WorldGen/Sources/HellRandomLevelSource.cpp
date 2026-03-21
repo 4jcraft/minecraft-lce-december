@@ -262,7 +262,7 @@ void HellRandomLevelSource::buildSurfaces(int xOffs, int zOffs,
 
                             run = runDepth;
                             // 4J Stu - If sand, then allow adding nether
-                            // wart      at heights below the water level     
+                            // wart at heights below the water level
                             if (y >= waterHeight - 1 || sand)
                                 blocks[offs] = top;
                             else
@@ -288,14 +288,14 @@ LevelChunk* HellRandomLevelSource::create(int x, int z) {
 LevelChunk* HellRandomLevelSource::getChunk(int xOffs, int zOffs) {
     random->setSeed(xOffs * 341873128712l + zOffs * 132897987541l);
     // 4J - now allocating this with a physical alloc & bypassing general
-    // memory     // management so that it will get cleanly freed     
+    // memory// management so that it will get cleanly freed
     int blocksSize = Level::genDepth * 16 * 16;
     byte* tileData =
         (byte*)XPhysicalAlloc(blocksSize, MAXULONG_PTR, 4096, PAGE_READWRITE);
     XMemSet128(tileData, 0, blocksSize);
     byteArray blocks =
         byteArray(tileData, blocksSize);  //    byteArray blocks = byteArray(16
-                                          //    * level->depth * 16);     
+                                          //    * level->depth * 16);
 
     prepareHeights(xOffs, zOffs, blocks);
     buildSurfaces(xOffs, zOffs, blocks);
@@ -303,23 +303,23 @@ LevelChunk* HellRandomLevelSource::getChunk(int xOffs, int zOffs) {
     caveFeature->apply(this, level, xOffs, zOffs, blocks);
     netherBridgeFeature->apply(this, level, xOffs, zOffs, blocks);
     // 4J - this now creates compressed block data from the blocks array
-    // passed     // in, so needs to be after data is finalised. Also now need
-    // to free the     // passed in blocks as the LevelChunk doesn't use the
-    // passed in allocation     // anymore.     
+    // passed// in, so needs to be after data is finalised. Also now need
+    // to free the// passed in blocks as the LevelChunk doesn't use the
+    // passed in allocation// anymore.
     LevelChunk* levelChunk = new LevelChunk(level, blocks, xOffs, zOffs);
     levelChunk->setCheckAllLight();
     XPhysicalFree(tileData);
     return levelChunk  // 4J - removed & moved into its own method from
-                       // getChunk, so we can call // recalcHeightmap after the
-                       // chunk is added into the cache. Without doing this, //
+                       // getChunk, so we can call// recalcHeightmap after the
+                       // chunk is added into the cache. Without doing this,//
                        // then loads of the lightgaps() calls will fail to add
-                       // any lights, because // adding a light checks if the
-                       // cache has this chunk in. lightgaps also does // light
+                       // any lights, because// adding a light checks if the
+                       // cache has this chunk in. lightgaps also does// light
                        // 1 block into the neighbouring chunks, and maybe that
-                       // is somehow enough // to get lighting to propagate
-                       // round the world, but this just doesn't seem // right -
+                       // is somehow enough// to get lighting to propagate
+                       // round the world, but this just doesn't seem// right -
                        // this isn't a new fault in the 360 version, have
-                       // checked that java // does the same.     
+                       // checked that java// does the same.
         void HellRandomLevelSource::lightChunk(LevelChunk * lc) {
         lc->recalcHeightmap();
     }
@@ -336,7 +336,7 @@ LevelChunk* HellRandomLevelSource::getChunk(int xOffs, int zOffs) {
 
         doubleArray pnr, ar, br, sr, dr, fi,
             f  // 4J - used to be declared with class level scope but moved
-               // here      for thread safety     
+               // here for thread safety
 
                 sr = scaleNoise->getRegion(sr, x, y, z, xSize, 1, zSize, 1.0, 0,
                                            1.0);
@@ -446,12 +446,12 @@ LevelChunk* HellRandomLevelSource::getChunk(int xOffs, int zOffs) {
         int xo = xt * 16;
         int zo = zt * 16;
         // 4J - added. The original java didn't do any setting of the random
-        // seed     // here. We'll be running our postProcess in parallel with
-        // getChunk etc. so     // we need to use a separate random - have used
-        // the same initialisation code     // as used in
-        // RandomLevelSource::postProcess to make sure this random value     //
+        // seed// here. We'll be running our postProcess in parallel with
+        // getChunk etc. so// we need to use a separate random - have used
+        // the same initialisation code// as used in
+        // RandomLevelSource::postProcess to make sure this random value//
         // is consistent for each world generation. Also changed all uses of
-        // random     // here to pprandom.     
+        // random// here to pprandom.
         pprandom->setSeed(level->getSeed());
         __int64 xScale = pprandom->nextLong() / 2 * 2 + 1;
         __int64 zScale = pprandom->nextLong() / 2 * 2 + 1;
@@ -539,11 +539,11 @@ LevelChunk* HellRandomLevelSource::getChunk(int xOffs, int zOffs) {
     bool HellRandomLevelSource::shouldSave() { return true; }
 
     std::wstring HellRandomLevelSource::gatherStats() {
-        ret "HellRandomLevelSource"     ;
+        ret "HellRandomLevelSource";
     }
 
 std::vector<Biome::MobSpawnerData*>* HellRandomLevelSource::getMobsAt(
-    MobCategory* mobCategory, int x, int y, int// check if the coordinates is within a netherbridge          
+    MobCategory* mobCategory, int x, int y, int// check if the coordinates is within a netherbridge
     if (mobCategory == MobCategory::monster) {
         if (netherBridgeFeature->isInsideFeature(x, y, z)) {
             return netherBridgeFeature->getBridgeEnemies();

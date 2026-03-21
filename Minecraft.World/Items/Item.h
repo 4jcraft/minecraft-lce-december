@@ -363,10 +363,10 @@ public:
     static Item* record_10;
     static Item* record_11;
     static Item* record_12;
-    // TU9     
+    // TU9
     static Item* fireball;
     static Item* frame;
-    // TU14     // static Item writingBook;     // static Item writtenBook;     
+    // TU14// static Item writingBook;// static Item writtenBook;
 
     static Item* emerald;
 
@@ -510,9 +510,9 @@ public:
     static const int repeater_Id = 356;
     static const int cookie_Id = 357;
     static const int map_Id = 358;
-    // 1.7.3     
+    // 1.7.3
     static const int shears_Id = 359;
-    // 1.8.2     
+    // 1.8.2
     static const int melon_Id = 360;
     static const int seeds_pumpkin_Id = 361;
     static const int seeds_melon_Id = 362;
@@ -522,7 +522,7 @@ public:
     static const int chicken_cooked_Id = 366;
     static const int rotten_flesh_Id = 367;
     static const int enderPearl_Id = 368;
-    // 1.0.1     
+    // 1.0.1
     static const int blazeRod_Id = 369;
     static const int ghastTear_Id = 370;
     static const int goldNugget_Id = 371;
@@ -537,11 +537,11 @@ public:
     static const int cauldron_Id = 380;
     static const int eyeOfEnder_Id = 381;
     static const int speckledMelon_Id = 382;
-    // 1.1     
+    // 1.1
     static const int spawnEgg_Id = 383;
 
     static const int expBottle_Id = 384;
-    // TU 12     
+    // TU 12
     static const int skull_Id = 397;
 
     static const int record_01_Id = 2256;
@@ -555,14 +555,14 @@ public:
     static const int record_10_Id = 2264;
     static const int record_11_Id = 2265;
     static const int record_12_Id = 2266;
-    // 4J-PB - this one isn't playable in the PC game, but is fine in ours     
+    // 4J-PB - this one isn't playable in the PC game, but is fine in ours
     static const int record_08_Id = 2267;
-    // TU9     
+    // TU9
     static const int fireball_Id = 385;
     static const int itemFrame_Id = 389;
-    // TU14     // static const int writingBook_Id			 =
-    // 130;     // static const int writtenBook_Id			 =
-    // 131;     
+    // TU14// static const int writingBook_Id			 =
+    // 130;// static const int writtenBook_Id			 =
+    // 131;
 
     static const int emerald_Id = 388;
 
@@ -608,7 +608,7 @@ private:
     int maxDamage;
 
 protected:
-    Icon* icon;  // 4J-PB - added for new crafting menu     
+    Icon* icon;  // 4J-PB - added for new crafting menu
     int m_iBaseItemType;
     int m_iMaterial;
     bool m_handEquipped;
@@ -617,9 +617,9 @@ protected:
 private:
     Item* craftingRemainingItem;
     std::wstring potionBrewingFormula;
-    // 4J Stu - A value from strings.h, that is the name of the item     
+    // 4J Stu - A value from strings.h, that is the name of the item
     unsigned int descriptionId;
-    // 4J Stu - A value from strings.h that says what this does     
+    // 4J Stu - A value from strings.h that says what this does
     unsigned int useDescriptionId;
 
     std::wstring m_textureName;
@@ -627,7 +627,7 @@ private:
 protected:
     Item(int id);
 
-public:  // 4J Using per-item textures now     
+public:  // 4J Using per-item textures now
     Item* setIconName(const std::wstring& name);
     std::wstring getIconName();
     Item* setMaxStackSize(int max);
@@ -676,7 +676,7 @@ public:
      * @param mob
      * @param attacker
      * @return
-     */     
+     */
     virtual bool hurtEnemy(std::shared_ptr<ItemInstance> itemInstance,
                            std::shared_ptr<LivingEntity> mob,
                            std::shared_ptr<LivingEntity> attacker);
@@ -691,7 +691,7 @@ public:
      * @param z
      * @param owner
      * @return
-     */     
+     */
     virtual bool mineBlock(std::shared_ptr<ItemInstance> itemInstance,
                            Level* level, int tile, int x, int y, int z,
                            std::shared_ptr<LivingEntity> owner);

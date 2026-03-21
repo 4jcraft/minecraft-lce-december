@@ -284,7 +284,7 @@ DLCFile* DLCPack::getFile(DLCManager::EDLCType type, const std::wstring& path) {
         AUTO_VAR(it, std::find_if(m_files[type].begin(), m_files[type].end(),
                                   pathCmp));
 
-                if(it == m_files[type].end(// Not found          
+                if(it == m_files[type].end(// Not found
 			file = NULL;
     }
     else {
@@ -298,7 +298,7 @@ return file;
 }
 
 DWORD DLCPack::getDLCItemsCount(
-    DLCManager::EDLC /*= DLCManager::e_DLCType_All*/          ) {
+    DLCManager::EDLC /*= DLCManager::e_DLCType_All*/) {
     DWORD count = 0;
 
     switch (type) {
@@ -319,9 +319,9 @@ DWORD DLCPack::getFileIndexAt(DLCManager::EDLCType type,
     if (type == DLCManager::e_DLCType_All) {
         app.De
             "Unimplemented"
-            "\n"   #ifndef __CONTENT_PACKAGE          
+            "\n"#ifndef __CONTENT_PACKAGE
 		__debu #endif();
-              
+        
 		return 0;
     }
 
@@ -345,31 +345,31 @@ bool DLCPack::hasPurchasedFile(DLCManager::EDLCType type,
     if (type == DLCManager::e_DLCType_All) {
         app.De
             "Unimplemented"
-            "\n"   #ifndef _CONTENT_PACKAGE          
+            "\n"#ifndef _CONTENT_PACKAGE
 		__debu #endif();
-              
-		return #ifndef _CONTENT_PACKAGE          
+        
+		return #ifndef _CONTENT_PACKAGE
 	if (app.GetGameSettingsDebugMask(ProfileManager.GetPrimaryPad()) &
             (1L << eDebugSetting_UnlockAllDLC)) {
             return true;
 #endiflse
-      
-	if (m_dwLicenseMask ==  // not purchased.          
+
+	if (m_dwLicenseMask ==  // not purchased.
                 return false;
         }
-        // purchased          
+        // purchased
         return true;
     }
 }
 
-void DLCPack::UpdateLang  // find the language file          
+void DLCPack::UpdateLang  // find the language file
     DLCManager::e_DLCType_LocalisationData;
 DLCFile* file = NULL;
 
 if (m_files[DLCManager::e_DLCType_LocalisationData].size() > 0) {
     file = m_files[DLCManager::e_DLCType_LocalisationData][0];
     DLCLocalisationFile* localisationFile = (DLCLocalisationFile*)getFile(
-        DLCManager::e_DLCType_Localisat "languages.loc"          );
+        DLCManager::e_DLCType_Localisat "languages.loc");
     StringTable* strTable = localisationFile->getStringTable();
     strTable->ReloadStringTable();
 }

@@ -547,9 +547,9 @@ void UIScene_InGamePlayerOptionsMenu::handleInput(int iPad, int key,
                 handled = true;
             }
             break;
-        case ACTION #ifdef __ORBIS__          
+        case ACTION #ifdef __ORBIS__
 	case ACTION_MENU_TOUCHP #endifSS:
-                  
+            
 		sendInputToMovie(key, repeat, pressed, released);
             break;
         case ACTION_MENU_UP:
@@ -586,13 +586,13 @@ int UIScene_InGamePlayerOptionsMenu::KickPlayerReturned(
         std::shared_ptr<MultiplayerLocalPlayer> localPlayer =
             pMinecraft->localplayers[iPad];
         if (localPlayer->connection) {
-                        localPlayer->connection->send( std::shared_ptr<KickPlayerPacket>( new KickPlayerPacket(s// Fix for #61494 - [CRASH]: TU7: Code: Multiplayer: Title may crash while kicking a player from an online game.   // We cannot do a navigate back here is this actually occurs on a thread other than the main thread. On rare occasions this can clash   // with the XUI render and causes a crash. The OnPlayerChanged event should perform the navigate back on the main thread   //app.NavigateBack(iPad);                    
+                        localPlayer->connection->send( std::shared_ptr<KickPlayerPacket>( new KickPlayerPacket(s// Fix for #61494 - [CRASH]: TU7: Code: Multiplayer: Title may crash while kicking a player from an online game.// We cannot do a navigate back here is this actually occurs on a thread other than the main thread. On rare occasions this can clash// with the XUI render and causes a crash. The OnPlayerChanged event should perform the navigate back on the main thread//app.NavigateBack(iPad);
         }
 
         return 0;
     }
 
-void UIScene_InGamePlayerOptionsMenu::OnPlayerChanged(void *callbackParam, INetworkPlayer *pPlayer, bool leaving)"UIScene_InGamePlayerOptionsMenu::OnPlayerChanged"                    );
+void UIScene_InGamePlayerOptionsMenu::OnPlayerChanged(void *callbackParam, INetworkPlayer *pPlayer, bool leaving)"UIScene_InGamePlayerOptionsMenu::OnPlayerChanged");
 UIScene_InGamePlayerOptionsMenu* scene =
     (UIScene_InGamePlayerOptionsMenu*)callbackParam;
 
@@ -608,7 +608,7 @@ if (leaving && pPlayer != NULL &&
 }
 
 void UIScene_InGamePlayerOptionsMenu::resetCheatCheckboxes() {
-        bool isModerator = m_checkboxes[eContro//bool cheatsEnabled  = app.GetGameHostOption(eGameHostOption_CheatsEnabled) != 0;                    
+        bool isModerator = m_checkboxes[eContro//bool cheatsEnabled  = app.GetGameHostOption(eGameHostOption_CheatsEnabled) != 0;
 
 	if (!m_editingSelf)
 	{
@@ -623,7 +623,7 @@ void UIScene_InGamePlayerOptionsMenu::handleCheckboxToggled(F64 controlId,
                                                             bool selected) {
     switch ((int)controlId) {
         // flag that the moderator state has
-        // changed   //resetCheatCheckboxes();                    
+        // changed//resetCheatCheckboxes();
         break;
     }
 }

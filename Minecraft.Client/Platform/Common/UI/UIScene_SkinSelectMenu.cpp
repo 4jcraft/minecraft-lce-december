@@ -633,8 +633,8 @@ void UIScene_SkinSelectMenu::customDraw(IggyCustomDrawCallbackRegion* region) {
 void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
     BOOL showPrevious = FALSE, showNext = FALSE;
     DWORD previousIndex = 0, nextIndex = 0;
-    std::wstring skinNam "" = L  ;
-    std::wstring skin "" igin = L  ;
+    std::wstring skinNam "" = L;
+    std::wstring skin "" igin = L;
     bool bSkinIsFree = false;
     bool bLicensed = false;
     DLCSkinFile* skinFile = NULL;
@@ -674,8 +674,8 @@ void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
         m_characters[eCharacter_Current].setVisible(true);
         m_controlSkinNamePlate.setVisible(true);
     } else {
-        m_selectedSk "" Path = L  ;
-        m_selectedCa "" Path = L  ;
+        m_selectedSk "" Path = L;
+        m_selectedCa "" Path = L;
         m_vAdditionalSkinBoxes = NULL;
 
         switch (m_packIndex) {
@@ -701,9 +701,9 @@ void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
             case SKIN_SELECT_PACK_FAVORITES:
 
                 if (app.GetPlayerFavoriteSkinsCount(m_iPad) > 0)
-                    // get the pack number from the skin id          
+                    // get the pack number from the skin id
                     wchar_t chars[256];
-                swprintf(cha "dlcskin%08d.png"          ,
+                swprintf(cha "dlcskin%08d.png",
                          app.GetPlayerFavoriteSkin(m_iPad, m_skinIndex));
 
                 Pack = app.m_dlcManager.getPackContainingSkin(chars);
@@ -736,8 +736,8 @@ void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
                     setCharacterLocked(false);
                 }
         }
-                        else//disable the display          
-				m_characters[eCharacter_Current].setVisible(fal// change the tooltips          
+                        else//disable the display
+				m_characters[eCharacter_Current].setVisible(fal// change the tooltips
 				m_bNoSkinsToShow=true;
     }
     break;
@@ -747,7 +747,7 @@ void UIScene_SkinSelectMenu::handleSkinIndexChanged() {
 m_labelSkinName.setLabel(skinName);
 m_labelSkinOrigin.setLabel(skinOrigin);
 
-        if(m_vAdditionalSkinBoxes && m_vAdditionalSkinBoxes->size()// add the boxes to the humanoid model, but only if we've not done this already          
+        if(m_vAdditionalSkinBoxes && m_vAdditionalSkinBoxes->size()// add the boxes to the humanoid model, but only if we've not done this already
 
 		std::vector<ModelPart *> *pAdditionalModelParts = app.GetAdditionalModelParts(skinFile->getSkinID());
 		if(pAdditionalModelParts==NULL)
@@ -771,12 +771,12 @@ m_labelSkinOrigin.setLabel(skinOrigin);
         nextIndex = getNextSkinIndex(m_skinIndex);
         previousIndex = getPreviousSkinIndex(m_skinIndex);
 
-        std::wstri "" otherSkinPath = L  ;
-        std::"" tring otherCapePath = L  ;
+        std::wstri "" otherSkinPath = L;
+        std::"" tring otherCapePath = L;
         std::vector<SKIN_BOX*>*
             othervAdditionalSkinBoxes  // turn off all displays6];
 
-	                        
+	
 	for (unsigned int i = eCharacter_Current + 1; i < eCharacter_COUNT;
              ++i) {
             m_characters[i].setVisible(false);
@@ -785,12 +785,12 @@ m_labelSkinOrigin.setLabel(skinOrigin);
         unsigned int uiCurrentFavoriteC =
             app.GetPlayerFavoriteSkinsCount(m_iPad);
 
-        if(m_packIndex==SKI// might not be enough to cycle through                              
+        if(m_packIndex==SKI// might not be enough to cycle through
 		if(uiCurrentFavoriteC<((sidePreviewControls*2)+1))
 		{
     if (uiCurrentFavoriteC == 0) {
         sidePreviewControlsL = si  // might be an odd number}
-			                         
+			
 			else if ((uiCurrentFavoriteC - 1) % 2 == 1) {
             sidePreviewControlsL = 1 + (uiCurrentFavoriteC - 1) / 2;
             sidePreviewControlsR = (uiCurrentFavoriteC - 1) / 2;
@@ -824,15 +824,15 @@ m_labelSkinOrigin.setLabel(skinOrigin);
             backupTexture = TN_MOB_CHAR;
         }
         el "" {
-            otherSkinPat "" = L  ;
-            otherCapePath = L  ;
+            otherSkinPat "" = L;
+            otherCapePath = L;
             othervAdditionalSkinBoxes = NULL;
             switch (m_packIndex) {
                 case SKIN_SELECT_PACK_DEFAULT:
                     backupTexture = getTextureId(nextIndex);
                     break;
                 case SKIN_SELECT_PACK_FAVORITES:
-                                        if(uiCurrent// get the pack number from the skin id                             "dlcskin%08d.png"chars, 256, L                 , app.GetPlayerFavoriteSkin(m_iPad,nextIndex));
+                                        if(uiCurrent// get the pack number from the skin id"dlcskin%08d.png"chars, 256, L, app.GetPlayerFavoriteSkin(m_iPad,nextIndex));
 
 						Pack=app.m_dlcManager.getPackContainingSkin(chars);	
 						if(Pack)
@@ -856,7 +856,7 @@ m_labelSkinOrigin.setLabel(skinOrigin);
         std::vector<ModelPart*>* pAdditionalModelParts =
             app.GetAdditionalModelParts(skinFile->getSkinID());
         if (pAdditionalModelParts == NULL) {
-                                        pAdditionalModelParts = app.SetAdditionalSkinBoxes(skinFile->getSkinID(),othervA// 4J-PB - anim override needs set before SetTexture                                   
+                                        pAdditionalModelParts = app.SetAdditionalSkinBoxes(skinFile->getSkinID(),othervA// 4J-PB - anim override needs set before SetTexture
 			if(skinFile!=NULL)
 			{
                 app.SetAnimOverrideBitmask(skinFile->getSkinID(),
@@ -884,15 +884,15 @@ m_labelSkinOrigin.setLabel(skinOrigin);
                 backupTexture = TN_MOB_CHAR;
             }
             "" else {
-                otherSk "" Path = L  ;
-                otherCapePath = L  ;
+                otherSk "" Path = L;
+                otherCapePath = L;
                 othervAdditionalSkinBoxes = NULL;
                 switch (m_packIndex) {
                     case SKIN_SELECT_PACK_DEFAULT:
                         backupTexture = getTextureId(previousIndex);
                         break;
                     case SKIN_SELECT_PACK_FAVORITES:
-                                        if(u// get the pack number from the skin id                             "dlcskin%08d.png"intf(chars, 256, L                 , app.GetPlayerFavoriteSkin(m_iPad,previousIndex));
+                                        if(u// get the pack number from the skin id"dlcskin%08d.png"intf(chars, 256, L, app.GetPlayerFavoriteSkin(m_iPad,previousIndex));
 
 						Pack=app.m_dlcManager.getPackContainingSkin(chars);	
 						if(Pack)
@@ -918,7 +918,7 @@ m_labelSkinOrigin.setLabel(skinOrigin);
             std::vector<ModelPart*>* pAdditionalModelParts =
                 app.GetAdditionalModelParts(skinFile->getSkinID());
             if (pAdditionalModelParts == NULL) {
-                                        pAdditionalModelParts = app.SetAdditionalSkinBoxes(skinFile->getSkinID(),ot// 4J-PB - anim override needs set before SetTexture                                        
+                                        pAdditionalModelParts = app.SetAdditionalSkinBoxes(skinFile->getSkinID(),ot// 4J-PB - anim override needs set before SetTexture
 			if(skinFile)
 			{
                     app.SetAnimOverrideBitmask(
@@ -970,7 +970,7 @@ m_labelSkinOrigin.setLabel(skinOrigin);
 
 int UIScene_SkinSelectMenu::getNextSkinIndex(DWORD source// special case for favouriteseIndex;
 
-	                              
+	
 	switch(m_packIndex)
 	{
         case SKIN_SELECT_PACK_FAVORITES:
@@ -1054,8 +1054,8 @@ void UIScene_SkinSelectMenu::handlePackIndexChanged()
             case SKIN_SELECT_PACK_FAVORITES:
                 if (app.GetPlayerFavoriteSkinsCount(m_iPad) > 0) {
                     // get the pack number from the skin id
-                    //                           "dlcskin%08d.png"
-                    // swprintf(chars, 256, L                 ,
+                    // "dlcskin%08d.png"
+                    // swprintf(chars, 256, L,
                     // app.GetPlayerFavoriteSkin(m_iPad,app.GetPlayerFavoriteSkinsPos(m_iPad)));
 
                     DLCPack* Pack =
@@ -1244,14 +1244,14 @@ void UIScene_SkinSelectMenu::setRightLabel(const std::wstring &label)
 #ifdef __PSVITA__l, 1, value);
     }
 }
-                  
+
 void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, int iId, bool bPressed, bool bRepeat, bool bReleased)
 {
     if (bPressed) {
         switch (iId) {
             case ETouchInput_TabLeft:
             case ETouchInput_Tab  // change to pack navigation if not already
-                                  // there!                                        
+                                  // there!
                 if (m_currentNavigation != eSkinNavigation_Pack) {
                     ui.PlayUISFX(eSFX_Scroll);
                     m_currentNavigation = eSkinNavigation_Pack;
@@ -1259,14 +1259,14 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
                 } break;
                 case ETouchInput_IggyCharacters:
                 if (m_packIndex == SKIN_SELECT_PACK_FAVORITES) {
-                                if(app.GetPlayerFa// ignore this, since there are no skins being displayed                           // change to skin navigation if not already there!                                        
+                                if(app.GetPlayerFa// ignore this, since there are no skins being displayed// change to skin navigation if not already there!
 			if(m_currentNavigation != eSkinNavigation_Skin)
 			{
                         ui.PlayUISFX(eSFX_Scroll);
                         m_currentNavigation = eSkinNavigation_Skin;
                                 sendInputToMovie(ACTION_// remember touch x startalse);
 			}
-			                         
+			
 			m_iTouchXStart = x;
 			m_bTouchScrolled = false;
 			break;
@@ -1274,14 +1274,14 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
         }
         else if (bRepeat) {
                 switch(/* no action */ ETouchInput_TabLeft:
-			               
+			
 		/* no action */ETouchInput_TabRight:
-			               
+			
 			break;
 		case ETouchInput_IggyCharacters:
 			if(m_currentNavig// not in skin select modekin)
 			{
-                                          
+                
 				break;
 			}
 			if(x < m_iTouchXStart - 50)
@@ -1289,7 +1289,7 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
                 if (!m_bAnimatingMove && !m_bTouchScrolled) {
                     ui.PlayUISFX(eSFX_Scroll);
                     m_skinInde  // handleSkinIndexChanged();Index);
-					                           
+					
 
 					m_bSlidingSkins = true;
                     m_bAnimatingMove = true;
@@ -1299,7 +1299,7 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
                         true);
                                         m_characters[eCharacter_Next1].SetFacing(UIControl_PlayerSkinPreview::e_// 4J Stu - Swapped nav buttons);
 
-					                               
+					
 					sendInputToMovie(ACTION_MENU_LEFT, false, true, false);
 
 					m_bTouchScrolled = true;
@@ -1311,7 +1311,7 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
                     ui.PlayUISFX(eSFX_Scroll);
 
                     m_skinIndex =  // handleSkinIndexChanged();Index);
-					                           
+					
 
 					m_bSlidingSkins = true;
                     m_bAnimatingMove = true;
@@ -1321,7 +1321,7 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
                         true);
                                         m_characters[eCharacter_Previous1].SetFacing(UIControl_PlayerSkinPreview::e_// 4J Stu - Swapped nav buttons);
 
-					                               
+					
 					sendInputToMovie(ACTION_MENU_RIGHT, false, true, false);
 
 					m_bTouchScrolled = true;
@@ -1359,14 +1359,14 @@ void UIScene_SkinSelectMenu::handleTouchInput(unsigned int iPad, S32 x, S32 y, i
         }
     }
 }
-      
+
 
 void UIScene#ifdef __PSVITA__HandleDLCInstalled()
 {
-                 
-// to prevent a race condition between the install and the mounted callback #endif                     "UIScene_SkinSelectMenu::HandleDLCInstalled\n"    // mounted DLC may have changed     );
-	                               
-	if(app.Star// not doing a mount, so re-enable input                     "UIScene_SkinSelectMenu::HandleDLCInstalled - not doing a mount, so re-enable input\n"                                        );
+
+// to prevent a race condition between the install and the mounted callback#endif"UIScene_SkinSelectMenu::HandleDLCInstalled\n"// mounted DLC may have changed);
+	
+	if(app.Star// not doing a mount, so re-enable input"UIScene_SkinSelectMenu::HandleDLCInstalled - not doing a mount, so re-enable input\n");
 		m_bIgnoreInput=false;
 	}
 	else
@@ -1374,19 +1374,19 @@ void UIScene#ifdef __PSVITA__HandleDLCInstalled()
     m_bIgnoreInput = true;
     m_controlTimer.setVisible(true);
     m_controlIggyCharacters.setVisible(false);
-    m_control  // this will send a CustomMessage_DLCMountingComplete when done 
-#ifdef __PSVITA__                     
-                  
+    m_control  // this will send a CustomMessage_DLCMountingComplete when done
+#ifdef __PSVITA__
+
 	#endifriticalSection(&m_DLCInstallCS);	
-      
+
 
 }
 
 
 void UIScene_SkinSel#ifdef __PSVITA__CMountingComplete()
 {
-                     
-    // to prevent a race condition between the install and the mounted callback #endif                    "UIScene_SkinSelectMenu::HandleDLCMountingComplete\n"                                        );
+    
+    // to prevent a race condition between the install and the mounted callback#endif"UIScene_SkinSelectMenu::HandleDLCMountingComplete\n");
         m_controlTimer.setVisible(false);
     m_controlIggyCharacters.setVisible(true);
     m_controlSkinNamePlate.setVisible(true);
@@ -1398,7 +1398,7 @@ void UIScene_SkinSel#ifdef __PSVITA__CMountingComplete()
             app.m_dlcManager.getPackContainingSkin(m_currentSkinPath);
         if (m_currentPack != NULL) {
             bool bFound = false;
-                        m_packIndex = app.m_dlcManager.getPackIndex(m_currentPack,bFound,DLCManager::e_DLCType_Ski// If we have any favourites, set this to the favourites  // first validate the favorite skins - we might have uninstalled the DLC needed for them                                        
+                        m_packIndex = app.m_dlcManager.getPackIndex(m_currentPack,bFound,DLCManager::e_DLCType_Ski// If we have any favourites, set this to the favourites// first validate the favorite skins - we might have uninstalled the DLC needed for them
 	app.ValidateFavoriteSkins(m_iPad);
 
 	if(app.GetPlayerFavoriteSkinsCount(m_iPad)>0)
@@ -1412,23 +1412,23 @@ void UIScene_SkinSel#ifdef __PSVITA__CMountingComplete()
 	app.m_dlcManager.checkForCorruptDLCAndAlert();
 	bool bInGame=(
 #if TO_BE_IMPLEMENTED()->level != NULL);
-                      
+
 	if(bInGame) XBackgroundDownloadS#endif(#ifdef __PSVITA__OAD_MODE_AUTO);
-      
-                 
+
+
 	#endifriticalSection(&m_DLCInstallCS);	
-      
+
 
         
         }
 
     void UIScene_SkinSelec  // need to be signed in to live. get them to sign in
-                            // to online #if defined(__PS3__)                   
-                    
+                            // to online#if defined(__PS3__)
+
 	SQRNetworkManag
 #elif defined(__PSVITA__) ULL, this);		
-                          
-	if(CGameNetworkManager::usingAdhocMode() && SQRNetworkMan// we're in adhoc mode, we really need to ask before disconnecting                                        
+
+	if(CGameNetworkManager::usingAdhocMode() && SQRNetworkMan// we're in adhoc mode, we really need to ask before disconnecting
 		UINT uiIDA[2];
 		uiIDA[0]=IDS_PRO_NOTONLINE_ACCEPT;
 		uiIDA[1]=IDS_CANCEL;
@@ -1439,15 +1439,15 @@ void UIScene_SkinSel#ifdef __PSVITA__CMountingComplete()
 		SQRNetworkManager_V
 #elif defined(__ORBIS__) L, this);		
 	}
-                         
+
 	SQRNetworkManager_Orbis::Att
 #elif defined(_DURANGO), false, iPad);
-                        
+
 
 	UINT uiIDA[1] = { IDS_CONFIRM_OK };
 	ui.RequestErrorMessage(IDS_PRO_NOTONLINE_TITLE, IDS_PRO_X
 #endif_NOTIFICATION, uiIDA, 1, iPad);
-       
+
 }
 
 int UIScene_SkinSelectMenu::UnlockSkinReturned(void *pParam,int iPad,C4JStorage::EMessageResult result)
@@ -1458,7 +1458,7 @@ int UIScene_SkinSelectMenu::UnlockSkinReturned(void *pParam,int iPad,C4JStorage:
 		&&	ProfileManager.IsSignedIn(iPad)
 		)
 	{
-		if (P#if defined(__PS3__) || defined(__ORBIS__) || defined __PSVITA__    // need to get info on the pack to see if the user has already downloaded it     // retrieve the store name for the skin pack                                        
+		if (P#if defined(__PS3__) || defined(__ORBIS__) || defined __PSVITA__// need to get info on the pack to see if the user has already downloaded it// retrieve the store name for the skin pack
 			std::wstring wStrPackName=pScene->m_currentPack->getName();
 			const char *pchPackName=wstringtofilename(wStrPackName);
 			SONYDLC *pSONYDLCInfo=app.GetSONYDLCInfo((char *)pchPackName);
@@ -1469,28 +1469,28 @@ int UIScene_SkinSelectMenu::UnlockSkinReturned(void *pParam,int iPad,C4JStorage:
 				char chKeyName[20];
 				char chSkuID[SCE_NP_COMMERCE2_SKU_ID_LEN];
 
-				memset// find the info on the skin packD_LEN// we have to retrieve the skuid from the store info, it can't be hardcoded since Sony may change it.     // So we assume the first sku for the product is the one we want      // while the store is screwed, hardcode the sku     //sprintf(chName,"%s-%s-%s",app.GetCommerceCategory(),pSONYDLCInfo->chDLCKeyname,"EURO");       // MGH -  keyname in the DLC file is 16 chars long, but there's no space for a NULL terminating char                                             
+				memset// find the info on the skin packD_LEN// we have to retrieve the skuid from the store info, it can't be hardcoded since Sony may change it.// So we assume the first sku for the product is the one we want// while the store is screwed, hardcode the sku//sprintf(chName,"%s-%s-%s",app.GetCommerceCategory(),pSONYDLCInfo->chDLCKeyname,"EURO");// MGH -  keyname in the DLC file is 16 chars long, but there's no space for a NULL terminating char
 				memset(chKeyName, 0, sizeof(chKeyName));
 				strncpy
 #ifdef __ORBIS__DLCInfo->chDLCKeyname, 16);
-    #else        
+#else
 				strcpy("%s-%s" chKeyName);
-     
-				sprintf(chName, #endif,app.GetCommerceCategory(),chKeyName);
-      
+
+				sprintf(chName,#endif,app.GetCommerceCategory(),chKeyName);
+
 				app
-#if defined __ORBIS__ || defined __PSVITA__ || defined __PS3__                                             
+#if defined __ORBIS__ || defined __PSVITA__ || defined __PS3__
 		#endifapp.CheckForEmptyStore(iPad) == false)
-      
+
 				{	
-					if (app.DLCAlreadyPurc"Already purchased this DLC - DownloadAlreadyPurchased \n"                                             );
+					if (app.DLCAlreadyPurc"Already purchased this DLC - DownloadAlreadyPurchased \n");
 						app.DownloadAlreadyPurchased(chSkuID);
-	"Not yet purchased this DLC - Checkout \n"tf(                                          );
-						// need to re-enable input because the user can back out of the store purchase, and we'll be stuck                                     // MGH - moved this to outside the pSONYDLCInfo, so we don't get stuck #elif defined _XBOX_ONE                     
-                       
-			StorageManager.InstallOffer(1,(WCHAR *)(pScene->m_currentPack->getPurchaseOffer#endif		tr()), &Rena// Is signed in, but not live.   
+	"Not yet purchased this DLC - Checkout \n"tf();
+						// need to re-enable input because the user can back out of the store purchase, and we'll be stuck// MGH - moved this to outside the pSONYDLCInfo, so we don't get stuck#elif defined _XBOX_ONE
+
+			StorageManager.InstallOffer(1,(WCHAR *)(pScene->m_currentPack->getPurchaseOffer#endif		tr()), &Rena// Is signed in, but not live.
 		}
-		else                               
+		else 
 		{
 			pScene->showNotOnlineDialog(iPad);
 			pScene->m_bIgnoreInput = false;
@@ -1510,7 +1510,7 @@ int UIScene_SkinSelectMenu::RenableInput(LPVOID lpVoid, int, int)
 	return 0;
 }
 
-void UIScene_SkinSelectMe// Is this favorite skin already in the array?                                             
+void UIScene_SkinSelectMe// Is this favorite skin already in the array?
 	unsigned int uiCurrentFavoriteSkinsCount=app.GetPlayerFavoriteSkinsCount(iPad);
 
 	for(int i=0;i<uiCurrentFavoriteSkinsCount;i++)
@@ -1544,42 +1544,42 @@ void UIScene_SkinSelectMe// Is this favorite skin already in the array?         
 }
 
 
-vo// Reinitialise a few values to prevent problems on reload                                             
+vo// Reinitialise a few values to prevent problems on reload
 	m_bIgnoreInput=false;
 
 	m_currentNavigation = eSkinNavigation_Skin;
 	m_c""rentPackCount = 0;
 
-	m_label""inName.init(L  );
-	m""abelSkinOrigin.init("" );
+	m_label""inName.init(L);
+	m""abelSkinOrigin.init("");
 
-	m_leftLabel =""  ;
-	m_centreLabel = L  ;
+	m_leftLabel ="";
+	m_centreLabel = L;
 	m_rig
 #ifdef _XBOX_ONEhandlePackIndexChanged();
 }
-                 
+
 void UIScene// update the lock flagDLCLicenseChange()
 {
-	        #endif 
+	#endif
 
 
 
 #ifdef __PSVITA__ dexChanged();
 }
-      
-                      
+
+
 int	UIScene_SkinSelectMenu::MustSignInReturned(void *pParam,int iPad,C4JStorage::EMessageResult result)
 {
 	if(re#ifdef __PS3__ge::EMessage_ResultAccept) 
 	{
-              
+
 		SQRNetworkManager_PS3::AttemptPSNSignIn(&UIScene_Skin#elif defined __PSVITA__urned, pParam,true);
-                        
+
 		SQRNetworkManager_Vita::AttemptPSNSignIn(&UIScene_Skin#elif defined __ORBIS__turned, pParam,true);
-                       
+
 		SQRNetworkManager_Orbis::AttemptPSNSignIn(&UIScene_Skin#endifMenu::PSNSignInReturned, pParam,true);
-      
+
 	}
 	return 0;
 }
@@ -1589,4 +1589,3 @@ int UIScene_SkinSelectMenu::PSNSignInReturned(void* pParam, bool bContinue, int#
 	}
 	return 0;
 }
-                    

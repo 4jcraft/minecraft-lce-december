@@ -354,39 +354,39 @@ void GameRuleManager::writeRuleFile(DataOutputStream* dos) {
         DataOutputStream fileDos(&fileBaos);
         file->save(&fileDos);
 
-        dos->writeUT  // dos->writeInt(file->m_data.length);               
+        dos->writeUT  // dos->writeInt(file->m_data.length);
             dos->writeInt(fileBaos.buf.length);
         dos->write((byteArray)fileBaos.buf);
 
         fileDos.close();
-        fileBaos   // Write xml objects.               
-            dos->  // numChildren               
+        fileBaos   // Write xml objects.
+            dos->  // numChildren 
             m_currentLevelGenerationOptions->write(dos);
         m_currentGameRuleDefinitions->write(dos);
     }
 
-bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT dSize, StringT//(DLCGameRulesFile *dlcFile, StringTable *strings)               
+bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT dSize, StringT//(DLCGameRulesFile *dlcFile, StringTable *strings)
 {
         bool levelGenAdded = false;
         bool gameRulesAdded = false;
         LevelGenerationOptions*
-            levelG  // new LevelGenerationOptions();               
+            levelG  // new LevelGenerationOptions();
             LevelRuleset* gameRules =
-                new Lev  // DWORD dwLen = 0;  //PBYTE pbData =
-                         // dlcFile->getData(dwLen);  //byteArray
-                         // data(pbData,dwLen);               
+                new Lev  // DWORD dwLen = 0;//PBYTE pbData =
+                         // dlcFile->getData(dwLen);//byteArray
+                         // data(pbData,dwLen);
 
                     byteArray data(dIn, dSize);
         ByteArrayInputStream bais(data);
         DataInputStream  // Read File.
-	     // version_number               
+	    // version_number
             __int64 version = dis.readShort();
         unsigned char compressionType = 0;
         if (version == 0) {
-            for (int i = 0; i < 14; i++) d  // Read padding.               
+            for (int i = 0; i < 14; i++) d  // Read padding.
         } else {
             compressionType = dis.  // Read the spare bytes we inserted for
-                                    // future use               
+                                    // future use
                               for (int i = 0; i < 8; ++i) dis.readBoolean();
         }
 
@@ -394,10 +394,10 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
         DataInputStream* contentDis = NULL;
 
         if (compressionType ==
-            Compression::eCompressionT  // No compression   // No need to read
+            Compression::eCompressionT  // No compression// No need to read
                                         // buffer size, as we can read the
-                                        // stream as it is;               
-            a "De-compressing game rules with: None\n"               )
+                                        // stream as it is;
+            a "De-compressing game rules with: None\n")
             ;
         contentDis = &dis;
 	}
@@ -417,15 +417,15 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
                 break;
 
             case Compression::eCompressionType_RLE:
-                        a"De-compressing game rules with: RLE\n"               );
+                        a"De-compressing game rules with: RLE\n");
                         Compression::getCompression()->Decompress(
                             decompressedBuffer.data, &decompressedBuffer.length,
                             compressedBuffer.data, compressedSize);
                         break;
 
             default:
-                        a"De-compressing game rules."   #ifndef _CONTENT_PACKAGE               
-			assert( compressionType == APPROPRIATE_COMPR#endif_TYP// 4J-JEV: DecompressLZXRLE uses the correct platform specific compression type. (need to assert that the data is compressed with it though).               
+                        a"De-compressing game rules."#ifndef _CONTENT_PACKAGE
+			assert( compressionType == APPROPRIATE_COMPR#endif_TYP// 4J-JEV: DecompressLZXRLE uses the correct platform specific compression type. (need to assert that the data is compressed with it though).
 			Compression::getCompression()->DecompressLZXRLE(decompressedBuffer.data, &decompressedBuffer.length, compressedBuffer.data, compressedSi/* 4J-JEV:
 	Each platform has only 1 method of compression, 'compression.h' file deals with it.
 
@@ -442,7 +442,7 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
 
 			if(!gameRulesAdded) delete gameRules;
 			return false;
-			*/               
+			*/
 		
         
         };
@@ -450,7 +450,7 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
         delete[] compressedBuffer.data;
 
         contentBais = new ByteArrayInputStream(decompressedBuffer);
-                contentDis = new DataInputStream(cont// string lookup.               
+                contentDis = new DataInputStream(cont// string lookup.
 	UINT numStrings = contentDis->readInt();
 	std::vector<std::wstring> tagsAndAtts;
 	for (UINT i = 0; i < numStrings; i++)
@@ -474,9 +474,9 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
 				break;
 			}
 		}
-	}*/   // subfile                      
+	}*/// subfile 
 
-	           
+	
 	UINT numFiles = contentDis->readInt();
 	for (UINT i = 0; i < numFiles; i++)
 	{
@@ -493,7 +493,7 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
 
 	LE// xml objectsID = LEVEL_GEN_ID_NULL;
 
-	              
+	
 	UINT numObjects = contentDis->readInt();
 	for(UINT i = 0; i < numObjects; ++i)
 	{
@@ -509,7 +509,7 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
                             ConsoleGameRules::
                                 eGameRuleType_LevelGenerationOptions) {
                             rule =
-                                leve  // m_levelGenerators.addLevelGenerator(L"",levelGenerator);                                        
+                                leve  // m_levelGenerators.addLevelGenerator(L"",levelGenerator);
                                     lgoID = addLevelGenerationOptions(
                                         levelGenerator);
                             levelGenerator->loadStringTable(strings);
@@ -517,7 +517,7 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
                                    ConsoleGameRules::eGameRuleType_LevelRules) {
                             rule = gameRules;
                             gameRulesAdde "" = true;
-                            m_levelRules.addLevelRule(L  , gameRules);
+                            m_levelRules.addLevelRule(L, gameRules);
                             levelGenerator->setRequiredGameRules(gameRules);
                             gameRules->loadStringTable(strings);
                         }
@@ -525,13 +525,13 @@ bool GameRuleManager::readRuleFile(LevelGenerationOptions *lgo, byte *dIn, UINT 
                         readAttributes(contentDis, &tagsAndAtts, rule);
                 readChildren(contentDis, &tagsAndAtts, &tagIdMap, ru// Not defaultompressionType != 0)
 	{
-                                          
+                            
 		contentDis->close();
                             if (contentBais != NULL) delete contentBais;
-                delete content//if(!levelGenAdded) { delete levelGenerator; levelGenerator = NULL; }                                        
+                delete content//if(!levelGenAdded) { delete levelGenerator; levelGenerator = NULL; }
 	if(!gameRulesA//return levelGenerator;
 	return true;
-	                        
+	
 }
 
 LevelGenerationOptions *GameRuleManager::readHeader(DLCGameRulesHeader *grh)
@@ -597,47 +597,47 @@ void GameRuleManager::processSchematicsLighting(LevelChunk *levelChunk)
                                     ->processSchematicsLight #ifdef _XBOXn #ifdef _TU_BUILDameRuleManager::
                                         loadDe
                                     "UPDATE:\\res\\GameRules\\Tutorial."
-                                    "pck"  #else   
+                                    "pck"#else 
 	std::wstring fileR "GAME:\\res\\TitleUpdate\\GameRules\\Tutorial."
-                           "pck"  #endif::wstring fileRoot =
-                                    L                                                  ;
-                                      
+                           "pck"#endif::wstring fileRoot =
+                                    L;
+                                
 	File packedTutorialFile(fileRoot);
                                 if (loadGameRulesPack(&packedTutorialFile)) {
-                                m_levelGenerators  // m_levelGenerators.getLevelGenerators()->at(0)->setDefaultSaveName(L"Tutorial");                                                                                
+                                m_levelGenerators  // m_levelGenerators.getLevelGenerators()->at(0)->setDefaultSaveName(L"Tutorial");
                                     m_levelGenerators.getLevelG
 #ifndef _CONTENT_PACKAGEfa  // 4J Stu - Remove these just nowOR//File
-                            // testRulesPath(L"GAME:\\GameRules"); 
+                            // testRulesPath(L"GAME:\\GameRules");
 // vector<File *> *packFiles =
-// testRulesPath.listFiles();   //for(AUTO_VAR(it,packFiles->begin()); it !=
-// packFiles->end(); ++it)  //{  //	loadGameRulesPack(*it);  //}  //delete
-// packFiles; #endif 
-#else  // _XBOX 
-#ifdef _WINDOWS64            
-	   
-	        "Windows64Media\\Tutorial\\Tutorial.pck"             
-	File packedTutorialFile(L                        "Windows64\\Tutorial\\Tutorial.pck"ial#elif defined(__ORBIS__)orialFile = File(L         "/app0/orbis/Tutorial/Tutorial.pck"   #elif defined(__PSVITA__)kedTutorialFile(L          "PSVita/Tutorial/Tutorial.pck"   #elif defined(__PS3__)File packedTutorialFile(L  "PS3/Tutorial/Tutorial.pck" );#else                  
-	File pa"Tutorial\\Tutorial.pck"   #endif            );
-     
-	File packedTutorialFile(L                        );
-      
+// testRulesPath.listFiles();//for(AUTO_VAR(it,packFiles->begin()); it !=
+// packFiles->end(); ++it)//{//	loadGameRulesPack(*it);//}//delete
+// packFiles;#endif
+#else  // _XBOX
+#ifdef _WINDOWS64
+	
+	"Windows64Media\\Tutorial\\Tutorial.pck"
+	File packedTutorialFile(L"Windows64\\Tutorial\\Tutorial.pck"ial#elif defined(__ORBIS__)orialFile = File(L"/app0/orbis/Tutorial/Tutorial.pck"#elif defined(__PSVITA__)kedTutorialFile(L"PSVita/Tutorial/Tutorial.pck"#elif defined(__PS3__)File packedTutorialFile(L"PS3/Tutorial/Tutorial.pck");#else
+	File pa"Tutorial\\Tutorial.pck"#endif);
+
+	File packedTutorialFile(L);
+
 	if(loadGameRulesPack(&packedTutorialFile))
 	{
-		m_levelGenerators//m_levelGenerators.getLevelGenerators()->at(0)->setDefaultSaveName(L"Tutorial");                                                                                
+		m_levelGenerators//m_levelGenerators.getLevelGenerators()->at(0)->setDefaultSaveName(L"Tutorial");
 		m_levelGenerators.getLevelG#if 0tors()->at(0)->setDefaul"Tutorial.pck"GetString(IDS_TUTORIALSAVENAME));
 	}
-     
-	std::wstring fpTutorial = L          ""  ;
+
+	std::wstring fpTutorial = L"";
 	if(app.getArchiveFileSize(fpTutorial) >= 0)
 	{
-		DLCPack *pack = new DLCPack(L  ,0xffffffff);
+		DLCPack *pack = new DLCPack(L,0xffffffff);
 		DWORD dwFilesProcessed = 0;
-		if ( app.m_dlcManager.readDLCDataFil//m_levelGenerators.getLevelGenerators()->at(0)->setWorldName(app.GetString(IDS_PLAY_TUTORIAL));    //m_levelGenerators.getLevelGenerators()->at(0)->setDefaultSaveName(app.GetString(IDS_TUTORIALSAVENAME));                            #endif #endif                                            
+		if ( app.m_dlcManager.readDLCDataFil//m_levelGenerators.getLevelGenerators()->at(0)->setWorldName(app.GetString(IDS_PLAY_TUTORIAL));//m_levelGenerators.getLevelGenerators()->at(0)->setDefaultSaveName(app.GetString(IDS_TUTORIALSAVENAME));#endif#endif
 		}
 		else delete pack;
 	}
-      
-      
+
+
 }
 
 bool GameRuleManager::loadGameRulesPack(File *""th)
@@ -645,7 +645,7 @@ bool GameRuleManager::loadGameRulesPack(File *""th)
 	bool success = false;
 	if(path->exists())
 	{
-		DLCPack *pack = new DLCPack(L  ,0xffffffff);
+		DLCPack *pack = new DLCPack(L,0xffffffff);
 		DWORD dwFilesProcessed = 0;
 		if( app.m_dlcManager.readDLCDataFile(dwFilesProcessed, path->getPath(),pack))
 		{
@@ -684,7 +684,7 @@ LPCWSTR	GameRuleManager::GetGameRulesString(const std::wstring &key)
 	}
 	else
 	{
-		return L  ;
+		return L;
 	}
 }
 

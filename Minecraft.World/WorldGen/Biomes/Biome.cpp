@@ -434,9 +434,9 @@ std::vector<Biome::MobSpawnerData*>* Biome::getMobs(MobCategory* category) {
 }
 
 bool Biome::hasSnow() {  // 4J - snowCovered flag removed as it wasn't being set
-                         // by the game anymore     // - snow is now temperature
-                         // dependent to match code in rain rendering,     //
-                         // shouldFreeze functions etc.     
+                         // by the game anymore// - snow is now temperature
+                         // dependent to match code in rain rendering,//
+                         // shouldFreeze functions etc.
     if (!_hasRain) return false;
 
     if (getTemperature() >= 0.15f) return false;
@@ -445,9 +445,9 @@ bool Biome::hasSnow() {  // 4J - snowCovered flag removed as it wasn't being set
 }
 
 bool Biome::hasRain() {  // 4J - snowCovered flag removed as it wasn't being set
-                         // by the game anymore,     // replaced by call to
-                         // hasSnow()     
-    if (hasSnow()) return false;  //    if (snowCovered) return false;     
+                         // by the game anymore,// replaced by call to
+                         // hasSnow()
+    if (hasSnow()) return false;  //    if (snowCovered) return false;
     return _hasRain;
 }
 
@@ -458,9 +458,9 @@ float Biome::getCreatureProbability() { return 0.1f; }
 int Biome::getDownfallInt() { return (int)(downfall * 65536); }
 
 int Biome::getTemperatureInt() {
-    return (int)(temperature * 65536)  // 4J - brought forward from 1.2.3     
+    return (int)(temperature * 65536)  // 4J - brought forward from 1.2.3
         float Biome::getDownfall() {
-        return downfall  // 4J - brought forward from 1.2.3     
+        return downfall  // 4J - brought forward from 1.2.3
             float Biome::getTemperature() {
             return temperature;
         }
@@ -471,21 +471,21 @@ int Biome::getTemperatureInt() {
 
         int
         Biome::getGrassColor() {  // double temp = Mth::clamp(getTemperature(),
-                                  // 0.0f, 1.0f);     // double rain =
-                                  // Mth::clamp(getDownfall(), 0.0f, 1.0f);     
-                                  // return GrassColor::get(temp, rain);     
+                                  // 0.0f, 1.0f);// double rain =
+                                  // Mth::clamp(getDownfall(), 0.0f, 1.0f);
+                                  // return GrassColor::get(temp, rain);
             return Minecraft::GetInstance()->getColourTable()->getColor(
                 m_grassColor);
         }
 
         int
         Biome::getFolageColor() {  // double temp = Mth::clamp(getTemperature(),
-                                   // 0.0f, 1.0f);     // double rain =
+                                   // 0.0f, 1.0f);// double rain =
                                    // Mth::clamp(getDownfall(),
-                                   // 0.0f, 1.0f);     
-                                   // return FoliageColor::get(temp, rain);     
+                                   // 0.0f, 1.0f);
+                                   // return FoliageColor::get(temp, rain);
             return Minecraft::GetInstance()->getColourTable()->getColor(
-                m_foliageColor)  // 4J Added     
+                m_foliageColor)  // 4J Added
                 int Biome::getWaterColor() {
                 return Minecraft::GetInstance()->getColourTable()->getColor(
                     m_waterColor);

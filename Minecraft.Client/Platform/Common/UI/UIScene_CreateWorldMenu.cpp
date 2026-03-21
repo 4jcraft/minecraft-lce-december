@@ -1092,14 +1092,14 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
 
     StorageManager
         .ResetSaveData  // Make our next save default to the name of the
-                        // level     
+                        // level
             StorageManager.SetSaveTitle((wchar_t*)wWorldName.c_str());
 
     std::wstring wSeed;
     if (!pClass->m_MoreOptionsParams.seed.empty()) {
         wSeed = pClass->m_MoreOptionsParams.seed;
     }
-    // random	         ""	wSeed=// start the game          
+    // random	""	wSeed=// start the game
     bool isFlat = (pClass->m_MoreOptionsParams.bFlatWorld == TRUE);
     __int64 seedValue = 0;
 
@@ -1109,19 +1109,19 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
         __int64 value = 0;
         unsigned int len =
             (unsigned int)wSeed.len  // Check if the input string contains a
-                                     // numerical value          
+                                     // numerical value
             bool isNumber = true;
         for (unsigned int i = 0; i < len; ++i) {
-            if (wSeed '0'(i) < L    || wSeed '9'(i) > L    ) {
-                if (!(i == 0 && wSeed.'-' i) == L    ) )
+            if (wSeed '0'(i) < L || wSeed '9'(i) > L ) {
+                if (!(i == 0 && wSeed.'-' i) == L ) )
 				{
                         isNumber = false;
                         break;
                     }
                 // If the input string is a numerical value, convert it to a
-                // number          
+                // number
                 if (isNumber)
-                        value = _fromString<__int64>(w//If the value is not 0 use it, otherwise use the algorithm from the java String.hashCode() function to hash it          
+                        value = _fromString<__int64>(w//If the value is not 0 use it, otherwise use the algorithm from the java String.hashCode() function to hash it
 		if( value != 0 )
 			seedValue = value;
 		else
@@ -1136,7 +1136,7 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
                                 // Random())->nextLong() here - we used to at
                                 // this point find a suitable seed, but now just
                                 // set a flag so this is performed in
-                                // Minecraft::Server::initServer.          
+                                // Minecraft::Server::initServer.
             }
 
             param->seed = seedValue;
@@ -1206,49 +1206,49 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
             app.SetGameHostOption(eGameHostOption_DoDaylightCycle,
                                   pClass->m_MoreOptionsParams.bDoDaylightCycle);
 
-        app.SetGameHostOption(eGameHostOption_WasntSaveOwner,#ifdef _LARGE_WORLDS          
-	app.SetGameHostOption(eGameHostOption_WorldSize, pClass->m_MoreOptionsParams.worldS// 0 is GAME_HOST_OPTION_WORLDSIZE_UNKNOWN          
+        app.SetGameHostOption(eGameHostOption_WasntSaveOwner,#ifdef _LARGE_WORLDS
+	app.SetGameHostOption(eGameHostOption_WorldSize, pClass->m_MoreOptionsParams.worldS// 0 is GAME_HOST_OPTION_WORLDSIZE_UNKNOWN
 	pClass->m_MoreOptionsParams.currentWorldSize = (EGameHostOptionWorldSize)(pClass->m_MoreOptionsParams.worldSize+1);
 	pClass->m_MoreOptionsParams.newWorldSize = (EGameHostOptionWorldSize)(pClass->m_MoreOptionsParams.worl#endif1);
-      
+
 
 	g_NetworkManager.HostGame(dwLocalUsersMask,isClientSide,isPrivate,MINECRAFT_NET_MAX_PLAYERS,0);
 
 	param->settings = app.GetGameHostOption( eGameHostOpti
-#ifdef _LARGE_WORLDS          
+#ifdef _LARGE_WORLDS
 	switch (pClass->m_MoreOptionsParams.worldSize)
 	{
-                // Classic          
+                // Classic
                 param->xzSize = LEVEL_WIDTH_CLASSIC;
                 param->hellScale =
-                    HELL_LEVEL_SCALE_  // hellsize = 54/3 = 18          
+                    HELL_LEVEL_SCALE_  // hellsize = 54/3 = 18
                     break;
-                // Small		        
+                // Small		
                 param->xzSize = LEVEL_WIDTH_SMALL;
                 param->hellScale =
-                    HELL_LEVEL_SCA  // hellsize = ceil(64/3) = 22          
+                    HELL_LEVEL_SCA  // hellsize = ceil(64/3) = 22
                     break;
-                // Medium	         
+                // Medium	
                 param->xzSize = LEVEL_WIDTH_MEDIUM;
                 param->hellScale =
-                    HELL_LEVEL_SCAL  // hellsize= ceil(3*64/6) = 32          
+                    HELL_LEVEL_SCAL  // hellsize= ceil(3*64/6) = 32
                     break;
-                // Large		        
+                // Large		
                 param->xzSize = LEVEL_WIDTH_LARGE;
                 param->hellScale =
-                    HELL_LEVEL_SCA  // hellsize = ceil(5*64/8) = 40          
+                    HELL_LEVEL_SCA  // hellsize = ceil(5*64/8) = 40
                         b #else
 	};
-     
+
 	param->xzSize = LEVEL_MAX_WIDTH;
 	param->hellScale = HELL_LEVEL_M#endifL
-#ifndef _XBOX          
+#ifndef _XBOX
 	g_NetworkManager.FakeLocalPlayer #endif();
-      
+
 
 	LoadingInputParams *loadingParams = new LoadingInputParams();
 	loadingParams->func = &CGameNetworkManager::RunNetworkGameThreadProc;
-	loadingParams->lpParam = (LPVOID// Reset the autosave time          
+	loadingParams->lpParam = (LPVOID// Reset the autosave time
 	app.SetAutosaveTimerTime();
 
 	UIFullscreenProgressCompletionData *completionData = new UIFullscreenProgressCompletionData();
@@ -1265,7 +1265,7 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
             void* pParam, bool bContinue, int iPad) {
             UIScene_CreateWorldMenu* pClass = (UIScene_CreateWorldMenu*)pParam;
 
-        if(bContinue==t// It's possible that the player has not signed in - they can back out          
+        if(bContinue==t// It's possible that the player has not signed in - they can back out
 		if(ProfileManager.IsSignedIn(pClass->m_iPad))
 		{
                 bool isOnlineGame =
@@ -1274,7 +1274,7 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
                             ProfileManager.GetPrimaryPad()) && pClass
                         ->m_MoreOptionsParams
                         .bOnlin  // bool isOnlineGame =
-                                 // pClass->m_MoreOptionsParams.bOnlineGame;          
+                                 // pClass->m_MoreOptionsParams.bOnlineGame;
                     int primaryPad = ProfileManager.GetPrimaryPad();
                 bool noPrivileges = false;
                 DWORD dwLocalUsersMask = 0;
@@ -1287,7 +1287,7 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
                     if (ProfileManager.IsSignedIn(i) &&
                         ((i == primaryPad) || isLocalMultiplayerAvailable)) {
                         if (isSignedInLive && !ProfileManager.IsSignedInLive(i))
-                            // Record the first non signed in live pad          
+                            // Record the first non signed in live pad
                             iPadNotSignedInLive = i;
                     }
 
@@ -1298,9 +1298,9 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
                     isSignedInLive =
                         isSignedInLive && ProfileManager.IsSignedInLive(i);
                 }  // If this is an online game but not all players are signed
-                   // in to Live, stop!          
-                        if (isOnlineGame && !isSignedInL#ifdef __ORBIS__          
-				assert(iPadNotSignedInLive != // Check if PSN is unavailable because of age restriction          
+                   // in to Live, stop!
+                        if (isOnlineGame && !isSignedInL#ifdef __ORBIS__
+				assert(iPadNotSignedInLive != // Check if PSN is unavailable because of age restriction
 				int npAvailability = ProfileManager.getNPAvailability(iPadNotSignedInLive);
 				if (npAvailability == SCE_NP_ERROR_AGE_RESTRICTION)
 				{
@@ -1308,7 +1308,7 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
                         fa  // 4J Stu - This is a bit messy and is due to the
                             // library incorrectly returning false for
                             // IsSignedInLive if the npAvailability isn't
-                            // SCE_OK          
+                            // SCE_OK
                             UINT uiIDA[1];
                     uiIDA[0] = IDS_OK;
                     ui.RequestAlertMessage(IDS_ONLINE_SERVICE_TITLE,
@@ -1328,13 +1328,13 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
                         pClass);
 				}
 #elsen 0;
-     
+
 				pClass->m_bIgnoreInput=false;
 				UINT uiIDA[1];
 				uiIDA[0]=IDS_CONFIRM_OK;
 				ui.RequestAlertMessage( IDS_PRO_NOTONLINE_TITLE, IDS_PRO_NOTONLINE_TEXT, uiIDA,1,ProfileManager.GetPrimaryPad());
 #endif 0;
-      // Check if user-created content is allowed, as we cannot play multiplayer if it's not          
+// Check if user-created content is allowed, as we cannot play multiplayer if it's not
 			bool noUGC = false;
 			BOOL pccAllowed = TRUE;
 			BOOL pccFriendsAllowed = TRUE;
@@ -1362,7 +1362,7 @@ void UIScene_CreateWorldMenu::CreateGame(UIScene_CreateWorldMenu* pClass,
                             ProfileManager.GetPrimaryPad());
                     }
 			}
-			else// This is NOT called from a storage manager thread, and is in fact called from the main thread in the Profile library tick. Therefore we use the main threads IntCache.          
+			else// This is NOT called from a storage manager thread, and is in fact called from the main thread in the Profile library tick. Therefore we use the main threads IntCache.
 				CreateGame(pClass, dwLocalUsersMask);
 			}
         }
@@ -1382,14 +1382,14 @@ int UIScene_CreateWorldMenu::ConfirmCreateReturned(
                 .IsSignedInLive(ProfileManager.GetPrimaryPad()) && pClass
                 ->m_MoreOptionsParams
                 .bOnlin  // 4J Stu - If we only have one controller connected,
-                         // then don't show the sign-in UI again          
+                         // then don't show the sign-in UI again
                     DWORD connectedControllers = 0;
         for (unsigned int i = 0; i < XUSER_MAX_COUNT; ++i) {
             if (InputManager.IsPadConnected(i) || ProfileManager.IsSignedIn(i))
                 ++connectedControllers;
         }
 
-                if(isClientSide && app.IsLocalMultiplayerAvailable(//ProfileManager.RequestSignInUI(false, false, false, true, false,&UIScene_CreateWorldMenu::StartGame_SignInReturned, pClass,ProfileManager.GetPrimaryPad());          
+                if(isClientSide && app.IsLocalMultiplayerAvailable(//ProfileManager.RequestSignInUI(false, false, false, true, false,&UIScene_CreateWorldMenu::StartGame_SignInReturned, pClass,ProfileManager.GetPrimaryPad());
 			SignInInfo info;
 			info.Func = &UIScene_CreateWorldMenu::StartGame_SignInReturned;
 			info.lpParam = pClass;
@@ -1397,7 +1397,7 @@ int UIScene_CreateWorldMenu::ConfirmCreateReturned(
 			ui.NavigateToScene(ProfileManager.GetPrimaryPad(),eUIScene_QuadrantSignin,&info);
     }
     el  // Check if user-created content is allowed, as we cannot play
-        // multiplayer if it's not          
+        // multiplayer if it's not
         bool isClientSide =
             ProfileManager.IsSignedInLive(ProfileManager.GetPrimaryPad()) &&
             pClass->m_MoreOptionsParams.bOnlineGame;
@@ -1417,7 +1417,7 @@ int UIScene_CreateWorldMenu::ConfirmCreateReturned(
                                IDS_NO_USER_CREATED_CONTENT_PRIVILEGE_CREATE,
                                uiIDA, 1, ProfileManager.GetPrimaryPad());
     }
-    e #if defined (__ORBIS__) || defined(__PSVITA__)          
+    e #if defined (__ORBIS__) || defined(__PSVITA__)
 				bool isOnlineGame =
         ProfileManager.IsSignedInLive(ProfileManager.GetPrimaryPad()) &&
         pClass->m_MoreOptionsParams.bOnlineGame;
@@ -1430,7 +1430,7 @@ int UIScene_CreateWorldMenu::ConfirmCreateReturned(
                 SCE_MSG_DIALOG_SYSMSG_TYPE_TRC_PSN_CHAT_RESTRICTION,
                 ProfileManager.GetPrimaryPad());
 #endif }
-                  
+            
 				CreateGame(pClass, 0);
         }
     }
@@ -1439,7 +1439,7 @@ else {
     pClass->m_bIgnoreInput = false;
 }
 re
-#ifdef __ORBIS__          
+#ifdef __ORBIS__
 int UIScene_CreateWorldMenu::MustSignInReturnedPSN(void *pParam,int iPad,C4JStorage::EMessageResult result)
 {
     UIScene_CreateWorldMenu* pClass = (UIScene_CreateWorldMenu*)pParam;
@@ -1452,24 +1452,24 @@ int UIScene_CreateWorldMenu::MustSignInReturnedPSN(void *pParam,int iPad,C4JStor
     }
 
     ret  // int UIScene_CreateWorldMenu::PSPlusReturned(void *pParam,int
-         // iPad,C4JStorage::EMessageResult result) // { // 	int32_t
-         // iResult; // 	UIScene_CreateWorldMenu *pClass =
-         // (UIScene_CreateWorldMenu *)pParam; //  // 	// continue offline, or
-         // upsell PS Plus? // 	if(result==C4JStorage::EMessage_ResultDecline)
-         //  // 	{ // 		// upsell psplus // 		int32_t
-         // iResult=sceNpCommerceDialogInitialize(); //  //
-         // SceNpCommerceDialogParam param; //
-         // sceNpCommerceDialogParamInitialize(&param); //
-         // param.mode=SCE_NP_COMMERCE_DIALOG_MODE_PLUS; //
-         // param.features = SCE_NP_PLUS_FEATURE_REALTIME_MULTIPLAY;  //
-         // param.userId = ProfileManager.getUserID(pClass->m_iPad); //  //
-         // iResult=sceNpCommerceDialogOpen(&param); // 	} // 	else
-         // if(result==C4JStorage::EMessage_ResultAccept)  // 	{ //
-         // // continue offline //
-         // pClass->m_MoreOptionsParams.bOnlineGame=false; //
-         // pClass->checkStateAndStartGame(); // 	} //
-        // 	pClass->m_bIgnoreInput=false; // 	return 0; // } #endif   
-      
+         // iPad,C4JStorage::EMessageResult result)// {// 	int32_t
+         // iResult;// 	UIScene_CreateWorldMenu *pClass =
+         // (UIScene_CreateWorldMenu *)pParam;// // 	// continue offline, or
+         // upsell PS Plus?// 	if(result==C4JStorage::EMessage_ResultDecline)
+         // // 	{// 		// upsell psplus// 		int32_t
+         // iResult=sceNpCommerceDialogInitialize();// //
+         // SceNpCommerceDialogParam param;//
+         // sceNpCommerceDialogParamInitialize(&param);//
+         // param.mode=SCE_NP_COMMERCE_DIALOG_MODE_PLUS;//
+         // param.features = SCE_NP_PLUS_FEATURE_REALTIME_MULTIPLAY; //
+         // param.userId = ProfileManager.getUserID(pClass->m_iPad);// //
+         // iResult=sceNpCommerceDialogOpen(&param);// 	}// 	else
+         // if(result==C4JStorage::EMessage_ResultAccept) // 	{//
+         // // continue offline//
+         // pClass->m_MoreOptionsParams.bOnlineGame=false;//
+         // pClass->checkStateAndStartGame();// 	}//
+        // 	pClass->m_bIgnoreInput=false;// 	return 0;// }#endif
+
 
 
 void UIScene_CreateWorldMenu::handleTouchBoxRebuild() {

@@ -291,7 +291,7 @@ void CPlatformNetworkManagerSony::HandlePlayerLeaving(
 
         removeNetworkPlayer(pSQRPlayer);
         // Update our external data to match the current internal player slots,
-        // and resync back out (host only)     
+        // and resync back out (host only)
         void CPlatformNetworkManagerSony::HandleResyncPlayerRequest(
             SQRNetworkPlayer * *aPlayers) {
             m_hostGameSessionData.playerCount = 0;
@@ -325,24 +325,24 @@ void CPlatformNetworkManagerSony::HandlePlayerLeaving(
 
         extern SQRNetworkManager* testSQRNetworkManager;
 
-bool CPlatformNetworkManagerSony::Initialise(CGameNetworkManager *pGameNetworkManager, int flagIndexSize// Create a sony network manager, and go online #ifdef __ORBIS__     
+bool CPlatformNetworkManagerSony::Initialise(CGameNetworkManager *pGameNetworkManager, int flagIndexSize// Create a sony network manager, and go online#ifdef __ORBIS__
 	m_pSQRNet = new SQRNetworkManager_Orbis(this);
-	m_pSQRNet->Initialis#elif defined __PS3__ 	     
+	m_pSQRNet->Initialis#elif defined __PS3__ 	
 	m_pSQRNet = new SQRNetworkManager_PS3(this);
-	m_pSQRNet->Initialis#else // __PSVITA__  //	m_pSQRNet = new SQRNetworkManager_Vita(this);     
+	m_pSQRNet->Initialis#else // __PSVITA__//	m_pSQRNet = new SQRNetworkManager_Vita(this);
 	m_bUsingAdhocMode = false;
 	m_pSQRNet_Vita_Adhoc = new SQRNetworkManager_AdHoc_Vita(this);
 	m_pSQRNet_Vita = new SQRNetworkManager_Vita(this);
 
-	m_pSQRNet = m_pSQRNet_Vit// 4J-PB - seems we can't initialise both adhoc and psn comms - from Rohan - "having adhoc matching and matching2 library initialised together results in undesired behaviour", but probably having other parts initialised also is 'undesirable'     
+	m_pSQRNet = m_pSQRNet_Vit// 4J-PB - seems we can't initialise both adhoc and psn comms - from Rohan - "having adhoc matching and matching2 library initialised together results in undesired behaviour", but probably having other parts initialised also is 'undesirable'
 
  	m_pSQRNet_Vita->Initialise();
 
 	if(ProfileManager.IsSignedInPSN(ProfileManager.GetPrimaryPad()))
-// we're signed into the PSN, but we won't be online yet, force a sign-in online here     
+// we're signed into the PSN, but we won't be online yet, force a sign-in online here
 		m_pSQRNet_Vita->AttemptPSNSignIn(NULL, NULL)
 
-#endif      
+#endif 
 
 	m_pGameNetworkManager = pGameNetworkManager;
 	m_flagIndexSize = flagIndexSize;
@@ -367,7 +367,7 @@ bool CPlatformNetworkManagerSony::Initialise(CGameNetworkManager *pGameNetworkMa
 	m_pSearchResults = NULL;
 	
 	m_lastSearchStartTime = 0;
-// Success!     
+// Success!
     return true;
     }
 
@@ -377,28 +377,28 @@ bool CPlatformNetworkManagerSony::Initialise(CGameNetworkManager *pGameNetworkMa
         return m_pSQRNet->GetJoiningReadyPercentage();
     }
 
-int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS// Attempts to remap the following messages to provide something that PS3 TCRs are happier with  // 
-//  IDS_CONNECTION_LOST				  - "Connection lost"  //  IDS_CONNECTION_FAILED			  - "Connection failed"  //	IDS_CONNECTION_LOST_LIVE		  - "Connection to "PSN" was lost. Exiting to the main menu."  //  IDS_CONNECTION_LOST_LIVE_NO_EXIT  - "Connection to "PSN" was lost."  //  IDS_CONNECTION_LOST_SERVER		  - "Connection to the server was lost. Exiting to the main menu."  // 
-// Map to:  // 
-// IDS_ERROR_NETWORK				    - "A network error has occurred"  // IDS_ERROR_NETWORK_TITLE			    - "Network Error"  // IDS_ERROR_NETWORK_EXIT			    - "A network error has occurred. Exiting to Main Menu."  // IDS_ERROR_PSN_SIGN_OUT				- You have been signed out from the "PSN".  // IDS_ERROR_PSN_SIGN_OUT_EXIT			- You have been signed out from the "PSN". Exiting to Main Menu   // Determine if we'd prefer to present errors as a signing out issue, rather than a network issue, based on whether we have a network connection at all or not     
+int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS// Attempts to remap the following messages to provide something that PS3 TCRs are happier with//
+//  IDS_CONNECTION_LOST				  - "Connection lost"//  IDS_CONNECTION_FAILED			  - "Connection failed"//	IDS_CONNECTION_LOST_LIVE		  - "Connection to "PSN" was lost. Exiting to the main menu."//  IDS_CONNECTION_LOST_LIVE_NO_EXIT  - "Connection to "PSN" was lost."//  IDS_CONNECTION_LOST_SERVER		  - "Connection to the server was lost. Exiting to the main menu."//
+// Map to://
+// IDS_ERROR_NETWORK				    - "A network error has occurred"// IDS_ERROR_NETWORK_TITLE			    - "Network Error"// IDS_ERROR_NETWORK_EXIT			    - "A network error has occurred. Exiting to Main Menu."// IDS_ERROR_PSN_SIGN_OUT				- You have been signed out from the "PSN".// IDS_ERROR_PSN_SIGN_OUT_EXIT			- You have been signed out from the "PSN". Exiting to Main Menu// Determine if we'd prefer to present errors as a signing out issue, rather than a network issue, based on whether we have a network connection at all or not
 	bool preferSignoutError = false;
 	int st
-#if defined __PSVITA__  // MGH - to fix devtrack #6258      
+#if defined __PSVITA__  // MGH - to fix devtrack #6258 
 	if(!ProfileManager.IsSignedInPSN(ProfileManager.GetPrimaryPad()))
-		preferSignoutError = t#elif defined __ORBIS__     
+		preferSignoutError = t#elif defined __ORBIS__
 	if(!ProfileManager.isSignedInPSN(ProfileManager.GetPrimaryPad()))
-		preferSignoutError = t#elif defined __PS3__     
+		preferSignoutError = t#elif defined __PS3__
 	int ret = cellNetCtlGetState( &state );
 	int IPObtainedState = CELL_NET_CTL_STATE_IPObtained;
 	if( ret == 0 )
 	{
         if (state == IPObtainedState) {
             preferSignoutError = true;
-#endif  
-#ifdef __PSVITA__      // If we're in ad-hoc mode this problem definitely wasn't PSN related     
+#endif 
+#ifdef __PSVITA__    // If we're in ad-hoc mode this problem definitely wasn't PSN related
             if (usingAdhocMode())
                 preferSignoutError =
-                    fa #endif        // If we're the host we haven't lost connection to the server     
+                    fa #endif     // If we're the host we haven't lost connection to the server
                     if (IDS == IDS_CONNECTION_LOST_SERVER &&
                         g_NetworkManager.IsHost()) {
                     IDS = IDS_CONNECTION_LOST_LIVE;
@@ -420,13 +420,13 @@ int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS// Attempts to remap the
                     } else {
                         return IDS_ERROR_NETWORK_TITLE;
                     }
-                br #ifdef __PSVITA__     
+                br #ifdef __PSVITA__
 		case IDS_CONNECTION_LOST_SERVER:
                     if (preferSignoutError) {
                         if (ProfileManager.IsSignedInPSN(
                                 ProfileManager.GetPrimaryPad()) == false)
                             return IDS_ERROR_PSN_SIGN_OUT_EXIT;
-#endif      
+#endif 
 		default:
                         return IDS;
                     }
@@ -446,23 +446,23 @@ int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS// Attempts to remap the
                 return playerIsSystemPrimary  // We call this twice a frame,
                                               // either side of the render call
                                               // so is a good place to "tick"
-                                              // things     
-                    void CPlatformNetworkManagerSony::DoWork #if 0     
+                                              // things
+                    void CPlatformNetworkManagerSony::DoWork #if 0
 	DWORD dwNotifyId;
                 ULONG_PTR ulpNotifyParam;
 
                 while (XNotifyGetNext(m_notificationListener,
-                                      0,  // Any notification     
+                                      0,  // Any notification
                                       &dwNotifyId, &ulpNotifyParam)) {
                     switch (dwNotifyId) {
                         case XN_SYS_SIGNINCHANGED:
-                        app.DebugPr"Signinchanged - %d\n"     , ulpNotifyParam);
+                        app.DebugPr"Signinchanged - %d\n", ulpNotifyParam);
                         break;
                         case XN_LIVE_INVITE_ACCEPTED  // ignore these - we're
                                                       // catching them from the
                                                       // game listener, so we
                                                       // can get the one from
-                                                      // the dashboard     
+                                                      // the dashboard
                             break;
                             default:
                             m_pIQNet->Notify(dwNotifyId, ulpNotifyParam);
@@ -477,7 +477,7 @@ int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS// Attempts to remap the
                     m_bLeaveGameOnTick = false;
                 }
 
-                m_pIQNet->DoWor #else      
+                m_pIQNet->DoWor #else 
 	TickSearch();
 
                 if (m_bLeaveGameOnTick) {
@@ -485,7 +485,7 @@ int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS// Attempts to remap the
                     m_bLeaveGameOnTick = false;
                 }
 
-                m_pSQRNet->Tic #endif      
+                m_pSQRNet->Tic #endif 
 
             
             }
@@ -523,33 +523,33 @@ int CPlatformNetworkManagerSony::CorrectErrorIDS(int IDS// Attempts to remap the
 
                     if (socket != NULL)
                         // We can't remove the player from qnet until we have
-                        // stopped using it to communicate     
+                        // stopped using it to communicate
                         C4JThread* thread = new C4JThread(
                             &CPlatformNetworkManagerSony::
                                 RemovePlayerOnSocketClosedThreadProc,
-                            pNetworkPla "RemovePlayerOnSocketClosed"     );
+                            pNetworkPla "RemovePlayerOnSocketClosed");
                     thread->SetProcessor(CPU_CORE_REMOVE_PLAYER);
                     thread->Run();
                 } else
-                    // Safe to remove the player straight away     
+                    // Safe to remove the player straight away
                     return m_pSQRNet->RemoveLocalPlayerByUserIndex(userIndex);
             }
         }
         return true;
 }
 
-bool CPlatformNetworkManagerSony::IsInStatsEnabledSession#if 0     
+bool CPlatformNetworkManagerSony::IsInStatsEnabledSession#if 0
 	DWORD dataSize = sizeof(QNET_LIVE_STATS_MODE);
 	QNET_LIVE_STATS_MODE statsMode;
-	m_pIQNet->GetOpt(QNET_OPTION_LIVE_STATS_MODE, &statsMode , &dataSize )// Use QNET_LIVE_STATS_MODE_AUTO if there is another way to check if stats are enabled or not     
+	m_pIQNet->GetOpt(QNET_OPTION_LIVE_STATS_MODE, &statsMode , &dataSize )// Use QNET_LIVE_STATS_MODE_AUTO if there is another way to check if stats are enabled or not
 	bool statsEnabled = statsMode == QNET_LIVE_STATS_MODE_ENABLED;
-	return m_pIQNet->GetState() != QNET_STATE_IDLE && statsEnab#endif     
+	return m_pIQNet->GetState() != QNET_STATE_IDLE && statsEnab#endif
 	return true;
 }
 
 bool CPlatformNetworkManagerSony::SessionHasSpace(
-    unsigned int spaceRequ /*= 1*/     ) {
-        return m_pSQRNet->SessionHasSpace(spaceRequir#if 0  // This function is used while a session is running, so all players trying to join  // should use public slots,     
+    unsigned int spaceRequ /*= 1*/) {
+        return m_pSQRNet->SessionHasSpace(spaceRequir#if 0// This function is used while a session is running, so all players trying to join// should use public slots,
 	DWORD publicSlots = 0;
 	DWORD filledPublicSlots = 0;
 	DWORD privateSlots = 0;
@@ -563,8 +563,8 @@ bool CPlatformNetworkManagerSony::SessionHasSpace(
 
 	DWORD spaceLeft = (publicSlots - filledPublicSlots) + (privateSlots - filledPrivateSlots);
 
-	return spaceLeft >= spaceRequi#else     
-	return t#endif     
+	return spaceLeft >= spaceRequi#else
+	return t#endif
 
 
 }
@@ -579,9 +579,9 @@ bool CPlatformNetworkManagerSony::LeaveGame(bool bMigrateHost) {
     if (m_bLeavingGame) return true;
 
     m_bLeavingGame =
-        tru  // If we are a client, wait for all client connections to close  //
+        tru  // If we are a client, wait for all client connections to close//
              // TODO Possibly need to do multiple objects depending on how split
-             // screen online works     
+             // screen online works
         SQRNetworkPlayer* pSQRPlayer = m_pSQRNet->GetLocalPlayerByUserIndex(
             g_NetworkManager.GetPrimaryPad());
     INetworkPlayer* pNetworkPlayer = getNetworkPlayer(pSQRPlayer);
@@ -590,13 +590,13 @@ bool CPlatformNetworkManagerSony::LeaveGame(bool bMigrateHost) {
         Socket* socket = pNetworkPlayer->GetSocket();
 
         if (socket != NULL)
-            // printf("Waiting for socket closed event\n");     
+            // printf("Waiting for socket closed event\n");
             DWORD result = socket->m_socketClosedEvent->WaitForSignal(
                 INFINITE);    // The session might be gone once the socket
-                              // releases     
+                              // releases
         if (IsInSession()) {  // printf("Socket closed event has
-                              // fired\n");     // 4J Stu - Clear our reference
-                              // to this socket     
+                              // fired\n");// 4J Stu - Clear our reference
+                              // to this socket
             pSQRPlayer = m_pSQRNet->GetLocalPlayerByUserIndex(
                 g_NetworkManager.GetPrimaryPad());
             pNetworkPlayer = getNetworkPlayer(pSQRPlayer);
@@ -604,9 +604,9 @@ bool CPlatformNetworkManagerSony::LeaveGame(bool bMigrateHost) {
         }
         delete socket;
     } else
-    // printf("Socket is already NULL\n");     
+    // printf("Socket is already NULL\n");
 }
-// If we are the host wait for the game server to end     
+// If we are the host wait for the game server to end
 if (m_pSQRNet->IsHost() && g_NetworkManager.ServerStoppedValid()) {
     m_pSQRNet->EndGame();
     g_NetworkManager.ServerStoppedWait();
@@ -616,8 +616,8 @@ if (m_pSQRNet->IsHost() && g_NetworkManager.ServerStoppedValid()) {
 return _LeaveGame(bMigrateHost, true);
 }
 
-bool CPlatformNetworkManagerSony::_LeaveGame(bool bMigrateHost, bool bLeaveRoom// 4J Stu - Fix for #10490 - TCR 001 BAS Game Stability: When a party of four players leave a world to join another world without saving the title will crash.  // Changed this to make it threadsafe     
-	m_bLeavingGame = tr// Added for Sony platforms but unsure why the 360 doesn't need it - without this, the leaving triggered by this causes the game to respond by leaving again when it transitions to the SNM_STATE_ENDING state     
+bool CPlatformNetworkManagerSony::_LeaveGame(bool bMigrateHost, bool bLeaveRoom// 4J Stu - Fix for #10490 - TCR 001 BAS Game Stability: When a party of four players leave a world to join another world without saving the title will crash.// Changed this to make it threadsafe
+	m_bLeavingGame = tr// Added for Sony platforms but unsure why the 360 doesn't need it - without this, the leaving triggered by this causes the game to respond by leaving again when it transitions to the SNM_STATE_ENDING state
 	m_bLeaveRoomWhenLeavingGame = bLeaveRoom;
 	m_bLeaveGameOnTick = true;
 	m_migrateHostOnLeave = bMigrateHost;
@@ -625,16 +625,16 @@ bool CPlatformNetworkManagerSony::_LeaveGame(bool bMigrateHost, bool bLeaveRoom/
 	return true;
 }
 
-void CPlatformNetworkManagerSony::HostGame(int localUsersMask, bool bOnlineGame, bool bIsPrivate, unsigned char publicS/*= MINECRAFT_NET_MAX_PLAYERS*/     , unsigned char privateS/*= 0*/    // #ifdef _XBOX  // 4J Stu - We probably did this earlier as well, but just to be sure!     
+void CPlatformNetworkManagerSony::HostGame(int localUsersMask, bool bOnlineGame, bool bIsPrivate, unsigned char publicS/*= MINECRAFT_NET_MAX_PLAYERS*/, unsigned char privateS/*= 0*/// #ifdef _XBOX// 4J Stu - We probably did this earlier as well, but just to be sure!
 	SetLocalGame( !bOnlineGame );
 	SetPrivateGame( bIsPrivate );
-	SystemFlagReset(// Make sure that the Primary Pad is in by default     
+	SystemFlagReset(// Make sure that the Primary Pad is in by default
 	localUsersMask |= GetLocalPlayerMask( g_NetworkManager.GetPrimaryPad() );
 
-	_HostGame( localUsersMask, publicSlots, privateSlot//#endif     
+	_HostGame( localUsersMask, publicSlots, privateSlot//#endif
 }
 
-void CPlatformNetworkManagerSony::_HostGame(int usersMask, unsigned char publicS/*= MINECRAFT_NET_MAX_PLAYERS*/     , unsigned char privateS/*= 0*/     // Start hosting a new game     
+void CPlatformNetworkManagerSony::_HostGame(int usersMask, unsigned char publicS/*= MINECRAFT_NET_MAX_PLAYERS*/, unsigned char privateS/*= 0*/// Start hosting a new game
 
 	memset(&m_hostGameSessionData,0,sizeof(m_hostGameSessionData));
 	m_hostGameSessionData.netVersion = MINECRAFT_NET_VERSION;
@@ -649,14 +649,14 @@ void CPlatformNetworkManagerSony::_HostGame(int usersMask, unsigned char publicS
     }
 	}
 
-	m_pSQRNet->CreateAndJoinRoom(g_NetworkManager.GetPrimaryPad(),usersMask, &m_hostGameSessionData, sizeof(m_hostGameSessionData), IsLocalGame(// Should be using: g_NetworkManager.GetLockedProfile() but that isn't being set currently     
+	m_pSQRNet->CreateAndJoinRoom(g_NetworkManager.GetPrimaryPad(),usersMask, &m_hostGameSessionData, sizeof(m_hostGameSessionData), IsLocalGame(// Should be using: g_NetworkManager.GetLockedProfile() but that isn't being set currently
 }
 
 bool CPlatformNetworkManagerSony::
-    _StartGame #if 0      // Set the options that now allow players to join this game     
+    _StartGame #if 0    // Set the options that now allow players to join this game
     BOOL enableJip =
         T  // Must always be true othewise nobody can join the game while in the
-           // PLAY state     
+           // PLAY state
             m_pIQNet->SetOpt(QNET_OPTION_JOIN_IN_PROGRESS_ALLOWED, &enableJip,
                              sizeof BOOL);
 BOOL enableInv = !IsLocalGame();
@@ -664,9 +664,9 @@ m_pIQNet->SetOpt(QNET_OPTION_INVITES_ALLOWED, &enableInv, sizeof BOOL);
 BOOL enablePres = !IsPrivateGame() && !IsLocalGame();
 m_pIQNet->SetOpt(QNET_OPTION_PRESENCE_JOIN_MODE, &enablePres, sizeof BOOL);
 
-        return ( m_pIQNet->StartGame() == S_O#else     
+        return ( m_pIQNet->StartGame() == S_O#else
 	m_pSQRNet->StartGame();
-	return t#endif     
+	return t#endif
 
         
         }
@@ -697,26 +697,26 @@ m_pIQNet->SetOpt(QNET_OPTION_PRESENCE_JOIN_MODE, &enablePres, sizeof BOOL);
         }
 
         bool CPlatformNetworkManagerSony::SetLocalGame(bool isLocal) {
-        if( m_pSQRNet->GetState() == SQRNetworkManager::SNM_STATE_IDLE#if 0     
+        if( m_pSQRNet->GetState() == SQRNetworkManager::SNM_STATE_IDLE#if 0
 		QNET_SESSIONTYPE sessionType = isLocal ? QNET_SESSIONTYPE_LOCAL : QNET_SESSIONTYPE_LIVE_STANDARD;
-		m_pIQNet->SetOpt(QNET_OPTION_TYPE_SESSIONTYPE, &sessionType , sizeof QNET_SESSIONTYPE)// The default value for this is QNET_LIVE_STATS_MODE_AUTO, but that decides based on the players   // in when the game starts. As we may want a non-live player to join the game we cannot have stats enabled   // when we create the sessions. As a result of this, the NotifyWriteStats callback will not be called for   // LIVE players that are connected to LIVE so we write their stats data on a state change.     
+		m_pIQNet->SetOpt(QNET_OPTION_TYPE_SESSIONTYPE, &sessionType , sizeof QNET_SESSIONTYPE)// The default value for this is QNET_LIVE_STATS_MODE_AUTO, but that decides based on the players// in when the game starts. As we may want a non-live player to join the game we cannot have stats enabled// when we create the sessions. As a result of this, the NotifyWriteStats callback will not be called for// LIVE players that are connected to LIVE so we write their stats data on a state change.
 		QNET_LIVE_STATS_MODE statsMode = isLocal ? QNET_LIVE_STATS_MODE_DISABLED : QNET_LIVE_STATS_MODE_ENABLED;
-		m_pIQNet->SetOpt(QNET_OPTION_LIVE_STATS_MODE, &statsMode , sizeof QNET_LIVE_STATS_MODE)// Also has a default of QNET_LIVE_PRESENCE_MODE_AUTO as above, although the effects are less of an issue     
+		m_pIQNet->SetOpt(QNET_OPTION_LIVE_STATS_MODE, &statsMode , sizeof QNET_LIVE_STATS_MODE)// Also has a default of QNET_LIVE_PRESENCE_MODE_AUTO as above, although the effects are less of an issue
 		QNET_LIVE_PRESENCE_MODE presenceMode = isLocal ? QNET_LIVE_PRESENCE_MODE_NOT_ADVERTISED : QNET_LIVE_PRESENCE_MODE_ADVERTISED;
-		m_pIQNet->SetOpt(QNET_OPTION_LIVE_PRESENCE_MODE, &presenceMode , sizeof QNET_LIVE_PRESENCE_MO#endif     
+		m_pIQNet->SetOpt(QNET_OPTION_LIVE_PRESENCE_MODE, &presenceMode , sizeof QNET_LIVE_PRESENCE_MO#endif
 
 		m_bIsOfflineGame = isLocal;
-		app.DebugPr"Setting as local game: %s\n"     , isLoc"yes"   "no"      );
+		app.DebugPr"Setting as local game: %s\n", isLoc"yes""no"  );
         }
         else {
-                app.DebugPr"Tried to change session type while not in idle or offline state\n"     );
+                app.DebugPr"Tried to change session type while not in idle or offline state\n");
         }
 
         return true;
         }
 
         void CPlatformNetworkManagerSony::SetPrivateGame(bool isPrivate) {
-        app.DebugPr"Setting as private game: %s\n"     , isPriva"yes"   "no"      );
+        app.DebugPr"Setting as private game: %s\n", isPriva"yes""no"  );
         m_bIsPrivateGame = isPrivate;
         }
 
@@ -743,22 +743,22 @@ m_pIQNet->SetOpt(QNET_OPTION_PRESENCE_JOIN_MODE, &enablePres, sizeof BOOL);
         void CPlatformNetworkManagerSony::HandleSignInChange() { return; }
 
         bool CPlatformNetworkManagerSony::
-            _RunNetworkGame #if 0      // We delay actually starting the session so that we know the game server is running by the time the clients try to join  // This does result in a host advantage     
+            _RunNetworkGame #if 0    // We delay actually starting the session so that we know the game server is running by the time the clients try to join// This does result in a host advantage
             HRESULT hr = m_pIQNet->StartGame();
         if (FAILED(hr))
             return fals  // Set the options that now allow players to join this
-                         // game     
+                         // game
                        BOOL enableJip =
                            T  // Must always be true othewise nobody can
                               // join the game while in the PLAY
-                              // state     
+                              // state
                                m_pIQNet->SetOpt(
                                    QNET_OPTION_JOIN_IN_PROGRESS_ALLOWED,
                                    &enableJip, sizeof BOOL);
         BOOL enableInv = !IsLocalGame();
         m_pIQNet->SetOpt(QNET_OPTION_INVITES_ALLOWED, &enableInv, sizeof BOOL);
         BOOL enablePres = !IsPrivateGame() && !IsLocalGame();
-        m_pIQNet->SetOpt( QNET_OPTION_PRESENCE_JOIN_MODE, &enablePres, sizeof BOO#endif     
+        m_pIQNet->SetOpt( QNET_OPTION_PRESENCE_JOIN_MODE, &enablePres, sizeof BOO#endif
 	if( IsHost() )
 	{
     m_pSQRNet->StartGame();
@@ -767,17 +767,17 @@ m_pIQNet->SetOpt(QNET_OPTION_PRESENCE_JOIN_MODE, &enablePres, sizeof BOOL);
     m_pSQRNet->SetPresenceDataStartHostingGame();
 	}
 
-	return true// Note that this does less than the xbox equivalent as we have HandleResyncPlayerRequest that is called by the underlying SQRNetworkManager when players are added/removed etc., so this // call is only used to update the game host settings & then do the final push out of the data.     
-void CPlatformNetworkManagerSony::UpdateAndSetGameSessionData(INetworkPlayer *pNetworkPlayerLea/*= NULL*/     )
+	return true// Note that this does less than the xbox equivalent as we have HandleResyncPlayerRequest that is called by the underlying SQRNetworkManager when players are added/removed etc., so this// call is only used to update the game host settings & then do the final push out of the data.
+void CPlatformNetworkManagerSony::UpdateAndSetGameSessionData(INetworkPlayer *pNetworkPlayerLea/*= NULL*/)
 {
     if (this->m_bLeavingGame) return;
 
     m_hostGameSessionData.hostPlayerUID =
-        GetHostPlayer()->GetUI #ifdef __PSVITA__     
+        GetHostPlayer()->GetUI #ifdef __PSVITA__
 	if (usingAdhocMode()) {
-                m_hostGameSessionData.hostPlayerUID.setForAdhoc()#endif      
+                m_hostGameSessionData.hostPlayerUID.setForAdhoc()#endif 
 
-	m_hostGameSessionData.m_uiGameHostSettings = app.GetGameHostOption(eGameHostOption_All// If this is called With a pNetworkPlayerLeaving, then the call has ultimately started within SQRNetworkManager::RemoveRemotePlayersAndSync, so we don't need to sync each change  // as that function does a sync at the end of all changes.     
+	m_hostGameSessionData.m_uiGameHostSettings = app.GetGameHostOption(eGameHostOption_All// If this is called With a pNetworkPlayerLeaving, then the call has ultimately started within SQRNetworkManager::RemoveRemotePlayersAndSync, so we don't need to sync each change// as that function does a sync at the end of all changes.
 	if( pNetworkPlayerLeaving == NULL )
 	{
             m_pSQRNet->UpdateExternalRoomData();
@@ -791,11 +791,11 @@ void CPlatformNetworkManagerSony::UpdateAndSetGameSessionData(INetworkPlayer *pN
         Socket* socket = pNetworkPlayer->GetSocket();
 
         if (socket != NULL)
-            // printf("Waiting for socket closed event\n");     
+            // printf("Waiting for socket closed event\n");
             socket->m_socketClosedEvent
                 ->WaitForSignal(INFINITE)  // printf("Socket closed event has
-                                           // fired\n");   // 4J Stu - Clear our
-                                           // reference to this socket     
+                                           // fired\n");// 4J Stu - Clear our
+                                           // reference to this socket
                 pNetworkPlayer->SetSocket(NULL);
         delete socket;
     }
@@ -813,8 +813,8 @@ bool CPlatformNetworkManagerSony::RemoveLocalPlayer( INetworkPlayer *pNetworkPla
     return true;
 }
 
-CPlatformNetworkManagerSony::PlayerFlags::PlayerFlags(INetworkPlayer *pNetworkPlayer, unsigned int count// 4J Stu - Don't assert, just make it a multiple of 8! This count is calculated from a load of separate values,  // and makes tweaking world/render sizes a pain if we hit an assert here     
-	count = (count + 8 - 1) & ~(8 - //assert( ( count % 8 ) == 0 );     
+CPlatformNetworkManagerSony::PlayerFlags::PlayerFlags(INetworkPlayer *pNetworkPlayer, unsigned int count// 4J Stu - Don't assert, just make it a multiple of 8! This count is calculated from a load of separate values,// and makes tweaking world/render sizes a pain if we hit an assert here
+	count = (count + 8 - 1) & ~(8 - //assert( ( count % 8 ) == 0 );
 	this->m_pNetworkPlayer = pNetworkPlayer;
 	this->flags = new unsigned char [ count / 8 ];
 	memset( this->flags, 0, count / 8 );
@@ -823,10 +823,10 @@ CPlatformNetworkManagerSony::PlayerFlags::PlayerFlags(INetworkPlayer *pNetworkPl
         CPlatformNetworkManagerSony::PlayerFlags::~PlayerFlags() {
             delete[] flags  // Add a player to the per system flag storage - if
                             // we've already got a player from that system, copy
-                            // its flags over     
+                            // its flags over
                 void CPlatformNetworkManagerSony::SystemFlagAddPlayer(
                     INetworkPlayer * pNetworkPlayer) {
-        PlayerFlags *newPlayerFlags = new PlayerFlags( pNetworkPlayer,  m_flagIndexSiz// If any of our existing players are on the same system, then copy over flags from that one     
+        PlayerFlags *newPlayerFlags = new PlayerFlags( pNetworkPlayer,  m_flagIndexSiz// If any of our existing players are on the same system, then copy over flags from that one
 	for( unsigned int i = 0; i < m_playerFlags.size(); i++ )
 	{
             if (pNetworkPlayer->IsSameSystem(
@@ -836,7 +836,7 @@ CPlatformNetworkManagerSony::PlayerFlags::PlayerFlags(INetworkPlayer *pNetworkPl
                 break;
             }
 	}
-	m_playerFlags.push_back(newPlayerFlags)// Remove a player from the per system flag storage - just maintains the m_playerFlags std::vector without any gaps in it     
+	m_playerFlags.push_back(newPlayerFlags)// Remove a player from the per system flag storage - just maintains the m_playerFlags std::vector without any gaps in it
 void CPlatformNetworkManagerSony::SystemFlagRemovePlayer(INetworkPlayer *pNetworkPlayer)
 {
             for (unsigned int i = 0; i < m_playerFlags.size(); i++) {
@@ -856,7 +856,7 @@ void CPlatformNetworkManagerSony::SystemFlagReset()
             }
             m_playerFlags
                 .clear()  // Set a per system flag - this is done by setting the
-                          // flag on every player that shares that system     
+                          // flag on every player that shares that system
                 void CPlatformNetworkManagerSony::SystemFlagSet(
                     INetworkPlayer * pNetworkPlayer, int index) {
                 if ((index < 0) || (index >= m_flagIndexSize)) return;
@@ -870,7 +870,7 @@ void CPlatformNetworkManagerSony::SystemFlagReset()
                     }
                     // Get value of a per system flag - can be read from the
                     // flags of the passed in player as anything else sent to
-                    // that // system should also have been duplicated here     
+                    // that// system should also have been duplicated here
                     bool CPlatformNetworkManagerSony::SystemFlagGet(
                         INetworkPlayer * pNetworkPlayer, int index) {
                         if ((index < 0) || (index >= m_flagIndexSize))
@@ -890,16 +890,16 @@ void CPlatformNetworkManagerSony::SystemFlagReset()
                         return false;
                     }
 
-std::wstring CPlatformNetworkManagerSony::GatherStats#if 0     
-	ret"Queue messages: "      + _toString(((NetworkPlayerXbox *)GetHostPlayer())->GetQNetPlayer()->GetSendQueueSize( NULL, QNET_GETSENDQUEUESIZE_MESSAGES ) )
-" Queue bytes: "      + _toString( ((NetworkPlayerXbox *)GetHostPlayer())->GetQNetPlayer()->GetSendQueueSize( NULL, QNET_GETSENDQUEUESIZE_BYTES  #else     
-	ret""n #endif     
+std::wstring CPlatformNetworkManagerSony::GatherStats#if 0
+	ret"Queue messages: " + _toString(((NetworkPlayerXbox *)GetHostPlayer())->GetQNetPlayer()->GetSendQueueSize( NULL, QNET_GETSENDQUEUESIZE_MESSAGES ) )
+" Queue bytes: " + _toString( ((NetworkPlayerXbox *)GetHostPlayer())->GetQNetPlayer()->GetSendQueueSize( NULL, QNET_GETSENDQUEUESIZE_BYTES  #else
+	ret""n #endif
 
                 
                 }
 
-std::wstring CPlatformNetworkManagerSony::GatherRTTStats#if 0     
-	std::wstring st"Rtt: "     );
+std::wstring CPlatformNetworkManagerSony::GatherRTTStats#if 0
+	std::wstring st"Rtt: ");
 
 wchar_t stat[32];
 
@@ -909,12 +909,12 @@ for (unsigned int i = 0; i < GetPlayerCount(); ++i) {
 
     if (!pSQRPlayer->IsLocal()) {
         ZeroMemory(stat, 32);
-        swprintf(stat, "%d: %d/"     , i, pSQRPlayer->GetCurrentRtt());
+        swprintf(stat, "%d: %d/", i, pSQRPlayer->GetCurrentRtt());
         stats.append(stat);
     }
 }
-return st #else      
-	ret "" n #endif      
+return st #else 
+	ret "" n #endif 
 
             
             }
@@ -940,10 +940,10 @@ return st #else      
                 } else {
                     if (!m_pSQRNet->FriendRoomManagerIsBusy())
                         // Don't start searches unless we have registered a
-                        // callback     
+                        // callback
                         int searchDelay =
-                            MINECRAFT_PS3ROOM_SEARCH_DELAY_MILLISECO #ifdef __PSVITA__        // in adhoc mode we can keep searching, as the friend list is populated in callbacks    // 4J Stu - Every second seems a bit much as it makes the friend list flash every time it updates. Changed this to 5 seconds.     
-                            if (usingAdhocMode()) searchDelay = 5 #endif      
+                            MINECRAFT_PS3ROOM_SEARCH_DELAY_MILLISECO #ifdef __PSVITA__    // in adhoc mode we can keep searching, as the friend list is populated in callbacks// 4J Stu - Every second seems a bit much as it makes the friend list flash every time it updates. Changed this to 5 seconds.
+                            if (usingAdhocMode()) searchDelay = 5 #endif 
 			if (m_SessionsUpdatedCallback != NULL &&
                             (m_lastSearchStartTime + searchDelay) <
                                 GetTickCount()) {
@@ -970,7 +970,7 @@ std::vector<FriendSessionInfo *> *CPlatformNetworkManagerSony::GetSessionList(in
                             17)  // TODO - this mbstowcs shouldn't encounter any
                                  // non-ascii characters, but I imagine we'll
                                  // want to actually use the online name here
-                                 // which is UTF-8     
+                                 // which is UTF-8
                         mbstowcs(newInfo->displayLabel,
                                  m_pSearchResults[i].m_NpId.handle.data, 17);
                     newInfo->displayLabelLength =
@@ -993,14 +993,14 @@ std::vector<FriendSessionInfo *> *CPlatformNetworkManagerSony::GetSessionList(in
             return filteredList;
 }
 
-bool CPlatformNetworkManagerSony::GetGameSessionInfo(int iPad, SessionID sessionId, FriendSessionInfo *foundSessionInf#if 0     
+bool CPlatformNetworkManagerSony::GetGameSessionInfo(int iPad, SessionID sessionId, FriendSessionInfo *foundSessionInf#if 0
 	HRESULT hr = E_FAIL;
 
 	const XSESSION_SEARCHRESULT *pSearchResult;
     const XNQOSINFO * pxnqi;
 
 	if( m_currentSearchResultsCount[iPad] > 0 )
-// Loop through all the results.     
+// Loop through all the results.
 		for( DWORD dwResult = 0; dwResult < m_currentSearchResultsCount[iPad]; dwResult++ )
 		{
             pSearchResult = &m_pCurrentSearchResults[iPad]->pResults[dwResult];
@@ -1026,10 +1026,10 @@ bool CPlatformNetworkManagerSony::GetGameSessionInfo(int iPad, SessionID session
                     break;
                 }
             }  // We received a search result for a session no longer in our
-               // list of friends sessions     
+               // list of friends sessions
             if (!foundSession)
                 break;  // See if this result was contacted successfully via QoS
-                        // probes.     
+                        // probes.
             pxnqi = &m_pCurrentQoSResult[iPad]->axnqosinfo[dwResult];
             if (pxnqi->bFlags & XNET_XNQOSINFO_TARGET_CONTACTED) {
                 if (pxnqi->cbData > 0) {
@@ -1037,14 +1037,14 @@ bool CPlatformNetworkManagerSony::GetGameSessionInfo(int iPad, SessionID session
 
                     std::wstring gamerName =
                         convStringToWstring(sessionInfo->data.hostName);
-                                        swprintf(sessionInfo->displayLabel,app.GetString(IDS_GAME_HOST_NA"MWWWWWWWWWWWWWWM"  // gamerName.c_str() );     
+                                        swprintf(sessionInfo->displayLabel,app.GetString(IDS_GAME_HOST_NA"MWWWWWWWWWWWWWWM"// gamerName.c_str() );
                 } else {
                     swprintf(sessionInfo->displayLabel,
                              app.GetString(IDS_GAME_HOST_NAME_UNKNOWN));
                 }
                 sessionInfo->displayLabelLength =
                     wcslen(sessionInfo->displayLabel);
-                // If this host wasn't disabled use this one.     
+                // If this host wasn't disabled use this one.
                 if (!(pxnqi->bFlags & XNET_XNQOSINFO_TARGET_DISABLED) &&
                     sessionInfo->data.netVersion == MINECRAFT_NET_VERSION &&
                     sessionInfo->data.isJoinable) {
@@ -1067,8 +1067,8 @@ bool CPlatformNetworkManagerSony::GetGameSessionInfo(int iPad, SessionID session
 		}
             }
 
-        return ( hr == S_O#else     
-	return fa#endif     
+        return ( hr == S_O#else
+	return fa#endif
 
         
         }
@@ -1090,7 +1090,7 @@ bool CPlatformNetworkManagerSony::GetGameSessionInfo(int iPad, SessionID session
         }
 
         void CPlatformNetworkManagerSony::ForceFriendsSessionRefresh() {
-        app.DebugPr"Resetting friends session search data\n"     );
+        app.DebugPr"Resetting friends session search data\n");
         m_lastSearchStartTime = 0;
         m_searchResultsCount = 0;
         delete m_pSearchResults;
@@ -1170,8 +1170,8 @@ bool CPlatformNetworkManagerSony::GetGameSessionInfo(int iPad, SessionID session
             m_hostGameSessionData.subTexturePackId = id;
         }
 
-void CPlatformNetworkManagerSony::Notify(int ID, ULONG_PTR Para#if 0     
-	m_pSQRNet->Notify( ID, Para#endif     
+void CPlatformNetworkManagerSony::Notify(int ID, ULONG_PTR Para#if 0
+	m_pSQRNet->Notify( ID, Para#endif
 
 
 }
@@ -1217,13 +1217,13 @@ void CPlatformNetworkManagerSony::MallocAndSetExtDataFromSQRPresenceInfo(
         gsd->isReadyToJoin = true;
     }
     *pExtData = gs
-#ifdef __PSVITA__     
+#ifdef __PSVITA__
 bool CPlatformNetworkManagerSony::setAdhocMode( bool bAdhoc )
     {
         if (m_bUsingAdhocMode != bAdhoc) {
             m_bUsingAdhocMode = bAdhoc;
             if (m_bUsingAdhocMode)
-                // uninit the PSN, and init adhoc     
+                // uninit the PSN, and init adhoc
                 if (m_pSQRNet_Vita->IsInitialised()) {
                     m_pSQRNet_Vita->UnInitialise();
                 }
@@ -1236,7 +1236,7 @@ bool CPlatformNetworkManagerSony::setAdhocMode( bool bAdhoc )
         } else {
             if (m_pSQRNet_Vita_Adhoc->IsInitialised()) {
                 int ret = sceNetCtlAdhocDisconnect();  // uninit the adhoc, and
-                                                       // init psn     
+                                                       // init psn
                 m_pSQRNet_Vita_Adhoc->UnInitialise();
             }
 
@@ -1262,10 +1262,10 @@ bool CPlatformNetworkManagerSony::checkValidInviteData(
     if (pSQR->IsOnlineGame() && !pSQR->IsHost() &&
         (pSQR->GetHostUID() == pInviteInfo->hostPlayerUID))
         // we're trying to join a game we're already in, so we just ignore
-        // this     
+        // this
         return false;
 }
 else {
     return true;
 
-#endif  // __PSVITA__     
+#endif  // __PSVITA__

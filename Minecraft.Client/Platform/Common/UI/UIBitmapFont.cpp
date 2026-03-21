@@ -310,44 +310,44 @@ rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
         debug_fontSizesRequested.insert(dData);
 
         if ((lastPrint - System::currentTimeMillis()) > VERBOSE_FONT_OUTPUT) {
-                        app.DebugPr"<UIBitmapFont> Requested font/sizes:\n"     );
+                        app.DebugPr"<UIBitmapFont> Requested font/sizes:\n");
 
                         std::unordered_set<DebugData>::iterator itr;
                         for (itr = debug_fontSizesRequested.begin();
                              itr != debug_fontSizesRequested.end(); itr++) {
-                                app.De"<UIBitmapFont>\t- %s:%i\t(x%i)\n"          ,  itr->name.c_str(), itr->scale, itr->mul);
+                                app.De"<UIBitmapFont>\t- %s:%i\t(x%i)\n",  itr->name.c_str(), itr->scale, itr->mul);
                         }
 
                         lastPrint = System::currentTimeMillis();
                         debug_fontSizesRequested.clear(#endif
         }  // app.DebugPrintf("Request glyph_%d (U+%.4X) at %f, converted to %f
-           // (%f)\n",  //				glyph,
+           // (%f)\n",//				glyph,
            // GetUnicode(glyph), pixel_scale, targetPixelScale,
-           // glyphScale);   // It is not necessary to shrink the glyph width
-           // here  // as its already been done in 'GetGlyphMetrics' by:  // >
-           // metrics->x1 = m_kerningTable[glyph] * ratio;          
+           // glyphScale);// It is not necessary to shrink the glyph width
+           // here// as its already been done in 'GetGlyphMetrics' by:// >
+           // metrics->x1 = m_kerningTable[glyph] * ratio;
         bitmap->width_in_pixels = m_cFontData->getFontData()->m_uiGlyphWidth;
         bitmap->height_in_pixels = m_cFontData->getFontData()->m_uiGlyph/* 4J-JEV: This is to do with glyph placement,
 	 * and not the position in the archive.
 	 * I don't know why the 0.65 is needed, or what it represents,
 	 * although it doesn't look like its the baseline.
-	 */          
-	bitmap->top_left// 4J-PB - this was chopping off the top of the characters, so accented ones were losing a couple of pixels at the top  // DaveK has reduced the height of the accented capitalised characters, and we've dropped this from 0.65 to 0.64           
+	 */
+	bitmap->top_left// 4J-PB - this was chopping off the top of the characters, so accented ones were losing a couple of pixels at the top// DaveK has reduced the height of the accented capitalised characters, and we've dropped this from 0.65 to 0.64 
 	bitmap->top_left_y = -((S32) m_cFontData->getFontData()->m_uiGlyphHeight) * m_cFontData->getFontData()->m_fAscent;
 
         bitmap->oversample = 0;
         bitmap
-            ->point_sample  // 4J-JEV:  // pixel_scale == font size chosen in
-                            // flash.  // bitmap->pixel_scale_correct = (float)
+            ->point_sample  // 4J-JEV:// pixel_scale == font size chosen in
+                            // flash.// bitmap->pixel_scale_correct = (float)
                             // m_glyphHeight;	// Scales the glyph to desired
-                            // size.  // bitmap->pixel_scale_correct =
+                            // size.// bitmap->pixel_scale_correct =
                             // pixel_scale;			// Always the
-                            // same size (not desired size).  //
+                            // same size (not desired size).//
                             // bitmap->pixel_scale_correct = pixel_scale * 0.5;
-                            // // Doubles original size.  //
+                            // // Doubles original size.//
                             // bitmap->pixel_scale_correct = pixel_scale * 2;
-                            // // Halves original size.    // Actual scale, and
-                            // possible range of scales.          
+                            // // Halves original size.// Actual scale, and
+                            // possible range of scales.
                 bitmap->pixel_scale_correct = pixel_scale / glyphScale;
         bitmap->pixel_scale_max = 99.0f;
         bitmap->pixel_scale_min /* 4J-JEV: Some of Sean's code.
@@ -356,10 +356,10 @@ rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
     float actualScale = pixel_scale / glyphScale;
     bitmap->pixel_scale_correct = actualScale;
     bitmap->pixel_scale_min = actualScale * glyphScaleMin * 0.999f;
-    bitmap->pixel_scale_max = actualScale * glyphScaleMax * 1.001f; */   // 4J-JEV: Nothing to do with glyph placement,  // entirely to do with cropping your glyph out of an archive.          
-	bitmap->stride_in_bytes = m_cFontData->getFontData()->m_uiGly// 4J-JEV: Additional information needed to release memory afterwards.          
+    bitmap->pixel_scale_max = actualScale * glyphScaleMax * 1.001f; */// 4J-JEV: Nothing to do with glyph placement,// entirely to do with cropping your glyph out of an archive.
+	bitmap->stride_in_bytes = m_cFontData->getFontData()->m_uiGly// 4J-JEV: Additional information needed to release memory afterwards.
 	bitmap->user_context_for_free = NULL;
 
-        return//Callback function type for freeing a bitmap shape returned by GetGlyphBitmap          
-void UIBitmapFont::FreeGlyphBitmap(S32 glyph,F32 pixel_scale,IggyBitmapCharacter *b// We don't need to free anything,it just comes from the archive.  //app.DebugPrintf("Free bitmap for glyph %d at scale %f\n",glyph,pixel_scale);          
+        return//Callback function type for freeing a bitmap shape returned by GetGlyphBitmap
+void UIBitmapFont::FreeGlyphBitmap(S32 glyph,F32 pixel_scale,IggyBitmapCharacter *b// We don't need to free anything,it just comes from the archive.//app.DebugPrintf("Free bitmap for glyph %d at scale %f\n",glyph,pixel_scale);
     }

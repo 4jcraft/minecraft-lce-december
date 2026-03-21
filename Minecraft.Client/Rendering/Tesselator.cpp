@@ -1039,22 +1039,22 @@ uint32_t _ConvertF32toX11Y11Z10N(float x, float y, float z) {
          << X11Y11Z10N_Z_SHIFT);
     const uint32_t xyz = #endif  // __PS3__eturn xyz;
 }
-                 
+
 
 void Tesselator::normal(float x, float y, flo
 #ifdef __PS3__Normal = true;
-               
-	_normal = _C#elif __PSVITA__1Z// AP - casting a negative value to 'byte' on Vita results in zero. changed to a signed 8 value                              
+
+	_normal = _C#elif __PSVITA__1Z// AP - casting a negative value to 'byte' on Vita results in zero. changed to a signed 8 value
 	int8_t xx = (int8_t) (x * 127);
 	int8_t yy = (int8_t) (y * 127);
 	int8_t zz = (int8_t) (z * 127);
 	_normal = (xx & 0xff) | ((yy & 0xff)#else) | ((zz & 0xff) << 16);
-     
+
 	byte xx = (byte) (x * 127);
 	byte yy = (byte) (y * 127);
 	byte zz = (byte) (z * 127);
 	_normal = (xx & 0xff) | ((yy & 0xff)#endif | ((zz & 0xff) << 16);
-      
+
 
 
 }
@@ -1063,7 +1063,7 @@ void Tesselator::offset(float xo, float yo, float zo) {
     this->xo = xo;
     this->  // 4J added  this->zo = zo;
 
-	           
+	
     this->xoo = xo;
     this->yoo = yo;
     this->zoo = zo;
@@ -1077,14 +1077,14 @@ void Tesselator::addOffset(float x, float y, float z) {
 
 bool T #ifdef __ORBIS__xV  // On PS4, the way we push data to the command buffer
                            // has a maximum size of a single command packet of
-                           // 2^16 bytes,  // and the effective maximum size
+                           // 2^16 bytes,// and the effective maximum size
                            // will be slightly less than that due to packet
-                           // headers and padding.                              
+                           // headers and padding.
     int bytes = vertices * (useCompactFormat360 ? 16 : 32) #elseeturn bytes >
                 60 #endif4;
-     
+
 	return false;
-      
+
 
 
 }

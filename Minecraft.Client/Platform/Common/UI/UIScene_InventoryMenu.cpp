@@ -250,7 +250,7 @@ void UIScene_InventoryMenu::updateEffectsDisplay() {
 
     std::vector<MobEffectInstance*>* activeEffects =
         player->getActiveEff  // 4J - TomK setup time update value array size to
-                              // update the active effects          
+                              // update the active effects
         int iValue = 0;
     IggyDataValue* UpdateValue = new IggyDataValue[activeEffects->size() * 2];
 
@@ -259,21 +259,21 @@ void UIScene_InventoryMenu::updateEffectsDisplay() {
         MobEffectInstance* effect = *it;
 
         if (effect->getDuration() >= m_bEffectTime[effect->getId()]) {
-                        std::wstring effectString = app.GetString( effect->getDes//I18n.get(effect.getDescriptionId()).trim();               
+                        std::wstring effectString = app.GetString( effect->getDes//I18n.get(effect.getDescriptionId()).trim();
 			if (effect->getAmplifier() > 0)
 			{
-                std::wstri "" potencyString = L  ;
+                std::wstri "" potencyString = L;
                 switch (effect->getAmplifier()) {
                     case 1:
-                        " " potencyString = L   ;
+                        " " potencyString = L;
                         potencyString += app.GetString(IDS_POTION_POTENCY_1);
                         break;
                     case 2:
-                        " " potencyString = L   ;
+                        " " potencyString = L;
                         potencyString += app.GetString(IDS_POTION_POTENCY_2);
                         break;
                     case 3:
-                        " " potencyString = L   ;
+                        " " potencyString = L;
                         potencyString += app.GetString(IDS_POTION_POTENCY_3);
                         break;
                     default:
@@ -305,7 +305,7 @@ void UIScene_InventoryMenu::updateEffectsDisplay() {
 			IggyResult out = IggyPlayerCallMethodRS ( getMovie() , &result, IggyPlayerRootPath( getMovie() ), m_funcAddEffect , 3 , value );
         }
 
-                if(MobEffect::effects[effect->getId()]// 4J - TomK set ids and remaining duration so we can update the timers accurately in one call! (this prevents performance related timer sync issues, especially on PSVita)                    
+                if(MobEffect::effects[effect->getId()]// 4J - TomK set ids and remaining duration so we can update the timers accurately in one call! (this prevents performance related timer sync issues, especially on PSVita)
 			UpdateValue[iValue].type = IGGY_DATATYPE_number;
 			UpdateValue[iValue].number = MobEffect::effects[effect->getId()]->getIcon();
 			UpdateValue[iValue + 1].type = IGGY_DATATYPE_number;

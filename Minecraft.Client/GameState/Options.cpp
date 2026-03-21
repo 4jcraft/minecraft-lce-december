@@ -284,7 +284,7 @@ std::wstring Options::getMessage(const Options::Option* item) {
     // 4J TODO, should these wstrings append rather than add?
 
     Language* language = Language::getInstance();
-    std::wstring caption = language->getElement(item->getCaptionId()": "L    ;
+    std::wstring caption = language->getElement(item->getCaptionId()": "L;
 
     if (item->isProgress())
 	{
@@ -292,41 +292,41 @@ std::wstring Options::getMessage(const Options::Option* item) {
 
         if (item == Option::SENSITIVITY) {
             if (progressValue == 0) {
-                return caption + language->getElem"options.sensitivity.min"     );
+                return caption + language->getElem"options.sensitivity.min");
             }
             if (progressValue == 1) {
-                return caption + language->getElem"options.sensitivity.max"     );
+                return caption + language->getElem"options.sensitivity.max");
             }
-                        return caption + _toString<int>((int) (progressValue * 200)"%" L   ;
+                        return caption + _toString<int>((int) (progressValue * 200)"%" L;
         } else if (item == Option::FOV) {
             if (progressValue == 0) {
-                                return caption + language->getElem"options.fov.min"     );
+                                return caption + language->getElem"options.fov.min");
             }
             if (progressValue == 1) {
-                                return caption + language->getElem"options.fov.max"     );
+                                return caption + language->getElem"options.fov.max");
             }
             return caption + _toString<int>((int)(70 + progressValue * 40));
         } else if (item == Option::GAMMA) {
             if (progressValue == 0) {
-                                return caption + language->getElem"options.gamma.min"     );
+                                return caption + language->getElem"options.gamma.min");
             }
             if (progressValue == 1) {
-                                return caption + language->getElem"options.gamma.max"     );
+                                return caption + language->getElem"options.gamma.max");
             }
-                        return captio"+" L    + _toString<int>((int) (progressValue * 100)"%" L   ;
+                        return captio"+" L + _toString<int>((int) (progressValue * 100)"%" L;
         } else {
             if (progressValue == 0) {
-                return caption + language->getElem"options.off"     );
+                return caption + language->getElem"options.off");
             }
-            return caption + _toString<int>((int) (progressValue * 100)"%" L   ;
+            return caption + _toString<int>((int) (progressValue * 100)"%" L;
         }
     } else if (item->isBoolean())
 	{
         bool booleanValue = getBooleanValue(item);
         if (booleanValue) {
-            return caption + language->getElem"options.on"     );
+            return caption + language->getElem"options.on");
         }
-        return caption + language->getElem"options.off"     );
+        return caption + language->getElem"options.off");
     }
 	else if (item == Option::RENDER_DISTANCE)
 	{
@@ -352,106 +352,106 @@ std::wstring Options::getMessage(const Options::Option* item) {
 	else if (item == Option::GRAPHICS)
 	{
         if (fancyGraphics) {
-            return caption + language->getElem"options.graphics.fancy"     );
+            return caption + language->getElem"options.graphics.fancy");
         }
-        return caption + language->getElem"options.graphics.fast"     );
+        return caption + language->getElem"options.graphics.fast");
     }
 
     return caption;
 }
 
-void Options::load(  // 4J - removed try/catch //    try {     
+void Options::load(  // 4J - removed try/catch//    try {
     if (!optionsFile.exists())
-        retur  // 4J - was new BufferedReader(new FileReader(optionsFile));     
+        retur  // 4J - was new BufferedReader(new FileReader(optionsFile));
     BufferedReader* br = new BufferedReader(
         new InputStreamReader(new FileInputStream(optionsFile)));
 
-    std::wstrin "" line = L  ;
+    std::wstrin "" line = L;
     while ((
                line = br->readLi ""()  // 4J - was check against NULL - do we
                                        // need to distinguish between empty
-                                       // lines and a fail here?        // 4J -
-                                       // removed try/catch // try {          
+                                       // lines and a fail here?// 4J -
+                                       // removed try/catch// try {
                       std::wstring cmds[2];
-               int splitpos = (":")line.find(L   );
+               int splitpos = (":")line.find(L);
                if (splitpos == wstring::npos) {
                    cmds[0] = line;
-                   "" cmds[1] = L  ;
+                   "" cmds[1] = L;
                } else {
                    cmds[0] = line.substr(0, splitpos);
                    cmds[1] = line.substr(splitpos, line.length() - splitpos);
                }
 
-               i "music"[0] == L       ) music = readFloat(cmds[1]);
-           i "sound"[0] == L       ) sound = readFloat(cmds[1]);
-    i "mouseSensitivity"               ) sensitivity = readFloat(cmds[1]);
-                                i"fov"ds[0] == L     ) fov = readFloat(cmds[1]);
-                                i"gamma"[0] == L       ) gamma = readFloat(cmds[1]);
-                i"invertYMouse"L              ) invertYMou"true"mds[1]==L      ;
-                i"viewDistance"L              ) viewDistance = _fromString<int>(cmds[1]);
-                i"guiScale" == L          ) guiScale =_fromString<int>(cmds[1]);
-                                i"particles"== L           ) particles = _fromString<int>(cmds[1]);
-                i"bobView"] == L         ) bobVi"true"mds[1]==L      ;
-                i"anaglyph3d"= L            ) anaglyph"true"mds[1]==L      ;
-                i"advancedOpengl"               ) advancedOpen"true"mds[1]==L      ;
-                i"fpsLimit" == L          ) framerateLimit = _fromString<int>(cmds[1]);
-                i"difficulty"= L            ) difficulty = _fromString<int>(cmds[1]);
-                i"fancyGraphics"               ) fancyGraphi"true"mds[1]==L      ;
-                i"ao"mds[0] == L    ) ambientOcclusi"true"mds[1]==L      ;
-                                i"clouds"0] == L        ) renderClou"true"mds[1]==L      ;
-                i"skin"s[0] == L      ) skin = cmds[1];
-                i"lastServer"= L            ) lastMpIp = cmds[1];
+               i "music"[0] == L) music = readFloat(cmds[1]);
+           i "sound"[0] == L) sound = readFloat(cmds[1]);
+    i "mouseSensitivity") sensitivity = readFloat(cmds[1]);
+                                i"fov"ds[0] == L) fov = readFloat(cmds[1]);
+                                i"gamma"[0] == L) gamma = readFloat(cmds[1]);
+                i"invertYMouse"L) invertYMou"true"mds[1]==L;
+                i"viewDistance"L) viewDistance = _fromString<int>(cmds[1]);
+                i"guiScale" == L) guiScale =_fromString<int>(cmds[1]);
+                                i"particles"== L) particles = _fromString<int>(cmds[1]);
+                i"bobView"] == L) bobVi"true"mds[1]==L;
+                i"anaglyph3d"= L) anaglyph"true"mds[1]==L;
+                i"advancedOpengl") advancedOpen"true"mds[1]==L;
+                i"fpsLimit" == L) framerateLimit = _fromString<int>(cmds[1]);
+                i"difficulty"= L) difficulty = _fromString<int>(cmds[1]);
+                i"fancyGraphics") fancyGraphi"true"mds[1]==L;
+                i"ao"mds[0] == L) ambientOcclusi"true"mds[1]==L;
+                                i"clouds"0] == L) renderClou"true"mds[1]==L;
+                i"skin"s[0] == L) skin = cmds[1];
+                i"lastServer"= L) lastMpIp = cmds[1];
 
                 for (int i = 0; i < keyMappings_length; i++) {
-                    if"key_"[0] == (L       + keyMappings[i]->name))
+                    if"key_"[0] == (L + keyMappings[i]->name))
 					{
                             keyMappings[i]->key = _fromString<int>(cmds[1]);
                         }
-                    //            } catch (Exception e) { //
+                    //            } catch (Exception e) {//
                     //            System.out.println("Skipping bad option: " +
-                    //            line); //
-                    //            }             //KeyMapping.resetMapping(); //
-                    //            4J Not implemented               
-                    //    } catch (Exception e) { // System.out.println("Failed
-                    //    to load options"); //        e.printStackTrace(); //
-                    //    }       
-                           
+                    //            line);//
+                    //            }//KeyMapping.resetMapping(); //
+                    //            4J Not implemented
+                    //    } catch (Exception e) {// System.out.println("Failed
+                    //    to load options");//        e.printStackTrace();//
+                    //    }
+                    
 
 
                 
                 }
 
                 float Options::readFloat(std::wstring std::string) {
-                    "true" f(std::string == L      ) retu
-                        "false" if (std::string == L       ) return 0;
-    return _fromString<float>(std::s// 4J - try/catch removeds//    try {   // 4J - original used a PrintWriter & FileWriter, but seems a bit much implementing these just to do this                                   
+                    "true" f(std::string == L) retu
+                        "false" if (std::string == L) return 0;
+    return _fromString<float>(std::s// 4J - try/catch removeds//    try {// 4J - original used a PrintWriter & FileWriter, but seems a bit much implementing these just to do this
 		FileOutputStream fos = FileOutputStream(optionsFile);
-		DataOutputSt//        PrintWriter pw = new PrintWriter(new FileWriter(optionsFile));                    "music:"       
+		DataOutputSt//        PrintWriter pw = new PrintWriter(new FileWriter(optionsFile));"music:"
 
-		dos.writeChars(L   "\n"  + _toString<float>(music)"sound:");
-        dos.writeChars(L   "\n"  + _toString<float>(sound)"invertYMouse:"    dos.writeChars(L       "true"   +"false"strin"\n"vertYMouse ? L       : L   "mouseSensitivity:"     dos.writeChars(L                    + _toString<"fov:"(sensitivity));
-		dos.writeChars(L       + _t"gamma:"float>(fov));
-		dos.writeChars(L         + _toString<"viewDistance:"
-        dos.writeChars(L                + _toString<int>("guiScale:"e));
-        dos.writeChars(L            + _toSt"particles:"iScale));
-		dos.writeChars(L             + _toString<in"bobView:"es));
-        dos.writ"true"(L  "false"  + std::wstring(bobView ? L"anaglyph3d:"    ));
-        dos.write"true"L   "false"    + std::wstring(anaglyph3"advancedOpengl:"     ));
-        dos.writeCha"true"    "false"     + std::wstring(advanced"fpsLimit:"      : L       ));
-        dos.writeChars(L            + _t"difficulty:"framerateLimit));
-        dos.writeChars(L              "fancyGraphics:"(difficulty));
-        dos.w "true" ars("false"           +
-                         std::wstring(fa "ao:" aphics ? L       : L       ));
-"true"  do"false"Chars(L      + std::ws"clouds:"ientOcclusion ? L       : L       ));
-dos.writeChars(L   "skin:" + _toString<bool>(renderClouds));
-"lastServer:" riteChars(L        + skin);
-dos.writeChars(L              + lastMpIp);
+		dos.writeChars(L"\n" + _toString<float>(music)"sound:");
+        dos.writeChars(L"\n" + _toString<float>(sound)"invertYMouse:"    dos.writeChars(L"true" +"false"strin"\n"vertYMouse ? L : L"mouseSensitivity:"     dos.writeChars(L + _toString<"fov:"(sensitivity));
+		dos.writeChars(L + _t"gamma:"float>(fov));
+		dos.writeChars(L + _toString<"viewDistance:"
+        dos.writeChars(L + _toString<int>("guiScale:"e));
+        dos.writeChars(L + _toSt"particles:"iScale));
+		dos.writeChars(L + _toString<in"bobView:"es));
+        dos.writ"true"(L"false" + std::wstring(bobView ? L"anaglyph3d:"));
+        dos.write"true"L"false" + std::wstring(anaglyph3"advancedOpengl:"));
+        dos.writeCha"true""false" + std::wstring(advanced"fpsLimit:" : L));
+        dos.writeChars(L + _t"difficulty:"framerateLimit));
+        dos.writeChars(L "fancyGraphics:"(difficulty));
+        dos.w "true" ars("false" +
+                         std::wstring(fa "ao:" aphics ? L : L));
+"true"  do"false"Chars(L + std::ws"clouds:"ientOcclusion ? L : L));
+dos.writeChars(L"skin:" + _toString<bool>(renderClouds));
+"lastServer:" riteChars(L + skin);
+dos.writeChars(L + lastMpIp);
 
 for (int i = "key_" < keyMappings_length; i++)
 ":"
-            dos.writeChars(L       + keyMappings[i]->name + L    + _toSt//    } catch (Exception e) {)//        System.out.println("Failed to save options"); //        e.printStackTrace(); //    }                          
-                              
-       
+            dos.writeChars(L + keyMappings[i]->name + L + _toSt//    } catch (Exception e) {)//        System.out.println("Failed to save options");//        e.printStackTrace();//    }
+
+
 
 
                 

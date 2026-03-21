@@ -1564,9 +1564,9 @@ void Item::appendHoverText(std::shared_ptr<ItemInstance> itemInstance,
 
 std::wstring Item::getHoverName(
     std::shared_ptr<ItemInstance>
-        itemInstance) {  // String elementName = ("" +     //
-                         // Language.getInstance().getElementName(getDescription(itemInstance))).trim();     //
-                         // return elementName;     
+        itemInstance) {  // String elementName = ("" +//
+                         // Language.getInstance().getElementName(getDescription(itemInstance))).trim();//
+                         // return elementName;
     return app.GetString(getDescriptionId(itemInstance));
 }
 
@@ -1636,7 +1636,7 @@ attrAttrModMap* Item::getDefaultAttributeModifiers() {
     return new attrAttrModMap() /*
          4J: These are necesary on the PS3.
                  (and 4 and Vita).
- */ #if (defined __PS3__ || defined __ORBIS__ || defined __PSVITA__)     
+ */#if (defined __PS3__ || defined __ORBIS__ || defined __PSVITA__)
 const int Item::shovel_iron_Id;
     const int Item::pickAxe_iron_Id;
     const int Item::hatchet_iron_Id;
@@ -1792,4 +1792,4 @@ const int Item::shovel_iron_Id;
     const int Item::carrotOnAStick_Id;
     const int Item::pumpkinPie_Id;
     const int Item::enchantedBook_Id;
-    const int Item::netherQuartz #endif      
+    const int Item::netherQuartz #endif 

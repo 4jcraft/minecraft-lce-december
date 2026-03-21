@@ -277,21 +277,21 @@ void Zombie::populateDefaultEquipmentSlots() {
 void Zombie::addAdditonalSaveData(CompoundTag* tag) {
     Monster::addAdditonalSaveData(tag);
 
-    i"IsBaby"y()) tag->putBoolean(L        , true);
-    if (i"IsVillager" tag->putBoolean(L        "ConversionTime" tag->putInt(L                ,
+    i"IsBaby"y()) tag->putBoolean(L, true);
+    if (i"IsVillager" tag->putBoolean(L"ConversionTime" tag->putInt(L,
                 isConverting() ? villagerConversionTime : -1);
 }
 
 void Zombie::readAdditionalSaveData(CompoundTag* tag) {
-    Monster::readAdditionalSaveData(ta"IsBaby" if (tag->getBoolean(L        )) setBaby(tr"IsVillager"(tag->getBoolean(L            )) setVillager("ConversionTime"ag->contains(L    "ConversionTime" tag->getInt(L                ) > -1)
-       "ConversionTime"(tag->getInt(L                ));
+    Monster::readAdditionalSaveData(ta"IsBaby" if (tag->getBoolean(L)) setBaby(tr"IsVillager"(tag->getBoolean(L)) setVillager("ConversionTime"ag->contains(L"ConversionTime" tag->getInt(L) > -1)
+       "ConversionTime"(tag->getInt(L));
 }
 
 void Zombie::killed(std::shared_ptr<LivingEntity> mob) {
     Monster::killed(mob);
 
     if (level->difficulty >= Difficulty::NORMAL &&
-        (mob->GetType() // 4J-JEV: Villager isn't a non-terminal class, no                            // need to instanceof.                              
+        (mob->GetType() // 4J-JEV: Villager isn't a non-terminal class, no// need to instanceof.        
     {
         if (level->difficulty == Difficulty::NORMAL && random->nextBoolean())
             return;
@@ -311,7 +311,7 @@ void Zombie::killed(std::shared_ptr<LivingEntity> mob) {
 }
 
 MobGroupData* Zombie::finalizeMobSpawn(
-   /*= 0*/upD// 4J Added extraData paramta        )                             
+   /*= 0*/upD// 4J Added extraData paramta )  
 {
     groupData = Monster::finalizeMobSpawn(groupData);
     float difficulty = level->getDifficulty(x, y, z);
@@ -338,10 +338,10 @@ MobGroupData* Zombie::finalizeMobSpawn(
     populateDefaultEquipmentSlots();
     populateDefaultEquipmentEnchantments();
 
-    if (g// [EB]: We have this code in quite some places, shouldn't we set         // something like this globally?                                        
+    if (g// [EB]: We have this code in quite some places, shouldn't we set// something like this globally?        
         if (Calendar::GetMonth() + 1 == 10 && Calendar::GetDayOfMonth() == 31 &&
-            ran// Halloween! OooOOo! 25% of all skeletons/zombies can wear             // pumpkins on their heads.
-                                       
+            ran// Halloween! OooOOo! 25% of all skeletons/zombies can wear// pumpkins on their heads.
+            
             setEquippedSlot(SLOT_HELM,
                             std::shared_ptr<ItemInstance>(new ItemInstance(
                                 random->nextFloat() < 0.1f ? Tile::litPumpkin
@@ -353,7 +353,7 @@ MobGroupData* Zombie::finalizeMobSpawn(
     getAttribute(SharedMonsterAttributes::KNOCKBACK_RESISTANCE)
         ->addModifier(
             new AttributeModifier(random->nextDouble() * 0.05f,
-                                  A// 4J Stu - Take this out, it's not good and nobody will notice. Also not     // great for performance.     // getAttribute(SharedMonsterAttributes::FOLLOW_RANGE)->addModifier(new     // AttributeModifier(random->nextDouble() * 1.50f,     // AttributeModifier::OPERATION_MULTIPLY_TOTAL));                                             
+                                  A// 4J Stu - Take this out, it's not good and nobody will notice. Also not// great for performance.// getAttribute(SharedMonsterAttributes::FOLLOW_RANGE)->addModifier(new// AttributeModifier(random->nextDouble() * 1.50f,// AttributeModifier::OPERATION_MULTIPLY_TOTAL));
 
     if (random->nextFloat() < difficulty * ZOMBIE_LEADER_CHANCE) {
     getAttribute(SPAWN_REINFORCEMENTS_CHANCE)
@@ -384,8 +384,8 @@ MobGroupData* Zombie::finalizeMobSpawn(
             if (!level->isClientSide) {
             startConverting(random->nextInt(VILLAGER_CONVERSION_WAIT_MAX -
                                             VILLAGER_CONVERSION_WAIT_MIN + 1) +
-                      // 4J-JEV, award achievement here, as it is impractical to award             // when the zombie is actually cured.
-                                                 
+                      // 4J-JEV, award achievement here, as it is impractical to award// when the zombie is actually cured.
+            
             player->awardStat(GenericStats::zombieDoctor(),
                               GenericStats::param_zombieDoctor());
             }

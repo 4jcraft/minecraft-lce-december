@@ -268,7 +268,7 @@ bool DyePowderItem::interactEnemy(std::shared_ptr<ItemInstance> itemInstance,
                                   std::shared_ptr<LivingEntity> mob) {
     if (dynamic_pointer_cast<Sheep>(mob) != NULL) {
         std::shared_ptr<Sheep> sheep = dynamic_pointer_cast<Sheep>(mob);
-        // convert to tile-based color value (0 is white instead of black)     
+        // convert to tile-based color value (0 is white instead of black)
         int newColor = ColoredTile::getTileDataForItemAuxValue(
             itemInstance->getAuxValue());
         if (!sheep->isSheared() && sheep->getColor() != newColor) {
@@ -284,7 +284,7 @@ void DyePowderItem::registerIcons(IconRegister* iconRegister) {
     icons = new Icon*[DYE_POWDER_ITEM_TEXTURE_COUNT];
 
     for (int i = 0; i < DYE_POWDER_ITEM_TEXTURE_COUNT; i++) {
-        icons[i] = iconRegister->registerIcon(getIconName("_" L    +
+        icons[i] = iconRegister->registerIcon(getIconName("_" L +
                                               COLOR_TEXTURES[i]);
     }
 }

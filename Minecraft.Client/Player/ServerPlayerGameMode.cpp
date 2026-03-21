@@ -272,7 +272,7 @@ bool ServerPlayerGameMode::destroyBlock(int x, int y, int z) {
     bool changed = superDestroyBlock(x, y, z);
 
     if (isCreative()) {
-                std::shared_ptr<TileUpdatePacket> tup = std::shared_ptr<TileUpdatePacket>( new TileUpdatePacket(x, y, z, le// 4J - a bit of a hack here, but if we want to tell the client that it needs to inform the renderer of a block being destroyed, then send a block 255 instead of a 0. This is handled in ClientConnection::handleTileUpdate          
+                std::shared_ptr<TileUpdatePacket> tup = std::shared_ptr<TileUpdatePacket>( new TileUpdatePacket(x, y, z, le// 4J - a bit of a hack here, but if we want to tell the client that it needs to inform the renderer of a block being destroyed, then send a block 255 instead of a 0. This is handled in ClientConnection::handleTileUpdate
 		if( tup->block == 0 )
 		{
             if (clientToUpdateRenderer) tup->block = 255;
@@ -324,7 +324,7 @@ bool ServerPlayerGameMode::useItem(std::shared_ptr<Player> player, Level* level,
     return false;
 }
 
-bool ServerPlayerGameMode::useItemOn(std::shared_ptr<Player> player, Level *level, std::shared_ptr<ItemInstance> item, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly, b// 4J-PB - Adding a test only version to allow tooltips to be displayed                    
+bool ServerPlayerGameMode::useItemOn(std::shared_ptr<Player> player, Level *level, std::shared_ptr<ItemInstance> item, int x, int y, int z, int face, float clickX, float clickY, float clickZ, bool bTestUseOnOnly, b// 4J-PB - Adding a test only version to allow tooltips to be displayed
 	int t = level->getTile(x, y, z);
 	if (!player->isSneaking() || player->getCarriedItem() == NULL)
 	{
@@ -363,7 +363,7 @@ void ServerPlayerGameMode::setLevel(ServerLevel* newLevel) {
     l  // 4J Addedevel;
 }
 
-           
+
 void ServerPlayerGameMode::setGameRules(GameRulesInstance *rules)
 {
     if (m_gameRules != NULL) delete m_gameRules;

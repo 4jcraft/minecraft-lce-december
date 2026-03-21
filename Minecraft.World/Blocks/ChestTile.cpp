@@ -227,18 +227,18 @@ void ChestTile::onRemove(Level* level, int x, int y, int z, int id, int data) {
 
                     level->addEntity(itemEntity);
                     // 4J Stu - Fix for duplication
-                    // glitch                                   
+                    // glitch
                     container->setItem(i, nullptr);
                 }
             }
             level->updateNeighbourForOutputSignal(x, y, z, id);
         }
-    BaseEntityTile::onRe// 4J-PB - Adding a TestUse for tooltip display                                   
-bool Ches// 4J-PB - changing to 1.5 equivalent                                   
+    BaseEntityTile::onRe// 4J-PB - Adding a TestUse for tooltip display
+bool Ches// 4J-PB - changing to 1.5 equivalent
 bool ChestTile::use(Level* level, int x, int y, int z,
                     std::shared_ptr<Player> player, int clickedFace,
                     float clickX, float clickY, float clickZ,
-/*=false*/   // 4J added soundOnly param     )                             
+/*=false*/   // 4J added soundOnly param)  
 {
             if (soundOnly) return true;
 
@@ -360,7 +360,7 @@ bool ChestTile::hasAnalogOutputSignal() {
 int ChestTile::getAnalogOutputSignal(Level* level, int x, int y, int z,
                                      int dir) {
     return AbstractContainerMenu::getRedstoneSignalFromContainer(
-        getConta// Register wood as the chest's icon, because it's used by the particlesonReg// when destroying the chest                                        "planks_oak"     
-                                
-    icon = iconRegister->registerIcon(L            );
+        getConta// Register wood as the chest's icon, because it's used by the particlesonReg// when destroying the chest"planks_oak"
+    
+    icon = iconRegister->registerIcon(L);
 }

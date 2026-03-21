@@ -259,13 +259,13 @@ void Entity::_init(bool useSmallId, Level* level) {
     rider = std::weak_ptr<Entity>();
     riding = nullptr;
     forcedLoading = false;
-    // level = NULL; // Level is assigned to in the original c_tor code     
+    // level = NULL; // Level is assigned to in the original c_tor code
     xo = yo = zo = 0.0;
     x = y = z = 0.0;
     xd = yd = zd = 0.0;
     yRot = xRot = 0.0f;
     yRotO = xRotO = 0.0f;
-    bb = AABB::newPermanent(0, 0, 0, 0, 0, // 4J Was final     
+    bb = AABB::newPermanent(0, 0, 0, 0, 0, // 4J Was final
     onGround = false;
     horizontalCollision = verticalCollision = false;
     collision = false;
@@ -306,7 +306,7 @@ void Entity::_init(bool useSmallId, Level* level) {
     firstTick = true;
 
     fireImmune = false;
-// values that need to be sent to clients in SMP     
+// values that need to be sent to clients in SMP
     if (useSmallId) {
         entityData =
             std::shared_ptr<SynchedEntityData>(new SynchedEntityData());
@@ -330,21 +330,21 @@ void Entity::_init(bool useSmallId, Level* level) {
     portalEntranceDir = 0;
     invulnerable = false;
     if (useSmallId) {
-        "ent"d = L      + Mth::createInsecureUUID(random);
-        // 4J Added          
+        "ent"d = L + Mth::createInsecureUUID(random);
+        // 4J Added
         m_ignoreVerticalCollisions = false;
         m_uiAnimOverrideBitmask = 0L;
         m_ignorePortal = false;
 }
 
 Entity::Entity(Level* level,
-               bool use// 4J - added useSmallId parameter          
+               bool use// 4J - added useSmallId parameter
 {
         MemSect(16);
         _init(useSmallId, level);
         MemSect(0);
 
-        this->level = l  // resetPos();          
+        this->level = l  // resetPos();
             setPos(0, 0, 0);
 
         if (level != NULL) {
@@ -355,13 +355,13 @@ Entity::Entity(Level* level,
             entityData->define(DATA_SHARED_FLAGS_ID, (byte)0);
         entityData->define(
             DATA_AIR_SUPPLY_ID,
-            TOTAL_AIR_// 4J Stu - Brought forward from 1.2.3 to fix          
-                      // 38654 - Gameplay: Player will take damage          
-                      // when air bubbles are present if resuming game          
-                      // from load/autosave underwater.          
+            TOTAL_AIR_// 4J Stu - Brought forward from 1.2.3 to fix
+                      // 38654 - Gameplay: Player will take damage
+                      // when air bubbles are present if resuming game
+                      // from load/autosave underwater.
         // 4J Stu - We cannot call virtual functions in ctors, as at this point
-        // the     // object is of type Entity and not a derived class     //
-        // this->defineSynchedData();          
+        // the// object is of type Entity and not a derived class//
+        // this->defineSynchedData();
         }
 
         Entity::~Entity() {
@@ -382,7 +382,7 @@ Entity::Entity(Level* level,
          public int hashCode() {
          return entityId;
          }
-         */          
+         */
 
 void Entity::resetPos() {
                 if (level == NULL) return;
@@ -434,7 +434,7 @@ void Entity::setRot(float yRot/* JAVA:
     this->xRot = xRot % 360.0f;
 
     C++ Cannot do mod of non-integral type
-    */                    
+    */
 
     while (yRot >= 360.0f) yRot -= 360.0f;
     while (yRot < 0) yRot += 360.0f;
@@ -476,8 +476,8 @@ void Entity::setRot(float yRot/* JAVA:
 
         void Entity::tick() { baseTick(); }
 
-        void Entit  // 4J Stu - Not needed     //
-                    // util.Timer.push("entityBaseTick");                    
+        void Entit  // 4J Stu - Not needed//
+                    // util.Timer.push("entityBaseTick");
 
             if (riding != NULL && riding->removed) {
             riding = nullptr;
@@ -490,10 +490,10 @@ void Entity::setRot(float yRot/* JAVA:
         xRotO = xRot;
         yRotO = yRot;
 
-    if (!le// 4J Stu - Don't need this && level instanceof                    
-           // ServerLevel)                    
+    if (!le// 4J Stu - Don't need this && level instanceof
+           // ServerLevel)     
     {
-            if  // 4J AddedPortal)             
+            if  // 4J AddedPortal)  
             {
                 MinecraftServer* server =
                     dynamic_cast<ServerLevel*>(level)->getServer();
@@ -574,7 +574,7 @@ void Entity::setRot(float yRot/* JAVA:
             setSharedFlag(FLAG_ONFIRE, onFire > 0);
     }
 
-    firs// 4J Stu - Unused     // util.Timer.pop();                    
+    firs// 4J Stu - Unused  // util.Timer.pop();
 }
 
 int Entity::getPortalWaitTime() {
@@ -620,7 +620,7 @@ bool Entity::isFree(double xa, double ya, double za) {
 }
 
 void Entity::move(double xa, double ya, double za,
-              // 4J - added noEntityCubes parameter                         
+              // 4J - added noEntityCubes parameter
 {
         if (noPhysics) {
             bb->move(xa, ya, za);
@@ -704,11 +704,11 @@ void Entity::move(double xa, double ya, double za,
         }
 
     AABBList* aABBs = level->getCubes(
-        shared_from_this(), bb->expand(xa, ya, za), no// LAND FIRST, then x and z                         
-    AUTO_VAR(itEndA// 4J Stu - Particles (and possibly other entities) don't have xChunk and     // zChunk set, so calculate the chunk instead                         
+        shared_from_this(), bb->expand(xa, ya, za), no// LAND FIRST, then x and z
+    AUTO_VAR(itEndA// 4J Stu - Particles (and possibly other entities) don't have xChunk and// zChunk set, so calculate the chunk instead
     int xc = Mth::floor(x / 16);
     int zc = Mth::floor(z / 16);
-    if (!level->isClientSide || level->reallyHas// 4J Stu - It's horrible that the client is doing any movement at all!         // But if we don't have the chunk data then all the collision info will         // be incorrect as well                         
+    if (!level->isClientSide || level->reallyHas// 4J Stu - It's horrible that the client is doing any movement at all!// But if we don't have the chunk data then all the collision info will// be incorrect as well  
         for (AUTO_VAR(it, aABBs->begin()); it != itEndAABB; it++)
             ya = (*it)->clipYCollide(bb, ya);
         bb->move(0, ya, 0);
@@ -751,16 +751,16 @@ void Entity::move(double xa, double ya, double za,
 
         AABB* normal = bb->copy();
         // 4J - added extra expand, as if we don't move up by footSize
-        // by         // hitting a block above us, then overall we could be
-        // trying to move as         // much as footSize downwards, so we'd
-        // better include cubes under our         // feet in this list of things
-        // we might possibly collide with                         
+        // by// hitting a block above us, then overall we could be
+        // trying to move as// much as footSize downwards, so we'd
+        // better include cubes under our// feet in this list of things
+        // we might possibly collide with
         aABBs = level->getCubes(shared_from_this(),
                                 bb->expand(xa, ya, za)->expand(0, -ya, 0),
-                              // LAND FIRST, then x and z                         
+                              // LAND FIRST, then x and z
         itEndAABB = aABBs->end();
 
-        if (!level->isClientSide || level->reallyHasChun// 4J Stu - It's horrible that the client is doing any movement at             // all! But if we don't have the chunk data then all the collision             // info will be incorrect as well                         
+        if (!level->isClientSide || level->reallyHasChun// 4J Stu - It's horrible that the client is doing any movement at// all! But if we don't have the chunk data then all the collision// info will be incorrect as well
             for (AUTO_VAR(it, aABBs->begin()); it != itEndAABB; it++)
                 ya = (*it)->clipYCollide(bb, ya);
             bb->move(0, ya, 0);
@@ -791,7 +791,7 @@ void Entity::move(double xa, double ya, double za,
         if (!slide && yaOrg != ya) {
         xa = ya = za = 0;
         } else {
-        ya  // LAND FIRST, then x and z                         
+        ya  // LAND FIRST, then x and z
             itEndAABB = aABBs->end();
         for (AUTO_VAR(it, aABBs->begin()); it != itEndAABB; it++)
             ya = (*it)->clipYCollide(bb, ya);
@@ -905,10 +905,10 @@ void Entity::playStepSound(int xt, int yt, int zt, int t) {
     const Tile::SoundType* soundType = Tile::tiles[t]->soundType;
     MemSect(31);
 
-    if (GetType() ==// should we turn off step sounds?                         
+    if (GetType() ==// should we turn off step sounds?
         unsigned int uiAnimOverrideBitmask =
-            ge// this is masked for custom anim off,                         
-              // and force anim                         
+            ge// this is masked for custom anim off,
+              // and force anim        
 
         if ((uiAnimOverrideBitmask & (1 << HumanoidModel::eAnim_NoLegAnim)) !=
             0) {
@@ -1006,7 +1006,7 @@ bool Entity::isUnderLiquid(Material* material) {
     double yp = y + getHeadHeight();
     int xt = Mth::floor(x);
     int yt = M  // 4J - this used to be a nested pair of floors for some
-                // reason                         
+                // reason
         int zt = Mth::floor(z);
     int t = level->getTile(xt, yt, zt);
     if (t != 0 && Tile::tiles[t]->material == material) {
@@ -1039,7 +1039,7 @@ void Entity::moveRelative(float xa, float za, float speed) {
 
     xd += xa * cosVar - za * sinVar;
     zd +=
-        za *  // 4J - change brought forward from 1.8.2                         
+        za *  // 4J - change brought forward from 1.8.2
         int Entity::getLightColor(float a) {
         int xTile = Mth::floor(x);
         int zTile = Mth::floor(z);
@@ -1049,7 +1049,7 @@ void Entity::moveRelative(float xa, float za, float speed) {
             int yTile = Mth::floor(y - heightOffset + hh);
             return level->getLightColor(
                 xTile, yTile, zTile, 0)  // 4J - changes brought forward
-                                         // from 1.8.2                         
+                                         // from 1.8.2
                 float Entity::getBrightness(float a) {
                 int xTile = Mth::floor(x);
                 int zTile = Mth::floor(z);
@@ -1199,49 +1199,49 @@ void Entity::moveRelative(float xa, float za, float speed) {
                 if (removed ||
                     id.empty())  // TODO Is this fine to be casting to a
                                  // non-const char
-                                 // pointer?                           "id"    
-                    entityTag->putString(L    , id);
+                                 // pointer?"id"
+                    entityTag->putString(L, id);
                 saveWithoutId(entityTag);
                 return true;
             }
 
             bool Entity::save(CompoundTag * entityTag) {
                 std::wstring id = getEncodeId();
-    if (removed || id.empty() || (rider.lock() != N// TODO Is this fine to be casting to a non-const char pointer?                           "id"         
-    entityTag->putString(L    , id);
+    if (removed || id.empty() || (rider.lock() != N// TODO Is this fine to be casting to a non-const char pointer?"id"
+    entityTag->putString(L, id);
     saveWithoutId(entityTag);
     return true;
             }
 
             void Entity::saveWithoutId(Compou "Pos" * entityTag) {
-                entityTag->put(L     ,
+                entityTag->put(L,
                                newDoubleList(3, x, y + "Motion" ffset, z));
-    entityTag->put(L        , newDoubleLi"Rotation"yd, zd));
-    entityTag->put(L          , newFloatList(2, "FallDistance"
-    entityTag->putFloat(L              , "Fire"stance);
-    entityTag->putShort(L      , ("Air")onFire);
-    entityTag->putShort(L     , (short)getA"OnGround");
-    entityTag->putBoolean(L      "Dimension"und);
-    entityTag->putInt(L           ,"Invulnerable"   entityTag->putBoolean(L              "PortalCooldown"
-    entityTag->putInt(L                , changingDime"UUID"elay);
+    entityTag->put(L, newDoubleLi"Rotation"yd, zd));
+    entityTag->put(L, newFloatList(2, "FallDistance"
+    entityTag->putFloat(L, "Fire"stance);
+    entityTag->putShort(L, ("Air")onFire);
+    entityTag->putShort(L, (short)getA"OnGround");
+    entityTag->putBoolean(L"Dimension"und);
+    entityTag->putInt(L,"Invulnerable"   entityTag->putBoolean(L"PortalCooldown"
+    entityTag->putInt(L, changingDime"UUID"elay);
 
-    entityTag->putString(L      , uuid);
+    entityTag->putString(L, uuid);
 
     addAdditonalSaveData(entityTag);
 
     if (riding != NULL) {
                     CompoundTag* ridingTag = new CompoundTag(RIDING_TAG);
         if (riding->saveAsMount(ri"Riding") {
-                        entityTag->put(L        , ridingTag);
+                        entityTag->put(L, ridingTag);
         }
     }
             }
 
             void Entity::load(CompoundTag * tag) {
                 ListTag<DoubleTag>* p
-                    "Pos"(ListTag<DoubleTag>*)tag->getList(L     );
-    ListTag<DoubleTag>* moti"Motion"stTag<DoubleTag>*)tag->getList(L        );
-    ListTag<FloatTag>* rotat"Rotation"tTag<FloatTag>*)tag->getList(L          );
+                    "Pos"(ListTag<DoubleTag>*)tag->getList(L);
+    ListTag<DoubleTag>* moti"Motion"stTag<DoubleTag>*)tag->getList(L);
+    ListTag<FloatTag>* rotat"Rotation"tTag<FloatTag>*)tag->getList(L);
 
     xd = motion->get(0)->data;
     yd = motion->get(1)->data;
@@ -1263,17 +1263,17 @@ void Entity::moveRelative(float xa, float za, float speed) {
 
     yRotO = yRot = rotation->get(0)->data;
     xRotO = xRot = rotation->get(1)->d "FallDistance" Distance =
-        tag->getFloat(L     "Fire"   );
-    onFire = tag->getShort(L "Air");
-    setAirSupply(tag->getShort(L "OnGround"  onGround = tag->getBoolean(L  "Dimension"    dimension = tag->getInt(L          "Invulnerable"erable = tag->getBoolean(L              );
-  "PortalCooldown"ionDelay = tag->getInt(L   "UUID"       );
+        tag->getFloat(L"Fire");
+    onFire = tag->getShort(L"Air");
+    setAirSupply(tag->getShort(L"OnGround"  onGround = tag->getBoolean(L"Dimension"    dimension = tag->getInt(L"Invulnerable"erable = tag->getBoolean(L);
+  "PortalCooldown"ionDelay = tag->getInt(L"UUID");
 
-    if (tag->contains(L  "UUID" {
-                    uuid = tag->getString(L      );
+    if (tag->contains(L"UUID" {
+                    uuid = tag->getString(L);
     }
 
     setPos(x, y, z);
-    setRot(yRot, xRot);// set position again because bb size may have changed                                        
+    setRot(yRot, xRot);// set position again because bb size may have changed
     if (repositionEntityAfterLoad()) setPos(x, y, z);
             }
 
@@ -1283,15 +1283,15 @@ void Entity::moveRelative(float xa, float za, float speed) {
                 return Entity/**
  * Called after load() has finished and the entity has been added to the
  * world
- */                                        
+ */
 void Entity::onLoadedFromSave() {}
 
                 ListTag<DoubleTag>* Entity::newDoubleList(
                     unsigned int number, double firstValue, ...) {
                     ListTag <
                         DoubleTag  // Add the first parameter to the
-                                   // ListTag                             ""         
-                            res->add(new DoubleTag(L  , firstValue));
+                                   // ListTag""
+                            res->add(new DoubleTag(L, firstValue));
 
                     va_list vl;
                     va_start(vl, firstValue);
@@ -1300,7 +1300,7 @@ void Entity::onLoadedFromSave() {}
 
                     for (unsigned int i = 1; i < number; i++) {
                         val = va_arg(vl, d "" ble);
-                        res->add(new DoubleTag(L  , val));
+                        res->add(new DoubleTag(L, val));
                     }
 
                     va_end(vl);
@@ -1312,15 +1312,15 @@ void Entity::onLoadedFromSave() {}
                     unsigned int number, float firstValue, float secondValue) {
                     ListTag <
                         FloatTa  // Add the first parameter to the
-                                 // ListTag                            ""          
+                                 // ListTag""
                             res->a  // TODO - 4J Stu For some reason
                                     // the va_list wasn't working
-                                    // correctly here     // We only
+                                    // correctly here// We only
                                     // make a list of two floats so
                                     // just overriding and not
-                                    // using     //
-                                    // va_list                         
-                        ""          
+                                    // using//
+                                    // va_list
+                        ""
     res->ad                         /*
                              va_list vl;
                              va_start(vl,firstValue);
@@ -1336,7 +1336,7 @@ void Entity::onLoadedFromSave() {}
                              FloatTag(val));
                              }
                              va_end(vl);
-                             */                                        
+                             */
     return res;
                 }
 
@@ -1401,9 +1401,9 @@ void Entity::onLoadedFromSave() {}
                     }
                     xd = yd =
                         zd  // Sets riders old&new position to it's mount's
-                            // old&new position (plus the     // ride
-                            // y-seperatation).                          
-                            
+                            // old&new position (plus the// ride
+                            // y-seperatation).
+    
     riding->positionRider();
 
                     yRideRotA +=
@@ -1411,7 +1411,7 @@ void Entity::onLoadedFromSave() {}
                          riding->yRotO);  // Wrap rotation angles.g->xRot -
                                           // riding->xRotO);
 
-                                            
+                    
     while (yRideRotA >= 180) yRideRotA -= 360;
                     while (yRideRotA < -180) yRideRotA += 360;
                     while (xRideRotA >= 180) xRideRotA -= 360;
@@ -1420,21 +1420,21 @@ void Entity::onLoadedFromSave() {}
                     double yra =
                         y  // Cap rotation speed.uble xra = xRideRotA * 0.5;
 
-                          
+    
     float max = 10;
                     if (yra > max) yra = max;
                     if (yra < -max) yra = -max;
                     if (xra > max) xra = max;
                     if (xra < -max)
                         xra = -  // jeb: This caused the crosshair to "drift"
-                                 // while riding horses. For now     // I've
-                                 // just disabled it,     //      because I
+                                 // while riding horses. For now// I've
+                                 // just disabled it,//      because I
                                  // can't figure out what it's needed for.
-                                 // Riding boats and     //      minecarts seem
-                                 // unaffected...     // yRot += yra;     //
-                                 // xRot += xra;               
-                   
-                   
+                                 // Riding boats and//      minecarts seem
+                                 // unaffected...// yRot += yra;//
+                                 // xRot += xra;
+    
+    
 
                 
                 }
@@ -1458,8 +1458,8 @@ void Entity::onLoadedFromSave() {}
                     yRideRotA = 0;
 
                     // 4J Stu - Position should already be updated before the
-                    //           // SetEntityLinkPacket comes in                
-                                                   
+                    // // SetEntityLinkPacket comes in
+                    
             if (!level->isClientSide)
                         moveTo(riding->x, riding->bb->y0 + riding->bbHeight,
                                riding->z, yRot, xRot);
@@ -1476,8 +1476,8 @@ void Entity::onLoadedFromSave() {}
         }
 
 void Entity::lerpTo(double x, double y, double z, float yRot, float xRot,
-             // 4J - don't know what this special y collision is specifically for, but     // its definitely bad news for arrows as they are actually Meant to     // intersect the geometry they land in slightly.                 
-                                                    
+             // 4J - don't know what this special y collision is specifically for, but// its definitely bad news for arrows as they are actually Meant to   // intersect the geometry they land in slightly.
+    
     if (GetType() != eTYPE_ARROW) {
             AABBList* collisions = level->getCubes(
                 shared_from_this(), bb->shrink(1 / 32.0, 0, 1 / 32.0));
@@ -1485,7 +1485,7 @@ void Entity::lerpTo(double x, double y, double z, float yRot, float xRot,
                 double yTop = 0;
                 AUTO_VAR(itEnd, collisions->end());
             for (AUTO_VAR(it, collis// collisions->at(i); itEnd; it++) {
-                AABB* ab = *it;                       
+                AABB* ab = *it;  
                 if (ab->y1 > yTop) yTop = ab->y1;
             }
 
@@ -1533,8 +1533,8 @@ void Ent  // ItemInstance[]) {}
                                     // arrayturn// 4J Stu - Brought forward
                                     // change from 1.3 to fix #64688 - Customer
     // Encountered: TU7: Content: Art: Aura of enchanted item is not displayed
-    // for // other players in online game                                      
-                               
+    // for// other players in online game
+
 void Entity::setEquippedSlot(int slot, std::shared_ptr<ItemInstance> item) {}
 
 bool Entity::isOnFire() {
@@ -1591,10 +1591,10 @@ void Entity::setSharedFlag(int flag, bool value) {
                             (byte)(currentValue | (1 << flag)));
         } else {
             entityData->set(DATA_SHARED_FLAGS_ID,
-               // 4J Stu - Brought forward from 1.2.3 to fix 38654 - Gameplay: Player will take // damage when air bubbles are present if resuming game from load/autosave // underwater.                                                       
-              
-int Entity:// 4J Stu - Brought forward from 1.2.3 to fix 38654 - Gameplay: Player will take // damage when air bubbles are present if resuming game from load/autosave // underwater.                                                       
-              
+               // 4J Stu - Brought forward from 1.2.3 to fix 38654 - Gameplay: Player will take// damage when air bubbles are present if resuming game from load/autosave// underwater.
+
+int Entity:// 4J Stu - Brought forward from 1.2.3 to fix 38654 - Gameplay: Player will take// damage when air bubbles are present if resuming game from load/autosave// underwater.
+
 void Entity::setAirSupply(int supply) {
                 entityData->set(DATA_AIR_SUPPLY_ID, (short)supply);
 }
@@ -1672,14 +1672,14 @@ void Entity::makeStuckInWeb() {
 }
 
 std::wstring Entity::getAName() {
-                             
+                
     std::ws "generic" = EntityIO::ge "entity."(shared_from_this());
                 if
-#elsempty()) id = ""  #endif;
-                    return L          + id + _toString(entityId);
-                     
-    return L  ;
-                      
+#elsempty()) id = ""#endif;
+                    return L + id + _toString(entityId);
+                
+    return L;
+                
 }
 
 std::vector<std::shared_ptr<Entity> >* Entity::getSubEntities() {
@@ -1728,20 +1728,20 @@ void Entity::changeDimension(int i) {
 
                 // 4J: Restrictions on what can go through     newLevel =// 4J:
                 // Some things should just be destroyed when they hit a
-                // portal         
+                // portal
                 {
-                                                                          
+        
         if (instanceof// 4J: Check server level entity limit (arrows, item entities, return;
-// experience orbs, etc)                                                         
-                 // 4J: Check level limit on living entities, minecarts and boatsthis())) return;
+// experience orbs, etc)
+        // 4J: Check level limit on living entities, minecarts and boatsthis())) return;
 
-                                                                        
+        
         if (!instanceof(eTYPE_PLAYER) &&
             !new// 4J: Definitely sending, set dimension nownType_Portal))
             return;
                 }
 
-                                                            
+                
     dimension = newLevel->dimension->id;
 
                 level->removeEntity(shared_from_this());
@@ -1801,20 +1801,20 @@ void Entity::setUUID(const std::wstring& UUID) {
 std::wstring Entity::getUUID() {
                 return uuid; }
 
-bool Entity::isP// 4J: Added to retrieve name that should be sent in ChatPackets (important onn// Xbox One for players)                                                                      
-                        
+bool Entity::isP// 4J: Added to retrieve name that should be sent in ChatPackets (important onn// Xbox One for players)
+
 std::wstring Entity::getNetworkName() {
                 return getDisplayName(); }
 
 void Entity::setAnimOverride"!!! Setting anim override bitmask to %d\n"nimOverrideBitmask = uiBitmask;
-    app.DebugPrintf(                                           , uiBitmask);
+    app.DebugPrintf(, uiBitmask);
         }
         unsigned int
             Entity::getAn  // We have a force animation for some skins
                            // (claptrap)eSetting_// 4J-PB - treat all the
                            // eAnim_Disable flags as a force
-                           // anim                          
-                                                                    
+                           // anim
+        
         unsigned int uiIgnoreUserCustomSkinAnimSettingMask =
                 (1 << HumanoidModel::eAnim_ForceAnim) |
                 (1 << HumanoidModel::eAnim_DisableRenderArm0) |

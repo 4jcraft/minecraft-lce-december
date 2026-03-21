@@ -454,13 +454,13 @@ int SQRNetworkPlayer::GetSendQueueSizeMessages() {
     return m_manager->GetSendQueueSizeMessages();
     // Internal send function. This attempts to send as many elements in the
     // queue as possible until the write function tells us that we can't send
-    // any more. This way, // we are guaranteed that if there *is* anything more
+    // any more. This way,// we are guaranteed that if there *is* anything more
     // in the queue left to send, we'll get a CELL_RUDP_CONTEXT_EVENT_WRITABLE
-    // event when whatever we've managed to // send here is complete, and can
-    // continue on.     
+    // event when whatever we've managed to// send here is complete, and can
+    // continue on.
     void SQRNetworkPlayer::SendMoreInternal() {
         EnterCriticalSection(&m_csQueue);
-        assert(m_sendQueue.size() > // this should never be called with an empty queue.     
+        assert(m_sendQueue.size() > // this should never be called with an empty queue.
 
 	bool keepSending;
 	do
@@ -468,7 +468,7 @@ int SQRNetworkPlayer::GetSendQueueSizeMessages() {
             keepSending = false;
             if (m_sendQueue.size() > 0)
                 // Attempt to send the full data in the first element in our
-                // queue     
+                // queue
                 unsigned char* data = m_sendQueue.front().current;
             int dataSize =
                 m_sendQueue.front().end - m_sendQueue.front().current;
@@ -477,7 +477,7 @@ int SQRNetworkPlayer::GetSendQueueSizeMessages() {
             if (ret ==
                 dataSize) {  // Fully sent, remove from queue - will loop in the
                              // while loop to see if there's anything else in
-                             // the queue we could send     
+                             // the queue we could send
                 m_totalBytesInSendQueue -= ret;
                 delete[] m_sendQueue.front().start;
                 m_sendQueue.pop();
@@ -485,16 +485,16 @@ int SQRNetworkPlayer::GetSendQueueSizeMessages() {
                     keepSending = true;
                 }
             } else if ((ret >= 0) || (ret == sc_wouldBlockFlag)) {
-                // Things left to send - adjust this element in the queue     
+                // Things left to send - adjust this element in the queue
                 int remainingBytes;
                 if (ret >= 0) {
-                    // Only ret bytes sent so far     
+                    // Only ret bytes sent so far
                     m_totalBytesInSendQueue -= ret;
                     remainingBytes = dataSize - ret;
                     assert(remainingBytes > 0);
                 } else {
                     // Is CELL_RUDP_ERROR_WOULDBLOCK, nothing has yet been
-                    // sent     
+                    // sent
                     remainingBytes = dataSize;
                 }
                 m_sendQueue.front().current =
@@ -510,13 +510,13 @@ void SQRNetworkPlayer::SetNameFromUID() {
     mbstowcs(m_name, m_ISD.m_UID.getOnlineID(), 16);
     m_name[16] #ifdef __PS3__  // only 1 player on vita, and they have to be
                                // online (or adhoc), and with PS4 all local
-                               // players need to be signed in  // Not an online
+                               // players need to be signed in// Not an online
                                // player? Add a suffix with the controller ID
-                               // on     
+                               // on
         if (m_ISD.m_UID.isSignedIntoPSN() == 0) {
         int pos = wcslen(m_name);
-        swprintf(&m_name[pos], " (%d)"     ,
-                 m_ISD.m_UID.getQuadrant() + 1) #endif      
+        swprintf(&m_name[pos], " (%d)",
+                 m_ISD.m_UID.getQuadrant() + 1) #endif 
 
     
     }
@@ -530,27 +530,27 @@ void SQRNetworkPlayer::SetNameFromUID() {
         return m_manager->GetSessionIndex(this);
     }
 
-bool SQRNetworkPlayer::HasVoice#ifdef __ORBIS__     
-	return SonyVoiceChat_Orbis::hasMicConnected(th#elif defined __PSVITA__     
-	return SonyVoiceChat_Vita::hasMicConnected(th#else     
-	return SonyVoiceChat::hasMicConnected(&m_roomMember#endif     
+bool SQRNetworkPlayer::HasVoice#ifdef __ORBIS__
+	return SonyVoiceChat_Orbis::hasMicConnected(th#elif defined __PSVITA__
+	return SonyVoiceChat_Vita::hasMicConnected(th#else
+	return SonyVoiceChat::hasMicConnected(&m_roomMember#endif
 
 
 }
 
-bool SQRNetworkPlayer::IsTalking#ifdef __ORBIS__     
-	return SonyVoiceChat_Orbis::isTalking(th#elif defined __PSVITA__     
-	return SonyVoiceChat_Vita::isTalking(th#else     
-	return SonyVoiceChat::isTalking(&m_roomMember#endif     
+bool SQRNetworkPlayer::IsTalking#ifdef __ORBIS__
+	return SonyVoiceChat_Orbis::isTalking(th#elif defined __PSVITA__
+	return SonyVoiceChat_Vita::isTalking(th#else
+	return SonyVoiceChat::isTalking(&m_roomMember#endif
 
 
 }
 
-bool SQRNetworkPlayer::IsMutedByLocalUser(int userInde#ifdef __ORBIS__ // 	assert(0); // this is never called, so isn't implemented in the PS4 voice stuff at the moment     
-	return fa#elif defined __PSVITA__     
-	return f// this is never called, so isn't implemented in the Vita voice stuff at the moment #else     
+bool SQRNetworkPlayer::IsMutedByLocalUser(int userInde#ifdef __ORBIS__// 	assert(0); // this is never called, so isn't implemented in the PS4 voice stuff at the moment
+	return fa#elif defined __PSVITA__
+	return f// this is never called, so isn't implemented in the Vita voice stuff at the moment#else
 	SQRNetworkManager_PS3* pMan = (SQRNetworkManager_PS3*)m_manager;
-	return SonyVoiceChat::isMutedPlayer(pMan->m_roomSyncData.players[userIndex].m_roomMember#endif     
+	return SonyVoiceChat::isMutedPlayer(pMan->m_roomSyncData.players[userIndex].m_roomMember#endif
 
 
 }

@@ -311,7 +311,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
             SaddleMouthLine->render(scale, usecompiled);
             SaddleMouthLineR->render(scale, usecompiled);
         }
-        // render legs     
+        // render legs
         if (!adult) {
             glPushMatrix();
             glScalef(sizeFactor, .5f + sizeFactor * .5f, sizeFactor);
@@ -338,7 +338,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
             glPushMatrix();
             glScalef(sizeFactor, sizeFactor, sizeFactor);
             glTranslatef(0, 1.35f * (1.0f - sizeFactor),
-                         0);  // render body     
+                         0);  // render body
             Body->render(scale, usecompiled);
             TailA->render(scale, usecompiled);
             TailB->render(scale, usecompiled);
@@ -359,7 +359,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                         .9f * (1.0f - sizeFactor) * eating +
                             (1.35f * (1.0f - sizeFactor)) * (1.0f - eating),
                         .15f * (1.0f - sizeFactor) * eating);
-                }  // render head     
+                }  // render head
                 if (largeEars) {
                     MuleEarL->render(scale, usecompiled);
                     MuleEarR->render(scale, usecompiled);
@@ -399,7 +399,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                 float headRot = rotlerp(mob->yHeadRotO, mob->yHeadRot, a);
                 float headRotx = (mob->xRotO + (mob->xRot - mob->xRotO) * a);
                 float headRotMinusBodyRot =
-                    headRot - bodyRo  // TODO: Magic numbers     
+                    headRot - bodyRo  // TODO: Magic numbers
                     float HeadXRot = (headRotx / 57.29578f);
                 if (headRotMinusBodyRot > 20.f) {
                     headRotMinusBodyRot = 20.f;
@@ -408,7 +408,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                     headRotMinusBodyRot = -20.f;
                     /**
                      * f = distance walked f1 = speed 0 - 1 f2 = timer
-                     */     
+                     */
 	if (ws > 0.2f)
 	{
                         HeadXRot = HeadXRot + (cos(wp * 0.4f) * 0.15f * ws);
@@ -435,9 +435,9 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                     TailB->z = 14.f;
                     Bag2->y = 3.f;
                     Bag2->z = 10.f;
-                    Body->xRot  // TODO: Fix these magical numbers          
+                    Body->xRot  // TODO: Fix these magical numbers
                         Head->xRot = 0.5235988f + (HeadXRot);
-        Head->yRot = (headRotMinusBodyRot / 5// fixes SMP bug   // interpolate positions and rotations based on current eating and standing animations      // TODO: Magic numbers          
+        Head->yRot = (headRotMinusBodyRot / 5// fixes SMP bug// interpolate positions and rotations based on current eating and standing animations// TODO: Magic numbers
 		Head->xRot = standing * ((15 * Mth::DEGRAD) + (HeadXRot)) + eating * 2.18166f + (1.0f - std::max(standing, eating)) * Head->xRot;
 		Head->yRot = standing * (headRotMinusBodyRot / 57.29578f) + (1.0f - std::max(standing, eating)) * Head->yRot;
 
@@ -487,11 +487,11 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                 UMouth->yRot = 0;
                 LMouth->yRot = 0  // (if chested) Head->yRot;
 
-	               
+	
 	Bag1->xRot = legXRotAnim / 5.f;
                 Bag2-/**
 	* knee joints Leg1 and Leg4 use LLegXRot Leg2 and Leg3 use RLegXRot
-	*/                              
+	*/
 	{
                     float r90 = PI * .5f;
                     float r270 = PI * 1.5f;
@@ -623,7 +623,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                     SaddleMouthR->yRot =
                         Head->yRot  // TODO: Magic number (smells like radians
                                     // :D) (rider) {
-			                                              
+			
 			SaddleL->xRot = -60 / 57.29578f;
                     SaddleL2->xRot = -60 / 57.29578f;
                     SaddleR->xRot = -60 / 57.29578f;
@@ -646,7 +646,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                 }
             }
 
-                                 
+            
 	float tailMov = -1.3089f + (ws * 1.5f);
             if (tailMov > 0) {
                 tailMov = 0;
@@ -666,7 +666,7 @@ void ModelHorse::render(std::shared_ptr<Entity> entity, float time, float r,
                 ->  // TODO: Magic number>z = TailA->z;
                 TailC->z = TailA->z;
 
-                                 
+            
 	TailA->xRot = tailMov;
             TailB->xRot = tailMov;
             TailC->xRot = -0.2618f + tailMov;

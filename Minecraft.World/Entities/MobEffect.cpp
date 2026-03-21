@@ -302,17 +302,17 @@ bool MobEffect::isInstantenous() {
  * @param amplification
  *            Effect amplification, starts at 0 (weakest)
  * @return
- */     
-bool MobEffect::isDurationEffectTick(int remainingDuration, int amplification) {// Maybe move this to separate class implementations in the future?     
+ */
+bool MobEffect::isDurationEffectTick(int remainingDuration, int amplification) {// Maybe move this to separate class implementations in the future?
         if (id == regeneration->id) {
-            // tick intervals are 50, 25, 12, 6..     
+            // tick intervals are 50, 25, 12, 6..
             int interval = 50 >> amplification;
             if (interval > 0) {
                 return (remainingDuration % interval) == 0;
             }
             return true;
         } else if (id == poison->id) {
-            // tick intervals are 25, 12, 6..     
+            // tick intervals are 25, 12, 6..
             int interval = 25 >> amplification;
             if (interval > 0) {
                 return (remainingDuration % interval) == 0;
@@ -357,7 +357,7 @@ bool MobEffect::isDurationEffectTick(int remainingDuration, int amplification) {
 
     std::wstring MobEffect::formatDuration(MobEffectInstance * instance) {
         if (instance->isNoCounter()) {
-            ret "**:**"     ;
+            ret "**:**";
         }
         int duration = instance->getDuration();
 
@@ -369,11 +369,11 @@ bool MobEffect::isDurationEffectTick(int remainingDuration, int amplification) {
         ZeroMemory(&temp, 8 * (sizeof(wchar_t)));
 
         if (seconds < 10) {
-            swprintf(temp, "%d:0%d"     , minutes, seconds);
-            // return minutes + ":0" + seconds;     
+            swprintf(temp, "%d:0%d", minutes, seconds);
+            // return minutes + ":0" + seconds;
         } else {
-            swprintf(temp, "%d:%d"     , minutes, seconds);
-            // return minutes + ":" + seconds;     
+            swprintf(temp, "%d:%d", minutes, seconds);
+            // return minutes + ":" + seconds;
         }
 
         return temp;

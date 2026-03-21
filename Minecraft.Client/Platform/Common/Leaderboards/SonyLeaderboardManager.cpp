@@ -355,42 +355,42 @@ bool SonyLeaderboardManager::getScoreByIds() {
 #ifdef __ORBIS__
         int tmpNum = std::min(num - batch, (unsigned int)100);
         app.DebugPr
-            "[SonyLeaderboardManager]\t Requesting ids %i-%i of %i.\n"     ,
+            "[SonyLeaderboardManager]\t Requesting ids %i-%i of %i.\n",
             batch, batch + tmpNum,
-            n #else      
-		int tmpNum = #endif      
+            n #else 
+		int tmpNum = #endif 
 		ret = sceNpScoreGetRankingByNpId(
                 m_requestId,
-                boar  // BoardId 
-#ifdef __ORBIS__     
+                boar  // BoardId
+#ifdef __ORBIS__
 			batch + \
     npIds,                      \
-    sizeof(SceNpId) * tmpNum,  // IN: Player IDs     
+    sizeof(SceNpId) * tmpNum,  // IN: Player IDs
                         batch +
                     ptr,
-                sizeof(SceNpScorePlayerRankData) * tmp  // OUT: Rank Data     
+                sizeof(SceNpScorePlayerRankData) * tmp  // OUT: Rank Data
                                                        batch +
                     comments,
-                sizeof(SceNpScoreComment) * tmpNu  // OUT: Comments #else     
+                sizeof(SceNpScoreComment) * tmpNu  // OUT: Comments#else
                                                 npIds,
-                sizeof(SceNpId) * tmpNum,  // IN: Player IDs     
+                sizeof(SceNpId) * tmpNum,  // IN: Player IDs
                 ptr,
-                sizeof(SceNpScorePlayerRankData) * tmp  // OUT: Rank Data     
+                sizeof(SceNpScorePlayerRankData) * tmp  // OUT: Rank Data
                                                        comments,
-                sizeof(SceNpScoreComment) * tmpNu  // OUT: Comments #endif     
+                sizeof(SceNpScoreComment) * tmpNu  // OUT: Comments#endif
 
-                                                NULL  // GameData. (unused)     
+                                                NULL  // GameData. (unused)
 
                                                     tmpNum,
 
                 &last_sort_date, &mTotalRecord,
 
-                // Reserved, specify null.     
+                // Reserved, specify null.
             );
 
         if (ret == SCE_NP_COMMUNITY_ERROR_ABORTED) {
             ret = destroyTransactionContext(m_requestId);
-                        app.DebugPr"[SonyLeaderboardManager] getScoreByIds(): 'sceNpScoreGetRankingByRange' aborted (0x%X).\n"     , ret);
+                        app.DebugPr"[SonyLeaderboardManager] getScoreByIds(): 'sceNpScoreGetRankingByRange' aborted (0x%X).\n", ret);
 
                         delete[] ptr;
                         delete[] comments;
@@ -398,25 +398,25 @@ bool SonyLeaderboardManager::getScoreByIds() {
 
                         return false;
         } else if (ret == SCE_NP_COMMUNITY_SERVER_ERROR_GAME_RANKING_NOT_FOUND)
-        // 4J-JEV: Keep going, other batches might have scores.     
+        // 4J-JEV: Keep going, other batches might have scores.
     }
-    else if (ret < 0) goto error3  // Return.     
+    else if (ret < 0) goto error3  // Return.
         destroyTransactionContext(m_requestId);
     m_requestId
-#ifdef __ORBIS__    #endif      
+#ifdef __ORBIS__#endif 
 
 	m_readCount = \
-    nu  // Filter scorers and construct output structure.     
+    nu  // Filter scorers and construct output structure.
         if (m_scores != NULL) delete[] m_scores;
     m_scores = new ReadScore[m_readCount];
     convertToOutput(m_readCount, m_scores, ptr, comments);
     m_maxRank = m_readCount;
 
-    app.DebugPrint"[SonyLeaderboardManager] getScoreByIds(), Success!\n"   "\t Board %i\n"   "\t %i of %i results have an entry\n"   "1stScore=%i\n"     ,
+    app.DebugPrint"[SonyLeaderboardManager] getScoreByIds(), Success!\n""\t Board %i\n""\t %i of %i results have an entry\n""1stScore=%i\n",
 		boardId,
 		m_readCount, num,
 		ptr->rankData.scoreValue
-		// Sort scores     
+		// Sort scores
 	std::sort(m_scores, m_scores + m_readCount, SortByRank);
 
     delete[] ptr;
@@ -424,8 +424,8 @@ bool SonyLeaderboardManager::getScoreByIds() {
     delete[] npIds;
 
     m_eStatsState = eStatsState_Ready;
-    return tru                                           // Error.     
-        error3 : if (ret != SCE_NP_COMMUNITY_ERROR_ABOR  // 0x8002a109     
+    return tru                                           // Error.
+        error3 : if (ret != SCE_NP_COMMUNITY_ERROR_ABOR  // 0x8002a109
                                 destroyTransactionContext(m_requestId);
                      m_requestId = 0; delete[] ptr; delete[] comments;
                      error2 : if (npIds != NULL) delete[] npIds;
@@ -433,7 +433,7 @@ bool SonyLeaderboardManager::getScoreByIds() {
                          m_eStatsState = eStatsState_Failed;
                      app.DebugPr
                      "[SonyLeaderboardManager] getScoreByIds() FAILED, "
-                     "ret=0x%X\n"     ,
+                     "ret=0x%X\n",
                      ret);
     return false;
 }
@@ -450,19 +450,19 @@ bool SonyLeaderboardManager::getScoreByRange() {
 
     int ret = createTransactionContext(m_titleContext);
     if (m_eStatsState == eStatsState_Canceled)
-        // Cancel operation has been called, abort.     
-                app.DebugPr"[SonyLeaderboardManager]\tgetScoreByRange() - m_eStatsState == eStatsState_Canceled.\n"     );
+        // Cancel operation has been called, abort.
+                app.DebugPr"[SonyLeaderboardManager]\tgetScoreByRange() - m_eStatsState == eStatsState_Canceled.\n");
     destroyTransactionContext(ret);
     return false;
 }
 else if (ret < 0)
-    // Error occurred creating a transaction, abort.     
+    // Error occurred creating a transaction, abort.
     m_eStatsState = eStatsState_Failed;
-                app.DebugPr"[SonyLeaderboardManager]\tgetScoreByRange() - createTransaction failed, ret=0x%X\n"     , ret);
+                app.DebugPr"[SonyLeaderboardManager]\tgetScoreByRange() - createTransaction failed, ret=0x%X\n", ret);
                 return false;
                 }
                 else
-                    // Transaction created successfully, continue.     
+                    // Transaction created successfully, continue.
                     m_requestId = ret;
                 }
 
@@ -472,30 +472,30 @@ else if (ret < 0)
                 int boardId = getBoardId(m_difficulty, m_statsType);
                 ret = sceNpScoreGetRankingByRange(
                     m_requestId,
-                    boar  // BoardId     
+                    boar  // BoardId
 
                         m_startIndex,
 
                     ptr,
-                    sizeof(SceNpScoreRankData) *  // OUT: Rank Data     
+                    sizeof(SceNpScoreRankData) *  // OUT: Rank Data
 
                         comments,
-                    sizeof(SceNpScoreComment) *  // OUT: Comment Data     
+                    sizeof(SceNpScoreComment) *  // OUT: Comment Data
 
-                        NULL  // GameData.     
+                        NULL  // GameData.
 
                             num,
 
                     &last_sort_date,
                     &m_maxRa  // 'Total number of players registered in the
-                              // target scoreboard.'     
+                              // target scoreboard.'
 
-                    // Reserved, specify null.     
+                    // Reserved, specify null.
                 );
 
                 if (ret == SCE_NP_COMMUNITY_ERROR_ABORTED) {
                     ret = destroyTransactionContext(m_requestId);
-                app.DebugPr"[SonyLeaderboardManager] getScoreByRange(): 'sceNpScoreGetRankingByRange' aborted (0x%X).\n"     , ret);
+                app.DebugPr"[SonyLeaderboardManager] getScoreByRange(): 'sceNpScoreGetRankingByRange' aborted (0x%X).\n", ret);
 
                 delete[] ptr;
                 delete[] comments;
@@ -505,7 +505,7 @@ else if (ret < 0)
                     ret ==
                     SCE_NP_COMMUNITY_SERVER_ERROR_GAME_RANKING_NOT_FOUND) {
                     ret = destroyTransactionContext(m_requestId);
-                app.DebugPr"[SonyLeaderboardManager] getScoreByRange(): Game ranking not found."     );
+                app.DebugPr"[SonyLeaderboardManager] getScoreByRange(): Game ranking not found.");
 
                 delete[] ptr;
                 delete[] comments;
@@ -518,26 +518,26 @@ else if (ret < 0)
                 } else if (ret < 0)
                     goto error2;
                 else {
-                app.DebugPr"[SonyLeaderboardManager] getScoreByRange(), success, 1stScore=%i.\n"     , ptr->scoreValue);
-                // Return.     
+                app.DebugPr"[SonyLeaderboardManager] getScoreByRange(), success, 1stScore=%i.\n", ptr->scoreValue);
+                // Return.
                 destroyTransactionContext(m_requestId);
                 m_requestId =  // m_stats = ptr; //Maybe:
-                               // addPadding(num,ptr);     
+                               // addPadding(num,ptr);
 
                     if (m_scores != NULL) delete[] m_scores;
                 m_readCount = ret;
                 m_scores = new ReadScore[m_readCount];
                 for (int i = 0; i < m_readCount; i++)
                     // memcpy(m_scores+i, ptr+i,
-                    // sizeof(SceNpScoreRankData));     
-                initReadScoreStruct(m_scores[i], ptr[i]//fromBase32(m_scores+i, comments+i);     
+                    // sizeof(SceNpScoreRankData));
+                initReadScoreStruct(m_scores[i], ptr[i]//fromBase32(m_scores+i, comments+i);
 		fillReadScoreStruct(m_scores[i], comments[i]);
                 }
 
                 m_eStatsState = eStatsState_Ready;
-                return tru  // Error.     
+                return tru  // Error.
                     error2
-                    : if (ret != SCE_NP_COMMUNITY_ERROR_ABOR  // 0x8002a109     
+                    : if (ret != SCE_NP_COMMUNITY_ERROR_ABOR  // 0x8002a109
                                      destroyTransactionContext(m_requestId);
                           m_requestId = 0;
 
@@ -546,7 +546,7 @@ else if (ret < 0)
                               m_eStatsState = eStatsState_Failed;
                           app.DebugPr
                           "[SonyLeaderboardManager]\tgetScoreByRange() failed, "
-                          "ret=0x%X\n"     ,
+                          "ret=0x%X\n",
                           ret);
                 return false;
                 }
@@ -556,7 +556,7 @@ else if (ret < 0)
                     SceNpId npId;
                     int32_t writeTitleContext = 0;
                     SceNpScoreRankNumber tmp = 0;
-                    SceNpScoreComment commen  // Get next job.     
+                    SceNpScoreComment commen  // Get next job.
 
                         EnterCriticalSection(&m_csViewsLock);
                     RegisterScore rscore = m_views.front();
@@ -564,26 +564,26 @@ else if (ret < 0)
                     LeaveCriticalSection(&m_csViewsLock);
 
                     if (ProfileManager.IsGuest(rscore.m_iPad)) {
-                app.DebugPr"[SonyLeaderboardManager] setScore(): m_iPad[%i] is guest.\n"     , rscore.m_iPad);
+                app.DebugPr"[SonyLeaderboardManager] setScore(): m_iPad[%i] is guest.\n", rscore.m_iPad);
                 return true;
                     }
 
                     ProfileManager.GetSceNpId(rscore.m_iPad, &npId);
                     writeTitleContext = createTitleContext(npId);
                     if (writeTitleContext < 0) {
-                app.DebugPr"[SonyLeaderboardManager] setScore(): sceNpScoreCreateTitleCtx FAILED, ret == %X.\n"     , ret);
+                app.DebugPr"[SonyLeaderboardManager] setScore(): sceNpScoreCreateTitleCtx FAILED, ret == %X.\n", ret);
                 return false;
                     }
 
-        ret = createTransactionContext(writeTitleContext// Start emptying queue if leaderboards has been closed.     
+        ret = createTransactionContext(writeTitleContext// Start emptying queue if leaderboards has been closed.
 	if (ret == SCE_NP_COMMUNITY_ERROR_NOT_INITIALIZED)
 	{
         EnterCriticalSection(&m_csViewsLock);
         m_views.pop();
         LeaveCriticalSection(&m_csViewsLock);
-        // Error handling.     
+        // Error handling.
         if (ret < 0) {
-                app.DebugPr"[SonyLeaderboardManager] setScore() FAILED, ret=0x%X\n"     , ret);
+                app.DebugPr"[SonyLeaderboardManager] setScore() FAILED, ret=0x%X\n", ret);
                 destroyTitleContext(writeTitleContext);
                 return false;
         }
@@ -593,27 +593,27 @@ else if (ret < 0)
 
         int boardId =
             getBoardId(rscore.m_difficulty, rscore.m_commentData.m_statsType);
-        ret = sceNpScoreRecordScore(m_reques              // transId,     
-                                        boar              // boardId,     
-                                            rscore.m_sco  // IN: new score,     
+        ret = sceNpScoreRecordScore(m_reques              // transId,
+                                        boar              // boardId,
+                                            rscore.m_sco  // IN: new score,
 
-                                    & comm  // Comments     
-                                    NU      // GameInfo     
+                                    & comm  // Comments
+                                    NU      // GameInfo
 
-                                    & t  // OUT: current rank, 
-#ifndef __PS3__     
-		NU                       // compareDate  #endif     
+                                    & t  // OUT: current rank,
+#ifndef __PS3__
+		NU                       // compareDate #endif
 
-                                    // Reserved, specify null.     
+                                    // Reserved, specify null.
         );
 
-        if (ret==SCE_NP_COMMUNITY_SERVER_ERROR_NOT_BEST_SC//0x8002A415     
+        if (ret==SCE_NP_COMMUNITY_SERVER_ERROR_NOT_BEST_SC//0x8002A415
 	{
-                app.DebugPr"[SonyLeaderboardManager] setScore(), doesn't beat current score, %i.\n"     , tmp);
+                app.DebugPr"[SonyLeaderboardManager] setScore(), doesn't beat current score, %i.\n", tmp);
 	}
 	else if (ret==SCE_NP_COMMUNITY_ERROR_ABORTED)
 	{
-            goto er  // 0x8002a109     
+            goto er  // 0x8002a109
 	}
 	else if (ret<0)
 	{
@@ -621,16 +621,16 @@ else if (ret < 0)
 	}
 	else 
 	{
-                app.DebugPr"[SonyLeaderboardManager] setScore(), success. boardId=%i, score=%i\n"     , boardId, rscore.m_score);
-                // Return.     
+                app.DebugPr"[SonyLeaderboardManager] setScore(), success. boardId=%i, score=%i\n", boardId, rscore.m_score);
+                // Return.
                 destroyTransactionContext(m_requestId);
-                m_requestId =   // m_eStatsState = eStatsState_Idle;     
-                    return tru  // Error.     
+                m_requestId =   // m_eStatsState = eStatsState_Idle;
+                    return tru  // Error.
                         error2 : destroyTransactionContext(m_requestId);
                 m_requestId = 0;
 
         error1:
-        app.DebugPr"[SonyLeaderboardManager] setScore() FAILED, ret=0x%X\n"     , ret);
+        app.DebugPr"[SonyLeaderboardManager] setScore() FAILED, ret=0x%X\n", ret);
         destroyTitleContext(writeTitleContext);
         return false;
 }
@@ -646,13 +646,13 @@ void SonyLeaderboardManager::Tick()
                     view.m_numQueries = m_readCount;
                     view.m_queries =
                         m_scores;  // 4J-JEV:
-                                   // Debugging.    //LeaderboardManager::printStats(view);     
+                                   // Debugging.//LeaderboardManager::printStats(view);
 
                     eStatsReturn ret = eStatsReturn_NoResults;
                     if (view.m_numQueries > 0) ret = eStatsReturn_Success;
 
                     if (m_readListener != NULL) {
-                                app.DebugPr"[SonyLeaderboardManager] OnStatsReadComplete(%i, %i, _), m_readCount=%i.\n"     , ret, m_maxRank, m_readCount);
+                                app.DebugPr"[SonyLeaderboardManager] OnStatsReadComplete(%i, %i, _), m_readCount=%i.\n", ret, m_maxRank, m_readCount);
                                 m_readListener->OnStatsReadComplete(
                                     ret, m_maxRank, view);
                     }
@@ -678,7 +678,7 @@ void SonyLeaderboardManager::Tick()
                     m_eStatsState = eStatsState_Idle;
                 } break;
 
-                    defa  // Getting or Idle.     
+                    defa  // Getting or Idle.
                         break;
             }
 }
@@ -688,16 +688,16 @@ bool SonyLeaderboardManager::OpenSession()
             if (m_openSessions == 0) {
                 if (m_threadScoreboard == NULL) {
                     m_threadScoreboard = new C4JThread(&scoreboardThreadEntry,
-                                                       t "4JScoreboard"     );
+                                                       t "4JScoreboard");
                     m_threadScoreboard->SetProcessor(CPU_CORE_LEADERBOARDS);
                     m_threadScoreboard->SetPriority(
                         THREAD_PRIORITY_BELOW_NORMAL);
                     m_threadScoreboard->Run();
                 }
 
-                app.DebugPr"[SonyLeaderboardManager] OpenSession(): Starting sceNpScore utility.\n"     );
+                app.DebugPr"[SonyLeaderboardManager] OpenSession(): Starting sceNpScore utility.\n");
             } else {
-                app.DebugPr"[SonyLeaderboardManager] OpenSession(): Another session opened, total=%i\n"     , m_openSessions+1);
+                app.DebugPr"[SonyLeaderboardManager] OpenSession(): Another session opened, total=%i\n", m_openSessions+1);
             }
 
             m_openSessions++;
@@ -708,39 +708,39 @@ void SonyLeaderboardManager::CloseSession()
 {
             m_openSessions--;
 
-            if (m_openSessions == 0)	app.DebugPr"[SonyLeaderboardManager] CloseSession(): Quitting sceNpScore utility.\n"     );
-            else						app.DebugPr"[SonyLeaderboardManager] CloseSession(): %i sessions still open.\n"     , m_openSessions);
+            if (m_openSessions == 0)	app.DebugPr"[SonyLeaderboardManager] CloseSession(): Quitting sceNpScore utility.\n");
+            else						app.DebugPr"[SonyLeaderboardManager] CloseSession(): %i sessions still open.\n", m_openSessions);
 }
 
 void SonyLeaderboardManager::DeleteSession() {}
 
-bool SonyLeaderboardManager::WriteStats(unsigned int viewCount, ViewIn views// Need to cancel read/write operation first.  //if (m_eStatsState != eStatsState_Idle) return false;   // Write relevant parameters.  //RegisterScore *regScore = reinterpret_cast<RegisterScore *>(views);     
+bool SonyLeaderboardManager::WriteStats(unsigned int viewCount, ViewIn views// Need to cancel read/write operation first.//if (m_eStatsState != eStatsState_Idle) return false;// Write relevant parameters.//RegisterScore *regScore = reinterpret_cast<RegisterScore *>(views);
 
 	EnterCriticalSection(&m_csViewsLock);
 	for (int i=0; i<viewCount; i++)
 	{
-                app.DebugPr"[SonyLeaderboardManager] WriteStats(), starting. difficulty=%i, statsType=%i, score=%i\n"     ,
+                app.DebugPr"[SonyLeaderboardManager] WriteStats(), starting. difficulty=%i, statsType=%i, score=%i\n",
 			views[i].m_difficulty, views[i].m_commentData.m_statsType, views[i].m_score);
 
                 m_views.push(views[i]);
 	}
 	LeaveCriticalSection(&m_csViewsLock);
 
-	delete [] vi//*regScore;   //m_eStatsState = eStatsState_Writing;     
-	return true// myUID ignored on PS3.     
-bool SonyLeaderboardManager::ReadStats_Friends(LeaderboardReadListener *listener, int difficulty, EStatsType type, PlayerUID myUID, unsigned int startIndex, unsigned int readCount// Need to cancel read/write operation first.     
+	delete [] vi//*regScore;//m_eStatsState = eStatsState_Writing;
+	return true// myUID ignored on PS3.
+bool SonyLeaderboardManager::ReadStats_Friends(LeaderboardReadListener *listener, int difficulty, EStatsType type, PlayerUID myUID, unsigned int startIndex, unsigned int readCount// Need to cancel read/write operation first.
 	if (m_eStatsState != eStatsState_Idle) return false;
 	if (!LeaderboardManager::ReadStats_Friends(listener, difficulty, type, myUID, startIndex, readCount)) return false;
 
 	m_eStatsState = eStatsState_Getting;
-	return true// myUID ignored on PS3.     
-bool SonyLeaderboardManager::ReadStats_MyScore(LeaderboardReadListener *listener, int difficulty, EStatsType type, PlayerUID myUID, unsigned int readCount// Need to cancel read/write operation first.     
+	return true// myUID ignored on PS3.
+bool SonyLeaderboardManager::ReadStats_MyScore(LeaderboardReadListener *listener, int difficulty, EStatsType type, PlayerUID myUID, unsigned int readCount// Need to cancel read/write operation first.
 	if (m_eStatsState != eStatsState_Idle) return false;
 	if (!LeaderboardManager::ReadStats_MyScore(listener, difficulty, type, myUID, readCount)) return false;
 
 	m_eStatsState = eStatsState_Getting;
-	return true// myUID ignored on PS3.     
-bool SonyLeaderboardManager::ReadStats_TopRank(LeaderboardReadListener *listener, int difficulty, EStatsType type, unsigned int startIndex, unsigned int readCount// Need to cancel read/write operation first.     
+	return true// myUID ignored on PS3.
+bool SonyLeaderboardManager::ReadStats_TopRank(LeaderboardReadListener *listener, int difficulty, EStatsType type, unsigned int startIndex, unsigned int readCount// Need to cancel read/write operation first.
 	if (m_eStatsState != eStatsState_Idle) return false;
 	if (!LeaderboardManager::ReadStats_TopRank(listener, difficulty, type, startIndex, readCount)) return false;
 
@@ -757,10 +757,10 @@ void SonyLeaderboardManager::CancelOperation()
 
         if (m_requestId != 0) {
             int ret = abortTransactionContext(m_requestId);
-            if (ret < 0)	app.DebugPr"[SonyLeaderboardManager] CancelOperation(): Problem encountered aborting current operation, 0x%X.\n"     , ret);
-            else			app.DebugPr"[SonyLeaderboardManager] CancelOperation(): Operation aborted successfully.\n"     );
+            if (ret < 0)	app.DebugPr"[SonyLeaderboardManager] CancelOperation(): Problem encountered aborting current operation, 0x%X.\n", ret);
+            else			app.DebugPr"[SonyLeaderboardManager] CancelOperation(): Operation aborted successfully.\n");
         } else {
-                app.DebugPr"[SonyLeaderboardManager] CancelOperation(): No current operation.\n"     );
+                app.DebugPr"[SonyLeaderboardManager] CancelOperation(): No current operation.\n");
         }
 }
 
@@ -774,27 +774,27 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
         switch (statsType) {
             case eStatsType_Travelling:
                 if (0 <= difficulty && difficulty < 4)
-                    return 1 + difficu  // [1,2,3,4]     
+                    return 1 + difficu  // [1,2,3,4]
                            else return -1;
 
             case eStatsType_Mining:
                 if (0 <= difficulty && difficulty < 4)
-                    return 5 + difficu  // [5,6,7,8]     
+                    return 5 + difficu  // [5,6,7,8]
                            else return -1;
 
             case eStatsType_Farming:
                 if (0 <= difficulty && difficulty < 4)
-                    return 9 + difficu  // [9,10,11,12]     
+                    return 9 + difficu  // [9,10,11,12]
                            else return -1;
 
             case eStatsType_Kills:
                 if (1 <= difficulty && difficulty < 4)
-                    return 13 + difficulty  // [13,14,15,16]     
+                    return 13 + difficulty  // [13,14,15,16]
                            else return -1;
 
             default:
                 return -1;
-                // 4J-JEV: Filter out all friends who don't have scores. /*
+                // 4J-JEV: Filter out all friends who don't have scores./*
                 SceNpScoreRankData* SonyLeaderboardManager::filterJustScorers(
                     unsigned int& num, SceNpScorePlayerRankData* friendsData) {
                     int num2 = 0;
@@ -808,7 +808,7 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
                             out[num2++] = friendsData[i].rankData;
                     return out;
                 }
-                */      // 4J-JEV: Unused, here if we want to switch LeaderboardManager::ViewOut to 'SceNpScorePlayerRankData'.     
+                */    // 4J-JEV: Unused, here if we want to switch LeaderboardManager::ViewOut to 'SceNpScorePlayerRankData'.
                     SceNpScorePlayerRankData*
                     SonyLeaderboardManager::addPadding(
                         unsigned int num, SceNpScoreRankData* rankData) {
@@ -819,7 +819,7 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
                         out[i].rankData = rankData[i];
                     }
                     delete[] rankData;
-                    return out  // 4J-JEV: Filter and create output object.     
+                    return out  // 4J-JEV: Filter and create output object.
                         void SonyLeaderboardManager::convertToOutput(
                             unsigned int& num, ReadScore* out,
                             SceNpScorePlayerRankData* rankData,
@@ -876,10 +876,10 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
 
                             fivebits = (fivebits >> 3) & 0x1F;
 
-                if (fivebits < 10// 0 - 9     
-			chars['0'=     + fivebits;
-		else if (fivebits < 3// A - V     
-			chars['A'=     + (fivebits-10);
+                if (fivebits < 10// 0 - 9
+			chars['0'=  + fivebits;
+		else if (fivebits < 3// A - V
+			chars['A'=  + (fivebits-10);
 		else
 			assert(false);
                         }
@@ -911,18 +911,18 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
                         }
                     }
 
-                    char symbBase32[32] ' ' '!', '\"', '#', '$', '%', '&',
-                        '\'', '(', ')',  '*' '+', '`', '-', '.', '/', ':', ';',
-                        '<', '=',  '>' '?', '[', '\\', ']', '^', '_', '{', '|',
-                        '}',  '~' '@',    
+                    char symbBase32[32] ' ' '!', '\"','#', '$', '%', '&',
+                        '\'','(', ')', '*' '+', '`', '-', '.', '/', ':', ';',
+                        '<', '=', '>' '?', '[', '\\',']', '^', '_', '{', '|',
+                        '}', '~' '@', 
 
                 
                 };
 
                 char charBase32[32] '0' '1', '2', '3', '4', '5', '6', '7', '8',
-                    '9',  'A' 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-                    'J',  'K' 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
-                    'T',  'U' 'V',    
+                    '9', 'A' 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+                    'J', 'K' 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+                    'T', 'U' 'V', 
 
         
         };
@@ -944,7 +944,7 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
         }
 
         bool SonyLeaderboardManager::test_string(
-            std::string testin #ifndef _CONTENT_PACKAGE     
+            std::string testin #ifndef _CONTENT_PACKAGE
 	static SceNpScoreComment comment;
             ZeroMemory(&comment, sizeof(SceNpScoreComment));
             memcpy(&comment, testing.c_str(), SCE_NP_SCORE_COMMENT_MAXLEN);
@@ -955,25 +955,25 @@ int SonyLeaderboardManager::getBoardId(int difficulty, EStatsType statsType)
             int ret = sceNpScoreCensorComment(ctx, (const char*)&comment, NULL);
 
             if (ret == SCE_NP_COMMUNITY_SERVER_ERROR_CENSORED) {
-                app.DebugPr"\n[TEST_STRING]: REJECTED "     );
+                app.DebugPr"\n[TEST_STRING]: REJECTED ");
             } else if (ret < 0) {
                 destroyTransactionContext(ctx);
                 return false;
-            } else { app.DebugPr "\n[TEST_STRING]: permitted "     ); }
+            } else { app.DebugPr "\n[TEST_STRING]: permitted "); }
 
-            app.DebugPr "'%s'\n"     ,
+            app.DebugPr "'%s'\n",
             getComment(&comment));
         destroyTransactionContext(ctx);
-        return t #else      
-	return t #endif      
+        return t #else 
+	return t #endif 
 }
 
 void SonyLeaderboardManager::initReadScoreStruct(ReadScore &out, SceNpScoreRankData &rankData)
 {
-        ZeroMemory(&out, sizeof(ReadScore)// Init rank and onlineID     
+        ZeroMemory(&out, sizeof(ReadScore)// Init rank and onlineID
 	out.m_uid.setOnlineID( rankData.npId.handle, true );
-	out.m_rank = rankData.ran// Convert to std::wstring and copy name.     
-	std::wstring wstrName = convStringToWstring( std::string(rankData.npId.handle.data) ).c_str//memcpy(&out.m_name, wstrName.c_str(), XUSER_NAME_SIZE);     
+	out.m_rank = rankData.ran// Convert to std::wstring and copy name.
+	std::wstring wstrName = convStringToWstring( std::string(rankData.npId.handle.data) ).c_str//memcpy(&out.m_name, wstrName.c_str(), XUSER_NAME_SIZE);
 	out.m_name=wstrName;
 }
 

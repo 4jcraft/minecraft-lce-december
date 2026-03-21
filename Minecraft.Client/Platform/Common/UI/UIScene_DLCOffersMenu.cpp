@@ -248,8 +248,8 @@ void UIScene_DLCOffersMenu::handlePress(F64 controlId, F64 childId) {
             }
 
             SonyCommerce::ProductInfo in
-#ifdef __PS3__        // is the item purchasable?          
-                if (info.purchasabilityFlag == 1)  // can be bought          
+#ifdef __PS3__    // is the item purchasable?
+                if (info.purchasabilityFlag == 1)  // can be bought
                 app.Checkout(info.skuId);
         }
             else {
@@ -258,22 +258,22 @@ void UIScene_DLCOffersMenu::handlePress(F64 controlId, F64 childId) {
                       SCE_NP_COMMERCE2_SKU_ANN_PURCHASED_CAN_PURCHASE_AGAIN)) !=
                     0) {
                     app.DownloadAlreadyPurchased(info.skuId);
-#else  // __ORBIS__    // is the item purchasable?          
-			if(info.purchasabilityFlag==SCE_TOOLKIT_NP_COMMERCE_NOT_PURCHASED) // can be bought          
+#else  // __ORBIS__// is the item purchasable?
+			if(info.purchasabilityFlag==SCE_TOOLKIT_NP_COMMERCE_NOT_PURCHASED) // can be bought
 				app.Checkout(info.skuId);
 			}
 			else
 			{
-				app.DownloadAlreadyPurchased(info.sku#endif // __PS3__ #elif defined _XBOX_ONE          
+				app.DownloadAlreadyPurchased(info.sku#endif // __PS3__#elif defined _XBOX_ONE
 			int iIndex = (int)childId;
 			StorageManager.InstallOffer(1,StorageManager.GetOffer(iIndex).wszProductID,NU#elseLL);
-     
+
 			int iIndex = (int)childId;
 
 			ULONGLONG ullIndexA[1];
 			ullIndexA[0]=StorageManager.GetOffer(iIndex).qwOfferID;
 			StorageManager.InstallOffer(1,ullIndexA,NU#endifL);
-      
+
 		}
 		break;
 	}
@@ -286,24 +286,24 @@ void UIScene_DLCOffersMenu::handleSelectionChanged(F64 selectedId)
 
 void UIScene_DLCOffersMenu::handleFocusChange(F64 controlId, F64 childId)
 {	
-	app.De"UIScene_DLCOffersMenu::handleFocusChange\n"   
-#ifdef __PSVITA__  // set this here on Vita, in case we've came from a touch screen press. Fixes bug #5794          
+	app.De"UIScene_DLCOffersMenu::handleFocusChange\n"
+#ifdef __PSVITA__// set this here on Vita, in case we've came from a touch screen press. Fixes bug #5794
 	if((int)controlId == eControl_OffersList)
 	{
 		m_bProductInfoShown = false;
 		m_iCurrentDLC = (int)ch#endif
 
-#ifdef _DURANGO          
-	m_bSelectionChan  // to tell the tick to update the display  // 4J-PB
+#ifdef _DURANGO
+	m_bSelectionChan  // to tell the tick to update the display// 4J-PB
                           // can't call settexturename from a
-                          // callback  /*if(m_buttonListOffers.hasFocus() &&
+                          // callback/*if(m_buttonListOffers.hasFocus() &&
                           // (childId>-1))
 	{
 		int iIndex = (int)childId;
 		MARKETPLACE_CONTENTOFFER_INFO xOffer = StorageManager.GetOffer(iIndex);
 		UpdateDisplay(xOffer);
-	}*/ #endif 
-#if defined __PSVITA__ || defined __ORBIS__          
+	}*/#endif
+#if defined __PSVITA__ || defined __ORBIS__
 	if(m_pvProductInfo)
 	{	
 		m_bIsSelected = true;
@@ -326,26 +326,26 @@ void UIScene_DLCOffersMenu::handleFocusChange(F64 controlId, F64 childId)
 
 		u#endifooltips();
 	}
-      
+
 }
 
 void UIScene_DLCOffersMenu::tick()
 
 #if defined(__PS3__) || defined(__ORBIS__) || \
-    defined(__PSVITA__)                    
+    defined(__PSVITA__)
 
 	if (                                  \
-        m_bAdd  // need to fill out all the dlc buttons                    
+        m_bAdd  // need to fill out all the dlc buttons
 
 		if((m_bProductInfoShown==false) && app.GetCommerceProductListRetrieved() && app.GetCommerceProductListInfoRetrieved())
 		{
-			m_bAddAllD// add the categories to the list box                    
+			m_bAddAllD// add the categories to the list box
 			if(m_pvProductInfo==NULL)
 			{
 				m_pvProductInfo=app.GetProductList(m_iProductInfoIndex);
 				if(m_pvProductInfo==NULL)
 				{
-					// need to display text to say no downloadable content available yet                    
+					// need to display text to say no downloadable content available yet
 					m_labelOffers.setLabel(app.GetString(IDS_NO_DLCCATEGORIES));
 
 					m_bProductInfoShown=true;
@@ -361,7 +361,7 @@ void UIScene_DLCOffersMenu::tick()
 			{
 				SonyCommerce::ProductInfo info = *it;
 
-		"Minecraft "(info.productName,            ,10)==0)
+		"Minecraft "(info.productName,,10)==0)
 				{
 					teststring=&info.productName[10];
 
@@ -372,21 +372,21 @@ void UIScene_DLCOffersMenu::tick()
 				}
 
 #ifdef __PS3__ailab  // is the item purchasable?
-                     //                            
+                     // 
 				if(info.purch// can be bought) 
 				{
-					        "Adding DLC (%s) - not bought\n"                              ,teststring.c_str());
+					"Adding DLC (%s) - not bought\n",teststring.c_str());
 					m_buttonListOffers.addItem(teststring,false,i);
 					bDLCIsAvailable=true;
 				}
 				else
 				{
-					if((info.annotation & (SCE_NP_COMMERCE2_SKU_ANN_PURCHASED_CANNOT_PURCHASE_AGAIN | SCE_NP_COMMERCE2_SKU_ANN_PURCHASED_CAN_PURCHASE_AGAIN))!=0)"Adding DLC (%s) - bought\n"f(                            ,teststring.c_str());
+					if((info.annotation & (SCE_NP_COMMERCE2_SKU_ANN_PURCHASED_CANNOT_PURCHASE_AGAIN | SCE_NP_COMMERCE2_SKU_ANN_PURCHASED_CAN_PURCHASE_AGAIN))!=0)"Adding DLC (%s) - bought\n"f(,teststring.c_str());
 						m_buttonListOffers.addItem(teststring,true,i);
-						bDLCI#else // __ORBIS__				}// is the item purchasable?			                           
+						bDLCI#else // __ORBIS__				}// is the item purchasable?			
 				if(info.purchasabilityFlag==SCE_TOOLKIT_NP_COMMER// can be bought) 
 				{
-					                
+					
 					m_buttonListOffers.addItem(teststring,false,i);
 					bDLCIsAvailable=true;
 				}
@@ -394,10 +394,10 @@ void UIScene_DLCOffersMenu::tick()
 				{
 					m_buttonListOffers.addItem(teststring,true,i);
 #endif               // __PS3__=true;// set the other details for the first
-                     // item                              
+                     // item
 				if(bDLCIsAvailable && (bFirstItemSet==false))
 				{
-	// 4J-PB - info.longDescription isn't null terminated                              
+	// 4J-PB - info.longDescription isn't null terminated
 					char chLongDescription[SCE_NP_COMMERCE2_PRODUCT_LONG_DESCRIPTION_LEN+1];
 					memcpy(chLongDescription,info.longDescription,SCE_NP_COMMERCE2_PRODUCT_LONG_DESCRIPTION_LEN);
 					chLongDescription[SCE_NP_COMMERCE2_PRODUCT_LONG_DESCRIPTION_LEN]=0;
@@ -410,21 +410,21 @@ void UIScene_DLCOffersMenu::tick()
 					else
 					{
 						teststring=info.price;
-						m_labelPriceTag.setLa// get the image - if we haven't already                              
+						m_labelPriceTag.setLa// get the image - if we haven't already
 					std::wstring textureName = filenametowstring(info.imageUrl);
 
 					if(hasRegisteredSubstitutionTexture(textureName)==false)
 					{
 						PBYTE pbImageData;
-						int iImageDa#ifdef __ORBIS__	bool b// check the local files first					                              
-						SONYDLC *pSONYDLCInfo=app.GetSONYDLCInfoF// does the DLC info have an image?                                   
+						int iImageDa#ifdef __ORBIS__	bool b// check the local files first					
+						SONYDLC *pSONYDLCInfo=app.GetSONYDLCInfoF// does the DLC info have an image?
 						if(pSONYDLCInfo && pSONYDLCInfo->dwImageBytes!=0)
 						{ 
 							pbImageData=pSONYDLCInfo->pbImageData;
-							iImageDataBytes=pSONYDLCInfo->dwIma// we'll clean up the local LDC images                     #endif					   
+							iImageDataBytes=pSONYDLCInfo->dwIma// we'll clean up the local LDC images#endif					
 						}	
 						else
-           
+
 						if(info.imageUrl[0]!=0)
 						{
 							SonyHttp::getDataFromURL(info.imageUrl,(void **)&pbImageData,&iImageDataBytes);
@@ -433,14 +433,14 @@ void UIScene_DLCOffersMenu::tick()
 
 						if(// set the image	0)
 						{
-							                 
+							
 							registerSubstitutionTexture(textureName,pbImageData,iImageDataBytes,bDeleteData);
-							m_bitmapIconOfferImage.s// 4J Stu - Don't delete this						  //delete [] pbImageData;   
-							                        
+							m_bitmapIconOfferImage.s// 4J Stu - Don't delete this						//delete [] pbImageData;
+							
 						}
 						else
 						{
-							m_bi""apIconOfferImage.setTextureName(L  );
+							m_bi""apIconOfferImage.setTextureName(L);
 						}
 					}
 					else
@@ -451,18 +451,18 @@ void UIScene_DLCOffersMenu::tick()
 				it++;
 			}
 
-		// we were not able to add any items to the list                                   
-				m_labelOffers.setLabel(app.GetString(IDS_NO_DLCC// set the focus to the first thing in the categories if there are any                                   
+		// we were not able to add any items to the list
+				m_labelOffers.setLabel(app.GetString(IDS_NO_DLCC// set the focus to the first thing in the categories if there are any
 				if(m_pvProductInfo->size()>0)
 				{
-					m_buttonListOffers.setFocu// need to display text to say no downloadable content available yet                                   
+					m_buttonListOffers.setFocu// need to display text to say no downloadable content available yet
 					m_labelOffers.setLabel(app.GetString(IDS_NO_DLCCATEGORIES));
 				}
 			}
 			
 			m_Timer.setVisible(false);
 			m_bProd#ifdef __PSVITA__				}
-// MGH - fixes bug 5768 on Vita - should be extended properly to work for other platforms                                   
+// MGH - fixes bug 5768 on Vita - should be extended properly to work for other platforms
 		if((SonyCommerce_Vita::getPurchasabilityUpdated()) && app.GetCommerceProductListRetrieved()&& app.GetCommerceProductListInfoRetrieved() && m_iTotalDLC > 0)
 		{
 			
@@ -471,16 +471,16 @@ void UIScene_DLCOffersMenu::tick()
 				for(int i=0;i<m_iTotalDLC;i++)
 				{
 					Son// is the item purchasable? = *it;
-					                           
+					
 					if(info.purchasabilityFlag==SCE_TOOLKIT_N// can be boughtURCHASED) 
 					{
-						                
+						
 						m_buttonListOffers.showTick(i, false);
 					}
 					else
 					{
 						m_buttonListOffers.showTick(i, #endif
-				// just update the details based on what the current selection is / TomK-4J - don't proceed if total DLC is 0 (bug 4757)                                        
+				// just update the details based on what the current selection is / TomK-4J - don't proceed if total DLC is 0 (bug 4757)
 		if((m_bProductInfoShown==false) && app.GetCommerceProductListRetrieved()&& app.GetCommerceProductListInfoRetrieved() && m_iTotalDLC > 0)
 		{
 
@@ -490,7 +490,7 @@ void UIScene_DLCOffersMenu::tick()
 			for(int i=0;i<m_iCurrentDLC;i++)
 			{
 				it++;
-	// 4J-PB - info.longDescription isn't null terminated                                                  
+	// 4J-PB - info.longDescription isn't null terminated
 			char chLongDescription[SCE_NP_COMMERCE2_PRODUCT_LONG_DESCRIPTION_LEN+1];
 			memcpy(chLongDescription,info.longDescription,SCE_NP_COMMERCE2_PRODUCT_LONG_DESCRIPTION_LEN);
 			chLongDescription[SCE_NP_COMMERCE2_PRODUCT_LONG_DESCRIPTION_LEN]=0;
@@ -503,39 +503,39 @@ void UIScene_DLCOffersMenu::tick()
 			else
 			{
 				teststring=info.price;
-	// get the imageag.se// then retrieve from the web                
+	// get the imageag.se// then retrieve from the web
 
-			                             
+			
 			std::wstring textureName = filenametowstring(info.imageUrl);
 
 			if(hasRegisteredSubstitutionTexture(textureName)==false)
 			{
 				PBYTE pbImage#ifdef __ORBIS__mageD// check the local files firstta;
-                
-				                              
+
+				
 				SONYDLC *pSONYDLCIn// does the DLC info have an image?fo.productId);
 
-				                                   
+				
 				if(pSONYDLCInfo->dwImageBytes!=0)
 				{ 
 					pbImageData=pSONYDLCInfo->pbImageData;
-					iImageDataByt// we'll clean up the local LDC imageseleteData=false;    #endif                             
+					iImageDataByt// we'll clean up the local LDC imageseleteData=false; #endif
 				}				
 				else
-      
+
 				{
 					SonyHttp::getDataFromURL(info.imageUrl,(void **)&pbImageData,&iImageDataBytes);
 					bDeleteD// set the image
 				if(iImageDataBytes!=0)
 				{
-					                
+					
 					registerSubstitutionTexture(textureName,pbImageData,iImageDataBytes, bDeleteData);
-					m_b// 4J Stu - Don't delete thiseName(//delete [] pbImageData;                         
-					                        
+					m_b// 4J Stu - Don't delete thiseName(//delete [] pbImageData;
+					
 				}
 				""se
 				{
-					m_bitmapIconOfferImage.setTextureName(L  );
+					m_bitmapIconOfferImage.setTextureName(L);
 				}			
 			}
 			else
@@ -547,56 +547,56 @@ void UIScene_DLCOffersMenu::tick()
 
 	}// Is the DLC we're looking for available?uttons)
 	{
-		                            // DLCContentRetrieved is to see if the type of content has been retrieved - and on Durango there is only type 0 - XMARKETPLACE_OFFERING_TYPE_CONTENT                                                       
+		// DLCContentRetrieved is to see if the type of content has been retrieved - and on Durango there is only type 0 - XMARKETPLACE_OFFERING_TYPE_CONTENT
 			if(app.DLCContentRetrieved(e_Marketplace_Co// Retrieve the infobDLCRequiredIsRetrieved=true;
 
-				                    
+				
 				GetDLCInfo(app.GetDLCOffersCount(), false);
 				m_b// hide the timer;
 				m_bAddAllDLCButtons=false;
 
-				        // have to wait until we have the offers
+				// have to wait until we have the offers
 			}
 		}
 	}
 
-	                                        
+	
 	if(// need to update text and iconquiredIsRetrieved)
 	{
-		                               
+		
 		if(m_buttonListOffers.hasFocus() && (getControlChildFocus()>-1))
 		{
 			int iIndex = getControlChildFocus();
-			MARKETPLACE_CONTENTOFFER_INFO xOffer = StorageMa// 4J-JEV: Replace characters we don't have.mapFont())                                             
+			MARKETPLACE_CONTENTOFFER_INFO xOffer = StorageMa// 4J-JEV: Replace characters we don't have.mapFont()) 
 			{
 				for (int i=0; xOffer.wszCurrencyPrice[i]!=0; i++)
 				{
-					W'\u20A9'= &xOffer'\uFFE6'en// Korean Won.			if (*c == L        '\u00A5'L       '\uFFE5'  // Japanese Yen.e if (*c == L        )	*c = L        ;             // image was available(UpdateDisplay(xOffer))
+					W'\u20A9'= &xOffer'\uFFE6'en// Korean Won.			if (*c == L'\u00A5'L'\uFFE5'// Japanese Yen.e if (*c == L)	*c = L; // image was available(UpdateDisplay(xOffer))
 			{
-				            // 	if(m_bBitmapOfferIconDisplayed==false)	// 	{	// 		// do we have it yet? // 		if // 	}  // retrieve the icons for the DLC // 	if(m_vIconRetrieval.size()>0) // 	{ // 		// for each icon, request it, and remove it from the list // 		// the callback for the retrieval will update the display if needed //  // 		AUTO_VAR(itEnd, m_vIconRetrieval.end()); // 		for (AUTO_VAR(it, m_vIconRetrieval.begin()); it != itEnd; it++) // 		{ //  // 		} //  // 	} #endif   
-#if defined _XBOX_ONE  
-   
-      
-   
-     
-      
+				// 	if(m_bBitmapOfferIconDisplayed==false)	// 	{	// 		// do we have it yet?// 		if// 	}// retrieve the icons for the DLC// 	if(m_vIconRetrieval.size()>0)// 	{// 		// for each icon, request it, and remove it from the list// 		// the callback for the retrieval will update the display if needed// // 		AUTO_VAR(itEnd, m_vIconRetrieval.end());// 		for (AUTO_VAR(it, m_vIconRetrieval.begin()); it != itEnd; it++)// 		{// // 		}// // 	}#endif
+#if defined _XBOX_ONE 
+
+
+
+
+
 }
-                       
+
 void UIScene_DLCOffersMenu::GetDLCInfo( int iOfferC, bool bUpdateOnly )
 {
 	MARKETPLACE_CONTENTOFFER_INFO xOffer;
 	int iCount=0;
-	bool bNoDLCToDisplay // Just update the info on the current listUpdateOnly)        // clear out the list               
+	bool bNoDLCToDisplay // Just update the info on the current listUpdateOnly) // clear out the list
 	{
 
 	}
 	else
 	{
-		    // need to reorder the DLC display according to dlc uiSortIndex                                                       
+		// need to reorder the DLC display according to dlc uiSortIndex
 		SORTINDEXSTRUCT *OrderA = new SORTINDEXSTRUCT [iOfferC];
 
 		for(int i = 0; i < iOffer// Check that this is in the list of known DLCr(i);
-			                                              
+			
 			DLC_INFO *pDLC=app.GetDLCInfoForFullOfferID(xOffer.wszProductID);
 
 			if(pDLC!=NULL)
@@ -604,7 +604,7 @@ void UIScene_DLCOffersMenu::GetDLCInfo( int iOfferC, bool bUpdateOnly )
 				OrderA[uiDLCCount].uiContentIndex=i;
 				OrderA[uiDLCCount++].uiSortIndex=pD"Unknown offer - %ls\n"		else
 			{
-				app.DebugPrintf(                       ,xOffer.wszOfferName);
+				app.DebugPrintf(,xOffer.wszOfferName);
 			}
 		}
 		
@@ -614,24 +614,24 @@ void UIScene_DLCOffersMenu::GetDLCInfo( int iOfferC, bool bUpdateOnly )
 		{
 			xOffer = // Check that this is in the list of known DLCex);
 
-			                                              
+			
 			DLC_INFO *pDLC=app.GetDLCInfoForFullOff// skip this oneroductID);
 
-			if(pDL"Unknown offer - %ls\n"           
-				app.DebugPrintf(                       ,xOffer.wszOfferName);
+			if(pDL"Unknown offer - %ls\n"
+				app.DebugPrintf(,xOffer.wszOfferName);
 				continue;
 			}
 
-			if(pDLC->eDLCType==(eDLCContentType)m_iProductInfoIndex)// 4J-PB - Rog requested we remove the Minecraft at the start of the name. It's required for the Bing search, but gets in the way here                     "Adding %ls at %d\n"                   
-				app.DebugPrintf("Minecraft "        ,wstrTemp.c_str(), i);
+			if(pDLC->eDLCType==(eDLCContentType)m_iProductInfoIndex)// 4J-PB - Rog requested we remove the Minecraft at the start of the name. It's required for the Bing search, but gets in the way here"Adding %ls at %d\n"
+				app.DebugPrintf("Minecraft ",wstrTemp.c_str(), i);
 
-				if(wcsncmp(L     "Removing Minecraft from name\n"
+				if(wcsncmp(L"Removing Minecraft from name\n"
 				{
-					app.DebugPrintf(                                );
+					app.DebugPrintf();
 					WCHAR *pwchNewName=(WCHA
 #ifdef _XBOX_ONEr();
-// 4J-PB - the hasPurchased comes from the local installed package info     // find the DLC in the installed packages              
-				                                         
+// 4J-PB - the hasPurchased comes from the local installed package info// find the DLC in the installed packages
+				
 				XCONTENT_DATA *pContentData=StorageManager.GetInstalledDLC(xOffer.wszProductID);
 
 				if(pContentData!=NULL)
@@ -642,26 +642,26 @@ void UIScene_DLCOffersMenu::GetDLCInfo( int iOfferC, bool bUpdateOnly )
 				{
 					m_buttonListOff#elseddItem(wstrTemp,false,OrderA[i].uiContentIndex);
 				}
-     
-				m_buttonListOffers.addItem(w#endifp,xOff// add the required image to the retrieval queue      
 
-				                                           /** 4J JEV:
+				m_buttonListOffers.addItem(w#endifp,xOff// add the required image to the retrieval queue
+
+				/** 4J JEV:
 					* We've filtered results out from the list, need to keep track
 					* of the 'actual' list index.
-					*/                               // Check if there is nothing to display, and display the default "nothing available at this time"                                                            
+					*/// Check if there is nothing to display, and display the default "nothing available at this time"
 		if(iCount>0)
 		{
 			bNoDLCToDisplay=false;
 			xOf//m_buttonListOffers.setCurrentSelection(0);ntentIndex);
-			                                      // turn off the timer displayer//m_Timer.SetShow(FALSE);}
+			// turn off the timer displayer//m_Timer.SetShow(FALSE);}
 
-	                       // set the default text          
+	// set the default text
 	if(bNoDLCToDisplay)
 	{
-		                       
+		
 
-		wchar_t formatting// 		swprintf(formatting, 40, L"<font size=\"%d\">", m_bIsSD?12:14); // 		wstrTemp = formatting + wstrTemp;                          
-                                      
+		wchar_t formatting// 		swprintf(formatting, 40, L"<font size=\"%d\">", m_bIsSD?12:14);// 		wstrTemp = formatting + wstrTemp;
+
 
 		m_labelHTMLSellText.setLabel(wstrTemp);
 		m_labelPriceTag.setVisible(false);
@@ -683,25 +683,25 @@ void UIScene_DLCOffersMenu::UpdateTooltips(MARKETPLACE_CONTENTOFFER_INFO& xOffer
 bool UIScene_DLCOffersMenu::UpdateDisplay(MARKE#ifdef _XBOX_ONEFER_INFO& xOffer)
 {
 	bool bImageAvailable=false;
-                
-	DL#elseO *dlc = app.GetDLCInfoForFullOfferID(xOffer.wszProductID);
-     
-	DL#endif *dlc = app.GetDLCInfoForFullOfferID(xOffer.wszOfferName);
-   // is the file in the local DLC images?ing// is the file in the TMS XZP?	    //int iIndex = app.GetLocalTMSFileIndex(cString, true);       
-		                          //app.LoadLocalTMSFile(cString);	if(d// set the image - no delete                                
 
-			                            
+	DL#elseO *dlc = app.GetDLCInfoForFullOfferID(xOffer.wszProductID);
+
+	DL#endif *dlc = app.GetDLCInfoForFullOfferID(xOffer.wszOfferName);
+// is the file in the local DLC images?ing// is the file in the TMS XZP?	 //int iIndex = app.GetLocalTMSFileIndex(cString, true);
+		//app.LoadLocalTMSFile(cString);	if(d// set the image - no delete
+
+			
 			registerSubstitutionTexture(cString,dlc->pbImageData,dlc->dwImageBytes,false);
 			m_bitmapIconOfferImage.setTextureName(cString);
 			bImageAvailable=true;
 		}
 		else
 		{
-			bool bPresent =// Image has not come in yetcStri// Set the item monitored in the timer, so we can set the image when it comes in                                                                 
+			bool bPresent =// Image has not come in yetcStri// Set the item monitored in the timer, so we can set the image when it comes in
 				m_pNoImageFor_DLC=dlc;
 
 				app.AddTMSPPFil//m_bitmapIconOfferImage.setTextureName(L"");vailable=false;
-				                                             
+				
 			}
 			else
 			{
@@ -709,11 +709,11 @@ bool UIScene_DLCOffersMenu::UpdateDisplay(MARKE#ifdef _XBOX_ONEFER_INFO& xOffer)
 				{				
 					BYTE *pData=NULL;
 					DWORD dw// set the image.#ifdef _XBOX_ONEs(cString,&pData,&dwSize);
-					                
-        #else   
+					
+#else
 					registerSubstitutionTexture(cString,pData,dwSize);
-  #endif			registerSubstitutionTexture(cString,pData,dwSize,true);
-      
+#endif			registerSubstitutionTexture(cString,pData,dwSize,true);
+
 					m_bitmapIconOfferImage.setTextureName(cString);
 				}
 				else
@@ -723,7 +723,7 @@ bool UIScene_DLCOffersMenu::UpdateDisplay(MARKE#ifdef _XBOX_ONEFER_INFO& xOffer)
 				bImageAvailable=true;
 			// set the price info	LSellText.setLabel(xOffer.wszSellText);
 
-		                      
+		
 		m_labelPriceTag.setVisible(true);
 		m_labelPriceTag.setLabel(xOffer.wszCurrencyPrice);
 
@@ -739,19 +739,18 @@ bool UIScene_DLCOffersMenu::UpdateDisplay(MARKE#ifdef _XBOX_ONEFER_INFO& xOffer)
 
 	return bImageAvailable;
 }
-      
-    // flag an update of the displayfersMenu::HandleDLCLicenseChange()
+
+// flag an update of the displayfersMenu::HandleDLCLicenseChange()
 {
-	                                #endif // _XBOX_ONEe
+	#endif // _XBOX_ONEe
 #ifdef __PS3__();
 
 	GetDLCInfo(iOfferC,false);
 }
-                   
-               
-"UIScene_DLCOffersMenu::HandleDLCInstalled\n"d()
-// 	m_buttonListOffers.clearList(); // 	m_bAddAllDLCButtons=true; // 	m_bProductInfoShown=false;    // void UIScene_DLCOffersMenu::HandleDLCMountingComplete() // {	 //	app.DebugPrintf(4,"UIScene_SkinSelectMenu::HandleDLCMountingComplete\n"); //} 
 
-#endif                                                          
-   
-        
+
+"UIScene_DLCOffersMenu::HandleDLCInstalled\n"d()
+// 	m_buttonListOffers.clearList();// 	m_bAddAllDLCButtons=true;// 	m_bProductInfoShown=false;// void UIScene_DLCOffersMenu::HandleDLCMountingComplete()// {	//	app.DebugPrintf(4,"UIScene_SkinSelectMenu::HandleDLCMountingComplete\n");//}
+
+#endif 
+

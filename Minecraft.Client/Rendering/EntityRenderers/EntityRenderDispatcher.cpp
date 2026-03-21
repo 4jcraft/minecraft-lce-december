@@ -257,8 +257,8 @@ void EntityRenderDispatcher::render(std::shared_ptr<Entity> entity, float a) {
                (entity->z -
                 entity->zOld)*  // Fix for #61057 - TU7: Gameplay: Boat is
                                 // glitching when player float forward and
-                                // turning.  // Fix to handle the case that yRot
-                                // and yRotO wrap over the 0/360 line     
+                                // turning.// Fix to handle the case that yRot
+                                // and yRotO wrap over the 0/360 line
                float rotDiff = entity->yRot - entity->yRotO;
     if (rotDiff > 180 || rotDiff < -180) {
         if (entity->yRot > entity->yRotO) {
@@ -302,7 +302,7 @@ double EntityRenderDispatcher::distanceToSqr(double x, double y, double z) {
 
 Font* EntityRenderDispatcher::getFont() { return font; }
 
-void EntityRenderDispatcher::registerTerrainTextures(IconRegister *iconRegister//for (EntityRenderer<? extends Entity> renderer : renderers.values())     
+void EntityRenderDispatcher::registerTerrainTextures(IconRegister *iconRegister//for (EntityRenderer<? extends Entity> renderer : renderers.values())
 	for(AUTO_VAR(it, renderers.begin()); it != renderers.end(); ++it)
 	{
     EntityRenderer* renderer = it->second;

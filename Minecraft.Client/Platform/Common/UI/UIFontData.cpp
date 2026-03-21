@@ -684,7 +684,7 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
         std::unordered_map<unsigned int, unsigned short>::value_type std::pair(
             sFontData.Codepoints[i], i);
         m_unicodeMap.insert(pair);
-        // CREATE KERNING TABLE //     
+        // CREATE KERNING TABLE //
         m_kerningTable = new unsigned short[sFontData.m_uiGlyphCount];
         for (unsigned short glyph = 0; glyph < sFontData.m_uiGlyphCount;
              glyph++) {
@@ -692,7 +692,7 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
             getPos(glyph, row, column);
 
             short xMax = 0, _x = 0,
-                  _y = 0  // Find the position of the topLeft corner.     
+                  _y = 0  // Find the position of the topLeft corner.
                   unsigned char *topLeft = m_pbRawImage,
                   *cursor;
             moveCursor(topLeft, column * sFontData.m_uiGlyphWidth,
@@ -704,7 +704,7 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
                    sFontData.m_uiGlyphMapY);
 
             static int XX =
-                7  // Find the furthest filled pixel to the right.     
+                7  // Find the furthest filled pixel to the right.
                 for (short y = 0; y < sFontData.m_uiGlyphHeight; y++) {
                 for (short x = 0; x < sFontData.m_uiGlyphWidth; x++) {
                     cursor = topLeft;
@@ -718,7 +718,7 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
                         _y = y;
                     }
                 }
-#if _DEBUG_BLOCK_CHARS     
+#if _DEBUG_BLOCK_CHARS
 		for (short y = 0; y < sFontData.m_uiGlyphHeight; y++)
                 {
                     for (short x = 0; x < sFontData.m_uiGlyphWidth; x++) {
@@ -732,18 +732,18 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
                         else
                             *cursor = 0x00;
                     }
-#endif         // 4J-JEV: Empty glyphs are considered to be whitespace.     
+#endif     // 4J-JEV: Empty glyphs are considered to be whitespace.
                     if (xMax == 0)
                         m_kerningTable[glyph] = sFontData.m_uiWhitespaceWidth;
                     else
                         m_kerningTable[glyph] = xMax + 1;
-                    // CACHE GLYPH ADVANCES //     
+                    // CACHE GLYPH ADVANCES //
                     m_pfAdvanceTable = new float[sFontData.m_uiGlyphCount];
                     for (unsigned short glyph = 0;
                          glyph < sFontData.m_uiGlyphCount; glyph++) {
                         m_pfAdvanceTable[glyph] =
                             m_kerningTable[glyph] * m_sFontData->m_fAdvPerPixel;
-                        // DEBUG // #ifndef _CONTENT_PACKAGE     
+                        // DEBUG //#ifndef _CONTENT_PACKAGE
                         for (int i = 0; i < sFontData.m_uiGlyphCount; i++) {
                             int unicode = getUnicode(i), unicodeChar = 32, row,
                                 col;
@@ -754,13 +754,13 @@ CFontData::CFontData(SFontData& sFontData, int* pbRawImage)
 
                             getPos(i, row, col);
 
-                            std::string sta "ok"     ;
+                            std::string sta "ok" ;
                             if (i != getGlyphId(unicode)) {
-                                sta "MISSMATCHED!"     ;
+                                sta "MISSMATCHED!";
 
-                        app.DebugPri"<GLYPH_%03i> %i\t%c\tU+%.4X, kerning=%i, (%2i,%2i). %s\n"     , 
+                        app.DebugPri"<GLYPH_%03i> %i\t%c\tU+%.4X, kerning=%i, (%2i,%2i). %s\n", 
 				i, getGlyphId(unicode), unicodeChar, unicode, m_kerningTable[i], row, col, state.c_str() );
-#endif      
+#endif 
 }
 
                         void CFontData::release() {

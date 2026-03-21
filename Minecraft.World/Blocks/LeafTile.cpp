@@ -265,7 +265,7 @@ void LeafTile::playerDestroy(Level* level, std::shared_ptr<Player> player,
         player->awardStat(
             GenericStats::blocksMined(id),
             GenericStats::param_blocksMined(
-                id, data, 1));  // drop leaf block instead of sapling          
+                id, data, 1));  // drop leaf block instead of sapling
         popResource(level, x, y, z,
                     std::shared_ptr<ItemInstance>(new ItemInstance(
                         Tile::leaves_Id, 1, data & LEAF_TYPE_MASK)));
@@ -278,7 +278,7 @@ int LeafTile::getSpawnResourcesAuxValue(int data) {
     return data & LEAF_TYPE_MASK;
 }
 
-bool LeafTile::isSolidRender(bool isServ// 4J Stu - The server level shouldn't care how the tile is rendered!     // Fix for #9407 - Gameplay: Destroying a block of snow on top of trees,     // removes any adjacent snow.               
+bool LeafTile::isSolidRender(bool isServ// 4J Stu - The server level shouldn't care how the tile is rendered!// Fix for #9407 - Gameplay: Destroying a block of snow on top of trees,// removes any adjacent snow.
     if (isServerLevel) return true;
     return !allowSame;
 }
@@ -316,13 +316,13 @@ bool LeafTile::shouldTileTick(Level* level, int x, int y, int z) {
     return (currentData & UPDATE_LEAF_BIT) != 0;
 }
 
-unsigned int LeafTile::getDesc /*= -1*/ d(int iData         ) {
+unsigned int LeafTile::getDesc /*= -1*/ d(int iData ) {
     int leafIndex = iData & LEAF_TYPE_MASK;
     return LeafTile::LEAF_NAMES[leafIndex];
 }
 
 void LeafTile::registerIcons(IconRegister* iconRegister) {
-    for (int fancy = 0; fancy < 2;// icons[fancy] = new Icon[TEXTURES[fancy].length];                    
+    for (int fancy = 0; fancy < 2;// icons[fancy] = new Icon[TEXTURES[fancy].length];
 
         for (int i = 0; i < 4; i++) {
         icons[fancy][i] = iconRegister->registerIcon(TEXTURES[fancy][i]);

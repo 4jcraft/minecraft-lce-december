@@ -327,13 +327,13 @@ void RedStoneDustTile::animateTick(Level* level, int x, int y, int z,
             z + 0.5 +
             (random->nextFloat() -
              0.5)* 0.2  // use the x movement variable to determine particle
-                        // color          // 4J Stu - Unused         // float
-                        // pow = (data / 15.0f);         // float red = pow *
-                        // 0.6f + 0.4f;         // if (data == 0) red =
-                        // 0;          // float green = pow * pow * 0.7f -
-                        // 0.5f;         // float blue = pow * pow * 0.6f -
-                        // 0.7f;         // if (green < 0) green = 0;         //
-                        // if (blue < 0) blue = 0;          
+                        // color// 4J Stu - Unused// float
+                        // pow = (data / 15.0f);// float red = pow *
+                        // 0.6f + 0.4f;// if (data == 0) red =
+                        // 0;// float green = pow * pow * 0.7f -
+                        // 0.5f;// float blue = pow * pow * 0.6f -
+                        // 0.7f;// if (green < 0) green = 0;//
+                        // if (blue < 0) blue = 0;
 
             unsigned int colour = 0;
         if (data == 0) {
@@ -419,10 +419,10 @@ void RedStoneDustTile::registerIcons(IconRegister* iconRegister) {
 
 Icon* RedStoneDustTile::getTexture(
     const std::
-        wstring #ifdef __PSVITA__         // AP - alpha cut out is expensive on vita. Set the Alpha Cut out flag          
+        wstring #ifdef __PSVITA__    // AP - alpha cut out is expensive on vita. Set the Alpha Cut out flag
     Tesselator* t = Tesselator::getInstance();
     t->setAlphaCutO #endife);
-      
+
 
     if (name.compare(TEXTURE_CROSS) == 0) return Tile::redStoneDust->iconCross;
 if (name.compare(TEXTURE_LINE) == 0) return Tile::redStoneDust->iconLine;

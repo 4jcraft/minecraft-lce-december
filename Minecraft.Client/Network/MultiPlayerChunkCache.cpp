@@ -284,12 +284,12 @@ std::wstring MultiPlayerChunkCache::gatherStats() {
     EnterCriticalSection(&m_csLoadCreate);
     int size = (int)loadedChunkList.size();
     LeaveCriticalSection(&m_csLoadCreate);
-    ret "MultiplayerChunkCache: "      + _toString<int>(size);
+    ret "MultiplayerChunkCache: " + _toString<int>(size);
 }
 
 void MultiPlayerChunkCache::dataReceived(int x, int z) {
     int ix = x + XZOFFSET;
-    int iz = z + XZOFFS  // Check we're in range of the stored level     
+    int iz = z + XZOFFS  // Check we're in range of the stored level
              if ((ix < 0) || (ix >= XZSIZE)) return;
     if ((iz < 0) || (iz >= XZSIZE)) return;
     int idx = ix * XZSIZE + iz;

@@ -1076,17 +1076,17 @@ void UIScene_LoadMenu::handleTimerComplete(int id) {
                                                      &iImageDataBytes);
 
                             if (iImageDataBytes != 0) {
-                                // set the image	     
+                                // set the image	
                                 registerSubstitutionTexture(
                                     textureName, pbImageData, iImageDataBytes,
                                     true);
-                                // add an item in     
+                                // add an item in
                                 m_texturePackList.addPack(m_iConfigA[i],
                                                           textureName);
                                 m_iConfigA[i] = -1;
                             }
                         } else {
-                            // already have the image, so add an item in     
+                            // already have the image, so add an item in
                             m_texturePackList.addPack(m_iConfigA[i],
                                                       textureName);
                             m_iConfigA[i] = -1;
@@ -1102,19 +1102,19 @@ void UIScene_LoadMenu::handleTimerComplete(int id) {
                 }
             }
 
-            if (bAllDone) {  // kill this timer     
+            if (bAllDone) {  // kill this timer
                 killTimer(CHECKFORAVAILABLETEXTUREPACKS_TIMER_ID);
-#endif      
+#endif 
 
 		}
-                br #endif      
+                br #endif 
 	
             
             }
         }
 
-void UIScene_LoadMenu::LaunchGame(void// stop the timer running that causes a check for new texture packs in TMS but not installed, since this will run all through the load game, and will crash if it tries to create an hbrush #ifdef _XBOX     
-	killTimer(CHECKFORAVAILABLETEXTUREPACKS_TIMER_#endif     
+void UIScene_LoadMenu::LaunchGame(void// stop the timer running that causes a check for new texture packs in TMS but not installed, since this will run all through the load game, and will crash if it tries to create an hbrush#ifdef _XBOX
+	killTimer(CHECKFORAVAILABLETEXTUREPACKS_TIMER_#endif
 
 	if( (m_bGameModeCreative == true || m_bHasBeenInCreative) || m_MoreOptionsParams.bHostPrivileges == TRUE)
 	{
@@ -1123,38 +1123,38 @@ void UIScene_LoadMenu::LaunchGame(void// stop the timer running that causes a ch
                 uiIDA[1] = IDS_CONFIRM_CANCEL;
                 if (m_bGameModeCreative == true || m_bHasBeenInCreative)
                     // 4J-PB - Need different text for Survival mode with a
-                    // level that has been saved in Creative     
+                    // level that has been saved in Creative
                     if (!m_bGameModeCreative) {
                         ui.RequestAlertMessage(
                             IDS_TITLE_START_GAME,
                             IDS_CONFIRM_START_SAVEDINCREATIVE, uiIDA, 2, m_iPad,
                             &UIScene_LoadMenu::ConfirmLoadReturned, this);
                     }
-                // it's creative mode     
-                {  // has it previously been saved in creative?     
+                // it's creative mode
+                {  // has it previously been saved in creative?
                     if (m_bHasBeenInCreative) {
                         // 4J-PB - We don't really need to tell the user this
                         // will have achievements disabled, since they already
-                        // saved it in creative      and they got the warning
-                        // then      inform them that leaderboard writes and
-                        // achievements will be disabled     
+                        // saved it in creative and they got the warning
+                        // then inform them that leaderboard writes and
+                        // achievements will be disabled
                         // ui.RequestMessageBox(IDS_TITLE_START_GAME,
                         // IDS_CONFIRM_START_SAVEDINCREATIVE_CONTINUE, uiIDA, 1,
-                        // m_iPad,&CScene_LoadGameSettings::ConfirmLoadReturned,this,app.GetStringTable());     
+                        // m_iPad,&CScene_LoadGameSettings::ConfirmLoadReturned,this,app.GetStringTable());
 
                         if (m_levelGen != NULL) {
                             m_bIsCorrupt = false;
                             LoadDataComplete(this);
                         } else {
-                            // set the save to load     
-                                                PSAVE_DETAILS pSaveDetails=StorageManager.ReturnSavesInf#ifndef _DURANGO     
-						app.DebugPr"Loading save s [%s]\n"     ,pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex].UTF8SaveTitle,pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex].UTF8SaveFilena#endif     
+                            // set the save to load
+                                                PSAVE_DETAILS pSaveDetails=StorageManager.ReturnSavesInf#ifndef _DURANGO
+						app.DebugPr"Loading save s [%s]\n",pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex].UTF8SaveTitle,pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex].UTF8SaveFilena#endif
 						C4JStorage::ESaveGameState eLoadStatus=StorageManager.LoadSaveData(&pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex],&LoadSaveDataReturned,th
-#if TO_BE_IMPLEMENTED     
+#if TO_BE_IMPLEMENTED
 						if ( \
     eLoadStatus == C4JStorage::ELoadGame_DeviceRemoved)
 						{
-                                // disable saving      
+                                // disable saving 
                                 StorageManager.SetSaveDisabled(true);
                                 StorageManager.SetSaveDeviceSelected(m_iPad,
                                                                      false);
@@ -1168,13 +1168,13 @@ void UIScene_LoadMenu::LaunchGame(void// stop the timer running that causes a ch
                                         DeviceRemovedDialogReturned,
                                     this);
 
-#endif      
+#endif 
 					}
 				}
 				else
 				{
                                 // ask if they're sure they want to turn this
-                                // into a creative map     
+                                // into a creative map
                                 ui.RequestAlertMessage(
                                     IDS_TITLE_START_GAME,
                                     IDS_CONFIRM_START_CREATIVE, uiIDA, 2,
@@ -1195,14 +1195,14 @@ void UIScene_LoadMenu::LaunchGame(void// stop the timer running that causes a ch
                         m_bIsCorrupt = false;
                         LoadDataComplete(this);
                     } else
-                        // set the save to load     
-                        PSAVE_DETAILS pSaveDetails=StorageManager.ReturnSavesInf#ifndef _DURANGO     
-			app.DebugPr"Loading save %s [%s]\n"     ,pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex].UTF8SaveTitle,pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex].UTF8SaveFilena#endif     
+                        // set the save to load
+                        PSAVE_DETAILS pSaveDetails=StorageManager.ReturnSavesInf#ifndef _DURANGO
+			app.DebugPr"Loading save %s [%s]\n",pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex].UTF8SaveTitle,pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex].UTF8SaveFilena#endif
 			C4JStorage::ESaveGameState eLoadStatus=StorageManager.LoadSaveData(&pSaveDetails->SaveInfoA[(int)m_iSaveGameInfoIndex],&LoadSaveDataReturned,th
-#if TO_BE_IMPLEMENTED     
+#if TO_BE_IMPLEMENTED
 			if (eLoadStatus == \
                             C4JStorage::ELoadGame_DeviceRemoved)
-			{// disable saving      
+			{// disable saving 
                             StorageManager.SetSaveDisabled(true);
                             StorageManager.SetSaveDeviceSelected(m_iPad, false);
                             UINT uiIDA[1];
@@ -1213,8 +1213,8 @@ void UIScene_LoadMenu::LaunchGame(void// stop the timer running that causes a ch
                                 &CScene_LoadGameSettings::
                                     DeviceRemovedDialogReturned,
                                 this);
-#endif      
-		}  // return 0;     
+#endif 
+		}  // return 0;
 }
 
 int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage::EMessageResult result)
@@ -1222,19 +1222,19 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                             UIScene_LoadMenu* pClass =
                                 (UIScene_LoadMenu*)
                                     pPara  // results switched for this
-                                           // dialog     
+                                           // dialog
                                 if (result ==
                                     C4JStorage::EMessage_ResultDecline)
-                                // continue and reset the nether     
+                                // continue and reset the nether
                                 pClass->LaunchGame();
 	}
 	else if(result==C4JStorage::EMessage_ResultAccept)
-// turn off the reset nether and continue     
+// turn off the reset nether and continue
 		pClass->m_MoreOptionsParams.bResetNether=FALSE;
 		pClass->LaunchGame();
                 }
                 else
-                    // else they chose cancel     
+                    // else they chose cancel
                     pClass->m_bIgnoreInput = false;
 	}
 	return 0;
@@ -1249,14 +1249,14 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                 pClass->m_bIsCorrupt = false;
                 pClass->LoadDataComplete(pClass);
             } else
-                // set the save to load     
-                        PSAVE_DETAILS pSaveDetails=StorageManager.ReturnSavesInf#ifndef _DURANGO     
-			app.DebugPr"Loading save %s [%s]\n"     ,pSaveDetails->SaveInfoA[(int)pClass->m_iSaveGameInfoIndex].UTF8SaveTitle,pSaveDetails->SaveInfoA[(int)pClass->m_iSaveGameInfoIndex].UTF8SaveFilena#endif     
+                // set the save to load
+                        PSAVE_DETAILS pSaveDetails=StorageManager.ReturnSavesInf#ifndef _DURANGO
+			app.DebugPr"Loading save %s [%s]\n",pSaveDetails->SaveInfoA[(int)pClass->m_iSaveGameInfoIndex].UTF8SaveTitle,pSaveDetails->SaveInfoA[(int)pClass->m_iSaveGameInfoIndex].UTF8SaveFilena#endif
 			C4JStorage::ESaveGameState eLoadStatus=StorageManager.LoadSaveData(&pSaveDetails->SaveInfoA[(int)pClass->m_iSaveGameInfoIndex],&LoadSaveDataReturned,pCla
-#if TO_BE_IMPLEMENTED     
+#if TO_BE_IMPLEMENTED
 			if (eLoadStatus == \
                             C4JStorage::ELoadGame_DeviceRemoved)
-			{// disable saving      
+			{// disable saving 
                     StorageManager.SetSaveDisabled(true);
                     StorageManager.SetSaveDeviceSelected(m_iPad, false);
                     UINT uiIDA[1];
@@ -1266,7 +1266,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                         IDS_FAILED_TO_LOADSAVE_TEXT, uiIDA, 1, m_iPad,
                         &CScene_LoadGameSettings::DeviceRemovedDialogReturned,
                         this);
-#endif      
+#endif 
 		}
 	}
 	else
@@ -1292,7 +1292,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                         ((i == iPrimaryPad) || isLocalMultiplayerAvailable)) {
                         if (isSignedInLive &&
                             !ProfileManager.IsSignedInLive(i)) {
-                            // Record the first non signed in live pad     
+                            // Record the first non signed in live pad
                             iPadNotSignedInLive = i;
                         }
 
@@ -1300,13 +1300,13 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                             isSignedInLive && ProfileManager.IsSignedInLive(i);
                     }
                     // If this is an online game but not all players are signed
-                    // in to Live, stop!     
+                    // in to Live, stop!
                     if (isOnlineGame && !isSignedInLive)
 
-#ifdef __ORBIS__     
+#ifdef __ORBIS__
 			assert(iPadNotSignedInLive !=
                                -1)  // Check if PSN is unavailable because of
-                                    // age restriction     
+                                    // age restriction
                             int npAvailability =
                                 ProfileManager.getNPAvailability(
                                     iPadNotSignedInLive);
@@ -1315,7 +1315,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                             false;  // 4J Stu - This is a bit messy and is due
                                     // to the library incorrectly returning
                                     // false for IsSignedInLive if the
-                                    // npAvailability isn't SCE_OK     
+                                    // npAvailability isn't SCE_OK
                         UINT uiIDA[1];
                         uiIDA[0] = IDS_OK;
                         ui.RequestErrorMessage(IDS_ONLINE_SERVICE_TITLE,
@@ -1331,27 +1331,27 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                             uiIDA, 2, iPadNotSignedInLive,
                             &UIScene_LoadMenu::MustSignInReturnedPSN, pClass);
                     }
-                    retur #else      
+                    retur #else 
 			pClass->m_bIgnoreInput = false;
                     UINT uiIDA[1];
                     uiIDA[0] = IDS_CONFIRM_OK;
                     ui.RequestAlertMessage(IDS_PRO_NOTONLINE_TITLE,
                                            IDS_PRO_NOTONLINE_TEXT, uiIDA, 1,
                                            ProfileManager.GetPrimaryPad());
-                    retur #endif      
-		    // Check if user-created content is allowed, as we cannot play multiplayer if it's not     
+                    retur #endif 
+		    // Check if user-created content is allowed, as we cannot play multiplayer if it's not
                         bool noUGC = false;
                     BOOL pccAllowed = TRUE;
                     BOOL pccFriendsAllowed = TRUE;
                     bool bContentRestricted = false;
-                ProfileManager.AllowedPlayerCreatedContent(ProfileManager.GetPrimaryPad(),false,&pccAllowed,&pccFriendsAllow#if defined(__PS3__) || defined(__PSVITA__)     
+                ProfileManager.AllowedPlayerCreatedContent(ProfileManager.GetPrimaryPad(),false,&pccAllowed,&pccFriendsAllow#if defined(__PS3__) || defined(__PSVITA__)
 		if(isOnlineGame)
 		{
                         ProfileManager.GetChatAndContentRestrictions(
                             ProfileManager.GetPrimaryPad(), false, NULL,
                             &bContentRestricted, NULL);
-#endif  
-#ifdef __ORBIS__     
+#endif 
+#ifdef __ORBIS__
 		bool bPlayStationPlus = true;
                         int iPadWithNoPlaystationPlus = 0;
                         for (unsigned int i = 0; i < XUSER_MAX_COUNT; ++i) {
@@ -1365,7 +1365,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                 }
                             }
 
-#endif      
+#endif 
 		noUGC = !pccAllowed && !pccFriendsAllowed;
 
                             if (!isOnlineGame || !isLocalMultiplayerAvailable) {
@@ -1380,7 +1380,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
 
                                     ui.RequestContentRestrictedMessageBox();
                                     pClass->m_bIgnoreInput = false;
-#ifdef __ORBIS__     
+#ifdef __ORBIS__
 			else if (isOnlineGame && (bPlayStationPlus == false))
                                     {
                                         pClass->setVisible(true);
@@ -1393,7 +1393,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                             // and upsell when we don't know if
                                             // the player has PS Plus yet (if it
                                             // can't connect to the PS Plus
-                                            // server).     
+                                            // server).
                                             UINT uiIDA[1];
                                             uiIDA[0] = IDS_OK;
                                             ui.RequestAlertMessage(
@@ -1405,8 +1405,8 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                         }
                                         // 4J-PB - we're not allowed to show the
                                         // text Playstation Plus - have to call
-                                        // the upsell all the time!     //
-                                        // upsell psplus     
+                                        // the upsell all the time!//
+                                        // upsell psplus
                                         int32_t iResult =
                                             sceNpCommerceDialogInitialize();
 
@@ -1420,12 +1420,12 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                         param.userId = ProfileManager.getUserID(
                                             iPadWithNoPlaystationPlus);
 
-                                iResult=sceNpCommerceDialogOpen(&para// 				UINT uiIDA[2]; // 				uiIDA[0]=IDS_PLAY_OFFLINE; // 				uiIDA[1]=IDS_PLAYSTATIONPLUS_SIGNUP; // 				ui.RequestMessageBox( IDS_FAILED_TO_CREATE_GAME_TITLE, IDS_NO_PLAYSTATIONPLUS, uiIDA,2,ProfileManager.GetPrimaryPad(),&UIScene_LoadMenu::PSPlusReturned,pClass, app.GetStringTable(),NULL,0,false);     
+                                iResult=sceNpCommerceDialogOpen(&para// 				UINT uiIDA[2];// 				uiIDA[0]=IDS_PLAY_OFFLINE;// 				uiIDA[1]=IDS_PLAYSTATIONPLUS_SIGNUP;// 				ui.RequestMessageBox( IDS_FAILED_TO_CREATE_GAME_TITLE, IDS_NO_PLAYSTATIONPLUS, uiIDA,2,ProfileManager.GetPrimaryPad(),&UIScene_LoadMenu::PSPlusReturned,pClass, app.GetStringTable(),NULL,0,false);
 
-#endif      
+#endif 
 			else
 
-#if defined(__ORBIS__) || defined(__PSVITA__)     
+#if defined(__ORBIS__) || defined(__PSVITA__)
 				if (isOnlineGame)
 				{
                                             bool chatRestricted = false;
@@ -1441,12 +1441,12 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                                     ProfileManager
                                                         .GetPrimaryPad());
                                             }
-#endif      
+#endif 
 				DWORD dwLocalUsersMask = \
     CGameNetworkManager::GetLocalPlayerMask(ProfileManager.GetPrimaryPad());
                                             // No guest problems so we don't
                                             // need to force a sign-in of
-                                            // players here     
+                                            // players here
                                             StartGameFromSave(pClass,
                                                               dwLocalUsersMask);
 			}
@@ -1455,7 +1455,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                         // 4J-PB not sure why we aren't checking
                                         // the content restriction for the main
                                         // player here when multiple controllers
-                                        // are connected - adding now     
+                                        // are connected - adding now
                                         if (isOnlineGame && noUGC) {
                                         pClass->setVisible(true);
                                         ui.RequestUGCMessageBox();
@@ -1466,7 +1466,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                         pClass->setVisible(true);
                                         ui.RequestContentRestrictedMessageBox();
                                         pClass->m_bIgnoreInput = false;
-#ifdef __ORBIS__     
+#ifdef __ORBIS__
 			else if (bPlayStationPlus == false)
                                         {
                                             pClass->setVisible(true);
@@ -1479,7 +1479,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                                 // try and upsell when we don't
                                                 // know if the player has PS
                                                 // Plus yet (if it can't connect
-                                                // to the PS Plus server).     
+                                                // to the PS Plus server).
                                                 UINT uiIDA[1];
                                                 uiIDA[0] = IDS_OK;
                                                 ui.RequestAlertMessage(
@@ -1493,7 +1493,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                             // 4J-PB - we're not allowed to show
                                             // the text Playstation Plus - have
                                             // to call the upsell all the
-                                            // time!     // upsell psplus     
+                                            // time!// upsell psplus
                                             int32_t iResult =
                                                 sceNpCommerceDialogInitialize();
 
@@ -1508,8 +1508,8 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                                 ProfileManager.getUserID(
                                                     iPadWithNoPlaystationPlus);
 
-                                iResult=sceNpCommerceDialogOpen(&para// 				UINT uiIDA[2]; // 				uiIDA[0]=IDS_PLAY_OFFLINE; // 				uiIDA[1]=IDS_PLAYSTATIONPLUS_SIGNUP; // 				ui.RequestMessageBox( IDS_FAILED_TO_CREATE_GAME_TITLE, IDS_NO_PLAYSTATIONPLUS, uiIDA,2,ProfileManager.GetPrimaryPad(),&UIScene_LoadMenu::PSPlusReturned,pClass, app.GetStringTable(),NULL,0,false);     
-#endif      
+                                iResult=sceNpCommerceDialogOpen(&para// 				UINT uiIDA[2];// 				uiIDA[0]=IDS_PLAY_OFFLINE;// 				uiIDA[1]=IDS_PLAYSTATIONPLUS_SIGNUP;// 				ui.RequestMessageBox( IDS_FAILED_TO_CREATE_GAME_TITLE, IDS_NO_PLAYSTATIONPLUS, uiIDA,2,ProfileManager.GetPrimaryPad(),&UIScene_LoadMenu::PSPlusReturned,pClass, app.GetStringTable(),NULL,0,false);
+#endif 
 			else
 			{
                                                 pClass
@@ -1519,10 +1519,10 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                         }
                                     }
                                     else
-                                        // the save is corrupt!     
+                                        // the save is corrupt!
                                         pClass->m_bIgnoreInput =
                                         false  // give the option to delete the
-                                               // save     
+                                               // save
                                         UINT uiIDA[2];
                                     uiIDA[0] = IDS_CONFIRM_CANCEL;
                                     uiIDA[1] = IDS_CONFIRM_OK;
@@ -1544,20 +1544,20 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                     (UIScene_LoadMenu*)pParam;
 
                                 pClass->m_bIsCorrupt = bIsCorr
-#if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)     
+#if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
 	if (app.GetGameHostOption(eGameHostOption_WasntSaveOwner))
                                 {
-                                    bIsOwner = false #endif      
+                                    bIsOwner = false #endif 
 
 	if (bIsOwner) {
                                         LoadDataComplete(pClass);
                                     }
                                     else
-                                        // messagebox     
+                                        // messagebox
                                         pClass->m_bIgnoreInput = fa
 #if defined(__PS3__) || defined(__ORBIS__) || \
     defined(                                  \
-        __PSVITA__)       // show the message that trophies are disabled     
+        __PSVITA__)    // show the message that trophies are disabled
                                         UINT uiIDA[1];
                                     uiIDA[0] = IDS_CONFIRM_OK;
                                     ui.RequestErrorMessage(
@@ -1566,7 +1566,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                         pClass->m_iPad,
                                         &UIScene_LoadMenu::TrophyDialogReturned,
                                         pClass);
-                app.SetGameHostOption(eGameHostOption_WasntSaveOwner, tr#endif     
+                app.SetGameHostOption(eGameHostOption_WasntSaveOwner, tr#endif
 	
                                 
                                 }
@@ -1587,7 +1587,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                 C4JStorage::EMessageResult result) {
                                 UIScene_LoadMenu* pClass = (UIScene_LoadMenu*)
                                     pPara  // results switched for this
-                                           // dialog     
+                                           // dialog
                                     if (result ==
                                         C4JStorage::EMessage_ResultDecline) {
                                     PSAVE_DETAILS pSaveDetails =
@@ -1616,7 +1616,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
 
                                 return 0  // 4J Stu - Shared functionality that
                                           // is the same whether we needed a
-                                          // quadrant sign-in or not     
+                                          // quadrant sign-in or not
                                     void UIScene_LoadMenu::StartGameFromSave(
                                         UIScene_LoadMenu * pClass,
                                         DWORD dwLocalUsersMask) {
@@ -1637,7 +1637,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                                 .GetOnlinePlayerCount(),
                                             saveOrCheckpointId);
                                     } else {
-                StorageManager.ResetSaveData(// Make our next save default to the name of the level     
+                StorageManager.ResetSaveData(// Make our next save default to the name of the level
 		StorageManager.SetSaveTitle(pClass->m_levelGen->getDefaultSaveName().c_str());
                                     }
 
@@ -1645,10 +1645,10 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
                                         ProfileManager.IsSignedInLive(
                                             ProfileManager.GetPrimaryPad()) &&
                                         pClass->m_MoreOptionsParams
-                                            .bOnlineG #ifdef __PSVITA__     
+                                            .bOnlineG #ifdef __PSVITA__
 	if (CGameNetworkManager::usingAdhocMode()) {
-                if(SQRNetworkManager_AdHoc_Vita::GetAdhocStat// && pClass->m_MoreOptionsParams.bOnlineGame)     
-			isClientSide = true#endif // __PSVITA__     
+                if(SQRNetworkManager_AdHoc_Vita::GetAdhocStat// && pClass->m_MoreOptionsParams.bOnlineGame)
+			isClientSide = true#endif // __PSVITA__
 
 	bool isPrivate = (app.GetGameSettings(pClass->m_iPad,eGameSetting_InviteOnly)>0)?true:false;
 
@@ -1661,7 +1661,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
 	param->texturePackId = pClass->m_MoreOptionsParams.dwTexturePack;
 
 	Minecraft *pMinecraft = Minecraft::GetInstance();
-	pMinecraft->skins->selectTexturePackById(pClass->m_MoreOptionsParams.dwTexturePac//pMinecraft->skins->updateUI();     
+	pMinecraft->skins->selectTexturePackById(pClass->m_MoreOptionsParams.dwTexturePac//pMinecraft->skins->updateUI();
 
 	app.SetGameHostOption(eGameHostOption_Difficulty,Minecraft::GetInstance()->options->difficulty);
 	app.SetGameHostOption(eGameHostOption_FriendsOfFriends,app.GetGameSettings(pClass->m_iPad,eGameSetting_FriendsOfFriends));
@@ -1684,15 +1684,15 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
 	app.SetGameHostOption(eGameHostOption_DoTileDrops, pClass->m_MoreOptionsParams.bDoTileDrops);
 	app.SetGameHostOption(eGameHostOption_NaturalRegeneration, pClass->m_MoreOptionsParams.bNaturalRegeneration);
 	app.SetGameHostOption(eGameHostOption_DoDaylightCycle, pClass->m_MoreOptionsParams.bDoDaylightCyc
-#ifdef _LARGE_WORLDS     
+#ifdef _LARGE_WORLDS
 	app.SetGameHostOption(              \
     eGameHostOption_WorldSize,              \
     pClass->m_MoreOptionsParams.worldSize + \
-        1  // 0 is GAME_HOST_OPTION_WORLDSIZE_UNKNOWN #endif //
-           // app.SetGameNewWorldSize(64, true ); //
-           // app.SetGameNewWorldSize(0, false );   // flag if the user wants to
-           // reset the Nether to force a Fortress with netherwart etc.     
-	app.SetResetNether((pClass->m_MoreOptionsParams.bResetNether==TRUE)?true:fals// clear out the app's terrain features list     
+        1  // 0 is GAME_HOST_OPTION_WORLDSIZE_UNKNOWN#endif//
+           // app.SetGameNewWorldSize(64, true );//
+           // app.SetGameNewWorldSize(0, false );// flag if the user wants to
+           // reset the Nether to force a Fortress with netherwart etc.
+	app.SetResetNether((pClass->m_MoreOptionsParams.bResetNether==TRUE)?true:fals// clear out the app's terrain features list
 	app.ClearTerrainFeaturePosition();
 
 	app.SetGameHostOption(eGameHostOption_GameType,pClass->m_iGameModeId );
@@ -1700,12 +1700,12 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
 	g_NetworkManager.HostGame(dwLocalUsersMask,isClientSide,isPrivate,MINECRAFT_NET_MAX_PLAYERS,0);
 
 	param->settings = app.GetGameHostOption( eGameHostOption_Al
-#ifndef _XBOX     
-	g_NetworkManager.FakeLocalPlayerJoine #endif      
+#ifndef _XBOX
+	g_NetworkManager.FakeLocalPlayerJoine #endif 
 
 	LoadingInputParams* loadingParams = new LoadingInputParams();
 	loadingParams->func = &CGameNetworkManager::RunNetworkGameThreadProc;
-	loadingParams->lpParam = (LPVOID)para// Reset the autosave time     
+	loadingParams->lpParam = (LPVOID)para// Reset the autosave time
 	app.SetAutosaveTimerTime();
 
 	UIFullscreenProgressCompletionData *completionData = new UIFullscreenProgressCompletionData();
@@ -1718,7 +1718,7 @@ int UIScene_LoadMenu::CheckResetNetherReturned(void *pParam,int iPad,C4JStorage:
 	ui.NavigateToScene(ProfileManager.GetPrimaryPad(),eUIScene_FullscreenProgress, loadingParams);
                                     }
 
-void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Nether flag set, and confirm they want to do this     
+void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Nether flag set, and confirm they want to do this
 	if(m_MoreOptionsParams.bResetNether==TRUE)
 	{
                                         UINT uiIDA[2];
@@ -1746,7 +1746,7 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
 
                                     if (bContinue == true)
                                         // It's possible that the player has not
-                                        // signed in - they can back out     
+                                        // signed in - they can back out
                                         if (ProfileManager.IsSignedIn(
                                                 pClass->m_iPad)) {
                                             int primaryPad =
@@ -1775,7 +1775,7 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                                                  i)) {
                                                         // Record the first non
                                                         // signed in live
-                                                        // pad     
+                                                        // pad
                                                         iPadNotSignedInLive = i;
                                                     }
 
@@ -1794,13 +1794,13 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                                 }
                                             }  // If this is an online game but
                                                // not all players are signed in
-                                               // to Live, stop!     
+                                               // to Live, stop!
                                             if (isOnlineGame && !isSignedInLive)
-#ifdef __ORBIS__     
+#ifdef __ORBIS__
 				assert(iPadNotSignedInLive != -1);
                                                 // Check if PSN is unavailable
                                                 // because of age
-                                                // restriction     
+                                                // restriction
                                                 int npAvailability =
                                                     ProfileManager
                                                         .getNPAvailability(
@@ -1813,7 +1813,7 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                                 // incorrectly returning false
                                                 // for IsSignedInLive if the
                                                 // npAvailability isn't
-                                                // SCE_OK     
+                                                // SCE_OK
                                                 UINT uiIDA[1];
                                                 uiIDA[0] = IDS_OK;
                                                 ui.RequestErrorMessage(
@@ -1836,7 +1836,7 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                                         MustSignInReturnedPSN,
                                                     pClass);
                                             }
-                                            retur #else      
+                                            retur #else 
 				pClass->m_bIgnoreInput = false;
                                             UINT uiIDA[1];
                                             uiIDA[0] = IDS_CONFIRM_OK;
@@ -1845,12 +1845,12 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                                 IDS_PRO_NOTONLINE_TEXT, uiIDA,
                                                 1,
                                                 ProfileManager.GetPrimaryPad());
-                                            retur #endif      
+                                            retur #endif 
 			
                                         
                                         }  // Check if user-created content is
                                            // allowed, as we cannot play
-                                           // multiplayer if it's not     
+                                           // multiplayer if it's not
                                     bool noUGC = false;
                                     BOOL pccAllowed = TRUE;
                                     BOOL pccFriendsAllowed = TRUE;
@@ -1885,11 +1885,11 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                                 ProfileManager.GetPrimaryPad());
                                         }
                                     } else
-#if defined(__ORBIS__) || defined(__PSVITA__)     
+#if defined(__ORBIS__) || defined(__PSVITA__)
 				if (isOnlineGame)
                                     {
                                         // show the chat restriction message for
-                                        // all users that it applies to     
+                                        // all users that it applies to
                                         for (unsigned int i = 0;
                                              i < XUSER_MAX_COUNT; i++) {
                                             if (ProfileManager.IsSignedInLive(
@@ -1908,7 +1908,7 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                                 }
                                             }
                                         }
-#endif          // This is NOT called from a storage manager thread, and is in fact called from the main thread in the Profile library tick. Therefore we use the main threads IntCache.     
+#endif     // This is NOT called from a storage manager thread, and is in fact called from the main thread in the Profile library tick. Therefore we use the main threads IntCache.
                                         StartGameFromSave(pClass,
                                                           dwLocalUsersMask);
                                     }
@@ -1926,7 +1926,7 @@ void UIScene_LoadMenu::checkStateAndStartGame(// Check if they have the Reset Ne
                                 m_checkboxOnline.setChecked(
                                     m_MoreOptionsParams.bOnlineGame == TRUE);
 
-#ifdef __ORBIS__     
+#ifdef __ORBIS__
 int UIScene_LoadMenu::MustSignInReturnedPSN(void* pParam, int iPad, \
                                             C4JStorage::EMessageResult result)
                                 {
@@ -1947,19 +1947,19 @@ int UIScene_LoadMenu::MustSignInReturnedPSN(void* pParam, int iPad, \
                                               // UIScene_LoadMenu::PSPlusReturned(void
                                               // *pParam,int
                                               // iPad,C4JStorage::EMessageResult
-                                              // result) // {
-// 	int32_t iResult; // 	UIScene_LoadMenu *pClass = (UIScene_LoadMenu
-// *)pParam; //  // 	// continue offline, or upsell PS Plus? //
-// if(result==C4JStorage::EMessage_ResultDecline)  // 	{ // 		//
-// upsell psplus // 		iResult=sceNpCommerceDialogInitialize(); //  //
-// SceNpCommerceDialogParam param; //
-// sceNpCommerceDialogParamInitialize(&param); //
-// param.mode=SCE_NP_COMMERCE_DIALOG_MODE_PLUS; // 		param.features =
-// SCE_NP_PLUS_FEATURE_REALTIME_MULTIPLAY;  // 		param.userId =
-// ProfileManager.getUserID(pClass->m_iPad); //  //  //
-// iResult=sceNpCommerceDialogOpen(&param); // 	} // 	else
-// if(result==C4JStorage::EMessage_ResultAccept)  // 	{ // 		//
-// continue offline // pClass->m_MoreOptionsParams.bOnlineGame=false; //
-// pClass->LoadDataComplete(pClass); // 	} //  //
-// pClass->m_bIgnoreInput=false; // 	return 0; // }
-#endif      
+                                              // result)// {
+// 	int32_t iResult;// 	UIScene_LoadMenu *pClass = (UIScene_LoadMenu
+// *)pParam;// // 	// continue offline, or upsell PS Plus?//
+// if(result==C4JStorage::EMessage_ResultDecline) // 	{// 		//
+// upsell psplus// 		iResult=sceNpCommerceDialogInitialize();// //
+// SceNpCommerceDialogParam param;//
+// sceNpCommerceDialogParamInitialize(&param);//
+// param.mode=SCE_NP_COMMERCE_DIALOG_MODE_PLUS;// 		param.features =
+// SCE_NP_PLUS_FEATURE_REALTIME_MULTIPLAY; // 		param.userId =
+// ProfileManager.getUserID(pClass->m_iPad);// // //
+// iResult=sceNpCommerceDialogOpen(&param);// 	}// 	else
+// if(result==C4JStorage::EMessage_ResultAccept) // 	{// 		//
+// continue offline// pClass->m_MoreOptionsParams.bOnlineGame=false;//
+// pClass->LoadDataComplete(pClass);// 	}// //
+// pClass->m_bIgnoreInput=false;// 	return 0;// }
+#endif 

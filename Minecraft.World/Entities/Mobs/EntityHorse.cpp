@@ -295,8 +295,8 @@ int EntityHorse::getArmorValue() { return ARMOR_PROTECTION[getArmorType()]; }
 
 bool EntityHorse::isPushable() {
     return rider.lock  // TODO: [EB]: Explain why this is being done - what side
-                       // effect does getBiome // have?      
-        
+                       // effect does getBiome// have?
+
 bool EntityHorse::checkSpawningBiome() {
         int x = Mth::floor(this->x);
         int z = Mth::floor(this->z);
@@ -304,7 +304,7 @@ bool EntityHorse::checkSpawningBiome() {
         level->getBiome(x, z);
         r/**
  * Drops a chest block if the horse is bagged
- */               
+ */
 void EntityHorse::dropBags() {
             if (level->isClientSide || !isChestedHorse()) {
                 return;
@@ -320,7 +320,7 @@ void EntityHorse::dropBags() {
         shared_from_this(), eSoundType_EATING, 1.0f,
         1.0f + (random->nextFloat() - random->nextFloat(/**
  * Changed to adjust fall damage for riders
- */               
+ */
 void EntityHorse::causeFallDamage(float fallDistance) {
                 if (fallDistance > 1) {
                     playSound(eSoundType_MOB_HORSE_LAND, .4f, 1);
@@ -346,7 +346,7 @@ void EntityHorse::causeFallDamage(float fallDistance) {
  * Different inventory sizes depending on the kind of horse
  *
  * @return
- */               
+ */
 int EntityHorse::getInventorySize() {
                         int type = getType();
                         if (isChestedHorse() &&
@@ -359,7 +359,7 @@ int EntityHorse::getInventorySize() {
 void EntityHorse::createInventory() {
                         std::shared_ptr<AnimalChest> old = inventory;
                         inventory = std::shared_ptr<AnimalChest>(
-                            "HorseChest" AnimalChest(L            ,
+                            "HorseChest" AnimalChest(L,
                                                      getInventorySize()));
                         inventory->setCustomName(getAName());
                         if (old != NULL) {
@@ -446,11 +446,11 @@ double EntityHorse::getCustomJump() {
 int EntityHorse::getDeathSound() {
                         openMouth();
                         int type = getType();
-    if (type == TYPE_U//"mob.horse.zombie.death";undType_MOB_HORSE_ZOMBIE_DEATH;                             
+    if (type == TYPE_U//"mob.horse.zombie.death";undType_MOB_HORSE_ZOMBIE_DEATH;  
     }
-    if (type == TYPE_SKELE//"mob.horse.skeleton.death";ype_MOB_HORSE_SKELETON_DEATH;                               
+    if (type == TYPE_SKELE//"mob.horse.skeleton.death";ype_MOB_HORSE_SKELETON_DEATH;  
                 }
-    if (type == TYPE_DONKEY || type == TYPE//"mob.horse.donkey.death";undType_MOB_HORSE_DONKEY_DEATH;                //"mob.horse.death";    return eSoundType_MOB_HORSE_DEATH;                      
+    if (type == TYPE_DONKEY || type == TYPE//"mob.horse.donkey.death";undType_MOB_HORSE_DONKEY_DEATH;  //"mob.horse.death";    return eSoundType_MOB_HORSE_DEATH;  
 }
 
 int EntityHorse::getDeathLoot() {
@@ -478,12 +478,12 @@ int EntityHorse::getHurtSound() {
                     }
                 }
                 int type = getType();
-    if (type == TYPE//"mob.horse.zombie.hit"; eSoundType_MOB_HORSE_ZOMBIE_HIT;                           
+    if (type == TYPE//"mob.horse.zombie.hit"; eSoundType_MOB_HORSE_ZOMBIE_HIT;  
     }
-    if (type == TYPE_SKE//"mob.horse.skeleton.hit";undType_MOB_HORSE_SKELETON_HIT;                             
+    if (type == TYPE_SKE//"mob.horse.skeleton.hit";undType_MOB_HORSE_SKELETON_HIT;  
         }
-    if (type == TYPE_DONKEY || type == TY//"mob.horse.donkey.hit"; eSoundType_MOB_HORSE_DONKEY_HIT;            //"mob.horse.hit";  }
-    return eSoundType_MOB_HORSE_HIT;                    
+    if (type == TYPE_DONKEY || type == TY//"mob.horse.donkey.hit"; eSoundType_MOB_HORSE_DONKEY_HIT;  //"mob.horse.hit";  }
+    return eSoundType_MOB_HORSE_HIT;  
 
     
     }
@@ -496,15 +496,15 @@ int EntityHorse::getHurtSound() {
             stand();
         }
         int type = getType();
-    if (type == TYPE_//"mob.horse.zombie.idle";SoundType_MOB_HORSE_ZOMBIE_IDLE;                            
+    if (type == TYPE_//"mob.horse.zombie.idle";SoundType_MOB_HORSE_ZOMBIE_IDLE;  
     }
-    if (type == TYPE_SKEL//"mob.horse.skeleton.idle";dType_MOB_HORSE_SKELETON_IDLE;                              
+    if (type == TYPE_SKEL//"mob.horse.skeleton.idle";dType_MOB_HORSE_SKELETON_IDLE;  
 }
-    if (type == TYPE_DONKEY || type == TYP//"mob.horse.donkey.idle";SoundType_MOB_HORSE_DONKEY_IDLE;              //"mob.horse.idle";}
+    if (type == TYPE_DONKEY || type == TYP//"mob.horse.donkey.idle";SoundType_MOB_HORSE_DONKEY_IDLE;  //"mob.horse.idle";}
   /**
  * sound played when an untamed mount buckles rider
  */
-                                                           
+
 int EntityHorse::getMadSound() {
     openMouth();
     stand();
@@ -512,7 +512,7 @@ int EntityHorse::getMadSound() {
     if (type == TYPE_UNDEAD || type == TYPE_SKELETON) {
         return -1;
     }
-    if (type == TYPE_DONKEY || type == TYPE//"mob.horse.donkey.angry";undType_MOB_HORSE_DONKEY_ANGRY;                //"mob.horse.angry";    return eSoundType_MOB_HORSE_ANGRY;                      
+    if (type == TYPE_DONKEY || type == TYPE//"mob.horse.donkey.angry";undType_MOB_HORSE_DONKEY_ANGRY;  //"mob.horse.angry";    return eSoundType_MOB_HORSE_ANGRY;  
 }
 
 void EntityHorse::playStepSound(int xt, int yt, int zt, int t) {
@@ -560,7 +560,7 @@ void EntityHorse::registerAttributes() {
      * number,
      * the more
      * difficult
-     */                                                            
+     */
 int EntityHorse::getMaxTemper() {
         return 100;
     }
@@ -574,11 +574,11 @@ int EntityHorse::getMaxTemper() {
     }
 
     void Entit "" orse::clearLayeredTextureInfo() {
-        layerTextureHashName = L  ;
+        layerTextureHashName = L;
     }
 
     void EntityHorse "horse/" dLayeredTextureInfo() {
-        layerTextureHashName = L        ;
+        layerTextureHashName = L;
         layerTextureLayers[0] = -1;
         layerTextureLayers[1] = -1;
         layerTextureLayers[2] = -1;
@@ -600,7 +600,7 @@ int EntityHorse::getMaxTemper() {
             }
         } else {
             l "_" rTextureLayers[0] = -1;
-            "_" layerTextureHashName += L    + _toString<int>(type) + L   ;
+            "_" layerTextureHashName += L + _toString<int>(type) + L;
             armorIndex = 1;
         }
 
@@ -655,7 +655,7 @@ int EntityHorse::getMaxTemper() {
     if (isRidable() && rider.lock() !// consumables    return Animal::mobInteract(player);
     }
 
-                  
+    
     if (itemstack != NULL) {
         bool itemUsed = false;
 
@@ -777,9 +777,9 @@ int EntityHorse::getMaxTemper() {
             }
             return true;
             // for name tag items and such, we must call the item's
-            // interaction         // method before
-            // riding                                 
-                                   
+            // interaction// method before
+            // riding
+            
         if (itemstack != NULL && itemstack->interactEnemy(
                                      player, dynamic_pointer_cast<LivingEntity>(
                                                  shared_from_this()))) {
@@ -787,7 +787,7 @@ int EntityHorse::getMaxTemper() {
             }
             "<EntityHorse::mobInteract> Horse speed: "
             "%f\n" rintf(
-                                                          ,
+            ,
                 (float)(getAttribute(SharedMonsterAttributes::MOVEMENT_SPEED)
                             ->getValue()));
 
@@ -810,13 +810,13 @@ int EntityHorse::getMaxTemper() {
     }
 }
 
-                                                  
+
 bool Enti/**
  * Can wear regular armor
  */ getType() == TYPE_SKELETON;
     }
 
-                                     
+    
 bool /**
       * able to carry bags
       *
@@ -824,7 +824,7 @@ bool /**
       */ e() == TYPE_HORSE;
     }
 
-                                               
+    
 bool EntityHorse::canWearBags() {
         int type = getType();
         return type == TYPE_MULE || type == TYPE_DONKEY;
@@ -840,7 +840,7 @@ bool EntityHorse::canWearBags() {
              * ghost horses
              * on
              * dead
-             */                                                                 
+             */
 bool EntityHo /**
                * Is this an Undead Horse?
                *
@@ -849,7 +849,7 @@ bool EntityHo /**
                 Type() < 21;
         }
 
-                                                         
+        
 bool EntityHorse::isUndead() {
             int type = getType();
             return type == TYPE_UNDEAD || type == TYPE_SKELETON;
@@ -860,7 +860,7 @@ bool EntityHorse::isUndead() {
         }
 
         bool Entit  // horses have their own food behaviors in mobInterractce) {
-                                                           
+    
     return false;
     }
 
@@ -917,7 +917,7 @@ bool EntityHorse::isUndead() {
                 }
                 // if client-side data values have changed, rebuild texture info
 
-                                                                                
+                
     if (level->isClientSide && entityData->isDirty()) {
                     entityData->clearDirty();
                     clearLayeredTextureInfo();
@@ -959,13 +959,13 @@ bool EntityHorse::isUndead() {
                         eatAnim = 0;
                         // standing is incompatible with eating, so lock eat
                         // anim)) {
-                                                                                 
+                        
         eatAnimO = eatAnim = 0;
                         standAnim += (1.0f - standAnim) * .4f + .05f;
                         if (standAnim > 1) {
                             standAnim =  // the animation falling back to ground
                                          // is slower in the beginning
-                                         //                                                                   
+                                         // 
                                 standAnim +=
                                 (.8f * standAnim * standAnim * standAnim -
                                  standAnim) *
@@ -1060,8 +1060,8 @@ bool EntityHorse::isUndead() {
                     bool EntityHorse::tameWithName(std::shared_ptr<Player> player) /**
  * Overridden method to add control to mounts, should be moved to
  * EntityLiving
- */                                                    // If the entity is not ridden by Player, then execute the normalya) {// Entityliving code                                                  
-                        
+ */// If the entity is not ridden by Player, then execute the normalya) {// Entityliving code
+    
     if (rider.lock() == NULL || !isSaddled()) {
                         footSize = .5f;
                         flyingSpeed = .02f;
@@ -1078,7 +1078,7 @@ bool EntityHorse::isUndead() {
         dynamic_pointer_cast<LivingEntity>(// move much slower backwardsgRider->xxa * .5f;
     ya = livingRider->yya;
 
-                                 
+    
     if (ya <= 0) {
                     ya *= .25f;
                     gallopSoundCounter = 0;
@@ -1120,7 +1120,7 @@ bool EntityHorse::isUndead() {
     }
 
     if (onGround) {
-                                             
+                    
         playerJumpPendingScale = 0;
                     setIsJumping(false);
     }
@@ -1138,14 +1138,14 @@ bool EntityHorse::isUndead() {
 
                 void EntityHorse::addAdditonalSaveData(
                     C "EatingHaystack" {
-    Animal::addAdditonalSaveData("ChestedHorse"->putBoolean(L                , isEating()"HasReproduced"Boolean(L              , isChestedHorse());
-"Bred"g->putBoolean(L               "Type"asReproduced());
-    tag->putBo"Variant"    , isBred());
+    Animal::addAdditonalSaveData("ChestedHorse"->putBoolean(L, isEating()"HasReproduced"Boolean(L, isChestedHorse());
+"Bred"g->putBoolean(L"Type"asReproduced());
+    tag->putBo"Variant", isBred());
     tag->putInt(L"Temper"getType());
-    tag->putInt(L        "Tame"Variant());
-    tag->putInt(L     "OwnerName"per());
-    tag->putBoolean(L      , isTamed());
-    tag->putString(L           , getOwnerName());
+    tag->putInt(L"Tame"Variant());
+    tag->putInt(L"OwnerName"per());
+    tag->putBoolean(L, isTamed());
+    tag->putString(L, getOwnerName());
 
     if (isChestedHorse()) {
                     ListTag<CompoundTag>* listTag = new ListTag<CompoundTag>();
@@ -1158,7 +1158,7 @@ bool EntityHorse::isUndead() {
                         if (std::stack != NULL) {
                             "Slot" CompoundTag* compoundTag = new CompoundTag();
 
-                            compoundTag->putByte(L      , (byte)i);
+                            compoundTag->putByte(L, (byte)i);
 
                 std::stack->save"Items"ndTag);
                 listTag->add(compoundTag);
@@ -1168,41 +1168,41 @@ bool EntityHorse::isUndead() {
     }
 
     if (inventory->getItem(INV_SLOT_ARMOR) != NULL) {
-        tag->put(L       "ArmorItem"tory->getItem(INV_SLOT_ARMOR)
-                                   ->save(new Compound"SaddleItem"    )));
+        tag->put(L"ArmorItem"tory->getItem(INV_SLOT_ARMOR)
+                                   ->save(new Compound"SaddleItem")));
     }
     if (inventory->getItem(INV_SLOT_SADDLE) != NULL) {
-                    tag->put(L          "SaddleItem"y->getItem(INV_SLOT_SADDLE)
-                                 ->save(new CompoundTag(L            )));
+                    tag->put(L"SaddleItem"y->getItem(INV_SLOT_SADDLE)
+                                 ->save(new CompoundTag(L)));
     }
                     }
 
                     void EntityHorse::readAdditionalS
                     "EatingHaystack" Tag* tag) {
                     Animal::readAddit "Bred" aveData(tag);
-    setEating(tag->getBoole"ChestedHorse"      ));
+    setEating(tag->getBoole"ChestedHorse"));
     setBred(tag->getBoolean(
-        L"HasReproduced" etChestedHorse(tag->getBoolea "Type"           ));
-            setReproduced "Variant" Boolean(L               ));
-    "Temper"(tag->getInt(L      ));
-    setVar"Tame"ag->getInt(L         ));
-    "OwnerName"(tag->getInt(L        ));
-    setTamed"OwnerName"olean(L      ))// 4J: This is for handling old save data, not needed on consoleetStr/*AttributeInstance *oldSpeedAttribute =
+        L"HasReproduced" etChestedHorse(tag->getBoolea "Type"));
+            setReproduced "Variant" Boolean(L));
+    "Temper"(tag->getInt(L));
+    setVar"Tame"ag->getInt(L));
+    "OwnerName"(tag->getInt(L));
+    setTamed"OwnerName"olean(L))// 4J: This is for handling old save data, not needed on consoleetStr/*AttributeInstance *oldSpeedAttribute =
     getAttributes()->getInstance(SharedMonsterAttributes::MOVEMENT_SPEED);
 
     if (oldSpeedAttribute != NULL) {
         getAttribute(SharedMonsterAttributes::MOVEMENT_SPEED)
             ->setBaseValue(oldSpeedAttribute->getBaseValue() * 0.25f);
-    }*/                                                                                                    
+    }*/
 
     if (isChestedHor"Items"
         ListTag<CompoundTag>* nbttaglist =
-            (ListTag<CompoundTag>*)tag->getList(L       );
+            (ListTag<CompoundTag>*)tag->getList(L);
         createInventory();
 
         for (int i = 0; i < nbttaglist->size(); i++) {
                     "Slot" CompoundTag* compoundTag = nbttaglist->get(i);
-                    int slot = compoundTag->getByte(L      ) & 0xFF;
+                    int slot = compoundTag->getByte(L) & 0xFF;
 
                     if (slot >= INV_BASE_COUNT &&
                         slot < inventory->getContainerSize()) {
@@ -1211,18 +1211,18 @@ bool EntityHorse::isUndead() {
         }
                 }
 
-    if (tag->contains(L         "ArmorItem"    std::shared_ptr<ItemInstance> armor =
-            ItemInstance::fromTag(tag->getCompound(L           ));
+    if (tag->contains(L"ArmorItem"    std::shared_ptr<ItemInstance> armor =
+            ItemInstance::fromTag(tag->getCompound(L));
         if (armor != NULL && isHorseArmor(armo"SaddleItem"          inventory->setItem(INV_SLOT_ARMOR, armor);
             }
         }
 
-    if (tag->contains(L          "SaddleItem"   std::shared_ptr<ItemInstance> saddleItem =
-            ItemInstance::fromTag(tag->getCompound(L            ));
+    if (tag->contains(L"SaddleItem"   std::shared_ptr<ItemInstance> saddleItem =
+            ItemInstance::fromTag(tag->getCompound(L));
         if (saddleItem != NULL && saddleItem->id == Item::saddle"Saddle"           inventory->setItem(INV_SLOT_SADDLE, saddleItem);
     }
     }
-    else if (tag->getBoolean(L        )) {
+    else if (tag->getBoolean(L)) {
         inventory->setItem(
             INV_SLOT_SADDLE,
             std::shared_ptr<ItemInstance>(new ItemInstance(Item::saddle)));
@@ -1264,7 +1264,7 @@ bool EntityHorse::isUndead() {
         babyType = TYPE_MULE;
     }
 
-                                     
+    
     if (babyType == TYPE_HORSE) {
         int skinResult;
         int selectSkin = random->nextInt(9);
@@ -1289,7 +1289,7 @@ bool EntityHorse::isUndead() {
 
     baby->setType(babyType);
 
-                                  
+    
     double maxHealth =
         getAttribute(SharedMonsterAttributes::MAX_HEALTH)->getBaseValue() +
         partner->getAttribute(SharedMonsterAttributes::MAX_HEALTH)
@@ -1313,7 +1313,7 @@ bool EntityHorse::isUndead() {
     }
 
     MobGroupData* EntityHorse::finalizeMobSpawn(MobGroupData* groupData,
-                                                int extraData        )                             
+                                                int extraData )  
 {
         groupData = Animal::finalizeMobSpawn(groupData);
 
@@ -1453,7 +1453,7 @@ bool EntityHorse::isUndead() {
         }
     }
 
-                                  
+    
 float EntityHorse::generateRandomMaxHealth() {
         return 15.0f + random->nextInt(8) + random->nextInt(9);
     }
@@ -1470,7 +1470,7 @@ float EntityHorse::generateRandomMaxHealth() {
                             .3 +
                         random->nextDouble() * .3) *
                        0.25f;
-        app.DebugPrintf(                                                ,
+        app.DebugPrintf(,
                         speed);
         return speed;
     }
@@ -1488,7 +1488,7 @@ float EntityHorse::generateRandomMaxHealth() {
     }
 
     bool EntityHorse::onLadder() {
-                                               
+        
     return false;
     }
 

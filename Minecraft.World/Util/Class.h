@@ -389,7 +389,7 @@ public:
 
     bool justFlag() { return (m_id & 0xF000
 #define SUBCLASS(x) \
-    (new SubClass(#x, x))               
+    (new SubClass(#x, x))
 
     static void     \
     checkDerivations() {
@@ -550,7 +550,7 @@ public:
         classes->push_back(
             SUBCLASS(eTYPE_GLOBAL_ENTITY)->addParent(eTYPE_ENTITY));
         classes->push_back(
-            SUBCLASS(eTYPE_LIGHTNINGBOLT)->addParent(eTYPE_G// classes->push_back( SUBCLASS(eTYPE_OTHER_ENTITIES )->addParent(         // eTYPE_ENTITY ) );                         
+            SUBCLASS(eTYPE_LIGHTNINGBOLT)->addParent(eTYPE_G// classes->push_back( SUBCLASS(eTYPE_OTHER_ENTITIES )->addParent(// eTYPE_ENTITY ) );     
         classes->push_back(
             SUBCLASS(eTYPE_EXPERIENCEORB)->addParent(eTYPE_ENTITY));
         classes->push_back(SUBCLASS(eTYPE_EYEOFENDERSIGNAL)
@@ -679,7 +679,7 @@ public:
         classes->push_back(
             SUBCLASS(eTYPE_DISPENSERTILEENTITY)->addParent(eTYPE_TILEENTITY));
         classes->push_back(SUBCLASS(eTYPE_DROPPERTILEENTITY)
-                               ->addParent(eTYPE_DISPENS// classes->push_back( SUBCLASS(eTYPE_OTHERS) );                         
+                               ->addParent(eTYPE_DISPENS// classes->push_back( SUBCLASS(eTYPE_OTHERS) );
         classes->push_back(SUBCLASS(eType_NODE));
         classes->push_back(SUBCLASS(eType_ITEM));
         classes->push_back(SUBCLASS(eType_ITEMINSTANCE));
@@ -693,14 +693,14 @@ public:
         std::vector<SubClass*>::iterator it1;
         for (it1 = classes->begin(); it1 != classes->end(); it1++) {
             // if ( current->justFlag() ) continue;
-            //                                        
+            // 
 
             std::vector<SubClass*>::iterator it2;
             for (it2 = classes->begin(); it2 != classes->end(); it2++) {
-                // if ( comparing->justFlag() ) continue;                  // We
+                // if ( comparing->justFlag() ) continue;              // We
                 // shouldn't be comparing to leaf classes anyway.
-                //               // if ( comparing->m_isTerminal ) continue;
-                //                                            
+                // // if ( comparing->m_isTerminal ) continue;
+                // 
 
                 eINSTANCEOF typeCurr, typeComp;
                 typeCurr = current->m_id;
@@ -734,13 +734,13 @@ public:
         std::vector<std::pair<SubClass*, SubClass*> >::iterator itrErr;
         for (itrErr = m_falsePositives.begin();
              itrErr != m_falsePositives.end(); itrErr++)"[Class.h] Error: '%s' incorrectly derives from '%s'.\n"trErr->second;
-            printf(                                                        ,
+            printf(,
                    sub->m_name.c_str(), super->m_name.c_str());
     }
     for (itrErr = m_falseNegatives.begin(); itrErr != m_falseNegatives.end();
          itrErr++)
         "[Class.h] Error: '%s' doesn't derive '%s'.\n" * super = itrErr->second;
-    printf(                                              , sub->m_name.c_str(),
+    printf(, sub->m_name.c_str(),
            super->m_name.c_str());
         }
 
@@ -751,4 +751,3 @@ __debugbreak();
 }
 }
 ;
-       

@@ -386,7 +386,7 @@ void ItemInHandRenderer::render(float a) {
     float h = oHeight + (height - oHeight) * a;
     std::shared_ptr<Player> player =
         minecraft->playe  // 4J - added so we can adjust the position of the
-                          // hands for horizontal & vertical split screens     
+                          // hands for horizontal & vertical split screens
         float fudgeX = 0.0f;
     float fudgeY = 0.0f;
     float fudgeZ = 0.0f;
@@ -419,7 +419,7 @@ void ItemInHandRenderer::render(float a) {
     if (localPlayer) {
         float xrr =
             localPlayer->xBobO + (localPlayer->xBob - localPlayer->xBobO) * a;
-        float yrr = localPlayer->yBobO + (localPlayer->yBob - localPlayer->yBob// 4J - was using player->xRot and yRot directly here rather than interpolating between old & current with a          
+        float yrr = localPlayer->yBobO + (localPlayer->yBob - localPlayer->yBob// 4J - was using player->xRot and yRot directly here rather than interpolating between old & current with a
 		float yr = player->yRotO + (player->yRot - player->yRotO) * a;
         glRotatef((xr - xrr) * 0.1f, 1, 0, 0);
         glRotatef((yr - yrr) * 0.1f, 0, 1, 0);
@@ -427,7 +427,7 @@ void ItemInHandRenderer::render(float a) {
 
     std::shared_ptr<ItemInstance> item = selectedItem;
 
-    float br = minecraft->level->getBrightness(Mth::floor(player->x), Mth::floor(player->y), Mth::floor// 4J - change brought forward from 1.8.2               
+    float br = minecraft->level->getBrightness(Mth::floor(player->x), Mth::floor(player->y), Mth::floor// 4J - change brought forward from 1.8.2
     if (SharedConstants::TEXTURE_LIGHTING)
 	{
         br = 1;
@@ -457,7 +457,7 @@ void ItemInHandRenderer::render(float a) {
 	{
         glPushMatrix();
         floa  // 4J - move the map away a bit if we're in horizontal split
-              // screen, so it doesn't clip out of the save zone               
+              // screen, so it doesn't clip out of the save zone
             if (splitHoriz) {
             glTranslatef(0.0f, 0.0f, -0.3f);
         }
@@ -483,9 +483,9 @@ void ItemInHandRenderer::render(float a) {
         glRotatef((tilt) * -85, 0, 0, 1);
         glEnable(GL_RESCALE_NORMAL);
         // 4J-PB - if we've got a player texture, use
-        // that    //glBindTexture(GL_TEXTURE_2D,
+        // that//glBindTexture(GL_TEXTURE_2D,
         // minecraft->textures->loadHttpTexture(minecraft->player->customTextureUrl,
-        // minecraft->player->getTexture()));               
+        // minecraft->player->getTexture()));
         glBindTexture(GL_TEXTURE_2D, minecraft->textures->loadMemTexture(
                                          minecraft->player->customTextureUrl,
                                          minecraft->player->getTexture()));
@@ -504,7 +504,7 @@ void ItemInHandRenderer::render(float a) {
                 minecraft->player);
             PlayerRenderer* playerRenderer = (PlayerRenderer*)er;
             float ss = 1;
-                glScalef(ss,// Can't turn off the hand if the player is holding a map               
+                glScalef(ss,// Can't turn off the hand if the player is holding a map
 				std::shared_ptr<ItemInstance> itemInstance = player->inventory->getSelected();
 				if ((itemInstance && (itemInstance->getItem()->id==Item::map_Id)) || app.GetGameSettings(localPlayer->GetXboxPad(),eGameSetting_DisplayHand)!=0 )
                 {
@@ -535,9 +535,9 @@ void ItemInHandRenderer::render(float a) {
         glScalef(s, s, s);
 
 		MemSect(31);
-        minecraft->textures->bindTexture(&MAP_BA// 4J was L"/misc/mapbg.png"                    
+        minecraft->textures->bindTexture(&MAP_BA// 4J was L"/misc/mapbg.png"
 		MemSect(0);
-        Tesselator *t = Tesselat//        glNormal3f(0, 0, -1);	// 4J - changed to use tesselator                    
+        Tesselator *t = Tesselat//        glNormal3f(0, 0, -1);	// 4J - changed to use tesselator
         t->begin();
 		int vo = 7;
 		t->normal(0,0,-1);
@@ -547,7 +547,7 @@ void ItemInHandRenderer::render(float a) {
         t->vertexUV((float)(0 - vo), (float)( 0 - vo), (float)( 0), (float)( 0), (float)( 0));
         t->end();
 
-        std::shared_ptr<MapItemSavedData> data = Item::map->getSavedData(item, minecraft->level)"Minimap render"dEvent(0,                );
+        std::shared_ptr<MapItemSavedData> data = Item::map->getSavedData(item, minecraft->level)"Minimap render"dEvent(0,);
 		if(data != NULL) minimap->render(minecraft->player, minecraft->textures, data, minecraft->player->entityId);
 		PIXEndNamedEvent();
 
@@ -555,13 +555,13 @@ void ItemInHandRenderer::render(float a) {
 }
 else if (item != NULL) {
     glPushMatrix();
-#if defined __ORBIS__ || defined __PS3__                         
+#if defined __ORBIS__ || defined __PS3__
 		static const floa #elsengPowFactor = 1.0f;
-         
+    
 		static const float  // 4J added, to slow the swing down when
                                     // nearest the player for avoiding luminance
-                                    // flash issues #endif                  
-      
+                                    // flash issues#endif
+
         if (player->getUseItemDuration() > 0) {
         UseAnim anim = item->getUseAnimation();
         if ((anim == UseAnim_eat) || (anim == UseAnim_drink)) {
@@ -593,7 +593,7 @@ else if (item != NULL) {
     }
 
     glTranslatef(0.7f * d, -0.65f * d - (1 - h) * 0.6f, -0.9f * d);
-                glTranslatef(// 4J addedgeY, fudgeZ);	           
+                glTranslatef(// 4J addedgeY, fudgeZ);	
 
         glRotatef(45, 0, 1, 0);
         glEnable(GL_RESCALE_NORMAL);
@@ -651,7 +651,7 @@ else if (item != NULL) {
         glRotatef(180, 0, 1, 0);
         }
 
-        if (item->getItem()->hasMultipleSpriteL// special case for potions, refactor this when we get more             // items that have two layers                         
+        if (item->getItem()->hasMultipleSpriteL// special case for potions, refactor this when we get more// items that have two layers
             renderItem(player, item, 0, false);
 
 			int col = Item::items[item->id]->getColor(item, 1);
@@ -682,7 +682,7 @@ else if (!player->isInvisible()) {
     }
 
     glTranslatef(0.8f * d, -0.75f * d - (1 - h) * 0.6f, -0.9f * d);
-                glTranslatef(// 4J addedgeY, fudgeZ);	           
+                glTranslatef(// 4J addedgeY, fudgeZ);	
 
         glRotatef(45, 0, 1, 0);
         glEnable(GL_RESCALE_NORMAL);
@@ -691,7 +691,7 @@ else if (!player->isInvisible()) {
         float swing3 = Mth::sin(swing * swing * PI);
         float swing2 = Mth::sin(sqrt(swing) * PI);
         glRotatef(swing2 * 70, 0, 1, 0);
-            glRotatef(-swing3 * 20// 4J-PB - if we've got a player texture, use that    //glBindTexture(GL_TEXTURE_2D, minecraft->textures->loadHttpTexture(minecraft->player->customTextureUrl, minecraft->player->getTexture()));                         
+            glRotatef(-swing3 * 20// 4J-PB - if we've got a player texture, use that//glBindTexture(GL_TEXTURE_2D, minecraft->textures->loadHttpTexture(minecraft->player->customTextureUrl, minecraft->player->getTexture()));
 
 		MemSect(31);
 		glBindTexture(GL_TEXTURE_2D, minecraft->textures->loadMemTexture(minecraft->player->customTextureUrl, minecraft->player->getTexture()));
@@ -707,7 +707,7 @@ else if (!player->isInvisible()) {
         EntityRenderer *er = EntityRenderDispatcher::instance->getRenderer(minecraft->player);
         PlayerRenderer *playerRenderer = (PlayerRenderer *) er;
         float ss = 1;
-        glScalef(ss, s// Can't turn off the hand if the player is holding a map                         
+        glScalef(ss, s// Can't turn off the hand if the player is holding a map
 		std::shared_ptr<ItemInstance> itemInstance = player->inventory->getSelected();
 
 		if ( (itemInstance && (itemInstance->getItem()->id==Item::map_Id)) || app.GetGameSettings(localPlayer->GetXboxPad(),eGameSetting_DisplayHand)!=0 )
@@ -728,7 +728,7 @@ void ItemInHandRenderer::renderScreenEffect(float a) {
         renderFire(a);
     }
 
-    if (m// Inside a tile->isInWall())                 
+    if (m// Inside a tile->isInWall()) 
     {
         int x = Mth::floor(minecraft->player->x);
         int y = Mth::floor(minecraft->player->y);
@@ -762,7 +762,7 @@ void ItemInHandRenderer::renderScreenEffect(float a) {
 	{
         MemSect(31);
         minecraft->textures->bindT  // 4J was L"/misc/water.png";
-                                    //                             
+                                    // 
             MemSect(0);
         renderWater(a);
     }
@@ -770,7 +770,7 @@ void ItemInHandRenderer::renderScreenEffect(float a) {
 }
 
 void ItemInHandRenderer::renderTex(float a, Icon* slot) {
-        minecraft->textures->bindTexture(&Te// TODO: get this data from Icon                              
+        minecraft->textures->bindTexture(&Te// TODO: get this data from Icon
 
     Tesselator *t = Tesselator::getInstance();
 
@@ -860,7 +860,7 @@ void ItemInHandRenderer::renderFire(float a) {
     for (int i = 0; i < 2; i++) {
         glPushMatrix();
         Icon* slot = Tile::fire->getTextureLayer(1);
-                minecraft->textures->bindTexture(&Te// TODO: Get this from Icon);                            
+                minecraft->textures->bindTexture(&Te// TODO: Get this from Icon); 
 
 		float u0 = slot->getU0(true);
 		float u1 = slot->getU1(true);

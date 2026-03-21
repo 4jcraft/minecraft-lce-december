@@ -236,8 +236,8 @@ void WitherBoss::newServerAiStep() {
                 std::shared_ptr<Entity> current = level->getEntity(headTarget);
 
                 // 4J: Added check for instance of living entity, had a
-                // problem                with IDs being recycled to other
-                // entities               
+                // problem with IDs being recycled to other
+                // entities
                 if (current == NULL ||
                     !current->instanceof(eTYPE_LIVINGENTITY) ||
                     !current->isAlive() || distanceToSqr(current) > 30 * 30 ||
@@ -255,7 +255,7 @@ void WitherBoss::newServerAiStep() {
                 std::vector<std::shared_ptr<Entity> >* entities =
                     level->getEntitiesOfClass(typeid(LivingEntity),
                                               bb->grow(20, 8, 20),
-                                              livingEntitySe// randomly try to find a target 10 times                         
+                                              livingEntitySe// randomly try to find a target 10 times
                 for (int attempt = 0; attempt < 10 && !entities->empty();
                      attempt++) {
                     int randomIndex = random->nextInt(entities->size());
@@ -278,7 +278,7 @@ void WitherBoss::newServerAiStep() {
                             setAlternativeTarget(i, selected->entityId);
                             break;
                         }
-                        // don't pick this again                              
+                        // don't pick this again      
                         entities->erase(entities->begin() + randomIndex);
                     }
                     delete entities;
@@ -296,7 +296,7 @@ void WitherBoss::newServerAiStep() {
             destroyBlocksTick--;
 
         if (destroyBlocksTick == 0 &&
-            level->getGameRules()->getBoolean(GameRules::RUL// destroy all blocks that are within 1 range, counting from             // feet and 3 blocks up                              
+            level->getGameRules()->getBoolean(GameRules::RUL// destroy all blocks that are within 1 range, counting from// feet and 3 blocks up       
 
             int feet = Mth::floor(y);
             int ox = Mth::floor(x);
@@ -433,7 +433,7 @@ bool WitherBoss::hurt(DamageSource* source, float dmg) {
         } else if (sourceEntity->instanceof(eTYPE_LIVINGENTITY) &&
                    dynamic_pointer_cast<LivingEntity>(sourceEntity)
                        // can't be harmed by other undead) {
-                                              
+            
             return false;
     }
 }
@@ -463,7 +463,7 @@ bool WitherBoss::isPickable() { return !removed; }
 void WitherBoss::causeFallDamage(float distance) {}
 
 void WitherBo  // do nothing(MobEffectInstance* newEffect) {
-                 
+    
 
 
 }
@@ -474,7 +474,7 @@ void WitherBoss::registerAttributes() {
     Monster::registerAttributes();
 
     getAttribute(SharedMonsterAttributes::MAX_HEALTH)->setBaseValue(300);
-    getAttribute(SharedMonsterAttr// 4J Stu - Don't make it so far!alue(// getAttribute(SharedMonsterAttributes::FOLLOW_RANGE)->setBaseValue(40);                                                  
+    getAttribute(SharedMonsterAttr// 4J Stu - Don't make it so far!alue(// getAttribute(SharedMonsterAttributes::FOLLOW_RANGE)->setBaseValue(40);
 }
 
 float WitherBoss::getHeadYRot(int i) { return yRotHeads[i]; }

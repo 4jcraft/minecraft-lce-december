@@ -2069,12 +2069,12 @@ void Tutorial::setHintCompleted(TutorialHint* hint) {
         setHintCompleted(hint->getId());
         hints[m_CurrentState].erase(std::find(
             hints[m_CurrentState].begin(), hints[m_CurrentState].end(), hint));
-        delete hint;  // 	else  // 	{  //
+        delete hint;  // 	else// 	{//
                       // find(hints[m_CurrentState].begin(),
-                      // hints[m_CurrentState].end(), hint);  // 	}     
+                      // hints[m_CurrentState].end(), hint);// 	}
     }
 
-void Tutorial::tick(// Don't do anything for the first 2 seconds so that the loading screen is gone     
+void Tutorial::tick(// Don't do anything for the first 2 seconds so that the loading screen is gone
 	if(!m_bHasTickedOnce)
 	{
         int time = GetTickCount();
@@ -2109,11 +2109,11 @@ void Tutorial::tick(// Don't do anything for the first 2 seconds so that the loa
                 }
             } else {
                 ++it;
-            }  // 4J Stu TODO - Make this a constraint          
+            }  // 4J Stu TODO - Make this a constraint
             Minecraft* pMinecraft = Minecraft::GetInstance();
-        if(m_freezeTime && !m_timeFrozen && !m_fullTutorialComple// Need to set the time on both levels to stop the flickering as the local level   // tries to predict the time          
+        if(m_freezeTime && !m_timeFrozen && !m_fullTutorialComple// Need to set the time on both levels to stop the flickering as the local level// tries to predict the time
 		MinecraftServer::SetTimeOfDay(m_iTutorialFreezeTimeValue);
-		pMinecraft->level->setDayTime(m_iTutorialFreezeTi// Always daytime          
+		pMinecraft->level->setDayTime(m_iTutorialFreezeTi// Always daytime
 		app.SetGameHostOption(eGameHostOption_DoDaylightCycle,0);
 		m_timeFrozen = true;
         }
@@ -2135,7 +2135,7 @@ void Tutorial::tick(// Don't do anything for the first 2 seconds so that the loa
             return;
         }
 
-        if(!hasRequest#ifdef _XBOX          
+        if(!hasRequest#ifdef _XBOX
 		m_bSceneIsSplitscreen=app.GetLocalPlayerCount()>1;
 		if(m_bSceneIsSplitscreen)
 		{
@@ -2146,13 +2146,13 @@ void Tutorial::tick(// Don't do anything for the first 2 seconds so that the loa
 		{
                         app.NavigateToScene(m_iPad, eUIComponent_TutorialPopup,(void *)this, false, false, &m_hTutorialSc#else
 		}
-     
+
 		ui.SetTutorial(m_iPa#endifs);
-      
+
 		hasRequestedUI = true;
 	}
-	// if we've changed mode, we may need to change scene          
-		if(m_bSceneIsSplitscreen!=(app.GetLocalPlayerCount(#ifdef _XBOX          
+	// if we've changed mode, we may need to change scene
+		if(m_bSceneIsSplitscreen!=(app.GetLocalPlayerCount(#ifdef _XBOX
 			app.TutorialSceneNavigateBack(m_iPad);
 			m_bSceneIsSplitscreen=app.GetLocalPlayerCount()>1;
 			if(m_bSceneIsSplitscreen)
@@ -2163,9 +2163,9 @@ void Tutorial::tick(// Don't do anything for the first 2 seconds so that the loa
 			else
 			{
                                 app.NavigateToScene(m_iPad, eUIComponent_TutorialPopup,(void *)this, false, false, &m_hTutorialSce#else			}
-     
+
 			ui.SetTutorial(m_iPa#endifs);
-      
+
 		
 
 }
@@ -2183,13 +2183,13 @@ if (ui.IsPauseMenuDisplayed(m_iPad)) {
 if (uiTempDisabled) {
     ui.SetTutorialVisible(m_iPad, true);
     lastMessageTime = GetTickCount();
-    uiTempDisabled = fa  // Check constraints          
+    uiTempDisabled = fa  // Check constraints
         for (AUTO_VAR(it, m_globalConstraints.begin());
              it < m_globalConstraints.end(); ++it) {
         TutorialConstraint* constraint = *it;
-                constraint->tick(m_iP// Check hints          
+                constraint->tick(m_iP// Check hints
 	int hintNeeded = -1;
-	if(!m_hintDispla// 4J Stu - TU-1 interim   // Allow turning off all the hints          
+	if(!m_hintDispla// 4J Stu - TU-1 interim// Allow turning off all the hints
 		bool hintsOn = m_isFullTutorial || app.GetGameSettings(m_iPad,eGameSetting_Hints);
 
 		if(hintsOn)
@@ -2206,8 +2206,8 @@ if (uiTempDisabled) {
                     setMessage(hint, message);
                     break;
                 }
-            }  // Check constraints  // Only need to update these if we aren't
-               // already failing something          
+            }  // Check constraints// Only need to update these if we aren't
+               // already failing something
             if (!m_allTutorialsComplete &&
                 (currentFailedConstraint[m_CurrentState] == NULL ||
                  currentFailedConstraint[m_CurrentState]->isConstraintSatisfied(
@@ -2229,7 +2229,7 @@ if (uiTempDisabled) {
                 }
             }
 
-        if( !m_allTutorialsComplete && currentFailedConstraint[m_CurrentState] == NU// Update tasks          
+        if( !m_allTutorialsComplete && currentFailedConstraint[m_CurrentState] == NU// Update tasks
 		bool isCurrentTask = true;
 		AUTO_VAR(it, activeTasks[m_CurrentState].begin());
 		while(activeTasks[m_CurrentState].size() > 0 && it < activeTasks[m_CurrentState].end())
@@ -2254,8 +2254,8 @@ if (uiTempDisabled) {
                                 case e_Tutorial_Completion_Complete_State_Gameplay_Constraints:
                                     // 4J Stu - Move the delayed constraints to
                                     // the gameplay state so that they are
-                                    // in         // effect for a bit
-                                    // longer          
+                                    // in// effect for a bit
+                                    // longer
                                     AUTO_VAR(itCon,
                                              constraintsToRemove[m_CurrentState]
                                                  .begin());
@@ -2283,7 +2283,7 @@ if (uiTempDisabled) {
                                             constraintsToRemove[m_CurrentState]
                                                 .erase(itCon);
                                         // Fall through the the normal complete
-                                        // state                    
+                                        // state
                                         case e_Tutorial_Completion_Complete_State:
                                             for (AUTO_VAR(
                                                      itRem,
@@ -2338,7 +2338,7 @@ if (uiTempDisabled) {
                             }
                             taskCh  // If we can complete this early, check if
                                     // we can complete it right
-                                    // now                    
+                                    // now
                                 if (currentTask[m_CurrentState] != NULL &&
                                     currentTask[m_CurrentState]
                                         ->isPreCompletionEnabled()) {
@@ -2430,7 +2430,7 @@ if (uiTempDisabled) {
 
 	if( currentFailedConstraint[m_CurrentState] == NULL && currentTask[m_CurrentState] != NULL && (m_iTaskReminders!=0) && (lastMessageTime + (m_iTaskReminders * m_iTutorialReminderTime) ) < Ge// Reminder) )
 	{
-                           
+                
 		PopupMessageDetails* message = new PopupMessageDetails();
                 message->m_messageId =
                     currentTask[m_CurrentState]->getDescriptionId();
@@ -2443,7 +2443,7 @@ if (uiTempDisabled) {
                 if (m_iTaskReminders > 1) m_iTaskReminders = 1;
 	}
 
-	m_hasStat// If we have completed this state, and it is one that occurs during normal gameplay then change back to the gameplay track                    
+	m_hasStat// If we have completed this state, and it is one that occurs during normal gameplay then change back to the gameplay track
 	if( m_CurrentState != e_Tutorial_State_Gameplay && activeTasks[m_CurrentState].size() == 0 && (isSelectedItemState() || !ui.GetMenuDisplayed(m_iPad) ) )
 	{
                 this->changeTutorialState(e_Tutorial_State_Gameplay);
@@ -2477,16 +2477,16 @@ bool Tutorial::setMessage(PopupMessageDetails *message)
                     AUTO_VAR(it, messages.find(message->m_messageId));
                     if (it != messages.end() && it->second != NULL) {
                         TutorialMessage* messageString = it->second;
-                                text = std::wstring( messageString->getMessageF// 4J Stu - Quick fix for boat tutorial being incorrect                    
+                                text = std::wstring( messageString->getMessageF// 4J Stu - Quick fix for boat tutorial being incorrect
 				if(message->m_messageId == IDS_TUTORIAL_TASK_BOAT_OVERVIEW)
 				{
-                                        text "{*CONTROLLER_ACTION_USE*}"   "{*CONTROLLER_ACTION_DISMOUNT*}"                    );
+                                        text "{*CONTROLLER_ACTION_USE*}""{*CONTROLLER_ACTION_DISMOUNT*}");
 				}
                     } else {
-                                text = std::wstring( app.GetString(message->m// 4J Stu - Quick fix for boat tutorial being incorrect                    
+                                text = std::wstring( app.GetString(message->m// 4J Stu - Quick fix for boat tutorial being incorrect
 				if(message->m_messageId == IDS_TUTORIAL_TASK_BOAT_OVERVIEW)
 				{
-                                        text "{*CONTROLLER_ACTION_USE*}"   "{*CONTROLLER_ACTION_DISMOUNT*}"                    );
+                                        text "{*CONTROLLER_ACTION_USE*}""{*CONTROLLER_ACTION_DISMOUNT*}");
 				}
                     }
                 }
@@ -2522,7 +2522,7 @@ bool Tutorial::setMessage(PopupMessageDetails *message)
                     ui.SetTutorialDescription(m_iPad, &popupInfo);
                 }
         }
-	else if( (m_lastMessage != NULL && m_lastMessage->m//&& (lastMessageTime + m_iTutorialReminderTime ) > GetTickCount() )      // This should cause the popup to dissappear                    
+	else if( (m_lastMessage != NULL && m_lastMessage->m//&& (lastMessageTime + m_iTutorialReminderTime ) > GetTickCount() )// This should cause the popup to dissappear
 		TutorialPopupInfo popupInfo;
 		popupInfo.interactScene = m_UIScene;
 		popupInfo.tutorial = this;
@@ -2535,7 +2535,7 @@ bool Tutorial::setMessage(PopupMessageDetails *message)
 	return true;
     }
 
-bool Tutorial::setMessage(TutorialHint *hint, PopupMessageD// 4J Stu - TU-1 interim  // Allow turning off all the hints                    
+bool Tutorial::setMessage(TutorialHint *hint, PopupMessageD// 4J Stu - TU-1 interim// Allow turning off all the hints
 	bool hintsOn = m_isFullTutorial || (app.GetGameSettings(m_iPad,eGameSetting_Hints) && app.GetGameSettings(m_iPad,eGameSetting_DisplayHUD));
 
 	bool messageShown = false;
@@ -2610,7 +2610,7 @@ void Tutorial::completeUsingItem(std::shared_ptr<ItemInstance> item) {
         task->completeUs  // Fix for #46922 - TU5: UI: Player receives a
                           // reminder that he is hungry while "hunger bar" is
                           // full (triggered in split-screen
-                          // mode)                    
+                          // mode)
             if (m_CurrentState != e_Tutorial_State_Gameplay) {
             for (AUTO_VAR(it, activeTasks[e_Tutorial_State_Gameplay].begin());
                  it < activeTasks[e_Tutorial_State_Gameplay].end(); ++it) {
@@ -2683,8 +2683,8 @@ void Tutorial::completeUsingItem(std::shared_ptr<ItemInstance> item) {
     }
 
     void Tutorial::handleUIInput(int iAction) {
-        if( m_hintDi//for(AUTO_VAR(it, activeTasks[m_CurrentState].begin()); it < activeTasks[m_CurrentState].end(); ++it)  //{  //	TutorialTask *task = *it;  //	task->handleUIInput(iAction);  //}               
-	   
+        if( m_hintDi//for(AUTO_VAR(it, activeTasks[m_CurrentState].begin()); it < activeTasks[m_CurrentState].end(); ++it)//{//	TutorialTask *task = *it;//	task->handleUIInput(iAction);//}
+	
 	if(currentTask[m_CurrentState] != NULL)
 		currentTask[m_CurrentState]->handleUIInput(iAction);
     }
@@ -2739,7 +2739,7 @@ void Tutorial::completeUsingItem(std::shared_ptr<ItemInstance> item) {
         }
     }
 
-void Tutorial::onSelectedItemChanged(std::shared_ptr<Ite// We only handle this if we are in a state that allows changing based on the selected item  // Menus and states like riding in a minecart will NOT allow this                    
+void Tutorial::onSelectedItemChanged(std::shared_ptr<Ite// We only handle this if we are in a state that allows changing based on the selected item// Menus and states like riding in a minecart will NOT allow this
 	if( isSelectedItemState() )
 	{
         if (item != NULL) {
@@ -2849,7 +2849,7 @@ bool Tutorial::canMoveToPosition(double xo, double yo, double zo, double xt,
 }
 
 bool Tutorial::isInputAllowed(int mapping) {
-        if( m_hintDisplay// If the player is under water then allow all keypresses so they can jump out                    
+        if( m_hintDisplay// If the player is under water then allow all keypresses so they can jump out
 	if( Minecraft::GetInstance()->localplayers[m_iPad]->isUnderLiquid(Material::water) ) return true;
 
 	bool allowed = true;
@@ -2885,17 +2885,17 @@ void Tutorial::AddConstraint(TutorialConstraint* c) {
 }
 
 void Tutorial::RemoveConstraint(TutorialConstraint* c,
-                                /*= false*/ edRemove            ) {
+                                /*= false*/ edRemove ) {
     if (currentFailedConstraint[m_CurrentState] == c)
         currentFailedConstraint[m_CurrentState] = NULL;
 
-        if( c->getQueued// If it is already queued for removal, remove it on the next tick   /*for(AUTO_VAR(it, constraintsToRemove[m_CurrentState].begin()); it < constraintsToRemove[m_CurrentState].end(); ++it)
+        if( c->getQueued// If it is already queued for removal, remove it on the next tick/*for(AUTO_VAR(it, constraintsToRemove[m_CurrentState].begin()); it < constraintsToRemove[m_CurrentState].end(); ++it)
 		{
         if (it->first == c) {
             it->second = m_iTutorialConstraintDelayRemoveTicks;
             break;
         }
-		}*/                    
+		}*/
 	
 
 }
@@ -2915,7 +2915,7 @@ else {
 
     AUTO_VAR(it, std::find(constraints[m_CurrentState].begin(),
                            constraints[m_CurrentState].end(), c));
-    if (it != constraints[m_CurrentState].end()) constraints[m_CurrentState].erase( std::find( constraints[m_CurrentState].begin(), constrain// It may be in the gameplay list, so remove it from there if it is                                   
+    if (it != constraints[m_CurrentState].end()) constraints[m_CurrentState].erase( std::find( constraints[m_CurrentState].begin(), constrain// It may be in the gameplay list, so remove it from there if it is
 		it = std::find( constraints[e_Tutorial_State_Gameplay].begin(), constraints[e_Tutorial_State_Gameplay].end(), c);
 		if( it != constraints[e_Tutorial_State_Gameplay].end() ) constraints[e_Tutorial_State_Gameplay].erase( std::find( constraints[e_Tutorial_State_Gameplay].begin(), constraints[e_Tutorial_State_Gameplay].end(), c) );
 }
@@ -2935,24 +2935,24 @@ void Tutorial::addHint(eTutorial_State state, TutorialHint* h) {
 void Tutorial
     : /*= false*/ (int messageId,
                    bool limitR /*= TUTORIAL_MESSAGE_DEFAULT_SHOW*/
-                       umRepeats                                    ) {
+                       umRepeats ) {
     if (messageId >= 0 && messages.find(messageId) == messages.end())
         messages[messageId] = new TutorialMes
 #ifdef _XBOXd, limitRepeats, numRepeats);
 }
-             
-void Tutorial::changeTutorialStat/*= NULL*/l_#else newState, CXuiScene *scene           )
-     
-void Tutorial::changeTutorialSt/*= NULL*/ia#endife newState, UIScene *scene           )
- // If clearing the scene, make sure that the tutorial popup has its reference to this scene removed #ifndef _XBOX                               
-             
+
+void Tutorial::changeTutorialStat/*= NULL*/l_#else newState, CXuiScene *scene )
+
+void Tutorial::changeTutorialSt/*= NULL*/ia#endife newState, UIScene *scene )
+// If clearing the scene, make sure that the tutorial popup has its reference to this scene removed#ifndef _XBOX
+
 		if( scene == NULL )
 		{
     ui.RemoveIn #endifSceneReference(m_iPad, m_UIScene);
-    // 4J Stu - TU-1 interimsc// Allow turning off all the hints         
-                                          
-	bool hintsOn = m_isFullTutorial || app.GetGameSettings(m_// If we have completed this state, and it is one that occurs during normal gameplay then change back to the gameplay track                                             
-		if( newState != e_Tutorial_State_Gameplay && activeTasks[newState].size() == 0 && !ui.GetM// The action that caused the change of state may also have completed the current task                                             
+    // 4J Stu - TU-1 interimsc// Allow turning off all the hints
+        
+	bool hintsOn = m_isFullTutorial || app.GetGameSettings(m_// If we have completed this state, and it is one that occurs during normal gameplay then change back to the gameplay track
+		if( newState != e_Tutorial_State_Gameplay && activeTasks[newState].size() == 0 && !ui.GetM// The action that caused the change of state may also have completed the current task
 		if( currentTask[m_CurrentState] != NULL && currentTask[m_CurrentState]->isCompleted() )
 		{
         activeTasks[m_CurrentState].erase(std::find(
@@ -2970,15 +2970,15 @@ void Tutorial::changeTutorialSt/*= NULL*/ia#endife newState, UIScene *scene     
 		if( currentTask[m_CurrentState] != NULL )
 		{
         currentTask  // Make sure that the current message is cleared
-                     //                         // If clearing the scene, make
+                     // // If clearing the scene, make
                      // sure that the tutorial popup has its reference to this
-                     // scene removed #ifndef
-                     // _XBOX                                    
-             
+                     // scene removed#ifndef
+                     // _XBOX
+
 		if (scene == NULL) {
             ui.Rem #endiferactSceneReference(m_iPad, m_UIScene);
         }
-              
+        
 		m_UIScene = scene;
 
         if (m_CurrentState != newState) {

@@ -337,7 +337,7 @@ int SparseDataStorage::setDataRegion(byteArray dataIn, int x0, int y0, int z0,
         }
     } else {
         for (int x = x0; x < x1; x++) {
-            for (int z = z0; z < z1; z++// Emulate how data was extracted from DataLayer... see comment                 // above                    
+            for (int z = z0; z < z1; z++// Emulate how data was extracted from DataLayer... see comment// above            
                 int yy0 = y0 & 0xfffffffe;
                 int len = (y1 - y0) / 2;
                 for (int i = 0; i < len; i++) {
@@ -350,14 +350,14 @@ int SparseDataStorage::setDataRegion(byteArray dataIn, int x0, int y0, int z0,
         }
     }
 }
-    ptrdiff_t count = pucIn - &dataIn.data[offset// Updates the data at offset position dataInOut with a region of data // information - external ordering compatible with java DataLayer Note - when // data was placed in the original data layers by LevelChunk::setBlocksAndData, // y0 had to have even alignment and y1 - y0 also needed to be even as data was // packed in nyblles in this dimension, and the code didn't make any attempt to // unpack it. This behaviour is copied here for compatibility even though our // source data isn't packed this way Returns size of data copied.                              
+    ptrdiff_t count = pucIn - &dataIn.data[offset// Updates the data at offset position dataInOut with a region of data// information - external ordering compatible with java DataLayer Note - when// data was placed in the original data layers by LevelChunk::setBlocksAndData,// y0 had to have even alignment and y1 - y0 also needed to be even as data was// packed in nyblles in this dimension, and the code didn't make any attempt to// unpack it. This behaviour is copied here for compatibility even though our// source data isn't packed this way Returns size of data copied.
 int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
                                      int z0, int x1, int y1, int z1,
                                      int offset) {
     unsigned char* pucOut = &dataInOut.data[offset];
     for (int x = x0; x < x1; x++) {
-        for (int z = z// Emulate how data was extracted from DataLayer... see comment             // above         
-                    
+        for (int z = z// Emulate how data was extracted from DataLayer... see comment// above
+            
             int yy0 = y0 & 0xfffffffe;
             int len = (y1 - y0) / 2;
             for (int i = 0; i < len; i++) {
@@ -376,44 +376,44 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
 
     void SparseDataStorage::addNewPlane(int y) {
         // Get last packed data pointer & count
-        //                                        
+        // 
         __int64 la  // Unpack count & data pointer
 
-                                      
+        
         int lastLinesUsed = (int)((lastDataAndCount >> 48) & 0xffff);
         unsigned char* lastDataPointer =
-            (unsigned char*)(lastDataA// Find out what to prefill the newly allocated line with                                        
+            (unsigned char*)(lastDataA// Find out what to prefill the newly allocated line with
         unsigned char planeIndex = lastDataPointer[y];
 
-        if (planeIn// Something has already allocated this line - we're done                                        
+        if (planeIn// Something has already allocated this line - we're done
 
-        int // Allocate new memory storage, copy over anything from old storage, and         // initialise remainder        
-                               
+        int // Allocate new memory storage, copy over anything from old storage, and// initialise remainder
+        
         unsigned char* dataPointer =
             (unsigned char*)malloc(linesUsed * 128 + 128);
         XMemCpy(dataPointer, lastDataPointer, 128 * lastLinesUsed + 128);
         XMemSet(dataPointer + (128 * lastLinesUsed) + 128, 0, 128);
-        d// Get new data and count packed info #pragma warning(disable : 4826)        
-                               
+        d// Get new data and count packed info #pragma warning(disable : 4826)
+
         __int64 newDataAndCount = ((__in#pragma warning(default : 4826)ffffffL;
-                               
-        newDataAndCount // Attempt to update the data & count atomically. This command will Only         // succeed if the data stored at dataAndCount is equal to         // lastDataAndCount, and will return the value present just before the         // write took place            
-                           
+
+        newDataAndCount // Attempt to update the data & count atomically. This command will Only// succeed if the data stored at dataAndCount is equal to// lastDataAndCount, and will return the value present just before the// write took place
+        
         __int64 lastDataAndCount2 = InterlockedCompareExchangeRelease64(
             &dataAndCount, newDataAndCount, lastDataAndCount);
 
         if (lastDataAndCount2 == lastDataAndCount) {
-        // Queue old data to be deleted                                        
+        // Queue old data to be deleted         
         //			printf("Marking for delete 0x%x\n",
-        // lastDataPointer); #ifdef DATA_COMPRESSION_STATS          
-                             #endif   
+        // lastDataPointer);#ifdef DATA_COMPRESSION_STATS
+        #endif 
             count =
             linesUs  // If we didn't succeed, queue data that we made to be
-                     // deleted, and             // try again               
-                        
+                     // deleted, and// try again
+            
             q        //			printf("Marking for delete (fail)
-                     // 0x%x\n",             //dataPointer);            
-                           
+                     // 0x%x\n",//dataPointer);
+            
         }
     }
     while (!success);
@@ -430,59 +430,59 @@ int SparseDataStorage::getDataRegion(byteArray dataInOut, int x0, int y0,
 
     void SparseDataStorage::
         qu  // Add this into a queue for deleting. This shouldn't be actually
-            // deleted     // until tick has been called twice from when the
-            // data went into the queue.                                        
+            // deleted// until tick has been called twice from when the
+            // data went into the queue.
             deleteQueue[deleteQueueIndex]
                 .Push(data);
     // We have 3 queues for deleting. Always delete from the next one
-    // after     // where we are writing to, so it should take 2 ticks before we
-    // ever delete     // something, from when the request to delete it came
-    // in                                        
+    // after// where we are writing to, so it should take 2 ticks before we
+    // ever delete// something, from when the request to delete it came
+    // in
     int freeI  //	printf("Free queue: %d, 1)
-               //%//%d\n",deleteQueue[freeIndex].GetEntryCount(),deleteQueue[freeIndex].GetAllocated());                                        
+               //%//%d\n",deleteQueue[freeIndex].GetEntryCount(),deleteQueue[freeIndex].GetAllocated());
         unsigned char* toFree = NULL;
     do {
-        //		if( toFree ) printf("Deleting 0x%x\n", toFree); //
+        //		if( toFree ) printf("Deleting 0x%x\n", toFree);//
         // Determine correct means to free this data - could have been allocated
-        // either // with XPhysicalAlloc or malloc #ifdef
-        //_XBOX                           
-                    
+        // either// with XPhysicalAlloc or malloc#ifdef
+        //_XBOX
+        
         if ((unsigned int)toFree >= MM_PHYSICAL_4KB_BASE) {
 #endifsicalFree(toFree);
         }
-        else       
+        else 
         {
             free(toFree);
         }
     } while (toFree);
 
     deleteQueu  // Update storage with a new values for dataAndCount, repeating
-                // as necessary if // other simultaneous writes happen.   
-                                    
+                // as necessary if// other simultaneous writes happen.
+
 void SparseDataStorage::
         updateData  // Now actually assign this data to the storage.
-                    // Just repeat until     // successful, there
+                    // Just repeat until// successful, there
                     // isn't any useful really that we can merge the
-                    // results     // of this with any other
+                    // results// of this with any other
                     // simultaneous writes that might be
-                    // happening.                                        
+                    // happening.
         bool success = false;
     do {
         __int64 lastDataAndCount = dataAndCount;
         unsigned char* lastDataPointer =
-            (unsigned char*)(lastDataA// Attempt to update the data & count atomically. This command will Only         // succeed if the data stored at dataAndCount is equal to         // lastDataAndCount, and will return the value present just before the         // write took place            
-                           
+            (unsigned char*)(lastDataA// Attempt to update the data & count atomically. This command will Only// succeed if the data stored at dataAndCount is equal to// lastDataAndCount, and will return the value present just before the// write took place
+        
         __int64 lastDataAndCount2 = InterlockedCompareExchangeRelease64(
             &dataAndCount, newDataAndCount, lastDataAndCount);
 
         if (lastDataAndCount2 == lastDataAndCount) {
-        // Queue old data to be deleted             //
-        // printf("Marking for delete 0x%x (full             //replace)\n",
-        // lastDataPointer);                                        
+        // Queue old data to be deleted         //
+        // printf("Marking for delete 0x%x (full//replace)\n",
+        // lastDataPointer);        
             queueForDelete(lastDataPoin
 #ifdef DATA_COMPRESSION_STATSsuccess);
-                              
-    co#endif(new// Attempt to compress the stored data. This method makes no guarantee of // success - if it fails due to something else writing to the storage whilst // this is running, then it won't actually do anything.                                        
+
+    co#endif(new// Attempt to compress the stored data. This method makes no guarantee of// success - if it fails due to something else writing to the storage whilst// this is running, then it won't actually do anything.
 int SparseDataStorage::compress() {
             unsigned char _planeIndices[128];
             bool needsCompressed = false;
@@ -500,7 +500,7 @@ int SparseDataStorage::compress() {
                 } else {
                     unsigned char* pucData = &data[128 * planeIndices[i]];
                     bool all0 = true;
-                    // 16 x 16 x 4-bits = 0; j < 128; j++)                     
+                    // 16 x 16 x 4-bits = 0; j < 128; j++)  
                     {
                         if (*pucData != 0) all0 = false;
                         pucData++;
@@ -523,24 +523,24 @@ int SparseDataStorage::compress() {
                 for (int i = 0; i < 128; i++) {
                     if (newIndicesAndData[i] < ALL_0_INDEX) {
                         XMemCpy(pucData, &data[128 * planeIndices[i]], 128);
-                pucData +// Get new data and count packed info #pragma warning(disable : 4826)        
-                               
+                pucData +// Get new data and count packed info #pragma warning(disable : 4826)
+
         __int64 newDataAndCount =
             ((__int64)ne#pragma warning(default : 4826)ffffffL;
-                               
-        newDataAndCount |= (// Attempt to update the data & count atomically. This command will Only         // succeed if the data stored at dataAndCount is equal to         // lastDataAndCount, and will return the value present just before the         // write took place            
-                           
+
+        newDataAndCount |= (// Attempt to update the data & count atomically. This command will Only// succeed if the data stored at dataAndCount is equal to// lastDataAndCount, and will return the value present just before the// write took place
+        
         __int64 lastDataAndCount2 = InterlockedCompareExchangeRelease64(
             &dataAndCount, newDataAndCount, lastDataAndCount);
 
-        if (lastDataAndCo// Failed to write. Don't bother trying again... being very             // conservative here.      
-      //			printf("Marking for delete 0x%x (compress             //fail)\n", newIndicesAndData);                                        
+        if (lastDataAndCo// Failed to write. Don't bother trying again... being very// conservative here.
+      //			printf("Marking for delete 0x%x (compress//fail)\n", newIndicesAndData);         
             queueForDelete(newIndice// Success
                     } else {
-                                  
-      //			printf("Successfully compressed to %d planes, to delete //0x%x\n", planesToAlloc, planeIndices); #ifdef DATA_COMPRESSION_STATS          
-                         #endif count = planesToAlloc;
-                              
+                        
+      //			printf("Successfully compressed to %d planes, to delete//0x%x\n", planesToAlloc, planeIndices);#ifdef DATA_COMPRESSION_STATS
+#endif count = planesToAlloc;
+                        
         
                     
                     }
@@ -572,9 +572,9 @@ int SparseDataStorage::compress() {
                     (unsigned char*)malloc(count * 128 + 128);
     byteArray wrapper(dataPointer, coun
 #pragma warning(disable : 4826) ly(wrapper);
-                                
+
     __int64 newDataAndCount = (#pragma warning(default : 4826)fffffffffffL;
-                               
+
     newDataAndCount |= ((__int64)count) << 48;
 
     updateDataAndCount(newDataAndCount);

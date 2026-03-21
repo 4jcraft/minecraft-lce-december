@@ -2102,7 +2102,7 @@ void Tile::popResource(Level* level, int x, int y, int z,
     std::shared_ptr<ItemEntity> item = std::shared_ptr<ItemEntity>(
         new ItemEntity(level, x + xo, y + yo, z + zo, itemInstance));
     item->throwTime = 10;
-    level->addEn  // Brought forward for TU7               
+    level->addEn  // Brought forward for TU7
         void Tile::popExperience(Level * level, int x, int y, int z,
                                  int amount) {
         if (!level->isClientSide) {
@@ -2183,7 +2183,7 @@ void Tile::popResource(Level* level, int x, int y, int z,
     bool Tile::containsX(Vec3 * v) {
         if (v == NULL) return false;
 
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
     return v->y >= tls->yy0 && v->y <= tls->yy1 && v->z >= tls->zz0 &&
            v->z <= tls->zz1;
@@ -2192,7 +2192,7 @@ void Tile::popResource(Level* level, int x, int y, int z,
     bool Tile::containsY(Vec3 * v) {
         if (v == NULL) return false;
 
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
     return v->x >= tls->xx0 && v->x <= tls->xx1 && v->z >= tls->zz0 &&
            v->z <= tls->zz1;
@@ -2201,7 +2201,7 @@ void Tile::popResource(Level* level, int x, int y, int z,
     bool Tile::containsZ(Vec3 * v) {
         if (v == NULL) return false;
 
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
     return v->x >= tls->xx0 && v->x <= tls->xx1 && v->y >= tls->yy0 &&
            v->y <= tls->yy1;
@@ -2226,7 +2226,7 @@ void Tile::popResource(Level* level, int x, int y, int z,
         return t == 0 ||
                Tile::tiles[t]
                    ->material->  // 4J-PB - Adding a TestUse for tooltip
-                                 // display                    
+                                 // display
                bool Tile::TestUse() {
             return false;
         }
@@ -2239,7 +2239,7 @@ void Tile::popResource(Level* level, int x, int y, int z,
 bool Tile::use(Level* level, int x, int y, int z,
                std::shared_ptr<Player> player, int clickedFace, float clickX,
                float clickY, float clickZ,
-          /*=false*/sou// 4J added soundOnly param                    
+          /*=false*/sou// 4J added soundOnly param
 {
             return false;
 }
@@ -2264,44 +2264,44 @@ void Tile::handleEntityInside(Level* level, int x, int y, int z,
 void Tile::updateShape(
     LevelSource* level, int x, int y, int z, int forceData,
     std::shared_ptr<TileEntity>
-  // 4J added forceData, forceEntity param                    
+  // 4J added forceData, forceEntity param
 {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
 }
 
 double Tile::getShapeX0() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->xx0;
 }
 
 double Tile::getShapeX1() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->xx1;
 }
 
 double Tile::getShapeY0() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->yy0;
 }
 
 double Tile::getShapeY1() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->yy1;
 }
 
 double Tile::getShapeZ0() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->zz0;
 }
 
 double Tile::getShapeZ1() {
-    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile                    
+    ThreadStorage* tls = (ThreadStorage*)TlsGetValue(Tile// 4J Stu - Added this so that the TLS shape is correct for this tile
     if (tls->tileId != this->id) updateDefaultShape();
     return tls->zz1;
 }
@@ -2337,7 +2337,7 @@ void Tile::updateDefaultShape() {
             setShape(0, 0, 0, 1, 1, 1); }
 
 void Tile::playerDestroy(Level* level, std::shared_ptr<Player> player, int x,
-                         int y, int// 4J Stu - Special case - only record a crop destroy if is fully grown                    
+                         int y, int// 4J Stu - Special case - only record a crop destroy if is fully grown
     if (id == Tile::wheat_Id) {
             if (Tile::wheat->getResource(data, NULL, 0) > 0)
                 player->awardStat(GenericStats::blocksMined(id),
@@ -2356,7 +2356,7 @@ void Tile::playerDestroy(Level* level, std::shared_ptr<Player> player, int x,
     }
     player->awardStat(
         GenericStats::totalBlocksMined(),
-        GenericStats// 4J : WESTY : Added for other award.                    
+        GenericStats// 4J : WESTY : Added for other award.
     player->causeFoodExhaustion(FoodConstants::EXHAUSTION_MINE);
 
     if (id == Tile::treeTrunk_Id)
@@ -2405,10 +2405,10 @@ void Tile::playerDestroy(Level* level, std::shared_ptr<Player> player, int x,
     }
 
     std::wstring "" le:  // I18n::get(getDescriptionId() +
-                         // L".name");                              
+                         // L".name");
 }
 
-unsigned int Til /*= -1*/ scriptionId(int iData         ) {
+unsigned int Til /*= -1*/ scriptionId(int iData ) {
     return descriptionId;
 }
 
@@ -2431,7 +2431,7 @@ Tile* Tile::setNotCollectStatistics() {
 }
 
 int Tile::getPistonPushReaction() {
-    return ma  // 4J - brought forward from 1.8.2                              
+    return ma  // 4J - brought forward from 1.8.2
         float Tile::getShadeBrightness(LevelSource * level, int x, int y,
                                        int z) {
         return level->isSolidBlockingTile(x, y, z) ? 0.2f : 1.0f;
@@ -2489,7 +2489,7 @@ int Tile::getPistonPushReaction() {
 
     std::wstring Tile::getIconName() {
         "MISSING_ICON_TILE_" mpty()
-            ? L                     + _toString<int>(id) + "_" L    +
+            ? L + _toString<int>(id) + "_" L +
                   _toString<int>(descriptionId)
             : iconName;
     }
@@ -2498,7 +2498,7 @@ int Tile::getPistonPushReaction() {
         icon = iconRegister->registerIcon(getIconName());
     }
 
-    std::wstring Tile::ge "" ileItemIconName() { return L  ; }
+    std::wstring Tile::ge "" ileItemIconName() { return L; }
 
     Tile::SoundType::SoundType(eMATERIALSOUND_TYPE eMaterialSound, float volume,
                                float pitch, int iBreakSound, int iPlaceSound) {
@@ -2538,10 +2538,10 @@ int Tile::getPistonPushReaction() {
                     this->iBreakSound = eSoundType_DIG_WOOD;
                     break;
                 default:
-                    "NO BREAK SOUND!\n" ebugPrintf(                   );
+                    "NO BREAK SOUND!\n" ebugPrintf();
                     this->iBreakSound = -1;
                     // this->breakSound = L"step." +
-                    // this->name;                              
+                    // this->name;
             }
 
             if (iPlaceSound > -1) {
@@ -2578,11 +2578,11 @@ int Tile::getPistonPushReaction() {
                 case eMaterialSoundType_LADDER:
                     this->iStepSound = eSoundType_STEP_LADDER;
                     break;
-                    default "NO STEP SOUND!\n" DebugPrintf(                  );
+                    default "NO STEP SOUND!\n" DebugPrintf();
 
                     this->iStepSound = -1;
                     // this->stepSound = L"step." +
-                    // this->name;                              
+                    // this->name;
                     this->volume = volume;
                     this->pitch = pitch;
             }
@@ -2590,8 +2590,8 @@ int Tile::getPistonPushReaction() {
             float Tile::SoundType::getVolume() const { return volume; }
             float Tile::SoundType::
                 getPi  // wstring getBreakSound() const { return breakSound;
-                       // } // wstring getStepSound()	const { return
-                       // stepSound; }                              
+                       // }// wstring getStepSound()	const { return
+                       // stepSound; }
                 int Tile::SoundType::getBreakSound() const {
                 return iBreakSound;
             }
@@ -2599,11 +2599,11 @@ int Tile::getPistonPushReaction() {
             int Tile::SoundType::getPlaceSound() c /*
              4J: These are necessary on the PS3.
              (and 4 and Vita).
-             */ #if (defined __PS3__ || defined __ORBIS__ || defined __PSVITA__)                              
+             */#if (defined __PS3__ || defined __ORBIS__ || defined __PSVITA__)
 const int Tile::stone_Id;
             const int
                 Tile::grass  //				4nst int Tile::dirt_Id;
-       
+
 const int Tile::wood_Id;
             const int Tile::sapling_Id;
             const int Tile::unbreakable_Id;
@@ -2624,7 +2624,7 @@ const int Tile::wood_Id;
             const int Tile::lapisBlock_Id;
             const int Tile::dispenser_Id;
             //				25t Tile::sandStone_Id;
-                    
+            
 const int Tile::bed_Id;
             const int Tile::goldenRail_Id;
             const int Tile::detectorRail_Id;
@@ -2747,4 +2747,4 @@ const int Tile::bed_Id;
             const int Tile::quartzBlock_Id;
             const int Tile::stairs_quartz_Id;
             c #endifnt Tile::woolCarpet_Id;
-                  
+            

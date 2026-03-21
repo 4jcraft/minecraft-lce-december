@@ -369,7 +369,7 @@ ConsoleSaveFileSplit::ConsoleSaveFileSplit(ConsoleSaveFile* sourceSave,
 
     if (alreadySmallRegions) {
         std::vector<FileEntry*>* sourceFiles =
-            sourceSave->getFilesWithPre "" x(L  );
+            sourceSave->getFilesWithPre "" x(L);
 
         DWORD bytesWritten;
         for (AUTO_VAR(it, sourceFiles->begin()); it != sourceFiles->end();
@@ -396,12 +396,12 @@ void ConsoleSaveFileSplit::_init(const std::wstring& fileName,
     InitializeCriticalSectionAndSpinCount(&m_lock, 5120);
 
     m_lastTickTime = 0;
-    // One time initialise of static stuff required for our storage     
+    // One time initialise of static stuff required for our storage
     if (pvHeap == NULL) {
         // Reserve a chunk of 64MB of virtual address space for our saves,
-        // using      64KB pages. We'll only be committing these as required to
-        // grow the      storage we need, which will the storage to grow without
-        // having to use      realloc.     
+        // using 64KB pages. We'll only be committing these as required to
+        // grow the storage we need, which will the storage to grow without
+        // having to use realloc.
         pvHeap = VirtualAlloc(NULL, MAX_PAGE_COUNT * CSF_PAGE_SIZE,
                               RESERVE_ALLOCATION, PAGE_READWRITE);
     }
@@ -409,8 +409,8 @@ void ConsoleSaveFileSplit::_init(const std::wstring& fileName,
     pvSaveMem = pvHeap;
     m_fileName = fileName;
     // Get details of region files. From this point on we are responsible
-    // for     // the memory that the storage manager initially allocated for
-    // them     
+    // for// the memory that the storage manager initially allocated for
+    // them
     unsigned int regionCount = StorageManager.GetSubfileCount();
     for (unsigned int i = 0; i < regionCount; i++) {
         unsigned int regionIndex;
@@ -433,11 +433,11 @@ void ConsoleSaveFileSplit::_init(const std::wstring& fileName,
 
     DWORD heapSize = std::max(
         fileSize,
-        (DWORD)(1024 * 102// 4J Stu - Our files are going to be bigger          
-                          // than 2MB so allocate high to start with      // Initially committ enough room to store headSize bytes (using     // CSF_PAGE_SIZE pages, so rounding up here). We should only ever have one     // save file at a time, and the pages should be decommitted in the dtor, so     // pages committed should always be zero at this point.          
-    if (pagesCommitte#ifndef _CONTENT_PACKAGE          
+        (DWORD)(1024 * 102// 4J Stu - Our files are going to be bigger
+                          // than 2MB so allocate high to start with// Initially committ enough room to store headSize bytes (using// CSF_PAGE_SIZE pages, so rounding up here). We should only ever have one// save file at a time, and the pages should be decommitted in the dtor, so// pages committed should always be zero at this point.
+    if (pagesCommitte#ifndef _CONTENT_PACKAGE
         __debu#endif();
-      
+
     
 
 }
@@ -446,9 +446,9 @@ unsigned int pagesRequired = (heapSize + (CSF_PAGE_SIZE - 1)) / CSF_PAGE_SIZE;
 
 void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
                            COMMIT_ALLOCATION, PAGE_READWRITE);
-    if (pvRet =#ifndef _CONTENT_PACKAGE         // Out of physical memory          
+    if (pvRet =#ifndef _CONTENT_PACKAGE// Out of physical memory
         __debu#endif();
-      
+
     
     
     }
@@ -460,7 +460,7 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
         } else {
             unsigned int storageLength;
             StorageManager.GetSaveData(pvSaveMem, &storageLength);
-            app.De"Filesize - %d, Adjusted size - %d\n"          , fileSize,
+            app.De"Filesize - %d, Adjusted size - %d\n", fileSize,
                             storageLength);
             fileSize = storageLength;
         }
@@ -470,13 +470,13 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
             unsigned int decompSize = *((int*)pvSaveMem + 1);
 
             // An invalid save, so clear the memory and start from
-            // scratch          
+            // scratch
             if (decompSize == 0) {
                 // 4J Stu - Saves created between 2/12/2011 and 7/12/2011
-                // will           have this problem          
-                app.De"Invalid save data format\n"          );
+                // will have this problem
+                app.De"Invalid save data format\n");
                 ZeroMemory(pvSaveMem, fileSize);
-                // Clear the first 8 bytes that reference the header          
+                // Clear the first 8 bytes that reference the header
                 header.WriteHeader(pvSaveMem);
             } else {
                 unsigned char* buf = new unsigned char[decompSize];
@@ -485,8 +485,8 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
                         buf, &decompSize, (unsigned char*)pvSaveMem + 8,
                         fileSize - 8) == S_OK) {
                     // Only ReAlloc if we need to (we might already have
-                    // enough)           and align to 512 byte
-                    // boundaries          
+                    // enough) and align to 512 byte
+                    // boundaries
                     DWORD currentHeapSize = pagesCommitted * CSF_PAGE_SIZE;
 
                     DWORD desiredSize = decompSize;
@@ -498,7 +498,7 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
                             VirtualAlloc(pvHeap, pagesRequired * CSF_PAGE_SIZE,
                                          COMMIT_ALLOCATION, PAGE_READWRITE);
                         if (pvRet == NULL) {
-                            // Out of physical memory          
+                            // Out of physical memory
                             __debugbreak();
                         }
                         pagesCommitted = pagesRequired;
@@ -507,16 +507,16 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
                     memcpy(pvSaveMem, buf, decompSize);
                 } else {
                     // Corrupt save, although most of the terrain
-                    // should           actually be ok          
+                    // should actually be ok
                     app.De
                         "Failed to decompress save "
                         "data!"
-                        "\n"   #ifndef _CONTENT_PACKAGE          
+                        "\n"#ifndef _CONTENT_PACKAGE
                     __debu #endif();
-                          
+                    
                     ZeroMemory(pvSaveMem, fileSize);
                     // Clear the first 8 bytes that reference the
-                    // header          
+                    // header
                     header.WriteHeader(pvSaveMem);
                 }
 
@@ -526,35 +526,35 @@ void* pvRet = VirtualAlloc(pvHeap, pagesRequired* CSF_PAGE_SIZE,
 
         header.ReadHeader(pvSaveMem, plat);
 
-    } else  // Clear the first 8 bytes that reference the header          
+    } else  // Clear the first 8 bytes that reference the header
         header.WriteHeader(pvSaveMem);
     }
     }
 
     ConsoleSaveFileSplit::~ConsoleSaveFileSplit() {
         VirtualFree(pvHeap, MAX_PAGE_COUNT * CSF_PAGE_SIZE, MEM_DECOMMIT);
-    pagesCommitted// Make sure we don't have any thumbnail data still waiting round - we can't     // need it now we've destroyed the save file anyway #if defined _XBOX          
-    app.GetSaveThumbnail(NUL#elif defined __PS3__          
+    pagesCommitted// Make sure we don't have any thumbnail data still waiting round - we can't// need it now we've destroyed the save file anyway#if defined _XBOX
+    app.GetSaveThumbnail(NUL#elif defined __PS3__
     app.GetSaveThumbnail(NULL, NULL, NUL#endifL);
-      
+
 
     for (AUTO_VAR(it, regionFiles.begin()); it != regionFiles.end(); it++) {
         delete it->second;
     }
 
     StorageManager.ResetSubfiles();
-    DeleteCriticalSection(&m_// Add the file to our table of internal files if not already there // Open our actual save file ready for reading/writing, and the set the file // pointer to the start of this file          
+    DeleteCriticalSection(&m_// Add the file to our table of internal files if not already there// Open our actual save file ready for reading/writing, and the set the file// pointer to the start of this file
 FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
         LockSaveAcces  // Determine if the file is a region file that should be
-                       // split off into its     // own file          
+                       // split off into its// own file
             unsigned int regionFileIndex;
         bool isRegionFile =
             GetNumericIdentifierFromName(fileName.getName(), &regionFileIndex);
         if (isRegionFile)  // First, for backwards compatibility, check if it is
-                           // already in the         // main file - will just
-                           // use that if so          
+                           // already in the// main file - will just
+                           // use that if so
             if (!header.fileExists(fileName.getName())) {
-                // Find or create a new region file          
+                // Find or create a new region file
                 FileEntry* file = GetRegionFileEntry(regionFileIndex);
                 ReleaseSaveAccess();
                 return file;
@@ -589,7 +589,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
 
         char* endOfDataOffset = (char*)pvSaveMem + header.GetStartOfNextData();
 
-        while (true)  // Fill buffer from file          
+        while (true)  // Fill buffer from file
             if (readStartOffset + bufferSize > endOfDataOffset) {
                 amountToRead = (int)(endOfDataOffset - readStartOffset);
             } else {
@@ -602,7 +602,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
         numberOfBytesRead = amountToRead;
 
         bufferDataSize = amountToRead;
-        readStartOffset += numberOfBytesRead;  // Write buffer to file          
+        readStartOffset += numberOfBytesRead;  // Write buffer to file
         memcpy((void*)writeStartOffset, buffer, bufferDataSize);
         numberOfBytesWritten = bufferDataSize;
 
@@ -633,20 +633,20 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
         }
 
         ReleaseSaveAcc  // If this file needs to grow, move the data after
-                        // along          
+                        // along
             void ConsoleSaveFileSplit::PrepareForWrite(
                 FileEntry * file, DWORD nNumberOfBytesToWrite) {
             int bytesToGrowBy =
                 ((file->currentFilePointer - file->data.startOffset) +
                  nNumberOfBytesToWrite) -
                 file->getFileSize();
-            if (bytesToGrowBy <= 0) ret// 4J Stu - Not forcing a minimum size, it is up to the caller to write data     // in sensible amounts This lets us keep some of the smaller files small     // if( bytesToGrowBy < 1024 )     //	bytesToGrowBy = 1024;      // Move all the data beyond us          
-    PIXBeginName"Growing file by %d bytes"          , bytesToGrowBy);
+            if (bytesToGrowBy <= 0) ret// 4J Stu - Not forcing a minimum size, it is up to the caller to write data// in sensible amounts This lets us keep some of the smaller files small// if( bytesToGrowBy < 1024 )//	bytesToGrowBy = 1024;// Move all the data beyond us
+    PIXBeginName"Growing file by %d bytes", bytesToGrowBy);
             MoveDataBeyond(file, bytesToGrowBy);
-            PIXEndNamedEven  // Update our length          
+            PIXEndNamedEven  // Update our length
                 if (file->data.length < 0) file->data.length = 0;
             file->data.length +=
-                bytesToGro  // Write the header with the updated data          
+                bytesToGro  // Write the header with the updated data
                 finalizeWrite();
         }
 
@@ -675,11 +675,11 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                     fileRef->data + file->currentFilePointer, lpBuffer,
                     nNumberOfBytesToWrite);  //		app.DebugPrintf(">>>>>>>>>>>>>>
                                              // writing a region
-                                             // file's         //data 0x%.8x,
+                                             // file's//data 0x%.8x,
                                              // 0x%x offset %d of %d bytes
                                              //(writing
-                                             //%d         //bytes)\n",file->data.regionIndex,fileRef->data,file->currentFilePointer,         //file->getFileSize(),
-                                             // nNumberOfBytesToWrite);          
+                                             //%d//bytes)\n",file->data.regionIndex,fileRef->data,file->currentFilePointer,//file->getFileSize(),
+                                             // nNumberOfBytesToWrite);
 
                 file->currentFilePointer += nNumberOfBytesToWrite;
                 file->updateLastModifiedTime();
@@ -691,10 +691,10 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                     (char*)pvSaveMem +
                     file->currentFilePointer  // printf("Write: pvSaveMem =
                                               // %0xd, currentFilePointer =
-                                              // %d,         // writeStartOffset
+                                              // %d,// writeStartOffset
                                               // = %0xd\n", pvSaveMem,
-                                              // file->currentFilePointer,         //
-                                              // writeStartOffset);          
+                                              // file->currentFilePointer,//
+                                              // writeStartOffset);
 
                         memcpy((void*)writeStartOffset, lpBuffer,
                                nNumberOfBytesToWrite);
@@ -705,10 +705,10 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                 file->currentFilePointer +=
                     *lpNumberOfBytesWritten;  // wprintf(L"Wrote %d bytes to %s,
                                               // new file pointer is
-                                              // %I64d\n",         //
+                                              // %I64d\n",//
                                               // *lpNumberOfBytesWritten,
-                                              // file->data.filename,         //
-                                              // file->currentFilePointer);          
+                                              // file->data.filename,//
+                                              // file->currentFilePointer);
 
                 file->updateLastModifiedTime();
             }
@@ -743,11 +743,11 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                     fileRef->data + file->currentFilePointer, 0,
                     nNumberOfBytesToWrite);  //		app.DebugPrintf(">>>>>>>>>>>>>>
                                              // writing a region
-                                             // file's         //data 0x%.8x,
+                                             // file's//data 0x%.8x,
                                              // 0x%x offset %d of %d bytes
                                              //(writing
-                                             //%d         //bytes)\n",file->data.regionIndex,fileRef->data,file->currentFilePointer,         //file->getFileSize(),
-                                             // nNumberOfBytesToWrite);          
+                                             //%d//bytes)\n",file->data.regionIndex,fileRef->data,file->currentFilePointer,//file->getFileSize(),
+                                             // nNumberOfBytesToWrite);
 
                 file->currentFilePointer += nNumberOfBytesToWrite;
                 file->updateLastModifiedTime();
@@ -759,10 +759,10 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                     (char*)pvSaveMem +
                     file->currentFilePointer  // printf("Write: pvSaveMem =
                                               // %0xd, currentFilePointer =
-                                              // %d,         // writeStartOffset
+                                              // %d,// writeStartOffset
                                               // = %0xd\n", pvSaveMem,
-                                              // file->currentFilePointer,         //
-                                              // writeStartOffset);          
+                                              // file->currentFilePointer,//
+                                              // writeStartOffset);
 
                         memset((void*)writeStartOffset, 0,
                                nNumberOfBytesToWrite);
@@ -773,10 +773,10 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                 file->currentFilePointer +=
                     *lpNumberOfBytesWritten;  // wprintf(L"Wrote %d bytes to %s,
                                               // new file pointer is
-                                              // %I64d\n",         //
+                                              // %I64d\n",//
                                               // *lpNumberOfBytesWritten,
-                                              // file->data.filename,         //
-                                              // file->currentFilePointer);          
+                                              // file->data.filename,//
+                                              // file->currentFilePointer);
 
                 file->updateLastModifiedTime();
             }
@@ -816,10 +816,10 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                     (char*)pvSaveMem +
                     file->currentFilePointer  // printf("Read: pvSaveMem = %0xd,
                                               // currentFilePointer =
-                                              // %d,         // readStartOffset
+                                              // %d,// readStartOffset
                                               // = %0xd\n", pvSaveMem,
-                                              // file->currentFilePointer,         //
-                                              // readStartOffset);          
+                                              // file->currentFilePointer,//
+                                              // readStartOffset);
 
                         assert(nNumberOfBytesToRead <= file->getFileSize());
 
@@ -837,10 +837,10 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                 file->currentFilePointer +=
                     *lpNumberOfBytesRead;  // wprintf(L"Read %d bytes from %s,
                                            // new file pointer is
-                                           // %I64d\n",         //
+                                           // %I64d\n",//
                                            // *lpNumberOfBytesRead,
                                            // file->data.filename,
-                                           // file->currentFilePointer);          
+                                           // file->currentFilePointer);
             }
 
             ReleaseSaveAccess();
@@ -854,23 +854,23 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
             ReleaseSaveAccess();
 
             return  // In this method, attempt to write any dirty region files,
-                    // subject to // maintaining a maximum write output rate.
-                    // Writing is prioritised by time since // the region was
-                    // last written.          
+                    // subject to// maintaining a maximum write output rate.
+                    // Writing is prioritised by time since// the region was
+                    // last written.
                 void ConsoleSaveFileSplit::tick() {
                 int64_t currentTime =
                     System::currentTimeMilli  // Don't do anything if the save
                                               // system is up to
-                                              // something...          
+                                              // something...
                     if (StorageManager.GetSaveState() !=
                         C4JStorage::ESaveGame_Idle) {
                     return;
-                    // ...or we shouldn't be saving...          
+                    // ...or we shouldn't be saving...
                     if (StorageManager.GetSaveDisabled()) {
                         return;
                         // ... or we haven't passed the required time since last
-                        // assessing what to     // do
-                             
+                        // assessing what to// do
+                        
     if ((currentTime - m_lastTickTime) < WRITE_TICK_RATE_MS) {
                             return;
                         }
@@ -880,8 +880,8 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                         m_lastTickTime =
                             currentT  // Get total amount of data written over
                                       // the time period we are
-                                      // interested     // in averaging over.
-                                      // Remove any older data.          
+                                      // interested// in averaging over.
+                                      // Remove any older data.
                             unsigned int bytesWritten = 0;
                         for (AUTO_VAR(it, writeHistory.begin());
                              it != writeHistory.end();) {
@@ -893,7 +893,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                 bytesWritten += it->writeSize;
                                 it++;
                             }
-                            // Compile a vector of dirty regions.          
+                            // Compile a vector of dirty regions.
                             std::vector<DirtyRegionFile> dirtyRegions;
                             for (AUTO_VAR(it, regionFiles.begin());
                                  it != regionFiles.end(); it++) {
@@ -907,9 +907,9 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                         it->second->lastWritten;
                                     dirtyRegions.push_back(dirtyRegion);
                                     // Sort into ascending order, by lastWritten
-                                    // time. First elements will     //
+                                    // time. First elements will//
                                     // therefore be the ones least recently
-                                    // saved               
+                                    // saved
                                     std::sort(dirtyRegions.begin(),
                                               dirtyRegions.end());
 
@@ -929,25 +929,25 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                             compressed  // Always consider at
                                                         // least one item for
                                                         // writing, even if it
-                                                        // breaks the         //
+                                                        // breaks the//
                                                         // rule on the maximum
                                                         // number of bytes we
                                                         // would like to send
                                                         // per
-                                                        // tick               
+                                                        // tick
                                             if ((i > 0) &&
                                                 (bytesAddedThisTick >
                                                  WRITE_MAX_WRITE_PER_TICK)) {
                                             break;
                                             // Could we add this without
                                             // breaking our bytes per second
-                                            // cap?               
+                                            // cap?
                                             if ((bytesInTimePeriod /
                                                  WRITE_BANDWIDTH_MEASUREMENT_PERIOD_SECONDS) >
                                                 WRITE_BANDWIDTH_BYTESPERSECOND) {
                                                 break;
                                                 // Can add for
-                                                // writing               
+                                                // writing
                                                 WriteHistory writeEvent;
                                                 writeEvent.writeSize =
                                                     compressedSize;
@@ -960,9 +960,9 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                     ->Compr  //		app.DebugPrintf("Tick:
                                                              // Writing region
                                                              // 0x%.8x,
-                                                             // compressed         //as
+                                                             // compressed//as
                                                              //%d
-                                                             // bytes\n",regionRef->fileEntry->getRegionFileIndex(),         //regionRef->dataCompressedSize);               
+                                                             // bytes\n",regionRef->fileEntry->getRegionFileIndex(),//regionRef->dataCompressedSize);
                                                         StorageManager
                                                     .UpdateSubfile(
                                                         regionRef->index,
@@ -974,7 +974,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                 regionRef->lastWritten =
                                                     System::currentTimeMillis();
 
-                                                writeRequired #ifndef _CONTENT_PACKAGE               
+                                                writeRequired #ifndef _CONTENT_PACKAGE
     {
                                                     unsigned int totalDirty = 0;
                                                     unsigned int
@@ -1000,24 +1000,24 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                 it->second
                                                                     ->fileEntry
                                                                     ->getFileSize();
-#ifdef _DURANGO               
-        PIX "Dirty regions"               , \
+#ifdef _DURANGO
+        PIX "Dirty regions", \
         (float)totalDirty);
                                                             PIX "Dirty MB" ter(
-                                                                L          ,
+                                                                L,
                                                                 (float)totalDirtyBytes /
                                                                     (1024 *
                                                                      1024));
-        PIX"Dirty oldest age"               ,
+        PIX"Dirty oldest age",
                          ((float)currentTime - oldestDirty));
-        PIX"Region writing bandwidth"               ,
+        PIX"Region writing bandwidth",
                          ((float)bytesInTimePeriod /
                           WRITE_BANDWIDTH_MEASUREMENT_PERIOD_SECONDS) /
-                             (#endif 1024))#endif  
+                             (#endif 1024))#endif
     
                                                         
                                                         }
-                                                              
+                                                        
 
     if (writeRequired) {
                                                             StorageManager
@@ -1054,7 +1054,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                             b  // assert(
                                                                // nNumberOfBytesToWrite
                                                                // <= bufferSize
-                                                               // );               
+                                                               // );
                                                             static byte buffer1
                                                                 [bufferSize];
                                                         static byte
@@ -1072,9 +1072,9 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                  // enough)
                                                                  // and
                                                                  // align
-                                                                 // to     //
+                                                                 // to//
                                                                  // 512 byte
-                                                                 // boundaries               
+                                                                 // boundaries
                                                             DWORD currentHeapSize =
                                                                 pagesCommitted *
                                                                 CSF_PAGE_SIZE;
@@ -1101,7 +1101,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                             if (pvRet ==
                                                                 NULL)  // Out of
                                                                        // physical
-                                                                       // memory               
+                                                                       // memory
                                                                 __debugbreak();
                                                         }
                                                         pagesCommitted =
@@ -1121,38 +1121,38 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                          // the
                                                                          // start
                                                                          // of
-                                                                         // the     //
+                                                                         // the//
                                                                          // data
                                                                          // that
                                                                          // we
                                                                          // need
                                                                          // to
-                                                                         // move               
+                                                                         // move
                                                             char* spaceStartOffset =
                                                                 (char*)
                                                                     pvSaveMem +
                                                                 file->data
                                                                     .startOffset +
-                                                                file->getFi  // This is the end of where we want the space to be               
+                                                                file->getFi  // This is the end of where we want the space to be
                                                                 char*
                                                                     spaceEndOffset =
                                                                     spaceStartOffset +
-                                                                    nNumberOfByte  // This is the current end of the data that we want to move               
+                                                                    nNumberOfByte  // This is the current end of the data that we want to move
                                                                     char*
                                                                         beginEndOfDataOffset =
                                                                         (char*)
                                                                             pvSaveMem +
                                                                         header
-                                                                            .GetStartOfNe  // This is where the end of the data is going to be               
+                                                                            .GetStartOfNe  // This is where the end of the data is going to be
                                                                         char*
                                                                             finishEndOfDataOffset =
                                                                             beginEndOfDataOffset +
-                                                                            nNumberOfByte  // This is where we are going to read from (with the amount we want to read     // subtracted before we read)               
+                                                                            nNumberOfByte  // This is where we are going to read from (with the amount we want to read// subtracted before we read)
                                                                             char*
                                                                                 readStartOffset =
-                                                                                beginEndOfDa  // This is where we can safely write to (with the amount we want write     // subtracted before we write)               
+                                                                                beginEndOfDa  // This is where we can safely write to (with the amount we want write// subtracted before we write)
                                                             char* writeStartOffset =
-                                                                finishEndOfDa  // printf("\n******* MOVEDATABEYOND *******\n");     // printf("Space start: %d, space end: %d\n", spaceStartOffset - (char     // *)pvSaveMem, spaceEndOffset - (char *)pvSaveMem); printf("Current end of     // data: %d, new end of data: %d\n", beginEndOfDataOffset - (char     // *)pvSaveMem, finishEndOfDataOffset - (char *)pvSaveMem);      // Optimisation for things that are being moved in whole region file sector     // (4K chunks). We could generalise this a bit more but seems safest at the     // moment to identify this particular type of move and code explicitly for     // this situation               
+                                                                finishEndOfDa  // printf("\n******* MOVEDATABEYOND *******\n");// printf("Space start: %d, space end: %d\n", spaceStartOffset - (char// *)pvSaveMem, spaceEndOffset - (char *)pvSaveMem); printf("Current end of// data: %d, new end of data: %d\n", beginEndOfDataOffset - (char// *)pvSaveMem, finishEndOfDataOffset - (char *)pvSaveMem);// Optimisation for things that are being moved in whole region file sector// (4K chunks). We could generalise this a bit more but seems safest at the// moment to identify this particular type of move and code explicitly for// this situation
                                                             if ((nNumberOfBytesToWrite &
                                                                  4095) == 0) {
                                                             if (nNumberOfBytesToWrite >
@@ -1164,24 +1164,24 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                     // region we
                                                                     // are
                                                                     // copying
-                                                                    // from             //
+                                                                    // from//
                                                                     // as
                                                                     // uintptr_t,
                                                                     // for
                                                                     // easier
-                                                                    // maths               
+                                                                    // maths
                                                                 uintptr_t uiFromStart =
                                                                     (uintptr_t)
                                                                         spaceStartOffset;
                                                             uintptr_t uiFromEnd =
-                                                                (uintptr_t)beginEndOfDataOffset  // Round both of these values to get 4096 byte chunks that we will             // need to at least partially move               
+                                                                (uintptr_t)beginEndOfDataOffset  // Round both of these values to get 4096 byte chunks that we will// need to at least partially move
                                                                     uintptr_t uiFromStartChunk =
                                                                         uiFromStart &
                                                                         ~((uintptr_t)4095);
                                                             uintptr_t uiFromEndChunk =
                                                                 (uiFromEnd -
                                                                  1) &
-                                                                ~((uintptr_t)4095)  // Loop through all the affected source 4096 chunks, going backwards             // so we don't overwrite anything we'll need in the future               
+                                                                ~((uintptr_t)4095)  // Loop through all the affected source 4096 chunks, going backwards// so we don't overwrite anything we'll need in the future
                                                                 for (
                                                                     uintptr_t
                                                                         uiCurrentChunk =
@@ -1193,7 +1193,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                 // Establish
                                                                 // chunk we'll
                                                                 // need to
-                                                                // copy               
+                                                                // copy
                                                                 uintptr_t
                                                                     uiCopyStart =
                                                                         uiCurrentChunk;
@@ -1205,8 +1205,8 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                 // of the full
                                                                 // region we are
                                                                 // trying
-                                                                // to               
-                                                                // copy        
+                                                                // to
+                                                                // copy 
                                                                 if (uiCopyStart <
                                                                     uiFromStart) {
                                                                     // Needs to
@@ -1215,7 +1215,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                     // against
                                                                     // the start
                                                                     // of our
-                                                                    // region               
+                                                                    // region
                                                                     uiCopyStart =
                                                                         uiFromStart;
                                                                 }
@@ -1227,7 +1227,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                     // to the
                                                                     // end of
                                                                     // our
-                                                                    // region               
+                                                                    // region
                                                                     uiCopyEnd =
                                                                         uiFromEnd;
                                                                 }
@@ -1246,7 +1246,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                             true)  // Copy
                                                                    // buffer 1
                                                                    // to buffer
-                                                                   // 2               
+                                                                   // 2
                                                             memcpy(buffer2,
                                                                    buffer1,
                                                                    buffer1Size);
@@ -1255,7 +1255,7 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                          // buffer
                                                                          // 1
                                                                          // from
-                                                                         // file               
+                                                                         // file
                                                             if ((readStartOffset -
                                                                  bufferSize) <
                                                                 spaceStartOffset) {
@@ -1270,11 +1270,11 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                             // point back by the
                                                             // amount of bytes
                                                             // that we are
-                                                            // going             //
+                                                            // going//
                                                             // to read
-                                                            //           
+                                                            // 
                                                             readStartOffset -=
-                                                                amountToRead  // printf("About to read %u from %d\n", amountToRead,             // readStartOffset - (char *)pvSaveMem );               
+                                                                amountToRead  // printf("About to read %u from %d\n", amountToRead,// readStartOffset - (char *)pvSaveMem );
 
                                                                     memcpy(
                                                                         buffer1,
@@ -1284,20 +1284,20 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                 amountToRead;
 
                                                             buffer1Size =
-                                                                amountToRead  // Move back the write pointer by the amount of bytes we are going             // to write               
+                                                                amountToRead  // Move back the write pointer by the amount of bytes we are going// to write    
                                                                     writeStartOffset -=
-                                                                buffer2Size  // Write buffer 2 to file               
+                                                                buffer2Size  // Write buffer 2 to file
                                                                 if ((writeStartOffset +
                                                                      buffer2Size) <=
                                                                     finishEndOfDataOffset) {
                                                                 // printf("About
                                                                 // to write %u
                                                                 // to %d\n",
-                                                                // buffer2Size,               
+                                                                // buffer2Size,
                                                                 // writeStartOffset
                                                                 // - (char
                                                                 // *)pvSaveMem
-                                                                // );               
+                                                                // );
                                                                 memcpy(
                                                                     (void*)
                                                                         writeStartOffset,
@@ -1320,9 +1320,9 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                                 // printf("\n**************
                                                                 // MOVE
                                                                 // COMPLETED
-                                                                // ***************               
+                                                                // ***************
                                                                 // \n\n");
-                                                                //           
+                                                                // 
                                                                 assert(
                                                                     writeStartOffset ==
                                                                     spaceEndOffset);
@@ -1331,62 +1331,62 @@ FileEntry* ConsoleSaveFileSplit::createFile(const ConsoleSavePath& fileName) {
                                                         }
                                                     }
 
-    header.AdjustStartOffsets(file, nNumberOfByt// Attempt to convert a filename into a numeric identifier, which we use for // region files. File names supported are of the form: // // Filename				Encoded as // // r.x.z.mcr			00 00 xx zz // DIM-1r.x.z.mcr		00 01 xx zz // DIM1/r.x.z.mcr		00 02 xx zz               
+    header.AdjustStartOffsets(file, nNumberOfByt// Attempt to convert a filename into a numeric identifier, which we use for// region files. File names supported are of the form://// Filename				Encoded as//// r.x.z.mcr			00 00 xx zz// DIM-1r.x.z.mcr		00 01 xx zz// DIM1/r.x.z.mcr		00 02 xx zz
 
 bool ConsoleSaveFileSplit::GetNumericIdentifierFromName(
-    const std::wstring& fileName, unsigned int// Determine whether it is one of our region file names if the file     // extension is ".mbr"               
+    const std::wstring& fileName, unsigned int// Determine whether it is one of our region file names if the file// extension is ".mbr"
     if (fileName.length() < 4) return false;
     std::wstring extension = fileName.substr(fileName.length() - 4, 4);
-    if (ex".mcr"n != std::wstring(L      )) return false;
+    if (ex".mcr"n != std::wstring(L)) return false;
 
     unsigned int id = 0;
     int x, z;
 
     const wchar_t* cstr = fileName.c_str();
-    const wchar_// If this filename starts with a "r" then assume it is of the format     // "r.x.z.mcr" - don't do anything as default value we've set are correct                     'r' 
-    if (cs// Must be prefixed by "DIM-1r." or "DIM1/r."                         
-        // Differentiate between these 2 options                         '-'      if (cstr[3// "DIM-1r."
-                        
+    const wchar_// If this filename starts with a "r" then assume it is of the format// "r.x.z.mcr" - don't do anything as default value we've set are correct'r'
+    if (cs// Must be prefixed by "DIM-1r." or "DIM1/r."
+        // Differentiate between these 2 options'-'      if (cstr[3// "DIM-1r."
+            
             id = 0x00010000;
     // "DIM/1r."
-                        
+            
             id = 0x00020// Get x/z coords  }
-                  "%d.%d.mcr"canf_s(body, L  // Pack full id&z);
+    "%d.%d.mcr"canf_s(body, L// Pack full id&z);
 
-                   
+    
     id |= ((x << 8) & 0x0000ff00);
     id |= (z & 0x000000ff);
 
-    *idOut = // Convert a numeric file identifier (for region files) back into a normal // filename. See comment above.                         
+    *idOut = // Convert a numeric file identifier (for region files) back into a normal// filename. See comment above.
 
 std::wstring ConsoleSaveFileSplit::GetNameFromNumericIdentifier(
     unsigned int idIn) {
                                                     std::wstring prefix;
 
                                                     switch (idIn & 0x00ff0000) {
-                                                        "" se 0 : prefix = L  ;
+                                                        "" se 0 : prefix = L;
                                                         break;
                                                         "DIM-1" prefix =
-                                                            L       ;
+                                                            L;
                                                         break;
                                                         "DIM1/" prefix =
-                                                            L       ;
+                                                            L;
                                                         break;
                                                     }
                                                     signed char regionX =
                                                         (idIn >> 8) & 255;
                                                     signed char regionZ =
                                                         idIn & 255;
-    std::w"r."ng region = (prefix + std:"."tring(L    ) + _toString(regionX) + L    +
-    ".mcr"            _toString(regi// Compress any dirty region files, and tell the storage manager about them so // that it will process them when we ask it to save sub files                                        
-void ConsoleSav#if 0Sp// 4J Stu - There are debug reasons where we want to force a save of all regions                                        
+    std::w"r."ng region = (prefix + std:"."tring(L) + _toString(regionX) + L +
+    ".mcr"            _toString(regi// Compress any dirty region files, and tell the storage manager about them so// that it will process them when we ask it to save sub files
+void ConsoleSav#if 0Sp// 4J Stu - There are debug reasons where we want to force a save of all regions
 	StorageManager.ResetSubfiles();
 	for(AUTO_VAR(it,regionFiles.begin()); it != regionFiles.end(); it++ )
 	{
                                                         RegionFileReference*
                                                             region = it->second;
                 int index = StorageManager.AddSubfile(//if( region->dirty )ta.regionIndex);
-		                     
+		
 		{
                                                             region->Compress();
                                                             StorageManager.UpdateSubfile(
@@ -1401,7 +1401,7 @@ void ConsoleSav#if 0Sp// 4J Stu - There are debug reasons where we want to force
                                                                 currentTimeMillis();
 		}
 	}
-     
+
     for (AUTO_VAR(it, regionFiles.begin()); it != regionFiles.end(); it++) {
                                                         RegionFileReference*
                                                             region = it->second;
@@ -1417,12 +1417,12 @@ void ConsoleSav#if 0Sp// 4J Stu - There are debug reasons where we want to force
                                                                 false;
                                                             region
                                                                 ->lastWritten =
-                                                                Syste #endifrent  // Clean up any memory allocated for compressed data when we have finished // writing                             
-          
+                                                                Syste #endifrent  // Clean up any memory allocated for compressed data when we have finished// writing
+
 void ConsoleSaveFileS  // This is called from the StorageManager.Tick() which
-                       // should always be on     // the main
-                       // thread                 
-                      
+                       // should always be on// the main
+                       // thread
+    
     for (AUTO_VAR(it, regionFiles.begin()); it != regionFiles.end(); it++) {
                                                                 RegionFileReference*
                                                                     region =
@@ -1449,16 +1449,16 @@ void ConsoleSaveFileS  // This is called from the StorageManager.Tick() which
 void ConsoleSaveFileSplit::Flush(bool autosave, bool u
 #ifdef _XBOX_ONE
     LockSaveAccess();
-                 
-    MinecraftServer* s#endif= Mine// The storage manage might potentially be busy doing a sub-file write     // initiated from the tick. Wait until this is totally processed.                                        
+
+    MinecraftServer* s#endif= Mine// The storage manage might potentially be busy doing a sub-file write// initiated from the tick. Wait until this is totally processed.
     while (StorageManager.GetSaveS#ifdef _XBOX_ONErage::ESaveGame_Idle) {
-                
-        if (server &// If the server is mid-suspend we need to tick the storage manager             // ourselves               
-                        
+
+        if (server &// If the server is mid-suspend we need to tick the storage manager// ourselves
+            
      #endif StorageManager.Tick();
   "Flush wait\n"
 
-        app.DebugPrintf(              );
+        app.DebugPrintf();
         Sleep(10);
     }
 
@@ -1467,45 +1467,45 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
     m_autosave = autosave;
     if (!m_au// Get the frequency of the timer;
 
-                                     
+    
     LARGE_INTEGER qwTicksPerSec, qwTime, qwNewTime, qwDeltaTime;
     float fElapsedTime = 0.0f;
     QueryPerformanceFrequency(&qwTicksPerSec);
     float fSecsPerTick = 1.0f / (float)qwTicksPerSec.QuadPart;
 
-    unsigned in// Assume that the compression will make it smaller so initially attempt to     // allocate the current file size We add 4 bytes to the start so that we can     // signal compressed data And another 4 bytes to store the decompressed data     // size                            
-           
+    unsigned in// Assume that the compression will make it smaller so initially attempt to// allocate the current file size We add 4 bytes to the start so that we can// signal compressed data And another 4 bytes to store the decompressed data// size
+    
     unsig// 4J Stu - Added TU-1 interim+ 8;
 
-// Attempt to allocate the required memory     // We do not own this, it belongs to the StorageManager                                        
-    byte* compData = (byte*)StorageMan// If we failed to allocate then compData will be NULL     // Pre-calculate the compressed data size so that we can attempt to allocate     // a smaller buffer                
-                    // Length should be 0 here so that the compression call knows that we         // want to know the length back
-                                 // Pre-calculate the buffer size required for the compressed data                               "Pre-calc save compression"amedEvent(0// Save the start time       );
-                              
+// Attempt to allocate the required memory// We do not own this, it belongs to the StorageManager
+    byte* compData = (byte*)StorageMan// If we failed to allocate then compData will be NULL// Pre-calculate the compressed data size so that we can attempt to allocate// a smaller buffer
+    // Length should be 0 here so that the compression call knows that we// want to know the length back
+        // Pre-calculate the buffer size required for the compressed data"Pre-calc save compression"amedEvent(0// Save the start time);
+        
         QueryPerformanceCounter(&qwTime);
         Compression::getCompression()->Compress(NULL, &compLength, pvSaveMem,
                                                 fileSize);
         QueryPerformanceCounter(&qwNewTime);
 
         qwDeltaTime.QuadPart = qwNewTime.QuadPart - qwTime.QuadPart;
-        fElapsedTime = fSecsPerTick * ((FLOAT)(qwDeltaTi"Check buffer size: Elapsed time %f\n"f(                                      , fElapsedTime// We add 4 bytes to the start so that we can signal compressed data         // And another 4 bytes to store the decompressed data size                                        
-      // Attempt to allocate the required memory                                        
+        fElapsedTime = fSecsPerTick * ((FLOAT)(qwDeltaTi"Check buffer size: Elapsed time %f\n"f(, fElapsedTime// We add 4 bytes to the start so that we can signal compressed data// And another 4 bytes to store the decompressed data size
+      // Attempt to allocate the required memory
         compData = (byte*)StorageManager.AllocateSaveData(compLength);
-   // Re-compress all save data before we save it to disk                               "Actual save compression"nNamedEvent// Save the start time       );
-                              
+   // Re-compress all save data before we save it to disk"Actual save compression"nNamedEvent// Save the start time);
+        
         QueryPerformanceCounter(&qwTime);
         Compression::getCompression()->Compress(compData + 8, &compLength,
                                                 pvSaveMem, fileSize);
         QueryPerformanceCounter(&qwNewTime);
 
         qwDeltaTime.QuadPart = qwNewTime.QuadPart - qwTime.QuadPart;
-        fElapsedTime = fSecsPerTick * ((FLOAT)(qwDeltaTi"Compress: Elapsed time %f\n"ebugPrintf(                             , fElapsedTime);
+        fElapsedTime = fSecsPerTick * ((FLOAT)(qwDeltaTi"Compress: Elapsed time %f\n"ebugPrintf(, fElapsedTime);
         PIXEndNamedEvent();
 
         ZeroMemory(compData, 8);
         int saveVer = 0;
         memcpy(compData, &saveVer, sizeof(int));
-        memcpy(compData + 4, &fileSize,"Save data compressed from %d to %d\n"f(                                      , fileSize,
+        memcpy(compData + 4, &fileSize,"Save data compressed from %d to %d\n"f(, fileSize,
                         compLength);
 
         if (updateThumbnail) {
@@ -1520,11 +1520,11 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
                                                             pbDataSaveImage =
                                                                 NULL;
 
-#if (defined _XBOX || defined _DURANGO)                                        
-            app.GetSaveThumbnail(&#elif (defined __PS3__ || defined __ORBIS__)                                        
+#if (defined _XBOX || defined _DURANGO)
+            app.GetSaveThumbnail(&#elif (defined __PS3__ || defined __ORBIS__)
             app.GetSaveThumbnail(&pbThumbnailData, &dwThumbnailDataSize,
                                  &#endifSaveImage, &dwDataSizeSaveImage);
-                                       
+                                 
 
             BYTE bTextMetadata[88];
                                  ZeroMemory(bTextMetadata, 88);
@@ -1544,10 +1544,10 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
             int iTextMetadataBytes = app.CreateImageTextData(
                 bTextMetadata, seed, hasSeed,
                 app.GetGameHostOption(eGameHostOption_All),
-                Minecraft::GetInstance()->g// set the icon and save image                                        
+                Minecraft::GetInstance()->g// set the icon and save image          
             StorageManager.SetSaveImages(pbThumbnailData, dwThumbnailDataSize,
                                          pbDataSaveImage, dwDataSizeSaveImage,
-                                         bTextMetadata, iTextMeta"Save thumbnail size %d\n"p.DebugPrintf(                          , dwThumbnailDataSize);
+                                         bTextMetadata, iTextMeta"Save thumbnail size %d\n"p.DebugPrintf(, dwThumbnailDataSize);
         }
 
         INT saveOrCheckpointId = 0;
@@ -1556,10 +1556,10 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
         TelemetryManager->RecordLevelSaveOrCheckpoint(
             ProfileManager.GetPrimaryPad(), saveOr// save the datampLength + 8);
 
-                        
+        
         StorageManager.SaveSaveData(&ConsoleSaveFileSplit::SaveSaveDataCallback,
 #ifndef _CONTENT_PACKAGE this);
-                        
+
         if (app.DebugSettingsOn()) {
                                                             if (app.GetWriteSavesToFolderEnabled()) {
                                                                 DebugFlushToFile(
@@ -1568,7 +1568,7 @@ void ConsoleSaveFileSplit::Flush(bool autosave, bool u
                                                                         8);
                                                             }
         }
-      
+
         ReleaseSaveAccess();
     }
 }
@@ -1580,17 +1580,17 @@ int ConsoleSaveFileSplit::SaveSaveDataCallback(LPVOID lpParam, bool bRes) {
                                                                 // autosave
                                                                 // (their always
                                                                 // being saved
-                                                                // anyway)                                        //
+                                                                // anyway)//
                                                                 // This is
                                                                 // called from
                                                                 // the
                                                                 // StorageManager.Tick()
                                                                 // which should
                                                                 // always
-                                                                // be         //
+                                                                // be//
                                                                 // on the main
-                                                                // thread          
-                             
+                                                                // thread
+        
         StorageManager.SaveSubfiles(SaveRegionFilesCallback, pClass);
     }
     return 0;
@@ -1607,17 +1607,17 @@ int ConsoleSaveFileSplit::SaveSaveDataCallback(LPVOID lpParam, bool bRes) {
                                                                 // StorageManager.Tick()
                                                                 // which should
                                                                 // always be
-                                                                // on     // the
+                                                                // on// the
                                                                 // main
-                                                                // thread                 
-                      
+                                                                // thread
+    
     pClass->proces
 #ifndef _CONTENT_PACKAGE return 0;
                                                 }
-                                                                         
-void ConsoleSaveFileSplit::Deb /*= NULL*/ ile(void* compressedData     /*= 0*/
+                                                
+void ConsoleSaveFileSplit::Deb /*= NULL*/ ile(void* compressedData /*= 0*/
                                               unsigned int
-                                                  compressedDataSize        ) {
+                                                  compressedDataSize ) {
                                                     LockSaveAccess();
 
                                                     finalizeWrite();
@@ -1629,7 +1629,7 @@ void ConsoleSaveFileSplit::Deb /*= NULL*/ ile(void* compressedData     /*= 0*/
                                                         "Saves" en = 0;
 
                                                     File targetFileDir(
-                                                        L       );
+                                                        L);
 
                                                     if (!targetFileDir.exists())
                                                         targetFileDir.mkdir();
@@ -1642,9 +1642,9 @@ void ConsoleSaveFileSplit::Deb /*= NULL*/ ile(void* compressedData     /*= 0*/
                                                         // digitsime(&// 11
                                                         // chars for the
                                                         // separators + suffix
-                                                        //     // 25 chars
-                                                        // total                  
-                     
+                                                        // // 25 chars
+                                                        // total
+    
     std::wstring cutFileName = m_fileName;
                                                     if (m_fileName.length() >
                                                         XCONTENT_MAX_FILENAME_LENGTH -
@@ -1661,19 +1661,19 @@ void ConsoleSaveFileSplit::Deb /*= NULL*/ ile(void* compressedData     /*= 0*/
                                                         "\\v%04d-%ls%02d.%02d.%"
                                                         "02d.%02d.%02d."
                                                         "mc"
-                                                        "s" L                                         ,
+                                                        "s" L,
                                                         VER_PRODUCTBUILD,
                                                         cutFileName.c_str(),
                                                         t.wMonth, t.wDay,
 #ifdef _UNICODEte,
                                                         t.wSecond);
-                
+
     std::wstring wtemp = targetFileDir.getPath() + std::wstr#elseileName);
 LPCWSTR lpFileName = wtemp.c_str();
-     
+
     LPCSTR lpFileName =
     wstringto #endifme(targetFileDir.getPath() + std::wstring(fileName));
-      
+
 
     HANDLE hSaveFile = CreateFile(lpFileName, GENERIC_WRITE, 0, NULL,
                                   OPEN_ALWAYS, FILE_FLAG_RANDOM_ACCESS, NULL);
@@ -1692,7 +1692,7 @@ if (compressedData != NULL && compressedDataSize > 0) {
 
     ReleaseSaveAccess();
                                                 }
-                                                      
+                                                
 
 unsigned int ConsoleSaveFileSplit::getSizeOnDisk() {
                                                     return header.GetFileSize();
@@ -1746,7 +1746,7 @@ unsigned int ConsoleSaveFileSplit::getSizeOnDisk() {
 
                                                         return files;
                                                     }
-                                                                                               
+                                                    
 std::wstring ConsoleSaveFileSplit::getPlayerDataFilenameForLoad(
                                                         const PlayerUID& pUID) {
                                                         return header
@@ -1768,7 +1768,7 @@ std::wstring ConsoleSaveFileSplit::getPlayerDataFilenameForLoad(
                                                         return header
                                                             .getValidPlayerDatFiles();
                                                     }
-                                                          
+                                                    
 
 int ConsoleSaveFileSplit::getSaveVersion() {
                                                         return header
@@ -1900,19 +1900,19 @@ int ConsoleSaveFileSplit::getSaveVersion() {
                                                                            // back
                                                                            // out
                                                                            // tourceRegionFile
-                                                                        .writeA  // the file (not all of these are written in the                 
-                                                                                 // above processing).                                            
-                                                  
+                                                                        .writeA  // the file (not all of these are written in the
+                                                                                 // above processing).
+                             
 
                                                                 
                                                                 }
 
                                                                 void
-                                                                    ConsoleSaveFileSpli  // already in the correct format  if (getSavePlatform() == // convert each of the region files to the local platform           
+                                                                    ConsoleSaveFileSpli  // already in the correct format  if (getSavePlatform() == // convert each of the region files to the local platform
                                                                     return;
                                                             }
-                                                                                            ""                       
-    std::vector<FileEntry*>* allFilesInSave = getFilesWithPrefix(std::wstring(L  ));
+                                                            ""
+    std::vector<FileEntry*>* allFilesInSave = getFilesWithPrefix(std::wstring(L));
                                                             for (
                                                                 AUTO_VAR(
                                                                     it,
@@ -1929,7 +1929,7 @@ int ConsoleSaveFileSplit::getSaveVersion() {
                                                                         .filename);
                                                                 std::wstring
                                                                     suffix(
-                                                                        L      );
+                                                                        L);
                                                                 if (fName.compare(
                                                                         fName
                                                                             ."P"
@@ -1965,11 +1965,11 @@ int ConsoleSaveFileSplit::getSaveVersion() {
                                                                             .length(),
                                                                         suffix) ==
                                                                     0) {
-            app.DebugPrintf(                                 , fN"%ls is not a region file, ignoring\n"nFile(File(fe->data.filename));
+            app.DebugPrintf(, fN"%ls is not a region file, ignoring\n"nFile(File(fe->data.filename));
                                                                 } else {
-            app.DebugPrintf(           // set the platform of this save to the local platform,  fName.c_str());
-        // now that it's been coverted);                                                         
-                                                       
+            app.DebugPrintf(// set the platform of this save to the local platform,  fName.c_str());
+        // now that it's been coverted);  
+                         
 
                                                                 
                                                                 }

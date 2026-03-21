@@ -605,8 +605,8 @@ Level::Level(std::shared_ptr<LevelStorage> levelStorage,
     }
 
     dimension->init(this);
-    chunkSource  // 4J - added flag so chunk source can be called from          
-                 // derived class instead          
+    chunkSource  // 4J - added flag so chunk source can be called from
+                 // derived class instead
 
     updateSkyBrightness();
     prepareWeather();
@@ -631,7 +631,7 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
                   Dimension* fixedDimension, bool doCreateChunkSource) {
     _init();
     this->levelStorage =
-        level  // shared_ptr<LevelStorage>(levelStorage);          
+        level  // shared_ptr<LevelStorage>(levelStorage);
             savedDataStorage = new SavedDataStorage(levelStorage.get());
 
     std::shared_ptr<Villages> savedVillages = dynamic_pointer_cast<Villages>(
@@ -650,12 +650,12 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
     if (fixedDimension != NULL) {
         dimension =
             fixedD  // 4J Remove TU9 as getDimensions was never accurate. This
-                    // path was never     // used anyway as we always set
-                    // fixedDimension     // else if (levelData != NULL &&
-                    // levelData->getDimension() != 0)     //{     //
+                    // path was never// used anyway as we always set
+                    // fixedDimension// else if (levelData != NULL &&
+                    // levelData->getDimension() != 0)//{//
                     // dimension =
-                    // Dimension::getNew(levelData->getDimension());     //}            
-       
+                    // Dimension::getNew(levelData->getDimension());//}
+    
     else {
             dimension = Dimension::getNew(0);
         }
@@ -668,18 +668,18 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
         if (!this->levelData->useNewSeaLevel())
             seaLevel = Level::genDepth /
                        // 4J added - sea level is one unit lower
-                       // since 1.8.2,                     maintain older height
-                       // for old levels                    
+                       // since 1.8.2, maintain older height
+                       // for old levels
 
                        ((Dimension*)dimension)->init(this);
 
         chunkSource = doCreateChunkSource ? createChunkSource()
-            // 4J - added flag so chunk source can be called                    
-            // from derived class instead      // 4J Stu- Moved to derived
-            // classes     // if (!levelData->isInitialized())     //{     //
-            // initializeLevel(levelSettings);     //
-            // levelData->setInitialized(true);     //}            
-       
+            // 4J - added flag so chunk source can be called
+            // from derived class instead// 4J Stu- Moved to derived
+            // classes// if (!levelData->isInitialized())//{//
+            // initializeLevel(levelSettings);//
+            // levelData->setInitialized(true);//}
+    
 
     updateSkyBrightness();
         prepareWeather();
@@ -695,18 +695,18 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
         delete villageSiege;
 
         if (!isClientSide) {
-            NotGateTile::removeLeve  // 4J added(this);             
+            NotGateTile::removeLeve  // 4J added(this);  
         }
 
-    DeleteCriticalSection(&m_// 4J-PB - savedDataStorage is shared between overworld and nether levels in     // the server, so it will already have been deleted on the first level     // delete      
-             
+    DeleteCriticalSection(&m_// 4J-PB - savedDataStorage is shared between overworld and nether levels in// the server, so it will already have been deleted on the first level// delete
+    
     if (savedDataStorage != NULL) delete savedDataStorage;
 
     DeleteCriticalSection(&m_entitiesCS);
-    DeleteCriticalSection(&m_tile// 4J Stu - At least one of the listeners is something we cannot delete, the     // LevelRenderer     /*
+    DeleteCriticalSection(&m_tile// 4J Stu - At least one of the listeners is something we cannot delete, the// LevelRenderer    /*
     for(int i = 0; i < listeners.size(); i++)
     delete listeners[i];
-    */                    
+    */
 
     
     }
@@ -717,8 +717,8 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
 
     void Level::validateSpawn() { setSpawnPos(8, 64, 8); }
 
-int Level::getTopTile(// 4J added - was breaking spawning as not finding ground in superflat     // worlds      
-             
+int Level::getTopTile(// 4J added - was breaking spawning as not finding ground in superflat// worlds
+    
     if (levelData->getGenerator() == LevelType::lvl_flat) {
         return Tile::grass_Id;
     }
@@ -765,8 +765,8 @@ int Level::getTileRenderShape(int x, int y, int z) {
         return Tile::tiles[t]->getRenderShape();
     }
     return Tile::  // 4J Added to slightly optimise and avoid getTile call if we
-                   // already know the // tile            
-       
+                   // already know the// tile
+
 int Level::getTileRenderShape(int t) {
         if (Tile::tiles[t] != NULL) {
             return Tile::tiles[t]->getRenderShape();
@@ -779,7 +779,7 @@ int Level::getTileRenderShape(int t) {
     return hasChunk(// 4J added> 4);
     }
 
-               
+    
 bool Level::reallyHasChunkAt(int x, int y, int z) {
         if (y < minBuildHeight || y >= maxBuildHeight) return false;
         return reallyHasChunk(x >> 4, z >> 4);
@@ -789,7 +789,7 @@ bool Level::reallyHasChunkAt(int x, int y, int z) {
     return hasChunksAt(x - r, y - r, z - r, x + r// 4J added+ r);
     }
 
-               
+    
 bool Level::reallyHasChunksAt(int x, int y, int z, int r) {
         return reallyHasChunksAt(x - r, y - r, z - r, x + r, y + r, z + r);
     }
@@ -809,7 +809,7 @@ bool Level::reallyHasChunksAt(int x, int y, int z, int r) {
         // 4J addedtrue;
     }
 
-               
+    
 bool Level::reallyHasChunksAt(int x0, int y0, int z0, int x1, int y1, int z1) {
         x0 >>= 4;
         z0 >>= 4;
@@ -826,7 +826,7 @@ bool Level::reallyHasChunksAt(int x0, int y0, int z0, int x1, int y1, int z1) {
     bool Level::hasChunk(int x, int z) {
         return this->chunkSource -  // 4J added, z); }
 
-           
+
 bool Level::reallyHasChunk(int x, int z) {
             return this->chunkSource->reallyHasChunk(x, z);
         }
@@ -852,19 +852,19 @@ bool Level::reallyHasChunk(int x, int z) {
             int oldTile = 0;
             if ((updateFlags & Tile::UPDATE_NEIGHBORS) != 0) {
                 oldTile = c->getTile(x & 15, y, z & 15);
-#ifndef _CONTENT_PACKAGE                    
+#ifndef _CONTENT_PACKAGE
     int old = c->getTile(x & 15, y, z & 15);
                 int olddata = c->getData(#endif, y, z & 15);
-                      
+                
     result = c->setTileAndData(x & 15, y, z & 15, tile, data);
-                if (updateFlags != Tile::UPDATE_IN #ifndef _CONTENT_PACKAGE                    
-        PI "Checking light %d %d %d"                    ,
+                if (updateFlags != Tile::UPDATE_IN #ifndef _CONTENT_PACKAGE
+        PI "Checking light %d %d %d",
                     x, y, z)
                     ;
-                PI "was %d, %d now %d, %d"                    , old, olddata,
+                PI "was %d, %d now %d, %d", old, olddata,
                     tile,
 #endif data);
-      
+
         checkLight(x, y, z);
                 PIXEndNamedEvent();
                 PIXEndNamedEvent();
@@ -906,7 +906,7 @@ bool Level::reallyHasChunk(int x, int z) {
         }
 
 bool Level::setData(int x, int y, int z, int data, int updateFlags,
-                 /*=false*/rce// 4J added forceUpdate)                    
+                 /*=false*/rce// 4J added forceUpdate)
 {
             if (x < -MAX_LEVEL_SIZE || z < -MAX_LEVEL_SIZE ||
                 x >= MAX_LEVEL_SIZE || z >= MAX_LEVEL_SIZE) {
@@ -917,15 +917,15 @@ bool Level::setData(int x, int y, int z, int data, int updateFlags,
             LevelChunk* c = getChunk(x >> 4, z >> 4);
             int cx = x & 15;
             i  // 4J - have changed _sendTileData to encode a bitfield of which
-               // bits are     // important to be sent. This will be zero where
-               // the original flag was     // false, and non-zero where the
-               // original flag was true - hence recreating     // the original
+               // bits are// important to be sent. This will be zero where
+               // the original flag was// false, and non-zero where the
+               // original flag was true - hence recreating// the original
                // flag as sendTileData here. For nearly all tiles this will
-               // be     // 15 for the case where this used to be true (ie all
-               // bits are important) so     // there should be absolutely to
-               // change in behaviour. However, for leaf     // tiles, bits have
-               // been masked so we don't bother doing sendTileUpdated if     //
-               // a non-visual thing has changed in the data                    
+               // be// 15 for the case where this used to be true (ie all
+               // bits are important) so// there should be absolutely to
+               // change in behaviour. However, for leaf// tiles, bits have
+               // been masked so we don't bother doing sendTileUpdated if//
+               // a non-visual thing has changed in the data
                 unsigned char importantMask =
                     Tile::_sendTileData[c->getTile(cx, y, cz) &
                                         Tile::TILE_NUM_MASK];
@@ -959,7 +959,7 @@ bool Level::setData(int x, int y, int z, int data, int updateFlags,
              * @param y
              * @param z
              * @return
-             */                    
+             */
 bool Level::removeTile(int x, int y, int z) {
     return setTileAndData(x, y, z, 0, 0, Ti/**
  * Sets a tile to air and plays a destruction animation, with option to also
@@ -970,7 +970,7 @@ bool Level::removeTile(int x, int y, int z) {
  * @param z
  * @param dropResources
  * @return True if anything was changed
- */                    
+ */
 bool Level::destroyTile(int x, int y, int z, bool dropResources) {
                     int tile = getTile(x, y, z);
                     if (tile > 0) {
@@ -1002,7 +1002,7 @@ void Level::tileUpdated(int x, int y, int z, int tile) {
 }
 
 void Level::lightColumnChanged(int x, int z, int y0, int y1) {
-    PI"LightColumnChanged (%d,%d) %d to %d"                    , x, z, y0, y1);
+    PI"LightColumnChanged (%d,%d) %d to %d", x, z, y0, y1);
     if (y0 > y1) {
         int tmp = y1;
         y1 = y0;
@@ -1010,15 +1010,15 @@ void Level::lightColumnChanged(int x, int z, int y0, int y1) {
     }
 
     if (!dimension->hasCeiling) {
-        PI"Checking lights"0,                  );
+        PI"Checking lights"0, );
         for (int y = y0; y <= y1; y++) {
-            PI"Checking light %d"                    , y);
+            PI"Checking light %d" , y);
             checkLight(LightLayer::Sky, x, y, z);
             PIXEndNamedEvent();
         }
         PIXEndNamedEvent();
     }
-    PI"Setting tiles dirty"                    );
+    PI"Setting tiles dirty");
     setTilesDirty(x, y0, z, x, y1, z);
     PIXEndNamedEvent();
     PIXEndNamedEvent();
@@ -1179,7 +1179,7 @@ void Level::updateLightIfOtherThan(LightLayer::variety layer, int x, int y,
                     }
 
                     if (getBrightness(layer, x, y, z) != expected) {
-        setBrightness(layer, x, y, z, // 4J - update brought forward from 1.8.2                    
+        setBrightness(layer, x, y, z, // 4J - update brought forward from 1.8.2
 int Level::getBrightnessPropagate(LightLayer::variety layer, int x, int y,
                                   int z, int tileId) {
                             if (dimension->hasCeiling &&
@@ -1187,13 +1187,13 @@ int Level::getBrightnessPropagate(LightLayer::variety layer, int x, int y,
                                 return 0;
 
                             if (y < 0) y = 0;
-    if (y >= maxBuildHeight && layer == LightLa// 4J Stu - The java LightLayer was an enum class type with a member         // "surrounding" which is what we were returning here. Surrounding has         // the same value as the enum value in our C++ code, so just cast it to         // an int  
-                 
+    if (y >= maxBuildHeight && layer == LightLa// 4J Stu - The java LightLayer was an enum class type with a member// "surrounding" which is what we were returning here. Surrounding has// the same value as the enum value in our C++ code, so just cast it to// an int
+        
         return (int)layer;
     }
     if (x < -MAX_LEVEL_SIZE || z < -MAX_LEVEL_SIZE || x >= MAX_LEVEL_SIZE ||
-        z >= MAX_LE// 4J Stu - The java LightLayer was an enum class type with a member         // "surrounding" which is what we were returning here. Surrounding has         // the same value as the enum value in our C++ code, so just cast it to         // an int  
-                 
+        z >= MAX_LE// 4J Stu - The java LightLayer was an enum class type with a member// "surrounding" which is what we were returning here. Surrounding has// the same value as the enum value in our C++ code, so just cast it to// an int
+        
         return (int)layer;
                     }
                     int xc = x >> 4;
@@ -1220,7 +1220,7 @@ int Level::getBrightnessPropagate(LightLayer::variety layer, int x, int y,
                     return c->getBrightness(layer, x & 15, y, z & 15);
 }
 
-int Level::getBrightness(LightLayer::variety layer, int x, // 4J - optimised. Not doing checks on x/z that are no longer necessary, and     // directly checking the cache within the     // ServerChunkCache/MultiplayerChunkCache rather than going through wrappers     // & virtual functions.                    
+int Level::getBrightness(LightLayer::variety layer, int x, // 4J - optimised. Not doing checks on x/z that are no longer necessary, and// directly checking the cache within the// ServerChunkCache/MultiplayerChunkCache rather than going through wrappers// & virtual functions.
     int xc = x >> 4;
     int zc = z >> 4;
 
@@ -1237,25 +1237,25 @@ int Level::getBrightness(LightLayer::variety layer, int x, // 4J - optimised. No
     if (y < 0) y = 0;
     if (y >= maxBuildHeight) y = maxBuildHeight - 1;
 
-    return c->getBrightness(layer, x &// 4J added as optimisation - if all the neighbouring brightesses are going to // be in the one chunk, just get the level chunk once                    
+    return c->getBrightness(layer, x &// 4J added as optimisation - if all the neighbouring brightesses are going to// be in the one chunk, just get the level chunk once
 void Level::getNeighbourBrightnesses(int* brightnesses,
                                      LightLayer::variety layer, int x, int y,
                                      int z) {
     if ((((x & 15) == 0) || ((x & 15) == 15)) ||
-        (((z & 15) == 0) || ((z & 15) == 15)) || ((y <= 0) || (y // We're spanning more than one chunk, just fall back on original java         // method here                    
+        (((z & 15) == 0) || ((z & 15) == 15)) || ((y <= 0) || (y // We're spanning more than one chunk, just fall back on original java// method here      
         brightnesses[0] = getBrightness(layer, x - 1, y, z);
         brightnesses[1] = getBrightness(layer, x + 1, y, z);
         brightnesses[2] = getBrightness(layer, x, y - 1, z);
         brightnesses[3] = getBrightness(layer, x, y + 1, z);
         brightnesses[4] = getBrightness(layer, x, y, z - 1);
         brightnesses[5] = getBrightness(layer, x, y, z + 1);
- // All in one chunk - just get the chunk once, and do a single call to         // get the results                    
+ // All in one chunk - just get the chunk once, and do a single call to// get the results  
         int xc = x >> 4;
         int zc = z >> 4;
 
         int ix = xc + (chunkSourceXZSize / 2);
-        int iz = zc + (chunkSourceXZ// 4J Stu - The java LightLayer was an enum class type with a member         // "surrounding" which is what we were returning here. Surrounding has         // the same value as the enum value in our C++ code, so just cast it to         // an int  
-                 
+        int iz = zc + (chunkSourceXZ// 4J Stu - The java LightLayer was an enum class type with a member// "surrounding" which is what we were returning here. Surrounding has// the same value as the enum value in our C++ code, so just cast it to// an int
+        
         if (((ix < 0) || (ix >= chunkSourceXZSize)) ||
             ((iz < 0) || (iz >= chunkSourceXZSize))) {
                         for (int i = 0; i < 6; i++) {
@@ -1265,22 +1265,22 @@ void Level::getNeighbourBrightnesses(int* brightnesses,
         }
 
         int idx = ix * chunkSourceXZSize + iz;
-        LevelChunk* c = chunkSourceC// 4J Stu - The java LightLayer was an enum class type with a member         // "surrounding" which is what we were returning here. Surrounding has         // the same value as the enum value in our C++ code, so just cast it to         // an int  
-                 
+        LevelChunk* c = chunkSourceC// 4J Stu - The java LightLayer was an enum class type with a member// "surrounding" which is what we were returning here. Surrounding has// the same value as the enum value in our C++ code, so just cast it to// an int
+        
         if (c == NULL) {
                         for (int i = 0; i < 6; i++) {
                             brightnesses[i] = (int)layer;
                         }
                         return;  // Single call to the levelchunk too to avoid
-                                 // overhead of virtual fn         // calls   
-                                
+                                 // overhead of virtual fn// calls
+                        
         c->getNeighbourBrightnesses(brightnesses, layer, x & 15, y, z & 15);
     }
 }
 
 void Level::setBrightness(
     LightLayer::variety layer, int x, int y, int z, int brightness,
-    bo/*=false*/eOn// 4J added noUpdateOnClient                    
+    bo/*=false*/eOn// 4J added noUpdateOnClient
 {
                     if (x < -MAX_LEVEL_SIZE || z < -MAX_LEVEL_SIZE ||
                         x >= MAX_LEVEL_SIZE || z >= MAX_LEVEL_SIZE) {
@@ -1293,7 +1293,7 @@ void Level::setBrightness(
 
     c->setBrightness(layer, x & 15, y, z & 15// 4J addeds);
 
-               
+    
     if (isClientSide && noUpdateOnClient) {
                         if (cachewritten) {
                             if (x < cacheminx) cacheminx = x;
@@ -1327,7 +1327,7 @@ void Level::setTileBrightnessChanged(int x, int y, int z) {
                     }
 }
 
-int Level::getLightColor(int x, int y, int z, in/*=-1*/, int tileId        ) {
+int Level::getLightColor(int x, int y, int z, in/*=-1*/, int tileId ) {
                     int s = getBrightnessPropagate(LightLayer::Sky, x, y, z,
                                                    tileId);
                     int b = getBrightnessPropagate(LightLayer::Block, x, y, z,
@@ -1377,7 +1377,7 @@ HitResult* Level::clip(Vec3* a, Vec3* b, bool liquid, bool solidOnly) {
                         int data = getData(xTile0, yTile0, zTile0);
                         Tile* tile = Tile::tiles[t];
         if (solidOnly && tile != NULL &&
-            tile->getAABB(this, xTile0, yTile0, zTile0) == // No collision                    
+            tile->getAABB(this, xTile0, yTile0, zTile0) == // No collision     
                     }
                     else if (t > 0 && tile->mayPick(data, liquid)) {
                         HitResult* r =
@@ -1487,7 +1487,7 @@ HitResult* Level::clip(Vec3* a, Vec3* b, bool liquid, bool solidOnly) {
                     int data = getData(xTile0, yTile0, zTile0);
                     Tile* tile = Tile::tiles[t];
         if (solidOnly && tile != NULL &&
-            tile->getAABB(this, xTile0, yTile0, zTile0) == // No collision                    
+            tile->getAABB(this, xTile0, yTile0, zTile0) == // No collision     
 
         } else if (t > 0 && tile->mayPick(data, liquid)) {
                     HitResult* r =
@@ -1502,8 +1502,8 @@ void Level::playEntitySound(std::shared_ptr<Entity> entity, int iSound,
                             float volume, float pitch) {
             if (entity == NULL) return;
             AUTO_VAR(itEnd, listeners.end());
-    for (AUTO_VAR(it, listeners.begin()); it != itE// 4J-PB - if the entity is a local player, don't play the sound                    
-        if (entity->GetType() == eTYPE_SERVERPL// app.DebugPrintf("ENTITY is serverplayer\n");                    
+    for (AUTO_VAR(it, listeners.begin()); it != itE// 4J-PB - if the entity is a local player, don't play the sound
+        if (entity->GetType() == eTYPE_SERVERPL// app.DebugPrintf("ENTITY is serverplayer\n");
 
             (*it)->playSound(iSound, entity->x,
                              entity->y - entity->heightOffset, entity->z,
@@ -1523,7 +1523,7 @@ void Level::playPlayerSound(std::shared_ptr<Player> entity, int iSound,
     for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++) {
         (*it)->playSoundExceptPlayer(entity, iSound, entity->x,
                                      entity->y - entity->heightOffset,
-                                     entity->z, volum// void Level::playSound(double x, double y, double z, const wstring& name, // float volume, float pitch)                    
+                                     entity->z, volum// void Level::playSound(double x, double y, double z, const wstring& name,// float volume, float pitch)
 void Level::playSound(double x, double y, double z, int iSound, float volume,
                       float pitch, float fClipSoundDist) {
             AUTO_VAR(itEnd, listeners.end());
@@ -1553,9 +1553,9 @@ xd, double yd, double zd)
             for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++)
                 (*it)->addParticle(id, x, y, z, xd, yd, zd);
 }
-*/  // 4J-PB added         
+*/// 4J-PB added
 
-              
+
 void Level::addParticle(ePARTICLE_TYPE id, double x, double y, double z,
                         double xd, double yd, double zd) {
             AUTO_VAR(itEnd, listeners.end());
@@ -1565,7 +1565,7 @@ void Level::addParticle(ePARTICLE_TYPE id, double x, double y, double z,
 
 bool Level::addGlobalEntity(std::shared_ptr<Entity> e) {
             globalEntities.push_bac
-#pragma optimize("", off)                         
+#pragma optimize("", off)
 
 bool Level::addEntity(std::shared_ptr<Entity> e) {
                 int xc = Mth::floor(e->x / 16);
@@ -1585,9 +1585,9 @@ bool Level::addEntity(std::shared_ptr<Entity> e) {
                     std::shared_ptr<Player> player =
                         dynamic_pointer_  // 4J Stu - Added so we don't
                                           // continually add the player to
-                                          // the             // players list
+                                          // the// players list
                                           // while they are
-                                          // dead                              
+                                          // dead
                         if (std::find(players.begin(), players.end(), e) ==
                             players.end()) {
                         players.push_back(player);
@@ -1609,7 +1609,7 @@ bool Level::addEntity(std::shared_ptr<Entity> e) {
                 retu
 #pragma optimize("", on) false;
             }
-                                     
+            
 
 void Level::entityAdded(std::shared_ptr<Entity> e) {
                 AUTO_VAR(itEnd, listeners.end());
@@ -1625,7 +1625,7 @@ void Level::entityAdded(std::shared_ptr<Entity> e) {
                 }
             }
 
-                       
+            
 void Level::playerRemoved(std::shared_ptr<Entity> e) {
                 AUTO_VAR(itEnd, listeners.end());
                 for (AUTO_VAR(it, listeners.begin()); it != itEnd; it++) {
@@ -1655,10 +1655,10 @@ void Level::playerRemoved(std::shared_ptr<Entity> e) {
                     }
 
                     // 4J added - this will let the entity tracker know);
-                    //                         // that we have actually removed
-                    // the player from the                            // level's
-                    // player list     
-                                          
+                    // // that we have actually removed
+                    // the player from the   // level's
+                    // player list
+                    
     
                 
                 }
@@ -1679,11 +1679,11 @@ void Level::playerRemoved(std::shared_ptr<Entity> e) {
                     if (it != itEnd) {
                         players.erase(
                             it);  // 4J added - this will let the entity tracker
-                                  // know     playerRemoved(e);      // that we
+                                  // know     playerRemoved(e);  // that we
                                   // have actually removed the player from the
-                                  //      // level's player
-                                  // list                         
-                                              
+                                  // // level's player
+                                  // list
+                        
     
                     
                     }
@@ -1722,11 +1722,11 @@ void Level::playerRemoved(std::shared_ptr<Entity> e) {
                         if (it != itEnd) listeners.erase(it);
                 }
 
-                                                                  
+                
 AABBLi /* = false*/
                 etCubes(std::shared_ptr<Entity> source,
-                        AABB * /* = false*/ bool noEntities             ,
-                        bool blockAtEdge             ) {
+                        AABB * /* = false*/ bool noEntities ,
+                        bool blockAtEdge ) {
                     boxes.clear();
                     int x0 = Mth::floor(box->x0);
                     int x1 = Mth::floor(box->x1 + 1);
@@ -1739,8 +1739,8 @@ AABBLi /* = false*/
                     i  // 4J - If we are outside the map, return solid AABBs
                        // (rock is a bitt z = z0; z <// of an arbitrary choice
                        // here, just need a correct
-                       // AABB)                                   
-                                                                     
+                       // AABB)
+            
             if (blockAtEdge &&
                 ((x < minxz) || (x >= maxxz) || (z < minxz) || (z >= maxxz))) {
                         for (int y = y0 - 1; y < y1; y++) {
@@ -1754,8 +1754,8 @@ AABBLi /* = false*/
                                 Tile* tile = Tile::tiles[getTile(x, y, z)];
                                 if (tile != NULL) {
                             tile->addAABBs(this, x, y, z, box, &boxes// 4J - also stop player falling out of the bottom of the map if blockAtEdge
-    // is true. Again, rock is an arbitrary choice here 4J Stu - Don't stop     // entities falling into the void while in The End (it has no bedrock)                              
-                                                                          
+    // is true. Again, rock is an arbitrary choice here 4J Stu - Don't stop// entities falling into the void while in The End (it has no bedrock)
+    
     if (blockAtEdge && ((y0 - 1) < 0) && dimension->id != 1) {
                                         for (int y = y0 - 1; y < 0; y++) {
                                             for (int x = x0; x < x1; x++)
@@ -1764,8 +1764,8 @@ AABBLi /* = false*/
                                                     // limit vertical movement
                                                     // so we can't move above //
                                                     // maxMovementHeight
-                                                                                                                               
-                        
+                                                    
+    
     if (blockAtEdge && (y1 > maxMovementHeight)) {
                                                         for (
                                                             int y =
@@ -1795,7 +1795,7 @@ AABBLi /* = false*/
                                                                     // to
                                                                     // reflect
                                                                     // this
-                                                                    // yet.     //
+                                                                    // yet.//
                                                                     // This is
                                                                     // to stop
                                                                     // the
@@ -1806,7 +1806,7 @@ AABBLi /* = false*/
                                                                     // view
                                                                     // position
                                                                     // inside
-                                                                    // a     //
+                                                                    // a//
                                                                     // tile
                                                                     // which is
                                                                     // (visually)
@@ -1817,7 +1817,7 @@ AABBLi /* = false*/
                                                                     // the
                                                                     // world.
                                                                     // This
-                                                                    // is     //
+                                                                    // is//
                                                                     // particularly
                                                                     // a problem
                                                                     // when
@@ -1827,7 +1827,7 @@ AABBLi /* = false*/
                                                                     // creative
                                                                     // mode as
                                                                     // the
-                                                                    // player     //
+                                                                    // player//
                                                                     // can get
                                                                     // very
                                                                     // close to
@@ -1837,18 +1837,18 @@ AABBLi /* = false*/
                                                                     // looking
                                                                     // upwards
                                                                     // and
-                                                                    // can     //
+                                                                    // can//
                                                                     // therefore
                                                                     // very
                                                                     // quickly
                                                                     // move
                                                                     // inside
-                                                                    // one.                                                          
-                                              
+                                                                    // one.
+    
     M// 4J - addedInstance()->levelRenderer->destroyedTileManager->addAABBs(
         this, box, &boxes);
 
-                 
+    
     if (noEntities) return &boxes;
 
     double r = 0.25;
@@ -1862,26 +1862,26 @@ AABBLi /* = false*/
         }
 
         collideBox = source->getCollideAgainstBox(*it);
-        if (collideB// 4J Stu - Brought forward from 12w36 to fix #46282 - TU5: Gameplay: Exitingi// the minecart in a tight corridor damages the player                                                           /* = false */                                                     
-AABBList// boxes.clear();ubes(// int x0 = Mth::floor(box->x0);     // int x1 = Mth::floor(box->x1 + 1); box,// int y0 = Mth::floor(box->y0);     // int y1 = Mth::floor(box->y1 + 1);     // int z0 = Mth::floor(box->z0);     // int z1 = Mth::floor(box->z1 + 1);      // for (int x = x0; x < x1; x++)     //{ 
-   //	for (int z = z0; z < z1; z++) 
-   //	{     //		if (hasChunkAt(x, 64, z))
-    //		{     //			for (int y = y0 - 1; y < y1; y++)     //			{     //				Tile *tile = Tile::tiles[getTile(x, y, z)];      //				if (tile != NULL)     //				{     //					tile->addAABBs(this, x, y, z, box,     //&boxes);     //				}     //			}
+        if (collideB// 4J Stu - Brought forward from 12w36 to fix #46282 - TU5: Gameplay: Exitingi// the minecart in a tight corridor damages the player/* = false */
+AABBList// boxes.clear();ubes(// int x0 = Mth::floor(box->x0);// int x1 = Mth::floor(box->x1 + 1); box,// int y0 = Mth::floor(box->y0);// int y1 = Mth::floor(box->y1 + 1);// int z0 = Mth::floor(box->z0);// int z1 = Mth::floor(box->z1 + 1);// for (int x = x0; x < x1; x++)//{
+   //	for (int z = z0; z < z1; z++)
+   //	{//		if (hasChunkAt(x, 64, z))
+    //		{//			for (int y = y0 - 1; y < y1; y++)//			{//				Tile *tile = Tile::tiles[getTile(x, y, z)];//				if (tile != NULL)//				{//					tile->addAABBs(this, x, y, z, box,//&boxes);//				}//			}
 
-   //		}     //	}     //}  
-   // return boxes;    // 4J - change brought forward from 1.8.2        
-           
-          
-         
-        
-       
+   //		}//	}//}
+   // return boxes;// 4J - change brought forward from 1.8.2
+    
+    
+    
+    
+    
 
-                    
+    
 
     
     }
 
-                                             
+    
 int Level::getOldSkyDarken(float a) {
         float td = getTimeOfDay(a);
 
@@ -1896,7 +1896,7 @@ int Level::getOldSkyDarken(float a) {
     return ((int)(br * 11));
     }
 
-                                             
+    
 float Level::getSkyDarken(float a) {
         float td = getTimeOfDay(a);
 
@@ -1906,7 +1906,7 @@ float Level::getSkyDarken(float a) {
 
         b  // return ((int) (br * 13));0f - (getRainLevel(a) * 5.0f / 16.0f);
             br *= 1.0f - (getThunderLevel(a) * 5.0f / 16.0f);
-                                    
+        
 
     return br * 0.8f +
             0.2f;
@@ -1960,11 +1960,11 @@ float Level::getSkyDarken(float a) {
      * 4J-PB removed line below - notch committed 1.6.6 with the incorrect
      * getTimeOfDay and changed it before releasing (without
      * re-committing)... that should be the only difference // jeb
-     */     /* if (this != NULL) return 0.5f; */      // 4J Added if so we can override timeOfDay without changing the time that    
-// affects ticking of things            
+     *//* if (this != NULL) return 0.5f; */// 4J Added if so we can override timeOfDay without changing the time that
+// affects ticking of things
 
-                                                                              
-                                
+    
+    
     return dimension->getTimeOfDay(levelData->getDayTime(), a);
             ;
         }
@@ -2030,9 +2030,9 @@ float Level::getSkyDarken(float a) {
                 a) {  // 4J - optimisation brought forward from 1.8.2 - used to
                       // do fullr(td,// calculation here but result is now
                       // cached in
-                      // LevelChunk                                                              
-            // 4J added                                                
-    return getChunkAt(x, z)->getTopRainBlock(x & 15, z // 4J added          
+                      // LevelChunk
+            // 4J added
+    return getChunkAt(x, z)->getTopRainBlock(x & 15, z // 4J added
 bool Level::biomeHasRain(int x, int z) {
                                                                                 return getChunkAt(
                                                                                            x,
@@ -2042,7 +2042,7 @@ bool Level::biomeHasRain(int x, int z) {
                                                                                         z & 15);
 }
 
-           
+
 bool Level::biomeHasSnow(int x, int z) {
                                                                                 return getChunkAt(
                                                                                            x,
@@ -2219,7 +2219,7 @@ void Level::tickEntities() {
                                                                                             std::shared_ptr<
                                                                                                 Entity>
                                                                                                 e = *it;
-                                                                                                                      
+                                                                                            
         int xc = e->xChunk;
                                                                                             int zc =
                                                                                                 e->zChunk;
@@ -2240,9 +2240,9 @@ void Level::tickEntities() {
                                                                                         *
                                                                                         the vector is modified from
                                                                                                 inside this loop.*
-                                                                                        /                          
+                                                                                        /
 
-                                                                                                                     
+    
     EnterCriticalSection(&m_entitiesCS);
 
                                                                                     for (
@@ -2276,14 +2276,14 @@ void Level::tickEntities() {
                                                                                         }
 
                                                                                         if (!e->removed) {
-                                                                                                              #endif if (
+                                                                                            #endif if (
                                                                                                 !(app.DebugSettingsOn() &&
                                                                                                   app.GetMobsDontTickEnabled() &&
                                                                                                   e->instanceof(
                                                                                                       eTYPE_MOB) &&
                                                                                                   !e->instanceof(
                                                                                                       eTYPE_PLAYER)))
-      
+
             {
                                                                                                 tick(
                                                                                                     e);
@@ -2295,8 +2295,8 @@ void Level::tickEntities() {
                                                                                                 e->xChunk;
                                                                                             // entities.remove(i--);nk;
                                                                                             // itE = entities.erase( itE );c, zc)) {
-                                                                                            // 4J Find the entity again before deleting, as things might have             // moved in the entity array eg from the explosion created by tnt                                                                             
-                                                                                                                                                             
+                                                                                            // 4J Find the entity again before deleting, as things might have        // moved in the entity array eg from the explosion created by tnt            
+                                                                                            
             AUTO_VAR(it, std::find(entities.begin(), entities.end(), e));
                                                                                             if (it !=
                                                                                                 entities
@@ -2319,18 +2319,18 @@ void Level::tickEntities() {
                                                                                     u  // tilevector<shared_ptr<Entity> >.at(i);_VAR(it, tileEntityList.begin()); it != tileEntityList.end();) {
                                                                                         std::shared_ptr<
                                                                                             TileEntity>
-                                                                                            t #ifdef _LARGE_WORLDS                                           
+                                                                                            t #ifdef _LARGE_WORLDS  
         if (!te->isRemoved() && te->hasLevel()) {
                                                                                                 if (hasChunkAt(
                                                                                                         te -
 #endif
                                                                                                                 ->y,
                                                                                                         te->z)) {
-                                                                                                                        
+                                                                                                    
                 LevelChunk* lc = getChunk(te->x >> 4, te->z >> 4);
                                                                                                     if (!isClientSide ||
                                                                                                         !lc->isUnloaded())
-                                                                                                              
+                                                                                                        
                 {
                                                                                                             te->tick();
                                                                                                         }
@@ -2359,10 +2359,10 @@ void Level::tickEntities() {
                                                                                     } else {
                                                                                         // tileEntityList.removeAll(tileEntitiesToUnload);es = false;
 
-                                                                                                                                       
+                                                                                        
 
     if (!tileEntitiesToUnload.empty()) {
-                                                                                                                                              
+                                                                                            
 
         for (AUTO_VAR(it, tileEntityList.begin());
              it != tileEntityList.end();) {
@@ -2506,23 +2506,23 @@ void Level::tickEntities() {
                                                                                     int zc = Mth::floor(
                                                                                         e->z);
                                                                                     int r = 32;
-                 
-                         #else                                                  
-              
+
+    #else 
+    
     if #endifal && e->GetType() != eTYPE_ENDERDRAGON && !hasChunksAt(xc - r, 0, zc - r, xc + r, 0, zc + r))
-     
+
     if (actual && !hasChunksA
 #ifdef __PSVITA__r, xc  // AP - make sure the dragon ticks all the time, even
                         // when there aren't any   e-// chunks.>y;
     e->zOld = e->z;
     e->yRotO = e->yRot;
-    e->xRotO = e->xRot#else               
-               #endif                                                          
-              
+    e->xRotO = e->xRot#else
+    #endif
+    
     if (actual && (e->GetType() == eTYPE_ENDERDRAGON || e->inChunk))
-     
+
    // SANTITY!!&& e->inChunk)
-      
+
     {
                                                                                     e->tickCount++;
                                                                                     if (e->riding !=
@@ -2533,7 +2533,7 @@ void Level::tickEntities() {
                                                                                     }
     }
 
-                
+    
     if (Double::isNaN(e->x) || Double::isInfinite(e->x)) e->x = e->xOld;
     if (Double::isNaN(e->y) || Double::isInfinite(e->y)) e->y = e->yOld;
     if (Double::isNaN(e->z) || Double::isInfinite(e->z)) e->z = e->zOld;
@@ -2576,7 +2576,7 @@ void Level::tickEntities() {
                                                                                     } else {
                                                                                         e->inChunk =
                                                                                             false;
-                                                                                                      
+                                                                                        
         
                                                                                     
                                                                                     }
@@ -2745,10 +2745,10 @@ bool Level::containsAnyLiquid(AABB* box) {
                                                                                             z <
                                                                                             z1;
                                                                                             z++) {
-                                                                                            // 4J - added this to be used during mob spawning, and it returns true ift// there's any liquid in the bounding box, or might be because we don't have a // loaded chunk that we'd need to determine whether it really did. The overall // aim is to not load or create any chunk we haven't already got, and be // cautious about placing the mob's.                
-                                                                                                                                                                          
-                                                                        
-                                    
+                                                                                            // 4J - added this to be used during mob spawning, and it returns true ift// there's any liquid in the bounding box, or might be because we don't have a // loaded chunk that we'd need to determine whether it really did. The overall// aim is to not load or create any chunk we haven't already got, and be// cautious about placing the mob's.
+                                                                                            
+
+
 bool Level::containsAnyLiquid_NoLoad(AABB * box) {
                                                                                                 int x0 = Mth::floor(
                                                                                                     box->x0);
@@ -2780,7 +2780,7 @@ bool Level::containsAnyLiquid_NoLoad(AABB * box) {
                                                                                                             y,
                                                                                                             z))
                                                                                                         return true;
-                                                                                                                                                 
+                                                                                                    
                 Tile* tile = Tile::tiles[getTile(x, y, z)];
                                                                                                     if (tile !=
                                                                                                             NULL &&
@@ -3187,8 +3187,8 @@ bool Level::containsAnyLiquid_NoLoad(AABB * box) {
     int hits = 0;
     int count = 0;
     for (double xx = 0; xx <= 1;
-         xx += xs)                                                             
-                                      
+         xx += xs)  
+                    
         for (double yy = 0; yy <= 1; yy += ys)
             for (double zz = 0; zz <= 1; zz += zs) {
                                                                                                     double x =
@@ -3259,7 +3259,7 @@ return shared_ptr<Entity>();
                                                                                             return false;
                                                                                         }
 
-                                                                                               "All:%d"                                                                                    
+                                                                                "All:%d"
 
 std::wstring Level::gatherStats() {
                                                                                     wchar_t buf
@@ -3269,7 +3269,7 @@ std::wstring Level::gatherStats() {
                                                                                     swprintf(
                                                                                         buf,
                                                                                         64,
-                                                                                        L        ,
+                                                                                        L,
                                                                                         entities
                                                                                             .size());
                                                                                     LeaveCriticalSection(
@@ -3404,7 +3404,7 @@ std::wstring Level::gatherStats() {
                                                                                             ->z =
                                                                                             z;
 
-                                                                                                                  
+                                                                                        
             for (AUTO_VAR(it, pendingTileEntities.begin());
                  it != pendingTileEntities.end();) {
                                                                                             std::shared_ptr<
@@ -3526,11 +3526,11 @@ void Level::removeTileEntity(int x, int y, int z) {
                                                                                             y,
                                                                                             z & 15);
                                                                                 }
-    LeaveCriticalSection(&m_tileEntityListCS// 4J - addition here to make rendering big blocks of leaves more efficient.ileEn// Normally leaves never consider themselves as solid, so blocks of leavesint y// will have all sides of each block completely visible. Changing toile =// consider as solid if this block is surrounded by other leaves (or solid     // things). This is paired with another change in Tile::getTexture which     // makes such solid tiles actually visibly solid (these textures exist     // already for non-fancy graphics). Note: this tile-specific code is here     // rather than making some new virtual method in the tiles, for the sake of     // efficiency - I don't imagine we'll be doing much more of this sort of     // thing            
-                                                                             
-                                                                               
-                                                                            
-            
+    LeaveCriticalSection(&m_tileEntityListCS// 4J - addition here to make rendering big blocks of leaves more efficient.ileEn// Normally leaves never consider themselves as solid, so blocks of leavesint y// will have all sides of each block completely visible. Changing toile =// consider as solid if this block is surrounded by other leaves (or solid// things). This is paired with another change in Tile::getTexture which// makes such solid tiles actually visibly solid (these textures exist// already for non-fancy graphics). Note: this tile-specific code is here// rather than making some new virtual method in the tiles, for the sake of// efficiency - I don't imagine we'll be doing much more of this sort of// thing
+    
+    
+    
+    
 
     if (tile->id == Tile::leaves_Id) {
                                                                                     int axo[6] = {
@@ -3557,7 +3557,7 @@ void Level::removeTileEntity(int x, int y, int z) {
  */ile::isSolidBlockingTile(getTile(x, y, z));
                                                                                     }
 
-                                                                                                                                                                                                                                                                                                         
+                                                                                    
 
 bool Level::isSolidBlockingTileInLoadedChunk(int x, int y, int z, bool valueIfNotLoaded) {
                                                                                         if (x < -MAX_LEVEL_SIZE ||
@@ -3617,7 +3617,7 @@ bool Level::isSolidBlockingTileInLoadedChunk(int x, int y, int z, bool valueIfNo
 }
 
 bool Level::isTopSolidBlocking(int x, int y, int z) {
-                                                                                                                                                     
+                                                                                    
     Tile* tile = Tile::tiles[getTile(x, y, z)];
                                                                                     return isTopSolidBlocking(
                                                                                         tile,
@@ -3693,7 +3693,7 @@ void Level::setSpawnSettings(bool spawnEnemies, bool spawnFriendlies) {
 
 void Level::tick() {
                                                                                     PIXBeginNamedEvent(
-                                                                                        0,               );
+                                                                                        0, );
                                                                                     tickWeather();
                                                                                     PIXEndNa
 #ifndef _FINAL_BUILDevel:  // debug setting added to disable weatherRaining()) {
@@ -3711,8 +3711,8 @@ void Level::tickWeather() {
                                                                                 if (dimension
                                                                                         ->hasCeiling)
                                                                                     return;
-                                                                                                     
-                                             
+                                                                                
+    
     if (app.DebugSettingsOn()) {
                                                                                     if (app.GetGameSettingsDebugMask(
                                                                                             ProfileManager
@@ -3743,7 +3743,7 @@ void Level::tickWeather() {
                                                                                                     2);
                                                                                     }
                                                                                 }
-                                                                                      
+                                                                                
 
     int thunderTime = levelData->getThunderTime();
                                                                                 if (thunderTime <=
@@ -3811,7 +3811,7 @@ void Level::tickWeather() {
                                                                                                     !levelData
                                                                                                          ->isRaining());
         }
-                                                                                                    
+        
     
                                                                                     
                                                                                     }
@@ -3851,12 +3851,12 @@ void Level::tickWeather() {
 }
 
 void Level::toggleDownfall() {
-                                                                                                                                                  
+                                                                                
     levelData->setRainTime(1);
 }
 
 void Level::buildAndPrepareChunksToPoll() {
-                                                                                      
+                                                                                
 	AUTO_VAR(itEnd, players.end());
                                                                                 for (
                                                                                     AUTO_VAR(
@@ -3868,10 +3868,10 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                     it++) {
                                                                                     std::shar #elser <
                                                                                         Pla  // 4J - rewritten to add chunks interleaved by player, and to add them fromloor(// the centre outwards. We're going to be potentially adding less creatures+)
-                                                                                        // than the original so that our count stays consistent with number of + xx// players added, so we want to make sure as best we can that the ones we do     // add are near the active players                                                                      
-                                                                          
-                                                                                
-                                      
+                                                                                        // than the original so that our count stays consistent with number of + xx// players added, so we want to make sure as best we can that the ones we do// add are near the active players
+    
+    
+    
     int playerCount = (int)players.size();
                                                                                     int* xx = new int
                                                                                         [playerCount];
@@ -3934,12 +3934,12 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                                      r) +
                                                                                                         l));
                                                                                                 chunksToP  // 4J Stu - Added 1.2.3, but not sure if we want to do it     // util.Timer.push("playerCheckLight");i] - //// randomly check areas around the players }
-                                                                                                           // if (!players.isEmpty()) {ete[]//	int select = random.nextInt(players.size());0) de//	Player player = players.get(select);     //	int px = Mth.floor(player.x) + random.nextInt(11) - 5;     //	int py = Mth.floor(player.y) + random.nextInt(11) - 5;     //	int pz = Mth.floor(player.z) + random.nextInt(11) - 5;     //	checkLight(px, py, pz);     // }
-                                                                                                           // util.Timer.pop();                   
-                                                          // lc->tick();	// 4J - brought this lighting update forward from 1.8.2                                                             
-                              
-        
-                        
+                                                                                                           // if (!players.isEmpty()) {ete[]//	int select = random.nextInt(players.size());0) de//	Player player = players.get(select);//	int px = Mth.floor(player.x) + random.nextInt(11) - 5;//	int py = Mth.floor(player.y) + random.nextInt(11) - 5;//	int pz = Mth.floor(player.z) + random.nextInt(11) - 5;//	checkLight(px, py, pz);// }
+                                                                                                           // util.Timer.pop();
+        // lc->tick();	// 4J - brought this lighting update forward from 1.8.2    
+    
+    
+    
 
                                                                                             
                                                                                             }
@@ -3950,7 +3950,7 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                                 int zo,
                                                                                                 LevelChunk*
                                                                                                     lc) {
-                                                                                                                                                                      
+                                                                                                
 
     if (delayUntilNextMoodSound == 0 && !isClientSide) {
                                                                                                     randValue =
@@ -3985,11 +3985,11 @@ void Level::buildAndPrepareChunksToPoll() {
             getBrigh// 4J-PB - Fixed issue with cave audio event having 2 sounds at_ptr<Player> play// 192k #ifdef _XBOX getNearestPlayer(x + 0.5, y + 0.5, z + 0.5, 8);
             if (player != NULL &&
                 player->distanceToSqr(x + 0.5, y + 0.5, z + 0.5) > 2 * 2) {
-                                                                                                                              #else                                     
-                       
-            
+                                                                                                        #else 
+                
+
                 this->playSound(x + 0.5, y + 0.5, z + 0.5, eSoundType_AMBIENT_CAVE_CAVE2, #endif 0.8f + random->nextFloat() * 0.2f);
-                                                                                                             
+                                                                                                        
                 this->playSound(x + 0.5, y + 0.5, z + 0.5, eSoundType_AMBIENT_CAVE_CAVE, 0.7f,
                                                                                                             0.8f +
                                                                                                                 random->nextFloat() *  // 4J Stu - Added 1.2.3, but do we need it?xtMoo// lc->checkNextLight();     random->nextInt(SharedConstants::TICKS_PER_SECOND * 60 *
@@ -4002,8 +4002,8 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                                 }
                                                                                             }
 
-                                                                                                                                       
-                            
+                                                                                            
+    
 
                                                                                         
                                                                                         }
@@ -4183,7 +4183,7 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                         bool
                                                                                             force,
                                                                                         bool
-                                                                                            rootOnlyEmissive)                                                
+                                                                                            rootOnlyEmissive)  
 {
                                                                                         if (!dimension
                                                                                                  ->hasCeiling)
@@ -4294,28 +4294,28 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                         return result;
                                                                                     }
 
-                                                                                                                                                                       // 4J - special mode added so we can do lava lighting updates without xc, int // having all neighbouring chunks loaded ince, bool rootOnlyEmissive) {
+                                                                                        // 4J - special mode added so we can do lava lighting updates without xc, int // having all neighbouring chunks loaded ince, bool rootOnlyEmissive) {
                                                                                         lightCache_t* cache =
                                                                                             (lightCache_t*)
                                                                                                 T  // 4J - this is normal java behaviourint64 cacheUse = 0;
 
                                                                                         if (force) {
-                                                                                                   
-#if 0      /////////////////////////////////////////////////////////////////////////////////////////////  // Get the frequency of the timerxc, yc, zc, 0)) return;
+                                                                                        
+#if 0    /////////////////////////////////////////////////////////////////////////////////////////////// Get the frequency of the timerxc, yc, zc, 0)) return;
                                                                                     }
                                                                                     else {
-                                                                                                                             
+                                                                                        
         if (!hasChunksAt(xc, yc, zc, 17)) return;
                                                                                     }
-                                                                                          
-	                                                                                             
-	                                 
+                                                                                    
+	
+	
 	LARG  /////////////////////////////////////////////////////////////////////////////////////////////=#endif
                                                                                         float fElapsedTime2 =
                                                                                             0.0f;
                                                                                     QueryPerformanceFrequency(
                                                                                         &qwTicksPerSec);
-                                                                                    float fSecsPerT  // If we're in cached mode, then use memory allocated after the cached dataime )// itself for the toCheck array, in an attempt to make both that & the other     // cached data sit on the CPU L2 cache better.on(&m_checkLightCS);
+                                                                                    float fSecsPerT  // If we're in cached mode, then use memory allocated after the cached dataime )// itself for the toCheck array, in an attempt to make both that & the other// cached data sit on the CPU L2 cache better.on(&m_checkLightCS);
 
                                                                                         initCachePartial(
                                                                                             cache,
@@ -4323,8 +4323,8 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                             yc,
                                                                                             zc);
 
-                                                                                                                                                               
-                                                                  // int darktcc = 0;      // 4J - added                               
+                                                                                    
+        // int darktcc = 0;    // 4J - added
 
                                                                                         int*
                                                                                             toCheck;
@@ -4344,12 +4344,12 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                         0;
                                                                                     int toCheckCount =
                                                                                         0;
-                                                                                                         // Lock 128K of cache (containing all the lighting cache + first 112K of;
-                                                                                        // toCheck array) on L2 to try and stop any cached data getting knocked out (xc // of L2 by other non-cached reads (or vice-versa)  Lea//	if( cache ) XLockL2(XLOCKL2_INDEX_TITLE, cache, 128 * 1024,     //XLOCKL2_LOCK_SIZE_1_WAY, 0 );                                     
-                                                                               
-                                                      
-                                                                  
-                                   
+                                                                                        // Lock 128K of cache (containing all the lighting cache + first 112K of;
+                                                                                        // toCheck array) on L2 to try and stop any cached data getting knocked out (xc // of L2 by other non-cached reads (or vice-versa)  Lea//	if( cache ) XLockL2(XLOCKL2_INDEX_TITLE, cache, 128 * 1024, //XLOCKL2_LOCK_SIZE_1_WAY, 0 );
+    
+    
+    
+    
 
     {
                                                                                         int centerCurrent = getBrightnessCached(
@@ -4366,10 +4366,10 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                             layer,
                                                                                             false);
 
-        if (centerEx// 4J - added tcn. This is the code that is run when checkLight hasache, xc, yc,// been called for a light source that has got darker / turned off.        toChe// In the original version, after zeroing tiles brightnesses thatif (centerExp// are deemed to come from this light source, all the zeroed tiles             // are then passed to the next stage of the function to potentially             // have their brightnesses put back up again. We shouldn't need to             // consider All these tiles as starting points for this process, now             // just considering the edge tiles (defined as a tile where we have             // a neighbour that is brightner than can be explained by the             // original light source we are turning off)                                                                
-                                                                               
-                                                                         
-                                                        
+        if (centerEx// 4J - added tcn. This is the code that is run when checkLight hasache, xc, yc,// been called for a light source that has got darker / turned off.        toChe// In the original version, after zeroing tiles brightnesses thatif (centerExp// are deemed to come from this light source, all the zeroed tiles// are then passed to the next stage of the function to potentially// have their brightnesses put back up again. We shouldn't need to// consider All these tiles as starting points for this process, now// just considering the edge tiles (defined as a tile where we have// a neighbour that is brightner than can be explained by the// original light source we are turning off)
+            
+            
+            
             int tcn = 0;
             if (layer == LightLayer::Block || true) {
                                                                                             toCheck[toCheckCount++] =
@@ -4417,8 +4417,8 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                                         y,
                                                                                                         z,
                                                                                                         0);
-                                                                                                                                       
-                                     
+                                                                                                    
+                        
                         if (expected > 0) {
                                                                                                         int xd = Mth::abs(
                                                                                                             x -
@@ -4437,24 +4437,24 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                                                 false;
                                 for (int face // 4J - added - don't let this lighting                      int xx = x + Fa// creep out of the normal fixed world and              int yy = y + Facing::ST// into the infinite water chunks beyond        int zz = z + Facing::STEP_Z[face];
 
-                                                                           
-                                                                              
-                                                                            
+                                    
+                                    
+                                    
                                     if ((xx > maxXZ) || (xx < minXZ) ||
         // 4J - some changes here brought forwardXZ) || (zz < minXZ))
                 // from 1.2.3           continue;
                                     if ((yy < 0) || (yy >= maxBuildHeight))
                                         continue;
 
-                                                                             
-                                                 
+                                    
+                                    
                                     int block = std::max(
                                         1, getBlockingCached(cache, layer, NULL,
                                                              xx, yy, zz));
                                     current = getBrightnessCached(c// 4J - 32 * 32 * 32                                                           x// was toCheck.length                           if ((current == expected - block) &&
                                         (toCheckCount <
-                                         (32 * 32 * 32)))                      
-                                                                                
+                                         (32 * 32 * 32)))  
+                                                           
                                     {
                                                                                                                 toCheck[toCheckCount++] =
                                                                                                                     (xx -
@@ -4464,26 +4464,26 @@ void Level::buildAndPrepareChunksToPoll() {
                                                                                                                 // tiles form the edge of the region we< 12) |
                                                                                                                 // are zeroingxpected - block) << 18);
                                     } else {
-                                                                                                                                                   
-                                                                               
-                                                          // 4J - added - keep track of which tiles formurrent > (expected - block)) {
+                                                                                                                
+                                        
+                                            // 4J - added - keep track of which tiles formurrent > (expected - block)) {
                                                                                                                     // the edge of the region we are zeroing - can = true;
                                                                                                                     // store over the original elements in the array      }
-                                                                                                                    // because tcn must be <= tcp                                                          
-                                                                              
-                                                                                
-                                                             
+                                                                                                                    // because tcn must be <= tcp            
+                                
+                                
+                                
                      //			darktcc = tcc;edge == true)///////////////////////////////////////////////////// = p;
                                                                                                                     // 4J added - we've moved all the edge tiles to             }
                                                                                                                     // the start of the array, so only need to     checkedPosition = 0;
-                                                                                                                    // process these now. The original processes                                  // all tcc tiles again in the next section;                                                 
-                                                                           
-                                                                             
-                                        // If force is set, then this is being used to in a special mode to tryckedPosit// and light lava tiles as chunks are being loaded in. In this case, we   int x // don't want a lighting update to drag in any neighbouring chunks that    int z// aren't loaded yet. 32 + zc;
+                                                                                                                    // process these now. The original processes// all tcc tiles again in the next section;  
+                                 
+                                 
+                                     // If force is set, then this is being used to in a special mode to tryckedPosit// and light lava tiles as chunks are being loaded in. In this case, we   int x // don't want a lighting update to drag in any neighbouring chunks that    int z// aren't loaded yet. 32 + zc;
 
-                                                                               
-                                                                               
-                    // If rootOnlyEmissive flag is set, then only consider the starting tile         // to be possibly emissive.rce) {
+        
+        
+            // If rootOnlyEmissive flag is set, then only consider the starting tile// to be possibly emissive.rce) {
                                                                                                                     if (!hasChunkAt(
                                                                                                                             x,
                                                                                                                             y,
@@ -4493,8 +4493,8 @@ void Level::buildAndPrepareChunksToPoll() {
         }
         int current = getBrightnessCached(cache, layer, x, y, z);
 
-                                                                                
-                                   
+        
+        
         bool propagatedOnly = false;
         if (layer == LightLayer::Block) {
                                                                                                                 if (rootOnlyEmissive) {
@@ -4512,11 +4512,11 @@ void Level::buildAndPrepareChunksToPoll() {
         if (expected != current) {
             setBrightnessCached(cache, &cacheUse, layer, x, y,// 4J - 32 * 32 * 32 was toCheck.lengthd > current) {
                 int xd = abs(x - xc);
-                int yd = // 4J - added extra checks here to stop lighting updates           bool withi// moving out of the actual fixed world and into the             (32 * 32// infinite water chunks                            
+                int yd = // 4J - added extra checks here to stop lighting updates           bool withi// moving out of the actual fixed world and into the             (32 * 32// infinite water chunks
                 if (xd + yd + zd < 17 && withinBounds) {
-                                                                                                                                                                            
-                                                                        
-                                            
+                                                                                                                    
+                    
+                    
                     if ((x - 1) >= minXZ) {
                                                                                                                         if (getBrightnessCached(
                                                                                                                                 cache,
@@ -4642,27 +4642,27 @@ void Level::buildAndPrepareChunksToPoll() {
                         //	if( cache ) XUnlockL2(XLOCKL2_INDEX_TITLE);e#if 0CheckCount++] =
                                 (((x - xc) + 32)) + (((y - yc) + 32) << 6) +
 #endif 1 - zc) + 32) << 12);
-#if 0  /////////////////////////////////////////////////////////////////                             
-     
+#if 0  /////////////////////////////////////////////////////////////////
+
 	QueryPerformanceCounter( &qwNewTime );
 	qwDeltaTime1.QuadPart = qwNewTime.QuadPart - qwTime.QuadPart;
 	qwTime = qwNewTime;
-      
+
 
     flushCache(cache, cacheUse, layer);
-     
-	                                                                 
+
+	
 	if( cache )
 	{
 		QueryPerf"%d %d %d %f + %f = %f\n"e );
 		qwDeltaTime2.QuadPart = qwNewTime.QuadPart - qwTime.QuadPart;
 		fElapsedTime1 = fSecsPerTick * ((FLOAT)(qwDeltaTime1.QuadPart));/////////////////////////////////////////////////////////////////)#endif( ( darktcc > 0 ) | ( tcc > 0 ) )
 		{
-			printf(                         , darktcc, tcc, darktcc + tcc, fElapsedTime1 * 1000.0f, fElapsedTime2 * 1000.0f, ( fElapsedTime1 + fElapsedTime2 ) * 1000.0f);
+			printf(, darktcc, tcc, darktcc + tcc, fElapsedTime1 * 1000.0f, fElapsedTime2 * 1000.0f, ( fElapsedTime1 + fElapsedTime2 ) * 1000.0f);
 		}
 	}
-	                                                                 
-      
+	
+
     LeaveCriticalSection(&m_checkLightCS);
 }
 
@@ -4685,15 +4685,15 @@ std::vector<std::shared_ptr<Entity> >* Level::g
     int xc1 = Mth::floor((bb->x1 + 2) / 16);
     int zc0 = Mt#elseoor((bb->z0 - 2) / 16);
     int zc1 = Mth::floor((bb->#endif)#endif;
-                  
-                           
-                                                                               
-                                         
+
+
+    
+    
     EnterCriticalRWSection(&LevelChunk::m_csEntities, false);
-    
+
 #ifdef __PSVITA__l#ifdef _ENTITIES_RW_SECTIONtities);
-      
-      
+
+
 
     for (int xc = xc0; xc <= xc1; xc++)#else    for (int zc = zc0; zc <= zc1; zc++) {
 #endifs #endifxc, zc)) {
@@ -4701,13 +4701,13 @@ std::vector<std::shared_ptr<Entity> >* Level::g
             }
         }
     MemSect(0);
-                  
-                           
+
+
     LeaveCriticalRWSection(&LevelChunk::m_csEntities, false);
-     
+
     LeaveCriticalSection(&LevelChunk::m_csEntities);
-      
-      
+
+
 
     return &es;
 }
@@ -4729,14 +4729,14 @@ std::vector<std::shared_ptr<Entity> >* Level::getEntitiesOfClass(
                                                      // / 16);
     int zc1 = Mth::floor#else>z1 + 2) / 16);
     std::vector<std::shared_ptr<Entity#endifs#endif std::vector<std::shared_ptr<Entity> >();
-                  
-                           
-                                                                               
-                                         
+
+
+    
+    
     EnterCriticalRWSection(&LevelChunk::m_csEntities, false);
-     
+
     EnterCriti
-#ifdef __PSVITA__h #ifdef _ENTITIES_RW_SECTION      
+#ifdef __PSVITA__h #ifdef _ENTITIES_RW_SECTION
 
     for (int xc = xc0; xc <= xc1; xc++) {
         for (#elsec = zc0; zc <= zc1; zc++) {
@@ -4745,10 +4745,10 @@ std::vector<std::shared_ptr<Entity> >* Level::getEntitiesOfClass(
             }
         }
     }
-                  
-                           
+
+
     LeaveCriticalRWSection(&LevelChunk::m_csEntities, false);
-     
+
     LeaveCriticalSection(&LevelChunk::m_csEntities// for (Entity entity : entities)}
 
 std::shared_ptr<Entity> Level::getClosestEntityOfClass(
@@ -4756,7 +4756,7 @@ std::shared_ptr<Entity> Level::getClosestEntityOfClass(
     std::vector<std::shared_ptr<Entity> >* entities = getEntitiesOfClass(baseClass, bb);
     std::shared_ptr<Entity> closest = nullptr;
     double closestDistSqr = Double::MAX_VALUE;
-                                     
+    
     for (AUTO_VAR(it, entities->begin()); it != entities->end(); ++it) {
         std::shared_ptr<Entity> entity = *it;
         if (entity == source) continue;
@@ -4783,27 +4783,27 @@ void Level::tileEntityChanged(int x, int y, int z,
         getChunkAt(x, z)->markUnsaved();
     }
 }
-  #endifns// 4J - added - more limited (but faster) version of above, used to count water // animals, animals, monsters for the mob spawner singleType flag should be truer// if we are just trying to match eINSTANCEOF exactly, and false if it is an// eINSTANCEOF from a group (eTYPE_WATERANIMAL, eTYPE_ANIMAL, eTYPE_MONSTER) count++;
+#endifns// 4J - added - more limited (but faster) version of above, used to count water // animals, animals, monsters for the mob spawner singleType flag should be truer// if we are just trying to match eINSTANCEOF exactly, and false if it is an// eINSTANCEOF from a group (eTYPE_WATERANIMAL, eTYPE_ANIMAL, eTYPE_MONSTER) count++;
 	}
 	LeaveCriticalSection(&m_entitiesCS);
 
 	return count;
 }
-      
 
-                             /* = NULL*/                                     /* = NULL*/                                                                        
-                                                                           
-                                                                            
+
+/* = NULL*//* = NULL*/
+
+
 unsigned int Level::countInstanceOf(
-    eINSTANCEOF clas, bool singleType, u// entities.at(i);ctedCount            ,
-    unsigned int* couldWanderCount            ) {
+    eINSTANCEOF clas, bool singleType, u// entities.at(i);ctedCount ,
+    unsigned int* couldWanderCount ) {
     unsigned int count = 0;
     if (protectedCount) *protectedCount = 0;
     if (couldWanderCount) *couldWanderCount = 0;
     EnterCriticalSection(&m_entitiesCS);
     AUTO_VAR(itEnd, entities.end());
     for (AUTO_VAR(it, entities.begin()); it != itEnd; it++) {
-        std::shared_ptr<Entity> e = *it;                    
+        std::shared_ptr<Entity> e = *it;  
         if (singleType) {
             if (e->GetType() == clas) {
                 if (protectedCount && e->isDespawnProtected()) {
@@ -4829,7 +4829,7 @@ unsigned int Level::countInstanceOfInRange(eINSTANCEOF clas, bool singleType,
     EnterCriticalSection(&m_entitiesCS);
     AUTO_VAR(itEnd, entities.end());
     for (AUTO_VAR(it, entities.begin()); it != itEnd; it++) {
-        std::shared_ptr<Entity> e = *it;                    
+        std::shared_ptr<Entity> e = *it;  
 
         float sd = e->dista// entities.addAll(list);f (sd * sd > range * range) {
             continue;
@@ -4844,13 +4844,13 @@ unsigned int Level::countInstanceOfInRange(eINSTANCEOF clas, bool singleType,
         }
     }
     LeaveCriticalSec// 4J Stu - Special change to remove duplicate enderdragons that a(std::vec// previous bug might have produced:list) {
-                             
+    
     EnterCriticalSection(&m_entitiesCS);
     entities.insert(entities.end(), list->begin(), list->end());
     AUTO_VAR(itEnd, list->end());
     bool deleteDragons = false;
-    for (AUTO_VAR(it, list->begin());// 4J Stu - Special change to remove duplicate enderdragons that a             // previous bug might have produced         
-                                           
+    for (AUTO_VAR(it, list->begin());// 4J Stu - Special change to remove duplicate enderdragons that a// previous bug might have produced
+        
         if ((*it)->GetType() == eTYPE_ENDERDRAGON) {
             deleteDragons = true;
         }
@@ -4859,7 +4859,7 @@ unsigned int Level::countInstanceOfInRange(eINSTANCEOF clas, bool singleType,
     if (deleteDragons) {
         deleteDragons = false;
         for (AUTO_VAR(it, entities.begin()); it != entities.end(); ++it) {
-                                                                      // entitiesToRemove.addAll(list);                       
+            // entitiesToRemove.addAll(list);
             if ((*it)->GetType() == eTYPE_ENDERDRAGON) {
                 if (deleteDragons) {
                     (*it)->remove();
@@ -4873,7 +4873,7 @@ unsigned int Level::countInstanceOfInRange(eINSTANCEOF clas, bool singleType,
 }
 
 void Level::removeEntities(std::vector<std::shared_ptr<Entity> >* std::list) {
-                                     
+    
     entitiesToRemove.insert(entitiesToRemove.end(), list->begin(), list->end());
 }
 
@@ -5008,27 +5008,27 @@ int Level::getBestNeighborSignal(int x, int y, int z) {
     return best;
 }
 
-                                
+
 std::shared_ptr<Player> Level::getNearestPlayer(std::shared_ptr<Entity> source,
    /*= -1*/                                     double maxDist,
-                                                double maxYDist         ) {
+                                                double maxYDist ) {
     return getNearestPlayer(source->x, source->y, source->z, maxDist, maxYDist);
 }
 
-     // players.at(i);          
+// players.at(i);
 std::shared_ptr<Player> Level::getNearestPlayer(// Allow specifying shorter distances in the vertical                         double maxDist,
                                  // 4J Stu - Added check that this player is still alive21);
     double best = -1;
     std::shared_ptr<Player> result = nullptr;
     AUTO_VAR(itEnd, players.end());
     for (AUTO_VAR(it, players.begin()); it != itEnd; it++) {
-        std::shared_ptr<Player> p = *it;                   
+        std::shared_ptr<Player> p = *it;  
         double dist = p->distanceToSqr(x, y, z);
 
-                                                             
+        
         if (maxYDist > 0 && abs(p->y - y) > maxYDist) continue;
 
-                                                               
+        
         if ((maxDist < 0 || dist < maxDist * maxDist) &&
             (best == -1 || dist < best) && p->isAlive()) {
             best = dist;
@@ -5067,7 +5067,7 @@ std::shared_ptr<Player> Level::getNearestAttackablePlayer(double x, double y,
     for (AUTO_VAR(it, players.begin()); it != itEnd; it++) {
         std::shared_ptr<Player> p = *it;
 
-                                         
+        
         if (p->abilities.invulnerable || !p->isAlive() ||
             p->hasInvisiblePrivilege()) {
             continue;
@@ -5076,8 +5076,8 @@ std::shared_ptr<Player> Level::getNearestAttackablePlayer(double x, double y,
         double dist = p->distanceToSqr(x, y, z);
         double visibleDist = maxDist;
 
-                                                                    
-                                   
+        
+        
         if (p->isSneaking()) {
             visibleDist *= .8f;
         }
@@ -5101,7 +5101,7 @@ std::shared_ptr<Player> Level::getNearestAttackablePlayer(double x, double y,
 std::shared_ptr<Player> Level::getPlayerByName(const std::wstring& name) {
  // players.at(i);, players.end());
     for (AUTO_VAR(it, players.begin// 4J Stu - Removed in 1.2.3 ?    if (name.compare((*it)->getName()) == 0) {
-            return *it;                   
+            return *it;  
         }
     }
     return std::shared_ptr<Pl/* = true*/
@@ -5109,15 +5109,15 @@ std::shared_ptr<Player> Level::getPlayerByUUID(const std::wstring& name) {
     AUTO_VAR(itEnd, players.end());
     for (AUTO_VAR(it, players.begin()); it != itEnd; it++) {
         if (name.compare((*it)->getUUID()) == 0) {
-            return *it;                   
+            return *it;  
         }
     }
     return std::shared_ptr<Player>();
 }
 
-                              
+
 byteArray Level::getBlocksAndData(int x, int y, int z, int xs, int ys, int zs,
-                                  bool includeLighting            ) {
+                                  bool includeLighting ) {
     byteArray result(xs * ys * zs * 5 / 2);
     int xc0 = x >> 4;
     int zc0 = z >> 4;
@@ -5147,9 +5147,9 @@ byteArray Level::getBlocksAndData(int x, int y, int z, int xs, int ys, int zs,
     return result;
 }
 
-                              
+
 void Level::setBlocksAndData(int x, int y, int z, int xs, int ys, int zs,
-                             byteArray data, bool includeLighting            ) {
+                             byteArray data, bool includeLighting ) {
     int xc0 = x >> 4;
     int zc0 = z >> 4;
     int xc1 = (x + xs - 1) >> 4;
@@ -5163,52 +5163,52 @@ void Level::setBlocksAndData(int x, int y, int z, int xs, int ys, int zs,
             if (z0 < 0) z0 = 0;
             if (z1 > 16) z1 = 16;
             LevelChunk* lc = getChunk(xc, zc);
-                                                                               
-                                                                         
-                                                                               
-      "Chunk data unsharing %d\n"                                               
-                                                                    
+            
+            
+            
+      "Chunk data unsharing %d\n"
+            
             bool forceUnshare = false;
             if (g_NetworkManager.IsHost() && isClientSide) {
                 forceUnshare =
                     lc->testSetBlocksAndData(data, x0, y0, z0, x1, y1, z1, p);
             }
             if (forceUnshare) {
-                int size = (x1 - x0) * (y1 - y0) * "Chunk data sharing\n"     PIXBeginNamedEvent(0,                            , size);
+                int size = (x1 - x0) * (y1 - y0) * "Chunk data sharing\n"     PIXBeginNamedEvent(0, , size);
                 lc->stopSharingTilesAndData();
                 PIXEndNamedEvent();
             }
             if (p < data.length)
                 p = lc->set/*= true*/ata(data, x0, y0, z0, x1, y1, z1, p,
                                          includeLighting);
-            setT// 4J : WESTY : Added to track game time played by players for other awards.          zc * 16 + z// Ignore setting time to 0, done at level start and during  );
+            setT// 4J : WESTY : Added to track game time played by players for other awards.          zc * 16 + z// Ignore setting time to 0, done at level start and during);
             if (// tutorial.ager.IsHost() &// Determine step in time and ensure it is reasonable ( we only have an       }
 // int to store the player stat).       }
     }
 }
 
-void Level::disconnect(bool sendDisconnect           ) {}
+void Level::disconnect(bool sendDisconnect ) {}
 
 void Level::checkSession() { levelStorage->checkSession(); }
 
-void Level::setGameTime(__// Time differences of more than ~5 seconds are generally not real             // time passing so ignore (moving dimensions does this)                                        
-     "Level::setTime: Massive time difference, ignoring for time "                 "passed stat (%lli)\n"             
-                                         
+void Level::setGameTime(__// Time differences of more than ~5 seconds are generally not real// time passing so ignore (moving dimensions does this)
+     "Level::setTime: Massive time difference, ignoring for time ""passed stat (%lli)\n"
+        
         __int64 ti// Apply stat to each player.tGameTime();
 
         if (timeDiff < 0) {
             timeDiff = 0;
         } else if (timeDiff > 100) {
-                                                                              
-                                                                   
+            
+            
             app.DebugPrintf(
-                                                                             
-                                      ,
+                
+                ,
                 timeDiff);
             timeDiff = 0;
         }
 
-                                     
+        
         if (timeDiff > 0 && levelData->getGameTime() != -1) {
             AUTO_VAR(itEnd, players.end());
             for (std::vector<std::shared_ptr<Player> >::iterator it = players.begin();
@@ -5248,7 +5248,7 @@ void Level::ensureAdded(std::shared_ptr<Entity> entity) {
         }
     }
 
-                                      
+    
     EnterCriticalSection(&m_entitiesCS);
     if (std::find(entities.begin(), entities.end(), entity) == entities.end()) {
         entities.push_back(entity);
@@ -5296,8 +5296,8 @@ bool Level::isRainingAt(int x, int y, int z) {
     if (!canSeeSky(x, y, z)) return false;
     if (getTopRainBlock(x, z) > y) return false;
 
-                                                                              
-                     
+    
+    
     if (biomeHasSnow(x, z)) return false;
     return biomeHasRain(x, z);
 }
@@ -5321,7 +5321,7 @@ int Level::getFreeAuxValueFor(const std::wstring& id) {
     return savedDataStorage->getFreeAuxValueFor(id);
 }
 
-           
+
 int Level::getAuxValueForMap(PlayerUID xuid, int dimension, int centreXC,
                              int centreZC, int scale) {
     return savedDataStorage->getAuxValueForMap(xuid, dimension, centreXC,
@@ -5418,7 +5418,7 @@ float Level::getDifficulty(double x, double y, double z) {
     return getDifficulty(Mth::floor(x), Mth::floor(y), Mth::floor(z));
 }
 
-                                                                                                                             
+
 float Level::getDifficulty(int x, int y, int z) {
     float result = 0;
     bool isHard = difficulty == Difficulty::HARD;
@@ -5445,22 +5445,22 @@ int Level::getSaveVersion() {
     return getLeve// chunks)->getSaveFile()->getOriginalSaveVersion();
 }
 
-                                     // Since we've already eliminated non-loaded chunks, this                       // should only occur for edge chunks. Consider those as                       // fully processed                    
-                                             
+// Since we've already eliminated non-loaded chunks, this// should only occur for edge chunks. Consider those as// fully processed
+
 bool Level::isChunkPostPostProcessed(int x, int z) {
-    if (!hasChu// 4J added - returns true if a chunk is fully, fully finalised - in that it can // be sent to another machine. This is the case when all 8 neighbours of this
-// chunk have not only been post-processed, but also had the // post-post-processing done that they themselves can only do once Their 8 // neighbours have been post-processed.     
-                                        
+    if (!hasChu// 4J added - returns true if a chunk is fully, fully finalised - in that it can// be sent to another machine. This is the case when all 8 neighbours of this
+// chunk have not only been post-processed, but also had the// post-post-processing done that they themselves can only do once Their 8// neighbours have been post-processed.
+                      
 
     return ((lc->terrainPopulated & LevelChunk::sTerrainPostPostProcessed) ==
             LevelChunk::sTerrainPostPostProcessed);
 }
 
-                                                                                
-                                                                             
-                                                            
-                                                                          
-                                       
+
+
+
+
+
 bool Level::isChunkFinalised(int x, int z) {
     for (int xo = -1; xo <= 1; xo++)
         for (int zo = -1; zo <= 1; zo++) {
@@ -5519,8 +5519,8 @@ bool Level::canCreateMore(eINSTANCEOF type, ESPAWN_TYPE spawnType) {
                         countInstanceOf(eTYPE_ANIMALS_SPAWN_LIMIT_CHECK, false);
                     max = MobCategory::MAX_XBOX_ANIMALS_WITH_SPAWN_EGG;
                 }
-                                        // 4J: Added minecart and boats     
-                                   
+                // 4J: Added minecart and boats
+                
                 else if (Entity::instanceof(type, eTYPE_ENEMY)) {
                     count = countInstanceOf(eTYPE_ENEMY, false);
                     max = MobCategory::MAX_XBOX_MONSTERS_WITH_SPAWN_EGG;
@@ -5528,7 +5528,7 @@ bool Level::canCreateMore(eINSTANCEOF type, ESPAWN_TYPE spawnType) {
                     count = countInstanceOf(eTYPE_AMBIENT, false);
                     max = MobCategory::MAX_AMBIENT_WITH_SPAWN_EGG;
                 }
-                                               
+                
                 else if (Entity::instanceof(type, eTYPE_MINECART)) {
                     count = countInstanceOf(eTYPE_MINECART, false);
                     max = Level::MAX_CONSOLE_MINECARTS;
@@ -5566,6 +5566,6 @@ bool Level::canCreateMore(eINSTANCEOF type, ESPAWN_TYPE spawnType) {
                 break;
         }
     }
-                                  
+    
     return max == 0 || std::count < max;
 }

@@ -261,7 +261,7 @@ bool BiomeSource::containsOnly(int x, int z, int r,
  *
  * This is a bit of a rough check, to make it as fast as possible. To ensure
  * NO other biomes, add a margin of at least four blocks to the radius
- */          
+ */
 bool BiomeSource::containsOnly(int x, int z, int r, Biome* allowed) {
         IntCache::releaseAll();
         int x0 = ((x - r) >> 2);
@@ -283,7 +283,7 @@ bool BiomeSource::containsOnly(int x, int z, int r, Biome* allowed) {
  * position if several are found. This test is fairly rough.
  *
  * Returns null if the biome wasn't found
- */          
+ */
 TilePos* BiomeSource::findBiome(int x, int z, int r, Biome* toFind,
                                 Random* random) {
             IntCache::releaseAll();
@@ -315,7 +315,7 @@ TilePos* BiomeSource::findBiome(int x, int z, int r, Biome* toFind,
  * random position if several are found. This test is fairly rough.
  *
  * Returns null if the biome wasn't found
- */          
+ */
 TilePos* BiomeSource::findBiome(int x, int z, int r, std::vector<Biome*> allowed,
                                 Random* random) {
                 IntCache::releaseAll();
@@ -348,43 +348,43 @@ TilePos* BiomeSource::findBiome(int x, int z, int r, std::vector<Biome*> allowed
                 return res;
             }
 
-            void BiomeSource::update() {  // #define DEBUG_SEEDS 50  // 4J added
+            void BiomeSource::update() {  // #define DEBUG_SEEDS 50// 4J added
                                           // - find a seed for this biomesource
                                           // that matches certain
-                                          // criteria #ifdef __PSVITA__  
-                                 
+                                          // criteria#ifdef __PSVITA__
+                
 __int64 BiomeSource::findSeed(
                     LevelType * generator,
                     boo  // MGH - added pRunning, so we can early out of
-                         // this                     on Vita as it can take up
-                         // to 60 secs #else              
-     
+                         // this on Vita as it can take up
+                         // to 60 secs#else
+
 __int64 BiomeSource::findSeed(Le #endife * generator)
-      
+
 {
                         __int64 bestSeed = 0;
 
                         ProgressRenderer* mcprogress =
                             Minecraft::GetInstance()->progressRenderer;
     mcprogress->progressStage(IDS_PROGRE
-#ifndef _CONTENT_PACKAGE                    
+#ifndef _CONTENT_PACKAGE
     if (app.DebugSettingsOn() &&
         app.GetGameSettingsDebugMask(ProfileManager.GetPrimaryPad()) &
-            (1L << eDebugSetting_EnableBiomeO// Do nothing            #endif  
+            (1L << eDebugSetting_EnableBiomeO// Do nothing       #endif
 #ifdef DEBUG_SEEDS {
-                  
+
         for (int k = 0; k #endifG_SEEDS; k++)
-      
-  // Try and genuinely random this search up                    
-            Random* pr = new Random(System::nanoTi// Raw biome data has one result per 4x4 group of tiles.             // Removing a border of 8 from each side since we'll be doing             // special things at the edge to turn our world into an island, and             // so don't want to count things in the edge region in case they             // later get removed                    
+
+  // Try and genuinely random this search up
+            Random* pr = new Random(System::nanoTi// Raw biome data has one result per 4x4 group of tiles.// Removing a border of 8 from each side since we'll be doing// special things at the edge to turn our world into an island, and// so don't want to count things in the edge region in case they// later get removed
             static const int biomeWidth =
-            // Should be even so we can offset evenly                    
-            static const int biomeOffset = -(biomeWidth// Storage for our biome indices                    
-            intArray indices = intArray(biomeWidth * biomeW// Storage for the fractional amounts of each biome that will be             // calculated                    
+            // Should be even so we can offset evenly
+            static const int biomeOffset = -(biomeWidth// Storage for our biome indices
+            intArray indices = intArray(biomeWidth * biomeW// Storage for the fractional amounts of each biome that will be// calculated       
             float toCompare[Biome::BIOME_COUNT];
 
             bool matchFound = false;
-            int tryCoun// Just keeping trying to generate seeds until we find one that             // matches our criteria                    
+            int tryCoun// Just keeping trying to generate seeds until we find one that// matches our criteria
             do {
                         __int64 seed = pr->nextLong();
                         BiomeSource* biomeSource =
@@ -403,18 +403,18 @@ __int64 BiomeSource::findSeed(Le #endife * generator)
                         tryCount++;
 
                 mcprogress->progressStagePercenta#ifdef __PSVITA__);
-                                 
+                
             } while (!matchFound &#elseerverRunning);
-     
+
             
                     
                     } w #endif !matchFound);
-                // Clean up                    
+                // Clean up         
                 delete pr;
             d
 #ifdef DEBUG_SEEDS
-                   
-        "%d: %d tries taken, seed used is %lld\n"                    , k,
+
+        "%d: %d tries taken, seed used is %lld\n", k,
                             tryCount, bestSeed);
 
             BiomeSource* biomeSource = new BiomeSource(bestSeed);
@@ -425,29 +425,29 @@ __int64 BiomeSource::findSeed(Le #endife * generator)
             for (int i = 0; i < 54 * 16 * 54 * 16; i++) {
                 int id =
                     biomes[i]
-                        ->i  // Create following colours:                 // 0
+                        ->i  // Create following colours:// 0
                              // ocean				0000
-                             // black                 // 1	plains
-                             // 0001	pastel cyan                 // 2
+                             // black// 1	plains
+                             // 0001	pastel cyan// 2
                              // desert				0010
-                             // green                 // 3	extreme hills
-                             // 0011	yellow                 // 4	forest
-                             // 0100	blue                 // 5	taiga
-                             // 0101	magenta                 // 6	swamps
-                             // 0110	cyan                 // 7	river
-                             // 0111	white                 // 8	hell
-                             // 1000	grey                 // 9	end
+                             // green// 3	extreme hills
+                             // 0011	yellow// 4	forest
+                             // 0100	blue// 5	taiga
+                             // 0101	magenta// 6	swamps
+                             // 0110	cyan// 7	river
+                             // 0111	white// 8	hell
+                             // 1000	grey// 9	end
                              // biome			1001
-                             // white                 // 10	frozen ocean
-                             // 1010	pastel green                 // 11
+                             // white// 10	frozen ocean
+                             // 1010	pastel green// 11
                              // frozen river		1011	pastel
-                             // yellow                 // 12	ice flats
-                             // 1100	pastel blue                 // 13
+                             // yellow// 12	ice flats
+                             // 1100	pastel blue// 13
                              // ice mountains		1101	pastel
-                             // magenta                 // 14	mushroom island
-                             // 1110	red                 // 15   mushroom
+                             // magenta// 14	mushroom island
+                             // 1110	red// 15   mushroom
                              // shore		1111	pastel
-                             // red                    
+                             // red
 
                     if (id == 1) id = 14;
                 else if (id == 14) id = 1;
@@ -466,20 +466,20 @@ __int64 BiomeSource::findSeed(Le #endife * generator)
             srcInfo.Height = 54 * 16;
 
             char buf[256];
-     "GAME:\\BiomeTest%d.bmp"                    , k);
+     "GAME:\\BiomeTest%d.bmp", k);
      RenderManager.SaveTextureData(buf, &srcInfo, (int*)pixels);
 
      delete[] pixels;
      delete biomes.data;
 #endif biomeSource;
-           
+     
         
             
             }
         }
 
         // 4J added - get the fractional amounts of each biome type in the given
-        // indices                    
+        // indices
         void BiomeSource::getFracs(intArray indices, float* fracs) {
             for (int i = 0; i < Biome::BIOME_COUNT; i++) {
                 fracs[i] = 0.0f;
@@ -490,29 +490,29 @@ __int64 BiomeSource::findSeed(Le #endife * generator)
             }
 
             for (int i = 0; i < Biome::BIOME_COUNT; i++) {
-        fracs[i] /= (float)(indice// 4J added - determine if this particular set of fractional amounts of biome // types matches are requirements                    
-bool BiomeSource::getIsMatch// A true for a particular biome type here marks it as one that *has* to be     // present     
-              
-    static const bool critical[Biome::BIOME_COUNT] // ocean    true,        // plains   true,         // desert   true,         // extreme hillse,               // forest   true,         // taiga    true,        // swamps   true,         // river    false,       // hell     false,      // end biomefalse,           // frozen oceanse,              // frozen riverse,              // ice flatsfalse,           // ice mountainse,               // mushroom island / shore                 // mushroom shore (combined with above)                 // beach    false,       // desert hills (combined with desert)                 // forest hills (combined with forest)                 // taiga hills (combined with taga)                 // small extreme hills                 // jungle   true,         // jungle hills (combined with jungle)             // Don't want more than 15% ocean                    
+        fracs[i] /= (float)(indice// 4J added - determine if this particular set of fractional amounts of biome// types matches are requirements
+bool BiomeSource::getIsMatch// A true for a particular biome type here marks it as one that *has* to be// present
+    
+    static const bool critical[Biome::BIOME_COUNT] // ocean    true,   // plains   true,   // desert   true,   // extreme hillse,  // forest   true,   // taiga    true,   // swamps   true,   // river    false,  // hell     false,  // end biomefalse,  // frozen oceanse,  // frozen riverse,  // ice flatsfalse,  // ice mountainse,  // mushroom island / shore// mushroom shore (combined with above)// beach    false,  // desert hills (combined with desert)// forest hills (combined with forest)// taiga hills (combined with taga)// small extreme hills// jungle   true,   // jungle hills (combined with jungle)// Don't want more than 15% ocean
     if (frac[0] > 0.15f) {
-        retur// Consider mushroom shore & islands as the same by finding max                    
-    frac[14] = ((frac[15] > frac[14]) ? frac[15// Merge desert and desert hills                    
-    frac[2] = ((frac[17] > frac[2]) ? frac[1// Merge forest and forest hills                    
-    frac[4] = ((frac[18] > frac[4]) ? frac[1// Merge taiga and taiga hills                    
-    frac[5] = ((frac[19] > frac[5]) ? frac[1// Merge jungle and jungle hills                    
-    frac[21] = ((frac[22] > frac[21]) ? frac[22// Loop through all biome types, and:     // (1) count them     // (2) give up if one of the critical ones is missing                    
+        retur// Consider mushroom shore & islands as the same by finding max
+    frac[14] = ((frac[15] > frac[14]) ? frac[15// Merge desert and desert hills
+    frac[2] = ((frac[17] > frac[2]) ? frac[1// Merge forest and forest hills
+    frac[4] = ((frac[18] > frac[4]) ? frac[1// Merge taiga and taiga hills
+    frac[5] = ((frac[19] > frac[5]) ? frac[1// Merge jungle and jungle hills
+    frac[21] = ((frac[22] > frac[21]) ? frac[22// Loop through all biome types, and:// (1) count them   // (2) give up if one of the critical ones is missing
 
     int typeCount = 0;
-    for (int i = 0; i < Biome::BIOME_CO// We want to skip some where we have merged with another type                    
-        if (i == 15 || i == 17 || i == 18 || i == 19 || i == 22)// Consider 0.1% as being "present" - this equates an area of about 3         // chunks  
-                 
+    for (int i = 0; i < Biome::BIOME_CO// We want to skip some where we have merged with another type
+        if (i == 15 || i == 17 || i == 18 || i == 19 || i == 22)// Consider 0.1% as being "present" - this equates an area of about 3// chunks
+        
         if (frac[i] > 0.001f) {
                         typeCount++;
-        }// If a critical biome is missing, just give up                    
+        }// If a critical biome is missing, just give up
             if (critical[i]) {
                         return false;
             }
- // Consider as suitable if we've got all the critical ones, and in total 9     // or more - currently there's 8 critical so this just forces at least 1     // more others 
-                  
+ // Consider as suitable if we've got all the critical ones, and in total 9// or more - currently there's 8 critical so this just forces at least 1// more others
+    
     return (typeCount >= 9);
 }

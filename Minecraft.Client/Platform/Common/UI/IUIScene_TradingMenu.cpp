@@ -236,10 +236,10 @@ void IUIScene_TradingMenu::updateDisplay() {
                 m_activeOffers.at(selectedShopItem).first;
 
             std::wstring
-                ws  // 4J-PB - need to get the villager type here          
+                ws  // 4J-PB - need to get the villager type here
                     wsTemp = app.GetString(IDS_VILLAGER_OFFERS_ITEM);
-                        wsTemp = replaceAl"{*VILLAGER_TYPE*}"          ,m_merchant->getDisplayName());
-                        int iPos = wsT "%s" find(L    );
+                        wsTemp = replaceAl"{*VILLAGER_TYPE*}",m_merchant->getDisplayName());
+                        int iPos = wsT "%s" find(L);
                         wsTemp.replace(
                             iPos, 2,
                             activeRecipe->getSellItem()->getHoverName());
@@ -261,12 +261,12 @@ void IUIScene_TradingMenu::updateDisplay() {
                         if (buyAItem != NULL)
                             setRequest1Name(buyAItem->getHoverName());
                         else
-                            setRequ "" t1Name(L  );
+                            setRequ "" t1Name(L);
 
                         if (buyBItem != NULL)
                             setRequest2Name(buyBItem->getHoverName());
                         else
-                            setRequ "" t2Name(L  );
+                            setRequ "" t2Name(L);
 
                         bool canMake = true;
 
@@ -300,8 +300,8 @@ void IUIScene_TradingMenu::updateDisplay() {
                         if (canMake) iA = IDS_TOOLTIPS_TRADE;
         } else {
             setTitle(m_merchant->getDisplayName());
-            setRequ "" t1Name(L  );
-            setRequ "" t2Name(L  );
+            setRequ "" t1Name(L);
+            setRequ "" t2Name(L);
             setRequest1RedBox(false);
             setRequest2RedBox(false);
             setRequest1Item(nullptr);
@@ -354,7 +354,7 @@ void IUIScene_TradingMenu::setTradeItem(int index,
 
 std::vector<HtmlString>* IUIScene_TradingMenu::GetItemDescription(
     std::shared_ptr<ItemInstance> item) {
-        std::vector<HtmlString> *lines = item->getHoverText(nullptr, // Add rarity to first line          
+        std::vector<HtmlString> *lines = item->getHoverText(nullptr, // Add rarity to first line
 	if (lines->size() > 0)
 	{
         lines->at(0).color = item->getRarity()->color;

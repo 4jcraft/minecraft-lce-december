@@ -240,7 +240,7 @@ std::shared_ptr<Entity> PathfinderMob::getAttackTarget() {
 }
 
 void PathfinderMob::setAttackTarget(std::shared_ptr<Entity> attacker) {
-    attackTarget = attacker  // might move to navigation, might make area     
+    attackTarget = attacker  // might move to navigation, might make area
         bool PathfinderMob::isWithinRestriction() {
         return isWithinRestriction(Mth::floor(x), Mth::floor(y), Mth::floor(z));
     }
@@ -269,7 +269,7 @@ void PathfinderMob::setAttackTarget(std::shared_ptr<Entity> attacker) {
 
         if (isLeashed() && getLeashHolder() != NULL &&
             getLeashHolder()->level == this->level) {
-            // soft restriction     
+            // soft restriction
             std::shared_ptr<Entity> leashHolder = getLeashHolder();
             restrictTo((int)leashHolder->x, (int)leashHolder->y,
                        (int)leashHolder->z, 5);
@@ -295,10 +295,10 @@ void PathfinderMob::setAttackTarget(std::shared_ptr<Entity> attacker) {
 
             onLeashDistance(_distanceTo);
 
-            if (_distanceTo > 4)  // harder restriction               
+            if (_distanceTo > 4)  // harder restriction
                 getNavigation()->moveTo(leashHolder, 1.0);
         }
-        if (_distanceTo > 6)  // hardest restriction               
+        if (_distanceTo > 6)  // hardest restriction
             double dx = (leashHolder->x - x) / _distanceTo;
         double dy = (leashHolder->y - y) / _distanceTo;
         double dz = (leashHolder->z - z) / _distanceTo;

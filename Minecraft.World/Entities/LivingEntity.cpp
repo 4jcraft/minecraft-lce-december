@@ -300,13 +300,13 @@ int LivingEntity::decreaseAirSupply(int currentSupply) {
         dynamic_pointer_cast<LivingEntity>(shared_from_this()));
     if (oxygenBonus > 0) {
         if (random->nextInt(oxygenBonus + 1) > 0) {
-            // the oxygen bonus prevents us from drowning     
+            // the oxygen bonus prevents us from drowning
             return currentSupply;
         }
     }
     if (instanceof(eTYPE_PLAYER)) {
-        app.DebugPr"++++++++++ %s: Player decreasing air supply to %d\n"     ,
-                        level->isClientSi"CLIENT"   "SERVER"     ,
+        app.DebugPr"++++++++++ %s: Player decreasing air supply to %d\n",
+                        level->isClientSi"CLIENT""SERVER",
                         currentSupply - 1);
     }
     return currentSupply - 1;
@@ -349,12 +349,12 @@ void LivingEntity::setLastHurtMob(std::shared_ptr<Entity> target) {
 int LivingEntity::getNoActionTime() { return noActionTime; }
 
 void LivingEntity::addAdditonalSaveData(CompoundTag* entityTag) {
-    entityTag->putFl"HealF"     , getHealth());
-    entityTag->putSh"Health"     , (short)ceil(getHealth()));
-    entityTag->putSh"HurtTime"     , (short)hurtTime);
-    entityTag->putSh"DeathTime"     , (short)deathTime);
-    entityTag->putSh"AttackTime"     , (short)attackTime);
-    entityTag->putFl"AbsorptionAmount"     , getAbsorptionAmount());
+    entityTag->putFl"HealF", getHealth());
+    entityTag->putSh"Health", (short)ceil(getHealth()));
+    entityTag->putSh"HurtTime", (short)hurtTime);
+    entityTag->putSh"DeathTime", (short)deathTime);
+    entityTag->putSh"AttackTime", (short)attackTime);
+    entityTag->putFl"AbsorptionAmount", getAbsorptionAmount());
 
     ItemInstanceArray items = getEquipmentSlots();
     for (unsigned int i = 0; i < items.length; ++i) {
@@ -364,7 +364,7 @@ void LivingEntity::addAdditonalSaveData(CompoundTag* entityTag) {
         }
     }
 
-    entityTag->"Attributes"     ,
+    entityTag->"Attributes",
                    SharedMonsterAttributes::saveAttributes(getAttributes()));
 
     for (unsigned int i = 0; i < items.length; ++i) {
@@ -382,22 +382,22 @@ void LivingEntity::addAdditonalSaveData(CompoundTag* entityTag) {
             MobEffectInstance* effect = it->second;
             listTag->add(effect->save(new CompoundTag()));
         }
-        entityTag->"ActiveEffects"     , listTag);
+        entityTag->"ActiveEffects", listTag);
     }
 }
 
 void LivingEntity::readAdditionalSaveData(CompoundTag* tag) {
-    setAbsorptionAmount(tag->getFl"AbsorptionAmount"     ));
+    setAbsorptionAmount(tag->getFl"AbsorptionAmount"));
 
-    if (tag->conta "Attributes"     ) && level != NULL && !level->isClientSide) {
+    if (tag->conta "Attributes") && level != NULL && !level->isClientSide) {
         SharedMonsterAttributes::loadAttributes(
             getAttributes(),
-            (ListTag<CompoundTag>*)tag->getL"Attributes"     ));
+            (ListTag<CompoundTag>*)tag->getL"Attributes"));
         }
 
-    if (tag->conta "ActiveEffects"     )) {
+    if (tag->conta "ActiveEffects")) {
         ListTag<CompoundTag>* effects =
-            (ListTag<CompoundTag>*)tag->getL"ActiveEffects"     );
+            (ListTag<CompoundTag>*)tag->getL"ActiveEffects");
         for (int i = 0; i < effects->size(); i++) {
             CompoundTag* effectTag = effects->get(i);
             MobEffectInstance* effect = MobEffectInstance::load(effectTag);
@@ -407,23 +407,23 @@ void LivingEntity::readAdditionalSaveData(CompoundTag* tag) {
         }
         }
 
-    if (tag->"HealF"s(L       )) {
-        setHealth(tag->"HealF" t(L       ));
+    if (tag->"HealF"s(L)) {
+        setHealth(tag->"HealF" t(L));
     } else {
-        Tag* healthTag = "Health"(L        );
+        Tag* healthTag = "Health"(L);
         if (healthTag == NULL) {
             setHealth(getMaxHealth());
         } else if (healthTag->getId() == Tag::TAG_Float) {
             setHealth(((FloatTag*)healthTag)->data);
         } else if (healthTag->getId() == Tag::TAG_Short) {
-            // pre-1.6 health          
+            // pre-1.6 health
             setHealth((float)((ShortTag*)healthTag)->data);
         }
     }
 
-    hurtTime = tag->"HurtTime"          );
-    deathTime = tag->"DeathTime"          );
-    attackTime = tag->"AttackTime"          );
+    hurtTime = tag->"HurtTime");
+    deathTime = tag->"DeathTime");
+    attackTime = tag->"AttackTime");
 }
 
 void LivingEntity::tickEffects() {
@@ -443,7 +443,7 @@ void LivingEntity::tickEffects() {
                        (SharedConstants::TICKS_PER_SECOND * 30) ==
                    0) {
             // update effects every 30 seconds to synchronize
-            // client-side           timer          
+            // client-side timer  
             onEffectUpdated(effect, false);
         }
         if (!removed) {
@@ -484,14 +484,14 @@ void LivingEntity::tickEffects() {
 
         if (!isInvisible()) {
             doParticle = random->nextBoolean();
-        } else  // much fewer particles when invisible               
+        } else  // much fewer particles when invisible
             doParticle = random->nextInt(15) == 0;
     }
 
     if (ambient) doParticle &= random->nextInt(5) == 0;
 
-    if (doParticle)  //                int colorValue =             //
-                     //                entityData.getInteger(DATA_EFFECT_COLOR_ID);               
+    if (doParticle)  //                int colorValue =//
+                     //                entityData.getInteger(DATA_EFFECT_COLOR_ID);
         if (colorValue > 0) {
             double red = (double)((colorValue >> 16) & 0xff) / 255.0;
             double green = (double)((colorValue >> 8) & 0xff) / 255.0;
@@ -508,11 +508,11 @@ void LivingEntity::tickEffects() {
 }
 }
 
-void LivingEntity::removeAllE// Iterator<Integer> effectIdIterator =     // activeEffects.keySet().std::iterator(); while     // (effectIdIterator.hasNext())               
-    for (AUTO_VAR(it, activeEffects.begin()); it != activeEffects.end// Integer effectId = effectIdIterator.next();               
-        MobEffectInstance* effect // activeEffects.get(effectId);               
+void LivingEntity::removeAllE// Iterator<Integer> effectIdIterator =// activeEffects.keySet().std::iterator(); while// (effectIdIterator.hasNext())
+    for (AUTO_VAR(it, activeEffects.begin()); it != activeEffects.end// Integer effectId = effectIdIterator.next();
+        MobEffectInstance* effect // activeEffects.get(effectId);
 
-        if (!level->isClientSide)// effectIdIterator.remove();               
+        if (!level->isClientSide)// effectIdIterator.remove();
             it = activeEffects.erase(it);
             onEffectRemoved(effect);
             delete effect;
@@ -557,7 +557,7 @@ void LivingEntity::addEffect(MobEffectInstance* newEffect) {
         return;
     }
 
-    if (activeEffects.find(newEffect->getId()) != a// replace effect and update                              
+    if (activeEffects.find(newEffect->getId()) != a// replace effect and update  
         MobEffectInstance* effectInst =
             activeEffects.find(newEffect->getId())->second;
         effectInst->update(newEffect);
@@ -571,13 +571,13 @@ else {
 }
 }
 
-           
+
 void LivingEntity::addEffectNoUpdate(MobEffectInstance* newEffect) {
     if (!canBeAffected(newEffect)) {
         return;
     }
 
-    if (activeEffects.find(newEffect->getId())// replace effect and update                                   
+    if (activeEffects.find(newEffect->getId())// replace effect and update       
         MobEffectInstance* effectInst =
             activeEffects.find(newEffect->getId())->second;
         effectInst->update(newEffect);
@@ -669,23 +669,23 @@ void LivingEntity::setHealth(float health) {
 
 bool LivingEntity::hurt(DamageSource* source, float dmg) {
     i  // 4J Stu - Reworked this function a bit to show hurt damage on the
-       // client     // before the server responds. Fix for #8823 - Gameplay:
-       // Confirmation that a     // monster or animal has taken damage from an
-       // attack is highly delayed 4J     // Stu - Change to the fix to only
-       // show damage when attacked, rather than     // collision damage Fix for
-       // #10299 - When in corners, passive mobs may show     // that they are
-       // taking damage. 4J Stu - Change to the fix for TU6, as     // source is
+       // client// before the server responds. Fix for #8823 - Gameplay:
+       // Confirmation that a// monster or animal has taken damage from an
+       // attack is highly delayed 4J// Stu - Change to the fix to only
+       // show damage when attacked, rather than// collision damage Fix for
+       // #10299 - When in corners, passive mobs may show// that they are
+       // taking damage. 4J Stu - Change to the fix for TU6, as// source is
        // never NULL due to changes in 1.8.2 to what source actually
-       // is                                        
+       // is
         if (level->isClientSide &&
             dynamic_cast<EntityDamageSource*>(source) == NULL) return false;
     noActionTime = 0;
     if (getHealth() <= 0) return false;
 
-    if (source->isFire() && hasEffec// 4J-JEV, for new achievement Stayin'Frosty, TODO merge with Java         // version.                    
-                   
+    if (source->isFire() && hasEffec// 4J-JEV, for new achievement Stayin'Frosty, TODO merge with Java// version.
+        
         if (this->instanceof(eTYPE_PLAYER) &&
-            (sourc// Only award when in lava (not any fire).                                        
+            (sourc// Only award when in lava (not any fire).
         {
         std::shared_ptr<Player> plr =
             dynamic_pointer_cast<Player>(shared_from_this());
@@ -758,7 +758,7 @@ if (sound) {
     } else {
             hurtDir = (float)(int)((Math::random() * 2) *
             // 4J This cast is the same as Java0);
-            //                                    
+            // 
     }
 }
 
@@ -825,7 +825,7 @@ void LivingEntity::die(DamageSource* source) {
                 if (rareLoot < 5) {
                     dropRareDeathLoot((rareLoot <= 0) ? 1 : 0);
                     // 4J-JEV, hook for Durango mobKill
-                    // event.                                        
+                    // event.
                     if (player != NULL) {
                         player->awardStat(
                             GenericStats::killMob(),
@@ -873,7 +873,7 @@ void LivingEntity::die(DamageSource* source) {
  * is set to 1 (otherwise 0) 1% of the time.
  *
  * @param rareLootLevel
- */                                        
+ */
 void LivingEntity::dropRareDeathLoot(int rareLootLevel) {}
 
             void LivingEntity::dropDeathLoot(bool wasKilledByPlayer,
@@ -881,7 +881,7 @@ void LivingEntity::dropRareDeathLoot(int rareLootLevel) {}
 
             bool LivingEntity::onLadder() {
                 int xt = Mth::floor(x);
-    int yt = Mth::floor(bb// 4J-PB - TU9 - add climbable vines                                        
+    int yt = Mth::floor(bb// 4J-PB - TU9 - add climbable vines    
     int iTile = level->getTile(xt, yt, zt);
     return (iTile == Tile::ladder_Id) || (iTile == Tile::vine_Id);
             }
@@ -896,7 +896,7 @@ void LivingEntity::dropRareDeathLoot(int rareLootLevel) {}
                 float padding =
                     jumpBoost != NULL ? jumpBoost->getAmplifier() + 1 : 0;
 
-    int dmg = (int)ceil(distance - 3// 4J - new sounds here brought forward from 1.2.3                                        
+    int dmg = (int)ceil(distance - 3// 4J - new sounds here brought forward from 1.2.3
         if (dmg > 4) {
                     playSound(eSoundType_DAMAGE_FALL_BIG, 1, 1);
         } else {
@@ -924,7 +924,7 @@ void LivingEntity::dropRareDeathLoot(int rareLootLevel) {}
  * Fetches the mob's armor value, from 0 (no armor) to 20 (full armor)
  *
  * @return
- */                                        
+ */
 int LivingEntity::getArmorValue() {
                 int val = 0;
                 ItemInstanceArray items = getEquipmentSlots();
@@ -955,7 +955,7 @@ int LivingEntity::getArmorValue() {
 
 float LivingEntity::getDamageAfterMagicAbsorb(DamageSource* damageSource,
                           // [EB]: Stupid hack :(at damage) {
-                           
+    
     if (this->instanceof(eTYPE_ZOMBIE)) {
                 damage = damage;
     }
@@ -1064,7 +1064,7 @@ float LivingEntity::getDamageAfterMagicAbsorb(DamageSource* damageSource,
                 invulnerableTime = invulnerableDuration;
                 hurtTime = hurtDuration = 10;
                 // 4J-PB -added because villagers have no
-                // sounds                                             
+                // sounds
                 int iHurtSound = getHurtSound();
                 if (iHurtSound != -1) {
                     playSound(
@@ -1074,7 +1074,7 @@ float LivingEntity::getDamageAfterMagicAbsorb(DamageSource* damageSource,
                 }
                 MemSect(0);
                 hurt(DamageSource::genericSource, 0);
-    } else if (id == Entity// 4J-PB -added because villagers have no sounds                                             
+    } else if (id == Entity// 4J-PB -added because villagers have no sounds
         int iDeathSound = getDeathSound();
         if (iDeathSound != -1) {
                 playSound(
@@ -1207,14 +1207,14 @@ float LivingEntity::getDamageAfterMagicAbsorb(DamageSource* damageSource,
     }
 
     voi #ifdef __PSVITA__ravel  // AP - dynamic_pointer_cast is a non-trivial
-                                // call                                             
+                                // call
         Player* thisPlayer = NULL;
     if (this->instanceof(eTYPE_PLAYER)) #else thisPlayer = (Player*)this;
 }
-     
+
     std::shared_ptr<Player>
     thisPlayer = dynam #endifnter_cast<Player>(shared_from_this());
-      
+
     if (isInWater() && !(thisPlayer && thisPlayer->abilities.flying)) {
     double yo = y;
     moveRelative(xa, ya, useNewAi() ? 0.04f : 0.02f);
@@ -1311,7 +1311,7 @@ double xxd = x - xo;
 double zzd = z - zo;
 float wst = Mth::sqrt(xxd * xxd + zzd * zzd) * 4;
 if (wst > 1) wst = 1;
-    walkAnimSpeed += (wst - // 4J - added for more accurate lighting of mobs. Takes a weighted average of // all tiles touched by the bounding volume of the entity - the method in the // Entity class (which used to be used for mobs too) simply gets a single tile's // lighting value causing sudden changes of lighting values when entities go in // and out of lit areas, for example when bobbing in the water.                                                            
+    walkAnimSpeed += (wst - // 4J - added for more accurate lighting of mobs. Takes a weighted average of// all tiles touched by the bounding volume of the entity - the method in the// Entity class (which used to be used for mobs too) simply gets a single tile's// lighting value causing sudden changes of lighting values when entities go in// and out of lit areas, for example when bobbing in the water.
 int LivingEntity::getLightColor(float a) {
     float accum[2] = {0, 0};
     float totVol = (bb->x1 - bb->x0) * (bb->y1 - bb->y0) * (bb->z1 - bb->z0);
@@ -1483,13 +1483,13 @@ void LivingEntity::aiStep() {
 
         lSteps--;
         // 4J - this collision is carried out to try and stop the lerping
-        // push         // the mob through the floor, in which case gravity can
-        // then carry on         // moving the mob because the collision just
-        // won't work anymore. BB for         // collision used to be calculated
-        // as: bb->shrink(1 / 32.0, 0, 1 / 32.0)         // now using a reduced
-        // BB to try and get rid of some issues where mobs         // pop up the
+        // push// the mob through the floor, in which case gravity can
+        // then carry on// moving the mob because the collision just
+        // won't work anymore. BB for// collision used to be calculated
+        // as: bb->shrink(1 / 32.0, 0, 1 / 32.0)// now using a reduced
+        // BB to try and get rid of some issues where mobs// pop up the
         // sides of walls, undersides of trees etc.
-        //                                                       
+        // 
         AABB* shrinkbb = bb->shrink(0.1, 0, 0.1);
         shrinkbb->y1 = shrinkbb->y0 + 0.1;
         AABBList* collisions = level->getCubes(shared_from_this(), shrinkbb);
@@ -1497,13 +1497,13 @@ void LivingEntity::aiStep() {
             double yTop = 0;
             AUTO_VAR(itEnd, collisions->end());
             for (AUTO_VAR(it, collisions->begi// collisions->at(i);++) {
-                AABB* ab = *it;                       
+                AABB* ab = *it;  
                 if (ab->y1 > yTop) yTop = ab->y1;
         }
 
         yt += yTop - bb->y0;
-            setPos(xt, yt// slow down predicted speed, to prevent mobs from sliding through         // walls etc                                       
-                    
+            setPos(xt, yt// slow down predicted speed, to prevent mobs from sliding through// walls etc
+        
         xd *= .98;
         yd *= .98;
         zd *= .98;
@@ -1562,7 +1562,7 @@ void LivingEntity::pushEntities() {
         level->getEntities(shared_from_this(), this->bb->grow(0.2f, 0, 0.2f));
     if (entities != NULL && !entities->empty()) {
         AUTO_VAR(itEnd, entities->end());
-        for (AUTO_VAR(it, entities->begin()); it// entities->at(i);            std::shared_ptr<Entity> e = *it;                     
+        for (AUTO_VAR(it, entities->begin()); it// entities->at(i);            std::shared_ptr<Entity> e = *it;  
             if (e->isPushable()) e->push(shared_from_this());
     }
     }

@@ -780,8 +780,8 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
     // m_name can be unicode characters somehow for Japan - should use
     // m_onlineID
     std::wstring wstr = convStringToWstring(statsRow->m_uid.getOnlineID());
-        swprintf(leaderboardEntry->m_gamerTag, XUSER_NAME_SI"%ls"     ,wstr.c_str#else     
-	memcpy(leaderboardEntry->m_gamerTag, statsRow->m_name.data(), statsRow->m_name.size() * sizeof(wchar_#endif   // Copy the other columns     
+        swprintf(leaderboardEntry->m_gamerTag, XUSER_NAME_SI"%ls",wstr.c_str#else
+	memcpy(leaderboardEntry->m_gamerTag, statsRow->m_name.data(), statsRow->m_name.size() * sizeof(wchar_#endif// Copy the other columns
 	for( unsigned int i=0 ; i<statsRow->m_statsSize ; i++ )
 	{
         leaderboardEntry->m_columns[i] = statsRow->m_statsData[i];
@@ -789,28 +789,28 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
         if (!isDistanceLeaderboard) {
             DWORD displayValue = leaderboardEntry->m_columns[i];
             if (displayValue > 99999) displayValue = 99999;
-                        swprintf(leaderboardEntry->m_wcColumns[i], "%u"L    ,displayVal#ifdef _DEBUG    //app.DebugPrintf("Value - %d\n",leaderboardEntry->m_columns[i]); #endif     
+                        swprintf(leaderboardEntry->m_wcColumns[i], "%u"L,displayVal#ifdef _DEBUG//app.DebugPrintf("Value - %d\n",leaderboardEntry->m_columns[i]);#endif
         } else
-            // check how many digits we have     
+            // check how many digits we have
             int iDigitC = 0;
         unsigned int uiVal =
             leaderboardEntry
-                ->m_columns  // 			uiVal=0xFFFFFFFF; //
-                             // leaderboardEntry->m_columns[i-1]=uiVal;     
+                ->m_columns  // 			uiVal=0xFFFFFFFF;//
+                             // leaderboardEntry->m_columns[i-1]=uiVal;
 
             while (uiVal != 0) {
             uiVal /= 10;
             iDigitC++;
-#ifdef _DEBUG        //app.DebugPrintf("Value - %d\n",leaderboardEntry->m_columns[i]); #endif     
-            if (iDigitC < 4) {  // m	    
-                                swprintf(leaderboardEntry->m_wcColumns[i], "%um"     , leaderboardEntry->m_columns[#ifdef _DEBUG     //app.DebugPrintf("Display - %um\n", leaderboardEntry->m_columns[i]); #endif     
-            } else if (iDigitC < 8) {  // km with a .X     
-                                swprintf(leaderboardEntry->m_wcColumns[i], "%.1fkm"     , ((float)leaderboardEntry->m_columns[i])/1000#ifdef _DEBUG     //app.DebugPrintf("Display - %.1fkm\n", ((float)leaderboardEntry->m_columns[i])/1000.f); #endif     
-            } else {  // bigger than that, so no decimal point     
-                                swprintf(leaderboardEntry->m_wcColumns[i], "%.0fkm"     , ((float)leaderboardEntry->m_columns[i])/1000#ifdef _DEBUG     //app.DebugPrintf("Display - %.0fkm\n", ((float)leaderboardEntry->m_columns[i])/1000.f); #endif     
+#ifdef _DEBUG    //app.DebugPrintf("Value - %d\n",leaderboardEntry->m_columns[i]);#endif
+            if (iDigitC < 4) {  // m	
+                                swprintf(leaderboardEntry->m_wcColumns[i], "%um", leaderboardEntry->m_columns[#ifdef _DEBUG//app.DebugPrintf("Display - %um\n", leaderboardEntry->m_columns[i]);#endif
+            } else if (iDigitC < 8) {  // km with a .X
+                                swprintf(leaderboardEntry->m_wcColumns[i], "%.1fkm", ((float)leaderboardEntry->m_columns[i])/1000#ifdef _DEBUG//app.DebugPrintf("Display - %.1fkm\n", ((float)leaderboardEntry->m_columns[i])/1000.f);#endif
+            } else {  // bigger than that, so no decimal point
+                                swprintf(leaderboardEntry->m_wcColumns[i], "%.0fkm", ((float)leaderboardEntry->m_columns[i])/1000#ifdef _DEBUG//app.DebugPrintf("Display - %.0fkm\n", ((float)leaderboardEntry->m_columns[i])/1000.f);#endif
             }
 
-#ifdef _DURANGO      //Is the player     
+#ifdef _DURANGO    //Is the player
             PlayerUID myXuid;
             ProfileManager.GetXUID(ProfileManager.GetPrimaryPad(), &myXuid,
                                    true);
@@ -824,21 +824,21 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
                 leaderboardEntry->m_bOnline = false;
                 leaderboardEntry->m_bFriend = false;
                 leaderboardEntry->m_bRequestedFriend = fa
-#ifdef _XBOX       //Check for friend status     
+#ifdef _XBOX    //Check for friend status
                     for (unsigned int friendIndex = 0;
                          friendIndex < m_numFriends; ++friendIndex) {
                     if (m_friends[friendIndex].xuid == statsRow->m_uid) {
                         if ((m_friends[friendIndex].dwFriendState &
                              (XONLINE_FRIENDSTATE_FLAG_SENTREQUEST |
                               XONLINE_FRIENDSTATE_FLAG_RECEIVEDREQUEST)) == 0) {
-                            // Is friend, might be online     
+                            // Is friend, might be online
                             leaderboardEntry->m_bFriend = true;
                             leaderboardEntry->m_bOnline =
                                 (m_friends[friendIndex].dwFriendState &
                                  XONLINE_FRIENDSTATE_FLAG_ONLINE);
                             leaderboardEntry->m_bRequestedFriend = false;
                         } else {
-                            // Friend request sent but not accepted yet     
+                            // Friend request sent but not accepted yet
                             leaderboardEntry->m_bOnline = false;
                             leaderboardEntry->m_bFriend = false;
                             leaderboardEntry->m_bRequestedFriend = true;
@@ -846,7 +846,7 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
 
                         break;
                     }
-#endif     #endif      
+#endif #endif 
 
                 }
 
@@ -860,22 +860,22 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
                                 app.GetString(
                                     IDS_LEADERBOARD_GAMERTAG))  // Update
                                                                 // entries
-                                                                // display     
+                                                                // display
                                 wchar_t entriesBuffer[40];
                             if (app.DebugSettingsOn() &&
                                 (app.GetGameSettingsDebugMask() &
                                  (1L << eDebugSetting_DebugLeaderboards))) {
                                 swprintf(
-                                    entriesBuffer, "%ls12345678"     ,
+                                    entriesBuffer, "%ls12345678",
                                     app.GetString(IDS_LEADERBOARD_ENTRIES));
                             } else {
-                                swprintf(entriesBuffer, "%ls%i"     ,
+                                swprintf(entriesBuffer, "%ls%i",
                                          app.GetString(IDS_LEADERBOARD_ENTRIES),
                                          m_leaderboard.m_totalEntryCount);
                             }
 
                             m_labelEntries.setLabel(entriesBuffer);
-                            m_labelInfo.setLa "" l(L  );
+                            m_labelInfo.setLa "" l(L);
                             m_labelInfo.setVisible(false);
 
                             m_listEntries.initLeaderboard(
@@ -903,12 +903,12 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
                                         m_leaderboard.m_entries[i].m_gamerTag,
 
                                         t  // 4J-JEV: Has error message to
-                                           // display.     
+                                           // display.
 
                                             app.GetString(idsErrorMessage),
                                         ""
                                         L"",
-                                        L"", L"", L"", L"", L  
+                                        L"", L"", L"", L"", L
 				);
                                 } else {
                                     m_listEntries.addDataSet(
@@ -919,11 +919,11 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
 
                                         // 4J-TomK | The bDisplayMessage Flag
                                         // defines if Leaderboard Data should be
-                                        //       displayed (false) or if a
+                                        //  displayed (false) or if a
                                         // specific message (true - when data is
-                                        // private for example)       should be
+                                        // private for example)  should be
                                         // displayed. The message itself should
-                                        // be passed on in col0!     
+                                        // be passed on in col0!
                                         false,
 
                                         m_leaderboard.m_entries[i]
@@ -945,25 +945,25 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
                         } else {
                             m_listEntries.setupTitl ""(
                                 L"",
-                                L   )  // Update entries display (to zero)     
+                                L )  // Update entries display (to zero)
                                 wchar_t entriesBuffer[40];
-                            swprintf(entriesBuffer, "%ls0"     ,
+                            swprintf(entriesBuffer, "%ls0",
                                      app.GetString(IDS_LEADERBOARD_ENTRIES));
                             m_labelEntries
                                 .setLabel(
                                     entriesBuffer)  // Show the no results
-                                                    // message #if
+                                                    // message#if
                                                     // !(defined(_XBOX)
                                                     // || defined(_WINDOWS64))
                                                     // // 4J Stu - Temp to get
                                                     // the win build running,
                                                     // but so we check this for
-                                                    // other platforms     
+                                                    // other platforms
                                 if (ret == LeaderboardManager::
                                                eStatsReturn_NetworkError)
                                     m_labelInfo.setLabel(
                                         app.GetString(IDS_ERROR_NETWORK));
-#endif      
+#endif 
 			m_labelInfo.setLabel( \
     app.GetString(IDS_LEADERBOARD_NORESULTS));
                             m_labelInfo.setVisible(true);
@@ -983,7 +983,7 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
 
                         for (int i = 0; i < 7; i++) {
                             if (TitleIcons[m_currentLeaderboard][i] == 0)
-                            // m_pHTitleIconSlots[i]->SetShow(FALSE);     
+                            // m_pHTitleIconSlots[i]->SetShow(FALSE);
                         }
                         else {
                             iValidIcons++;
@@ -998,10 +998,10 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
                 void UIScene_LeaderboardsMenu::customDraw(
                     IggyCustomDrawCallbackRegion * region) {
                     int slotId = -1;
-                    swscanf((wchar_t*)region->n "slot_%d"     , &slotId);
+                    swscanf((wchar_t*)region->n "slot_%d", &slotId);
                     if (slotId == -1)
                     // app.DebugPrintf("This is not the control we are looking
-                    // for\n");     
+                    // for\n");
                 }
                 else {
                     std::shared_ptr<ItemInstance> item =
@@ -1017,7 +1017,7 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
                 ui.PlayUISFX(eSFX_Focus);
                 m_newSel = (int)selectedId;
                 update  // Handle a request from Iggy for more
-                        // data               
+                        // data
                     void UIScene_LeaderboardsMenu::handleRequestMoreData(
                         F64 startIndex, bool up) {
                     unsigned int item = (int)startIndex;
@@ -1049,17 +1049,17 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
 
                 void UIScene_LeaderboardsMenu::
                     handleTimerComp #if (defined __PS3__ || defined __ORBIS__ ||
-                                         defined __PSVITA__)               
+                                         defined __PSVITA__)
 	switch (id) {
-        case PLAYER_ON#ifndef _WINDOWS64               
-		if(ProfileManager.IsSignedInLive(ProfileManager.GetPrimaryPad())=// check the player hasn't gone offline    // If they have, bring up the PSN warning and exit from the leaderboards               
+        case PLAYER_ON#ifndef _WINDOWS64
+		if(ProfileManager.IsSignedInLive(ProfileManager.GetPrimaryPad())=// check the player hasn't gone offline// If they have, bring up the PSN warning and exit from the leaderboards
 			unsigned int uiIDA[1];
 			uiIDA[0]=IDS_OK;
 			C4JStorage::EMessageResult result = ui.RequestErrorMessage( IDS_CONNECTION_LOST, g_NetworkManager.CorrectErrorIDS(IDS_CONNECTION_LOST_LIVE_NO_EXIT), uiIDA,1,ProfileManager.GetPrimaryPad(),UIScene_LeaderboardsMenu::ExitLeaderboa#endifis);
 		}
-    #endifreak;
+#endifreak;
 	}
-      
+
 }
 
 int UIScene_LeaderboardsMenu::ExitLeaderboards(void *pParam,int iPad,C4JStorage::EMessageResult result)
@@ -1067,7 +1067,7 @@ int UIScene_LeaderboardsMenu::ExitLeaderboards(void *pParam,int iPad,C4JStorage:
 	UIScene_LeaderboardsMenu* pClass = (UIScene_LeaderboardsMenu*)pParam;
 
 	pClass->navigateBack();
-// Get entry start size, if no entries returns 0               
+// Get entry start size, if no entries returns 0
 int UIScene_LeaderboardsMenu::GetEntryStartIndex()
 {
 	return m_leaderboard.m_entries.size() == 0 ? 0 :

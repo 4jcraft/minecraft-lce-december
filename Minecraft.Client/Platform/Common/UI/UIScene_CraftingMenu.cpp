@@ -430,9 +430,9 @@ void UIScene_CraftingMenu::customDraw(IggyCustomDrawCallbackRegion* region) {
     float alpha = 1.0f;
     bool decorations = true;
     bool inventoryItem = false;
-    swscanf((wchar_t*)region->n "slot_%d"     , &slotId);
+    swscanf((wchar_t*)region->n "slot_%d", &slotId);
     if (slotId == -1) {
-                app.DebugPr"This is not the control we are looking for\n"     );
+                app.DebugPr"This is not the control we are looking for\n");
     } else if (slotId >= CRAFTING_INVENTORY_SLOT_START &&
                slotId < CRAFTING_INVENTORY_SLOT_END) {
         int iIndex = slotId - CRAFTING_INVENTORY_SLOT_START;
@@ -492,12 +492,12 @@ void UIScene_CraftingMenu::customDraw(IggyCustomDrawCallbackRegion* region) {
                     Item::compass_Id) {  // 4J Stu - For clocks and compasses we
                                          // set the aux value to a special one
                                          // that signals we should use a default
-                                         // texture     // rather than the
-                                         // dynamic one for the player     
+                                         // texture// rather than the
+                                         // dynamic one for the player
                 item->setAuxValue(0xFF);
             } else if ((item->getAuxValue() & 0xFF) ==
                        0xFF) {  // 4J Stu - If the aux value is set to match
-                                // any     
+                                // any
                 item->setAuxValue(0);
             }
         }
@@ -509,14 +509,14 @@ void UIScene_CraftingMenu::customDraw(IggyCustomDrawCallbackRegion* region) {
 int UIScene_CraftingMenu::getPad() { return m_iPad; }
 
 bool UIScene_CraftingMenu::allowRepeat(int key) {
-    switch (key)  // X is used to open this menu, so don't let it repeat     
+    switch (key)  // X is used to open this menu, so don't let it repeat
     case ACTION_MENU_X:
         return false;
 }
 return true;
 }
 
-void UIScene_CraftingMenu::handleInput(int iPad, int key, bool repeat, bool pressed, bool released, bool &handled//app.DebugPrintf("UIScene_InventoryMenu handling input for pad %d, key %d, down- %s, pressed- %s, released- %s\n", iPad, key, down?"TRUE":"FALSE", pressed?"TRUE":"FALSE", released?"TRUE":"FALSE");     
+void UIScene_CraftingMenu::handleInput(int iPad, int key, bool repeat, bool pressed, bool released, bool &handled//app.DebugPrintf("UIScene_InventoryMenu handling input for pad %d, key %d, down- %s, pressed- %s, released- %s\n", iPad, key, down?"TRUE":"FALSE", pressed?"TRUE":"FALSE", released?"TRUE":"FALSE");
 	ui.AnimateKeyPress(m_iPad, key, repeat, pressed, released);
 
 	switch(key)
@@ -555,7 +555,7 @@ void UIScene_CraftingMenu::hideAllIngredientsSlots() {
         m_ingredientsInfo[i].alpha = 31;
         m_ingredientsInfo[i].show = false;
 
-        m_labelIngredientsDesc[i].setLa "" l(L  );
+        m_labelIngredientsDesc[i].setLa "" l(L);
 
         IggyDataValue result;
         IggyDataValue value[2];
@@ -668,7 +668,7 @@ void UIScene_CraftingMenu::setItemText(LPCWSTR text) {
 }
 
 void UIScene_Crafti  // Call Iggy function to show the current
-                     // panel                              
+                     // panel
     IggyDataValue result;
 IggyDataValue value[1];
 
@@ -682,14 +682,14 @@ IggyResult out =
 
 void UIScene_CraftingM  // handled differentlyUp()
 {
-                          
+    
 
 
 }
 
 void UIScene_CraftingMen  // handled differentlywn()
 {
-                          
+    
 
 
 }
@@ -744,7 +744,7 @@ void UIScene_CraftingMenu::handleInventoryUpdated(LPVOID data) {
 
 void UIScene_CraftingMenu::updateVSlotPo  // Not neededSlots, int i)
 {
-                 
+    
 
 
 }

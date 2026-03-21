@@ -555,28 +555,28 @@ void LocalPlayer::openTextEdit(std::shared_ptr<TileEntity> tileEntity) {
             GetXboxPad(), dynamic_pointer_cast<CommandBlockEntity>(tileEntity));
     }
 
-    if (success) ui.PlayUISFX(eSFX_Pres//minecraft->setScreen(new TextEditScreen(sign));     
+    if (success) ui.PlayUISFX(eSFX_Pres//minecraft->setScreen(new TextEditScreen(sign));
 }
 
 bool LocalPlayer::openContainer(std::shared_ptr<Container> container) {
     bool success = app.LoadContainerMenu(GetXboxPad(), inventory, container);
-    if (success) ui.PlayUISFX(eSFX_Pres//minecraft->setScreen(new ContainerScreen(inventory, container));     
+    if (success) ui.PlayUISFX(eSFX_Pres//minecraft->setScreen(new ContainerScreen(inventory, container));
 	return success;
 }
 
-bool LocalPlayer::openHopper(std::shared_ptr<HopperTileEntity> cont//minecraft->setScreen(new HopperScreen(inventory, container));          
+bool LocalPlayer::openHopper(std::shared_ptr<HopperTileEntity> cont//minecraft->setScreen(new HopperScreen(inventory, container));
 	bool success = app.LoadHopperMenu(GetXboxPad(), inventory, container );
 	if( success ) ui.PlayUISFX(eSFX_Press);
 	return success;
 }
 
-bool LocalPlayer::openHopper(std::shared_ptr<MinecartHopper>//minecraft->setScreen(new HopperScreen(inventory, container));               
+bool LocalPlayer::openHopper(std::shared_ptr<MinecartHopper>//minecraft->setScreen(new HopperScreen(inventory, container));
 	bool success = app.LoadHopperMenu(GetXboxPad(), inventory, container );
 	if( success ) ui.PlayUISFX(eSFX_Press);
 	return success;
 }
 
-bool LocalPlayer::openHorseInventory(std::shared_ptr<EntityHorse> horse, std::shared_ptr<Conta//minecraft->setScreen(new HorseInventoryScreen(inventory, container, horse));                    
+bool LocalPlayer::openHorseInventory(std::shared_ptr<EntityHorse> horse, std::shared_ptr<Conta//minecraft->setScreen(new HorseInventoryScreen(inventory, container, horse));
 	bool success = app.LoadHorseMenu(GetXboxPad(), inventory, container, horse);
 	if( success ) ui.PlayUISFX(eSFX_Press);
 	return success;
@@ -588,8 +588,8 @@ bool LocalPlayer::startCrafting(int x, int y, int z) {
         y, z);
     if (success)
         ui.Play  // app.LoadXuiCraftMenu(0,inventory, level, x, y,
-                 // z);  //minecraft->setScreen(new CraftingScreen(inventory,
-                 // level, x, y, z));                    
+                 // z);//minecraft->setScreen(new CraftingScreen(inventory,
+                 // level, x, y, z));
             return success;
 }
 
@@ -607,7 +607,7 @@ bool LocalPlayer::startEnchanting(int x, int y, int z,
         app.LoadEnchantingMenu(GetXboxPad(), inventory, x, y, z, level, name);
     if (success)
         ui.Play  // minecraft.setScreen(new EnchantmentScreen(inventory, level,
-                 // x, y, z));                    
+                 // x, y, z));
             return success;
 }
 
@@ -616,7 +616,7 @@ bool LocalPlayer::startRepairing(int x, int y, int z) {
         app.LoadRepairingMenu(GetXboxPad(), inventory, level, x, y, z);
     if (success)
         ui.Play  // minecraft.setScreen(new RepairScreen(inventory, level, x, y,
-                 // z));                    
+                 // z));
             return success;
 }
 
@@ -624,7 +624,7 @@ bool LocalPlayer::openFurnace(std::shared_ptr<FurnaceTileEntity> furnace) {
     bool success = app.LoadFurnaceMenu(GetXboxPad(), inventory, furnace);
     if (success)
         ui.Play  // minecraft->setScreen(new FurnaceScreen(inventory,
-                 // furnace));                    
+                 // furnace));
             return success;
 }
 
@@ -634,11 +634,11 @@ bool LocalPlayer::openBrewingStand(
         app.LoadBrewingStandMenu(GetXboxPad(), inventory, brewingStand);
     if (success)
         ui  // minecraft.setScreen(new BrewingStandScreen(inventory,
-            // brewingStand));                         
+            // brewingStand));
             return success;
 }
 
-bool LocalPlayer::openBeacon(std::shared_ptr//minecraft->setScreen(new BeaconScreen(inventory, beacon));                              
+bool LocalPlayer::openBeacon(std::shared_ptr//minecraft->setScreen(new BeaconScreen(inventory, beacon));
 	bool success = app.LoadBeaconMenu(GetXboxPad(), inventory, beacon);
 	if( success ) ui.PlayUISFX(eSFX_Press);
 	return success;
@@ -646,7 +646,7 @@ bool LocalPlayer::openBeacon(std::shared_ptr//minecraft->setScreen(new BeaconScr
 
 bool LocalPlayer::openTrap(std::shared_ptr<DispenserTileEntity> trap) {
     bool success = app.LoadTrapMenu(GetXboxPad(), inventory, trap);
-        if( success//minecraft->setScreen(new TrapScreen(inventory, trap));                              
+        if( success//minecraft->setScreen(new TrapScreen(inventory, trap));
 	return success;
 }
 
@@ -654,7 +654,7 @@ bool LocalPlayer::openTrading(std::shared_ptr<Merchant> traderTarget,
                               const std::wstring& name) {
     bool success =
         app.LoadTradingMenu(GetXboxPad(), inventory, traderTarget, level, name);
-        if( su//minecraft.setScreen(new MerchantScreen(inventory, traderTarget, level));                                   
+        if( su//minecraft.setScreen(new MerchantScreen(inventory, traderTarget, level));
 	return success;
 }
 
@@ -705,15 +705,15 @@ void LocalPlayer::hurtTo(float newHealth, ETelemetryChallenges damageSource) {
         TelemetryManager
             ->RecordPlayerDiedOrFaile  // if there are any xuiscenes up for this
                                        // player, close
-                                       // them                                                            
+                                       // them
             if (ui.GetMenuDisplayed(GetXboxPad())) {
             ui.CloseUIScen  // Select the right payer to
                             // respawncalPlayer::respawn()
             {
-                                            
+        
 	minecraft->respawnPlayer(G//        Player.animateRespawn(this, level);ateRespawn()
 {
-                                                                 
+                    
 }
 
 void LocalPlayer::displayClientMessage(int messageId)
@@ -721,8 +721,8 @@ void LocalPlayer::displayClientMessage(int messageId)
                     minecraft->gui->displayClientMessage(messageId,
                                                          GetXboxPad());
 }
-#ifdef _DURANGOer  // 4J-JEV: Maybe we want to fine tune this later? #TODO   
-	                                                       
+#ifdef _DURANGOer  // 4J-JEV: Maybe we want to fine tune this later? #TODO
+	
 	if (	   !ProfileManager.IsGuest(GetXboxPad()) 
 			&& app.CanRecordStatsAndAchievements()
 			&& ProfileManager.IsFullVersion()
@@ -731,17 +731,17 @@ void LocalPlayer::displayClientMessage(int messageId)
                 stat->handleParamBlob(dynamic_pointer_cast<LocalPla#elseshared_from_this()), param);
 	}
 	delete [] param.data;
-     
+
 	int count = CommonStats::readParam(param);
 	delete [] param.data;
 
 	if (!app.CanRecordStatsAndAchievements())	return;
 	if (stat == NULL)							return;
 
-	if (stat->isAch// 4J-PB - changed to attempt to award everytime - the award may need a storage device, so needs a primary player, and the player may not have been a primary player when they first 'got' the award   // so let the award manager figure it out   //if (!minecraft->stats[m_iPad]->hasTaken(ach))        // 4J-PB - Don't display the java popup    //minecraft->achievementPopup->popup(ach);     // 4J Stu - Added this function in the libraries as some achievements don't get awarded to all players    // e.g. Splitscreen players cannot get theme/avatar/gamerpic and Trial players cannot get any    // This causes some extreme flooding of some awards     
-			                                                   
-			if(ProfileManage// 4J Stu - We don't (currently) care about the gamerscore, so setting to a default of 0 points                                                            
-				TelemetryManager->Record// 4J Stu - Some awards cause a menu to popup. This can be bad, especially if you are surrounded by mobs!     // We cannot pause the game unless in offline single player, but lets at least do it then                                                            
+	if (stat->isAch// 4J-PB - changed to attempt to award everytime - the award may need a storage device, so needs a primary player, and the player may not have been a primary player when they first 'got' the award// so let the award manager figure it out//if (!minecraft->stats[m_iPad]->hasTaken(ach))// 4J-PB - Don't display the java popup//minecraft->achievementPopup->popup(ach);// 4J Stu - Added this function in the libraries as some achievements don't get awarded to all players// e.g. Splitscreen players cannot get theme/avatar/gamerpic and Trial players cannot get any// This causes some extreme flooding of some awards
+			
+			if(ProfileManage// 4J Stu - We don't (currently) care about the gamerscore, so setting to a default of 0 points
+				TelemetryManager->Record// 4J Stu - Some awards cause a menu to popup. This can be bad, especially if you are surrounded by mobs!// We cannot pause the game unless in offline single player, but lets at least do it then
 				if( g_NetworkManager.IsLocalGame() && g_NetworkManager.GetPlayerCount() == 1 && ProfileManager.GetAwardType(ach->getAchievementID() ) != eAwardType_Achievement )
 				{
                     ui.CloseUIScenes(m_iPad);
@@ -749,7 +749,7 @@ void LocalPlayer::displayClientMessage(int messageId)
 				}
             }
 
-                                                 
+            
 			unsigned long long achBit = ((unsigned long long)1)
                                                     << ach->getAchievementID();
             if (!(achBit & m_awardedThisSession)) {
@@ -760,18 +760,18 @@ void LocalPlayer::displayClientMessage(int messageId)
         }
                 minecraft->stats[m_// 4J : WESTY : Added for new achievements.);
     } else {
-                                                           
-		StatsCounter* pStats = minecraft->stats[m// 4J-JEV: Check achievements for unlocks.cult// LEADER OF THE PACK                                   
+                
+		StatsCounter* pStats = minecraft->stats[m// 4J-JEV: Check achievements for unlocks.cult// LEADER OF THE PACK
 
-		                     
-		// Check to see if we have befriended 5 wolves! Is this really the best place to do this??!!                                                            
+		
+		// Check to see if we have befriended 5 wolves! Is this really the best place to do this??!!
 			if ( pStats->getTotalValue(GenericStats::tamedEntity(eTYPE_WOLF)) >= 5 )
 			{
                                 awardStat(GenericStats::le// MOAR TOOLS(), GenericStats::param_noArgs());
 			}
     }
 
-                 
+    
 		{
         Stat* toolStats[4][5];
         toolStats[0][0] = GenericStats::itemsCrafted(Item::shovel_wood->id);
@@ -824,25 +824,25 @@ void LocalPlayer::displayClientMessage(int messageId)
                                         awardStat(GenericStats::MOA
 #ifdef _XBOXeri  // AWARD: Have we killed 10 creepers?
             }
-                         
-		                                     
+            
+		
 		if (pStats->getTotalValue(GenericStats::killsCreeper()) >= 10) {
                         awardStat( GenericSta// AWARD : Have we been playing for 100 game days?);
             }
 
-                                                              
+            
 		if (pStats->getTotalValue(GenericStats::timePlayed()) >=
                     (Level::TICKS_PER_DAY * 100)) {
                         awardStat( Generi// AWARD : Have we mined 100 blocks?:param_noArgs());
             }
-                                                
+            
 		if (pStats->getTotalValue(GenericStats::totalBlocksMined()) >=
                     100) {
                         awardStat( Generi#endif:
 #ifdef _EXTENDED_ACHIEVEMENTS::pa  // AWARD : Porkchop, cook and eat a
-                                   // porkchop.           
+                                   // porkchop.
 
-		                                             
+		
 		{
                     Stat *cookPorkchop, *eatPorkchop;
                     cookPorkchop =
@@ -853,15 +853,15 @@ void LocalPlayer::displayClientMessage(int messageId)
                     if (stat == cookPorkchop || stat == eatPorkchop) {
                         int numCookPorkchop, numEatPorkchop;
                         numCookPorkchop = pStats->getTotalValue(cookPorkchop);
-                                numEatPorkchop = pSt"[AwardStat] Check unlock 'Porkchop': "pp.Deb"pork_cooked=%i, pork_eaten=%i.\n"                    
-					                                  ,
+                                numEatPorkchop = pSt"[AwardStat] Check unlock 'Porkchop': "pp.Deb"pork_cooked=%i, pork_eaten=%i.\n"
+					,
 					numCookPorkchop, numEatPorkchop
 					);
 
                                 if ((0 < numCookPorkchop) &&
                                     (0 < numEatPorkchop)) {
                                         awardStat( GenericStats::pork// AWARD : Passing the Time, play for 100 minecraft days.
-		                                                         
+		
 		{
                                 Stat* timePlayed = GenericStats::timePlayed();
 
@@ -871,7 +871,7 @@ void LocalPlayer::displayClientMessage(int messageId)
 					"[AwardStat] Check unlock 'Passing the Time': "
 					"total_ticks=%i, req=%i.\n",
 					iPlayedTicks, iRequiredTicks
-					); */                                                            
+					); */
 
 				if (iPlayedTicks >= iRequiredTicks)
 				{
@@ -879,7 +879,7 @@ void LocalPlayer::displayClientMessage(int messageId)
 			}
                                 }
 
-                                                                            
+                                
 		{
                                     Stat *emeraldMined, *emeraldBought;
                                     emeraldMined = GenericStats::blocksMined(
@@ -896,15 +896,15 @@ void LocalPlayer::displayClientMessage(int messageId)
                                         numEmeraldBought =
                                             pStats->getTotalValue(
                                                 emeraldBought);
-                                totalSum = numEmer"[AwardStat] Check unlock 'The Haggler': "DebugP"emerald_mined=%i, emerald_bought=%i, sum=%i.\n"      
-					                                                ,
+                                totalSum = numEmer"[AwardStat] Check unlock 'The Haggler': "DebugP"emerald_mined=%i, emerald_bought=%i, sum=%i.\n"
+					,
 					numEmeraldMined, numEmeraldBought, totalSum
 					);
 
                                 if (totalSum >= 30)	awardStat( GenericStats::th// AWARD : Pot Planter, craft and place a flowerpot.
                                     }
 
-                                                                                        
+                                    
 		{
                                         Stat *craftFlowerpot, *placeFlowerpot;
                                         craftFlowerpot =
@@ -924,7 +924,7 @@ void LocalPlayer::displayClientMessage(int messageId)
                                             }
                                         }
 
-                                                                                       
+                                        
 		{
                                             Stat *craftSign, *placeWallsign,
                                                 *placeSignpost;
@@ -950,14 +950,14 @@ void LocalPlayer::displayClientMessage(int messageId)
                                                 numPlacedWallSign =
                                                     pStats->getTotalValue(
                                                         placeWallsign);
-                                numPlacedSignpost	= pStat"[AwardStat] Check unlock 'It's a Sign': "DebugP"crafted=%i, placedWallSigns=%i, placedSignposts=%i.\n"					                                                       ,
+                                numPlacedSignpost	= pStat"[AwardStat] Check unlock 'It's a Sign': "DebugP"crafted=%i, placedWallSigns=%i, placedSignposts=%i.\n"					,
 					numCraftedSigns, numPlacedWallSign, numPlacedSignpost
 					);
 
                                 if ((numCraftedSigns > 0) &&
                                     ((numPlacedWallSign + numPlacedSignpost) >
                                      0)) {
-                                        awardStat( GenericStats::its// AWARD : Rainbow Collection, collect all different colours of wool.                                                            
+                                        awardStat( GenericStats::its// AWARD : Rainbow Collection, collect all different colours of wool.
 		{
                                                         bool justPickedupWool =
                                                             false;
@@ -991,7 +991,7 @@ void LocalPlayer::displayClientMessage(int messageId)
 
                                                             if (woolCount >= 16) awardStat( GenericStats::rainbowCollectio// AWARD : Adventuring Time, visit at least 17 biomes		}
 
-		                                                     
+		
 		{
                                                                     bool justEnteredBiome =
                                                                         false;
@@ -1036,11 +1036,11 @@ void LocalPlayer::displayClientMessage(int messageId)
                                                                                 param_adventuringTime());
                                                                     }
 		}
-      
+
 	
                                                         
                                                         }
-                                                              
+                                                        
 }
 
 bool LocalPlayer::isSolidBlock(int x, int y, int z)
@@ -1173,9 +1173,9 @@ void LocalPlayer::setExperienceValues(float experienceProgress, int totalExp, in
                                                         this->totalExperien  // 4J: removed
                                                                              // void
                                                                              // LocalPlayer::sendMessage(ChatMessageComponent
-                                                                             // *message) //{ //
-                                                                             // minecraft->gui->getChat()->addMessage(message.toString(true)); //}                                                        
-   
+                                                                             // *message)//{//
+                                                                             // minecraft->gui->getChat()->addMessage(message.toString(true));//}
+
 
 Pos LocalPlayer::getCommandSenderWorldPosition() {
                                                             return new Pos(
@@ -1261,8 +1261,8 @@ Pos LocalPlayer::getCommandSenderWorldPosition() {
                                                             setAndBro  // 4J
                                                                        // TODO -
                                                                        // RemoveO#include
-                                                                       // "..\Minecraft.World\LevelChunk.h"                 
-                                          
+                                                                       // "..\Minecraft.World\LevelChunk.h"
+
 void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                             int cx =
                                                                 this->xChunk;
@@ -1282,8 +1282,8 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                         x)) %
                                                                 16;
 
-                                                            st","cout<<     ","           ")\n"<   <<cz<<        
-		<<this->x<<   <<this->y<<   <<this->z<<     ;
+                                                            st","cout<<","")\n"<<<cz<<
+		<<this->x<<<<this->y<<<<this->z<<;
 
                                                             for (int v = -1;
                                                                  v < 2; v++)
@@ -1317,7 +1317,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                 v ==
                                                                                     0)
                                                                                 std::cout
-                                                                                    <<    ;
+                                                                                    << ;
                                                                             else
                                                                                 for (
                                                                                     unsigned int
@@ -1333,7 +1333,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                         t ==
                                                                                             flagTileType) {
                                                                                         std::cout
-                                                                                            <<    ;
+                                                                                            << ;
                                                                                         break;
                                                                                     } else if (
                                                                                         "#" =
@@ -1344,7 +1344,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                         b "\n";
                                                                                     } else i"\n" > 0)			{
                                                                                             std::cout
-                                                                                                <<    ;
+                                                                                                << ;
                                                                                             break;
                                                                                         }
                                                                                 }
@@ -1352,7 +1352,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                     std::cout
                                                                         <<  // 4J Stu - We should not accept any input while asleep, except the above to wake upl down)
                                                                     {
-                                                                                                                                                            
+                                                                        
 	if (isSleeping() && level != NULL && level->isClientSide) {
                                                                             return;
                                                                         }
@@ -1377,8 +1377,8 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                             button ==
                                                                                 0) {
                                                                             int x =
-                                                                                min  // 4J - addition to stop layer mining out of the top or bottom of the worldt->// 4J Stu - Allow this for The End                                                          
-		                                  
+                                                                                min  // 4J - addition to stop layer mining out of the top or bottom of the worldt->// 4J Stu - Allow this for The End
+		
 		if (((y == 0) ||
                      ((y == 127) && level->dimension->hasCeiling)) &&
                     level->dimension->id != 1) return;
@@ -1420,13 +1420,13 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                         int button,
                                                                         bool
                                                                             buttonPressed) {
-                                                                        if  // Are we in an auto-repeat situation? - If so only tell the game that we've clicked if we move more than a unit away from our last   // click position in any axis                                                    // If we're in disabled mode already (set when sprinting) then don't do anything - if we're sprinting, we don't auto-repeat at all.    // With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing                                                                // If we've started sprinting, go into this mode & also don't do anythinged )// Ignore repeate when sleeping                                                            
-                                                                                                           
+                                                                        if  // Are we in an auto-repeat situation? - If so only tell the game that we've clicked if we move more than a unit away from our last// click position in any axis// If we're in disabled mode already (set when sprinting) then don't do anything - if we're sprinting, we don't auto-repeat at all.// With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing// If we've started sprinting, go into this mode & also don't do anythinged )// Ignore repeate when sleeping
+                                                                            
 	    // Get distance from last click point in each axisstClick_disabled;
                                                                                 return false;
                                                                     }
 
-                                                                                                                      
+                                                                    
 			float dX = (float)x - lastClickX;
                                                                     float dY =
                                                                         (float)
@@ -1489,8 +1489,8 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                 lastClickTolerance =
                                                                                     0.0f;
                                                                                 lastClickState =
-                                                                                    lastCli  // If we have moved more than one unit in any one axis, then register a new clickkdZ // The new click position is normalised at one unit in the direction of movement, so that we don't gradually drift away if we detect the movement a fraction over    // the unit distance each time                                                             
-			                              
+                                                                                    lastCli  // If we have moved more than one unit in any one axis, then register a new clickkdZ // The new click position is normalised at one unit in the direction of movement, so that we don't gradually drift away if we detect the movement a fraction over// the unit distance each time
+			
 
 			if (fabsf(dX) >= 1.0f) {
                                                                                     dX =
@@ -1555,8 +1555,8 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                         newClick =
                                                                                             true;
                                                                                 }
-                                                                                // Get a more accurate pick from the position where the new click should ideally have come from, rather than     // where we happen to be now (ie a rounded number of units from the last Click position)  
-                                                                                                                                                                        
+                                                                                // Get a more accurate pick from the position where the new click should ideally have come from, rather than// where we happen to be now (ie a rounded number of units from the last Click position)
+                                                                                
 				double oldX = x;
                                                                                 double oldY =
                                                                                     y;
@@ -1590,15 +1590,15 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                             }
                                                                         }
                                                                         else {
-                                                                                                                 // If we actually placed an item, then move into the init state as we are going to be doing the special creative mode auto repeat                                                   // If we're sprinting or riding, don't auto-repeat at all. With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing    // Also ignore repeats when the player is sleeping                                         
-			                                                  
+                                                                                // If we actually placed an item, then move into the init state as we are going to be doing the special creative mode auto repeat// If we're sprinting or riding, don't auto-repeat at all. With auto repeat on, we can quickly place fires causing photosensitivity issues due to rapid flashing// Also ignore repeats when the player is sleeping
+			
 			if (isSprinting() || isRiding() || isSleeping()) {
                                                                                 lastClickState =
                                                                                     lastClick_disabled;
                                                                             }
                                                                             else {
                                                                                 if (itemPlaced) {
-                                                                                    // Didn't place an item - might actually be activating a switch or door or something - just do a standard auto repeat in this case                                                                                               
+                                                                                    // Didn't place an item - might actually be activating a switch or door or something - just do a standard auto repeat in this case
                                                                                     lastClickState =
                                                                                         lastClick_oldRepeat;
                                                                                 }
@@ -1625,7 +1625,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                           // ==
                                                                           // 0)
                                                                 {
-                                                                                               // 4J-PB - Adding a special case in here for sleeping in a bed in a multiplayer game - we need to wake up, and we don't have the inbedchatscreen with a button                                                                                               
+                                                                        // 4J-PB - Adding a special case in here for sleeping in a bed in a multiplayer game - we need to wake up, and we don't have the inbedchatscreen with a button
 
                                                                         if (button ==
                                                                                 1 &&
@@ -1644,7 +1644,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                 dynamic_pointer_cast <
                                                                                 Multipl  // 4J Stu - We should not accept any input while asleep, except the above to wake upeeping();
                                                                     }
-                                                                                                                                                        
+                                                                    
 	if (isSleeping() && level != NULL && level->isClientSide) {
                                                                         return false;
                                                                     }
@@ -1676,10 +1676,10 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                             0) {
                                                                             minecraft
                                                                                 ->gameMode
-                                                                                ->at  // 4J-PB - if we milk a cow here, and end up with a bucket of milk, the if (mayUse && button == 1) further down will     // then empty our bucket if we're pointing at a tile    // It looks like interact really should be returning a result so we can check this, but it's possibly just the     // milk bucket that causes a problem                                                                 
+                                                                                ->at  // 4J-PB - if we milk a cow here, and end up with a bucket of milk, the if (mayUse && button == 1) further down will // then empty our bucket if we're pointing at a tile// It looks like interact really should be returning a result so we can check this, but it's possibly just the // milk bucket that causes a problem
                                                                             // If I have an empty bucket in my hand, it's going to be filled with milk, so turn off mayUse)
                                                                             {
-                                                                                                                                                                              
+                                                                                
 				std::shared_ptr<ItemInstance>
                                                                                     item =
                                                                                         inventory
@@ -1717,8 +1717,8 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                                 ->x;
                                                                         int y =
                                                                             minecraft
-                                                                                ->hitR  // 4J - addition to stop layer mining out of the top or bottom of the worldult-// 4J Stu - Allow this for The End                                                                        
-			                                  
+                                                                                ->hitR  // 4J - addition to stop layer mining out of the top or bottom of the worldult-// 4J Stu - Allow this for The End
+			
 			if (!((y == 0) ||
                               ((y == 127) && level->dimension->hasCeiling)) ||
                             level->dimension->id == 1) {
@@ -1745,10 +1745,10 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                             false;
                         if (minecraft->gameMode->useItemOn(minecra// Presume that if we actually used the held item, then we've placed ithitResult->pos, false, &usedItem))
 			{
-				                                          //app.DebugPrintf("Player %d is swinging\n",GetXboxPad());		returnItemPlaced = true;
+				//app.DebugPrintf("Player %d is swinging\n",GetXboxPad());		returnItemPlaced = true;
 				}
 				mayUse = false;
-				                                                          
+				
 				swing();
                                                                     }
                                                                     if (item ==
@@ -1806,7 +1806,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                     LocalPlayer::
                                                                         updateRichPresence() {
                                                                         if ((m_iPad !=
-                                                                             -1)                                     ) {
+                                                                             -1) ) {
                                                                             std::shared_ptr<
                                                                                 ItemInstance>
                                                                                 selectedItem =
@@ -1877,7 +1877,7 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                                                                         }
                                                                     }
 
-                                                                                                   
+                                                                    
 void LocalPlayer::SetSessionTimerStart(void) {
                                                                         m_sessionTimeStart =
                                                                             app.getAppTime();
@@ -1923,7 +1923,7 @@ void LocalPlayer::SetSessionTimerStart(void) {
                                                                                         ->items
                                                                                             [k] !=
                                                                                     NULL) {
-                                                                                                            
+                                                                                    
 				if (inventory->items[k]->id == item->id) {
                                                                                         unsigned int quantity =
                                                                                             inventory

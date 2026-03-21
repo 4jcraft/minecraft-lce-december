@@ -1469,7 +1469,7 @@ std::vector<HtmlString>* IUIScene_AbstractContainerMenu::GetItemDescription(
     Slot* slot) {
     if (slot == NULL) return NULL;
 
-        std::vector<HtmlString> *lines = slot->getItem()->getHoverText(nullptr, false// Add rarity to first line     
+        std::vector<HtmlString> *lines = slot->getItem()->getHoverText(nullptr, false// Add rarity to first line
 	if (lines->size() > 0)
 	{
         lines->at(0).color = slot->getItem()->getRarity()->color;

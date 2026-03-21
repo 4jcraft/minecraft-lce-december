@@ -555,7 +555,7 @@ char* C_4JProfile::GetGamertag(int iPad) { return fakeGamerTag; }
 #else
 char* C_4JProfile::GetGamertag(int iPad) { return "PlayerName"; }
 std::wstring C_4JProfile::GetDisplayName(int iPad) {
-    ret "PlayerName"    #endif      
+    ret "PlayerName"#endif 
 bool C_4JProfile::IsFullVersion() {
         return s_bProfileIsFullVersion;
     }
@@ -582,7 +582,7 @@ bool C_4JProfile::IsFullVersion() {
         int (*Func)(LPVOID, unsigned char*, const unsigned short, const int),
         LPVOID lpParam) {
         return 0  // To store the dashboard preferences for controller flipped,
-                  // etc.     
+                  // etc.
             C_4JProfile::PROFILESETTINGS ProfileSettingsA[XUSER_MAX_COUNT];
 
         C_4JProfile::PROFILESETTINGS* C_4JProfile::GetDashboardProfileSettings(
@@ -593,7 +593,7 @@ bool C_4JProfile::IsFullVersion() {
             int iQuadrant, bool bGameDefinedDataChanged,
             bool bOverride5MinuteLimitOnProfileWrites) {}
         void C_4JProfile::ForceQueuedProfileWrites(int iPad) {}
-void				*C_4JProfile::GetGameDefinedProfileData(int iQuadrant// 4J Stu - Don't reset the options when we call this!!  //defaultOptionsCallback(lpProfileParam, (C_4JProfile::PROFILESETTINGS *)profileData[iQuadrant], iQuadrant);  //pApp->SetDefaultOptions(pSettings,iPad);     
+void				*C_4JProfile::GetGameDefinedProfileData(int iQuadrant// 4J Stu - Don't reset the options when we call this!!//defaultOptionsCallback(lpProfileParam, (C_4JProfile::PROFILESETTINGS *)profileData[iQuadrant], iQuadrant);//pApp->SetDefaultOptions(pSettings,iPad);
 
 	return profileData[iQuadrant];
     }
@@ -633,7 +633,7 @@ void				*C_4JProfile::GetGameDefinedProfileData(int iQuadrant// 4J Stu - Don't r
     void C_4JProfile::ShowProfileCard(
         int iPad,
         PlayerUID targetUid)  ///////////////////////////////////////////////
-                              /// Storage library //#ifdef _WINDOWS64 #if 0     
+                              /// Storage library//#ifdef _WINDOWS64#if 0
         C4JStorage::C4JStorage() {}
     void C4JStorage::Tick() {}
     C4JStorage::EMessageResult C4JStorage::RequestMessageBox(
@@ -659,7 +659,7 @@ void				*C_4JProfile::GetGameDefinedProfileData(int iQuadrant// 4J Stu - Don't r
     void C4JStorage::SetDefaultSaveNameForKeyboardDisplay(
         LPCWSTR pwchDefaultSaveName) {}
     void C4JStorage::SetSaveTitle(LPCWSTR pwchDefaultSaveName) {}
-    LPCWSTR C4JStorage::GetSaveTitle() { ret "" n L  ; }
+    LPCWSTR C4JStorage::GetSaveTitle() { ret "" n L; }
     bool C4JStorage::GetSaveUniqueNumber(INT * piVal) { return true; }
     bool C4JStorage::GetSaveUniqueFilename(char* pszName) { return true; }
     void C4JStorage::SetSaveUniqueFilename(char* szFilename) {}
@@ -686,7 +686,7 @@ void				*C_4JProfile::GetGameDefinedProfileData(int iQuadrant// 4J Stu - Don't r
         return C4JStorage::ELoadGame_Idle;
     }
     bool C4JStorage::EnoughSpaceForAMinSaveGame() { return true; }
-void								C4JStorage::SetSaveMessageVPosition(float fY//C4JStorage::ESGIStatus				C4JStorage::GetSavesInfo(int iPad,bool ( *Func)(LPVOID, int, CACHEINFOSTRUCT *, int, HRESULT),LPVOID lpParam,char *pszSavePackName) { return C4JStorage::ESGIStatus_Idle; }     
+void								C4JStorage::SetSaveMessageVPosition(float fY//C4JStorage::ESGIStatus				C4JStorage::GetSavesInfo(int iPad,bool ( *Func)(LPVOID, int, CACHEINFOSTRUCT *, int, HRESULT),LPVOID lpParam,char *pszSavePackName) { return C4JStorage::ESGIStatus_Idle; }
 C4JStorage::ESaveGameState			C4JStorage::GetSavesInfo(int iPad,int ( *Func)(LPVOID lpParam,SAVE_DETAILS *pSaveDetails,const bool),LPVOID lpParam,char *pszSavePackName) {
         return C4JStorage::ESaveGame_Idle; }
 
@@ -735,10 +735,10 @@ unsigned int						C4JStorage::CRC(unsigned char *buf, int len) {
         return 0; }
 
 struct PTMSPP_FILEDATA;
-C4JStorage::ETMSStatus				C4JStorage::TMSPP_ReadFile(int iPad,C4JStorage::eGlobalStorage eStorageFacility,C4JStorage::eTMS_FILETYPEVAL eFileTypeVal,LPCSTR szFilename,int( *Func)(LPVOID,int,int,PTMSPP_FILEDATA, LP/*=NULL*/     ,LPVOID lp/*=NULL*/     , int iUse/*=0*/     ) {
-        return C4JStorage::ETMSStatus_Id #endif  // _WINDOWS64 
-#endif  // __PS3__  ///////////////////////////////////////////////////////
-        // Sentient manager     
+C4JStorage::ETMSStatus				C4JStorage::TMSPP_ReadFile(int iPad,C4JStorage::eGlobalStorage eStorageFacility,C4JStorage::eTMS_FILETYPEVAL eFileTypeVal,LPCSTR szFilename,int( *Func)(LPVOID,int,int,PTMSPP_FILEDATA, LP/*=NULL*/,LPVOID lp/*=NULL*/, int iUse/*=0*/) {
+        return C4JStorage::ETMSStatus_Id #endif  // _WINDOWS64
+#endif  // __PS3__///////////////////////////////////////////////////////
+        // Sentient manager
 
 HRESULT CSentientManager::Init() { return S_OK; }
 HRESULT CSentientManager::Tick() { return S_OK; }
@@ -820,7 +820,7 @@ INT CSentientManager::GetMultiplayerInstanceID() { return 0; }
 INT CSentientManager::GenerateMultiplayerInstanceId() { return 0; }
 void CSentientManager::SetMultiplayerInstanceId(
     INT value)  ////////////////////////////////////////////////////////
-                /// Stats counter  /*
+                /// Stats counter/*
     StatsCounter::StatsCounter() {}
 void StatsCounter::award(Stat* stat, unsigned int difficulty,
                          unsigned int count) {}
@@ -840,4 +840,4 @@ void StatsCounter::setupStatBoards() {}
 #ifdef _DEBUG
 void StatsCounter::WipeLeaderboards(){}
 #endif
-    * /     
+    * /
