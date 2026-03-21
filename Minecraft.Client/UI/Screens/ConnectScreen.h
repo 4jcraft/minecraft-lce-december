@@ -1,0 +1,26 @@
+#pragma once
+#include "../Screen.h"
+class ClientConnection;
+class Minecraft;
+
+class ConnectScreen : public Screen {
+private:
+    ClientConnection* connection;
+    bool aborted;
+
+public:
+    ConnectScreen(Minecraft* minecraft, const std::wstring& ip, int port);
+    virtual void tick();
+
+protected:
+    virtual void keyPressed(char eventCharacter, int eventKey);
+
+public:
+    virtual void init();
+
+protected:
+    virtual void buttonClicked(Button* button);
+
+public:
+    virtual void render(int xm, int ym, float a);
+};

@@ -1,0 +1,24 @@
+{
+  "project_root": "/home/tropical/Documents/GitHub/minecraft-lce-december/Minecraft.Client",
+
+  "include_search_paths": [
+    "/home/tropical/Documents/GitHub/minecraft-lce-december/Minecraft.Client/**"
+  ],
+  "extra_scan_paths": [
+    "/home/tropical/Documents/GitHub/minecraft-lce-december/Minecraft.World/**"
+  ],
+
+  "moves": [
+    {"from": "*Model.*", "to": "Rendering/Models"},
+    {"from": "ModelHorse.*", "to": "Rendering/Models"},
+    {"from": "*Renderer.*", "to": "Rendering/EntityRenderers"},
+    {"from": "*Particles.*", "to": "Rendering/Particles"},
+    {"from": "*TextureAtlas.*", "to": "Textures"},
+    {"from": "*ResourceLocation.*", "to": "Textures"},
+    {"from": "*DispenserBootstrap.*", "to": "GameState"},
+    {"from": "*ServerScoreboard.*", "to": "Network"},
+    {"from": "*BossMobGuiInfo.*", "to": "UI"},
+    {"from": "Build/*", "to": "Platform"},
+    {"from": "Build/Common", "to": "Platform/Common"}
+  ]
+}

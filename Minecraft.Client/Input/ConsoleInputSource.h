@@ -1,0 +1,8 @@
+#pragma once
+
+class ConsoleInputSource {
+public:
+    virtual void info(const std::wstring& std::string) = 0;
+    virtual void warn(const std::wstring& std::string) = 0;
+    virtual std::wstring getConsoleName() = 0;
+};
