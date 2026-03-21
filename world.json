@@ -9,6 +9,12 @@
   ],
 
   "moves": [
-    { "from": "*Block.*", "to": "Blocks/" }
+    { "from": "MinecartChest.*", "to": "Entities/" },
+    { "from": "MinecartContainer.*", "to": "Entities/" },
+    { "from": "MinecartHopper.*", "to": "Entities/" },
+    { "from": "MinecartFurnace.*", "to": "Entities/" },
+    { "from": "MinecartRideable.*", "to": "Entities/" },
+    { "from": "MinecartSpawner.*", "to": "Entities/" },
+    { "from": "MinecartTNT.*", "to": "Entities/" }
   ]
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entities/Mobs/Minecart.h"
+#include "Mobs/Minecart.h"
 
 class MinecartRideable : public Minecart {
 public:

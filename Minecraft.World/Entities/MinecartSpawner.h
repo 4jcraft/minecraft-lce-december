@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Entities/Mobs/Minecart.h"
-#include "BaseMobSpawner.h"
+#include "Mobs/Minecart.h"
+#include "../BaseMobSpawner.h"
 
 class MinecartSpawner : public Minecart {
 public:

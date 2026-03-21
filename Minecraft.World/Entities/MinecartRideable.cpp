@@ -1,7 +1,7 @@
-#include "Platform/stdafx.h"
-#include "Headers/net.minecraft.world.entity.h"
-#include "Headers/net.minecraft.world.entity.player.h"
-#include "Headers/net.minecraft.world.level.h"
+#include "../Platform/stdafx.h"
+#include "../Headers/net.minecraft.world.entity.h"
+#include "../Headers/net.minecraft.world.entity.player.h"
+#include "../Headers/net.minecraft.world.level.h"
 #include "MinecartRideable.h"
 
 MinecartRideable::MinecartRideable(Level* level) : Minecart(level) {
