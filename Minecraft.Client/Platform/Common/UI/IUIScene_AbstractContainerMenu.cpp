@@ -6,7 +6,7 @@
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.item.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.item.crafting.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.level.tile.entity.h"
-#include "../../MultiplayerLocalPlayer.h"
+#include "../../MultiPlayerLocalPlayer.h"
 #include "../../Minecraft.h"
 
 #ifdef __ORBIS__

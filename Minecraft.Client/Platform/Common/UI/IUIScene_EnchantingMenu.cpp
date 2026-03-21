@@ -1,7 +1,7 @@
 #include "../../stdafx.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.inventory.h"
 #include "../../Minecraft.h"
-#include "../../MultiplayerLocalPlayer.h"
+#include "../../MultiPlayerLocalPlayer.h"
 #include "IUIScene_EnchantingMenu.h"
 
 IUIScene_AbstractContainerMenu::ESceneSection

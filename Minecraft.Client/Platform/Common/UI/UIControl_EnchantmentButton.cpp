@@ -3,7 +3,7 @@
 #include "UIControl_EnchantmentButton.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.inventory.h"
 #include "../../Minecraft.h"
-#include "../../MultiplayerLocalPlayer.h"
+#include "../../MultiPlayerLocalPlayer.h"
 #include "../../../../Minecraft.World/Util/StringHelpers.h"
 
 UIControl_EnchantmentButton::UIControl_EnchantmentButton() {

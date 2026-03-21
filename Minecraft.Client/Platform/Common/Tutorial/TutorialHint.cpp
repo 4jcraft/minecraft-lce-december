@@ -5,7 +5,7 @@
 #include "Tutorial.h"
 #include "TutorialHint.h"
 #include "../../Minecraft.h"
-#include "../../MultiplayerLocalPlayer.h"
+#include "../../MultiPlayerLocalPlayer.h"
 
 TutorialHint::TutorialHint(eTutorial_Hint id, Tutorial* tutorial,
                            int descriptionId, eHintType type,

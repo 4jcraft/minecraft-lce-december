@@ -3,7 +3,7 @@
 #include "UIScene_HUD.h"
 #include "../../../UI/BossMobGuiInfo.h"
 #include "../../Minecraft.h"
-#include "../../MultiplayerLocalPlayer.h"
+#include "../../MultiPlayerLocalPlayer.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.entity.boss.enderdragon.h"
 #include "../../EnderDragonRenderer.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.inventory.h"

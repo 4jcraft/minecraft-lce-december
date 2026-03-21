@@ -6,7 +6,7 @@
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.item.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.stats.h"
 #include "../../../../Minecraft.World/Headers/net.minecraft.world.effect.h"
-#include "../../MultiplayerLocalPlayer.h"
+#include "../../MultiPlayerLocalPlayer.h"
 #include "../../Minecraft.h"
 #include "../../Options.h"
 #include "../../EntityRenderDispatcher.h"
