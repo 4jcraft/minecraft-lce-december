@@ -392,7 +392,7 @@ void LevelRenderer::setLevel(int playerIndex, MultiPlayerLevel* level) {
             //			delete sortedChunks[playerIndex];	// 4J -
             // removed - not sorting our chunks anymore
             // sortedChunks[playerIndex] = NULL;	// 4J - removed - not
-            //sorting our chunks anymore
+            // sorting our chunks anymore
         }
 
         // 4J Stu - If we do this for splitscreen players leaving, then all the
@@ -599,7 +599,8 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
             // !mc->cameraTargetPlayer->isSleeping()) continue;
             std::shared_ptr<LocalPlayer> localplayer =
                 mc->cameraTargetPlayer->instanceof(eTYPE_LOCALPLAYER)
-                    ? std::dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer)
+                    ? std::dynamic_pointer_cast<LocalPlayer>(
+                          mc->cameraTargetPlayer)
                     : nullptr;
 
             if (localplayer && entity == mc->cameraTargetPlayer &&
@@ -3094,7 +3095,8 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
         case eParticleType_witchMagic: {
             particle = std::shared_ptr<SpellParticle>(
                 new SpellParticle(lev, x, y, z, xa, ya, za));
-            std::dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 * 16);
+            std::dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 *
+                                                                           16);
             float randBrightness = lev->random->nextFloat() * 0.5f + 0.35f;
             particle->setColor(1 * randBrightness, 0 * randBrightness,
                                1 * randBrightness);
@@ -3102,7 +3104,8 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
         case eParticleType_instantSpell:
             particle = std::shared_ptr<Particle>(
                 new SpellParticle(lev, x, y, z, xa, ya, za));
-            std::dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 * 16);
+            std::dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 *
+                                                                           16);
             break;
         case eParticleType_note:
             particle = std::shared_ptr<Particle>(
@@ -3216,7 +3219,8 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
 
 void LevelRenderer::entityAdded(std::shared_ptr<Entity> entity) {
     if (entity->instanceof(eTYPE_PLAYER)) {
-        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
+        std::shared_ptr<Player> player =
+            std::dynamic_pointer_cast<Player>(entity);
         player->prepareCustomTextures();
 
         // 4J-PB - adding these from global title storage
@@ -3233,7 +3237,8 @@ void LevelRenderer::entityAdded(std::shared_ptr<Entity> entity) {
 
 void LevelRenderer::entityRemoved(std::shared_ptr<Entity> entity) {
     if (entity->instanceof(eTYPE_PLAYER)) {
-        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
+        std::shared_ptr<Player> player =
+            std::dynamic_pointer_cast<Player>(entity);
         if (player->customTextureUrl != L"") {
             textures->removeMemTexture(player->customTextureUrl);
         }

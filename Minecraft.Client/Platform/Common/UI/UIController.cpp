@@ -1348,7 +1348,8 @@ void UIController::setupCustomDrawMatrices(UIScene* scene,
     m_customRenderingClearRect.right =
         std::max(m_customRenderingClearRect.right, right);
     ;
-    m_customRenderingClearRect.top = std::min(m_customRenderingClearRect.top, top);
+    m_customRenderingClearRect.top =
+        std::min(m_customRenderingClearRect.top, top);
     m_customRenderingClearRect.bottom =
         std::max(m_customRenderingClearRect.bottom, bottom);
 

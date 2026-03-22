@@ -1571,9 +1571,10 @@ void SQRNetworkManager_Vita::TickJoinablePresenceData() {
             // 		{
             // 			// Signed in to PSN but not connected (no
             // internet access) 			UINT uiIDA[1];
-            // uiIDA[0] = IDS_OK; 			ui.RequestMessageBox( IDS_ERROR_NETWORK_TITLE,
-            // IDS_ERROR_NETWORK, uiIDA, 1, ProfileManager.GetPrimaryPad(),
-            // NULL, NULL, app.GetStringTable());
+            // uiIDA[0] = IDS_OK; 			ui.RequestMessageBox(
+            // IDS_ERROR_NETWORK_TITLE, IDS_ERROR_NETWORK, uiIDA, 1,
+            // ProfileManager.GetPrimaryPad(), NULL, NULL,
+            // app.GetStringTable());
             // 		}
             // 		else
             {

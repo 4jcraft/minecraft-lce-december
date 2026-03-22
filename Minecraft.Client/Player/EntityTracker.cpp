@@ -145,7 +145,8 @@ void EntityTracker::tick() {
         std::shared_ptr<TrackedEntity> te = *it;
         te->tick(this, &level->players);
         if (te->moved && te->e->GetType() == eTYPE_SERVERPLAYER) {
-            movedPlayers.push_back(std::dynamic_pointer_cast<ServerPlayer>(te->e));
+            movedPlayers.push_back(
+                std::dynamic_pointer_cast<ServerPlayer>(te->e));
         }
     }
 

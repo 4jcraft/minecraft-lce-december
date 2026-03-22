@@ -1823,7 +1823,7 @@ void ClientConnection::handleAnimate(std::shared_ptr<AnimatePacket> packet) {
     } else if (packet->action == AnimatePacket::WAKE_UP) {
         if (e->instanceof(eTYPE_PLAYER))
             std::dynamic_pointer_cast<Player>(e)->stopSleepInBed(false, false,
-                                                            false);
+                                                                 false);
     } else if (packet->action == AnimatePacket::RESPAWN) {
     } else if (packet->action == AnimatePacket::CRITICAL_HIT) {
         std::shared_ptr<CritParticle> critParticle =
@@ -2264,7 +2264,7 @@ void ClientConnection::handlePreLogin(std::shared_ptr<PreLoginPacket> packet) {
             // it's already locked by this thread
             // 			Minecraft::GetInstance()->connectionDisconnected(
             // m_userIndex , reason ); 			done = true;
-            // connection->flush(); 			connection->close(reason);
+            // connection->flush(); connection->close(reason);
             //			app.SetAction(m_userIndex,eAppAction_ExitPlayer);
 
             // 4J-PB - doing this instead
@@ -3063,7 +3063,8 @@ void ClientConnection::handleContainerOpen(
         } break;
         case ContainerOpenPacket::HORSE: {
             std::shared_ptr<EntityHorse> entity =
-                std::dynamic_pointer_cast<EntityHorse>(getEntity(packet->entityId));
+                std::dynamic_pointer_cast<EntityHorse>(
+                    getEntity(packet->entityId));
             int iTitle = IDS_CONTAINER_ANIMAL;
             switch (entity->getType()) {
                 case EntityHorse::TYPE_DONKEY:
@@ -3227,14 +3228,19 @@ void ClientConnection::handleTileEntityData(
                 std::dynamic_pointer_cast<MobSpawnerTileEntity>(te)->load(
                     packet->tag);
             } else if (packet->type == TileEntityDataPacket::TYPE_ADV_COMMAND &&
-                       std::dynamic_pointer_cast<CommandBlockEntity>(te) != NULL) {
-                std::dynamic_pointer_cast<CommandBlockEntity>(te)->load(packet->tag);
+                       std::dynamic_pointer_cast<CommandBlockEntity>(te) !=
+                           NULL) {
+                std::dynamic_pointer_cast<CommandBlockEntity>(te)->load(
+                    packet->tag);
             } else if (packet->type == TileEntityDataPacket::TYPE_BEACON &&
-                       std::dynamic_pointer_cast<BeaconTileEntity>(te) != NULL) {
-                std::dynamic_pointer_cast<BeaconTileEntity>(te)->load(packet->tag);
+                       std::dynamic_pointer_cast<BeaconTileEntity>(te) !=
+                           NULL) {
+                std::dynamic_pointer_cast<BeaconTileEntity>(te)->load(
+                    packet->tag);
             } else if (packet->type == TileEntityDataPacket::TYPE_SKULL &&
                        std::dynamic_pointer_cast<SkullTileEntity>(te) != NULL) {
-                std::dynamic_pointer_cast<SkullTileEntity>(te)->load(packet->tag);
+                std::dynamic_pointer_cast<SkullTileEntity>(te)->load(
+                    packet->tag);
             }
         }
     }
@@ -3453,7 +3459,8 @@ void ClientConnection::handlePlayerInfo(
 
     std::shared_ptr<Entity> entity = getEntity(packet->m_entityId);
     if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
+        std::shared_ptr<Player> player =
+            std::dynamic_pointer_cast<Player>(entity);
         player->setPlayerGamePrivilege(Player::ePlayerGamePrivilege_All,
                                        packet->m_playerPrivileges);
     }

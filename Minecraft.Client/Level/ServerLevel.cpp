@@ -769,7 +769,8 @@ void ServerLevel::tick(std::shared_ptr<Entity> e, bool actual) {
         (e->instanceof(eTYPE_ANIMAL) || e->instanceof(eTYPE_WATERANIMAL))) {
         e->remove();
     }
-    if (!server->isNpcsEnabled() && (std::dynamic_pointer_cast<Npc>(e) != NULL)) {
+    if (!server->isNpcsEnabled() &&
+        (std::dynamic_pointer_cast<Npc>(e) != NULL)) {
         e->remove();
     }
     Level::tick(e, actual);

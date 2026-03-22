@@ -1958,7 +1958,8 @@ void GameRenderer::setupFog(int i, float alpha) {
     // 4J - check for creative mode brought forward from 1.2.3
     bool creative = false;
     if (player->instanceof(eTYPE_PLAYER)) {
-        creative = (std::dynamic_pointer_cast<Player>(player))->abilities.instabuild;
+        creative =
+            (std::dynamic_pointer_cast<Player>(player))->abilities.instabuild;
     }
 
     if (i == 999) {

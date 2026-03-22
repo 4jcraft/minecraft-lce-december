@@ -304,9 +304,9 @@ void ServerPlayer::doTickA() {
             {
                 std::shared_ptr<Packet> packet =
                     (dynamic_cast<ComplexItem*>(Item::items[ie->id])
-                         ->getUpdatePacket(
-                             ie, level,
-                             std::dynamic_pointer_cast<Player>(shared_from_this())));
+                         ->getUpdatePacket(ie, level,
+                                           std::dynamic_pointer_cast<Player>(
+                                               shared_from_this())));
                 if (packet != NULL) {
                     connection->send(packet);
                 }
@@ -582,7 +582,8 @@ void ServerPlayer::doTickB() {
         if (objectives) {
             std::vector<std::shared_ptr<Player> > players =
                 std::vector<std::shared_ptr<Player> >();
-            players.push_back(std::dynamic_pointer_cast<Player>(shared_from_this()));
+            players.push_back(
+                std::dynamic_pointer_cast<Player>(shared_from_this()));
 
             for (AUTO_VAR(it, objectives->begin()); it != objectives->end();
                  ++it) {
@@ -663,10 +664,12 @@ bool ServerPlayer::hurt(DamageSource* dmgSource, float dmg) {
         }
 
         if ((source != NULL) && source->instanceof(eTYPE_ARROW)) {
-            std::shared_ptr<Arrow> arrow = std::dynamic_pointer_cast<Arrow>(source);
+            std::shared_ptr<Arrow> arrow =
+                std::dynamic_pointer_cast<Arrow>(source);
             if ((arrow->owner != NULL) &&
                 arrow->owner->instanceof(eTYPE_PLAYER) &&
-                !canHarmPlayer(std::dynamic_pointer_cast<Player>(arrow->owner))) {
+                !canHarmPlayer(
+                    std::dynamic_pointer_cast<Player>(arrow->owner))) {
                 return false;
             }
         }
@@ -736,7 +739,8 @@ bool ServerPlayer::hurt(DamageSource* dmgSource, float dmg) {
                         if ((std::dynamic_pointer_cast<Arrow>(source))->owner !=
                             NULL) {
                             std::shared_ptr<Entity> attacker =
-                                (std::dynamic_pointer_cast<Arrow>(source))->owner;
+                                (std::dynamic_pointer_cast<Arrow>(source))
+                                    ->owner;
                             if (attacker != NULL) {
                                 switch (attacker->GetType()) {
                                     case eTYPE_SKELETON:
@@ -1017,9 +1021,9 @@ bool ServerPlayer::startRepairing(int x, int y, int z) {
             std::shared_ptr<ContainerOpenPacket>(new ContainerOpenPacket(
                 containerCounter, ContainerOpenPacket::REPAIR_TABLE, L"", 9,
                 false)));
-        containerMenu =
-            new AnvilMenu(inventory, level, x, y, z,
-                          std::dynamic_pointer_cast<Player>(shared_from_this()));
+        containerMenu = new AnvilMenu(
+            inventory, level, x, y, z,
+            std::dynamic_pointer_cast<Player>(shared_from_this()));
         containerMenu->containerId = containerCounter;
         containerMenu->addSlotListener(this);
     } else {
@@ -1304,7 +1308,8 @@ void ServerPlayer::broadcastCarriedItem() {
 }
 
 void ServerPlayer::doCloseContainer() {
-    containerMenu->removed(std::dynamic_pointer_cast<Player>(shared_from_this()));
+    containerMenu->removed(
+        std::dynamic_pointer_cast<Player>(shared_from_this()));
     containerMenu = inventoryMenu;
 }
 

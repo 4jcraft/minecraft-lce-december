@@ -107,7 +107,8 @@ bool AddItemRuleDefinition::addItemToContainer(
             container->setItem(slotId, newItem);
             added = true;
         } else if (std::dynamic_pointer_cast<Inventory>(container) != NULL) {
-            added = std::dynamic_pointer_cast<Inventory>(container)->add(newItem);
+            added =
+                std::dynamic_pointer_cast<Inventory>(container)->add(newItem);
         }
     }
     return added;

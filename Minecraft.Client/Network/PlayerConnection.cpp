@@ -1690,7 +1690,8 @@ bool PlayerConnection::isDisconnected() { return done; }
 
 void PlayerConnection::handleDebugOptions(
     std::shared_ptr<DebugOptionsPacket> packet) {
-    // Player player = std::dynamic_pointer_cast<Player>( player->shared_from_this()
+    // Player player = std::dynamic_pointer_cast<Player>(
+    // player->shared_from_this()
     // );
     player->SetDebugOptions(packet->m_uiVal);
 }

@@ -567,13 +567,15 @@ void ModelHorse::prepareMobModel(std::shared_ptr<LivingEntity> mob, float wp,
 
         Leg3A->xRot = rlegRot;
         Leg3B->xRot =
-            (Leg3A->xRot + PI * std::max(0.0f, (.2f + bobValue * .2f))) * standing +
+            (Leg3A->xRot + PI * std::max(0.0f, (.2f + bobValue * .2f))) *
+                standing +
             (legXRotAnim + std::max(0.0f, legAnim1 * 0.5f * ws)) * iStanding;
         Leg3C->xRot = Leg3B->xRot;
 
         Leg4A->xRot = llegRot;
         Leg4B->xRot =
-            (Leg4A->xRot + PI * std::max(0.0f, (.2f - bobValue * .2f))) * standing +
+            (Leg4A->xRot + PI * std::max(0.0f, (.2f - bobValue * .2f))) *
+                standing +
             (-legXRotAnim + std::max(0.0f, -legAnim1 * 0.5f * ws)) * iStanding;
         Leg4C->xRot = Leg4B->xRot;
     }

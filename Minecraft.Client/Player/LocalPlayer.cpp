@@ -549,10 +549,12 @@ void LocalPlayer::openTextEdit(std::shared_ptr<TileEntity> tileEntity) {
 
     if (tileEntity->GetType() == eTYPE_SIGNTILEENTITY) {
         success = app.LoadSignEntryMenu(
-            GetXboxPad(), std::dynamic_pointer_cast<SignTileEntity>(tileEntity));
+            GetXboxPad(),
+            std::dynamic_pointer_cast<SignTileEntity>(tileEntity));
     } else if (tileEntity->GetType() == eTYPE_COMMANDBLOCKTILEENTITY) {
         success = app.LoadCommandBlockMenu(
-            GetXboxPad(), std::dynamic_pointer_cast<CommandBlockEntity>(tileEntity));
+            GetXboxPad(),
+            std::dynamic_pointer_cast<CommandBlockEntity>(tileEntity));
     }
 
     if (success) ui.PlayUISFX(eSFX_Press);
@@ -591,8 +593,8 @@ bool LocalPlayer::openHorseInventory(std::shared_ptr<EntityHorse> horse,
 
 bool LocalPlayer::startCrafting(int x, int y, int z) {
     bool success = app.LoadCrafting3x3Menu(
-        GetXboxPad(), std::dynamic_pointer_cast<LocalPlayer>(shared_from_this()), x,
-        y, z);
+        GetXboxPad(),
+        std::dynamic_pointer_cast<LocalPlayer>(shared_from_this()), x, y, z);
     if (success) ui.PlayUISFX(eSFX_Press);
     // app.LoadXuiCraftMenu(0,inventory, level, x, y, z);
     // minecraft->setScreen(new CraftingScreen(inventory, level, x, y, z));
@@ -601,8 +603,8 @@ bool LocalPlayer::startCrafting(int x, int y, int z) {
 
 bool LocalPlayer::openFireworks(int x, int y, int z) {
     bool success = app.LoadFireworksMenu(
-        GetXboxPad(), std::dynamic_pointer_cast<LocalPlayer>(shared_from_this()), x,
-        y, z);
+        GetXboxPad(),
+        std::dynamic_pointer_cast<LocalPlayer>(shared_from_this()), x, y, z);
     if (success) ui.PlayUISFX(eSFX_Press);
     return success;
 }
@@ -1411,7 +1413,8 @@ bool LocalPlayer::handleMouseClick(int button) {
         if (lastClickState == lastClick_oldRepeat) return false;
 
         std::shared_ptr<MultiplayerLocalPlayer> mplp =
-            std::dynamic_pointer_cast<MultiplayerLocalPlayer>(shared_from_this());
+            std::dynamic_pointer_cast<MultiplayerLocalPlayer>(
+                shared_from_this());
 
         if (mplp && mplp->connection) mplp->StopSleeping();
     }

@@ -824,8 +824,8 @@ void ConsoleSchematicFile::getBlocksAndData(LevelChunk* chunk, byteArray* data,
         bHasLower = true;
     }
     if (y1 >= Level::COMPRESSED_CHUNK_SECTION_HEIGHT) {
-        upperY0 =
-            std::max(y0, compressedHeight) - Level::COMPRESSED_CHUNK_SECTION_HEIGHT;
+        upperY0 = std::max(y0, compressedHeight) -
+                  Level::COMPRESSED_CHUNK_SECTION_HEIGHT;
         upperY1 = y1 - Level::COMPRESSED_CHUNK_SECTION_HEIGHT;
         bHasUpper = true;
     }
@@ -952,8 +952,8 @@ void ConsoleSchematicFile::setBlocksAndData(
         bHasLower = true;
     }
     if (y1 >= Level::COMPRESSED_CHUNK_SECTION_HEIGHT) {
-        upperY0 =
-            std::max(y0, compressedHeight) - Level::COMPRESSED_CHUNK_SECTION_HEIGHT;
+        upperY0 = std::max(y0, compressedHeight) -
+                  Level::COMPRESSED_CHUNK_SECTION_HEIGHT;
         upperY1 = y1 - Level::COMPRESSED_CHUNK_SECTION_HEIGHT;
         bHasUpper = true;
     }
