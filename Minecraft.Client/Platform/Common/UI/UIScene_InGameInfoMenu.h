@@ -10,7 +10,7 @@ private:
     };
 
     typedef struct _PlayerInfo {
-        byte m_smallId;
+        uint8_t m_smallId;
         char m_voiceStatus;
         short m_colorState;
         std::wstring m_name;

@@ -183,13 +183,13 @@ public:
     static bool nearThingsToDo;
     static bool updateRunning;
 #endif
-    static std::vector<byte*> m_deleteStackByte;
+    static std::vector<uint8_t*> m_deleteStackByte;
     static std::vector<SparseLightStorage*> m_deleteStackSparseLightStorage;
     static std::vector<CompressedTileStorage*>
         m_deleteStackCompressedTileStorage;
     static std::vector<SparseDataStorage*> m_deleteStackSparseDataStorage;
     static CRITICAL_SECTION m_csDeleteStack;
-    static void AddForDelete(byte* deleteThis);
+    static void AddForDelete(uint8_t* deleteThis);
     static void AddForDelete(SparseLightStorage* deleteThis);
     static void AddForDelete(CompressedTileStorage* deleteThis);
     static void AddForDelete(SparseDataStorage* deleteThis);

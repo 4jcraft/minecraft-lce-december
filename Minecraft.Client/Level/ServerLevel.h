@@ -132,7 +132,7 @@ protected:
 public:
     std::shared_ptr<Entity> getEntity(int id);
     virtual bool addGlobalEntity(std::shared_ptr<Entity> e);
-    void broadcastEntityEvent(std::shared_ptr<Entity> e, byte event);
+    void broadcastEntityEvent(std::shared_ptr<Entity> e, uint8_t event);
     virtual std::shared_ptr<Explosion> explode(std::shared_ptr<Entity> source,
                                                double x, double y, double z,
                                                float r, bool fire,

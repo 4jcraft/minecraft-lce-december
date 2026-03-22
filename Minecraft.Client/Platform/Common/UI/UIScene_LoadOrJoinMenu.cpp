@@ -2564,7 +2564,7 @@ int UIScene_LoadOrJoinMenu::DownloadSonyCrossSaveThreadProc(
                 break;
             case eSaveTransfer_CreateDummyFile: {
                 StorageManager.ResetSaveData();
-                byte* compData = (byte*)StorageManager.AllocateSaveData(
+                uint8_t* compData = (uint8_t*)StorageManager.AllocateSaveData(
                     app.getRemoteStorage()->getSaveFilesize());
                 // Make our next save default to the name of the level
                 const char* pNameUTF8 =

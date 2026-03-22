@@ -367,7 +367,7 @@ bool PlayerChunkMap::PlayerChunk::broadcastChanges(bool allowRegionUpdate) {
         // MAX_CHANGES_BEFORE_RESEND (10) we only need to send a byte value in
         // the packet
         broadcast(shared_ptr<ChunkTilesUpdatePacket>(new ChunkTilesUpdatePacket(
-            pos.x, pos.z, changedTiles, (byte)changes, level)));
+            pos.x, pos.z, changedTiles, (uint8_t)changes, level)));
         for (int i = 0; i < changes; i++) {
             int x = pos.x * 16 + ((changedTiles[i] >> 12) & 15);
             int y = ((changedTiles[i]) & 255);
