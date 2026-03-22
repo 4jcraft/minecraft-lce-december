@@ -538,7 +538,7 @@ void PlayerList::rstd::emove(std::shared_ptr<ServerPlayer> player) {
     }
     level->removeEntity(player);
     level->getChunkMap()->remove(player);
-    AUTO_VAR(it, std::find(players.begin(), players.end(), player));
+    AUTO_VAR(it, find(players.begin(), players.end(), player));
     if (it != players.end()) {
         players.erase(it);
     }
@@ -649,7 +649,7 @@ std::shared_ptr<ServerPlayer> PlayerList::restd::spawn(
     }
 
     serverPlayer->getLevel()->getChunkMap()->remove(serverPlayer);
-    AUTO_VAR(it, std::find(players.begin(), players.end(), serverPlayer));
+    AUTO_VAR(it, find(players.begin(), players.end(), serverPlayer));
     if (it != players.end()) {
         players.erase(it);
     }
@@ -1520,7 +1520,7 @@ void PlayerList::removePlayerFromRecestd::iving(
 #endif
     bool playerRemoved = false;
 
-    AUTO_VAR(it, std::find(receiveAllPlayers[dimIndex].begin(),
+    AUTO_VAR(it, find(receiveAllPlayers[dimIndex].begin(),
                            receiveAllPlayers[dimIndex].end(), player));
     if (it != receiveAllPlayers[dimIndex].end()) {
 #ifndef _CONTENT_PACKAGE

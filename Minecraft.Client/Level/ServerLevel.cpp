@@ -579,7 +579,7 @@ void ServerLevel::tickTiles() {
 
 bool ServerLevel::isTileToBeTickedAt(int x, int y, int z, int tileId) {
     TickNextTickData td = TickNextTickData(x, y, z, tileId);
-    return std::find(toBeTicked.begin(), toBeTicked.end(), td) !=
+    return find(toBeTicked.begin(), toBeTicked.end(), td) !=
            toBeTicked.end();
 }
 
@@ -1391,7 +1391,7 @@ void ServerLevel::entityRemovedExtra(std::shared_ptr<Entity> e) {
         //		printf("entity removed: item entity count
         //%d\n",m_itemEntities.size());
         AUTO_VAR(it,
-                 std::find(m_itemEntities.begin(), m_itemEntities.end(), e));
+                 find(m_itemEntities.begin(), m_itemEntities.end(), e));
         if (it != m_itemEntities.end()) {
             //			printf("Item to remove found\n");
             m_itemEntities.erase(it);
@@ -1403,7 +1403,7 @@ void ServerLevel::entityRemovedExtra(std::shared_ptr<Entity> e) {
         EnterCriticalSection(&m_limiterCS);
         //		printf("entity removed: item entity count
         //%d\n",m_itemEntities.size());
-        AUTO_VAR(it, std::find(m_hangingEntities.begin(),
+        AUTO_VAR(it, find(m_hangingEntities.begin(),
                                m_hangingEntities.end(), e));
         if (it != m_hangingEntities.end()) {
             //			printf("Item to remove found\n");
@@ -1417,7 +1417,7 @@ void ServerLevel::entityRemovedExtra(std::shared_ptr<Entity> e) {
         //		printf("entity removed: arrow entity count
         //%d\n",m_arrowEntities.size());
         AUTO_VAR(it,
-                 std::find(m_arrowEntities.begin(), m_arrowEntities.end(), e));
+                 find(m_arrowEntities.begin(), m_arrowEntities.end(), e));
         if (it != m_arrowEntities.end()) {
             //			printf("Item to remove found\n");
             m_arrowEntities.erase(it);
@@ -1429,7 +1429,7 @@ void ServerLevel::entityRemovedExtra(std::shared_ptr<Entity> e) {
         EnterCriticalSection(&m_limiterCS);
         //		printf("entity removed: experience orb entity count
         //%d\n",m_arrowEntities.size());
-        AUTO_VAR(it, std::find(m_experienceOrbEntities.begin(),
+        AUTO_VAR(it, find(m_experienceOrbEntities.begin(),
                                m_experienceOrbEntities.end(), e));
         if (it != m_experienceOrbEntities.end()) {
             //			printf("Item to remove found\n");

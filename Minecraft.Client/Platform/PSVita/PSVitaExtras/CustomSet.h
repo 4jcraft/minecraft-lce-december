@@ -30,7 +30,7 @@ public:
     ~CustomSet();
 
     void clear();
-    SCustomSetNode* std::find(const ChunkPos& Key);
+    SCustomSetNode* find(const ChunkPos& Key);
     int end();
     ChunkPos get(int index);
     void insert(const ChunkPos& Key);

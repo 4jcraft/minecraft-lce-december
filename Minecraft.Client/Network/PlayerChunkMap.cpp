@@ -49,7 +49,7 @@ void PlayerChunkMap::flagEntitiesToBeRemoved(unsigned int* flags,
 void PlayerChunkMap::PlayerChunk::add(std::shared_ptr<ServerPlayer> player,
                                       bool sendPacket /*= true*/) {
     // app.DebugPrintf("--- Adding player to chunk x=%d\tz=%d\n",x, z);
-    if (std::find(players.begin(), players.end(), player) != players.end()) {
+    if (find(players.begin(), players.end(), player) != players.end()) {
         // 4J-PB - At the start of the game, lots of chunks are added, and we
         // can then move into an area that is outside the diameter of our
         // starting area, but is inside the area loaded at the start.
@@ -89,7 +89,7 @@ void PlayerChunkMap::PlayerChunk::remove(std::shared_ptr<ServerPlayer> player) {
 
     // app.DebugPrintf("--- PlayerChunkMap::PlayerChunk::remove
     // x=%d\tz=%d\n",x,z);
-    AUTO_VAR(it, std::find(players.begin(), players.end(), player));
+    AUTO_VAR(it, find(players.begin(), players.end(), player));
     if (it == players.end()) {
         app.DebugPrintf(
             "--- INFO - Removing player from chunk x=%d\t z=%d, but they are "
@@ -104,7 +104,7 @@ void PlayerChunkMap::PlayerChunk::remove(std::shared_ptr<ServerPlayer> player) {
         {
             LevelChunk* chunk = parent->level->getChunk(pos.x, pos.z);
             updateInhabitedTime(chunk);
-            AUTO_VAR(it, std::find(parent->knownChunks.begin(),
+            AUTO_VAR(it, find(parent->knownChunks.begin(),
                                    parent->knownChunks.end(), this));
             if (it != parent->knownChunks.end()) parent->knownChunks.erase(it);
         }
@@ -116,7 +116,7 @@ void PlayerChunkMap::PlayerChunk::remove(std::shared_ptr<ServerPlayer> player) {
             parent->chunks.erase(it);
         }
         if (changes > 0) {
-            AUTO_VAR(it, std::find(parent->changedChunks.begin(),
+            AUTO_VAR(it, find(parent->changedChunks.begin(),
                                    parent->changedChunks.end(), this));
             parent->changedChunks.erase(it);
         }
@@ -693,9 +693,9 @@ void PlayerChunkMap::remove(std::shared_ptr<ServerPlayer> player) {
             if (playerChunk != NULL) playerChunk->remove(player);
         }
 
-    AUTO_VAR(it, std::find(players.begin(), players.end(), player));
+    AUTO_VAR(it, find(players.begin(), players.end(), player));
     if (players.size() > 0 && it != players.end())
-        players.erase(std::find(players.begin(), players.end(), player));
+        players.erase(find(players.begin(), players.end(), player));
 
     // 4J - added - also remove any queued requests to be added to playerchunks
     // here
@@ -764,9 +764,9 @@ bool PlayerChunkMap::isPlayerIn(std::shared_ptr<ServerPlayer> player,
     if (chunk == NULL) {
         return false;
     } else {
-        AUTO_VAR(it1, std::find(chunk->players.begin(), chunk->players.end(),
+        AUTO_VAR(it1, find(chunk->players.begin(), chunk->players.end(),
                                 player));
-        AUTO_VAR(it2, std::find(player->chunksToSend.begin(),
+        AUTO_VAR(it2, find(player->chunksToSend.begin(),
                                 player->chunksToSend.end(), chunk->pos));
         return it1 != chunk->players.end() && it2 == player->chunksToSend.end();
     }

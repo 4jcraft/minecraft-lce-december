@@ -68,7 +68,7 @@ void DLCManager::addPack(DLCPack* pack) { m_packs.push_back(pack); }
 
 void DLCManager::removePack(DLCPack* pack) {
     if (pack != NULL) {
-        AUTO_VAR(it, std::find(m_packs.begin(), m_packs.end(), pack));
+        AUTO_VAR(it, find(m_packs.begin(), m_packs.end(), pack));
         if (it != m_packs.end()) m_packs.erase(it);
         delete pack;
     }

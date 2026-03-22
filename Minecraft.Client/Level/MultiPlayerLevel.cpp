@@ -121,7 +121,7 @@ void MultiPlayerLevel::tick() {
     for (int i = 0; i < 10 && !reEntries.empty(); i++) {
         std::shared_ptr<Entity> e = *(reEntries.begin());
 
-        if (std::find(entities.begin(), entities.end(), e) == entities.end())
+        if (find(entities.begin(), entities.end(), e) == entities.end())
             addEntity(e);
     }
     LeaveCriticalSection(&m_entitiesCS);
@@ -890,7 +890,7 @@ void MultiPlayerLevel::removeClientConnection(ClientConnection* c,
             new DisconnectPacket(DisconnectPacket::eDisconnect_Quitting)));
     }
 
-    AUTO_VAR(it, std::find(connections.begin(), connections.end(), c));
+    AUTO_VAR(it, find(connections.begin(), connections.end(), c));
     if (it != connections.end()) {
         connections.erase(it);
     }
