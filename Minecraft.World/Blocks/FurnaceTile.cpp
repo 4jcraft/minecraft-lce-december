@@ -104,7 +104,7 @@ bool FurnaceTile::use(Level* level, int x, int y, int z,
         return true;
     }
     shared_ptr<FurnaceTileEntity> furnace =
-        dynamic_pointer_cast<FurnaceTileEntity>(level->getTileEntity(x, y, z));
+        std::dynamic_pointer_cast<FurnaceTileEntity>(level->getTileEntity(x, y, z));
     if (furnace != NULL) player->openFurnace(furnace);
     return true;
 }
@@ -142,7 +142,7 @@ void FurnaceTile::setPlacedBy(Level* level, int x, int y, int z,
     if (dir == 3) level->setData(x, y, z, Facing::WEST, Tile::UPDATE_CLIENTS);
 
     if (itemInstance->hasCustomHoverName()) {
-        dynamic_pointer_cast<FurnaceTileEntity>(level->getTileEntity(x, y, z))
+        std::dynamic_pointer_cast<FurnaceTileEntity>(level->getTileEntity(x, y, z))
             ->setCustomName(itemInstance->getHoverName());
     }
 }
@@ -151,7 +151,7 @@ void FurnaceTile::onRemove(Level* level, int x, int y, int z, int id,
                            int data) {
     if (!noDrop) {
         shared_ptr<Container> container =
-            dynamic_pointer_cast<FurnaceTileEntity>(
+            std::dynamic_pointer_cast<FurnaceTileEntity>(
                 level->getTileEntity(x, y, z));
         if (container != NULL) {
             for (unsigned int i = 0; i < container->getContainerSize(); i++) {
@@ -210,7 +210,7 @@ bool FurnaceTile::hasAnalogOutputSignal() { return true; }
 int FurnaceTile::getAnalogOutputSignal(Level* level, int x, int y, int z,
                                        int dir) {
     return AbstractContainerMenu::getRedstoneSignalFromContainer(
-        dynamic_pointer_cast<Container>(level->getTileEntity(x, y, z)));
+        std::dynamic_pointer_cast<Container>(level->getTileEntity(x, y, z)));
 }
 
 int FurnaceTile::cloneTileId(Level* level, int x, int y, int z) {

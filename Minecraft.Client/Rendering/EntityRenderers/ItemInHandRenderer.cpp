@@ -393,7 +393,7 @@ void ItemInHandRenderer::render(float a) {
     float fudgeZ = 0.0f;
     bool splitHoriz = false;
     std::shared_ptr<LocalPlayer> localPlayer =
-        dynamic_pointer_cast<LocalPlayer>(player);
+        std::dynamic_pointer_cast<LocalPlayer>(player);
     if (localPlayer) {
         if (localPlayer->m_iScreenSection ==
                 C4JRender::VIEWPORT_TYPE_SPLIT_BOTTOM ||

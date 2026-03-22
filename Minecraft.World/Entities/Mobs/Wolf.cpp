@@ -233,7 +233,7 @@ bool Wolf::hurt(DamageSource* source, float dmg) {
     if (isTame()) {
         shared_ptr<Entity> entity = source->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            shared_ptr<Player> attacker = dynamic_pointer_cast<Player>(entity);
+            shared_ptr<Player> attacker = std::dynamic_pointer_cast<Player>(entity);
             attacker->canHarmPlayer(getOwnerUUID());
         }
     }
@@ -252,7 +252,7 @@ bool Wolf::hurt(DamageSource* source, float dmg) {
 bool Wolf::doHurtTarget(std::shared_ptr<Entity> target) {
     int damage = isTame() ? 4 : 2;
     return target->hurt(
-        DamageSource::mobAttack(dynamic_pointer_cast<Mob>(shared_from_this())),
+        DamageSource::mobAttack(std::dynamic_pointer_cast<Mob>(shared_from_this())),
         damage);
 }
 
@@ -457,7 +457,7 @@ bool Wolf::canMate(std::shared_ptr<Animal> animal) {
     if (!isTame()) return false;
 
     if (!animal->instanceof(eTYPE_WOLF)) return false;
-    shared_ptr<Wolf> partner = dynamic_pointer_cast<Wolf>(animal);
+    shared_ptr<Wolf> partner = std::dynamic_pointer_cast<Wolf>(animal);
 
     if (partner == NULL) return false;
     if (!partner->isTame()) return false;
@@ -483,20 +483,20 @@ bool Wolf::wantsToAttack(std::shared_ptr<LivingEntity> target,
     }
     // never target wolves that has this player as owner
     if (target->GetType() == eTYPE_WOLF) {
-        shared_ptr<Wolf> wolfTarget = dynamic_pointer_cast<Wolf>(target);
+        shared_ptr<Wolf> wolfTarget = std::dynamic_pointer_cast<Wolf>(target);
         if (wolfTarget->isTame() && wolfTarget->getOwner() == owner) {
             return false;
         }
     }
     if (target->instanceof(eTYPE_PLAYER) && owner->instanceof(eTYPE_PLAYER) &&
-        !dynamic_pointer_cast<Player>(owner)->canHarmPlayer(
-            dynamic_pointer_cast<Player>(target))) {
+        !std::dynamic_pointer_cast<Player>(owner)->canHarmPlayer(
+            std::dynamic_pointer_cast<Player>(target))) {
         // pvp is off
         return false;
     }
     // don't attack tame horses
     if ((target->GetType() == eTYPE_HORSE) &&
-        dynamic_pointer_cast<EntityHorse>(target)->isTamed()) {
+        std::dynamic_pointer_cast<EntityHorse>(target)->isTamed()) {
         return false;
     }
     return true;

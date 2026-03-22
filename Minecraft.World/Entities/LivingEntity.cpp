@@ -189,7 +189,7 @@ void LivingEntity::baseTick() {
 
     if (isFireImmune() || level->isClientSide) clearFire();
     std::shared_ptr<Player> thisPlayer =
-        dynamic_pointer_cast<Player>(shared_from_this());
+        std::dynamic_pointer_cast<Player>(shared_from_this());
     bool isInvulnerable =
         (thisPlayer != NULL && thisPlayer->abilities.invulnerable);
 
@@ -297,7 +297,7 @@ void LivingEntity::tickDeath() {
 
 int LivingEntity::decreaseAirSupply(int currentSupply) {
     int oxygenBonus = EnchantmentHelper::getOxygenBonus(
-        dynamic_pointer_cast<LivingEntity>(shared_from_this()));
+        std::dynamic_pointer_cast<LivingEntity>(shared_from_this()));
     if (oxygenBonus > 0) {
         if (random->nextInt(oxygenBonus + 1) > 0) {
             // the oxygen bonus prevents us from drowning
@@ -339,7 +339,7 @@ int LivingEntity::getLastHurtMobTimestamp() { return lastHurtMobTimestamp; }
 
 void LivingEntity::setLastHurtMob(std::shared_ptr<Entity> target) {
     if (target->instanceof(eTYPE_LIVINGENTITY)) {
-        lastHurtMob = dynamic_pointer_cast<LivingEntity>(target);
+        lastHurtMob = std::dynamic_pointer_cast<LivingEntity>(target);
     } else {
         lastHurtMob = nullptr;
     }
@@ -432,7 +432,7 @@ void LivingEntity::tickEffects() {
         MobEffectInstance* effect = it->second;
         removed = false;
         if (!effect->tick(
-                dynamic_pointer_cast<LivingEntity>(shared_from_this()))) {
+                std::dynamic_pointer_cast<LivingEntity>(shared_from_this()))) {
             if (!level->isClientSide) {
                 it = activeEffects.erase(it);
                 onEffectRemoved(effect);
@@ -633,7 +633,7 @@ void LivingEntity::onEffectAdded(MobEffectInstance* effect) {
     effectsDirty = true;
     if (!level->isClientSide)
         MobEffect::effects[effect->getId()]->addAttributeModifiers(
-            dynamic_pointer_cast<LivingEntity>(shared_from_this()),
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this()),
             getAttributes(), effect->getAmplifier());
 }
 
@@ -642,10 +642,10 @@ void LivingEntity::onEffectUpdated(MobEffectInstance* effect,
     effectsDirty = true;
     if (doRefreshAttributes && !level->isClientSide) {
         MobEffect::effects[effect->getId()]->removeAttributeModifiers(
-            dynamic_pointer_cast<LivingEntity>(shared_from_this()),
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this()),
             getAttributes(), effect->getAmplifier());
         MobEffect::effects[effect->getId()]->addAttributeModifiers(
-            dynamic_pointer_cast<LivingEntity>(shared_from_this()),
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this()),
             getAttributes(), effect->getAmplifier());
     }
 }
@@ -654,7 +654,7 @@ void LivingEntity::onEffectRemoved(MobEffectInstance* effect) {
     effectsDirty = true;
     if (!level->isClientSide)
         MobEffect::effects[effect->getId()]->removeAttributeModifiers(
-            dynamic_pointer_cast<LivingEntity>(shared_from_this()),
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this()),
             getAttributes(), effect->getAmplifier());
 }
 
@@ -695,7 +695,7 @@ bool LivingEntity::hurt(DamageSource* source, float dmg) {
              DamageSource::lava))  // Only award when in lava (not any fire).
         {
             std::shared_ptr<Player> plr =
-                dynamic_pointer_cast<Player>(shared_from_this());
+                std::dynamic_pointer_cast<Player>(shared_from_this());
             plr->awardStat(GenericStats::stayinFrosty(),
                            GenericStats::param_stayinFrosty());
         }
@@ -707,7 +707,7 @@ bool LivingEntity::hurt(DamageSource* source, float dmg) {
         getCarried(SLOT_HELM) != NULL) {
         getCarried(SLOT_HELM)->hurtAndBreak(
             (int)(dmg * 4 + random->nextFloat() * dmg * 2.0f),
-            dynamic_pointer_cast<LivingEntity>(shared_from_this()));
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this()));
         dmg *= 0.75f;
     }
 
@@ -732,14 +732,14 @@ bool LivingEntity::hurt(DamageSource* source, float dmg) {
     std::shared_ptr<Entity> sourceEntity = source->getEntity();
     if (sourceEntity != NULL) {
         if (sourceEntity->instanceof(eTYPE_LIVINGENTITY)) {
-            setLastHurtByMob(dynamic_pointer_cast<LivingEntity>(sourceEntity));
+            setLastHurtByMob(std::dynamic_pointer_cast<LivingEntity>(sourceEntity));
         }
 
         if (sourceEntity->instanceof(eTYPE_PLAYER)) {
             lastHurtByPlayerTime = PLAYER_HURT_EXPERIENCE_TIME;
-            lastHurtByPlayer = dynamic_pointer_cast<Player>(sourceEntity);
+            lastHurtByPlayer = std::dynamic_pointer_cast<Player>(sourceEntity);
         } else if (sourceEntity->instanceof(eTYPE_WOLF)) {
-            std::shared_ptr<Wolf> w = dynamic_pointer_cast<Wolf>(sourceEntity);
+            std::shared_ptr<Wolf> w = std::dynamic_pointer_cast<Wolf>(sourceEntity);
             if (w->isTame()) {
                 lastHurtByPlayerTime = PLAYER_HURT_EXPERIENCE_TIME;
                 lastHurtByPlayer = nullptr;
@@ -810,7 +810,7 @@ void LivingEntity::die(DamageSource* source) {
 
     if (sourceEntity != NULL)
         sourceEntity->killed(
-            dynamic_pointer_cast<LivingEntity>(shared_from_this()));
+            std::dynamic_pointer_cast<LivingEntity>(shared_from_this()));
 
     dead = true;
 
@@ -819,9 +819,9 @@ void LivingEntity::die(DamageSource* source) {
 
         std::shared_ptr<Player> player = nullptr;
         if ((sourceEntity != NULL) && sourceEntity->instanceof(eTYPE_PLAYER)) {
-            player = dynamic_pointer_cast<Player>(sourceEntity);
+            player = std::dynamic_pointer_cast<Player>(sourceEntity);
             playerBonus = EnchantmentHelper::getKillingLootBonus(
-                dynamic_pointer_cast<LivingEntity>(player));
+                std::dynamic_pointer_cast<LivingEntity>(player));
         }
 
         if (!isBaby() &&
@@ -841,7 +841,7 @@ void LivingEntity::die(DamageSource* source) {
             player->awardStat(
                 GenericStats::killMob(),
                 GenericStats::param_mobKill(
-                    player, dynamic_pointer_cast<Mob>(shared_from_this()),
+                    player, std::dynamic_pointer_cast<Mob>(shared_from_this()),
                     source));
         }
     }
@@ -1215,14 +1215,14 @@ void LivingEntity::jumpFromGround() {
 
 void LivingEntity::travel(float xa, float ya) {
 #ifdef __PSVITA__
-    // AP - dynamic_pointer_cast is a non-trivial call
+    // AP - std::dynamic_pointer_cast is a non-trivial call
     Player* thisPlayer = NULL;
     if (this->instanceof(eTYPE_PLAYER)) {
         thisPlayer = (Player*)this;
     }
 #else
     std::shared_ptr<Player> thisPlayer =
-        dynamic_pointer_cast<Player>(shared_from_this());
+        std::dynamic_pointer_cast<Player>(shared_from_this());
 #endif
     if (isInWater() && !(thisPlayer && thisPlayer->abilities.flying)) {
         double yo = y;

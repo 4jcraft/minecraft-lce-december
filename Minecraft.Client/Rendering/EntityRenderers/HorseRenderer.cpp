@@ -27,7 +27,7 @@ void HorseRenderer::adjustHeight(std::shared_ptr<PathfinderMob> mob,
 void HorseRenderer::scale(std::shared_ptr<LivingEntity> entityliving, float f) {
     float sizeFactor = 1.0f;
 
-    int type = dynamic_pointer_cast<EntityHorse>(entityliving)->getType();
+    int type = std::dynamic_pointer_cast<EntityHorse>(entityliving)->getType();
     if (type == EntityHorse::TYPE_DONKEY) {
         sizeFactor *= 0.87F;
     } else if (type == EntityHorse::TYPE_MULE) {
@@ -61,7 +61,7 @@ void HorseRenderer::bindTexture(ResourceLocation* location) {
 ResourceLocation* HorseRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
     std::shared_ptr<EntityHorse> horse =
-        dynamic_pointer_cast<EntityHorse>(entity);
+        std::dynamic_pointer_cast<EntityHorse>(entity);
 
     if (!horse->hasLayeredTextures()) {
         switch (horse->getType()) {

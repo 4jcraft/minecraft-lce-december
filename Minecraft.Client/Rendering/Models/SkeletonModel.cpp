@@ -39,7 +39,7 @@ void SkeletonModel::prepareMobModel(std::shared_ptr<LivingEntity> mob,
                                     float time, float r, float a) {
     ZombieModel::prepareMobModel(mob, time, r, a);
 
-    bowAndArrow = dynamic_pointer_cast<Skeleton>(mob)->getSkeletonType() ==
+    bowAndArrow = std::dynamic_pointer_cast<Skeleton>(mob)->getSkeletonType() ==
                   Skeleton::TYPE_WITHER;
 }
 

@@ -25,7 +25,7 @@ std::shared_ptr<ItemInstance> AbstractProjectileDispenseBehavior::execute(
 
     projectile->shoot(facing->getStepX(), facing->getStepY() + .1f,
                       facing->getStepZ(), getPower(), getUncertainty());
-    world->addEntity(dynamic_pointer_cast<Entity>(projectile));
+    world->addEntity(std::dynamic_pointer_cast<Entity>(projectile));
 
     dispensed->remove(1);
     return dispensed;

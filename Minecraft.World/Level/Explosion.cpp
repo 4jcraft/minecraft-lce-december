@@ -160,7 +160,7 @@ void Explosion::explode() {
             e->zd += za * kbPower;
 
             if (e->instanceof(eTYPE_PLAYER)) {
-                shared_ptr<Player> player = dynamic_pointer_cast<Player>(e);
+                shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(e);
                 // app.DebugPrintf("Adding player knockback (%f,%f,%f)\n", xa *
                 // pow, ya * pow, za * pow);
                 hitPlayers.insert(playerVec3Map::value_type(
@@ -293,8 +293,8 @@ Vec3* Explosion::getHitPlayerKnockback(std::shared_ptr<Player> player) {
 std::shared_ptr<LivingEntity> Explosion::getSourceMob() {
     if (source == NULL) return nullptr;
     if (source->instanceof(eTYPE_PRIMEDTNT))
-        return dynamic_pointer_cast<PrimedTnt>(source)->getOwner();
+        return std::dynamic_pointer_cast<PrimedTnt>(source)->getOwner();
     if (source->instanceof(eTYPE_LIVINGENTITY))
-        return dynamic_pointer_cast<LivingEntity>(source);
+        return std::dynamic_pointer_cast<LivingEntity>(source);
     return nullptr;
 }

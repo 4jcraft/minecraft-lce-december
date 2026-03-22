@@ -232,7 +232,7 @@ std::shared_ptr<Entity> EntityIO::newEntity(const std::wstring& id,
         entityCreateFn create = it->second;
         if (create != NULL) entity = shared_ptr<Entity>(create(level));
         if ((entity != NULL) && entity->GetType() == eTYPE_ENDERDRAGON) {
-            dynamic_pointer_cast<EnderDragon>(entity)
+            std::dynamic_pointer_cast<EnderDragon>(entity)
                 ->AddParts();  // 4J added to finalise creation
         }
     }
@@ -266,7 +266,7 @@ std::shared_ptr<Entity> EntityIO::loadStatic(CompoundTag* tag, Level* level) {
         entityCreateFn create = it->second;
         if (create != NULL) entity = shared_ptr<Entity>(create(level));
         if ((entity != NULL) && entity->GetType() == eTYPE_ENDERDRAGON) {
-            dynamic_pointer_cast<EnderDragon>(entity)
+            std::dynamic_pointer_cast<EnderDragon>(entity)
                 ->AddParts();  // 4J added to finalise creation
         }
     }
@@ -290,7 +290,7 @@ std::shared_ptr<Entity> EntityIO::newById(int id, Level* level) {
         entityCreateFn create = it->second;
         if (create != NULL) entity = shared_ptr<Entity>(create(level));
         if ((entity != NULL) && entity->GetType() == eTYPE_ENDERDRAGON) {
-            dynamic_pointer_cast<EnderDragon>(entity)
+            std::dynamic_pointer_cast<EnderDragon>(entity)
                 ->AddParts();  // 4J added to finalise creation
         }
     }
@@ -314,7 +314,7 @@ std::shared_ptr<Entity> EntityIO::newByEnumType(eINSTANCEOF eType,
             entityCreateFn create = it2->second;
             if (create != NULL) entity = shared_ptr<Entity>(create(level));
             if ((entity != NULL) && entity->GetType() == eTYPE_ENDERDRAGON) {
-                dynamic_pointer_cast<EnderDragon>(entity)
+                std::dynamic_pointer_cast<EnderDragon>(entity)
                     ->AddParts();  // 4J added to finalise creation
             }
         }

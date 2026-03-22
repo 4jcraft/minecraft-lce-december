@@ -76,7 +76,7 @@ bool Boat::hurt(DamageSource* source, float hurtDamage) {
         shared_ptr<Entity> attacker = source->getDirectEntity();
 
         if (attacker->instanceof(eTYPE_PLAYER) &&
-            !dynamic_pointer_cast<Player>(attacker)->isAllowedToHurtEntity(
+            !std::dynamic_pointer_cast<Player>(attacker)->isAllowedToHurtEntity(
                 shared_from_this())) {
             return false;
         }
@@ -102,7 +102,7 @@ bool Boat::hurt(DamageSource* source, float hurtDamage) {
     bool creativePlayer =
         (source->getEntity() != NULL) &&
         source->getEntity()->instanceof(eTYPE_PLAYER) &&
-        dynamic_pointer_cast<Player>(source->getEntity())->abilities.instabuild;
+        std::dynamic_pointer_cast<Player>(source->getEntity())->abilities.instabuild;
 
     if (creativePlayer || getDamage() > 20 * 2) {
         if (rider.lock() != NULL) rider.lock()->ride(shared_from_this());
@@ -275,7 +275,7 @@ void Boat::tick() {
 
     if (rider.lock() != NULL && rider.lock()->instanceof(eTYPE_LIVINGENTITY)) {
         shared_ptr<LivingEntity> livingRider =
-            dynamic_pointer_cast<LivingEntity>(rider.lock());
+            std::dynamic_pointer_cast<LivingEntity>(rider.lock());
         double forward = livingRider->yya;
 
         if (forward > 0) {

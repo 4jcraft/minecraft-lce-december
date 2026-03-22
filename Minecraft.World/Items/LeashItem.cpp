@@ -40,7 +40,7 @@ bool LeashItem::bindPlayerMobs(std::shared_ptr<Player> player, Level* level,
                                    y + range, z + range));
     if (mobs != NULL) {
         for (AUTO_VAR(it, mobs->begin()); it != mobs->end(); ++it) {
-            shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
+            shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(*it);
             if (mob->isLeashed() && mob->getLeashHolder() == player) {
                 if (activeKnot == NULL) {
                     activeKnot =
@@ -65,7 +65,7 @@ bool LeashItem::bindPlayerMobsTest(std::shared_ptr<Player> player, Level* level,
 
     if (mobs != NULL) {
         for (AUTO_VAR(it, mobs->begin()); it != mobs->end(); ++it) {
-            shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
+            shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(*it);
             if (mob->isLeashed() && mob->getLeashHolder() == player)
                 return true;
         }

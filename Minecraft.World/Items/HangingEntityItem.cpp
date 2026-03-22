@@ -80,12 +80,12 @@ std::shared_ptr<HangingEntity> HangingEntityItem::createEntity(
             painting->PaintingPostConstructor(dir);
         }
 
-        return dynamic_pointer_cast<HangingEntity>(painting);
+        return std::dynamic_pointer_cast<HangingEntity>(painting);
     } else if (eType == eTYPE_ITEM_FRAME) {
         shared_ptr<ItemFrame> itemFrame =
             shared_ptr<ItemFrame>(new ItemFrame(level, x, y, z, dir));
 
-        return dynamic_pointer_cast<HangingEntity>(itemFrame);
+        return std::dynamic_pointer_cast<HangingEntity>(itemFrame);
     } else {
         return nullptr;
     }

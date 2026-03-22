@@ -315,7 +315,7 @@ const int MobSpawner::tick(ServerLevel* level, bool spawnEnemies,
                         MemSect(29);
                         // mob =
                         // type.mobClass.getConstructor(Level.class).newInstance(level);
-                        mob = dynamic_pointer_cast<Mob>(EntityIO::newByEnumType(
+                        mob = std::dynamic_pointer_cast<Mob>(EntityIO::newByEnumType(
                             currentMobType->mobClass, level));
                         MemSect(0);
                         //						   }
@@ -514,7 +514,7 @@ void MobSpawner::postProcessSpawnMobs(Level* level, Biome* biome, int xo,
 
 					std::shared_ptr<Mob> mob;
 					//try {
-					mob = dynamic_pointer_cast<Mob>( EntityIO::newByEnumType(type->mobClass, level ) );
+					mob = std::dynamic_pointer_cast<Mob>( EntityIO::newByEnumType(type->mobClass, level ) );
 					//} catch (Exception e) {
 					//	e.printStackTrace();
 					//	continue;

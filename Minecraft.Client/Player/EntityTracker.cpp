@@ -30,7 +30,7 @@ void EntityTracker::addEntity(std::shared_ptr<Entity> e) {
     if (e->instanceof(eTYPE_SERVERPLAYER)) {
         addEntity(e, 32 * 16, 2);
         std::shared_ptr<ServerPlayer> player =
-            dynamic_pointer_cast<ServerPlayer>(e);
+            std::dynamic_pointer_cast<ServerPlayer>(e);
         for (AUTO_VAR(it, entities.begin()); it != entities.end(); it++) {
             if ((*it)->e != player) {
                 (*it)->updatePlayer(this, player);
@@ -72,7 +72,7 @@ void EntityTracker::addEntity(std::shared_ptr<Entity> e) {
         addEntity(e, 16 * 5, 3, false);
     else if (e->instanceof(eTYPE_BAT))
         addEntity(e, 16 * 5, 3, false);
-    else if (dynamic_pointer_cast<Creature>(e) != NULL)
+    else if (std::dynamic_pointer_cast<Creature>(e) != NULL)
         addEntity(e, 16 * 5, 3, true);
     else if (e->instanceof(eTYPE_ENDERDRAGON))
         addEntity(e, 16 * 10, 3, true);
@@ -128,7 +128,7 @@ void EntityTracker::removeEntity(std::shared_ptr<Entity> e) {
 void EntityTracker::removePlayer(std::shared_ptr<Entity> e) {
     if (e->GetType() == eTYPE_SERVERPLAYER) {
         std::shared_ptr<ServerPlayer> player =
-            dynamic_pointer_cast<ServerPlayer>(e);
+            std::dynamic_pointer_cast<ServerPlayer>(e);
         for (AUTO_VAR(it, entities.begin()); it != entities.end(); it++) {
             (*it)->removePlayer(player);
         }
@@ -145,7 +145,7 @@ void EntityTracker::tick() {
         std::shared_ptr<TrackedEntity> te = *it;
         te->tick(this, &level->players);
         if (te->moved && te->e->GetType() == eTYPE_SERVERPLAYER) {
-            movedPlayers.push_back(dynamic_pointer_cast<ServerPlayer>(te->e));
+            movedPlayers.push_back(std::dynamic_pointer_cast<ServerPlayer>(te->e));
         }
     }
 
@@ -194,7 +194,7 @@ void EntityTracker::tick() {
     for (AUTO_VAR(it, level->players.begin()); it != level->players.end();
          ++it) {
         std::shared_ptr<ServerPlayer> player =
-            dynamic_pointer_cast<ServerPlayer>(*it);
+            std::dynamic_pointer_cast<ServerPlayer>(*it);
         if (!player->isAlive()) {
             player->flushEntitiesToRemove();
         }

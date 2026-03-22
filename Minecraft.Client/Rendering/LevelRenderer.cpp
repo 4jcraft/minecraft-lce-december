@@ -585,7 +585,7 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
 
         // Render the mob if the mob's leash holder is within the culler
         if (!shouldRender && entity->instanceof(eTYPE_MOB)) {
-            std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
+            std::shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(entity);
             if (mob->isLeashed() && (mob->getLeashHolder() != NULL)) {
                 std::shared_ptr<Entity> leashHolder = mob->getLeashHolder();
                 shouldRender = culler->isVisible(leashHolder->bb);
@@ -599,7 +599,7 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
             // !mc->cameraTargetPlayer->isSleeping()) continue;
             std::shared_ptr<LocalPlayer> localplayer =
                 mc->cameraTargetPlayer->instanceof(eTYPE_LOCALPLAYER)
-                    ? dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer)
+                    ? std::dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer)
                     : nullptr;
 
             if (localplayer && entity == mc->cameraTargetPlayer &&
@@ -3094,7 +3094,7 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
         case eParticleType_witchMagic: {
             particle = std::shared_ptr<SpellParticle>(
                 new SpellParticle(lev, x, y, z, xa, ya, za));
-            dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 * 16);
+            std::dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 * 16);
             float randBrightness = lev->random->nextFloat() * 0.5f + 0.35f;
             particle->setColor(1 * randBrightness, 0 * randBrightness,
                                1 * randBrightness);
@@ -3102,7 +3102,7 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
         case eParticleType_instantSpell:
             particle = std::shared_ptr<Particle>(
                 new SpellParticle(lev, x, y, z, xa, ya, za));
-            dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 * 16);
+            std::dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 * 16);
             break;
         case eParticleType_note:
             particle = std::shared_ptr<Particle>(
@@ -3199,7 +3199,7 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
                        (eParticleType <= eParticleType_tilecrack_last)) {
                 int id = PARTICLE_CRACK_ID(eParticleType),
                     data = PARTICLE_CRACK_DATA(eParticleType);
-                particle = dynamic_pointer_cast<Particle>(
+                particle = std::dynamic_pointer_cast<Particle>(
                     std::shared_ptr<TerrainParticle>(
                         new TerrainParticle(lev, x, y, z, xa, ya, za,
                                             Tile::tiles[id], 0, data, textures))
@@ -3216,7 +3216,7 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
 
 void LevelRenderer::entityAdded(std::shared_ptr<Entity> entity) {
     if (entity->instanceof(eTYPE_PLAYER)) {
-        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
         player->prepareCustomTextures();
 
         // 4J-PB - adding these from global title storage
@@ -3233,7 +3233,7 @@ void LevelRenderer::entityAdded(std::shared_ptr<Entity> entity) {
 
 void LevelRenderer::entityRemoved(std::shared_ptr<Entity> entity) {
     if (entity->instanceof(eTYPE_PLAYER)) {
-        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
         if (player->customTextureUrl != L"") {
             textures->removeMemTexture(player->customTextureUrl);
         }

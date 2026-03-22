@@ -86,7 +86,7 @@ void JukeboxTile::setRecord(Level* level, int x, int y, int z,
     if (level->isClientSide) return;
 
     shared_ptr<JukeboxTile::Entity> rte =
-        dynamic_pointer_cast<JukeboxTile::Entity>(
+        std::dynamic_pointer_cast<JukeboxTile::Entity>(
             level->getTileEntity(x, y, z));
     rte->setRecord(record->copy());
     rte->setChanged();
@@ -98,7 +98,7 @@ void JukeboxTile::dropRecording(Level* level, int x, int y, int z) {
     if (level->isClientSide) return;
 
     shared_ptr<JukeboxTile::Entity> rte =
-        dynamic_pointer_cast<JukeboxTile::Entity>(
+        std::dynamic_pointer_cast<JukeboxTile::Entity>(
             level->getTileEntity(x, y, z));
     if (rte == NULL) return;
 
@@ -151,7 +151,7 @@ bool JukeboxTile::hasAnalogOutputSignal() { return true; }
 int JukeboxTile::getAnalogOutputSignal(Level* level, int x, int y, int z,
                                        int dir) {
     shared_ptr<ItemInstance> record =
-        dynamic_pointer_cast<JukeboxTile::Entity>(level->getTileEntity(x, y, z))
+        std::dynamic_pointer_cast<JukeboxTile::Entity>(level->getTileEntity(x, y, z))
             ->getRecord();
     return record == NULL ? Redstone::SIGNAL_NONE
                           : record->id + 1 - Item::record_01_Id;

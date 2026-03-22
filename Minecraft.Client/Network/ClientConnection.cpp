@@ -450,7 +450,7 @@ void ClientConnection::handleAddEntity(
 
             if (owner->instanceof(eTYPE_PLAYER)) {
                 std::shared_ptr<Player> player =
-                    dynamic_pointer_cast<Player>(owner);
+                    std::dynamic_pointer_cast<Player>(owner);
                 std::shared_ptr<FishingHook> hook =
                     std::shared_ptr<FishingHook>(
                         new FishingHook(level, x, y, z, player));
@@ -583,7 +583,7 @@ void ClientConnection::handleAddEntity(
                            }
                    }
                    shared_ptr<Player> player =
-       dynamic_pointer_cast<Player>(owner); if (player != NULL)
+       std::dynamic_pointer_cast<Player>(owner); if (player != NULL)
                    {
                            shared_ptr<FishingHook> hook =
        shared_ptr<FishingHook>( new FishingHook(level, x, y, z, player) ); e =
@@ -703,8 +703,8 @@ void ClientConnection::handleAddEntity(
                 }
 
                 if (owner != NULL && owner->instanceof(eTYPE_LIVINGENTITY)) {
-                    dynamic_pointer_cast<Arrow>(e)->owner =
-                        dynamic_pointer_cast<LivingEntity>(owner);
+                    std::dynamic_pointer_cast<Arrow>(e)->owner =
+                        std::dynamic_pointer_cast<LivingEntity>(owner);
                 }
             }
 
@@ -1329,7 +1329,7 @@ void ClientConnection::handleTakeItemEntity(
     std::shared_ptr<TakeItemEntityPacket> packet) {
     std::shared_ptr<Entity> from = getEntity(packet->itemId);
     std::shared_ptr<LivingEntity> to =
-        dynamic_pointer_cast<LivingEntity>(getEntity(packet->playerId));
+        std::dynamic_pointer_cast<LivingEntity>(getEntity(packet->playerId));
 
     // 4J - the original game could assume that if getEntity didn't find the
     // player, it must be the local player. We need to search all local players
@@ -1361,7 +1361,7 @@ void ClientConnection::handleTakeItemEntity(
         // processed connection
         if (isLocalPlayer) {
             std::shared_ptr<LocalPlayer> player =
-                dynamic_pointer_cast<LocalPlayer>(to);
+                std::dynamic_pointer_cast<LocalPlayer>(to);
 
             // 4J Stu - Fix for #10213 - UI: Local clients cannot progress
             // through the tutorial normally. We only send this packet once if
@@ -1817,12 +1817,12 @@ void ClientConnection::handleAnimate(std::shared_ptr<AnimatePacket> packet) {
     if (e == NULL) return;
     if (packet->action == AnimatePacket::SWING) {
         if (e->instanceof(eTYPE_LIVINGENTITY))
-            dynamic_pointer_cast<LivingEntity>(e)->swing();
+            std::dynamic_pointer_cast<LivingEntity>(e)->swing();
     } else if (packet->action == AnimatePacket::HURT) {
         e->animateHurt();
     } else if (packet->action == AnimatePacket::WAKE_UP) {
         if (e->instanceof(eTYPE_PLAYER))
-            dynamic_pointer_cast<Player>(e)->stopSleepInBed(false, false,
+            std::dynamic_pointer_cast<Player>(e)->stopSleepInBed(false, false,
                                                             false);
     } else if (packet->action == AnimatePacket::RESPAWN) {
     } else if (packet->action == AnimatePacket::CRITICAL_HIT) {
@@ -1847,7 +1847,7 @@ void ClientConnection::handleEntityActionAtPosition(
     std::shared_ptr<Entity> e = getEntity(packet->id);
     if (e == NULL) return;
     if (packet->action == EntityActionAtPositionPacket::START_SLEEP) {
-        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(e);
+        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(e);
         player->startSleepInBed(packet->x, packet->y, packet->z);
 
         if (player == minecraft->localplayers[m_userIndex]) {
@@ -2393,7 +2393,7 @@ void ClientConnection::handleAddMob(std::shared_ptr<AddMobPacket> packet) {
     float yRot = packet->yRot * 360 / 256.0f;
     float xRot = packet->xRot * 360 / 256.0f;
 
-    std::shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(
+    std::shared_ptr<LivingEntity> mob = std::dynamic_pointer_cast<LivingEntity>(
         EntityIO::newById(packet->type, level));
     mob->xp = packet->x;
     mob->yp = packet->y;
@@ -2433,7 +2433,7 @@ void ClientConnection::handleAddMob(std::shared_ptr<AddMobPacket> packet) {
     // boxes. 4J Stu - Slimes have a different BB depending on their size which
     // is set in the entity data, so update the BB
     if (mob->GetType() == eTYPE_SLIME || mob->GetType() == eTYPE_LAVASLIME) {
-        std::shared_ptr<Slime> slime = dynamic_pointer_cast<Slime>(mob);
+        std::shared_ptr<Slime> slime = std::dynamic_pointer_cast<Slime>(mob);
         slime->setSize(slime->getSize());
     }
 }
@@ -2477,12 +2477,12 @@ void ClientConnection::handleEntityLinkPacket(
             sourceEntity = Minecraft::GetInstance()->localplayers[m_userIndex];
 
             if (destEntity != NULL && destEntity->instanceof(eTYPE_BOAT))
-                (dynamic_pointer_cast<Boat>(destEntity))->setDoLerp(false);
+                (std::dynamic_pointer_cast<Boat>(destEntity))->setDoLerp(false);
 
             displayMountMessage =
                 (sourceEntity->riding == NULL && destEntity != NULL);
         } else if (destEntity != NULL && destEntity->instanceof(eTYPE_BOAT)) {
-            (dynamic_pointer_cast<Boat>(destEntity))->setDoLerp(true);
+            (std::dynamic_pointer_cast<Boat>(destEntity))->setDoLerp(true);
         }
 
         if (sourceEntity == NULL) return;
@@ -2500,10 +2500,10 @@ void ClientConnection::handleEntityLinkPacket(
     } else if (packet->type == SetEntityLinkPacket::LEASH) {
         if ((sourceEntity != NULL) && sourceEntity->instanceof(eTYPE_MOB)) {
             if (destEntity != NULL) {
-                (dynamic_pointer_cast<Mob>(sourceEntity))
+                (std::dynamic_pointer_cast<Mob>(sourceEntity))
                     ->setLeashedTo(destEntity, false);
             } else {
-                (dynamic_pointer_cast<Mob>(sourceEntity))
+                (std::dynamic_pointer_cast<Mob>(sourceEntity))
                     ->dropLeash(false, false);
             }
         }
@@ -2657,7 +2657,7 @@ void ClientConnection::handleTextureChange(
     std::shared_ptr<TextureChangePacket> packet) {
     std::shared_ptr<Entity> e = getEntity(packet->id);
     if ((e == NULL) || !e->instanceof(eTYPE_PLAYER)) return;
-    std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(e);
+    std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(e);
 
     bool isLocalPlayer = false;
     for (int i = 0; i < XUSER_MAX_COUNT; i++) {
@@ -2713,7 +2713,7 @@ void ClientConnection::handleTextureAndGeometryChange(
     std::shared_ptr<TextureAndGeometryChangePacket> packet) {
     std::shared_ptr<Entity> e = getEntity(packet->id);
     if (e == NULL) return;
-    std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(e);
+    std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(e);
     if (e == NULL) return;
 
     bool isLocalPlayer = false;
@@ -3063,7 +3063,7 @@ void ClientConnection::handleContainerOpen(
         } break;
         case ContainerOpenPacket::HORSE: {
             std::shared_ptr<EntityHorse> entity =
-                dynamic_pointer_cast<EntityHorse>(getEntity(packet->entityId));
+                std::dynamic_pointer_cast<EntityHorse>(getEntity(packet->entityId));
             int iTitle = IDS_CONTAINER_ANIMAL;
             switch (entity->getType()) {
                 case EntityHorse::TYPE_DONKEY:
@@ -3074,7 +3074,7 @@ void ClientConnection::handleContainerOpen(
                     break;
             };
             if (player->openHorseInventory(
-                    dynamic_pointer_cast<EntityHorse>(entity),
+                    std::dynamic_pointer_cast<EntityHorse>(entity),
                     std::shared_ptr<AnimalChest>(
                         new AnimalChest(iTitle, packet->title,
                                         packet->customName, packet->size)))) {
@@ -3193,9 +3193,9 @@ void ClientConnection::handleSignUpdate(
             minecraft->level->getTileEntity(packet->x, packet->y, packet->z);
 
         // 4J-PB - on a client connecting, the line below fails
-        if (dynamic_pointer_cast<SignTileEntity>(te) != NULL) {
+        if (std::dynamic_pointer_cast<SignTileEntity>(te) != NULL) {
             std::shared_ptr<SignTileEntity> ste =
-                dynamic_pointer_cast<SignTileEntity>(te);
+                std::dynamic_pointer_cast<SignTileEntity>(te);
             for (int i = 0; i < MAX_SIGN_LINES; i++) {
                 ste->SetMessage(i, packet->lines[i]);
             }
@@ -3208,7 +3208,7 @@ void ClientConnection::handleSignUpdate(
             ste->setChanged();
         } else {
             app.DebugPrintf(
-                "dynamic_pointer_cast<SignTileEntity>(te) == NULL\n");
+                "std::dynamic_pointer_cast<SignTileEntity>(te) == NULL\n");
         }
     } else {
         app.DebugPrintf("hasChunkAt failed\n");
@@ -3223,18 +3223,18 @@ void ClientConnection::handleTileEntityData(
 
         if (te != NULL) {
             if (packet->type == TileEntityDataPacket::TYPE_MOB_SPAWNER &&
-                dynamic_pointer_cast<MobSpawnerTileEntity>(te) != NULL) {
-                dynamic_pointer_cast<MobSpawnerTileEntity>(te)->load(
+                std::dynamic_pointer_cast<MobSpawnerTileEntity>(te) != NULL) {
+                std::dynamic_pointer_cast<MobSpawnerTileEntity>(te)->load(
                     packet->tag);
             } else if (packet->type == TileEntityDataPacket::TYPE_ADV_COMMAND &&
-                       dynamic_pointer_cast<CommandBlockEntity>(te) != NULL) {
-                dynamic_pointer_cast<CommandBlockEntity>(te)->load(packet->tag);
+                       std::dynamic_pointer_cast<CommandBlockEntity>(te) != NULL) {
+                std::dynamic_pointer_cast<CommandBlockEntity>(te)->load(packet->tag);
             } else if (packet->type == TileEntityDataPacket::TYPE_BEACON &&
-                       dynamic_pointer_cast<BeaconTileEntity>(te) != NULL) {
-                dynamic_pointer_cast<BeaconTileEntity>(te)->load(packet->tag);
+                       std::dynamic_pointer_cast<BeaconTileEntity>(te) != NULL) {
+                std::dynamic_pointer_cast<BeaconTileEntity>(te)->load(packet->tag);
             } else if (packet->type == TileEntityDataPacket::TYPE_SKULL &&
-                       dynamic_pointer_cast<SkullTileEntity>(te) != NULL) {
-                dynamic_pointer_cast<SkullTileEntity>(te)->load(packet->tag);
+                       std::dynamic_pointer_cast<SkullTileEntity>(te) != NULL) {
+                std::dynamic_pointer_cast<SkullTileEntity>(te)->load(packet->tag);
             }
         }
     }
@@ -3411,14 +3411,14 @@ void ClientConnection::handleUpdateMobEffect(
     std::shared_ptr<Entity> e = getEntity(packet->entityId);
     if ((e == NULL) || !e->instanceof(eTYPE_LIVINGENTITY)) return;
 
-    //( dynamic_pointer_cast<LivingEntity>(e) )->addEffect(new
+    //( std::dynamic_pointer_cast<LivingEntity>(e) )->addEffect(new
     // MobEffectInstance(packet->effectId, packet->effectDurationTicks,
     // packet->effectAmplifier));
 
     MobEffectInstance* mobEffectInstance = new MobEffectInstance(
         packet->effectId, packet->effectDurationTicks, packet->effectAmplifier);
     mobEffectInstance->setNoCounter(packet->isSuperLongDuration());
-    dynamic_pointer_cast<LivingEntity>(e)->addEffect(mobEffectInstance);
+    std::dynamic_pointer_cast<LivingEntity>(e)->addEffect(mobEffectInstance);
 }
 
 void ClientConnection::handleRemoveMobEffect(
@@ -3426,7 +3426,7 @@ void ClientConnection::handleRemoveMobEffect(
     std::shared_ptr<Entity> e = getEntity(packet->entityId);
     if ((e == NULL) || !e->instanceof(eTYPE_LIVINGENTITY)) return;
 
-    (dynamic_pointer_cast<LivingEntity>(e))
+    (std::dynamic_pointer_cast<LivingEntity>(e))
         ->removeEffectNoUpdate(packet->effectId);
 }
 
@@ -3453,7 +3453,7 @@ void ClientConnection::handlePlayerInfo(
 
     std::shared_ptr<Entity> entity = getEntity(packet->m_entityId);
     if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
         player->setPlayerGamePrivilege(Player::ePlayerGamePrivilege_All,
                                        packet->m_playerPrivileges);
     }
@@ -3998,7 +3998,7 @@ void ClientConnection::handleUpdateAttributes(
     }
 
     BaseAttributeMap* attributes =
-        (dynamic_pointer_cast<LivingEntity>(entity))->getAttributes();
+        (std::dynamic_pointer_cast<LivingEntity>(entity))->getAttributes();
     std::unordered_set<UpdateAttributesPacket::AttributeSnapshot*>
         attributeSnapshots = packet->getValues();
     for (AUTO_VAR(it, attributeSnapshots.begin());

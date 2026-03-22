@@ -81,7 +81,7 @@ bool Skeleton::doHurtTarget(std::shared_ptr<Entity> target) {
     if (Monster::doHurtTarget(target)) {
         if ((getSkeletonType() == TYPE_WITHER) &&
             target->instanceof(eTYPE_LIVINGENTITY)) {
-            dynamic_pointer_cast<LivingEntity>(target)->addEffect(
+            std::dynamic_pointer_cast<LivingEntity>(target)->addEffect(
                 new MobEffectInstance(MobEffect::wither->id,
                                       SharedConstants::TICKS_PER_SECOND * 10));
         }
@@ -132,7 +132,7 @@ void Skeleton::rideTick() {
     Monster::rideTick();
 
     if (riding != NULL && riding->instanceof(eTYPE_PATHFINDER_MOB)) {
-        yBodyRot = dynamic_pointer_cast<PathfinderMob>(riding)->yBodyRot;
+        yBodyRot = std::dynamic_pointer_cast<PathfinderMob>(riding)->yBodyRot;
     }
 }
 
@@ -144,7 +144,7 @@ void Skeleton::die(DamageSource* source) {
         source->getEntity() != NULL &&
         source->getEntity()->instanceof(eTYPE_PLAYER)) {
         shared_ptr<Player> player =
-            dynamic_pointer_cast<Player>(source->getEntity());
+            std::dynamic_pointer_cast<Player>(source->getEntity());
 
         double xd = player->x - x;
         double zd = player->z - z;
@@ -248,7 +248,7 @@ void Skeleton::reassessWeaponGoal() {
 void Skeleton::performRangedAttack(std::shared_ptr<LivingEntity> target,
                                    float power) {
     shared_ptr<Arrow> arrow = shared_ptr<Arrow>(
-        new Arrow(level, dynamic_pointer_cast<LivingEntity>(shared_from_this()),
+        new Arrow(level, std::dynamic_pointer_cast<LivingEntity>(shared_from_this()),
                   target, 1.60f, 14 - (level->difficulty * 4)));
     int damageBonus = EnchantmentHelper::getEnchantmentLevel(
         Enchantment::arrowBonus->id, getCarriedItem());

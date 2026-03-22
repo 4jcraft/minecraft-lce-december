@@ -29,7 +29,7 @@ void HurtByTargetGoal::start() {
                                   ->grow(within, 4, within));
         for (AUTO_VAR(it, nearby->begin()); it != nearby->end(); ++it) {
             std::shared_ptr<PathfinderMob> other =
-                dynamic_pointer_cast<PathfinderMob>(*it);
+                std::dynamic_pointer_cast<PathfinderMob>(*it);
             if (this->mob->shared_from_this() == other) continue;
             if (other->getTarget() != NULL) continue;
             if (other->isAlliedTo(mob->getLastHurtByMob()))

@@ -17,7 +17,7 @@ void FallingTileRenderer::render(std::shared_ptr<Entity> _tile, double x,
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
     std::shared_ptr<FallingTile> tile =
-        dynamic_pointer_cast<FallingTile>(_tile);
+        std::dynamic_pointer_cast<FallingTile>(_tile);
     Level* level = tile->getLevel();
 
     if (level->getTile(floor(tile->x), floor(tile->y), floor(tile->z)) !=

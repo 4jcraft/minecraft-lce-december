@@ -14,7 +14,7 @@ MobRenderer::MobRenderer(Model* model, float shadow)
 
 void MobRenderer::render(std::shared_ptr<Entity> _mob, double x, double y,
                          double z, float rot, float a) {
-    std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(_mob);
+    std::shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(_mob);
 
     LivingEntityRenderer::render(mob, x, y, z, rot, a);
     renderLeash(mob, x, y, z, rot, a);
@@ -23,7 +23,7 @@ void MobRenderer::render(std::shared_ptr<Entity> _mob, double x, double y,
 bool MobRenderer::shouldShowName(std::shared_ptr<LivingEntity> mob) {
     return LivingEntityRenderer::shouldShowName(mob) &&
            (mob->shouldShowName() ||
-            dynamic_pointer_cast<Mob>(mob)->hasCustomName() &&
+            std::dynamic_pointer_cast<Mob>(mob)->hasCustomName() &&
                 mob == entityRenderDispatcher->crosshairPickMob);
 }
 

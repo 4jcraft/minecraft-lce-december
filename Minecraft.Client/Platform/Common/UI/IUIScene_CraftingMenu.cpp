@@ -240,7 +240,7 @@ bool IUIScene_CraftingMenu::handleKeyDown(int iPad, int iAction, bool bRepeat) {
                     if (pRecipeIngredientsRequired[iRecipe].bCanMake[iPad]) {
                         pTempItemInst->onCraftedBy(
                             m_pPlayer->level,
-                            dynamic_pointer_cast<Player>(
+                            std::dynamic_pointer_cast<Player>(
                                 m_pPlayer->shared_from_this()),
                             pTempItemInst->count);
                         // TODO 4J Stu - handleCraftItem should do a lot more

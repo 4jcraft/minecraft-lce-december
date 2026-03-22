@@ -242,7 +242,7 @@ void ServerPlayer::tick() {
 
     if (!level->isClientSide) {
         if (!containerMenu->stillValid(
-                dynamic_pointer_cast<Player>(shared_from_this()))) {
+                std::dynamic_pointer_cast<Player>(shared_from_this()))) {
             closeContainer();
             containerMenu = inventoryMenu;
         }
@@ -306,7 +306,7 @@ void ServerPlayer::doTickA() {
                     (dynamic_cast<ComplexItem*>(Item::items[ie->id])
                          ->getUpdatePacket(
                              ie, level,
-                             dynamic_pointer_cast<Player>(shared_from_this())));
+                             std::dynamic_pointer_cast<Player>(shared_from_this())));
                 if (packet != NULL) {
                     connection->send(packet);
                 }
@@ -540,7 +540,7 @@ void ServerPlayer::doTickB() {
     // 		if(level->dimension->id == 0 )
     // 		{
     // 			server->players->toggleDimension(
-    // dynamic_pointer_cast<ServerPlayer>( shared_from_this() ), 1 );
+    // std::dynamic_pointer_cast<ServerPlayer>( shared_from_this() ), 1 );
     // 		}
     // 		unsigned int
     // uiVal=app.GetGameSettingsDebugMask(ProfileManager.GetPrimaryPad());
@@ -582,7 +582,7 @@ void ServerPlayer::doTickB() {
         if (objectives) {
             std::vector<std::shared_ptr<Player> > players =
                 std::vector<std::shared_ptr<Player> >();
-            players.push_back(dynamic_pointer_cast<Player>(shared_from_this()));
+            players.push_back(std::dynamic_pointer_cast<Player>(shared_from_this()));
 
             for (AUTO_VAR(it, objectives->begin()); it != objectives->end();
                  ++it) {
@@ -657,16 +657,16 @@ bool ServerPlayer::hurt(DamageSource* dmgSource, float dmg) {
         std::shared_ptr<Entity> source = dmgSource->getDirectEntity();
 
         if (source->instanceof(eTYPE_PLAYER) &&
-            !dynamic_pointer_cast<Player>(source)->canHarmPlayer(
-                dynamic_pointer_cast<Player>(shared_from_this()))) {
+            !std::dynamic_pointer_cast<Player>(source)->canHarmPlayer(
+                std::dynamic_pointer_cast<Player>(shared_from_this()))) {
             return false;
         }
 
         if ((source != NULL) && source->instanceof(eTYPE_ARROW)) {
-            std::shared_ptr<Arrow> arrow = dynamic_pointer_cast<Arrow>(source);
+            std::shared_ptr<Arrow> arrow = std::dynamic_pointer_cast<Arrow>(source);
             if ((arrow->owner != NULL) &&
                 arrow->owner->instanceof(eTYPE_PLAYER) &&
-                !canHarmPlayer(dynamic_pointer_cast<Player>(arrow->owner))) {
+                !canHarmPlayer(std::dynamic_pointer_cast<Player>(arrow->owner))) {
                 return false;
             }
         }
@@ -733,10 +733,10 @@ bool ServerPlayer::hurt(DamageSource* dmgSource, float dmg) {
                             eTelemetryPlayerDeathSource_Explosion_Tnt;
                         break;
                     case eTYPE_ARROW:
-                        if ((dynamic_pointer_cast<Arrow>(source))->owner !=
+                        if ((std::dynamic_pointer_cast<Arrow>(source))->owner !=
                             NULL) {
                             std::shared_ptr<Entity> attacker =
-                                (dynamic_pointer_cast<Arrow>(source))->owner;
+                                (std::dynamic_pointer_cast<Arrow>(source))->owner;
                             if (attacker != NULL) {
                                 switch (attacker->GetType()) {
                                     case eTYPE_SKELETON:
@@ -850,7 +850,7 @@ void ServerPlayer::changeDimension(int i) {
             // awardStat(GenericStats::portal(), GenericStats::param_portal());
         }
         server->getPlayers()->toggleDimension(
-            dynamic_pointer_cast<ServerPlayer>(shared_from_this()), i);
+            std::dynamic_pointer_cast<ServerPlayer>(shared_from_this()), i);
         lastSentExp = -1;
         lastSentHealth = -1;
         lastSentFood = -1;
@@ -927,10 +927,10 @@ void ServerPlayer::doCheckFallDamage(double ya, bool onGround) {
 
 void ServerPlayer::openTextEstd::dit(std::shared_ptr<TileEntity> sign) {
     std::shared_ptr<SignTileEntity> signTE =
-        dynamic_pointer_cast<SignTileEntity>(sign);
+        std::dynamic_pointer_cast<SignTileEntity>(sign);
     if (signTE != NULL) {
         signTE->setAllowedPlayerEditor(
-            dynamic_pointer_cast<Player>(shared_from_this()));
+            std::dynamic_pointer_cast<Player>(shared_from_this()));
         connection->send(
             std::shared_ptr<TileEditorOpenPacket>(new TileEditorOpenPacket(
                 TileEditorOpenPacket::SIGN, sign->x, sign->y, sign->z)));
@@ -1019,7 +1019,7 @@ bool ServerPlayer::startRepairing(int x, int y, int z) {
                 false)));
         containerMenu =
             new AnvilMenu(inventory, level, x, y, z,
-                          dynamic_pointer_cast<Player>(shared_from_this()));
+                          std::dynamic_pointer_cast<Player>(shared_from_this()));
         containerMenu->containerId = containerCounter;
         containerMenu->addSlotListener(this);
     } else {
@@ -1195,7 +1195,7 @@ bool ServerPlayer::openTradstd::ing(std::shared_ptr<Merchant> traderTarget,
                 !name.empty())));
 
         MerchantRecipeList* offers = traderTarget->getOffers(
-            dynamic_pointer_cast<Player>(shared_from_this()));
+            std::dynamic_pointer_cast<Player>(shared_from_this()));
         if (offers != NULL) {
             ByteArrayOutputStream rawOutput;
             DataOutputStream output(&rawOutput);
@@ -1304,7 +1304,7 @@ void ServerPlayer::broadcastCarriedItem() {
 }
 
 void ServerPlayer::doCloseContainer() {
-    containerMenu->removed(dynamic_pointer_cast<Player>(shared_from_this()));
+    containerMenu->removed(std::dynamic_pointer_cast<Player>(shared_from_this()));
     containerMenu = inventoryMenu;
 }
 
@@ -1661,7 +1661,7 @@ void ServerPlayer::restoreFstd::rom(std::shared_ptr<Player> oldPlayer,
     lastSentHealth = -1;
     lastSentFood = -1;
     entitiesToRemove =
-        dynamic_pointer_cast<ServerPlayer>(oldPlayer)->entitiesToRemove;
+        std::dynamic_pointer_cast<ServerPlayer>(oldPlayer)->entitiesToRemove;
 }
 
 void ServerPlayer::onEffectAdded(MobEffectInstance* effect) {
@@ -1724,11 +1724,11 @@ void ServerPlayer::sendMessage(
 
 bool ServerPlayer::hasPermission(EGameCommand command) {
     return server->getPlayers()->isOp(
-        dynamic_pointer_cast<ServerPlayer>(shared_from_this()));
+        std::dynamic_pointer_cast<ServerPlayer>(shared_from_this()));
 
     // 4J: Removed permission level
     /*if(
-    server->getPlayers()->isOp(dynamic_pointer_cast<ServerPlayer>(shared_from_this()))
+    server->getPlayers()->isOp(std::dynamic_pointer_cast<ServerPlayer>(shared_from_this()))
     )
     {
             return server->getOperatorUserPermissionLevel() >= permissionLevel;

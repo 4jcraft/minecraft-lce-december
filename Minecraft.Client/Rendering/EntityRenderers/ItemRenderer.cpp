@@ -33,7 +33,7 @@ ItemRenderer::~ItemRenderer() { delete random; }
 ResourceLocation* ItemRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
     std::shared_ptr<ItemEntity> itemEntity =
-        dynamic_pointer_cast<ItemEntity>(entity);
+        std::dynamic_pointer_cast<ItemEntity>(entity);
     return getTextureLocation(itemEntity->getItem()->getIconType());
 }
 
@@ -56,7 +56,7 @@ void ItemRenderer::render(std::shared_ptr<Entity> _itemEntity, double x,
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
     std::shared_ptr<ItemEntity> itemEntity =
-        dynamic_pointer_cast<ItemEntity>(_itemEntity);
+        std::dynamic_pointer_cast<ItemEntity>(_itemEntity);
     bindTexture(itemEntity);
 
     random->setSeed(187);

@@ -25,7 +25,7 @@ void EnderDragonRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob,
                                          float bob, float bodyRot, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<EnderDragon> mob = dynamic_pointer_cast<EnderDragon>(_mob);
+    std::shared_ptr<EnderDragon> mob = std::dynamic_pointer_cast<EnderDragon>(_mob);
 
     // 4J - reorganised a bit so we can free allocations
     double lpComponents[3];
@@ -58,7 +58,7 @@ void EnderDragonRenderer::renderModel(std::shared_ptr<LivingEntity> _mob,
                                       float scale) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<EnderDragon> mob = dynamic_pointer_cast<EnderDragon>(_mob);
+    std::shared_ptr<EnderDragon> mob = std::dynamic_pointer_cast<EnderDragon>(_mob);
 
     if (mob->dragonDeathTime > 0) {
         float tt = (mob->dragonDeathTime / 200.0f);
@@ -104,7 +104,7 @@ void EnderDragonRenderer::render(std::shared_ptr<Entity> _mob, double x,
                                  double y, double z, float rot, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<EnderDragon> mob = dynamic_pointer_cast<EnderDragon>(_mob);
+    std::shared_ptr<EnderDragon> mob = std::dynamic_pointer_cast<EnderDragon>(_mob);
     BossMobGuiInfo::setBossHealth(mob, false);
     MobRenderer::render(mob, x, y, z, rot, a);
     if (mob->nearestCrystal != NULL) {
@@ -191,7 +191,7 @@ void EnderDragonRenderer::additionalRendering(
     std::shared_ptr<LivingEntity> _mob, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<EnderDragon> mob = dynamic_pointer_cast<EnderDragon>(_mob);
+    std::shared_ptr<EnderDragon> mob = std::dynamic_pointer_cast<EnderDragon>(_mob);
     MobRenderer::additionalRendering(mob, a);
     Tesselator* t = Tesselator::getInstance();
 
@@ -248,7 +248,7 @@ int EnderDragonRenderer::prepareArmor(std::shared_ptr<LivingEntity> _mob,
                                       int layer, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<EnderDragon> mob = dynamic_pointer_cast<EnderDragon>(_mob);
+    std::shared_ptr<EnderDragon> mob = std::dynamic_pointer_cast<EnderDragon>(_mob);
 
     if (layer == 1) {
         glDepthFunc(GL_LEQUAL);

@@ -668,7 +668,7 @@ bool CMinecraftApp::LoadHopperMenu(int iPad,
 
     HopperScreenInput* initData = new HopperScreenInput();
     initData->inventory = inventory;
-    initData->hopper = dynamic_pointer_cast<Container>(hopper);
+    initData->hopper = std::dynamic_pointer_cast<Container>(hopper);
     initData->iPad = iPad;
     if (app.GetLocalPlayerCount() > 1)
         initData->bSplitscreen = true;

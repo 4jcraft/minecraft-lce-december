@@ -516,7 +516,7 @@ void ConsoleSchematicFile::applyTileEntities(LevelChunk* chunk, AABB* chunkBox,
 
         if (e->GetType() == eTYPE_PAINTING) {
             std::shared_ptr<Painting> painting =
-                dynamic_pointer_cast<Painting>(e);
+                std::dynamic_pointer_cast<Painting>(e);
 
             double tileX = painting->xTile;
             double tileZ = painting->zTile;
@@ -529,7 +529,7 @@ void ConsoleSchematicFile::applyTileEntities(LevelChunk* chunk, AABB* chunkBox,
             painting->setDir(painting->dir);
         } else if (e->GetType() == eTYPE_ITEM_FRAME) {
             std::shared_ptr<ItemFrame> frame =
-                dynamic_pointer_cast<ItemFrame>(e);
+                std::dynamic_pointer_cast<ItemFrame>(e);
 
             double tileX = frame->xTile;
             double tileZ = frame->zTile;

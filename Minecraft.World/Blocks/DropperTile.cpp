@@ -32,7 +32,7 @@ std::shared_ptr<TileEntity> DropperTile::newTileEntity(Level* level) {
 void DropperTile::dispenseFrom(Level* level, int x, int y, int z) {
     BlockSourceImpl source(level, x, y, z);
     shared_ptr<DispenserTileEntity> trap =
-        dynamic_pointer_cast<DispenserTileEntity>(source.getEntity());
+        std::dynamic_pointer_cast<DispenserTileEntity>(source.getEntity());
     if (trap == NULL) return;
 
     int slot = trap->getRandomSlot();

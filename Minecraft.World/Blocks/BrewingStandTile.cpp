@@ -50,7 +50,7 @@ bool BrewingStandTile::use(
         return true;
     }
     shared_ptr<BrewingStandTileEntity> brewingStand =
-        dynamic_pointer_cast<BrewingStandTileEntity>(
+        std::dynamic_pointer_cast<BrewingStandTileEntity>(
             level->getTileEntity(x, y, z));
     if (brewingStand != NULL) player->openBrewingStand(brewingStand);
 
@@ -61,7 +61,7 @@ void BrewingStandTile::setPlacedBy(Level* level, int x, int y, int z,
                                    std::shared_ptr<LivingEntity> by,
                                    std::shared_ptr<ItemInstance> itemInstance) {
     if (itemInstance->hasCustomHoverName()) {
-        dynamic_pointer_cast<BrewingStandTileEntity>(
+        std::dynamic_pointer_cast<BrewingStandTileEntity>(
             level->getTileEntity(x, y, z))
             ->setCustomName(itemInstance->getHoverName());
     }
@@ -80,9 +80,9 @@ void BrewingStandTile::onRemove(Level* level, int x, int y, int z, int id,
                                 int data) {
     shared_ptr<TileEntity> tileEntity = level->getTileEntity(x, y, z);
     if (tileEntity != NULL &&
-        (dynamic_pointer_cast<BrewingStandTileEntity>(tileEntity) != NULL)) {
+        (std::dynamic_pointer_cast<BrewingStandTileEntity>(tileEntity) != NULL)) {
         shared_ptr<BrewingStandTileEntity> container =
-            dynamic_pointer_cast<BrewingStandTileEntity>(tileEntity);
+            std::dynamic_pointer_cast<BrewingStandTileEntity>(tileEntity);
         for (int i = 0; i < container->getContainerSize(); i++) {
             shared_ptr<ItemInstance> item = container->getItem(i);
             if (item != NULL) {
@@ -130,7 +130,7 @@ bool BrewingStandTile::hasAnalogOutputSignal() { return true; }
 int BrewingStandTile::getAnalogOutputSignal(Level* level, int x, int y, int z,
                                             int dir) {
     return AbstractContainerMenu::getRedstoneSignalFromContainer(
-        dynamic_pointer_cast<Container>(level->getTileEntity(x, y, z)));
+        std::dynamic_pointer_cast<Container>(level->getTileEntity(x, y, z)));
 }
 
 void BrewingStandTile::registerIcons(IconRegister* iconRegister) {

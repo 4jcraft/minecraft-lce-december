@@ -69,7 +69,7 @@ bool TargetGoal::canAttack(std::shared_ptr<LivingEntity> target,
     OwnableEntity* ownableMob = dynamic_cast<OwnableEntity*>(mob);
     if (ownableMob != NULL && !ownableMob->getOwnerUUID().empty()) {
         shared_ptr<OwnableEntity> ownableTarget =
-            dynamic_pointer_cast<OwnableEntity>(target);
+            std::dynamic_pointer_cast<OwnableEntity>(target);
         if (ownableTarget != NULL && ownableMob->getOwnerUUID().compare(
                                          ownableTarget->getOwnerUUID()) == 0) {
             // We're attacking something owned by the same person...
@@ -82,7 +82,7 @@ bool TargetGoal::canAttack(std::shared_ptr<LivingEntity> target,
         }
     } else if (target->instanceof(eTYPE_PLAYER)) {
         if (!allowInvulnerable &&
-            (dynamic_pointer_cast<Player>(target))->abilities.invulnerable)
+            (std::dynamic_pointer_cast<Player>(target))->abilities.invulnerable)
             return false;
     }
 

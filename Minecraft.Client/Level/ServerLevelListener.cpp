@@ -44,7 +44,7 @@ void ServerLevelListener::entityRemoved(std::shared_ptr<Entity> entity) {
 // 4J added
 void ServerLevelListener::playerRemoved(std::shared_ptr<Entity> entity) {
     std::shared_ptr<ServerPlayer> player =
-        dynamic_pointer_cast<ServerPlayer>(entity);
+        std::dynamic_pointer_cast<ServerPlayer>(entity);
     player->getLevel()->getTracker()->removePlayer(entity);
 }
 

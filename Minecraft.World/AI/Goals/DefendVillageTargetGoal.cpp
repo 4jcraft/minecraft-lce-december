@@ -13,13 +13,13 @@ bool DefendVillageTargetGoal::canUse() {
     std::shared_ptr<Village> village = golem->getVillage();
     if (village == NULL) return false;
     potentialTarget = weak_ptr<LivingEntity>(village->getClosestAggressor(
-        dynamic_pointer_cast<LivingEntity>(golem->shared_from_this())));
+        std::dynamic_pointer_cast<LivingEntity>(golem->shared_from_this())));
     std::shared_ptr<LivingEntity> potTarget = potentialTarget.lock();
     if (!canAttack(potTarget, false)) {
         // look for bad players
         if (mob->getRandom()->nextInt(20) == 0) {
             potentialTarget = village->getClosestBadStandingPlayer(
-                dynamic_pointer_cast<LivingEntity>(golem->shared_from_this()));
+                std::dynamic_pointer_cast<LivingEntity>(golem->shared_from_this()));
             return canAttack(potTarget, false);
         }
         return false;

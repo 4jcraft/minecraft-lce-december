@@ -134,7 +134,7 @@ bool TamableAnimal::wantsToAttack(std::shared_ptr<LivingEntity> target,
 Team* TamableAnimal::getTeam() {
     if (isTame()) {
         shared_ptr<LivingEntity> owner =
-            dynamic_pointer_cast<LivingEntity>(getOwner());
+            std::dynamic_pointer_cast<LivingEntity>(getOwner());
         if (owner != NULL) {
             return owner->getTeam();
         }
@@ -145,7 +145,7 @@ Team* TamableAnimal::getTeam() {
 bool TamableAnimal::isAlliedTo(std::shared_ptr<LivingEntity> other) {
     if (isTame()) {
         shared_ptr<LivingEntity> owner =
-            dynamic_pointer_cast<LivingEntity>(getOwner());
+            std::dynamic_pointer_cast<LivingEntity>(getOwner());
         if (other == owner) {
             return true;
         }

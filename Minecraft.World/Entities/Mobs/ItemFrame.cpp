@@ -43,7 +43,7 @@ void ItemFrame::dropItem(std::shared_ptr<Entity> causedBy) {
     shared_ptr<ItemInstance> item = getItem();
 
     if (causedBy != NULL && causedBy->instanceof(eTYPE_PLAYER)) {
-        if (dynamic_pointer_cast<Player>(causedBy)->abilities.instabuild) {
+        if (std::dynamic_pointer_cast<Player>(causedBy)->abilities.instabuild) {
             removeFramedMap(item);
             return;
         }
@@ -77,7 +77,7 @@ void ItemFrame::setItem(std::shared_ptr<ItemInstance> item) {
         item = item->copy();
         item->count = 1;
 
-        item->setFramed(dynamic_pointer_cast<ItemFrame>(shared_from_this()));
+        item->setFramed(std::dynamic_pointer_cast<ItemFrame>(shared_from_this()));
     }
     getEntityData()->set(DATA_ITEM, item);
     getEntityData()->markDirty(DATA_ITEM);

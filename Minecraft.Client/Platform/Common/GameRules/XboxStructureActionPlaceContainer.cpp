@@ -75,7 +75,7 @@ bool XboxStructureActionPlaceContainer::placeContainerInLevel(
 
         level->setTileAndData(worldX, worldY, worldZ, m_tile, 0,
                               Tile::UPDATE_ALL);
-        std::shared_ptr<Container> container = dynamic_pointer_cast<Container>(
+        std::shared_ptr<Container> container = std::dynamic_pointer_cast<Container>(
             level->getTileEntity(worldX, worldY, worldZ));
 
         app.DebugPrintf(

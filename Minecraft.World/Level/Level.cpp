@@ -594,7 +594,7 @@ Level::Level(std::shared_ptr<LevelStorage> levelStorage,
                        // maintain older height for old levels
     savedDataStorage = new SavedDataStorage(levelStorage.get());
 
-    shared_ptr<Villages> savedVillages = dynamic_pointer_cast<Villages>(
+    shared_ptr<Villages> savedVillages = std::dynamic_pointer_cast<Villages>(
         savedDataStorage->get(typeid(Villages), Villages::VILLAGE_FILE_ID));
     if (savedVillages == NULL) {
         villages = shared_ptr<Villages>(new Villages(this));
@@ -634,7 +634,7 @@ void Level::_init(std::shared_ptr<LevelStorage> levelStorage,
         levelStorage;  // shared_ptr<LevelStorage>(levelStorage);
     savedDataStorage = new SavedDataStorage(levelStorage.get());
 
-    shared_ptr<Villages> savedVillages = dynamic_pointer_cast<Villages>(
+    shared_ptr<Villages> savedVillages = std::dynamic_pointer_cast<Villages>(
         savedDataStorage->get(typeid(Villages), Villages::VILLAGE_FILE_ID));
     if (savedVillages == NULL) {
         villages = shared_ptr<Villages>(new Villages(this));
@@ -1612,7 +1612,7 @@ bool Level::addEntity(std::shared_ptr<Entity> e) {
 
     if (forced || hasChunk(xc, zc)) {
         if (e->instanceof(eTYPE_PLAYER)) {
-            shared_ptr<Player> player = dynamic_pointer_cast<Player>(e);
+            shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(e);
 
             // 4J Stu - Added so we don't continually add the player to the
             // players list while they are dead
@@ -1673,7 +1673,7 @@ void Level::removeEntity(std::shared_ptr<Entity> e) {
     if (e->instanceof(eTYPE_PLAYER)) {
         vector<shared_ptr<Player> >::iterator it = players.begin();
         vector<shared_ptr<Player> >::iterator itEnd = players.end();
-        while (it != itEnd && *it != dynamic_pointer_cast<Player>(e)) it++;
+        while (it != itEnd && *it != std::dynamic_pointer_cast<Player>(e)) it++;
 
         if (it != itEnd) {
             players.erase(it);
@@ -1692,7 +1692,7 @@ void Level::removeEntityImmediately(std::shared_ptr<Entity> e) {
     if (e->instanceof(eTYPE_PLAYER)) {
         vector<shared_ptr<Player> >::iterator it = players.begin();
         vector<shared_ptr<Player> >::iterator itEnd = players.end();
-        while (it != itEnd && *it != dynamic_pointer_cast<Player>(e)) it++;
+        while (it != itEnd && *it != std::dynamic_pointer_cast<Player>(e)) it++;
 
         if (it != itEnd) {
             players.erase(it);

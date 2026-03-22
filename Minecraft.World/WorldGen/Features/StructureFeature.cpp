@@ -241,7 +241,7 @@ void StructureFeature::restoreSavedData(Level* level) {
 #ifdef ENABLE_STRUCTURE_SAVING
     if (savedData == NULL) {
         savedData =
-            dynamic_pointer_cast<StructureFeatureSavedData>(level->getSavedData(
+            std::dynamic_pointer_cast<StructureFeatureSavedData>(level->getSavedData(
                 typeid(StructureFeatureSavedData), getFeatureName()));
 
         if (savedData == NULL) {

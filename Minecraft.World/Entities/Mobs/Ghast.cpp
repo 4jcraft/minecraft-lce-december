@@ -51,7 +51,7 @@ bool Ghast::hurt(DamageSource* source, float dmg) {
             source->getEntity()->instanceof(eTYPE_PLAYER)) {
             // reflected fireball, kill the ghast
             FlyingMob::hurt(source, 1000);
-            dynamic_pointer_cast<Player>(source->getEntity())
+            std::dynamic_pointer_cast<Player>(source->getEntity())
                 ->awardStat(GenericStats::ghast(), GenericStats::param_ghast());
             return true;
         }
@@ -136,7 +136,7 @@ void Ghast::serverAiStep() {
                                   (int)x, (int)y, (int)z, 0);
                 std::shared_ptr<LargeFireball> ie =
                     std::shared_ptr<LargeFireball>(new LargeFireball(
-                        level, dynamic_pointer_cast<Mob>(shared_from_this()),
+                        level, std::dynamic_pointer_cast<Mob>(shared_from_this()),
                         xdd, ydd, zdd));
                 ie->explosionPower = explosionPower;
                 double d = 4;

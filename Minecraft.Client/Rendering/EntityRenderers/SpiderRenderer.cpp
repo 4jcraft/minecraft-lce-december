@@ -20,7 +20,7 @@ int SpiderRenderer::prepareArmor(std::shared_ptr<LivingEntity> _spider,
                                  int layer, float a) {
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
-    std::shared_ptr<Spider> spider = dynamic_pointer_cast<Spider>(_spider);
+    std::shared_ptr<Spider> spider = std::dynamic_pointer_cast<Spider>(_spider);
 
     if (layer != 0) return -1;
     MemSect(31);

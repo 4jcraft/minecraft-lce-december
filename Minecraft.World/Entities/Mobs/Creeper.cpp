@@ -140,7 +140,7 @@ void Creeper::die(DamageSource* source) {
         source->getEntity() != NULL &&
         source->getEntity()->instanceof(eTYPE_PLAYER)) {
         shared_ptr<Player> player =
-            dynamic_pointer_cast<Player>(source->getEntity());
+            std::dynamic_pointer_cast<Player>(source->getEntity());
         player->awardStat(GenericStats::archer(), GenericStats::param_archer());
     }
 }

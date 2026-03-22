@@ -11,7 +11,7 @@ void MobSpawnerRenderer::render(std::shared_ptr<TileEntity> _spawner, double x,
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
     std::shared_ptr<MobSpawnerTileEntity> spawner =
-        dynamic_pointer_cast<MobSpawnerTileEntity>(_spawner);
+        std::dynamic_pointer_cast<MobSpawnerTileEntity>(_spawner);
     render(spawner->getSpawner(), x, y, z, a);
     glPopMatrix();
 }

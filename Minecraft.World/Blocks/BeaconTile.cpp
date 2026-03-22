@@ -19,7 +19,7 @@ bool BeaconTile::use(Level* level, int x, int y, int z,
     if (level->isClientSide) return true;
 
     shared_ptr<BeaconTileEntity> beacon =
-        dynamic_pointer_cast<BeaconTileEntity>(level->getTileEntity(x, y, z));
+        std::dynamic_pointer_cast<BeaconTileEntity>(level->getTileEntity(x, y, z));
     if (beacon != NULL) player->openBeacon(beacon);
 
     return true;
@@ -42,7 +42,7 @@ void BeaconTile::setPlacedBy(Level* level, int x, int y, int z,
                              std::shared_ptr<ItemInstance> itemInstance) {
     BaseEntityTile::setPlacedBy(level, x, y, z, by, itemInstance);
     if (itemInstance->hasCustomHoverName()) {
-        dynamic_pointer_cast<BeaconTileEntity>(level->getTileEntity(x, y, z))
+        std::dynamic_pointer_cast<BeaconTileEntity>(level->getTileEntity(x, y, z))
             ->setCustomName(itemInstance->getHoverName());
     }
 }

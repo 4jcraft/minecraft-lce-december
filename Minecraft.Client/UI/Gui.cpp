@@ -559,7 +559,7 @@ void Gui::render(float a, bool mouseFree, int xMouse, int yMouse) {
                 std::shared_ptr<Entity> riding =
                     minecraft->localplayers[iPad].get()->riding;
                 std::shared_ptr<LivingEntity> living =
-                    dynamic_pointer_cast<LivingEntity>(riding);
+                    std::dynamic_pointer_cast<LivingEntity>(riding);
                 if (riding == NULL) {
                     // render food
                     for (int i = 0; i < FoodConstants::MAX_FOOD / 2; i++) {

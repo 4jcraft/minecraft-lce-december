@@ -255,12 +255,12 @@ void Arrow::tick() {
 
     if ((res != NULL) && (res->entity != NULL) &&
         res->entity->instanceof(eTYPE_PLAYER)) {
-        shared_ptr<Player> player = dynamic_pointer_cast<Player>(res->entity);
+        shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(res->entity);
         // 4J: Check for owner being null
         if (player->abilities.invulnerable ||
             ((owner != NULL) &&
              (owner->instanceof(eTYPE_PLAYER) &&
-              !dynamic_pointer_cast<Player>(owner)->canHarmPlayer(player)))) {
+              !std::dynamic_pointer_cast<Player>(owner)->canHarmPlayer(player)))) {
             res = NULL;
         }
     }
@@ -275,11 +275,11 @@ void Arrow::tick() {
             DamageSource* damageSource = NULL;
             if (owner == NULL) {
                 damageSource = DamageSource::arrow(
-                    dynamic_pointer_cast<Arrow>(shared_from_this()),
+                    std::dynamic_pointer_cast<Arrow>(shared_from_this()),
                     shared_from_this());
             } else {
                 damageSource = DamageSource::arrow(
-                    dynamic_pointer_cast<Arrow>(shared_from_this()), owner);
+                    std::dynamic_pointer_cast<Arrow>(shared_from_this()), owner);
             }
 
             if (res->entity->hurt(damageSource, dmg)) {
@@ -295,7 +295,7 @@ void Arrow::tick() {
 
                 if (res->entity->instanceof(eTYPE_LIVINGENTITY)) {
                     shared_ptr<LivingEntity> mob =
-                        dynamic_pointer_cast<LivingEntity>(res->entity);
+                        std::dynamic_pointer_cast<LivingEntity>(res->entity);
 
                     if (!level->isClientSide) {
                         mob->setArrowCount(mob->getArrowCount() + 1);
@@ -316,7 +316,7 @@ void Arrow::tick() {
 
                     if (owner != NULL && res->entity != owner &&
                         owner->GetType() == eTYPE_SERVERPLAYER) {
-                        dynamic_pointer_cast<ServerPlayer>(owner)
+                        std::dynamic_pointer_cast<ServerPlayer>(owner)
                             ->connection->send(
                                 shared_ptr<GameEventPacket>(new GameEventPacket(
                                     GameEventPacket::SUCCESSFUL_BOW_HIT, 0)));
@@ -332,7 +332,7 @@ void Arrow::tick() {
                         eTYPE_CREEPER))  // target is a creeper
 
                 {
-                    dynamic_pointer_cast<Player>(owner)->awardStat(
+                    std::dynamic_pointer_cast<Player>(owner)->awardStat(
                         GenericStats::arrowKillCreeper(),
                         GenericStats::param_arrowKillCreeper());
                 }

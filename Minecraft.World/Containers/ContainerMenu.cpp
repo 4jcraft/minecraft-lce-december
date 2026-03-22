@@ -83,7 +83,7 @@ std::shared_ptr<ItemInstance> ContainerMenu::clicked(
 
 #ifdef _EXTENDED_ACHIEVEMENTS
     shared_ptr<LocalPlayer> localPlayer =
-        dynamic_pointer_cast<LocalPlayer>(player);
+        std::dynamic_pointer_cast<LocalPlayer>(player);
 
     if (localPlayer !=
         NULL)  // 4J-JEV: For "Chestful o'Cobblestone" achievement.

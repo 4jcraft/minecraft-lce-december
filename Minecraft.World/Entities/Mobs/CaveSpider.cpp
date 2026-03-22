@@ -35,7 +35,7 @@ bool CaveSpider::doHurtTarget(std::shared_ptr<Entity> target) {
             }
 
             if (poisonTime > 0) {
-                dynamic_pointer_cast<LivingEntity>(target)->addEffect(
+                std::dynamic_pointer_cast<LivingEntity>(target)->addEffect(
                     new MobEffectInstance(
                         MobEffect::poison->id,
                         poisonTime * SharedConstants::TICKS_PER_SECOND, 0));

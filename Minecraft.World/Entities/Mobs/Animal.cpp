@@ -70,7 +70,7 @@ void Animal::checkHurtTarget(std::shared_ptr<Entity> target, float d) {
             holdGround = true;
         }
 
-        shared_ptr<Player> p = dynamic_pointer_cast<Player>(target);
+        shared_ptr<Player> p = std::dynamic_pointer_cast<Player>(target);
         if (p->getSelectedItem() == NULL || !isFood(p->getSelectedItem())) {
             attackTarget = nullptr;
         }
@@ -78,7 +78,7 @@ void Animal::checkHurtTarget(std::shared_ptr<Entity> target, float d) {
     }
     // 4J-JEV: Changed from dynamic cast to use eINSTANCEOF
     else if (target->instanceof(eTYPE_ANIMAL)) {
-        shared_ptr<Animal> a = dynamic_pointer_cast<Animal>(target);
+        shared_ptr<Animal> a = std::dynamic_pointer_cast<Animal>(target);
         if (getAge() > 0 && a->getAge() < 0) {
             if (d < 2.5) {
                 holdGround = true;
@@ -163,18 +163,18 @@ bool Animal::hurt(DamageSource* dmgSource, float dmg) {
 
         // 4J-JEV: Changed from dynamic cast to use eINSTANCEOF
         if (source->instanceof(eTYPE_PLAYER) &&
-            !dynamic_pointer_cast<Player>(source)->isAllowedToAttackAnimals()) {
+            !std::dynamic_pointer_cast<Player>(source)->isAllowedToAttackAnimals()) {
             return false;
         }
 
         if ((source != NULL) && source->instanceof(eTYPE_ARROW)) {
-            shared_ptr<Arrow> arrow = dynamic_pointer_cast<Arrow>(source);
+            shared_ptr<Arrow> arrow = std::dynamic_pointer_cast<Arrow>(source);
 
             // 4J: Check that the arrow's owner can attack animals (dispenser
             // arrows are not owned)
             if (arrow->owner != NULL &&
                 arrow->owner->instanceof(eTYPE_PLAYER) &&
-                !dynamic_pointer_cast<Player>(arrow->owner)
+                !std::dynamic_pointer_cast<Player>(arrow->owner)
                      ->isAllowedToAttackAnimals()) {
                 return false;
             }
@@ -218,7 +218,7 @@ std::shared_ptr<Entity> Animal::findAttackTarget() {
             level->getEntitiesOfClass(typeid(*this), bb->grow(r, r, r));
         // for (int i = 0; i < others->size(); i++)
         for (AUTO_VAR(it, others->begin()); it != others->end(); ++it) {
-            shared_ptr<Animal> p = dynamic_pointer_cast<Animal>(*it);
+            shared_ptr<Animal> p = std::dynamic_pointer_cast<Animal>(*it);
             if (p != shared_from_this() && p->getInLoveValue() > 0) {
                 delete others;
                 return p;
@@ -233,7 +233,7 @@ std::shared_ptr<Entity> Animal::findAttackTarget() {
             for (AUTO_VAR(it, players->begin()); it != players->end(); ++it) {
                 setDespawnProtected();
 
-                shared_ptr<Player> p = dynamic_pointer_cast<Player>(*it);
+                shared_ptr<Player> p = std::dynamic_pointer_cast<Player>(*it);
                 if (p->getSelectedItem() != NULL &&
                     this->isFood(p->getSelectedItem())) {
                     delete players;
@@ -246,7 +246,7 @@ std::shared_ptr<Entity> Animal::findAttackTarget() {
                 level->getEntitiesOfClass(typeid(*this), bb->grow(r, r, r));
             // for (int i = 0; i < others.size(); i++)
             for (AUTO_VAR(it, others->begin()); it != others->end(); ++it) {
-                shared_ptr<Animal> p = dynamic_pointer_cast<Animal>(*it);
+                shared_ptr<Animal> p = std::dynamic_pointer_cast<Animal>(*it);
                 if (p != shared_from_this() && p->getAge() < 0) {
                     delete others;
                     return p;

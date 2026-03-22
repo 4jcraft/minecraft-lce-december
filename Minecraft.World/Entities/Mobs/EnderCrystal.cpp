@@ -86,7 +86,7 @@ bool EnderCrystal::hurt(DamageSource* source, float damage) {
                 AUTO_VAR(itEnd, entities.end());
                 for (AUTO_VAR(it, entities.begin()); it != itEnd; it++) {
                     std::shared_ptr<Entity> e = *it;  // entities->at(i);
-                    dragon = dynamic_pointer_cast<EnderDragon>(e);
+                    dragon = std::dynamic_pointer_cast<EnderDragon>(e);
                     if (dragon != NULL) {
                         dragon->handleCrystalDestroyed(source);
                         break;

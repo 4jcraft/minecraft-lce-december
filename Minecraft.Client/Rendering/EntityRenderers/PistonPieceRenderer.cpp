@@ -19,7 +19,7 @@ void PistonPieceRenderer::render(std::shared_ptr<TileEntity> _entity, double x,
     // 4J - dynamic cast required because we aren't using templates/generics in
     // our version
     std::shared_ptr<PistonPieceEntity> entity =
-        dynamic_pointer_cast<PistonPieceEntity>(_entity);
+        std::dynamic_pointer_cast<PistonPieceEntity>(_entity);
 
     Tile* tile = Tile::tiles[entity->getId()];
     if (tile != NULL &&

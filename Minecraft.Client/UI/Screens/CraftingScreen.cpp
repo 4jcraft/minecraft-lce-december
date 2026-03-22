@@ -10,7 +10,7 @@ CraftingScreen::CraftingScreen(std::shared_ptr<Inventory> inventory,
 
 void CraftingScreen::removed() {
     AbstractContainerScreen::removed();
-    menu->removed(dynamic_pointer_cast<Player>(minecraft->player));
+    menu->removed(std::dynamic_pointer_cast<Player>(minecraft->player));
 }
 
 void CraftingScreen::renderLabels() {

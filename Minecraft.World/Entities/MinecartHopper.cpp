@@ -40,7 +40,7 @@ unsigned int MinecartHopper::getContainerSize() { return 5; }
 bool MinecartHopper::interact(std::shared_ptr<Player> player) {
     if (!level->isClientSide) {
         player->openHopper(
-            dynamic_pointer_cast<MinecartHopper>(shared_from_this()));
+            std::dynamic_pointer_cast<MinecartHopper>(shared_from_this()));
     }
 
     return true;
@@ -91,7 +91,7 @@ bool MinecartHopper::suckInItems() {
 
     if (items->size() > 0) {
         HopperTileEntity::addItem(
-            this, dynamic_pointer_cast<ItemEntity>(items->at(0)));
+            this, std::dynamic_pointer_cast<ItemEntity>(items->at(0)));
     }
     delete items;
 

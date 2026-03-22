@@ -63,7 +63,7 @@ bool BonusChestFeature::place(Level* level, Random* random, int x, int y, int z,
             level->setTileAndData(x2, y2, z2, Tile::chest_Id, 0,
                                   Tile::UPDATE_CLIENTS);
             std::shared_ptr<ChestTileEntity> chest =
-                dynamic_pointer_cast<ChestTileEntity>(
+                std::dynamic_pointer_cast<ChestTileEntity>(
                     level->getTileEntity(x2, y2, z2));
             if (chest != NULL) {
                 WeighedTreasure::addChestItems(random, treasureList, chest,

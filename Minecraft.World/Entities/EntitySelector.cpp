@@ -12,7 +12,7 @@ bool AliveEntitySelector::matches(std::shared_ptr<Entity> entity) const {
 }
 
 bool ContainerEntitySelector::matches(std::shared_ptr<Entity> entity) const {
-    return (dynamic_pointer_cast<Container>(entity) != NULL) &&
+    return (std::dynamic_pointer_cast<Container>(entity) != NULL) &&
            entity->isAlive();
 }
 
@@ -26,13 +26,13 @@ bool MobCanWearArmourEntitySelector::matches(
     if (!entity->isAlive()) return false;
     if (!entity->instanceof(eTYPE_LIVINGENTITY)) return false;
 
-    shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(entity);
+    shared_ptr<LivingEntity> mob = std::dynamic_pointer_cast<LivingEntity>(entity);
 
     if (mob->getCarried(Mob::getEquipmentSlotForItem(item)) != NULL)
         return false;
 
     if (mob->instanceof(eTYPE_MOB)) {
-        return dynamic_pointer_cast<Mob>(mob)->canPickUpLoot();
+        return std::dynamic_pointer_cast<Mob>(mob)->canPickUpLoot();
     } else if (mob->instanceof(eTYPE_PLAYER)) {
         return true;
     }

@@ -107,7 +107,7 @@ std::shared_ptr<ItemInstance> SpawnEggDispenseBehavior::execute(
     }
 
     if (entity->instanceof(eTYPE_MOB) && dispensed->hasCustomHoverName()) {
-        dynamic_pointer_cast<Mob>(entity)->setCustomName(
+        std::dynamic_pointer_cast<Mob>(entity)->setCustomName(
             dispensed->getHoverName());
     }
 
@@ -314,7 +314,7 @@ std::shared_ptr<ItemInstance> EmptyBucketDispenseBehavior::execute(
     if (--dispensed->count == 0) {
         dispensed->id = targetType->id;
         dispensed->count = 1;
-    } else if (dynamic_pointer_cast<DispenserTileEntity>(source->getEntity())
+    } else if (std::dynamic_pointer_cast<DispenserTileEntity>(source->getEntity())
                    ->addItem(shared_ptr<ItemInstance>(
                        new ItemInstance(targetType))) < 0) {
         DefaultDispenseItemBehavior::dispense(

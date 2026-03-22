@@ -576,7 +576,7 @@ bool MineShaftPieces::MineShaftCorridor::postProcess(Level* level,
                 level->setTileAndData(x, y, newZ, Tile::mobSpawner_Id, 0,
                                       Tile::UPDATE_CLIENTS);
                 std::shared_ptr<MobSpawnerTileEntity> entity =
-                    dynamic_pointer_cast<MobSpawnerTileEntity>(
+                    std::dynamic_pointer_cast<MobSpawnerTileEntity>(
                         level->getTileEntity(x, y, newZ));
                 if (entity != NULL)
                     entity->getSpawner()->setEntityId(L"CaveSpider");

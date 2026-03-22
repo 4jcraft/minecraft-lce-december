@@ -198,7 +198,7 @@ bool ItemInstance::hurt(int dmg, Random* random) {
 }
 
 void ItemInstance::hurtAndBreak(int dmg, std::shared_ptr<LivingEntity> owner) {
-    shared_ptr<Player> player = dynamic_pointer_cast<Player>(owner);
+    shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(owner);
     if (player != NULL && player->abilities.instabuild) return;
     if (!isDamageableItem()) return;
 

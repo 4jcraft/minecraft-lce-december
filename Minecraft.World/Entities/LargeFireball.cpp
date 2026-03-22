@@ -24,7 +24,7 @@ void LargeFireball::onHit(HitResult* res) {
     if (!level->isClientSide) {
         if (res->entity != NULL) {
             DamageSource* damageSource = DamageSource::fireball(
-                dynamic_pointer_cast<Fireball>(shared_from_this()), owner);
+                std::dynamic_pointer_cast<Fireball>(shared_from_this()), owner);
             res->entity->hurt(damageSource, 6);
             delete damageSource;
         }

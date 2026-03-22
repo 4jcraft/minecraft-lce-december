@@ -27,14 +27,14 @@ std::shared_ptr<ChatPacket> EntityDamageSource::getDeathMessagePacket(
     std::shared_ptr<LivingEntity> player) {
     shared_ptr<ItemInstance> held =
         (entity != NULL) && entity->instanceof(eTYPE_LIVINGENTITY)
-            ? dynamic_pointer_cast<LivingEntity>(entity)->getCarriedItem()
+            ? std::dynamic_pointer_cast<LivingEntity>(entity)->getCarriedItem()
             : nullptr;
     wstring additional = L"";
 
     if (entity->instanceof(eTYPE_SERVERPLAYER)) {
-        additional = dynamic_pointer_cast<Player>(entity)->name;
+        additional = std::dynamic_pointer_cast<Player>(entity)->name;
     } else if (entity->instanceof(eTYPE_MOB)) {
-        shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
+        shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(entity);
         if (mob->hasCustomName()) {
             additional = mob->getCustomName();
         }

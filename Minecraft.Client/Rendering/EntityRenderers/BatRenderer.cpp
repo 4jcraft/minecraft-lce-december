@@ -34,7 +34,7 @@ void BatRenderer::setupPosition(std::shared_ptr<LivingEntity> mob, double x,
 
 void BatRenderer::setupRotations(std::shared_ptr<LivingEntity> _mob, float bob,
                                  float bodyRot, float a) {
-    std::shared_ptr<Bat> mob = dynamic_pointer_cast<Bat>(_mob);
+    std::shared_ptr<Bat> mob = std::dynamic_pointer_cast<Bat>(_mob);
     if (!mob->isResting()) {
         glTranslatef(0, cos(bob * .3f) * .1f, 0);
     } else {

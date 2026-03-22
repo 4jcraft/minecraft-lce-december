@@ -91,7 +91,7 @@ int VillagerGolem::decreaseAirSupply(int currentSupply) {
 void VillagerGolem::doPush(std::shared_ptr<Entity> e) {
     if (e->instanceof(eTYPE_ENEMY)) {
         if (getRandom()->nextInt(20) == 0) {
-            setTarget(dynamic_pointer_cast<LivingEntity>(e));
+            setTarget(std::dynamic_pointer_cast<LivingEntity>(e));
         }
     }
     Golem::doPush(e);
@@ -142,7 +142,7 @@ bool VillagerGolem::doHurtTarget(std::shared_ptr<Entity> target) {
     level->broadcastEntityEvent(shared_from_this(),
                                 EntityEvent::START_ATTACKING);
     bool hurt = target->hurt(
-        DamageSource::mobAttack(dynamic_pointer_cast<Mob>(shared_from_this())),
+        DamageSource::mobAttack(std::dynamic_pointer_cast<Mob>(shared_from_this())),
         7 + random->nextInt(15));
     if (hurt) target->yd += 0.4f;
     playSound(eSoundType_MOB_IRONGOLEM_THROW, 1, 1);
@@ -218,7 +218,7 @@ bool VillagerGolem::hurt(DamageSource* source, float dmg) {
     if (isPlayerCreated()) {
         shared_ptr<Entity> entity = source->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+            shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
             if (!player->isAllowedToAttackPlayers()) return false;
         }
     }

@@ -185,7 +185,7 @@ void Slime::playerTouch(std::shared_ptr<Player> player) {
         if (canSee(player) &&
             distanceToSqr(player) < (0.6 * size) * (0.6 * size)) {
             DamageSource* damageSource = DamageSource::mobAttack(
-                dynamic_pointer_cast<Mob>(shared_from_this()));
+                std::dynamic_pointer_cast<Mob>(shared_from_this()));
             if (player->hurt(damageSource, getAttackDamage())) {
                 playSound(
                     eSoundType_MOB_SLIME_ATTACK, 1,

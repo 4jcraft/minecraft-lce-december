@@ -60,7 +60,7 @@ std::wstring EntityHorse::MARKING_HASHES[EntityHorse::MARKINGS] = {
 
 bool HorseEntitySelector::matches(std::shared_ptr<Entity> entity) const {
     return entity->instanceof(eTYPE_HORSE) &&
-           dynamic_pointer_cast<EntityHorse>(entity)->isBred();
+           std::dynamic_pointer_cast<EntityHorse>(entity)->isBred();
 }
 
 EntityHorse::EntityHorse(Level* level) : Animal(level) {
@@ -277,7 +277,7 @@ bool EntityHorse::hurt(DamageSource* damagesource, float dmg) {
     if (isTamed()) {
         shared_ptr<Entity> entity = damagesource->getDirectEntity();
         if (entity != NULL && entity->instanceof(eTYPE_PLAYER)) {
-            shared_ptr<Player> attacker = dynamic_pointer_cast<Player>(entity);
+            shared_ptr<Player> attacker = std::dynamic_pointer_cast<Player>(entity);
             attacker->canHarmPlayer(getOwnerName());
         }
     }
@@ -434,7 +434,7 @@ std::shared_ptr<EntityHorse> EntityHorse::getClosestMommy(
     }
     delete list;
 
-    return dynamic_pointer_cast<EntityHorse>(mommy);
+    return std::dynamic_pointer_cast<EntityHorse>(mommy);
 }
 
 double EntityHorse::getCustomJump() {
@@ -640,7 +640,7 @@ void EntityHorse::openInventory(std::shared_ptr<Player> player) {
         (rider.lock() == NULL || rider.lock() == player) && isTamed()) {
         inventory->setCustomName(getAName());
         player->openHorseInventory(
-            dynamic_pointer_cast<EntityHorse>(shared_from_this()), inventory);
+            std::dynamic_pointer_cast<EntityHorse>(shared_from_this()), inventory);
     }
 }
 
@@ -754,7 +754,7 @@ bool EntityHorse::mobInteract(std::shared_ptr<Player> player) {
             if (itemstack != NULL &&
                 itemstack->interactEnemy(
                     player,
-                    dynamic_pointer_cast<LivingEntity>(shared_from_this()))) {
+                    std::dynamic_pointer_cast<LivingEntity>(shared_from_this()))) {
                 return true;
             }
             makeMad();
@@ -794,7 +794,7 @@ bool EntityHorse::mobInteract(std::shared_ptr<Player> player) {
         // for name tag items and such, we must call the item's interaction
         // method before riding
         if (itemstack != NULL &&
-            itemstack->interactEnemy(player, dynamic_pointer_cast<LivingEntity>(
+            itemstack->interactEnemy(player, std::dynamic_pointer_cast<LivingEntity>(
                                                  shared_from_this()))) {
             return true;
         }
@@ -1088,7 +1088,7 @@ void EntityHorse::travel(float xa, float ya) {
     yHeadRot = yBodyRot = yRot;
 
     shared_ptr<LivingEntity> livingRider =
-        dynamic_pointer_cast<LivingEntity>(rider.lock());
+        std::dynamic_pointer_cast<LivingEntity>(rider.lock());
     xa = livingRider->xxa * .5f;
     ya = livingRider->yya;
 
@@ -1258,7 +1258,7 @@ bool EntityHorse::canMate(std::shared_ptr<Animal> partner) {
     if (partner->GetType() != GetType()) return false;
 
     shared_ptr<EntityHorse> horsePartner =
-        dynamic_pointer_cast<EntityHorse>(partner);
+        std::dynamic_pointer_cast<EntityHorse>(partner);
 
     if (!isReadyForParenting() || !horsePartner->isReadyForParenting()) {
         return false;
@@ -1273,7 +1273,7 @@ bool EntityHorse::canMate(std::shared_ptr<Animal> partner) {
 std::shared_ptr<AgableMob> EntityHorse::getBreedOffspring(
     std::shared_ptr<AgableMob> partner) {
     shared_ptr<EntityHorse> horsePartner =
-        dynamic_pointer_cast<EntityHorse>(partner);
+        std::dynamic_pointer_cast<EntityHorse>(partner);
     shared_ptr<EntityHorse> baby =
         shared_ptr<EntityHorse>(new EntityHorse(level));
 
@@ -1471,7 +1471,7 @@ void EntityHorse::positionRider() {
 
         if (rider.lock()->instanceof(eTYPE_LIVINGENTITY)) {
             shared_ptr<LivingEntity> livingRider =
-                dynamic_pointer_cast<LivingEntity>(rider.lock());
+                std::dynamic_pointer_cast<LivingEntity>(rider.lock());
             livingRider->yBodyRot = yBodyRot;
         }
     }

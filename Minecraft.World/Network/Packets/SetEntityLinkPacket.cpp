@@ -43,6 +43,6 @@ bool SetEntityLinkPacket::canBeInvalidated() { return true; }
 
 bool SetEntityLinkPacket::isInvalidatedBy(std::shared_ptr<Packet> packet) {
     shared_ptr<SetEntityLinkPacket> target =
-        dynamic_pointer_cast<SetEntityLinkPacket>(packet);
+        std::dynamic_pointer_cast<SetEntityLinkPacket>(packet);
     return target->sourceId == sourceId;
 }

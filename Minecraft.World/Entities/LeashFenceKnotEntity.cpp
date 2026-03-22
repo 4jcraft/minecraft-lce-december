@@ -59,7 +59,7 @@ bool LeashFenceKnotEntity::interact(std::shared_ptr<Player> player) {
                                            x + range, y + range, z + range));
             if (mobs != NULL) {
                 for (AUTO_VAR(it, mobs->begin()); it != mobs->end(); ++it) {
-                    shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
+                    shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(*it);
                     if (mob->isLeashed() && mob->getLeashHolder() == player) {
                         mob->setLeashedTo(shared_from_this(), true);
                         attachedMob = true;
@@ -81,7 +81,7 @@ bool LeashFenceKnotEntity::interact(std::shared_ptr<Player> player) {
                                            x + range, y + range, z + range));
             if (mobs != NULL) {
                 for (AUTO_VAR(it, mobs->begin()); it != mobs->end(); ++it) {
-                    shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(*it);
+                    shared_ptr<Mob> mob = std::dynamic_pointer_cast<Mob>(*it);
                     if (mob->isLeashed() &&
                         mob->getLeashHolder() == shared_from_this()) {
                         mob->dropLeash(true, false);
@@ -121,7 +121,7 @@ std::shared_ptr<LeashFenceKnotEntity> LeashFenceKnotEntity::findKnotAt(
     if (knots != NULL) {
         for (AUTO_VAR(it, knots->begin()); it != knots->end(); ++it) {
             shared_ptr<LeashFenceKnotEntity> knot =
-                dynamic_pointer_cast<LeashFenceKnotEntity>(*it);
+                std::dynamic_pointer_cast<LeashFenceKnotEntity>(*it);
             if (knot->xTile == x && knot->yTile == y && knot->zTile == z) {
                 delete knots;
                 return knot;

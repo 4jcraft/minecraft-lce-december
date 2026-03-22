@@ -135,7 +135,7 @@ int Painting::getHeight() { return motive->h; }
 
 void Painting::dropItem(std::shared_ptr<Entity> causedBy) {
     if ((causedBy != NULL) && causedBy->instanceof(eTYPE_PLAYER)) {
-        shared_ptr<Player> player = dynamic_pointer_cast<Player>(causedBy);
+        shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(causedBy);
         if (player->abilities.instabuild) {
             return;
         }

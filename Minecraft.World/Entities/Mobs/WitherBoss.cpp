@@ -20,7 +20,7 @@
 
 bool LivingEntitySelector::matches(std::shared_ptr<Entity> entity) const {
     if (entity->instanceof(eTYPE_LIVINGENTITY)) {
-        return dynamic_pointer_cast<LivingEntity>(entity)->getMobType() !=
+        return std::dynamic_pointer_cast<LivingEntity>(entity)->getMobType() !=
                UNDEAD;
     } else {
         return false;
@@ -244,7 +244,7 @@ void WitherBoss::newServerAiStep() {
                     setAlternativeTarget(i, 0);
                 } else {
                     performRangedAttack(
-                        i + 1, dynamic_pointer_cast<LivingEntity>(current));
+                        i + 1, std::dynamic_pointer_cast<LivingEntity>(current));
                     nextHeadUpdate[i - 1] =
                         tickCount + SharedConstants::TICKS_PER_SECOND * 2 +
                         random->nextInt(SharedConstants::TICKS_PER_SECOND);
@@ -260,13 +260,13 @@ void WitherBoss::newServerAiStep() {
                      attempt++) {
                     int randomIndex = random->nextInt(entities->size());
                     shared_ptr<LivingEntity> selected =
-                        dynamic_pointer_cast<LivingEntity>(
+                        std::dynamic_pointer_cast<LivingEntity>(
                             entities->at(randomIndex));
 
                     if (selected != shared_from_this() && selected->isAlive() &&
                         canSee(selected)) {
                         if (selected->instanceof(eTYPE_PLAYER)) {
-                            if (!dynamic_pointer_cast<Player>(selected)
+                            if (!std::dynamic_pointer_cast<Player>(selected)
                                      ->abilities.invulnerable) {
                                 assert(
                                     selected->instanceof(eTYPE_LIVINGENTITY));
@@ -401,7 +401,7 @@ void WitherBoss::performRangedAttack(int head, double tx, double ty, double tz,
     double zd = tz - hz;
 
     shared_ptr<WitherSkull> ie = shared_ptr<WitherSkull>(new WitherSkull(
-        level, dynamic_pointer_cast<LivingEntity>(shared_from_this()), xd, yd,
+        level, std::dynamic_pointer_cast<LivingEntity>(shared_from_this()), xd, yd,
         zd));
     if (dangerous) ie->setDangerous(true);
     ie->y = hy;
@@ -433,7 +433,7 @@ bool WitherBoss::hurt(DamageSource* source, float dmg) {
     if (sourceEntity != NULL) {
         if (sourceEntity->instanceof(eTYPE_PLAYER)) {
         } else if (sourceEntity->instanceof(eTYPE_LIVINGENTITY) &&
-                   dynamic_pointer_cast<LivingEntity>(sourceEntity)
+                   std::dynamic_pointer_cast<LivingEntity>(sourceEntity)
                            ->getMobType() == getMobType()) {
             // can't be harmed by other undead
             return false;

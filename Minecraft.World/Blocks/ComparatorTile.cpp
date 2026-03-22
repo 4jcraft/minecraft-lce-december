@@ -111,7 +111,7 @@ int ComparatorTile::getInputSignal(Level* level, int x, int y, int z,
 
 std::shared_ptr<ComparatorTileEntity> ComparatorTile::getComparator(
     LevelSource* level, int x, int y, int z) {
-    return dynamic_pointer_cast<ComparatorTileEntity>(
+    return std::dynamic_pointer_cast<ComparatorTileEntity>(
         level->getTileEntity(x, y, z));
 }
 

@@ -96,7 +96,7 @@ void HopperTile::checkPoweredState(Level* level, int x, int y, int z) {
 
 void HopperTile::onRemove(Level* level, int x, int y, int z, int id, int data) {
     shared_ptr<Container> container =
-        dynamic_pointer_cast<HopperTileEntity>(level->getTileEntity(x, y, z));
+        std::dynamic_pointer_cast<HopperTileEntity>(level->getTileEntity(x, y, z));
     if (container != NULL) {
         for (int i = 0; i < container->getContainerSize(); i++) {
             shared_ptr<ItemInstance> item = container->getItem(i);
@@ -183,6 +183,6 @@ std::wstring HopperTile::getTileItemIconName() { return L"hopper"; }
 
 std::shared_ptr<HopperTileEntity> HopperTile::getHopper(LevelSource* level,
                                                         int x, int y, int z) {
-    return dynamic_pointer_cast<HopperTileEntity>(
+    return std::dynamic_pointer_cast<HopperTileEntity>(
         level->getTileEntity(x, y, z));
 }

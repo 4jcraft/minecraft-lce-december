@@ -11,7 +11,7 @@ void ArrowRenderer::render(std::shared_ptr<Entity> _arrow, double x, double y,
     // 4J - original version used generics and thus had an input parameter of
     // type Arrow rather than shared_ptr<Entity>  we have here - do some casting
     // around instead
-    std::shared_ptr<Arrow> arrow = dynamic_pointer_cast<Arrow>(_arrow);
+    std::shared_ptr<Arrow> arrow = std::dynamic_pointer_cast<Arrow>(_arrow);
     bindTexture(_arrow);  // 4J - was L"/item/arrows.png"
 
     glPushMatrix();

@@ -114,7 +114,7 @@ int DetectorRailTile::getAnalogOutputSignal(Level* level, int x, int y, int z,
             shared_ptr<Entity> out = entities->at(0);
             delete entities;
             return AbstractContainerMenu::getRedstoneSignalFromContainer(
-                dynamic_pointer_cast<Container>(out));
+                std::dynamic_pointer_cast<Container>(out));
         }
     }
 

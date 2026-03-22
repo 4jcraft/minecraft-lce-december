@@ -29,7 +29,7 @@ int CommandBlockEntity::performCommand(Level* level) {
 	if (instance != NULL && instance->isCommandBlockEnabled())
 	{
 		CommandDispatcher *commandDispatcher = instance->getCommandDispatcher();
-		return commandDispatcher->performCommand(dynamic_pointer_cast<CommandSender>(shared_from_this()), command, byteArray() );
+		return commandDispatcher->performCommand(std::dynamic_pointer_cast<CommandSender>(shared_from_this()), command, byteArray() );
 	}
 	return 0;
 #else

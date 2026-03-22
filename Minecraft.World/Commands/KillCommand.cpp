@@ -11,7 +11,7 @@ int KillCommand::getPermissionLevel() { return LEVEL_ALL; }
 
 void KillCommand::execute(std::shared_ptr<CommandSender> source,
                           byteArray commandData) {
-    shared_ptr<Player> player = dynamic_pointer_cast<Player>(source);
+    shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(source);
 
     player->hurt(DamageSource::outOfWorld, Float::MAX_VALUE);
 
