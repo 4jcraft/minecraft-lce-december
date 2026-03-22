@@ -71,7 +71,7 @@ ServerPlayer::ServerPlayer(MinecraftServer* server, Level* level,
         level->getLevelData()->getGameType() != GameType::ADVENTURE) {
         level->isFindingSpawn = true;
 
-        int radius = max(5, server->getSpawnProtectionRadius() - 6);
+        int radius = std::max(5, server->getSpawnProtectionRadius() - 6);
 
         // 4J added - do additional checking that we aren't putting the player
         // in deep water. Give up after 20 or goes just in case the spawnPos is
@@ -255,7 +255,7 @@ void ServerPlayer::tick() {
 void ServerPlayer::flushEntitiesToRemove() {
     while (!entitiesToRemove.empty()) {
         int sz = entitiesToRemove.size();
-        int amount = min(sz, RemoveEntitiesPacket::MAX_PER_PACKET);
+        int amount = std::min(sz, RemoveEntitiesPacket::MAX_PER_PACKET);
         intArray ids(amount);
         int pos = 0;
 
