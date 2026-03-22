@@ -48,8 +48,8 @@ BufferedImage::BufferedImage(const std::wstring& File,
                              bool bTitleUpdateTexture /*=false*/,
                              const std::wstring& drive /*=L""*/) {
     HRESULT hr;
-    wstring wDrive;
-    wstring filePath;
+    std::wstring wDrive;
+    std::wstring filePath;
     filePath = File;
 
     wDrive = drive;
@@ -78,7 +78,7 @@ BufferedImage::BufferedImage(const std::wstring& File,
             pchUsrDir = getUsrDirPath();
         }
 
-        wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
+        std::wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
 
         if (bTitleUpdateTexture) {
             // Make the content package point to to the UPDATE: drive is needed
@@ -125,8 +125,8 @@ BufferedImage::BufferedImage(const std::wstring& File,
     }
 
     for (int l = 0; l < 10; l++) {
-        wstring name;
-        wstring mipMapPath = L"";
+        std::wstring name;
+        std::wstring mipMapPath = L"";
         if (l != 0) {
             mipMapPath = L"MipMapLevel" + _toString<int>(l + 1);
         }
@@ -167,7 +167,7 @@ BufferedImage::BufferedImage(const std::wstring& File,
 BufferedImage::BufferedImage(DLCPack* dlcPack, const std::wstring& File,
                              bool filenameHasExtension /*= false*/) {
     HRESULT hr;
-    wstring filePath = File;
+    std::wstring filePath = File;
     BYTE* pbData = NULL;
     DWORD dwBytes = 0;
 
@@ -176,8 +176,8 @@ BufferedImage::BufferedImage(DLCPack* dlcPack, const std::wstring& File,
     }
 
     for (int l = 0; l < 10; l++) {
-        wstring name;
-        wstring mipMapPath = L"";
+        std::wstring name;
+        std::wstring mipMapPath = L"";
         if (l != 0) {
             mipMapPath = L"MipMapLevel" + _toString<int>(l + 1);
         }

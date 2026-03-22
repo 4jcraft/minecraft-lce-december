@@ -19,9 +19,10 @@ public:
 
     static const int TFLT_NEAREST = GL_NEAREST;
     static const int TFLT_LINEAR = GL_LINEAR;
-    static const int TFLT_LINEAR_MIP_NEAREST = 0;   // GL_LINEAR_MIPMAP_NEAREST;
-    static const int TFLT_LINEAR_MIP_LINEAR = 0;    // GL_LINEAR_MIPMAP_LINEAR;
-    static const int TFLT_NEAREST_MIP_NEAREST = 0;  // GL_NEAREST_MIPMAP_NEAREST;
+    static const int TFLT_LINEAR_MIP_NEAREST = 0;  // GL_LINEAR_MIPMAP_NEAREST;
+    static const int TFLT_LINEAR_MIP_LINEAR = 0;   // GL_LINEAR_MIPMAP_LINEAR;
+    static const int TFLT_NEAREST_MIP_NEAREST =
+        0;  // GL_NEAREST_MIPMAP_NEAREST;
     static const int TFLT_NEAREST_MIP_LINEAR = GL_NEAREST_MIPMAP_LINEAR;
 
     static const int TM_STATIC = 0;
@@ -89,7 +90,7 @@ public:
             BufferedImage* image, bool mipMap = true);
 
     const Rect2i* getRect();
-    void fill(const Rect2i* rect, int color);
+    void std::fill(const Rect2i* rect, int color);
     void writeAsBMP(const std::wstring& name);
     void writeAsPNG(const std::wstring& filename);
     void blit(int x, int y, Texture* source);

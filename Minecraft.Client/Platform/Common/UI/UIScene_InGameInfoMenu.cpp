@@ -17,7 +17,7 @@ UIScene_InGameInfoMenu::UIScene_InGameInfoMenu(int iPad, void* initData,
     m_labelTitle.init(app.GetString(IDS_PLAYERS_INVITE));
     m_playerList.init(eControl_GamePlayers);
 
-    m_players = vector<PlayerInfo*>();
+    m_players = std::vector<PlayerInfo*>();
 
     DWORD playerCount = g_NetworkManager.GetPlayerCount();
 
@@ -42,7 +42,7 @@ UIScene_InGameInfoMenu::UIScene_InGameInfoMenu(int iPad, void* initData,
     if (thisPlayer != NULL) m_isHostPlayer = thisPlayer->IsHost() == TRUE;
 
     Minecraft* pMinecraft = Minecraft::GetInstance();
-    shared_ptr<MultiplayerLocalPlayer> localPlayer =
+    std::shared_ptr<MultiplayerLocalPlayer> localPlayer =
         pMinecraft->localplayers[m_iPad];
     if (!m_isHostPlayer && !localPlayer->isModerator()) {
         removeControl(&m_buttonGameOptions, false);
@@ -97,7 +97,7 @@ void UIScene_InGameInfoMenu::updateTooltips() {
 
     int keyA = -1;
     Minecraft* pMinecraft = Minecraft::GetInstance();
-    shared_ptr<MultiplayerLocalPlayer> localPlayer =
+    std::shared_ptr<MultiplayerLocalPlayer> localPlayer =
         pMinecraft->localplayers[m_iPad];
 
     bool isOp = m_isHostPlayer || localPlayer->isModerator();
@@ -185,7 +185,7 @@ void UIScene_InGameInfoMenu::handleReload() {
     if (thisPlayer != NULL) m_isHostPlayer = thisPlayer->IsHost() == TRUE;
 
     Minecraft* pMinecraft = Minecraft::GetInstance();
-    shared_ptr<MultiplayerLocalPlayer> localPlayer =
+    std::shared_ptr<MultiplayerLocalPlayer> localPlayer =
         pMinecraft->localplayers[m_iPad];
     if (!m_isHostPlayer && !localPlayer->isModerator()) {
         removeControl(&m_buttonGameOptions, false);
@@ -334,7 +334,7 @@ void UIScene_InGameInfoMenu::handlePress(F64 controlId, F64 childId) {
                     m_players[currentSelection]->m_smallId);
 
             Minecraft* pMinecraft = Minecraft::GetInstance();
-            shared_ptr<MultiplayerLocalPlayer> localPlayer =
+            std::shared_ptr<MultiplayerLocalPlayer> localPlayer =
                 pMinecraft->localplayers[m_iPad];
 
             bool isOp = m_isHostPlayer || localPlayer->isModerator();
@@ -468,11 +468,11 @@ int UIScene_InGameInfoMenu::KickPlayerReturned(
 
     if (result == C4JStorage::EMessage_ResultAccept) {
         Minecraft* pMinecraft = Minecraft::GetInstance();
-        shared_ptr<MultiplayerLocalPlayer> localPlayer =
+        std::shared_ptr<MultiplayerLocalPlayer> localPlayer =
             pMinecraft->localplayers[iPad];
         if (localPlayer->connection) {
-            localPlayer->connection->send(
-                shared_ptr<KickPlayerPacket>(new KickPlayerPacket(smallId)));
+            localPlayer->connection->send(std::shared_ptr<KickPlayerPacket>(
+                new KickPlayerPacket(smallId)));
         }
     }
 
@@ -484,7 +484,7 @@ UIScene_InGameInfoMenu::PlayerInfo* UIScene_InGameInfoMenu::BuildPlayerInfo(
     PlayerInfo* info = new PlayerInfo();
     info->m_smallId = player->GetSmallId();
 
-    wstring playerName = L"";
+    std::wstring playerName = L"";
 #ifndef _CONTENT_PACKAGE
     if (app.DebugSettingsOn() && (app.GetGameSettingsDebugMask() &
                                   (1L << eDebugSetting_DebugLeaderboards))) {

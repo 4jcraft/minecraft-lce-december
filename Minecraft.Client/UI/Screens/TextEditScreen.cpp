@@ -33,7 +33,7 @@ void TextEditScreen::init() {
 void TextEditScreen::removed() {
     Keyboard::enableRepeatEvents(false);
     if (minecraft->level->isClientSide) {
-        minecraft->getConnection(0)->send(shared_ptr<SignUpdatePacket>(
+        minecraft->getConnection(0)->send(std::shared_ptr<SignUpdatePacket>(
             new SignUpdatePacket(sign->x, sign->y, sign->z, sign->IsVerified(),
                                  sign->IsCensored(), sign->GetMessages())));
     }
@@ -55,7 +55,7 @@ void TextEditScreen::keyPressed(wchar_t ch, int eventKey) {
     if (eventKey == Keyboard::KEY_DOWN || eventKey == Keyboard::KEY_RETURN)
         line = (line + 1) & 3;
 
-    wstring temp = sign->GetMessage(line);
+    std::wstring temp = sign->GetMessage(line);
     if (eventKey == Keyboard::KEY_BACK && temp.length() > 0) {
         temp = temp.substr(0, temp.length() - 1);
     }

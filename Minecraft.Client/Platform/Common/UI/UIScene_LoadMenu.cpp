@@ -450,7 +450,8 @@ void UIScene_LoadMenu::tick() {
         // 			// dump out the thumbnail
         // 			HANDLE hThumbnail =
         // CreateFile("GAME:\\thumbnail.png", GENERIC_WRITE, 0, NULL,
-        // OPEN_ALWAYS, FILE_FLAG_RANDOM_ACCESS, NULL); 			DWORD dwBytes;
+        // OPEN_ALWAYS, FILE_FLAG_RANDOM_ACCESS, NULL);
+        // DWORD dwBytes;
         // 			WriteFile(hThumbnail,pbImageData,dwImageBytes,&dwBytes,NULL);
         // 			XCloseHandle(hThumbnail);
         // #endif
@@ -1063,7 +1064,7 @@ void UIScene_LoadMenu::handleTimerComplete(int id) {
 
                     if (pDLCInfo) {
                         // retrieve the image - if we haven't already
-                        wstring textureName =
+                        std::wstring textureName =
                             filenametowstring(pDLCInfo->chImageURL);
 
                         if (hasRegisteredSubstitutionTexture(textureName) ==

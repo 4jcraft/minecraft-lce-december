@@ -38,7 +38,7 @@ bool StitchSlot::add(TextureHolder* textureHolder) {
 
     // See if we're already divided before, if not, setup subSlots
     if (subSlots == NULL) {
-        subSlots = new vector<StitchSlot*>();
+        subSlots = new std::vector<StitchSlot*>();
 
         // First slot is for the new texture
         subSlots->push_back(
@@ -119,7 +119,7 @@ bool StitchSlot::add(TextureHolder* textureHolder) {
     return false;
 }
 
-void StitchSlot::collectAssignments(vector<StitchSlot*>* result) {
+void StitchSlot::collectAssignments(std::vector<StitchSlot*>* result) {
     if (textureHolder != NULL) {
         result->push_back(this);
     } else if (subSlots != NULL) {

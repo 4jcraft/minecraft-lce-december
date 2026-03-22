@@ -64,7 +64,7 @@ void UIScene_JoinMenu::tick() {
                 } else
 #endif
                 {
-                    string playerName(
+                    std::string playerName(
                         m_selectedSession->data.players[i].getOnlineID());
 
 #ifndef __PSVITA__

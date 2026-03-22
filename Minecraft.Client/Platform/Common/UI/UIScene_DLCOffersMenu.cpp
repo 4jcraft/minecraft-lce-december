@@ -240,9 +240,9 @@ void UIScene_DLCOffersMenu::handlePress(F64 controlId, F64 childId) {
 #if defined(__PS3__) || defined(__ORBIS__) || defined(__PSVITA__)
             // buy the DLC
 
-            vector<SonyCommerce::ProductInfo>::iterator it =
+            std::vector<SonyCommerce::ProductInfo>::iterator it =
                 m_pvProductInfo->begin();
-            string teststring;
+            std::string teststring;
             for (int i = 0; i < childId; i++) {
                 it++;
             }
@@ -315,9 +315,9 @@ void UIScene_DLCOffersMenu::handleFocusChange(F64 controlId, F64 childId) {
 #if defined __PSVITA__ || defined __ORBIS__
     if (m_pvProductInfo) {
         m_bIsSelected = true;
-        vector<SonyCommerce::ProductInfo>::iterator it =
+        std::vector<SonyCommerce::ProductInfo>::iterator it =
             m_pvProductInfo->begin();
-        string teststring;
+        std::string teststring;
         for (int i = 0; i < childId; i++) {
             it++;
         }
@@ -361,9 +361,9 @@ void UIScene_DLCOffersMenu::tick() {
                     m_iTotalDLC = m_pvProductInfo->size();
             }
 
-            vector<SonyCommerce::ProductInfo>::iterator it =
+            std::vector<SonyCommerce::ProductInfo>::iterator it =
                 m_pvProductInfo->begin();
-            string teststring;
+            std::string teststring;
             bool bFirstItemSet = false;
             for (int i = 0; i < m_iTotalDLC; i++) {
                 SonyCommerce::ProductInfo info = *it;
@@ -396,8 +396,8 @@ void UIScene_DLCOffersMenu::tick() {
                         bDLCIsAvailable = true;
                     }
                 }
-#else  // __ORBIS__
-       // is the item purchasable?
+#else   // __ORBIS__
+        // is the item purchasable?
                 if (info.purchasabilityFlag ==
                     SCE_TOOLKIT_NP_COMMERCE_NOT_PURCHASED) {
                     // can be bought
@@ -431,7 +431,7 @@ void UIScene_DLCOffersMenu::tick() {
                     }
 
                     // get the image - if we haven't already
-                    wstring textureName = filenametowstring(info.imageUrl);
+                    std::wstring textureName = filenametowstring(info.imageUrl);
 
                     if (hasRegisteredSubstitutionTexture(textureName) ==
                         false) {
@@ -502,7 +502,7 @@ void UIScene_DLCOffersMenu::tick() {
             app.GetCommerceProductListRetrieved() &&
             app.GetCommerceProductListInfoRetrieved() && m_iTotalDLC > 0) {
             {
-                vector<SonyCommerce::ProductInfo>::iterator it =
+                std::vector<SonyCommerce::ProductInfo>::iterator it =
                     m_pvProductInfo->begin();
                 for (int i = 0; i < m_iTotalDLC; i++) {
                     SonyCommerce::ProductInfo info = *it;
@@ -525,9 +525,9 @@ void UIScene_DLCOffersMenu::tick() {
         if ((m_bProductInfoShown == false) &&
             app.GetCommerceProductListRetrieved() &&
             app.GetCommerceProductListInfoRetrieved() && m_iTotalDLC > 0) {
-            vector<SonyCommerce::ProductInfo>::iterator it =
+            std::vector<SonyCommerce::ProductInfo>::iterator it =
                 m_pvProductInfo->begin();
-            string teststring;
+            std::string teststring;
             for (int i = 0; i < m_iCurrentDLC; i++) {
                 it++;
             }
@@ -553,7 +553,7 @@ void UIScene_DLCOffersMenu::tick() {
             // get the image
 
             // then retrieve from the web
-            wstring textureName = filenametowstring(info.imageUrl);
+            std::wstring textureName = filenametowstring(info.imageUrl);
 
             if (hasRegisteredSubstitutionTexture(textureName) == false) {
                 PBYTE pbImageData;
@@ -709,7 +709,7 @@ void UIScene_DLCOffersMenu::GetDLCInfo(int iOfferC, bool bUpdateOnly) {
             }
 
             if (pDLC->eDLCType == (eDLCContentType)m_iProductInfoIndex) {
-                wstring wstrTemp = xOffer.wszOfferName;
+                std::wstring wstrTemp = xOffer.wszOfferName;
 
                 // 4J-PB - Rog requested we remove the Minecraft at the start of
                 // the name. It's required for the Bing search, but gets in the
@@ -770,7 +770,7 @@ void UIScene_DLCOffersMenu::GetDLCInfo(int iOfferC, bool bUpdateOnly) {
         // set the default text
 
         wchar_t formatting[40];
-        wstring wstrTemp = app.GetString(IDS_NO_DLCOFFERS);
+        std::wstring wstrTemp = app.GetString(IDS_NO_DLCOFFERS);
         // 		swprintf(formatting, 40, L"<font size=\"%d\">",
         // m_bIsSD?12:14); 		wstrTemp = formatting + wstrTemp;
 
@@ -854,7 +854,7 @@ bool UIScene_DLCOffersMenu::UpdateDisplay(
         UpdateTooltips(xOffer);
     } else {
         wchar_t formatting[40];
-        wstring wstrTemp = app.GetString(IDS_NO_DLCOFFERS);
+        std::wstring wstrTemp = app.GetString(IDS_NO_DLCOFFERS);
         m_labelHTMLSellText.setLabel(wstrTemp.c_str());
         m_labelPriceTag.setVisible(false);
     }

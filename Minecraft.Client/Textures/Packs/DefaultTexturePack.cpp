@@ -50,7 +50,7 @@ bool DefaultTexturePack::isTerrainUpdateCompatible() { return true; }
 InputStream* DefaultTexturePack::getResourceImplementation(
     const std::wstring& name)  // throws FileNotFoundException
 {
-    wstring wDrive = L"";
+    std::wstring wDrive = L"";
     // Make the content package point to to the UPDATE: drive is needed
 #ifdef _XBOX
 #ifdef _TU_BUILD
@@ -78,7 +78,7 @@ InputStream* DefaultTexturePack::getResourceImplementation(
             pchTextureName, pchUsrDir);
     }
 
-    wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
+    std::wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
 
     wDrive = wstr + L"\\Common\\res\\TitleUpdate\\res";
 #elif __PSVITA__

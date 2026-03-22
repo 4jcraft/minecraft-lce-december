@@ -3,7 +3,7 @@
 
 std::wstring TexturePack::getPath(bool bTitleUpdateTexture /*= false*/,
                                   const char* pchBDPatchFileName /*= NULL*/) {
-    wstring wDrive;
+    std::wstring wDrive;
 #ifdef _XBOX
     if (bTitleUpdateTexture) {
         // Make the content package point to to the UPDATE: drive is needed
@@ -25,7 +25,7 @@ std::wstring TexturePack::getPath(bool bTitleUpdateTexture /*= false*/,
     char* pchUsrDir = NULL;
     if (app.GetBootedFromDiscPatch() && pchBDPatchFileName != NULL) {
         pchUsrDir = app.GetBDUsrDirPath(pchBDPatchFileName);
-        wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
+        std::wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
 
         if (bTitleUpdateTexture) {
             wDrive = wstr + L"\\Common\\res\\TitleUpdate\\";
@@ -36,7 +36,7 @@ std::wstring TexturePack::getPath(bool bTitleUpdateTexture /*= false*/,
     } else {
         pchUsrDir = getUsrDirPath();
 
-        wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
+        std::wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
 
         if (bTitleUpdateTexture) {
             // Make the content package point to to the UPDATE: drive is needed
@@ -48,7 +48,7 @@ std::wstring TexturePack::getPath(bool bTitleUpdateTexture /*= false*/,
 
 #elif __PSVITA__
     char* pchUsrDir = "";  // getUsrDirPath();
-    wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
+    std::wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
 
     if (bTitleUpdateTexture) {
         // Make the content package point to to the UPDATE: drive is needed

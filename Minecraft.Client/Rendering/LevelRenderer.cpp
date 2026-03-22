@@ -161,7 +161,7 @@ LevelRenderer::LevelRenderer(Minecraft* mc, Textures* textures) {
         emptyChunks = 0;
     for (int i = 0; i < 4; i++) {
         //		sortedChunks[i] = NULL;	// 4J - removed - not sorting
-        //our chunks anymore
+        // our chunks anymore
         chunks[i] = ClipChunkArray();
         lastPlayerCount[i] = 0;
     }
@@ -380,7 +380,7 @@ void LevelRenderer::setLevel(int playerIndex, MultiPlayerLevel* level) {
         allChanged(playerIndex);
     } else {
         //		printf("NULLing player %d, chunks @
-        //0x%x\n",playerIndex,chunks[playerIndex]);
+        // 0x%x\n",playerIndex,chunks[playerIndex]);
         if (chunks[playerIndex].data != NULL) {
             for (unsigned int i = 0; i < chunks[playerIndex].length; i++) {
                 chunks[playerIndex][i].chunk->_delete();
@@ -390,8 +390,9 @@ void LevelRenderer::setLevel(int playerIndex, MultiPlayerLevel* level) {
             chunks[playerIndex].data = NULL;
             chunks[playerIndex].length = 0;
             //			delete sortedChunks[playerIndex];	// 4J -
-            //removed - not sorting our chunks anymore 			sortedChunks[playerIndex]
-            //= NULL;	// 4J - removed - not sorting our chunks anymore
+            // removed - not sorting our chunks anymore
+            // sortedChunks[playerIndex] = NULL;	// 4J - removed - not
+            //sorting our chunks anymore
         }
 
         // 4J Stu - If we do this for splitscreen players leaving, then all the
@@ -465,7 +466,7 @@ void LevelRenderer::allChanged(int playerIndex) {
 
     chunks[playerIndex] = ClipChunkArray(xChunks * yChunks * zChunks);
     //	sortedChunks[playerIndex] = new vector<Chunk *>(xChunks * yChunks *
-    //zChunks);		// 4J - removed - not sorting our chunks anymore
+    // zChunks);		// 4J - removed - not sorting our chunks anymore
     int id = 0;
     int count = 0;
 
@@ -496,8 +497,8 @@ void LevelRenderer::allChanged(int playerIndex) {
                     count++;
                 //				sortedChunks[playerIndex]->at((z
                 //* yChunks + y) * xChunks + x) = chunks[playerIndex]->at((z *
-                //yChunks + y) * xChunks + x);	// 4J - removed - not sorting
-                //our chunks anymore
+                // yChunks + y) * xChunks + x);	// 4J - removed - not sorting
+                // our chunks anymore
 
                 id += 3;
             }
@@ -506,13 +507,13 @@ void LevelRenderer::allChanged(int playerIndex) {
     nonStackDirtyChunksAdded();
 
     if (level != NULL) {
-        shared_ptr<Entity> player = mc->cameraTargetPlayer;
+        std::shared_ptr<Entity> player = mc->cameraTargetPlayer;
         if (player != NULL) {
             this->resortChunks(Mth::floor(player->x), Mth::floor(player->y),
                                Mth::floor(player->z));
             //			sort(sortedChunks[playerIndex]->begin(),sortedChunks[playerIndex]->end(),
-            //DistanceChunkSorter(player));	// 4J - removed - not sorting
-            //our chunks anymore
+            // DistanceChunkSorter(player));	// 4J - removed - not sorting
+            // our chunks anymore
         }
     }
 
@@ -544,7 +545,7 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
     renderedEntities = 0;
     culledEntities = 0;
 
-    shared_ptr<Entity> player = mc->cameraTargetPlayer;
+    std::shared_ptr<Entity> player = mc->cameraTargetPlayer;
 
     EntityRenderDispatcher::xOff =
         (player->xOld + (player->x - player->xOld) * a);
@@ -561,13 +562,14 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
 
     mc->gameRenderer->turnOnLightLayer(a);  // 4J - brought forward from 1.8.2
 
-    vector<shared_ptr<Entity> > entities = level[playerIndex]->getAllEntities();
+    std::vector<std::shared_ptr<Entity> > entities =
+        level[playerIndex]->getAllEntities();
     totalEntities = (int)entities.size();
 
     AUTO_VAR(itEndGE, level[playerIndex]->globalEntities.end());
     for (AUTO_VAR(it, level[playerIndex]->globalEntities.begin());
          it != itEndGE; it++) {
-        shared_ptr<Entity> entity = *it;  // level->globalEntities[i];
+        std::shared_ptr<Entity> entity = *it;  // level->globalEntities[i];
         renderedEntities++;
         if (entity->shouldRender(cam))
             EntityRenderDispatcher::instance->render(entity, a);
@@ -575,7 +577,7 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
 
     AUTO_VAR(itEndEnts, entities.end());
     for (AUTO_VAR(it, entities.begin()); it != itEndEnts; it++) {
-        shared_ptr<Entity> entity = *it;  // entities[i];
+        std::shared_ptr<Entity> entity = *it;  // entities[i];
 
         bool shouldRender =
             (entity->shouldRender(cam) &&
@@ -583,9 +585,9 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
 
         // Render the mob if the mob's leash holder is within the culler
         if (!shouldRender && entity->instanceof(eTYPE_MOB)) {
-            shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
+            std::shared_ptr<Mob> mob = dynamic_pointer_cast<Mob>(entity);
             if (mob->isLeashed() && (mob->getLeashHolder() != NULL)) {
-                shared_ptr<Entity> leashHolder = mob->getLeashHolder();
+                std::shared_ptr<Entity> leashHolder = mob->getLeashHolder();
                 shouldRender = culler->isVisible(leashHolder->bb);
             }
         }
@@ -595,7 +597,7 @@ void LevelRenderer::renderEntities(Vec3* cam, Culler* culler, float a) {
             // if (entity == mc->cameraTargetPlayer &&
             // !mc->options->thirdPersonView &&
             // !mc->cameraTargetPlayer->isSleeping()) continue;
-            shared_ptr<LocalPlayer> localplayer =
+            std::shared_ptr<LocalPlayer> localplayer =
                 mc->cameraTargetPlayer->instanceof(eTYPE_LOCALPLAYER)
                     ? dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer)
                     : nullptr;
@@ -763,8 +765,8 @@ int LevelRenderer::render(std::shared_ptr<LivingEntity> player, int layer,
         resortChunks(Mth::floor(player->x), Mth::floor(player->y),
                      Mth::floor(player->z));
         //		sort(sortedChunks[playerIndex]->begin(),sortedChunks[playerIndex]->end(),
-        //DistanceChunkSorter(player));	// 4J - removed - not sorting our chunks
-        //anymore
+        // DistanceChunkSorter(player));	// 4J - removed - not sorting
+        // our chunks anymore
     }
     Lighting::turnOff();
 
@@ -796,7 +798,7 @@ int LevelRenderer::renderChunks(int from, int to, int layer, double alpha) {
     // sorted chunk list, anymore
     mc->gameRenderer->turnOnLightLayer(
         alpha);  // 4J - brought forward from 1.8.2
-    shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
+    std::shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
     double xOff = player->xOld + (player->x - player->xOld) * alpha;
     double yOff = player->yOld + (player->y - player->yOld) * alpha;
     double zOff = player->zOld + (player->z - player->zOld) * alpha;
@@ -924,7 +926,7 @@ int LevelRenderer::renderChunks(int from, int to, int layer, double alpha) {
         }
     }
 
-    shared_ptr<Mob> player = mc->cameraTargetPlayer;
+    std::shared_ptr<Mob> player = mc->cameraTargetPlayer;
     double xOff = player->xOld + (player->x - player->xOld) * alpha;
     double yOff = player->yOld + (player->y - player->yOld) * alpha;
     double zOff = player->zOld + (player->z - player->zOld) * alpha;
@@ -2041,7 +2043,7 @@ bool LevelRenderer::updateDirtyChunks() {
             // the main thread when a player chooses to exit the game So take a
             // reference to the player object now. As it is a shared_ptr it
             // should live as long as we need it
-            shared_ptr<LocalPlayer> player = mc->localplayers[p];
+            std::shared_ptr<LocalPlayer> player = mc->localplayers[p];
             if (player == NULL) continue;
             if (chunks[p].data == NULL) continue;
             if (level[p] == NULL) continue;
@@ -2052,7 +2054,7 @@ bool LevelRenderer::updateDirtyChunks() {
 
             //			app.DebugPrintf("!! %d %d %d, %d %d %d {%d,%d}
             //",px,py,pz,stackChunkDirty,nonStackChunkDirty,onlyRebuild,
-            //xChunks, zChunks);
+            // xChunks, zChunks);
 
             int considered = 0;
             int wouldBeNearButEmpty = 0;
@@ -2233,8 +2235,9 @@ bool LevelRenderer::updateDirtyChunks() {
 
             if (bAtomic || (index == 0)) {
                 // PIXBeginNamedEvent(0,"Rebuilding near chunk %d %d
-                // %d",chunk->x, chunk->y, chunk->z); 		static __int64 totalTime =
-                //0; 		static __int64 countTime = 0;
+                // %d",chunk->x, chunk->y, chunk->z); 		static __int64
+                // totalTime =
+                // 0; 		static __int64 countTime = 0;
                 //		__int64 startTime = System::currentTimeMillis();
 
                 // app.DebugPrintf("Rebuilding permaChunk %d\n", index);
@@ -2530,7 +2533,7 @@ void LevelRenderer::setDirty(int x0, int y0, int z0, int x1, int y1, int z1,
         for (int y = _y0; y <= _y1; y++) {
             for (int z = _z0; z <= _z1; z++) {
                 //				printf("Setting %d %d %d
-                //dirty\n",x,y,z);
+                // dirty\n",x,y,z);
                 int index =
                     getGlobalIndexForChunk(x * 16, y * 16, z * 16, level);
                 // Rather than setting the flags directly, add any dirty chunks
@@ -2608,7 +2611,7 @@ void LevelRenderer::setDirty(int x0, int y0, int z0, int x1, int y1, int z1,
 #endif
                 }
                 //				setGlobalChunkFlag(x * 16, y *
-                //16, z * 16, level, CHUNK_FLAG_DIRTY);
+                // 16, z * 16, level, CHUNK_FLAG_DIRTY);
             }
         }
     }
@@ -2960,7 +2963,7 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
         // blocks do not show notes
         bool inRange = false;
         for (unsigned int i = 0; i < XUSER_MAX_COUNT; ++i) {
-            shared_ptr<Player> thisPlayer = mc->localplayers[i];
+            std::shared_ptr<Player> thisPlayer = mc->localplayers[i];
             if (thisPlayer != NULL && level[i] == lev) {
                 xd = thisPlayer->x - x;
                 yd = thisPlayer->y - y;
@@ -2980,46 +2983,47 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
         return nullptr;
     }
 
-    shared_ptr<Particle> particle;
+    std::shared_ptr<Particle> particle;
 
     switch (eParticleType) {
         case eParticleType_hugeexplosion:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new HugeExplosionSeedParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_largeexplode:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new HugeExplosionParticle(textures, lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_fireworksspark:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new FireworksParticles::FireworksSparkParticle(
                     lev, x, y, z, xa, ya, za, mc->particleEngine));
             particle->setAlpha(0.99f);
             break;
 
         case eParticleType_bubble:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new BubbleParticle(lev, x, y, z, xa, ya, za));
             break;
 
         case eParticleType_suspended:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SuspendedParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_depthsuspend:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SuspendedTownParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_townaura:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SuspendedTownParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_crit: {
-            shared_ptr<CritParticle2> critParticle2 = shared_ptr<CritParticle2>(
-                new CritParticle2(lev, x, y, z, xa, ya, za));
+            std::shared_ptr<CritParticle2> critParticle2 =
+                std::shared_ptr<CritParticle2>(
+                    new CritParticle2(lev, x, y, z, xa, ya, za));
             critParticle2->CritParticle2PostConstructor();
-            particle = shared_ptr<Particle>(critParticle2);
+            particle = std::shared_ptr<Particle>(critParticle2);
             // request from 343 to set pink for the needler in the Halo Texture
             // Pack Set particle colour from colour-table.
             unsigned int cStart =
@@ -3045,17 +3049,18 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
             }
         } break;
         case eParticleType_magicCrit: {
-            shared_ptr<CritParticle2> critParticle2 = shared_ptr<CritParticle2>(
-                new CritParticle2(lev, x, y, z, xa, ya, za));
+            std::shared_ptr<CritParticle2> critParticle2 =
+                std::shared_ptr<CritParticle2>(
+                    new CritParticle2(lev, x, y, z, xa, ya, za));
             critParticle2->CritParticle2PostConstructor();
-            particle = shared_ptr<Particle>(critParticle2);
+            particle = std::shared_ptr<Particle>(critParticle2);
             particle->setColor(particle->getRedCol() * 0.3f,
                                particle->getGreenCol() * 0.8f,
                                particle->getBlueCol());
             particle->setNextMiscAnimTex();
         } break;
         case eParticleType_smoke:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SmokeParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_endportal:  // 4J - Added.
@@ -3069,25 +3074,25 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
             tmp->setColor(((col >> 16) & 0xFF) / 255.0f,
                           ((col >> 8) & 0xFF) / 255.0, (col & 0xFF) / 255.0);
 
-            particle = shared_ptr<Particle>(tmp);
+            particle = std::shared_ptr<Particle>(tmp);
         } break;
         case eParticleType_mobSpell:
-            particle =
-                shared_ptr<Particle>(new SpellParticle(lev, x, y, z, 0, 0, 0));
+            particle = std::shared_ptr<Particle>(
+                new SpellParticle(lev, x, y, z, 0, 0, 0));
             particle->setColor((float)xa, (float)ya, (float)za);
             break;
         case eParticleType_mobSpellAmbient:
-            particle = shared_ptr<SpellParticle>(
+            particle = std::shared_ptr<SpellParticle>(
                 new SpellParticle(lev, x, y, z, 0, 0, 0));
             particle->setAlpha(0.15f);
             particle->setColor((float)xa, (float)ya, (float)za);
             break;
         case eParticleType_spell:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SpellParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_witchMagic: {
-            particle = shared_ptr<SpellParticle>(
+            particle = std::shared_ptr<SpellParticle>(
                 new SpellParticle(lev, x, y, z, xa, ya, za));
             dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 * 16);
             float randBrightness = lev->random->nextFloat() * 0.5f + 0.35f;
@@ -3095,91 +3100,92 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
                                1 * randBrightness);
         } break;
         case eParticleType_instantSpell:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SpellParticle(lev, x, y, z, xa, ya, za));
             dynamic_pointer_cast<SpellParticle>(particle)->setBaseTex(9 * 16);
             break;
         case eParticleType_note:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new NoteParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_netherportal:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new NetherPortalParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_ender:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new EnderParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_enchantmenttable:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new EchantmentTableParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_explode:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new ExplodeParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_flame:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new FlameParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_lava:
-            particle = shared_ptr<Particle>(new LavaParticle(lev, x, y, z));
+            particle =
+                std::shared_ptr<Particle>(new LavaParticle(lev, x, y, z));
             break;
         case eParticleType_footstep:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new FootstepParticle(textures, lev, x, y, z));
             break;
         case eParticleType_splash:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SplashParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_largesmoke:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SmokeParticle(lev, x, y, z, xa, ya, za, 2.5f));
             break;
         case eParticleType_reddust:
-            particle = shared_ptr<Particle>(new RedDustParticle(
+            particle = std::shared_ptr<Particle>(new RedDustParticle(
                 lev, x, y, z, (float)xa, (float)ya, (float)za));
             break;
         case eParticleType_snowballpoof:
-            particle = shared_ptr<Particle>(new BreakingItemParticle(
+            particle = std::shared_ptr<Particle>(new BreakingItemParticle(
                 lev, x, y, z, Item::snowBall, textures));
             break;
         case eParticleType_dripWater:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new DripParticle(lev, x, y, z, Material::water));
             break;
         case eParticleType_dripLava:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new DripParticle(lev, x, y, z, Material::lava));
             break;
         case eParticleType_snowshovel:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SnowShovelParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_slime:
-            particle = shared_ptr<Particle>(new BreakingItemParticle(
+            particle = std::shared_ptr<Particle>(new BreakingItemParticle(
                 lev, x, y, z, Item::slimeBall, textures));
             break;
         case eParticleType_heart:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new HeartParticle(lev, x, y, z, xa, ya, za));
             break;
         case eParticleType_angryVillager:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new HeartParticle(lev, x, y + 0.5f, z, xa, ya, za));
             particle->setMiscTex(1 + 16 * 5);
             particle->setColor(1, 1, 1);
             break;
         case eParticleType_happyVillager:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new SuspendedTownParticle(lev, x, y, z, xa, ya, za));
             particle->setMiscTex(2 + 16 * 5);
             particle->setColor(1, 1, 1);
             break;
         case eParticleType_dragonbreath:
-            particle = shared_ptr<Particle>(
+            particle = std::shared_ptr<Particle>(
                 new DragonBreathParticle(lev, x, y, z, xa, ya, za));
             break;
         default:
@@ -3187,14 +3193,14 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
                 (eParticleType <= eParticleType_iconcrack_last)) {
                 int id = PARTICLE_CRACK_ID(eParticleType),
                     data = PARTICLE_CRACK_DATA(eParticleType);
-                particle = shared_ptr<Particle>(new BreakingItemParticle(
+                particle = std::shared_ptr<Particle>(new BreakingItemParticle(
                     lev, x, y, z, xa, ya, za, Item::items[id], textures, data));
             } else if ((eParticleType >= eParticleType_tilecrack_base) &&
                        (eParticleType <= eParticleType_tilecrack_last)) {
                 int id = PARTICLE_CRACK_ID(eParticleType),
                     data = PARTICLE_CRACK_DATA(eParticleType);
                 particle = dynamic_pointer_cast<Particle>(
-                    shared_ptr<TerrainParticle>(
+                    std::shared_ptr<TerrainParticle>(
                         new TerrainParticle(lev, x, y, z, xa, ya, za,
                                             Tile::tiles[id], 0, data, textures))
                         ->init(data));
@@ -3210,7 +3216,7 @@ std::shared_ptr<Particle> LevelRenderer::addParticleInternal(
 
 void LevelRenderer::entityAdded(std::shared_ptr<Entity> entity) {
     if (entity->instanceof(eTYPE_PLAYER)) {
-        shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
         player->prepareCustomTextures();
 
         // 4J-PB - adding these from global title storage
@@ -3227,7 +3233,7 @@ void LevelRenderer::entityAdded(std::shared_ptr<Entity> entity) {
 
 void LevelRenderer::entityRemoved(std::shared_ptr<Entity> entity) {
     if (entity->instanceof(eTYPE_PLAYER)) {
-        shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
+        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(entity);
         if (player->customTextureUrl != L"") {
             textures->removeMemTexture(player->customTextureUrl);
         }
@@ -3407,7 +3413,7 @@ void LevelRenderer::levelEvent(std::shared_ptr<Player> source, int type, int x,
                 double ys = 0.01 + random->nextDouble() * 0.5;
                 double zs = sin(angle) * dist;
 
-                shared_ptr<Particle> spellParticle =
+                std::shared_ptr<Particle> spellParticle =
                     addParticleInternal(particleName, xp + xs * 0.1, yp + 0.3,
                                         zp + zs * 0.1, xs, ys, zs);
                 if (spellParticle != NULL) {
@@ -3437,7 +3443,7 @@ void LevelRenderer::levelEvent(std::shared_ptr<Player> source, int type, int x,
                 double ys = 0.01 + random->nextDouble() * 0.5;
                 double zs = sin(angle) * dist;
 
-                shared_ptr<Particle> acidParticle =
+                std::shared_ptr<Particle> acidParticle =
                     addParticleInternal(particleName, xp + xs * 0.1, yp + 0.3,
                                         zp + zs * 0.1, xs, ys, zs);
                 if (acidParticle != NULL) {
@@ -3624,7 +3630,7 @@ void LevelRenderer::destroyTileProgress(int id, int x, int y, int z,
             entry->getZ() != z) {
             entry = new BlockDestructionProgress(id, x, y, z);
             destroyingBlocks.insert(
-                unordered_map<int, BlockDestructionProgress*>::value_type(
+                std::unordered_map<int, BlockDestructionProgress*>::value_type(
                     id, entry));
         }
 

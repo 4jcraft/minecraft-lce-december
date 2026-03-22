@@ -32,7 +32,7 @@ void VillagerRenderer::render(std::shared_ptr<Entity> mob, double x, double y,
 
 ResourceLocation* VillagerRenderer::getTextureLocation(
     std::shared_ptr<Entity> _mob) {
-    shared_ptr<Villager> mob = dynamic_pointer_cast<Villager>(_mob);
+    std::shared_ptr<Villager> mob = dynamic_pointer_cast<Villager>(_mob);
 
     switch (mob->getProfession()) {
         case Villager::PROFESSION_FARMER:
@@ -59,7 +59,7 @@ void VillagerRenderer::scale(std::shared_ptr<LivingEntity> _mob, float a) {
     // 4J - original version used generics and thus had an input parameter of
     // type Blaze rather than shared_ptr<Entity>  we have here - do some casting
     // around instead
-    shared_ptr<Villager> mob = dynamic_pointer_cast<Villager>(_mob);
+    std::shared_ptr<Villager> mob = dynamic_pointer_cast<Villager>(_mob);
     float s = 15 / 16.0f;
     if (mob->getAge() < 0) {
         s *= 0.5;

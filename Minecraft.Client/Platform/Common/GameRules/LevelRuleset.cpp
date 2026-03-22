@@ -12,7 +12,7 @@ LevelRuleset::~LevelRuleset() {
     }
 }
 
-void LevelRuleset::getChildren(vector<GameRuleDefinition*>* children) {
+void LevelRuleset::getChildren(std::vector<GameRuleDefinition*>* children) {
     CompoundGameRuleDefinition::getChildren(children);
     for (AUTO_VAR(it, m_areas.begin()); it != m_areas.end(); it++)
         children->push_back(*it);

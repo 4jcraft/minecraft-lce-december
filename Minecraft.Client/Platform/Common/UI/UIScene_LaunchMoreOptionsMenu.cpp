@@ -180,14 +180,14 @@ UIScene_LaunchMoreOptionsMenu::UIScene_LaunchMoreOptionsMenu(
 
     // set the default text
 #ifdef _LARGE_WORLDS
-    wstring wsText = L"";
+    std::wstring wsText = L"";
     if (m_params->bGenerateOptions) {
         wsText = app.GetString(IDS_GAMEOPTION_SEED);
     } else {
         wsText = app.GetString(IDS_GAMEOPTION_ONLINE);
     }
 #else
-    wstring wsText = app.GetString(IDS_GAMEOPTION_ONLINE);
+    std::wstring wsText = app.GetString(IDS_GAMEOPTION_ONLINE);
 #endif
     EHTMLFontSize size = eHTMLSize_Normal;
     if (!RenderManager.IsHiDef() && !RenderManager.IsWidescreen()) {
@@ -540,7 +540,7 @@ void UIScene_LaunchMoreOptionsMenu::handleFocusChange(F64 controlId,
 #endif
     };
 
-    wstring wsText = app.GetString(stringId);
+    std::wstring wsText = app.GetString(stringId);
     EHTMLFontSize size = eHTMLSize_Normal;
     if (!RenderManager.IsHiDef() && !RenderManager.IsWidescreen()) {
         size = eHTMLSize_Splitscreen;

@@ -65,8 +65,8 @@ void StitchedTexture::initUVs(float U0, float V0, float U1, float V1) {
     v1 = V1;
 }
 
-void StitchedTexture::init(Texture* source, vector<Texture*>* frames, int x,
-                           int y, int width, int height, bool rotated) {
+void StitchedTexture::init(Texture* source, std::vector<Texture*>* frames,
+                           int x, int y, int width, int height, bool rotated) {
     this->source = source;
     this->frames = frames;
     frame = -1;  // Force an update of animated textures
@@ -151,7 +151,7 @@ int StitchedTexture::getSourceHeight() const { return source->getHeight(); }
 
 void StitchedTexture::cycleFrames() {
     if (frameOverride != NULL) {
-        pair<int, int> current = frameOverride->at(frame);
+        std::pair<int, int> current = frameOverride->at(frame);
         subFrame++;
         if (subFrame >= current.second) {
             int oldFrame = current.first;
@@ -203,14 +203,14 @@ void StitchedTexture::loadAnimationFrames(BufferedReader* bufferedReader) {
     intPairVector* results = new intPairVector();
 
     // try {
-    wstring line = bufferedReader->readLine();
+    std::wstring line = bufferedReader->readLine();
     while (!line.empty()) {
         line = trimString(line);
         if (line.length() > 0) {
             std::vector<std::wstring> tokens = stringSplit(line, L',');
             // for (String token : tokens)
             for (AUTO_VAR(it, tokens.begin()); it != tokens.end(); ++it) {
-                wstring token = *it;
+                std::wstring token = *it;
                 int multiPos = token.find_first_of('*');
                 if (multiPos > 0) {
                     int frame = _fromString<int>(token.substr(0, multiPos));
@@ -226,7 +226,7 @@ void StitchedTexture::loadAnimationFrames(BufferedReader* bufferedReader) {
     }
     //} catch (Exception e) {
     //	System.err.println("Failed to read animation info for " + name + ": " +
-    //e.getMessage());
+    // e.getMessage());
     //}
 
     if (!results->empty() &&
@@ -237,7 +237,7 @@ void StitchedTexture::loadAnimationFrames(BufferedReader* bufferedReader) {
     }
 }
 
-void StitchedTexture::loadAnimationFrames(const std::wstring& string) {
+void StitchedTexture::loadAnimationFrames(const std::wstring& std::string) {
     if (frameOverride != NULL) {
         delete frameOverride;
         frameOverride = NULL;
@@ -247,10 +247,11 @@ void StitchedTexture::loadAnimationFrames(const std::wstring& string) {
 
     intPairVector* results = new intPairVector();
 
-    std::vector<std::wstring> tokens = stringSplit(trimString(string), L',');
+    std::vector<std::wstring> tokens =
+        stringSplit(trimString(std::string), L',');
     // for (String token : tokens)
     for (AUTO_VAR(it, tokens.begin()); it != tokens.end(); ++it) {
-        wstring token = trimString(*it);
+        std::wstring token = trimString(*it);
         int multiPos = token.find_first_of('*');
         if (multiPos > 0) {
             int frame = _fromString<int>(token.substr(0, multiPos));

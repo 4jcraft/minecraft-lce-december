@@ -146,11 +146,11 @@ void UIScene_InGameHostOptionsMenu::handleInput(int iPad, int key, bool repeat,
                 // Send update settings packet to server
                 if (hostOptions != app.GetGameHostOption(eGameHostOption_All)) {
                     Minecraft* pMinecraft = Minecraft::GetInstance();
-                    shared_ptr<MultiplayerLocalPlayer> player =
+                    std::shared_ptr<MultiplayerLocalPlayer> player =
                         pMinecraft->localplayers[m_iPad];
                     if (player->connection) {
                         player->connection->send(
-                            shared_ptr<ServerSettingsChangedPacket>(
+                            std::shared_ptr<ServerSettingsChangedPacket>(
                                 new ServerSettingsChangedPacket(
                                     ServerSettingsChangedPacket::
                                         HOST_IN_GAME_SETTINGS,

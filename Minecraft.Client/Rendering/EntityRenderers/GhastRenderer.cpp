@@ -10,7 +10,7 @@ ResourceLocation GhastRenderer::GHAST_SHOOTING_LOCATION =
 GhastRenderer::GhastRenderer() : MobRenderer(new GhastModel(), 0.5f) {}
 
 void GhastRenderer::scale(std::shared_ptr<LivingEntity> mob, float a) {
-    shared_ptr<Ghast> ghast = dynamic_pointer_cast<Ghast>(mob);
+    std::shared_ptr<Ghast> ghast = dynamic_pointer_cast<Ghast>(mob);
 
     float ss = (ghast->oCharge + (ghast->charge - ghast->oCharge) * a) / 20.0f;
     if (ss < 0) ss = 0;
@@ -23,7 +23,7 @@ void GhastRenderer::scale(std::shared_ptr<LivingEntity> mob, float a) {
 
 ResourceLocation* GhastRenderer::getTextureLocation(
     std::shared_ptr<Entity> mob) {
-    shared_ptr<Ghast> ghast = dynamic_pointer_cast<Ghast>(mob);
+    std::shared_ptr<Ghast> ghast = dynamic_pointer_cast<Ghast>(mob);
 
     if (ghast->isCharging()) {
         return &GHAST_SHOOTING_LOCATION;

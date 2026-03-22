@@ -237,8 +237,8 @@ void PSVitaNPToolkit::sceNpToolkitCallback(
 // 		break;
 // 	case sce::Toolkit::NP::Event::npSessionError:
 // ///< An event generated when there was error performing the current %Np
-// session process. 		app.DebugPrintf("npSessionError"); 		break; 	case
-// sce::Toolkit::NP::Event::npSessionLeaveResult:
+// session process. 		app.DebugPrintf("npSessionError");
+// break; 	case sce::Toolkit::NP::Event::npSessionLeaveResult:
 // ///< An event generated when the user has left the current %Np session.
 // 		app.DebugPrintf("npSessionLeaveResult");
 // 		break;
@@ -264,9 +264,9 @@ void PSVitaNPToolkit::sceNpToolkitCallback(
 // 		break;
 // 	case sce::Toolkit::NP::Event::npSessionSearchResult:
 // ///< An event generated when the %Np session search request has been
-// completed. 		app.DebugPrintf("npSessionSearchResult"); 		break; 	case
-// sce::Toolkit::NP::Event::npSessionInviteNotification:		///< An
-// event generated when the %Np session push notification is received.
+// completed. 		app.DebugPrintf("npSessionSearchResult");
+// break; 	case sce::Toolkit::NP::Event::npSessionInviteNotification:
+// ///< An event generated when the %Np session push notification is received.
 // 		app.DebugPrintf("npSessionInviteNotification");
 // 		break;
 // 	case sce::Toolkit::NP::Event::npSessionInviteGetInfoResult:
@@ -431,8 +431,8 @@ void PSVitaNPToolkit::init() {
 
     // 	// Register Client ID for Auth
     // 	ret =
-    // sce::Toolkit::NP::Interface::registerClientId(CLIENT_ID_FOR_SAMPLE); 	if
-    // (ret < 0)
+    // sce::Toolkit::NP::Interface::registerClientId(CLIENT_ID_FOR_SAMPLE);
+    // if (ret < 0)
     // 	{
     // 		app.DebugPrintf("Failed to register Auth Client ID : 0x%x\n",
     // ret); 		assert(0);

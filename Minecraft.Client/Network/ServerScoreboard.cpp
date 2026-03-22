@@ -14,7 +14,7 @@ void ServerScoreboard::onScoreChanged(Score* score) {
     // if (trackedObjectives.contains(score.getObjective()))
     //{
     //	server->getPlayers()->broadcastAll( shared_ptr<SetScorePacket>( new
-    //SetScorePacket(score, SetScorePacket::METHOD_CHANGE)));
+    // SetScorePacket(score, SetScorePacket::METHOD_CHANGE)));
     // }
 
     // setDirty();
@@ -36,8 +36,8 @@ void ServerScoreboard::setDisplayObjective(int slot, Objective* objective) {
     //	if (getObjectiveDisplaySlotCount(old) > 0)
     //	{
     //		server->getPlayers()->broadcastAll(
-    //shared_ptr<SetDisplayObjectivePacket>( new SetDisplayObjectivePacket(slot,
-    //objective)));
+    // shared_ptr<SetDisplayObjectivePacket>( new
+    // SetDisplayObjectivePacket(slot, objective)));
     //	}
     //	else
     //	{
@@ -50,8 +50,8 @@ void ServerScoreboard::setDisplayObjective(int slot, Objective* objective) {
     //	if (trackedObjectives.contains(objective))
     //	{
     //		server->getPlayers()->broadcastAll(
-    //shared_ptr<SetDisplayObjectivePacket>( new SetDisplayObjectivePacket(slot,
-    //objective)));
+    // shared_ptr<SetDisplayObjectivePacket>( new
+    // SetDisplayObjectivePacket(slot, objective)));
     //	}
     //	else
     //	{
@@ -95,7 +95,7 @@ void ServerScoreboard::onObjectiveChanged(Objective* objective) {
     // if (trackedObjectives.contains(objective))
     //{
     //	server->getPlayers()->broadcastAll( shared_ptr<SetObjectivePacket>( new
-    //SetObjectivePacket(objective, SetObjectivePacket::METHOD_CHANGE)));
+    // SetObjectivePacket(objective, SetObjectivePacket::METHOD_CHANGE)));
     // }
 
     // setDirty();
@@ -150,8 +150,8 @@ void ServerScoreboard::setDirty() {
     // }
 }
 
-vector<shared_ptr<Packet> >* ServerScoreboard::getStartTrackingPackets(
-    Objective* objective) {
+std::vector<std::shared_ptr<Packet> >*
+ServerScoreboard::getStartTrackingPackets(Objective* objective) {
     return NULL;
 
     // vector<shared_ptr<Packet> > *packets = new vector<shared_ptr<Packet> >();
@@ -161,14 +161,14 @@ vector<shared_ptr<Packet> >* ServerScoreboard::getStartTrackingPackets(
     // for (int slot = 0; slot < DISPLAY_SLOTS; slot++)
     //{
     //	if (getDisplayObjective(slot) == objective) packets.push_back(
-    //shared_ptr<SetDisplayObjectivePacket>( new SetDisplayObjectivePacket(slot,
-    //objective)));
+    // shared_ptr<SetDisplayObjectivePacket>( new
+    // SetDisplayObjectivePacket(slot, objective)));
     // }
 
     // for (Score score : getPlayerScores(objective))
     //{
     //	packets.push_back( shared_ptr<SetScorePacket>( new SetScorePacket(score,
-    //SetScorePacket::METHOD_CHANGE)));
+    // SetScorePacket::METHOD_CHANGE)));
     // }
 
     // return packets;
@@ -189,7 +189,7 @@ void ServerScoreboard::startTrackingObjective(Objective* objective) {
     // trackedObjectives.push_back(objective);
 }
 
-vector<shared_ptr<Packet> >* ServerScoreboard::getStopTrackingPackets(
+std::vector<std::shared_ptr<Packet> >* ServerScoreboard::getStopTrackingPackets(
     Objective* objective) {
     return NULL;
 
@@ -200,7 +200,7 @@ vector<shared_ptr<Packet> >* ServerScoreboard::getStopTrackingPackets(
     // for (int slot = 0; slot < DISPLAY_SLOTS; slot++)
     //{
     //	if (getDisplayObjective(slot) == objective) packets.add(new
-    //SetDisplayObjectivePacket(slot, objective));
+    // SetDisplayObjectivePacket(slot, objective));
     // }
 
     // return packets;

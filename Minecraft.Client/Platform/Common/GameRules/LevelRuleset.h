@@ -6,14 +6,14 @@ class NamedAreaRuleDefinition;
 
 class LevelRuleset : public CompoundGameRuleDefinition {
 private:
-    vector<NamedAreaRuleDefinition*> m_areas;
+    std::vector<NamedAreaRuleDefinition*> m_areas;
     StringTable* m_stringTable;
 
 public:
     LevelRuleset();
     ~LevelRuleset();
 
-    virtual void getChildren(vector<GameRuleDefinition*>* children);
+    virtual void getChildren(std::vector<GameRuleDefinition*>* children);
     virtual GameRuleDefinition* addChild(
         ConsoleGameRules::EGameRuleType ruleType);
 

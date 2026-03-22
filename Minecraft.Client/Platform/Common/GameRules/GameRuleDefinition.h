@@ -35,7 +35,7 @@ public:
     virtual void write(DataOutputStream*);
 
     virtual void writeAttributes(DataOutputStream* dos, UINT numAttributes);
-    virtual void getChildren(vector<GameRuleDefinition*>*);
+    virtual void getChildren(std::vector<GameRuleDefinition*>*);
 
     virtual GameRuleDefinition* addChild(
         ConsoleGameRules::EGameRuleType ruleType);
@@ -59,13 +59,14 @@ public:
     virtual bool onUseTile(GameRule* rule, int tileId, int x, int y, int z) {
         return false;
     }
-    virtual bool onCollectItem(GameRule* rule, shared_ptr<ItemInstance> item) {
+    virtual bool onCollectItem(GameRule* rule,
+                               std::shared_ptr<ItemInstance> item) {
         return false;
     }
-    virtual void postProcessPlayer(shared_ptr<Player> player) {}
+    virtual void postProcessPlayer(std::shared_ptr<Player> player) {}
 
-    vector<GameRuleDefinition*>* enumerate();
-    unordered_map<GameRuleDefinition*, int>* enumerateMap();
+    std::vector<GameRuleDefinition*>* enumerate();
+    std::unordered_map<GameRuleDefinition*, int>* enumerateMap();
 
     // Static functions
     static GameRulesInstance* generateNewGameRulesInstance(

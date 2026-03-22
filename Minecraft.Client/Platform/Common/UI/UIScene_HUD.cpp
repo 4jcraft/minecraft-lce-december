@@ -152,7 +152,7 @@ void UIScene_HUD::customDraw(IggyCustomDrawCallbackRegion* region) {
         Slot* invSlot =
             pMinecraft->localplayers[m_iPad]->inventoryMenu->getSlot(
                 InventoryMenu::USE_ROW_SLOT_START + slot);
-        shared_ptr<ItemInstance> item = invSlot->getItem();
+        std::shared_ptr<ItemInstance> item = invSlot->getItem();
         if (item != NULL) {
             unsigned char ucAlpha = app.GetGameSettings(
                 ProfileManager.GetPrimaryPad(), eGameSetting_InterfaceOpacity);

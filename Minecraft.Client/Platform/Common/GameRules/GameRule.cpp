@@ -44,7 +44,7 @@ GameRuleDefinition* GameRule::getGameRuleDefinition() { return m_definition; }
 void GameRule::onUseTile(int tileId, int x, int y, int z) {
     m_definition->onUseTile(this, tileId, x, y, z);
 }
-void GameRule::onCollectItem(shared_ptr<ItemInstance> item) {
+void GameRule::onCollectItem(std::shared_ptr<ItemInstance> item) {
     m_definition->onCollectItem(this, item);
 }
 
@@ -52,7 +52,7 @@ void GameRule::write(DataOutputStream* dos) {
     // Find required parameters.
     dos->writeInt(m_parameters.size());
     for (AUTO_VAR(it, m_parameters.begin()); it != m_parameters.end(); it++) {
-        wstring pName = (*it).first;
+        std::wstring pName = (*it).first;
         ValueType vType = (*it).second;
 
         dos->writeUTF((*it).first);
@@ -68,7 +68,7 @@ void GameRule::write(DataOutputStream* dos) {
 void GameRule::read(DataInputStream* dis) {
     int savedParams = dis->readInt();
     for (int i = 0; i < savedParams; i++) {
-        wstring pNames = dis->readUTF();
+        std::wstring pNames = dis->readUTF();
 
         ValueType vType = getParameter(pNames);
 

@@ -64,7 +64,7 @@ void UIControl_SpaceIndicatorBar::reset() {
 void UIControl_SpaceIndicatorBar::addSave(__int64 size) {
     float startPercent = (float)((m_currentTotal - m_min)) / (m_max - m_min);
 
-    m_sizeAndOffsets.push_back(pair<__int64, float>(size, startPercent));
+    m_sizeAndOffsets.push_back(std::pair<__int64, float>(size, startPercent));
 
     m_currentTotal += size;
     setTotalSize(m_currentTotal);
@@ -72,7 +72,7 @@ void UIControl_SpaceIndicatorBar::addSave(__int64 size) {
 
 void UIControl_SpaceIndicatorBar::selectSave(int index) {
     if (index >= 0 && index < m_sizeAndOffsets.size()) {
-        pair<__int64, float> values = m_sizeAndOffsets[index];
+        std::pair<__int64, float> values = m_sizeAndOffsets[index];
         setSaveSize(values.first);
         setSaveGameOffset(values.second);
     } else {

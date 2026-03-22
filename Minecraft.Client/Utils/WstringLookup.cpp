@@ -15,7 +15,8 @@ std::wstring WstringLookup::lookup(UINT id) {
 
 UINT WstringLookup::lookup(std::wstring str) {
     if (str2int.find(str) == str2int.end()) {
-        pair<wstring, UINT> p = pair<wstring, UINT>(str, numIDs);
+        std::pair<std::wstring, UINT> p =
+            std::pair<std::wstring, UINT>(str, numIDs);
 
         str2int.insert(p);
         int2str.push_back(str);
@@ -28,11 +29,11 @@ UINT WstringLookup::lookup(std::wstring str) {
 
 VOID WstringLookup::getTable(std::wstring** lookup, UINT* len) {
     // Outputs
-    wstring* out_lookup;
+    std::wstring* out_lookup;
     UINT out_len;
 
     // Fill lookup.
-    out_lookup = new wstring[int2str.size()];
+    out_lookup = new std::wstring[int2str.size()];
     for (UINT i = 0; i < numIDs; i++) out_lookup[i] = int2str.at(i);
 
     out_len = numIDs;

@@ -22,8 +22,8 @@ ServerConnection::~ServerConnection() { DeleteCriticalSection(&pending_cs); }
 // 4J - added to handle incoming connections, to replace thread that original
 // used to have
 void ServerConnection::NewIncomingSocket(Socket* socket) {
-    shared_ptr<PendingConnection> unconnectedClient =
-        shared_ptr<PendingConnection>(new PendingConnection(
+    std::shared_ptr<PendingConnection> unconnectedClient =
+        std::shared_ptr<PendingConnection>(new PendingConnection(
             server, socket,
             L"Connection #" + _toString<int>(connectionCounter++)));
     handleConnection(unconnectedClient);
@@ -43,13 +43,13 @@ void ServerConnection::handleConnection(std::shared_ptr<PendingConnection> uc) {
 void ServerConnection::stop() {
     EnterCriticalSection(&pending_cs);
     for (unsigned int i = 0; i < pending.size(); i++) {
-        shared_ptr<PendingConnection> uc = pending[i];
+        std::shared_ptr<PendingConnection> uc = pending[i];
         uc->connection->close(DisconnectPacket::eDisconnect_Closed);
     }
     LeaveCriticalSection(&pending_cs);
 
     for (unsigned int i = 0; i < players.size(); i++) {
-        shared_ptr<PlayerConnection> player = players[i];
+        std::shared_ptr<PlayerConnection> player = players[i];
         player->connection->close(DisconnectPacket::eDisconnect_Closed);
     }
 }
@@ -59,11 +59,11 @@ void ServerConnection::tick() {
         // MGH - changed this so that the the CS lock doesn't cover the tick
         // (was causing a lockup when 2 players tried to join)
         EnterCriticalSection(&pending_cs);
-        vector<shared_ptr<PendingConnection> > tempPending = pending;
+        std::vector<std::shared_ptr<PendingConnection> > tempPending = pending;
         LeaveCriticalSection(&pending_cs);
 
         for (unsigned int i = 0; i < tempPending.size(); i++) {
-            shared_ptr<PendingConnection> uc = tempPending[i];
+            std::shared_ptr<PendingConnection> uc = tempPending[i];
             //        try {	// 4J - removed try/catch
             uc->tick();
             //        } catch (Exception e) {
@@ -85,8 +85,8 @@ void ServerConnection::tick() {
     LeaveCriticalSection(&pending_cs);
 
     for (unsigned int i = 0; i < players.size(); i++) {
-        shared_ptr<PlayerConnection> player = players[i];
-        shared_ptr<ServerPlayer> serverPlayer = player->getPlayer();
+        std::shared_ptr<PlayerConnection> player = players[i];
+        std::shared_ptr<ServerPlayer> serverPlayer = player->getPlayer();
         if (serverPlayer) {
             serverPlayer->updateFrameTick();
             serverPlayer->doChunkSendingTick(false);
@@ -102,8 +102,8 @@ void ServerConnection::tick() {
 
 bool ServerConnection::addPendingTextureRequest(
     const std::wstring& textureName) {
-    AUTO_VAR(it, find(m_pendingTextureRequests.begin(),
-                      m_pendingTextureRequests.end(), textureName));
+    AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
+                           m_pendingTextureRequests.end(), textureName));
     if (it == m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.push_back(textureName);
         return true;
@@ -119,13 +119,13 @@ bool ServerConnection::addPendingTextureRequest(
 }
 
 void ServerConnection::handleTextureReceived(const std::wstring& textureName) {
-    AUTO_VAR(it, find(m_pendingTextureRequests.begin(),
-                      m_pendingTextureRequests.end(), textureName));
+    AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
+                           m_pendingTextureRequests.end(), textureName));
     if (it != m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.erase(it);
     }
     for (unsigned int i = 0; i < players.size(); i++) {
-        shared_ptr<PlayerConnection> player = players[i];
+        std::shared_ptr<PlayerConnection> player = players[i];
         if (!player->done) {
             player->handleTextureReceived(textureName);
         }
@@ -134,13 +134,13 @@ void ServerConnection::handleTextureReceived(const std::wstring& textureName) {
 
 void ServerConnection::handleTextureAndGeometryReceived(
     const std::wstring& textureName) {
-    AUTO_VAR(it, find(m_pendingTextureRequests.begin(),
-                      m_pendingTextureRequests.end(), textureName));
+    AUTO_VAR(it, std::find(m_pendingTextureRequests.begin(),
+                           m_pendingTextureRequests.end(), textureName));
     if (it != m_pendingTextureRequests.end()) {
         m_pendingTextureRequests.erase(it);
     }
     for (unsigned int i = 0; i < players.size(); i++) {
-        shared_ptr<PlayerConnection> player = players[i];
+        std::shared_ptr<PlayerConnection> player = players[i];
         if (!player->done) {
             player->handleTextureAndGeometryReceived(textureName);
         }
@@ -190,6 +190,7 @@ void ServerConnection::handleServerSettingsChanged(
     // 	}
 }
 
-vector<shared_ptr<PlayerConnection> >* ServerConnection::getPlayers() {
+std::vector<std::shared_ptr<PlayerConnection> >*
+ServerConnection::getPlayers() {
     return &players;
 }

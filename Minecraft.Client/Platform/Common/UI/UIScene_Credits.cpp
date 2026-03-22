@@ -773,7 +773,7 @@ void UIScene_Credits::tick() {
                 addImage((ECreditIcons)pDef->m_iStringID[1]);
             } else  // using additional translated string.
             {
-                wstring sanitisedString = wstring(pDef->m_Text);
+                std::wstring sanitisedString = std::wstring(pDef->m_Text);
 
                 // 4J-JEV: Some DLC credits contain copyright or registered
                 // symbols that are not rendered in some fonts.

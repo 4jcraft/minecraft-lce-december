@@ -86,14 +86,14 @@ UIScene_MainMenu::UIScene_MainMenu(int iPad, void* initData,
 
     m_splash = L"";
 
-    wstring filename = L"splashes.txt";
+    std::wstring filename = L"splashes.txt";
     if (app.hasArchiveFile(filename)) {
         byteArray splashesArray = app.getArchiveFile(filename);
         ByteArrayInputStream bais(splashesArray);
         InputStreamReader isr(&bais);
         BufferedReader br(&isr);
 
-        wstring line = L"";
+        std::wstring line = L"";
         while (!(line = br.readLine()).empty()) {
             line = trimString(line);
             if (line.length() > 0) {
@@ -813,7 +813,8 @@ int UIScene_MainMenu::CreateLoad_SignInReturned(void* pParam, bool bContinue,
                             pClass->m_bIgnorePress = true;
                             // We want to hide everything in this scene and
                             // display a timer until we get a completion for the
-                            // TMS files 					for(int i=0;i<eControl_Count;i++)
+                            // TMS files
+                            // for(int i=0;i<eControl_Count;i++)
                             // 					{
                             // 						m_buttons[i].set(false);
                             // 					}
@@ -1907,8 +1908,8 @@ void UIScene_MainMenu::tick() {
 
 #ifdef _DURANGO
         // 4J-JEV:	DLC menu contains text localised to system language
-        // which we can't change. 			We need to switch to this language in-case it
-        // uses a different font.
+        // which we can't change. 			We need to switch to
+        // this language in-case it uses a different font.
         if (eNavigateWhenReady == eUIScene_DLCMainMenu)
             setLanguageOverride(false);
 
@@ -2150,7 +2151,7 @@ void UIScene_MainMenu::LoadTrial(void) {
     param->settings = app.GetGameHostOption(eGameHostOption_Tutorial) |
                       app.GetGameHostOption(eGameHostOption_DisableSaving);
 
-    vector<LevelGenerationOptions*>* generators = app.getLevelGenerators();
+    std::vector<LevelGenerationOptions*>* generators = app.getLevelGenerators();
     param->levelGen = generators->at(0);
 
     LoadingInputParams* loadingParams = new LoadingInputParams();

@@ -45,7 +45,7 @@ void SheepFurModel::prepareMobModel(std::shared_ptr<LivingEntity> mob,
                                     float time, float r, float a) {
     QuadrupedModel::prepareMobModel(mob, time, r, a);
 
-    shared_ptr<Sheep> sheep = dynamic_pointer_cast<Sheep>(mob);
+    std::shared_ptr<Sheep> sheep = dynamic_pointer_cast<Sheep>(mob);
     head->y = 6 + sheep->getHeadEatPositionScale(a) * 9.0f;
     headXRot = sheep->getHeadEatAngleScale(a);
 }

@@ -53,7 +53,7 @@ bool SurvivalMode::destroyBlock(int x, int y, int z, int face) {
     int data = minecraft->level->getData(x, y, z);
     bool changed = GameMode::destroyBlock(x, y, z, face);
 
-    shared_ptr<ItemInstance> item = minecraft->player->getSelectedItem();
+    std::shared_ptr<ItemInstance> item = minecraft->player->getSelectedItem();
     bool couldDestroy = minecraft->player->canDestroy(Tile::tiles[t]);
     if (item != NULL) {
         item->mineBlock(t, x, y, z, minecraft->player);
@@ -141,7 +141,7 @@ float SurvivalMode::getPickRange() { return 4.0f; }
 void SurvivalMode::initLevel(Level* level) { GameMode::initLevel(level); }
 
 std::shared_ptr<Player> SurvivalMode::createPlayer(Level* level) {
-    shared_ptr<Player> player = GameMode::createPlayer(level);
+    std::shared_ptr<Player> player = GameMode::createPlayer(level);
     //        player.inventory.add(new ItemInstance(Item.pickAxe_diamond));
     //        player.inventory.add(new ItemInstance(Item.hatchet_diamond));
     //        player.inventory.add(new ItemInstance(Tile.torch, 64));

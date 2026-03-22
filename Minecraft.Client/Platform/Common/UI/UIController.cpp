@@ -121,7 +121,7 @@ extern "C" void __real_free(void* t);
 #endif
 
 __int64 UIController::iggyAllocCount = 0;
-static unordered_map<void*, size_t> allocations;
+static std::unordered_map<void*, size_t> allocations;
 static void* RADLINK AllocateFunction(void* alloc_callback_user_data,
                                       size_t size_requested,
                                       size_t* size_returned) {
@@ -251,11 +251,11 @@ void UIController::preInit(S32 width, S32 height) {
     m_bScreenWidthSetup = true;
 
 #ifdef ENABLE_IGGY_ALLOCATOR
-    IggyAllocator allocator;
-    allocator.user_callback_data = this;
-    allocator.mem_alloc = &AllocateFunction;
-    allocator.mem_free = &DeallocateFunction;
-    IggyInit(&allocator);
+    IggyAllocator std::allocator;
+    std::allocator.user_callback_data = this;
+    std::allocator.mem_alloc = &AllocateFunction;
+    std::allocator.mem_free = &DeallocateFunction;
+    IggyInit(&std::allocator);
 #else
     IggyInit(0);
 #endif
@@ -494,7 +494,7 @@ void UIController::tick() {
 }
 
 void UIController::loadSkins() {
-    wstring platformSkinPath = L"";
+    std::wstring platformSkinPath = L"";
 
 #ifdef __PS3__
     platformSkinPath = L"skinPS3.swf";

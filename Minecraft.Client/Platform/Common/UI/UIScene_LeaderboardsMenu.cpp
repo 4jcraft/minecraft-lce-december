@@ -779,7 +779,7 @@ void UIScene_LeaderboardsMenu::CopyLeaderboardEntry(
 #ifdef __PS3__
     // m_name can be unicode characters somehow for Japan - should use
     // m_onlineID
-    wstring wstr = convStringToWstring(statsRow->m_uid.getOnlineID());
+    std::wstring wstr = convStringToWstring(statsRow->m_uid.getOnlineID());
     swprintf(leaderboardEntry->m_gamerTag, XUSER_NAME_SIZE, L"%ls",
              wstr.c_str());
 #else
@@ -1006,7 +1006,7 @@ void UIScene_LeaderboardsMenu::customDraw(
     if (slotId == -1) {
         // app.DebugPrintf("This is not the control we are looking for\n");
     } else {
-        shared_ptr<ItemInstance> item = shared_ptr<ItemInstance>(
+        std::shared_ptr<ItemInstance> item = std::shared_ptr<ItemInstance>(
             new ItemInstance(TitleIcons[m_currentLeaderboard][slotId], 1, 0));
         customDrawSlotControl(region, m_iPad, item, 1.0f, false, false);
     }

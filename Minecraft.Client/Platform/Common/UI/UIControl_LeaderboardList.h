@@ -38,7 +38,8 @@ public:
 
     void clearList();
 
-    void setupTitles(const std::wstring& rank, const std::wstring& gamertag);
+    void setupTitles(const std::wstring& std::rank,
+                     const std::wstring& gamertag);
     void initLeaderboard(int iFirstFocus, int iTotalEntries, int iNumColumns);
     void setColumnIcon(int iColumn, int iType);
     void addDataSet(bool bLast, int iId, int iRank,

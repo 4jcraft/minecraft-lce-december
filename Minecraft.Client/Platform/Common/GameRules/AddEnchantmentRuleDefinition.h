@@ -21,5 +21,5 @@ public:
     virtual void addAttribute(const std::wstring& attributeName,
                               const std::wstring& attributeValue);
 
-    bool enchantItem(shared_ptr<ItemInstance> item);
+    bool enchantItem(std::shared_ptr<ItemInstance> item);
 };

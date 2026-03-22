@@ -121,10 +121,10 @@ void LevelGenerationOptions::writeAttributes(DataOutputStream* dos,
 }
 
 void LevelGenerationOptions::getChildren(
-    vector<GameRuleDefinition*>* children) {
+    std::vector<GameRuleDefinition*>* children) {
     GameRuleDefinition::getChildren(children);
 
-    vector<ApplySchematicRuleDefinition*> used_schematics;
+    std::vector<ApplySchematicRuleDefinition*> used_schematics;
     for (AUTO_VAR(it, m_schematicRules.begin()); it != m_schematicRules.end();
          it++)
         if (!(*it)->isComplete()) used_schematics.push_back(*it);
@@ -198,27 +198,27 @@ void LevelGenerationOptions::addAttribute(const std::wstring& attributeName,
             "LevelGenerationOptions: Adding parameter flatworld=%s\n",
             m_useFlatWorld ? "TRUE" : "FALSE");
     } else if (attributeName.compare(L"saveName") == 0) {
-        wstring string(attributeValue);
-        if (!string.empty())
-            setDefaultSaveName(string);
+        std::wstring std::string(attributeValue);
+        if (!std::string.empty())
+            setDefaultSaveName(std::string);
         else
             setDefaultSaveName(attributeValue);
         app.DebugPrintf(
             "LevelGenerationOptions: Adding parameter saveName=%ls\n",
             getDefaultSaveName().c_str());
     } else if (attributeName.compare(L"worldName") == 0) {
-        wstring string(attributeValue);
-        if (!string.empty())
-            setWorldName(string);
+        std::wstring std::string(attributeValue);
+        if (!std::string.empty())
+            setWorldName(std::string);
         else
             setWorldName(attributeValue);
         app.DebugPrintf(
             "LevelGenerationOptions: Adding parameter worldName=%ls\n",
             getWorldName());
     } else if (attributeName.compare(L"displayName") == 0) {
-        wstring string(attributeValue);
-        if (!string.empty())
-            setDisplayName(string);
+        std::wstring std::string(attributeValue);
+        if (!std::string.empty())
+            setDisplayName(std::string);
         else
             setDisplayName(attributeValue);
         app.DebugPrintf(
@@ -443,20 +443,21 @@ bool LevelGenerationOptions::isFeatureChunk(
     return isFeature;
 }
 
-unordered_map<wstring, ConsoleSchematicFile*>*
+std::unordered_map<std::wstring, ConsoleSchematicFile*>*
 LevelGenerationOptions::getUnfinishedSchematicFiles() {
     // Clean schematic rules.
-    unordered_set<wstring> usedFiles = unordered_set<wstring>();
+    std::unordered_set<std::wstring> usedFiles =
+        std::unordered_set<std::wstring>();
     for (AUTO_VAR(it, m_schematicRules.begin()); it != m_schematicRules.end();
          it++)
         if (!(*it)->isComplete()) usedFiles.insert((*it)->getSchematicName());
 
     // Clean schematic files.
-    unordered_map<wstring, ConsoleSchematicFile*>* out =
-        new unordered_map<wstring, ConsoleSchematicFile*>();
+    std::unordered_map<std::wstring, ConsoleSchematicFile*>* out =
+        new std::unordered_map<std::wstring, ConsoleSchematicFile*>();
     for (AUTO_VAR(it, usedFiles.begin()); it != usedFiles.end(); it++)
-        out->insert(
-            pair<wstring, ConsoleSchematicFile*>(*it, getSchematicFile(*it)));
+        out->insert(std::pair<std::wstring, ConsoleSchematicFile*>(
+            *it, getSchematicFile(*it)));
 
     return out;
 }
@@ -519,7 +520,7 @@ int LevelGenerationOptions::packMounted(LPVOID pParam, int iPad, DWORD dwErr,
                                          L"WPACK:"));
                 if (grf.exists()) {
 #ifdef _UNICODE
-                    wstring path = grf.getPath();
+                    std::wstring path = grf.getPath();
                     const WCHAR* pchFilename = path.c_str();
                     HANDLE fileHandle = CreateFile(
                         pchFilename,   // file name
@@ -577,7 +578,7 @@ int LevelGenerationOptions::packMounted(LPVOID pParam, int iPad, DWORD dwErr,
                                       lgo->getBaseSavePath(), true, L"WPACK:"));
             if (save.exists()) {
 #ifdef _UNICODE
-                wstring path = save.getPath();
+                std::wstring path = save.getPath();
                 const WCHAR* pchFilename = path.c_str();
                 HANDLE fileHandle = CreateFile(
                     pchFilename,   // file name

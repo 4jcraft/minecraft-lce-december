@@ -269,7 +269,7 @@ void SQRVoiceConnection::readRemoteData() {
         unsigned int writeSize;
         if (bytesRead > 0) {
             //			app.DebugPrintf("voice received %d bytes\n",
-            //bytesRead);
+            // bytesRead);
             writeSize = bytesRead;
             if (packet.verifyData(bytesRead, 19)) addPacket(packet);
             // 			m_playRingBuffer.Write((char*)data, writeSize);

@@ -47,7 +47,7 @@ unsigned short FAR* work;
     unsigned used;                  /* code entries in table used */
     unsigned huff;                  /* Huffman code */
     unsigned incr;                  /* for incrementing code, index */
-    unsigned fill;                  /* index for replicating entries */
+    unsigned std::fill;             /* index for replicating entries */
     unsigned low;                   /* low bits for current root entry */
     unsigned mask;                  /* mask for low root bits */
     code here;                      /* table entry for duplication */
@@ -228,12 +228,12 @@ unsigned short FAR* work;
 
         /* replicate for those indices with low len bits equal to huff */
         incr = 1U << (len - drop);
-        fill = 1U << curr;
-        min = fill; /* save offset to next table */
+        std::fill = 1U << curr;
+        min = std::fill; /* save offset to next table */
         do {
-            fill -= incr;
-            next[(huff >> drop) + fill] = here;
-        } while (fill != 0);
+            std::fill -= incr;
+            next[(huff >> drop) + std::fill] = here;
+        } while (std::fill != 0);
 
         /* backwards increment the len-bit code huff */
         incr = 1U << (len - 1);

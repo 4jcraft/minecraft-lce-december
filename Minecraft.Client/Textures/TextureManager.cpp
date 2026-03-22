@@ -68,9 +68,9 @@ Stitcher* TextureManager::createStitcher(const std::wstring& name) {
     return new Stitcher(name, maxTextureSize, maxTextureSize, true);
 }
 
-vector<Texture*>* TextureManager::createTextures(const std::wstring& filename,
-                                                 bool mipmap) {
-    vector<Texture*>* result = new vector<Texture*>();
+std::vector<Texture*>* TextureManager::createTextures(
+    const std::wstring& filename, bool mipmap) {
+    std::vector<Texture*>* result = new std::vector<Texture*>();
     TexturePack* texturePack = Minecraft::GetInstance()->skins->getSelected();
     // try {
     int mode = Texture::TM_CONTAINER;  // Most important -- so it doesn't get
@@ -83,7 +83,7 @@ vector<Texture*>* TextureManager::createTextures(const std::wstring& filename,
     int magFilter = Texture::TFLT_NEAREST;
 
     MemSect(32);
-    wstring drive = L"";
+    std::wstring drive = L"";
 
     if (texturePack->hasFile(L"res/" + filename, false)) {
         drive = texturePack->getPath(true);
@@ -92,7 +92,7 @@ vector<Texture*>* TextureManager::createTextures(const std::wstring& filename,
         if (app.GetBootedFromDiscPatch()) {
             const char* pchTextureName = wstringtofilename(filename);
             char* pchUsrDir = app.GetBDUsrDirPath(pchTextureName);
-            wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
+            std::wstring wstr(pchUsrDir, pchUsrDir + strlen(pchUsrDir));
             drive = wstr + L"\\Common\\res\\TitleUpdate\\";
         } else
 #endif
@@ -112,7 +112,7 @@ vector<Texture*>* TextureManager::createTextures(const std::wstring& filename,
     int height = image->getHeight();
     int width = image->getWidth();
 
-    wstring texName = getTextureNameFromPath(filename);
+    std::wstring texName = getTextureNameFromPath(filename);
 
     if (isAnimation(filename, texturePack)) {
         // TODO: Read this information from the animation file later
@@ -155,11 +155,11 @@ vector<Texture*>* TextureManager::createTextures(const std::wstring& filename,
     // return result;
     // } catch (FileNotFoundException e) {
     //	Minecraft.getInstance().getLogger().warning("TextureManager.createTexture
-    //called for file " + filename + ", but that file does not exist.
-    //Ignoring."); } catch (IOException e) {
+    // called for file " + filename + ", but that file does not exist.
+    // Ignoring."); } catch (IOException e) {
     //	Minecraft.getInstance().getLogger().warning("TextureManager.createTexture
-    //encountered an IOException when " + "trying to read file " + filename + ".
-    //Ignoring.");
+    // encountered an IOException when " + "trying to read file " + filename +
+    // ". Ignoring.");
     // }
     return result;
 }
@@ -172,7 +172,7 @@ std::wstring TextureManager::getTextureNameFromPath(
 
 bool TextureManager::isAnimation(const std::wstring& filename,
                                  TexturePack* texturePack) {
-    wstring dataFileName =
+    std::wstring dataFileName =
         L"/" + filename.substr(0, filename.find_last_of(L'.')) + L".txt";
     bool hasOriginalImage = texturePack->hasFile(L"/" + filename, false);
     return Minecraft::GetInstance()->skins->getSelected()->hasFile(

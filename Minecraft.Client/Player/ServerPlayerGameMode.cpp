@@ -140,9 +140,11 @@ void ServerPlayerGameMode::startDestroyBlock(int x, int y, int z, int face) {
             Tile::tiles[t]->getDestroyProgress(player, player->level, x, y, z);
     }
 
-    if (t > 0 && (progress >= 1))  //|| (app.DebugSettingsOn() &&
-                                   //(player->GetDebugOptions()&(1L<<eDebugSetting_InstantDestroy)
-                                   //) )))
+    if (t > 0 &&
+        (progress >=
+         1))  //|| (app.DebugSettingsOn() &&
+              //(player->GetDebugOptions()&(1L<<eDebugSetting_InstantDestroy)
+              //) )))
     {
         destroyBlock(x, y, z);
     } else {
@@ -167,7 +169,7 @@ void ServerPlayerGameMode::stopDestroyBlock(int x, int y, int z) {
             // MGH -	removed checking for the destroy progress here, it has
             // already been checked on the client before it sent the packet.
             //			fixes issues with this failing to destroy
-            //because of packets bunching up
+            // because of packets bunching up
             //             float destroyProgress =
             //             tile->getDestroyProgress(player, player->level, x, y,
             //             z) * (ticksSpentDestroying + 1); if (destroyProgress
@@ -270,8 +272,9 @@ bool ServerPlayerGameMode::destroyBlock(int x, int y, int z) {
     bool changed = superDestroyBlock(x, y, z);
 
     if (isCreative()) {
-        shared_ptr<TileUpdatePacket> tup =
-            shared_ptr<TileUpdatePacket>(new TileUpdatePacket(x, y, z, level));
+        std::shared_ptr<TileUpdatePacket> tup =
+            std::shared_ptr<TileUpdatePacket>(
+                new TileUpdatePacket(x, y, z, level));
         // 4J - a bit of a hack here, but if we want to tell the client that it
         // needs to inform the renderer of a block being destroyed, then send a
         // block 255 instead of a 0. This is handled in
@@ -281,7 +284,7 @@ bool ServerPlayerGameMode::destroyBlock(int x, int y, int z) {
         }
         player->connection->send(tup);
     } else {
-        shared_ptr<ItemInstance> item = player->getSelectedItem();
+        std::shared_ptr<ItemInstance> item = player->getSelectedItem();
         bool canDestroy = player->canDestroy(Tile::tiles[t]);
         if (item != NULL) {
             item->mineBlock(level, t, x, y, z, player);
@@ -303,7 +306,7 @@ bool ServerPlayerGameMode::useItem(std::shared_ptr<Player> player, Level* level,
 
     int oldCount = item->count;
     int oldAux = item->getAuxValue();
-    shared_ptr<ItemInstance> itemInstance = item->use(level, player);
+    std::shared_ptr<ItemInstance> itemInstance = item->use(level, player);
     if (itemInstance != item ||
         (itemInstance != NULL && (itemInstance->count != oldCount ||
                                   itemInstance->getUseDuration() > 0 ||

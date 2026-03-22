@@ -28,7 +28,7 @@
 
 #ifdef SONY_REMOTE_STORAGE_DOWNLOAD
 unsigned long UIScene_LoadOrJoinMenu::m_ulFileSize = 0L;
-wstring UIScene_LoadOrJoinMenu::m_wstrStageText = L"";
+std::wstring UIScene_LoadOrJoinMenu::m_wstrStageText = L"";
 bool UIScene_LoadOrJoinMenu::m_bSaveTransferRunning = false;
 #endif
 
@@ -45,7 +45,7 @@ UIScene_LoadOrJoinMenu::ESaveTransferFiles
     UIScene_LoadOrJoinMenu::s_eSaveTransferFile;
 unsigned long UIScene_LoadOrJoinMenu::s_ulFileSize = 0L;
 byteArray UIScene_LoadOrJoinMenu::s_transferData = byteArray();
-wstring UIScene_LoadOrJoinMenu::m_wstrStageText = L"";
+std::wstring UIScene_LoadOrJoinMenu::m_wstrStageText = L"";
 
 #ifdef _DEBUG_MENUS_ENABLED
 C4JStorage::SAVETRANSFER_FILE_DETAILS
@@ -839,7 +839,7 @@ void UIScene_LoadOrJoinMenu::GetSaveInfo() {
         AddDefaultButtons();
 
         for (unsigned int i = 0; i < listItems; i++) {
-            wstring wName = m_saves->at(i)->getName();
+            std::wstring wName = m_saves->at(i)->getName();
             wchar_t* name = new wchar_t[wName.size() + 1];
             for (unsigned int j = 0; j < wName.size(); ++j) {
                 name[j] = wName[j];
@@ -1856,7 +1856,7 @@ void UIScene_LoadOrJoinMenu::handleTimerComplete(int id) {
 
                     if (pDLCInfo) {
                         // retrieve the image - if we haven't already
-                        wstring textureName =
+                        std::wstring textureName =
                             filenametowstring(pDLCInfo->chImageURL);
 
                         if (hasRegisteredSubstitutionTexture(textureName) ==
@@ -2324,7 +2324,7 @@ int UIScene_LoadOrJoinMenu::TexturePackDialogReturned(
 #if defined _XBOX_ONE
         if (ProfileManager.IsSignedIn(iPad)) {
             if (ProfileManager.IsSignedInLive(iPad)) {
-                wstring ProductId;
+                std::wstring ProductId;
                 app.GetDLCFullOfferIDForPackID(
                     pClass->m_initData->selectedSession->data
                         .texturePackParentId,
@@ -3123,7 +3123,7 @@ int UIScene_LoadOrJoinMenu::UploadSonyCrossSaveThreadProc(LPVOID lpParameter) {
             } break;
             case eSaveUpload_Cancelled:  // this is no longer used
                 assert(0);               //			pClass->m_eSaveUploadState =
-                                         //eSaveUpload_Idle;
+                                         // eSaveUpload_Idle;
                 break;
             case eSaveUpload_Error: {
                 if (pClass->m_saveTransferUploadCancelled) {
@@ -3300,10 +3300,10 @@ int UIScene_LoadOrJoinMenu::DownloadXbox360SaveThreadProc(LPVOID lpParameter) {
                             UIScene_LoadOrJoinMenu::s_transferData);
                         DataInputStream dis(&bais);
 
-                        wstring saveTitle = dis.readUTF();
+                        std::wstring saveTitle = dis.readUTF();
                         StorageManager.SetSaveTitle(saveTitle.c_str());
 
-                        wstring saveUniqueName = dis.readUTF();
+                        std::wstring saveUniqueName = dis.readUTF();
 
                         // 4J Stu - Don't set this any more. We added it so that
                         // we could share the ban list data for this save
@@ -3454,7 +3454,7 @@ int UIScene_LoadOrJoinMenu::DownloadXbox360SaveThreadProc(LPVOID lpParameter) {
                 //	pClass->m_iProgress=0;
                 //	pClass->m_eSaveTransferState=C4JStorage::eSaveTransfer_Idle;
                 //	pMinecraft->progressRenderer->progressStage(
-                //IDS_SAVE_TRANSFER_DOWNLOAD_AND_CONVERT_COMPLETE );
+                // IDS_SAVE_TRANSFER_DOWNLOAD_AND_CONVERT_COMPLETE );
 
                 //	break;
                 //}
@@ -3496,7 +3496,7 @@ void UIScene_LoadOrJoinMenu::RequestFileSize(SaveTransferStateContainer* pClass,
         ZeroMemory(&m_debugTransferDetails,
                    sizeof(C4JStorage::SAVETRANSFER_FILE_DETAILS));
 
-        File targetFile(wstring(L"FakeTMSPP\\").append(filename));
+        File targetFile(std::wstring(L"FakeTMSPP\\").append(filename));
         if (targetFile.exists())
             m_debugTransferDetails.ulFileLen = targetFile.length();
 
@@ -3536,7 +3536,7 @@ void UIScene_LoadOrJoinMenu::RequestFileData(SaveTransferStateContainer* pClass,
 
 #ifdef _DEBUG_MENUS_ENABLED
     if (app.GetLoadSavesFromFolderEnabled()) {
-        File targetFile(wstring(L"FakeTMSPP\\").append(filename));
+        File targetFile(std::wstring(L"FakeTMSPP\\").append(filename));
         if (targetFile.exists()) {
             HANDLE hSaveFile =
                 CreateFile(targetFile.getPath().c_str(), GENERIC_READ, 0, NULL,

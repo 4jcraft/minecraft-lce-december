@@ -51,7 +51,7 @@ bool XboxStructureActionPlaceSpawner::placeSpawnerInLevel(
 
         level->setTileAndData(worldX, worldY, worldZ, m_tile, 0,
                               Tile::UPDATE_ALL);
-        shared_ptr<MobSpawnerTileEntity> entity =
+        std::shared_ptr<MobSpawnerTileEntity> entity =
             dynamic_pointer_cast<MobSpawnerTileEntity>(
                 level->getTileEntity(worldX, worldY, worldZ));
 

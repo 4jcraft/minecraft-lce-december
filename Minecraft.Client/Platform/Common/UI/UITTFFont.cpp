@@ -10,7 +10,7 @@ UITTFFont::UITTFFont(const std::string& name, const std::string& path,
     app.DebugPrintf("UITTFFont opening %s\n", path.c_str());
 
 #ifdef _UNICODE
-    wstring wPath = convStringToWstring(path);
+    std::wstring wPath = convStringToWstring(path);
     HANDLE file = CreateFile(wPath.c_str(), GENERIC_READ, 0, NULL,
                              OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 #else

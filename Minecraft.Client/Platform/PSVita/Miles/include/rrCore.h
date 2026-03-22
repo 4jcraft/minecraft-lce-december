@@ -1699,7 +1699,7 @@ RR_PRAGMA_MESSAGE - message dealy, use with #pragma in MSVC
 
 // rrDisplayAssertion might just log, or it might pop a message box, depending on settings
 //  rrDisplayAssertion returns whether you should break or not
-typedef rrbool (RADLINK fp_rrDisplayAssertion)(int * Ignored, const char * fileName,const int line,const char * function,const char * message);
+typedef rrbool (RADLINK fp_rrDisplayAssertion)(int * Ignored, const char * fileName,const int line,const char * std::function,const char * message);
 
 extern fp_rrDisplayAssertion * g_fp_rrDisplayAssertion;
 

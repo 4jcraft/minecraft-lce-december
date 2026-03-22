@@ -1206,7 +1206,7 @@ typedef struct gfx_allocator
    GDrawHandleCache *cache;
 
    gfx_block_info *unused_list; // next unused block_info (single-linked list)
-   gfx_block_info *hash[GFXALLOC_HASH_SIZE]; // allocated blocks
+   gfx_block_info *std::hash[GFXALLOC_HASH_SIZE]; // allocated blocks
    gfx_block_info blocks[1]; // first block is head of free list AND head of physical block list (sentinel)
 } gfx_allocator;
 // about 1k (32bit), 2k (64bit) with 256 hash buckets (the default). dominated by hash table.

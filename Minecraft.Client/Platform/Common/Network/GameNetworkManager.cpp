@@ -570,8 +570,8 @@ bool CGameNetworkManager::StartNetworkGame(Minecraft* minecraft,
                         idx, CONTEXT_PRESENCE_MULTIPLAYER, false);
             } else {
                 connection->close();
-                AUTO_VAR(it, find(createdConnections.begin(),
-                                  createdConnections.end(), connection));
+                AUTO_VAR(it, std::find(createdConnections.begin(),
+                                       createdConnections.end(), connection));
                 if (it != createdConnections.end())
                     createdConnections.erase(it);
             }
@@ -1206,8 +1206,9 @@ int CGameNetworkManager::ChangeSessionTypeThreadProc(void* lpParam) {
     // Swap these two messages around as one is too long to display at 480
     pMinecraft->progressRenderer->progressStartNoAbort(
         IDS_PROGRESS_CONVERTING_TO_OFFLINE_GAME);
-    pMinecraft->progressRenderer->progressStage(-1);  // g_NetworkManager.CorrectErrorIDS(IDS_CONNECTION_LOST_LIVE_NO_EXIT)
-                                                      // );
+    pMinecraft->progressRenderer->progressStage(
+        -1);  // g_NetworkManager.CorrectErrorIDS(IDS_CONNECTION_LOST_LIVE_NO_EXIT)
+              // );
 #elif defined(_XBOX_ONE)
     if (g_NetworkManager.m_bFullSessionMessageOnNextSessionChange) {
         UINT uiIDA[1];
@@ -1247,8 +1248,9 @@ int CGameNetworkManager::ChangeSessionTypeThreadProc(void* lpParam) {
     // Swap these two messages around as one is too long to display at 480
     pMinecraft->progressRenderer->progressStartNoAbort(
         IDS_PROGRESS_CONVERTING_TO_OFFLINE_GAME);
-    pMinecraft->progressRenderer->progressStage(-1);  // g_NetworkManager.CorrectErrorIDS(IDS_CONNECTION_LOST_LIVE_NO_EXIT)
-                                                      // );
+    pMinecraft->progressRenderer->progressStage(
+        -1);  // g_NetworkManager.CorrectErrorIDS(IDS_CONNECTION_LOST_LIVE_NO_EXIT)
+              // );
 #elif defined(_XBOX_ONE)
     if (g_NetworkManager.m_bFullSessionMessageOnNextSessionChange) {
         pMinecraft->progressRenderer->progressStartNoAbort(
@@ -1918,8 +1920,8 @@ void CGameNetworkManager::GameInviteReceived(int userIndex,
                 "We are already in a multiplayer game...need to leave it\n");
 
             // 			JoinFromInviteData *joinData = new
-            // JoinFromInviteData(); 			joinData->dwUserIndex = dwUserIndex;
-            // 			joinData->dwLocalUsersMask = dwLocalUsersMask;
+            // JoinFromInviteData(); 			joinData->dwUserIndex =
+            // dwUserIndex; 			joinData->dwLocalUsersMask = dwLocalUsersMask;
             // 			joinData->pInviteInfo = pInviteInfo;
 
             // tell the app to process this

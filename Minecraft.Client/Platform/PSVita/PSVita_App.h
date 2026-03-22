@@ -163,7 +163,7 @@ public:
     static void CommerceGetCategoriesCallback(LPVOID lpParam, int err);
     static void CommerceGetProductListCallback(LPVOID lpParam, int err);
     //	static void CommerceGetDetailedProductInfoCallback(LPVOID lpParam,int
-    //err);
+    // err);
     static void CommerceAddDetailedProductInfoCallback(LPVOID lpParam, int err);
     static void CommerceCheckoutCallback(LPVOID lpParam, int err);
 

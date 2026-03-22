@@ -18,7 +18,7 @@ UIScene_EndPoem::UIScene_EndPoem(int iPad, void* initData, UILayer* parentLayer)
     // 4J Stu - Don't need these, the AS handles the scrolling and makes it look
     // nice
 #if 0
-	wstring halfScreenLineBreaks;
+	std::wstring halfScreenLineBreaks;
 
 	if(RenderManager.IsHiDef())
 	{
@@ -51,7 +51,7 @@ UIScene_EndPoem::UIScene_EndPoem(int iPad, void* initData, UILayer* parentLayer)
 
     Minecraft* pMinecraft = Minecraft::GetInstance();
 
-    wstring playerName = L"";
+    std::wstring playerName = L"";
     if (pMinecraft->localplayers[ui.GetWinUserIndex()] != NULL) {
         playerName = escapeXML(
             pMinecraft->localplayers[ui.GetWinUserIndex()]->getDisplayName());
@@ -74,7 +74,7 @@ UIScene_EndPoem::UIScene_EndPoem(int iPad, void* initData, UILayer* parentLayer)
     updateNoise();
 
     // 4J-JEV: Find paragraph start and end points.
-    m_paragraphs = vector<wstring>();
+    m_paragraphs = std::vector<std::wstring>();
     int lastIndex = 0;
     for (int index = 0; index != wstring::npos;
          index = noiseString.find(L"<br /><br />", index + 12, 12)) {
@@ -117,7 +117,7 @@ void UIScene_EndPoem::tick() {
     UIScene::tick();
 
     if (m_requestedLabel >= 0 && m_requestedLabel < m_paragraphs.size()) {
-        wstring label = m_paragraphs[m_requestedLabel];
+        std::wstring label = m_paragraphs[m_requestedLabel];
 
         IggyDataValue result;
         IggyDataValue value[3];
@@ -196,13 +196,13 @@ void UIScene_EndPoem::updateNoise() {
 
     int length = 0;
     wchar_t replacements[64];
-    wstring replaceString = L"";
+    std::wstring replaceString = L"";
     wchar_t randomChar = L'a';
     Random* random = pMinecraft->font->random;
 
     bool darken = false;
 
-    wstring tag = L"{*NOISE*}";
+    std::wstring tag = L"{*NOISE*}";
 
     AUTO_VAR(it, m_noiseLengths.begin());
     int found = (int)noiseString.find(tag);
@@ -218,13 +218,13 @@ void UIScene_EndPoem::updateNoise() {
             } else {
                 // 4J-JEV: It'd be nice to avoid null characters when using
                 // asian languages.
-                static wstring acceptableLetters =
+                static std::wstring acceptableLetters =
                     L"!\"#$%&'()*+,-./0123456789:;<=>?@[\\]^_'|}~";
                 randomChar = acceptableLetters[random->nextInt(
                     (int)acceptableLetters.length())];
             }
 
-            wstring randomCharStr = L"";
+            std::wstring randomCharStr = L"";
             randomCharStr.push_back(randomChar);
             if (randomChar == L'<') {
                 randomCharStr = L"&lt;";
@@ -259,7 +259,7 @@ void UIScene_EndPoem::updateNoise() {
         // int pos = 0;
         // do {
         //	pos =
-        //random->nextInt(SharedConstants::acceptableLetters.length()); } while
+        // random->nextInt(SharedConstants::acceptableLetters.length()); } while
         // (pMinecraft->font->charWidths[ch + 32] !=
         // pMinecraft->font->charWidths[pos + 32]); ib.put(listPos + 256 +
         // random->nextInt(2) + 8 + (darken ? 16 : 0)); ib.put(listPos + pos +

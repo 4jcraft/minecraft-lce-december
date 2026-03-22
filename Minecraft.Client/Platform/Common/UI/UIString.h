@@ -5,7 +5,7 @@
 
 #ifndef __PS3__
 
-typedef function<std::wstring(void)> StringBuilder;
+typedef std::function<std::wstring(void)> StringBuilder;
 
 #else
 
@@ -42,7 +42,7 @@ public:
     static int getCurrentLanguage();
 
 protected:
-    class UIStringCore : public enable_shared_from_this<UIStringCore> {
+    class UIStringCore : public std::enable_shared_from_this<UIStringCore> {
     private:
         int m_lastSetLanguage;
         int m_lastSetLocale;

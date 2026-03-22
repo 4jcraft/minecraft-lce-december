@@ -176,7 +176,7 @@ void OcelotModel::setupAnim(float time, float r, float bob, float yRot,
 
 void OcelotModel::prepareMobModel(std::shared_ptr<LivingEntity> mob, float time,
                                   float r, float a) {
-    shared_ptr<Ocelot> ozelot = dynamic_pointer_cast<Ocelot>(mob);
+    std::shared_ptr<Ocelot> ozelot = dynamic_pointer_cast<Ocelot>(mob);
 
     body->y = bodyWalkY;
     body->z = bodyWalkZ;

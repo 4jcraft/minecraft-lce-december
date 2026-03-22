@@ -426,10 +426,11 @@ void SonyCommerce_Vita::copyAddDetailedProductInfo(
     strncpy(pInfo->longDescription, pNPInfo->longDescription,
             SCE_NP_COMMERCE2_PRODUCT_LONG_DESCRIPTION_LEN);
     // 	strncpy(pInfo->legalDescription, npInfo.legalDescription,
-    // SCE_NP_COMMERCE2_PRODUCT_LEGAL_DESCRIPTION_LEN); 	strncpy(pInfo->spName,
-    // npInfo.spName, SCE_NP_COMMERCE2_SP_NAME_LEN); 	strncpy(pInfo->imageUrl,
-    // npInfo.imageUrl, SCE_NP_COMMERCE2_URL_LEN); 	pInfo->releaseDate =
-    // npInfo.releaseDate; 	strncpy(pInfo->ratingSystemId, npInfo.ratingSystemId,
+    // SCE_NP_COMMERCE2_PRODUCT_LEGAL_DESCRIPTION_LEN);
+    // strncpy(pInfo->spName, npInfo.spName, SCE_NP_COMMERCE2_SP_NAME_LEN);
+    // strncpy(pInfo->imageUrl, npInfo.imageUrl, SCE_NP_COMMERCE2_URL_LEN);
+    // pInfo->releaseDate = npInfo.releaseDate;
+    // strncpy(pInfo->ratingSystemId, npInfo.ratingSystemId,
     // SCE_NP_COMMERCE2_RATING_SYSTEM_ID_LEN); 	strncpy(pInfo->ratingImageUrl,
     // npInfo.imageUrl, SCE_NP_COMMERCE2_URL_LEN);
     strncpy(pInfo->skuId, pNPInfo->skuId, SCE_NP_COMMERCE2_SKU_ID_LEN);
@@ -994,8 +995,8 @@ void SonyCommerce_Vita::processMessage() {
             // 	case e_message_commerceStoreProductBrowse:
             // 		{
             // 			ret = productBrowse(*(ProductBrowseParams
-            // *)msg.inputArgs); 			if (ret < 0) { 				m_event = e_event_commerceError;
-            // 				m_errorCode = ret;
+            // *)msg.inputArgs); 			if (ret < 0) {
+            // m_event = e_event_commerceError; 				m_errorCode = ret;
             // 			}
             // 			_TOOLKIT_NP_DEL (ProductBrowseParams
             // *)msg.inputArgs; 			break;
@@ -1014,8 +1015,8 @@ void SonyCommerce_Vita::processMessage() {
             // 	case e_message_commerceRedeemVoucher:
             // 		{
             // 			ret = voucherCodeInput(*(VoucherInputParams
-            // *)msg.inputArgs); 			if (ret < 0) { 				m_event = e_event_commerceError;
-            // 				m_errorCode = ret;
+            // *)msg.inputArgs); 			if (ret < 0) {
+            // m_event = e_event_commerceError; 				m_errorCode = ret;
             // 			}
             // 			_TOOLKIT_NP_DEL (VoucherInputParams
             // *)msg.inputArgs; 			break;
@@ -1031,11 +1032,11 @@ void SonyCommerce_Vita::processMessage() {
             // 			int ret = sceNpManagerGetStatus(&state);
             //
             // 			// We don't want to process this if we are
-            // offline 			if (ret < 0 || state != SCE_NP_MANAGER_STATUS_ONLINE) {
-            // 				m_event = e_event_commerceError;
+            // offline 			if (ret < 0 || state !=
+            // SCE_NP_MANAGER_STATUS_ONLINE) { 				m_event = e_event_commerceError;
             // 				reply.returnCode =
-            // SCE_TOOLKIT_NP_OFFLINE; 				tmpJob.setError(SCE_TOOLKIT_NP_OFFLINE);
-            // 			} else {
+            // SCE_TOOLKIT_NP_OFFLINE;
+            // tmpJob.setError(SCE_TOOLKIT_NP_OFFLINE); 			} else {
             // 				getEntitlementList(&tmpJob);
             // 			}
             // 			break;
@@ -1047,16 +1048,15 @@ void SonyCommerce_Vita::processMessage() {
             // 			int ret = sceNpManagerGetStatus(&state);
             //
             // 			// We don't want to process this if we are
-            // offline 			if (ret < 0 || state != SCE_NP_MANAGER_STATUS_ONLINE) {
-            // 				m_event = e_event_commerceError;
+            // offline 			if (ret < 0 || state !=
+            // SCE_NP_MANAGER_STATUS_ONLINE) { 				m_event = e_event_commerceError;
             // 				reply.returnCode =
             // SCE_TOOLKIT_NP_OFFLINE; 			} else {
             //
             // 				ret =
-            // consumeEntitlement(*(EntitlementToConsume *)msg.inputArgs); 				if
-            // (ret < 0) { 					m_event = e_event_commerceError; 					m_errorCode = ret;
-            // 				} else {
-            // 					m_event =
+            // consumeEntitlement(*(EntitlementToConsume *)msg.inputArgs);
+            // if (ret < 0) { 					m_event =
+            // e_event_commerceError; m_errorCode = ret; 				} else { 					m_event =
             // e_event_commerceConsumedEntitlement;
             // 				}
             // 			}
@@ -1290,8 +1290,10 @@ int SonyCommerce_Vita::commerceEnd() {
     // 		ret = sceNpCommerce2DoProductBrowseFinishAsync(m_contextId);
     // 	else if (m_currentPhase == e_phase_creatingSessionPhase)
     // 		ret = sceNpCommerce2CreateSessionFinish(m_contextId,
-    // &m_sessionInfo); 	else if (m_currentPhase == e_phase_checkoutPhase) 		ret =
-    // sceNpCommerce2DoCheckoutFinishAsync(m_contextId); 	else if (m_currentPhase
+    // &m_sessionInfo); 	else if (m_currentPhase ==
+    // e_phase_checkoutPhase) 		ret =
+    // sceNpCommerce2DoCheckoutFinishAsync(m_contextId); 	else if
+    // (m_currentPhase
     // == e_phase_downloadListPhase) 		ret =
     // sceNpCommerce2DoDlListFinishAsync(m_contextId);
 

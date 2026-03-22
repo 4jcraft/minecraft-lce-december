@@ -77,8 +77,8 @@ const wchar_t* UIControl_Base::getLabel() {
                                getIggyValuePath(), m_funcGetLabel, 0, NULL);
 
     if (result.type == IGGY_DATATYPE_string_UTF16) {
-        m_label =
-            wstring((wchar_t*)result.string16.string, result.string16.length);
+        m_label = std::wstring((wchar_t*)result.string16.string,
+                               result.string16.length);
     }
 
     return m_label.c_str();

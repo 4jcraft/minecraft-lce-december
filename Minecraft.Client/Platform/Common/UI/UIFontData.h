@@ -14,10 +14,10 @@ public:
 
 public:
     // Font name.
-    string m_strFontName;
+    std::string m_strFontName;
 
     // Filename of the glyph archive.
-    wstring m_wstrFilename;
+    std::wstring m_wstrFilename;
 
     // Number of glyphs in the archive.
     unsigned int m_uiGlyphCount;
@@ -90,7 +90,7 @@ protected:
 
 public:
     // Accessor for the font name in the internal SFontData.
-    const string getFontName();
+    const std::string getFontName();
 
     // Accessor for the hardcoded internal font data.
     SFontData* getFontData();

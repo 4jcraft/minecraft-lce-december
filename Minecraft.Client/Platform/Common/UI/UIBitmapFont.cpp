@@ -240,8 +240,8 @@ rrbool UIBitmapFont::CanProvideBitmap(S32 glyph, F32 pixel_scale) {
 //	Parameters
 //	glyph  The glyph to compute/get the bitmap for
 //	pixel_scale  The scale factor (pseudo point size) requested by the
-//textfield,adjusted for display resolution 	bitmap  The structure to store the
-//bitmap into
+// textfield,adjusted for display resolution 	bitmap  The structure to store
+// the bitmap into
 rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
                                     IggyBitmapCharacter* bitmap) {
     // Description
@@ -302,7 +302,7 @@ rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
     };
 
     static long long lastPrint = System::currentTimeMillis();
-    static unordered_set<DebugData> debug_fontSizesRequested;
+    static std::unordered_set<DebugData> debug_fontSizesRequested;
 
     {
         DebugData dData = {m_cFontData->getFontName(), (long)pixel_scale,
@@ -312,7 +312,7 @@ rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
         if ((lastPrint - System::currentTimeMillis()) > VERBOSE_FONT_OUTPUT) {
             app.DebugPrintf("<UIBitmapFont> Requested font/sizes:\n");
 
-            unordered_set<DebugData>::iterator itr;
+            std::unordered_set<DebugData>::iterator itr;
             for (itr = debug_fontSizesRequested.begin();
                  itr != debug_fontSizesRequested.end(); itr++) {
                 app.DebugPrintf("<UIBitmapFont>\t- %s:%i\t(x%i)\n",
@@ -326,8 +326,9 @@ rrbool UIBitmapFont::GetGlyphBitmap(S32 glyph, F32 pixel_scale,
 #endif
 
     // app.DebugPrintf("Request glyph_%d (U+%.4X) at %f, converted to %f
-    // (%f)\n", 				glyph, GetUnicode(glyph), pixel_scale, targetPixelScale,
-    //glyphScale);
+    // (%f)\n", 				glyph, GetUnicode(glyph),
+    // pixel_scale, targetPixelScale,
+    // glyphScale);
 
     // It is not necessary to shrink the glyph width here
     // as its already been done in 'GetGlyphMetrics' by:

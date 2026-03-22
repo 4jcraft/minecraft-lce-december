@@ -52,7 +52,7 @@ void UpdatePlayerRuleDefinition::writeAttributes(DataOutputStream* dos,
 }
 
 void UpdatePlayerRuleDefinition::getChildren(
-    vector<GameRuleDefinition*>* children) {
+    std::vector<GameRuleDefinition*>* children) {
     GameRuleDefinition::getChildren(children);
     for (AUTO_VAR(it, m_items.begin()); it != m_items.end(); it++)
         children->push_back(*it);
@@ -118,7 +118,8 @@ void UpdatePlayerRuleDefinition::addAttribute(
     }
 }
 
-void UpdatePlayerRuleDefinition::postProcessPlayer(shared_ptr<Player> player) {
+void UpdatePlayerRuleDefinition::postProcessPlayer(
+    std::shared_ptr<Player> player) {
     if (m_bUpdateHealth) {
         player->lastHealth = m_health;
         player->setHealth(m_health);

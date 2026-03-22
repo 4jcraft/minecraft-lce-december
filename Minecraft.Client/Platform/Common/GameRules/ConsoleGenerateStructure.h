@@ -13,7 +13,7 @@ class ConsoleGenerateStructure : public GameRuleDefinition,
                                  public StructurePiece {
 private:
     int m_x, m_y, m_z;
-    vector<ConsoleGenerateStructureAction*> m_actions;
+    std::vector<ConsoleGenerateStructureAction*> m_actions;
     int m_dimension;
 
 public:
@@ -23,7 +23,7 @@ public:
         return ConsoleGameRules::eGameRuleType_GenerateStructure;
     }
 
-    virtual void getChildren(vector<GameRuleDefinition*>* children);
+    virtual void getChildren(std::vector<GameRuleDefinition*>* children);
     virtual GameRuleDefinition* addChild(
         ConsoleGameRules::EGameRuleType ruleType);
 

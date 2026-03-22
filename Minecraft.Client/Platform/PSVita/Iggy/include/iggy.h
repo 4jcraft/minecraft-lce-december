@@ -216,7 +216,7 @@ typedef struct IggyAllocator {
 #endif
 } IggyAllocator;
 
-RADEXPFUNC void RADEXPLINK IggyInit(IggyAllocator* allocator);
+RADEXPFUNC void RADEXPLINK IggyInit(IggyAllocator* std::allocator);
 RADEXPFUNC void RADEXPLINK IggyShutdown(void);
 
 typedef enum IggyConfigureBoolName {
@@ -382,7 +382,7 @@ typedef struct {
 } IggyPlayerGCSizes;
 
 typedef struct {
-    IggyAllocator allocator;
+    IggyAllocator std::allocator;
     IggyPlayerGCSizes gc;
     char* filename;
     char* user_name;
@@ -617,7 +617,7 @@ typedef struct {
 
     IggyFontGetCodepointGlyph* get_glyph_for_codepoint;
     IggyFontGetGlyphMetrics* get_glyph_metrics;
-    IggyFontIsGlyphEmpty* is_empty;
+    IggyFontIsGlyphEmpty* std::is_empty;
     IggyFontGetKerningForGlyphPair* get_kerning;
 
     IggyVectorFontGetGlyphShape* get_shape;
@@ -633,7 +633,7 @@ typedef struct {
 
     IggyFontGetCodepointGlyph* get_glyph_for_codepoint;
     IggyFontGetGlyphMetrics* get_glyph_metrics;
-    IggyFontIsGlyphEmpty* is_empty;
+    IggyFontIsGlyphEmpty* std::is_empty;
     IggyFontGetKerningForGlyphPair* get_kerning;
 
     IggyBitmapFontCanProvideBitmap* can_bitmap;
@@ -1020,11 +1020,9 @@ RADEXPFUNC IggyName RADEXPLINK IggyPlayerCreateFastName(Iggy* f,
 RADEXPFUNC IggyName RADEXPLINK IggyPlayerCreateFastNameUTF8(Iggy* f,
                                                             char const* name,
                                                             S32 len);
-RADEXPFUNC IggyResult RADEXPLINK IggyPlayerCallFunctionRS(Iggy* player,
-                                                          IggyDataValue* result,
-                                                          IggyName function,
-                                                          S32 numargs,
-                                                          IggyDataValue* args);
+RADEXPFUNC IggyResult RADEXPLINK IggyPlayerCallFunctionRS(
+    Iggy* player, IggyDataValue* result, IggyName std::function, S32 numargs,
+    IggyDataValue* args);
 RADEXPFUNC IggyResult RADEXPLINK
 IggyPlayerCallMethodRS(Iggy* f, IggyDataValue* result, IggyValuePath* target,
                        IggyName methodname, S32 numargs, IggyDataValue* args);

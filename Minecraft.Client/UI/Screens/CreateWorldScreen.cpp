@@ -67,7 +67,7 @@ void CreateWorldScreen::updateResultFolder() {
 
 std::wstring CreateWorldScreen::findAvailableFolderName(
     LevelStorageSource* levelSource, const std::wstring& folder) {
-    wstring folder2 = folder;  // 4J - copy input as it is const
+    std::wstring folder2 = folder;  // 4J - copy input as it is const
 
 #if 0
     while (levelSource->getDataTagFor(folder2) != NULL)
@@ -91,7 +91,7 @@ void CreateWorldScreen::buttonClicked(Button* button) {
         done = true;
 
         __int64 seedValue = (new Random())->nextLong();
-        wstring seedString = seedEdit->getValue();
+        std::wstring seedString = seedEdit->getValue();
 
         if (seedString.length() != 0) {
             // try to convert it to a long first

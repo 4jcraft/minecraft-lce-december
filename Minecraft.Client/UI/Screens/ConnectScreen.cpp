@@ -17,8 +17,8 @@ ConnectScreen::ConnectScreen(Minecraft* minecraft, const std::wstring& ip,
     // actually need here
     connection = new ClientConnection(minecraft, ip, port);
     if (aborted) return;
-    connection->send(
-        shared_ptr<PreLoginPacket>(new PreLoginPacket(minecraft->user->name)));
+    connection->send(std::shared_ptr<PreLoginPacket>(
+        new PreLoginPacket(minecraft->user->name)));
 #else
 
     new Thread(){public void run(){

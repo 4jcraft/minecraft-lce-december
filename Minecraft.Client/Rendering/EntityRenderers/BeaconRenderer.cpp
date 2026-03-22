@@ -10,7 +10,7 @@ ResourceLocation BeaconRenderer::BEAM_LOCATION =
 void BeaconRenderer::render(std::shared_ptr<TileEntity> _beacon, double x,
                             double y, double z, float a, bool setColor,
                             float alpha, bool useCompiled) {
-    shared_ptr<BeaconTileEntity> beacon =
+    std::shared_ptr<BeaconTileEntity> beacon =
         dynamic_pointer_cast<BeaconTileEntity>(_beacon);
 
     float scale = beacon->getAndUpdateClientSideScale();

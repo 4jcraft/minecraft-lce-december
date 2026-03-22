@@ -8,7 +8,7 @@ void GuiComponent::hLine(int x0, int x1, int y, int col) {
         x0 = x1;
         x1 = tmp;
     }
-    fill(x0, y, x1 + 1, y + 1, col);
+    std::fill(x0, y, x1 + 1, y + 1, col);
 }
 
 void GuiComponent::vLine(int x, int y0, int y1, int col) {
@@ -17,7 +17,7 @@ void GuiComponent::vLine(int x, int y0, int y1, int col) {
         y0 = y1;
         y1 = tmp;
     }
-    fill(x, y0 + 1, x + 1, y1, col);
+    std::fill(x, y0 + 1, x + 1, y1, col);
 }
 
 void GuiComponent::fill(int x0, int y0, int x1, int y1, int col) {

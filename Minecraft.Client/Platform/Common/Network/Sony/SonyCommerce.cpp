@@ -665,14 +665,14 @@ int SonyCommerce::addDetailedProductInfo(ProductInfo* info,
     strncpy(info->longDescription, productInfo.productLongDescription,
             SCE_NP_COMMERCE2_PRODUCT_LONG_DESCRIPTION_LEN);
     // 	strncpy(tempInfo.legalDescription, productInfo.legalDescription,
-    // SCE_NP_COMMERCE2_PRODUCT_LEGAL_DESCRIPTION_LEN); 	strncpy(tempInfo.spName,
-    // productInfo.spName, SCE_NP_COMMERCE2_SP_NAME_LEN);
-    // 	strncpy(tempInfo.imageUrl, productInfo.imageUrl,
-    // SCE_NP_COMMERCE2_URL_LEN); 	tempInfo.releaseDate =
-    // productInfo.releaseDate; 	strncpy(tempInfo.ratingSystemId,
-    // ratingInfo.ratingSystemId, SCE_NP_COMMERCE2_RATING_SYSTEM_ID_LEN);
-    // 	strncpy(tempInfo.ratingImageUrl, ratingInfo.imageUrl,
-    // SCE_NP_COMMERCE2_URL_LEN);
+    // SCE_NP_COMMERCE2_PRODUCT_LEGAL_DESCRIPTION_LEN);
+    // strncpy(tempInfo.spName, productInfo.spName,
+    // SCE_NP_COMMERCE2_SP_NAME_LEN); 	strncpy(tempInfo.imageUrl,
+    // productInfo.imageUrl, SCE_NP_COMMERCE2_URL_LEN);
+    // tempInfo.releaseDate = productInfo.releaseDate;
+    // strncpy(tempInfo.ratingSystemId, ratingInfo.ratingSystemId,
+    // SCE_NP_COMMERCE2_RATING_SYSTEM_ID_LEN); 	strncpy(tempInfo.ratingImageUrl,
+    // ratingInfo.imageUrl, SCE_NP_COMMERCE2_URL_LEN);
 
     // Get SKU info
     if (productInfo.countOfSku == 1) {
@@ -1049,8 +1049,8 @@ void SonyCommerce::processMessage() {
             // 	case e_message_commerceStoreProductBrowse:
             // 		{
             // 			ret = productBrowse(*(ProductBrowseParams
-            // *)msg.inputArgs); 			if (ret < 0) { 				m_event = e_event_commerceError;
-            // 				m_errorCode = ret;
+            // *)msg.inputArgs); 			if (ret < 0) {
+            // m_event = e_event_commerceError; 				m_errorCode = ret;
             // 			}
             // 			_TOOLKIT_NP_DEL (ProductBrowseParams
             // *)msg.inputArgs; 			break;
@@ -1069,8 +1069,8 @@ void SonyCommerce::processMessage() {
             // 	case e_message_commerceRedeemVoucher:
             // 		{
             // 			ret = voucherCodeInput(*(VoucherInputParams
-            // *)msg.inputArgs); 			if (ret < 0) { 				m_event = e_event_commerceError;
-            // 				m_errorCode = ret;
+            // *)msg.inputArgs); 			if (ret < 0) {
+            // m_event = e_event_commerceError; 				m_errorCode = ret;
             // 			}
             // 			_TOOLKIT_NP_DEL (VoucherInputParams
             // *)msg.inputArgs; 			break;
@@ -1086,11 +1086,11 @@ void SonyCommerce::processMessage() {
             // 			int ret = sceNpManagerGetStatus(&state);
             //
             // 			// We don't want to process this if we are
-            // offline 			if (ret < 0 || state != SCE_NP_MANAGER_STATUS_ONLINE) {
-            // 				m_event = e_event_commerceError;
+            // offline 			if (ret < 0 || state !=
+            // SCE_NP_MANAGER_STATUS_ONLINE) { 				m_event = e_event_commerceError;
             // 				reply.returnCode =
-            // SCE_TOOLKIT_NP_OFFLINE; 				tmpJob.setError(SCE_TOOLKIT_NP_OFFLINE);
-            // 			} else {
+            // SCE_TOOLKIT_NP_OFFLINE;
+            // tmpJob.setError(SCE_TOOLKIT_NP_OFFLINE); 			} else {
             // 				getEntitlementList(&tmpJob);
             // 			}
             // 			break;
@@ -1102,16 +1102,15 @@ void SonyCommerce::processMessage() {
             // 			int ret = sceNpManagerGetStatus(&state);
             //
             // 			// We don't want to process this if we are
-            // offline 			if (ret < 0 || state != SCE_NP_MANAGER_STATUS_ONLINE) {
-            // 				m_event = e_event_commerceError;
+            // offline 			if (ret < 0 || state !=
+            // SCE_NP_MANAGER_STATUS_ONLINE) { 				m_event = e_event_commerceError;
             // 				reply.returnCode =
             // SCE_TOOLKIT_NP_OFFLINE; 			} else {
             //
             // 				ret =
-            // consumeEntitlement(*(EntitlementToConsume *)msg.inputArgs); 				if
-            // (ret < 0) { 					m_event = e_event_commerceError; 					m_errorCode = ret;
-            // 				} else {
-            // 					m_event =
+            // consumeEntitlement(*(EntitlementToConsume *)msg.inputArgs);
+            // if (ret < 0) { 					m_event =
+            // e_event_commerceError; m_errorCode = ret; 				} else { 					m_event =
             // e_event_commerceConsumedEntitlement;
             // 				}
             // 			}

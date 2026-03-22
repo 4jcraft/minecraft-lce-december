@@ -155,7 +155,8 @@ SQRNetworkManager_AdHoc_Vita::SQRNetworkManager_AdHoc_Vita(
 
     // 	int ret = sceKernelCreateEqueue(&m_basicEventQueue,
     // "SQRNetworkManager_AdHoc_Vita EQ"); 	assert(ret == SCE_OK); 	ret =
-    // sceKernelAddUserEvent(m_basicEventQueue, sc_UserEventHandle); 	assert(ret
+    // sceKernelAddUserEvent(m_basicEventQueue, sc_UserEventHandle);
+    // assert(ret
     // == SCE_OK);
     //
     // 	m_basicEventThread = new C4JThread(&BasicEventThreadProc,this,"Basic
@@ -507,8 +508,8 @@ void SQRNetworkManager_AdHoc_Vita::Tick() {
     // 	if( ( m_gameBootInvite m) && ( s_safeToRespondToGameBootInvite ) )
     // 	{
     // 		m_listener->HandleInviteReceived(
-    // ProfileManager.GetPrimaryPad(), m_gameBootInvite ); 		m_gameBootInvite =
-    // NULL;
+    // ProfileManager.GetPrimaryPad(), m_gameBootInvite );
+    // m_gameBootInvite = NULL;
     // 	}
 
     ErrorHandlingTick();
@@ -750,8 +751,9 @@ bool SQRNetworkManager_AdHoc_Vita::FriendRoomManagerSearch2() {
     // 	{
     // 		// If we have some results, then we also want to make sure that
     // we don't have any duplicate rooms here if more than one friend is playing
-    // in the same room. 		unordered_set<SceNpMatching2RoomId> uniqueRooms; 		for(
-    // unsigned int i = 0; i < m_aFriendSearchResults.size(); i++ )
+    // in the same room. 		unordered_set<SceNpMatching2RoomId>
+    // uniqueRooms; 		for( unsigned int i = 0; i <
+    // m_aFriendSearchResults.size(); i++ )
     // 		{
     // 			if(m_aFriendSearchResults[i].m_RoomFound)
     // 			{
@@ -768,7 +770,8 @@ bool SQRNetworkManager_AdHoc_Vita::FriendRoomManagerSearch2() {
     // 			{
     // 				free(m_aFriendSearchResults[i].m_RoomExtDataReceived);
     // 				m_aFriendSearchResults[i] =
-    // m_aFriendSearchResults.back(); 				m_aFriendSearchResults.pop_back();
+    // m_aFriendSearchResults.back();
+    // m_aFriendSearchResults.pop_back();
     // 			}
     // 			else
     // 			{
@@ -787,8 +790,9 @@ void SQRNetworkManager_AdHoc_Vita::FriendSearchTick() {
         // 		if( !m_getFriendCountThread->isRunning() )
         // 		{
         // 			m_friendSearchState =
-        // SNM_FRIEND_SEARCH_STATE_GETTING_FRIEND_INFO; 			delete
-        // m_getFriendCountThread; 			m_getFriendCountThread = NULL;
+        // SNM_FRIEND_SEARCH_STATE_GETTING_FRIEND_INFO;
+        // delete m_getFriendCountThread;
+        // m_getFriendCountThread = NULL;
         FriendRoomManagerSearch2();
         // 		}
     }
@@ -887,7 +891,8 @@ int SQRNetworkManager_AdHoc_Vita::BasicEventThreadProc(void* lpParameter) {
 //
 //
 // 	// There shouldn't ever be more than 100 friends returned but limit here
-// just in case 	if( manager->m_friendCount > 100 ) manager->m_friendCount = 100;
+// just in case 	if( manager->m_friendCount > 100 )
+// manager->m_friendCount = 100;
 //
 // 	SceNpId* friendIDs = NULL;
 // 	if(manager->m_friendCount > 0)
@@ -899,7 +904,8 @@ int SQRNetworkManager_AdHoc_Vita::BasicEventThreadProc(void* lpParameter) {
 // manager->m_friendCount, &numRecieved); 		if (ret < 0)
 // 		{
 // 			app.DebugPrintf("sceNpBasicGetFriendListEntries()
-// failed: ret = 0x%x\n", ret); 			manager->m_friendCount = 0;
+// failed: ret = 0x%x\n", ret); 			manager->m_friendCount =
+// 0;
 // 		}
 // 		else
 // 		{
@@ -925,8 +931,8 @@ int SQRNetworkManager_AdHoc_Vita::BasicEventThreadProc(void* lpParameter) {
 // // using the same SceNpCommunicationId, so playing Minecraft
 // 		{
 // 			ret = sceNpBasicGetGamePresenceOfFriend(&friendIDs[i],
-// &presenceDetails); 			if( ( ret == 0 ) && ( !manager->ForceErrorPoint(
-// SNM_FORCE_ERROR_GET_FRIEND_LIST_ENTRY ) ) )
+// &presenceDetails); 			if( ( ret == 0 ) && (
+// !manager->ForceErrorPoint( SNM_FORCE_ERROR_GET_FRIEND_LIST_ENTRY ) ) )
 // 			{
 // 				FriendSearchResult result;
 // 				memcpy(&result.m_NpId, &friendIDs[i],
@@ -939,16 +945,19 @@ int SQRNetworkManager_AdHoc_Vita::BasicEventThreadProc(void* lpParameter) {
 // sizeof(HelloSyncInfo) )
 // 				{
 // 					HelloSyncInfo *pso = (HelloSyncInfo
-// *)presenceDetails.inGamePresence.data; 					if( pso->netVersion ==
-// MINECRAFT_NET_VERSION )
+// *)presenceDetails.inGamePresence.data;
+// if( pso->netVersion == MINECRAFT_NET_VERSION )
 // 					{
 // 						if( !pso->inviteOnly )
 // 						{
 // 							result.m_RoomFound =
-// true; 							result.m_RoomId = pso->m_RoomId; 							result.m_ServerId = pso->m_ServerId;
+// true; 							result.m_RoomId
+// = pso->m_RoomId;
+// result.m_ServerId = pso->m_ServerId;
 //
 // 							CPlatformNetworkManagerSony::MallocAndSetExtDataFromSQRPresenceInfo(&result.m_RoomExtDataReceived,
-// pso); 							manager->m_aFriendSearchResults.push_back(result);
+// pso);
+// manager->m_aFriendSearchResults.push_back(result);
 // 						}
 // 					}
 // 				}
@@ -1823,8 +1832,8 @@ void SQRNetworkManager_AdHoc_Vita::MatchingEventHandler(int id, int event,
                                        .getOnlineID(),
                                    SCE_NP_ONLINEID_MAX_LENGTH);
                             // 					result.m_RoomId
-                            // = pso->m_RoomId; 					result.m_ServerId =
-                            // pso->m_ServerId;
+                            // = pso->m_RoomId;
+                            // result.m_ServerId = pso->m_ServerId;
 
                             CPlatformNetworkManagerSony::
                                 MallocAndSetExtDataFromSQRPresenceInfo(
@@ -1977,10 +1986,12 @@ void SQRNetworkManager_AdHoc_Vita::MatchingEventHandler(int id, int event,
             // 		manager->MapRoomSlotPlayers();
             //
             // 		SQRNetworkPlayer *player =
-            // manager->GetPlayerFromRudpCtx(peer->s_addr); 		if( player )
+            // manager->GetPlayerFromRudpCtx(peer->s_addr); 		if(
+            // player )
             // 		{
             // 			// Flag connection stage as being completed for
-            // this player 			manager->NetworkPlayerConnectionComplete(player);
+            // this player
+            // manager->NetworkPlayerConnectionComplete(player);
             // 		}
         }
 
@@ -1993,7 +2004,7 @@ void SQRNetworkManager_AdHoc_Vita::MatchingEventHandler(int id, int event,
         case SCE_NET_ADHOC_MATCHING_EVENT_CANCEL:   // The join request was
                                                     // canceled by the client
         case SCE_NET_ADHOC_MATCHING_EVENT_ERROR:    //	A protocol error
-                                                    //occurred
+                                                    // occurred
         case SCE_NET_ADHOC_MATCHING_EVENT_TIMEOUT:  // The participation
                                                     // agreement was canceled
                                                     // because of a Keep Alive
@@ -2556,7 +2567,8 @@ void SQRNetworkManager_AdHoc_Vita::SysUtilCallback(uint64_t status,
     // 	{
     // 		case CELL_SYSUTIL_NET_CTL_NETSTART_FINISHED:
     // 			ret =
-    // cellNetCtlNetStartDialogUnloadAsync(&netstart_result); 			if(ret < 0)
+    // cellNetCtlNetStartDialogUnloadAsync(&netstart_result);
+    // if(ret < 0)
     // 			{
     // 				manager->SetState(SNM_INT_STATE_INITIALISE_FAILED);
     // 				if( s_SignInCompleteCallbackFn )

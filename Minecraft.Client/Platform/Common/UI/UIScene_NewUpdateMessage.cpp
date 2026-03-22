@@ -14,12 +14,12 @@ UIScene_NewUpdateMessage::UIScene_NewUpdateMessage(int iPad, void* initData,
 
     m_buttonConfirm.init(app.GetString(IDS_TOOLTIPS_ACCEPT), eControl_Confirm);
 
-    wstring message = app.GetString(IDS_TITLEUPDATE);
+    std::wstring message = app.GetString(IDS_TITLEUPDATE);
     message.append(L"\r\n");
 
     message = app.FormatHTMLString(m_iPad, message);
 
-    vector<wstring> paragraphs;
+    std::vector<std::wstring> paragraphs;
     int lastIndex = 0;
     for (int index = message.find(L"\r\n", lastIndex, 2);
          index != wstring::npos; index = message.find(L"\r\n", lastIndex, 2)) {

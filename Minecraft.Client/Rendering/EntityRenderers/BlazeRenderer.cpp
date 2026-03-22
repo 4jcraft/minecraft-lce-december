@@ -14,7 +14,7 @@ void BlazeRenderer::render(std::shared_ptr<Entity> _mob, double x, double y,
     // 4J - original version used generics and thus had an input parameter of
     // type Blaze rather than shared_ptr<Entity>  we have here - do some casting
     // around instead
-    shared_ptr<Blaze> mob = dynamic_pointer_cast<Blaze>(_mob);
+    std::shared_ptr<Blaze> mob = dynamic_pointer_cast<Blaze>(_mob);
 
     int modelVersion = ((BlazeModel*)model)->modelVersion();
     if (modelVersion != this->modelVersion) {

@@ -18,7 +18,8 @@ void GameRuleDefinition::write(DataOutputStream* dos) {
     writeAttributes(dos, 0);
 
     // 4J-JEV: Get children.
-    vector<GameRuleDefinition*>* children = new vector<GameRuleDefinition*>();
+    std::vector<GameRuleDefinition*>* children =
+        new std::vector<GameRuleDefinition*>();
     getChildren(children);
 
     // Write children.
@@ -42,7 +43,8 @@ void GameRuleDefinition::writeAttributes(DataOutputStream* dos,
     dos->writeUTF(_toString(m_4JDataValue));
 }
 
-void GameRuleDefinition::getChildren(vector<GameRuleDefinition*>* children) {}
+void GameRuleDefinition::getChildren(
+    std::vector<GameRuleDefinition*>* children) {}
 
 GameRuleDefinition* GameRuleDefinition::addChild(
     ConsoleGameRules::EGameRuleType ruleType) {
@@ -101,23 +103,24 @@ void GameRuleDefinition::setComplete(GameRule* rule, bool val) {
     rule->setParameter(L"bComplete", value);
 }
 
-vector<GameRuleDefinition*>* GameRuleDefinition::enumerate() {
+std::vector<GameRuleDefinition*>* GameRuleDefinition::enumerate() {
     // Get Vector.
-    vector<GameRuleDefinition*>* gRules;
-    gRules = new vector<GameRuleDefinition*>();
+    std::vector<GameRuleDefinition*>* gRules;
+    gRules = new std::vector<GameRuleDefinition*>();
     gRules->push_back(this);
     getChildren(gRules);
     return gRules;
 }
 
-unordered_map<GameRuleDefinition*, int>* GameRuleDefinition::enumerateMap() {
-    unordered_map<GameRuleDefinition*, int>* out =
-        new unordered_map<GameRuleDefinition*, int>();
+std::unordered_map<GameRuleDefinition*, int>*
+GameRuleDefinition::enumerateMap() {
+    std::unordered_map<GameRuleDefinition*, int>* out =
+        new std::unordered_map<GameRuleDefinition*, int>();
 
     int i = 0;
-    vector<GameRuleDefinition*>* gRules = enumerate();
+    std::vector<GameRuleDefinition*>* gRules = enumerate();
     for (AUTO_VAR(it, gRules->begin()); it != gRules->end(); it++)
-        out->insert(pair<GameRuleDefinition*, int>(*it, i++));
+        out->insert(std::pair<GameRuleDefinition*, int>(*it, i++));
 
     return out;
 }
@@ -135,7 +138,7 @@ GameRulesInstance* GameRuleDefinition::generateNewGameRulesInstance(
 std::wstring GameRuleDefinition::generateDescriptionString(
     ConsoleGameRules::EGameRuleType defType, const std::wstring& description,
     void* data, int dataLength) {
-    wstring formatted = description;
+    std::wstring formatted = description;
     switch (defType) {
         case ConsoleGameRules::eGameRuleType_CompleteAllRule:
             formatted = CompleteAllRuleDefinition::generateDescriptionString(

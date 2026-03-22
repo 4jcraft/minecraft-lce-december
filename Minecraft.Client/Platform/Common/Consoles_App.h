@@ -798,8 +798,8 @@ private:
         DLCInfo_SkinName;  // skin name, full offer id
 #endif
     //	bool m_bRead_TMS_XUIDS_XML; // track whether we have already read the
-    //TMS xuids.xml file 	bool m_bRead_TMS_DLCINFO_XML; // track whether we have
-    //already read the TMS DLC.xml file
+    // TMS xuids.xml file 	bool m_bRead_TMS_DLCINFO_XML; // track whether
+    // we have already read the TMS DLC.xml file
 
     bool m_bDefaultCapeInstallAttempted;  // have we attempted to install the
                                           // default cape from tms
@@ -821,7 +821,7 @@ public:
 
     // void OverrideFontRenderer(bool set, bool immediate = true);
     //	void ToggleFontRenderer() {
-    //OverrideFontRenderer(!m_bFontRendererOverridden,false); }
+    // OverrideFontRenderer(!m_bFontRendererOverridden,false); }
     BANNEDLIST BannedListA[XUSER_MAX_COUNT];
 
 private:

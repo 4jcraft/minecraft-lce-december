@@ -30,7 +30,8 @@ float LivingEntityRenderer::rotlerp(float from, float to, float a) {
 
 void LivingEntityRenderer::render(std::shared_ptr<Entity> _mob, double x,
                                   double y, double z, float rot, float a) {
-    shared_ptr<LivingEntity> mob = dynamic_pointer_cast<LivingEntity>(_mob);
+    std::shared_ptr<LivingEntity> mob =
+        dynamic_pointer_cast<LivingEntity>(_mob);
 
     glPushMatrix();
     glDisable(GL_CULL_FACE);
@@ -48,7 +49,7 @@ void LivingEntityRenderer::render(std::shared_ptr<Entity> _mob, double x,
         float headRot = rotlerp(mob->yHeadRotO, mob->yHeadRot, a);
 
         if (mob->isRiding() && mob->riding->instanceof(eTYPE_LIVINGENTITY)) {
-            shared_ptr<LivingEntity> riding =
+            std::shared_ptr<LivingEntity> riding =
                 dynamic_pointer_cast<LivingEntity>(mob->riding);
             bodyRot = rotlerp(riding->yBodyRotO, riding->yBodyRot, a);
 
@@ -265,7 +266,7 @@ void LivingEntityRenderer::setupRotations(std::shared_ptr<LivingEntity> mob,
         if (fall > 1) fall = 1;
         glRotatef(fall * getFlipDegrees(mob), 0, 0, 1);
     } else {
-        wstring name = mob->getAName();
+        std::wstring name = mob->getAName();
         if (name == L"Dinnerbone" || name == L"Grumm") {
             if (!mob->instanceof(eTYPE_PLAYER) ||
                 !dynamic_pointer_cast<Player>(mob)->isCapeHidden()) {
@@ -292,8 +293,8 @@ void LivingEntityRenderer::renderArrows(std::shared_ptr<LivingEntity> mob,
                                         float a) {
     int arrowCount = mob->getArrowCount();
     if (arrowCount > 0) {
-        shared_ptr<Entity> arrow =
-            shared_ptr<Entity>(new Arrow(mob->level, mob->x, mob->y, mob->z));
+        std::shared_ptr<Entity> arrow = std::shared_ptr<Entity>(
+            new Arrow(mob->level, mob->x, mob->y, mob->z));
         Random random = Random(mob->entityId);
         Lighting::turnOff();
         for (int i = 0; i < arrowCount; i++) {
@@ -365,7 +366,7 @@ void LivingEntityRenderer::renderName(std::shared_ptr<LivingEntity> mob,
         float maxDist = mob->isSneaking() ? 32 : 64;
 
         if (dist < maxDist * maxDist) {
-            wstring msg = mob->getDisplayName();
+            std::wstring msg = mob->getDisplayName();
 
             if (!msg.empty()) {
                 if (mob->isSneaking()) {
@@ -502,11 +503,11 @@ void LivingEntityRenderer::renderNameTag(std::shared_ptr<LivingEntity> mob,
 
     int offs = 0;
 
-    wstring playerName;
+    std::wstring playerName;
     WCHAR wchName[2];
 
     if (mob->instanceof(eTYPE_PLAYER)) {
-        shared_ptr<Player> player = dynamic_pointer_cast<Player>(mob);
+        std::shared_ptr<Player> player = dynamic_pointer_cast<Player>(mob);
 
         if (app.isXuidDeadmau5(player->getXuid())) offs = -10;
 

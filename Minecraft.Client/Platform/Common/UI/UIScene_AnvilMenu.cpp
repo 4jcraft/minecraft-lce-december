@@ -42,7 +42,7 @@ UIScene_AnvilMenu::UIScene_AnvilMenu(int iPad, void* _initData,
     m_slotListResult.addSlots(AnvilMenu::RESULT_SLOT, 1);
 
     bool expensive = false;
-    wstring m_costString = L"";
+    std::wstring m_costString = L"";
 
     if (m_repairMenu->cost > 0) {
         if (m_repairMenu->cost >= 40 &&

@@ -30,7 +30,7 @@ protected:
     Level* level;
 
 private:
-    deque<std::shared_ptr<Particle> >
+    std::deque<std::shared_ptr<Particle> >
         particles[3][TEXTURE_COUNT]
                  [LIST_COUNT];  // 4J made three arrays to cope with
                                 // simultaneous two dimensions

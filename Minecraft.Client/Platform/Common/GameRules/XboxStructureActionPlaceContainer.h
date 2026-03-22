@@ -9,7 +9,7 @@ class BoundingBox;
 
 class XboxStructureActionPlaceContainer : public XboxStructureActionPlaceBlock {
 private:
-    vector<AddItemRuleDefinition*> m_items;
+    std::vector<AddItemRuleDefinition*> m_items;
 
 public:
     XboxStructureActionPlaceContainer();
@@ -19,7 +19,7 @@ public:
         return ConsoleGameRules::eGameRuleType_PlaceContainer;
     }
 
-    virtual void getChildren(vector<GameRuleDefinition*>* children);
+    virtual void getChildren(std::vector<GameRuleDefinition*>* children);
     virtual GameRuleDefinition* addChild(
         ConsoleGameRules::EGameRuleType ruleType);
 

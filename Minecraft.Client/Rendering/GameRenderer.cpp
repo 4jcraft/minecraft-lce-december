@@ -60,10 +60,11 @@ C4JThread* GameRenderer::m_updateThread;
 C4JThread::EventArray* GameRenderer::m_updateEvents;
 bool GameRenderer::nearThingsToDo = false;
 bool GameRenderer::updateRunning = false;
-vector<uint8_t*> GameRenderer::m_deleteStackByte;
-vector<SparseLightStorage*> GameRenderer::m_deleteStackSparseLightStorage;
-vector<CompressedTileStorage*> GameRenderer::m_deleteStackCompressedTileStorage;
-vector<SparseDataStorage*> GameRenderer::m_deleteStackSparseDataStorage;
+std::vector<uint8_t*> GameRenderer::m_deleteStackByte;
+std::vector<SparseLightStorage*> GameRenderer::m_deleteStackSparseLightStorage;
+std::vector<CompressedTileStorage*>
+    GameRenderer::m_deleteStackCompressedTileStorage;
+std::vector<SparseDataStorage*> GameRenderer::m_deleteStackSparseDataStorage;
 #endif
 CRITICAL_SECTION GameRenderer::m_csDeleteStack;
 
@@ -308,7 +309,7 @@ void GameRenderer::pick(float a) {
     Vec3* to = from->add(b->x * range, b->y * range, b->z * range);
     hovered = nullptr;
     float overlap = 1;
-    vector<shared_ptr<Entity> >* objects = mc->level->getEntities(
+    std::vector<std::shared_ptr<Entity> >* objects = mc->level->getEntities(
         mc->cameraTargetPlayer,
         mc->cameraTargetPlayer->bb
             ->expand(b->x * (range), b->y * (range), b->z * (range))
@@ -317,7 +318,7 @@ void GameRenderer::pick(float a) {
 
     AUTO_VAR(itEnd, objects->end());
     for (AUTO_VAR(it, objects->begin()); it != itEnd; it++) {
-        shared_ptr<Entity> e = *it;  // objects->at(i);
+        std::shared_ptr<Entity> e = *it;  // objects->at(i);
         if (!e->isPickable()) continue;
 
         float rr = e->getPickRadius();
@@ -359,7 +360,7 @@ void GameRenderer::SetFovVal(float fov) { m_fov = fov; }
 float GameRenderer::GetFovVal() { return m_fov; }
 
 void GameRenderer::tickFov() {
-    shared_ptr<LocalPlayer> player =
+    std::shared_ptr<LocalPlayer> player =
         dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
 
     int playerIdx = player ? player->GetXboxPad() : 0;
@@ -375,7 +376,7 @@ void GameRenderer::tickFov() {
 float GameRenderer::getFov(float a, bool applyEffects) {
     if (cameraFlip > 0) return 90;
 
-    shared_ptr<LocalPlayer> player =
+    std::shared_ptr<LocalPlayer> player =
         dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
     int playerIdx = player ? player->GetXboxPad() : 0;
     float fov = m_fov;  // 70;
@@ -397,7 +398,7 @@ float GameRenderer::getFov(float a, bool applyEffects) {
 }
 
 void GameRenderer::bobHurt(float a) {
-    shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
+    std::shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
 
     float hurt = player->hurtTime - a;
 
@@ -421,7 +422,7 @@ void GameRenderer::bobHurt(float a) {
 void GameRenderer::bobView(float a) {
     if (!mc->cameraTargetPlayer->instanceof(eTYPE_LIVINGENTITY)) return;
 
-    shared_ptr<Player> player =
+    std::shared_ptr<Player> player =
         dynamic_pointer_cast<Player>(mc->cameraTargetPlayer);
 
     float wda = player->walkDist - player->walkDistO;
@@ -436,8 +437,8 @@ void GameRenderer::bobView(float a) {
 }
 
 void GameRenderer::moveCameraToPlayer(float a) {
-    shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
-    shared_ptr<LocalPlayer> localplayer =
+    std::shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
+    std::shared_ptr<LocalPlayer> localplayer =
         dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer);
     float heightOffset = player->heightOffset - 1.62f;
 
@@ -667,7 +668,7 @@ void GameRenderer::renderItemInHand(float a, int eye) {
 
     // 4J-JEV: I'm fairly confident this method would crash if the cameratarget
     // isnt a local player anyway, but oh well.
-    shared_ptr<LocalPlayer> localplayer =
+    std::shared_ptr<LocalPlayer> localplayer =
         mc->cameraTargetPlayer->instanceof(eTYPE_LOCALPLAYER)
             ? dynamic_pointer_cast<LocalPlayer>(mc->cameraTargetPlayer)
             : nullptr;
@@ -677,7 +678,8 @@ void GameRenderer::renderItemInHand(float a, int eye) {
     // 4J-PB - to turn off the hand for screenshots, but not when the item held
     // is a map
     if (localplayer != NULL) {
-        shared_ptr<ItemInstance> item = localplayer->inventory->getSelected();
+        std::shared_ptr<ItemInstance> item =
+            localplayer->inventory->getSelected();
         if (!(item && item->getItem()->id == Item::map_Id) &&
             app.GetGameSettings(localplayer->GetXboxPad(),
                                 eGameSetting_DisplayHand) == 0)
@@ -829,7 +831,7 @@ void GameRenderer::updateLightTexture(float a) {
     // loop to update them all here
     for (int j = 0; j < XUSER_MAX_COUNT; j++) {
         // Loop over all the players
-        shared_ptr<MultiplayerLocalPlayer> player =
+        std::shared_ptr<MultiplayerLocalPlayer> player =
             Minecraft::GetInstance()->localplayers[j];
         if (player == NULL) continue;
 
@@ -1193,8 +1195,8 @@ void GameRenderer::DisableUpdateThread() {
 
 void GameRenderer::renderLevel(float a, __int64 until) {
     //	if (updateLightTexture) updateLightTexture();	// 4J - TODO -
-    //Java 1.0.1 has this line enabled, should check why - don't want to put it
-    //in now in case it breaks split-screen
+    // Java 1.0.1 has this line enabled, should check why - don't want to put it
+    // in now in case it breaks split-screen
 
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
@@ -1208,13 +1210,13 @@ void GameRenderer::renderLevel(float a, __int64 until) {
         (mc->player == mc->localplayers[ProfileManager.GetPrimaryPad()]);
 
     //	if (mc->cameraTargetPlayer == NULL)	// 4J - removed condition as we
-    //want to update this is mc->player changes for different local players
+    // want to update this is mc->player changes for different local players
     {
         mc->cameraTargetPlayer = mc->player;
     }
     pick(a);
 
-    shared_ptr<LivingEntity> cameraEntity = mc->cameraTargetPlayer;
+    std::shared_ptr<LivingEntity> cameraEntity = mc->cameraTargetPlayer;
     LevelRenderer* levelRenderer = mc->levelRenderer;
     ParticleEngine* particleEngine = mc->particleEngine;
     double xOff =
@@ -1350,7 +1352,7 @@ void GameRenderer::renderLevel(float a, __int64 until) {
                 cameraEntity->instanceof(
                     eTYPE_PLAYER))  //&& !mc->options.hideGui)
             {
-                shared_ptr<Player> player =
+                std::shared_ptr<Player> player =
                     dynamic_pointer_cast<Player>(cameraEntity);
                 glDisable(GL_ALPHA_TEST);
                 levelRenderer->renderHit(player, mc->hitResult, 0,
@@ -1429,7 +1431,7 @@ void GameRenderer::renderLevel(float a, __int64 until) {
         {
             if (mc->hitResult != NULL &&
                 !cameraEntity->isUnderLiquid(Material::water)) {
-                shared_ptr<Player> player =
+                std::shared_ptr<Player> player =
                     dynamic_pointer_cast<Player>(cameraEntity);
                 glDisable(GL_ALPHA_TEST);
                 levelRenderer->renderHitOutline(player, mc->hitResult, 0, a);
@@ -1500,7 +1502,7 @@ void GameRenderer::tickRain() {
     rainLevel /= (mc->levelRenderer->activePlayers() + 1);
 
     random->setSeed(_tick * 312987231l);
-    shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
+    std::shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
     Level* level = mc->level;
 
     int x0 = Mth::floor(player->x);
@@ -1533,7 +1535,7 @@ void GameRenderer::tickRain() {
             if (t > 0) {
                 if (Tile::tiles[t]->material == Material::lava) {
                     mc->particleEngine->add(
-                        shared_ptr<SmokeParticle>(new SmokeParticle(
+                        std::shared_ptr<SmokeParticle>(new SmokeParticle(
                             level, x + xa,
                             y + 0.1f - Tile::tiles[t]->getShapeY0(), z + za, 0,
                             0, 0)));
@@ -1543,8 +1545,8 @@ void GameRenderer::tickRain() {
                         rainPosY = y + 0.1f - Tile::tiles[t]->getShapeY0();
                         rainPosZ = z + za;
                     }
-                    mc->particleEngine->add(
-                        shared_ptr<WaterDropParticle>(new WaterDropParticle(
+                    mc->particleEngine->add(std::shared_ptr<WaterDropParticle>(
+                        new WaterDropParticle(
                             level, x + xa,
                             y + 0.1f - Tile::tiles[t]->getShapeY0(), z + za)));
                 }
@@ -1596,7 +1598,7 @@ void GameRenderer::renderSnowAndRain(float a) {
         }
     }
 
-    shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
+    std::shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
     Level* level = mc->level;
 
     int x0 = Mth::floor(player->x);
@@ -1798,7 +1800,7 @@ void GameRenderer::setupGuiScreen(int forceScale /*=-1*/) {
 
 void GameRenderer::setupClearColor(float a) {
     Level* level = mc->level;
-    shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
+    std::shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
 
     float whiteness = 1.0f / (4 - mc->options->viewDistance);
     whiteness = 1 - (float)pow((double)whiteness, 0.25);
@@ -1951,7 +1953,7 @@ void GameRenderer::setupClearColor(float a) {
 }
 
 void GameRenderer::setupFog(int i, float alpha) {
-    shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
+    std::shared_ptr<LivingEntity> player = mc->cameraTargetPlayer;
 
     // 4J - check for creative mode brought forward from 1.2.3
     bool creative = false;

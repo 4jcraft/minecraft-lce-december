@@ -11,7 +11,7 @@ class PlayerTeam;
 class ServerScoreboard : public Scoreboard {
 private:
     MinecraftServer* server;
-    unordered_set<Objective*> trackedObjectives;
+    std::unordered_set<Objective*> trackedObjectives;
     ScoreboardSaveData* saveData;
 
 public:

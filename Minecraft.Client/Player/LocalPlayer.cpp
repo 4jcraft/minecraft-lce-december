@@ -544,7 +544,7 @@ void LocalPlayer::closeContainer() {
     ui.CloseUIScenes(m_iPad);
 }
 
-void LocalPlayer::openTextEdit(shared_ptr<TileEntity> tileEntity) {
+void LocalPlayer::openTextEdit(std::shared_ptr<TileEntity> tileEntity) {
     bool success;
 
     if (tileEntity->GetType() == eTYPE_SIGNTILEENTITY) {
@@ -566,21 +566,21 @@ bool LocalPlayer::openContainer(std::shared_ptr<Container> container) {
     return success;
 }
 
-bool LocalPlayer::openHopper(shared_ptr<HopperTileEntity> container) {
+bool LocalPlayer::openHopper(std::shared_ptr<HopperTileEntity> container) {
     // minecraft->setScreen(new HopperScreen(inventory, container));
     bool success = app.LoadHopperMenu(GetXboxPad(), inventory, container);
     if (success) ui.PlayUISFX(eSFX_Press);
     return success;
 }
 
-bool LocalPlayer::openHopper(shared_ptr<MinecartHopper> container) {
+bool LocalPlayer::openHopper(std::shared_ptr<MinecartHopper> container) {
     // minecraft->setScreen(new HopperScreen(inventory, container));
     bool success = app.LoadHopperMenu(GetXboxPad(), inventory, container);
     if (success) ui.PlayUISFX(eSFX_Press);
     return success;
 }
 
-bool LocalPlayer::openHorseInventory(shared_ptr<EntityHorse> horse,
+bool LocalPlayer::openHorseInventory(std::shared_ptr<EntityHorse> horse,
                                      std::shared_ptr<Container> container) {
     // minecraft->setScreen(new HorseInventoryScreen(inventory, container,
     // horse));
@@ -632,7 +632,7 @@ bool LocalPlayer::openFurnace(std::shared_ptr<FurnaceTileEntity> furnace) {
 }
 
 bool LocalPlayer::openBrewingStand(
-    shared_ptr<BrewingStandTileEntity> brewingStand) {
+    std::shared_ptr<BrewingStandTileEntity> brewingStand) {
     bool success =
         app.LoadBrewingStandMenu(GetXboxPad(), inventory, brewingStand);
     if (success) ui.PlayUISFX(eSFX_Press);
@@ -640,7 +640,7 @@ bool LocalPlayer::openBrewingStand(
     return success;
 }
 
-bool LocalPlayer::openBeacon(shared_ptr<BeaconTileEntity> beacon) {
+bool LocalPlayer::openBeacon(std::shared_ptr<BeaconTileEntity> beacon) {
     // minecraft->setScreen(new BeaconScreen(inventory, beacon));
     bool success = app.LoadBeaconMenu(GetXboxPad(), inventory, beacon);
     if (success) ui.PlayUISFX(eSFX_Press);
@@ -654,7 +654,7 @@ bool LocalPlayer::openTrap(std::shared_ptr<DispenserTileEntity> trap) {
     return success;
 }
 
-bool LocalPlayer::openTrading(shared_ptr<Merchant> traderTarget,
+bool LocalPlayer::openTrading(std::shared_ptr<Merchant> traderTarget,
                               const std::wstring& name) {
     bool success =
         app.LoadTradingMenu(GetXboxPad(), inventory, traderTarget, level, name);
@@ -664,14 +664,14 @@ bool LocalPlayer::openTrading(shared_ptr<Merchant> traderTarget,
 }
 
 void LocalPlayer::crit(std::shared_ptr<Entity> e) {
-    shared_ptr<CritParticle> critParticle =
-        shared_ptr<CritParticle>(new CritParticle((Level*)minecraft->level, e));
+    std::shared_ptr<CritParticle> critParticle = std::shared_ptr<CritParticle>(
+        new CritParticle((Level*)minecraft->level, e));
     critParticle->CritParticlePostConstructor();
     minecraft->particleEngine->add(critParticle);
 }
 
 void LocalPlayer::magicCrit(std::shared_ptr<Entity> e) {
-    shared_ptr<CritParticle> critParticle = shared_ptr<CritParticle>(
+    std::shared_ptr<CritParticle> critParticle = std::shared_ptr<CritParticle>(
         new CritParticle((Level*)minecraft->level, e, eParticleType_magicCrit));
     critParticle->CritParticlePostConstructor();
     minecraft->particleEngine->add(critParticle);
@@ -679,7 +679,7 @@ void LocalPlayer::magicCrit(std::shared_ptr<Entity> e) {
 
 void LocalPlayer::take(std::shared_ptr<Entity> e, int orgCount) {
     minecraft->particleEngine->add(
-        shared_ptr<TakeAnimationParticle>(new TakeAnimationParticle(
+        std::shared_ptr<TakeAnimationParticle>(new TakeAnimationParticle(
             (Level*)minecraft->level, e, shared_from_this(), -0.5f)));
 }
 
@@ -1181,8 +1181,8 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
     int pZ = ((int)floor(this->z)) % 16;
     int pX = ((int)floor(this->x)) % 16;
 
-    cout << "player in chunk (" << cx << "," << cz << ") at (" << this->x << ","
-         << this->y << "," << this->z << ")\n";
+    std::cout << "player in chunk (" << cx << "," << cz << ") at (" << this->x
+              << "," << this->y << "," << this->z << ")\n";
 
     for (int v = -1; v < 2; v++)
         for (unsigned int z = 0; z < 16; z++) {
@@ -1190,26 +1190,26 @@ void LocalPlayer::mapPlayerChunk(const unsigned int flagTileType) {
                 for (unsigned int x = 0; x < 16; x++) {
                     LevelChunk* cc = level->getChunk(cx + u, cz + v);
                     if (x == pX && z == pZ && u == 0 && v == 0)
-                        cout << "O";
+                        std::cout << "O";
                     else
                         for (unsigned int y = 127; y > 0; y--) {
                             int t = cc->getTile(x, y, z);
                             if (flagTileType != 0 && t == flagTileType) {
-                                cout << "@";
+                                std::cout << "@";
                                 break;
                             } else if (t != 0 && t < 10) {
-                                cout << t;
+                                std::cout << t;
                                 break;
                             } else if (t > 0) {
-                                cout << "#";
+                                std::cout << "#";
                                 break;
                             }
                         }
                 }
-            cout << "\n";
+            std::cout << "\n";
         }
 
-    cout << "\n";
+    std::cout << "\n";
 }
 
 void LocalPlayer::handleMouseDown(int button, bool down) {
@@ -1410,7 +1410,7 @@ bool LocalPlayer::handleMouseClick(int button) {
     if (button == 1 && (isSleeping() && level != NULL && level->isClientSide)) {
         if (lastClickState == lastClick_oldRepeat) return false;
 
-        shared_ptr<MultiplayerLocalPlayer> mplp =
+        std::shared_ptr<MultiplayerLocalPlayer> mplp =
             dynamic_pointer_cast<MultiplayerLocalPlayer>(shared_from_this());
 
         if (mplp && mplp->connection) mplp->StopSleeping();
@@ -1421,7 +1421,7 @@ bool LocalPlayer::handleMouseClick(int button) {
         return false;
     }
 
-    shared_ptr<ItemInstance> oldItem = inventory->getSelected();
+    std::shared_ptr<ItemInstance> oldItem = inventory->getSelected();
 
     if (minecraft->hitResult == NULL) {
         if (button == 0 &&
@@ -1442,7 +1442,7 @@ bool LocalPlayer::handleMouseClick(int button) {
             if (minecraft->hitResult->entity->GetType() == eTYPE_COW) {
                 // If I have an empty bucket in my hand, it's going to be filled
                 // with milk, so turn off mayUse
-                shared_ptr<ItemInstance> item = inventory->getSelected();
+                std::shared_ptr<ItemInstance> item = inventory->getSelected();
                 if (item && (item->id == Item::bucket_empty_Id)) {
                     mayUse = false;
                 }
@@ -1468,7 +1468,7 @@ bool LocalPlayer::handleMouseClick(int button) {
                                                        minecraft->hitResult->f);
             }
         } else {
-            shared_ptr<ItemInstance> item = oldItem;
+            std::shared_ptr<ItemInstance> item = oldItem;
             int oldCount = item != NULL ? item->count : 0;
             bool usedItem = false;
             if (minecraft->gameMode->useItemOn(
@@ -1498,7 +1498,7 @@ bool LocalPlayer::handleMouseClick(int button) {
     }
 
     if (mayUse && button == 1) {
-        shared_ptr<ItemInstance> item = inventory->getSelected();
+        std::shared_ptr<ItemInstance> item = inventory->getSelected();
         if (item != NULL) {
             if (minecraft->gameMode->useItem(
                     minecraft->localplayers[GetXboxPad()], level, item)) {
@@ -1511,7 +1511,7 @@ bool LocalPlayer::handleMouseClick(int button) {
 
 void LocalPlayer::updateRichPresence() {
     if ((m_iPad != -1) /* && !ui.GetMenuDisplayed(m_iPad)*/) {
-        shared_ptr<ItemInstance> selectedItem = inventory->getSelected();
+        std::shared_ptr<ItemInstance> selectedItem = inventory->getSelected();
         if (selectedItem != NULL && selectedItem->id == Item::fishingRod_Id) {
             app.SetRichPresenceContext(m_iPad, CONTEXT_GAME_STATE_FISHING);
         } else if (selectedItem != NULL && selectedItem->id == Item::map_Id) {
@@ -1581,6 +1581,6 @@ void LocalPlayer::handleCollectItem(std::shared_ptr<ItemInstance> item) {
 }
 
 void LocalPlayer::SetPlayerAdditionalModelParts(
-    vector<ModelPart*> pAdditionalModelParts) {
+    std::vector<ModelPart*> pAdditionalModelParts) {
     m_pAdditionalModelParts = pAdditionalModelParts;
 }

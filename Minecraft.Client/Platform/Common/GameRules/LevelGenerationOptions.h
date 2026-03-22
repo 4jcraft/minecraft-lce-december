@@ -146,13 +146,13 @@ private:
     bool m_useFlatWorld;
     Pos* m_spawnPos;
     int m_bHasBeenInCreative;
-    vector<ApplySchematicRuleDefinition*> m_schematicRules;
-    vector<ConsoleGenerateStructure*> m_structureRules;
+    std::vector<ApplySchematicRuleDefinition*> m_schematicRules;
+    std::vector<ConsoleGenerateStructure*> m_structureRules;
     bool m_bHaveMinY;
     int m_minY;
-    unordered_map<wstring, ConsoleSchematicFile*> m_schematics;
-    vector<BiomeOverride*> m_biomeOverrides;
-    vector<StartFeature*> m_features;
+    std::unordered_map<std::wstring, ConsoleSchematicFile*> m_schematics;
+    std::vector<BiomeOverride*> m_biomeOverrides;
+    std::vector<StartFeature*> m_features;
 
     bool m_bRequiresGameRules;
     LevelRuleset* m_requiredGameRules;
@@ -169,7 +169,7 @@ public:
     virtual ConsoleGameRules::EGameRuleType getActionType();
 
     virtual void writeAttributes(DataOutputStream* dos, UINT numAttributes);
-    virtual void getChildren(vector<GameRuleDefinition*>* children);
+    virtual void getChildren(std::vector<GameRuleDefinition*>* children);
     virtual GameRuleDefinition* addChild(
         ConsoleGameRules::EGameRuleType ruleType);
     virtual void addAttribute(const std::wstring& attributeName,
@@ -208,7 +208,7 @@ public:
     void loadStringTable(StringTable* table);
     LPCWSTR getString(const std::wstring& key);
 
-    unordered_map<wstring, ConsoleSchematicFile*>*
+    std::unordered_map<std::wstring, ConsoleSchematicFile*>*
     getUnfinishedSchematicFiles();
 
     void loadBaseSaveData();

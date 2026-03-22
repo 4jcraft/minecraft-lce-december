@@ -314,7 +314,7 @@ void UIScene_BeaconMenu::customDraw(IggyCustomDrawCallbackRegion* region) {
         pMinecraft->localgameModes[m_iPad] == NULL)
         return;
 
-    shared_ptr<ItemInstance> item = nullptr;
+    std::shared_ptr<ItemInstance> item = nullptr;
     int slotId = -1;
     swscanf((wchar_t*)region->name, L"slot_%d", &slotId);
 
@@ -322,20 +322,20 @@ void UIScene_BeaconMenu::customDraw(IggyCustomDrawCallbackRegion* region) {
         int icon = slotId - m_menu->getSize();
         switch (icon) {
             case 0:
-                item =
-                    shared_ptr<ItemInstance>(new ItemInstance(Item::emerald));
+                item = std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::emerald));
                 break;
             case 1:
-                item =
-                    shared_ptr<ItemInstance>(new ItemInstance(Item::diamond));
+                item = std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::diamond));
                 break;
             case 2:
-                item =
-                    shared_ptr<ItemInstance>(new ItemInstance(Item::goldIngot));
+                item = std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::goldIngot));
                 break;
             case 3:
-                item =
-                    shared_ptr<ItemInstance>(new ItemInstance(Item::ironIngot));
+                item = std::shared_ptr<ItemInstance>(
+                    new ItemInstance(Item::ironIngot));
                 break;
             default:
                 assert(false);

@@ -52,14 +52,14 @@ ServerCommandDispatcher::ServerCommandDispatcher() {
 }
 
 void ServerCommandDispatcher::logAdminCommand(
-    shared_ptr<CommandSender> source, int type,
+    std::shared_ptr<CommandSender> source, int type,
     ChatPacket::EChatPacketMessage messageType, const std::wstring& message,
     int customData, const std::wstring& additionalMessage) {
     PlayerList* playerList = MinecraftServer::getInstance()->getPlayers();
     // for (Player player : MinecraftServer.getInstance().getPlayers().players)
     for (AUTO_VAR(it, playerList->players.begin());
          it != playerList->players.end(); ++it) {
-        shared_ptr<ServerPlayer> player = *it;
+        std::shared_ptr<ServerPlayer> player = *it;
         if (player != source && playerList->isOp(player)) {
             // TODO: Change chat packet to be able to send more bits of data
             // 4J Stu - Take this out until we can add the name of the player

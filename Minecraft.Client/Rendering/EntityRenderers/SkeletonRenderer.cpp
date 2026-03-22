@@ -24,7 +24,7 @@ void SkeletonRenderer::translateWeaponItem() {
 
 ResourceLocation* SkeletonRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
-    shared_ptr<Skeleton> skeleton = dynamic_pointer_cast<Skeleton>(entity);
+    std::shared_ptr<Skeleton> skeleton = dynamic_pointer_cast<Skeleton>(entity);
 
     if (skeleton->getSkeletonType() == Skeleton::TYPE_WITHER) {
         return &WITHER_SKELETON_LOCATION;

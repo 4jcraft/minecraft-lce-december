@@ -28,7 +28,7 @@ void MushroomCowRenderer::additionalRendering(
     // 4J - original version used generics and thus had an input parameter of
     // type MushroomCow rather than shared_ptr<Mob>  we have here - do some
     // casting around instead
-    shared_ptr<MushroomCow> mob = dynamic_pointer_cast<MushroomCow>(_mob);
+    std::shared_ptr<MushroomCow> mob = dynamic_pointer_cast<MushroomCow>(_mob);
     MobRenderer::additionalRendering(mob, a);
     if (mob->isBaby()) return;
     bindTexture(&TextureAtlas::LOCATION_BLOCKS);  // 4J was "/terrain.png"

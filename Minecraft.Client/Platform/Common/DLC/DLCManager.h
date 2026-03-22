@@ -56,7 +56,7 @@ public:
     DLCManager();
     ~DLCManager();
 
-    static EDLCParameterType getParameterType(const wstring& paramName);
+    static EDLCParameterType getParameterType(const std::wstring& paramName);
 
     DWORD getPackCount(EDLCType type = e_DLCType_All);
 
@@ -74,27 +74,27 @@ public:
     void removeAllPacks(void);
     void LanguageChanged(void);
 
-    DLCPack* getPack(const wstring& name);
+    DLCPack* getPack(const std::wstring& name);
 #ifdef _XBOX_ONE
-    DLCPack* DLCManager::getPackFromProductID(const wstring& productID);
+    DLCPack* DLCManager::getPackFromProductID(const std::wstring& productID);
 #endif
     DLCPack* getPack(DWORD index, EDLCType type = e_DLCType_All);
     DWORD getPackIndex(DLCPack* pack, bool& found,
                        EDLCType type = e_DLCType_All);
     DLCSkinFile* getSkinFile(
-        const wstring& path);  // Will hunt all packs of type skin to find the
-                               // right skinfile
+        const std::wstring& path);  // Will hunt all packs of type skin to find
+                                    // the right skinfile
 
-    DLCPack* getPackContainingSkin(const wstring& path);
-    DWORD getPackIndexContainingSkin(const wstring& path, bool& found);
+    DLCPack* getPackContainingSkin(const std::wstring& path);
+    DWORD getPackIndexContainingSkin(const std::wstring& path, bool& found);
 
     DWORD checkForCorruptDLCAndAlert(bool showMessage = true);
 
-    bool readDLCDataFile(DWORD& dwFilesProcessed, const wstring& path,
+    bool readDLCDataFile(DWORD& dwFilesProcessed, const std::wstring& path,
                          DLCPack* pack, bool fromArchive = false);
-    bool readDLCDataFile(DWORD& dwFilesProcessed, const string& path,
+    bool readDLCDataFile(DWORD& dwFilesProcessed, const std::string& path,
                          DLCPack* pack, bool fromArchive = false);
-    DWORD retrievePackIDFromDLCDataFile(const string& path, DLCPack* pack);
+    DWORD retrievePackIDFromDLCDataFile(const std::string& path, DLCPack* pack);
 
 private:
     bool processDLCDataFile(DWORD& dwFilesProcessed, PBYTE pbData,

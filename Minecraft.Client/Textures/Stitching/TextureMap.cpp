@@ -54,7 +54,7 @@ void TextureMap::stitch() {
     }
 
     // Collection bucket for multiple frames per texture
-    unordered_map<TextureHolder*, vector<Texture*>*>
+    std::unordered_map<TextureHolder*, std::vector<Texture*>*>
         textures;  // = new HashMap<TextureHolder, List<Texture>>();
 
     Stitcher* stitcher = TextureManager::getInstance()->createStitcher(name);
@@ -75,23 +75,23 @@ void TextureMap::stitch() {
     TextureHolder* missingHolder = new TextureHolder(missingTex);
 
     stitcher->addTexture(missingHolder);
-    vector<Texture*>* missingVec = new vector<Texture*>();
+    std::vector<Texture*>* missingVec = new std::vector<Texture*>();
     missingVec->push_back(missingTex);
     textures.insert(
-        unordered_map<TextureHolder*, vector<Texture*>*>::value_type(
+        std::unordered_map<TextureHolder*, std::vector<Texture*>*>::value_type(
             missingHolder, missingVec));
 
     // Extract frames from textures and add them to the stitchers
     // for (final String name : texturesToRegister.keySet())
     for (AUTO_VAR(it, texturesToRegister.begin());
          it != texturesToRegister.end(); ++it) {
-        wstring name = it->first;
+        std::wstring name = it->first;
 
-        wstring filename = path + name + extension;
+        std::wstring filename = path + name + extension;
 
         // TODO: [EB] Put the frames into a proper object, not this inside out
         // hack
-        vector<Texture*>* frames =
+        std::vector<Texture*>* frames =
             TextureManager::getInstance()->createTextures(filename, m_mipMap);
 
         if (frames == NULL || frames->empty()) {
@@ -103,8 +103,9 @@ void TextureMap::stitch() {
 
         // Store frames
         textures.insert(
-            unordered_map<TextureHolder*, vector<Texture*>*>::value_type(
-                holder, frames));
+            std::unordered_map<TextureHolder*,
+                               std::vector<Texture*>*>::value_type(holder,
+                                                                   frames));
     }
 
     // Stitch!
@@ -126,9 +127,9 @@ void TextureMap::stitch() {
         TextureHolder* textureHolder = slot->getHolder();
 
         Texture* texture = textureHolder->getTexture();
-        wstring textureName = texture->getName();
+        std::wstring textureName = texture->getName();
 
-        vector<Texture*>* frames = textures.find(textureHolder)->second;
+        std::vector<Texture*>* frames = textures.find(textureHolder)->second;
 
         StitchedTexture* stored = NULL;
 
@@ -164,7 +165,7 @@ void TextureMap::stitch() {
         if (frames->size() > 1) {
             animatedTextures.push_back(stored);
 
-            wstring animationDefinitionFile = textureName + L".txt";
+            std::wstring animationDefinitionFile = textureName + L".txt";
 
             TexturePack* texturePack =
                 Minecraft::GetInstance()->skins->getSelected();

@@ -403,7 +403,8 @@ void C_4JProfile::Initialise(DWORD dwTitleID, DWORD dwOfferID,
                              unsigned int* puiGameDefinedDataChangedBitmask) {
     for (int i = 0; i < 4; i++) {
         profileData[i] = new uint8_t[iGameDefinedDataSizeX4 / 4];
-        ZeroMemory(profileData[i], sizeof(uint8_t) * iGameDefinedDataSizeX4 / 4);
+        ZeroMemory(profileData[i],
+                   sizeof(uint8_t) * iGameDefinedDataSizeX4 / 4);
 
         // Set some sane initial values!
         GAME_SETTINGS* pGameSettings = (GAME_SETTINGS*)profileData[i];
@@ -421,8 +422,9 @@ void C_4JProfile::Initialise(DWORD dwTitleID, DWORD dwOfferID,
             GAMESETTING_CLOUDS;  // eGameSetting_Clouds - on
         pGameSettings->uiBitmaskValues |=
             GAMESETTING_ONLINE;  // eGameSetting_GameSetting_Online - on
-        pGameSettings->uiBitmaskValues |= GAMESETTING_FRIENDSOFFRIENDS;  // eGameSetting_GameSetting_FriendsOfFriends
-                                                                         // - on
+        pGameSettings->uiBitmaskValues |=
+            GAMESETTING_FRIENDSOFFRIENDS;  // eGameSetting_GameSetting_FriendsOfFriends
+                                           // - on
         pGameSettings->uiBitmaskValues |=
             GAMESETTING_DISPLAYUPDATEMSG;  // eGameSetting_DisplayUpdateMessage
                                            // (counter)
@@ -553,7 +555,7 @@ void SetFakeGamertag(char* name) { strcpy_s(fakeGamerTag, name); }
 char* C_4JProfile::GetGamertag(int iPad) { return fakeGamerTag; }
 #else
 char* C_4JProfile::GetGamertag(int iPad) { return "PlayerName"; }
-wstring C_4JProfile::GetDisplayName(int iPad) { return L"PlayerName"; }
+std::wstring C_4JProfile::GetDisplayName(int iPad) { return L"PlayerName"; }
 #endif
 bool C_4JProfile::IsFullVersion() { return s_bProfileIsFullVersion; }
 void C_4JProfile::SetSignInChangeCallback(void (*Func)(LPVOID, bool,

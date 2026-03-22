@@ -384,7 +384,7 @@ void ItemInHandRenderer::renderItem3D(Tesselator* t, float u0, float v0,
 
 void ItemInHandRenderer::render(float a) {
     float h = oHeight + (height - oHeight) * a;
-    shared_ptr<Player> player = minecraft->player;
+    std::shared_ptr<Player> player = minecraft->player;
 
     // 4J - added so we can adjust the position of the hands for horizontal &
     // vertical split screens
@@ -392,7 +392,7 @@ void ItemInHandRenderer::render(float a) {
     float fudgeY = 0.0f;
     float fudgeZ = 0.0f;
     bool splitHoriz = false;
-    shared_ptr<LocalPlayer> localPlayer =
+    std::shared_ptr<LocalPlayer> localPlayer =
         dynamic_pointer_cast<LocalPlayer>(player);
     if (localPlayer) {
         if (localPlayer->m_iScreenSection ==
@@ -429,7 +429,7 @@ void ItemInHandRenderer::render(float a) {
         glRotatef((yr - yrr) * 0.1f, 0, 1, 0);
     }
 
-    shared_ptr<ItemInstance> item = selectedItem;
+    std::shared_ptr<ItemInstance> item = selectedItem;
 
     float br = minecraft->level->getBrightness(
         Mth::floor(player->x), Mth::floor(player->y), Mth::floor(player->z));
@@ -514,7 +514,7 @@ void ItemInHandRenderer::render(float a) {
                 glScalef(ss, ss, ss);
 
                 // Can't turn off the hand if the player is holding a map
-                shared_ptr<ItemInstance> itemInstance =
+                std::shared_ptr<ItemInstance> itemInstance =
                     player->inventory->getSelected();
                 if ((itemInstance &&
                      (itemInstance->getItem()->id == Item::map_Id)) ||
@@ -566,7 +566,7 @@ void ItemInHandRenderer::render(float a) {
                     (float)(0));
         t->end();
 
-        shared_ptr<MapItemSavedData> data =
+        std::shared_ptr<MapItemSavedData> data =
             Item::map->getSavedData(item, minecraft->level);
         PIXBeginNamedEvent(0, "Minimap render");
         if (data != NULL)
@@ -740,7 +740,7 @@ void ItemInHandRenderer::render(float a) {
         glScalef(ss, ss, ss);
         MemSect(31);
         // Can't turn off the hand if the player is holding a map
-        shared_ptr<ItemInstance> itemInstance =
+        std::shared_ptr<ItemInstance> itemInstance =
             player->inventory->getSelected();
 
         if ((itemInstance && (itemInstance->getItem()->id == Item::map_Id)) ||
@@ -933,8 +933,8 @@ void ItemInHandRenderer::renderFire(float a) {
 void ItemInHandRenderer::tick() {
     oHeight = height;
 
-    shared_ptr<Player> player = minecraft->player;
-    shared_ptr<ItemInstance> nextTile = player->inventory->getSelected();
+    std::shared_ptr<Player> player = minecraft->player;
+    std::shared_ptr<ItemInstance> nextTile = player->inventory->getSelected();
 
     bool matches =
         lastSlot == player->inventory->selected && nextTile == selectedItem;

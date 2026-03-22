@@ -19,7 +19,7 @@ private:
     UI_MAP_ELEMENT(m_labels[9], "consoleLine10")
     UI_END_MAP_ELEMENTS_AND_NAMES()
 
-    deque<std::string> m_textList;
+    std::deque<std::string> m_textList;
 
     bool m_bTextChanged;
 

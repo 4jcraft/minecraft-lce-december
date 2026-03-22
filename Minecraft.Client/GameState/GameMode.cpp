@@ -69,7 +69,7 @@ void GameMode::adjustPlayer(std::shared_ptr<Player> player) {}
 //			case Tile::recordPlayer_Id:
 //			case Tile::bed_Id: // special case for a bed
 //				if (Tile::tiles[t]->TestUse(level, x, y, z,
-//player ))
+// player ))
 //				{
 //					return true;
 //				}
@@ -87,7 +87,7 @@ void GameMode::adjustPlayer(std::shared_ptr<Player> player) {}
 //		else
 //		{
 //			if (Tile::tiles[t]->use(level, x, y, z, player )) return
-//true;
+// true;
 //		}
 //	}
 //
@@ -96,8 +96,8 @@ void GameMode::adjustPlayer(std::shared_ptr<Player> player) {}
 // }
 
 std::shared_ptr<Player> GameMode::createPlayer(Level* level) {
-    return shared_ptr<Player>(new LocalPlayer(minecraft, level, minecraft->user,
-                                              level->dimension->id));
+    return std::shared_ptr<Player>(new LocalPlayer(
+        minecraft, level, minecraft->user, level->dimension->id));
 }
 
 bool GameMode::interact(std::shared_ptr<Player> player,

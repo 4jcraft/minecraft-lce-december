@@ -30,7 +30,7 @@ SkullTileRenderer::~SkullTileRenderer() {
 void SkullTileRenderer::render(std::shared_ptr<TileEntity> _skull, double x,
                                double y, double z, float a, bool setColor,
                                float alpha, bool useCompiled) {
-    shared_ptr<SkullTileEntity> skull =
+    std::shared_ptr<SkullTileEntity> skull =
         dynamic_pointer_cast<SkullTileEntity>(_skull);
     renderSkull((float)x, (float)y, (float)z,
                 skull->getData() & SkullTile::PLACEMENT_MASK,
@@ -61,13 +61,13 @@ void SkullTileRenderer::renderSkull(float x, float y, float z, int face,
             // if (!extra.empty())
             //{
             //	wstring url = "http://skins.minecraft.net/MinecraftSkins/" +
-            //StringUtil.stripColor(extra) + ".png";
+            // StringUtil.stripColor(extra) + ".png";
 
             //	if
             //(!instance->tileEntityRenderDispatcher->textures->hasHttpTexture(url))
             //	{
             //		instance->tileEntityRenderDispatcher->textures->addHttpTexture(url,
-            //new MobSkinTextureProcessor());
+            // new MobSkinTextureProcessor());
             //	}
 
             //	bindTexture(url, "/mob/char.png");

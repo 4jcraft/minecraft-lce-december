@@ -10,7 +10,7 @@ private:
     __int64 m_currentSave, m_currentTotal;
     float m_currentOffset;
 
-    std::vector<pair<__int64, float> > m_sizeAndOffsets;
+    std::vector<std::pair<__int64, float> > m_sizeAndOffsets;
 
 public:
     UIControl_SpaceIndicatorBar();

@@ -5,7 +5,8 @@
 
 void TntMinecartRenderer::renderMinecartContents(
     std::shared_ptr<Minecart> _cart, float a, Tile* tile, int tileData) {
-    shared_ptr<MinecartTNT> cart = dynamic_pointer_cast<MinecartTNT>(_cart);
+    std::shared_ptr<MinecartTNT> cart =
+        dynamic_pointer_cast<MinecartTNT>(_cart);
 
     int fuse = cart->getFuse();
 

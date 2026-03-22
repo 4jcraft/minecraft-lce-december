@@ -15,7 +15,7 @@ ResourceLocation HorseRenderer::HORSE_ZOMBIE_LOCATION =
 ResourceLocation HorseRenderer::HORSE_SKELETON_LOCATION =
     ResourceLocation(TN_MOB_HORSE_SKELETON);
 
-std::map<wstring, ResourceLocation*> HorseRenderer::LAYERED_LOCATION_CACHE;
+std::map<std::wstring, ResourceLocation*> HorseRenderer::LAYERED_LOCATION_CACHE;
 
 HorseRenderer::HorseRenderer(Model* model, float f) : MobRenderer(model, f) {}
 
@@ -60,7 +60,8 @@ void HorseRenderer::bindTexture(ResourceLocation* location) {
 
 ResourceLocation* HorseRenderer::getTextureLocation(
     std::shared_ptr<Entity> entity) {
-    shared_ptr<EntityHorse> horse = dynamic_pointer_cast<EntityHorse>(entity);
+    std::shared_ptr<EntityHorse> horse =
+        dynamic_pointer_cast<EntityHorse>(entity);
 
     if (!horse->hasLayeredTextures()) {
         switch (horse->getType()) {
@@ -83,7 +84,7 @@ ResourceLocation* HorseRenderer::getTextureLocation(
 
 ResourceLocation* HorseRenderer::getOrCreateLayeredTextureLocation(
     std::shared_ptr<EntityHorse> horse) {
-    wstring textureName = horse->getLayeredTextureHashName();
+    std::wstring textureName = horse->getLayeredTextureHashName();
 
     AUTO_VAR(it, LAYERED_LOCATION_CACHE.find(textureName));
 
